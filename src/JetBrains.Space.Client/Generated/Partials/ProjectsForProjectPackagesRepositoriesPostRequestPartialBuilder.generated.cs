@@ -45,6 +45,12 @@ namespace JetBrains.Space.Client.ProjectsForProjectPackagesRepositoriesPostReque
         public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithSettings(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it, Func<Partial<ESPackageRepositorySettings>, Partial<ESPackageRepositorySettings>> partialBuilder)
             => it.AddFieldName("settings", partialBuilder(new Partial<ESPackageRepositorySettings>(it)));
         
+        public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithMode(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it)
+            => it.AddFieldName("mode");
+        
+        public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithMode(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it, Func<Partial<PackageRepositoryMode>, Partial<PackageRepositoryMode>> partialBuilder)
+            => it.AddFieldName("mode", partialBuilder(new Partial<PackageRepositoryMode>(it)));
+        
         public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithMirror(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it)
             => it.AddFieldName("mirror");
         

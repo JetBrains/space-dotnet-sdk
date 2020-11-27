@@ -1258,7 +1258,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<ProjectPackageRepository> CreateNewRepositoryAsync(ProjectIdentifier project, string type, string name, bool @public, ESPackageRepositorySettings settings, string? description = null, PackageRepositoryMirror? mirror = null, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<ProjectPackageRepository> CreateNewRepositoryAsync(ProjectIdentifier project, string type, string name, bool @public, ESPackageRepositorySettings settings, PackageRepositoryMode mode, string? description = null, PackageRepositoryMirror? mirror = null, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesPostRequest, ProjectPackageRepository>("POST", $"api/http/projects/{project}/packages/repositories?$fields={(partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default())}", 
                         new ProjectsForProjectPackagesRepositoriesPostRequest { 
                             Type = type,
@@ -1266,6 +1266,7 @@ namespace JetBrains.Space.Client
                             Description = description,
                             IsPublic = @public,
                             Settings = settings,
+                            Mode = mode,
                             Mirror = mirror,
                         }
                 , cancellationToken);
@@ -1333,6 +1334,33 @@ namespace JetBrains.Space.Client
                 public async Task DeleteRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}", cancellationToken);
             
+                public CleanupClient Cleanup => new CleanupClient(_connection);
+                
+                public partial class CleanupClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public CleanupClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    /// <summary>
+                    /// Cleanup specified package repository.
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Admin</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public async Task CleanupRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/packages/repositories/{repository}/cleanup", cancellationToken);
+                
+                }
+            
                 public PackageClient Packages => new PackageClient(_connection);
                 
                 public partial class PackageClient : ISpaceClient
@@ -1371,6 +1399,30 @@ namespace JetBrains.Space.Client
                     /// </remarks>
                     public IAsyncEnumerable<PackageData> GetAllPackagesAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<PackageData>, Partial<PackageData>>? partial = null, CancellationToken cancellationToken = default)
                         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackagesAsync(project: project, repository: repository, query: query, mirrorId: mirrorId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageData>.Default())), skip, cancellationToken);
+                
+                    public MetadataClient Metadata => new MetadataClient(_connection);
+                    
+                    public partial class MetadataClient : ISpaceClient
+                    {
+                        private readonly Connection _connection;
+                        
+                        public MetadataClient(Connection connection)
+                        {
+                            _connection = connection;
+                        }
+                        
+                        /// <summary>
+                        /// Report a package version metadata in repository for a given project id.
+                        /// </summary>
+                        public async Task ReportPackageVersionMetadataAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string packageVersion, bool pin, string? comment = null, CancellationToken cancellationToken = default)
+                            => await _connection.RequestResourceAsync("PUT", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/metadata/version:{packageVersion}", 
+                                new ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest { 
+                                    IsPin = pin,
+                                    Comment = comment,
+                                }
+                        , cancellationToken);
+                    
+                    }
                 
                     public VersionClient Versions => new VersionClient(_connection);
                     
@@ -1751,7 +1803,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<Attachment>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldValue>? customFields = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldValue>? customFields = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesPostRequest, Issue>("POST", $"api/http/projects/{project}/planning/issues?$fields={(partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default())}", 
                         new ProjectsForProjectPlanningIssuesPostRequest { 
                             Title = title,
@@ -1762,9 +1814,30 @@ namespace JetBrains.Space.Client
                             Tags = (tags ?? new List<string>()),
                             Checklists = (checklists ?? new List<string>()),
                             Sprints = (sprints ?? new List<string>()),
-                            Attachments = (attachments ?? new List<Attachment>()),
+                            Attachments = (attachments ?? new List<AttachmentIn>()),
                             FromMessage = fromMessage,
                             CustomFields = customFields,
+                        }
+                , cancellationToken);
+            
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Import issues</term>
+                /// <description>Import issues</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<IssueImportResult> ImportIssuesAsync(ProjectIdentifier project, ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, Func<Partial<IssueImportResult>, Partial<IssueImportResult>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesImportPostRequest, IssueImportResult>("POST", $"api/http/projects/{project}/planning/issues/import?$fields={(partial != null ? partial(new Partial<IssueImportResult>()) : Partial<IssueImportResult>.Default())}", 
+                        new ProjectsForProjectPlanningIssuesImportPostRequest { 
+                            Metadata = metadata,
+                            Issues = issues,
+                            AssigneeMissingPolicy = assigneeMissingPolicy,
+                            StatusMissingPolicy = statusMissingPolicy,
+                            OnExistsPolicy = onExistsPolicy,
+                            IsDryRun = dryRun,
                         }
                 , cancellationToken);
             
@@ -1938,7 +2011,7 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task AddAttachmentsAsync(ProjectIdentifier project, string issueId, List<Attachment> attachments, CancellationToken cancellationToken = default)
+                    public async Task AddAttachmentsAsync(ProjectIdentifier project, string issueId, List<AttachmentIn> attachments, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/attachments", 
                             new ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest { 
                                 Attachments = attachments,

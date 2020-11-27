@@ -101,17 +101,6 @@ namespace JetBrains.Space.Client
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>View application secrets</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<string> GetClientSecretAsync(string id, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{id}/client-secret", cancellationToken);
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
         /// <term>Edit applications</term>
         /// </item>
         /// </list>
@@ -140,6 +129,41 @@ namespace JetBrains.Space.Client
         /// </remarks>
         public async Task DeleteApplicationAsync(string id, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{id}", cancellationToken);
+    
+        public ClientSecretClient ClientSecret => new ClientSecretClient(_connection);
+        
+        public partial class ClientSecretClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public ClientSecretClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit applications</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task RegenerateAsync(string id, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync("POST", $"api/http/applications/{id}/client-secret/regenerate", cancellationToken);
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View application secrets</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<string> GetClientSecretAsync(string id, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{id}/client-secret", cancellationToken);
+        
+        }
     
         public SigningKeyClient SigningKey => new SigningKeyClient(_connection);
         

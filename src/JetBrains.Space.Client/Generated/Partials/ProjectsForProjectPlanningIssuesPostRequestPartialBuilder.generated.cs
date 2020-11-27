@@ -57,8 +57,8 @@ namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesPostRequestPart
         public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
             => it.AddFieldName("attachments");
         
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
-            => it.AddFieldName("attachments", partialBuilder(new Partial<Attachment>(it)));
+        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<AttachmentIn>, Partial<AttachmentIn>> partialBuilder)
+            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentIn>(it)));
         
         public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithFromMessage(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
             => it.AddFieldName("fromMessage");

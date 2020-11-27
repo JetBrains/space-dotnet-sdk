@@ -30,8 +30,8 @@ namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesForIssueIdAttac
         public static Partial<ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest> it)
             => it.AddFieldName("attachments");
         
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
-            => it.AddFieldName("attachments", partialBuilder(new Partial<Attachment>(it)));
+        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest> it, Func<Partial<AttachmentIn>, Partial<AttachmentIn>> partialBuilder)
+            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentIn>(it)));
         
     }
     

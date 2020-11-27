@@ -39,8 +39,8 @@ namespace JetBrains.Space.Client.MessageForImportPartialBuilder
         public static Partial<MessageForImport> WithAttachments(this Partial<MessageForImport> it)
             => it.AddFieldName("attachments");
         
-        public static Partial<MessageForImport> WithAttachments(this Partial<MessageForImport> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
-            => it.AddFieldName("attachments", partialBuilder(new Partial<Attachment>(it)));
+        public static Partial<MessageForImport> WithAttachments(this Partial<MessageForImport> it, Func<Partial<AttachmentIn>, Partial<AttachmentIn>> partialBuilder)
+            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentIn>(it)));
         
     }
     

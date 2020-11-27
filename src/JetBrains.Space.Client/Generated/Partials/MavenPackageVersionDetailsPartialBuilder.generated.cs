@@ -54,6 +54,12 @@ namespace JetBrains.Space.Client.MavenPackageVersionDetailsPartialBuilder
         public static Partial<MavenPackageVersionDetails> WithDownloads(this Partial<MavenPackageVersionDetails> it)
             => it.AddFieldName("downloads");
         
+        public static Partial<MavenPackageVersionDetails> WithIsPinned(this Partial<MavenPackageVersionDetails> it)
+            => it.AddFieldName("pinned");
+        
+        public static Partial<MavenPackageVersionDetails> WithComment(this Partial<MavenPackageVersionDetails> it)
+            => it.AddFieldName("comment");
+        
         public static Partial<MavenPackageVersionDetails> WithDiskSize(this Partial<MavenPackageVersionDetails> it)
             => it.AddFieldName("diskSize");
         

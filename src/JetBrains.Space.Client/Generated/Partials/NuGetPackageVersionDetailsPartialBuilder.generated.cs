@@ -54,6 +54,12 @@ namespace JetBrains.Space.Client.NuGetPackageVersionDetailsPartialBuilder
         public static Partial<NuGetPackageVersionDetails> WithDownloads(this Partial<NuGetPackageVersionDetails> it)
             => it.AddFieldName("downloads");
         
+        public static Partial<NuGetPackageVersionDetails> WithIsPinned(this Partial<NuGetPackageVersionDetails> it)
+            => it.AddFieldName("pinned");
+        
+        public static Partial<NuGetPackageVersionDetails> WithComment(this Partial<NuGetPackageVersionDetails> it)
+            => it.AddFieldName("comment");
+        
         public static Partial<NuGetPackageVersionDetails> WithDiskSize(this Partial<NuGetPackageVersionDetails> it)
             => it.AddFieldName("diskSize");
         

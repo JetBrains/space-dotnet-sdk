@@ -51,6 +51,12 @@ namespace JetBrains.Space.Client.PackageRepositoryPartialBuilder
         public static Partial<PackageRepository> WithSettings(this Partial<PackageRepository> it, Func<Partial<ESPackageRepositorySettings>, Partial<ESPackageRepositorySettings>> partialBuilder)
             => it.AddFieldName("settings", partialBuilder(new Partial<ESPackageRepositorySettings>(it)));
         
+        public static Partial<PackageRepository> WithMode(this Partial<PackageRepository> it)
+            => it.AddFieldName("mode");
+        
+        public static Partial<PackageRepository> WithMode(this Partial<PackageRepository> it, Func<Partial<PackageRepositoryMode>, Partial<PackageRepositoryMode>> partialBuilder)
+            => it.AddFieldName("mode", partialBuilder(new Partial<PackageRepositoryMode>(it)));
+        
         public static Partial<PackageRepository> WithIsArchived(this Partial<PackageRepository> it)
             => it.AddFieldName("archived");
         

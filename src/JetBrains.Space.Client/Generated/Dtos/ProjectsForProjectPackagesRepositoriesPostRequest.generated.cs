@@ -30,13 +30,14 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectPackagesRepositoriesPostRequest() { }
         
-        public ProjectsForProjectPackagesRepositoriesPostRequest(string type, string name, bool @public, ESPackageRepositorySettings settings, string? description = null, PackageRepositoryMirror? mirror = null)
+        public ProjectsForProjectPackagesRepositoriesPostRequest(string type, string name, bool @public, ESPackageRepositorySettings settings, PackageRepositoryMode mode, string? description = null, PackageRepositoryMirror? mirror = null)
         {
             Type = type;
             Name = name;
             Description = description;
             IsPublic = @public;
             Settings = settings;
+            Mode = mode;
             Mirror = mirror;
         }
         
@@ -89,6 +90,16 @@ namespace JetBrains.Space.Client
             set => _settings.SetValue(value);
         }
     
+        private PropertyValue<PackageRepositoryMode> _mode = new PropertyValue<PackageRepositoryMode>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Mode));
+        
+        [Required]
+        [JsonPropertyName("mode")]
+        public PackageRepositoryMode Mode
+        {
+            get => _mode.GetValue();
+            set => _mode.SetValue(value);
+        }
+    
         private PropertyValue<PackageRepositoryMirror?> _mirror = new PropertyValue<PackageRepositoryMirror?>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Mirror));
         
         [JsonPropertyName("mirror")]
@@ -105,6 +116,7 @@ namespace JetBrains.Space.Client
             _description.SetAccessPath(path, validateHasBeenSet);
             _public.SetAccessPath(path, validateHasBeenSet);
             _settings.SetAccessPath(path, validateHasBeenSet);
+            _mode.SetAccessPath(path, validateHasBeenSet);
             _mirror.SetAccessPath(path, validateHasBeenSet);
         }
     

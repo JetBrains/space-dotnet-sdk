@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public PackageVersionData() { }
         
-        public PackageVersionData(PackageType type, string repository, string name, string version, List<string>? tags = null, long? created = null, long? updated = null, long? downloads = null)
+        public PackageVersionData(PackageType type, string repository, string name, string version, bool pinned, List<string>? tags = null, long? created = null, long? updated = null, long? downloads = null, string? comment = null)
         {
             Type = type;
             Repository = repository;
@@ -40,6 +40,8 @@ namespace JetBrains.Space.Client
             Created = created;
             Updated = updated;
             Downloads = downloads;
+            IsPinned = pinned;
+            Comment = comment;
         }
         
         private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(PackageVersionData), nameof(Type));
@@ -118,6 +120,25 @@ namespace JetBrains.Space.Client
             set => _downloads.SetValue(value);
         }
     
+        private PropertyValue<bool> _pinned = new PropertyValue<bool>(nameof(PackageVersionData), nameof(IsPinned));
+        
+        [Required]
+        [JsonPropertyName("pinned")]
+        public bool IsPinned
+        {
+            get => _pinned.GetValue();
+            set => _pinned.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _comment = new PropertyValue<string?>(nameof(PackageVersionData), nameof(Comment));
+        
+        [JsonPropertyName("comment")]
+        public string? Comment
+        {
+            get => _comment.GetValue();
+            set => _comment.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _type.SetAccessPath(path, validateHasBeenSet);
@@ -128,6 +149,8 @@ namespace JetBrains.Space.Client
             _created.SetAccessPath(path, validateHasBeenSet);
             _updated.SetAccessPath(path, validateHasBeenSet);
             _downloads.SetAccessPath(path, validateHasBeenSet);
+            _pinned.SetAccessPath(path, validateHasBeenSet);
+            _comment.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

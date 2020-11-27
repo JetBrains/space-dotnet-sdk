@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public PackageRepository() { }
         
-        public PackageRepository(string id, PackageType type, bool @public, bool archived, string? name = null, string? description = null, ESPackageRepositorySettings? settings = null)
+        public PackageRepository(string id, PackageType type, bool @public, PackageRepositoryMode mode, bool archived, string? name = null, string? description = null, ESPackageRepositorySettings? settings = null)
         {
             Id = id;
             Type = type;
@@ -38,6 +38,7 @@ namespace JetBrains.Space.Client
             Description = description;
             IsPublic = @public;
             Settings = settings;
+            Mode = mode;
             IsArchived = archived;
         }
         
@@ -98,6 +99,16 @@ namespace JetBrains.Space.Client
             set => _settings.SetValue(value);
         }
     
+        private PropertyValue<PackageRepositoryMode> _mode = new PropertyValue<PackageRepositoryMode>(nameof(PackageRepository), nameof(Mode));
+        
+        [Required]
+        [JsonPropertyName("mode")]
+        public PackageRepositoryMode Mode
+        {
+            get => _mode.GetValue();
+            set => _mode.SetValue(value);
+        }
+    
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PackageRepository), nameof(IsArchived));
         
         [Required]
@@ -116,6 +127,7 @@ namespace JetBrains.Space.Client
             _description.SetAccessPath(path, validateHasBeenSet);
             _public.SetAccessPath(path, validateHasBeenSet);
             _settings.SetAccessPath(path, validateHasBeenSet);
+            _mode.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
         }
     

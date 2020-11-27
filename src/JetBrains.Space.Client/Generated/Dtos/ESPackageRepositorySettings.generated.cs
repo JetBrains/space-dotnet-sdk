@@ -32,17 +32,17 @@ namespace JetBrains.Space.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "ES_PackageRepositorySettings";
         
-        public static ESContainerRegistrySettings ESContainerRegistrySettings(bool immutableTags)
-            => new ESContainerRegistrySettings(immutableTags: immutableTags);
+        public static ESContainerRegistrySettings ESContainerRegistrySettings(bool immutableTags, RetentionPolicyParams? retentionPolicyParams = null)
+            => new ESContainerRegistrySettings(immutableTags: immutableTags, retentionPolicyParams: retentionPolicyParams);
         
-        public static ESMavenRepositorySettings ESMavenRepositorySettings(bool enableSnapshots)
-            => new ESMavenRepositorySettings(enableSnapshots: enableSnapshots);
+        public static ESMavenRepositorySettings ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null)
+            => new ESMavenRepositorySettings(enableSnapshots: enableSnapshots, retentionPolicyParams: retentionPolicyParams);
         
-        public static ESNpmRegistrySettings ESNpmRegistrySettings()
-            => new ESNpmRegistrySettings();
+        public static ESNpmRegistrySettings ESNpmRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null)
+            => new ESNpmRegistrySettings(retentionPolicyParams: retentionPolicyParams);
         
-        public static ESNuGetFeedSettings ESNuGetFeedSettings()
-            => new ESNuGetFeedSettings();
+        public static ESNuGetFeedSettings ESNuGetFeedSettings(RetentionPolicyParams? retentionPolicyParams = null)
+            => new ESNuGetFeedSettings(retentionPolicyParams: retentionPolicyParams);
         
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {

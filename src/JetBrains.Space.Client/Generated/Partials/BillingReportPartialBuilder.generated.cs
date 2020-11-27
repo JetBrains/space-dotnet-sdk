@@ -63,6 +63,9 @@ namespace JetBrains.Space.Client.BillingReportPartialBuilder
         public static Partial<BillingReport> WithTrafficPackages(this Partial<BillingReport> it)
             => it.AddFieldName("trafficPackages");
         
+        public static Partial<BillingReport> WithTrafficAutomation(this Partial<BillingReport> it)
+            => it.AddFieldName("trafficAutomation");
+        
         public static Partial<BillingReport> WithStorageTotal(this Partial<BillingReport> it)
             => it.AddFieldName("storageTotal");
         
@@ -74,9 +77,6 @@ namespace JetBrains.Space.Client.BillingReportPartialBuilder
         
         public static Partial<BillingReport> WithStoragePackages(this Partial<BillingReport> it)
             => it.AddFieldName("storagePackages");
-        
-        public static Partial<BillingReport> WithStorageAutomation(this Partial<BillingReport> it)
-            => it.AddFieldName("storageAutomation");
         
         public static Partial<BillingReport> WithEarliestBillingDate(this Partial<BillingReport> it)
             => it.AddFieldName("earliestBillingDate");

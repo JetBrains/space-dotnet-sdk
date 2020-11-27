@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
         
         public MavenPackageVersionDetails() { }
         
-        public MavenPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, long diskSize, List<string> licenses, List<MavenPackageDependency> dependencies, List<MavenPackageFile> files, List<string>? tags = null, long? accessed = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, string? packaging = null, string? packageName = null, string? description = null, string? url = null, string? scmUrl = null, List<KotlinPlatform>? kotlinPlatforms = null, MavenPackageParent? parent = null, string? pathPrefix = null)
+        public MavenPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, bool pinned, long diskSize, List<string> licenses, List<MavenPackageDependency> dependencies, List<MavenPackageFile> files, List<string>? tags = null, long? accessed = null, string? comment = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, string? packaging = null, string? packageName = null, string? description = null, string? url = null, string? scmUrl = null, List<KotlinPlatform>? kotlinPlatforms = null, MavenPackageParent? parent = null, string? pathPrefix = null)
         {
             Type = type;
             Repository = repository;
@@ -43,6 +43,8 @@ namespace JetBrains.Space.Client
             Created = created;
             Accessed = accessed;
             Downloads = downloads;
+            IsPinned = pinned;
+            Comment = comment;
             DiskSize = diskSize;
             Author = author;
             Authors = authors;
@@ -137,6 +139,25 @@ namespace JetBrains.Space.Client
         {
             get => _downloads.GetValue();
             set => _downloads.SetValue(value);
+        }
+    
+        private PropertyValue<bool> _pinned = new PropertyValue<bool>(nameof(MavenPackageVersionDetails), nameof(IsPinned));
+        
+        [Required]
+        [JsonPropertyName("pinned")]
+        public bool IsPinned
+        {
+            get => _pinned.GetValue();
+            set => _pinned.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _comment = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(Comment));
+        
+        [JsonPropertyName("comment")]
+        public string? Comment
+        {
+            get => _comment.GetValue();
+            set => _comment.SetValue(value);
         }
     
         private PropertyValue<long> _diskSize = new PropertyValue<long>(nameof(MavenPackageVersionDetails), nameof(DiskSize));
@@ -297,6 +318,8 @@ namespace JetBrains.Space.Client
             _created.SetAccessPath(path, validateHasBeenSet);
             _accessed.SetAccessPath(path, validateHasBeenSet);
             _downloads.SetAccessPath(path, validateHasBeenSet);
+            _pinned.SetAccessPath(path, validateHasBeenSet);
+            _comment.SetAccessPath(path, validateHasBeenSet);
             _diskSize.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
             _authors.SetAccessPath(path, validateHasBeenSet);

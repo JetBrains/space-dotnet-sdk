@@ -23,15 +23,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UAJetBrainsUserAgreementStatusNotAcceptedPartialBuilder
+namespace JetBrains.Space.Client.RetentionPolicyParamsPartialBuilder
 {
-    public static class UAJetBrainsUserAgreementStatusNotAcceptedPartialExtensions
+    public static class RetentionPolicyParamsPartialExtensions
     {
-        public static Partial<UAJetBrainsUserAgreementStatusNotAccepted> WithProfile(this Partial<UAJetBrainsUserAgreementStatusNotAccepted> it)
-            => it.AddFieldName("profile");
+        public static Partial<RetentionPolicyParams> WithNumberOfDaysToRetain(this Partial<RetentionPolicyParams> it)
+            => it.AddFieldName("numberOfDaysToRetain");
         
-        public static Partial<UAJetBrainsUserAgreementStatusNotAccepted> WithProfile(this Partial<UAJetBrainsUserAgreementStatusNotAccepted> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
+        public static Partial<RetentionPolicyParams> WithNumberOfVersionsToRetain(this Partial<RetentionPolicyParams> it)
+            => it.AddFieldName("numberOfVersionsToRetain");
+        
+        public static Partial<RetentionPolicyParams> WithIsRetainDownloadedOnce(this Partial<RetentionPolicyParams> it)
+            => it.AddFieldName("retainDownloadedOnce");
         
     }
     

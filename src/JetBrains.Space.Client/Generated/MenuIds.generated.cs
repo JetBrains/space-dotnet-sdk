@@ -103,6 +103,11 @@ namespace JetBrains.Space.Client
             
         }
         
+        /// <summary>
+        /// Represents the "Personal" menu.
+        /// </summary>
+        public static readonly MenuId Personal = new MenuId("Personal");
+        
         public static class Project
         {
             /// <summary>

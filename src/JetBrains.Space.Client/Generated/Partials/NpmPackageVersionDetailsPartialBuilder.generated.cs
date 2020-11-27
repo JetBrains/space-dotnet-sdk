@@ -54,6 +54,12 @@ namespace JetBrains.Space.Client.NpmPackageVersionDetailsPartialBuilder
         public static Partial<NpmPackageVersionDetails> WithDownloads(this Partial<NpmPackageVersionDetails> it)
             => it.AddFieldName("downloads");
         
+        public static Partial<NpmPackageVersionDetails> WithIsPinned(this Partial<NpmPackageVersionDetails> it)
+            => it.AddFieldName("pinned");
+        
+        public static Partial<NpmPackageVersionDetails> WithComment(this Partial<NpmPackageVersionDetails> it)
+            => it.AddFieldName("comment");
+        
         public static Partial<NpmPackageVersionDetails> WithDiskSize(this Partial<NpmPackageVersionDetails> it)
             => it.AddFieldName("diskSize");
         

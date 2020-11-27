@@ -96,6 +96,9 @@ namespace JetBrains.Space.Client.IssuePartialBuilder
         public static Partial<Issue> WithTitle(this Partial<Issue> it)
             => it.AddFieldName("title");
         
+        public static Partial<Issue> WithAttachmentsCount(this Partial<Issue> it)
+            => it.AddFieldName("attachmentsCount");
+        
         public static Partial<Issue> WithAttachments(this Partial<Issue> it)
             => it.AddFieldName("attachments");
         

@@ -54,6 +54,12 @@ namespace JetBrains.Space.Client.PackageVersionDataPartialBuilder
         public static Partial<PackageVersionData> WithDownloads(this Partial<PackageVersionData> it)
             => it.AddFieldName("downloads");
         
+        public static Partial<PackageVersionData> WithIsPinned(this Partial<PackageVersionData> it)
+            => it.AddFieldName("pinned");
+        
+        public static Partial<PackageVersionData> WithComment(this Partial<PackageVersionData> it)
+            => it.AddFieldName("comment");
+        
     }
     
 }

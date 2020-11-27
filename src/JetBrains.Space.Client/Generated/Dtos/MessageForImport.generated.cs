@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public MessageForImport() { }
         
-        public MessageForImport(string authorPrincipalId, string text, long createdAtUtc, List<Attachment>? attachments = null)
+        public MessageForImport(string authorPrincipalId, string text, long createdAtUtc, List<AttachmentIn>? attachments = null)
         {
             AuthorPrincipalId = authorPrincipalId;
             Text = text;
@@ -68,10 +68,10 @@ namespace JetBrains.Space.Client
             set => _createdAtUtc.SetValue(value);
         }
     
-        private PropertyValue<List<Attachment>?> _attachments = new PropertyValue<List<Attachment>?>(nameof(MessageForImport), nameof(Attachments));
+        private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(MessageForImport), nameof(Attachments));
         
         [JsonPropertyName("attachments")]
-        public List<Attachment>? Attachments
+        public List<AttachmentIn>? Attachments
         {
             get => _attachments.GetValue();
             set => _attachments.SetValue(value);

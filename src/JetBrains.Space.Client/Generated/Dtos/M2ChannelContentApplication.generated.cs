@@ -33,20 +33,20 @@ namespace JetBrains.Space.Client
         
         public M2ChannelContentApplication() { }
         
-        public M2ChannelContentApplication(ESService service, ChannelSpecificDefaults notificationDefaults)
+        public M2ChannelContentApplication(ESApp app, ChannelSpecificDefaults notificationDefaults)
         {
-            Service = service;
+            App = app;
             NotificationDefaults = notificationDefaults;
         }
         
-        private PropertyValue<ESService> _service = new PropertyValue<ESService>(nameof(M2ChannelContentApplication), nameof(Service));
+        private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(M2ChannelContentApplication), nameof(App));
         
         [Required]
-        [JsonPropertyName("service")]
-        public ESService Service
+        [JsonPropertyName("app")]
+        public ESApp App
         {
-            get => _service.GetValue();
-            set => _service.SetValue(value);
+            get => _app.GetValue();
+            set => _app.SetValue(value);
         }
     
         private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentApplication), nameof(NotificationDefaults));
@@ -61,7 +61,7 @@ namespace JetBrains.Space.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _service.SetAccessPath(path, validateHasBeenSet);
+            _app.SetAccessPath(path, validateHasBeenSet);
             _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
         }
     

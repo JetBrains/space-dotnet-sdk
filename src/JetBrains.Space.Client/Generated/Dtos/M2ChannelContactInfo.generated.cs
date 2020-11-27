@@ -46,8 +46,8 @@ namespace JetBrains.Space.Client
         public static M2ChannelContactThread M2ChannelContactThread(M2ChannelRecord parent, string? text = null, string? messageId = null, TDMemberProfile? author = null, CPrincipal? messageAuthor = null, string? attachments = null)
             => new M2ChannelContactThread(parent: parent, text: text, messageId: messageId, author: author, messageAuthor: messageAuthor, attachments: attachments);
         
-        public static M2ChannelContentApplication M2ChannelContentApplication(ESService service, ChannelSpecificDefaults notificationDefaults)
-            => new M2ChannelContentApplication(service: service, notificationDefaults: notificationDefaults);
+        public static M2ChannelContentApplication M2ChannelContentApplication(ESApp app, ChannelSpecificDefaults notificationDefaults)
+            => new M2ChannelContentApplication(app: app, notificationDefaults: notificationDefaults);
         
         public static M2ChannelContentCodeDiscussion M2ChannelContentCodeDiscussion(string codeDiscussionId, ChannelSpecificDefaults notificationDefaults, CodeDiscussionRecord? codeDiscussion = null)
             => new M2ChannelContentCodeDiscussion(codeDiscussionId: codeDiscussionId, notificationDefaults: notificationDefaults, codeDiscussion: codeDiscussion);

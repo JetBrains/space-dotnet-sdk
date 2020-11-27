@@ -27,6 +27,12 @@ namespace JetBrains.Space.Client.ESNpmRegistrySettingsPartialBuilder
 {
     public static class ESNpmRegistrySettingsPartialExtensions
     {
+        public static Partial<ESNpmRegistrySettings> WithRetentionPolicyParams(this Partial<ESNpmRegistrySettings> it)
+            => it.AddFieldName("retentionPolicyParams");
+        
+        public static Partial<ESNpmRegistrySettings> WithRetentionPolicyParams(this Partial<ESNpmRegistrySettings> it, Func<Partial<RetentionPolicyParams>, Partial<RetentionPolicyParams>> partialBuilder)
+            => it.AddFieldName("retentionPolicyParams", partialBuilder(new Partial<RetentionPolicyParams>(it)));
+        
     }
     
 }

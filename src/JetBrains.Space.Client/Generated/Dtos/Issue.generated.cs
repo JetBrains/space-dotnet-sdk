@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public Issue() { }
         
-        public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, List<SprintRecord> sprints, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ImportedEntityInfo? importInfo = null, ExternalEntityInfoRecord? externalEntityInfo = null, string? description = null)
+        public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, List<SprintRecord> sprints, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ImportedEntityInfo? importInfo = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, string? description = null)
         {
             Id = id;
             IsArchived = archived;
@@ -47,6 +47,7 @@ namespace JetBrains.Space.Client
             ExternalEntityInfo = externalEntityInfo;
             Tags = tags;
             Title = title;
+            AttachmentsCount = attachmentsCount;
             Attachments = attachments;
             Channel = channel;
             Checklists = checklists;
@@ -200,6 +201,15 @@ namespace JetBrains.Space.Client
             set => _title.SetValue(value);
         }
     
+        private PropertyValue<int?> _attachmentsCount = new PropertyValue<int?>(nameof(Issue), nameof(AttachmentsCount));
+        
+        [JsonPropertyName("attachmentsCount")]
+        public int? AttachmentsCount
+        {
+            get => _attachmentsCount.GetValue();
+            set => _attachmentsCount.SetValue(value);
+        }
+    
         private PropertyValue<List<AttachmentInfo>> _attachments = new PropertyValue<List<AttachmentInfo>>(nameof(Issue), nameof(Attachments));
         
         [Required]
@@ -266,6 +276,7 @@ namespace JetBrains.Space.Client
             _externalEntityInfo.SetAccessPath(path, validateHasBeenSet);
             _tags.SetAccessPath(path, validateHasBeenSet);
             _title.SetAccessPath(path, validateHasBeenSet);
+            _attachmentsCount.SetAccessPath(path, validateHasBeenSet);
             _attachments.SetAccessPath(path, validateHasBeenSet);
             _channel.SetAccessPath(path, validateHasBeenSet);
             _checklists.SetAccessPath(path, validateHasBeenSet);

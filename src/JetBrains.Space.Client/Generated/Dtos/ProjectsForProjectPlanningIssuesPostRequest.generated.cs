@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectPlanningIssuesPostRequest() { }
         
-        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<Attachment>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldValue>? customFields = null)
+        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldValue>? customFields = null)
         {
             Title = title;
             Description = description;
@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             Tags = (tags ?? new List<string>());
             Checklists = (checklists ?? new List<string>());
             Sprints = (sprints ?? new List<string>());
-            Attachments = (attachments ?? new List<Attachment>());
+            Attachments = (attachments ?? new List<AttachmentIn>());
             FromMessage = fromMessage;
             CustomFields = customFields;
         }
@@ -120,10 +120,10 @@ namespace JetBrains.Space.Client
             set => _sprints.SetValue(value);
         }
     
-        private PropertyValue<List<Attachment>?> _attachments = new PropertyValue<List<Attachment>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Attachments));
+        private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Attachments));
         
         [JsonPropertyName("attachments")]
-        public List<Attachment>? Attachments
+        public List<AttachmentIn>? Attachments
         {
             get => _attachments.GetValue();
             set => _attachments.SetValue(value);

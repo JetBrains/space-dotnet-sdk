@@ -33,9 +33,10 @@ namespace JetBrains.Space.Client
         
         public ESContainerRegistrySettings() { }
         
-        public ESContainerRegistrySettings(bool immutableTags)
+        public ESContainerRegistrySettings(bool immutableTags, RetentionPolicyParams? retentionPolicyParams = null)
         {
             IsImmutableTags = immutableTags;
+            RetentionPolicyParams = retentionPolicyParams;
         }
         
         private PropertyValue<bool> _immutableTags = new PropertyValue<bool>(nameof(ESContainerRegistrySettings), nameof(IsImmutableTags));
@@ -48,9 +49,19 @@ namespace JetBrains.Space.Client
             set => _immutableTags.SetValue(value);
         }
     
+        private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESContainerRegistrySettings), nameof(RetentionPolicyParams));
+        
+        [JsonPropertyName("retentionPolicyParams")]
+        public RetentionPolicyParams? RetentionPolicyParams
+        {
+            get => _retentionPolicyParams.GetValue();
+            set => _retentionPolicyParams.SetValue(value);
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _immutableTags.SetAccessPath(path, validateHasBeenSet);
+            _retentionPolicyParams.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

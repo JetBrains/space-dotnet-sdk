@@ -30,6 +30,12 @@ namespace JetBrains.Space.Client.ESMavenRepositorySettingsPartialBuilder
         public static Partial<ESMavenRepositorySettings> WithIsEnableSnapshots(this Partial<ESMavenRepositorySettings> it)
             => it.AddFieldName("enableSnapshots");
         
+        public static Partial<ESMavenRepositorySettings> WithRetentionPolicyParams(this Partial<ESMavenRepositorySettings> it)
+            => it.AddFieldName("retentionPolicyParams");
+        
+        public static Partial<ESMavenRepositorySettings> WithRetentionPolicyParams(this Partial<ESMavenRepositorySettings> it, Func<Partial<RetentionPolicyParams>, Partial<RetentionPolicyParams>> partialBuilder)
+            => it.AddFieldName("retentionPolicyParams", partialBuilder(new Partial<RetentionPolicyParams>(it)));
+        
     }
     
 }

@@ -37,8 +37,8 @@ namespace JetBrains.Space.Client
         public static M2ChannelContactObsolete M2ChannelContactObsolete(M2ObsoleteCause? cause = null)
             => new M2ChannelContactObsolete(cause: cause);
         
-        public static M2ChannelContentApplication M2ChannelContentApplication(ESService service, ChannelSpecificDefaults notificationDefaults)
-            => new M2ChannelContentApplication(service: service, notificationDefaults: notificationDefaults);
+        public static M2ChannelContentApplication M2ChannelContentApplication(ESApp app, ChannelSpecificDefaults notificationDefaults)
+            => new M2ChannelContentApplication(app: app, notificationDefaults: notificationDefaults);
         
         public static M2ChannelContentArticle M2ChannelContentArticle(ArticleRecord article, ArticleContentRecord articleContent, ArticleDetailsRecord? details = null, ArticleChannelRecord? channel = null)
             => new M2ChannelContentArticle(article: article, articleContent: articleContent, details: details, channel: channel);

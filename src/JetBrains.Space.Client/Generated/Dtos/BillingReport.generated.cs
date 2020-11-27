@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public BillingReport() { }
         
-        public BillingReport(DateTime since, DateTime till, List<PurchasedBillingPlan> plans, List<long> activeUsers, List<long> applications, List<long> chatMessages, List<long> ciCredits, List<long> trafficTotal, List<long> trafficFiles, List<long> trafficGit, List<long> trafficPackages, List<long> storageTotal, List<long> storageFiles, List<long> storageGit, List<long> storagePackages, List<long> storageAutomation, DateTime earliestBillingDate)
+        public BillingReport(DateTime since, DateTime till, List<PurchasedBillingPlan> plans, List<long> activeUsers, List<long> applications, List<long> chatMessages, List<long> ciCredits, List<long> trafficTotal, List<long> trafficFiles, List<long> trafficGit, List<long> trafficPackages, List<long> trafficAutomation, List<long> storageTotal, List<long> storageFiles, List<long> storageGit, List<long> storagePackages, DateTime earliestBillingDate)
         {
             Since = since;
             Till = till;
@@ -43,11 +43,11 @@ namespace JetBrains.Space.Client
             TrafficFiles = trafficFiles;
             TrafficGit = trafficGit;
             TrafficPackages = trafficPackages;
+            TrafficAutomation = trafficAutomation;
             StorageTotal = storageTotal;
             StorageFiles = storageFiles;
             StorageGit = storageGit;
             StoragePackages = storagePackages;
-            StorageAutomation = storageAutomation;
             EarliestBillingDate = earliestBillingDate;
         }
         
@@ -163,6 +163,16 @@ namespace JetBrains.Space.Client
             set => _trafficPackages.SetValue(value);
         }
     
+        private PropertyValue<List<long>> _trafficAutomation = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficAutomation));
+        
+        [Required]
+        [JsonPropertyName("trafficAutomation")]
+        public List<long> TrafficAutomation
+        {
+            get => _trafficAutomation.GetValue();
+            set => _trafficAutomation.SetValue(value);
+        }
+    
         private PropertyValue<List<long>> _storageTotal = new PropertyValue<List<long>>(nameof(BillingReport), nameof(StorageTotal));
         
         [Required]
@@ -203,16 +213,6 @@ namespace JetBrains.Space.Client
             set => _storagePackages.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _storageAutomation = new PropertyValue<List<long>>(nameof(BillingReport), nameof(StorageAutomation));
-        
-        [Required]
-        [JsonPropertyName("storageAutomation")]
-        public List<long> StorageAutomation
-        {
-            get => _storageAutomation.GetValue();
-            set => _storageAutomation.SetValue(value);
-        }
-    
         private PropertyValue<DateTime> _earliestBillingDate = new PropertyValue<DateTime>(nameof(BillingReport), nameof(EarliestBillingDate));
         
         [Required]
@@ -237,11 +237,11 @@ namespace JetBrains.Space.Client
             _trafficFiles.SetAccessPath(path, validateHasBeenSet);
             _trafficGit.SetAccessPath(path, validateHasBeenSet);
             _trafficPackages.SetAccessPath(path, validateHasBeenSet);
+            _trafficAutomation.SetAccessPath(path, validateHasBeenSet);
             _storageTotal.SetAccessPath(path, validateHasBeenSet);
             _storageFiles.SetAccessPath(path, validateHasBeenSet);
             _storageGit.SetAccessPath(path, validateHasBeenSet);
             _storagePackages.SetAccessPath(path, validateHasBeenSet);
-            _storageAutomation.SetAccessPath(path, validateHasBeenSet);
             _earliestBillingDate.SetAccessPath(path, validateHasBeenSet);
         }
     

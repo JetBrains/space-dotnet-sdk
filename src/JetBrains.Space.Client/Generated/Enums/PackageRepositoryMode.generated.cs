@@ -23,22 +23,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EditMessagePartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class EditMessagePartialExtensions
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class PackageRepositoryMode : Enumeration
     {
-        public static Partial<EditMessage> WithText(this Partial<EditMessage> it)
-            => it.AddFieldName("text");
+        private PackageRepositoryMode(string value) : base(value) { }
         
-        public static Partial<EditMessage> WithId(this Partial<EditMessage> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<EditMessage> WithAttachments(this Partial<EditMessage> it)
-            => it.AddFieldName("attachments");
-        
-        public static Partial<EditMessage> WithAttachments(this Partial<EditMessage> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
-            => it.AddFieldName("attachments", partialBuilder(new Partial<Attachment>(it)));
-        
+        public static readonly PackageRepositoryMode HOSTING = new PackageRepositoryMode("HOSTING");
+        public static readonly PackageRepositoryMode PROXY = new PackageRepositoryMode("PROXY");
     }
     
 }

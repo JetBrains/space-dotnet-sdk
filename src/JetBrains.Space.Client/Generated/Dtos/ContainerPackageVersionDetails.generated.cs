@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
         
         public ContainerPackageVersionDetails() { }
         
-        public ContainerPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, long diskSize, int schemaVersion, string mediaType, string manifestType, List<string>? tags = null, long? accessed = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, ContainerImage? image = null, ContainerHelmChart? chart = null)
+        public ContainerPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, bool pinned, long diskSize, int schemaVersion, string mediaType, string manifestType, List<string>? tags = null, long? accessed = null, string? comment = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, ContainerImage? image = null, ContainerHelmChart? chart = null)
         {
             Type = type;
             Repository = repository;
@@ -43,6 +43,8 @@ namespace JetBrains.Space.Client
             Created = created;
             Accessed = accessed;
             Downloads = downloads;
+            IsPinned = pinned;
+            Comment = comment;
             DiskSize = diskSize;
             Author = author;
             Authors = authors;
@@ -131,6 +133,25 @@ namespace JetBrains.Space.Client
         {
             get => _downloads.GetValue();
             set => _downloads.SetValue(value);
+        }
+    
+        private PropertyValue<bool> _pinned = new PropertyValue<bool>(nameof(ContainerPackageVersionDetails), nameof(IsPinned));
+        
+        [Required]
+        [JsonPropertyName("pinned")]
+        public bool IsPinned
+        {
+            get => _pinned.GetValue();
+            set => _pinned.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _comment = new PropertyValue<string?>(nameof(ContainerPackageVersionDetails), nameof(Comment));
+        
+        [JsonPropertyName("comment")]
+        public string? Comment
+        {
+            get => _comment.GetValue();
+            set => _comment.SetValue(value);
         }
     
         private PropertyValue<long> _diskSize = new PropertyValue<long>(nameof(ContainerPackageVersionDetails), nameof(DiskSize));
@@ -237,6 +258,8 @@ namespace JetBrains.Space.Client
             _created.SetAccessPath(path, validateHasBeenSet);
             _accessed.SetAccessPath(path, validateHasBeenSet);
             _downloads.SetAccessPath(path, validateHasBeenSet);
+            _pinned.SetAccessPath(path, validateHasBeenSet);
+            _comment.SetAccessPath(path, validateHasBeenSet);
             _diskSize.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
             _authors.SetAccessPath(path, validateHasBeenSet);

@@ -33,8 +33,23 @@ namespace JetBrains.Space.Client
         
         public ESNpmRegistrySettings() { }
         
+        public ESNpmRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null)
+        {
+            RetentionPolicyParams = retentionPolicyParams;
+        }
+        
+        private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESNpmRegistrySettings), nameof(RetentionPolicyParams));
+        
+        [JsonPropertyName("retentionPolicyParams")]
+        public RetentionPolicyParams? RetentionPolicyParams
+        {
+            get => _retentionPolicyParams.GetValue();
+            set => _retentionPolicyParams.SetValue(value);
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
+            _retentionPolicyParams.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -27,11 +27,11 @@ namespace JetBrains.Space.Client.M2ChannelContentApplicationPartialBuilder
 {
     public static class M2ChannelContentApplicationPartialExtensions
     {
-        public static Partial<M2ChannelContentApplication> WithService(this Partial<M2ChannelContentApplication> it)
-            => it.AddFieldName("service");
+        public static Partial<M2ChannelContentApplication> WithApp(this Partial<M2ChannelContentApplication> it)
+            => it.AddFieldName("app");
         
-        public static Partial<M2ChannelContentApplication> WithService(this Partial<M2ChannelContentApplication> it, Func<Partial<ESService>, Partial<ESService>> partialBuilder)
-            => it.AddFieldName("service", partialBuilder(new Partial<ESService>(it)));
+        public static Partial<M2ChannelContentApplication> WithApp(this Partial<M2ChannelContentApplication> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
+            => it.AddFieldName("app", partialBuilder(new Partial<ESApp>(it)));
         
         public static Partial<M2ChannelContentApplication> WithNotificationDefaults(this Partial<M2ChannelContentApplication> it)
             => it.AddFieldName("notificationDefaults");
