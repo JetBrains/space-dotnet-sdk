@@ -11,6 +11,7 @@ namespace _build
     {
         public int VersionMajor { get; set; } = 1;
         public int VersionMinor { get; set; } = 0;
+        public bool IsBeta { get; set; } = false;
     
         public override object GetValue(MemberInfo member, object instance) =>
             GetFromSpace() ?? GetFromGit() ?? GetFromTime();
@@ -34,9 +35,11 @@ namespace _build
                 return new VersionInfo(
                     $"{VersionMajor}.{VersionMinor}.{executionNumber}.0",
                     $"{VersionMajor}.{VersionMinor}.{executionNumber}.0",
-                    $"{VersionMajor}.{VersionMinor}.{executionNumber}.0+Branch.{branch}.Sha.{revision}",
+                    $"{VersionMajor}.{VersionMinor}.{executionNumber}.0+Branch.{branch}.Sha.{revision}.Server.{versionInfo}",
                     IsMainBranch(branch) 
-                        ? $"{VersionMajor}.{VersionMinor}.0-beta.{versionInfo}.{executionNumber}"
+                        ? IsBeta
+                            ? $"{VersionMajor}.{VersionMinor}.0-beta.{versionInfo}.{executionNumber}"
+                            : $"{VersionMajor}.{VersionMinor}.{executionNumber}"
                         : $"0.1.1337-{branch}.{versionInfo}.{executionNumber}");
             }
 
