@@ -83,7 +83,7 @@ namespace JetBrains.Space.Samples.App.WebHooks
         {
             if (payload.Message.Body is ChatMessageText messageText && !string.IsNullOrEmpty(messageText.Text))
             {
-                if (messageText.Text.Equals("new", StringComparison.OrdinalIgnoreCase))
+                if (messageText.Text.Trim().Equals("new", StringComparison.OrdinalIgnoreCase))
                 {
                     await StartNewSession(payload.UserId);
                     return;
