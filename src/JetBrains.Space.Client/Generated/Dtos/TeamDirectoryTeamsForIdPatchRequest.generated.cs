@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryTeamsForIdPatchRequest() { }
         
-        public TeamDirectoryTeamsForIdPatchRequest(string name, string? description = null, List<string>? emails = null, string? parentId = null, List<CustomFieldValue>? customFieldValues = null, string? externalId = null)
+        public TeamDirectoryTeamsForIdPatchRequest(string name, string? description = null, List<string>? emails = null, string? parentId = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null)
         {
             Name = name;
             Description = description;
@@ -76,10 +76,10 @@ namespace JetBrains.Space.Client
             set => _parentId.SetValue(value);
         }
     
-        private PropertyValue<List<CustomFieldValue>?> _customFieldValues = new PropertyValue<List<CustomFieldValue>?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(CustomFieldValues));
+        private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(CustomFieldValues));
         
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValue>? CustomFieldValues
+        public List<CustomFieldInputValue>? CustomFieldValues
         {
             get => _customFieldValues.GetValue();
             set => _customFieldValues.SetValue(value);

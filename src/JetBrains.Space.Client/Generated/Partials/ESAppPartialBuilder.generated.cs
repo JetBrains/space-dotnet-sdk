@@ -69,12 +69,6 @@ namespace JetBrains.Space.Client.ESAppPartialBuilder
         public static Partial<ESApp> WithIsArchived(this Partial<ESApp> it)
             => it.AddFieldName("archived");
         
-        public static Partial<ESApp> WithLastClientCredentialsAccess(this Partial<ESApp> it)
-            => it.AddFieldName("lastClientCredentialsAccess");
-        
-        public static Partial<ESApp> WithLastClientCredentialsAccess(this Partial<ESApp> it, Func<Partial<AccessRecord>, Partial<AccessRecord>> partialBuilder)
-            => it.AddFieldName("lastClientCredentialsAccess", partialBuilder(new Partial<AccessRecord>(it)));
-        
     }
     
 }

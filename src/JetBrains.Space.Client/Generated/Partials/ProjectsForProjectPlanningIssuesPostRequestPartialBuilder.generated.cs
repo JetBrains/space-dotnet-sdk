@@ -69,8 +69,8 @@ namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesPostRequestPart
         public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
             => it.AddFieldName("customFields");
         
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
-            => it.AddFieldName("customFields", partialBuilder(new Partial<CustomFieldValue>(it)));
+        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+            => it.AddFieldName("customFields", partialBuilder(new Partial<CustomFieldInputValue>(it)));
         
     }
     

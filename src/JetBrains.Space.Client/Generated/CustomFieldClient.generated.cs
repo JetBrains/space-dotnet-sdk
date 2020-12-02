@@ -128,7 +128,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Create custom field for a type.
             /// </summary>
-            public async Task<CustomField> CreateFieldAsync(string typeKey, string name, CFType type, bool required, bool @private, CFValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null, CFEnumValuesModification? openEnumValuesModification = null, Func<Partial<CustomField>, Partial<CustomField>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<CustomField> CreateFieldAsync(string typeKey, string name, CFType type, bool required, bool @private, CFInputValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null, CFEnumValuesModification? openEnumValuesModification = null, Func<Partial<CustomField>, Partial<CustomField>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<CustomFieldsForTypeKeyFieldsPostRequest, CustomField>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields={(partial != null ? partial(new Partial<CustomField>()) : Partial<CustomField>.Default())}", 
                     new CustomFieldsForTypeKeyFieldsPostRequest { 
                         Name = name,
@@ -184,7 +184,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Update custom field for a type. Optional parameters will be ignored when not specified, and updated otherwise.
             /// </summary>
-            public async Task UpdateFieldAsync(string typeKey, string id, ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null, CancellationToken cancellationToken = default)
+            public async Task UpdateFieldAsync(string typeKey, string id, ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFInputValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", 
                     new CustomFieldsForTypeKeyFieldsForIdPatchRequest { 
                         Name = name,
@@ -228,7 +228,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Update custom field value(s) for a type and entity id.
             /// </summary>
-            public async Task UpdateValueAsync(string entityId, string typeKey, List<CustomFieldValue> values, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
+            public async Task UpdateValueAsync(string entityId, string typeKey, List<CustomFieldInputValue> values, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", 
                     new CustomFieldsForTypeKeyForEntityIdValuesPatchRequest { 
                         Values = values,

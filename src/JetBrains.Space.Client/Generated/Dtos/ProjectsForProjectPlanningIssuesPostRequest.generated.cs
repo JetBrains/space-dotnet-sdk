@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectPlanningIssuesPostRequest() { }
         
-        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldValue>? customFields = null)
+        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null)
         {
             Title = title;
             Description = description;
@@ -138,10 +138,10 @@ namespace JetBrains.Space.Client
             set => _fromMessage.SetValue(value);
         }
     
-        private PropertyValue<List<CustomFieldValue>?> _customFields = new PropertyValue<List<CustomFieldValue>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(CustomFields));
+        private PropertyValue<List<CustomFieldInputValue>?> _customFields = new PropertyValue<List<CustomFieldInputValue>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(CustomFields));
         
         [JsonPropertyName("customFields")]
-        public List<CustomFieldValue>? CustomFields
+        public List<CustomFieldInputValue>? CustomFields
         {
             get => _customFields.GetValue();
             set => _customFields.SetValue(value);

@@ -23,18 +23,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MergeRequestReviewerPartialBuilder
+namespace JetBrains.Space.Client.ProfileListCFInputValuePartialBuilder
 {
-    public static class MergeRequestReviewerPartialExtensions
+    public static class ProfileListCFInputValuePartialExtensions
     {
-        public static Partial<MergeRequestReviewer> WithProfileId(this Partial<MergeRequestReviewer> it)
-            => it.AddFieldName("profileId");
+        public static Partial<ProfileListCFInputValue> WithProfiles(this Partial<ProfileListCFInputValue> it)
+            => it.AddFieldName("profiles");
         
-        public static Partial<MergeRequestReviewer> WithQualityGateSlot(this Partial<MergeRequestReviewer> it)
-            => it.AddFieldName("qualityGateSlot");
-        
-        public static Partial<MergeRequestReviewer> WithQualityGateSlot(this Partial<MergeRequestReviewer> it, Func<Partial<CodeReviewParticipantQualityGateSlot>, Partial<CodeReviewParticipantQualityGateSlot>> partialBuilder)
-            => it.AddFieldName("qualityGateSlot", partialBuilder(new Partial<CodeReviewParticipantQualityGateSlot>(it)));
+        public static Partial<ProfileListCFInputValue> WithProfiles(this Partial<ProfileListCFInputValue> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+            => it.AddFieldName("profiles", partialBuilder(new Partial<ProfileIdentifier>(it)));
         
     }
     

@@ -54,8 +54,8 @@ namespace JetBrains.Space.Client.CustomFieldsForTypeKeyFieldsForIdPatchRequestPa
         public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
             => it.AddFieldName("defaultValue");
         
-        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<CFValue>, Partial<CFValue>> partialBuilder)
-            => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFValue>(it)));
+        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<CFInputValue>, Partial<CFInputValue>> partialBuilder)
+            => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFInputValue>(it)));
         
         public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithEnumValues(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
             => it.AddFieldName("enumValues");

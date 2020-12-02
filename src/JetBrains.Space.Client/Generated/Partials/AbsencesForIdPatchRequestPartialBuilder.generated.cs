@@ -54,8 +54,8 @@ namespace JetBrains.Space.Client.AbsencesForIdPatchRequestPartialBuilder
         public static Partial<AbsencesForIdPatchRequest> WithCustomFieldValues(this Partial<AbsencesForIdPatchRequest> it)
             => it.AddFieldName("customFieldValues");
         
-        public static Partial<AbsencesForIdPatchRequest> WithCustomFieldValues(this Partial<AbsencesForIdPatchRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValue>(it)));
+        public static Partial<AbsencesForIdPatchRequest> WithCustomFieldValues(this Partial<AbsencesForIdPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
         
     }
     

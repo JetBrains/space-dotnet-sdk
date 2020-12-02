@@ -23,21 +23,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EntityTypePartialBuilder
+namespace JetBrains.Space.Client.CustomFieldInputValuePartialBuilder
 {
-    public static class EntityTypePartialExtensions
+    public static class CustomFieldInputValuePartialExtensions
     {
-        public static Partial<EntityType> WithKey(this Partial<EntityType> it)
-            => it.AddFieldName("key");
+        public static Partial<CustomFieldInputValue> WithFieldId(this Partial<CustomFieldInputValue> it)
+            => it.AddFieldName("fieldId");
         
-        public static Partial<EntityType> WithDisplayName(this Partial<EntityType> it)
-            => it.AddFieldName("displayName");
+        public static Partial<CustomFieldInputValue> WithValue(this Partial<CustomFieldInputValue> it)
+            => it.AddFieldName("value");
         
-        public static Partial<EntityType> WithGroupKey(this Partial<EntityType> it)
-            => it.AddFieldName("groupKey");
-        
-        public static Partial<EntityType> WithGroupName(this Partial<EntityType> it)
-            => it.AddFieldName("groupName");
+        public static Partial<CustomFieldInputValue> WithValue(this Partial<CustomFieldInputValue> it, Func<Partial<CFInputValue>, Partial<CFInputValue>> partialBuilder)
+            => it.AddFieldName("value", partialBuilder(new Partial<CFInputValue>(it)));
         
     }
     

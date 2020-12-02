@@ -30,17 +30,17 @@ namespace JetBrains.Space.Client
     {
         public CustomFieldsForTypeKeyForEntityIdValuesPatchRequest() { }
         
-        public CustomFieldsForTypeKeyForEntityIdValuesPatchRequest(List<CustomFieldValue> values, ExtendedTypeScope scope)
+        public CustomFieldsForTypeKeyForEntityIdValuesPatchRequest(List<CustomFieldInputValue> values, ExtendedTypeScope scope)
         {
             Values = values;
             Scope = scope;
         }
         
-        private PropertyValue<List<CustomFieldValue>> _values = new PropertyValue<List<CustomFieldValue>>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Values));
+        private PropertyValue<List<CustomFieldInputValue>> _values = new PropertyValue<List<CustomFieldInputValue>>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Values));
         
         [Required]
         [JsonPropertyName("values")]
-        public List<CustomFieldValue> Values
+        public List<CustomFieldInputValue> Values
         {
             get => _values.GetValue();
             set => _values.SetValue(value);

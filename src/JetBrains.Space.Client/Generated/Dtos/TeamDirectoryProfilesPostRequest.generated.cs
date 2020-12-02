@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryProfilesPostRequest() { }
         
-        public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null)
+        public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null)
         {
             Username = username;
             FirstName = firstName;
@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             IsSpeaksEnglish = speaksEnglish;
             PictureAttachmentId = pictureAttachmentId;
             AvatarCropSquare = avatarCropSquare;
-            CustomFieldValues = (customFieldValues ?? new List<CustomFieldValue>());
+            CustomFieldValues = (customFieldValues ?? new List<CustomFieldInputValue>());
         }
         
         private PropertyValue<string> _username = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(Username));
@@ -202,10 +202,10 @@ namespace JetBrains.Space.Client
             set => _avatarCropSquare.SetValue(value);
         }
     
-        private PropertyValue<List<CustomFieldValue>> _customFieldValues = new PropertyValue<List<CustomFieldValue>>(nameof(TeamDirectoryProfilesPostRequest), nameof(CustomFieldValues));
+        private PropertyValue<List<CustomFieldInputValue>> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>>(nameof(TeamDirectoryProfilesPostRequest), nameof(CustomFieldValues));
         
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValue> CustomFieldValues
+        public List<CustomFieldInputValue> CustomFieldValues
         {
             get => _customFieldValues.GetValue();
             set => _customFieldValues.SetValue(value);

@@ -23,16 +23,10 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamHitDetailsPartialBuilder
+namespace JetBrains.Space.Client.CFInputValuePartialBuilder
 {
-    public static class TeamHitDetailsPartialExtensions
+    public static class CFInputValuePartialExtensions
     {
-        public static Partial<TeamHitDetails> WithRef(this Partial<TeamHitDetails> it)
-            => it.AddFieldName("ref");
-        
-        public static Partial<TeamHitDetails> WithRef(this Partial<TeamHitDetails> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-            => it.AddFieldName("ref", partialBuilder(new Partial<TDTeam>(it)));
-        
     }
     
 }

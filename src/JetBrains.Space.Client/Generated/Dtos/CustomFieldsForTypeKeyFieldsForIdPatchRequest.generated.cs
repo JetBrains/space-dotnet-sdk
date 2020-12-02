@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public CustomFieldsForTypeKeyFieldsForIdPatchRequest() { }
         
-        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null)
+        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFInputValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null)
         {
             Name = name;
             Description = description;
@@ -98,10 +98,10 @@ namespace JetBrains.Space.Client
             set => _access.SetValue(value);
         }
     
-        private PropertyValue<CFValue?> _defaultValue = new PropertyValue<CFValue?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(DefaultValue));
+        private PropertyValue<CFInputValue?> _defaultValue = new PropertyValue<CFInputValue?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(DefaultValue));
         
         [JsonPropertyName("defaultValue")]
-        public CFValue? DefaultValue
+        public CFInputValue? DefaultValue
         {
             get => _defaultValue.GetValue();
             set => _defaultValue.SetValue(value);

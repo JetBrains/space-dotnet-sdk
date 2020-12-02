@@ -23,15 +23,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectHitDetailsPartialBuilder
+namespace JetBrains.Space.Client.ProfileCFInputValuePartialBuilder
 {
-    public static class ProjectHitDetailsPartialExtensions
+    public static class ProfileCFInputValuePartialExtensions
     {
-        public static Partial<ProjectHitDetails> WithRef(this Partial<ProjectHitDetails> it)
-            => it.AddFieldName("ref");
+        public static Partial<ProfileCFInputValue> WithProfile(this Partial<ProfileCFInputValue> it)
+            => it.AddFieldName("profile");
         
-        public static Partial<ProjectHitDetails> WithRef(this Partial<ProjectHitDetails> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("ref", partialBuilder(new Partial<PRProject>(it)));
+        public static Partial<ProfileCFInputValue> WithProfile(this Partial<ProfileCFInputValue> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+            => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
         
     }
     

@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryProfilesForProfilePatchRequest() { }
         
-        public TeamDirectoryProfilesForProfilePatchRequest(string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, DateTime? birthday = null, string? about = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, List<CustomFieldValue>? customFieldValues = null)
+        public TeamDirectoryProfilesForProfilePatchRequest(string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, DateTime? birthday = null, string? about = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, List<CustomFieldInputValue>? customFieldValues = null)
         {
             Username = username;
             FirstName = firstName;
@@ -199,10 +199,10 @@ namespace JetBrains.Space.Client
             set => _avatarCropSquare.SetValue(value);
         }
     
-        private PropertyValue<List<CustomFieldValue>?> _customFieldValues = new PropertyValue<List<CustomFieldValue>?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(CustomFieldValues));
+        private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(CustomFieldValues));
         
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValue>? CustomFieldValues
+        public List<CustomFieldInputValue>? CustomFieldValues
         {
             get => _customFieldValues.GetValue();
             set => _customFieldValues.SetValue(value);

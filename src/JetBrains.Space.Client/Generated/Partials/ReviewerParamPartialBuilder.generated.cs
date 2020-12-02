@@ -23,15 +23,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MatchSnippetPartialBuilder
+namespace JetBrains.Space.Client.ReviewerParamPartialBuilder
 {
-    public static class MatchSnippetPartialExtensions
+    public static class ReviewerParamPartialExtensions
     {
-        public static Partial<MatchSnippet> WithPropertyName(this Partial<MatchSnippet> it)
-            => it.AddFieldName("propertyName");
+        public static Partial<ReviewerParam> WithProfileId(this Partial<ReviewerParam> it)
+            => it.AddFieldName("profileId");
         
-        public static Partial<MatchSnippet> WithSnippet(this Partial<MatchSnippet> it)
-            => it.AddFieldName("snippet");
+        public static Partial<ReviewerParam> WithQualityGateSlot(this Partial<ReviewerParam> it)
+            => it.AddFieldName("qualityGateSlot");
+        
+        public static Partial<ReviewerParam> WithQualityGateSlot(this Partial<ReviewerParam> it, Func<Partial<CodeReviewParticipantQualityGateSlot>, Partial<CodeReviewParticipantQualityGateSlot>> partialBuilder)
+            => it.AddFieldName("qualityGateSlot", partialBuilder(new Partial<CodeReviewParticipantQualityGateSlot>(it)));
         
     }
     

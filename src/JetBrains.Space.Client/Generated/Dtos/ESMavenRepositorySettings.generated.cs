@@ -33,10 +33,11 @@ namespace JetBrains.Space.Client
         
         public ESMavenRepositorySettings() { }
         
-        public ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null)
+        public ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
         {
             IsEnableSnapshots = enableSnapshots;
             RetentionPolicyParams = retentionPolicyParams;
+            IsImmutablePackageVersions = immutablePackageVersions;
         }
         
         private PropertyValue<bool> _enableSnapshots = new PropertyValue<bool>(nameof(ESMavenRepositorySettings), nameof(IsEnableSnapshots));
@@ -58,10 +59,20 @@ namespace JetBrains.Space.Client
             set => _retentionPolicyParams.SetValue(value);
         }
     
+        private PropertyValue<bool?> _immutablePackageVersions = new PropertyValue<bool?>(nameof(ESMavenRepositorySettings), nameof(IsImmutablePackageVersions));
+        
+        [JsonPropertyName("immutablePackageVersions")]
+        public bool? IsImmutablePackageVersions
+        {
+            get => _immutablePackageVersions.GetValue();
+            set => _immutablePackageVersions.SetValue(value);
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _enableSnapshots.SetAccessPath(path, validateHasBeenSet);
             _retentionPolicyParams.SetAccessPath(path, validateHasBeenSet);
+            _immutablePackageVersions.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

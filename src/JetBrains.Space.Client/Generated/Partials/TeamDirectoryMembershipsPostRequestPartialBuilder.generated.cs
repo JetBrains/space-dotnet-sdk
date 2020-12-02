@@ -63,8 +63,8 @@ namespace JetBrains.Space.Client.TeamDirectoryMembershipsPostRequestPartialBuild
         public static Partial<TeamDirectoryMembershipsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsPostRequest> it)
             => it.AddFieldName("customFieldValues");
         
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsPostRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValue>(it)));
+        public static Partial<TeamDirectoryMembershipsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsPostRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
         
     }
     

@@ -33,6 +33,9 @@ namespace JetBrains.Space.Client.ESNuGetFeedSettingsPartialBuilder
         public static Partial<ESNuGetFeedSettings> WithRetentionPolicyParams(this Partial<ESNuGetFeedSettings> it, Func<Partial<RetentionPolicyParams>, Partial<RetentionPolicyParams>> partialBuilder)
             => it.AddFieldName("retentionPolicyParams", partialBuilder(new Partial<RetentionPolicyParams>(it)));
         
+        public static Partial<ESNuGetFeedSettings> WithIsImmutablePackageVersions(this Partial<ESNuGetFeedSettings> it)
+            => it.AddFieldName("immutablePackageVersions");
+        
     }
     
 }

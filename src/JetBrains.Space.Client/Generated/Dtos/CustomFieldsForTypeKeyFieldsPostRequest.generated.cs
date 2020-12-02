@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public CustomFieldsForTypeKeyFieldsPostRequest() { }
         
-        public CustomFieldsForTypeKeyFieldsPostRequest(string name, CFType type, bool required, bool @private, CFValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null, CFEnumValuesModification? openEnumValuesModification = null)
+        public CustomFieldsForTypeKeyFieldsPostRequest(string name, CFType type, bool required, bool @private, CFInputValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null, CFEnumValuesModification? openEnumValuesModification = null)
         {
             Name = name;
             Description = description;
@@ -111,11 +111,11 @@ namespace JetBrains.Space.Client
             set => _access.SetValue(value);
         }
     
-        private PropertyValue<CFValue> _defaultValue = new PropertyValue<CFValue>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(DefaultValue));
+        private PropertyValue<CFInputValue> _defaultValue = new PropertyValue<CFInputValue>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(DefaultValue));
         
         [Required]
         [JsonPropertyName("defaultValue")]
-        public CFValue DefaultValue
+        public CFInputValue DefaultValue
         {
             get => _defaultValue.GetValue();
             set => _defaultValue.SetValue(value);

@@ -30,14 +30,12 @@ namespace JetBrains.Space.Client
     {
         public M2ChannelRecord() { }
         
-        public M2ChannelRecord(string id, M2ChannelContact contact, int totalMessages, bool archived, M2ChannelRecord channel, MessageInfo? lastMessage = null, List<TDMemberProfile>? authors = null, List<CPrincipal>? commentAuthors = null, List<ChannelParticipant>? participants = null, bool? channelArchived = null, M2ChannelContentInfo? content = null, List<ChannelItemRecord>? messages = null)
+        public M2ChannelRecord(string id, M2ChannelContact contact, int totalMessages, bool archived, M2ChannelRecord channel, MessageInfo? lastMessage = null, List<ChannelParticipant>? participants = null, bool? channelArchived = null, M2ChannelContentInfo? content = null, List<ChannelItemRecord>? messages = null)
         {
             Id = id;
             Contact = contact;
             TotalMessages = totalMessages;
             LastMessage = lastMessage;
-            Authors = authors;
-            CommentAuthors = commentAuthors;
             Participants = participants;
             IsChannelArchived = channelArchived;
             IsArchived = archived;
@@ -83,24 +81,6 @@ namespace JetBrains.Space.Client
         {
             get => _lastMessage.GetValue();
             set => _lastMessage.SetValue(value);
-        }
-    
-        private PropertyValue<List<TDMemberProfile>?> _authors = new PropertyValue<List<TDMemberProfile>?>(nameof(M2ChannelRecord), nameof(Authors));
-        
-        [JsonPropertyName("authors")]
-        public List<TDMemberProfile>? Authors
-        {
-            get => _authors.GetValue();
-            set => _authors.SetValue(value);
-        }
-    
-        private PropertyValue<List<CPrincipal>?> _commentAuthors = new PropertyValue<List<CPrincipal>?>(nameof(M2ChannelRecord), nameof(CommentAuthors));
-        
-        [JsonPropertyName("commentAuthors")]
-        public List<CPrincipal>? CommentAuthors
-        {
-            get => _commentAuthors.GetValue();
-            set => _commentAuthors.SetValue(value);
         }
     
         private PropertyValue<List<ChannelParticipant>?> _participants = new PropertyValue<List<ChannelParticipant>?>(nameof(M2ChannelRecord), nameof(Participants));
@@ -165,8 +145,6 @@ namespace JetBrains.Space.Client
             _contact.SetAccessPath(path, validateHasBeenSet);
             _totalMessages.SetAccessPath(path, validateHasBeenSet);
             _lastMessage.SetAccessPath(path, validateHasBeenSet);
-            _authors.SetAccessPath(path, validateHasBeenSet);
-            _commentAuthors.SetAccessPath(path, validateHasBeenSet);
             _participants.SetAccessPath(path, validateHasBeenSet);
             _channelArchived.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);

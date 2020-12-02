@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public AbsencesForIdPatchRequest() { }
         
-        public AbsencesForIdPatchRequest(bool available, string? member = null, string? reason = null, string? description = null, string? location = null, DateTime? since = null, DateTime? till = null, string? icon = null, List<CustomFieldValue>? customFieldValues = null)
+        public AbsencesForIdPatchRequest(bool available, string? member = null, string? reason = null, string? description = null, string? location = null, DateTime? since = null, DateTime? till = null, string? icon = null, List<CustomFieldInputValue>? customFieldValues = null)
         {
             Member = member;
             Reason = reason;
@@ -118,10 +118,10 @@ namespace JetBrains.Space.Client
             set => _icon.SetValue(value);
         }
     
-        private PropertyValue<List<CustomFieldValue>?> _customFieldValues = new PropertyValue<List<CustomFieldValue>?>(nameof(AbsencesForIdPatchRequest), nameof(CustomFieldValues));
+        private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(AbsencesForIdPatchRequest), nameof(CustomFieldValues));
         
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValue>? CustomFieldValues
+        public List<CustomFieldInputValue>? CustomFieldValues
         {
             get => _customFieldValues.GetValue();
             set => _customFieldValues.SetValue(value);

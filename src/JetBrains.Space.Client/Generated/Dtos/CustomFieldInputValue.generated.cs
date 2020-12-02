@@ -25,32 +25,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class TeamHitDetails
-         : EntityHitDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class CustomFieldInputValue
+         : IPropagatePropertyAccessPath
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "TeamHitDetails";
+        public CustomFieldInputValue() { }
         
-        public TeamHitDetails() { }
-        
-        public TeamHitDetails(TDTeam @ref)
+        public CustomFieldInputValue(string fieldId, CFInputValue value)
         {
-            Ref = @ref;
+            FieldId = fieldId;
+            Value = value;
         }
         
-        private PropertyValue<TDTeam> _ref = new PropertyValue<TDTeam>(nameof(TeamHitDetails), nameof(Ref));
+        private PropertyValue<string> _fieldId = new PropertyValue<string>(nameof(CustomFieldInputValue), nameof(FieldId));
         
         [Required]
-        [JsonPropertyName("ref")]
-        public TDTeam Ref
+        [JsonPropertyName("fieldId")]
+        public string FieldId
         {
-            get => _ref.GetValue();
-            set => _ref.SetValue(value);
+            get => _fieldId.GetValue();
+            set => _fieldId.SetValue(value);
+        }
+    
+        private PropertyValue<CFInputValue> _value = new PropertyValue<CFInputValue>(nameof(CustomFieldInputValue), nameof(Value));
+        
+        [Required]
+        [JsonPropertyName("value")]
+        public CFInputValue Value
+        {
+            get => _value.GetValue();
+            set => _value.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _ref.SetAccessPath(path, validateHasBeenSet);
+            _fieldId.SetAccessPath(path, validateHasBeenSet);
+            _value.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

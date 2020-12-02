@@ -25,32 +25,31 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class ProjectHitDetails
-         : EntityHitDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class ProfileCFInputValue
+         : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public  string? ClassName => "ProjectHitDetails";
+        public  string? ClassName => "ProfileCFInputValue";
         
-        public ProjectHitDetails() { }
+        public ProfileCFInputValue() { }
         
-        public ProjectHitDetails(PRProject @ref)
+        public ProfileCFInputValue(ProfileIdentifier? profile = null)
         {
-            Ref = @ref;
+            Profile = profile;
         }
         
-        private PropertyValue<PRProject> _ref = new PropertyValue<PRProject>(nameof(ProjectHitDetails), nameof(Ref));
+        private PropertyValue<ProfileIdentifier?> _profile = new PropertyValue<ProfileIdentifier?>(nameof(ProfileCFInputValue), nameof(Profile));
         
-        [Required]
-        [JsonPropertyName("ref")]
-        public PRProject Ref
+        [JsonPropertyName("profile")]
+        public ProfileIdentifier? Profile
         {
-            get => _ref.GetValue();
-            set => _ref.SetValue(value);
+            get => _profile.GetValue();
+            set => _profile.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _ref.SetAccessPath(path, validateHasBeenSet);
+            _profile.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

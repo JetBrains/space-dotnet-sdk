@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryMembershipsForMembershipIdPatchRequest() { }
         
-        public TeamDirectoryMembershipsForMembershipIdPatchRequest(bool requiresApproval = false, string? teamId = null, string? roleId = null, bool? lead = null, ProfileIdentifier? manager = null, DateTime? activeSince = null, DateTime? activeTill = null, List<CustomFieldValue>? customFieldValues = null)
+        public TeamDirectoryMembershipsForMembershipIdPatchRequest(bool requiresApproval = false, string? teamId = null, string? roleId = null, bool? lead = null, ProfileIdentifier? manager = null, DateTime? activeSince = null, DateTime? activeTill = null, List<CustomFieldInputValue>? customFieldValues = null)
         {
             TeamId = teamId;
             RoleId = roleId;
@@ -107,10 +107,10 @@ namespace JetBrains.Space.Client
             set => _requiresApproval.SetValue(value);
         }
     
-        private PropertyValue<List<CustomFieldValue>?> _customFieldValues = new PropertyValue<List<CustomFieldValue>?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(CustomFieldValues));
+        private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(CustomFieldValues));
         
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValue>? CustomFieldValues
+        public List<CustomFieldInputValue>? CustomFieldValues
         {
             get => _customFieldValues.GetValue();
             set => _customFieldValues.SetValue(value);

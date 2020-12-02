@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest() { }
         
-        public ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest(string sourceBranch, string targetBranch, string title, List<MergeRequestReviewer>? reviewers = null)
+        public ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest(string sourceBranch, string targetBranch, string title, List<ReviewerParam>? reviewers = null)
         {
             SourceBranch = sourceBranch;
             TargetBranch = targetBranch;
@@ -68,10 +68,10 @@ namespace JetBrains.Space.Client
             set => _title.SetValue(value);
         }
     
-        private PropertyValue<List<MergeRequestReviewer>?> _reviewers = new PropertyValue<List<MergeRequestReviewer>?>(nameof(ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest), nameof(Reviewers));
+        private PropertyValue<List<ReviewerParam>?> _reviewers = new PropertyValue<List<ReviewerParam>?>(nameof(ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest), nameof(Reviewers));
         
         [JsonPropertyName("reviewers")]
-        public List<MergeRequestReviewer>? Reviewers
+        public List<ReviewerParam>? Reviewers
         {
             get => _reviewers.GetValue();
             set => _reviewers.SetValue(value);

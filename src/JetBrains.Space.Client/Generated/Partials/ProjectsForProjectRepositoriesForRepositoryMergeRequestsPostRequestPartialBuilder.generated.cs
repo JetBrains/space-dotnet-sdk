@@ -39,8 +39,8 @@ namespace JetBrains.Space.Client.ProjectsForProjectRepositoriesForRepositoryMerg
         public static Partial<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest> WithReviewers(this Partial<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest> it)
             => it.AddFieldName("reviewers");
         
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest> WithReviewers(this Partial<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest> it, Func<Partial<MergeRequestReviewer>, Partial<MergeRequestReviewer>> partialBuilder)
-            => it.AddFieldName("reviewers", partialBuilder(new Partial<MergeRequestReviewer>(it)));
+        public static Partial<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest> WithReviewers(this Partial<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest> it, Func<Partial<ReviewerParam>, Partial<ReviewerParam>> partialBuilder)
+            => it.AddFieldName("reviewers", partialBuilder(new Partial<ReviewerParam>(it)));
         
     }
     

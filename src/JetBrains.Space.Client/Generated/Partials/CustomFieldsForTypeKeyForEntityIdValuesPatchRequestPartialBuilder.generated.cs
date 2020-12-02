@@ -30,8 +30,8 @@ namespace JetBrains.Space.Client.CustomFieldsForTypeKeyForEntityIdValuesPatchReq
         public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithValues(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it)
             => it.AddFieldName("values");
         
-        public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithValues(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
-            => it.AddFieldName("values", partialBuilder(new Partial<CustomFieldValue>(it)));
+        public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithValues(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+            => it.AddFieldName("values", partialBuilder(new Partial<CustomFieldInputValue>(it)));
         
         public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithScope(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it)
             => it.AddFieldName("scope");

@@ -45,18 +45,6 @@ namespace JetBrains.Space.Client.M2ChannelRecordPartialBuilder
         public static Partial<M2ChannelRecord> WithLastMessage(this Partial<M2ChannelRecord> it, Func<Partial<MessageInfo>, Partial<MessageInfo>> partialBuilder)
             => it.AddFieldName("lastMessage", partialBuilder(new Partial<MessageInfo>(it)));
         
-        public static Partial<M2ChannelRecord> WithAuthors(this Partial<M2ChannelRecord> it)
-            => it.AddFieldName("authors");
-        
-        public static Partial<M2ChannelRecord> WithAuthors(this Partial<M2ChannelRecord> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("authors", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<M2ChannelRecord> WithCommentAuthors(this Partial<M2ChannelRecord> it)
-            => it.AddFieldName("commentAuthors");
-        
-        public static Partial<M2ChannelRecord> WithCommentAuthors(this Partial<M2ChannelRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("commentAuthors", partialBuilder(new Partial<CPrincipal>(it)));
-        
         public static Partial<M2ChannelRecord> WithParticipants(this Partial<M2ChannelRecord> it)
             => it.AddFieldName("participants");
         

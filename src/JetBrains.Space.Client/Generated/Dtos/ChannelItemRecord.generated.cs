@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public ChannelItemRecord() { }
         
-        public ChannelItemRecord(string text, CPrincipal author, DateTime created, long time, string id, bool archived, List<Issue> issues, M2ItemContentDetails? details = null, AllReactionsToItemRecord? reactions = null, M2ChannelRecord? thread = null, ChannelItemRecord? projectedItem = null, List<AttachmentInfo>? attachments = null, List<AttachmentInfo>? attachmentsInfos = null, bool? pending = null, DateTime? edited = null, bool? pinned = null, List<CPrincipal>? suggestedParticipants = null)
+        public ChannelItemRecord(string text, CPrincipal author, DateTime created, long time, string id, bool archived, List<Issue> issues, M2ItemContentDetails? details = null, AllReactionsToItemRecord? reactions = null, M2ChannelRecord? thread = null, ChannelItemRecord? projectedItem = null, List<AttachmentInfo>? attachments = null, bool? pending = null, DateTime? edited = null, bool? pinned = null, List<CPrincipal>? suggestedParticipants = null)
         {
             Text = text;
             Details = details;
@@ -41,7 +41,6 @@ namespace JetBrains.Space.Client
             Thread = thread;
             ProjectedItem = projectedItem;
             Attachments = attachments;
-            AttachmentsInfos = attachmentsInfos;
             IsPending = pending;
             Id = id;
             IsArchived = archived;
@@ -137,15 +136,6 @@ namespace JetBrains.Space.Client
             set => _attachments.SetValue(value);
         }
     
-        private PropertyValue<List<AttachmentInfo>?> _attachmentsInfos = new PropertyValue<List<AttachmentInfo>?>(nameof(ChannelItemRecord), nameof(AttachmentsInfos));
-        
-        [JsonPropertyName("attachmentsInfos")]
-        public List<AttachmentInfo>? AttachmentsInfos
-        {
-            get => _attachmentsInfos.GetValue();
-            set => _attachmentsInfos.SetValue(value);
-        }
-    
         private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(ChannelItemRecord), nameof(IsPending));
         
         [JsonPropertyName("pending")]
@@ -224,7 +214,6 @@ namespace JetBrains.Space.Client
             _thread.SetAccessPath(path, validateHasBeenSet);
             _projectedItem.SetAccessPath(path, validateHasBeenSet);
             _attachments.SetAccessPath(path, validateHasBeenSet);
-            _attachmentsInfos.SetAccessPath(path, validateHasBeenSet);
             _pending.SetAccessPath(path, validateHasBeenSet);
             _id.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);

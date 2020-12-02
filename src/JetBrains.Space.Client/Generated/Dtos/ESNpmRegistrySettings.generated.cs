@@ -33,9 +33,10 @@ namespace JetBrains.Space.Client
         
         public ESNpmRegistrySettings() { }
         
-        public ESNpmRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null)
+        public ESNpmRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
         {
             RetentionPolicyParams = retentionPolicyParams;
+            IsImmutablePackageVersions = immutablePackageVersions;
         }
         
         private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESNpmRegistrySettings), nameof(RetentionPolicyParams));
@@ -47,9 +48,19 @@ namespace JetBrains.Space.Client
             set => _retentionPolicyParams.SetValue(value);
         }
     
+        private PropertyValue<bool?> _immutablePackageVersions = new PropertyValue<bool?>(nameof(ESNpmRegistrySettings), nameof(IsImmutablePackageVersions));
+        
+        [JsonPropertyName("immutablePackageVersions")]
+        public bool? IsImmutablePackageVersions
+        {
+            get => _immutablePackageVersions.GetValue();
+            set => _immutablePackageVersions.SetValue(value);
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _retentionPolicyParams.SetAccessPath(path, validateHasBeenSet);
+            _immutablePackageVersions.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

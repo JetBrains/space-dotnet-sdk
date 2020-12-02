@@ -26,7 +26,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client
 {
     public sealed class OpenEnumCFValue
-         : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
+         : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public override string? ClassName => "OpenEnumCFValue";

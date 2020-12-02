@@ -42,8 +42,8 @@ namespace JetBrains.Space.Client.TeamDirectoryTeamsForIdPatchRequestPartialBuild
         public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
             => it.AddFieldName("customFieldValues");
         
-        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryTeamsForIdPatchRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValue>(it)));
+        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryTeamsForIdPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
         
         public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithExternalId(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
             => it.AddFieldName("externalId");

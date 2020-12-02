@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public ESApp() { }
         
-        public ESApp(string id, string clientId, string name, bool clientCredentialsFlowEnabled, bool codeFlowEnabled, bool implicitFlowEnabled, bool hasVerificationToken, bool hasSigningKey, bool archived, TDMemberProfile? owner = null, string? codeFlowRedirectURIs = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, AccessRecord? lastClientCredentialsAccess = null)
+        public ESApp(string id, string clientId, string name, bool clientCredentialsFlowEnabled, bool codeFlowEnabled, bool implicitFlowEnabled, bool hasVerificationToken, bool hasSigningKey, bool archived, TDMemberProfile? owner = null, string? codeFlowRedirectURIs = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null)
         {
             Id = id;
             Owner = owner;
@@ -45,7 +45,6 @@ namespace JetBrains.Space.Client
             IsHasVerificationToken = hasVerificationToken;
             IsHasSigningKey = hasSigningKey;
             IsArchived = archived;
-            LastClientCredentialsAccess = lastClientCredentialsAccess;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApp), nameof(Id));
@@ -174,15 +173,6 @@ namespace JetBrains.Space.Client
             set => _archived.SetValue(value);
         }
     
-        private PropertyValue<AccessRecord?> _lastClientCredentialsAccess = new PropertyValue<AccessRecord?>(nameof(ESApp), nameof(LastClientCredentialsAccess));
-        
-        [JsonPropertyName("lastClientCredentialsAccess")]
-        public AccessRecord? LastClientCredentialsAccess
-        {
-            get => _lastClientCredentialsAccess.GetValue();
-            set => _lastClientCredentialsAccess.SetValue(value);
-        }
-    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -198,7 +188,6 @@ namespace JetBrains.Space.Client
             _hasVerificationToken.SetAccessPath(path, validateHasBeenSet);
             _hasSigningKey.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
-            _lastClientCredentialsAccess.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

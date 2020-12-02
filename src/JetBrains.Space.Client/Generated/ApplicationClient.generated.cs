@@ -101,6 +101,17 @@ namespace JetBrains.Space.Client
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
+        /// <term>View applications</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<AccessRecord> GetLastClientCredentialsAccessInfoAsync(string id, Func<Partial<AccessRecord>, Partial<AccessRecord>>? partial = null, CancellationToken cancellationToken = default)
+            => await _connection.RequestResourceAsync<AccessRecord>("GET", $"api/http/applications/{id}/last-client-credentials-access?$fields={(partial != null ? partial(new Partial<AccessRecord>()) : Partial<AccessRecord>.Default())}", cancellationToken);
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
         /// <term>Edit applications</term>
         /// </item>
         /// </list>

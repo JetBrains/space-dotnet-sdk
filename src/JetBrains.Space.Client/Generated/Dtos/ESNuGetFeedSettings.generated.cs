@@ -33,9 +33,10 @@ namespace JetBrains.Space.Client
         
         public ESNuGetFeedSettings() { }
         
-        public ESNuGetFeedSettings(RetentionPolicyParams? retentionPolicyParams = null)
+        public ESNuGetFeedSettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
         {
             RetentionPolicyParams = retentionPolicyParams;
+            IsImmutablePackageVersions = immutablePackageVersions;
         }
         
         private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESNuGetFeedSettings), nameof(RetentionPolicyParams));
@@ -47,9 +48,19 @@ namespace JetBrains.Space.Client
             set => _retentionPolicyParams.SetValue(value);
         }
     
+        private PropertyValue<bool?> _immutablePackageVersions = new PropertyValue<bool?>(nameof(ESNuGetFeedSettings), nameof(IsImmutablePackageVersions));
+        
+        [JsonPropertyName("immutablePackageVersions")]
+        public bool? IsImmutablePackageVersions
+        {
+            get => _immutablePackageVersions.GetValue();
+            set => _immutablePackageVersions.SetValue(value);
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _retentionPolicyParams.SetAccessPath(path, validateHasBeenSet);
+            _immutablePackageVersions.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

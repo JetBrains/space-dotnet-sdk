@@ -45,6 +45,12 @@ namespace JetBrains.Space.Client.WorkingDaysSpecPartialBuilder
         public static Partial<WorkingDaysSpec> WithNotificationHours(this Partial<WorkingDaysSpec> it, Func<Partial<WeekDayTimeInterval>, Partial<WeekDayTimeInterval>> partialBuilder)
             => it.AddFieldName("notificationHours", partialBuilder(new Partial<WeekDayTimeInterval>(it)));
         
+        public static Partial<WorkingDaysSpec> WithTimezone(this Partial<WorkingDaysSpec> it)
+            => it.AddFieldName("timezone");
+        
+        public static Partial<WorkingDaysSpec> WithTimezone(this Partial<WorkingDaysSpec> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
+            => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
+        
     }
     
 }

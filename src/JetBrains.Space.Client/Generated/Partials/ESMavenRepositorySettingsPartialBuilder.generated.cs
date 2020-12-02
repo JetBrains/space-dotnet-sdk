@@ -36,6 +36,9 @@ namespace JetBrains.Space.Client.ESMavenRepositorySettingsPartialBuilder
         public static Partial<ESMavenRepositorySettings> WithRetentionPolicyParams(this Partial<ESMavenRepositorySettings> it, Func<Partial<RetentionPolicyParams>, Partial<RetentionPolicyParams>> partialBuilder)
             => it.AddFieldName("retentionPolicyParams", partialBuilder(new Partial<RetentionPolicyParams>(it)));
         
+        public static Partial<ESMavenRepositorySettings> WithIsImmutablePackageVersions(this Partial<ESMavenRepositorySettings> it)
+            => it.AddFieldName("immutablePackageVersions");
+        
     }
     
 }

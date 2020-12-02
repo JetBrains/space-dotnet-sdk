@@ -25,32 +25,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class ArticleHitDetails
-         : EntityHitDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class ProfileListCFInputValue
+         : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public  string? ClassName => "ArticleHitDetails";
+        public  string? ClassName => "ProfileListCFInputValue";
         
-        public ArticleHitDetails() { }
+        public ProfileListCFInputValue() { }
         
-        public ArticleHitDetails(ArticleRecord @ref)
+        public ProfileListCFInputValue(List<ProfileIdentifier> profiles)
         {
-            Ref = @ref;
+            Profiles = profiles;
         }
         
-        private PropertyValue<ArticleRecord> _ref = new PropertyValue<ArticleRecord>(nameof(ArticleHitDetails), nameof(Ref));
+        private PropertyValue<List<ProfileIdentifier>> _profiles = new PropertyValue<List<ProfileIdentifier>>(nameof(ProfileListCFInputValue), nameof(Profiles));
         
         [Required]
-        [JsonPropertyName("ref")]
-        public ArticleRecord Ref
+        [JsonPropertyName("profiles")]
+        public List<ProfileIdentifier> Profiles
         {
-            get => _ref.GetValue();
-            set => _ref.SetValue(value);
+            get => _profiles.GetValue();
+            set => _profiles.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _ref.SetAccessPath(path, validateHasBeenSet);
+            _profiles.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

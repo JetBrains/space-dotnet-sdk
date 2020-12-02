@@ -25,41 +25,40 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class MatchSnippet
+    public sealed class ReviewerParam
          : IPropagatePropertyAccessPath
     {
-        public MatchSnippet() { }
+        public ReviewerParam() { }
         
-        public MatchSnippet(string propertyName, string snippet)
+        public ReviewerParam(string profileId, CodeReviewParticipantQualityGateSlot? qualityGateSlot = null)
         {
-            PropertyName = propertyName;
-            Snippet = snippet;
+            ProfileId = profileId;
+            QualityGateSlot = qualityGateSlot;
         }
         
-        private PropertyValue<string> _propertyName = new PropertyValue<string>(nameof(MatchSnippet), nameof(PropertyName));
+        private PropertyValue<string> _profileId = new PropertyValue<string>(nameof(ReviewerParam), nameof(ProfileId));
         
         [Required]
-        [JsonPropertyName("propertyName")]
-        public string PropertyName
+        [JsonPropertyName("profileId")]
+        public string ProfileId
         {
-            get => _propertyName.GetValue();
-            set => _propertyName.SetValue(value);
+            get => _profileId.GetValue();
+            set => _profileId.SetValue(value);
         }
     
-        private PropertyValue<string> _snippet = new PropertyValue<string>(nameof(MatchSnippet), nameof(Snippet));
+        private PropertyValue<CodeReviewParticipantQualityGateSlot?> _qualityGateSlot = new PropertyValue<CodeReviewParticipantQualityGateSlot?>(nameof(ReviewerParam), nameof(QualityGateSlot));
         
-        [Required]
-        [JsonPropertyName("snippet")]
-        public string Snippet
+        [JsonPropertyName("qualityGateSlot")]
+        public CodeReviewParticipantQualityGateSlot? QualityGateSlot
         {
-            get => _snippet.GetValue();
-            set => _snippet.SetValue(value);
+            get => _qualityGateSlot.GetValue();
+            set => _qualityGateSlot.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _propertyName.SetAccessPath(path, validateHasBeenSet);
-            _snippet.SetAccessPath(path, validateHasBeenSet);
+            _profileId.SetAccessPath(path, validateHasBeenSet);
+            _qualityGateSlot.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

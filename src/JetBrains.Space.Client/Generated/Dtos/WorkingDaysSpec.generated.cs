@@ -30,11 +30,12 @@ namespace JetBrains.Space.Client
     {
         public WorkingDaysSpec() { }
         
-        public WorkingDaysSpec(List<Workday> days, List<WeekDayTimeInterval>? workingHours = null, List<WeekDayTimeInterval>? notificationHours = null)
+        public WorkingDaysSpec(List<Workday> days, List<WeekDayTimeInterval>? workingHours = null, List<WeekDayTimeInterval>? notificationHours = null, ATimeZone? timezone = null)
         {
             Days = days;
             WorkingHours = workingHours;
             NotificationHours = notificationHours;
+            Timezone = timezone;
         }
         
         private PropertyValue<List<Workday>> _days = new PropertyValue<List<Workday>>(nameof(WorkingDaysSpec), nameof(Days));
@@ -65,11 +66,21 @@ namespace JetBrains.Space.Client
             set => _notificationHours.SetValue(value);
         }
     
+        private PropertyValue<ATimeZone?> _timezone = new PropertyValue<ATimeZone?>(nameof(WorkingDaysSpec), nameof(Timezone));
+        
+        [JsonPropertyName("timezone")]
+        public ATimeZone? Timezone
+        {
+            get => _timezone.GetValue();
+            set => _timezone.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _days.SetAccessPath(path, validateHasBeenSet);
             _workingHours.SetAccessPath(path, validateHasBeenSet);
             _notificationHours.SetAccessPath(path, validateHasBeenSet);
+            _timezone.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

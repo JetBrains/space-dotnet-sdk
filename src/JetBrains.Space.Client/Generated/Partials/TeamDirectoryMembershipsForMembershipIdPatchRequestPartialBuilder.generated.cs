@@ -54,8 +54,8 @@ namespace JetBrains.Space.Client.TeamDirectoryMembershipsForMembershipIdPatchReq
         public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
             => it.AddFieldName("customFieldValues");
         
-        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValue>(it)));
+        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
         
     }
     
