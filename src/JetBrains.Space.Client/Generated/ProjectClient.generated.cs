@@ -1083,11 +1083,24 @@ namespace JetBrains.Space.Client
             public IAsyncEnumerable<CodeReviewWithCount> GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier project, ReviewSorting? sort = null, string? skip = null, int? top = 100, CodeReviewStateFilter? state = null, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<CodeReviewWithCount>, Partial<CodeReviewWithCount>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllCodeReviewsAsync(project: project, sort: sort, top: top, state: state, text: text, author: author, from: from, to: to, reviewer: reviewer, type: type, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CodeReviewWithCount>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeReviewWithCount>.Default())), skip, cancellationToken);
         
-            public async Task<ReviewCounts> GetReviewCountsAsync(ProjectIdentifier project, Func<Partial<ReviewCounts>, Partial<ReviewCounts>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<ReviewCounts>("GET", $"api/http/projects/{project}/code-reviews/review-counts?$fields={(partial != null ? partial(new Partial<ReviewCounts>()) : Partial<ReviewCounts>.Default())}", cancellationToken);
-        
             public async Task<CodeReviewRecord> GetCodeReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<CodeReviewRecord>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}?$fields={(partial != null ? partial(new Partial<CodeReviewRecord>()) : Partial<CodeReviewRecord>.Default())}", cancellationToken);
+        
+            public async Task<GitMergeResultHttp> MergeMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, Func<Partial<GitMergeResultHttp>, Partial<GitMergeResultHttp>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsForReviewIdMergePutRequest, GitMergeResultHttp>("PUT", $"api/http/projects/{project}/code-reviews/{reviewId}/merge?$fields={(partial != null ? partial(new Partial<GitMergeResultHttp>()) : Partial<GitMergeResultHttp>.Default())}", 
+                    new ProjectsForProjectCodeReviewsForReviewIdMergePutRequest { 
+                        IsDeleteSourceBranch = deleteSourceBranch,
+                    }
+            , cancellationToken);
+        
+            public async Task<GitRebaseResultHttp> RebaseMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, bool squash, string? squashedCommitMessage = null, Func<Partial<GitRebaseResultHttp>, Partial<GitRebaseResultHttp>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest, GitRebaseResultHttp>("PUT", $"api/http/projects/{project}/code-reviews/{reviewId}/rebase?$fields={(partial != null ? partial(new Partial<GitRebaseResultHttp>()) : Partial<GitRebaseResultHttp>.Default())}", 
+                    new ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest { 
+                        IsDeleteSourceBranch = deleteSourceBranch,
+                        IsSquash = squash,
+                        SquashedCommitMessage = squashedCommitMessage,
+                    }
+            , cancellationToken);
         
             public DetailClient Details => new DetailClient(_connection);
             

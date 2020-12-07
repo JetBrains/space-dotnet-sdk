@@ -135,7 +135,7 @@ namespace JetBrains.Space.Client
             => await _connection.RequestResourceAsync<AbsenceRecord>("GET", $"api/http/absences/{id}?$fields={(partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default())}", cancellationToken);
     
         /// <summary>
-        /// Create an existing absence. Optional parameters will be ignored when not specified, and updated otherwise.
+        /// Update an existing absence. Optional parameters will be ignored when not specified, and updated otherwise.
         /// </summary>
         /// <remarks>
         /// Required permissions:
