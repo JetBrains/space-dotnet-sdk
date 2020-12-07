@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Types;
@@ -42,8 +41,7 @@ namespace JetBrains.Space.Generator.Model.HttpApi
             
             [JsonPropertyName("kind")]
             public ObjectKind Kind { get; set; } = default!;
-            
-            [SuppressMessage("ReSharper", "InconsistentNaming")]
+
             [JsonConverter(typeof(EnumerationConverter))]
             public sealed class ObjectKind : Enumeration {
                 private ObjectKind(string value) : base(value) { }

@@ -59,7 +59,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                     : "Root";
 
                 var expectedPayload = string.Empty;
-                if (node.Context != null && _context.TryGetDto(node.Context.Id, out var expectedPayloadDto))
+                if (node.Context != null && _context.TryGetDto(node.Context.Id, out var expectedPayloadDto) && expectedPayloadDto != null)
                 {
                     expectedPayload = expectedPayloadDto.ToCSharpClassName();
                 }

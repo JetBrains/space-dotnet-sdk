@@ -65,8 +65,7 @@ namespace JetBrains.Space.Common
                         queryStringCollection.Remove(key);
                     }
                 }
-
-                // ReSharper disable once AssignNullToNotNullAttribute
+                
                 return pathAndQuery[0].TrimStart('/') + "?" + queryStringCollection;
             }
 

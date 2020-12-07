@@ -18,7 +18,6 @@ namespace JetBrains.Space.Generator
     {
         private const string OutputPath = "../../../../JetBrains.Space.Client/Generated/";
 
-        // ReSharper disable once UnusedParameter.Local
         static async Task<int> Main(string[] args)
         {
             Console.WriteLine();
@@ -43,17 +42,16 @@ namespace JetBrains.Space.Generator
             {
                 return await RunGenerateFromModel(namedArguments);
             }
-            else if (namedArguments.ContainsKey("organizationUrl"))
+
+            if (namedArguments.ContainsKey("organizationUrl"))
             {
                 return await RunGenerateFromOrganizationUrl(namedArguments);
             }
-            else
-            {
-                return await RunHelpAsync(namedArguments);
-            }
+
+            return await RunHelpAsync();
         }
 
-        private static async Task<int> RunHelpAsync(Dictionary<string,string> namedArguments)
+        private static Task<int> RunHelpAsync()
         {
             Console.WriteLine("Usage: ");
             Console.WriteLine();
@@ -62,16 +60,17 @@ namespace JetBrains.Space.Generator
             Console.WriteLine();
             Console.WriteLine("  Generate code from a HA_model.json file:");
             Console.WriteLine("    --model={path-to-HA_model.json} --version={version}");
-            return -1;
+            
+            return Task.FromResult(-1);
         }
 
-        private static async Task<int> RunGenerateFromOrganizationUrl(Dictionary<string, string> namedArguments)
+        private static async Task<int> RunGenerateFromOrganizationUrl(Dictionary<string, string?> namedArguments)
         {
             if (!namedArguments.TryGetValue("organizationUrl", out var organizationUrl) || string.IsNullOrEmpty(organizationUrl)
                 || !namedArguments.TryGetValue("clientId", out var clientId) || string.IsNullOrEmpty(clientId)
                 || !namedArguments.TryGetValue("clientSecret", out var clientSecret) || string.IsNullOrEmpty(clientSecret))
             {
-                return await RunHelpAsync(namedArguments);
+                return await RunHelpAsync();
             }
             
             Console.WriteLine("Generating code from remote API model...");
@@ -108,12 +107,12 @@ namespace JetBrains.Space.Generator
                 });
         }
         
-        private static async Task<int> RunGenerateFromModel(Dictionary<string, string> namedArguments)
+        private static async Task<int> RunGenerateFromModel(Dictionary<string, string?> namedArguments)
         {
             if (!namedArguments.TryGetValue("model", out var model) || string.IsNullOrEmpty(model)
                 || !namedArguments.TryGetValue("version", out var version) || string.IsNullOrEmpty(version))
             {
-                return await RunHelpAsync(namedArguments);
+                return await RunHelpAsync();
             }
             
             Console.WriteLine($"Generating code from HA_model.json file at '{model}'...");

@@ -1,11 +1,9 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Generator.Model.HttpApi
 {
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ApiMethod : Enumeration {
         private ApiMethod(string value) : base(value) { }

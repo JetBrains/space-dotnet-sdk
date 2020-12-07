@@ -37,7 +37,7 @@ namespace JetBrains.Space.Samples.CommandLine
             
             // Get profiles with their Id. Accessing another property (such as name) will throw.
             var firstProfile = await teamDirectoryClient.Profiles.GetAllProfilesAsyncEnumerable("", false, false, partial: _ => _
-                .WithId()).FirstOrDefaultAsync();
+                .WithId()).FirstAsync();
             try
             {
                 // This will fail...
