@@ -5,7 +5,8 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Generator.Model.HttpApi
 {
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ApiMethod : Enumeration {
+    public sealed class ApiMethod : Enumeration
+    {
         private ApiMethod(string value) : base(value) { }
                 
         public static readonly ApiMethod HTTP_GET = new ApiMethod("HTTP_GET");

@@ -5,7 +5,8 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Generator.Model.HttpApi
 {
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class HierarchyRole : Enumeration {
+    public sealed class HierarchyRole : Enumeration 
+    {
         private HierarchyRole(string value) : base(value) { }
                 
         public static readonly HierarchyRole SEALED = new HierarchyRole("SEALED_GET");

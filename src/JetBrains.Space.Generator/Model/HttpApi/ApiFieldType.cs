@@ -43,7 +43,8 @@ namespace JetBrains.Space.Generator.Model.HttpApi
             public ObjectKind Kind { get; set; } = default!;
 
             [JsonConverter(typeof(EnumerationConverter))]
-            public sealed class ObjectKind : Enumeration {
+            public sealed class ObjectKind : Enumeration
+            {
                 private ObjectKind(string value) : base(value) { }
                 
                 public static readonly ObjectKind PAIR = new ObjectKind("PAIR");
