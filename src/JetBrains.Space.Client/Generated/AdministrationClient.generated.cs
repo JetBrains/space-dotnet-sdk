@@ -13,11 +13,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Space.Client.Internal;
 using JetBrains.Space.Common;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
@@ -57,7 +58,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<SupportProfile> CreateSupportAsync(Func<Partial<SupportProfile>, Partial<SupportProfile>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<SupportProfile>("POST", $"api/http/administration/support?$fields={(partial != null ? partial(new Partial<SupportProfile>()) : Partial<SupportProfile>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<SupportProfile>()) : Partial<SupportProfile>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<SupportProfile>("POST", $"api/http/administration/support{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -73,7 +80,13 @@ namespace JetBrains.Space.Client
             }
             
             public async Task<UAUserAgreement> GetUserAgreementAsync(Func<Partial<UAUserAgreement>, Partial<UAUserAgreement>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<UAUserAgreement>("GET", $"api/http/administration/user-agreement?$fields={(partial != null ? partial(new Partial<UAUserAgreement>()) : Partial<UAUserAgreement>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<UAUserAgreement>()) : Partial<UAUserAgreement>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<UAUserAgreement>("GET", $"api/http/administration/user-agreement{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <remarks>
             /// Required permissions:
@@ -84,12 +97,18 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<UAUserAgreement> UploadNewUserAgreementAsync(string newContent, bool invalidate, Func<Partial<UAUserAgreement>, Partial<UAUserAgreement>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<AdministrationUserAgreementPatchRequest, UAUserAgreement>("PATCH", $"api/http/administration/user-agreement?$fields={(partial != null ? partial(new Partial<UAUserAgreement>()) : Partial<UAUserAgreement>.Default())}", 
-                    new AdministrationUserAgreementPatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<UAUserAgreement>()) : Partial<UAUserAgreement>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<AdministrationUserAgreementPatchRequest, UAUserAgreement>("PATCH", $"api/http/administration/user-agreement{queryParameters.ToQueryString()}", 
+                    new AdministrationUserAgreementPatchRequest
+                    { 
                         NewContent = newContent,
                         IsInvalidate = invalidate,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             public EnabledClient Enabled => new EnabledClient(_connection);
             
@@ -111,14 +130,24 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task EnableDisableUserAgreementAsync(bool enabled, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/administration/user-agreement/enabled", 
-                        new AdministrationUserAgreementEnabledPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/administration/user-agreement/enabled{queryParameters.ToQueryString()}", 
+                        new AdministrationUserAgreementEnabledPostRequest
+                        { 
                             IsEnabled = enabled,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 public async Task<bool> IsUserAgreementEnabledAsync(CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<bool>("GET", $"api/http/administration/user-agreement/enabled", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    return await _connection.RequestResourceAsync<bool>("GET", $"api/http/administration/user-agreement/enabled{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -142,7 +171,18 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<Batch<UAUserAgreementStatus>> GetAllUserAgreementStatusesAsync(string query = "", bool activeProfilesOnly = true, string? skip = null, int? top = 100, bool? accepted = null, Func<Partial<Batch<UAUserAgreementStatus>>, Partial<Batch<UAUserAgreementStatus>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<UAUserAgreementStatus>>("GET", $"api/http/administration/user-agreement/status?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&accepted={accepted?.ToString("l") ?? "null"}&activeProfilesOnly={activeProfilesOnly.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<UAUserAgreementStatus>>()) : Partial<Batch<UAUserAgreementStatus>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("query", query);
+                    if (accepted != null) queryParameters.Append("accepted", accepted?.ToString("l"));
+                    queryParameters.Append("activeProfilesOnly", activeProfilesOnly.ToString("l"));
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<UAUserAgreementStatus>>()) : Partial<Batch<UAUserAgreementStatus>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<UAUserAgreementStatus>>("GET", $"api/http/administration/user-agreement/status{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 /// <remarks>
                 /// Required permissions:
@@ -164,7 +204,13 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<UAUserAgreementStatus> GetUserAgreementStatusForProfileAsync(ProfileIdentifier profile, Func<Partial<UAUserAgreementStatus>, Partial<UAUserAgreementStatus>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<UAUserAgreementStatus>("GET", $"api/http/administration/user-agreement/status/{profile}?$fields={(partial != null ? partial(new Partial<UAUserAgreementStatus>()) : Partial<UAUserAgreementStatus>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<UAUserAgreementStatus>()) : Partial<UAUserAgreementStatus>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<UAUserAgreementStatus>("GET", $"api/http/administration/user-agreement/status/{profile}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         

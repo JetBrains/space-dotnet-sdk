@@ -13,11 +13,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Space.Client.Internal;
 using JetBrains.Space.Common;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
@@ -38,7 +39,13 @@ namespace JetBrains.Space.Client
         /// Get the HTTP API model that describes the available HTTP API's
         /// </summary>
         public async Task<HAModel> GetHttpApiModelAsync(Func<Partial<HAModel>, Partial<HAModel>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<HAModel>("GET", $"api/http/http-api-model?$fields={(partial != null ? partial(new Partial<HAModel>()) : Partial<HAModel>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<HAModel>()) : Partial<HAModel>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<HAModel>("GET", $"api/http/http-api-model{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
     }
     

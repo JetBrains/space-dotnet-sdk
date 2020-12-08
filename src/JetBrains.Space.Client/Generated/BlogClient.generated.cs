@@ -13,11 +13,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Space.Client.Internal;
 using JetBrains.Space.Common;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
@@ -55,7 +56,22 @@ namespace JetBrains.Space.Client
             /// </remarks>
             [Obsolete("Replace with /blog (since 2020-10-29) (marked for removal)")]
             public async Task<Batch<ArticleRecord>> GetAllArticlesAsync(string? skip = null, int? top = 100, string? term = null, DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<Batch<ArticleRecord>>, Partial<Batch<ArticleRecord>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<ArticleRecord>>("GET", $"api/http/blogs/articles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&dateFrom={dateFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&dateTo={dateTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&forProfile={forProfile?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<ArticleRecord>>()) : Partial<Batch<ArticleRecord>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                if (term != null) queryParameters.Append("term", term);
+                if (dateFrom != null) queryParameters.Append("dateFrom", dateFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                if (dateTo != null) queryParameters.Append("dateTo", dateTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                if (authorId != null) queryParameters.Append("authorId", authorId);
+                if (teamId != null) queryParameters.Append("teamId", teamId);
+                if (locationId != null) queryParameters.Append("locationId", locationId);
+                if (forProfile != null) queryParameters.Append("forProfile", forProfile);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ArticleRecord>>()) : Partial<Batch<ArticleRecord>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<ArticleRecord>>("GET", $"api/http/blogs/articles{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             /// <remarks>
             /// Required permissions:
@@ -79,7 +95,13 @@ namespace JetBrains.Space.Client
             /// </remarks>
             [Obsolete("Replace with /blog (since 2020-10-29) (marked for removal)")]
             public async Task<ArticleRecord> GetArticleAsync(string id, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blogs/articles/{id}?$fields={(partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blogs/articles/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             public DraftClient Drafts => new DraftClient(_connection);
             
@@ -102,7 +124,13 @@ namespace JetBrains.Space.Client
                 /// </remarks>
                 [Obsolete("Replace with /blog (since 2020-10-29) (marked for removal)")]
                 public async Task<BGArticleId> PublishDocumentToBlogAsync(string draftId, Func<Partial<BGArticleId>, Partial<BGArticleId>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<BGArticleId>("POST", $"api/http/blogs/articles/drafts/{draftId}/publish?$fields={(partial != null ? partial(new Partial<BGArticleId>()) : Partial<BGArticleId>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<BGArticleId>()) : Partial<BGArticleId>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<BGArticleId>("POST", $"api/http/blogs/articles/drafts/{draftId}/publish{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Unpublish the article, but keeps its draft
@@ -117,7 +145,12 @@ namespace JetBrains.Space.Client
                 /// </remarks>
                 [Obsolete("Replace with /blog (since 2020-10-29) (marked for removal)")]
                 public async Task UnpublishTheArticleButKeepsItsDraftAsync(string draftId, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/drafts/{draftId}/unpublish", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/drafts/{draftId}/unpublish{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         

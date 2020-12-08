@@ -13,11 +13,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Space.Client.Internal;
 using JetBrains.Space.Common;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
@@ -50,14 +51,28 @@ namespace JetBrains.Space.Client
             /// </summary>
             [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
             public async Task<List<MeetingRecord>> GetAllCalendarEventsAsync(DateTime dateFrom, DateTime dateTo, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<MeetingRecord>>("GET", $"api/http/team-directory/calendar-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&$fields={(partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
+                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<MeetingRecord>>("GET", $"api/http/team-directory/calendar-events{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get a calendar event attached to an article.
             /// </summary>
             [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
             public async Task<MeetingRecord> GetCalendarEventAsync(string id, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<MeetingRecord>("GET", $"api/http/team-directory/calendar-events/{id}?$fields={(partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<MeetingRecord>("GET", $"api/http/team-directory/calendar-events/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             public AbsenceEventClient AbsenceEvents => new AbsenceEventClient(_connection);
             
@@ -75,7 +90,18 @@ namespace JetBrains.Space.Client
                 /// </summary>
                 [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                 public async Task<List<AbsenceEvent>> GetAllAbsenceEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<AbsenceEvent>, Partial<AbsenceEvent>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<AbsenceEvent>>("GET", $"api/http/team-directory/calendar-events/absence-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<AbsenceEvent>()) : Partial<AbsenceEvent>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
+                    queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                    if (team != null) queryParameters.Append("team", team);
+                    if (location != null) queryParameters.Append("location", location);
+                    if (role != null) queryParameters.Append("role", role);
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceEvent>()) : Partial<AbsenceEvent>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<AbsenceEvent>>("GET", $"api/http/team-directory/calendar-events/absence-events{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -95,7 +121,18 @@ namespace JetBrains.Space.Client
                 /// </summary>
                 [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                 public async Task<List<BirthdayEvent>> GetAllBirthdayEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<BirthdayEvent>, Partial<BirthdayEvent>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/team-directory/calendar-events/birthday-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
+                    queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                    if (team != null) queryParameters.Append("team", team);
+                    if (location != null) queryParameters.Append("location", location);
+                    if (role != null) queryParameters.Append("role", role);
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/team-directory/calendar-events/birthday-events{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 public StarredClient Starred => new StarredClient(_connection);
                 
@@ -113,7 +150,15 @@ namespace JetBrains.Space.Client
                     /// </summary>
                     [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                     public async Task<List<BirthdayEvent>> GetAllStarredBirthdayEventsAsync(DateTime dateFrom, DateTime dateTo, Func<Partial<BirthdayEvent>, Partial<BirthdayEvent>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/team-directory/calendar-events/birthday-events/starred?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&$fields={(partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default())}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
+                        queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/team-directory/calendar-events/birthday-events/starred{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -135,7 +180,19 @@ namespace JetBrains.Space.Client
                 /// </summary>
                 [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                 public async Task<List<HolidaysEvent>> GetAllHolidaysAsync(DateTime startDate, DateTime endDate, string? team = null, string? location = null, string? role = null, bool? workingDays = null, Func<Partial<HolidaysEvent>, Partial<HolidaysEvent>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<HolidaysEvent>>("GET", $"api/http/team-directory/calendar-events/holidays?startDate={startDate.ToString("yyyy-MM-dd")}&endDate={endDate.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&workingDays={workingDays?.ToString("l") ?? "null"}&$fields={(partial != null ? partial(new Partial<HolidaysEvent>()) : Partial<HolidaysEvent>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("startDate", startDate.ToString("yyyy-MM-dd"));
+                    queryParameters.Append("endDate", endDate.ToString("yyyy-MM-dd"));
+                    if (team != null) queryParameters.Append("team", team);
+                    if (location != null) queryParameters.Append("location", location);
+                    if (role != null) queryParameters.Append("role", role);
+                    if (workingDays != null) queryParameters.Append("workingDays", workingDays?.ToString("l"));
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<HolidaysEvent>()) : Partial<HolidaysEvent>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<HolidaysEvent>>("GET", $"api/http/team-directory/calendar-events/holidays{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -155,11 +212,17 @@ namespace JetBrains.Space.Client
                 /// </summary>
                 [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                 public async Task<MeetingRecord> UpdateMeetingParticipationAsync(string id, EventParticipationStatus newStatus, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<TeamDirectoryCalendarEventsMeetingParticipationsForIdPatchRequest, MeetingRecord>("PATCH", $"api/http/team-directory/calendar-events/meeting-participations/{id}?$fields={(partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default())}", 
-                        new TeamDirectoryCalendarEventsMeetingParticipationsForIdPatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TeamDirectoryCalendarEventsMeetingParticipationsForIdPatchRequest, MeetingRecord>("PATCH", $"api/http/team-directory/calendar-events/meeting-participations/{id}{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryCalendarEventsMeetingParticipationsForIdPatchRequest
+                        { 
                             NewStatus = newStatus,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
             }
         
@@ -187,7 +250,18 @@ namespace JetBrains.Space.Client
                 /// </remarks>
                 [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                 public async Task<List<MembershipEvent>> GetAllMembershipEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<MembershipEvent>, Partial<MembershipEvent>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<MembershipEvent>>("GET", $"api/http/team-directory/calendar-events/membership-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<MembershipEvent>()) : Partial<MembershipEvent>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
+                    queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                    if (team != null) queryParameters.Append("team", team);
+                    if (location != null) queryParameters.Append("location", location);
+                    if (role != null) queryParameters.Append("role", role);
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<MembershipEvent>()) : Partial<MembershipEvent>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<MembershipEvent>>("GET", $"api/http/team-directory/calendar-events/membership-events{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -207,7 +281,19 @@ namespace JetBrains.Space.Client
                 /// </summary>
                 [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                 public async Task<List<NonWorkingDaysEvent>> GetAllNonWorkingDaysEventsAsync(DateTime dateFrom, DateTime dateTo, string? member = null, string? team = null, string? location = null, string? role = null, Func<Partial<NonWorkingDaysEvent>, Partial<NonWorkingDaysEvent>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<NonWorkingDaysEvent>>("GET", $"api/http/team-directory/calendar-events/non-working-days-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&member={member?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<NonWorkingDaysEvent>()) : Partial<NonWorkingDaysEvent>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
+                    queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                    if (member != null) queryParameters.Append("member", member);
+                    if (team != null) queryParameters.Append("team", team);
+                    if (location != null) queryParameters.Append("location", location);
+                    if (role != null) queryParameters.Append("role", role);
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<NonWorkingDaysEvent>()) : Partial<NonWorkingDaysEvent>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<NonWorkingDaysEvent>>("GET", $"api/http/team-directory/calendar-events/non-working-days-events{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -228,19 +314,34 @@ namespace JetBrains.Space.Client
             /// Create an organization-wide invitation link
             /// </summary>
             public async Task<Pair<string, InvitationLink>> CreateInvitationLinkAsync(string name, DateTime expiresAt, int inviteeLimit, Func<Partial<Pair<string, InvitationLink>>, Partial<Pair<string, InvitationLink>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryInvitationLinksPostRequest, Pair<string, InvitationLink>>("POST", $"api/http/team-directory/invitation-links?$fields={(partial != null ? partial(new Partial<Pair<string, InvitationLink>>()) : Partial<Pair<string, InvitationLink>>.Default())}", 
-                    new TeamDirectoryInvitationLinksPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<string, InvitationLink>>()) : Partial<Pair<string, InvitationLink>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryInvitationLinksPostRequest, Pair<string, InvitationLink>>("POST", $"api/http/team-directory/invitation-links{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryInvitationLinksPostRequest
+                    { 
                         Name = name,
                         ExpiresAt = expiresAt,
                         InviteeLimit = inviteeLimit,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get organization-wide invitation links
             /// </summary>
             public async Task<Batch<InvitationLink>> GetAllInvitationLinksAsync(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<Batch<InvitationLink>>, Partial<Batch<InvitationLink>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<InvitationLink>>("GET", $"api/http/team-directory/invitation-links?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&withDeleted={withDeleted.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<InvitationLink>>()) : Partial<Batch<InvitationLink>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("withDeleted", withDeleted.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<InvitationLink>>()) : Partial<Batch<InvitationLink>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<InvitationLink>>("GET", $"api/http/team-directory/invitation-links{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             /// <summary>
             /// Get organization-wide invitation links
@@ -252,19 +353,29 @@ namespace JetBrains.Space.Client
             /// Update an organization-wide invitation link
             /// </summary>
             public async Task UpdateInvitationLinkAsync(string invitationLinkId, string? name = null, DateTime? expiresAt = null, int? inviteeLimit = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/invitation-links/{invitationLinkId}", 
-                    new TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/invitation-links/{invitationLinkId}{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest
+                    { 
                         Name = name,
                         ExpiresAt = expiresAt,
                         InviteeLimit = inviteeLimit,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Delete currently active organization-wide invitation link
             /// </summary>
             public async Task DeleteInvitationLinkAsync(string invitationLinkId, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/invitation-links/{invitationLinkId}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/invitation-links/{invitationLinkId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -283,21 +394,36 @@ namespace JetBrains.Space.Client
             /// Create an invitation to join the current organisation. Optionally, the team and/or role to join when accepting the invitation can be specified.
             /// </summary>
             public async Task<Invitation> CreateInvitationAsync(string inviteeEmail, string? inviteeFirstName = null, string? inviteeLastName = null, TDTeam? team = null, TDRole? role = null, Func<Partial<Invitation>, Partial<Invitation>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryInvitationsPostRequest, Invitation>("POST", $"api/http/team-directory/invitations?$fields={(partial != null ? partial(new Partial<Invitation>()) : Partial<Invitation>.Default())}", 
-                    new TeamDirectoryInvitationsPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Invitation>()) : Partial<Invitation>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryInvitationsPostRequest, Invitation>("POST", $"api/http/team-directory/invitations{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryInvitationsPostRequest
+                    { 
                         InviteeEmail = inviteeEmail,
                         InviteeFirstName = inviteeFirstName,
                         InviteeLastName = inviteeLastName,
                         Team = team,
                         Role = role,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get a list of invitations.
             /// </summary>
             public async Task<Batch<Invitation>> GetAllInvitationsAsync(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<Batch<Invitation>>, Partial<Batch<Invitation>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<Invitation>>("GET", $"api/http/team-directory/invitations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&withDeleted={withDeleted.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<Invitation>>()) : Partial<Batch<Invitation>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("withDeleted", withDeleted.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Invitation>>()) : Partial<Batch<Invitation>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<Invitation>>("GET", $"api/http/team-directory/invitations{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             /// <summary>
             /// Get a list of invitations.
@@ -309,21 +435,31 @@ namespace JetBrains.Space.Client
             /// Update an invitation. Optional parameters will be ignored when not specified, and updated otherwise.
             /// </summary>
             public async Task UpdateInvitationAsync(string id, string? inviteeEmail = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDTeam? team = null, TDRole? role = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/invitations/{id}", 
-                    new TeamDirectoryInvitationsForIdPatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/invitations/{id}{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryInvitationsForIdPatchRequest
+                    { 
                         InviteeEmail = inviteeEmail,
                         InviteeFirstName = inviteeFirstName,
                         InviteeLastName = inviteeLastName,
                         Team = team,
                         Role = role,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Delete an invitation. Deleted invitations can no longer be used to join the organisation.
             /// </summary>
             public async Task DeleteInvitationAsync(string id, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/invitations/{id}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/invitations/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -342,7 +478,13 @@ namespace JetBrains.Space.Client
             /// Get all languages.
             /// </summary>
             public async Task<List<TDLanguage>> GetAllLanguagesAsync(Func<Partial<TDLanguage>, Partial<TDLanguage>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<TDLanguage>>("GET", $"api/http/team-directory/languages?$fields={(partial != null ? partial(new Partial<TDLanguage>()) : Partial<TDLanguage>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLanguage>()) : Partial<TDLanguage>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<TDLanguage>>("GET", $"api/http/team-directory/languages{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -361,13 +503,26 @@ namespace JetBrains.Space.Client
             /// Get all equipment types.
             /// </summary>
             public async Task<List<TDLocationEquipmentType>> GetAllLocationEquipmentTypesAsync(bool withArchived = false, Func<Partial<TDLocationEquipmentType>, Partial<TDLocationEquipmentType>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<TDLocationEquipmentType>>("GET", $"api/http/team-directory/location-equipment-types?withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<TDLocationEquipmentType>()) : Partial<TDLocationEquipmentType>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("withArchived", withArchived.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocationEquipmentType>()) : Partial<TDLocationEquipmentType>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<TDLocationEquipmentType>>("GET", $"api/http/team-directory/location-equipment-types{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Archive/restore location equipment type. Setting delete to true will archive the equipment type, false will restore it.
             /// </summary>
             public async Task DeleteLocationEquipmentTypeByNameAsync(string name, bool delete, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-equipment-types/name:{name}?delete={delete.ToString("l")}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("delete", delete.ToString("l"));
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-equipment-types/name:{name}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -394,14 +549,20 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDLocationMapPoint> CreateLocationMapMemberPointAsync(string memberLocationId, int x, int y, string mapId, Func<Partial<TDLocationMapPoint>, Partial<TDLocationMapPoint>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryLocationMapMemberPointsPostRequest, TDLocationMapPoint>("POST", $"api/http/team-directory/location-map-member-points?$fields={(partial != null ? partial(new Partial<TDLocationMapPoint>()) : Partial<TDLocationMapPoint>.Default())}", 
-                    new TeamDirectoryLocationMapMemberPointsPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocationMapPoint>()) : Partial<TDLocationMapPoint>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryLocationMapMemberPointsPostRequest, TDLocationMapPoint>("POST", $"api/http/team-directory/location-map-member-points{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryLocationMapMemberPointsPostRequest
+                    { 
                         MemberLocationId = memberLocationId,
                         X = x,
                         Y = y,
                         MapId = mapId,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get members on map for a location id.
@@ -415,7 +576,17 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<Batch<TDMemberInLocationMap>> GetAllLocationMapMemberPointsAsync(string locationId, bool includeUnmarked = true, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberInLocationMap>>, Partial<Batch<TDMemberInLocationMap>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<TDMemberInLocationMap>>("GET", $"api/http/team-directory/location-map-member-points?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&locationId={locationId.ToString()}&includeUnmarked={includeUnmarked.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberInLocationMap>>()) : Partial<Batch<TDMemberInLocationMap>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("locationId", locationId);
+                queryParameters.Append("includeUnmarked", includeUnmarked.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberInLocationMap>>()) : Partial<Batch<TDMemberInLocationMap>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<TDMemberInLocationMap>>("GET", $"api/http/team-directory/location-map-member-points{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             /// <summary>
             /// Get members on map for a location id.
@@ -443,12 +614,18 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDLocationMapPoint> UpdateLocationMapMemberPointAsync(string locationPointId, int? x = null, int? y = null, Func<Partial<TDLocationMapPoint>, Partial<TDLocationMapPoint>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest, TDLocationMapPoint>("PATCH", $"api/http/team-directory/location-map-member-points/{locationPointId}?$fields={(partial != null ? partial(new Partial<TDLocationMapPoint>()) : Partial<TDLocationMapPoint>.Default())}", 
-                    new TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocationMapPoint>()) : Partial<TDLocationMapPoint>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest, TDLocationMapPoint>("PATCH", $"api/http/team-directory/location-map-member-points/{locationPointId}{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest
+                    { 
                         X = x,
                         Y = y,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Delete member location from a map.
@@ -462,7 +639,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task DeleteLocationMapMemberPointAsync(string locationPointId, bool delete, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-map-member-points/{locationPointId}?delete={delete.ToString("l")}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("delete", delete.ToString("l"));
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-map-member-points/{locationPointId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -489,8 +672,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDLocation> CreateLocationAsync(string name, string? timezone = null, List<int>? workdays = null, List<string>? phones = null, List<string>? emails = null, List<string>? equipment = null, string? description = null, string? address = null, string? type = null, string? parentId = null, int? capacity = null, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryLocationsPostRequest, TDLocation>("POST", $"api/http/team-directory/locations?$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", 
-                    new TeamDirectoryLocationsPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryLocationsPostRequest, TDLocation>("POST", $"api/http/team-directory/locations{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryLocationsPostRequest
+                    { 
                         Name = name,
                         Timezone = timezone,
                         Workdays = workdays,
@@ -502,8 +690,9 @@ namespace JetBrains.Space.Client
                         Type = type,
                         ParentId = parentId,
                         Capacity = capacity,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Restore one or more archived locations.
@@ -517,11 +706,17 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<List<TDLocation>> RestoreMultipleAsync(List<string> ids, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryLocationsRestorePostRequest, List<TDLocation>>("POST", $"api/http/team-directory/locations/restore?$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", 
-                    new TeamDirectoryLocationsRestorePostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryLocationsRestorePostRequest, List<TDLocation>>("POST", $"api/http/team-directory/locations/restore{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryLocationsRestorePostRequest
+                    { 
                         Ids = ids,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Restore an archived location.
@@ -535,7 +730,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDLocation> RestoreAsync(string id, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDLocation>("POST", $"api/http/team-directory/locations/{id}/restore?$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TDLocation>("POST", $"api/http/team-directory/locations/{id}/restore{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get/search all locations. Parameters are applied as 'AND' filters.
@@ -549,7 +750,16 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<List<TDLocation>> GetAllLocationsAsync(string query = "", bool withArchived = false, string? type = null, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<TDLocation>>("GET", $"api/http/team-directory/locations?query={query.ToString()}&type={type?.ToString() ?? "null"}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("query", query);
+                if (type != null) queryParameters.Append("type", type);
+                queryParameters.Append("withArchived", withArchived.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<TDLocation>>("GET", $"api/http/team-directory/locations{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get a location by id.
@@ -563,7 +773,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDLocation> GetLocationAsync(string id, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDLocation>("GET", $"api/http/team-directory/locations/{id}?$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TDLocation>("GET", $"api/http/team-directory/locations/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Update a location. Optional parameters will be ignored when null, and updated otherwise.
@@ -577,8 +793,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDLocation> UpdateLocationAsync(string id, string? name = null, string? timezone = null, bool? customWorkdays = null, List<int>? workdays = null, List<string>? phones = null, List<string>? emails = null, List<string>? equipment = null, string? description = null, string? address = null, string? type = null, string? parentId = null, string? mapId = null, int? capacity = null, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryLocationsForIdPatchRequest, TDLocation>("PATCH", $"api/http/team-directory/locations/{id}?$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", 
-                    new TeamDirectoryLocationsForIdPatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryLocationsForIdPatchRequest, TDLocation>("PATCH", $"api/http/team-directory/locations/{id}{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryLocationsForIdPatchRequest
+                    { 
                         Name = name,
                         Timezone = timezone,
                         IsCustomWorkdays = customWorkdays,
@@ -592,8 +813,9 @@ namespace JetBrains.Space.Client
                         ParentId = parentId,
                         MapId = mapId,
                         Capacity = capacity,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Archive a location.
@@ -607,7 +829,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<List<TDLocation>> ArchiveLocationAsync(string id, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<TDLocation>>("DELETE", $"api/http/team-directory/locations/{id}?$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<TDLocation>>("DELETE", $"api/http/team-directory/locations/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             public MapClient Map => new MapClient(_connection);
             
@@ -632,7 +860,13 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<TDLocationMap> GetMapAsync(string id, Func<Partial<TDLocationMap>, Partial<TDLocationMap>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<TDLocationMap>("GET", $"api/http/team-directory/locations/{id}/map?$fields={(partial != null ? partial(new Partial<TDLocationMap>()) : Partial<TDLocationMap>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocationMap>()) : Partial<TDLocationMap>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TDLocationMap>("GET", $"api/http/team-directory/locations/{id}/map{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Update the map for a location.
@@ -646,11 +880,17 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<TDLocationMap> UpdateMapAsync(string id, string mapPictureId, Func<Partial<TDLocationMap>, Partial<TDLocationMap>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<TeamDirectoryLocationsForIdMapPatchRequest, TDLocationMap>("PATCH", $"api/http/team-directory/locations/{id}/map?$fields={(partial != null ? partial(new Partial<TDLocationMap>()) : Partial<TDLocationMap>.Default())}", 
-                        new TeamDirectoryLocationsForIdMapPatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocationMap>()) : Partial<TDLocationMap>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TeamDirectoryLocationsForIdMapPatchRequest, TDLocationMap>("PATCH", $"api/http/team-directory/locations/{id}/map{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryLocationsForIdMapPatchRequest
+                        { 
                             MapPictureId = mapPictureId,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
             }
         
@@ -679,7 +919,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<List<TDLocationWithTimeZone>> GetAllLocationsWithTimezoneAsync(Func<Partial<TDLocationWithTimeZone>, Partial<TDLocationWithTimeZone>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<TDLocationWithTimeZone>>("GET", $"api/http/team-directory/locations-with-timezone?$fields={(partial != null ? partial(new Partial<TDLocationWithTimeZone>()) : Partial<TDLocationWithTimeZone>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocationWithTimeZone>()) : Partial<TDLocationWithTimeZone>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<TDLocationWithTimeZone>>("GET", $"api/http/team-directory/locations-with-timezone{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -706,15 +952,21 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDMemberLocation> CreateMemberLocationAsync(ProfileIdentifier member, string location, DateTime? since = null, DateTime? till = null, string? previousLocation = null, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryMemberLocationsPostRequest, TDMemberLocation>("POST", $"api/http/team-directory/member-locations?$fields={(partial != null ? partial(new Partial<TDMemberLocation>()) : Partial<TDMemberLocation>.Default())}", 
-                    new TeamDirectoryMemberLocationsPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberLocation>()) : Partial<TDMemberLocation>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryMemberLocationsPostRequest, TDMemberLocation>("POST", $"api/http/team-directory/member-locations{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryMemberLocationsPostRequest
+                    { 
                         Member = member,
                         Location = location,
                         Since = since,
                         Till = till,
                         PreviousLocation = previousLocation,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get/search member locations. Parameters are applied as 'AND' filters.
@@ -728,7 +980,20 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<Batch<TDMemberLocation>> GetAllMemberLocationsAsync(bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, DateTime? since = null, DateTime? till = null, Func<Partial<Batch<TDMemberLocation>>, Partial<Batch<TDMemberLocation>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<TDMemberLocation>>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&locations={locations?.JoinToString("locations", it => it.ToString()) ?? "null"}&since={since?.ToString("yyyy-MM-dd") ?? "null"}&till={till?.ToString("yyyy-MM-dd") ?? "null"}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberLocation>>()) : Partial<Batch<TDMemberLocation>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                if (profiles != null) queryParameters.Append("profiles", profiles.Select(it => it.ToString()));
+                if (locations != null) queryParameters.Append("locations", locations.Select(it => it));
+                if (since != null) queryParameters.Append("since", since?.ToString("yyyy-MM-dd"));
+                if (till != null) queryParameters.Append("till", till?.ToString("yyyy-MM-dd"));
+                queryParameters.Append("withArchived", withArchived.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberLocation>>()) : Partial<Batch<TDMemberLocation>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<TDMemberLocation>>("GET", $"api/http/team-directory/member-locations{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             /// <summary>
             /// Get/search member locations. Parameters are applied as 'AND' filters.
@@ -756,7 +1021,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDMemberLocation> GetMemberLocationAsync(string memberLocationId, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDMemberLocation>("GET", $"api/http/team-directory/member-locations/{memberLocationId}?$fields={(partial != null ? partial(new Partial<TDMemberLocation>()) : Partial<TDMemberLocation>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberLocation>()) : Partial<TDMemberLocation>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TDMemberLocation>("GET", $"api/http/team-directory/member-locations/{memberLocationId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Update member location. Optional parameters will be ignored when null, and updated otherwise.
@@ -770,13 +1041,19 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDMemberLocation> UpdateMemberLocationAsync(string memberLocationId, string? location = null, DateTime? since = null, DateTime? till = null, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest, TDMemberLocation>("PATCH", $"api/http/team-directory/member-locations/{memberLocationId}?$fields={(partial != null ? partial(new Partial<TDMemberLocation>()) : Partial<TDMemberLocation>.Default())}", 
-                    new TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberLocation>()) : Partial<TDMemberLocation>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest, TDMemberLocation>("PATCH", $"api/http/team-directory/member-locations/{memberLocationId}{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest
+                    { 
                         Location = location,
                         Since = since,
                         Till = till,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Archive/unarchive a member location. Setting delete to true will archive the member location, false will restore it.
@@ -790,7 +1067,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task DeleteMemberLocationAsync(string memberLocationId, bool delete = true, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{memberLocationId}?delete={delete.ToString("l")}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("delete", delete.ToString("l"));
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{memberLocationId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -809,7 +1092,18 @@ namespace JetBrains.Space.Client
             /// Get/search membership events. Parameters are applied as 'AND' filters.
             /// </summary>
             public async Task<Batch<TDMergedEvent>> GetAllMembershipEventsAsync(string? skip = null, int? top = 100, string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<Batch<TDMergedEvent>>, Partial<Batch<TDMergedEvent>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<TDMergedEvent>>("GET", $"api/http/team-directory/membership-events?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDMergedEvent>>()) : Partial<Batch<TDMergedEvent>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                if (teamId != null) queryParameters.Append("teamId", teamId);
+                if (locationId != null) queryParameters.Append("locationId", locationId);
+                if (roleId != null) queryParameters.Append("roleId", roleId);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMergedEvent>>()) : Partial<Batch<TDMergedEvent>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<TDMergedEvent>>("GET", $"api/http/team-directory/membership-events{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             /// <summary>
             /// Get/search membership events. Parameters are applied as 'AND' filters.
@@ -842,8 +1136,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDMembership> CreateMembershipAsync(ProfileIdentifier member, string teamId, string roleId, bool lead = false, bool requiresApproval = false, ProfileIdentifier? manager = null, DateTime? activeSince = null, DateTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldInputValue>? customFieldValues = null, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryMembershipsPostRequest, TDMembership>("POST", $"api/http/team-directory/memberships?$fields={(partial != null ? partial(new Partial<TDMembership>()) : Partial<TDMembership>.Default())}", 
-                    new TeamDirectoryMembershipsPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMembership>()) : Partial<TDMembership>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryMembershipsPostRequest, TDMembership>("POST", $"api/http/team-directory/memberships{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryMembershipsPostRequest
+                    { 
                         Member = member,
                         TeamId = teamId,
                         RoleId = roleId,
@@ -854,8 +1153,9 @@ namespace JetBrains.Space.Client
                         PreviousMembershipId = previousMembershipId,
                         IsRequiresApproval = requiresApproval,
                         CustomFieldValues = customFieldValues,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get/search all team memberships. Parameters are applied as 'AND' filters.
@@ -869,7 +1169,24 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<Batch<TDMembership>> GetAllMembershipsAsync(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? teams = null, List<string>? roles = null, DateTime? since = null, DateTime? till = null, bool? requiresApproval = null, Func<Partial<Batch<TDMembership>>, Partial<Batch<TDMembership>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<TDMembership>>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&teams={teams?.JoinToString("teams", it => it.ToString()) ?? "null"}&directTeams={directTeams.ToString("l")}&roles={roles?.JoinToString("roles", it => it.ToString()) ?? "null"}&directRoles={directRoles.ToString("l")}&since={since?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&till={till?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&requiresApproval={requiresApproval?.ToString("l") ?? "null"}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDMembership>>()) : Partial<Batch<TDMembership>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                if (profiles != null) queryParameters.Append("profiles", profiles.Select(it => it.ToString()));
+                if (teams != null) queryParameters.Append("teams", teams.Select(it => it));
+                queryParameters.Append("directTeams", directTeams.ToString("l"));
+                if (roles != null) queryParameters.Append("roles", roles.Select(it => it));
+                queryParameters.Append("directRoles", directRoles.ToString("l"));
+                if (since != null) queryParameters.Append("since", since?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                if (till != null) queryParameters.Append("till", till?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                if (requiresApproval != null) queryParameters.Append("requiresApproval", requiresApproval?.ToString("l"));
+                queryParameters.Append("withArchived", withArchived.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMembership>>()) : Partial<Batch<TDMembership>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<TDMembership>>("GET", $"api/http/team-directory/memberships{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             /// <summary>
             /// Get/search all team memberships. Parameters are applied as 'AND' filters.
@@ -897,8 +1214,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDMembership> UpdateMembershipAsync(string membershipId, bool requiresApproval = false, string? teamId = null, string? roleId = null, bool? lead = null, ProfileIdentifier? manager = null, DateTime? activeSince = null, DateTime? activeTill = null, List<CustomFieldInputValue>? customFieldValues = null, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryMembershipsForMembershipIdPatchRequest, TDMembership>("PATCH", $"api/http/team-directory/memberships/{membershipId}?$fields={(partial != null ? partial(new Partial<TDMembership>()) : Partial<TDMembership>.Default())}", 
-                    new TeamDirectoryMembershipsForMembershipIdPatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMembership>()) : Partial<TDMembership>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryMembershipsForMembershipIdPatchRequest, TDMembership>("PATCH", $"api/http/team-directory/memberships/{membershipId}{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryMembershipsForMembershipIdPatchRequest
+                    { 
                         TeamId = teamId,
                         RoleId = roleId,
                         IsLead = lead,
@@ -907,8 +1229,9 @@ namespace JetBrains.Space.Client
                         ActiveTill = activeTill,
                         IsRequiresApproval = requiresApproval,
                         CustomFieldValues = customFieldValues,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Archive/unarchive a team membership. Setting delete to true will archive the membership, false will restore it.
@@ -922,7 +1245,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task DeleteMembershipAsync(string membershipId, bool delete = true, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{membershipId}?delete={delete.ToString("l")}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("delete", delete.ToString("l"));
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{membershipId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Revoke a team membership to end at a given date/time.
@@ -936,7 +1265,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task RevokeAsync(string membershipId, DateTime? till = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{membershipId}/revoke?till={till?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (till != null) queryParameters.Append("till", till?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{membershipId}/revoke{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             public ManagerCandidateClient ManagerCandidates => new ManagerCandidateClient(_connection);
             
@@ -953,7 +1288,18 @@ namespace JetBrains.Space.Client
                 /// Query profiles that can be a manager
                 /// </summary>
                 public async Task<Batch<TDMemberProfile>> GetManagerCandidateAsync(string term, string? skip = null, int? top = 100, string? teamId = null, string? excludedMemberId = null, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/team-directory/memberships/manager-candidates?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&teamId={teamId?.ToString() ?? "null"}&excludedMemberId={excludedMemberId?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("term", term);
+                    if (teamId != null) queryParameters.Append("teamId", teamId);
+                    if (excludedMemberId != null) queryParameters.Append("excludedMemberId", excludedMemberId);
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/team-directory/memberships/manager-candidates{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 /// <summary>
                 /// Query profiles that can be a manager
@@ -986,7 +1332,17 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<Batch<Pair<TDMemberProfile, TDMembership>>> GetAllRequestsAsync(string? skip = null, int? top = 100, string? teamId = null, bool? direct = true, Func<Partial<Batch<Pair<TDMemberProfile, TDMembership>>>, Partial<Batch<Pair<TDMemberProfile, TDMembership>>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<Pair<TDMemberProfile, TDMembership>>>("GET", $"api/http/team-directory/memberships/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString("l") ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<Pair<TDMemberProfile, TDMembership>>>()) : Partial<Batch<Pair<TDMemberProfile, TDMembership>>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    if (teamId != null) queryParameters.Append("teamId", teamId);
+                    if (direct != null) queryParameters.Append("direct", direct?.ToString("l"));
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Pair<TDMemberProfile, TDMembership>>>()) : Partial<Batch<Pair<TDMemberProfile, TDMembership>>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<Pair<TDMemberProfile, TDMembership>>>("GET", $"api/http/team-directory/memberships/requests{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 /// <summary>
                 /// Get/search all membership requests. Parameters are applied as 'AND' filters.
@@ -1014,11 +1370,16 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task UpdateRequestAsync(string membershipRequestId, bool approved, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/memberships/requests/{membershipRequestId}", 
-                        new TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/memberships/requests/{membershipRequestId}{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest
+                        { 
                             IsApproved = approved,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Delete a team membership request.
@@ -1032,7 +1393,13 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<TDMembership> DeleteRequestAsync(string membershipRequestId, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<TDMembership>("DELETE", $"api/http/team-directory/memberships/requests/{membershipRequestId}?$fields={(partial != null ? partial(new Partial<TDMembership>()) : Partial<TDMembership>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMembership>()) : Partial<TDMembership>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TDMembership>("DELETE", $"api/http/team-directory/memberships/requests/{membershipRequestId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -1059,11 +1426,16 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task UpdateRequestRevokeAsync(string membershipId, DateTime till, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/memberships/{membershipId}/request-revoke", 
-                        new TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/memberships/{membershipId}/request-revoke{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest
+                        { 
                             Till = till,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
             }
         
@@ -1092,8 +1464,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryProfilesPostRequest, TDMemberProfile>("POST", $"api/http/team-directory/profiles?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", 
-                    new TeamDirectoryProfilesPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryProfilesPostRequest, TDMemberProfile>("POST", $"api/http/team-directory/profiles{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryProfilesPostRequest
+                    { 
                         Username = username,
                         FirstName = firstName,
                         LastName = lastName,
@@ -1111,8 +1488,9 @@ namespace JetBrains.Space.Client
                         PictureAttachmentId = pictureAttachmentId,
                         AvatarCropSquare = avatarCropSquare,
                         CustomFieldValues = (customFieldValues ?? new List<CustomFieldInputValue>()),
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get/search all profiles. Parameters are applied as 'AND' filters.
@@ -1126,7 +1504,23 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<Batch<TDMemberProfile>> GetAllProfilesAsync(string query = "", bool reportPastMembers = false, bool meOnTop = false, string? skip = null, int? top = 100, bool? reportFutureMembers = false, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/team-directory/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&reportPastMembers={reportPastMembers.ToString("l")}&reportFutureMembers={reportFutureMembers?.ToString("l") ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&meOnTop={meOnTop.ToString("l")}&order={order?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("query", query);
+                queryParameters.Append("reportPastMembers", reportPastMembers.ToString("l"));
+                if (reportFutureMembers != null) queryParameters.Append("reportFutureMembers", reportFutureMembers?.ToString("l"));
+                if (teamId != null) queryParameters.Append("teamId", teamId);
+                if (locationId != null) queryParameters.Append("locationId", locationId);
+                if (roleId != null) queryParameters.Append("roleId", roleId);
+                queryParameters.Append("meOnTop", meOnTop.ToString("l"));
+                if (order != null) queryParameters.Append("order", order?.Value);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/team-directory/profiles{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             /// <summary>
             /// Get/search all profiles. Parameters are applied as 'AND' filters.
@@ -1154,7 +1548,14 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDMemberProfile> GetProfileByEmailAsync(string email, bool verified = true, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDMemberProfile>("GET", $"api/http/team-directory/profiles/email:{email}?verified={verified.ToString("l")}&$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("verified", verified.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TDMemberProfile>("GET", $"api/http/team-directory/profiles/email:{email}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get profile information
@@ -1168,13 +1569,25 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDMemberProfile> GetProfileAsync(ProfileIdentifier profile, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDMemberProfile>("GET", $"api/http/team-directory/profiles/{profile}?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TDMemberProfile>("GET", $"api/http/team-directory/profiles/{profile}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Check if a user profile is a member of one or more teams.
             /// </summary>
             public async Task<bool> CheckIfProfileIsTeamMemberAsync(ProfileIdentifier profile, List<string> teamIds, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<bool>("GET", $"api/http/team-directory/profiles/{profile}/is-team-member?teamIds={teamIds.JoinToString("teamIds", it => it.ToString())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("teamIds", teamIds.Select(it => it));
+                
+                return await _connection.RequestResourceAsync<bool>("GET", $"api/http/team-directory/profiles/{profile}/is-team-member{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Update a profile. Optional parameters will be ignored when null, and updated otherwise.
@@ -1188,8 +1601,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDMemberProfile> UpdateProfileAsync(ProfileIdentifier profile, string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, DateTime? birthday = null, string? about = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, List<CustomFieldInputValue>? customFieldValues = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfilePatchRequest, TDMemberProfile>("PATCH", $"api/http/team-directory/profiles/{profile}?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", 
-                    new TeamDirectoryProfilesForProfilePatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfilePatchRequest, TDMemberProfile>("PATCH", $"api/http/team-directory/profiles/{profile}{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryProfilesForProfilePatchRequest
+                    { 
                         Username = username,
                         FirstName = firstName,
                         LastName = lastName,
@@ -1207,8 +1625,9 @@ namespace JetBrains.Space.Client
                         PictureAttachmentId = pictureAttachmentId,
                         AvatarCropSquare = avatarCropSquare,
                         CustomFieldValues = customFieldValues,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Reactivate a user profile
@@ -1222,11 +1641,17 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDMemberProfile> ReactivateAsync(ProfileIdentifier profile, DateTime? joined = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileReactivatePatchRequest, TDMemberProfile>("PATCH", $"api/http/team-directory/profiles/{profile}/reactivate?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", 
-                    new TeamDirectoryProfilesForProfileReactivatePatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileReactivatePatchRequest, TDMemberProfile>("PATCH", $"api/http/team-directory/profiles/{profile}/reactivate{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryProfilesForProfileReactivatePatchRequest
+                    { 
                         Joined = joined,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Delete a profile.
@@ -1240,7 +1665,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDMemberProfile> DeleteProfileAsync(ProfileIdentifier profile, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDMemberProfile>("DELETE", $"api/http/team-directory/profiles/{profile}?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TDMemberProfile>("DELETE", $"api/http/team-directory/profiles/{profile}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Deactivate a user profile
@@ -1254,7 +1685,14 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDMemberProfile> DeactivateAsync(ProfileIdentifier profile, DateTime at, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDMemberProfile>("DELETE", $"api/http/team-directory/profiles/{profile}/deactivate?at={at.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")}&$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("at", at.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TDMemberProfile>("DELETE", $"api/http/team-directory/profiles/{profile}/deactivate{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             public AuthenticationSessionClient AuthenticationSessions => new AuthenticationSessionClient(_connection);
             
@@ -1279,7 +1717,13 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<List<ESAuthenticationSession>> GetAllAuthenticationSessionsAsync(ProfileIdentifier owner, Func<Partial<ESAuthenticationSession>, Partial<ESAuthenticationSession>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<ESAuthenticationSession>>("GET", $"api/http/team-directory/profiles/authentication-sessions/{owner}?$fields={(partial != null ? partial(new Partial<ESAuthenticationSession>()) : Partial<ESAuthenticationSession>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESAuthenticationSession>()) : Partial<ESAuthenticationSession>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<ESAuthenticationSession>>("GET", $"api/http/team-directory/profiles/authentication-sessions/{owner}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Terminate an existing authentication session. Doing so will close the session, and logout.
@@ -1293,7 +1737,12 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task TerminateOwnAuthenticationSessionAsync(ProfileIdentifier owner, string sessionId, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/authentication-sessions/{owner}/{sessionId}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/authentication-sessions/{owner}/{sessionId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -1312,7 +1761,13 @@ namespace JetBrains.Space.Client
                 /// Get all OAuth consents for a given profile id.
                 /// </summary>
                 public async Task<List<ESOAuthConsent>> GetAllOauthConsentsAsync(ProfileIdentifier owner, Func<Partial<ESOAuthConsent>, Partial<ESOAuthConsent>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<ESOAuthConsent>>("GET", $"api/http/team-directory/profiles/oauth-consents/{owner}?$fields={(partial != null ? partial(new Partial<ESOAuthConsent>()) : Partial<ESOAuthConsent>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESOAuthConsent>()) : Partial<ESOAuthConsent>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<ESOAuthConsent>>("GET", $"api/http/team-directory/profiles/oauth-consents/{owner}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 public ApprovedScopeClient ApprovedScopes => new ApprovedScopeClient(_connection);
                 
@@ -1329,7 +1784,12 @@ namespace JetBrains.Space.Client
                     /// Remove a previously approved scope.
                     /// </summary>
                     public async Task DeleteApprovedScopeAsync(ProfileIdentifier owner, string id, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/{owner}/approved-scopes/{id}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/{owner}/approved-scopes/{id}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -1348,7 +1808,12 @@ namespace JetBrains.Space.Client
                     /// Remove a refresh token. This will require the client to re-authenticate.
                     /// </summary>
                     public async Task DeleteRefreshTokenAsync(ProfileIdentifier owner, string id, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/{owner}/refresh-tokens/{id}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/{owner}/refresh-tokens/{id}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -1377,7 +1842,18 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<Batch<TDProfileWorkingDays>> QueryAllWorkingDaysAsync(List<ProfileIdentifier>? profiles = null, string? skip = null, int? top = 100, DateTime? since = null, DateTime? till = null, Func<Partial<Batch<TDProfileWorkingDays>>, Partial<Batch<TDProfileWorkingDays>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<TDProfileWorkingDays>>("GET", $"api/http/team-directory/profiles/working-days?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={(profiles ?? new List<ProfileIdentifier>()).JoinToString("profiles", it => it.ToString())}&since={since?.ToString("yyyy-MM-dd") ?? "null"}&till={till?.ToString("yyyy-MM-dd") ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDProfileWorkingDays>>()) : Partial<Batch<TDProfileWorkingDays>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("profiles", (profiles ?? new List<ProfileIdentifier>()).Select(it => it.ToString()));
+                    if (since != null) queryParameters.Append("since", since?.ToString("yyyy-MM-dd"));
+                    if (till != null) queryParameters.Append("till", till?.ToString("yyyy-MM-dd"));
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDProfileWorkingDays>>()) : Partial<Batch<TDProfileWorkingDays>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<TDProfileWorkingDays>>("GET", $"api/http/team-directory/profiles/working-days{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 /// <summary>
                 /// Returns pairs of profiles and their working days. If several working days settings are defined for the same profile then several pairs are returned.
@@ -1406,13 +1882,19 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<TDWorkingDays> AddWorkingDaysAsync(ProfileIdentifier profile, WorkingDaysSpec workingDaysSpec, DateTime? dateStart = null, DateTime? dateEnd = null, Func<Partial<TDWorkingDays>, Partial<TDWorkingDays>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileWorkingDaysPostRequest, TDWorkingDays>("POST", $"api/http/team-directory/profiles/{profile}/working-days?$fields={(partial != null ? partial(new Partial<TDWorkingDays>()) : Partial<TDWorkingDays>.Default())}", 
-                        new TeamDirectoryProfilesForProfileWorkingDaysPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDWorkingDays>()) : Partial<TDWorkingDays>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileWorkingDaysPostRequest, TDWorkingDays>("POST", $"api/http/team-directory/profiles/{profile}/working-days{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileWorkingDaysPostRequest
+                        { 
                             DateStart = dateStart,
                             DateEnd = dateEnd,
                             WorkingDaysSpec = workingDaysSpec,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <remarks>
                 /// Required permissions:
@@ -1423,7 +1905,15 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<Batch<TDWorkingDays>> QueryWorkingDaysForAProfileAsync(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<Batch<TDWorkingDays>>, Partial<Batch<TDWorkingDays>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<TDWorkingDays>>("GET", $"api/http/team-directory/profiles/{profile}/working-days?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDWorkingDays>>()) : Partial<Batch<TDWorkingDays>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDWorkingDays>>()) : Partial<Batch<TDWorkingDays>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<TDWorkingDays>>("GET", $"api/http/team-directory/profiles/{profile}/working-days{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 /// <remarks>
                 /// Required permissions:
@@ -1445,13 +1935,19 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<TDWorkingDays> UpdateWorkingDaysAsync(ProfileIdentifier profile, string workingDaysId, WorkingDaysSpec workingDaysSpec, DateTime? dateStart = null, DateTime? dateEnd = null, Func<Partial<TDWorkingDays>, Partial<TDWorkingDays>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest, TDWorkingDays>("PATCH", $"api/http/team-directory/profiles/{profile}/working-days/{workingDaysId}?$fields={(partial != null ? partial(new Partial<TDWorkingDays>()) : Partial<TDWorkingDays>.Default())}", 
-                        new TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDWorkingDays>()) : Partial<TDWorkingDays>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest, TDWorkingDays>("PATCH", $"api/http/team-directory/profiles/{profile}/working-days/{workingDaysId}{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest
+                        { 
                             DateStart = dateStart,
                             DateEnd = dateEnd,
                             WorkingDaysSpec = workingDaysSpec,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <remarks>
                 /// Required permissions:
@@ -1462,7 +1958,12 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task DeleteWorkingDaysAsync(ProfileIdentifier profile, string workingDaysId, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/working-days/{workingDaysId}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/working-days/{workingDaysId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -1492,7 +1993,13 @@ namespace JetBrains.Space.Client
                     /// Get two-factor authentication status for a given profile id. The response indicates whether two-factor authentication is active, not active, or not set up yet.
                     /// </summary>
                     public async Task<TwoFactorAuthenticationStatus> TwofactorAuthenticationStatusAsync(ProfileIdentifier profile, Func<Partial<TwoFactorAuthenticationStatus>, Partial<TwoFactorAuthenticationStatus>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<TwoFactorAuthenticationStatus>("GET", $"api/http/team-directory/profiles/{profile}/2-fa/status?$fields={(partial != null ? partial(new Partial<TwoFactorAuthenticationStatus>()) : Partial<TwoFactorAuthenticationStatus>.Default())}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<TwoFactorAuthenticationStatus>()) : Partial<TwoFactorAuthenticationStatus>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<TwoFactorAuthenticationStatus>("GET", $"api/http/team-directory/profiles/{profile}/2-fa/status{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -1511,33 +2018,54 @@ namespace JetBrains.Space.Client
                     /// Set up two-factor authentication using TOTP (Time-based One-time Password) for a given profile id. The response will return a QR code (base64 encoded) that can be scanned with an app to setup two-factor authentication. The code that the app generates has to be confirmed in Space to enable TOTP.
                     /// </summary>
                     public async Task<TwoFactorAuthenticationSecret> SetUpTotpTwofactorAuthenticationAsync(ProfileIdentifier profile, Func<Partial<TwoFactorAuthenticationSecret>, Partial<TwoFactorAuthenticationSecret>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<TwoFactorAuthenticationSecret>("POST", $"api/http/team-directory/profiles/{profile}/2-fa/totp?$fields={(partial != null ? partial(new Partial<TwoFactorAuthenticationSecret>()) : Partial<TwoFactorAuthenticationSecret>.Default())}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<TwoFactorAuthenticationSecret>()) : Partial<TwoFactorAuthenticationSecret>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<TwoFactorAuthenticationSecret>("POST", $"api/http/team-directory/profiles/{profile}/2-fa/totp{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                     /// <summary>
                     /// Confirm two-factor authentication for a given profile id using a TOTP (Time-based One-time Password) code from an app.
                     /// </summary>
                     public async Task ConfirmTotpTwofactorAuthenticationSettingsAsync(ProfileIdentifier profile, int code, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/team-directory/profiles/{profile}/2-fa/totp/confirm", 
-                            new TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest { 
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("POST", $"api/http/team-directory/profiles/{profile}/2-fa/totp/confirm{queryParameters.ToQueryString()}", 
+                            new TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest
+                            { 
                                 Code = code,
-                            }
-                    , cancellationToken);
+                            }, cancellationToken);
+                    }
+                    
                 
                     /// <summary>
                     /// Enable/disable two-factor authentication settings for a given profile id.
                     /// </summary>
                     public async Task UpdateTotpTwofactorAuthenticationSettingsAsync(ProfileIdentifier profile, bool enabled, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/2-fa/totp", 
-                            new TeamDirectoryProfilesForProfile2FaTotpPatchRequest { 
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/2-fa/totp{queryParameters.ToQueryString()}", 
+                            new TeamDirectoryProfilesForProfile2FaTotpPatchRequest
+                            { 
                                 IsEnabled = enabled,
-                            }
-                    , cancellationToken);
+                            }, cancellationToken);
+                    }
+                    
                 
                     /// <summary>
                     /// Remove two-factor authentication settings for a given profile id. Previously generated TOTP (Time-based One-time Password) are rendered invalid.
                     /// </summary>
                     public async Task DeleteCurrentTotpTwofactorAuthenticationSettingsAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/2-fa/totp", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/2-fa/totp{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -1555,29 +2083,53 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task<Pair<ESApplicationPassword, string>> CreateApplicationPasswordAsync(ProfileIdentifier profile, string name, string scope, Func<Partial<Pair<ESApplicationPassword, string>>, Partial<Pair<ESApplicationPassword, string>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest, Pair<ESApplicationPassword, string>>("POST", $"api/http/team-directory/profiles/{profile}/application-passwords?$fields={(partial != null ? partial(new Partial<Pair<ESApplicationPassword, string>>()) : Partial<Pair<ESApplicationPassword, string>>.Default())}", 
-                        new TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<ESApplicationPassword, string>>()) : Partial<Pair<ESApplicationPassword, string>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest, Pair<ESApplicationPassword, string>>("POST", $"api/http/team-directory/profiles/{profile}/application-passwords{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest
+                        { 
                             Name = name,
                             Scope = scope,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 public async Task<Batch<ESApplicationPassword>> GetAllApplicationPasswordsAsync(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<Batch<ESApplicationPassword>>, Partial<Batch<ESApplicationPassword>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<ESApplicationPassword>>("GET", $"api/http/team-directory/profiles/{profile}/application-passwords?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<ESApplicationPassword>>()) : Partial<Batch<ESApplicationPassword>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESApplicationPassword>>()) : Partial<Batch<ESApplicationPassword>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<ESApplicationPassword>>("GET", $"api/http/team-directory/profiles/{profile}/application-passwords{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 public IAsyncEnumerable<ESApplicationPassword> GetAllApplicationPasswordsAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<ESApplicationPassword>, Partial<ESApplicationPassword>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllApplicationPasswordsAsync(profile: profile, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApplicationPassword>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApplicationPassword>.Default())), skip, cancellationToken);
             
                 public async Task UpdateApplicationPasswordAsync(ProfileIdentifier profile, string passwordId, string? name = null, string? scope = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/application-passwords/{passwordId}", 
-                        new TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/application-passwords/{passwordId}{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest
+                        { 
                             Name = name,
                             Scope = scope,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 public async Task DeleteApplicationPasswordAsync(ProfileIdentifier profile, string passwordId, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/application-passwords/{passwordId}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/application-passwords/{passwordId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -1593,42 +2145,75 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task<Checklist> CreateChecklistAsync(ProfileIdentifier profile, string name, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileChecklistsPostRequest, Checklist>("POST", $"api/http/team-directory/profiles/{profile}/checklists?$fields={(partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default())}", 
-                        new TeamDirectoryProfilesForProfileChecklistsPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileChecklistsPostRequest, Checklist>("POST", $"api/http/team-directory/profiles/{profile}/checklists{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileChecklistsPostRequest
+                        { 
                             Name = name,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 public async Task<Checklist> ImportChecklistAsync(ProfileIdentifier profile, string name, string tabIndentedLines, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileChecklistsImportPostRequest, Checklist>("POST", $"api/http/team-directory/profiles/{profile}/checklists/import?$fields={(partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default())}", 
-                        new TeamDirectoryProfilesForProfileChecklistsImportPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileChecklistsImportPostRequest, Checklist>("POST", $"api/http/team-directory/profiles/{profile}/checklists/import{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileChecklistsImportPostRequest
+                        { 
                             Name = name,
                             TabIndentedLines = tabIndentedLines,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 public async Task ImportChecklistLinesAsync(ProfileIdentifier profile, string checklistId, string targetParentId, string tabIndentedLines, string? afterItemId = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/team-directory/profiles/{profile}/checklists/{checklistId}/import", 
-                        new TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/team-directory/profiles/{profile}/checklists/{checklistId}/import{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest
+                        { 
                             TargetParentId = targetParentId,
                             AfterItemId = afterItemId,
                             TabIndentedLines = tabIndentedLines,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 public async Task<List<Checklist>> GetAllChecklistsAsync(ProfileIdentifier profile, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<Checklist>>("GET", $"api/http/team-directory/profiles/{profile}/checklists?$fields={(partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<Checklist>>("GET", $"api/http/team-directory/profiles/{profile}/checklists{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 public async Task UpdateChecklistAsync(ProfileIdentifier profile, string checklistId, string name, string? description = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/checklists/{checklistId}", 
-                        new TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/checklists/{checklistId}{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest
+                        { 
                             Name = name,
                             Description = description,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 public async Task DeleteChecklistAsync(ProfileIdentifier profile, string checklistId, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/checklists/{checklistId}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/checklists/{checklistId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 public StarredClient Starred => new StarredClient(_connection);
                 
@@ -1642,7 +2227,13 @@ namespace JetBrains.Space.Client
                     }
                     
                     public async Task<List<Checklist>> GetAllStarredChecklistsAsync(ProfileIdentifier profile, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<List<Checklist>>("GET", $"api/http/team-directory/profiles/{profile}/checklists/starred?$fields={(partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default())}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<List<Checklist>>("GET", $"api/http/team-directory/profiles/{profile}/checklists/starred{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -1658,7 +2249,13 @@ namespace JetBrains.Space.Client
                     }
                     
                     public async Task<List<PlanItemChildren>> GetFullChecklistTreeAsync(ProfileIdentifier profile, string checklistId, Func<Partial<PlanItemChildren>, Partial<PlanItemChildren>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<List<PlanItemChildren>>("GET", $"api/http/team-directory/profiles/{profile}/checklists/{checklistId}/full-checklist-tree?$fields={(partial != null ? partial(new Partial<PlanItemChildren>()) : Partial<PlanItemChildren>.Default())}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanItemChildren>()) : Partial<PlanItemChildren>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<List<PlanItemChildren>>("GET", $"api/http/team-directory/profiles/{profile}/checklists/{checklistId}/full-checklist-tree{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -1679,7 +2276,13 @@ namespace JetBrains.Space.Client
                 /// Get team leads for a given profile id.
                 /// </summary>
                 public async Task<List<TDMemberProfile>> GetAllLeadsAsync(ProfileIdentifier profile, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/team-directory/profiles/{profile}/leads?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/team-directory/profiles/{profile}/leads{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -1695,18 +2298,29 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task<List<NavBarMenuItem>> GetAllNavBarMenuItemsAsync(ProfileIdentifier profile, Func<Partial<NavBarMenuItem>, Partial<NavBarMenuItem>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<NavBarMenuItem>>("GET", $"api/http/team-directory/profiles/{profile}/nav-bar-menu-items?$fields={(partial != null ? partial(new Partial<NavBarMenuItem>()) : Partial<NavBarMenuItem>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<NavBarMenuItem>()) : Partial<NavBarMenuItem>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<NavBarMenuItem>>("GET", $"api/http/team-directory/profiles/{profile}/nav-bar-menu-items{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Toggle visibility for a given navigation bar item.
                 /// </summary>
                 public async Task UpdateNavBarMenuItemAsync(ProfileIdentifier profile, string item, bool enabled, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/nav-bar-menu-items", 
-                        new TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/nav-bar-menu-items{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest
+                        { 
                             Item = item,
                             IsEnabled = enabled,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
             }
         
@@ -1725,23 +2339,39 @@ namespace JetBrains.Space.Client
                 /// Add a project to the navigation bar.
                 /// </summary>
                 public async Task CreateNavBarProjectAsync(ProfileIdentifier profile, ProjectIdentifier project, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/team-directory/profiles/{profile}/nav-bar-projects", 
-                        new TeamDirectoryProfilesForProfileNavBarProjectsPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/team-directory/profiles/{profile}/nav-bar-projects{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileNavBarProjectsPostRequest
+                        { 
                             Project = project,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Add a project to the navigation bar.
                 /// </summary>
                 public async Task<List<PRProject>> GetAllNavBarProjectsAsync(ProfileIdentifier profile, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<PRProject>>("GET", $"api/http/team-directory/profiles/{profile}/nav-bar-projects?$fields={(partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<PRProject>>("GET", $"api/http/team-directory/profiles/{profile}/nav-bar-projects{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Remove a project from the navigation bar.
                 /// </summary>
                 public async Task DeleteNavBarProjectAsync(ProfileIdentifier profile, ProjectIdentifier project, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/nav-bar-projects/{project}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/nav-bar-projects/{project}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -1760,18 +2390,32 @@ namespace JetBrains.Space.Client
                 /// Create a personal token for a given profile id that can be used to access the current organisation.
                 /// </summary>
                 public async Task<Pair<ESPermanentToken, string>> CreatePermanentTokenAsync(ProfileIdentifier profile, string name, string scope, Func<Partial<Pair<ESPermanentToken, string>>, Partial<Pair<ESPermanentToken, string>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfilePermanentTokensPostRequest, Pair<ESPermanentToken, string>>("POST", $"api/http/team-directory/profiles/{profile}/permanent-tokens?$fields={(partial != null ? partial(new Partial<Pair<ESPermanentToken, string>>()) : Partial<Pair<ESPermanentToken, string>>.Default())}", 
-                        new TeamDirectoryProfilesForProfilePermanentTokensPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<ESPermanentToken, string>>()) : Partial<Pair<ESPermanentToken, string>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfilePermanentTokensPostRequest, Pair<ESPermanentToken, string>>("POST", $"api/http/team-directory/profiles/{profile}/permanent-tokens{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfilePermanentTokensPostRequest
+                        { 
                             Name = name,
                             Scope = scope,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Get personal tokens used to access the current organisation for a given profile id.
                 /// </summary>
                 public async Task<Batch<ESPermanentToken>> GetAllPermanentTokensAsync(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<Batch<ESPermanentToken>>, Partial<Batch<ESPermanentToken>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<ESPermanentToken>>("GET", $"api/http/team-directory/profiles/{profile}/permanent-tokens?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<ESPermanentToken>>()) : Partial<Batch<ESPermanentToken>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESPermanentToken>>()) : Partial<Batch<ESPermanentToken>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<ESPermanentToken>>("GET", $"api/http/team-directory/profiles/{profile}/permanent-tokens{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 /// <summary>
                 /// Get personal tokens used to access the current organisation for a given profile id.
@@ -1783,18 +2427,28 @@ namespace JetBrains.Space.Client
                 /// Update an existing personal token used to access the current organisation. The permanent token name and/or scope can be updated.
                 /// </summary>
                 public async Task UpdatePermanentTokenAsync(ProfileIdentifier profile, string tokenId, string? name = null, string? scope = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/permanent-tokens/{tokenId}", 
-                        new TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/permanent-tokens/{tokenId}{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest
+                        { 
                             Name = name,
                             Scope = scope,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Delete a specific personal token used to access the current organisation.
                 /// </summary>
                 public async Task DeletePermanentTokenAsync(ProfileIdentifier profile, string tokenId, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/permanent-tokens/{tokenId}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/permanent-tokens/{tokenId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 public CurrentClient Current => new CurrentClient(_connection);
                 
@@ -1811,7 +2465,12 @@ namespace JetBrains.Space.Client
                     /// Delete personal token for a given profile id.
                     /// </summary>
                     public async Task DeleteCurrentPermanentTokenAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/permanent-tokens/current", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/permanent-tokens/current{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -1832,11 +2491,21 @@ namespace JetBrains.Space.Client
                 /// This endpoint will return profile information, and Space personalisation data such as projects in the navigation bar, etc.
                 /// </summary>
                 public async Task<SettingsValue> GetProfilesSpacePersonalizationDataAsync(ProfileIdentifier profile, Func<Partial<SettingsValue>, Partial<SettingsValue>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<SettingsValue>("GET", $"api/http/team-directory/profiles/{profile}/settings?$fields={(partial != null ? partial(new Partial<SettingsValue>()) : Partial<SettingsValue>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<SettingsValue>()) : Partial<SettingsValue>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<SettingsValue>("GET", $"api/http/team-directory/profiles/{profile}/settings{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 public async Task SetProfilesSpacePersonalizationDataAsync(ProfileIdentifier profile, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? fontLigaturesEnabled = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/settings", 
-                        new TeamDirectoryProfilesForProfileSettingsPatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/settings{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileSettingsPatchRequest
+                        { 
                             ThemeName = themeName,
                             FirstDayOfWeek = firstDayOfWeek,
                             DraftType = draftType,
@@ -1846,8 +2515,9 @@ namespace JetBrains.Space.Client
                             IsEmailNotificationsEnabled = emailNotificationsEnabled,
                             NotificationEmail = notificationEmail,
                             PreferredLanguage = preferredLanguage,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
             }
         
@@ -1874,13 +2544,19 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<TDProfileLanguage> CreateSpokenLanguageAsync(ProfileIdentifier profile, string language, string? firstName = null, string? lastName = null, Func<Partial<TDProfileLanguage>, Partial<TDProfileLanguage>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest, TDProfileLanguage>("POST", $"api/http/team-directory/profiles/{profile}/spoken-languages?$fields={(partial != null ? partial(new Partial<TDProfileLanguage>()) : Partial<TDProfileLanguage>.Default())}", 
-                        new TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDProfileLanguage>()) : Partial<TDProfileLanguage>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest, TDProfileLanguage>("POST", $"api/http/team-directory/profiles/{profile}/spoken-languages{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest
+                        { 
                             Language = language,
                             FirstName = firstName,
                             LastName = lastName,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Get spoken language of a profile.
@@ -1894,7 +2570,13 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<List<TDProfileLanguage>> GetAllSpokenLanguagesAsync(ProfileIdentifier profile, Func<Partial<TDProfileLanguage>, Partial<TDProfileLanguage>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<TDProfileLanguage>>("GET", $"api/http/team-directory/profiles/{profile}/spoken-languages?$fields={(partial != null ? partial(new Partial<TDProfileLanguage>()) : Partial<TDProfileLanguage>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDProfileLanguage>()) : Partial<TDProfileLanguage>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<TDProfileLanguage>>("GET", $"api/http/team-directory/profiles/{profile}/spoken-languages{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Delete spoken language for a profile.
@@ -1908,7 +2590,12 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task DeleteSpokenLanguageAsync(ProfileIdentifier profile, string language, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/spoken-languages/{language}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/spoken-languages/{language}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -1927,23 +2614,39 @@ namespace JetBrains.Space.Client
                 /// Get VCS password for a profile.
                 /// </summary>
                 public async Task<VcsHostingPassword> GetVcsPasswordAsync(ProfileIdentifier profile, Func<Partial<VcsHostingPassword>, Partial<VcsHostingPassword>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<VcsHostingPassword>("GET", $"api/http/team-directory/profiles/{profile}/vcs-password?$fields={(partial != null ? partial(new Partial<VcsHostingPassword>()) : Partial<VcsHostingPassword>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<VcsHostingPassword>()) : Partial<VcsHostingPassword>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<VcsHostingPassword>("GET", $"api/http/team-directory/profiles/{profile}/vcs-password{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Set VCS password for a profile. This password can be used to access Space repositories over HTTPS.
                 /// </summary>
                 public async Task UpdateVcsPasswordAsync(ProfileIdentifier profile, string password, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/vcs-password", 
-                        new TeamDirectoryProfilesForProfileVcsPasswordPatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/vcs-password{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileVcsPasswordPatchRequest
+                        { 
                             Password = password,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Delete VCS password for a profile.
                 /// </summary>
                 public async Task DeleteVcsPasswordAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/vcs-password", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/vcs-password{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -1972,12 +2675,18 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDRole> CreateRoleAsync(string name, string? parentId = null, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryRolesPostRequest, TDRole>("POST", $"api/http/team-directory/roles?$fields={(partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default())}", 
-                    new TeamDirectoryRolesPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryRolesPostRequest, TDRole>("POST", $"api/http/team-directory/roles{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryRolesPostRequest
+                    { 
                         Name = name,
                         ParentId = parentId,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Restore an archived role.
@@ -1991,7 +2700,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDRole> RestoreAsync(string id, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDRole>("POST", $"api/http/team-directory/roles/{id}/restore?$fields={(partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TDRole>("POST", $"api/http/team-directory/roles/{id}/restore{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get/search all roles. Parameters are applied as 'AND' filters.
@@ -2005,7 +2720,15 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<List<TDRole>> GetAllRolesAsync(string query = "", bool withArchived = false, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<TDRole>>("GET", $"api/http/team-directory/roles?query={query.ToString()}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("query", query);
+                queryParameters.Append("withArchived", withArchived.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<TDRole>>("GET", $"api/http/team-directory/roles{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get a role by id.
@@ -2019,7 +2742,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDRole> GetRoleAsync(string id, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDRole>("GET", $"api/http/team-directory/roles/{id}?$fields={(partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TDRole>("GET", $"api/http/team-directory/roles/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Update a role. Optional parameters will be ignored when null, and updated otherwise.
@@ -2033,12 +2762,18 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDRole> UpdateRoleAsync(string id, string? name = null, string? parentId = null, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryRolesForIdPatchRequest, TDRole>("PATCH", $"api/http/team-directory/roles/{id}?$fields={(partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default())}", 
-                    new TeamDirectoryRolesForIdPatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryRolesForIdPatchRequest, TDRole>("PATCH", $"api/http/team-directory/roles/{id}{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryRolesForIdPatchRequest
+                    { 
                         Name = name,
                         ParentId = parentId,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Archive a role.
@@ -2052,7 +2787,12 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task ArchiveRoleAsync(string id, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/roles/{id}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/roles/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -2085,7 +2825,16 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDStats> GetAllStatsAsync(string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<TDStats>, Partial<TDStats>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDStats>("GET", $"api/http/team-directory/stats?teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<TDStats>()) : Partial<TDStats>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (teamId != null) queryParameters.Append("teamId", teamId);
+                if (locationId != null) queryParameters.Append("locationId", locationId);
+                if (roleId != null) queryParameters.Append("roleId", roleId);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDStats>()) : Partial<TDStats>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TDStats>("GET", $"api/http/team-directory/stats{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -2112,16 +2861,22 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDTeam> CreateTeamAsync(string name, string? description = null, List<string>? emails = null, string? parentId = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryTeamsPostRequest, TDTeam>("POST", $"api/http/team-directory/teams?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", 
-                    new TeamDirectoryTeamsPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryTeamsPostRequest, TDTeam>("POST", $"api/http/team-directory/teams{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryTeamsPostRequest
+                    { 
                         Name = name,
                         Description = description,
                         Emails = emails,
                         ParentId = parentId,
                         CustomFieldValues = customFieldValues,
                         ExternalId = externalId,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Cancel disbanding a team, and restore its members.
@@ -2135,7 +2890,12 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task CancelTeamDisbandingAsync(string id, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("POST", $"api/http/team-directory/teams/{id}/cancel-disbanding", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/team-directory/teams/{id}/cancel-disbanding{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Restore an archived team.
@@ -2149,7 +2909,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDTeam> RestoreTeamAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDTeam>("POST", $"api/http/team-directory/teams/{id}/restore?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TDTeam>("POST", $"api/http/team-directory/teams/{id}/restore{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get or search all teams. Parameters are applied as 'AND' filters.
@@ -2163,7 +2929,17 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<Batch<TDTeam>> GetAllTeamsAsync(string query = "", bool withArchived = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDTeam>>, Partial<Batch<TDTeam>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<TDTeam>>("GET", $"api/http/team-directory/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDTeam>>()) : Partial<Batch<TDTeam>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("query", query);
+                queryParameters.Append("withArchived", withArchived.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDTeam>>()) : Partial<Batch<TDTeam>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<TDTeam>>("GET", $"api/http/team-directory/teams{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             /// <summary>
             /// Get or search all teams. Parameters are applied as 'AND' filters.
@@ -2191,7 +2967,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDTeam> GetTeamAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDTeam>("GET", $"api/http/team-directory/teams/{id}?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TDTeam>("GET", $"api/http/team-directory/teams/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Update a team.
@@ -2205,16 +2987,22 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<TDTeam> UpdateTeamAsync(string id, string name, string? description = null, List<string>? emails = null, string? parentId = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryTeamsForIdPatchRequest, TDTeam>("PATCH", $"api/http/team-directory/teams/{id}?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", 
-                    new TeamDirectoryTeamsForIdPatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryTeamsForIdPatchRequest, TDTeam>("PATCH", $"api/http/team-directory/teams/{id}{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryTeamsForIdPatchRequest
+                    { 
                         Name = name,
                         Description = description,
                         Emails = emails,
                         ParentId = parentId,
                         CustomFieldValues = customFieldValues,
                         ExternalId = externalId,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Archive a team.
@@ -2228,7 +3016,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<List<TDTeam>> ArchiveTeamAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<TDTeam>>("DELETE", $"api/http/team-directory/teams/{id}?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<TDTeam>>("DELETE", $"api/http/team-directory/teams/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Disband a team.
@@ -2242,7 +3036,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<List<TDTeam>> DisbandTeamAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<TDTeam>>("DELETE", $"api/http/team-directory/teams/{id}/disband?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<TDTeam>>("DELETE", $"api/http/team-directory/teams/{id}/disband{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             public DirectMemberClient DirectMembers => new DirectMemberClient(_connection);
             
@@ -2259,7 +3059,16 @@ namespace JetBrains.Space.Client
                 /// Get or search direct members of a given team.
                 /// </summary>
                 public async Task<Batch<TDMemberProfile>> GetAllDirectMembersAsync(string id, string query = "", string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/team-directory/teams/{id}/direct-members?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("query", query);
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/team-directory/teams/{id}/direct-members{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 /// <summary>
                 /// Get or search direct members of a given team.

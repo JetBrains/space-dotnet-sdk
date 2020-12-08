@@ -13,11 +13,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Space.Client.Internal;
 using JetBrains.Space.Common;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
@@ -38,21 +39,38 @@ namespace JetBrains.Space.Client
         /// Create a new project.
         /// </summary>
         public async Task<PRProject> CreateProjectAsync(ProjectKey key, string name, bool @private = false, List<string>? tags = null, string? description = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<ProjectsPostRequest, PRProject>("POST", $"api/http/projects?$fields={(partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default())}", 
-                new ProjectsPostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsPostRequest, PRProject>("POST", $"api/http/projects{queryParameters.ToQueryString()}", 
+                new ProjectsPostRequest
+                { 
                     Key = key,
                     Name = name,
                     Description = description,
                     IsPrivate = @private,
                     Tags = (tags ?? new List<string>()),
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         /// <summary>
         /// Get/search all projects. Parameters are applied as 'AND' filters.
         /// </summary>
         public async Task<Batch<PRProject>> GetAllProjectsAsync(string? skip = null, int? top = 100, string? term = null, string? tag = null, bool? starred = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&tag={tag?.ToString() ?? "null"}&starred={starred?.ToString("l") ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            if (term != null) queryParameters.Append("term", term);
+            if (tag != null) queryParameters.Append("tag", tag);
+            if (starred != null) queryParameters.Append("starred", starred?.ToString("l"));
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
         
         /// <summary>
         /// Get/search all projects. Parameters are applied as 'AND' filters.
@@ -64,7 +82,15 @@ namespace JetBrains.Space.Client
         /// Get all projects for a member.
         /// </summary>
         public async Task<Batch<PRProject>> GetAllProjectsByMemberAsync(ProfileIdentifier member, string? skip = null, int? top = 100, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/member:{member}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/member:{member}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
         
         /// <summary>
         /// Get all projects for a member.
@@ -73,7 +99,17 @@ namespace JetBrains.Space.Client
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsByMemberAsync(member: member, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
     
         public async Task<Batch<PRProject>> GetAllProjectsWithRightAsync(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/right-code:{rightCode}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&path={path?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            if (term != null) queryParameters.Append("term", term);
+            if (path != null) queryParameters.Append("path", path);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/right-code:{rightCode}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
         
         public IAsyncEnumerable<PRProject> GetAllProjectsWithRightAsyncEnumerable(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsWithRightAsync(rightCode: rightCode, top: top, term: term, path: path, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
@@ -82,7 +118,15 @@ namespace JetBrains.Space.Client
         /// Get all projects for a team.
         /// </summary>
         public async Task<Batch<PRProject>> GetAllProjectsByTeamAsync(string team, string? skip = null, int? top = 100, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/team:{team}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/team:{team}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
         
         /// <summary>
         /// Get all projects for a team.
@@ -94,28 +138,45 @@ namespace JetBrains.Space.Client
         /// Get project by id or project key.
         /// </summary>
         public async Task<PRProject> GetProjectAsync(ProjectIdentifier project, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<PRProject>("GET", $"api/http/projects/{project}?$fields={(partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<PRProject>("GET", $"api/http/projects/{project}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         /// <summary>
         /// Update an existing project. Optional parameters will be ignored when not specified, and updated otherwise.
         /// </summary>
         public async Task<PRProject> UpdateProjectAsync(ProjectIdentifier project, ProjectKey? key = null, string? name = null, string? description = null, bool? @private = null, List<string>? tags = null, string? icon = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<ProjectsForProjectPatchRequest, PRProject>("PATCH", $"api/http/projects/{project}?$fields={(partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default())}", 
-                new ProjectsForProjectPatchRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectPatchRequest, PRProject>("PATCH", $"api/http/projects/{project}{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectPatchRequest
+                { 
                     Key = key,
                     Name = name,
                     Description = description,
                     IsPrivate = @private,
                     Tags = tags,
                     Icon = icon,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         /// <summary>
         /// Archive a project.
         /// </summary>
         public async Task ArchiveProjectAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         public AutomationClient Automation => new AutomationClient(_connection);
         
@@ -151,7 +212,12 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task StopAsync(string id, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/automation/graph-executions/{id}/stop", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/automation/graph-executions/{id}/stop{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 /// <remarks>
                 /// Required permissions:
@@ -162,7 +228,13 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<JobExecution> GetGraphExecutionAsync(string id, Func<Partial<JobExecution>, Partial<JobExecution>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<JobExecution>("GET", $"api/http/projects/automation/graph-executions/{id}?$fields={(partial != null ? partial(new Partial<JobExecution>()) : Partial<JobExecution>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<JobExecution>()) : Partial<JobExecution>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<JobExecution>("GET", $"api/http/projects/automation/graph-executions/{id}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -189,17 +261,32 @@ namespace JetBrains.Space.Client
                     }
                     
                     public async Task<string> GetParameterAsync(string stepExecId, string key, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        return await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                     public async Task UpdateParameterAsync(string stepExecId, string key, string value, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}", 
-                            new ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequest { 
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("PATCH", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}{queryParameters.ToQueryString()}", 
+                            new ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequest
+                            { 
                                 Value = value,
-                            }
-                    , cancellationToken);
+                            }, cancellationToken);
+                    }
+                    
                 
                     public async Task DeleteParameterAsync(string stepExecId, string key, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -223,7 +310,19 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<Batch<JobExecution>> GetAllGraphExecutionsAsync(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, string? skip = null, int? top = 100, Func<Partial<Batch<JobExecution>>, Partial<Batch<JobExecution>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<JobExecution>>("GET", $"api/http/projects/{project}/automation/graph-executions?jobId={jobId.ToString()}&branchFilter={branchFilter?.ToString() ?? "null"}&statusFilter={statusFilter?.ToString() ?? "null"}&jobTriggerFilter={jobTriggerFilter?.ToString() ?? "null"}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<JobExecution>>()) : Partial<Batch<JobExecution>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("jobId", jobId);
+                    if (branchFilter != null) queryParameters.Append("branchFilter", branchFilter);
+                    if (statusFilter != null) queryParameters.Append("statusFilter", statusFilter?.Value);
+                    if (jobTriggerFilter != null) queryParameters.Append("jobTriggerFilter", jobTriggerFilter?.Value);
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<JobExecution>>()) : Partial<Batch<JobExecution>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<JobExecution>>("GET", $"api/http/projects/{project}/automation/graph-executions{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 /// <summary>
                 /// Search executions. Parameters are applied as 'AND' filters.
@@ -264,11 +363,17 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<LaunchResult> StartAsync(ProjectIdentifier project, string jobId, Branch branch, Func<Partial<LaunchResult>, Partial<LaunchResult>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<ProjectsForProjectAutomationJobsForJobIdStartPostRequest, LaunchResult>("POST", $"api/http/projects/{project}/automation/jobs/{jobId}/start?$fields={(partial != null ? partial(new Partial<LaunchResult>()) : Partial<LaunchResult>.Default())}", 
-                        new ProjectsForProjectAutomationJobsForJobIdStartPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<LaunchResult>()) : Partial<LaunchResult>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<ProjectsForProjectAutomationJobsForJobIdStartPostRequest, LaunchResult>("POST", $"api/http/projects/{project}/automation/jobs/{jobId}/start{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectAutomationJobsForJobIdStartPostRequest
+                        { 
                             Branch = branch,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Search jobs. Parameters are applied as 'AND' filters.
@@ -282,7 +387,18 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<Batch<Job>> GetAllJobsAsync(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = 100, Func<Partial<Batch<Job>>, Partial<Batch<Job>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<Job>>("GET", $"api/http/projects/{project}/automation/jobs?repoFilter={repoFilter.ToString()}&branchFilter={branchFilter.ToString()}&trigger={trigger?.ToString() ?? "null"}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<Job>>()) : Partial<Batch<Job>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("repoFilter", repoFilter);
+                    queryParameters.Append("branchFilter", branchFilter);
+                    if (trigger != null) queryParameters.Append("trigger", trigger?.Value);
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Job>>()) : Partial<Batch<Job>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<Job>>("GET", $"api/http/projects/{project}/automation/jobs{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 /// <summary>
                 /// Search jobs. Parameters are applied as 'AND' filters.
@@ -307,7 +423,13 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<Job> GetJobAsync(ProjectIdentifier project, string jobId, Func<Partial<Job>, Partial<Job>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Job>("GET", $"api/http/projects/{project}/automation/jobs/{jobId}?$fields={(partial != null ? partial(new Partial<Job>()) : Partial<Job>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Job>()) : Partial<Job>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Job>("GET", $"api/http/projects/{project}/automation/jobs/{jobId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -337,13 +459,18 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<string> CreateParamAsync(string bundleId, string key, string value, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<ProjectsParamsPostRequest, string>("POST", $"api/http/projects/params", 
-                    new ProjectsParamsPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<ProjectsParamsPostRequest, string>("POST", $"api/http/projects/params{queryParameters.ToQueryString()}", 
+                    new ProjectsParamsPostRequest
+                    { 
                         BundleId = bundleId,
                         Key = key,
                         Value = value,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// List project parameters in a parameter bundle
@@ -358,7 +485,16 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<Batch<PlainParameterRecord>> GetAllParamsAsync(string bundleId, string? skip = null, int? top = 100, Func<Partial<Batch<PlainParameterRecord>>, Partial<Batch<PlainParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<PlainParameterRecord>>("GET", $"api/http/projects/params?bundleId={bundleId.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PlainParameterRecord>>()) : Partial<Batch<PlainParameterRecord>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("bundleId", bundleId);
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PlainParameterRecord>>()) : Partial<Batch<PlainParameterRecord>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<PlainParameterRecord>>("GET", $"api/http/projects/params{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             /// <summary>
             /// List project parameters in a parameter bundle
@@ -388,11 +524,16 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task UpdateParamAsync(string id, string value, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/params/{id}", 
-                    new ProjectsParamsForIdPatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/params/{id}{queryParameters.ToQueryString()}", 
+                    new ProjectsParamsForIdPatchRequest
+                    { 
                         Value = value,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Delete an existing project parameter.
@@ -407,7 +548,12 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task DeleteParamAsync(string id, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/params/{id}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/params/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             public InDefaultBundleClient InDefaultBundle => new InDefaultBundleClient(_connection);
             
@@ -433,13 +579,18 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<string> CreateInDefaultBundleAsync(string projectId, string key, string value, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<ProjectsParamsInDefaultBundlePostRequest, string>("POST", $"api/http/projects/params/in-default-bundle", 
-                        new ProjectsParamsInDefaultBundlePostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    return await _connection.RequestResourceAsync<ProjectsParamsInDefaultBundlePostRequest, string>("POST", $"api/http/projects/params/in-default-bundle{queryParameters.ToQueryString()}", 
+                        new ProjectsParamsInDefaultBundlePostRequest
+                        { 
                             ProjectId = projectId,
                             Key = key,
                             Value = value,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
             }
         
@@ -460,13 +611,24 @@ namespace JetBrains.Space.Client
             /// Request access to a project.
             /// </summary>
             public async Task RequestAccessToProjectAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("POST", $"api/http/projects/private-projects/{project}/request-access", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/private-projects/{project}/request-access{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// List private projects in the current organisation.
             /// </summary>
             public async Task<List<PRPrivateProject>> GetAllPrivateProjectsAsync(Func<Partial<PRPrivateProject>, Partial<PRPrivateProject>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<PRPrivateProject>>("GET", $"api/http/projects/private-projects?$fields={(partial != null ? partial(new Partial<PRPrivateProject>()) : Partial<PRPrivateProject>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRPrivateProject>()) : Partial<PRPrivateProject>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<PRPrivateProject>>("GET", $"api/http/projects/private-projects{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -485,30 +647,45 @@ namespace JetBrains.Space.Client
             /// Add a responsibility for a given subject id.
             /// </summary>
             public async Task<string> AddResponsibilityAsync(string subjectId, string summary, string? notes = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<ProjectsResponsibilitiesPostRequest, string>("POST", $"api/http/projects/responsibilities", 
-                    new ProjectsResponsibilitiesPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<ProjectsResponsibilitiesPostRequest, string>("POST", $"api/http/projects/responsibilities{queryParameters.ToQueryString()}", 
+                    new ProjectsResponsibilitiesPostRequest
+                    { 
                         SubjectId = subjectId,
                         Summary = summary,
                         Notes = notes,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Edit an existing responsibility.
             /// </summary>
             public async Task UpdateResponsibilityAsync(string responsibilityId, string summary, string? notes = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/responsibilities/{responsibilityId}", 
-                    new ProjectsResponsibilitiesForResponsibilityIdPatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/responsibilities/{responsibilityId}{queryParameters.ToQueryString()}", 
+                    new ProjectsResponsibilitiesForResponsibilityIdPatchRequest
+                    { 
                         Summary = summary,
                         Notes = notes,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Delete an existing responsibility.
             /// </summary>
             public async Task DeleteResponsibilityAsync(string responsibilityId, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/{responsibilityId}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/{responsibilityId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             public SubjectClient Subjects => new SubjectClient(_connection);
             
@@ -525,7 +702,13 @@ namespace JetBrains.Space.Client
                 /// Delete an existing responsibility subject for a given project id.
                 /// </summary>
                 public async Task DeleteResponsibilitySubjectAsync(string subjectId, ProjectIdentifier? project = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/subjects/{subjectId}?project={project?.ToString() ?? "null"}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (project != null) queryParameters.Append("project", project?.ToString());
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/subjects/{subjectId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -548,7 +731,13 @@ namespace JetBrains.Space.Client
                 /// Get the responsibilities schema for a given project id.
                 /// </summary>
                 public async Task<List<SubjectResponsibilitiesTable>> GetProjectResponsibilitySchemeAsync(ProjectIdentifier project, Func<Partial<SubjectResponsibilitiesTable>, Partial<SubjectResponsibilitiesTable>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTable>>("GET", $"api/http/projects/{project}/responsibilities/scheme?$fields={(partial != null ? partial(new Partial<SubjectResponsibilitiesTable>()) : Partial<SubjectResponsibilitiesTable>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubjectResponsibilitiesTable>()) : Partial<SubjectResponsibilitiesTable>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTable>>("GET", $"api/http/projects/{project}/responsibilities/scheme{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -558,21 +747,31 @@ namespace JetBrains.Space.Client
                 /// Add a responsibility subject for a given project id.
                 /// </summary>
                 public async Task<string> AddResponsibilitySubjectAsync(ProjectIdentifier project, string? name = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<ProjectsForProjectResponsibilitiesSubjectsPostRequest, string>("POST", $"api/http/projects/{project}/responsibilities/subjects", 
-                        new ProjectsForProjectResponsibilitiesSubjectsPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    return await _connection.RequestResourceAsync<ProjectsForProjectResponsibilitiesSubjectsPostRequest, string>("POST", $"api/http/projects/{project}/responsibilities/subjects{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectResponsibilitiesSubjectsPostRequest
+                        { 
                             Name = name,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Update an existing responsibility subject for a given project id.
                 /// </summary>
                 public async Task EditResponsibilitySubjectAsync(ProjectIdentifier project, string subjectId, string? name = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/responsibilities/subjects/{subjectId}", 
-                        new ProjectsForProjectResponsibilitiesSubjectsForSubjectIdPatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/responsibilities/subjects/{subjectId}{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectResponsibilitiesSubjectsForSubjectIdPatchRequest
+                        { 
                             Name = name,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
             }
         
@@ -591,17 +790,28 @@ namespace JetBrains.Space.Client
                 /// Assign a responsible person for a given project id and responsibility id.
                 /// </summary>
                 public async Task AssignResponsibleAsync(ProjectIdentifier project, string responsibilityId, string profileId, string? role = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/responsibilities/{responsibilityId}/assignees/{profileId}", 
-                        new ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/responsibilities/{responsibilityId}/assignees/{profileId}{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest
+                        { 
                             Role = role,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Remove a responsible person for a given project id and responsibility id.
                 /// </summary>
                 public async Task RemoveResponsibleAsync(ProjectIdentifier project, string responsibilityId, string profileId, string? role = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/responsibilities/{responsibilityId}/assignees/{profileId}?role={role?.ToString() ?? "null"}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (role != null) queryParameters.Append("role", role);
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/responsibilities/{responsibilityId}/assignees/{profileId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -631,14 +841,19 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<string> CreateSecretAsync(string bundleId, string key, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<ProjectsSecretsPostRequest, string>("POST", $"api/http/projects/secrets", 
-                    new ProjectsSecretsPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<ProjectsSecretsPostRequest, string>("POST", $"api/http/projects/secrets{queryParameters.ToQueryString()}", 
+                    new ProjectsSecretsPostRequest
+                    { 
                         BundleId = bundleId,
                         Key = key,
                         ValueBase64 = valueBase64,
                         PublicKeyId = publicKeyId,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// List project secrets in a parameter bundle
@@ -653,7 +868,16 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<Batch<SecretParameterRecord>> GetAllSecretsAsync(string bundleId, string? skip = null, int? top = 100, Func<Partial<Batch<SecretParameterRecord>>, Partial<Batch<SecretParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets?bundleId={bundleId.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<SecretParameterRecord>>()) : Partial<Batch<SecretParameterRecord>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("bundleId", bundleId);
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<SecretParameterRecord>>()) : Partial<Batch<SecretParameterRecord>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             /// <summary>
             /// List project secrets in a parameter bundle
@@ -683,12 +907,17 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task UpdateSecretAsync(string id, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/secrets/{id}", 
-                    new ProjectsSecretsForIdPatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/secrets/{id}{queryParameters.ToQueryString()}", 
+                    new ProjectsSecretsForIdPatchRequest
+                    { 
                         ValueBase64 = valueBase64,
                         PublicKeyId = publicKeyId,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Delete an existing project secret.
@@ -703,7 +932,12 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task DeleteSecretAsync(string id, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/secrets/{id}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/secrets/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             public InDefaultBundleClient InDefaultBundle => new InDefaultBundleClient(_connection);
             
@@ -729,14 +963,19 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<string> CreateInDefaultBundleAsync(string projectId, string key, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<ProjectsSecretsInDefaultBundlePostRequest, string>("POST", $"api/http/projects/secrets/in-default-bundle", 
-                        new ProjectsSecretsInDefaultBundlePostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    return await _connection.RequestResourceAsync<ProjectsSecretsInDefaultBundlePostRequest, string>("POST", $"api/http/projects/secrets/in-default-bundle{queryParameters.ToQueryString()}", 
+                        new ProjectsSecretsInDefaultBundlePostRequest
+                        { 
                             ProjectId = projectId,
                             Key = key,
                             ValueBase64 = valueBase64,
                             PublicKeyId = publicKeyId,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
             }
         
@@ -757,17 +996,28 @@ namespace JetBrains.Space.Client
             /// Track a tag has been accessed.
             /// </summary>
             public async Task TrackTagAccessAsync(string tag, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("POST", $"api/http/projects/tags/track-access", 
-                    new ProjectsTagsTrackAccessPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/tags/track-access{queryParameters.ToQueryString()}", 
+                    new ProjectsTagsTrackAccessPostRequest
+                    { 
                         Tag = tag,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// List all tags, mapped to the number of projects they are used in.
             /// </summary>
             public async Task<List<PRTag>> GetAllTagsAsync(Func<Partial<PRTag>, Partial<PRTag>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<PRTag>>("GET", $"api/http/projects/tags?$fields={(partial != null ? partial(new Partial<PRTag>()) : Partial<PRTag>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRTag>()) : Partial<PRTag>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<PRTag>>("GET", $"api/http/projects/tags{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -797,7 +1047,13 @@ namespace JetBrains.Space.Client
                 /// Returns the list of all project administrators
                 /// </summary>
                 public async Task<List<TDMemberProfile>> GetAllAdminsAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/admins?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/admins{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 public ProfileClient Profiles => new ProfileClient(_connection);
                 
@@ -814,17 +1070,27 @@ namespace JetBrains.Space.Client
                     /// Add a member as administrator to a project.
                     /// </summary>
                     public async Task AddAdministratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/admins/profiles", 
-                            new ProjectsForProjectAccessAdminsProfilesPostRequest { 
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/admins/profiles{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectAccessAdminsProfilesPostRequest
+                            { 
                                 Profile = profile,
-                            }
-                    , cancellationToken);
+                            }, cancellationToken);
+                    }
+                    
                 
                     /// <summary>
                     /// Remove a member as administrator from a project.
                     /// </summary>
                     public async Task RemoveAdministratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/admins/profiles/{profile}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/admins/profiles/{profile}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -843,17 +1109,27 @@ namespace JetBrains.Space.Client
                     /// Add a team as administrators to a project.
                     /// </summary>
                     public async Task AddAdministratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/admins/teams", 
-                            new ProjectsForProjectAccessAdminsTeamsPostRequest { 
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/admins/teams{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectAccessAdminsTeamsPostRequest
+                            { 
                                 TeamId = teamId,
-                            }
-                    , cancellationToken);
+                            }, cancellationToken);
+                    }
+                    
                 
                     /// <summary>
                     /// Remove a team as administrators from a project.
                     /// </summary>
                     public async Task RemoveAdministratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/admins/teams/{teamId}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/admins/teams/{teamId}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -871,7 +1147,13 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task<List<TDMemberProfile>> GetAllCollaboratorsProfilesAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/collaborators?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/collaborators{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 public ProfileClient Profiles => new ProfileClient(_connection);
                 
@@ -885,17 +1167,34 @@ namespace JetBrains.Space.Client
                     }
                     
                     public async Task AddACollaboratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/collaborators/profiles", 
-                            new ProjectsForProjectAccessCollaboratorsProfilesPostRequest { 
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/collaborators/profiles{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectAccessCollaboratorsProfilesPostRequest
+                            { 
                                 Profile = profile,
-                            }
-                    , cancellationToken);
+                            }, cancellationToken);
+                    }
+                    
                 
                     public async Task<List<TDMemberProfile>> GetAllIndividualCollaboratorsAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/collaborators/profiles?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/collaborators/profiles{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                     public async Task RemoveAnIndividualCollaboratorsAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/collaborators/profiles?profile={profile.ToString()}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("profile", profile.ToString());
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/collaborators/profiles{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -911,17 +1210,34 @@ namespace JetBrains.Space.Client
                     }
                     
                     public async Task AddACollaboratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/collaborators/teams", 
-                            new ProjectsForProjectAccessCollaboratorsTeamsPostRequest { 
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/collaborators/teams{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectAccessCollaboratorsTeamsPostRequest
+                            { 
                                 TeamId = teamId,
-                            }
-                    , cancellationToken);
+                            }, cancellationToken);
+                    }
+                    
                 
                     public async Task<List<TDTeam>> GetAllCollaboratorsTeamsAsync(ProjectIdentifier project, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<List<TDTeam>>("GET", $"api/http/projects/{project}/access/collaborators/teams?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<List<TDTeam>>("GET", $"api/http/projects/{project}/access/collaborators/teams{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                     public async Task RemoveACollaboratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/collaborators/teams?teamId={teamId.ToString()}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("teamId", teamId);
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/collaborators/teams{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -950,7 +1266,17 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<Batch<TDMemberProfile>> GetAllMemberProfilesAsync(ProjectIdentifier project, string query = "", bool includingAdmins = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("query", query);
+                    queryParameters.Append("includingAdmins", includingAdmins.ToString("l"));
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/member-profiles{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 /// <summary>
                 /// Get project members for a given project key.
@@ -994,17 +1320,27 @@ namespace JetBrains.Space.Client
                     /// Add a member to a project.
                     /// </summary>
                     public async Task AddMemberAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/members/profiles", 
-                            new ProjectsForProjectAccessMembersProfilesPostRequest { 
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/members/profiles{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectAccessMembersProfilesPostRequest
+                            { 
                                 Profile = profile,
-                            }
-                    , cancellationToken);
+                            }, cancellationToken);
+                    }
+                    
                 
                     /// <summary>
                     /// Remove a member from a project.
                     /// </summary>
                     public async Task RemoveMemberAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/members/profiles/{profile}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/members/profiles/{profile}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -1023,17 +1359,27 @@ namespace JetBrains.Space.Client
                     /// Add a team to a project.
                     /// </summary>
                     public async Task AddTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/members/teams", 
-                            new ProjectsForProjectAccessMembersTeamsPostRequest { 
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/members/teams{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectAccessMembersTeamsPostRequest
+                            { 
                                 TeamId = teamId,
-                            }
-                    , cancellationToken);
+                            }, cancellationToken);
+                    }
+                    
                 
                     /// <summary>
                     /// Remove a team from a project.
                     /// </summary>
                     public async Task RemoveTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/members/teams/{teamId}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/members/teams/{teamId}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -1054,7 +1400,17 @@ namespace JetBrains.Space.Client
                 /// Get organization members who can view a project.
                 /// </summary>
                 public async Task<Batch<TDMemberProfile>> OrganizationProfilesWhoCanViewTheProjectAsync(ProjectIdentifier project, string term, bool meOnTop = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/viewers?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&meOnTop={meOnTop.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("term", term);
+                    queryParameters.Append("meOnTop", meOnTop.ToString("l"));
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/viewers{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 /// <summary>
                 /// Get organization members who can view a project.
@@ -1078,29 +1434,63 @@ namespace JetBrains.Space.Client
             }
             
             public async Task<Batch<CodeReviewWithCount>> GetAllCodeReviewsAsync(ProjectIdentifier project, ReviewSorting? sort = null, string? skip = null, int? top = 100, CodeReviewStateFilter? state = null, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<Batch<CodeReviewWithCount>>, Partial<Batch<CodeReviewWithCount>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<CodeReviewWithCount>>("GET", $"api/http/projects/{project}/code-reviews?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&state={(state ?? CodeReviewStateFilter.Opened)?.ToString() ?? "null"}&text={text?.ToString() ?? "null"}&author={author?.ToString() ?? "null"}&from={from?.ToString("yyyy-MM-dd") ?? "null"}&to={to?.ToString("yyyy-MM-dd") ?? "null"}&sort={(sort ?? ReviewSorting.CreatedAtAsc).ToString()}&reviewer={reviewer?.ToString() ?? "null"}&type={type?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<CodeReviewWithCount>>()) : Partial<Batch<CodeReviewWithCount>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                if (state != null) queryParameters.Append("state", (state ?? CodeReviewStateFilter.Opened)?.Value);
+                if (text != null) queryParameters.Append("text", text);
+                if (author != null) queryParameters.Append("author", author?.ToString());
+                if (from != null) queryParameters.Append("from", from?.ToString("yyyy-MM-dd"));
+                if (to != null) queryParameters.Append("to", to?.ToString("yyyy-MM-dd"));
+                queryParameters.Append("sort", (sort ?? ReviewSorting.CreatedAtAsc).Value);
+                if (reviewer != null) queryParameters.Append("reviewer", reviewer?.ToString());
+                if (type != null) queryParameters.Append("type", type?.Value);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CodeReviewWithCount>>()) : Partial<Batch<CodeReviewWithCount>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<CodeReviewWithCount>>("GET", $"api/http/projects/{project}/code-reviews{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             public IAsyncEnumerable<CodeReviewWithCount> GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier project, ReviewSorting? sort = null, string? skip = null, int? top = 100, CodeReviewStateFilter? state = null, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<CodeReviewWithCount>, Partial<CodeReviewWithCount>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllCodeReviewsAsync(project: project, sort: sort, top: top, state: state, text: text, author: author, from: from, to: to, reviewer: reviewer, type: type, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CodeReviewWithCount>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeReviewWithCount>.Default())), skip, cancellationToken);
         
             public async Task<CodeReviewRecord> GetCodeReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<CodeReviewRecord>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}?$fields={(partial != null ? partial(new Partial<CodeReviewRecord>()) : Partial<CodeReviewRecord>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeReviewRecord>()) : Partial<CodeReviewRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<CodeReviewRecord>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             public async Task<GitMergeResultHttp> MergeMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, Func<Partial<GitMergeResultHttp>, Partial<GitMergeResultHttp>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsForReviewIdMergePutRequest, GitMergeResultHttp>("PUT", $"api/http/projects/{project}/code-reviews/{reviewId}/merge?$fields={(partial != null ? partial(new Partial<GitMergeResultHttp>()) : Partial<GitMergeResultHttp>.Default())}", 
-                    new ProjectsForProjectCodeReviewsForReviewIdMergePutRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitMergeResultHttp>()) : Partial<GitMergeResultHttp>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsForReviewIdMergePutRequest, GitMergeResultHttp>("PUT", $"api/http/projects/{project}/code-reviews/{reviewId}/merge{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectCodeReviewsForReviewIdMergePutRequest
+                    { 
                         IsDeleteSourceBranch = deleteSourceBranch,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             public async Task<GitRebaseResultHttp> RebaseMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, bool squash, string? squashedCommitMessage = null, Func<Partial<GitRebaseResultHttp>, Partial<GitRebaseResultHttp>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest, GitRebaseResultHttp>("PUT", $"api/http/projects/{project}/code-reviews/{reviewId}/rebase?$fields={(partial != null ? partial(new Partial<GitRebaseResultHttp>()) : Partial<GitRebaseResultHttp>.Default())}", 
-                    new ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitRebaseResultHttp>()) : Partial<GitRebaseResultHttp>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest, GitRebaseResultHttp>("PUT", $"api/http/projects/{project}/code-reviews/{reviewId}/rebase{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest
+                    { 
                         IsDeleteSourceBranch = deleteSourceBranch,
                         IsSquash = squash,
                         SquashedCommitMessage = squashedCommitMessage,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             public DetailClient Details => new DetailClient(_connection);
             
@@ -1114,7 +1504,13 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task<CodeReviewDetailedInfo> GetReviewDetailsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<CodeReviewDetailedInfo>, Partial<CodeReviewDetailedInfo>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<CodeReviewDetailedInfo>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/details?$fields={(partial != null ? partial(new Partial<CodeReviewDetailedInfo>()) : Partial<CodeReviewDetailedInfo>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeReviewDetailedInfo>()) : Partial<CodeReviewDetailedInfo>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<CodeReviewDetailedInfo>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/details{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -1130,14 +1526,25 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task AddReviewParticipantAsync(ProjectIdentifier project, ReviewIdentifier reviewId, ProfileIdentifier user, CodeReviewParticipantRole role, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/code-reviews/{reviewId}/participants/{user}", 
-                        new ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/code-reviews/{reviewId}/participants/{user}{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest
+                        { 
                             Role = role,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 public async Task RemoveReviewParticipantAsync(ProjectIdentifier project, ReviewIdentifier reviewId, ProfileIdentifier user, CodeReviewParticipantRole role, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/code-reviews/{reviewId}/participants/{user}?role={role.ToString()}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("role", role.Value);
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/code-reviews/{reviewId}/participants/{user}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -1153,14 +1560,25 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task AddRevisionsToReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, List<RevisionInReview> revisions, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/code-reviews/{reviewId}/revisions", 
-                        new ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/code-reviews/{reviewId}/revisions{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest
+                        { 
                             Revisions = revisions,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 public async Task RemoveRevisionsFromReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, List<string> revisions, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/code-reviews/{reviewId}/revisions?revisions={revisions.JoinToString("revisions", it => it.ToString())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("revisions", revisions.Select(it => it));
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/code-reviews/{reviewId}/revisions{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -1176,11 +1594,16 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task EditReviewStateAsync(ProjectIdentifier project, ReviewIdentifier reviewId, CodeReviewState state, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/code-reviews/{reviewId}/state", 
-                        new ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/code-reviews/{reviewId}/state{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest
+                        { 
                             State = state,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
             }
         
@@ -1196,7 +1619,13 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task<List<TDMemberProfile>> GetAllSuggestedReviewersAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/suggested-reviewers?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/suggested-reviewers{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -1212,11 +1641,16 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task EditReviewTitleAsync(ProjectIdentifier project, ReviewIdentifier reviewId, string title, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/code-reviews/{reviewId}/title", 
-                        new ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/code-reviews/{reviewId}/title{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest
+                        { 
                             Title = title,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
             }
         
@@ -1232,7 +1666,13 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task<List<RevisionInReview>> GetAllUnreadRevisionsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<RevisionInReview>, Partial<RevisionInReview>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<RevisionInReview>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/unread-revisions?$fields={(partial != null ? partial(new Partial<RevisionInReview>()) : Partial<RevisionInReview>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<RevisionInReview>()) : Partial<RevisionInReview>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<RevisionInReview>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/unread-revisions{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -1272,8 +1712,13 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<ProjectPackageRepository> CreateNewRepositoryAsync(ProjectIdentifier project, string type, string name, bool @public, ESPackageRepositorySettings settings, PackageRepositoryMode mode, string? description = null, PackageRepositoryMirror? mirror = null, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesPostRequest, ProjectPackageRepository>("POST", $"api/http/projects/{project}/packages/repositories?$fields={(partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default())}", 
-                        new ProjectsForProjectPackagesRepositoriesPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesPostRequest, ProjectPackageRepository>("POST", $"api/http/projects/{project}/packages/repositories{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPackagesRepositoriesPostRequest
+                        { 
                             Type = type,
                             Name = name,
                             Description = description,
@@ -1281,8 +1726,9 @@ namespace JetBrains.Space.Client
                             Settings = settings,
                             Mode = mode,
                             Mirror = mirror,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Gets a list of package repositories for a given project id.
@@ -1296,7 +1742,15 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<List<ProjectPackageRepository>> GetRepositoriesAsync(ProjectIdentifier project, string? type = null, string? query = null, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<ProjectPackageRepository>>("GET", $"api/http/projects/{project}/packages/repositories?type={type?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (type != null) queryParameters.Append("type", type);
+                    if (query != null) queryParameters.Append("query", query);
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<ProjectPackageRepository>>("GET", $"api/http/projects/{project}/packages/repositories{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Gets a package repository for a given project id by type and name.
@@ -1310,7 +1764,13 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<ProjectPackageRepository> GetRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<ProjectPackageRepository>("GET", $"api/http/projects/{project}/packages/repositories/{repository}?$fields={(partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<ProjectPackageRepository>("GET", $"api/http/projects/{project}/packages/repositories/{repository}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Updates package repository settings for a given project id.
@@ -1324,14 +1784,19 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task UpdateRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string? name = null, string? description = null, bool? @public = null, ESPackageRepositorySettings? settings = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/packages/repositories/{repository}", 
-                        new ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/packages/repositories/{repository}{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest
+                        { 
                             Name = name,
                             Description = description,
                             IsPublic = @public,
                             Settings = settings,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <summary>
                 /// Removes package repository for a given project id.
@@ -1345,7 +1810,12 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task DeleteRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 public CleanupClient Cleanup => new CleanupClient(_connection);
                 
@@ -1370,7 +1840,12 @@ namespace JetBrains.Space.Client
                     /// </list>
                     /// </remarks>
                     public async Task CleanupRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/packages/repositories/{repository}/cleanup", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/packages/repositories/{repository}/cleanup{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -1397,7 +1872,17 @@ namespace JetBrains.Space.Client
                     /// </list>
                     /// </remarks>
                     public async Task<Batch<PackageData>> GetAllPackagesAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageData>>, Partial<Batch<PackageData>>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages?query={query.ToString()}&mirrorId={mirrorId?.ToString() ?? "null"}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default())}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("query", query);
+                        if (mirrorId != null) queryParameters.Append("mirrorId", mirrorId);
+                        if (skip != null) queryParameters.Append("$skip", skip);
+                        if (top != null) queryParameters.Append("$top", top?.ToString());
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                     
                     /// <summary>
                     /// Gets a list of repository packages for a given project id.
@@ -1428,12 +1913,17 @@ namespace JetBrains.Space.Client
                         /// Report a package version metadata in repository for a given project id.
                         /// </summary>
                         public async Task ReportPackageVersionMetadataAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string packageVersion, bool pin, string? comment = null, CancellationToken cancellationToken = default)
-                            => await _connection.RequestResourceAsync("PUT", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/metadata/version:{packageVersion}", 
-                                new ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest { 
+                        {
+                            var queryParameters = new NameValueCollection();
+                            
+                            await _connection.RequestResourceAsync("PUT", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/metadata/version:{packageVersion}{queryParameters.ToQueryString()}", 
+                                new ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest
+                                { 
                                     IsPin = pin,
                                     Comment = comment,
-                                }
-                        , cancellationToken);
+                                }, cancellationToken);
+                        }
+                        
                     
                     }
                 
@@ -1460,7 +1950,17 @@ namespace JetBrains.Space.Client
                         /// </list>
                         /// </remarks>
                         public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
-                            => await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions?query={query.ToString()}&mirrorId={mirrorId?.ToString() ?? "null"}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default())}", cancellationToken);
+                        {
+                            var queryParameters = new NameValueCollection();
+                            queryParameters.Append("query", query);
+                            if (mirrorId != null) queryParameters.Append("mirrorId", mirrorId);
+                            if (skip != null) queryParameters.Append("$skip", skip);
+                            if (top != null) queryParameters.Append("$top", top?.ToString());
+                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
+                            
+                            return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions{queryParameters.ToQueryString()}", cancellationToken);
+                        }
+                        
                         
                         /// <summary>
                         /// Gets a list of repository package versions for a given project id.
@@ -1488,7 +1988,13 @@ namespace JetBrains.Space.Client
                         /// </list>
                         /// </remarks>
                         public async Task<PackageVersionDetails> GetPackageVersionDetailsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string packageVersion, Func<Partial<PackageVersionDetails>, Partial<PackageVersionDetails>>? partial = null, CancellationToken cancellationToken = default)
-                            => await _connection.RequestResourceAsync<PackageVersionDetails>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion}?$fields={(partial != null ? partial(new Partial<PackageVersionDetails>()) : Partial<PackageVersionDetails>.Default())}", cancellationToken);
+                        {
+                            var queryParameters = new NameValueCollection();
+                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageVersionDetails>()) : Partial<PackageVersionDetails>.Default()).ToString());
+                            
+                            return await _connection.RequestResourceAsync<PackageVersionDetails>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", cancellationToken);
+                        }
+                        
                     
                         /// <summary>
                         /// Removes a package version in repository for a given project id.
@@ -1502,7 +2008,12 @@ namespace JetBrains.Space.Client
                         /// </list>
                         /// </remarks>
                         public async Task DeletePackageVersionAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string packageVersion, CancellationToken cancellationToken = default)
-                            => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion}", cancellationToken);
+                        {
+                            var queryParameters = new NameValueCollection();
+                            
+                            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", cancellationToken);
+                        }
+                        
                     
                     }
                 
@@ -1523,7 +2034,16 @@ namespace JetBrains.Space.Client
                     /// </remarks>
                     [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages (since 2020-09-01) (marked for removal)")]
                     public async Task<Batch<PackageData>> GetAllPackagesAsync(ProjectIdentifier project, string type, string repositoryName, string query, string? skip = null, int? top = 100, Func<Partial<Batch<PackageData>>, Partial<Batch<PackageData>>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages?query={query.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default())}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("query", query);
+                        if (skip != null) queryParameters.Append("$skip", skip);
+                        if (top != null) queryParameters.Append("$top", top?.ToString());
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                     
                     /// <summary>
                     /// Gets a list of repository packages for a given project id.
@@ -1555,7 +2075,16 @@ namespace JetBrains.Space.Client
                         /// </remarks>
                         [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (marked for removal)")]
                         public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
-                            => await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions?query={query.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default())}", cancellationToken);
+                        {
+                            var queryParameters = new NameValueCollection();
+                            queryParameters.Append("query", query);
+                            if (skip != null) queryParameters.Append("$skip", skip);
+                            if (top != null) queryParameters.Append("$top", top?.ToString());
+                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
+                            
+                            return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions{queryParameters.ToQueryString()}", cancellationToken);
+                        }
+                        
                         
                         /// <summary>
                         /// Gets a list of repository package versions for a given project id.
@@ -1585,7 +2114,13 @@ namespace JetBrains.Space.Client
                         /// </remarks>
                         [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion} (since 2020-09-01) (marked for removal)")]
                         public async Task<PackageVersionDetails> GetPackageVersionDetailsAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string packageVersion, Func<Partial<PackageVersionDetails>, Partial<PackageVersionDetails>>? partial = null, CancellationToken cancellationToken = default)
-                            => await _connection.RequestResourceAsync<PackageVersionDetails>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions/version:{packageVersion}?$fields={(partial != null ? partial(new Partial<PackageVersionDetails>()) : Partial<PackageVersionDetails>.Default())}", cancellationToken);
+                        {
+                            var queryParameters = new NameValueCollection();
+                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageVersionDetails>()) : Partial<PackageVersionDetails>.Default()).ToString());
+                            
+                            return await _connection.RequestResourceAsync<PackageVersionDetails>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", cancellationToken);
+                        }
+                        
                     
                         /// <summary>
                         /// Removes a package version in repository for a given project id.
@@ -1600,7 +2135,12 @@ namespace JetBrains.Space.Client
                         /// </remarks>
                         [Obsolete("Use DELETE /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion} (since 2020-09-01) (marked for removal)")]
                         public async Task DeletePackageVersionAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string packageVersion, CancellationToken cancellationToken = default)
-                            => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions/version:{packageVersion}", cancellationToken);
+                        {
+                            var queryParameters = new NameValueCollection();
+                            
+                            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", cancellationToken);
+                        }
+                        
                     
                     }
                 
@@ -1629,7 +2169,12 @@ namespace JetBrains.Space.Client
                     /// </list>
                     /// </remarks>
                     public async Task<string> GetRepositoryUrlAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/url", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        return await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/url{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -1658,7 +2203,18 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<Batch<PackageVersionData>> FindPackagesInRepositoryAsync(ProjectIdentifier project, string type, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/search?type={type.ToString()}&query={query.ToString()}&mirrorId={mirrorId?.ToString() ?? "null"}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("type", type);
+                    queryParameters.Append("query", query);
+                    if (mirrorId != null) queryParameters.Append("mirrorId", mirrorId);
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/search{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 /// <summary>
                 /// Executes a package search for a given project id.
@@ -1691,7 +2247,13 @@ namespace JetBrains.Space.Client
                 /// Creates a new package repository for a given project id.
                 /// </summary>
                 public async Task<List<PackageType>> GetAllTypesAsync(ProjectIdentifier project, Func<Partial<PackageType>, Partial<PackageType>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<PackageType>>("GET", $"api/http/projects/{project}/packages/types?$fields={(partial != null ? partial(new Partial<PackageType>()) : Partial<PackageType>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageType>()) : Partial<PackageType>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<PackageType>>("GET", $"api/http/projects/{project}/packages/types{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -1720,47 +2282,85 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task<Checklist> CreateChecklistAsync(ProjectIdentifier project, string name, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<ProjectsForProjectPlanningChecklistsPostRequest, Checklist>("POST", $"api/http/projects/{project}/planning/checklists?$fields={(partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default())}", 
-                        new ProjectsForProjectPlanningChecklistsPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<ProjectsForProjectPlanningChecklistsPostRequest, Checklist>("POST", $"api/http/projects/{project}/planning/checklists{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningChecklistsPostRequest
+                        { 
                             Name = name,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 public async Task<Checklist> ImportChecklistAsync(ProjectIdentifier project, string name, string tabIndentedLines, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<ProjectsForProjectPlanningChecklistsImportPostRequest, Checklist>("POST", $"api/http/projects/{project}/planning/checklists/import?$fields={(partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default())}", 
-                        new ProjectsForProjectPlanningChecklistsImportPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<ProjectsForProjectPlanningChecklistsImportPostRequest, Checklist>("POST", $"api/http/projects/{project}/planning/checklists/import{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningChecklistsImportPostRequest
+                        { 
                             Name = name,
                             TabIndentedLines = tabIndentedLines,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 public async Task ImportChecklistLinesAsync(ProjectIdentifier project, string checklistId, string targetParentId, string tabIndentedLines, string? afterItemId = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/checklists/{checklistId}/import", 
-                        new ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/checklists/{checklistId}/import{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest
+                        { 
                             TargetParentId = targetParentId,
                             AfterItemId = afterItemId,
                             TabIndentedLines = tabIndentedLines,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 public async Task<Batch<Checklist>> GetAllChecklistsAsync(ProjectIdentifier project, ChecklistSorting? sorting = null, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<Checklist>>, Partial<Batch<Checklist>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<Checklist>>("GET", $"api/http/projects/{project}/planning/checklists?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={(sorting ?? ChecklistSorting.UPDATED).ToString()}&descending={descending.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<Checklist>>()) : Partial<Batch<Checklist>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    if (query != null) queryParameters.Append("query", query);
+                    queryParameters.Append("sorting", (sorting ?? ChecklistSorting.UPDATED).Value);
+                    queryParameters.Append("descending", descending.ToString("l"));
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Checklist>>()) : Partial<Batch<Checklist>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<Checklist>>("GET", $"api/http/projects/{project}/planning/checklists{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 public IAsyncEnumerable<Checklist> GetAllChecklistsAsyncEnumerable(ProjectIdentifier project, ChecklistSorting? sorting = null, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllChecklistsAsync(project: project, sorting: sorting, descending: descending, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Checklist>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Checklist>.Default())), skip, cancellationToken);
             
                 public async Task UpdateChecklistAsync(ProjectIdentifier project, string checklistId, string name, string? description = null, string? owner = null, string? tag = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/checklists/{checklistId}", 
-                        new ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/checklists/{checklistId}{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest
+                        { 
                             Name = name,
                             Description = description,
                             Owner = owner,
                             Tag = tag,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 public async Task DeleteChecklistAsync(ProjectIdentifier project, string checklistId, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/checklists/{checklistId}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/checklists/{checklistId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 public StarredClient Starred => new StarredClient(_connection);
                 
@@ -1774,7 +2374,13 @@ namespace JetBrains.Space.Client
                     }
                     
                     public async Task<List<Checklist>> GetAllStarredChecklistsAsync(ProjectIdentifier project, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<List<Checklist>>("GET", $"api/http/projects/{project}/planning/checklists/starred?$fields={(partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default())}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<List<Checklist>>("GET", $"api/http/projects/{project}/planning/checklists/starred{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -1790,7 +2396,13 @@ namespace JetBrains.Space.Client
                     }
                     
                     public async Task<List<PlanItemChildren>> GetFullChecklistTreeAsync(ProjectIdentifier project, string checklistId, Func<Partial<PlanItemChildren>, Partial<PlanItemChildren>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<List<PlanItemChildren>>("GET", $"api/http/projects/{project}/planning/checklists/{checklistId}/full-checklist-tree?$fields={(partial != null ? partial(new Partial<PlanItemChildren>()) : Partial<PlanItemChildren>.Default())}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanItemChildren>()) : Partial<PlanItemChildren>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<List<PlanItemChildren>>("GET", $"api/http/projects/{project}/planning/checklists/{checklistId}/full-checklist-tree{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -1817,8 +2429,13 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesPostRequest, Issue>("POST", $"api/http/projects/{project}/planning/issues?$fields={(partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default())}", 
-                        new ProjectsForProjectPlanningIssuesPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesPostRequest, Issue>("POST", $"api/http/projects/{project}/planning/issues{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningIssuesPostRequest
+                        { 
                             Title = title,
                             Description = description,
                             Assignee = assignee,
@@ -1830,8 +2447,9 @@ namespace JetBrains.Space.Client
                             Attachments = (attachments ?? new List<AttachmentIn>()),
                             FromMessage = fromMessage,
                             CustomFields = customFields,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <remarks>
                 /// Required permissions:
@@ -1843,16 +2461,22 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<IssueImportResult> ImportIssuesAsync(ProjectIdentifier project, ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, Func<Partial<IssueImportResult>, Partial<IssueImportResult>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesImportPostRequest, IssueImportResult>("POST", $"api/http/projects/{project}/planning/issues/import?$fields={(partial != null ? partial(new Partial<IssueImportResult>()) : Partial<IssueImportResult>.Default())}", 
-                        new ProjectsForProjectPlanningIssuesImportPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueImportResult>()) : Partial<IssueImportResult>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesImportPostRequest, IssueImportResult>("POST", $"api/http/projects/{project}/planning/issues/import{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningIssuesImportPostRequest
+                        { 
                             Metadata = metadata,
                             Issues = issues,
                             AssigneeMissingPolicy = assigneeMissingPolicy,
                             StatusMissingPolicy = statusMissingPolicy,
                             OnExistsPolicy = onExistsPolicy,
                             IsDryRun = dryRun,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <remarks>
                 /// Required permissions:
@@ -1864,11 +2488,16 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task ToggleIssueResolvedAsync(ProjectIdentifier project, string issueId, bool resolved, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/toggle-resolved", 
-                        new ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/toggle-resolved{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest
+                        { 
                             IsResolved = resolved,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <remarks>
                 /// Required permissions:
@@ -1880,7 +2509,25 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<Batch<Issue>> GetAllIssuesAsync(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/{project}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId.JoinToString("assigneeId", it => it?.ToString())}&createdByProfileId={createdByProfileId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString("l")}&tags={tags?.JoinToString("tags", it => it.ToString()) ?? "null"}&customFields={customFields?.JoinToString("customFields", it => it.ToString()) ?? "null"}&importTransaction={importTransaction?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("assigneeId", assigneeId.Select(it => it?.ToString()));
+                    if (createdByProfileId != null) queryParameters.Append("createdByProfileId", createdByProfileId?.ToString());
+                    queryParameters.Append("statuses", statuses.Select(it => it));
+                    if (tagId != null) queryParameters.Append("tagId", tagId);
+                    if (query != null) queryParameters.Append("query", query);
+                    queryParameters.Append("sorting", sorting.Value);
+                    queryParameters.Append("descending", descending.ToString("l"));
+                    if (tags != null) queryParameters.Append("tags", tags.Select(it => it));
+                    if (customFields != null) queryParameters.Append("customFields", customFields.Select(it => it));
+                    if (importTransaction != null) queryParameters.Append("importTransaction", importTransaction);
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/{project}/planning/issues{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 /// <remarks>
                 /// Required permissions:
@@ -1904,7 +2551,13 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task<Issue> GetIssueByNumberAsync(ProjectIdentifier project, int number, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Issue>("GET", $"api/http/projects/{project}/planning/issues/number:{number}?$fields={(partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Issue>("GET", $"api/http/projects/{project}/planning/issues/number:{number}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 /// <remarks>
                 /// Required permissions:
@@ -1916,15 +2569,20 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task UpdateIssueAsync(ProjectIdentifier project, string issueId, string title, string status, string? description = null, string? assignee = null, DateTime? dueDate = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/{issueId}", 
-                        new ProjectsForProjectPlanningIssuesForIssueIdPatchRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/{issueId}{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningIssuesForIssueIdPatchRequest
+                        { 
                             Title = title,
                             Description = description,
                             Assignee = assignee,
                             Status = status,
                             DueDate = dueDate,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 /// <remarks>
                 /// Required permissions:
@@ -1936,7 +2594,12 @@ namespace JetBrains.Space.Client
                 /// </list>
                 /// </remarks>
                 public async Task DeleteIssueAsync(ProjectIdentifier project, string issueId, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 public StatusClient Statuses => new StatusClient(_connection);
                 
@@ -1959,7 +2622,13 @@ namespace JetBrains.Space.Client
                     /// </list>
                     /// </remarks>
                     public async Task<List<IssueStatus>> GetAllIssueStatusesAsync(ProjectIdentifier project, Func<Partial<IssueStatus>, Partial<IssueStatus>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<List<IssueStatus>>("GET", $"api/http/projects/{project}/planning/issues/statuses?$fields={(partial != null ? partial(new Partial<IssueStatus>()) : Partial<IssueStatus>.Default())}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueStatus>()) : Partial<IssueStatus>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<List<IssueStatus>>("GET", $"api/http/projects/{project}/planning/issues/statuses{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                     /// <remarks>
                     /// Required permissions:
@@ -1971,11 +2640,16 @@ namespace JetBrains.Space.Client
                     /// </list>
                     /// </remarks>
                     public async Task UpdateStatusAsync(ProjectIdentifier project, List<IssueStatusData> statuses, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/statuses", 
-                            new ProjectsForProjectPlanningIssuesStatusesPatchRequest { 
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/statuses{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectPlanningIssuesStatusesPatchRequest
+                            { 
                                 Statuses = statuses,
-                            }
-                    , cancellationToken);
+                            }, cancellationToken);
+                    }
+                    
                 
                     public DistributionClient Distribution => new DistributionClient(_connection);
                     
@@ -1998,7 +2672,13 @@ namespace JetBrains.Space.Client
                         /// </list>
                         /// </remarks>
                         public async Task<List<IssueStatusWithUsages>> GetIssueStatusDistributionAsync(ProjectIdentifier project, Func<Partial<IssueStatusWithUsages>, Partial<IssueStatusWithUsages>>? partial = null, CancellationToken cancellationToken = default)
-                            => await _connection.RequestResourceAsync<List<IssueStatusWithUsages>>("GET", $"api/http/projects/{project}/planning/issues/statuses/distribution?$fields={(partial != null ? partial(new Partial<IssueStatusWithUsages>()) : Partial<IssueStatusWithUsages>.Default())}", cancellationToken);
+                        {
+                            var queryParameters = new NameValueCollection();
+                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueStatusWithUsages>()) : Partial<IssueStatusWithUsages>.Default()).ToString());
+                            
+                            return await _connection.RequestResourceAsync<List<IssueStatusWithUsages>>("GET", $"api/http/projects/{project}/planning/issues/statuses/distribution{queryParameters.ToQueryString()}", cancellationToken);
+                        }
+                        
                     
                     }
                 
@@ -2025,11 +2705,16 @@ namespace JetBrains.Space.Client
                     /// </list>
                     /// </remarks>
                     public async Task AddAttachmentsAsync(ProjectIdentifier project, string issueId, List<AttachmentIn> attachments, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/attachments", 
-                            new ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest { 
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/attachments{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest
+                            { 
                                 Attachments = attachments,
-                            }
-                    , cancellationToken);
+                            }, cancellationToken);
+                    }
+                    
                 
                     /// <remarks>
                     /// Required permissions:
@@ -2041,7 +2726,13 @@ namespace JetBrains.Space.Client
                     /// </list>
                     /// </remarks>
                     public async Task RemoveAttachmentsAsync(ProjectIdentifier project, string issueId, List<string> identities, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/attachments?identities={identities.JoinToString("identities", it => it.ToString())}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("identities", identities.Select(it => it));
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/attachments{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -2066,7 +2757,12 @@ namespace JetBrains.Space.Client
                     /// </list>
                     /// </remarks>
                     public async Task AddIssueChecklistAsync(ProjectIdentifier project, string issueId, string checklistId, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/checklists/{checklistId}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/checklists/{checklistId}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                     /// <remarks>
                     /// Required permissions:
@@ -2078,7 +2774,12 @@ namespace JetBrains.Space.Client
                     /// </list>
                     /// </remarks>
                     public async Task RemoveIssueChecklistAsync(ProjectIdentifier project, string issueId, string checklistId, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/checklists/{checklistId}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/checklists/{checklistId}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -2103,11 +2804,16 @@ namespace JetBrains.Space.Client
                     /// </list>
                     /// </remarks>
                     public async Task<List<string>> ImportIssueCommentHistoryAsync(ProjectIdentifier project, string issueId, List<MessageForImport> comments, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest, List<string>>("POST", $"api/http/projects/{project}/planning/issues/{issueId}/comments/import", 
-                            new ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest { 
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        return await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest, List<string>>("POST", $"api/http/projects/{project}/planning/issues/{issueId}/comments/import{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest
+                            { 
                                 Comments = comments,
-                            }
-                    , cancellationToken);
+                            }, cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -2132,7 +2838,12 @@ namespace JetBrains.Space.Client
                     /// </list>
                     /// </remarks>
                     public async Task AddIssueTagAsync(ProjectIdentifier project, string issueId, string tagId, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/tags/{tagId}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/tags/{tagId}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                     /// <remarks>
                     /// Required permissions:
@@ -2144,7 +2855,12 @@ namespace JetBrains.Space.Client
                     /// </list>
                     /// </remarks>
                     public async Task RemoveIssueTagAsync(ProjectIdentifier project, string issueId, string tagId, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/tags/{tagId}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/tags/{tagId}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -2162,15 +2878,30 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task<PlanningTag> CreateHierarchicalTagAsync(ProjectIdentifier project, List<string> path, string? parentTagId = null, Func<Partial<PlanningTag>, Partial<PlanningTag>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<ProjectsForProjectPlanningTagsPostRequest, PlanningTag>("POST", $"api/http/projects/{project}/planning/tags?$fields={(partial != null ? partial(new Partial<PlanningTag>()) : Partial<PlanningTag>.Default())}", 
-                        new ProjectsForProjectPlanningTagsPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanningTag>()) : Partial<PlanningTag>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<ProjectsForProjectPlanningTagsPostRequest, PlanningTag>("POST", $"api/http/projects/{project}/planning/tags{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningTagsPostRequest
+                        { 
                             ParentTagId = parentTagId,
                             Path = path,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
                 public async Task<Batch<PlanningTag>> GetAllHierarchicalTagsAsync(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<PlanningTag>>, Partial<Batch<PlanningTag>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<PlanningTag>>("GET", $"api/http/projects/{project}/planning/tags?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PlanningTag>>()) : Partial<Batch<PlanningTag>>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    if (query != null) queryParameters.Append("query", query);
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PlanningTag>>()) : Partial<Batch<PlanningTag>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<PlanningTag>>("GET", $"api/http/projects/{project}/planning/tags{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
                 
                 public IAsyncEnumerable<PlanningTag> GetAllHierarchicalTagsAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<PlanningTag>, Partial<PlanningTag>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllHierarchicalTagsAsync(project: project, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlanningTag>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlanningTag>.Default())), skip, cancellationToken);
@@ -2191,20 +2922,36 @@ namespace JetBrains.Space.Client
             }
             
             public async Task<PRRepositoryInfo> CreateNewRepositoryAsync(ProjectIdentifier project, string repository, string description = "", bool initialize = true, bool defaultSetup = false, string? defaultBranch = null, Func<Partial<PRRepositoryInfo>, Partial<PRRepositoryInfo>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryPostRequest, PRRepositoryInfo>("POST", $"api/http/projects/{project}/repositories/{repository}?$fields={(partial != null ? partial(new Partial<PRRepositoryInfo>()) : Partial<PRRepositoryInfo>.Default())}", 
-                    new ProjectsForProjectRepositoriesForRepositoryPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRRepositoryInfo>()) : Partial<PRRepositoryInfo>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryPostRequest, PRRepositoryInfo>("POST", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectRepositoriesForRepositoryPostRequest
+                    { 
                         Description = description,
                         DefaultBranch = defaultBranch,
                         IsInitialize = initialize,
                         IsDefaultSetup = defaultSetup,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             public async Task GcAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/gc", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/gc{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             public async Task DeleteRepositoryAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/repositories/{repository}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             public CommitSetReviewClient CommitSetReviews => new CommitSetReviewClient(_connection);
             
@@ -2218,12 +2965,18 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task<CommitSetReviewRecord> CreateCommitSetReviewAsync(ProjectIdentifier project, string repository, List<string> revisions, string? title = null, Func<Partial<CommitSetReviewRecord>, Partial<CommitSetReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest, CommitSetReviewRecord>("POST", $"api/http/projects/{project}/repositories/{repository}/commit-set-reviews?$fields={(partial != null ? partial(new Partial<CommitSetReviewRecord>()) : Partial<CommitSetReviewRecord>.Default())}", 
-                        new ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<CommitSetReviewRecord>()) : Partial<CommitSetReviewRecord>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest, CommitSetReviewRecord>("POST", $"api/http/projects/{project}/repositories/{repository}/commit-set-reviews{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest
+                        { 
                             Revisions = revisions,
                             Title = title,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
             }
         
@@ -2239,14 +2992,20 @@ namespace JetBrains.Space.Client
                 }
                 
                 public async Task<MergeRequestRecord> CreateMergeRequestAsync(ProjectIdentifier project, string repository, string sourceBranch, string targetBranch, string title, List<ReviewerParam>? reviewers = null, Func<Partial<MergeRequestRecord>, Partial<MergeRequestRecord>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest, MergeRequestRecord>("POST", $"api/http/projects/{project}/repositories/{repository}/merge-requests?$fields={(partial != null ? partial(new Partial<MergeRequestRecord>()) : Partial<MergeRequestRecord>.Default())}", 
-                        new ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest { 
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<MergeRequestRecord>()) : Partial<MergeRequestRecord>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest, MergeRequestRecord>("POST", $"api/http/projects/{project}/repositories/{repository}/merge-requests{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest
+                        { 
                             SourceBranch = sourceBranch,
                             TargetBranch = targetBranch,
                             Title = title,
                             Reviewers = reviewers,
-                        }
-                , cancellationToken);
+                        }, cancellationToken);
+                }
+                
             
             }
         
@@ -2273,16 +3032,22 @@ namespace JetBrains.Space.Client
                     }
                     
                     public async Task<CodeDiscussionRecord> CreateCodeDiscussionAsync(ProjectIdentifier project, string repository, string revision, string text, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest, CodeDiscussionRecord>("POST", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/code-discussions?$fields={(partial != null ? partial(new Partial<CodeDiscussionRecord>()) : Partial<CodeDiscussionRecord>.Default())}", 
-                            new ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest { 
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeDiscussionRecord>()) : Partial<CodeDiscussionRecord>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest, CodeDiscussionRecord>("POST", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/code-discussions{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest
+                            { 
                                 Text = text,
                                 DiffContext = diffContext,
                                 Filename = filename,
                                 Line = line,
                                 OldLine = oldLine,
                                 IsPending = pending,
-                            }
-                    , cancellationToken);
+                            }, cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -2298,8 +3063,12 @@ namespace JetBrains.Space.Client
                     }
                     
                     public async Task ReportExternalCheckStatusAsync(ProjectIdentifier project, string repository, string revision, CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, long? timestamp = null, string? description = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks", 
-                            new ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest { 
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest
+                            { 
                                 Branch = branch,
                                 Changes = changes,
                                 ExecutionStatus = executionStatus,
@@ -2309,11 +3078,18 @@ namespace JetBrains.Space.Client
                                 TaskId = taskId,
                                 Timestamp = timestamp,
                                 Description = description,
-                            }
-                    , cancellationToken);
+                            }, cancellationToken);
+                    }
+                    
                 
                     public async Task<List<ExternalCheck>> GetExternalChecksForCommitAsync(ProjectIdentifier project, string repository, string revision, Func<Partial<ExternalCheck>, Partial<ExternalCheck>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<List<ExternalCheck>>("GET", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks?$fields={(partial != null ? partial(new Partial<ExternalCheck>()) : Partial<ExternalCheck>.Default())}", cancellationToken);
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ExternalCheck>()) : Partial<ExternalCheck>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<List<ExternalCheck>>("GET", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
                 
                 }
             
@@ -2333,7 +3109,16 @@ namespace JetBrains.Space.Client
             }
             
             public async Task<Batch<GitCommitInfo>> ListCommitsMatchingQueryAsync(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<GitCommitInfo>>, Partial<Batch<GitCommitInfo>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<GitCommitInfo>>("GET", $"api/http/projects/{project}/{repository}/commits?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<GitCommitInfo>>()) : Partial<Batch<GitCommitInfo>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                if (query != null) queryParameters.Append("query", query);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<GitCommitInfo>>()) : Partial<Batch<GitCommitInfo>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<GitCommitInfo>>("GET", $"api/http/projects/{project}/{repository}/commits{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             public IAsyncEnumerable<GitCommitInfo> ListCommitsMatchingQueryAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListCommitsMatchingQueryAsync(project: project, repository: repository, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitCommitInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitCommitInfo>.Default())), skip, cancellationToken);

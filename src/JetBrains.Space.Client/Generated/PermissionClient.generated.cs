@@ -13,11 +13,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Space.Client.Internal;
 using JetBrains.Space.Common;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
@@ -35,16 +36,27 @@ namespace JetBrains.Space.Client
         }
         
         public async Task<bool> CheckPermissionAsync(PrincipalIn principal, string uniqueRightCode, PermissionTarget target, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<PermissionsCheckPermissionPostRequest, bool>("POST", $"api/http/permissions/check-permission", 
-                new PermissionsCheckPermissionPostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            
+            return await _connection.RequestResourceAsync<PermissionsCheckPermissionPostRequest, bool>("POST", $"api/http/permissions/check-permission{queryParameters.ToQueryString()}", 
+                new PermissionsCheckPermissionPostRequest
+                { 
                     Principal = principal,
                     UniqueRightCode = uniqueRightCode,
                     Target = target,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         public async Task<RightsWithHierarchy> GetAllPermissionsAsync(Func<Partial<RightsWithHierarchy>, Partial<RightsWithHierarchy>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<RightsWithHierarchy>("GET", $"api/http/permissions?$fields={(partial != null ? partial(new Partial<RightsWithHierarchy>()) : Partial<RightsWithHierarchy>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<RightsWithHierarchy>()) : Partial<RightsWithHierarchy>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<RightsWithHierarchy>("GET", $"api/http/permissions{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
     }
     

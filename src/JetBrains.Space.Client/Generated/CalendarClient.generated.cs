@@ -13,11 +13,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Space.Client.Internal;
 using JetBrains.Space.Common;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
@@ -49,7 +50,18 @@ namespace JetBrains.Space.Client
             /// Get/search absences. Parameters are applied as 'AND' filters.
             /// </summary>
             public async Task<List<AbsenceEvent>> GetAllAbsenceEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<AbsenceEvent>, Partial<AbsenceEvent>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<AbsenceEvent>>("GET", $"api/http/calendars/absence-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<AbsenceEvent>()) : Partial<AbsenceEvent>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
+                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                if (team != null) queryParameters.Append("team", team);
+                if (location != null) queryParameters.Append("location", location);
+                if (role != null) queryParameters.Append("role", role);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceEvent>()) : Partial<AbsenceEvent>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<AbsenceEvent>>("GET", $"api/http/calendars/absence-events{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -68,7 +80,18 @@ namespace JetBrains.Space.Client
             /// Get/search birthdays. Parameters are applied as 'AND' filters.
             /// </summary>
             public async Task<List<BirthdayEvent>> GetAllBirthdayEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<BirthdayEvent>, Partial<BirthdayEvent>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/calendars/birthday-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
+                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                if (team != null) queryParameters.Append("team", team);
+                if (location != null) queryParameters.Append("location", location);
+                if (role != null) queryParameters.Append("role", role);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/calendars/birthday-events{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             public StarredClient Starred => new StarredClient(_connection);
             
@@ -85,7 +108,15 @@ namespace JetBrains.Space.Client
                 /// Get/search birthdays in a specific time period for starred profiles.
                 /// </summary>
                 public async Task<List<BirthdayEvent>> GetAllStarredBirthdayEventsAsync(DateTime dateFrom, DateTime dateTo, Func<Partial<BirthdayEvent>, Partial<BirthdayEvent>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/calendars/birthday-events/starred?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&$fields={(partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default())}", cancellationToken);
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
+                    queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/calendars/birthday-events/starred{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -106,11 +137,17 @@ namespace JetBrains.Space.Client
             /// Update RSVP / calendar event participation status for a calendar event attached to an article.
             /// </summary>
             public async Task<MeetingRecord> UpdateEventParticipationAsync(string id, EventParticipationStatus newStatus, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<CalendarsEventParticipationsForIdPatchRequest, MeetingRecord>("PATCH", $"api/http/calendars/event-participations/{id}?$fields={(partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default())}", 
-                    new CalendarsEventParticipationsForIdPatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<CalendarsEventParticipationsForIdPatchRequest, MeetingRecord>("PATCH", $"api/http/calendars/event-participations/{id}{queryParameters.ToQueryString()}", 
+                    new CalendarsEventParticipationsForIdPatchRequest
+                    { 
                         NewStatus = newStatus,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
         }
     
@@ -129,13 +166,27 @@ namespace JetBrains.Space.Client
             /// Get calendar events attached to an article in a specific time period.
             /// </summary>
             public async Task<List<MeetingRecord>> GetAllEventsAsync(DateTime dateFrom, DateTime dateTo, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<MeetingRecord>>("GET", $"api/http/calendars/events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&$fields={(partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
+                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<MeetingRecord>>("GET", $"api/http/calendars/events{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get a calendar event attached to an article.
             /// </summary>
             public async Task<MeetingRecord> GetEventAsync(string id, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<MeetingRecord>("GET", $"api/http/calendars/events/{id}?$fields={(partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<MeetingRecord>("GET", $"api/http/calendars/events/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -154,7 +205,19 @@ namespace JetBrains.Space.Client
             /// Get/search holidays. Parameters are applied as 'AND' filters.
             /// </summary>
             public async Task<List<HolidaysEvent>> GetAllHolidaysAsync(DateTime startDate, DateTime endDate, string? team = null, string? location = null, string? role = null, bool? workingDays = null, Func<Partial<HolidaysEvent>, Partial<HolidaysEvent>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<HolidaysEvent>>("GET", $"api/http/calendars/holidays?startDate={startDate.ToString("yyyy-MM-dd")}&endDate={endDate.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&workingDays={workingDays?.ToString("l") ?? "null"}&$fields={(partial != null ? partial(new Partial<HolidaysEvent>()) : Partial<HolidaysEvent>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("startDate", startDate.ToString("yyyy-MM-dd"));
+                queryParameters.Append("endDate", endDate.ToString("yyyy-MM-dd"));
+                if (team != null) queryParameters.Append("team", team);
+                if (location != null) queryParameters.Append("location", location);
+                if (role != null) queryParameters.Append("role", role);
+                if (workingDays != null) queryParameters.Append("workingDays", workingDays?.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<HolidaysEvent>()) : Partial<HolidaysEvent>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<HolidaysEvent>>("GET", $"api/http/calendars/holidays{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -173,8 +236,13 @@ namespace JetBrains.Space.Client
             /// Create a meeting.
             /// </summary>
             public async Task<Meeting> CreateMeetingAsync(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, bool notifyOnExport = true, string? description = null, string? organizer = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<CalendarsMeetingsPostRequest, Meeting>("POST", $"api/http/calendars/meetings?$fields={(partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default())}", 
-                    new CalendarsMeetingsPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<CalendarsMeetingsPostRequest, Meeting>("POST", $"api/http/calendars/meetings{queryParameters.ToQueryString()}", 
+                    new CalendarsMeetingsPostRequest
+                    { 
                         Summary = summary,
                         Description = description,
                         OccurrenceRule = occurrenceRule,
@@ -187,14 +255,35 @@ namespace JetBrains.Space.Client
                         JoiningPreference = (joiningPreference ?? MeetingJoiningPreference.NOBODY),
                         IsNotifyOnExport = notifyOnExport,
                         Organizer = organizer,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Search meetings by name, location, time period and other parameters. Parameters are applied as 'AND' filters while values in lists of locations, profiles and teams have 'OR' semantics.
             /// </summary>
             public async Task<Batch<Meeting>> GetAllMeetingsAsync(string summaryQuery = "", List<string>? locationsQuery = null, List<string>? profiles = null, List<string>? teams = null, bool includePrivate = false, bool includeArchived = false, bool includeMeetingInstances = true, string? skip = null, int? top = 100, DateTime? startingAfter = null, DateTime? endingAfter = null, DateTime? endingBefore = null, DateTime? startingBefore = null, string? organizer = null, Func<Partial<Batch<Meeting>>, Partial<Batch<Meeting>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<Meeting>>("GET", $"api/http/calendars/meetings?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&summaryQuery={summaryQuery.ToString()}&locationsQuery={(locationsQuery ?? new List<string>()).JoinToString("locationsQuery", it => it.ToString())}&startingAfter={startingAfter?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&endingAfter={endingAfter?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&endingBefore={endingBefore?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&startingBefore={startingBefore?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&profiles={(profiles ?? new List<string>()).JoinToString("profiles", it => it.ToString())}&teams={(teams ?? new List<string>()).JoinToString("teams", it => it.ToString())}&organizer={organizer?.ToString() ?? "null"}&includePrivate={includePrivate.ToString("l")}&includeArchived={includeArchived.ToString("l")}&includeMeetingInstances={includeMeetingInstances.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<Meeting>>()) : Partial<Batch<Meeting>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("summaryQuery", summaryQuery);
+                queryParameters.Append("locationsQuery", (locationsQuery ?? new List<string>()).Select(it => it));
+                if (startingAfter != null) queryParameters.Append("startingAfter", startingAfter?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                if (endingAfter != null) queryParameters.Append("endingAfter", endingAfter?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                if (endingBefore != null) queryParameters.Append("endingBefore", endingBefore?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                if (startingBefore != null) queryParameters.Append("startingBefore", startingBefore?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                queryParameters.Append("profiles", (profiles ?? new List<string>()).Select(it => it));
+                queryParameters.Append("teams", (teams ?? new List<string>()).Select(it => it));
+                if (organizer != null) queryParameters.Append("organizer", organizer);
+                queryParameters.Append("includePrivate", includePrivate.ToString("l"));
+                queryParameters.Append("includeArchived", includeArchived.ToString("l"));
+                queryParameters.Append("includeMeetingInstances", includeMeetingInstances.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Meeting>>()) : Partial<Batch<Meeting>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<Meeting>>("GET", $"api/http/calendars/meetings{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             /// <summary>
             /// Search meetings by name, location, time period and other parameters. Parameters are applied as 'AND' filters while values in lists of locations, profiles and teams have 'OR' semantics.
@@ -206,23 +295,52 @@ namespace JetBrains.Space.Client
             /// Search for the next meeting occurrence that starts after the provided time point or after the current time if it is not specified
             /// </summary>
             public async Task<MeetingOccurrenceTime> GetNextMeetingOccurrenceAsync(string meetingId, DateTime? since = null, Func<Partial<MeetingOccurrenceTime>, Partial<MeetingOccurrenceTime>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<MeetingOccurrenceTime>("GET", $"api/http/calendars/meetings/next-occurrence?meetingId={meetingId.ToString()}&since={since?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&$fields={(partial != null ? partial(new Partial<MeetingOccurrenceTime>()) : Partial<MeetingOccurrenceTime>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("meetingId", meetingId);
+                if (since != null) queryParameters.Append("since", since?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingOccurrenceTime>()) : Partial<MeetingOccurrenceTime>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<MeetingOccurrenceTime>("GET", $"api/http/calendars/meetings/next-occurrence{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Search for occurrences of a meeting that start in the provided time interval. Interval limits are inclusive, response is limited by the first 1_000 results by default.
             /// </summary>
             public async Task<List<MeetingOccurrenceTime>> GetMeetingOccurrencesForPeriodAsync(string meetingId, DateTime since, DateTime until, int? limit = null, Func<Partial<MeetingOccurrenceTime>, Partial<MeetingOccurrenceTime>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<MeetingOccurrenceTime>>("GET", $"api/http/calendars/meetings/occurrences?meetingId={meetingId.ToString()}&since={since.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")}&until={until.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")}&limit={limit?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<MeetingOccurrenceTime>()) : Partial<MeetingOccurrenceTime>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("meetingId", meetingId);
+                queryParameters.Append("since", since.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                queryParameters.Append("until", until.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                if (limit != null) queryParameters.Append("limit", limit?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingOccurrenceTime>()) : Partial<MeetingOccurrenceTime>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<MeetingOccurrenceTime>>("GET", $"api/http/calendars/meetings/occurrences{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             public async Task<Meeting> GetMeetingAsync(string id, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Meeting>("GET", $"api/http/calendars/meetings/{id}?$fields={(partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Meeting>("GET", $"api/http/calendars/meetings/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Patch a meeting. Only not-null parameters and not empty diffs will be applied.
             /// </summary>
             public async Task<Meeting> UpdateMeetingAsync(string id, Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification? modificationKind = null, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, DateTime? targetDate = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<CalendarsMeetingsForIdPatchRequest, Meeting>("PATCH", $"api/http/calendars/meetings/{id}?$fields={(partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default())}", 
-                    new CalendarsMeetingsForIdPatchRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<CalendarsMeetingsForIdPatchRequest, Meeting>("PATCH", $"api/http/calendars/meetings/{id}{queryParameters.ToQueryString()}", 
+                    new CalendarsMeetingsForIdPatchRequest
+                    { 
                         Summary = summary,
                         Description = description,
                         OccurrenceRule = occurrenceRule,
@@ -237,11 +355,20 @@ namespace JetBrains.Space.Client
                         Organizer = organizer,
                         TargetDate = targetDate,
                         ModificationKind = (modificationKind ?? RecurrentModification.All),
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             public async Task<Meeting> DeleteMeetingAsync(string id, RecurrentModification? modificationKind = null, DateTime? targetDate = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Meeting>("DELETE", $"api/http/calendars/meetings/{id}?targetDate={targetDate?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&modificationKind={(modificationKind ?? RecurrentModification.All).ToString()}&$fields={(partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (targetDate != null) queryParameters.Append("targetDate", targetDate?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                queryParameters.Append("modificationKind", (modificationKind ?? RecurrentModification.All).Value);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Meeting>("DELETE", $"api/http/calendars/meetings/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -268,7 +395,18 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<List<MembershipEvent>> GetAllMembershipEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<MembershipEvent>, Partial<MembershipEvent>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<MembershipEvent>>("GET", $"api/http/calendars/membership-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<MembershipEvent>()) : Partial<MembershipEvent>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
+                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                if (team != null) queryParameters.Append("team", team);
+                if (location != null) queryParameters.Append("location", location);
+                if (role != null) queryParameters.Append("role", role);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<MembershipEvent>()) : Partial<MembershipEvent>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<MembershipEvent>>("GET", $"api/http/calendars/membership-events{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -287,7 +425,19 @@ namespace JetBrains.Space.Client
             /// Get/search non-working day events. Parameters are applied as 'AND' filters.
             /// </summary>
             public async Task<List<NonWorkingDaysEvent>> GetAllNonWorkingDaysEventsAsync(DateTime dateFrom, DateTime dateTo, string? member = null, string? team = null, string? location = null, string? role = null, Func<Partial<NonWorkingDaysEvent>, Partial<NonWorkingDaysEvent>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<NonWorkingDaysEvent>>("GET", $"api/http/calendars/non-working-days-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&member={member?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<NonWorkingDaysEvent>()) : Partial<NonWorkingDaysEvent>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
+                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                if (member != null) queryParameters.Append("member", member);
+                if (team != null) queryParameters.Append("team", team);
+                if (location != null) queryParameters.Append("location", location);
+                if (role != null) queryParameters.Append("role", role);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<NonWorkingDaysEvent>()) : Partial<NonWorkingDaysEvent>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<NonWorkingDaysEvent>>("GET", $"api/http/calendars/non-working-days-events{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     

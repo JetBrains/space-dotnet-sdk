@@ -13,11 +13,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Space.Client.Internal;
 using JetBrains.Space.Common;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
@@ -43,8 +44,13 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task<ESApp> CreateApplicationAsync(string name, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<ApplicationsPostRequest, ESApp>("POST", $"api/http/applications?$fields={(partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default())}", 
-                new ApplicationsPostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ApplicationsPostRequest, ESApp>("POST", $"api/http/applications{queryParameters.ToQueryString()}", 
+                new ApplicationsPostRequest
+                { 
                     Name = name,
                     ClientId = clientId,
                     ClientSecret = clientSecret,
@@ -54,15 +60,21 @@ namespace JetBrains.Space.Client
                     IsImplicitFlowEnabled = implicitFlowEnabled,
                     ImplicitFlowRedirectURIs = implicitFlowRedirectURIs,
                     EndpointUri = endpointUri,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         public async Task RefreshMenuAsync(string? appId = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("POST", $"api/http/applications/refresh-menu", 
-                new ApplicationsRefreshMenuPostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/refresh-menu{queryParameters.ToQueryString()}", 
+                new ApplicationsRefreshMenuPostRequest
+                { 
                     AppId = appId,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         /// <remarks>
         /// Required permissions:
@@ -73,7 +85,12 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task RestoreApplicationAsync(string id, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("POST", $"api/http/applications/{id}/restore", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{id}/restore{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         /// <remarks>
         /// Required permissions:
@@ -84,7 +101,15 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task<List<ESApp>> GetAllApplicationsAsync(string query, bool withArchived = false, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<List<ESApp>>("GET", $"api/http/applications?query={query.ToString()}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("query", query);
+            queryParameters.Append("withArchived", withArchived.ToString("l"));
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<ESApp>>("GET", $"api/http/applications{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         /// <remarks>
         /// Required permissions:
@@ -95,7 +120,13 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task<ESApp> GetApplicationAsync(string id, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<ESApp>("GET", $"api/http/applications/{id}?$fields={(partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ESApp>("GET", $"api/http/applications/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         /// <remarks>
         /// Required permissions:
@@ -106,7 +137,13 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task<AccessRecord> GetLastClientCredentialsAccessInfoAsync(string id, Func<Partial<AccessRecord>, Partial<AccessRecord>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<AccessRecord>("GET", $"api/http/applications/{id}/last-client-credentials-access?$fields={(partial != null ? partial(new Partial<AccessRecord>()) : Partial<AccessRecord>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<AccessRecord>()) : Partial<AccessRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<AccessRecord>("GET", $"api/http/applications/{id}/last-client-credentials-access{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         /// <remarks>
         /// Required permissions:
@@ -117,8 +154,13 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task<ESApp> UpdateApplicationAsync(string id, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<ApplicationsForIdPatchRequest, ESApp>("PATCH", $"api/http/applications/{id}?$fields={(partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default())}", 
-                new ApplicationsForIdPatchRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ApplicationsForIdPatchRequest, ESApp>("PATCH", $"api/http/applications/{id}{queryParameters.ToQueryString()}", 
+                new ApplicationsForIdPatchRequest
+                { 
                     Name = name,
                     ClientSecret = clientSecret,
                     IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled,
@@ -127,8 +169,9 @@ namespace JetBrains.Space.Client
                     IsImplicitFlowEnabled = implicitFlowEnabled,
                     ImplicitFlowRedirectURIs = implicitFlowRedirectURIs,
                     EndpointUri = endpointUri,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         /// <remarks>
         /// Required permissions:
@@ -139,7 +182,12 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task DeleteApplicationAsync(string id, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{id}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         public ClientSecretClient ClientSecret => new ClientSecretClient(_connection);
         
@@ -161,7 +209,12 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task RegenerateAsync(string id, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("POST", $"api/http/applications/{id}/client-secret/regenerate", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{id}/client-secret/regenerate{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <remarks>
             /// Required permissions:
@@ -172,7 +225,12 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<string> GetClientSecretAsync(string id, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{id}/client-secret", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{id}/client-secret{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -196,7 +254,12 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task RegenerateAsync(string id, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("POST", $"api/http/applications/{id}/signing-key/regenerate", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{id}/signing-key/regenerate{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <remarks>
             /// Required permissions:
@@ -207,7 +270,12 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<string> GetSigningKeyAsync(string id, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{id}/signing-key", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{id}/signing-key{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -231,12 +299,17 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task AddSshKeyAsync(string id, string publicKey, string comment, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("POST", $"api/http/applications/{id}/ssh-keys", 
-                    new ApplicationsForIdSshKeysPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{id}/ssh-keys{queryParameters.ToQueryString()}", 
+                    new ApplicationsForIdSshKeysPostRequest
+                    { 
                         PublicKey = publicKey,
                         Comment = comment,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <remarks>
             /// Required permissions:
@@ -247,7 +320,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<List<ESSshKey>> GetSshKeyAsync(string id, Func<Partial<ESSshKey>, Partial<ESSshKey>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<ESSshKey>>("GET", $"api/http/applications/{id}/ssh-keys?$fields={(partial != null ? partial(new Partial<ESSshKey>()) : Partial<ESSshKey>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESSshKey>()) : Partial<ESSshKey>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<ESSshKey>>("GET", $"api/http/applications/{id}/ssh-keys{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <remarks>
             /// Required permissions:
@@ -258,7 +337,12 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task DeleteSshKeyAsync(string id, string fingerprint, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{id}/ssh-keys/{fingerprint}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{id}/ssh-keys/{fingerprint}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -282,7 +366,12 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task RegenerateAsync(string id, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("POST", $"api/http/applications/{id}/verification-token/regenerate", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{id}/verification-token/regenerate{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <remarks>
             /// Required permissions:
@@ -293,7 +382,12 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<string> GetVerificationTokenAsync(string id, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{id}/verification-token", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{id}/verification-token{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     

@@ -13,11 +13,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Space.Client.Internal;
 using JetBrains.Space.Common;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
@@ -46,14 +47,20 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task<ESAuthModule> CreateAuthModuleAsync(string key, string name, bool enabled, ESAuthModuleSettings settings, Func<Partial<ESAuthModule>, Partial<ESAuthModule>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<AuthModulesPostRequest, ESAuthModule>("POST", $"api/http/auth-modules?$fields={(partial != null ? partial(new Partial<ESAuthModule>()) : Partial<ESAuthModule>.Default())}", 
-                new AuthModulesPostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESAuthModule>()) : Partial<ESAuthModule>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<AuthModulesPostRequest, ESAuthModule>("POST", $"api/http/auth-modules{queryParameters.ToQueryString()}", 
+                new AuthModulesPostRequest
+                { 
                     Key = key,
                     Name = name,
                     IsEnabled = enabled,
                     Settings = settings,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         /// <summary>
         /// Define the order of authentication modules. This affects the order of the federated authentication module buttons on the sign-in page.
@@ -67,41 +74,72 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task ReorderAsync(List<string> order, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/reorder", 
-                new AuthModulesReorderPostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/reorder{queryParameters.ToQueryString()}", 
+                new AuthModulesReorderPostRequest
+                { 
                     Order = order,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         public async Task<SamlMetadataResponse> SamlMetadataAsync(string id, string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, SSLKeystore? sslKeystore = null, string? contactProfileId = null, Func<Partial<SamlMetadataResponse>, Partial<SamlMetadataResponse>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<AuthModulesForIdSamlMetadataPostRequest, SamlMetadataResponse>("POST", $"api/http/auth-modules/{id}/saml-metadata?$fields={(partial != null ? partial(new Partial<SamlMetadataResponse>()) : Partial<SamlMetadataResponse>.Default())}", 
-                new AuthModulesForIdSamlMetadataPostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<SamlMetadataResponse>()) : Partial<SamlMetadataResponse>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<AuthModulesForIdSamlMetadataPostRequest, SamlMetadataResponse>("POST", $"api/http/auth-modules/{id}/saml-metadata{queryParameters.ToQueryString()}", 
+                new AuthModulesForIdSamlMetadataPostRequest
+                { 
                     IdpUrl = idpUrl,
                     IdpEntityId = idpEntityId,
                     IdpCertificateSHA256 = idpCertificateSHA256,
                     SpEntityId = spEntityId,
                     SslKeystore = sslKeystore,
                     ContactProfileId = contactProfileId,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         /// <summary>
         /// Get all authentication modules.
         /// </summary>
         public async Task<List<ESAuthModule>> GetAllAuthModulesAsync(bool withDisabled = false, Func<Partial<ESAuthModule>, Partial<ESAuthModule>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<List<ESAuthModule>>("GET", $"api/http/auth-modules?withDisabled={withDisabled.ToString("l")}&$fields={(partial != null ? partial(new Partial<ESAuthModule>()) : Partial<ESAuthModule>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("withDisabled", withDisabled.ToString("l"));
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESAuthModule>()) : Partial<ESAuthModule>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<ESAuthModule>>("GET", $"api/http/auth-modules{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         /// <summary>
         /// Automatically discovers the endpoints for the OpenID Connect provider via discovery document
         /// </summary>
         public async Task<OIDCDiscovery> DiscoverOidcAsync(string discoveryEndpoint, Func<Partial<OIDCDiscovery>, Partial<OIDCDiscovery>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<OIDCDiscovery>("GET", $"api/http/auth-modules/discover-oidc?discoveryEndpoint={discoveryEndpoint.ToString()}&$fields={(partial != null ? partial(new Partial<OIDCDiscovery>()) : Partial<OIDCDiscovery>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("discoveryEndpoint", discoveryEndpoint);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<OIDCDiscovery>()) : Partial<OIDCDiscovery>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<OIDCDiscovery>("GET", $"api/http/auth-modules/discover-oidc{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         /// <summary>
         /// Get an existing authentication module.
         /// </summary>
         public async Task<ESAuthModule> GetAuthModuleByKeyAsync(string key, Func<Partial<ESAuthModule>, Partial<ESAuthModule>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<ESAuthModule>("GET", $"api/http/auth-modules/key:{key}?$fields={(partial != null ? partial(new Partial<ESAuthModule>()) : Partial<ESAuthModule>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESAuthModule>()) : Partial<ESAuthModule>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ESAuthModule>("GET", $"api/http/auth-modules/key:{key}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         /// <summary>
         /// Update an existing authentication module. Optional parameters will be ignored when not specified, and updated otherwise.
@@ -115,14 +153,19 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task UpdateAuthModuleAsync(string id, string? key = null, string? name = null, bool? enabled = null, ESAuthModuleSettings? settings = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("PATCH", $"api/http/auth-modules/{id}", 
-                new AuthModulesForIdPatchRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/auth-modules/{id}{queryParameters.ToQueryString()}", 
+                new AuthModulesForIdPatchRequest
+                { 
                     Key = key,
                     Name = name,
                     IsEnabled = enabled,
                     Settings = settings,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         /// <summary>
         /// Delete an existing authentication module.
@@ -136,7 +179,12 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task DeleteAuthModuleAsync(string id, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         public TestClient Test => new TestClient(_connection);
         
@@ -153,25 +201,37 @@ namespace JetBrains.Space.Client
             /// For a username/password combination, test built-in authentication with updated settings.
             /// </summary>
             public async Task<TDMemberProfile> TestBuiltinSettingsAsync(ESBuiltinAuthModuleSettings settings, string username, string password, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<AuthModulesTestBuiltInPostRequest, TDMemberProfile>("POST", $"api/http/auth-modules/test/built-in?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", 
-                    new AuthModulesTestBuiltInPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<AuthModulesTestBuiltInPostRequest, TDMemberProfile>("POST", $"api/http/auth-modules/test/built-in{queryParameters.ToQueryString()}", 
+                    new AuthModulesTestBuiltInPostRequest
+                    { 
                         Settings = settings,
                         Username = username,
                         Password = password,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// For a username/password combination, test LDAP authentication with updated settings.
             /// </summary>
             public async Task<ESDefaultProfileLoginDetails> TestLdapSettingsAsync(ESLdapAuthModuleSettings settings, string username, string password, Func<Partial<ESDefaultProfileLoginDetails>, Partial<ESDefaultProfileLoginDetails>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<AuthModulesTestLdapPostRequest, ESDefaultProfileLoginDetails>("POST", $"api/http/auth-modules/test/ldap?$fields={(partial != null ? partial(new Partial<ESDefaultProfileLoginDetails>()) : Partial<ESDefaultProfileLoginDetails>.Default())}", 
-                    new AuthModulesTestLdapPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESDefaultProfileLoginDetails>()) : Partial<ESDefaultProfileLoginDetails>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<AuthModulesTestLdapPostRequest, ESDefaultProfileLoginDetails>("POST", $"api/http/auth-modules/test/ldap{queryParameters.ToQueryString()}", 
+                    new AuthModulesTestLdapPostRequest
+                    { 
                         Settings = settings,
                         Username = username,
                         Password = password,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
         }
     
@@ -190,7 +250,16 @@ namespace JetBrains.Space.Client
             /// Returns logins that are currently subjected to rate limits when logging in to Space.
             /// </summary>
             public async Task<Batch<ThrottledLogin>> GetThrottledLoginsAsync(string? skip = null, int? top = 100, string? login = null, Func<Partial<Batch<ThrottledLogin>>, Partial<Batch<ThrottledLogin>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<ThrottledLogin>>("GET", $"api/http/auth-modules/throttled-logins?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&login={login?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<ThrottledLogin>>()) : Partial<Batch<ThrottledLogin>>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                if (login != null) queryParameters.Append("login", login);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ThrottledLogin>>()) : Partial<Batch<ThrottledLogin>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<ThrottledLogin>>("GET", $"api/http/auth-modules/throttled-logins{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
             
             /// <summary>
             /// Returns logins that are currently subjected to rate limits when logging in to Space.
@@ -202,7 +271,12 @@ namespace JetBrains.Space.Client
             /// Resets the counter that tracks failed login attempts for the account with the specified ID. The member who uses this account is no longer blocked from attempting to log in to Space.
             /// </summary>
             public async Task ResetThrottlingStatusAsync(string id, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/auth-modules/throttled-logins/{id}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/auth-modules/throttled-logins/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -229,7 +303,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<List<AuthModuleUsage>> GetAllUsagesAsync(Func<Partial<AuthModuleUsage>, Partial<AuthModuleUsage>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<AuthModuleUsage>>("GET", $"api/http/auth-modules/usages?$fields={(partial != null ? partial(new Partial<AuthModuleUsage>()) : Partial<AuthModuleUsage>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<AuthModuleUsage>()) : Partial<AuthModuleUsage>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<AuthModuleUsage>>("GET", $"api/http/auth-modules/usages{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
@@ -248,24 +328,39 @@ namespace JetBrains.Space.Client
             /// Change password for a given authentication module (id) and profile (identifier).
             /// </summary>
             public async Task ChangeAsync(string id, string identifier, string oldPassword, string newPassword, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/change", 
-                    new AuthModulesForIdLoginsForIdentifierChangePostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/change{queryParameters.ToQueryString()}", 
+                    new AuthModulesForIdLoginsForIdentifierChangePostRequest
+                    { 
                         OldPassword = oldPassword,
                         NewPassword = newPassword,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Request a password reset for a given authentication module (id) and profile (identifier).
             /// </summary>
             public async Task ResetAsync(string id, string identifier, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/reset", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/reset{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Detach a profile login from an authentication module. The id parameter refers to the authentication module, the identifier parameter refers to the login.
             /// </summary>
             public async Task DeleteLoginAsync(string identifier, string id, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}/logins/{identifier}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}/logins/{identifier}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     

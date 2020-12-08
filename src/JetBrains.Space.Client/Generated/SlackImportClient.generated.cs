@@ -13,11 +13,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Space.Client.Internal;
 using JetBrains.Space.Common;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
@@ -35,20 +36,37 @@ namespace JetBrains.Space.Client
         }
         
         public async Task ResetAccessTokenAsync(CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("POST", $"api/http/slack-import/reset-token", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/slack-import/reset-token{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         public async Task SetAccessTokenAsync(string token, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("POST", $"api/http/slack-import/set-token", 
-                new SlackImportSetTokenPostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/slack-import/set-token{queryParameters.ToQueryString()}", 
+                new SlackImportSetTokenPostRequest
+                { 
                     Token = token,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         /// <summary>
         /// Redirect URI for Space Slack App authentication method
         /// </summary>
         public async Task SlackOauthRedirectEndpointAsync(string code, string? state = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("GET", $"api/http/slack-import/oauth?code={code.ToString()}&state={state?.ToString() ?? "null"}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("code", code);
+            if (state != null) queryParameters.Append("state", state);
+            
+            await _connection.RequestResourceAsync("GET", $"api/http/slack-import/oauth{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
     }
     

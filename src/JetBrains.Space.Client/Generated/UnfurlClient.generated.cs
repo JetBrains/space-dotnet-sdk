@@ -13,11 +13,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Space.Client.Internal;
 using JetBrains.Space.Common;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
@@ -38,55 +39,88 @@ namespace JetBrains.Space.Client
         /// Block link unfurling.
         /// </summary>
         public async Task BlockUnfurlAsync(string link, bool wholeHost, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/block-unfurl", 
-                new UnfurlsBlockUnfurlPostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/unfurls/block-unfurl{queryParameters.ToQueryString()}", 
+                new UnfurlsBlockUnfurlPostRequest
+                { 
                     Link = link,
                     IsWholeHost = wholeHost,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         /// <summary>
         /// Block link unfurling for organization.
         /// </summary>
         public async Task BlockUnfurlGlobalAsync(string link, bool wholeHost, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/block-unfurl-global", 
-                new UnfurlsBlockUnfurlGlobalPostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/unfurls/block-unfurl-global{queryParameters.ToQueryString()}", 
+                new UnfurlsBlockUnfurlGlobalPostRequest
+                { 
                     Link = link,
                     IsWholeHost = wholeHost,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         public async Task<bool> CheckBlockedAsync(string link, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<UnfurlsCheckBlockedPostRequest, bool>("POST", $"api/http/unfurls/check-blocked", 
-                new UnfurlsCheckBlockedPostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            
+            return await _connection.RequestResourceAsync<UnfurlsCheckBlockedPostRequest, bool>("POST", $"api/http/unfurls/check-blocked{queryParameters.ToQueryString()}", 
+                new UnfurlsCheckBlockedPostRequest
+                { 
                     Link = link,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         /// <summary>
         /// Disable link unfurling.
         /// </summary>
         public async Task UnblockUnfurlAsync(string link, bool wholeHost, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/unblock-unfurl", 
-                new UnfurlsUnblockUnfurlPostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/unfurls/unblock-unfurl{queryParameters.ToQueryString()}", 
+                new UnfurlsUnblockUnfurlPostRequest
+                { 
                     Link = link,
                     IsWholeHost = wholeHost,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         /// <summary>
         /// Disable blocking link unfurling for organization.
         /// </summary>
         public async Task UnblockUnfurlGlobalAsync(string link, bool wholeHost, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/unblock-unfurl-global", 
-                new UnfurlsUnblockUnfurlGlobalPostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/unfurls/unblock-unfurl-global{queryParameters.ToQueryString()}", 
+                new UnfurlsUnblockUnfurlGlobalPostRequest
+                { 
                     Link = link,
                     IsWholeHost = wholeHost,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         public async Task<Batch<UnfurlsBlockListEntry>> ListBlockedAsync(string? skip = null, int? top = 100, Func<Partial<Batch<UnfurlsBlockListEntry>>, Partial<Batch<UnfurlsBlockListEntry>>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<Batch<UnfurlsBlockListEntry>>("GET", $"api/http/unfurls/list-blocked?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<UnfurlsBlockListEntry>>()) : Partial<Batch<UnfurlsBlockListEntry>>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<UnfurlsBlockListEntry>>()) : Partial<Batch<UnfurlsBlockListEntry>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<UnfurlsBlockListEntry>>("GET", $"api/http/unfurls/list-blocked{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
         
         public IAsyncEnumerable<UnfurlsBlockListEntry> ListBlockedAsyncEnumerable(string? skip = null, int? top = 100, Func<Partial<UnfurlsBlockListEntry>, Partial<UnfurlsBlockListEntry>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListBlockedAsync(top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<UnfurlsBlockListEntry>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<UnfurlsBlockListEntry>.Default())), skip, cancellationToken);

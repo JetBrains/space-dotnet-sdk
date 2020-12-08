@@ -13,11 +13,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Space.Client.Internal;
 using JetBrains.Space.Common;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
@@ -46,8 +47,13 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task<AbsenceRecord> CreateAbsenceAsync(string member, string reason, string description, DateTime since, DateTime till, string icon, bool available = false, string? location = null, List<CustomFieldInputValue>? customFieldValues = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<AbsencesPostRequest, AbsenceRecord>("POST", $"api/http/absences?$fields={(partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default())}", 
-                new AbsencesPostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<AbsencesPostRequest, AbsenceRecord>("POST", $"api/http/absences{queryParameters.ToQueryString()}", 
+                new AbsencesPostRequest
+                { 
                     Member = member,
                     Reason = reason,
                     Description = description,
@@ -57,8 +63,9 @@ namespace JetBrains.Space.Client
                     IsAvailable = available,
                     Icon = icon,
                     CustomFieldValues = customFieldValues,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         /// <summary>
         /// Approve/unapprove an existing absence. Setting approve to true will approve the absence, false will remove the approval.
@@ -72,11 +79,16 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task ApproveAbsenceAsync(string id, bool approve, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("POST", $"api/http/absences/{id}/approve", 
-                new AbsencesForIdApprovePostRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/absences/{id}/approve{queryParameters.ToQueryString()}", 
+                new AbsencesForIdApprovePostRequest
+                { 
                     IsApprove = approve,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         /// <summary>
         /// Search absences. Parameters are applied as 'AND' filters.
@@ -90,7 +102,23 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task<Batch<AbsenceRecord>> GetAllAbsencesAsync(AbsenceListMode? viewMode = null, string? skip = null, int? top = 100, string? member = null, List<string>? members = null, string? location = null, string? team = null, DateTime? since = null, DateTime? till = null, string? reason = null, Func<Partial<Batch<AbsenceRecord>>, Partial<Batch<AbsenceRecord>>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<Batch<AbsenceRecord>>("GET", $"api/http/absences?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&member={member?.ToString() ?? "null"}&members={members?.JoinToString("members", it => it.ToString()) ?? "null"}&location={location?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&since={since?.ToString("yyyy-MM-dd") ?? "null"}&till={till?.ToString("yyyy-MM-dd") ?? "null"}&viewMode={(viewMode ?? AbsenceListMode.All).ToString()}&reason={reason?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<AbsenceRecord>>()) : Partial<Batch<AbsenceRecord>>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            if (member != null) queryParameters.Append("member", member);
+            if (members != null) queryParameters.Append("members", members.Select(it => it));
+            if (location != null) queryParameters.Append("location", location);
+            if (team != null) queryParameters.Append("team", team);
+            if (since != null) queryParameters.Append("since", since?.ToString("yyyy-MM-dd"));
+            if (till != null) queryParameters.Append("till", till?.ToString("yyyy-MM-dd"));
+            queryParameters.Append("viewMode", (viewMode ?? AbsenceListMode.All).Value);
+            if (reason != null) queryParameters.Append("reason", reason);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AbsenceRecord>>()) : Partial<Batch<AbsenceRecord>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<AbsenceRecord>>("GET", $"api/http/absences{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
         
         /// <summary>
         /// Search absences. Parameters are applied as 'AND' filters.
@@ -118,7 +146,13 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task<List<AbsenceRecord>> GetAllAbsencesByMemberAsync(string member, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<List<AbsenceRecord>>("GET", $"api/http/absences/member:{member}?$fields={(partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<AbsenceRecord>>("GET", $"api/http/absences/member:{member}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         /// <summary>
         /// Get an absence.
@@ -132,7 +166,13 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task<AbsenceRecord> GetAbsenceAsync(string id, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<AbsenceRecord>("GET", $"api/http/absences/{id}?$fields={(partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default())}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<AbsenceRecord>("GET", $"api/http/absences/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         /// <summary>
         /// Update an existing absence. Optional parameters will be ignored when not specified, and updated otherwise.
@@ -146,8 +186,13 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task<AbsenceRecord> UpdateAbsenceAsync(string id, bool available, string? member = null, string? reason = null, string? description = null, string? location = null, DateTime? since = null, DateTime? till = null, string? icon = null, List<CustomFieldInputValue>? customFieldValues = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<AbsencesForIdPatchRequest, AbsenceRecord>("PATCH", $"api/http/absences/{id}?$fields={(partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default())}", 
-                new AbsencesForIdPatchRequest { 
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<AbsencesForIdPatchRequest, AbsenceRecord>("PATCH", $"api/http/absences/{id}{queryParameters.ToQueryString()}", 
+                new AbsencesForIdPatchRequest
+                { 
                     Member = member,
                     Reason = reason,
                     Description = description,
@@ -157,8 +202,9 @@ namespace JetBrains.Space.Client
                     IsAvailable = available,
                     Icon = icon,
                     CustomFieldValues = customFieldValues,
-                }
-        , cancellationToken);
+                }, cancellationToken);
+        }
+        
     
         /// <summary>
         /// Archive/restore an existing absence. Setting delete to true will archive the absence, false will restore it.
@@ -175,7 +221,13 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task DeleteAbsenceAsync(string id, bool delete = true, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}?delete={delete.ToString("l")}", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("delete", delete.ToString("l"));
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         /// <summary>
         /// Delete approval for a given absence.
@@ -189,7 +241,12 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         public async Task DeleteAbsenceApprovalAsync(string id, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}/delete-approval", cancellationToken);
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}/delete-approval{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         public AbsenceReasonClient AbsenceReasons => new AbsenceReasonClient(_connection);
         
@@ -214,15 +271,21 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<AbsenceReasonRecord> CreateAbsenceReasonAsync(string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<AbsencesAbsenceReasonsPostRequest, AbsenceReasonRecord>("POST", $"api/http/absences/absence-reasons?$fields={(partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default())}", 
-                    new AbsencesAbsenceReasonsPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<AbsencesAbsenceReasonsPostRequest, AbsenceReasonRecord>("POST", $"api/http/absences/absence-reasons{queryParameters.ToQueryString()}", 
+                    new AbsencesAbsenceReasonsPostRequest
+                    { 
                         Name = name,
                         Description = description,
                         IsDefaultAvailability = defaultAvailability,
                         IsApprovalRequired = approvalRequired,
                         Icon = icon,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Update an existing absence reason.
@@ -236,15 +299,21 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<AbsenceReasonRecord> CreateAbsenceReasonAsync(string id, string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<AbsencesAbsenceReasonsForIdPostRequest, AbsenceReasonRecord>("POST", $"api/http/absences/absence-reasons/{id}?$fields={(partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default())}", 
-                    new AbsencesAbsenceReasonsForIdPostRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<AbsencesAbsenceReasonsForIdPostRequest, AbsenceReasonRecord>("POST", $"api/http/absences/absence-reasons/{id}{queryParameters.ToQueryString()}", 
+                    new AbsencesAbsenceReasonsForIdPostRequest
+                    { 
                         Name = name,
                         Description = description,
                         IsDefaultAvailability = defaultAvailability,
                         IsApprovalRequired = approvalRequired,
                         Icon = icon,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get available absence reasons.
@@ -258,7 +327,14 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<List<AbsenceReasonRecord>> GetAllAbsenceReasonsAsync(bool withArchived = false, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<AbsenceReasonRecord>>("GET", $"api/http/absences/absence-reasons?withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("withArchived", withArchived.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<AbsenceReasonRecord>>("GET", $"api/http/absences/absence-reasons{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Get an absence reason.
@@ -272,7 +348,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<AbsenceReasonRecord> GetAbsenceReasonAsync(string id, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<AbsenceReasonRecord>("GET", $"api/http/absences/absence-reasons/{id}?$fields={(partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<AbsenceReasonRecord>("GET", $"api/http/absences/absence-reasons/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <summary>
             /// Archive/restore an existing absence reason. Setting delete to true will archive the absence reason, false will restore it.
@@ -286,7 +368,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task DeleteAbsenceReasonAsync(string id, bool delete = true, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}?delete={delete.ToString("l")}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("delete", delete.ToString("l"));
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     

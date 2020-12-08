@@ -13,11 +13,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Space.Client.Internal;
 using JetBrains.Space.Common;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
@@ -54,7 +55,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<Overdrafts> GetOverdraftsAsync(Func<Partial<Overdrafts>, Partial<Overdrafts>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Overdrafts>("GET", $"api/http/billing-admin/overdrafts?$fields={(partial != null ? partial(new Partial<Overdrafts>()) : Partial<Overdrafts>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Overdrafts>()) : Partial<Overdrafts>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Overdrafts>("GET", $"api/http/billing-admin/overdrafts{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
             /// <remarks>
             /// Required permissions:
@@ -65,13 +72,18 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task SetOverdraftsAsync(int storage, int bandwidth, int ciCredits, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("PUT", $"api/http/billing-admin/overdrafts", 
-                    new BillingAdminOverdraftsPutRequest { 
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PUT", $"api/http/billing-admin/overdrafts{queryParameters.ToQueryString()}", 
+                    new BillingAdminOverdraftsPutRequest
+                    { 
                         Storage = storage,
                         Bandwidth = bandwidth,
                         CiCredits = ciCredits,
-                    }
-            , cancellationToken);
+                    }, cancellationToken);
+            }
+            
         
         }
     
@@ -98,7 +110,13 @@ namespace JetBrains.Space.Client
             /// </list>
             /// </remarks>
             public async Task<BillingReport> GetBillingReportAsync(string billingPeriod, Func<Partial<BillingReport>, Partial<BillingReport>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<BillingReport>("GET", $"api/http/billing-admin/reports/{billingPeriod}?$fields={(partial != null ? partial(new Partial<BillingReport>()) : Partial<BillingReport>.Default())}", cancellationToken);
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<BillingReport>()) : Partial<BillingReport>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<BillingReport>("GET", $"api/http/billing-admin/reports/{billingPeriod}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
         
         }
     
