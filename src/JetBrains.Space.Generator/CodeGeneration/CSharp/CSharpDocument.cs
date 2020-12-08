@@ -37,11 +37,12 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
             builder.AppendLine($"{indent}");
             builder.AppendLine($"{indent}using System;");
             builder.AppendLine($"{indent}using System.Collections.Generic;");
+            builder.AppendLine($"{indent}using System.Collections.Specialized;");
             builder.AppendLine($"{indent}using System.ComponentModel.DataAnnotations;");
+            builder.AppendLine($"{indent}using System.Linq;");
             builder.AppendLine($"{indent}using System.Text.Json.Serialization;");
             builder.AppendLine($"{indent}using System.Threading;");
             builder.AppendLine($"{indent}using System.Threading.Tasks;");
-            builder.AppendLine($"{indent}using JetBrains.Space.Client.Internal;");
             builder.AppendLine($"{indent}using JetBrains.Space.Common;");
             builder.AppendLine($"{indent}using JetBrains.Space.Common.Json.Serialization;");
             builder.AppendLine($"{indent}using JetBrains.Space.Common.Json.Serialization.Polymorphism;");

@@ -169,29 +169,37 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                 builder.Append($"{indent}public async Task {methodNameForEndpoint}Async(");
                 builder.Append(methodParametersBuilder.BuildMethodParametersList());
                 builder.AppendLine(")");
-                indent.Increment();
-                builder.Append($"{indent}=> await _connection.RequestResourceAsync");
-                builder.Append("(\"" + apiCallMethod + "\", ");
-                builder.Append("$\"api/http/" + endpointPath);
+                builder.AppendLine($"{indent}{{");
                 
-                var requestParametersBuilder = new RequestParametersBuilder(_codeGenerationContext)
-                    .WithParametersForEndpoint(apiEndpoint);
+                indent.Increment();
+                
+                // Generate query string
+                var requestParametersBuilder = new QueryStringParameterConversionGenerator("queryParameters", _codeGenerationContext)
+                    .WithQueryStringParametersForEndpoint(apiEndpoint);
                 
                 if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)
                 {
                     var partialType = "Partial<" + apiEndpoint.ResponseBody.GetArrayElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">";
                     
                     requestParametersBuilder = requestParametersBuilder
-                        .WithParameter("$fields", $"{{(partial != null ? partial(new {partialType}()) : {partialType}.Default())}}");
+                        .WithQueryStringParameter("$fields", $"(partial != null ? partial(new {partialType}()) : {partialType}.Default()).ToString()");
                 }
                 
-                builder.Append(requestParametersBuilder.BuildQueryString());
-                builder.Append("\"");
+                builder.AppendLine($"{indent}var {requestParametersBuilder.TargetNameValueCollectionName} = new NameValueCollection();");
+                requestParametersBuilder.WriteTo(builder, indent);
+                builder.AppendLine($"{indent}");
                 
+                // Generate HTTP request
+                builder.Append($"{indent}await _connection.RequestResourceAsync");
+                builder.Append("(\"" + apiCallMethod + "\", ");
+                builder.Append("$\"api/http/" + endpointPath + "{" + requestParametersBuilder.TargetNameValueCollectionName + ".ToQueryString()}");
+                builder.Append("\"");
+
                 if (apiEndpoint.RequestBody != null)
                 {
                     if (FeatureFlags.DoNotExposeRequestObjects)
                     {
+                        // TODO MAARTEN REFACTOR WITH PROPER NEWLINES
                         builder.Append(", " + ConstructNewRequestObject(indent, apiEndpoint, endpointPath));
                     }
                     else
@@ -201,8 +209,9 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                 }
                 
                 builder.Append(", cancellationToken");
-                builder.Append(");");
+                builder.AppendLine(");");
                 indent.Decrement();
+                builder.AppendLine($"{indent}}}");
             }
             else if (apiEndpoint.ResponseBody != null)
             {
@@ -249,9 +258,28 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                 builder.Append($" {methodNameForEndpoint}Async(");
                 builder.Append(methodParametersBuilder.BuildMethodParametersList());
                 builder.AppendLine(")");
+                builder.AppendLine($"{indent}{{");
                 
                 indent.Increment();
-                builder.Append($"{indent}=> await _connection.RequestResourceAsync<");
+                
+                // Generate query string
+                var requestParametersBuilder = new QueryStringParameterConversionGenerator("queryParameters", _codeGenerationContext)
+                    .WithQueryStringParametersForEndpoint(apiEndpoint);
+                
+                if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)
+                {
+                    var partialType = "Partial<" + apiEndpoint.ResponseBody.GetArrayElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">";
+                    
+                    requestParametersBuilder = requestParametersBuilder
+                        .WithQueryStringParameter("$fields", $"(partial != null ? partial(new {partialType}()) : {partialType}.Default()).ToString()");
+                }
+                
+                builder.AppendLine($"{indent}var {requestParametersBuilder.TargetNameValueCollectionName} = new NameValueCollection();");
+                requestParametersBuilder.WriteTo(builder, indent);
+                builder.AppendLine($"{indent}");
+
+                // Generate HTTP request
+                builder.Append($"{indent}return await _connection.RequestResourceAsync<");
                 if (apiEndpoint.RequestBody != null)
                 {
                     builder.Append(apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)!);
@@ -260,20 +288,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                 builder.Append(apiEndpoint.ResponseBody!.ToCSharpType(_codeGenerationContext));
                 builder.Append(">");
                 builder.Append("(\"" + apiCallMethod + "\", ");
-                builder.Append("$\"api/http/" + endpointPath);
-                
-                var requestParametersBuilder = new RequestParametersBuilder(_codeGenerationContext)
-                    .WithParametersForEndpoint(apiEndpoint);
-                
-                if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)
-                {
-                    var partialType = "Partial<" + apiEndpoint.ResponseBody.GetArrayElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">";
-                    
-                    requestParametersBuilder = requestParametersBuilder
-                        .WithParameter("$fields", $"{{(partial != null ? partial(new {partialType}()) : {partialType}.Default())}}");
-                }
-                
-                builder.Append(requestParametersBuilder.BuildQueryString());
+                builder.Append("$\"api/http/" + endpointPath + "{" + requestParametersBuilder.TargetNameValueCollectionName + ".ToQueryString()}");
                 builder.Append("\"");
                 
                 if (apiEndpoint.RequestBody != null)
@@ -289,8 +304,9 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                 }
                 
                 builder.Append(", cancellationToken");
-                builder.Append(");");
+                builder.AppendLine(");");
                 indent.Decrement();
+                builder.AppendLine($"{indent}}}");
             }
             else
             {
@@ -307,7 +323,8 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             builder.AppendLine();
             indent.Increment();
             
-            builder.AppendLine($"{indent}new {apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)!} {{ ");
+            builder.AppendLine($"{indent}new {apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)!}");
+            builder.AppendLine($"{indent}{{ ");
             indent.Increment();
             
             var typeNameForDto = apiEndpoint.ToCSharpRequestBodyClassName(endpointPath);
@@ -324,7 +341,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             }
             
             indent.Decrement();   
-            builder.AppendLine($"{indent}}}");
+            builder.Append($"{indent}}}");
             
             indent.Decrement();   
             return builder.ToString();

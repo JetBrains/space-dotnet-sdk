@@ -2,7 +2,6 @@ using System;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
@@ -42,37 +41,6 @@ namespace JetBrains.Space.Common
         }
 
         /// <summary>
-        /// Clean nullable null query string parameters - Space API requires nullable null values to not be present as part of the URL.
-        /// </summary>
-        /// <param name="urlPath">URL path to clean.</param>
-        /// <returns>A <see cref="T:System.String" /> that does not contain valueless query string parameters.</returns>
-        private static string CleanNullableNullQueryStringParameters(string urlPath)
-        {
-            var pathAndQuery = urlPath.Split('?', StringSplitOptions.RemoveEmptyEntries);
-
-            if (pathAndQuery.Length > 1)
-            {
-                // Strip empty entries
-                var queryStringCollection = HttpUtility.ParseQueryString(pathAndQuery[1]);
-                foreach (var key in queryStringCollection.AllKeys)
-                {
-                    if (queryStringCollection[key] == "null")
-                    {
-                        queryStringCollection.Remove(key);
-                    }
-                    else if (key == "$fields" && string.IsNullOrEmpty(queryStringCollection[key]))
-                    {
-                        queryStringCollection.Remove(key);
-                    }
-                }
-                
-                return pathAndQuery[0].TrimStart('/') + "?" + queryStringCollection;
-            }
-
-            return urlPath;
-        }
-
-        /// <summary>
         /// Requests a resource at a given URL.
         /// </summary>
         /// <param name="httpMethod">The HTTP method to use.</param>
@@ -81,7 +49,7 @@ namespace JetBrains.Space.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task RequestResourceAsync(string httpMethod, string urlPath, CancellationToken cancellationToken = default)
         {
-            await RequestResourceInternalAsync(httpMethod, CleanNullableNullQueryStringParameters(urlPath), cancellationToken);
+            await RequestResourceInternalAsync(httpMethod, urlPath, cancellationToken);
         }
         
         /// <summary>
@@ -94,7 +62,7 @@ namespace JetBrains.Space.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task<TResult> RequestResourceAsync<TResult>(string httpMethod, string urlPath, CancellationToken cancellationToken = default)
         {
-            var value = await RequestResourceInternalAsync<TResult>(httpMethod, CleanNullableNullQueryStringParameters(urlPath), cancellationToken);
+            var value = await RequestResourceInternalAsync<TResult>(httpMethod, urlPath, cancellationToken);
            
             PropagatePropertyAccessPathHelper.SetAccessPathForValue(typeof(TResult).Name, true, value);
             
@@ -111,7 +79,7 @@ namespace JetBrains.Space.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task RequestResourceAsync<TPayload>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken = default)
         {
-            await RequestResourceInternalAsync(httpMethod, CleanNullableNullQueryStringParameters(urlPath), payload, cancellationToken);
+            await RequestResourceInternalAsync(httpMethod, urlPath, payload, cancellationToken);
         }
         
         /// <summary>
@@ -125,7 +93,7 @@ namespace JetBrains.Space.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task<TResult> RequestResourceAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken = default)
         {
-            var value = await RequestResourceInternalAsync<TPayload, TResult>(httpMethod, CleanNullableNullQueryStringParameters(urlPath), payload, cancellationToken);
+            var value = await RequestResourceInternalAsync<TPayload, TResult>(httpMethod, urlPath, payload, cancellationToken);
             
             PropagatePropertyAccessPathHelper.SetAccessPathForValue(typeof(TResult).Name, true, value);
             
