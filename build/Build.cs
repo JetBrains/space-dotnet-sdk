@@ -102,7 +102,6 @@ namespace _build
         Target PushPackagesToPublicSpace => _ => _
             .TriggeredBy(Package)
             .OnlyWhenStatic(() =>
-                (Environment.GetEnvironmentVariable("JB_SPACE_GIT_BRANCH") ?? "").Contains("main", StringComparison.OrdinalIgnoreCase) &&
                 !string.IsNullOrEmpty(NuGetPublicSpaceTargetUrl) &&
                 !string.IsNullOrEmpty(NuGetPublicSpaceTargetApiKey))
             .WhenSkipped(DependencyBehavior.Execute)

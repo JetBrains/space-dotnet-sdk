@@ -1,18 +1,18 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization;
-using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Generator.Model.HttpApi
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class HierarchyRole : Enumeration 
+    [JsonConverter(typeof(EnumStringConverter))]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    public enum HierarchyRole 
     {
-        private HierarchyRole(string value) : base(value) { }
-                
-        public static readonly HierarchyRole SEALED = new HierarchyRole("SEALED");
-        public static readonly HierarchyRole OPEN = new HierarchyRole("OPEN");
-        public static readonly HierarchyRole FINAL = new HierarchyRole("FINAL");
-        public static readonly HierarchyRole ABSTRACT = new HierarchyRole("ABSTRACT");
-        public static readonly HierarchyRole INTERFACE = new HierarchyRole("INTERFACE");
+        [EnumMember(Value = "SEALED")] SEALED,
+        [EnumMember(Value = "OPEN")] OPEN,
+        [EnumMember(Value = "FINAL")] FINAL,
+        [EnumMember(Value = "ABSTRACT")] ABSTRACT,
+        [EnumMember(Value = "INTERFACE")] INTERFACE
     }
 }

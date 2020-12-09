@@ -1,24 +1,24 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization;
-using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Generator.Model.HttpApi
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ApiMethod : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    public enum ApiMethod
     {
-        private ApiMethod(string value) : base(value) { }
-                
-        public static readonly ApiMethod HTTP_GET = new ApiMethod("HTTP_GET");
-        public static readonly ApiMethod HTTP_POST = new ApiMethod("HTTP_POST");
-        public static readonly ApiMethod HTTP_PATCH = new ApiMethod("HTTP_PATCH");
-        public static readonly ApiMethod HTTP_PUT = new ApiMethod("HTTP_PUT");
-        public static readonly ApiMethod HTTP_DELETE = new ApiMethod("HTTP_DELETE");
+        [EnumMember(Value = "HTTP_GET")] HTTP_GET,
+        [EnumMember(Value = "HTTP_POST")] HTTP_POST,
+        [EnumMember(Value = "HTTP_PATCH")] HTTP_PATCH,
+        [EnumMember(Value = "HTTP_PUT")] HTTP_PUT,
+        [EnumMember(Value = "HTTP_DELETE")] HTTP_DELETE,
         
-        public static readonly ApiMethod REST_CREATE = new ApiMethod("REST_CREATE");
-        public static readonly ApiMethod REST_QUERY = new ApiMethod("REST_QUERY");
-        public static readonly ApiMethod REST_GET = new ApiMethod("REST_GET");
-        public static readonly ApiMethod REST_UPDATE = new ApiMethod("REST_UPDATE");
-        public static readonly ApiMethod REST_DELETE = new ApiMethod("REST_DELETE");
+        [EnumMember(Value = "REST_CREATE")] REST_CREATE,
+        [EnumMember(Value = "REST_QUERY")] REST_QUERY,
+        [EnumMember(Value = "REST_GET")] REST_GET,
+        [EnumMember(Value = "REST_UPDATE")] REST_UPDATE,
+        [EnumMember(Value = "REST_DELETE")] REST_DELETE
     }
 }

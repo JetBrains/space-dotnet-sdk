@@ -135,9 +135,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                         : "?.ToString()";
                 
                 case ApiFieldType.Enum _:
-                    return !apiFieldType.Nullable
-                        ? ".Value"
-                        : "?.Value";
+                    return ".ToEnumString()";
                 
                 default:
                     throw new ResourceException("Could not generate query string parameter type conversion for field type: " + apiFieldType.ClassName);

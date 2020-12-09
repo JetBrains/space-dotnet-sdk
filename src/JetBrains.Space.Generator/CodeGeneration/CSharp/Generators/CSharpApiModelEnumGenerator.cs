@@ -18,18 +18,18 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                 builder.AppendLine(apiEnum.Deprecation.ToCSharpDeprecation());
             }
             
-            builder.AppendLine($"{indent}[JsonConverter(typeof(EnumerationConverter))]");
-            builder.AppendLine($"{indent}public sealed class {typeNameForEnum} : Enumeration");
+            builder.AppendLine($"{indent}[JsonConverter(typeof(EnumStringConverter))]");
+            builder.AppendLine($"{indent}public enum {typeNameForEnum}");
             builder.AppendLine($"{indent}{{");
                 
             indent.Increment();
-            builder.AppendLine($"{indent}private {typeNameForEnum}(string value) : base(value) {{ }}");
-            builder.AppendLine($"{indent}");
             
             foreach (var value in apiEnum.Values)
             {
                 var identifierForValue = CSharpIdentifier.ForClassOrNamespace(value);
-                builder.AppendLine($"{indent}public static readonly {typeNameForEnum} {identifierForValue} = new {typeNameForEnum}(\"{value}\");");
+                builder.AppendLine($"{indent}[EnumMember(Value = \"{value}\")]");
+                builder.AppendLine($"{indent}{identifierForValue},");
+                builder.AppendLine($"{indent}");
             }
             
             indent.Decrement();

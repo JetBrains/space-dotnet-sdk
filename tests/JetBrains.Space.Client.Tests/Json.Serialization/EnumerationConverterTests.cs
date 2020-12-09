@@ -65,7 +65,7 @@ namespace JetBrains.Space.Client.Tests.Json.Serialization
             // Arrange
             var target = new EnumerationConverter();
             
-            // Act & 
+            // Act
             Enumeration? result = null;
                 
             var utf8JsonBytes = Encoding.UTF8.GetBytes("\"UNKNOWN_VALUE\"");

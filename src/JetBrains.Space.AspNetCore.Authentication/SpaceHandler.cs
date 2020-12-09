@@ -9,6 +9,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using JetBrains.Space.Common.Types;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.WebUtilities;
@@ -71,8 +72,8 @@ namespace JetBrains.Space.AspNetCore.Authentication
                 { "scope", scope },
                 { "response_type", "code" },
                 { "redirect_uri", redirectUri },
-                { "request_credentials", Options.RequestCredentials.Value },
-                { "access_type", Options.AccessType.Value }
+                { "request_credentials", Options.RequestCredentials.ToEnumString() },
+                { "access_type", Options.AccessType.ToEnumString() }
             };
 
             if (Options.UsePkce)

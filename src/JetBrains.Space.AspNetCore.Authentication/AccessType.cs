@@ -1,4 +1,4 @@
-using JetBrains.Space.Common.Types;
+using System.Runtime.Serialization;
 
 namespace JetBrains.Space.AspNetCore.Authentication
 {
@@ -6,19 +6,19 @@ namespace JetBrains.Space.AspNetCore.Authentication
     /// Indicates whether the application requires access to Space when the user is not online.
     /// If the application requires refreshing access tokens when the user is not online, use the offline value.
     /// </summary>
-    public sealed class AccessType : Enumeration
+    public enum AccessType
     {
-        private AccessType(string value) : base(value) { }
-        
         /// <summary>
         /// Authentication token can be used online.
         /// </summary>
-        public static readonly AccessType Online = new AccessType("online");
+        [EnumMember(Value = "default")]
+        Online,
         
         /// <summary>
         /// Authentication token can be used offline.
         /// In this case, Space issues a refresh token for the application the first time it exchanges an authorization code for a user.
         /// </summary>
-        public static readonly AccessType Offline = new AccessType("offline");
+        [EnumMember(Value = "offline")]
+        Offline
     }
 }
