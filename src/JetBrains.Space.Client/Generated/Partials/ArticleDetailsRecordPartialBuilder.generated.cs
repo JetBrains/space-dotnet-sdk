@@ -46,12 +46,6 @@ namespace JetBrains.Space.Client.ArticleDetailsRecordPartialBuilder
         public static Partial<ArticleDetailsRecord> WithTeam(this Partial<ArticleDetailsRecord> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
             => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
         
-        public static Partial<ArticleDetailsRecord> WithProject(this Partial<ArticleDetailsRecord> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<ArticleDetailsRecord> WithProject(this Partial<ArticleDetailsRecord> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
         public static Partial<ArticleDetailsRecord> WithLocation(this Partial<ArticleDetailsRecord> it)
             => it.AddFieldName("location");
         

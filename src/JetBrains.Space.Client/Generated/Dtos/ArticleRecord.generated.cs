@@ -31,7 +31,7 @@ namespace JetBrains.Space.Client
     {
         public ArticleRecord() { }
         
-        public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, M2ChannelContentRecord channelContent, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, bool? cut = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, TDLocation? location = null, List<TDLocation>? locations = null, PRProject? project = null, TDTeam? team = null, List<TDTeam>? teams = null, int? wordsNumber = null)
+        public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, M2ChannelContentRecord channelContent, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, bool? cut = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, TDLocation? location = null, List<TDLocation>? locations = null, TDTeam? team = null, List<TDTeam>? teams = null, int? wordsNumber = null)
         {
             Id = id;
             IsArchived = archived;
@@ -52,7 +52,6 @@ namespace JetBrains.Space.Client
             Locations = locations;
             Preview = preview;
             PreviewImages = previewImages;
-            Project = project;
             Reactions = reactions;
             Team = team;
             Teams = teams;
@@ -244,15 +243,6 @@ namespace JetBrains.Space.Client
             set => _previewImages.SetValue(value);
         }
     
-        private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(ArticleRecord), nameof(Project));
-        
-        [JsonPropertyName("project")]
-        public PRProject? Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
         private PropertyValue<AllReactionsToItemRecord> _reactions = new PropertyValue<AllReactionsToItemRecord>(nameof(ArticleRecord), nameof(Reactions));
         
         [Required]
@@ -311,7 +301,6 @@ namespace JetBrains.Space.Client
             _locations.SetAccessPath(path, validateHasBeenSet);
             _preview.SetAccessPath(path, validateHasBeenSet);
             _previewImages.SetAccessPath(path, validateHasBeenSet);
-            _project.SetAccessPath(path, validateHasBeenSet);
             _reactions.SetAccessPath(path, validateHasBeenSet);
             _team.SetAccessPath(path, validateHasBeenSet);
             _teams.SetAccessPath(path, validateHasBeenSet);

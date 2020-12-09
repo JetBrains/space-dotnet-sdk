@@ -115,12 +115,6 @@ namespace JetBrains.Space.Client.ArticleRecordPartialBuilder
         public static Partial<ArticleRecord> WithPreviewImages(this Partial<ArticleRecord> it, Func<Partial<ArticleMarkdownImage>, Partial<ArticleMarkdownImage>> partialBuilder)
             => it.AddFieldName("previewImages", partialBuilder(new Partial<ArticleMarkdownImage>(it)));
         
-        public static Partial<ArticleRecord> WithProject(this Partial<ArticleRecord> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<ArticleRecord> WithProject(this Partial<ArticleRecord> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
         public static Partial<ArticleRecord> WithReactions(this Partial<ArticleRecord> it)
             => it.AddFieldName("reactions");
         

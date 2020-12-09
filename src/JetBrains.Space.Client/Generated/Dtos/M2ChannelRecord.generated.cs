@@ -31,7 +31,7 @@ namespace JetBrains.Space.Client
     {
         public M2ChannelRecord() { }
         
-        public M2ChannelRecord(string id, M2ChannelContact contact, int totalMessages, bool archived, M2ChannelRecord channel, MessageInfo? lastMessage = null, List<ChannelParticipant>? participants = null, bool? channelArchived = null, M2ChannelContentInfo? content = null, List<ChannelItemRecord>? messages = null)
+        public M2ChannelRecord(string id, M2ChannelContact contact, int totalMessages, bool archived, MessageInfo? lastMessage = null, List<ChannelParticipant>? participants = null, bool? channelArchived = null, M2ChannelContentInfo? content = null, List<ChannelItemRecord>? pinnedMessages = null)
         {
             Id = id;
             Contact = contact;
@@ -40,9 +40,8 @@ namespace JetBrains.Space.Client
             Participants = participants;
             IsChannelArchived = channelArchived;
             IsArchived = archived;
-            Channel = channel;
             Content = content;
-            Messages = messages;
+            PinnedMessages = pinnedMessages;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2ChannelRecord), nameof(Id));
@@ -112,16 +111,6 @@ namespace JetBrains.Space.Client
             set => _archived.SetValue(value);
         }
     
-        private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(M2ChannelRecord), nameof(Channel));
-        
-        [Required]
-        [JsonPropertyName("channel")]
-        public M2ChannelRecord Channel
-        {
-            get => _channel.GetValue();
-            set => _channel.SetValue(value);
-        }
-    
         private PropertyValue<M2ChannelContentInfo?> _content = new PropertyValue<M2ChannelContentInfo?>(nameof(M2ChannelRecord), nameof(Content));
         
         [JsonPropertyName("content")]
@@ -131,13 +120,13 @@ namespace JetBrains.Space.Client
             set => _content.SetValue(value);
         }
     
-        private PropertyValue<List<ChannelItemRecord>?> _messages = new PropertyValue<List<ChannelItemRecord>?>(nameof(M2ChannelRecord), nameof(Messages));
+        private PropertyValue<List<ChannelItemRecord>?> _pinnedMessages = new PropertyValue<List<ChannelItemRecord>?>(nameof(M2ChannelRecord), nameof(PinnedMessages));
         
-        [JsonPropertyName("messages")]
-        public List<ChannelItemRecord>? Messages
+        [JsonPropertyName("pinnedMessages")]
+        public List<ChannelItemRecord>? PinnedMessages
         {
-            get => _messages.GetValue();
-            set => _messages.SetValue(value);
+            get => _pinnedMessages.GetValue();
+            set => _pinnedMessages.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
@@ -149,9 +138,8 @@ namespace JetBrains.Space.Client
             _participants.SetAccessPath(path, validateHasBeenSet);
             _channelArchived.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
-            _channel.SetAccessPath(path, validateHasBeenSet);
             _content.SetAccessPath(path, validateHasBeenSet);
-            _messages.SetAccessPath(path, validateHasBeenSet);
+            _pinnedMessages.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

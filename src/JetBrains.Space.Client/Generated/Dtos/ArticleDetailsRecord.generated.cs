@@ -31,13 +31,12 @@ namespace JetBrains.Space.Client
     {
         public ArticleDetailsRecord() { }
         
-        public ArticleDetailsRecord(string id, bool archived, MeetingRecord? @event = null, TDTeam? team = null, PRProject? project = null, TDLocation? location = null, List<TDTeam>? teams = null, List<TDLocation>? locations = null, ExternalEntityInfoRecord? externalEntityInfo = null)
+        public ArticleDetailsRecord(string id, bool archived, MeetingRecord? @event = null, TDTeam? team = null, TDLocation? location = null, List<TDTeam>? teams = null, List<TDLocation>? locations = null, ExternalEntityInfoRecord? externalEntityInfo = null)
         {
             Id = id;
             IsArchived = archived;
             Event = @event;
             Team = team;
-            Project = project;
             Location = location;
             Teams = teams;
             Locations = locations;
@@ -82,15 +81,6 @@ namespace JetBrains.Space.Client
             set => _team.SetValue(value);
         }
     
-        private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(ArticleDetailsRecord), nameof(Project));
-        
-        [JsonPropertyName("project")]
-        public PRProject? Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
         private PropertyValue<TDLocation?> _location = new PropertyValue<TDLocation?>(nameof(ArticleDetailsRecord), nameof(Location));
         
         [JsonPropertyName("location")]
@@ -133,7 +123,6 @@ namespace JetBrains.Space.Client
             _archived.SetAccessPath(path, validateHasBeenSet);
             _event.SetAccessPath(path, validateHasBeenSet);
             _team.SetAccessPath(path, validateHasBeenSet);
-            _project.SetAccessPath(path, validateHasBeenSet);
             _location.SetAccessPath(path, validateHasBeenSet);
             _teams.SetAccessPath(path, validateHasBeenSet);
             _locations.SetAccessPath(path, validateHasBeenSet);
