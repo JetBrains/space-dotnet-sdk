@@ -22,13 +22,10 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             var indent = new Indent();
             var builder = new StringBuilder();
             
-            builder.AppendLine($"{indent}[JsonConverter(typeof(EnumerationConverter))]");
-            builder.AppendLine($"{indent}public sealed class MenuId : Enumeration");
+            builder.AppendLine($"{indent}public sealed class MenuId");
             builder.AppendLine($"{indent}{{");
                 
             indent.Increment();
-            builder.AppendLine($"{indent}private MenuId(string value) : base(value) {{ }}");
-            builder.AppendLine($"{indent}");
             
             var tree = BuildTree("", menuIds.OrderBy(it => it.MenuId));
             builder.Append(
@@ -72,7 +69,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                     builder.AppendLine($"{indent}/// Expected webhook payload: <see cref=\"{expectedPayload}\"/>.");
                 }
                 builder.AppendLine($"{indent}/// </summary>");
-                builder.AppendLine($"{indent}public static readonly MenuId {prefix} = new MenuId(\"{node.Prefix}\");");
+                builder.AppendLine($"{indent}public static readonly string {prefix} = \"{node.Prefix}\";");
                 builder.AppendLine($"{indent}");
             }
             else
