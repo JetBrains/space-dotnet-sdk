@@ -38,7 +38,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                 ? "interface"
                 : apiDto.HierarchyRole == HierarchyRole.ABSTRACT
                     ? "abstract class"
-                    : apiDto.HierarchyRole == HierarchyRole.SEALED || apiDto.HierarchyRole == HierarchyRole.FINAL
+                    : apiDto.HierarchyRole == HierarchyRole.FINAL
                         ? "sealed class"
                         : "class";
         
@@ -78,7 +78,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             if (dtoHierarchy.Contains(nameof(IClassNameConvertible)) && apiDto.HierarchyRole != HierarchyRole.INTERFACE)
             {
                 var modifierForClassNameProperty = apiDto.Extends == null
-                    ? apiDto.HierarchyRole != HierarchyRole.SEALED && apiDto.HierarchyRole != HierarchyRole.FINAL
+                    ? apiDto.HierarchyRole != HierarchyRole.FINAL
                         ? "virtual" // Parent
                         : ""
                     : "override";   // Inheritor
@@ -298,7 +298,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                 
             var modifier = apiDto.Extends != null
                 ? "override" 
-                : apiDto.HierarchyRole != HierarchyRole.SEALED && apiDto.HierarchyRole != HierarchyRole.FINAL
+                : apiDto.HierarchyRole != HierarchyRole.FINAL
                     ? "virtual"
                     : string.Empty;
                 
