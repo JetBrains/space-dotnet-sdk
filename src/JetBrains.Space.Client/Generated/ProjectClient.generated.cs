@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -314,8 +315,8 @@ namespace JetBrains.Space.Client
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("jobId", jobId);
                     if (branchFilter != null) queryParameters.Append("branchFilter", branchFilter);
-                    if (statusFilter != null) queryParameters.Append("statusFilter", statusFilter?.Value);
-                    if (jobTriggerFilter != null) queryParameters.Append("jobTriggerFilter", jobTriggerFilter?.Value);
+                    queryParameters.Append("statusFilter", statusFilter.ToEnumString());
+                    queryParameters.Append("jobTriggerFilter", jobTriggerFilter.ToEnumString());
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<JobExecution>>()) : Partial<Batch<JobExecution>>.Default()).ToString());
@@ -391,7 +392,7 @@ namespace JetBrains.Space.Client
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("repoFilter", repoFilter);
                     queryParameters.Append("branchFilter", branchFilter);
-                    if (trigger != null) queryParameters.Append("trigger", trigger?.Value);
+                    queryParameters.Append("trigger", trigger.ToEnumString());
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Job>>()) : Partial<Batch<Job>>.Default()).ToString());
@@ -1433,26 +1434,26 @@ namespace JetBrains.Space.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<CodeReviewWithCount>> GetAllCodeReviewsAsync(ProjectIdentifier project, ReviewSorting? sort = null, string? skip = null, int? top = 100, CodeReviewStateFilter? state = null, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<Batch<CodeReviewWithCount>>, Partial<Batch<CodeReviewWithCount>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<CodeReviewWithCount>> GetAllCodeReviewsAsync(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<Batch<CodeReviewWithCount>>, Partial<Batch<CodeReviewWithCount>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (skip != null) queryParameters.Append("$skip", skip);
                 if (top != null) queryParameters.Append("$top", top?.ToString());
-                if (state != null) queryParameters.Append("state", (state ?? CodeReviewStateFilter.Opened)?.Value);
+                queryParameters.Append("state", state.ToEnumString());
                 if (text != null) queryParameters.Append("text", text);
                 if (author != null) queryParameters.Append("author", author?.ToString());
                 if (from != null) queryParameters.Append("from", from?.ToString("yyyy-MM-dd"));
                 if (to != null) queryParameters.Append("to", to?.ToString("yyyy-MM-dd"));
-                queryParameters.Append("sort", (sort ?? ReviewSorting.CreatedAtAsc).Value);
+                queryParameters.Append("sort", sort.ToEnumString());
                 if (reviewer != null) queryParameters.Append("reviewer", reviewer?.ToString());
-                if (type != null) queryParameters.Append("type", type?.Value);
+                queryParameters.Append("type", type.ToEnumString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CodeReviewWithCount>>()) : Partial<Batch<CodeReviewWithCount>>.Default()).ToString());
                 
                 return await _connection.RequestResourceAsync<Batch<CodeReviewWithCount>>("GET", $"api/http/projects/{project}/code-reviews{queryParameters.ToQueryString()}", cancellationToken);
             }
             
             
-            public IAsyncEnumerable<CodeReviewWithCount> GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier project, ReviewSorting? sort = null, string? skip = null, int? top = 100, CodeReviewStateFilter? state = null, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<CodeReviewWithCount>, Partial<CodeReviewWithCount>>? partial = null, CancellationToken cancellationToken = default)
+            public IAsyncEnumerable<CodeReviewWithCount> GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<CodeReviewWithCount>, Partial<CodeReviewWithCount>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllCodeReviewsAsync(project: project, sort: sort, top: top, state: state, text: text, author: author, from: from, to: to, reviewer: reviewer, type: type, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CodeReviewWithCount>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeReviewWithCount>.Default())), skip, cancellationToken);
         
             public async Task<CodeReviewRecord> GetCodeReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
@@ -1540,7 +1541,7 @@ namespace JetBrains.Space.Client
                 public async Task RemoveReviewParticipantAsync(ProjectIdentifier project, ReviewIdentifier reviewId, ProfileIdentifier user, CodeReviewParticipantRole role, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
-                    queryParameters.Append("role", role.Value);
+                    queryParameters.Append("role", role.ToEnumString());
                     
                     await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/code-reviews/{reviewId}/participants/{user}{queryParameters.ToQueryString()}", cancellationToken);
                 }
@@ -2322,13 +2323,13 @@ namespace JetBrains.Space.Client
                 }
                 
             
-                public async Task<Batch<Checklist>> GetAllChecklistsAsync(ProjectIdentifier project, ChecklistSorting? sorting = null, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<Checklist>>, Partial<Batch<Checklist>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<Checklist>> GetAllChecklistsAsync(ProjectIdentifier project, ChecklistSorting sorting = ChecklistSorting.UPDATED, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<Checklist>>, Partial<Batch<Checklist>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     if (query != null) queryParameters.Append("query", query);
-                    queryParameters.Append("sorting", (sorting ?? ChecklistSorting.UPDATED).Value);
+                    queryParameters.Append("sorting", sorting.ToEnumString());
                     queryParameters.Append("descending", descending.ToString("l"));
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Checklist>>()) : Partial<Batch<Checklist>>.Default()).ToString());
                     
@@ -2336,7 +2337,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 
-                public IAsyncEnumerable<Checklist> GetAllChecklistsAsyncEnumerable(ProjectIdentifier project, ChecklistSorting? sorting = null, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
+                public IAsyncEnumerable<Checklist> GetAllChecklistsAsyncEnumerable(ProjectIdentifier project, ChecklistSorting sorting = ChecklistSorting.UPDATED, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllChecklistsAsync(project: project, sorting: sorting, descending: descending, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Checklist>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Checklist>.Default())), skip, cancellationToken);
             
                 public async Task UpdateChecklistAsync(ProjectIdentifier project, string checklistId, string name, string? description = null, string? owner = null, string? tag = null, CancellationToken cancellationToken = default)
@@ -2518,7 +2519,7 @@ namespace JetBrains.Space.Client
                     queryParameters.Append("statuses", statuses.Select(it => it));
                     if (tagId != null) queryParameters.Append("tagId", tagId);
                     if (query != null) queryParameters.Append("query", query);
-                    queryParameters.Append("sorting", sorting.Value);
+                    queryParameters.Append("sorting", sorting.ToEnumString());
                     queryParameters.Append("descending", descending.ToString("l"));
                     if (tags != null) queryParameters.Append("tags", tags.Select(it => it));
                     if (customFields != null) queryParameters.Append("customFields", customFields.Select(it => it));

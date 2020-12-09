@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,15 +27,21 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class OAuthServiceType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum OAuthServiceType
     {
-        private OAuthServiceType(string value) : base(value) { }
+        [EnumMember(Value = "Server")]
+        Server,
         
-        public static readonly OAuthServiceType Server = new OAuthServiceType("Server");
-        public static readonly OAuthServiceType WebClient = new OAuthServiceType("WebClient");
-        public static readonly OAuthServiceType Mobile = new OAuthServiceType("Mobile");
-        public static readonly OAuthServiceType ServiceAccount = new OAuthServiceType("ServiceAccount");
+        [EnumMember(Value = "WebClient")]
+        WebClient,
+        
+        [EnumMember(Value = "Mobile")]
+        Mobile,
+        
+        [EnumMember(Value = "ServiceAccount")]
+        ServiceAccount,
+        
     }
     
 }

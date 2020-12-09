@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,15 +27,21 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class EventParticipationStatus : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum EventParticipationStatus
     {
-        private EventParticipationStatus(string value) : base(value) { }
+        [EnumMember(Value = "GOING")]
+        GOING,
         
-        public static readonly EventParticipationStatus GOING = new EventParticipationStatus("GOING");
-        public static readonly EventParticipationStatus NOTGOING = new EventParticipationStatus("NOT_GOING");
-        public static readonly EventParticipationStatus NOTSURE = new EventParticipationStatus("NOT_SURE");
-        public static readonly EventParticipationStatus WAITINGFORRESPONSE = new EventParticipationStatus("WAITING_FOR_RESPONSE");
+        [EnumMember(Value = "NOT_GOING")]
+        NOTGOING,
+        
+        [EnumMember(Value = "NOT_SURE")]
+        NOTSURE,
+        
+        [EnumMember(Value = "WAITING_FOR_RESPONSE")]
+        WAITINGFORRESPONSE,
+        
     }
     
 }

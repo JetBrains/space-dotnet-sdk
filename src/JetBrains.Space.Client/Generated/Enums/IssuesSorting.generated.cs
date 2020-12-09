@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,15 +27,21 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class IssuesSorting : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum IssuesSorting
     {
-        private IssuesSorting(string value) : base(value) { }
+        [EnumMember(Value = "UPDATED")]
+        UPDATED,
         
-        public static readonly IssuesSorting UPDATED = new IssuesSorting("UPDATED");
-        public static readonly IssuesSorting CREATED = new IssuesSorting("CREATED");
-        public static readonly IssuesSorting TITLE = new IssuesSorting("TITLE");
-        public static readonly IssuesSorting DUE = new IssuesSorting("DUE");
+        [EnumMember(Value = "CREATED")]
+        CREATED,
+        
+        [EnumMember(Value = "TITLE")]
+        TITLE,
+        
+        [EnumMember(Value = "DUE")]
+        DUE,
+        
     }
     
 }

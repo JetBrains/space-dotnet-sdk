@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class CodeReviewParticipantRole : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum CodeReviewParticipantRole
     {
-        private CodeReviewParticipantRole(string value) : base(value) { }
+        [EnumMember(Value = "Reviewer")]
+        Reviewer,
         
-        public static readonly CodeReviewParticipantRole Reviewer = new CodeReviewParticipantRole("Reviewer");
-        public static readonly CodeReviewParticipantRole Author = new CodeReviewParticipantRole("Author");
-        public static readonly CodeReviewParticipantRole Watcher = new CodeReviewParticipantRole("Watcher");
+        [EnumMember(Value = "Author")]
+        Author,
+        
+        [EnumMember(Value = "Watcher")]
+        Watcher,
+        
     }
     
 }

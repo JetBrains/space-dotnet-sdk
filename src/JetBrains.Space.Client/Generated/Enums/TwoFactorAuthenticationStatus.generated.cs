@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class TwoFactorAuthenticationStatus : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum TwoFactorAuthenticationStatus
     {
-        private TwoFactorAuthenticationStatus(string value) : base(value) { }
+        [EnumMember(Value = "NOT_SETUP")]
+        NOTSETUP,
         
-        public static readonly TwoFactorAuthenticationStatus NOTSETUP = new TwoFactorAuthenticationStatus("NOT_SETUP");
-        public static readonly TwoFactorAuthenticationStatus INACTIVE = new TwoFactorAuthenticationStatus("INACTIVE");
-        public static readonly TwoFactorAuthenticationStatus ACTIVE = new TwoFactorAuthenticationStatus("ACTIVE");
+        [EnumMember(Value = "INACTIVE")]
+        INACTIVE,
+        
+        [EnumMember(Value = "ACTIVE")]
+        ACTIVE,
+        
     }
     
 }

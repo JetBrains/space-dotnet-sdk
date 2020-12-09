@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class CodeReviewState : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum CodeReviewState
     {
-        private CodeReviewState(string value) : base(value) { }
+        [EnumMember(Value = "Opened")]
+        Opened,
         
-        public static readonly CodeReviewState Opened = new CodeReviewState("Opened");
-        public static readonly CodeReviewState Closed = new CodeReviewState("Closed");
-        public static readonly CodeReviewState Deleted = new CodeReviewState("Deleted");
+        [EnumMember(Value = "Closed")]
+        Closed,
+        
+        [EnumMember(Value = "Deleted")]
+        Deleted,
+        
     }
     
 }

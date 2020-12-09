@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class AccessType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum AccessType
     {
-        private AccessType(string value) : base(value) { }
+        [EnumMember(Value = "PUBLIC")]
+        PUBLIC,
         
-        public static readonly AccessType PUBLIC = new AccessType("PUBLIC");
-        public static readonly AccessType CONFIDENTIAL = new AccessType("CONFIDENTIAL");
-        public static readonly AccessType RESTRICTED = new AccessType("RESTRICTED");
+        [EnumMember(Value = "CONFIDENTIAL")]
+        CONFIDENTIAL,
+        
+        [EnumMember(Value = "RESTRICTED")]
+        RESTRICTED,
+        
     }
     
 }

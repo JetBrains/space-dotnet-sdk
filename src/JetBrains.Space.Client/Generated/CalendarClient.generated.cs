@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -235,7 +236,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Create a meeting.
             /// </summary>
-            public async Task<Meeting> CreateMeetingAsync(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, bool notifyOnExport = true, string? description = null, string? organizer = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Meeting> CreateMeetingAsync(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility visibility = MeetingVisibility.EVERYONE, MeetingModificationPreference modificationPreference = MeetingModificationPreference.PARTICIPANTS, MeetingJoiningPreference joiningPreference = MeetingJoiningPreference.NOBODY, bool notifyOnExport = true, string? description = null, string? organizer = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
@@ -250,9 +251,9 @@ namespace JetBrains.Space.Client
                         Profiles = (profiles ?? new List<string>()),
                         ExternalParticipants = (externalParticipants ?? new List<string>()),
                         Teams = (teams ?? new List<string>()),
-                        Visibility = (visibility ?? MeetingVisibility.EVERYONE),
-                        ModificationPreference = (modificationPreference ?? MeetingModificationPreference.PARTICIPANTS),
-                        JoiningPreference = (joiningPreference ?? MeetingJoiningPreference.NOBODY),
+                        Visibility = visibility,
+                        ModificationPreference = modificationPreference,
+                        JoiningPreference = joiningPreference,
                         IsNotifyOnExport = notifyOnExport,
                         Organizer = organizer,
                     }, cancellationToken);
@@ -333,7 +334,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Patch a meeting. Only not-null parameters and not empty diffs will be applied.
             /// </summary>
-            public async Task<Meeting> UpdateMeetingAsync(string id, Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification? modificationKind = null, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, DateTime? targetDate = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Meeting> UpdateMeetingAsync(string id, Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification modificationKind = RecurrentModification.All, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, DateTime? targetDate = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
@@ -354,16 +355,16 @@ namespace JetBrains.Space.Client
                         IsNotifyOnExport = notifyOnExport,
                         Organizer = organizer,
                         TargetDate = targetDate,
-                        ModificationKind = (modificationKind ?? RecurrentModification.All),
+                        ModificationKind = modificationKind,
                     }, cancellationToken);
             }
             
         
-            public async Task<Meeting> DeleteMeetingAsync(string id, RecurrentModification? modificationKind = null, DateTime? targetDate = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Meeting> DeleteMeetingAsync(string id, RecurrentModification modificationKind = RecurrentModification.All, DateTime? targetDate = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (targetDate != null) queryParameters.Append("targetDate", targetDate?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
-                queryParameters.Append("modificationKind", (modificationKind ?? RecurrentModification.All).Value);
+                queryParameters.Append("modificationKind", modificationKind.ToEnumString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
                 
                 return await _connection.RequestResourceAsync<Meeting>("DELETE", $"api/http/calendars/meetings/{id}{queryParameters.ToQueryString()}", cancellationToken);

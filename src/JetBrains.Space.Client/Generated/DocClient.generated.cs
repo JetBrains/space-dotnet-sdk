@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -46,7 +47,7 @@ namespace JetBrains.Space.Client
                 _connection = connection;
             }
             
-            public async Task<DRDraft> CreateDraftAsync(DraftDocumentType? type = null, string? title = null, string? text = null, long? textVersion = null, string? folder = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<DRDraft> CreateDraftAsync(DraftDocumentType type = DraftDocumentType.WYSIWYG, string? title = null, string? text = null, long? textVersion = null, string? folder = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default()).ToString());
@@ -57,7 +58,7 @@ namespace JetBrains.Space.Client
                         Title = title,
                         Text = text,
                         TextVersion = textVersion,
-                        Type = (type ?? DraftDocumentType.WYSIWYG),
+                        Type = type,
                         Folder = folder,
                         PublicationDetails2 = publicationDetails2,
                     }, cancellationToken);

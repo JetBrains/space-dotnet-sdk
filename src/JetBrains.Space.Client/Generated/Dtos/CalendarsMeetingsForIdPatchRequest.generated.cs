@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public CalendarsMeetingsForIdPatchRequest() { }
         
-        public CalendarsMeetingsForIdPatchRequest(Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification? modificationKind = null, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, DateTime? targetDate = null)
+        public CalendarsMeetingsForIdPatchRequest(Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification modificationKind = RecurrentModification.All, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, DateTime? targetDate = null)
         {
             Summary = summary;
             Description = description;
@@ -46,7 +47,7 @@ namespace JetBrains.Space.Client
             IsNotifyOnExport = notifyOnExport;
             Organizer = organizer;
             TargetDate = targetDate;
-            ModificationKind = (modificationKind ?? RecurrentModification.All);
+            ModificationKind = modificationKind;
         }
         
         private PropertyValue<string?> _summary = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Summary));

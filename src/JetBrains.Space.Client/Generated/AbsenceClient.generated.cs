@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -101,7 +102,7 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Batch<AbsenceRecord>> GetAllAbsencesAsync(AbsenceListMode? viewMode = null, string? skip = null, int? top = 100, string? member = null, List<string>? members = null, string? location = null, string? team = null, DateTime? since = null, DateTime? till = null, string? reason = null, Func<Partial<Batch<AbsenceRecord>>, Partial<Batch<AbsenceRecord>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<AbsenceRecord>> GetAllAbsencesAsync(AbsenceListMode viewMode = AbsenceListMode.All, string? skip = null, int? top = 100, string? member = null, List<string>? members = null, string? location = null, string? team = null, DateTime? since = null, DateTime? till = null, string? reason = null, Func<Partial<Batch<AbsenceRecord>>, Partial<Batch<AbsenceRecord>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
@@ -112,7 +113,7 @@ namespace JetBrains.Space.Client
             if (team != null) queryParameters.Append("team", team);
             if (since != null) queryParameters.Append("since", since?.ToString("yyyy-MM-dd"));
             if (till != null) queryParameters.Append("till", till?.ToString("yyyy-MM-dd"));
-            queryParameters.Append("viewMode", (viewMode ?? AbsenceListMode.All).Value);
+            queryParameters.Append("viewMode", viewMode.ToEnumString());
             if (reason != null) queryParameters.Append("reason", reason);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AbsenceRecord>>()) : Partial<Batch<AbsenceRecord>>.Default()).ToString());
             
@@ -131,7 +132,7 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public IAsyncEnumerable<AbsenceRecord> GetAllAbsencesAsyncEnumerable(AbsenceListMode? viewMode = null, string? skip = null, int? top = 100, string? member = null, List<string>? members = null, string? location = null, string? team = null, DateTime? since = null, DateTime? till = null, string? reason = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public IAsyncEnumerable<AbsenceRecord> GetAllAbsencesAsyncEnumerable(AbsenceListMode viewMode = AbsenceListMode.All, string? skip = null, int? top = 100, string? member = null, List<string>? members = null, string? location = null, string? team = null, DateTime? since = null, DateTime? till = null, string? reason = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllAbsencesAsync(viewMode: viewMode, top: top, member: member, members: members, location: location, team: team, since: since, till: till, reason: reason, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AbsenceRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AbsenceRecord>.Default())), skip, cancellationToken);
     
         /// <summary>

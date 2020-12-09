@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,13 +27,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ExtendedTypeScopeType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum ExtendedTypeScopeType
     {
-        private ExtendedTypeScopeType(string value) : base(value) { }
+        [EnumMember(Value = "Org")]
+        Org,
         
-        public static readonly ExtendedTypeScopeType Org = new ExtendedTypeScopeType("Org");
-        public static readonly ExtendedTypeScopeType Container = new ExtendedTypeScopeType("Container");
+        [EnumMember(Value = "Container")]
+        Container,
+        
     }
     
 }

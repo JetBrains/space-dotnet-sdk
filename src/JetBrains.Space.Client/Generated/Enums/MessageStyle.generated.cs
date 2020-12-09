@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,16 +27,24 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class MessageStyle : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum MessageStyle
     {
-        private MessageStyle(string value) : base(value) { }
+        [EnumMember(Value = "PRIMARY")]
+        PRIMARY,
         
-        public static readonly MessageStyle PRIMARY = new MessageStyle("PRIMARY");
-        public static readonly MessageStyle SECONDARY = new MessageStyle("SECONDARY");
-        public static readonly MessageStyle SUCCESS = new MessageStyle("SUCCESS");
-        public static readonly MessageStyle ERROR = new MessageStyle("ERROR");
-        public static readonly MessageStyle WARNING = new MessageStyle("WARNING");
+        [EnumMember(Value = "SECONDARY")]
+        SECONDARY,
+        
+        [EnumMember(Value = "SUCCESS")]
+        SUCCESS,
+        
+        [EnumMember(Value = "ERROR")]
+        ERROR,
+        
+        [EnumMember(Value = "WARNING")]
+        WARNING,
+        
     }
     
 }

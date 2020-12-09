@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,13 +27,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class M2Access : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum M2Access
     {
-        private M2Access(string value) : base(value) { }
+        [EnumMember(Value = "Private")]
+        Private,
         
-        public static readonly M2Access Private = new M2Access("Private");
-        public static readonly M2Access Public = new M2Access("Public");
+        [EnumMember(Value = "Public")]
+        Public,
+        
     }
     
 }

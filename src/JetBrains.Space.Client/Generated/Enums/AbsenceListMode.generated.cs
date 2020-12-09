@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class AbsenceListMode : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum AbsenceListMode
     {
-        private AbsenceListMode(string value) : base(value) { }
+        [EnumMember(Value = "All")]
+        All,
         
-        public static readonly AbsenceListMode All = new AbsenceListMode("All");
-        public static readonly AbsenceListMode WithAccessibleReasonUnapproved = new AbsenceListMode("WithAccessibleReasonUnapproved");
-        public static readonly AbsenceListMode WithAccessibleReasonAll = new AbsenceListMode("WithAccessibleReasonAll");
+        [EnumMember(Value = "WithAccessibleReasonUnapproved")]
+        WithAccessibleReasonUnapproved,
+        
+        [EnumMember(Value = "WithAccessibleReasonAll")]
+        WithAccessibleReasonAll,
+        
     }
     
 }

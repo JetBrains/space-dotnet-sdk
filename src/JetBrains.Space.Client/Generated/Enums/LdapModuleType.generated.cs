@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,13 +27,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class LdapModuleType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum LdapModuleType
     {
-        private LdapModuleType(string value) : base(value) { }
+        [EnumMember(Value = "AD")]
+        AD,
         
-        public static readonly LdapModuleType AD = new LdapModuleType("AD");
-        public static readonly LdapModuleType OPENLDAP = new LdapModuleType("OPEN_LDAP");
+        [EnumMember(Value = "OPEN_LDAP")]
+        OPENLDAP,
+        
     }
     
 }

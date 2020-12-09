@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,15 +27,21 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class NotificationFilter : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum NotificationFilter
     {
-        private NotificationFilter(string value) : base(value) { }
+        [EnumMember(Value = "ALL_MESSAGES")]
+        ALLMESSAGES,
         
-        public static readonly NotificationFilter ALLMESSAGES = new NotificationFilter("ALL_MESSAGES");
-        public static readonly NotificationFilter MENTIONS = new NotificationFilter("MENTIONS");
-        public static readonly NotificationFilter NOTHING = new NotificationFilter("NOTHING");
-        public static readonly NotificationFilter MUTE = new NotificationFilter("MUTE");
+        [EnumMember(Value = "MENTIONS")]
+        MENTIONS,
+        
+        [EnumMember(Value = "NOTHING")]
+        NOTHING,
+        
+        [EnumMember(Value = "MUTE")]
+        MUTE,
+        
     }
     
 }

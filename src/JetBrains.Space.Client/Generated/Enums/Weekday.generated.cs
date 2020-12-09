@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,18 +27,30 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class Weekday : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum Weekday
     {
-        private Weekday(string value) : base(value) { }
+        [EnumMember(Value = "SUNDAY")]
+        SUNDAY,
         
-        public static readonly Weekday SUNDAY = new Weekday("SUNDAY");
-        public static readonly Weekday MONDAY = new Weekday("MONDAY");
-        public static readonly Weekday TUESDAY = new Weekday("TUESDAY");
-        public static readonly Weekday WEDNESDAY = new Weekday("WEDNESDAY");
-        public static readonly Weekday THURSDAY = new Weekday("THURSDAY");
-        public static readonly Weekday FRIDAY = new Weekday("FRIDAY");
-        public static readonly Weekday SATURDAY = new Weekday("SATURDAY");
+        [EnumMember(Value = "MONDAY")]
+        MONDAY,
+        
+        [EnumMember(Value = "TUESDAY")]
+        TUESDAY,
+        
+        [EnumMember(Value = "WEDNESDAY")]
+        WEDNESDAY,
+        
+        [EnumMember(Value = "THURSDAY")]
+        THURSDAY,
+        
+        [EnumMember(Value = "FRIDAY")]
+        FRIDAY,
+        
+        [EnumMember(Value = "SATURDAY")]
+        SATURDAY,
+        
     }
     
 }

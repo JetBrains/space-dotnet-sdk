@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,12 +32,12 @@ namespace JetBrains.Space.Client
     {
         public DocsDraftsPostRequest() { }
         
-        public DocsDraftsPostRequest(DraftDocumentType? type = null, string? title = null, string? text = null, long? textVersion = null, string? folder = null, PublicationDetails? publicationDetails2 = null)
+        public DocsDraftsPostRequest(DraftDocumentType type = DraftDocumentType.WYSIWYG, string? title = null, string? text = null, long? textVersion = null, string? folder = null, PublicationDetails? publicationDetails2 = null)
         {
             Title = title;
             Text = text;
             TextVersion = textVersion;
-            Type = (type ?? DraftDocumentType.WYSIWYG);
+            Type = type;
             Folder = folder;
             PublicationDetails2 = publicationDetails2;
         }

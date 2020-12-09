@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,21 +27,39 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class CommitExecutionStatus : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum CommitExecutionStatus
     {
-        private CommitExecutionStatus(string value) : base(value) { }
+        [EnumMember(Value = "SCHEDULED")]
+        SCHEDULED,
         
-        public static readonly CommitExecutionStatus SCHEDULED = new CommitExecutionStatus("SCHEDULED");
-        public static readonly CommitExecutionStatus PENDING = new CommitExecutionStatus("PENDING");
-        public static readonly CommitExecutionStatus READYTOSTART = new CommitExecutionStatus("READY_TO_START");
-        public static readonly CommitExecutionStatus FAILEDTOSTART = new CommitExecutionStatus("FAILED_TO_START");
-        public static readonly CommitExecutionStatus RUNNING = new CommitExecutionStatus("RUNNING");
-        public static readonly CommitExecutionStatus FAILING = new CommitExecutionStatus("FAILING");
-        public static readonly CommitExecutionStatus SUCCEEDED = new CommitExecutionStatus("SUCCEEDED");
-        public static readonly CommitExecutionStatus TERMINATED = new CommitExecutionStatus("TERMINATED");
-        public static readonly CommitExecutionStatus FAILED = new CommitExecutionStatus("FAILED");
-        public static readonly CommitExecutionStatus HANGING = new CommitExecutionStatus("HANGING");
+        [EnumMember(Value = "PENDING")]
+        PENDING,
+        
+        [EnumMember(Value = "READY_TO_START")]
+        READYTOSTART,
+        
+        [EnumMember(Value = "FAILED_TO_START")]
+        FAILEDTOSTART,
+        
+        [EnumMember(Value = "RUNNING")]
+        RUNNING,
+        
+        [EnumMember(Value = "FAILING")]
+        FAILING,
+        
+        [EnumMember(Value = "SUCCEEDED")]
+        SUCCEEDED,
+        
+        [EnumMember(Value = "TERMINATED")]
+        TERMINATED,
+        
+        [EnumMember(Value = "FAILED")]
+        FAILED,
+        
+        [EnumMember(Value = "HANGING")]
+        HANGING,
+        
     }
     
 }

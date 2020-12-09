@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ReviewRevisionsChangedType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum ReviewRevisionsChangedType
     {
-        private ReviewRevisionsChangedType(string value) : base(value) { }
+        [EnumMember(Value = "Created")]
+        Created,
         
-        public static readonly ReviewRevisionsChangedType Created = new ReviewRevisionsChangedType("Created");
-        public static readonly ReviewRevisionsChangedType Added = new ReviewRevisionsChangedType("Added");
-        public static readonly ReviewRevisionsChangedType Removed = new ReviewRevisionsChangedType("Removed");
+        [EnumMember(Value = "Added")]
+        Added,
+        
+        [EnumMember(Value = "Removed")]
+        Removed,
+        
     }
     
 }

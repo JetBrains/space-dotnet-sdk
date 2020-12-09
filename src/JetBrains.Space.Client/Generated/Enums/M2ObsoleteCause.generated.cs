@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,12 +27,12 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class M2ObsoleteCause : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum M2ObsoleteCause
     {
-        private M2ObsoleteCause(string value) : base(value) { }
+        [EnumMember(Value = "PermissionsDenied")]
+        PermissionsDenied,
         
-        public static readonly M2ObsoleteCause PermissionsDenied = new M2ObsoleteCause("PermissionsDenied");
     }
     
 }

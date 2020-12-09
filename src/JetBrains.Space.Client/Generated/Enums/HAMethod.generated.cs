@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,21 +27,39 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class HAMethod : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum HAMethod
     {
-        private HAMethod(string value) : base(value) { }
+        [EnumMember(Value = "REST_CREATE")]
+        RESTCREATE,
         
-        public static readonly HAMethod RESTCREATE = new HAMethod("REST_CREATE");
-        public static readonly HAMethod RESTQUERY = new HAMethod("REST_QUERY");
-        public static readonly HAMethod RESTGET = new HAMethod("REST_GET");
-        public static readonly HAMethod RESTUPDATE = new HAMethod("REST_UPDATE");
-        public static readonly HAMethod RESTDELETE = new HAMethod("REST_DELETE");
-        public static readonly HAMethod HTTPGET = new HAMethod("HTTP_GET");
-        public static readonly HAMethod HTTPPOST = new HAMethod("HTTP_POST");
-        public static readonly HAMethod HTTPPATCH = new HAMethod("HTTP_PATCH");
-        public static readonly HAMethod HTTPPUT = new HAMethod("HTTP_PUT");
-        public static readonly HAMethod HTTPDELETE = new HAMethod("HTTP_DELETE");
+        [EnumMember(Value = "REST_QUERY")]
+        RESTQUERY,
+        
+        [EnumMember(Value = "REST_GET")]
+        RESTGET,
+        
+        [EnumMember(Value = "REST_UPDATE")]
+        RESTUPDATE,
+        
+        [EnumMember(Value = "REST_DELETE")]
+        RESTDELETE,
+        
+        [EnumMember(Value = "HTTP_GET")]
+        HTTPGET,
+        
+        [EnumMember(Value = "HTTP_POST")]
+        HTTPPOST,
+        
+        [EnumMember(Value = "HTTP_PATCH")]
+        HTTPPATCH,
+        
+        [EnumMember(Value = "HTTP_PUT")]
+        HTTPPUT,
+        
+        [EnumMember(Value = "HTTP_DELETE")]
+        HTTPDELETE,
+        
     }
     
 }

@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -1515,7 +1516,7 @@ namespace JetBrains.Space.Client
                 if (locationId != null) queryParameters.Append("locationId", locationId);
                 if (roleId != null) queryParameters.Append("roleId", roleId);
                 queryParameters.Append("meOnTop", meOnTop.ToString("l"));
-                if (order != null) queryParameters.Append("order", order?.Value);
+                queryParameters.Append("order", order.ToEnumString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
                 
                 return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/team-directory/profiles{queryParameters.ToQueryString()}", cancellationToken);

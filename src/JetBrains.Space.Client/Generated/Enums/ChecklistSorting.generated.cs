@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,13 +27,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ChecklistSorting : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum ChecklistSorting
     {
-        private ChecklistSorting(string value) : base(value) { }
+        [EnumMember(Value = "UPDATED")]
+        UPDATED,
         
-        public static readonly ChecklistSorting UPDATED = new ChecklistSorting("UPDATED");
-        public static readonly ChecklistSorting TITLE = new ChecklistSorting("TITLE");
+        [EnumMember(Value = "TITLE")]
+        TITLE,
+        
     }
     
 }

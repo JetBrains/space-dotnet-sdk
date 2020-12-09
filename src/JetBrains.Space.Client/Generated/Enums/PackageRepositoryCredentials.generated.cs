@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,15 +27,21 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class PackageRepositoryCredentials : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum PackageRepositoryCredentials
     {
-        private PackageRepositoryCredentials(string value) : base(value) { }
+        [EnumMember(Value = "ANONYMOUS")]
+        ANONYMOUS,
         
-        public static readonly PackageRepositoryCredentials ANONYMOUS = new PackageRepositoryCredentials("ANONYMOUS");
-        public static readonly PackageRepositoryCredentials PASSWORD = new PackageRepositoryCredentials("PASSWORD");
-        public static readonly PackageRepositoryCredentials TOKEN = new PackageRepositoryCredentials("TOKEN");
-        public static readonly PackageRepositoryCredentials HEADER = new PackageRepositoryCredentials("HEADER");
+        [EnumMember(Value = "PASSWORD")]
+        PASSWORD,
+        
+        [EnumMember(Value = "TOKEN")]
+        TOKEN,
+        
+        [EnumMember(Value = "HEADER")]
+        HEADER,
+        
     }
     
 }

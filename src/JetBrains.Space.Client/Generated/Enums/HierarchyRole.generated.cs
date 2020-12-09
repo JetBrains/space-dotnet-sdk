@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,16 +27,24 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class HierarchyRole : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum HierarchyRole
     {
-        private HierarchyRole(string value) : base(value) { }
+        [EnumMember(Value = "SEALED")]
+        SEALED,
         
-        public static readonly HierarchyRole SEALED = new HierarchyRole("SEALED");
-        public static readonly HierarchyRole OPEN = new HierarchyRole("OPEN");
-        public static readonly HierarchyRole FINAL = new HierarchyRole("FINAL");
-        public static readonly HierarchyRole ABSTRACT = new HierarchyRole("ABSTRACT");
-        public static readonly HierarchyRole INTERFACE = new HierarchyRole("INTERFACE");
+        [EnumMember(Value = "OPEN")]
+        OPEN,
+        
+        [EnumMember(Value = "FINAL")]
+        FINAL,
+        
+        [EnumMember(Value = "ABSTRACT")]
+        ABSTRACT,
+        
+        [EnumMember(Value = "INTERFACE")]
+        INTERFACE,
+        
     }
     
 }

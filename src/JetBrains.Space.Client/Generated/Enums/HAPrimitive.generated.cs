@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,21 +27,39 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class HAPrimitive : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum HAPrimitive
     {
-        private HAPrimitive(string value) : base(value) { }
+        [EnumMember(Value = "Byte")]
+        Byte,
         
-        public static readonly HAPrimitive Byte = new HAPrimitive("Byte");
-        public static readonly HAPrimitive Short = new HAPrimitive("Short");
-        public static readonly HAPrimitive Int = new HAPrimitive("Int");
-        public static readonly HAPrimitive Long = new HAPrimitive("Long");
-        public static readonly HAPrimitive Float = new HAPrimitive("Float");
-        public static readonly HAPrimitive Double = new HAPrimitive("Double");
-        public static readonly HAPrimitive Boolean = new HAPrimitive("Boolean");
-        public static readonly HAPrimitive String = new HAPrimitive("String");
-        public static readonly HAPrimitive Date = new HAPrimitive("Date");
-        public static readonly HAPrimitive DateTime = new HAPrimitive("DateTime");
+        [EnumMember(Value = "Short")]
+        Short,
+        
+        [EnumMember(Value = "Int")]
+        Int,
+        
+        [EnumMember(Value = "Long")]
+        Long,
+        
+        [EnumMember(Value = "Float")]
+        Float,
+        
+        [EnumMember(Value = "Double")]
+        Double,
+        
+        [EnumMember(Value = "Boolean")]
+        Boolean,
+        
+        [EnumMember(Value = "String")]
+        String,
+        
+        [EnumMember(Value = "Date")]
+        Date,
+        
+        [EnumMember(Value = "DateTime")]
+        DateTime,
+        
     }
     
 }

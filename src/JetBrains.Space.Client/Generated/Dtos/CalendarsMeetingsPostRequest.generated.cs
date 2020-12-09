@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public CalendarsMeetingsPostRequest() { }
         
-        public CalendarsMeetingsPostRequest(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, bool notifyOnExport = true, string? description = null, string? organizer = null)
+        public CalendarsMeetingsPostRequest(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility visibility = MeetingVisibility.EVERYONE, MeetingModificationPreference modificationPreference = MeetingModificationPreference.PARTICIPANTS, MeetingJoiningPreference joiningPreference = MeetingJoiningPreference.NOBODY, bool notifyOnExport = true, string? description = null, string? organizer = null)
         {
             Summary = summary;
             Description = description;
@@ -40,9 +41,9 @@ namespace JetBrains.Space.Client
             Profiles = (profiles ?? new List<string>());
             ExternalParticipants = (externalParticipants ?? new List<string>());
             Teams = (teams ?? new List<string>());
-            Visibility = (visibility ?? MeetingVisibility.EVERYONE);
-            ModificationPreference = (modificationPreference ?? MeetingModificationPreference.PARTICIPANTS);
-            JoiningPreference = (joiningPreference ?? MeetingJoiningPreference.NOBODY);
+            Visibility = visibility;
+            ModificationPreference = modificationPreference;
+            JoiningPreference = joiningPreference;
             IsNotifyOnExport = notifyOnExport;
             Organizer = organizer;
         }

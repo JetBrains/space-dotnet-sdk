@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,17 +27,27 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class JobTriggerType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum JobTriggerType
     {
-        private JobTriggerType(string value) : base(value) { }
+        [EnumMember(Value = "MANUAL")]
+        MANUAL,
         
-        public static readonly JobTriggerType MANUAL = new JobTriggerType("MANUAL");
-        public static readonly JobTriggerType GITPUSH = new JobTriggerType("GIT_PUSH");
-        public static readonly JobTriggerType SCHEDULE = new JobTriggerType("SCHEDULE");
-        public static readonly JobTriggerType GITBRANCHDELETED = new JobTriggerType("GIT_BRANCH_DELETED");
-        public static readonly JobTriggerType CODEREVIEWOPENED = new JobTriggerType("CODE_REVIEW_OPENED");
-        public static readonly JobTriggerType CODEREVIEWCLOSED = new JobTriggerType("CODE_REVIEW_CLOSED");
+        [EnumMember(Value = "GIT_PUSH")]
+        GITPUSH,
+        
+        [EnumMember(Value = "SCHEDULE")]
+        SCHEDULE,
+        
+        [EnumMember(Value = "GIT_BRANCH_DELETED")]
+        GITBRANCHDELETED,
+        
+        [EnumMember(Value = "CODE_REVIEW_OPENED")]
+        CODEREVIEWOPENED,
+        
+        [EnumMember(Value = "CODE_REVIEW_CLOSED")]
+        CODEREVIEWCLOSED,
+        
     }
     
 }

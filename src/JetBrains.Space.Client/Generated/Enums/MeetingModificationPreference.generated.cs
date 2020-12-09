@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class MeetingModificationPreference : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum MeetingModificationPreference
     {
-        private MeetingModificationPreference(string value) : base(value) { }
+        [EnumMember(Value = "ORGANIZER")]
+        ORGANIZER,
         
-        public static readonly MeetingModificationPreference ORGANIZER = new MeetingModificationPreference("ORGANIZER");
-        public static readonly MeetingModificationPreference PARTICIPANTS = new MeetingModificationPreference("PARTICIPANTS");
-        public static readonly MeetingModificationPreference EVERYONE = new MeetingModificationPreference("EVERYONE");
+        [EnumMember(Value = "PARTICIPANTS")]
+        PARTICIPANTS,
+        
+        [EnumMember(Value = "EVERYONE")]
+        EVERYONE,
+        
     }
     
 }

@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class RecurrentModification : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum RecurrentModification
     {
-        private RecurrentModification(string value) : base(value) { }
+        [EnumMember(Value = "Me")]
+        Me,
         
-        public static readonly RecurrentModification Me = new RecurrentModification("Me");
-        public static readonly RecurrentModification SinceMe = new RecurrentModification("SinceMe");
-        public static readonly RecurrentModification All = new RecurrentModification("All");
+        [EnumMember(Value = "SinceMe")]
+        SinceMe,
+        
+        [EnumMember(Value = "All")]
+        All,
+        
     }
     
 }

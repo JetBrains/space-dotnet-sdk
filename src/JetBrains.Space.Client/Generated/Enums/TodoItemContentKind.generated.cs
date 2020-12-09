@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,17 +27,27 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class TodoItemContentKind : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum TodoItemContentKind
     {
-        private TodoItemContentKind(string value) : base(value) { }
+        [EnumMember(Value = "NONE")]
+        NONE,
         
-        public static readonly TodoItemContentKind NONE = new TodoItemContentKind("NONE");
-        public static readonly TodoItemContentKind REGULAR = new TodoItemContentKind("REGULAR");
-        public static readonly TodoItemContentKind MESSAGE = new TodoItemContentKind("MESSAGE");
-        public static readonly TodoItemContentKind ISSUE = new TodoItemContentKind("ISSUE");
-        public static readonly TodoItemContentKind BLOG = new TodoItemContentKind("BLOG");
-        public static readonly TodoItemContentKind DOCUMENT = new TodoItemContentKind("DOCUMENT");
+        [EnumMember(Value = "REGULAR")]
+        REGULAR,
+        
+        [EnumMember(Value = "MESSAGE")]
+        MESSAGE,
+        
+        [EnumMember(Value = "ISSUE")]
+        ISSUE,
+        
+        [EnumMember(Value = "BLOG")]
+        BLOG,
+        
+        [EnumMember(Value = "DOCUMENT")]
+        DOCUMENT,
+        
     }
     
 }

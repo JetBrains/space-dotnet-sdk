@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,16 +27,24 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class UnfurlDateTimeStyle : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum UnfurlDateTimeStyle
     {
-        private UnfurlDateTimeStyle(string value) : base(value) { }
+        [EnumMember(Value = "REGULAR")]
+        REGULAR,
         
-        public static readonly UnfurlDateTimeStyle REGULAR = new UnfurlDateTimeStyle("REGULAR");
-        public static readonly UnfurlDateTimeStyle SECONDARY = new UnfurlDateTimeStyle("SECONDARY");
-        public static readonly UnfurlDateTimeStyle STRIKETHROUGH = new UnfurlDateTimeStyle("STRIKETHROUGH");
-        public static readonly UnfurlDateTimeStyle BOLD = new UnfurlDateTimeStyle("BOLD");
-        public static readonly UnfurlDateTimeStyle CODE = new UnfurlDateTimeStyle("CODE");
+        [EnumMember(Value = "SECONDARY")]
+        SECONDARY,
+        
+        [EnumMember(Value = "STRIKETHROUGH")]
+        STRIKETHROUGH,
+        
+        [EnumMember(Value = "BOLD")]
+        BOLD,
+        
+        [EnumMember(Value = "CODE")]
+        CODE,
+        
     }
     
 }

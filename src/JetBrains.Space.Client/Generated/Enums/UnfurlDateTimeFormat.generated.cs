@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,15 +27,21 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class UnfurlDateTimeFormat : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum UnfurlDateTimeFormat
     {
-        private UnfurlDateTimeFormat(string value) : base(value) { }
+        [EnumMember(Value = "RELATIVE_TO_NOW")]
+        RELATIVETONOW,
         
-        public static readonly UnfurlDateTimeFormat RELATIVETONOW = new UnfurlDateTimeFormat("RELATIVE_TO_NOW");
-        public static readonly UnfurlDateTimeFormat FULL = new UnfurlDateTimeFormat("FULL");
-        public static readonly UnfurlDateTimeFormat TIMEONLY = new UnfurlDateTimeFormat("TIME_ONLY");
-        public static readonly UnfurlDateTimeFormat DATEONLY = new UnfurlDateTimeFormat("DATE_ONLY");
+        [EnumMember(Value = "FULL")]
+        FULL,
+        
+        [EnumMember(Value = "TIME_ONLY")]
+        TIMEONLY,
+        
+        [EnumMember(Value = "DATE_ONLY")]
+        DATEONLY,
+        
     }
     
 }

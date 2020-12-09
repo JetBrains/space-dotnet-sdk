@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,13 +27,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class BusyStatus : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum BusyStatus
     {
-        private BusyStatus(string value) : base(value) { }
+        [EnumMember(Value = "Busy")]
+        Busy,
         
-        public static readonly BusyStatus Busy = new BusyStatus("Busy");
-        public static readonly BusyStatus Free = new BusyStatus("Free");
+        [EnumMember(Value = "Free")]
+        Free,
+        
     }
     
 }

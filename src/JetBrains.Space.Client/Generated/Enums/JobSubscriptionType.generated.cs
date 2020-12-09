@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,13 +27,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class JobSubscriptionType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum JobSubscriptionType
     {
-        private JobSubscriptionType(string value) : base(value) { }
+        [EnumMember(Value = "ALL_FINISHED")]
+        ALLFINISHED,
         
-        public static readonly JobSubscriptionType ALLFINISHED = new JobSubscriptionType("ALL_FINISHED");
-        public static readonly JobSubscriptionType FAILED = new JobSubscriptionType("FAILED");
+        [EnumMember(Value = "FAILED")]
+        FAILED,
+        
     }
     
 }

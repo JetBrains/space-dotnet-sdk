@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,13 +27,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class DraftDocumentType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum DraftDocumentType
     {
-        private DraftDocumentType(string value) : base(value) { }
+        [EnumMember(Value = "WYSIWYG")]
+        WYSIWYG,
         
-        public static readonly DraftDocumentType WYSIWYG = new DraftDocumentType("WYSIWYG");
-        public static readonly DraftDocumentType MARKDOWN = new DraftDocumentType("MARKDOWN");
+        [EnumMember(Value = "MARKDOWN")]
+        MARKDOWN,
+        
     }
     
 }

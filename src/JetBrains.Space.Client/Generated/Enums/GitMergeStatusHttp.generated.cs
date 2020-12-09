@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class GitMergeStatusHttp : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum GitMergeStatusHttp
     {
-        private GitMergeStatusHttp(string value) : base(value) { }
+        [EnumMember(Value = "SUCCESSFUL_MERGE")]
+        SUCCESSFULMERGE,
         
-        public static readonly GitMergeStatusHttp SUCCESSFULMERGE = new GitMergeStatusHttp("SUCCESSFUL_MERGE");
-        public static readonly GitMergeStatusHttp SUCCESSFULFASTFORWARD = new GitMergeStatusHttp("SUCCESSFUL_FAST_FORWARD");
-        public static readonly GitMergeStatusHttp ALREADYMERGED = new GitMergeStatusHttp("ALREADY_MERGED");
+        [EnumMember(Value = "SUCCESSFUL_FAST_FORWARD")]
+        SUCCESSFULFASTFORWARD,
+        
+        [EnumMember(Value = "ALREADY_MERGED")]
+        ALREADYMERGED,
+        
     }
     
 }

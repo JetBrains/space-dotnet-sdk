@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -100,7 +101,7 @@ namespace JetBrains.Space.Client
             }
             
         
-            public async Task<Batch<AllChannelsListEntry>> ListAllChannelsAsync(string query, string? skip = null, int? top = 100, string? quickFilter = null, string? sortColumn = null, ColumnSortOrder? sortOrder = null, Func<Partial<Batch<AllChannelsListEntry>>, Partial<Batch<AllChannelsListEntry>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<AllChannelsListEntry>> ListAllChannelsAsync(string query, string? skip = null, int? top = 100, string? quickFilter = null, string? sortColumn = null, ColumnSortOrder? sortOrder = ColumnSortOrder.ASC, Func<Partial<Batch<AllChannelsListEntry>>, Partial<Batch<AllChannelsListEntry>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("query", query);
@@ -108,14 +109,14 @@ namespace JetBrains.Space.Client
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 if (quickFilter != null) queryParameters.Append("quickFilter", quickFilter);
                 if (sortColumn != null) queryParameters.Append("sortColumn", sortColumn);
-                if (sortOrder != null) queryParameters.Append("sortOrder", (sortOrder ?? ColumnSortOrder.ASC)?.Value);
+                queryParameters.Append("sortOrder", sortOrder.ToEnumString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AllChannelsListEntry>>()) : Partial<Batch<AllChannelsListEntry>>.Default()).ToString());
                 
                 return await _connection.RequestResourceAsync<Batch<AllChannelsListEntry>>("GET", $"api/http/chats/channels/all-channels{queryParameters.ToQueryString()}", cancellationToken);
             }
             
             
-            public IAsyncEnumerable<AllChannelsListEntry> ListAllChannelsAsyncEnumerable(string query, string? skip = null, int? top = 100, string? quickFilter = null, string? sortColumn = null, ColumnSortOrder? sortOrder = null, Func<Partial<AllChannelsListEntry>, Partial<AllChannelsListEntry>>? partial = null, CancellationToken cancellationToken = default)
+            public IAsyncEnumerable<AllChannelsListEntry> ListAllChannelsAsyncEnumerable(string query, string? skip = null, int? top = 100, string? quickFilter = null, string? sortColumn = null, ColumnSortOrder? sortOrder = ColumnSortOrder.ASC, Func<Partial<AllChannelsListEntry>, Partial<AllChannelsListEntry>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAllChannelsAsync(query: query, top: top, quickFilter: quickFilter, sortColumn: sortColumn, sortOrder: sortOrder, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AllChannelsListEntry>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AllChannelsListEntry>.Default())), skip, cancellationToken);
         
             /// <summary>

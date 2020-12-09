@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class FeatureFlagStatus : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum FeatureFlagStatus
     {
-        private FeatureFlagStatus(string value) : base(value) { }
+        [EnumMember(Value = "WIP")]
+        WIP,
         
-        public static readonly FeatureFlagStatus WIP = new FeatureFlagStatus("WIP");
-        public static readonly FeatureFlagStatus EXPERIMENTAL = new FeatureFlagStatus("EXPERIMENTAL");
-        public static readonly FeatureFlagStatus INTERNAL = new FeatureFlagStatus("INTERNAL");
+        [EnumMember(Value = "EXPERIMENTAL")]
+        EXPERIMENTAL,
+        
+        [EnumMember(Value = "INTERNAL")]
+        INTERNAL,
+        
     }
     
 }

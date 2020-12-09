@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,16 +27,24 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class HATypeObjectKind : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum HATypeObjectKind
     {
-        private HATypeObjectKind(string value) : base(value) { }
+        [EnumMember(Value = "PAIR")]
+        PAIR,
         
-        public static readonly HATypeObjectKind PAIR = new HATypeObjectKind("PAIR");
-        public static readonly HATypeObjectKind TRIPLE = new HATypeObjectKind("TRIPLE");
-        public static readonly HATypeObjectKind BATCH = new HATypeObjectKind("BATCH");
-        public static readonly HATypeObjectKind MOD = new HATypeObjectKind("MOD");
-        public static readonly HATypeObjectKind REQUESTBODY = new HATypeObjectKind("REQUEST_BODY");
+        [EnumMember(Value = "TRIPLE")]
+        TRIPLE,
+        
+        [EnumMember(Value = "BATCH")]
+        BATCH,
+        
+        [EnumMember(Value = "MOD")]
+        MOD,
+        
+        [EnumMember(Value = "REQUEST_BODY")]
+        REQUESTBODY,
+        
     }
     
 }

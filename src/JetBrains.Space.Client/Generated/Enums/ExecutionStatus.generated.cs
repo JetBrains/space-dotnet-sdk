@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,18 +27,30 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ExecutionStatus : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum ExecutionStatus
     {
-        private ExecutionStatus(string value) : base(value) { }
+        [EnumMember(Value = "SCHEDULED")]
+        SCHEDULED,
         
-        public static readonly ExecutionStatus SCHEDULED = new ExecutionStatus("SCHEDULED");
-        public static readonly ExecutionStatus PENDING = new ExecutionStatus("PENDING");
-        public static readonly ExecutionStatus READYTOSTART = new ExecutionStatus("READY_TO_START");
-        public static readonly ExecutionStatus RUNNING = new ExecutionStatus("RUNNING");
-        public static readonly ExecutionStatus FINISHED = new ExecutionStatus("FINISHED");
-        public static readonly ExecutionStatus TERMINATED = new ExecutionStatus("TERMINATED");
-        public static readonly ExecutionStatus FAILED = new ExecutionStatus("FAILED");
+        [EnumMember(Value = "PENDING")]
+        PENDING,
+        
+        [EnumMember(Value = "READY_TO_START")]
+        READYTOSTART,
+        
+        [EnumMember(Value = "RUNNING")]
+        RUNNING,
+        
+        [EnumMember(Value = "FINISHED")]
+        FINISHED,
+        
+        [EnumMember(Value = "TERMINATED")]
+        TERMINATED,
+        
+        [EnumMember(Value = "FAILED")]
+        FAILED,
+        
     }
     
 }

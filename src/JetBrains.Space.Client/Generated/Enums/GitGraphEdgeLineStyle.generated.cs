@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class GitGraphEdgeLineStyle : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum GitGraphEdgeLineStyle
     {
-        private GitGraphEdgeLineStyle(string value) : base(value) { }
+        [EnumMember(Value = "SOLID")]
+        SOLID,
         
-        public static readonly GitGraphEdgeLineStyle SOLID = new GitGraphEdgeLineStyle("SOLID");
-        public static readonly GitGraphEdgeLineStyle DASHED = new GitGraphEdgeLineStyle("DASHED");
-        public static readonly GitGraphEdgeLineStyle DOTTED = new GitGraphEdgeLineStyle("DOTTED");
+        [EnumMember(Value = "DASHED")]
+        DASHED,
+        
+        [EnumMember(Value = "DOTTED")]
+        DOTTED,
+        
     }
     
 }

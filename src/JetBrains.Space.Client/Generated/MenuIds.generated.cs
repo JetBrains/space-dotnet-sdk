@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,11 +27,8 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class MenuId : Enumeration
+    public sealed class MenuId
     {
-        private MenuId(string value) : base(value) { }
-        
         public static class Channel
         {
             /// <summary>
@@ -38,14 +36,14 @@ namespace JetBrains.Space.Client
             ///
             /// Expected webhook payload: <see cref="ChannelAttachmentMenuActionContext"/>.
             /// </summary>
-            public static readonly MenuId Attachment = new MenuId("Channel.Attachment");
+            public static readonly string Attachment = "Channel.Attachment";
             
             /// <summary>
             /// Represents the "Channel.Message" menu.
             ///
             /// Expected webhook payload: <see cref="ChannelMessageMenuActionContext"/>.
             /// </summary>
-            public static readonly MenuId Message = new MenuId("Channel.Message");
+            public static readonly string Message = "Channel.Message";
             
         }
         
@@ -56,21 +54,21 @@ namespace JetBrains.Space.Client
             ///
             /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
             /// </summary>
-            public static readonly MenuId Add = new MenuId("Global.Add");
+            public static readonly string Add = "Global.Add";
             
             /// <summary>
             /// Represents the "Global.Profile" menu.
             ///
             /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
             /// </summary>
-            public static readonly MenuId Profile = new MenuId("Global.Profile");
+            public static readonly string Profile = "Global.Profile";
             
             /// <summary>
             /// Represents the "Global.Sections" menu.
             ///
             /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
             /// </summary>
-            public static readonly MenuId Sections = new MenuId("Global.Sections");
+            public static readonly string Sections = "Global.Sections";
             
         }
         
@@ -81,33 +79,33 @@ namespace JetBrains.Space.Client
             ///
             /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
             /// </summary>
-            public static readonly MenuId Samples = new MenuId("Internal.Samples");
+            public static readonly string Samples = "Internal.Samples";
             
             /// <summary>
             /// Represents the "Internal.Settings" menu.
             ///
             /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
             /// </summary>
-            public static readonly MenuId Settings = new MenuId("Internal.Settings");
+            public static readonly string Settings = "Internal.Settings";
             
             /// <summary>
             /// Represents the "Internal.Tools" menu.
             ///
             /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
             /// </summary>
-            public static readonly MenuId Tools = new MenuId("Internal.Tools");
+            public static readonly string Tools = "Internal.Tools";
             
             /// <summary>
             /// Represents the "Internal.Ui" menu.
             /// </summary>
-            public static readonly MenuId Ui = new MenuId("Internal.Ui");
+            public static readonly string Ui = "Internal.Ui";
             
         }
         
         /// <summary>
         /// Represents the "Personal" menu.
         /// </summary>
-        public static readonly MenuId Personal = new MenuId("Personal");
+        public static readonly string Personal = "Personal";
         
         public static class Project
         {
@@ -116,21 +114,21 @@ namespace JetBrains.Space.Client
             ///
             /// Expected webhook payload: <see cref="ProjectMenuActionContext"/>.
             /// </summary>
-            public static readonly MenuId Settings = new MenuId("Project.Settings");
+            public static readonly string Settings = "Project.Settings";
             
             /// <summary>
             /// Represents the "Project.Tools" menu.
             ///
             /// Expected webhook payload: <see cref="ProjectMenuActionContext"/>.
             /// </summary>
-            public static readonly MenuId Tools = new MenuId("Project.Tools");
+            public static readonly string Tools = "Project.Tools";
             
         }
         
         /// <summary>
         /// Represents the "Repository" menu.
         /// </summary>
-        public static readonly MenuId Repository = new MenuId("Repository");
+        public static readonly string Repository = "Repository";
         
         public static class Sidebar
         {
@@ -141,49 +139,49 @@ namespace JetBrains.Space.Client
                 ///
                 /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
-                public static readonly MenuId Access = new MenuId("Sidebar.Administration.Access");
+                public static readonly string Access = "Sidebar.Administration.Access";
                 
                 /// <summary>
                 /// Represents the "Sidebar.Administration.Customization" menu.
                 ///
                 /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
-                public static readonly MenuId Customization = new MenuId("Sidebar.Administration.Customization");
+                public static readonly string Customization = "Sidebar.Administration.Customization";
                 
                 /// <summary>
                 /// Represents the "Sidebar.Administration.Debug" menu.
                 ///
                 /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
-                public static readonly MenuId Debug = new MenuId("Sidebar.Administration.Debug");
+                public static readonly string Debug = "Sidebar.Administration.Debug";
                 
                 /// <summary>
                 /// Represents the "Sidebar.Administration.Extensions" menu.
                 ///
                 /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
-                public static readonly MenuId Extensions = new MenuId("Sidebar.Administration.Extensions");
+                public static readonly string Extensions = "Sidebar.Administration.Extensions";
                 
                 /// <summary>
                 /// Represents the "Sidebar.Administration.Integrations" menu.
                 ///
                 /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
-                public static readonly MenuId Integrations = new MenuId("Sidebar.Administration.Integrations");
+                public static readonly string Integrations = "Sidebar.Administration.Integrations";
                 
                 /// <summary>
                 /// Represents the "Sidebar.Administration.Organization" menu.
                 ///
                 /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
-                public static readonly MenuId Organization = new MenuId("Sidebar.Administration.Organization");
+                public static readonly string Organization = "Sidebar.Administration.Organization";
                 
                 /// <summary>
                 /// Represents the "Sidebar.Administration.Support" menu.
                 ///
                 /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
-                public static readonly MenuId Support = new MenuId("Sidebar.Administration.Support");
+                public static readonly string Support = "Sidebar.Administration.Support";
                 
             }
             
@@ -192,7 +190,7 @@ namespace JetBrains.Space.Client
             ///
             /// Expected webhook payload: <see cref="LocationMenuActionContext"/>.
             /// </summary>
-            public static readonly MenuId Location = new MenuId("Sidebar.Location");
+            public static readonly string Location = "Sidebar.Location";
             
             public static class Profile
             {
@@ -201,14 +199,14 @@ namespace JetBrains.Space.Client
                     /// <summary>
                     /// Represents the "Sidebar.Profile.Personal.Sidebar" menu.
                     /// </summary>
-                    public static readonly MenuId Root = new MenuId("Sidebar.Profile.Personal.Sidebar");
+                    public static readonly string Root = "Sidebar.Profile.Personal.Sidebar";
                     
                     /// <summary>
                     /// Represents the "Sidebar.Profile.Personal.My" menu.
                     ///
                     /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                     /// </summary>
-                    public static readonly MenuId My = new MenuId("Sidebar.Profile.Personal.My");
+                    public static readonly string My = "Sidebar.Profile.Personal.My";
                     
                 }
                 
@@ -217,21 +215,21 @@ namespace JetBrains.Space.Client
                 ///
                 /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
-                public static readonly MenuId Schedule = new MenuId("Sidebar.Profile.Schedule");
+                public static readonly string Schedule = "Sidebar.Profile.Schedule";
                 
                 /// <summary>
                 /// Represents the "Sidebar.Profile.Security" menu.
                 ///
                 /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
-                public static readonly MenuId Security = new MenuId("Sidebar.Profile.Security");
+                public static readonly string Security = "Sidebar.Profile.Security";
                 
                 /// <summary>
                 /// Represents the "Sidebar.Profile.Workspace" menu.
                 ///
                 /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
-                public static readonly MenuId Workspace = new MenuId("Sidebar.Profile.Workspace");
+                public static readonly string Workspace = "Sidebar.Profile.Workspace";
                 
             }
             
@@ -240,7 +238,7 @@ namespace JetBrains.Space.Client
             ///
             /// Expected webhook payload: <see cref="TeamMenuActionContext"/>.
             /// </summary>
-            public static readonly MenuId Team = new MenuId("Sidebar.Team");
+            public static readonly string Team = "Sidebar.Team";
             
         }
         

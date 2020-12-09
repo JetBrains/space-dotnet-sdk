@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,16 +27,24 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class DiffLineType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum DiffLineType
     {
-        private DiffLineType(string value) : base(value) { }
+        [EnumMember(Value = "ADDED")]
+        ADDED,
         
-        public static readonly DiffLineType ADDED = new DiffLineType("ADDED");
-        public static readonly DiffLineType DELETED = new DiffLineType("DELETED");
-        public static readonly DiffLineType MODIFIED = new DiffLineType("MODIFIED");
-        public static readonly DiffLineType CONFLICTOLD = new DiffLineType("CONFLICT_OLD");
-        public static readonly DiffLineType CONFLICTNEW = new DiffLineType("CONFLICT_NEW");
+        [EnumMember(Value = "DELETED")]
+        DELETED,
+        
+        [EnumMember(Value = "MODIFIED")]
+        MODIFIED,
+        
+        [EnumMember(Value = "CONFLICT_OLD")]
+        CONFLICTOLD,
+        
+        [EnumMember(Value = "CONFLICT_NEW")]
+        CONFLICTNEW,
+        
     }
     
 }

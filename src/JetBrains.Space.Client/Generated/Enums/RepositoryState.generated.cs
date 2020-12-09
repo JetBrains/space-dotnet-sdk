@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class RepositoryState : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum RepositoryState
     {
-        private RepositoryState(string value) : base(value) { }
+        [EnumMember(Value = "READY")]
+        READY,
         
-        public static readonly RepositoryState READY = new RepositoryState("READY");
-        public static readonly RepositoryState INPROGRESS = new RepositoryState("IN_PROGRESS");
-        public static readonly RepositoryState ERROR = new RepositoryState("ERROR");
+        [EnumMember(Value = "IN_PROGRESS")]
+        INPROGRESS,
+        
+        [EnumMember(Value = "ERROR")]
+        ERROR,
+        
     }
     
 }

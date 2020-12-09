@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,13 +27,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ReviewType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum ReviewType
     {
-        private ReviewType(string value) : base(value) { }
+        [EnumMember(Value = "CommitSetReview")]
+        CommitSetReview,
         
-        public static readonly ReviewType CommitSetReview = new ReviewType("CommitSetReview");
-        public static readonly ReviewType MergeRequest = new ReviewType("MergeRequest");
+        [EnumMember(Value = "MergeRequest")]
+        MergeRequest,
+        
     }
     
 }

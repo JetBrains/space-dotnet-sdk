@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ProjectTeamType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum ProjectTeamType
     {
-        private ProjectTeamType(string value) : base(value) { }
+        [EnumMember(Value = "LEGACY")]
+        LEGACY,
         
-        public static readonly ProjectTeamType LEGACY = new ProjectTeamType("LEGACY");
-        public static readonly ProjectTeamType MEMBERS = new ProjectTeamType("MEMBERS");
-        public static readonly ProjectTeamType ATTACHED = new ProjectTeamType("ATTACHED");
+        [EnumMember(Value = "MEMBERS")]
+        MEMBERS,
+        
+        [EnumMember(Value = "ATTACHED")]
+        ATTACHED,
+        
     }
     
 }

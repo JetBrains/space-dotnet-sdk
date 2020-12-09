@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,13 +27,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class EnumValueOrdering : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum EnumValueOrdering
     {
-        private EnumValueOrdering(string value) : base(value) { }
+        [EnumMember(Value = "NAME_ASC")]
+        NAMEASC,
         
-        public static readonly EnumValueOrdering NAMEASC = new EnumValueOrdering("NAME_ASC");
-        public static readonly EnumValueOrdering NAMEDESC = new EnumValueOrdering("NAME_DESC");
+        [EnumMember(Value = "NAME_DESC")]
+        NAMEDESC,
+        
     }
     
 }

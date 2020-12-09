@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class M2EmailNotificationType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum M2EmailNotificationType
     {
-        private M2EmailNotificationType(string value) : base(value) { }
+        [EnumMember(Value = "INSTANT")]
+        INSTANT,
         
-        public static readonly M2EmailNotificationType INSTANT = new M2EmailNotificationType("INSTANT");
-        public static readonly M2EmailNotificationType DELAYED = new M2EmailNotificationType("DELAYED");
-        public static readonly M2EmailNotificationType NONE = new M2EmailNotificationType("NONE");
+        [EnumMember(Value = "DELAYED")]
+        DELAYED,
+        
+        [EnumMember(Value = "NONE")]
+        NONE,
+        
     }
     
 }

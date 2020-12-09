@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,15 +27,21 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class EmojiSearchMatchType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum EmojiSearchMatchType
     {
-        private EmojiSearchMatchType(string value) : base(value) { }
+        [EnumMember(Value = "Name")]
+        Name,
         
-        public static readonly EmojiSearchMatchType Name = new EmojiSearchMatchType("Name");
-        public static readonly EmojiSearchMatchType OtherName = new EmojiSearchMatchType("OtherName");
-        public static readonly EmojiSearchMatchType Emoticon = new EmojiSearchMatchType("Emoticon");
-        public static readonly EmojiSearchMatchType Unicode = new EmojiSearchMatchType("Unicode");
+        [EnumMember(Value = "OtherName")]
+        OtherName,
+        
+        [EnumMember(Value = "Emoticon")]
+        Emoticon,
+        
+        [EnumMember(Value = "Unicode")]
+        Unicode,
+        
     }
     
 }

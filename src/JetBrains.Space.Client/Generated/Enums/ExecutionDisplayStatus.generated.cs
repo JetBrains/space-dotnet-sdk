@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,16 +27,24 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ExecutionDisplayStatus : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum ExecutionDisplayStatus
     {
-        private ExecutionDisplayStatus(string value) : base(value) { }
+        [EnumMember(Value = "Awaiting")]
+        Awaiting,
         
-        public static readonly ExecutionDisplayStatus Awaiting = new ExecutionDisplayStatus("Awaiting");
-        public static readonly ExecutionDisplayStatus Running = new ExecutionDisplayStatus("Running");
-        public static readonly ExecutionDisplayStatus Stopped = new ExecutionDisplayStatus("Stopped");
-        public static readonly ExecutionDisplayStatus Succeeded = new ExecutionDisplayStatus("Succeeded");
-        public static readonly ExecutionDisplayStatus Failed = new ExecutionDisplayStatus("Failed");
+        [EnumMember(Value = "Running")]
+        Running,
+        
+        [EnumMember(Value = "Stopped")]
+        Stopped,
+        
+        [EnumMember(Value = "Succeeded")]
+        Succeeded,
+        
+        [EnumMember(Value = "Failed")]
+        Failed,
+        
     }
     
 }

@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,15 +27,21 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ReviewSorting : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum ReviewSorting
     {
-        private ReviewSorting(string value) : base(value) { }
+        [EnumMember(Value = "CreatedAtAsc")]
+        CreatedAtAsc,
         
-        public static readonly ReviewSorting CreatedAtAsc = new ReviewSorting("CreatedAtAsc");
-        public static readonly ReviewSorting CreatedAtDesc = new ReviewSorting("CreatedAtDesc");
-        public static readonly ReviewSorting LastUpdatedAsc = new ReviewSorting("LastUpdatedAsc");
-        public static readonly ReviewSorting LastUpdatedDesc = new ReviewSorting("LastUpdatedDesc");
+        [EnumMember(Value = "CreatedAtDesc")]
+        CreatedAtDesc,
+        
+        [EnumMember(Value = "LastUpdatedAsc")]
+        LastUpdatedAsc,
+        
+        [EnumMember(Value = "LastUpdatedDesc")]
+        LastUpdatedDesc,
+        
     }
     
 }

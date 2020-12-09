@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,13 +27,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class MergeRequestBranchType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum MergeRequestBranchType
     {
-        private MergeRequestBranchType(string value) : base(value) { }
+        [EnumMember(Value = "SOURCE")]
+        SOURCE,
         
-        public static readonly MergeRequestBranchType SOURCE = new MergeRequestBranchType("SOURCE");
-        public static readonly MergeRequestBranchType TARGET = new MergeRequestBranchType("TARGET");
+        [EnumMember(Value = "TARGET")]
+        TARGET,
+        
     }
     
 }

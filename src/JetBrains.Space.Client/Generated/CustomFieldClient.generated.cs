@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -49,10 +50,10 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get all types that support custom fields.
             /// </summary>
-            public async Task<List<ExtendedType>> GetAllExtendedTypesAsync(ExtendedTypeScopeType? scope = null, Func<Partial<ExtendedType>, Partial<ExtendedType>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<ExtendedType>> GetAllExtendedTypesAsync(ExtendedTypeScopeType scope = ExtendedTypeScopeType.Org, Func<Partial<ExtendedType>, Partial<ExtendedType>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("scope", (scope ?? ExtendedTypeScopeType.Org).Value);
+                queryParameters.Append("scope", scope.ToEnumString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<ExtendedType>()) : Partial<ExtendedType>.Default()).ToString());
                 
                 return await _connection.RequestResourceAsync<List<ExtendedType>>("GET", $"api/http/custom-fields/extended-types{queryParameters.ToQueryString()}", cancellationToken);
@@ -127,13 +128,13 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get all types that support custom fields.
             /// </summary>
-            public async Task<Batch<EnumValueData>> GetAllEnumValuesAsync(string typeKey, string customFieldId, ExtendedTypeScope scope, EnumValueOrdering? ordering = null, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<EnumValueData>>, Partial<Batch<EnumValueData>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<EnumValueData>> GetAllEnumValuesAsync(string typeKey, string customFieldId, ExtendedTypeScope scope, EnumValueOrdering ordering = EnumValueOrdering.NAMEASC, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<EnumValueData>>, Partial<Batch<EnumValueData>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (skip != null) queryParameters.Append("$skip", skip);
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 if (query != null) queryParameters.Append("query", query);
-                queryParameters.Append("ordering", (ordering ?? EnumValueOrdering.NAMEASC).Value);
+                queryParameters.Append("ordering", ordering.ToEnumString());
                 queryParameters.Append("scope", scope.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<EnumValueData>>()) : Partial<Batch<EnumValueData>>.Default()).ToString());
                 
@@ -144,7 +145,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get all types that support custom fields.
             /// </summary>
-            public IAsyncEnumerable<EnumValueData> GetAllEnumValuesAsyncEnumerable(string typeKey, string customFieldId, ExtendedTypeScope scope, EnumValueOrdering? ordering = null, string? skip = null, int? top = 100, string? query = null, Func<Partial<EnumValueData>, Partial<EnumValueData>>? partial = null, CancellationToken cancellationToken = default)
+            public IAsyncEnumerable<EnumValueData> GetAllEnumValuesAsyncEnumerable(string typeKey, string customFieldId, ExtendedTypeScope scope, EnumValueOrdering ordering = EnumValueOrdering.NAMEASC, string? skip = null, int? top = 100, string? query = null, Func<Partial<EnumValueData>, Partial<EnumValueData>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllEnumValuesAsync(typeKey: typeKey, customFieldId: customFieldId, ordering: ordering, scope: scope, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<EnumValueData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EnumValueData>.Default())), skip, cancellationToken);
         
         }

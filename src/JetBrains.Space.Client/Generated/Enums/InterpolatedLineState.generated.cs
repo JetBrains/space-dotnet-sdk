@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class InterpolatedLineState : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum InterpolatedLineState
     {
-        private InterpolatedLineState(string value) : base(value) { }
+        [EnumMember(Value = "Normal")]
+        Normal,
         
-        public static readonly InterpolatedLineState Normal = new InterpolatedLineState("Normal");
-        public static readonly InterpolatedLineState Deleted = new InterpolatedLineState("Deleted");
-        public static readonly InterpolatedLineState Modified = new InterpolatedLineState("Modified");
+        [EnumMember(Value = "Deleted")]
+        Deleted,
+        
+        [EnumMember(Value = "Modified")]
+        Modified,
+        
     }
     
 }

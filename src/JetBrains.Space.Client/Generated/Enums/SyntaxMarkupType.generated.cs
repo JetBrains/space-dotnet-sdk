@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,25 +27,51 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class SyntaxMarkupType : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum SyntaxMarkupType
     {
-        private SyntaxMarkupType(string value) : base(value) { }
+        [EnumMember(Value = "KEYWORD")]
+        KEYWORD,
         
-        public static readonly SyntaxMarkupType KEYWORD = new SyntaxMarkupType("KEYWORD");
-        public static readonly SyntaxMarkupType COMMENT = new SyntaxMarkupType("COMMENT");
-        public static readonly SyntaxMarkupType NUMLITERAL = new SyntaxMarkupType("NUM_LITERAL");
-        public static readonly SyntaxMarkupType STRINGLITERAL = new SyntaxMarkupType("STRING_LITERAL");
-        public static readonly SyntaxMarkupType DECLARATION = new SyntaxMarkupType("DECLARATION");
-        public static readonly SyntaxMarkupType PARAMETERASSIGNMENT = new SyntaxMarkupType("PARAMETER_ASSIGNMENT");
-        public static readonly SyntaxMarkupType IDENTIFIER = new SyntaxMarkupType("IDENTIFIER");
-        public static readonly SyntaxMarkupType IDENTIFIERTYPE = new SyntaxMarkupType("IDENTIFIER_TYPE");
-        public static readonly SyntaxMarkupType IDENTIFIERDECLARATION = new SyntaxMarkupType("IDENTIFIER_DECLARATION");
-        public static readonly SyntaxMarkupType ANNOTATION = new SyntaxMarkupType("ANNOTATION");
-        public static readonly SyntaxMarkupType PREPROCESSORANNOTATION = new SyntaxMarkupType("PREPROCESSOR_ANNOTATION");
-        public static readonly SyntaxMarkupType PREPROCESSORMESSAGE = new SyntaxMarkupType("PREPROCESSOR_MESSAGE");
-        public static readonly SyntaxMarkupType HIGHLIGHT = new SyntaxMarkupType("HIGHLIGHT");
-        public static readonly SyntaxMarkupType SKIP = new SyntaxMarkupType("SKIP");
+        [EnumMember(Value = "COMMENT")]
+        COMMENT,
+        
+        [EnumMember(Value = "NUM_LITERAL")]
+        NUMLITERAL,
+        
+        [EnumMember(Value = "STRING_LITERAL")]
+        STRINGLITERAL,
+        
+        [EnumMember(Value = "DECLARATION")]
+        DECLARATION,
+        
+        [EnumMember(Value = "PARAMETER_ASSIGNMENT")]
+        PARAMETERASSIGNMENT,
+        
+        [EnumMember(Value = "IDENTIFIER")]
+        IDENTIFIER,
+        
+        [EnumMember(Value = "IDENTIFIER_TYPE")]
+        IDENTIFIERTYPE,
+        
+        [EnumMember(Value = "IDENTIFIER_DECLARATION")]
+        IDENTIFIERDECLARATION,
+        
+        [EnumMember(Value = "ANNOTATION")]
+        ANNOTATION,
+        
+        [EnumMember(Value = "PREPROCESSOR_ANNOTATION")]
+        PREPROCESSORANNOTATION,
+        
+        [EnumMember(Value = "PREPROCESSOR_MESSAGE")]
+        PREPROCESSORMESSAGE,
+        
+        [EnumMember(Value = "HIGHLIGHT")]
+        HIGHLIGHT,
+        
+        [EnumMember(Value = "SKIP")]
+        SKIP,
+        
     }
     
 }

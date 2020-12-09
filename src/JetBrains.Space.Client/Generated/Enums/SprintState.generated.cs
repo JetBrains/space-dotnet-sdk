@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class SprintState : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum SprintState
     {
-        private SprintState(string value) : base(value) { }
+        [EnumMember(Value = "CLOSED")]
+        CLOSED,
         
-        public static readonly SprintState CLOSED = new SprintState("CLOSED");
-        public static readonly SprintState CURRENT = new SprintState("CURRENT");
-        public static readonly SprintState PLANNED = new SprintState("PLANNED");
+        [EnumMember(Value = "CURRENT")]
+        CURRENT,
+        
+        [EnumMember(Value = "PLANNED")]
+        PLANNED,
+        
     }
     
 }

@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,15 +27,21 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class PasswordStrength : Enumeration
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum PasswordStrength
     {
-        private PasswordStrength(string value) : base(value) { }
+        [EnumMember(Value = "NO_POLICY")]
+        NOPOLICY,
         
-        public static readonly PasswordStrength NOPOLICY = new PasswordStrength("NO_POLICY");
-        public static readonly PasswordStrength FAIR = new PasswordStrength("FAIR");
-        public static readonly PasswordStrength GOOD = new PasswordStrength("GOOD");
-        public static readonly PasswordStrength STRONG = new PasswordStrength("STRONG");
+        [EnumMember(Value = "FAIR")]
+        FAIR,
+        
+        [EnumMember(Value = "GOOD")]
+        GOOD,
+        
+        [EnumMember(Value = "STRONG")]
+        STRONG,
+        
     }
     
 }
