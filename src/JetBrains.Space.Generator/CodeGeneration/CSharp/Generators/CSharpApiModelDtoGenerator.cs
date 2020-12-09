@@ -134,7 +134,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                     indent.Increment();
                     foreach (var apiDtoField in apiDtoFields)
                     {
-                        if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
+                        if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes && !(apiDtoField.Field.Type is ApiFieldType.Enum))
                         {
                             builder.AppendLine($"{indent}{apiDtoField.Field.ToCSharpPropertyName(typeNameForDto)} = {apiDtoField.Field.ToCSharpVariableInstanceOrDefaultValue(_codeGenerationContext)};");
                         }

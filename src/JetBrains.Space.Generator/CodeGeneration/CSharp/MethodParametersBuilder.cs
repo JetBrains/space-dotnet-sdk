@@ -53,8 +53,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                 // ReSharper disable once RedundantLogicalConditionalExpressionOperand
                 if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes && !field.Type.Nullable)
                 {
-                    if (field.DefaultValue is ApiDefaultValue.Const.EnumEntry ||
-                        field.DefaultValue is ApiDefaultValue.Collection ||
+                    if (field.DefaultValue is ApiDefaultValue.Collection ||
                         field.DefaultValue is ApiDefaultValue.Map)
                     {
                         parameterType += "?";
@@ -86,8 +85,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                 // ReSharper disable once RedundantLogicalConditionalExpressionOperand
                 if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes && !parameter.Field.Type.Nullable)
                 {
-                    if (parameter.Field.DefaultValue is ApiDefaultValue.Const.EnumEntry ||
-                        parameter.Field.DefaultValue is ApiDefaultValue.Collection ||
+                    if (parameter.Field.DefaultValue is ApiDefaultValue.Collection ||
                         parameter.Field.DefaultValue is ApiDefaultValue.Map)
                     {
                         parameterType += "?";

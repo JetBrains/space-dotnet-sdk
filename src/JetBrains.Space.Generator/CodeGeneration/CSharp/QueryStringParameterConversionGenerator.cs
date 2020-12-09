@@ -52,13 +52,13 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                 var parameterConditionBuilder = new StringBuilder();
                 
                 // Build condition (is it nullable?)
-                if (apiEndpointParameter.Field.Type.Nullable)
+                if (apiEndpointParameter.Field.Type.Nullable && !(apiEndpointParameter.Field.Type is ApiFieldType.Enum)) // enums can be param="null", don't generate a null check
                 {
                     parameterConditionBuilder.Append($"{csharpVariableName} != null");
                 }
                 
                 // Build value generator
-                if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
+                if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes && !(apiEndpointParameter.Field.Type is ApiFieldType.Enum))
                 {
                     parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableInstanceOrDefaultValue(_context));
                 }

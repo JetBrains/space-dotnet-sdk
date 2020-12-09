@@ -52,13 +52,10 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
                         return primitive.Expression;
                     
                     case ApiDefaultValue.Const.EnumEntry _:
-                        if (FeatureFlags.GenerateOptionalParameterDefaultReferenceTypes)
+                        if (FeatureFlags.GenerateOptionalParameterDefaultReferenceTypes ||
+                            FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
                         {
                             return subject.ToCSharpDefaultValueForAssignment(context);
-                        }
-                        else if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
-                        {
-                            return CSharpExpression.NullLiteral;
                         }
                         else
                         {

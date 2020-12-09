@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using JetBrains.Space.AspNetCore.Experimental.WebHooks;
 using JetBrains.Space.Client;
-using JetBrains.Space.Common.Types;
 using Microsoft.Extensions.Hosting;
 
 namespace JetBrains.Space.Samples.App.WebHooks
@@ -69,7 +68,7 @@ namespace JetBrains.Space.Samples.App.WebHooks
             return new MenuExtensions();
             // return new MenuExtensions(new List<MenuExtensionDetail>
             // {
-            //     new MenuExtensionDetail(MenuId.Global.Add.Value, "Catering request", "Request catering (demo)")
+            //     new MenuExtensionDetail(MenuId.Global.Add, "Catering request", "Request catering (demo)")
             // });
         }
         
@@ -136,12 +135,10 @@ namespace JetBrains.Space.Samples.App.WebHooks
 
         public override async Task<ApplicationExecutionResult> HandleMessageActionAsync(MessageActionPayload payload)
         {
-            var actionId = Enumeration.FromValue<ActionId>(payload.ActionId);
-
             Sessions.TryGetValue(payload.UserId, out var cateringSession);
 
             // Start session
-            if (actionId == ActionId.Skip)
+            if (payload.ActionId == ActionId.Skip)
             {
                 return new ApplicationExecutionResult("Catering request has been skipped.");
             } 
@@ -152,15 +149,15 @@ namespace JetBrains.Space.Samples.App.WebHooks
             }
 
             // Store choices
-            if (actionId == ActionId.Food)
+            if (payload.ActionId == ActionId.Food)
             {
                 cateringSession.SelectedFood = payload.ActionValue;
             }
-            if (actionId == ActionId.Drinks)
+            if (payload.ActionId == ActionId.Drinks)
             {
                 cateringSession.SelectedDrinks = payload.ActionValue;
             }
-            if (actionId == ActionId.DrinkAdditions)
+            if (payload.ActionId == ActionId.DrinkAdditions)
             {
                 cateringSession.SelectedDrinkAdditions = payload.ActionValue;
             }
@@ -185,11 +182,11 @@ namespace JetBrains.Space.Samples.App.WebHooks
                                     MessageElement.MessageControlGroup(new List<MessageControlElement>
                                     {
                                         MessageControlElement.MessageButton("Chicken", MessageButtonStyle.REGULAR,
-                                            MessageAction.Post(ActionId.Food.Value, "🍗 Chicken")),
+                                            MessageAction.Post(ActionId.Food, "🍗 Chicken")),
                                         MessageControlElement.MessageButton("Pasta", MessageButtonStyle.REGULAR,
-                                            MessageAction.Post(ActionId.Food.Value, "🍝 Pasta")),
+                                            MessageAction.Post(ActionId.Food, "🍝 Pasta")),
                                         MessageControlElement.MessageButton("No food", MessageButtonStyle.REGULAR,
-                                            MessageAction.Post(ActionId.Food.Value, "🤷 None"))
+                                            MessageAction.Post(ActionId.Food, "🤷 None"))
                                     })
                                 }
                             }
@@ -216,13 +213,13 @@ namespace JetBrains.Space.Samples.App.WebHooks
                                     MessageElement.MessageControlGroup(new List<MessageControlElement>
                                     {
                                         MessageControlElement.MessageButton("Water", MessageButtonStyle.REGULAR, 
-                                            MessageAction.Post(ActionId.Drinks.Value, "🥛 Water")),
+                                            MessageAction.Post(ActionId.Drinks, "🥛 Water")),
                                         MessageControlElement.MessageButton("Coffee", MessageButtonStyle.REGULAR,
-                                            MessageAction.Post(ActionId.Drinks.Value, "☕ Coffee")),
+                                            MessageAction.Post(ActionId.Drinks, "☕ Coffee")),
                                         MessageControlElement.MessageButton("Tea", MessageButtonStyle.REGULAR, 
-                                            MessageAction.Post(ActionId.Drinks.Value, "☕ Tea")),
+                                            MessageAction.Post(ActionId.Drinks, "☕ Tea")),
                                         MessageControlElement.MessageButton("No drinks", MessageButtonStyle.REGULAR, 
-                                            MessageAction.Post(ActionId.Drinks.Value, "🤷 None"))
+                                            MessageAction.Post(ActionId.Drinks, "🤷 None"))
                                     })
                                 }
                             }
@@ -251,11 +248,11 @@ namespace JetBrains.Space.Samples.App.WebHooks
                                     MessageElement.MessageControlGroup(new List<MessageControlElement>
                                     {
                                         MessageControlElement.MessageButton("Milk", MessageButtonStyle.REGULAR, 
-                                            MessageAction.Post(ActionId.DrinkAdditions.Value, "with milk")),
+                                            MessageAction.Post(ActionId.DrinkAdditions, "with milk")),
                                         MessageControlElement.MessageButton("Milk and Sugar", MessageButtonStyle.REGULAR,
-                                            MessageAction.Post(ActionId.DrinkAdditions.Value, "with milk and sugar")),
+                                            MessageAction.Post(ActionId.DrinkAdditions, "with milk and sugar")),
                                         MessageControlElement.MessageButton("No additions", MessageButtonStyle.REGULAR, 
-                                            MessageAction.Post(ActionId.DrinkAdditions.Value, "no additions"))
+                                            MessageAction.Post(ActionId.DrinkAdditions, "no additions"))
                                     })
                                 }
                             }
@@ -326,14 +323,12 @@ namespace JetBrains.Space.Samples.App.WebHooks
             }
         }
         
-        private sealed class ActionId : Enumeration
+        private static class ActionId
         {
-            private ActionId(string value) : base(value) { }
-        
-            public static readonly ActionId Food = new ActionId("catering-food");
-            public static readonly ActionId Drinks = new ActionId("catering-drinks");
-            public static readonly ActionId DrinkAdditions = new ActionId("catering-drinkadditions");
-            public static readonly ActionId Skip = new ActionId("catering-skip");
+            public static readonly string Food = "catering-food";
+            public static readonly string Drinks = "catering-drinks";
+            public static readonly string DrinkAdditions = "catering-drinkadditions";
+            public static readonly string Skip = "catering-skip";
         }
 
         private class CateringSession

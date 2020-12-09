@@ -9,7 +9,7 @@ namespace JetBrains.Space.Client.Tests.Extensions
         [Theory]
         [InlineData(TestEnum.Plain, "Plain")]
         [InlineData(TestEnum.WithEnumMember, "with-enum-member")]
-        [InlineData(null, "null")]
+        [InlineData(null, "")]
         public void ToEnumStringReturnsExpectedResult(TestEnum? target, string expected)
         {
             // Act

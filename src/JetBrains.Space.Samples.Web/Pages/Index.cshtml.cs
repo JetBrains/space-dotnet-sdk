@@ -166,7 +166,7 @@ namespace JetBrains.Space.Samples.Web.Pages
                 {
                     _logger.LogError("An error occurred", ex);
                 }
-
+      
                 try
                 {
                     // Check # of reviews created and participated in
@@ -176,12 +176,9 @@ namespace JetBrains.Space.Samples.Web.Pages
                         .WithAuthors()
                         .WithParticipants();
 
-                    var reviews1 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Opened, from: weekStart, partial: codeReviewPartial).ToListAsync();
-                    var reviews2 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.NeedsReview, from: weekStart, partial: codeReviewPartial).ToListAsync();
-                    var reviews3 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.RequiresAuthorAttention, from: weekStart, partial: codeReviewPartial).ToListAsync();
-                    var reviews4 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Closed, from: weekStart, partial: codeReviewPartial).ToListAsync();
+                    var reviews = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: null, from: weekStart, partial: codeReviewPartial).ToListAsync();
                     
-                    foreach (var review in reviews1.Union(reviews2).Union(reviews3).Union(reviews4))
+                    foreach (var review in reviews)
                     {
                         var createdAt = review.Review switch
                         {

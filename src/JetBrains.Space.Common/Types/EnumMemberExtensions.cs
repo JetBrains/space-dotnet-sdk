@@ -36,11 +36,11 @@ namespace JetBrains.Space.Common.Types
         /// </summary>
         /// <param name="type">Enum value type.</param>
         /// <typeparam name="T">Enum type.</typeparam>
-        /// <returns>String representation of the enum value type, taking into account <see cref="EnumMemberAttribute"/> when present. Returns <value>"null"</value> when the enum value is <value>null</value>.</returns>
+        /// <returns>String representation of the enum value type, taking into account <see cref="EnumMemberAttribute"/> when present. Returns <value>""</value> when the enum value is <value>null</value>.</returns>
         public static string ToEnumString<T>(this T? type)
             where T : struct, Enum
         {
-            if (type == null) return "null";
+            if (type == null) return "";
             
             return type.Value.ToEnumString();
         }
