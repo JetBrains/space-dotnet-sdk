@@ -23,6 +23,9 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
                 _ => CSharpType.Object
             };
 
+        public static bool IsCSharpReferenceType(this ApiFieldType apiFieldType) => 
+            !(apiFieldType is ApiFieldType.Primitive || apiFieldType is ApiFieldType.Enum);
+
         public static string ToCSharpType(this ApiFieldType apiFieldType, CodeGenerationContext context)
         {
             switch (apiFieldType)

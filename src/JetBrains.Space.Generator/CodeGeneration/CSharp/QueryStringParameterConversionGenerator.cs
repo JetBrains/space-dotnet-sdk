@@ -58,7 +58,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                 }
                 
                 // Build value generator
-                if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes && !(apiEndpointParameter.Field.Type is ApiFieldType.Enum))
+                if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes && apiEndpointParameter.Field.Type.IsCSharpReferenceType())
                 {
                     parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableInstanceOrDefaultValue(_context));
                 }
