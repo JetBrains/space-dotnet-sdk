@@ -1,8 +1,8 @@
 job("Continuous integration build") {
     container("mcr.microsoft.com/dotnet/core/sdk:3.1-bionic") {
         resources {
-            cpu = 2048
-            memory = 2048
+            cpu = 2.cpu
+            memory = 2.gb
         }
 
         env.set("JB_SPACE_PUBLIC_NUGET_URL", Params("spacedotnet_public_nuget_url"))
@@ -10,7 +10,7 @@ job("Continuous integration build") {
 
         shellScript {
             content = """
-            	/bin/bash ./build.sh
+            	./build.sh
             """
         }
     }
@@ -23,8 +23,8 @@ job("Build and publish to NuGet.org (manual)") {
     
     container("mcr.microsoft.com/dotnet/core/sdk:3.1-bionic") {
         resources {
-            cpu = 2048
-            memory = 2048
+            cpu = 2.cpu
+            memory = 2.gb
         }
 
         env.set("JB_SPACE_PUBLIC_NUGET_URL", Params("spacedotnet_public_nuget_url"))
@@ -35,7 +35,7 @@ job("Build and publish to NuGet.org (manual)") {
 
         shellScript {
             content = """
-            	/bin/bash ./build.sh
+            	./build.sh
             """
         }
     }
