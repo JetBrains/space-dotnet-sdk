@@ -7,16 +7,6 @@ namespace JetBrains.Space.Generator
     internal static class FeatureFlags
     {
         /// <summary>
-        /// Generate backing fields for DTOs?
-        /// 
-        /// When true, will make use of <see cref="PropertyValue{T}"/> and keep track of partial paths/not requested fields.
-        /// When false, will generate auto-properties.
-        ///
-        /// Recommended value: true
-        /// </summary>
-        public const bool GenerateBackingFieldsForDtoProperties = true;
-        
-        /// <summary>
         /// Hide request objects?
         /// 
         /// When true, will expose request object properties as API request parameters, making the API surface nicer to use.
