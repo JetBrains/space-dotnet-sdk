@@ -1,5 +1,3 @@
-using JetBrains.Space.Common.Types;
-
 // ReSharper disable RedundantLogicalConditionalExpressionOperand
 
 namespace JetBrains.Space.Generator
@@ -15,26 +13,6 @@ namespace JetBrains.Space.Generator
         /// Recommended value: true
         /// </summary>
         public const bool DoNotExposeRequestObjects = true;
-        
-        /// <summary>
-        /// Generate constructor for DTOs?
-        /// 
-        /// When true, will generate a default constructor + property constructor for DTOs.
-        /// When false, will not generate constructors.
-        /// 
-        /// Recommended value: true
-        /// </summary>
-        public const bool GenerateDtoConstructor = true;
-        
-        /// <summary>
-        /// Generate factory methods for DTO inheritors?
-        /// 
-        /// When true, will generate factory methods for DTO inheritors.
-        /// When false, will not generate methods.
-        ///
-        /// Recommended value: true
-        /// </summary>
-        public const bool GenerateInheritorFactoryMethods = true;
         
         /// <summary>
         /// Generate optional parameter defaults with reference types?

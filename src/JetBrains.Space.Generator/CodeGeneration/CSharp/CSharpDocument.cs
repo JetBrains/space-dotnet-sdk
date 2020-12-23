@@ -29,11 +29,8 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
             builder.AppendLine($"{indent}// ------------------------------------------------------------------------------");
             builder.AppendLine($"{indent}");
             builder.AppendLine($"{indent}#nullable enable");
-            builder.AppendLine($"{indent}#pragma warning disable CS1591");
-            if (FeatureFlags.GenerateInheritorFactoryMethods)
-            {
-                builder.AppendLine($"{indent}#pragma warning disable CS0108");
-            }
+            builder.AppendLine($"{indent}#pragma warning disable CS1591"); // Missing XML comment for publicly visible type or member 'Type_or_Member'
+            builder.AppendLine($"{indent}#pragma warning disable CS0108"); // 'member1' hides inherited member 'member2'. Use the new keyword if hiding was intended
             builder.AppendLine($"{indent}");
             builder.AppendLine($"{indent}using System;");
             builder.AppendLine($"{indent}using System.Collections.Generic;");

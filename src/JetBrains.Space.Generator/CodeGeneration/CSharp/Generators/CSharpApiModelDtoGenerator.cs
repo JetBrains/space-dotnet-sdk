@@ -92,32 +92,28 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             var apiDtoFields = DetermineFieldsToGenerateFor(apiDto);
             
             // Generate factories for inheritors
-            // ReSharper disable once RedundantLogicalConditionalExpressionOperand
-            if (FeatureFlags.GenerateInheritorFactoryMethods && FeatureFlags.GenerateDtoConstructor)
+            foreach (var apiDtoInheritorReference in apiDto.Inheritors)
             {
-                foreach (var apiDtoInheritorReference in apiDto.Inheritors)
+                if (_codeGenerationContext.TryGetDto(apiDtoInheritorReference.Id, out var apiDtoInheritor)
+                    && apiDtoInheritor!.HierarchyRole != HierarchyRole.INTERFACE && apiDtoInheritor.HierarchyRole != HierarchyRole.ABSTRACT)
                 {
-                    if (_codeGenerationContext.TryGetDto(apiDtoInheritorReference.Id, out var apiDtoInheritor)
-                        && apiDtoInheritor!.HierarchyRole != HierarchyRole.INTERFACE && apiDtoInheritor.HierarchyRole != HierarchyRole.ABSTRACT)
-                    {
-                        var inheritorTypeName = apiDtoInheritor.ToCSharpClassName();
-                        var inheritorFactoryMethodName = apiDtoInheritor.ToCSharpFactoryMethodName(apiDto);
-                        
-                        var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
-                            .WithParametersForApiDtoFields(DetermineFieldsToGenerateFor(apiDtoInheritor!));
-                        
-                        builder.AppendLine($"{indent}public static {inheritorTypeName} {inheritorFactoryMethodName}({methodParametersBuilder.BuildMethodParametersList()})");
-                        indent.Increment();
-                        builder.AppendLine($"{indent}=> new {inheritorTypeName}({methodParametersBuilder.WithDefaultValueForAllParameters(null).BuildMethodCallParameters()});");
-                        indent.Decrement();
-                        builder.AppendLine($"{indent}");
-                    }
+                    var inheritorTypeName = apiDtoInheritor.ToCSharpClassName();
+                    var inheritorFactoryMethodName = apiDtoInheritor.ToCSharpFactoryMethodName(apiDto);
+                    
+                    var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
+                        .WithParametersForApiDtoFields(DetermineFieldsToGenerateFor(apiDtoInheritor!));
+                    
+                    builder.AppendLine($"{indent}public static {inheritorTypeName} {inheritorFactoryMethodName}({methodParametersBuilder.BuildMethodParametersList()})");
+                    indent.Increment();
+                    builder.AppendLine($"{indent}=> new {inheritorTypeName}({methodParametersBuilder.WithDefaultValueForAllParameters(null).BuildMethodCallParameters()});");
+                    indent.Decrement();
+                    builder.AppendLine($"{indent}");
                 }
             }
             
             // Generate constructor
             // ReSharper disable once RedundantLogicalConditionalExpressionOperand
-            if (FeatureFlags.GenerateDtoConstructor && apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.HierarchyRole != HierarchyRole.ABSTRACT)
+            if (apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.HierarchyRole != HierarchyRole.ABSTRACT)
             {
                 var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
                     .WithParametersForApiDtoFields(apiDtoFields);
