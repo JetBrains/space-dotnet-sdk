@@ -540,3 +540,9 @@ To access continuous integration packages, add a file named `NuGet.config` in th
   </packageSources>
 </configuration>
 ```
+
+## Attributions
+
+The .NET SDK for JetBrains Space uses an [`EnumStringConverter`](https://github.com/JetBrains/space-dotnet-sdk/blob/main/src/JetBrains.Space.Common/Json.Serialization/EnumStringConverter.cs) to (de)serialize JSON strings to C# enumerations. This one was [borrowed from Macross Software JSON Extensions](https://github.com/Macross-Software/core/blob/develop/ClassLibraries/Macross.Json.Extensions/README.md).
+
+The token management feature is inspired by the [automatic token management sample in IdentityServer4](https://github.com/IdentityServer/IdentityServer4/tree/master/samples/Clients/src/MvcHybridAutomaticRefresh/AutomaticTokenManagement).
