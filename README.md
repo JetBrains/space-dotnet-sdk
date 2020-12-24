@@ -279,7 +279,7 @@ As an example, let's retrieve the current user's To-Do items for this week, skip
 
 ```csharp
 var batch = await _todoClient.GetAllTodoItemsAsync(
-    from: weekStart.AsSpaceDate(),
+    from: weekStart,
     partial: _ => _
         .WithData(data => data
             .WithId()
@@ -298,7 +298,7 @@ do
     }
     
     batch = await _todoClient.GetAllTodoItemsAsync(
-        from: weekStart.AsSpaceDate(),
+        from: weekStart,
         skip: batch.Next,
         partial: _ => _ /* ... */);
 }
@@ -311,7 +311,7 @@ With the `IAsyncEnumerable` overload for these endpoints, we can iterate over it
 
 ```csharp
 await foreach (var todo in _todoClient.GetAllTodoItemsAsyncEnumerable(
-    from: weekStart.AsSpaceDate(),
+    from: weekStart,
     partial: _ => _
         .WithId()
         .WithContent(content => content
@@ -329,7 +329,7 @@ The [`System.Linq.Async`](https://www.nuget.org/packages/System.Linq.Async) NuGe
 >
 > ```csharp
 > var batch = await _todoClient.GetAllToDoItemsAsync(
->     from: weekStart.AsSpaceDate(), partial: _ => _.WithTotalCount());
+>     from: weekStart, partial: _ => _.WithTotalCount());
 > var numberOfResults = batch.TotalCount;
 > ```
 > 
