@@ -86,6 +86,12 @@ namespace JetBrains.Space.Client.TDLocationPartialBuilder
         public static Partial<TDLocation> WithIsArchived(this Partial<TDLocation> it)
             => it.AddFieldName("archived");
         
+        public static Partial<TDLocation> WithEquipment2(this Partial<TDLocation> it)
+            => it.AddFieldName("equipment2");
+        
+        public static Partial<TDLocation> WithEquipment2(this Partial<TDLocation> it, Func<Partial<TDLocationEquipmentTypeRecord>, Partial<TDLocationEquipmentTypeRecord>> partialBuilder)
+            => it.AddFieldName("equipment2", partialBuilder(new Partial<TDLocationEquipmentTypeRecord>(it)));
+        
     }
     
 }

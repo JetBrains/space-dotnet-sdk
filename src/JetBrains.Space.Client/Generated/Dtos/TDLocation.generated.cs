@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public TDLocation() { }
         
-        public TDLocation(string id, string name, List<string> phones, List<string> emails, string type, bool archived, ATimeZoneWithOffset? timezone = null, string? tz = null, List<int>? workdays = null, List<string>? equipment = null, string? description = null, string? address = null, TDLocation? parent = null, string? mapId = null, int? capacity = null, string? channelId = null)
+        public TDLocation(string id, string name, List<string> phones, List<string> emails, string type, bool archived, ATimeZoneWithOffset? timezone = null, string? tz = null, List<int>? workdays = null, List<string>? equipment = null, string? description = null, string? address = null, TDLocation? parent = null, string? mapId = null, int? capacity = null, string? channelId = null, List<TDLocationEquipmentTypeRecord>? equipment2 = null)
         {
             Id = id;
             Name = name;
@@ -50,6 +50,7 @@ namespace JetBrains.Space.Client
             Capacity = capacity;
             ChannelId = channelId;
             IsArchived = archived;
+            Equipment2 = equipment2;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocation), nameof(Id));
@@ -203,6 +204,15 @@ namespace JetBrains.Space.Client
             set => _archived.SetValue(value);
         }
     
+        private PropertyValue<List<TDLocationEquipmentTypeRecord>?> _equipment2 = new PropertyValue<List<TDLocationEquipmentTypeRecord>?>(nameof(TDLocation), nameof(Equipment2));
+        
+        [JsonPropertyName("equipment2")]
+        public List<TDLocationEquipmentTypeRecord>? Equipment2
+        {
+            get => _equipment2.GetValue();
+            set => _equipment2.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -221,6 +231,7 @@ namespace JetBrains.Space.Client
             _capacity.SetAccessPath(path, validateHasBeenSet);
             _channelId.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
+            _equipment2.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

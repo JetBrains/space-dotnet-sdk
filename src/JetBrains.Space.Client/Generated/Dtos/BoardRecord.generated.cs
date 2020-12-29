@@ -32,14 +32,16 @@ namespace JetBrains.Space.Client
     {
         public BoardRecord() { }
         
-        public BoardRecord(string id, bool archived, string name, BoardRecord board, BoardInfo info, BoardWidgetData? data = null)
+        public BoardRecord(string id, bool archived, string name, BoardRecord board, BoardInfo info, BoardWidgetData? data = null, DateTime? from = null, DateTime? to = null)
         {
             Id = id;
             IsArchived = archived;
             Name = name;
             Board = board;
             Data = data;
+            From = from;
             Info = info;
+            To = to;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(BoardRecord), nameof(Id));
@@ -91,6 +93,16 @@ namespace JetBrains.Space.Client
             set => _data.SetValue(value);
         }
     
+        private PropertyValue<DateTime?> _from = new PropertyValue<DateTime?>(nameof(BoardRecord), nameof(From));
+        
+        [JsonPropertyName("from")]
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? From
+        {
+            get => _from.GetValue();
+            set => _from.SetValue(value);
+        }
+    
         private PropertyValue<BoardInfo> _info = new PropertyValue<BoardInfo>(nameof(BoardRecord), nameof(Info));
         
         [Required]
@@ -101,6 +113,16 @@ namespace JetBrains.Space.Client
             set => _info.SetValue(value);
         }
     
+        private PropertyValue<DateTime?> _to = new PropertyValue<DateTime?>(nameof(BoardRecord), nameof(To));
+        
+        [JsonPropertyName("to")]
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? To
+        {
+            get => _to.GetValue();
+            set => _to.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -108,7 +130,9 @@ namespace JetBrains.Space.Client
             _name.SetAccessPath(path, validateHasBeenSet);
             _board.SetAccessPath(path, validateHasBeenSet);
             _data.SetAccessPath(path, validateHasBeenSet);
+            _from.SetAccessPath(path, validateHasBeenSet);
             _info.SetAccessPath(path, validateHasBeenSet);
+            _to.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -1679,6 +1679,56 @@ namespace JetBrains.Space.Client
         
         }
     
+        public IntellijSharedIndexClient IntellijSharedIndexes => new IntellijSharedIndexClient(_connection);
+        
+        public partial class IntellijSharedIndexClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public IntellijSharedIndexClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Change permissions for the project</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task IndexRefreshCdnAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/intellij-shared-indexes/index-refresh-cdn{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Change permissions for the project</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<IntelliJSharedIndexUploadUrls> IndexUploadAsync(ProjectIdentifier project, List<string> fileNames, Func<Partial<IntelliJSharedIndexUploadUrls>, Partial<IntelliJSharedIndexUploadUrls>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<IntelliJSharedIndexUploadUrls>()) : Partial<IntelliJSharedIndexUploadUrls>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest, IntelliJSharedIndexUploadUrls>("POST", $"api/http/projects/{project}/intellij-shared-indexes/index-upload{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest
+                    { 
+                        FileNames = fileNames,
+                    }, cancellationToken);
+            }
+            
+        
+        }
+    
         public PackageClient Packages => new PackageClient(_connection);
         
         public partial class PackageClient : ISpaceClient

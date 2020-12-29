@@ -45,6 +45,9 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsChecklist Checklist(Checklist checklist)
             => new UnfurlDetailsChecklist(checklist: checklist);
         
+        public static UnfurlDetailsCodeReview CodeReview(CodeReviewRecord review)
+            => new UnfurlDetailsCodeReview(review: review);
+        
         public static UnfurlDetailsCodeSnippet CodeSnippet(CodeSnippetAnchor anchor, List<CodeLine> lines)
             => new UnfurlDetailsCodeSnippet(anchor: anchor, lines: lines);
         
@@ -77,6 +80,9 @@ namespace JetBrains.Space.Client
         
         public static UnfurlDetailsProfile Profile(TDMemberProfile profile)
             => new UnfurlDetailsProfile(profile: profile);
+        
+        public static UnfurlDetailsRepositoryBranch RepositoryBranch(PRProject project, string repository, string branchHead, bool deleted)
+            => new UnfurlDetailsRepositoryBranch(project: project, repository: repository, branchHead: branchHead, deleted: deleted);
         
         public static UnfurlDetailsSprint Sprint(PRProject project, SprintRecord sprint)
             => new UnfurlDetailsSprint(project: project, sprint: sprint);

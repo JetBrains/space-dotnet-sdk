@@ -1838,7 +1838,7 @@ namespace JetBrains.Space.Client
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>View working days</term>
+                /// <term>View working hours</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -1863,7 +1863,7 @@ namespace JetBrains.Space.Client
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>View working days</term>
+                /// <term>View working hours</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -1901,7 +1901,7 @@ namespace JetBrains.Space.Client
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>View working days</term>
+                /// <term>View working hours</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -1920,7 +1920,7 @@ namespace JetBrains.Space.Client
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>View working days</term>
+                /// <term>View working hours</term>
                 /// </item>
                 /// </list>
                 /// </remarks>

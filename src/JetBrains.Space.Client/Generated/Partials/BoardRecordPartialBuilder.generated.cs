@@ -53,11 +53,17 @@ namespace JetBrains.Space.Client.BoardRecordPartialBuilder
         public static Partial<BoardRecord> WithData(this Partial<BoardRecord> it, Func<Partial<BoardWidgetData>, Partial<BoardWidgetData>> partialBuilder)
             => it.AddFieldName("data", partialBuilder(new Partial<BoardWidgetData>(it)));
         
+        public static Partial<BoardRecord> WithFrom(this Partial<BoardRecord> it)
+            => it.AddFieldName("from");
+        
         public static Partial<BoardRecord> WithInfo(this Partial<BoardRecord> it)
             => it.AddFieldName("info");
         
         public static Partial<BoardRecord> WithInfo(this Partial<BoardRecord> it, Func<Partial<BoardInfo>, Partial<BoardInfo>> partialBuilder)
             => it.AddFieldName("info", partialBuilder(new Partial<BoardInfo>(it)));
+        
+        public static Partial<BoardRecord> WithTo(this Partial<BoardRecord> it)
+            => it.AddFieldName("to");
         
     }
     
