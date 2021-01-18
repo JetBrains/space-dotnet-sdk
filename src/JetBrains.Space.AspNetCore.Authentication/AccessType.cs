@@ -11,7 +11,7 @@ namespace JetBrains.Space.AspNetCore.Authentication
         /// <summary>
         /// Authentication token can be used online.
         /// </summary>
-        [EnumMember(Value = "default")]
+        [EnumMember(Value = "online")]
         Online,
         
         /// <summary>
