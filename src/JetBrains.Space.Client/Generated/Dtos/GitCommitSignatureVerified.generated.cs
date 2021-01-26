@@ -27,32 +27,16 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class CExternalServicePrincipalDetails
-         : CPrincipalDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class GitCommitSignatureVerified
+         : GitCommitSignature, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public  string? ClassName => "CExternalServicePrincipalDetails";
+        public override string? ClassName => "GitCommitSignature.Verified";
         
-        public CExternalServicePrincipalDetails() { }
+        public GitCommitSignatureVerified() { }
         
-        public CExternalServicePrincipalDetails(ESService service)
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            Service = service;
-        }
-        
-        private PropertyValue<ESService> _service = new PropertyValue<ESService>(nameof(CExternalServicePrincipalDetails), nameof(Service));
-        
-        [Required]
-        [JsonPropertyName("service")]
-        public ESService Service
-        {
-            get => _service.GetValue();
-            set => _service.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _service.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

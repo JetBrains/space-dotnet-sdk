@@ -38,6 +38,12 @@ namespace JetBrains.Space.Client.SettingsValuePartialBuilder
         public static Partial<SettingsValue> WithFirstDayOfWeek(this Partial<SettingsValue> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)
             => it.AddFieldName("firstDayOfWeek", partialBuilder(new Partial<Weekday>(it)));
         
+        public static Partial<SettingsValue> WithDarkTheme(this Partial<SettingsValue> it)
+            => it.AddFieldName("darkTheme");
+        
+        public static Partial<SettingsValue> WithDarkTheme(this Partial<SettingsValue> it, Func<Partial<DarkTheme>, Partial<DarkTheme>> partialBuilder)
+            => it.AddFieldName("darkTheme", partialBuilder(new Partial<DarkTheme>(it)));
+        
         public static Partial<SettingsValue> WithThemeName(this Partial<SettingsValue> it)
             => it.AddFieldName("themeName");
         

@@ -25,24 +25,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.OIDCDiscoveryPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class OIDCDiscoveryPartialExtensions
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum DarkTheme
     {
-        public static Partial<OIDCDiscovery> WithIssuer(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("issuer");
+        [EnumMember(Value = "AUTO")]
+        AUTO,
         
-        public static Partial<OIDCDiscovery> WithAuthorizationEndpoint(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("authorizationEndpoint");
+        [EnumMember(Value = "ENABLED")]
+        ENABLED,
         
-        public static Partial<OIDCDiscovery> WithTokenEndpoint(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("tokenEndpoint");
-        
-        public static Partial<OIDCDiscovery> WithUserinfoEndpoint(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("userinfoEndpoint");
-        
-        public static Partial<OIDCDiscovery> WithJwksUri(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("jwksUri");
+        [EnumMember(Value = "DISABLED")]
+        DISABLED,
         
     }
     

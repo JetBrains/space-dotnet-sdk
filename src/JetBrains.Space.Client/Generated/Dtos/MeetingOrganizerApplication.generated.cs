@@ -35,24 +35,35 @@ namespace JetBrains.Space.Client
         
         public MeetingOrganizerApplication() { }
         
-        public MeetingOrganizerApplication(ESService appRef)
+        public MeetingOrganizerApplication(ESApp applicationRef, ESService? appRef = null)
         {
             AppRef = appRef;
+            ApplicationRef = applicationRef;
         }
         
-        private PropertyValue<ESService> _appRef = new PropertyValue<ESService>(nameof(MeetingOrganizerApplication), nameof(AppRef));
+        private PropertyValue<ESService?> _appRef = new PropertyValue<ESService?>(nameof(MeetingOrganizerApplication), nameof(AppRef));
         
-        [Required]
         [JsonPropertyName("appRef")]
-        public ESService AppRef
+        public ESService? AppRef
         {
             get => _appRef.GetValue();
             set => _appRef.SetValue(value);
         }
     
+        private PropertyValue<ESApp> _applicationRef = new PropertyValue<ESApp>(nameof(MeetingOrganizerApplication), nameof(ApplicationRef));
+        
+        [Required]
+        [JsonPropertyName("applicationRef")]
+        public ESApp ApplicationRef
+        {
+            get => _applicationRef.GetValue();
+            set => _applicationRef.SetValue(value);
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _appRef.SetAccessPath(path, validateHasBeenSet);
+            _applicationRef.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

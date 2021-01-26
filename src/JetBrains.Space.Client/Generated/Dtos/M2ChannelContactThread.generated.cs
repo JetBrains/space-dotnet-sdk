@@ -28,7 +28,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client
 {
     public sealed class M2ChannelContactThread
-         : M2ChannelContactInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+         : ChannelContactThread, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ChannelContactThread";

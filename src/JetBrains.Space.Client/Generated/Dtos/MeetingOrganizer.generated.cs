@@ -34,8 +34,8 @@ namespace JetBrains.Space.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "MeetingOrganizer";
         
-        public static MeetingOrganizerApplication Application(ESService appRef)
-            => new MeetingOrganizerApplication(appRef: appRef);
+        public static MeetingOrganizerApplication Application(ESApp applicationRef, ESService? appRef = null)
+            => new MeetingOrganizerApplication(applicationRef: applicationRef, appRef: appRef);
         
         public static MeetingOrganizerExternalUser ExternalUser(string email)
             => new MeetingOrganizerExternalUser(email: email);

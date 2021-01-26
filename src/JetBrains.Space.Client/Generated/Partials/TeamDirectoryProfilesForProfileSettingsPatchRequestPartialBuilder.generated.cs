@@ -29,6 +29,12 @@ namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileSettingsPatchReq
 {
     public static class TeamDirectoryProfilesForProfileSettingsPatchRequestPartialExtensions
     {
+        public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithDarkTheme(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
+            => it.AddFieldName("darkTheme");
+        
+        public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithDarkTheme(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it, Func<Partial<DarkTheme>, Partial<DarkTheme>> partialBuilder)
+            => it.AddFieldName("darkTheme", partialBuilder(new Partial<DarkTheme>(it)));
+        
         public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithThemeName(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
             => it.AddFieldName("themeName");
         

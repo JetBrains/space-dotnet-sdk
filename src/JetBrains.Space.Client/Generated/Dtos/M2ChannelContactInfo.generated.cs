@@ -45,9 +45,6 @@ namespace JetBrains.Space.Client
         public static M2ChannelContactQuickInfoDefault M2ChannelContactQuickInfoDefault(string name, string key)
             => new M2ChannelContactQuickInfoDefault(name: name, key: key);
         
-        public static M2ChannelContactThread M2ChannelContactThread(M2ChannelRecord parent, string? text = null, string? messageId = null, TDMemberProfile? author = null, CPrincipal? messageAuthor = null, string? attachments = null)
-            => new M2ChannelContactThread(parent: parent, text: text, messageId: messageId, author: author, messageAuthor: messageAuthor, attachments: attachments);
-        
         public static M2ChannelContentApplication M2ChannelContentApplication(ESApp app, ChannelSpecificDefaults notificationDefaults)
             => new M2ChannelContentApplication(app: app, notificationDefaults: notificationDefaults);
         

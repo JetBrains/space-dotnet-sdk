@@ -42,6 +42,9 @@ namespace JetBrains.Space.Client
         [EnumMember(Value = "RUNNING")]
         RUNNING,
         
+        [EnumMember(Value = "FINISHING")]
+        FINISHING,
+        
         [EnumMember(Value = "FINISHED")]
         FINISHED,
         

@@ -89,6 +89,9 @@ namespace JetBrains.Space.Client.NuGetPackageVersionDetailsPartialBuilder
         public static Partial<NuGetPackageVersionDetails> WithMetadata(this Partial<NuGetPackageVersionDetails> it, Func<Partial<string>, Partial<string>> partialBuilder)
             => it.AddFieldName("metadata", partialBuilder(new Partial<string>(it)));
         
+        public static Partial<NuGetPackageVersionDetails> WithVerbatimVersion(this Partial<NuGetPackageVersionDetails> it)
+            => it.AddFieldName("verbatimVersion");
+        
         public static Partial<NuGetPackageVersionDetails> WithDescription(this Partial<NuGetPackageVersionDetails> it)
             => it.AddFieldName("description");
         

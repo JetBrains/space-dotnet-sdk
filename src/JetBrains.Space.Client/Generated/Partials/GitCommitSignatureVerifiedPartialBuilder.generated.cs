@@ -25,16 +25,10 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.OIDCDiscoveryErrorPartialBuilder
+namespace JetBrains.Space.Client.GitCommitSignatureVerifiedPartialBuilder
 {
-    public static class OIDCDiscoveryErrorPartialExtensions
+    public static class GitCommitSignatureVerifiedPartialExtensions
     {
-        public static Partial<OIDCDiscoveryError> WithCode(this Partial<OIDCDiscoveryError> it)
-            => it.AddFieldName("code");
-        
-        public static Partial<OIDCDiscoveryError> WithDescription(this Partial<OIDCDiscoveryError> it)
-            => it.AddFieldName("description");
-        
     }
     
 }

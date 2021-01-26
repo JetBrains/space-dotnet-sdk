@@ -32,10 +32,11 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest() { }
         
-        public TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest(string? name = null, string? scope = null)
+        public TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest(string? name = null, string? scope = null, DateTime? expires = null)
         {
             Name = name;
             Scope = scope;
+            Expires = expires;
         }
         
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest), nameof(Name));
@@ -56,10 +57,21 @@ namespace JetBrains.Space.Client
             set => _scope.SetValue(value);
         }
     
+        private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest), nameof(Expires));
+        
+        [JsonPropertyName("expires")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? Expires
+        {
+            get => _expires.GetValue();
+            set => _expires.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
             _scope.SetAccessPath(path, validateHasBeenSet);
+            _expires.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

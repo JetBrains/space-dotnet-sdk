@@ -27,27 +27,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ExecutionDisplayStatus
+    public sealed class PackagesExecutionResultFailure
+         : PackagesExecutionResult, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        [EnumMember(Value = "Awaiting")]
-        Awaiting,
+        [JsonPropertyName("className")]
+        public override string? ClassName => "PackagesExecutionResult.Failure";
         
-        [EnumMember(Value = "Running")]
-        Running,
+        public PackagesExecutionResultFailure() { }
         
-        [EnumMember(Value = "Finishing")]
-        Finishing,
+        public PackagesExecutionResultFailure(string error)
+        {
+            Error = error;
+        }
         
-        [EnumMember(Value = "Stopped")]
-        Stopped,
+        private PropertyValue<string> _error = new PropertyValue<string>(nameof(PackagesExecutionResultFailure), nameof(Error));
         
-        [EnumMember(Value = "Succeeded")]
-        Succeeded,
-        
-        [EnumMember(Value = "Failed")]
-        Failed,
-        
+        [Required]
+        [JsonPropertyName("error")]
+        public string Error
+        {
+            get => _error.GetValue();
+            set => _error.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _error.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

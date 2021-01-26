@@ -30,14 +30,14 @@ namespace JetBrains.Space.Client
     public interface CPrincipalDetails
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static CApplicationPrincipalDetails CApplicationPrincipalDetails(ESApp app)
+            => new CApplicationPrincipalDetails(app: app);
+        
         public static CAutomationTaskPrincipalDetails CAutomationTaskPrincipalDetails(PRProject project, string name, string id)
             => new CAutomationTaskPrincipalDetails(project: project, name: name, id: id);
         
         public static CBuiltInServicePrincipalDetails CBuiltInServicePrincipalDetails(string name)
             => new CBuiltInServicePrincipalDetails(name: name);
-        
-        public static CExternalServicePrincipalDetails CExternalServicePrincipalDetails(ESService service)
-            => new CExternalServicePrincipalDetails(service: service);
         
         public static CUserPrincipalDetails CUserPrincipalDetails(TDMemberProfile user)
             => new CUserPrincipalDetails(user: user);

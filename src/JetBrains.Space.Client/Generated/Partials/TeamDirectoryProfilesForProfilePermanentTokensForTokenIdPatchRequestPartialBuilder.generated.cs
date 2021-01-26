@@ -35,6 +35,9 @@ namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfilePermanentTokensF
         public static Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> WithScope(this Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> it)
             => it.AddFieldName("scope");
         
+        public static Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> WithExpires(this Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> it)
+            => it.AddFieldName("expires");
+        
     }
     
 }

@@ -32,8 +32,9 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryProfilesForProfileSettingsPatchRequest() { }
         
-        public TeamDirectoryProfilesForProfileSettingsPatchRequest(string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? fontLigaturesEnabled = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null)
+        public TeamDirectoryProfilesForProfileSettingsPatchRequest(DarkTheme? darkTheme = null, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? fontLigaturesEnabled = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null)
         {
+            DarkTheme = darkTheme;
             ThemeName = themeName;
             FirstDayOfWeek = firstDayOfWeek;
             DraftType = draftType;
@@ -45,6 +46,15 @@ namespace JetBrains.Space.Client
             PreferredLanguage = preferredLanguage;
         }
         
+        private PropertyValue<DarkTheme?> _darkTheme = new PropertyValue<DarkTheme?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(DarkTheme));
+        
+        [JsonPropertyName("darkTheme")]
+        public DarkTheme? DarkTheme
+        {
+            get => _darkTheme.GetValue();
+            set => _darkTheme.SetValue(value);
+        }
+    
         private PropertyValue<string?> _themeName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(ThemeName));
         
         [JsonPropertyName("themeName")]
@@ -128,6 +138,7 @@ namespace JetBrains.Space.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
+            _darkTheme.SetAccessPath(path, validateHasBeenSet);
             _themeName.SetAccessPath(path, validateHasBeenSet);
             _firstDayOfWeek.SetAccessPath(path, validateHasBeenSet);
             _draftType.SetAccessPath(path, validateHasBeenSet);

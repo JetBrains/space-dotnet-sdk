@@ -77,12 +77,6 @@ namespace JetBrains.Space.Client.IssuePartialBuilder
         public static Partial<Issue> WithDueDate(this Partial<Issue> it)
             => it.AddFieldName("dueDate");
         
-        public static Partial<Issue> WithImportInfo(this Partial<Issue> it)
-            => it.AddFieldName("importInfo");
-        
-        public static Partial<Issue> WithImportInfo(this Partial<Issue> it, Func<Partial<ImportedEntityInfo>, Partial<ImportedEntityInfo>> partialBuilder)
-            => it.AddFieldName("importInfo", partialBuilder(new Partial<ImportedEntityInfo>(it)));
-        
         public static Partial<Issue> WithExternalEntityInfo(this Partial<Issue> it)
             => it.AddFieldName("externalEntityInfo");
         

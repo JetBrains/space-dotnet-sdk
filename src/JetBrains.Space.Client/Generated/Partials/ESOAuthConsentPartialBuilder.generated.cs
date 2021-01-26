@@ -35,6 +35,12 @@ namespace JetBrains.Space.Client.ESOAuthConsentPartialBuilder
         public static Partial<ESOAuthConsent> WithClientService(this Partial<ESOAuthConsent> it, Func<Partial<ESService>, Partial<ESService>> partialBuilder)
             => it.AddFieldName("clientService", partialBuilder(new Partial<ESService>(it)));
         
+        public static Partial<ESOAuthConsent> WithClientApplication(this Partial<ESOAuthConsent> it)
+            => it.AddFieldName("clientApplication");
+        
+        public static Partial<ESOAuthConsent> WithClientApplication(this Partial<ESOAuthConsent> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
+            => it.AddFieldName("clientApplication", partialBuilder(new Partial<ESApp>(it)));
+        
         public static Partial<ESOAuthConsent> WithApprovedScopes(this Partial<ESOAuthConsent> it)
             => it.AddFieldName("approvedScopes");
         

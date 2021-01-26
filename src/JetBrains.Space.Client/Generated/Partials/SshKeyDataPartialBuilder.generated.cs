@@ -25,21 +25,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ImportedEntityInfoPartialBuilder
+namespace JetBrains.Space.Client.SshKeyDataPartialBuilder
 {
-    public static class ImportedEntityInfoPartialExtensions
+    public static class SshKeyDataPartialExtensions
     {
-        public static Partial<ImportedEntityInfo> WithSource(this Partial<ImportedEntityInfo> it)
-            => it.AddFieldName("source");
+        public static Partial<SshKeyData> WithFingerprint(this Partial<SshKeyData> it)
+            => it.AddFieldName("fingerprint");
         
-        public static Partial<ImportedEntityInfo> WithSource(this Partial<ImportedEntityInfo> it, Func<Partial<ImportSource>, Partial<ImportSource>> partialBuilder)
-            => it.AddFieldName("source", partialBuilder(new Partial<ImportSource>(it)));
+        public static Partial<SshKeyData> WithPublicKey(this Partial<SshKeyData> it)
+            => it.AddFieldName("publicKey");
         
-        public static Partial<ImportedEntityInfo> WithExternalName(this Partial<ImportedEntityInfo> it)
-            => it.AddFieldName("externalName");
+        public static Partial<SshKeyData> WithComment(this Partial<SshKeyData> it)
+            => it.AddFieldName("comment");
         
-        public static Partial<ImportedEntityInfo> WithExternalUrl(this Partial<ImportedEntityInfo> it)
-            => it.AddFieldName("externalUrl");
+        public static Partial<SshKeyData> WithLastUsed(this Partial<SshKeyData> it)
+            => it.AddFieldName("lastUsed");
+        
+        public static Partial<SshKeyData> WithLastResource(this Partial<SshKeyData> it)
+            => it.AddFieldName("lastResource");
         
     }
     

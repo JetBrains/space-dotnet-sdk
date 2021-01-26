@@ -1900,6 +1900,77 @@ namespace JetBrains.Space.Client
                 
                 }
             
+                public MirrorClient Mirrors => new MirrorClient(_connection);
+                
+                public partial class MirrorClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public MirrorClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    /// <summary>
+                    /// Gets a list of package repository mirrors for given project.
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public async Task<List<PackageRepositoryMirror>> GetAllMirrorsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, Func<Partial<PackageRepositoryMirror>, Partial<PackageRepositoryMirror>>? partial = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageRepositoryMirror>()) : Partial<PackageRepositoryMirror>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<List<PackageRepositoryMirror>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/mirrors{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                
+                    public PublishClient Publish => new PublishClient(_connection);
+                    
+                    public partial class PublishClient : ISpaceClient
+                    {
+                        private readonly Connection _connection;
+                        
+                        public PublishClient(Connection connection)
+                        {
+                            _connection = connection;
+                        }
+                        
+                        /// <summary>
+                        /// Publishes package version to target package repository mirror.
+                        /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Write</term>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
+                        public async Task<PackagesExecutionResult> PublishPackageVersionToMirrorAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string mirrorId, string packageName, string packageVersion, Func<Partial<PackagesExecutionResult>, Partial<PackagesExecutionResult>>? partial = null, CancellationToken cancellationToken = default)
+                        {
+                            var queryParameters = new NameValueCollection();
+                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackagesExecutionResult>()) : Partial<PackagesExecutionResult>.Default()).ToString());
+                            
+                            return await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequest, PackagesExecutionResult>("POST", $"api/http/projects/{project}/packages/repositories/{repository}/mirrors/{mirrorId}/publish{queryParameters.ToQueryString()}", 
+                                new ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequest
+                                { 
+                                    PackageName = packageName,
+                                    PackageVersion = packageVersion,
+                                }, cancellationToken);
+                        }
+                        
+                    
+                    }
+                
+                }
+            
                 public PackageClient Packages => new PackageClient(_connection);
                 
                 public partial class PackageClient : ISpaceClient

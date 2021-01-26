@@ -35,7 +35,7 @@ namespace JetBrains.Space.Client
         
         public NuGetPackageVersionDetails() { }
         
-        public NuGetPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, bool pinned, long diskSize, List<NuGetDependencyGroup> dependencies, List<string>? tags = null, long? accessed = null, string? comment = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, string? description = null, string? projectUrl = null, string? license = null, string? licenseUrl = null, string? icon = null, string? title = null)
+        public NuGetPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, bool pinned, long diskSize, string verbatimVersion, List<NuGetDependencyGroup> dependencies, List<string>? tags = null, long? accessed = null, string? comment = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, string? description = null, string? projectUrl = null, string? license = null, string? licenseUrl = null, string? icon = null, string? title = null)
         {
             Type = type;
             Repository = repository;
@@ -52,6 +52,7 @@ namespace JetBrains.Space.Client
             Authors = authors;
             Origin = origin;
             Metadata = metadata;
+            VerbatimVersion = verbatimVersion;
             Description = description;
             ProjectUrl = projectUrl;
             License = license;
@@ -204,6 +205,16 @@ namespace JetBrains.Space.Client
             set => _metadata.SetValue(value);
         }
     
+        private PropertyValue<string> _verbatimVersion = new PropertyValue<string>(nameof(NuGetPackageVersionDetails), nameof(VerbatimVersion));
+        
+        [Required]
+        [JsonPropertyName("verbatimVersion")]
+        public string VerbatimVersion
+        {
+            get => _verbatimVersion.GetValue();
+            set => _verbatimVersion.SetValue(value);
+        }
+    
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(NuGetPackageVersionDetails), nameof(Description));
         
         [JsonPropertyName("description")]
@@ -285,6 +296,7 @@ namespace JetBrains.Space.Client
             _authors.SetAccessPath(path, validateHasBeenSet);
             _origin.SetAccessPath(path, validateHasBeenSet);
             _metadata.SetAccessPath(path, validateHasBeenSet);
+            _verbatimVersion.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
             _projectUrl.SetAccessPath(path, validateHasBeenSet);
             _license.SetAccessPath(path, validateHasBeenSet);

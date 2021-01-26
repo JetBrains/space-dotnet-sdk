@@ -25,16 +25,10 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CExternalServicePrincipalDetailsPartialBuilder
+namespace JetBrains.Space.Client.GitCommitSignaturePartialBuilder
 {
-    public static class CExternalServicePrincipalDetailsPartialExtensions
+    public static class GitCommitSignaturePartialExtensions
     {
-        public static Partial<CExternalServicePrincipalDetails> WithService(this Partial<CExternalServicePrincipalDetails> it)
-            => it.AddFieldName("service");
-        
-        public static Partial<CExternalServicePrincipalDetails> WithService(this Partial<CExternalServicePrincipalDetails> it, Func<Partial<ESService>, Partial<ESService>> partialBuilder)
-            => it.AddFieldName("service", partialBuilder(new Partial<ESService>(it)));
-        
     }
     
 }

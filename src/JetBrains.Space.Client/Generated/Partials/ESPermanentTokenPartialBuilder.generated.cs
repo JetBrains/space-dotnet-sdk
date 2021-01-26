@@ -47,6 +47,9 @@ namespace JetBrains.Space.Client.ESPermanentTokenPartialBuilder
         public static Partial<ESPermanentToken> WithCreated(this Partial<ESPermanentToken> it)
             => it.AddFieldName("created");
         
+        public static Partial<ESPermanentToken> WithExpires(this Partial<ESPermanentToken> it)
+            => it.AddFieldName("expires");
+        
         public static Partial<ESPermanentToken> WithLastAccess(this Partial<ESPermanentToken> it)
             => it.AddFieldName("lastAccess");
         

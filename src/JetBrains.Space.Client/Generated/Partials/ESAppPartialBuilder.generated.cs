@@ -44,6 +44,12 @@ namespace JetBrains.Space.Client.ESAppPartialBuilder
         public static Partial<ESApp> WithName(this Partial<ESApp> it)
             => it.AddFieldName("name");
         
+        public static Partial<ESApp> WithApplicationType(this Partial<ESApp> it)
+            => it.AddFieldName("applicationType");
+        
+        public static Partial<ESApp> WithApplicationType(this Partial<ESApp> it, Func<Partial<ApplicationType>, Partial<ApplicationType>> partialBuilder)
+            => it.AddFieldName("applicationType", partialBuilder(new Partial<ApplicationType>(it)));
+        
         public static Partial<ESApp> WithIsClientCredentialsFlowEnabled(this Partial<ESApp> it)
             => it.AddFieldName("clientCredentialsFlowEnabled");
         

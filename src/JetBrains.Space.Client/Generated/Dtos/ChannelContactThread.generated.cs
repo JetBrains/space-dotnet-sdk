@@ -27,26 +27,14 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ExecutionDisplayStatus
+    public interface ChannelContactThread
+         : M2ChannelContactInfo, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        [EnumMember(Value = "Awaiting")]
-        Awaiting,
+        public static M2ChannelContactThread M2(M2ChannelRecord parent, string? text = null, string? messageId = null, TDMemberProfile? author = null, CPrincipal? messageAuthor = null, string? attachments = null)
+            => new M2ChannelContactThread(parent: parent, text: text, messageId: messageId, author: author, messageAuthor: messageAuthor, attachments: attachments);
         
-        [EnumMember(Value = "Running")]
-        Running,
-        
-        [EnumMember(Value = "Finishing")]
-        Finishing,
-        
-        [EnumMember(Value = "Stopped")]
-        Stopped,
-        
-        [EnumMember(Value = "Succeeded")]
-        Succeeded,
-        
-        [EnumMember(Value = "Failed")]
-        Failed,
+        public static M2ChannelContentCodeDiscussionInReview M2ChannelContentCodeDiscussionInReview(ChannelSpecificDefaults notificationDefaults, CodeDiscussionRecord codeDiscussion, M2ChannelRecord parent, string messageId)
+            => new M2ChannelContentCodeDiscussionInReview(notificationDefaults: notificationDefaults, codeDiscussion: codeDiscussion, parent: parent, messageId: messageId);
         
     }
     

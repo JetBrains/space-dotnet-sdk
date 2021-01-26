@@ -32,13 +32,14 @@ namespace JetBrains.Space.Client
     {
         public ESPermanentToken() { }
         
-        public ESPermanentToken(string id, string name, TDMemberProfile profile, string scope, DateTime created, AccessRecord? lastAccess = null)
+        public ESPermanentToken(string id, string name, TDMemberProfile profile, string scope, DateTime created, DateTime? expires = null, AccessRecord? lastAccess = null)
         {
             Id = id;
             Name = name;
             Profile = profile;
             Scope = scope;
             Created = created;
+            Expires = expires;
             LastAccess = lastAccess;
         }
         
@@ -93,6 +94,16 @@ namespace JetBrains.Space.Client
             set => _created.SetValue(value);
         }
     
+        private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(ESPermanentToken), nameof(Expires));
+        
+        [JsonPropertyName("expires")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? Expires
+        {
+            get => _expires.GetValue();
+            set => _expires.SetValue(value);
+        }
+    
         private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESPermanentToken), nameof(LastAccess));
         
         [JsonPropertyName("lastAccess")]
@@ -109,6 +120,7 @@ namespace JetBrains.Space.Client
             _profile.SetAccessPath(path, validateHasBeenSet);
             _scope.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
+            _expires.SetAccessPath(path, validateHasBeenSet);
             _lastAccess.SetAccessPath(path, validateHasBeenSet);
         }
     

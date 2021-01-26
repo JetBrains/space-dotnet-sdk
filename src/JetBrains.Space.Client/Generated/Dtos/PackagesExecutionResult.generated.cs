@@ -25,25 +25,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ImportSourcePartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class ImportSourcePartialExtensions
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public class PackagesExecutionResult
+         : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<ImportSource> WithId(this Partial<ImportSource> it)
-            => it.AddFieldName("id");
+        [JsonPropertyName("className")]
+        public virtual string? ClassName => "PackagesExecutionResult";
         
-        public static Partial<ImportSource> WithIsArchived(this Partial<ImportSource> it)
-            => it.AddFieldName("archived");
+        public static PackagesExecutionResultFailure Failure(string error)
+            => new PackagesExecutionResultFailure(error: error);
         
-        public static Partial<ImportSource> WithImporter(this Partial<ImportSource> it)
-            => it.AddFieldName("importer");
+        public static PackagesExecutionResultSuccess Success()
+            => new PackagesExecutionResultSuccess();
         
-        public static Partial<ImportSource> WithImporter(this Partial<ImportSource> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("importer", partialBuilder(new Partial<CPrincipal>(it)));
+        public PackagesExecutionResult() { }
         
-        public static Partial<ImportSource> WithName(this Partial<ImportSource> it)
-            => it.AddFieldName("name");
-        
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

@@ -32,21 +32,31 @@ namespace JetBrains.Space.Client
     {
         public ESOAuthConsent() { }
         
-        public ESOAuthConsent(ESService clientService, List<ESApprovedScope> approvedScopes, List<ESRefreshToken> refreshTokens)
+        public ESOAuthConsent(ESApp clientApplication, List<ESApprovedScope> approvedScopes, List<ESRefreshToken> refreshTokens, ESService? clientService = null)
         {
             ClientService = clientService;
+            ClientApplication = clientApplication;
             ApprovedScopes = approvedScopes;
             RefreshTokens = refreshTokens;
         }
         
-        private PropertyValue<ESService> _clientService = new PropertyValue<ESService>(nameof(ESOAuthConsent), nameof(ClientService));
+        private PropertyValue<ESService?> _clientService = new PropertyValue<ESService?>(nameof(ESOAuthConsent), nameof(ClientService));
         
-        [Required]
         [JsonPropertyName("clientService")]
-        public ESService ClientService
+        public ESService? ClientService
         {
             get => _clientService.GetValue();
             set => _clientService.SetValue(value);
+        }
+    
+        private PropertyValue<ESApp> _clientApplication = new PropertyValue<ESApp>(nameof(ESOAuthConsent), nameof(ClientApplication));
+        
+        [Required]
+        [JsonPropertyName("clientApplication")]
+        public ESApp ClientApplication
+        {
+            get => _clientApplication.GetValue();
+            set => _clientApplication.SetValue(value);
         }
     
         private PropertyValue<List<ESApprovedScope>> _approvedScopes = new PropertyValue<List<ESApprovedScope>>(nameof(ESOAuthConsent), nameof(ApprovedScopes));
@@ -72,6 +82,7 @@ namespace JetBrains.Space.Client
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _clientService.SetAccessPath(path, validateHasBeenSet);
+            _clientApplication.SetAccessPath(path, validateHasBeenSet);
             _approvedScopes.SetAccessPath(path, validateHasBeenSet);
             _refreshTokens.SetAccessPath(path, validateHasBeenSet);
         }

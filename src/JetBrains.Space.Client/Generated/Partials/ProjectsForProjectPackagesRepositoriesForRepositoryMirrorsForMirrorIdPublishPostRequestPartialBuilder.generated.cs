@@ -25,24 +25,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.OIDCDiscoveryPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequestPartialBuilder
 {
-    public static class OIDCDiscoveryPartialExtensions
+    public static class ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequestPartialExtensions
     {
-        public static Partial<OIDCDiscovery> WithIssuer(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("issuer");
+        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequest> WithPackageName(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequest> it)
+            => it.AddFieldName("packageName");
         
-        public static Partial<OIDCDiscovery> WithAuthorizationEndpoint(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("authorizationEndpoint");
-        
-        public static Partial<OIDCDiscovery> WithTokenEndpoint(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("tokenEndpoint");
-        
-        public static Partial<OIDCDiscovery> WithUserinfoEndpoint(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("userinfoEndpoint");
-        
-        public static Partial<OIDCDiscovery> WithJwksUri(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("jwksUri");
+        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequest> WithPackageVersion(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequest> it)
+            => it.AddFieldName("packageVersion");
         
     }
     

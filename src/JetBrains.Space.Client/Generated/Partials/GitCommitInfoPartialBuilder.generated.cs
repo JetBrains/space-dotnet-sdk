@@ -65,6 +65,12 @@ namespace JetBrains.Space.Client.GitCommitInfoPartialBuilder
         public static Partial<GitCommitInfo> WithHeads(this Partial<GitCommitInfo> it)
             => it.AddFieldName("heads");
         
+        public static Partial<GitCommitInfo> WithSignature(this Partial<GitCommitInfo> it)
+            => it.AddFieldName("signature");
+        
+        public static Partial<GitCommitInfo> WithSignature(this Partial<GitCommitInfo> it, Func<Partial<GitCommitSignature>, Partial<GitCommitSignature>> partialBuilder)
+            => it.AddFieldName("signature", partialBuilder(new Partial<GitCommitSignature>(it)));
+        
     }
     
 }

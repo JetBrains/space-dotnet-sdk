@@ -27,44 +27,44 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class OIDCDiscoveryError
-         : OIDCDiscovery, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class GitCommitSignatureRaw
+         : GitCommitSignature, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public override string? ClassName => "OIDCDiscovery.Error";
+        public override string? ClassName => "GitCommitSignature.Raw";
         
-        public OIDCDiscoveryError() { }
+        public GitCommitSignatureRaw() { }
         
-        public OIDCDiscoveryError(string code, string description)
+        public GitCommitSignatureRaw(string signature, string signedDataB64)
         {
-            Code = code;
-            Description = description;
+            Signature = signature;
+            SignedDataB64 = signedDataB64;
         }
         
-        private PropertyValue<string> _code = new PropertyValue<string>(nameof(OIDCDiscoveryError), nameof(Code));
+        private PropertyValue<string> _signature = new PropertyValue<string>(nameof(GitCommitSignatureRaw), nameof(Signature));
         
         [Required]
-        [JsonPropertyName("code")]
-        public string Code
+        [JsonPropertyName("signature")]
+        public string Signature
         {
-            get => _code.GetValue();
-            set => _code.SetValue(value);
+            get => _signature.GetValue();
+            set => _signature.SetValue(value);
         }
     
-        private PropertyValue<string> _description = new PropertyValue<string>(nameof(OIDCDiscoveryError), nameof(Description));
+        private PropertyValue<string> _signedDataB64 = new PropertyValue<string>(nameof(GitCommitSignatureRaw), nameof(SignedDataB64));
         
         [Required]
-        [JsonPropertyName("description")]
-        public string Description
+        [JsonPropertyName("signedDataB64")]
+        public string SignedDataB64
         {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
+            get => _signedDataB64.GetValue();
+            set => _signedDataB64.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _code.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
+            _signature.SetAccessPath(path, validateHasBeenSet);
+            _signedDataB64.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public GitCommitInfo() { }
         
-        public GitCommitInfo(string id, string message, long authorDate, long commitDate, GitAuthorInfo author, GitAuthorInfo committer, List<string> parents, List<string> heads, TDMemberProfile? authorProfile = null)
+        public GitCommitInfo(string id, string message, long authorDate, long commitDate, GitAuthorInfo author, GitAuthorInfo committer, List<string> parents, List<string> heads, TDMemberProfile? authorProfile = null, GitCommitSignature? signature = null)
         {
             Id = id;
             Message = message;
@@ -43,6 +43,7 @@ namespace JetBrains.Space.Client
             AuthorProfile = authorProfile;
             Parents = parents;
             Heads = heads;
+            Signature = signature;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(GitCommitInfo), nameof(Id));
@@ -134,6 +135,15 @@ namespace JetBrains.Space.Client
             set => _heads.SetValue(value);
         }
     
+        private PropertyValue<GitCommitSignature?> _signature = new PropertyValue<GitCommitSignature?>(nameof(GitCommitInfo), nameof(Signature));
+        
+        [JsonPropertyName("signature")]
+        public GitCommitSignature? Signature
+        {
+            get => _signature.GetValue();
+            set => _signature.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -145,6 +155,7 @@ namespace JetBrains.Space.Client
             _authorProfile.SetAccessPath(path, validateHasBeenSet);
             _parents.SetAccessPath(path, validateHasBeenSet);
             _heads.SetAccessPath(path, validateHasBeenSet);
+            _signature.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

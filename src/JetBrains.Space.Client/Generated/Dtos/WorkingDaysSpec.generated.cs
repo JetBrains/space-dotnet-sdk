@@ -43,6 +43,7 @@ namespace JetBrains.Space.Client
         private PropertyValue<List<Workday>> _days = new PropertyValue<List<Workday>>(nameof(WorkingDaysSpec), nameof(Days));
         
         [Required]
+        [Obsolete("Use workingHours and notificationHours instead (since 2020-11-10)")]
         [JsonPropertyName("days")]
         public List<Workday> Days
         {

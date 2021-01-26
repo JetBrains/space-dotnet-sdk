@@ -35,6 +35,12 @@ namespace JetBrains.Space.Client.MeetingOrganizerApplicationPartialBuilder
         public static Partial<MeetingOrganizerApplication> WithAppRef(this Partial<MeetingOrganizerApplication> it, Func<Partial<ESService>, Partial<ESService>> partialBuilder)
             => it.AddFieldName("appRef", partialBuilder(new Partial<ESService>(it)));
         
+        public static Partial<MeetingOrganizerApplication> WithApplicationRef(this Partial<MeetingOrganizerApplication> it)
+            => it.AddFieldName("applicationRef");
+        
+        public static Partial<MeetingOrganizerApplication> WithApplicationRef(this Partial<MeetingOrganizerApplication> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
+            => it.AddFieldName("applicationRef", partialBuilder(new Partial<ESApp>(it)));
+        
     }
     
 }

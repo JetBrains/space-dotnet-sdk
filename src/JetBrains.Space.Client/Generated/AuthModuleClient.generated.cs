@@ -120,6 +120,14 @@ namespace JetBrains.Space.Client
         /// <summary>
         /// Automatically discovers the endpoints for the OpenID Connect provider via discovery document
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Manage authentication modules</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<OIDCDiscovery> DiscoverOidcAsync(string discoveryEndpoint, Func<Partial<OIDCDiscovery>, Partial<OIDCDiscovery>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();

@@ -25,25 +25,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.OIDCDiscoveryPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class OIDCDiscoveryPartialExtensions
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public class GitCommitSignature
+         : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<OIDCDiscovery> WithIssuer(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("issuer");
+        [JsonPropertyName("className")]
+        public virtual string? ClassName => "GitCommitSignature";
         
-        public static Partial<OIDCDiscovery> WithAuthorizationEndpoint(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("authorizationEndpoint");
+        public static GitCommitSignatureNotVerified NotVerified()
+            => new GitCommitSignatureNotVerified();
         
-        public static Partial<OIDCDiscovery> WithTokenEndpoint(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("tokenEndpoint");
+        public static GitCommitSignatureRaw Raw(string signature, string signedDataB64)
+            => new GitCommitSignatureRaw(signature: signature, signedDataB64: signedDataB64);
         
-        public static Partial<OIDCDiscovery> WithUserinfoEndpoint(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("userinfoEndpoint");
+        public static GitCommitSignatureVerified Verified()
+            => new GitCommitSignatureVerified();
         
-        public static Partial<OIDCDiscovery> WithJwksUri(this Partial<OIDCDiscovery> it)
-            => it.AddFieldName("jwksUri");
+        public GitCommitSignature() { }
         
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

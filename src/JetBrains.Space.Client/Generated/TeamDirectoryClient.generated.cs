@@ -2390,7 +2390,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Create a personal token for a given profile id that can be used to access the current organisation.
                 /// </summary>
-                public async Task<Pair<ESPermanentToken, string>> CreatePermanentTokenAsync(ProfileIdentifier profile, string name, string scope, Func<Partial<Pair<ESPermanentToken, string>>, Partial<Pair<ESPermanentToken, string>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Pair<ESPermanentToken, string>> CreatePermanentTokenAsync(ProfileIdentifier profile, string name, string scope, DateTime? expires = null, Func<Partial<Pair<ESPermanentToken, string>>, Partial<Pair<ESPermanentToken, string>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<ESPermanentToken, string>>()) : Partial<Pair<ESPermanentToken, string>>.Default()).ToString());
@@ -2400,6 +2400,7 @@ namespace JetBrains.Space.Client
                         { 
                             Name = name,
                             Scope = scope,
+                            Expires = expires,
                         }, cancellationToken);
                 }
                 
@@ -2427,7 +2428,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Update an existing personal token used to access the current organisation. The permanent token name and/or scope can be updated.
                 /// </summary>
-                public async Task UpdatePermanentTokenAsync(ProfileIdentifier profile, string tokenId, string? name = null, string? scope = null, CancellationToken cancellationToken = default)
+                public async Task UpdatePermanentTokenAsync(ProfileIdentifier profile, string tokenId, string? name = null, string? scope = null, DateTime? expires = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -2436,6 +2437,7 @@ namespace JetBrains.Space.Client
                         { 
                             Name = name,
                             Scope = scope,
+                            Expires = expires,
                         }, cancellationToken);
                 }
                 
@@ -2500,13 +2502,14 @@ namespace JetBrains.Space.Client
                 }
                 
             
-                public async Task SetProfilesSpacePersonalizationDataAsync(ProfileIdentifier profile, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? fontLigaturesEnabled = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null, CancellationToken cancellationToken = default)
+                public async Task SetProfilesSpacePersonalizationDataAsync(ProfileIdentifier profile, DarkTheme? darkTheme = null, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? fontLigaturesEnabled = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
                     await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/settings{queryParameters.ToQueryString()}", 
                         new TeamDirectoryProfilesForProfileSettingsPatchRequest
                         { 
+                            DarkTheme = darkTheme,
                             ThemeName = themeName,
                             FirstDayOfWeek = firstDayOfWeek,
                             DraftType = draftType,
@@ -2595,6 +2598,39 @@ namespace JetBrains.Space.Client
                     var queryParameters = new NameValueCollection();
                     
                     await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/spoken-languages/{language}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+            public TimezoneClient Timezone => new TimezoneClient(_connection);
+            
+            public partial class TimezoneClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public TimezoneClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Get profile timezone. Returns profile's working hours timezone, location timezone or device timezone, whichever is present first in this list
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View member profile</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<ATimeZone> GetTimezoneAsync(ProfileIdentifier profile, Func<Partial<ATimeZone>, Partial<ATimeZone>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<ATimeZone>()) : Partial<ATimeZone>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<ATimeZone>("GET", $"api/http/team-directory/profiles/{profile}/timezone{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
             

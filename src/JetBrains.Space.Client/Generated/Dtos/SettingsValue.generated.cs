@@ -32,10 +32,11 @@ namespace JetBrains.Space.Client
     {
         public SettingsValue() { }
         
-        public SettingsValue(bool emailNotificationsEnabled, Weekday firstDayOfWeek, string? themeName = null, string? calendarView = null, TDProfileEmail? notificationEmail = null, DraftDocumentType? draftType = null, bool? todoFilters = null)
+        public SettingsValue(bool emailNotificationsEnabled, Weekday firstDayOfWeek, DarkTheme? darkTheme = null, string? themeName = null, string? calendarView = null, TDProfileEmail? notificationEmail = null, DraftDocumentType? draftType = null, bool? todoFilters = null)
         {
             IsEmailNotificationsEnabled = emailNotificationsEnabled;
             FirstDayOfWeek = firstDayOfWeek;
+            DarkTheme = darkTheme;
             ThemeName = themeName;
             CalendarView = calendarView;
             NotificationEmail = notificationEmail;
@@ -61,6 +62,15 @@ namespace JetBrains.Space.Client
         {
             get => _firstDayOfWeek.GetValue();
             set => _firstDayOfWeek.SetValue(value);
+        }
+    
+        private PropertyValue<DarkTheme?> _darkTheme = new PropertyValue<DarkTheme?>(nameof(SettingsValue), nameof(DarkTheme));
+        
+        [JsonPropertyName("darkTheme")]
+        public DarkTheme? DarkTheme
+        {
+            get => _darkTheme.GetValue();
+            set => _darkTheme.SetValue(value);
         }
     
         private PropertyValue<string?> _themeName = new PropertyValue<string?>(nameof(SettingsValue), nameof(ThemeName));
@@ -112,6 +122,7 @@ namespace JetBrains.Space.Client
         {
             _emailNotificationsEnabled.SetAccessPath(path, validateHasBeenSet);
             _firstDayOfWeek.SetAccessPath(path, validateHasBeenSet);
+            _darkTheme.SetAccessPath(path, validateHasBeenSet);
             _themeName.SetAccessPath(path, validateHasBeenSet);
             _calendarView.SetAccessPath(path, validateHasBeenSet);
             _notificationEmail.SetAccessPath(path, validateHasBeenSet);

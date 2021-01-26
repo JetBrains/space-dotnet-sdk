@@ -48,6 +48,9 @@ namespace JetBrains.Space.Client
         [EnumMember(Value = "DOCUMENT")]
         DOCUMENT,
         
+        [EnumMember(Value = "MEETING")]
+        MEETING,
+        
     }
     
 }
