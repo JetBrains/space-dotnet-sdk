@@ -164,7 +164,7 @@ namespace JetBrains.Space.Samples.Web.Pages
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError("An error occurred", ex);
+                    _logger.LogError(ex, "An error occurred");
                 }
       
                 try
@@ -203,7 +203,7 @@ namespace JetBrains.Space.Samples.Web.Pages
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError("An error occurred", ex);
+                    _logger.LogError(ex, "An error occurred");
                 }
             }
 
@@ -225,7 +225,7 @@ namespace JetBrains.Space.Samples.Web.Pages
             }
             catch (Exception ex)
             {
-                _logger.LogError("An error occurred", ex);
+                _logger.LogError(ex, "An error occurred");
             }
 
             try
@@ -247,7 +247,7 @@ namespace JetBrains.Space.Samples.Web.Pages
             }
             catch (Exception ex)
             {
-                _logger.LogError("An error occurred", ex);
+                _logger.LogError(ex, "An error occurred");
             }
             
             IssuesCreatedThisWeek = issuesCreatedThisWeek;

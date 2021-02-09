@@ -129,7 +129,7 @@ namespace JetBrains.Space.Generator
                     
                     return apiModel;
                 },
-                async () => version);
+                () => Task.FromResult(version)!);
         }
 
         private static async Task<int> ExecuteCodeGenerator(Func<Task<ApiModel>> retrieveModel, Func<Task<string?>> retrieveVersion)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
@@ -22,6 +23,7 @@ namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
     /// <remarks>
     /// Inspired by <a href="https://github.com/IdentityServer/IdentityServer4/tree/master/samples/Clients/src/MvcHybridAutomaticRefresh/AutomaticTokenManagement">IdentityServer4</a>.
     /// </remarks>
+    [SuppressMessage("ReSharper", "LogMessageIsSentenceProblem")]
     public class SpaceTokenManagementCookieEvents : CookieAuthenticationEvents
     {
         private readonly SpaceTokenManagementOptions _options;

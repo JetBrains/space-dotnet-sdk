@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Threading.Tasks;
 using JetBrains.Space.Common;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Options;
 
 namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
 {
+    [SuppressMessage("ReSharper", "LogMessageIsSentenceProblem")]
     internal class BearerTokenConnectionProvider
     {
         private readonly SpaceTokenManagementOptions _options;
