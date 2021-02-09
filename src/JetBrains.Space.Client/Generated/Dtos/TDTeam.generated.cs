@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public TDTeam() { }
         
-        public TDTeam(string id, string name, string description, bool archived, Dictionary<string, CFValue> customFields, List<TDMembership> memberships, TDTeam? parent = null, List<string>? emails = null, string? channelId = null, bool? disbanded = null, DateTime? disbandedAt = null, string? externalId = null)
+        public TDTeam(string id, string name, string description, bool archived, Dictionary<string, CFValue> customFields, List<TDMembership> memberships, TDTeam? parent = null, List<string>? emails = null, string? channelId = null, bool? disbanded = null, DateTime? disbandedAt = null, string? externalId = null, TDMemberProfile? defaultManager = null)
         {
             Id = id;
             Name = name;
@@ -44,6 +44,7 @@ namespace JetBrains.Space.Client
             IsDisbanded = disbanded;
             DisbandedAt = disbandedAt;
             ExternalId = externalId;
+            DefaultManager = defaultManager;
             CustomFields = customFields;
             Memberships = memberships;
         }
@@ -143,6 +144,15 @@ namespace JetBrains.Space.Client
             set => _externalId.SetValue(value);
         }
     
+        private PropertyValue<TDMemberProfile?> _defaultManager = new PropertyValue<TDMemberProfile?>(nameof(TDTeam), nameof(DefaultManager));
+        
+        [JsonPropertyName("defaultManager")]
+        public TDMemberProfile? DefaultManager
+        {
+            get => _defaultManager.GetValue();
+            set => _defaultManager.SetValue(value);
+        }
+    
         private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(TDTeam), nameof(CustomFields));
         
         [Required]
@@ -175,6 +185,7 @@ namespace JetBrains.Space.Client
             _disbanded.SetAccessPath(path, validateHasBeenSet);
             _disbandedAt.SetAccessPath(path, validateHasBeenSet);
             _externalId.SetAccessPath(path, validateHasBeenSet);
+            _defaultManager.SetAccessPath(path, validateHasBeenSet);
             _customFields.SetAccessPath(path, validateHasBeenSet);
             _memberships.SetAccessPath(path, validateHasBeenSet);
         }

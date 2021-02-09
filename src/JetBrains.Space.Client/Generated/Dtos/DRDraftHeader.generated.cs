@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public DRDraftHeader() { }
         
-        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null)
+        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null, DocumentContainerInfo? containerInfo = null)
         {
             Id = id;
             Title = title;
@@ -44,6 +44,7 @@ namespace JetBrains.Space.Client
             PublicationDetails2 = publicationDetails2;
             IsDeleted = deleted;
             Folder = folder;
+            ContainerInfo = containerInfo;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(DRDraftHeader), nameof(Id));
@@ -143,6 +144,15 @@ namespace JetBrains.Space.Client
             set => _folder.SetValue(value);
         }
     
+        private PropertyValue<DocumentContainerInfo?> _containerInfo = new PropertyValue<DocumentContainerInfo?>(nameof(DRDraftHeader), nameof(ContainerInfo));
+        
+        [JsonPropertyName("containerInfo")]
+        public DocumentContainerInfo? ContainerInfo
+        {
+            get => _containerInfo.GetValue();
+            set => _containerInfo.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -155,6 +165,7 @@ namespace JetBrains.Space.Client
             _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
+            _containerInfo.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

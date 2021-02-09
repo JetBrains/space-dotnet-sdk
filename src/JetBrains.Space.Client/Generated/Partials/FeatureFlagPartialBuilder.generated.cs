@@ -47,6 +47,9 @@ namespace JetBrains.Space.Client.FeatureFlagPartialBuilder
         public static Partial<FeatureFlag> WithIntroduced(this Partial<FeatureFlag> it)
             => it.AddFieldName("introduced");
         
+        public static Partial<FeatureFlag> WithIntroduced(this Partial<FeatureFlag> it, Func<Partial<FeatureFlagDate>, Partial<FeatureFlagDate>> partialBuilder)
+            => it.AddFieldName("introduced", partialBuilder(new Partial<FeatureFlagDate>(it)));
+        
     }
     
 }

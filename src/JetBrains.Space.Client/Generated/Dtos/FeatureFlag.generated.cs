@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public FeatureFlag() { }
         
-        public FeatureFlag(string name, string description, FeatureFlagStatus status, string owner, DateTime? introduced = null)
+        public FeatureFlag(string name, string description, FeatureFlagStatus status, string owner, FeatureFlagDate? introduced = null)
         {
             Name = name;
             Description = description;
@@ -81,11 +81,10 @@ namespace JetBrains.Space.Client
             set => _owner.SetValue(value);
         }
     
-        private PropertyValue<DateTime?> _introduced = new PropertyValue<DateTime?>(nameof(FeatureFlag), nameof(Introduced));
+        private PropertyValue<FeatureFlagDate?> _introduced = new PropertyValue<FeatureFlagDate?>(nameof(FeatureFlag), nameof(Introduced));
         
         [JsonPropertyName("introduced")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? Introduced
+        public FeatureFlagDate? Introduced
         {
             get => _introduced.GetValue();
             set => _introduced.SetValue(value);

@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public KBArticle() { }
         
-        public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, PublicationItem item, DateTime created, string alias, CPrincipal? createdBy = null, DateTime? updated = null, CPrincipal? updatedBy = null)
+        public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, DateTime created, DateTime updated, string alias, PublicationItem? item = null, string? documentId = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
         {
             Id = id;
             IsArchived = archived;
@@ -40,6 +40,7 @@ namespace JetBrains.Space.Client
             Book = book;
             Folder = folder;
             Item = item;
+            DocumentId = documentId;
             Created = created;
             CreatedBy = createdBy;
             Updated = updated;
@@ -97,14 +98,22 @@ namespace JetBrains.Space.Client
             set => _folder.SetValue(value);
         }
     
-        private PropertyValue<PublicationItem> _item = new PropertyValue<PublicationItem>(nameof(KBArticle), nameof(Item));
+        private PropertyValue<PublicationItem?> _item = new PropertyValue<PublicationItem?>(nameof(KBArticle), nameof(Item));
         
-        [Required]
         [JsonPropertyName("item")]
-        public PublicationItem Item
+        public PublicationItem? Item
         {
             get => _item.GetValue();
             set => _item.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _documentId = new PropertyValue<string?>(nameof(KBArticle), nameof(DocumentId));
+        
+        [JsonPropertyName("documentId")]
+        public string? DocumentId
+        {
+            get => _documentId.GetValue();
+            set => _documentId.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(KBArticle), nameof(Created));
@@ -127,11 +136,12 @@ namespace JetBrains.Space.Client
             set => _createdBy.SetValue(value);
         }
     
-        private PropertyValue<DateTime?> _updated = new PropertyValue<DateTime?>(nameof(KBArticle), nameof(Updated));
+        private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(KBArticle), nameof(Updated));
         
+        [Required]
         [JsonPropertyName("updated")]
         [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? Updated
+        public DateTime Updated
         {
             get => _updated.GetValue();
             set => _updated.SetValue(value);
@@ -164,6 +174,7 @@ namespace JetBrains.Space.Client
             _book.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
             _item.SetAccessPath(path, validateHasBeenSet);
+            _documentId.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
             _createdBy.SetAccessPath(path, validateHasBeenSet);
             _updated.SetAccessPath(path, validateHasBeenSet);

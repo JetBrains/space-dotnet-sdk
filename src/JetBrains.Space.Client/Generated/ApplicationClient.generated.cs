@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Create applications</term>
+        /// <term>Create application</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -81,7 +81,7 @@ namespace JetBrains.Space.Client
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit applications</term>
+        /// <term>Edit application</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -97,7 +97,7 @@ namespace JetBrains.Space.Client
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>View applications</term>
+        /// <term>View application</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -116,7 +116,7 @@ namespace JetBrains.Space.Client
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>View applications</term>
+        /// <term>View application</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -133,7 +133,7 @@ namespace JetBrains.Space.Client
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>View applications</term>
+        /// <term>View application</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -150,7 +150,7 @@ namespace JetBrains.Space.Client
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit applications</term>
+        /// <term>Edit application</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -178,7 +178,7 @@ namespace JetBrains.Space.Client
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Delete applications</term>
+        /// <term>Delete application</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -205,7 +205,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit applications</term>
+            /// <term>Edit application</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -250,7 +250,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit applications</term>
+            /// <term>Edit application</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -295,7 +295,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit applications</term>
+            /// <term>Edit application</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -316,7 +316,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View applications</term>
+            /// <term>View application</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -333,7 +333,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit applications</term>
+            /// <term>Edit application</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -362,7 +362,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit applications</term>
+            /// <term>Edit application</term>
             /// </item>
             /// </list>
             /// </remarks>

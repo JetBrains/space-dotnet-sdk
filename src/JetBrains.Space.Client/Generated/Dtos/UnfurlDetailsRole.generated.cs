@@ -27,26 +27,33 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public partial class SshKeyClient : ISpaceClient
+    public sealed class UnfurlDetailsRole
+         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        private readonly Connection _connection;
+        [JsonPropertyName("className")]
+        public  string? ClassName => "UnfurlDetailsRole";
         
-        public SshKeyClient(Connection connection)
+        public UnfurlDetailsRole() { }
+        
+        public UnfurlDetailsRole(TDRole role)
         {
-            _connection = connection;
+            Role = role;
         }
         
-        /// <summary>
-        /// List SSH public keys associated with profile
-        /// </summary>
-        public async Task<List<SshKeyData>> GetAllSshKeyAsync(ProfileIdentifier profile, Func<Partial<SshKeyData>, Partial<SshKeyData>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<SshKeyData>()) : Partial<SshKeyData>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<List<SshKeyData>>("GET", $"api/http/ssh-key/{profile}{queryParameters.ToQueryString()}", cancellationToken);
-        }
+        private PropertyValue<TDRole> _role = new PropertyValue<TDRole>(nameof(UnfurlDetailsRole), nameof(Role));
         
+        [Required]
+        [JsonPropertyName("role")]
+        public TDRole Role
+        {
+            get => _role.GetValue();
+            set => _role.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _role.SetAccessPath(path, validateHasBeenSet);
+        }
     
     }
     

@@ -35,8 +35,24 @@ namespace JetBrains.Space.Client
         
         public GitCommitSignatureVerified() { }
         
+        public GitCommitSignatureVerified(string description)
+        {
+            Description = description;
+        }
+        
+        private PropertyValue<string> _description = new PropertyValue<string>(nameof(GitCommitSignatureVerified), nameof(Description));
+        
+        [Required]
+        [JsonPropertyName("description")]
+        public string Description
+        {
+            get => _description.GetValue();
+            set => _description.SetValue(value);
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
+            _description.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -40,8 +40,8 @@ namespace JetBrains.Space.Client
         public static GitCommitSignatureRaw Raw(string signature, string signedDataB64)
             => new GitCommitSignatureRaw(signature: signature, signedDataB64: signedDataB64);
         
-        public static GitCommitSignatureVerified Verified()
-            => new GitCommitSignatureVerified();
+        public static GitCommitSignatureVerified Verified(string description)
+            => new GitCommitSignatureVerified(description: description);
         
         public GitCommitSignature() { }
         

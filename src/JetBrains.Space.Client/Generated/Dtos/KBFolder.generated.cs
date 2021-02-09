@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public KBFolder() { }
         
-        public KBFolder(string id, bool archived, string name, List<KBFolder> subfolders, List<KBArticle> articles, KBBook book, string alias, KBFolder? parent = null, KBArticle? cover = null, DateTime? created = null, CPrincipal? createdBy = null, DateTime? updated = null, CPrincipal? updatedBy = null)
+        public KBFolder(string id, bool archived, string name, List<KBFolder> subfolders, List<KBArticle> articles, KBBook book, string alias, DateTime created, DateTime updated, KBFolder? parent = null, KBArticle? cover = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
         {
             Id = id;
             IsArchived = archived;
@@ -137,11 +137,12 @@ namespace JetBrains.Space.Client
             set => _alias.SetValue(value);
         }
     
-        private PropertyValue<DateTime?> _created = new PropertyValue<DateTime?>(nameof(KBFolder), nameof(Created));
+        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(KBFolder), nameof(Created));
         
+        [Required]
         [JsonPropertyName("created")]
         [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? Created
+        public DateTime Created
         {
             get => _created.GetValue();
             set => _created.SetValue(value);
@@ -156,11 +157,12 @@ namespace JetBrains.Space.Client
             set => _createdBy.SetValue(value);
         }
     
-        private PropertyValue<DateTime?> _updated = new PropertyValue<DateTime?>(nameof(KBFolder), nameof(Updated));
+        private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(KBFolder), nameof(Updated));
         
+        [Required]
         [JsonPropertyName("updated")]
         [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? Updated
+        public DateTime Updated
         {
             get => _updated.GetValue();
             set => _updated.SetValue(value);

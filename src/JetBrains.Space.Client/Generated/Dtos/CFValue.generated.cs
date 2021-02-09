@@ -40,6 +40,9 @@ namespace JetBrains.Space.Client
         public static DateCFValue Date(DateTime? value = null)
             => new DateCFValue(value: value);
         
+        public static DateTimeCFValue DateTime(DateTime? value = null)
+            => new DateTimeCFValue(value: value);
+        
         public static EnumCFValue Enum(EnumValueData? value = null)
             => new EnumCFValue(value: value);
         

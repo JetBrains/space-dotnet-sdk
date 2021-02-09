@@ -32,11 +32,12 @@ namespace JetBrains.Space.Client
     {
         public MergeRequestBranch() { }
         
-        public MergeRequestBranch(string displayName, string @ref, bool deleted)
+        public MergeRequestBranch(string displayName, string @ref, bool deleted, string? head = null)
         {
             DisplayName = displayName;
             Ref = @ref;
             IsDeleted = deleted;
+            Head = head;
         }
         
         private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(MergeRequestBranch), nameof(DisplayName));
@@ -69,11 +70,21 @@ namespace JetBrains.Space.Client
             set => _deleted.SetValue(value);
         }
     
+        private PropertyValue<string?> _head = new PropertyValue<string?>(nameof(MergeRequestBranch), nameof(Head));
+        
+        [JsonPropertyName("head")]
+        public string? Head
+        {
+            get => _head.GetValue();
+            set => _head.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _displayName.SetAccessPath(path, validateHasBeenSet);
             _ref.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);
+            _head.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

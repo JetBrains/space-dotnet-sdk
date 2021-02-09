@@ -27,26 +27,17 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public partial class GpgKeyClient : ISpaceClient
+    public sealed class KbNoneContext
+         : KBBookContext, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        private readonly Connection _connection;
+        [JsonPropertyName("className")]
+        public  string? ClassName => "KbNoneContext";
         
-        public GpgKeyClient(Connection connection)
+        public KbNoneContext() { }
+        
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _connection = connection;
         }
-        
-        /// <summary>
-        /// List GPG public keys associated with profile
-        /// </summary>
-        public async Task<List<GpgKeyData>> GetAllGpgKeyAsync(ProfileIdentifier profile, Func<Partial<GpgKeyData>, Partial<GpgKeyData>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GpgKeyData>()) : Partial<GpgKeyData>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<List<GpgKeyData>>("GET", $"api/http/gpg-key/{profile}{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
     
     }
     

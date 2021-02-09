@@ -65,6 +65,12 @@ namespace JetBrains.Space.Client.TDTeamPartialBuilder
         public static Partial<TDTeam> WithExternalId(this Partial<TDTeam> it)
             => it.AddFieldName("externalId");
         
+        public static Partial<TDTeam> WithDefaultManager(this Partial<TDTeam> it)
+            => it.AddFieldName("defaultManager");
+        
+        public static Partial<TDTeam> WithDefaultManager(this Partial<TDTeam> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+            => it.AddFieldName("defaultManager", partialBuilder(new Partial<TDMemberProfile>(it)));
+        
         public static Partial<TDTeam> WithCustomFields(this Partial<TDTeam> it)
             => it.AddFieldName("customFields");
         

@@ -41,6 +41,9 @@ namespace JetBrains.Space.Client.TeamDirectoryTeamsPostRequestPartialBuilder
         public static Partial<TeamDirectoryTeamsPostRequest> WithParentId(this Partial<TeamDirectoryTeamsPostRequest> it)
             => it.AddFieldName("parentId");
         
+        public static Partial<TeamDirectoryTeamsPostRequest> WithDefaultManager(this Partial<TeamDirectoryTeamsPostRequest> it)
+            => it.AddFieldName("defaultManager");
+        
         public static Partial<TeamDirectoryTeamsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryTeamsPostRequest> it)
             => it.AddFieldName("customFieldValues");
         

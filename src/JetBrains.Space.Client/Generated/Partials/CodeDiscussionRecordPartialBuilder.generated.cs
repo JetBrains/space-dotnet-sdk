@@ -35,6 +35,12 @@ namespace JetBrains.Space.Client.CodeDiscussionRecordPartialBuilder
         public static Partial<CodeDiscussionRecord> WithProjectId(this Partial<CodeDiscussionRecord> it)
             => it.AddFieldName("projectId");
         
+        public static Partial<CodeDiscussionRecord> WithProject(this Partial<CodeDiscussionRecord> it)
+            => it.AddFieldName("project");
+        
+        public static Partial<CodeDiscussionRecord> WithProject(this Partial<CodeDiscussionRecord> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+        
         public static Partial<CodeDiscussionRecord> WithAnchor(this Partial<CodeDiscussionRecord> it)
             => it.AddFieldName("anchor");
         

@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public PublicHoliday() { }
         
-        public PublicHoliday(string id, PublicHolidayCalendarRecord calendar, string name, DateTime date, bool workingDay, bool? halfDay = null)
+        public PublicHoliday(string id, PublicHolidayCalendarRecord calendar, string name, DateTime date, bool workingDay, bool? halfDay = null, bool? archived = null)
         {
             Id = id;
             Calendar = calendar;
@@ -40,6 +40,7 @@ namespace JetBrains.Space.Client
             Date = date;
             IsWorkingDay = workingDay;
             IsHalfDay = halfDay;
+            IsArchived = archived;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PublicHoliday), nameof(Id));
@@ -102,6 +103,15 @@ namespace JetBrains.Space.Client
             set => _halfDay.SetValue(value);
         }
     
+        private PropertyValue<bool?> _archived = new PropertyValue<bool?>(nameof(PublicHoliday), nameof(IsArchived));
+        
+        [JsonPropertyName("archived")]
+        public bool? IsArchived
+        {
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -110,6 +120,7 @@ namespace JetBrains.Space.Client
             _date.SetAccessPath(path, validateHasBeenSet);
             _workingDay.SetAccessPath(path, validateHasBeenSet);
             _halfDay.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

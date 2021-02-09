@@ -66,11 +66,14 @@ namespace JetBrains.Space.Client
         public static M2ChannelContentMention M2ChannelContentMention(ChannelItemRecord record, M2ChannelRecord parent)
             => new M2ChannelContentMention(record: record, parent: parent);
         
-        public static M2ChannelContentNamedPrivateChannel M2ChannelContentNamedPrivateChannel(string name, bool canHaveThreads, ChannelSpecificDefaults? notificationDefaults = null)
-            => new M2ChannelContentNamedPrivateChannel(name: name, canHaveThreads: canHaveThreads, notificationDefaults: notificationDefaults);
+        public static M2ChannelContentNamedPrivateChannel M2ChannelContentNamedPrivateChannel(string name, bool canHaveThreads, ChannelSpecificDefaults? notificationDefaults = null, PrivateFeedColor? color = null, string? icon = null)
+            => new M2ChannelContentNamedPrivateChannel(name: name, canHaveThreads: canHaveThreads, notificationDefaults: notificationDefaults, color: color, icon: icon);
         
         public static M2ChannelContentTeam M2ChannelContentTeam(TDTeam team, ChannelSpecificDefaults notificationDefaults)
             => new M2ChannelContentTeam(team: team, notificationDefaults: notificationDefaults);
+        
+        public static M2ChannelFleetWorkspaceTimelineInfo M2ChannelFleetWorkspaceTimelineInfo(ChannelSpecificDefaults notificationDefaults, string workspaceId, string workspaceName)
+            => new M2ChannelFleetWorkspaceTimelineInfo(notificationDefaults: notificationDefaults, workspaceId: workspaceId, workspaceName: workspaceName);
         
         public static M2ChannelIssueInfo M2ChannelIssueInfo(Issue issue, ChannelSpecificDefaults notificationDefaults, ProjectKey? projectKey = null)
             => new M2ChannelIssueInfo(issue: issue, notificationDefaults: notificationDefaults, projectKey: projectKey);

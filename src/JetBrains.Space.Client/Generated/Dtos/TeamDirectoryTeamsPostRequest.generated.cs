@@ -32,12 +32,13 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryTeamsPostRequest() { }
         
-        public TeamDirectoryTeamsPostRequest(string name, string? description = null, List<string>? emails = null, string? parentId = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null)
+        public TeamDirectoryTeamsPostRequest(string name, string? description = null, List<string>? emails = null, string? parentId = null, string? defaultManager = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null)
         {
             Name = name;
             Description = description;
             Emails = emails;
             ParentId = parentId;
+            DefaultManager = defaultManager;
             CustomFieldValues = customFieldValues;
             ExternalId = externalId;
         }
@@ -79,6 +80,15 @@ namespace JetBrains.Space.Client
             set => _parentId.SetValue(value);
         }
     
+        private PropertyValue<string?> _defaultManager = new PropertyValue<string?>(nameof(TeamDirectoryTeamsPostRequest), nameof(DefaultManager));
+        
+        [JsonPropertyName("defaultManager")]
+        public string? DefaultManager
+        {
+            get => _defaultManager.GetValue();
+            set => _defaultManager.SetValue(value);
+        }
+    
         private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(TeamDirectoryTeamsPostRequest), nameof(CustomFieldValues));
         
         [JsonPropertyName("customFieldValues")]
@@ -103,6 +113,7 @@ namespace JetBrains.Space.Client
             _description.SetAccessPath(path, validateHasBeenSet);
             _emails.SetAccessPath(path, validateHasBeenSet);
             _parentId.SetAccessPath(path, validateHasBeenSet);
+            _defaultManager.SetAccessPath(path, validateHasBeenSet);
             _customFieldValues.SetAccessPath(path, validateHasBeenSet);
             _externalId.SetAccessPath(path, validateHasBeenSet);
         }

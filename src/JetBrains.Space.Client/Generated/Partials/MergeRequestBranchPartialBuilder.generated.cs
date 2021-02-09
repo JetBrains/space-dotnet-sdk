@@ -38,6 +38,9 @@ namespace JetBrains.Space.Client.MergeRequestBranchPartialBuilder
         public static Partial<MergeRequestBranch> WithIsDeleted(this Partial<MergeRequestBranch> it)
             => it.AddFieldName("deleted");
         
+        public static Partial<MergeRequestBranch> WithHead(this Partial<MergeRequestBranch> it)
+            => it.AddFieldName("head");
+        
     }
     
 }

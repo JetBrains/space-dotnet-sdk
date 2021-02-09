@@ -33,6 +33,9 @@ namespace JetBrains.Space.Client
         public static KbGlobalContext KbGlobalContext()
             => new KbGlobalContext();
         
+        public static KbNoneContext KbNoneContext()
+            => new KbNoneContext();
+        
         public static KbPersonalContext KbPersonalContext(TDMemberProfile owner)
             => new KbPersonalContext(owner: owner);
         

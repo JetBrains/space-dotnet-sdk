@@ -35,11 +35,13 @@ namespace JetBrains.Space.Client
         
         public M2ChannelContentNamedPrivateChannel() { }
         
-        public M2ChannelContentNamedPrivateChannel(string name, bool canHaveThreads, ChannelSpecificDefaults? notificationDefaults = null)
+        public M2ChannelContentNamedPrivateChannel(string name, bool canHaveThreads, ChannelSpecificDefaults? notificationDefaults = null, PrivateFeedColor? color = null, string? icon = null)
         {
             Name = name;
             NotificationDefaults = notificationDefaults;
             CanHaveThreads = canHaveThreads;
+            Color = color;
+            Icon = icon;
         }
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Name));
@@ -71,11 +73,31 @@ namespace JetBrains.Space.Client
             set => _canHaveThreads.SetValue(value);
         }
     
+        private PropertyValue<PrivateFeedColor?> _color = new PropertyValue<PrivateFeedColor?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Color));
+        
+        [JsonPropertyName("color")]
+        public PrivateFeedColor? Color
+        {
+            get => _color.GetValue();
+            set => _color.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Icon));
+        
+        [JsonPropertyName("icon")]
+        public string? Icon
+        {
+            get => _icon.GetValue();
+            set => _icon.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
             _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
             _canHaveThreads.SetAccessPath(path, validateHasBeenSet);
+            _color.SetAccessPath(path, validateHasBeenSet);
+            _icon.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

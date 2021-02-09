@@ -32,10 +32,11 @@ namespace JetBrains.Space.Client
     {
         public CodeDiscussionRecord() { }
         
-        public CodeDiscussionRecord(string id, string projectId, CodeDiscussionAnchor anchor, DateTime created, M2ChannelRecord channel, bool resolved, bool archived, CodeDiscussionSnippet? snippet = null, bool? pending = null, CodeReviewRecord? review = null, string? feedItemId = null, List<CodeReviewRecord>? reviews = null)
+        public CodeDiscussionRecord(string id, string projectId, CodeDiscussionAnchor anchor, DateTime created, M2ChannelRecord channel, bool resolved, bool archived, PRProject? project = null, CodeDiscussionSnippet? snippet = null, bool? pending = null, CodeReviewRecord? review = null, string? feedItemId = null, List<CodeReviewRecord>? reviews = null)
         {
             Id = id;
             ProjectId = projectId;
+            Project = project;
             Anchor = anchor;
             Created = created;
             Channel = channel;
@@ -61,11 +62,21 @@ namespace JetBrains.Space.Client
         private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CodeDiscussionRecord), nameof(ProjectId));
         
         [Required]
+        [Obsolete("Use project instead (since 2020-01-18)")]
         [JsonPropertyName("projectId")]
         public string ProjectId
         {
             get => _projectId.GetValue();
             set => _projectId.SetValue(value);
+        }
+    
+        private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(CodeDiscussionRecord), nameof(Project));
+        
+        [JsonPropertyName("project")]
+        public PRProject? Project
+        {
+            get => _project.GetValue();
+            set => _project.SetValue(value);
         }
     
         private PropertyValue<CodeDiscussionAnchor> _anchor = new PropertyValue<CodeDiscussionAnchor>(nameof(CodeDiscussionRecord), nameof(Anchor));
@@ -168,6 +179,7 @@ namespace JetBrains.Space.Client
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _projectId.SetAccessPath(path, validateHasBeenSet);
+            _project.SetAccessPath(path, validateHasBeenSet);
             _anchor.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
             _channel.SetAccessPath(path, validateHasBeenSet);

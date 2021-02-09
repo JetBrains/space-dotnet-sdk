@@ -71,6 +71,12 @@ namespace JetBrains.Space.Client.DRDraftHeaderPartialBuilder
         public static Partial<DRDraftHeader> WithFolder(this Partial<DRDraftHeader> it, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>> partialBuilder)
             => it.AddFieldName("folder", partialBuilder(new Partial<DocumentFolderRecord>(it)));
         
+        public static Partial<DRDraftHeader> WithContainerInfo(this Partial<DRDraftHeader> it)
+            => it.AddFieldName("containerInfo");
+        
+        public static Partial<DRDraftHeader> WithContainerInfo(this Partial<DRDraftHeader> it, Func<Partial<DocumentContainerInfo>, Partial<DocumentContainerInfo>> partialBuilder)
+            => it.AddFieldName("containerInfo", partialBuilder(new Partial<DocumentContainerInfo>(it)));
+        
     }
     
 }

@@ -41,6 +41,9 @@ namespace JetBrains.Space.Client.TeamDirectoryTeamsForIdPatchRequestPartialBuild
         public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithParentId(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
             => it.AddFieldName("parentId");
         
+        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithDefaultManager(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
+            => it.AddFieldName("defaultManager");
+        
         public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
             => it.AddFieldName("customFieldValues");
         

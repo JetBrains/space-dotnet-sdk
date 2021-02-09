@@ -50,6 +50,9 @@ namespace JetBrains.Space.Client.PublicHolidayPartialBuilder
         public static Partial<PublicHoliday> WithIsHalfDay(this Partial<PublicHoliday> it)
             => it.AddFieldName("halfDay");
         
+        public static Partial<PublicHoliday> WithIsArchived(this Partial<PublicHoliday> it)
+            => it.AddFieldName("archived");
+        
     }
     
 }

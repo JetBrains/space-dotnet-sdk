@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public GpgKeyData() { }
         
-        public GpgKeyData(string fingerprint, string publicKey, string userId, bool verified, string comment, DateTime created, DateTime added, DateTime expires)
+        public GpgKeyData(string fingerprint, string publicKey, string userId, bool verified, string comment, DateTime created, DateTime added, DateTime? expires = null)
         {
             Fingerprint = fingerprint;
             PublicKey = publicKey;
@@ -116,12 +116,11 @@ namespace JetBrains.Space.Client
             set => _added.SetValue(value);
         }
     
-        private PropertyValue<DateTime> _expires = new PropertyValue<DateTime>(nameof(GpgKeyData), nameof(Expires));
+        private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(GpgKeyData), nameof(Expires));
         
-        [Required]
         [JsonPropertyName("expires")]
         [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Expires
+        public DateTime? Expires
         {
             get => _expires.GetValue();
             set => _expires.SetValue(value);

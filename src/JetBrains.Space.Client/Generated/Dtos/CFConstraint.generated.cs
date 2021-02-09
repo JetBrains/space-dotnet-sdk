@@ -37,6 +37,9 @@ namespace JetBrains.Space.Client
         public static DateCFConstraint Date(DateTime? min = null, DateTime? max = null, string? message = null)
             => new DateCFConstraint(min: min, max: max, message: message);
         
+        public static DateTimeCFConstraint DateTime(DateTime? min = null, DateTime? max = null, string? message = null)
+            => new DateTimeCFConstraint(min: min, max: max, message: message);
+        
         public static IntCFConstraint Int(int? min = null, int? max = null, string? message = null)
             => new IntCFConstraint(min: min, max: max, message: message);
         

@@ -39,6 +39,9 @@ namespace JetBrains.Space.Client
         public static ChannelItemSnapshot ChannelItemSnapshot(string id, string text, CPrincipal author, DateTime created, long time, string? channelId = null, M2ItemContentDetails? details = null, List<AttachmentInfo>? attachments = null)
             => new ChannelItemSnapshot(id: id, text: text, author: author, created: created, time: time, channelId: channelId, details: details, attachments: attachments);
         
+        public static UnfurlDetailsApplication Application(ESApp app)
+            => new UnfurlDetailsApplication(app: app);
+        
         public static UnfurlDetailsArticle Article(ArticleRecord article, ArticleContentRecord content, ArticleChannelRecord channel, ArticleDetailsRecord? details = null)
             => new UnfurlDetailsArticle(article: article, content: content, channel: channel, details: details);
         
@@ -83,6 +86,9 @@ namespace JetBrains.Space.Client
         
         public static UnfurlDetailsRepositoryBranch RepositoryBranch(PRProject project, string repository, string branchHead, bool deleted)
             => new UnfurlDetailsRepositoryBranch(project: project, repository: repository, branchHead: branchHead, deleted: deleted);
+        
+        public static UnfurlDetailsRole Role(TDRole role)
+            => new UnfurlDetailsRole(role: role);
         
         public static UnfurlDetailsSprint Sprint(PRProject project, SprintRecord sprint)
             => new UnfurlDetailsSprint(project: project, sprint: sprint);

@@ -41,6 +41,15 @@ namespace JetBrains.Space.Client.M2ChannelContentNamedPrivateChannelPartialBuild
         public static Partial<M2ChannelContentNamedPrivateChannel> WithCanHaveThreads(this Partial<M2ChannelContentNamedPrivateChannel> it)
             => it.AddFieldName("canHaveThreads");
         
+        public static Partial<M2ChannelContentNamedPrivateChannel> WithColor(this Partial<M2ChannelContentNamedPrivateChannel> it)
+            => it.AddFieldName("color");
+        
+        public static Partial<M2ChannelContentNamedPrivateChannel> WithColor(this Partial<M2ChannelContentNamedPrivateChannel> it, Func<Partial<PrivateFeedColor>, Partial<PrivateFeedColor>> partialBuilder)
+            => it.AddFieldName("color", partialBuilder(new Partial<PrivateFeedColor>(it)));
+        
+        public static Partial<M2ChannelContentNamedPrivateChannel> WithIcon(this Partial<M2ChannelContentNamedPrivateChannel> it)
+            => it.AddFieldName("icon");
+        
     }
     
 }

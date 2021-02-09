@@ -2262,6 +2262,69 @@ namespace JetBrains.Space.Client
             
             }
         
+            public GpgKeyClient GpgKeys => new GpgKeyClient(_connection);
+            
+            public partial class GpgKeyClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public GpgKeyClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit member profile</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<GpgKeyData> CreateGpgKeyAsync(ProfileIdentifier profile, string key, string comment = "", Func<Partial<GpgKeyData>, Partial<GpgKeyData>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<GpgKeyData>()) : Partial<GpgKeyData>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileGpgKeysPostRequest, GpgKeyData>("POST", $"api/http/team-directory/profiles/{profile}/gpg-keys{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileGpgKeysPostRequest
+                        { 
+                            Key = key,
+                            Comment = comment,
+                        }, cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// List GPG public keys associated with profile
+                /// </summary>
+                public async Task<List<GpgKeyData>> GetAllGpgKeysAsync(ProfileIdentifier profile, Func<Partial<GpgKeyData>, Partial<GpgKeyData>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<GpgKeyData>()) : Partial<GpgKeyData>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<GpgKeyData>>("GET", $"api/http/team-directory/profiles/{profile}/gpg-keys{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit member profile</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task DeleteGpgKeyAsync(ProfileIdentifier profile, string fingerprint, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/gpg-keys/{fingerprint}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
             public LeadClient Leads => new LeadClient(_connection);
             
             public partial class LeadClient : ISpaceClient
@@ -2276,6 +2339,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Get team leads for a given profile id.
                 /// </summary>
+                [Obsolete("To be removed (since 2020-12-01) (marked for removal)")]
                 public async Task<List<TDMemberProfile>> GetAllLeadsAsync(ProfileIdentifier profile, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2603,6 +2667,74 @@ namespace JetBrains.Space.Client
             
             }
         
+            public SshKeyClient SshKeys => new SshKeyClient(_connection);
+            
+            public partial class SshKeyClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public SshKeyClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Associate an SSH public key with the profile
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit member profile</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task CreateSshKeyAsync(ProfileIdentifier profile, string key, string comment = "", CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/team-directory/profiles/{profile}/ssh-keys{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileSshKeysPostRequest
+                        { 
+                            Key = key,
+                            Comment = comment,
+                        }, cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// List SSH public keys associated with the profile
+                /// </summary>
+                public async Task<List<SshKeyData>> GetAllSshKeysAsync(ProfileIdentifier profile, Func<Partial<SshKeyData>, Partial<SshKeyData>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<SshKeyData>()) : Partial<SshKeyData>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<SshKeyData>>("GET", $"api/http/team-directory/profiles/{profile}/ssh-keys{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Remove association between the profile and the SSH public key
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit member profile</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task DeleteSshKeyAsync(ProfileIdentifier profile, string fingerprint, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/ssh-keys/{fingerprint}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
             public TimezoneClient Timezone => new TimezoneClient(_connection);
             
             public partial class TimezoneClient : ISpaceClient
@@ -2897,7 +3029,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDTeam> CreateTeamAsync(string name, string? description = null, List<string>? emails = null, string? parentId = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDTeam> CreateTeamAsync(string name, string? description = null, List<string>? emails = null, string? parentId = null, string? defaultManager = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
@@ -2909,6 +3041,7 @@ namespace JetBrains.Space.Client
                         Description = description,
                         Emails = emails,
                         ParentId = parentId,
+                        DefaultManager = defaultManager,
                         CustomFieldValues = customFieldValues,
                         ExternalId = externalId,
                     }, cancellationToken);
@@ -3023,7 +3156,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDTeam> UpdateTeamAsync(string id, string name, string? description = null, List<string>? emails = null, string? parentId = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDTeam> UpdateTeamAsync(string id, string name, string? description = null, List<string>? emails = null, string? parentId = null, string? defaultManager = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
@@ -3035,6 +3168,7 @@ namespace JetBrains.Space.Client
                         Description = description,
                         Emails = emails,
                         ParentId = parentId,
+                        DefaultManager = defaultManager,
                         CustomFieldValues = customFieldValues,
                         ExternalId = externalId,
                     }, cancellationToken);

@@ -29,6 +29,9 @@ namespace JetBrains.Space.Client.GitCommitSignatureVerifiedPartialBuilder
 {
     public static class GitCommitSignatureVerifiedPartialExtensions
     {
+        public static Partial<GitCommitSignatureVerified> WithDescription(this Partial<GitCommitSignatureVerified> it)
+            => it.AddFieldName("description");
+        
     }
     
 }
