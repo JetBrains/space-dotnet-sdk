@@ -70,7 +70,11 @@ namespace JetBrains.Space.Samples.App
                 // Space webhook receiver endpoint
                 endpoints.MapSpaceWebHookHandler<CateringWebHookHandler>("/space/receive");
 
-                endpoints.Map("/", async context => await context.Response.WriteAsync("Space app is running."));
+                endpoints.Map("/", async context =>
+                {
+                    context.Response.ContentType = "text/plain; charset=utf-8";
+                    await context.Response.WriteAsync("Space app is running.");
+                });
             });
         }
     }
