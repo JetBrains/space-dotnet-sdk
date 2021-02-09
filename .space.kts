@@ -11,7 +11,7 @@ job("Continuous integration build") {
         shellScript {
             content = """
             	./build.sh
-            """
+            """.trimIndent()
         }
     }
 }
@@ -36,7 +36,7 @@ job("Build and publish to NuGet.org (manual)") {
         shellScript {
             content = """
             	./build.sh
-            """
+            """.trimIndent()
         }
     }
 }
