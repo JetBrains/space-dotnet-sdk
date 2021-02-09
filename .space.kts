@@ -1,4 +1,8 @@
 job("Continuous integration build") {
+    startOn {
+        gitPush { enabled = true }
+    }
+    
     container("mcr.microsoft.com/dotnet/core/sdk:3.1-bionic") {
         resources {
             cpu = 2.cpu
