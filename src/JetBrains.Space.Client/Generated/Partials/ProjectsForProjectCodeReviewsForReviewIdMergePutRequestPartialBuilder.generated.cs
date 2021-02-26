@@ -32,6 +32,12 @@ namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsForReviewIdMergePu
         public static Partial<ProjectsForProjectCodeReviewsForReviewIdMergePutRequest> WithIsDeleteSourceBranch(this Partial<ProjectsForProjectCodeReviewsForReviewIdMergePutRequest> it)
             => it.AddFieldName("deleteSourceBranch");
         
+        public static Partial<ProjectsForProjectCodeReviewsForReviewIdMergePutRequest> WithMergeMode(this Partial<ProjectsForProjectCodeReviewsForReviewIdMergePutRequest> it)
+            => it.AddFieldName("mergeMode");
+        
+        public static Partial<ProjectsForProjectCodeReviewsForReviewIdMergePutRequest> WithMergeMode(this Partial<ProjectsForProjectCodeReviewsForReviewIdMergePutRequest> it, Func<Partial<GitMergeMode>, Partial<GitMergeMode>> partialBuilder)
+            => it.AddFieldName("mergeMode", partialBuilder(new Partial<GitMergeMode>(it)));
+        
     }
     
 }

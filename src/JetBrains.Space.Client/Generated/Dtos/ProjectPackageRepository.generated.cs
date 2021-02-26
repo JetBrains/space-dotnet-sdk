@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public ProjectPackageRepository() { }
         
-        public ProjectPackageRepository(string id, PRProject project, string name, PackageRepository repository, bool archived, List<PackageRepositoryMirror> mirrors, string? description = null)
+        public ProjectPackageRepository(string id, PRProject project, string name, PackageRepository repository, bool archived, List<PackageRepositoryConnection> mirrors, string? description = null)
         {
             Id = id;
             Project = project;
@@ -102,11 +102,11 @@ namespace JetBrains.Space.Client
             set => _archived.SetValue(value);
         }
     
-        private PropertyValue<List<PackageRepositoryMirror>> _mirrors = new PropertyValue<List<PackageRepositoryMirror>>(nameof(ProjectPackageRepository), nameof(Mirrors));
+        private PropertyValue<List<PackageRepositoryConnection>> _mirrors = new PropertyValue<List<PackageRepositoryConnection>>(nameof(ProjectPackageRepository), nameof(Mirrors));
         
         [Required]
         [JsonPropertyName("mirrors")]
-        public List<PackageRepositoryMirror> Mirrors
+        public List<PackageRepositoryConnection> Mirrors
         {
             get => _mirrors.GetValue();
             set => _mirrors.SetValue(value);

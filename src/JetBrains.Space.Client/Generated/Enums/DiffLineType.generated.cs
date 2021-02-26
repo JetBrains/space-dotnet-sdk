@@ -39,6 +39,15 @@ namespace JetBrains.Space.Client
         [EnumMember(Value = "MODIFIED")]
         MODIFIED,
         
+        [EnumMember(Value = "FILTERED_ADDED")]
+        FILTEREDADDED,
+        
+        [EnumMember(Value = "FILTERED_DELETED")]
+        FILTEREDDELETED,
+        
+        [EnumMember(Value = "FILTERED_MODIFIED")]
+        FILTEREDMODIFIED,
+        
         [EnumMember(Value = "CONFLICT_OLD")]
         CONFLICTOLD,
         

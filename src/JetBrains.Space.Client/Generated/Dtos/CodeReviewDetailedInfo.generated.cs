@@ -32,11 +32,12 @@ namespace JetBrains.Space.Client
     {
         public CodeReviewDetailedInfo() { }
         
-        public CodeReviewDetailedInfo(CodeReviewRecord shortInfo, List<RevisionsInReview> commits, CodeReviewDiscussionCounter discussionCounter, List<TrackedBranchesInReview> branches)
+        public CodeReviewDetailedInfo(CodeReviewRecord shortInfo, List<RevisionsInReview> commits, CodeReviewDiscussionCounter discussionCounter, List<TrackedBranchesInReview> branches, CodeReviewUnboundDiscussionCounter? unboundDiscussionCounter = null)
         {
             ShortInfo = shortInfo;
             Commits = commits;
             DiscussionCounter = discussionCounter;
+            UnboundDiscussionCounter = unboundDiscussionCounter;
             Branches = branches;
         }
         
@@ -70,6 +71,15 @@ namespace JetBrains.Space.Client
             set => _discussionCounter.SetValue(value);
         }
     
+        private PropertyValue<CodeReviewUnboundDiscussionCounter?> _unboundDiscussionCounter = new PropertyValue<CodeReviewUnboundDiscussionCounter?>(nameof(CodeReviewDetailedInfo), nameof(UnboundDiscussionCounter));
+        
+        [JsonPropertyName("unboundDiscussionCounter")]
+        public CodeReviewUnboundDiscussionCounter? UnboundDiscussionCounter
+        {
+            get => _unboundDiscussionCounter.GetValue();
+            set => _unboundDiscussionCounter.SetValue(value);
+        }
+    
         private PropertyValue<List<TrackedBranchesInReview>> _branches = new PropertyValue<List<TrackedBranchesInReview>>(nameof(CodeReviewDetailedInfo), nameof(Branches));
         
         [Required]
@@ -85,6 +95,7 @@ namespace JetBrains.Space.Client
             _shortInfo.SetAccessPath(path, validateHasBeenSet);
             _commits.SetAccessPath(path, validateHasBeenSet);
             _discussionCounter.SetAccessPath(path, validateHasBeenSet);
+            _unboundDiscussionCounter.SetAccessPath(path, validateHasBeenSet);
             _branches.SetAccessPath(path, validateHasBeenSet);
         }
     

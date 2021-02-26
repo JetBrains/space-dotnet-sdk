@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectPackagesRepositoriesPostRequest() { }
         
-        public ProjectsForProjectPackagesRepositoriesPostRequest(string type, string name, bool @public, ESPackageRepositorySettings settings, PackageRepositoryMode mode, string? description = null, PackageRepositoryMirror? mirror = null)
+        public ProjectsForProjectPackagesRepositoriesPostRequest(string type, string name, bool @public, ESPackageRepositorySettings settings, PackageRepositoryMode mode, string? description = null, PackageRepositoryConnection? connection = null)
         {
             Type = type;
             Name = name;
@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             IsPublic = @public;
             Settings = settings;
             Mode = mode;
-            Mirror = mirror;
+            Connection = connection;
         }
         
         private PropertyValue<string> _type = new PropertyValue<string>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Type));
@@ -102,13 +102,13 @@ namespace JetBrains.Space.Client
             set => _mode.SetValue(value);
         }
     
-        private PropertyValue<PackageRepositoryMirror?> _mirror = new PropertyValue<PackageRepositoryMirror?>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Mirror));
+        private PropertyValue<PackageRepositoryConnection?> _connection = new PropertyValue<PackageRepositoryConnection?>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Connection));
         
-        [JsonPropertyName("mirror")]
-        public PackageRepositoryMirror? Mirror
+        [JsonPropertyName("connection")]
+        public PackageRepositoryConnection? Connection
         {
-            get => _mirror.GetValue();
-            set => _mirror.SetValue(value);
+            get => _connection.GetValue();
+            set => _connection.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
@@ -119,7 +119,7 @@ namespace JetBrains.Space.Client
             _public.SetAccessPath(path, validateHasBeenSet);
             _settings.SetAccessPath(path, validateHasBeenSet);
             _mode.SetAccessPath(path, validateHasBeenSet);
-            _mirror.SetAccessPath(path, validateHasBeenSet);
+            _connection.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

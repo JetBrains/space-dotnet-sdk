@@ -27,21 +27,17 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class PackageRepositoryMirrorSpace
-         : PackageRepositoryMirror, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class CodeReviewUnboundDiscussionCounter
+         : IPropagatePropertyAccessPath
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "PackageRepositoryMirror.Space";
+        public CodeReviewUnboundDiscussionCounter() { }
         
-        public PackageRepositoryMirrorSpace() { }
-        
-        public PackageRepositoryMirrorSpace(string id, ProjectPackageRepository repository)
+        public CodeReviewUnboundDiscussionCounter(string id)
         {
             Id = id;
-            Repository = repository;
         }
         
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(PackageRepositoryMirrorSpace), nameof(Id));
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewUnboundDiscussionCounter), nameof(Id));
         
         [Required]
         [JsonPropertyName("id")]
@@ -51,20 +47,9 @@ namespace JetBrains.Space.Client
             set => _id.SetValue(value);
         }
     
-        private PropertyValue<ProjectPackageRepository> _repository = new PropertyValue<ProjectPackageRepository>(nameof(PackageRepositoryMirrorSpace), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public ProjectPackageRepository Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -47,6 +47,12 @@ namespace JetBrains.Space.Client.CodeReviewDetailedInfoPartialBuilder
         public static Partial<CodeReviewDetailedInfo> WithDiscussionCounter(this Partial<CodeReviewDetailedInfo> it, Func<Partial<CodeReviewDiscussionCounter>, Partial<CodeReviewDiscussionCounter>> partialBuilder)
             => it.AddFieldName("discussionCounter", partialBuilder(new Partial<CodeReviewDiscussionCounter>(it)));
         
+        public static Partial<CodeReviewDetailedInfo> WithUnboundDiscussionCounter(this Partial<CodeReviewDetailedInfo> it)
+            => it.AddFieldName("unboundDiscussionCounter");
+        
+        public static Partial<CodeReviewDetailedInfo> WithUnboundDiscussionCounter(this Partial<CodeReviewDetailedInfo> it, Func<Partial<CodeReviewUnboundDiscussionCounter>, Partial<CodeReviewUnboundDiscussionCounter>> partialBuilder)
+            => it.AddFieldName("unboundDiscussionCounter", partialBuilder(new Partial<CodeReviewUnboundDiscussionCounter>(it)));
+        
         public static Partial<CodeReviewDetailedInfo> WithBranches(this Partial<CodeReviewDetailedInfo> it)
             => it.AddFieldName("branches");
         

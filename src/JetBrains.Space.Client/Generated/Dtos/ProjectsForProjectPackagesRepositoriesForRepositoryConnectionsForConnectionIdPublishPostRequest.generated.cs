@@ -27,18 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequest
+    public class ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest
          : IPropagatePropertyAccessPath
     {
-        public ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequest() { }
+        public ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest() { }
         
-        public ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequest(string packageName, string packageVersion)
+        public ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest(string packageName, string packageVersion)
         {
             PackageName = packageName;
             PackageVersion = packageVersion;
         }
         
-        private PropertyValue<string> _packageName = new PropertyValue<string>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequest), nameof(PackageName));
+        private PropertyValue<string> _packageName = new PropertyValue<string>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest), nameof(PackageName));
         
         [Required]
         [JsonPropertyName("packageName")]
@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _packageName.SetValue(value);
         }
     
-        private PropertyValue<string> _packageVersion = new PropertyValue<string>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequest), nameof(PackageVersion));
+        private PropertyValue<string> _packageVersion = new PropertyValue<string>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest), nameof(PackageVersion));
         
         [Required]
         [JsonPropertyName("packageVersion")]

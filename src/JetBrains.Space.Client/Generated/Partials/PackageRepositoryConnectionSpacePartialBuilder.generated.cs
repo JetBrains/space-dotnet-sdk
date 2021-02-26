@@ -25,17 +25,17 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PackageRepositoryMirrorSpacePartialBuilder
+namespace JetBrains.Space.Client.PackageRepositoryConnectionSpacePartialBuilder
 {
-    public static class PackageRepositoryMirrorSpacePartialExtensions
+    public static class PackageRepositoryConnectionSpacePartialExtensions
     {
-        public static Partial<PackageRepositoryMirrorSpace> WithId(this Partial<PackageRepositoryMirrorSpace> it)
+        public static Partial<PackageRepositoryConnectionSpace> WithId(this Partial<PackageRepositoryConnectionSpace> it)
             => it.AddFieldName("id");
         
-        public static Partial<PackageRepositoryMirrorSpace> WithRepository(this Partial<PackageRepositoryMirrorSpace> it)
+        public static Partial<PackageRepositoryConnectionSpace> WithRepository(this Partial<PackageRepositoryConnectionSpace> it)
             => it.AddFieldName("repository");
         
-        public static Partial<PackageRepositoryMirrorSpace> WithRepository(this Partial<PackageRepositoryMirrorSpace> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
+        public static Partial<PackageRepositoryConnectionSpace> WithRepository(this Partial<PackageRepositoryConnectionSpace> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
             => it.AddFieldName("repository", partialBuilder(new Partial<ProjectPackageRepository>(it)));
         
     }

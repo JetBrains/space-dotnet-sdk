@@ -27,15 +27,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class PackageRepositoryMirrorExternal
-         : PackageRepositoryMirror, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class PackageRepositoryConnectionRemote
+         : PackageRepositoryConnection, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public override string? ClassName => "PackageRepositoryMirror.External";
+        public override string? ClassName => "PackageRepositoryConnection.Remote";
         
-        public PackageRepositoryMirrorExternal() { }
+        public PackageRepositoryConnectionRemote() { }
         
-        public PackageRepositoryMirrorExternal(string id, string url, PackageRepositoryCredentials credentials, string? secretId = null, string? secretValue = null)
+        public PackageRepositoryConnectionRemote(string id, string url, PackageRepositoryCredentials credentials, string? secretId = null, string? secretValue = null)
         {
             Id = id;
             Url = url;
@@ -44,7 +44,7 @@ namespace JetBrains.Space.Client
             SecretValue = secretValue;
         }
         
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(PackageRepositoryMirrorExternal), nameof(Id));
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(PackageRepositoryConnectionRemote), nameof(Id));
         
         [Required]
         [JsonPropertyName("id")]
@@ -54,7 +54,7 @@ namespace JetBrains.Space.Client
             set => _id.SetValue(value);
         }
     
-        private PropertyValue<string> _url = new PropertyValue<string>(nameof(PackageRepositoryMirrorExternal), nameof(Url));
+        private PropertyValue<string> _url = new PropertyValue<string>(nameof(PackageRepositoryConnectionRemote), nameof(Url));
         
         [Required]
         [JsonPropertyName("url")]
@@ -64,7 +64,7 @@ namespace JetBrains.Space.Client
             set => _url.SetValue(value);
         }
     
-        private PropertyValue<PackageRepositoryCredentials> _credentials = new PropertyValue<PackageRepositoryCredentials>(nameof(PackageRepositoryMirrorExternal), nameof(Credentials));
+        private PropertyValue<PackageRepositoryCredentials> _credentials = new PropertyValue<PackageRepositoryCredentials>(nameof(PackageRepositoryConnectionRemote), nameof(Credentials));
         
         [Required]
         [JsonPropertyName("credentials")]
@@ -74,7 +74,7 @@ namespace JetBrains.Space.Client
             set => _credentials.SetValue(value);
         }
     
-        private PropertyValue<string?> _secretId = new PropertyValue<string?>(nameof(PackageRepositoryMirrorExternal), nameof(SecretId));
+        private PropertyValue<string?> _secretId = new PropertyValue<string?>(nameof(PackageRepositoryConnectionRemote), nameof(SecretId));
         
         [JsonPropertyName("secretId")]
         public string? SecretId
@@ -83,7 +83,7 @@ namespace JetBrains.Space.Client
             set => _secretId.SetValue(value);
         }
     
-        private PropertyValue<string?> _secretValue = new PropertyValue<string?>(nameof(PackageRepositoryMirrorExternal), nameof(SecretValue));
+        private PropertyValue<string?> _secretValue = new PropertyValue<string?>(nameof(PackageRepositoryConnectionRemote), nameof(SecretValue));
         
         [JsonPropertyName("secretValue")]
         public string? SecretValue

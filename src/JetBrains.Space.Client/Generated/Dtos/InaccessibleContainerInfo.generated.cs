@@ -27,18 +27,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public interface DocumentContainerInfo
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class InaccessibleContainerInfo
+         : DocumentContainerInfo, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static InaccessibleContainerInfo InaccessibleContainerInfo()
-            => new InaccessibleContainerInfo();
+        [JsonPropertyName("className")]
+        public  string? ClassName => "InaccessibleContainerInfo";
         
-        public static KbDocumentContainerInfo Kb(KBBook book, KBArticle article)
-            => new KbDocumentContainerInfo(book: book, article: article);
+        public InaccessibleContainerInfo() { }
         
-        public static PersonalDocumentContainerInfo Personal(TDMemberProfile owner)
-            => new PersonalDocumentContainerInfo(owner: owner);
-        
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

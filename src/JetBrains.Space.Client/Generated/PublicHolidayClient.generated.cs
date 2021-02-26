@@ -188,7 +188,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Update a holiday in a public holiday calendar. Optional parameters will be ignored when not specified, and updated otherwise.
             /// </summary>
-            public async Task<PublicHoliday> UpdateHolidayAsync(string id, string? calendar = null, string? name = null, DateTime? date = null, bool? workingDay = null, bool? halfDay = false, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<PublicHoliday> UpdateHolidayAsync(string id, string? calendar = null, string? name = null, DateTime? date = null, bool? workingDay = null, bool? halfDay = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<PublicHoliday>()) : Partial<PublicHoliday>.Default()).ToString());

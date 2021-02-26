@@ -28,19 +28,19 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client
 {
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class PackageRepositoryMirror
+    public class PackageRepositoryConnection
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public virtual string? ClassName => "PackageRepositoryMirror";
+        public virtual string? ClassName => "PackageRepositoryConnection";
         
-        public static PackageRepositoryMirrorExternal External(string id, string url, PackageRepositoryCredentials credentials, string? secretId = null, string? secretValue = null)
-            => new PackageRepositoryMirrorExternal(id: id, url: url, credentials: credentials, secretId: secretId, secretValue: secretValue);
+        public static PackageRepositoryConnectionRemote Remote(string id, string url, PackageRepositoryCredentials credentials, string? secretId = null, string? secretValue = null)
+            => new PackageRepositoryConnectionRemote(id: id, url: url, credentials: credentials, secretId: secretId, secretValue: secretValue);
         
-        public static PackageRepositoryMirrorSpace Space(string id, ProjectPackageRepository repository)
-            => new PackageRepositoryMirrorSpace(id: id, repository: repository);
+        public static PackageRepositoryConnectionSpace Space(string id, ProjectPackageRepository repository)
+            => new PackageRepositoryConnectionSpace(id: id, repository: repository);
         
-        public PackageRepositoryMirror() { }
+        public PackageRepositoryConnection() { }
         
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {

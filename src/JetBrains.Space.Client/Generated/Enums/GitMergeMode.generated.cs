@@ -27,17 +27,17 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public interface DocumentContainerInfo
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum GitMergeMode
     {
-        public static InaccessibleContainerInfo InaccessibleContainerInfo()
-            => new InaccessibleContainerInfo();
+        [EnumMember(Value = "FF")]
+        FF,
         
-        public static KbDocumentContainerInfo Kb(KBBook book, KBArticle article)
-            => new KbDocumentContainerInfo(book: book, article: article);
+        [EnumMember(Value = "FF_ONLY")]
+        FFONLY,
         
-        public static PersonalDocumentContainerInfo Personal(TDMemberProfile owner)
-            => new PersonalDocumentContainerInfo(owner: owner);
+        [EnumMember(Value = "NO_FF")]
+        NOFF,
         
     }
     

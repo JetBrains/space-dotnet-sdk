@@ -32,9 +32,10 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectCodeReviewsForReviewIdMergePutRequest() { }
         
-        public ProjectsForProjectCodeReviewsForReviewIdMergePutRequest(bool deleteSourceBranch)
+        public ProjectsForProjectCodeReviewsForReviewIdMergePutRequest(bool deleteSourceBranch, GitMergeMode mergeMode)
         {
             IsDeleteSourceBranch = deleteSourceBranch;
+            MergeMode = mergeMode;
         }
         
         private PropertyValue<bool> _deleteSourceBranch = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsForReviewIdMergePutRequest), nameof(IsDeleteSourceBranch));
@@ -47,9 +48,20 @@ namespace JetBrains.Space.Client
             set => _deleteSourceBranch.SetValue(value);
         }
     
+        private PropertyValue<GitMergeMode> _mergeMode = new PropertyValue<GitMergeMode>(nameof(ProjectsForProjectCodeReviewsForReviewIdMergePutRequest), nameof(MergeMode));
+        
+        [Required]
+        [JsonPropertyName("mergeMode")]
+        public GitMergeMode MergeMode
+        {
+            get => _mergeMode.GetValue();
+            set => _mergeMode.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _deleteSourceBranch.SetAccessPath(path, validateHasBeenSet);
+            _mergeMode.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

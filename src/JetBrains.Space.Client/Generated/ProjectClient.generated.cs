@@ -1465,7 +1465,7 @@ namespace JetBrains.Space.Client
             }
             
         
-            public async Task<GitMergeResultHttp> MergeMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, Func<Partial<GitMergeResultHttp>, Partial<GitMergeResultHttp>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<GitMergeResultHttp> MergeMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitMergeMode mergeMode, Func<Partial<GitMergeResultHttp>, Partial<GitMergeResultHttp>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitMergeResultHttp>()) : Partial<GitMergeResultHttp>.Default()).ToString());
@@ -1474,6 +1474,7 @@ namespace JetBrains.Space.Client
                     new ProjectsForProjectCodeReviewsForReviewIdMergePutRequest
                     { 
                         IsDeleteSourceBranch = deleteSourceBranch,
+                        MergeMode = mergeMode,
                     }, cancellationToken);
             }
             
@@ -1762,7 +1763,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<ProjectPackageRepository> CreateNewRepositoryAsync(ProjectIdentifier project, string type, string name, bool @public, ESPackageRepositorySettings settings, PackageRepositoryMode mode, string? description = null, PackageRepositoryMirror? mirror = null, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<ProjectPackageRepository> CreateNewRepositoryAsync(ProjectIdentifier project, string type, string name, bool @public, ESPackageRepositorySettings settings, PackageRepositoryMode mode, string? description = null, PackageRepositoryConnection? connection = null, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default()).ToString());
@@ -1776,7 +1777,7 @@ namespace JetBrains.Space.Client
                             IsPublic = @public,
                             Settings = settings,
                             Mode = mode,
-                            Mirror = mirror,
+                            Connection = connection,
                         }, cancellationToken);
                 }
                 
@@ -1900,19 +1901,19 @@ namespace JetBrains.Space.Client
                 
                 }
             
-                public MirrorClient Mirrors => new MirrorClient(_connection);
+                public ConnectionClient Connections => new ConnectionClient(_connection);
                 
-                public partial class MirrorClient : ISpaceClient
+                public partial class ConnectionClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
-                    public MirrorClient(Connection connection)
+                    public ConnectionClient(Connection connection)
                     {
                         _connection = connection;
                     }
                     
                     /// <summary>
-                    /// Gets a list of package repository mirrors for given project.
+                    /// Gets a list of remote package repositories for given project.
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1922,12 +1923,12 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task<List<PackageRepositoryMirror>> GetAllMirrorsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, Func<Partial<PackageRepositoryMirror>, Partial<PackageRepositoryMirror>>? partial = null, CancellationToken cancellationToken = default)
+                    public async Task<List<PackageRepositoryConnection>> GetAllRemoteRepositoriesAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, Func<Partial<PackageRepositoryConnection>, Partial<PackageRepositoryConnection>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageRepositoryMirror>()) : Partial<PackageRepositoryMirror>.Default()).ToString());
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageRepositoryConnection>()) : Partial<PackageRepositoryConnection>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<List<PackageRepositoryMirror>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/mirrors{queryParameters.ToQueryString()}", cancellationToken);
+                        return await _connection.RequestResourceAsync<List<PackageRepositoryConnection>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/connections{queryParameters.ToQueryString()}", cancellationToken);
                     }
                     
                 
@@ -1943,7 +1944,7 @@ namespace JetBrains.Space.Client
                         }
                         
                         /// <summary>
-                        /// Publishes package version to target package repository mirror.
+                        /// Publishes package to remote repository.
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -1953,13 +1954,13 @@ namespace JetBrains.Space.Client
                         /// </item>
                         /// </list>
                         /// </remarks>
-                        public async Task<PackagesExecutionResult> PublishPackageVersionToMirrorAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string mirrorId, string packageName, string packageVersion, Func<Partial<PackagesExecutionResult>, Partial<PackagesExecutionResult>>? partial = null, CancellationToken cancellationToken = default)
+                        public async Task<PackagesExecutionResult> PublishPackageToRemoteRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string connectionId, string packageName, string packageVersion, Func<Partial<PackagesExecutionResult>, Partial<PackagesExecutionResult>>? partial = null, CancellationToken cancellationToken = default)
                         {
                             var queryParameters = new NameValueCollection();
                             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackagesExecutionResult>()) : Partial<PackagesExecutionResult>.Default()).ToString());
                             
-                            return await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequest, PackagesExecutionResult>("POST", $"api/http/projects/{project}/packages/repositories/{repository}/mirrors/{mirrorId}/publish{queryParameters.ToQueryString()}", 
-                                new ProjectsForProjectPackagesRepositoriesForRepositoryMirrorsForMirrorIdPublishPostRequest
+                            return await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest, PackagesExecutionResult>("POST", $"api/http/projects/{project}/packages/repositories/{repository}/connections/{connectionId}/publish{queryParameters.ToQueryString()}", 
+                                new ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest
                                 { 
                                     PackageName = packageName,
                                     PackageVersion = packageVersion,
@@ -1993,11 +1994,11 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task<Batch<PackageData>> GetAllPackagesAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageData>>, Partial<Batch<PackageData>>>? partial = null, CancellationToken cancellationToken = default)
+                    public async Task<Batch<PackageData>> GetAllPackagesAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageData>>, Partial<Batch<PackageData>>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         queryParameters.Append("query", query);
-                        if (mirrorId != null) queryParameters.Append("mirrorId", mirrorId);
+                        if (connectionId != null) queryParameters.Append("connectionId", connectionId);
                         if (skip != null) queryParameters.Append("$skip", skip);
                         if (top != null) queryParameters.Append("$top", top?.ToString());
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default()).ToString());
@@ -2017,8 +2018,8 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public IAsyncEnumerable<PackageData> GetAllPackagesAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<PackageData>, Partial<PackageData>>? partial = null, CancellationToken cancellationToken = default)
-                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackagesAsync(project: project, repository: repository, query: query, mirrorId: mirrorId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageData>.Default())), skip, cancellationToken);
+                    public IAsyncEnumerable<PackageData> GetAllPackagesAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<PackageData>, Partial<PackageData>>? partial = null, CancellationToken cancellationToken = default)
+                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackagesAsync(project: project, repository: repository, query: query, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageData>.Default())), skip, cancellationToken);
                 
                     public MetadataClient Metadata => new MetadataClient(_connection);
                     
@@ -2071,11 +2072,11 @@ namespace JetBrains.Space.Client
                         /// </item>
                         /// </list>
                         /// </remarks>
-                        public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
+                        public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
                         {
                             var queryParameters = new NameValueCollection();
                             queryParameters.Append("query", query);
-                            if (mirrorId != null) queryParameters.Append("mirrorId", mirrorId);
+                            if (connectionId != null) queryParameters.Append("connectionId", connectionId);
                             if (skip != null) queryParameters.Append("$skip", skip);
                             if (top != null) queryParameters.Append("$top", top?.ToString());
                             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
@@ -2095,8 +2096,8 @@ namespace JetBrains.Space.Client
                         /// </item>
                         /// </list>
                         /// </remarks>
-                        public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
-                            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, repository: repository, packageName: packageName, query: query, mirrorId: mirrorId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
+                        public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
+                            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, repository: repository, packageName: packageName, query: query, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
                     
                         /// <summary>
                         /// Gets a details for repository package version for a given project id.
@@ -2324,12 +2325,12 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<PackageVersionData>> FindPackagesInRepositoryAsync(ProjectIdentifier project, string type, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<PackageVersionData>> FindPackagesInRepositoryAsync(ProjectIdentifier project, string type, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("type", type);
                     queryParameters.Append("query", query);
-                    if (mirrorId != null) queryParameters.Append("mirrorId", mirrorId);
+                    if (connectionId != null) queryParameters.Append("connectionId", connectionId);
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
@@ -2349,8 +2350,8 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public IAsyncEnumerable<PackageVersionData> FindPackagesInRepositoryAsyncEnumerable(ProjectIdentifier project, string type, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => FindPackagesInRepositoryAsync(project: project, type: type, query: query, mirrorId: mirrorId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
+                public IAsyncEnumerable<PackageVersionData> FindPackagesInRepositoryAsyncEnumerable(ProjectIdentifier project, string type, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => FindPackagesInRepositoryAsync(project: project, type: type, query: query, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
             
             }
         

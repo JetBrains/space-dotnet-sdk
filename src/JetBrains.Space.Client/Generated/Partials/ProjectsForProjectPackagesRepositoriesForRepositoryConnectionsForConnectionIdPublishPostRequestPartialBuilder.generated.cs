@@ -25,10 +25,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PackageRepositoryMirrorPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequestPartialBuilder
 {
-    public static class PackageRepositoryMirrorPartialExtensions
+    public static class ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequestPartialExtensions
     {
+        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> WithPackageName(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> it)
+            => it.AddFieldName("packageName");
+        
+        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> WithPackageVersion(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> it)
+            => it.AddFieldName("packageVersion");
+        
     }
     
 }

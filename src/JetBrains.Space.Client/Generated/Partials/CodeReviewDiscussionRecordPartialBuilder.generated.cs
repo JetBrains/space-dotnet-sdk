@@ -50,6 +50,9 @@ namespace JetBrains.Space.Client.CodeReviewDiscussionRecordPartialBuilder
         public static Partial<CodeReviewDiscussionRecord> WithIsResolved(this Partial<CodeReviewDiscussionRecord> it)
             => it.AddFieldName("resolved");
         
+        public static Partial<CodeReviewDiscussionRecord> WithIsArchived(this Partial<CodeReviewDiscussionRecord> it)
+            => it.AddFieldName("archived");
+        
     }
     
 }

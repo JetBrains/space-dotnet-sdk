@@ -25,20 +25,10 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.PackageRepositoryConnectionPartialBuilder
 {
-    public interface DocumentContainerInfo
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class PackageRepositoryConnectionPartialExtensions
     {
-        public static InaccessibleContainerInfo InaccessibleContainerInfo()
-            => new InaccessibleContainerInfo();
-        
-        public static KbDocumentContainerInfo Kb(KBBook book, KBArticle article)
-            => new KbDocumentContainerInfo(book: book, article: article);
-        
-        public static PersonalDocumentContainerInfo Personal(TDMemberProfile owner)
-            => new PersonalDocumentContainerInfo(owner: owner);
-        
     }
     
 }

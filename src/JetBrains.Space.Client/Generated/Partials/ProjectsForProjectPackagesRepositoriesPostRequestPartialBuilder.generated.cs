@@ -53,11 +53,11 @@ namespace JetBrains.Space.Client.ProjectsForProjectPackagesRepositoriesPostReque
         public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithMode(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it, Func<Partial<PackageRepositoryMode>, Partial<PackageRepositoryMode>> partialBuilder)
             => it.AddFieldName("mode", partialBuilder(new Partial<PackageRepositoryMode>(it)));
         
-        public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithMirror(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it)
-            => it.AddFieldName("mirror");
+        public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithConnection(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it)
+            => it.AddFieldName("connection");
         
-        public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithMirror(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it, Func<Partial<PackageRepositoryMirror>, Partial<PackageRepositoryMirror>> partialBuilder)
-            => it.AddFieldName("mirror", partialBuilder(new Partial<PackageRepositoryMirror>(it)));
+        public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithConnection(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it, Func<Partial<PackageRepositoryConnection>, Partial<PackageRepositoryConnection>> partialBuilder)
+            => it.AddFieldName("connection", partialBuilder(new Partial<PackageRepositoryConnection>(it)));
         
     }
     

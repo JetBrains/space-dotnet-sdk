@@ -25,26 +25,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PackageRepositoryMirrorExternalPartialBuilder
+namespace JetBrains.Space.Client.PackageRepositoryConnectionRemotePartialBuilder
 {
-    public static class PackageRepositoryMirrorExternalPartialExtensions
+    public static class PackageRepositoryConnectionRemotePartialExtensions
     {
-        public static Partial<PackageRepositoryMirrorExternal> WithId(this Partial<PackageRepositoryMirrorExternal> it)
+        public static Partial<PackageRepositoryConnectionRemote> WithId(this Partial<PackageRepositoryConnectionRemote> it)
             => it.AddFieldName("id");
         
-        public static Partial<PackageRepositoryMirrorExternal> WithUrl(this Partial<PackageRepositoryMirrorExternal> it)
+        public static Partial<PackageRepositoryConnectionRemote> WithUrl(this Partial<PackageRepositoryConnectionRemote> it)
             => it.AddFieldName("url");
         
-        public static Partial<PackageRepositoryMirrorExternal> WithCredentials(this Partial<PackageRepositoryMirrorExternal> it)
+        public static Partial<PackageRepositoryConnectionRemote> WithCredentials(this Partial<PackageRepositoryConnectionRemote> it)
             => it.AddFieldName("credentials");
         
-        public static Partial<PackageRepositoryMirrorExternal> WithCredentials(this Partial<PackageRepositoryMirrorExternal> it, Func<Partial<PackageRepositoryCredentials>, Partial<PackageRepositoryCredentials>> partialBuilder)
+        public static Partial<PackageRepositoryConnectionRemote> WithCredentials(this Partial<PackageRepositoryConnectionRemote> it, Func<Partial<PackageRepositoryCredentials>, Partial<PackageRepositoryCredentials>> partialBuilder)
             => it.AddFieldName("credentials", partialBuilder(new Partial<PackageRepositoryCredentials>(it)));
         
-        public static Partial<PackageRepositoryMirrorExternal> WithSecretId(this Partial<PackageRepositoryMirrorExternal> it)
+        public static Partial<PackageRepositoryConnectionRemote> WithSecretId(this Partial<PackageRepositoryConnectionRemote> it)
             => it.AddFieldName("secretId");
         
-        public static Partial<PackageRepositoryMirrorExternal> WithSecretValue(this Partial<PackageRepositoryMirrorExternal> it)
+        public static Partial<PackageRepositoryConnectionRemote> WithSecretValue(this Partial<PackageRepositoryConnectionRemote> it)
             => it.AddFieldName("secretValue");
         
     }

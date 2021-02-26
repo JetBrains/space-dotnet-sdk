@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public PublicHolidaysHolidaysForIdPatchRequest() { }
         
-        public PublicHolidaysHolidaysForIdPatchRequest(string? calendar = null, string? name = null, DateTime? date = null, bool? workingDay = null, bool? halfDay = false)
+        public PublicHolidaysHolidaysForIdPatchRequest(string? calendar = null, string? name = null, DateTime? date = null, bool? workingDay = null, bool? halfDay = null)
         {
             Calendar = calendar;
             Name = name;

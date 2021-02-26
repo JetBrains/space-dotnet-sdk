@@ -35,7 +35,7 @@ namespace JetBrains.Space.Client
         
         public MeetingOrganizerApplication() { }
         
-        public MeetingOrganizerApplication(ESApp applicationRef, ESService? appRef = null)
+        public MeetingOrganizerApplication(ESService? appRef = null, ESApp? applicationRef = null)
         {
             AppRef = appRef;
             ApplicationRef = applicationRef;
@@ -50,11 +50,10 @@ namespace JetBrains.Space.Client
             set => _appRef.SetValue(value);
         }
     
-        private PropertyValue<ESApp> _applicationRef = new PropertyValue<ESApp>(nameof(MeetingOrganizerApplication), nameof(ApplicationRef));
+        private PropertyValue<ESApp?> _applicationRef = new PropertyValue<ESApp?>(nameof(MeetingOrganizerApplication), nameof(ApplicationRef));
         
-        [Required]
         [JsonPropertyName("applicationRef")]
-        public ESApp ApplicationRef
+        public ESApp? ApplicationRef
         {
             get => _applicationRef.GetValue();
             set => _applicationRef.SetValue(value);

@@ -102,6 +102,9 @@ namespace JetBrains.Space.Client
         public static MembersAddedItemDetails MembersAddedItemDetails(List<CPrincipal> principals, List<string> othersDisplayNames)
             => new MembersAddedItemDetails(principals: principals, othersDisplayNames: othersDisplayNames);
         
+        public static MembershipMCExtension MembershipMCExtension()
+            => new MembershipMCExtension();
+        
         public static StickerContentDetails StickerContentDetails(Sticker sticker, StickerPackInfo? pack = null)
             => new StickerContentDetails(sticker: sticker, pack: pack);
         

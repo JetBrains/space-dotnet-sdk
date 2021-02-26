@@ -56,8 +56,8 @@ namespace JetBrains.Space.Client.ProjectPackageRepositoryPartialBuilder
         public static Partial<ProjectPackageRepository> WithMirrors(this Partial<ProjectPackageRepository> it)
             => it.AddFieldName("mirrors");
         
-        public static Partial<ProjectPackageRepository> WithMirrors(this Partial<ProjectPackageRepository> it, Func<Partial<PackageRepositoryMirror>, Partial<PackageRepositoryMirror>> partialBuilder)
-            => it.AddFieldName("mirrors", partialBuilder(new Partial<PackageRepositoryMirror>(it)));
+        public static Partial<ProjectPackageRepository> WithMirrors(this Partial<ProjectPackageRepository> it, Func<Partial<PackageRepositoryConnection>, Partial<PackageRepositoryConnection>> partialBuilder)
+            => it.AddFieldName("mirrors", partialBuilder(new Partial<PackageRepositoryConnection>(it)));
         
     }
     

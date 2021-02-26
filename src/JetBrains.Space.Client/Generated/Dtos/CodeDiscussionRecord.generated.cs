@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public CodeDiscussionRecord() { }
         
-        public CodeDiscussionRecord(string id, string projectId, CodeDiscussionAnchor anchor, DateTime created, M2ChannelRecord channel, bool resolved, bool archived, PRProject? project = null, CodeDiscussionSnippet? snippet = null, bool? pending = null, CodeReviewRecord? review = null, string? feedItemId = null, List<CodeReviewRecord>? reviews = null)
+        public CodeDiscussionRecord(string id, string projectId, CodeDiscussionAnchor anchor, DateTime created, M2ChannelRecord channel, bool resolved, bool archived, PRProject? project = null, bool? resolvable = null, CodeDiscussionSnippet? snippet = null, bool? pending = null, CodeReviewRecord? review = null, string? feedItemId = null, List<CodeReviewRecord>? reviews = null)
         {
             Id = id;
             ProjectId = projectId;
@@ -40,6 +40,7 @@ namespace JetBrains.Space.Client
             Anchor = anchor;
             Created = created;
             Channel = channel;
+            IsResolvable = resolvable;
             IsResolved = resolved;
             Snippet = snippet;
             IsPending = pending;
@@ -108,6 +109,15 @@ namespace JetBrains.Space.Client
         {
             get => _channel.GetValue();
             set => _channel.SetValue(value);
+        }
+    
+        private PropertyValue<bool?> _resolvable = new PropertyValue<bool?>(nameof(CodeDiscussionRecord), nameof(IsResolvable));
+        
+        [JsonPropertyName("resolvable")]
+        public bool? IsResolvable
+        {
+            get => _resolvable.GetValue();
+            set => _resolvable.SetValue(value);
         }
     
         private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(CodeDiscussionRecord), nameof(IsResolved));
@@ -183,6 +193,7 @@ namespace JetBrains.Space.Client
             _anchor.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
             _channel.SetAccessPath(path, validateHasBeenSet);
+            _resolvable.SetAccessPath(path, validateHasBeenSet);
             _resolved.SetAccessPath(path, validateHasBeenSet);
             _snippet.SetAccessPath(path, validateHasBeenSet);
             _pending.SetAccessPath(path, validateHasBeenSet);

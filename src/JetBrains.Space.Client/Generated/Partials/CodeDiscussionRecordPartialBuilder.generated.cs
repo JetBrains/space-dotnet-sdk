@@ -56,6 +56,9 @@ namespace JetBrains.Space.Client.CodeDiscussionRecordPartialBuilder
         public static Partial<CodeDiscussionRecord> WithChannel(this Partial<CodeDiscussionRecord> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
             => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
         
+        public static Partial<CodeDiscussionRecord> WithIsResolvable(this Partial<CodeDiscussionRecord> it)
+            => it.AddFieldName("resolvable");
+        
         public static Partial<CodeDiscussionRecord> WithIsResolved(this Partial<CodeDiscussionRecord> it)
             => it.AddFieldName("resolved");
         

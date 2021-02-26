@@ -32,13 +32,14 @@ namespace JetBrains.Space.Client
     {
         public CodeReviewDiscussionRecord() { }
         
-        public CodeReviewDiscussionRecord(string id, CodeReviewRecord review, DateTime created, M2ChannelRecord channel, bool resolved)
+        public CodeReviewDiscussionRecord(string id, CodeReviewRecord review, DateTime created, bool archived, M2ChannelRecord? channel = null, bool? resolved = null)
         {
             Id = id;
             Review = review;
             Created = created;
             Channel = channel;
             IsResolved = resolved;
+            IsArchived = archived;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewDiscussionRecord), nameof(Id));
@@ -72,24 +73,32 @@ namespace JetBrains.Space.Client
             set => _created.SetValue(value);
         }
     
-        private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(CodeReviewDiscussionRecord), nameof(Channel));
+        private PropertyValue<M2ChannelRecord?> _channel = new PropertyValue<M2ChannelRecord?>(nameof(CodeReviewDiscussionRecord), nameof(Channel));
         
-        [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecord Channel
+        public M2ChannelRecord? Channel
         {
             get => _channel.GetValue();
             set => _channel.SetValue(value);
         }
     
-        private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(CodeReviewDiscussionRecord), nameof(IsResolved));
+        private PropertyValue<bool?> _resolved = new PropertyValue<bool?>(nameof(CodeReviewDiscussionRecord), nameof(IsResolved));
         
-        [Required]
         [JsonPropertyName("resolved")]
-        public bool IsResolved
+        public bool? IsResolved
         {
             get => _resolved.GetValue();
             set => _resolved.SetValue(value);
+        }
+    
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeReviewDiscussionRecord), nameof(IsArchived));
+        
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool IsArchived
+        {
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
@@ -99,6 +108,7 @@ namespace JetBrains.Space.Client
             _created.SetAccessPath(path, validateHasBeenSet);
             _channel.SetAccessPath(path, validateHasBeenSet);
             _resolved.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
         }
     
     }
