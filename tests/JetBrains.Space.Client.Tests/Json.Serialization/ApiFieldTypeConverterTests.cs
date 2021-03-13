@@ -79,7 +79,7 @@ namespace JetBrains.Space.Client.Tests.Json.Serialization
             var result = reader.ReadToEnd();
             
             // Assert
-            Assert.Equal("{\"primitive\":\"String\",\"className\":\"HA_Type.Primitive\",\"nullable\":true}", result);
+            Assert.Equal("{\"primitive\":\"String\",\"className\":\"HA_Type.Primitive\",\"nullable\":true,\"tags\":[]}", result);
         }
     }
 }
