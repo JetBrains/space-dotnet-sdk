@@ -32,10 +32,11 @@ namespace JetBrains.Space.Client
     {
         public TimeOfDay() { }
         
-        public TimeOfDay(int hours, int minutes)
+        public TimeOfDay(int hours, int minutes, int? seconds = null)
         {
             Hours = hours;
             Minutes = minutes;
+            Seconds = seconds;
         }
         
         private PropertyValue<int> _hours = new PropertyValue<int>(nameof(TimeOfDay), nameof(Hours));
@@ -58,10 +59,20 @@ namespace JetBrains.Space.Client
             set => _minutes.SetValue(value);
         }
     
+        private PropertyValue<int?> _seconds = new PropertyValue<int?>(nameof(TimeOfDay), nameof(Seconds));
+        
+        [JsonPropertyName("seconds")]
+        public int? Seconds
+        {
+            get => _seconds.GetValue();
+            set => _seconds.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _hours.SetAccessPath(path, validateHasBeenSet);
             _minutes.SetAccessPath(path, validateHasBeenSet);
+            _seconds.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

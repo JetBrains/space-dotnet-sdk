@@ -32,14 +32,13 @@ namespace JetBrains.Space.Client
     {
         public KBArticle() { }
         
-        public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, string documentId, DateTime created, DateTime updated, string alias, PublicationItem? item = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
+        public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, string documentId, DateTime created, DateTime updated, string alias, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
         {
             Id = id;
             IsArchived = archived;
             Title = title;
             Book = book;
             Folder = folder;
-            Item = item;
             DocumentId = documentId;
             Created = created;
             CreatedBy = createdBy;
@@ -96,15 +95,6 @@ namespace JetBrains.Space.Client
         {
             get => _folder.GetValue();
             set => _folder.SetValue(value);
-        }
-    
-        private PropertyValue<PublicationItem?> _item = new PropertyValue<PublicationItem?>(nameof(KBArticle), nameof(Item));
-        
-        [JsonPropertyName("item")]
-        public PublicationItem? Item
-        {
-            get => _item.GetValue();
-            set => _item.SetValue(value);
         }
     
         private PropertyValue<string> _documentId = new PropertyValue<string>(nameof(KBArticle), nameof(DocumentId));
@@ -174,7 +164,6 @@ namespace JetBrains.Space.Client
             _title.SetAccessPath(path, validateHasBeenSet);
             _book.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
-            _item.SetAccessPath(path, validateHasBeenSet);
             _documentId.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
             _createdBy.SetAccessPath(path, validateHasBeenSet);

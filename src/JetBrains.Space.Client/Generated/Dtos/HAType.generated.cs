@@ -34,29 +34,29 @@ namespace JetBrains.Space.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "HA_Type";
         
-        public static HATypeArray Array(HAType elementType, bool nullable)
-            => new HATypeArray(elementType: elementType, nullable: nullable);
+        public static HATypeArray Array(HAType elementType, bool nullable, List<string> tags)
+            => new HATypeArray(elementType: elementType, nullable: nullable, tags: tags);
         
-        public static HATypeDto Dto(HADto dto, bool nullable)
-            => new HATypeDto(dto: dto, nullable: nullable);
+        public static HATypeDto Dto(HADto dto, bool nullable, List<string> tags)
+            => new HATypeDto(dto: dto, nullable: nullable, tags: tags);
         
-        public static HATypeEnum Enum(HAEnum @enum, bool nullable)
-            => new HATypeEnum(@enum: @enum, nullable: nullable);
+        public static HATypeEnum Enum(HAEnum @enum, bool nullable, List<string> tags)
+            => new HATypeEnum(@enum: @enum, nullable: nullable, tags: tags);
         
-        public static HATypeMap Map(HAType valueType, bool nullable)
-            => new HATypeMap(valueType: valueType, nullable: nullable);
+        public static HATypeMap Map(HAType valueType, bool nullable, List<string> tags)
+            => new HATypeMap(valueType: valueType, nullable: nullable, tags: tags);
         
-        public static HATypeObject Object(List<HAField> fields, HATypeObjectKind kind, bool nullable)
-            => new HATypeObject(fields: fields, kind: kind, nullable: nullable);
+        public static HATypeObject Object(List<HAField> fields, HATypeObjectKind kind, bool nullable, List<string> tags)
+            => new HATypeObject(fields: fields, kind: kind, nullable: nullable, tags: tags);
         
-        public static HATypePrimitive Primitive(HAPrimitive primitive, bool nullable)
-            => new HATypePrimitive(primitive: primitive, nullable: nullable);
+        public static HATypePrimitive Primitive(HAPrimitive primitive, bool nullable, List<string> tags)
+            => new HATypePrimitive(primitive: primitive, nullable: nullable, tags: tags);
         
-        public static HATypeRef Ref(HADto dto, bool nullable)
-            => new HATypeRef(dto: dto, nullable: nullable);
+        public static HATypeRef Ref(HADto dto, bool nullable, List<string> tags)
+            => new HATypeRef(dto: dto, nullable: nullable, tags: tags);
         
-        public static HATypeUrlParam UrlParam(HAUrlParameter urlParam, bool nullable)
-            => new HATypeUrlParam(urlParam: urlParam, nullable: nullable);
+        public static HATypeUrlParam UrlParam(HAUrlParameter urlParam, bool nullable, List<string> tags)
+            => new HATypeUrlParam(urlParam: urlParam, nullable: nullable, tags: tags);
         
         public HAType() { }
         

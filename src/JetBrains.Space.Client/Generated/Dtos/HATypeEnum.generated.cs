@@ -35,10 +35,11 @@ namespace JetBrains.Space.Client
         
         public HATypeEnum() { }
         
-        public HATypeEnum(HAEnum @enum, bool nullable)
+        public HATypeEnum(HAEnum @enum, bool nullable, List<string> tags)
         {
             Enum = @enum;
             IsNullable = nullable;
+            Tags = tags;
         }
         
         private PropertyValue<HAEnum> _enum = new PropertyValue<HAEnum>(nameof(HATypeEnum), nameof(Enum));
@@ -61,10 +62,21 @@ namespace JetBrains.Space.Client
             set => _nullable.SetValue(value);
         }
     
+        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypeEnum), nameof(Tags));
+        
+        [Required]
+        [JsonPropertyName("tags")]
+        public List<string> Tags
+        {
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _enum.SetAccessPath(path, validateHasBeenSet);
             _nullable.SetAccessPath(path, validateHasBeenSet);
+            _tags.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

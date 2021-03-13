@@ -35,10 +35,11 @@ namespace JetBrains.Space.Client
         
         public HATypeDto() { }
         
-        public HATypeDto(HADto dto, bool nullable)
+        public HATypeDto(HADto dto, bool nullable, List<string> tags)
         {
             Dto = dto;
             IsNullable = nullable;
+            Tags = tags;
         }
         
         private PropertyValue<HADto> _dto = new PropertyValue<HADto>(nameof(HATypeDto), nameof(Dto));
@@ -61,10 +62,21 @@ namespace JetBrains.Space.Client
             set => _nullable.SetValue(value);
         }
     
+        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypeDto), nameof(Tags));
+        
+        [Required]
+        [JsonPropertyName("tags")]
+        public List<string> Tags
+        {
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _dto.SetAccessPath(path, validateHasBeenSet);
             _nullable.SetAccessPath(path, validateHasBeenSet);
+            _tags.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

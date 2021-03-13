@@ -53,6 +53,12 @@ namespace JetBrains.Space.Client.GpgKeyDataPartialBuilder
         public static Partial<GpgKeyData> WithExpires(this Partial<GpgKeyData> it)
             => it.AddFieldName("expires");
         
+        public static Partial<GpgKeyData> WithIsRevoked(this Partial<GpgKeyData> it)
+            => it.AddFieldName("revoked");
+        
+        public static Partial<GpgKeyData> WithRevokeComment(this Partial<GpgKeyData> it)
+            => it.AddFieldName("revokeComment");
+        
     }
     
 }

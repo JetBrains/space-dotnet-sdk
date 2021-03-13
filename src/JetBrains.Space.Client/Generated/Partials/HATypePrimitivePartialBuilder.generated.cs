@@ -38,6 +38,9 @@ namespace JetBrains.Space.Client.HATypePrimitivePartialBuilder
         public static Partial<HATypePrimitive> WithIsNullable(this Partial<HATypePrimitive> it)
             => it.AddFieldName("nullable");
         
+        public static Partial<HATypePrimitive> WithTags(this Partial<HATypePrimitive> it)
+            => it.AddFieldName("tags");
+        
     }
     
 }

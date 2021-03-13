@@ -35,10 +35,11 @@ namespace JetBrains.Space.Client
         
         public HATypePrimitive() { }
         
-        public HATypePrimitive(HAPrimitive primitive, bool nullable)
+        public HATypePrimitive(HAPrimitive primitive, bool nullable, List<string> tags)
         {
             Primitive = primitive;
             IsNullable = nullable;
+            Tags = tags;
         }
         
         private PropertyValue<HAPrimitive> _primitive = new PropertyValue<HAPrimitive>(nameof(HATypePrimitive), nameof(Primitive));
@@ -61,10 +62,21 @@ namespace JetBrains.Space.Client
             set => _nullable.SetValue(value);
         }
     
+        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypePrimitive), nameof(Tags));
+        
+        [Required]
+        [JsonPropertyName("tags")]
+        public List<string> Tags
+        {
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _primitive.SetAccessPath(path, validateHasBeenSet);
             _nullable.SetAccessPath(path, validateHasBeenSet);
+            _tags.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

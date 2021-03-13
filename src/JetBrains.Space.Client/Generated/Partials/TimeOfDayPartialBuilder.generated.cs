@@ -35,6 +35,9 @@ namespace JetBrains.Space.Client.TimeOfDayPartialBuilder
         public static Partial<TimeOfDay> WithMinutes(this Partial<TimeOfDay> it)
             => it.AddFieldName("minutes");
         
+        public static Partial<TimeOfDay> WithSeconds(this Partial<TimeOfDay> it)
+            => it.AddFieldName("seconds");
+        
     }
     
 }

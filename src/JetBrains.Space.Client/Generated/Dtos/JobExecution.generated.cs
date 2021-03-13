@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public JobExecution() { }
         
-        public JobExecution(string executionId, long executionNumber, string jobId, string jobName, string branch, ExecutionStatus status, long triggeredTime, string changesFromExclude, int changesCount, List<FailureCondition> failureConditions, long? startedTime = null, long? finishedTime = null, Estimation? predictedEndTime = null)
+        public JobExecution(string executionId, long executionNumber, string jobId, string jobName, string branch, ExecutionStatus status, long triggeredTime, int changesCount, List<FailureCondition> failureConditions, long? startedTime = null, long? finishedTime = null, Estimation? predictedEndTime = null)
         {
             ExecutionId = executionId;
             ExecutionNumber = executionNumber;
@@ -43,7 +43,6 @@ namespace JetBrains.Space.Client
             TriggeredTime = triggeredTime;
             StartedTime = startedTime;
             FinishedTime = finishedTime;
-            ChangesFromExclude = changesFromExclude;
             ChangesCount = changesCount;
             PredictedEndTime = predictedEndTime;
             FailureConditions = failureConditions;
@@ -137,16 +136,6 @@ namespace JetBrains.Space.Client
             set => _finishedTime.SetValue(value);
         }
     
-        private PropertyValue<string> _changesFromExclude = new PropertyValue<string>(nameof(JobExecution), nameof(ChangesFromExclude));
-        
-        [Required]
-        [JsonPropertyName("changesFromExclude")]
-        public string ChangesFromExclude
-        {
-            get => _changesFromExclude.GetValue();
-            set => _changesFromExclude.SetValue(value);
-        }
-    
         private PropertyValue<int> _changesCount = new PropertyValue<int>(nameof(JobExecution), nameof(ChangesCount));
         
         [Required]
@@ -187,7 +176,6 @@ namespace JetBrains.Space.Client
             _triggeredTime.SetAccessPath(path, validateHasBeenSet);
             _startedTime.SetAccessPath(path, validateHasBeenSet);
             _finishedTime.SetAccessPath(path, validateHasBeenSet);
-            _changesFromExclude.SetAccessPath(path, validateHasBeenSet);
             _changesCount.SetAccessPath(path, validateHasBeenSet);
             _predictedEndTime.SetAccessPath(path, validateHasBeenSet);
             _failureConditions.SetAccessPath(path, validateHasBeenSet);

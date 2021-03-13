@@ -32,6 +32,12 @@ namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsForReviewIdRebaseP
         public static Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> WithIsDeleteSourceBranch(this Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> it)
             => it.AddFieldName("deleteSourceBranch");
         
+        public static Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> WithRebaseMode(this Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> it)
+            => it.AddFieldName("rebaseMode");
+        
+        public static Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> WithRebaseMode(this Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> it, Func<Partial<GitRebaseMode>, Partial<GitRebaseMode>> partialBuilder)
+            => it.AddFieldName("rebaseMode", partialBuilder(new Partial<GitRebaseMode>(it)));
+        
         public static Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> WithIsSquash(this Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> it)
             => it.AddFieldName("squash");
         

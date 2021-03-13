@@ -16,6 +16,9 @@ namespace JetBrains.Space.Generator.Model.HttpApi
         [JsonPropertyName("nullable")]
         public bool Nullable { get; set; }
 
+        [JsonPropertyName("tags")] 
+        public List<string> Tags { get; set; } = new List<string>();
+
         public class Primitive : ApiFieldType
         {
             [JsonPropertyName("primitive")]

@@ -2145,6 +2145,9 @@ namespace JetBrains.Space.Client
                     _connection = connection;
                 }
                 
+                /// <summary>
+                /// Create a new checklist associated with the profile.
+                /// </summary>
                 public async Task<Checklist> CreateChecklistAsync(ProfileIdentifier profile, string name, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2158,6 +2161,11 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Create a new checklist associated with the profile using tab indented lines as checkable items.
+                /// The items with the same indent level will be placed one under the other.
+                /// An issue URL will be converted into the corresponding issue.
+                /// </summary>
                 public async Task<Checklist> ImportChecklistAsync(ProfileIdentifier profile, string name, string tabIndentedLines, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2172,6 +2180,10 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Tab indented lines are converted into checkable items following the same rules as in Import Checklist.
+                /// The result is placed inside of the specified personal checklist.
+                /// </summary>
                 public async Task ImportChecklistLinesAsync(ProfileIdentifier profile, string checklistId, string targetParentId, string tabIndentedLines, string? afterItemId = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2186,6 +2198,9 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Get all existing checklists associated with the profile.
+                /// </summary>
                 public async Task<List<Checklist>> GetAllChecklistsAsync(ProfileIdentifier profile, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2195,6 +2210,9 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Update an existing checklist associated with the profile.
+                /// </summary>
                 public async Task UpdateChecklistAsync(ProfileIdentifier profile, string checklistId, string name, string? description = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2208,6 +2226,9 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Delete an existing checklist associated with the profile.
+                /// </summary>
                 public async Task DeleteChecklistAsync(ProfileIdentifier profile, string checklistId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2227,6 +2248,9 @@ namespace JetBrains.Space.Client
                         _connection = connection;
                     }
                     
+                    /// <summary>
+                    /// Get all starred checklists associated with the profile.
+                    /// </summary>
                     public async Task<List<Checklist>> GetAllStarredChecklistsAsync(ProfileIdentifier profile, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
@@ -2249,6 +2273,9 @@ namespace JetBrains.Space.Client
                         _connection = connection;
                     }
                     
+                    /// <summary>
+                    /// Get the content of a checklist associated with the profile.
+                    /// </summary>
                     public async Task<List<PlanItemChildren>> GetFullChecklistTreeAsync(ProfileIdentifier profile, string checklistId, Func<Partial<PlanItemChildren>, Partial<PlanItemChildren>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
@@ -2304,6 +2331,26 @@ namespace JetBrains.Space.Client
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<GpgKeyData>()) : Partial<GpgKeyData>.Default()).ToString());
                     
                     return await _connection.RequestResourceAsync<List<GpgKeyData>>("GET", $"api/http/team-directory/profiles/{profile}/gpg-keys{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit member profile</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task UpdateGpgKeyAsync(ProfileIdentifier profile, string fingerprint, string comment = "", CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/gpg-keys/{fingerprint}{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest
+                        { 
+                            Comment = comment,
+                        }, cancellationToken);
                 }
                 
             

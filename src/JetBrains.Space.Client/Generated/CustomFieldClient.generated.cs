@@ -284,6 +284,35 @@ namespace JetBrains.Space.Client
             }
             
         
+            public FilterValueClient FilterValues => new FilterValueClient(_connection);
+            
+            public partial class FilterValueClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public FilterValueClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<Batch<CFValue>> GetAllFilterValuesAsync(string typeKey, string id, ExtendedTypeScope scope, bool calculateTotal = false, string? skip = null, int? top = 100, Func<Partial<Batch<CFValue>>, Partial<Batch<CFValue>>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("scope", scope.ToString());
+                    queryParameters.Append("calculateTotal", calculateTotal.ToString("l"));
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CFValue>>()) : Partial<Batch<CFValue>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<CFValue>>("GET", $"api/http/custom-fields/{typeKey}/fields/{id}/filter-values{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+                
+                public IAsyncEnumerable<CFValue> GetAllFilterValuesAsyncEnumerable(string typeKey, string id, ExtendedTypeScope scope, bool calculateTotal = false, string? skip = null, int? top = 100, Func<Partial<CFValue>, Partial<CFValue>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllFilterValuesAsync(typeKey: typeKey, id: id, scope: scope, calculateTotal: calculateTotal, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CFValue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CFValue>.Default())), skip, cancellationToken);
+            
+            }
+        
         }
     
         public ValueClient Values => new ValueClient(_connection);

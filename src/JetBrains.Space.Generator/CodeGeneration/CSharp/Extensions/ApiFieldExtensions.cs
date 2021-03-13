@@ -28,6 +28,10 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
                 ApiFieldType.Array _ when string.Equals(propertyName, containingType, StringComparison.OrdinalIgnoreCase)
                     => $"{propertyName}Items",
                 
+                // Resolve CS0542 - Member names cannot be the same as their enclosing type by adding prefix/suffix
+                ApiFieldType.Dto _ when string.Equals(propertyName, containingType, StringComparison.OrdinalIgnoreCase)
+                    => $"{propertyName}Item",
+                
                 _ => propertyName
             };
         }

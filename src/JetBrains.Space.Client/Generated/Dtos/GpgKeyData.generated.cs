@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public GpgKeyData() { }
         
-        public GpgKeyData(string fingerprint, string publicKey, string userId, bool verified, string comment, DateTime created, DateTime added, DateTime? expires = null)
+        public GpgKeyData(string fingerprint, string publicKey, string userId, bool verified, string comment, DateTime created, DateTime added, bool revoked, DateTime? expires = null, string? revokeComment = null)
         {
             Fingerprint = fingerprint;
             PublicKey = publicKey;
@@ -42,6 +42,8 @@ namespace JetBrains.Space.Client
             Created = created;
             Added = added;
             Expires = expires;
+            IsRevoked = revoked;
+            RevokeComment = revokeComment;
         }
         
         private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(GpgKeyData), nameof(Fingerprint));
@@ -126,6 +128,25 @@ namespace JetBrains.Space.Client
             set => _expires.SetValue(value);
         }
     
+        private PropertyValue<bool> _revoked = new PropertyValue<bool>(nameof(GpgKeyData), nameof(IsRevoked));
+        
+        [Required]
+        [JsonPropertyName("revoked")]
+        public bool IsRevoked
+        {
+            get => _revoked.GetValue();
+            set => _revoked.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _revokeComment = new PropertyValue<string?>(nameof(GpgKeyData), nameof(RevokeComment));
+        
+        [JsonPropertyName("revokeComment")]
+        public string? RevokeComment
+        {
+            get => _revokeComment.GetValue();
+            set => _revokeComment.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _fingerprint.SetAccessPath(path, validateHasBeenSet);
@@ -136,6 +157,8 @@ namespace JetBrains.Space.Client
             _created.SetAccessPath(path, validateHasBeenSet);
             _added.SetAccessPath(path, validateHasBeenSet);
             _expires.SetAccessPath(path, validateHasBeenSet);
+            _revoked.SetAccessPath(path, validateHasBeenSet);
+            _revokeComment.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

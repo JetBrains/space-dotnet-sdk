@@ -35,11 +35,12 @@ namespace JetBrains.Space.Client
         
         public HATypeObject() { }
         
-        public HATypeObject(List<HAField> fields, HATypeObjectKind kind, bool nullable)
+        public HATypeObject(List<HAField> fields, HATypeObjectKind kind, bool nullable, List<string> tags)
         {
             Fields = fields;
             Kind = kind;
             IsNullable = nullable;
+            Tags = tags;
         }
         
         private PropertyValue<List<HAField>> _fields = new PropertyValue<List<HAField>>(nameof(HATypeObject), nameof(Fields));
@@ -72,11 +73,22 @@ namespace JetBrains.Space.Client
             set => _nullable.SetValue(value);
         }
     
+        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypeObject), nameof(Tags));
+        
+        [Required]
+        [JsonPropertyName("tags")]
+        public List<string> Tags
+        {
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _fields.SetAccessPath(path, validateHasBeenSet);
             _kind.SetAccessPath(path, validateHasBeenSet);
             _nullable.SetAccessPath(path, validateHasBeenSet);
+            _tags.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

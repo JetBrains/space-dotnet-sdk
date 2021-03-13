@@ -38,6 +38,9 @@ namespace JetBrains.Space.Client.HATypeEnumPartialBuilder
         public static Partial<HATypeEnum> WithIsNullable(this Partial<HATypeEnum> it)
             => it.AddFieldName("nullable");
         
+        public static Partial<HATypeEnum> WithTags(this Partial<HATypeEnum> it)
+            => it.AddFieldName("tags");
+        
     }
     
 }

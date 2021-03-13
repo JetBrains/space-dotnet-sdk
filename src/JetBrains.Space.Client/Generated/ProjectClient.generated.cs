@@ -1479,7 +1479,7 @@ namespace JetBrains.Space.Client
             }
             
         
-            public async Task<GitRebaseResultHttp> RebaseMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, bool squash, string? squashedCommitMessage = null, Func<Partial<GitRebaseResultHttp>, Partial<GitRebaseResultHttp>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<GitRebaseResultHttp> RebaseMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitRebaseMode rebaseMode, bool squash, string? squashedCommitMessage = null, Func<Partial<GitRebaseResultHttp>, Partial<GitRebaseResultHttp>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitRebaseResultHttp>()) : Partial<GitRebaseResultHttp>.Default()).ToString());
@@ -1488,6 +1488,7 @@ namespace JetBrains.Space.Client
                     new ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest
                     { 
                         IsDeleteSourceBranch = deleteSourceBranch,
+                        RebaseMode = rebaseMode,
                         IsSquash = squash,
                         SquashedCommitMessage = squashedCommitMessage,
                     }, cancellationToken);
@@ -2072,13 +2073,15 @@ namespace JetBrains.Space.Client
                         /// </item>
                         /// </list>
                         /// </remarks>
-                        public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
+                        public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, PackagesSortColumn sortColumn, ColumnSortOrder sortOrder, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
                         {
                             var queryParameters = new NameValueCollection();
                             queryParameters.Append("query", query);
                             if (connectionId != null) queryParameters.Append("connectionId", connectionId);
                             if (skip != null) queryParameters.Append("$skip", skip);
                             if (top != null) queryParameters.Append("$top", top?.ToString());
+                            queryParameters.Append("sortColumn", sortColumn.ToEnumString());
+                            queryParameters.Append("sortOrder", sortOrder.ToEnumString());
                             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
                             
                             return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions{queryParameters.ToQueryString()}", cancellationToken);
@@ -2096,8 +2099,8 @@ namespace JetBrains.Space.Client
                         /// </item>
                         /// </list>
                         /// </remarks>
-                        public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
-                            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, repository: repository, packageName: packageName, query: query, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
+                        public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, PackagesSortColumn sortColumn, ColumnSortOrder sortOrder, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
+                            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, repository: repository, packageName: packageName, query: query, sortColumn: sortColumn, sortOrder: sortOrder, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
                     
                         /// <summary>
                         /// Gets a details for repository package version for a given project id.
@@ -2197,12 +2200,14 @@ namespace JetBrains.Space.Client
                         /// </list>
                         /// </remarks>
                         [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (marked for removal)")]
-                        public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
+                        public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, PackagesSortColumn sortColumn, ColumnSortOrder sortOrder, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
                         {
                             var queryParameters = new NameValueCollection();
                             queryParameters.Append("query", query);
                             if (skip != null) queryParameters.Append("$skip", skip);
                             if (top != null) queryParameters.Append("$top", top?.ToString());
+                            queryParameters.Append("sortColumn", sortColumn.ToEnumString());
+                            queryParameters.Append("sortOrder", sortOrder.ToEnumString());
                             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
                             
                             return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions{queryParameters.ToQueryString()}", cancellationToken);
@@ -2221,8 +2226,8 @@ namespace JetBrains.Space.Client
                         /// </list>
                         /// </remarks>
                         [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (marked for removal)")]
-                        public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
-                            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, type: type, repositoryName: repositoryName, packageName: packageName, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
+                        public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, PackagesSortColumn sortColumn, ColumnSortOrder sortOrder, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
+                            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, type: type, repositoryName: repositoryName, packageName: packageName, query: query, sortColumn: sortColumn, sortOrder: sortOrder, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
                     
                         /// <summary>
                         /// Gets a details for repository package version for a given project id.
@@ -2404,6 +2409,9 @@ namespace JetBrains.Space.Client
                     _connection = connection;
                 }
                 
+                /// <summary>
+                /// Create a new checklist in a project.
+                /// </summary>
                 public async Task<Checklist> CreateChecklistAsync(ProjectIdentifier project, string name, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2417,6 +2425,11 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Create a new checklist in a project using tab indented lines as checkable items.
+                /// The items with the same indent level will be placed one under the other.
+                /// An issue URL will be converted into the corresponding issue.
+                /// </summary>
                 public async Task<Checklist> ImportChecklistAsync(ProjectIdentifier project, string name, string tabIndentedLines, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2431,6 +2444,10 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Tab indented lines are converted into checkable items following the same rules as in Import Checklist.
+                /// The result is placed inside of the specified project checklist.
+                /// </summary>
                 public async Task ImportChecklistLinesAsync(ProjectIdentifier project, string checklistId, string targetParentId, string tabIndentedLines, string? afterItemId = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2445,6 +2462,9 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Search existing checklists in a project.
+                /// </summary>
                 public async Task<Batch<Checklist>> GetAllChecklistsAsync(ProjectIdentifier project, ChecklistSorting sorting = ChecklistSorting.UPDATED, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<Checklist>>, Partial<Batch<Checklist>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2459,9 +2479,15 @@ namespace JetBrains.Space.Client
                 }
                 
                 
+                /// <summary>
+                /// Search existing checklists in a project.
+                /// </summary>
                 public IAsyncEnumerable<Checklist> GetAllChecklistsAsyncEnumerable(ProjectIdentifier project, ChecklistSorting sorting = ChecklistSorting.UPDATED, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllChecklistsAsync(project: project, sorting: sorting, descending: descending, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Checklist>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Checklist>.Default())), skip, cancellationToken);
             
+                /// <summary>
+                /// Update an existing checklist in a project.
+                /// </summary>
                 public async Task UpdateChecklistAsync(ProjectIdentifier project, string checklistId, string name, string? description = null, string? owner = null, string? tag = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2477,6 +2503,9 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Delete an existing checklist in a project.
+                /// </summary>
                 public async Task DeleteChecklistAsync(ProjectIdentifier project, string checklistId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2496,6 +2525,9 @@ namespace JetBrains.Space.Client
                         _connection = connection;
                     }
                     
+                    /// <summary>
+                    /// Get all starred checklists in a project.
+                    /// </summary>
                     public async Task<List<Checklist>> GetAllStarredChecklistsAsync(ProjectIdentifier project, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
@@ -2518,6 +2550,9 @@ namespace JetBrains.Space.Client
                         _connection = connection;
                     }
                     
+                    /// <summary>
+                    /// Get the content of a checklist in a project.
+                    /// </summary>
                     public async Task<List<PlanItemChildren>> GetFullChecklistTreeAsync(ProjectIdentifier project, string checklistId, Func<Partial<PlanItemChildren>, Partial<PlanItemChildren>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
@@ -2542,6 +2577,9 @@ namespace JetBrains.Space.Client
                     _connection = connection;
                 }
                 
+                /// <summary>
+                /// Create a new issue in a project.
+                /// </summary>
                 /// <remarks>
                 /// Required permissions:
                 /// <list type="bullet">
@@ -2574,6 +2612,9 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Import issues in a project.
+                /// </summary>
                 /// <remarks>
                 /// Required permissions:
                 /// <list type="bullet">
@@ -2601,6 +2642,29 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Restore an issue in a project.
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task RestoreIssueAsync(ProjectIdentifier project, string issueId, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/restore{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Toggle status of an existing issue between resolved and unresolved.
+                /// </summary>
                 /// <remarks>
                 /// Required permissions:
                 /// <list type="bullet">
@@ -2622,6 +2686,9 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Search existing issues in a project. Parameters are applied as 'AND' filters.
+                /// </summary>
                 /// <remarks>
                 /// Required permissions:
                 /// <list type="bullet">
@@ -2631,7 +2698,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<Issue>> GetAllIssuesAsync(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<Issue>> GetAllIssuesAsync(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, DateTime? creationTimeFrom = null, DateTime? creationTimeTo = null, DateTime? dueDateFrom = null, DateTime? dueDateTo = null, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
@@ -2646,12 +2713,19 @@ namespace JetBrains.Space.Client
                     if (tags != null) queryParameters.Append("tags", tags.Select(it => it));
                     if (customFields != null) queryParameters.Append("customFields", customFields.Select(it => it));
                     if (importTransaction != null) queryParameters.Append("importTransaction", importTransaction);
+                    if (creationTimeFrom != null) queryParameters.Append("creationTimeFrom", creationTimeFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                    if (creationTimeTo != null) queryParameters.Append("creationTimeTo", creationTimeTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                    if (dueDateFrom != null) queryParameters.Append("dueDateFrom", dueDateFrom?.ToString("yyyy-MM-dd"));
+                    if (dueDateTo != null) queryParameters.Append("dueDateTo", dueDateTo?.ToString("yyyy-MM-dd"));
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default()).ToString());
                     
                     return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/{project}/planning/issues{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
                 
+                /// <summary>
+                /// Search existing issues in a project. Parameters are applied as 'AND' filters.
+                /// </summary>
                 /// <remarks>
                 /// Required permissions:
                 /// <list type="bullet">
@@ -2661,9 +2735,12 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public IAsyncEnumerable<Issue> GetAllIssuesAsyncEnumerable(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, statuses: statuses, sorting: sorting, descending: descending, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, customFields: customFields, importTransaction: importTransaction, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
+                public IAsyncEnumerable<Issue> GetAllIssuesAsyncEnumerable(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, DateTime? creationTimeFrom = null, DateTime? creationTimeTo = null, DateTime? dueDateFrom = null, DateTime? dueDateTo = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, statuses: statuses, sorting: sorting, descending: descending, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, customFields: customFields, importTransaction: importTransaction, creationTimeFrom: creationTimeFrom, creationTimeTo: creationTimeTo, dueDateFrom: dueDateFrom, dueDateTo: dueDateTo, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
             
+                /// <summary>
+                /// Find an existing issue by a given number in a project.
+                /// </summary>
                 /// <remarks>
                 /// Required permissions:
                 /// <list type="bullet">
@@ -2682,6 +2759,9 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Update an existing issue in a project.
+                /// </summary>
                 /// <remarks>
                 /// Required permissions:
                 /// <list type="bullet">
@@ -2707,6 +2787,9 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Delete an issue from a project.
+                /// </summary>
                 /// <remarks>
                 /// Required permissions:
                 /// <list type="bullet">
@@ -2735,6 +2818,9 @@ namespace JetBrains.Space.Client
                         _connection = connection;
                     }
                     
+                    /// <summary>
+                    /// Get all existing issue statuses in a project.
+                    /// </summary>
                     /// <remarks>
                     /// Required permissions:
                     /// <list type="bullet">
@@ -2753,6 +2839,9 @@ namespace JetBrains.Space.Client
                     }
                     
                 
+                    /// <summary>
+                    /// Configure issue statuses in a project. The list must contain at least one resolved and one unresolved status.
+                    /// </summary>
                     /// <remarks>
                     /// Required permissions:
                     /// <list type="bullet">
@@ -2785,6 +2874,9 @@ namespace JetBrains.Space.Client
                             _connection = connection;
                         }
                         
+                        /// <summary>
+                        /// Get all existing issue statuses with their usage, number of existing issues, in a project.
+                        /// </summary>
                         /// <remarks>
                         /// Required permissions:
                         /// <list type="bullet">
@@ -2818,6 +2910,9 @@ namespace JetBrains.Space.Client
                         _connection = connection;
                     }
                     
+                    /// <summary>
+                    /// Add attachments to an existing issue in a project.
+                    /// </summary>
                     /// <remarks>
                     /// Required permissions:
                     /// <list type="bullet">
@@ -2839,6 +2934,9 @@ namespace JetBrains.Space.Client
                     }
                     
                 
+                    /// <summary>
+                    /// Remove attachments from an existing issue in a project.
+                    /// </summary>
                     /// <remarks>
                     /// Required permissions:
                     /// <list type="bullet">
@@ -2870,6 +2968,9 @@ namespace JetBrains.Space.Client
                         _connection = connection;
                     }
                     
+                    /// <summary>
+                    /// Add the checklist to an existing issue in a project.
+                    /// </summary>
                     /// <remarks>
                     /// Required permissions:
                     /// <list type="bullet">
@@ -2887,6 +2988,9 @@ namespace JetBrains.Space.Client
                     }
                     
                 
+                    /// <summary>
+                    /// Remove the checklist from an existing issue in a project.
+                    /// </summary>
                     /// <remarks>
                     /// Required permissions:
                     /// <list type="bullet">
@@ -2951,6 +3055,9 @@ namespace JetBrains.Space.Client
                         _connection = connection;
                     }
                     
+                    /// <summary>
+                    /// Add an existing tag to an issue in a project.
+                    /// </summary>
                     /// <remarks>
                     /// Required permissions:
                     /// <list type="bullet">
@@ -2968,6 +3075,9 @@ namespace JetBrains.Space.Client
                     }
                     
                 
+                    /// <summary>
+                    /// Remove an existing tag from an issue in a project.
+                    /// </summary>
                     /// <remarks>
                     /// Required permissions:
                     /// <list type="bullet">
@@ -3000,6 +3110,9 @@ namespace JetBrains.Space.Client
                     _connection = connection;
                 }
                 
+                /// <summary>
+                /// Create a new hierarchical tag in a project.
+                /// </summary>
                 public async Task<PlanningTag> CreateHierarchicalTagAsync(ProjectIdentifier project, List<string> path, string? parentTagId = null, Func<Partial<PlanningTag>, Partial<PlanningTag>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3014,6 +3127,9 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <summary>
+                /// Search existing tags in a project.
+                /// </summary>
                 public async Task<Batch<PlanningTag>> GetAllHierarchicalTagsAsync(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<PlanningTag>>, Partial<Batch<PlanningTag>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3026,6 +3142,9 @@ namespace JetBrains.Space.Client
                 }
                 
                 
+                /// <summary>
+                /// Search existing tags in a project.
+                /// </summary>
                 public IAsyncEnumerable<PlanningTag> GetAllHierarchicalTagsAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<PlanningTag>, Partial<PlanningTag>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllHierarchicalTagsAsync(project: project, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlanningTag>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlanningTag>.Default())), skip, cancellationToken);
             

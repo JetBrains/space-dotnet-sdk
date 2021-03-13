@@ -38,6 +38,9 @@ namespace JetBrains.Space.Client.HATypeUrlParamPartialBuilder
         public static Partial<HATypeUrlParam> WithIsNullable(this Partial<HATypeUrlParam> it)
             => it.AddFieldName("nullable");
         
+        public static Partial<HATypeUrlParam> WithTags(this Partial<HATypeUrlParam> it)
+            => it.AddFieldName("tags");
+        
     }
     
 }

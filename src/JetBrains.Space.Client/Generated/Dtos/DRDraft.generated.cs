@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public DRDraft() { }
         
-        public DRDraft(string id, string title, DateTime modified, bool shared, bool published, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, TextDocument document, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, bool? publishedFlag = null, DocumentFolderRecord? folder = null, DocumentContainerInfo? containerInfo = null)
+        public DRDraft(string id, string title, DateTime modified, bool shared, bool published, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, TextDocument document, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, DocumentFolderRecord? folder = null)
         {
             Id = id;
             Title = title;
@@ -43,7 +43,6 @@ namespace JetBrains.Space.Client
             IsDeleted = deleted;
             PublicationDetails2 = publicationDetails2;
             Author = author;
-            IsPublishedFlag = publishedFlag;
             IsPublished = published;
             Folder = folder;
             ContainerInfo = containerInfo;
@@ -140,15 +139,6 @@ namespace JetBrains.Space.Client
             set => _author.SetValue(value);
         }
     
-        private PropertyValue<bool?> _publishedFlag = new PropertyValue<bool?>(nameof(DRDraft), nameof(IsPublishedFlag));
-        
-        [JsonPropertyName("publishedFlag")]
-        public bool? IsPublishedFlag
-        {
-            get => _publishedFlag.GetValue();
-            set => _publishedFlag.SetValue(value);
-        }
-    
         private PropertyValue<bool> _published = new PropertyValue<bool>(nameof(DRDraft), nameof(IsPublished));
         
         [Required]
@@ -168,10 +158,11 @@ namespace JetBrains.Space.Client
             set => _folder.SetValue(value);
         }
     
-        private PropertyValue<DocumentContainerInfo?> _containerInfo = new PropertyValue<DocumentContainerInfo?>(nameof(DRDraft), nameof(ContainerInfo));
+        private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(DRDraft), nameof(ContainerInfo));
         
+        [Required]
         [JsonPropertyName("containerInfo")]
-        public DocumentContainerInfo? ContainerInfo
+        public DocumentContainerInfo ContainerInfo
         {
             get => _containerInfo.GetValue();
             set => _containerInfo.SetValue(value);
@@ -228,7 +219,6 @@ namespace JetBrains.Space.Client
             _deleted.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
-            _publishedFlag.SetAccessPath(path, validateHasBeenSet);
             _published.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
             _containerInfo.SetAccessPath(path, validateHasBeenSet);

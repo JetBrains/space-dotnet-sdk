@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public PackageVersionData() { }
         
-        public PackageVersionData(PackageType type, string repository, string name, string version, bool pinned, List<string>? tags = null, long? created = null, long? updated = null, long? downloads = null, string? comment = null)
+        public PackageVersionData(PackageType type, string repository, string name, string version, bool pinned, List<string>? tags = null, long? created = null, long? updated = null, long? downloads = null, string? comment = null, long? diskSize = null)
         {
             Type = type;
             Repository = repository;
@@ -44,6 +44,7 @@ namespace JetBrains.Space.Client
             Downloads = downloads;
             IsPinned = pinned;
             Comment = comment;
+            DiskSize = diskSize;
         }
         
         private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(PackageVersionData), nameof(Type));
@@ -141,6 +142,15 @@ namespace JetBrains.Space.Client
             set => _comment.SetValue(value);
         }
     
+        private PropertyValue<long?> _diskSize = new PropertyValue<long?>(nameof(PackageVersionData), nameof(DiskSize));
+        
+        [JsonPropertyName("diskSize")]
+        public long? DiskSize
+        {
+            get => _diskSize.GetValue();
+            set => _diskSize.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _type.SetAccessPath(path, validateHasBeenSet);
@@ -153,6 +163,7 @@ namespace JetBrains.Space.Client
             _downloads.SetAccessPath(path, validateHasBeenSet);
             _pinned.SetAccessPath(path, validateHasBeenSet);
             _comment.SetAccessPath(path, validateHasBeenSet);
+            _diskSize.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

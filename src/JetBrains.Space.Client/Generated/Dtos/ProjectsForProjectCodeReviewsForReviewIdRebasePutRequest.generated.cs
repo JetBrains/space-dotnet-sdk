@@ -32,9 +32,10 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest() { }
         
-        public ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest(bool deleteSourceBranch, bool squash, string? squashedCommitMessage = null)
+        public ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest(bool deleteSourceBranch, GitRebaseMode rebaseMode, bool squash, string? squashedCommitMessage = null)
         {
             IsDeleteSourceBranch = deleteSourceBranch;
+            RebaseMode = rebaseMode;
             IsSquash = squash;
             SquashedCommitMessage = squashedCommitMessage;
         }
@@ -47,6 +48,16 @@ namespace JetBrains.Space.Client
         {
             get => _deleteSourceBranch.GetValue();
             set => _deleteSourceBranch.SetValue(value);
+        }
+    
+        private PropertyValue<GitRebaseMode> _rebaseMode = new PropertyValue<GitRebaseMode>(nameof(ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest), nameof(RebaseMode));
+        
+        [Required]
+        [JsonPropertyName("rebaseMode")]
+        public GitRebaseMode RebaseMode
+        {
+            get => _rebaseMode.GetValue();
+            set => _rebaseMode.SetValue(value);
         }
     
         private PropertyValue<bool> _squash = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest), nameof(IsSquash));
@@ -71,6 +82,7 @@ namespace JetBrains.Space.Client
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _deleteSourceBranch.SetAccessPath(path, validateHasBeenSet);
+            _rebaseMode.SetAccessPath(path, validateHasBeenSet);
             _squash.SetAccessPath(path, validateHasBeenSet);
             _squashedCommitMessage.SetAccessPath(path, validateHasBeenSet);
         }

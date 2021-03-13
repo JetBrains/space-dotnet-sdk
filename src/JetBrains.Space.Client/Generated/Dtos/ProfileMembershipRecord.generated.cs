@@ -32,10 +32,11 @@ namespace JetBrains.Space.Client
     {
         public ProfileMembershipRecord() { }
         
-        public ProfileMembershipRecord(string id, List<TDMembership> memberships)
+        public ProfileMembershipRecord(string id, List<TDMembership> memberships, List<TDMembership>? unapprovedMemberships = null)
         {
             Id = id;
             Memberships = memberships;
+            UnapprovedMemberships = unapprovedMemberships;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProfileMembershipRecord), nameof(Id));
@@ -58,10 +59,20 @@ namespace JetBrains.Space.Client
             set => _memberships.SetValue(value);
         }
     
+        private PropertyValue<List<TDMembership>?> _unapprovedMemberships = new PropertyValue<List<TDMembership>?>(nameof(ProfileMembershipRecord), nameof(UnapprovedMemberships));
+        
+        [JsonPropertyName("unapprovedMemberships")]
+        public List<TDMembership>? UnapprovedMemberships
+        {
+            get => _unapprovedMemberships.GetValue();
+            set => _unapprovedMemberships.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _memberships.SetAccessPath(path, validateHasBeenSet);
+            _unapprovedMemberships.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -35,7 +35,7 @@ namespace JetBrains.Space.Client
         
         public UnfurlAttachment() { }
         
-        public UnfurlAttachment(Unfurl unfurl, string? id = null)
+        public UnfurlAttachment(Unfurl unfurl, string id)
         {
             Unfurl = unfurl;
             Id = id;
@@ -51,10 +51,11 @@ namespace JetBrains.Space.Client
             set => _unfurl.SetValue(value);
         }
     
-        private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(UnfurlAttachment), nameof(Id));
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(UnfurlAttachment), nameof(Id));
         
+        [Required]
         [JsonPropertyName("id")]
-        public string? Id
+        public string Id
         {
             get => _id.GetValue();
             set => _id.SetValue(value);

@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public DRDraftHeader() { }
         
-        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null, DocumentContainerInfo? containerInfo = null)
+        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null)
         {
             Id = id;
             Title = title;
@@ -144,10 +144,11 @@ namespace JetBrains.Space.Client
             set => _folder.SetValue(value);
         }
     
-        private PropertyValue<DocumentContainerInfo?> _containerInfo = new PropertyValue<DocumentContainerInfo?>(nameof(DRDraftHeader), nameof(ContainerInfo));
+        private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(DRDraftHeader), nameof(ContainerInfo));
         
+        [Required]
         [JsonPropertyName("containerInfo")]
-        public DocumentContainerInfo? ContainerInfo
+        public DocumentContainerInfo ContainerInfo
         {
             get => _containerInfo.GetValue();
             set => _containerInfo.SetValue(value);

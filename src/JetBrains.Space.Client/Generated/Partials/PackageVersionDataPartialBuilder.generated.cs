@@ -62,6 +62,9 @@ namespace JetBrains.Space.Client.PackageVersionDataPartialBuilder
         public static Partial<PackageVersionData> WithComment(this Partial<PackageVersionData> it)
             => it.AddFieldName("comment");
         
+        public static Partial<PackageVersionData> WithDiskSize(this Partial<PackageVersionData> it)
+            => it.AddFieldName("diskSize");
+        
     }
     
 }

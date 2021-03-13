@@ -289,34 +289,6 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Update an existing absence reason.
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Edit absence types</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<AbsenceReasonRecord> CreateAbsenceReasonAsync(string id, string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<AbsencesAbsenceReasonsForIdPostRequest, AbsenceReasonRecord>("POST", $"api/http/absences/absence-reasons/{id}{queryParameters.ToQueryString()}", 
-                    new AbsencesAbsenceReasonsForIdPostRequest
-                    { 
-                        Name = name,
-                        Description = description,
-                        IsDefaultAvailability = defaultAvailability,
-                        IsApprovalRequired = approvalRequired,
-                        Icon = icon,
-                    }, cancellationToken);
-            }
-            
-        
-            /// <summary>
             /// Get available absence reasons.
             /// </summary>
             /// <remarks>
@@ -354,6 +326,34 @@ namespace JetBrains.Space.Client
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
                 
                 return await _connection.RequestResourceAsync<AbsenceReasonRecord>("GET", $"api/http/absences/absence-reasons/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Update an existing absence reason.
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit absence types</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<AbsenceReasonRecord> UpdateAbsenceReasonAsync(string id, string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<AbsencesAbsenceReasonsForIdPatchRequest, AbsenceReasonRecord>("PATCH", $"api/http/absences/absence-reasons/{id}{queryParameters.ToQueryString()}", 
+                    new AbsencesAbsenceReasonsForIdPatchRequest
+                    { 
+                        Name = name,
+                        Description = description,
+                        IsDefaultAvailability = defaultAvailability,
+                        IsApprovalRequired = approvalRequired,
+                        Icon = icon,
+                    }, cancellationToken);
             }
             
         

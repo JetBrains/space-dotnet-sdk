@@ -38,6 +38,9 @@ namespace JetBrains.Space.Client.HATypeMapPartialBuilder
         public static Partial<HATypeMap> WithIsNullable(this Partial<HATypeMap> it)
             => it.AddFieldName("nullable");
         
+        public static Partial<HATypeMap> WithTags(this Partial<HATypeMap> it)
+            => it.AddFieldName("tags");
+        
     }
     
 }

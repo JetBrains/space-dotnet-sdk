@@ -38,6 +38,12 @@ namespace JetBrains.Space.Client.ProfileMembershipRecordPartialBuilder
         public static Partial<ProfileMembershipRecord> WithMemberships(this Partial<ProfileMembershipRecord> it, Func<Partial<TDMembership>, Partial<TDMembership>> partialBuilder)
             => it.AddFieldName("memberships", partialBuilder(new Partial<TDMembership>(it)));
         
+        public static Partial<ProfileMembershipRecord> WithUnapprovedMemberships(this Partial<ProfileMembershipRecord> it)
+            => it.AddFieldName("unapprovedMemberships");
+        
+        public static Partial<ProfileMembershipRecord> WithUnapprovedMemberships(this Partial<ProfileMembershipRecord> it, Func<Partial<TDMembership>, Partial<TDMembership>> partialBuilder)
+            => it.AddFieldName("unapprovedMemberships", partialBuilder(new Partial<TDMembership>(it)));
+        
     }
     
 }

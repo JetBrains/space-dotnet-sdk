@@ -35,10 +35,11 @@ namespace JetBrains.Space.Client
         
         public HATypeUrlParam() { }
         
-        public HATypeUrlParam(HAUrlParameter urlParam, bool nullable)
+        public HATypeUrlParam(HAUrlParameter urlParam, bool nullable, List<string> tags)
         {
             UrlParam = urlParam;
             IsNullable = nullable;
+            Tags = tags;
         }
         
         private PropertyValue<HAUrlParameter> _urlParam = new PropertyValue<HAUrlParameter>(nameof(HATypeUrlParam), nameof(UrlParam));
@@ -61,10 +62,21 @@ namespace JetBrains.Space.Client
             set => _nullable.SetValue(value);
         }
     
+        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypeUrlParam), nameof(Tags));
+        
+        [Required]
+        [JsonPropertyName("tags")]
+        public List<string> Tags
+        {
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _urlParam.SetAccessPath(path, validateHasBeenSet);
             _nullable.SetAccessPath(path, validateHasBeenSet);
+            _tags.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

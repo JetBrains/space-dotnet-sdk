@@ -59,9 +59,6 @@ namespace JetBrains.Space.Client.JobExecutionPartialBuilder
         public static Partial<JobExecution> WithFinishedTime(this Partial<JobExecution> it)
             => it.AddFieldName("finishedTime");
         
-        public static Partial<JobExecution> WithChangesFromExclude(this Partial<JobExecution> it)
-            => it.AddFieldName("changesFromExclude");
-        
         public static Partial<JobExecution> WithChangesCount(this Partial<JobExecution> it)
             => it.AddFieldName("changesCount");
         
