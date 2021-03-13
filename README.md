@@ -32,7 +32,7 @@ For this example, we will use a *Client application*. Make sure to enable the *C
 
 ### Create a Connection
 
-After installing `JetBrains.Space.Client` in our project, we can use the *Client ID* and *Client Secret* of our Service Account to create a `ClientCredentialsConnection` against our Space organization:
+After installing `JetBrains.Space.Client` in our project, we can use the *Client ID* and *Client Secret* of our Space application to create a `ClientCredentialsConnection` against our Space organization:
 
 ```csharp
 var connection = new ClientCredentialsConnection(
@@ -44,7 +44,7 @@ var connection = new ClientCredentialsConnection(
 
 We can then use the `connection` to instantiate API clients for the endpoints we want to access.
 
-> **Note:** Service Accounts have access to a limited set of APIs when using the [Client Credentials Flow](https://www.jetbrains.com/help/space/client-credentials.html). Many actions (such as posting an article draft) require user consent, and cannot be performed with client credentials. For actions that should be performed on behalf of the user, use other authorization flows, such as [Resource Owner Password Credentials Flow](https://www.jetbrains.com/help/space/resource-owner-password-credentials.html).
+> **Note:** Applications have access to a limited set of APIs when using the [Client Credentials Flow](https://www.jetbrains.com/help/space/client-credentials.html). Many actions (such as posting an article draft) require user consent, and cannot be performed with client credentials. For actions that should be performed on behalf of the user, use other authorization flows, such as [Resource Owner Password Credentials Flow](https://www.jetbrains.com/help/space/resource-owner-password-credentials.html).
 
 ### Create a Service Client
 
@@ -83,7 +83,7 @@ Communication with Space is handled by the `Connection` base class. A connection
 
 `Connection` has several implementations that can be used to authenticate and work with Space:
 
-* `ClientCredentialsConnection` — Supports the [Client Credentials Flow](https://www.jetbrains.com/help/space/client-credentials.html). This is typically used by a Service Account that acts on behalf of itself.
+* `ClientCredentialsConnection` — Supports the [Client Credentials Flow](https://www.jetbrains.com/help/space/client-credentials.html). This is typically used by a Space application that acts on behalf of itself.
 * `BearerTokenConnection` — Uses a bearer token obtained using [other flows](https://www.jetbrains.com/help/space/oauth-2-0-authorization.html), or a [personal token](https://www.jetbrains.com/help/space/personal-tokens.html). This is typically used by applications that act on behalf of a user.
 * `RefreshTokenConnection` — Extends `BearerTokenConnection` and automatically refreshes tokens using the [Refresh Token Flow](https://www.jetbrains.com/help/space/refresh-token.html).
 
