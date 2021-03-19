@@ -95,7 +95,7 @@ namespace JetBrains.Space.Client
             set => _dueDate.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Tags));
+        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Tags), new List<string>());
         
         [JsonPropertyName("tags")]
         public List<string> Tags
@@ -104,7 +104,7 @@ namespace JetBrains.Space.Client
             set => _tags.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _checklists = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Checklists));
+        private PropertyValue<List<string>> _checklists = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Checklists), new List<string>());
         
         [JsonPropertyName("checklists")]
         public List<string> Checklists
@@ -113,7 +113,7 @@ namespace JetBrains.Space.Client
             set => _checklists.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _sprints = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Sprints));
+        private PropertyValue<List<string>> _sprints = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Sprints), new List<string>());
         
         [JsonPropertyName("sprints")]
         public List<string> Sprints
@@ -122,7 +122,7 @@ namespace JetBrains.Space.Client
             set => _sprints.SetValue(value);
         }
     
-        private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Attachments));
+        private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Attachments), new List<AttachmentIn>());
         
         [JsonPropertyName("attachments")]
         public List<AttachmentIn>? Attachments

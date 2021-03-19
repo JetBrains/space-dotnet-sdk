@@ -38,7 +38,7 @@ namespace JetBrains.Space.Client
             Scope = scope;
         }
         
-        private PropertyValue<List<string>> _customFieldOrder = new PropertyValue<List<string>>(nameof(CustomFieldsForTypeKeyFieldsReorderPostRequest), nameof(CustomFieldOrder));
+        private PropertyValue<List<string>> _customFieldOrder = new PropertyValue<List<string>>(nameof(CustomFieldsForTypeKeyFieldsReorderPostRequest), nameof(CustomFieldOrder), new List<string>());
         
         [Required]
         [JsonPropertyName("customFieldOrder")]

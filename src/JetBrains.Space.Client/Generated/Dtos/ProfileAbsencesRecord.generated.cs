@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _id.SetValue(value);
         }
     
-        private PropertyValue<List<AbsenceRecord>> _absences = new PropertyValue<List<AbsenceRecord>>(nameof(ProfileAbsencesRecord), nameof(Absences));
+        private PropertyValue<List<AbsenceRecord>> _absences = new PropertyValue<List<AbsenceRecord>>(nameof(ProfileAbsencesRecord), nameof(Absences), new List<AbsenceRecord>());
         
         [Required]
         [JsonPropertyName("absences")]

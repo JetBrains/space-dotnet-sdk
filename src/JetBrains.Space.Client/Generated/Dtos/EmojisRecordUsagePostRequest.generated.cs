@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             Emojis = emojis;
         }
         
-        private PropertyValue<List<string>> _emojis = new PropertyValue<List<string>>(nameof(EmojisRecordUsagePostRequest), nameof(Emojis));
+        private PropertyValue<List<string>> _emojis = new PropertyValue<List<string>>(nameof(EmojisRecordUsagePostRequest), nameof(Emojis), new List<string>());
         
         [Required]
         [JsonPropertyName("emojis")]

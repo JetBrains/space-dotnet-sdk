@@ -51,7 +51,7 @@ namespace JetBrains.Space.Client
             set => _header.SetValue(value);
         }
     
-        private PropertyValue<List<MCElement>> _elements = new PropertyValue<List<MCElement>>(nameof(MCSection), nameof(Elements));
+        private PropertyValue<List<MCElement>> _elements = new PropertyValue<List<MCElement>>(nameof(MCSection), nameof(Elements), new List<MCElement>());
         
         [Required]
         [JsonPropertyName("elements")]

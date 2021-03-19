@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             Extensions = extensions;
         }
         
-        private PropertyValue<List<MenuExtensionDetail>> _extensions = new PropertyValue<List<MenuExtensionDetail>>(nameof(MenuExtensions), nameof(Extensions));
+        private PropertyValue<List<MenuExtensionDetail>> _extensions = new PropertyValue<List<MenuExtensionDetail>>(nameof(MenuExtensions), nameof(Extensions), new List<MenuExtensionDetail>());
         
         [Required]
         [JsonPropertyName("extensions")]

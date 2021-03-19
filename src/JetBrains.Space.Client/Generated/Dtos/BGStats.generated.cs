@@ -50,7 +50,7 @@ namespace JetBrains.Space.Client
             set => _totalBlogs.SetValue(value);
         }
     
-        private PropertyValue<List<Pair<TDTeam, int>>> _teams = new PropertyValue<List<Pair<TDTeam, int>>>(nameof(BGStats), nameof(Teams));
+        private PropertyValue<List<Pair<TDTeam, int>>> _teams = new PropertyValue<List<Pair<TDTeam, int>>>(nameof(BGStats), nameof(Teams), new List<Pair<TDTeam, int>>());
         
         [Required]
         [JsonPropertyName("teams")]
@@ -69,7 +69,7 @@ namespace JetBrains.Space.Client
             set => _projects.SetValue(value);
         }
     
-        private PropertyValue<List<Pair<TDLocation, int>>> _locations = new PropertyValue<List<Pair<TDLocation, int>>>(nameof(BGStats), nameof(Locations));
+        private PropertyValue<List<Pair<TDLocation, int>>> _locations = new PropertyValue<List<Pair<TDLocation, int>>>(nameof(BGStats), nameof(Locations), new List<Pair<TDLocation, int>>());
         
         [Required]
         [JsonPropertyName("locations")]

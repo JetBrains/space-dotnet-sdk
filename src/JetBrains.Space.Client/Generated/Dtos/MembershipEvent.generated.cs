@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _profile.SetValue(value);
         }
     
-        private PropertyValue<List<TDMembership>> _membership = new PropertyValue<List<TDMembership>>(nameof(MembershipEvent), nameof(Membership));
+        private PropertyValue<List<TDMembership>> _membership = new PropertyValue<List<TDMembership>>(nameof(MembershipEvent), nameof(Membership), new List<TDMembership>());
         
         [Required]
         [JsonPropertyName("membership")]

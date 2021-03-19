@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             Reasons = reasons;
         }
         
-        private PropertyValue<List<string>> _reasons = new PropertyValue<List<string>>(nameof(AbsenceCommonSubscriptionFilterIn), nameof(Reasons));
+        private PropertyValue<List<string>> _reasons = new PropertyValue<List<string>>(nameof(AbsenceCommonSubscriptionFilterIn), nameof(Reasons), new List<string>());
         
         [Required]
         [JsonPropertyName("reasons")]

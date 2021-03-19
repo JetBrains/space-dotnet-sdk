@@ -42,7 +42,7 @@ namespace JetBrains.Space.Client
             MenuIds = menuIds;
         }
         
-        private PropertyValue<List<HADto>> _dto = new PropertyValue<List<HADto>>(nameof(HAModel), nameof(Dto));
+        private PropertyValue<List<HADto>> _dto = new PropertyValue<List<HADto>>(nameof(HAModel), nameof(Dto), new List<HADto>());
         
         [Required]
         [JsonPropertyName("dto")]
@@ -52,7 +52,7 @@ namespace JetBrains.Space.Client
             set => _dto.SetValue(value);
         }
     
-        private PropertyValue<List<HAEnum>> _enums = new PropertyValue<List<HAEnum>>(nameof(HAModel), nameof(Enums));
+        private PropertyValue<List<HAEnum>> _enums = new PropertyValue<List<HAEnum>>(nameof(HAModel), nameof(Enums), new List<HAEnum>());
         
         [Required]
         [JsonPropertyName("enums")]
@@ -62,7 +62,7 @@ namespace JetBrains.Space.Client
             set => _enums.SetValue(value);
         }
     
-        private PropertyValue<List<HAUrlParameter>> _urlParams = new PropertyValue<List<HAUrlParameter>>(nameof(HAModel), nameof(UrlParams));
+        private PropertyValue<List<HAUrlParameter>> _urlParams = new PropertyValue<List<HAUrlParameter>>(nameof(HAModel), nameof(UrlParams), new List<HAUrlParameter>());
         
         [Required]
         [JsonPropertyName("urlParams")]
@@ -72,7 +72,7 @@ namespace JetBrains.Space.Client
             set => _urlParams.SetValue(value);
         }
     
-        private PropertyValue<List<HAResource>> _resources = new PropertyValue<List<HAResource>>(nameof(HAModel), nameof(Resources));
+        private PropertyValue<List<HAResource>> _resources = new PropertyValue<List<HAResource>>(nameof(HAModel), nameof(Resources), new List<HAResource>());
         
         [Required]
         [JsonPropertyName("resources")]
@@ -82,7 +82,7 @@ namespace JetBrains.Space.Client
             set => _resources.SetValue(value);
         }
     
-        private PropertyValue<List<HAResource>> _allResources = new PropertyValue<List<HAResource>>(nameof(HAModel), nameof(AllResources));
+        private PropertyValue<List<HAResource>> _allResources = new PropertyValue<List<HAResource>>(nameof(HAModel), nameof(AllResources), new List<HAResource>());
         
         [Required]
         [JsonPropertyName("allResources")]
@@ -92,7 +92,7 @@ namespace JetBrains.Space.Client
             set => _allResources.SetValue(value);
         }
     
-        private PropertyValue<List<HAMenuId>> _menuIds = new PropertyValue<List<HAMenuId>>(nameof(HAModel), nameof(MenuIds));
+        private PropertyValue<List<HAMenuId>> _menuIds = new PropertyValue<List<HAMenuId>>(nameof(HAModel), nameof(MenuIds), new List<HAMenuId>());
         
         [Required]
         [JsonPropertyName("menuIds")]

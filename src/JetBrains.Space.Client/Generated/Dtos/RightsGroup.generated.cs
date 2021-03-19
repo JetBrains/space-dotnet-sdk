@@ -59,7 +59,7 @@ namespace JetBrains.Space.Client
             set => _priority.SetValue(value);
         }
     
-        private PropertyValue<List<Right>> _rights = new PropertyValue<List<Right>>(nameof(RightsGroup), nameof(Rights));
+        private PropertyValue<List<Right>> _rights = new PropertyValue<List<Right>>(nameof(RightsGroup), nameof(Rights), new List<Right>());
         
         [Required]
         [JsonPropertyName("rights")]

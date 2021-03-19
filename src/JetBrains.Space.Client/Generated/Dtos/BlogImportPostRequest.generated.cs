@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _metadata.SetValue(value);
         }
     
-        private PropertyValue<List<ExternalArticle>> _articles = new PropertyValue<List<ExternalArticle>>(nameof(BlogImportPostRequest), nameof(Articles));
+        private PropertyValue<List<ExternalArticle>> _articles = new PropertyValue<List<ExternalArticle>>(nameof(BlogImportPostRequest), nameof(Articles), new List<ExternalArticle>());
         
         [Required]
         [JsonPropertyName("articles")]

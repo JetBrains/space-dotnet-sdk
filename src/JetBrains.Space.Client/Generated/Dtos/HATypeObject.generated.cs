@@ -43,7 +43,7 @@ namespace JetBrains.Space.Client
             Tags = tags;
         }
         
-        private PropertyValue<List<HAField>> _fields = new PropertyValue<List<HAField>>(nameof(HATypeObject), nameof(Fields));
+        private PropertyValue<List<HAField>> _fields = new PropertyValue<List<HAField>>(nameof(HATypeObject), nameof(Fields), new List<HAField>());
         
         [Required]
         [JsonPropertyName("fields")]
@@ -73,7 +73,7 @@ namespace JetBrains.Space.Client
             set => _nullable.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypeObject), nameof(Tags));
+        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypeObject), nameof(Tags), new List<string>());
         
         [Required]
         [JsonPropertyName("tags")]

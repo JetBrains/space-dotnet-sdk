@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _name.SetValue(value);
         }
     
-        private PropertyValue<List<IssueStatus>> _statuses = new PropertyValue<List<IssueStatus>>(nameof(BoardColumn), nameof(Statuses));
+        private PropertyValue<List<IssueStatus>> _statuses = new PropertyValue<List<IssueStatus>>(nameof(BoardColumn), nameof(Statuses), new List<IssueStatus>());
         
         [Required]
         [JsonPropertyName("statuses")]

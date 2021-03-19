@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _repository.SetValue(value);
         }
     
-        private PropertyValue<List<BranchInfo>> _branches = new PropertyValue<List<BranchInfo>>(nameof(TrackedBranchesInReview), nameof(Branches));
+        private PropertyValue<List<BranchInfo>> _branches = new PropertyValue<List<BranchInfo>>(nameof(TrackedBranchesInReview), nameof(Branches), new List<BranchInfo>());
         
         [Required]
         [JsonPropertyName("branches")]

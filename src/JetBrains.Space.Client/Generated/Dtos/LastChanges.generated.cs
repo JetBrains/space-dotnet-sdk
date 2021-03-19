@@ -38,7 +38,7 @@ namespace JetBrains.Space.Client
             TotalChanges = totalChanges;
         }
         
-        private PropertyValue<List<RevisionInfo>> _lastChanges = new PropertyValue<List<RevisionInfo>>(nameof(LastChanges), nameof(LastChangesItems));
+        private PropertyValue<List<RevisionInfo>> _lastChanges = new PropertyValue<List<RevisionInfo>>(nameof(LastChanges), nameof(LastChangesItems), new List<RevisionInfo>());
         
         [Required]
         [JsonPropertyName("lastChanges")]

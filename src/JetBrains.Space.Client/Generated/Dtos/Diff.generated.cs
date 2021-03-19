@@ -39,7 +39,7 @@ namespace JetBrains.Space.Client
             IsRemoveAll = removeAll;
         }
         
-        private PropertyValue<List<string>> _added = new PropertyValue<List<string>>(nameof(Diff), nameof(Added));
+        private PropertyValue<List<string>> _added = new PropertyValue<List<string>>(nameof(Diff), nameof(Added), new List<string>());
         
         [Required]
         [JsonPropertyName("added")]
@@ -49,7 +49,7 @@ namespace JetBrains.Space.Client
             set => _added.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _removed = new PropertyValue<List<string>>(nameof(Diff), nameof(Removed));
+        private PropertyValue<List<string>> _removed = new PropertyValue<List<string>>(nameof(Diff), nameof(Removed), new List<string>());
         
         [Required]
         [JsonPropertyName("removed")]

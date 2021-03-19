@@ -38,7 +38,7 @@ namespace JetBrains.Space.Client
             Scope = scope;
         }
         
-        private PropertyValue<List<CustomFieldInputValue>> _values = new PropertyValue<List<CustomFieldInputValue>>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Values));
+        private PropertyValue<List<CustomFieldInputValue>> _values = new PropertyValue<List<CustomFieldInputValue>>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Values), new List<CustomFieldInputValue>());
         
         [Required]
         [JsonPropertyName("values")]

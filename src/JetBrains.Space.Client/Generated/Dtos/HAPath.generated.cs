@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             Segments = segments;
         }
         
-        private PropertyValue<List<HAPathSegment>> _segments = new PropertyValue<List<HAPathSegment>>(nameof(HAPath), nameof(Segments));
+        private PropertyValue<List<HAPathSegment>> _segments = new PropertyValue<List<HAPathSegment>>(nameof(HAPath), nameof(Segments), new List<HAPathSegment>());
         
         [Required]
         [JsonPropertyName("segments")]

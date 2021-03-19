@@ -155,7 +155,7 @@ namespace JetBrains.Space.Client
             set => _predictedEndTime.SetValue(value);
         }
     
-        private PropertyValue<List<FailureCondition>> _failureConditions = new PropertyValue<List<FailureCondition>>(nameof(JobExecution), nameof(FailureConditions));
+        private PropertyValue<List<FailureCondition>> _failureConditions = new PropertyValue<List<FailureCondition>>(nameof(JobExecution), nameof(FailureConditions), new List<FailureCondition>());
         
         [Required]
         [JsonPropertyName("failureConditions")]

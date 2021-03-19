@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             Columns = columns;
         }
         
-        private PropertyValue<List<BoardColumn>> _columns = new PropertyValue<List<BoardColumn>>(nameof(BoardColumns), nameof(Columns));
+        private PropertyValue<List<BoardColumn>> _columns = new PropertyValue<List<BoardColumn>>(nameof(BoardColumns), nameof(Columns), new List<BoardColumn>());
         
         [Required]
         [JsonPropertyName("columns")]

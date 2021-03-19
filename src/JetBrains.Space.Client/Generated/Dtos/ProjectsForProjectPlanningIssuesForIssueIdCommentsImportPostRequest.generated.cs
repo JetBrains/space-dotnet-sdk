@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             Comments = comments;
         }
         
-        private PropertyValue<List<MessageForImport>> _comments = new PropertyValue<List<MessageForImport>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest), nameof(Comments));
+        private PropertyValue<List<MessageForImport>> _comments = new PropertyValue<List<MessageForImport>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest), nameof(Comments), new List<MessageForImport>());
         
         [Required]
         [JsonPropertyName("comments")]

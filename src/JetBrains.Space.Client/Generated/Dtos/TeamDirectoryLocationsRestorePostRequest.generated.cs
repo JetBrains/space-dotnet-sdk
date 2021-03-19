@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             Ids = ids;
         }
         
-        private PropertyValue<List<string>> _ids = new PropertyValue<List<string>>(nameof(TeamDirectoryLocationsRestorePostRequest), nameof(Ids));
+        private PropertyValue<List<string>> _ids = new PropertyValue<List<string>>(nameof(TeamDirectoryLocationsRestorePostRequest), nameof(Ids), new List<string>());
         
         [Required]
         [JsonPropertyName("ids")]

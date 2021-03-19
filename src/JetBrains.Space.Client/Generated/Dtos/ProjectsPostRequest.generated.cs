@@ -79,7 +79,7 @@ namespace JetBrains.Space.Client
             set => _private.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ProjectsPostRequest), nameof(Tags));
+        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ProjectsPostRequest), nameof(Tags), new List<string>());
         
         [JsonPropertyName("tags")]
         public List<string> Tags

@@ -168,7 +168,7 @@ namespace JetBrains.Space.Client
             set => _targetDate.SetValue(value);
         }
     
-        private PropertyValue<RecurrentModification> _modificationKind = new PropertyValue<RecurrentModification>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ModificationKind));
+        private PropertyValue<RecurrentModification> _modificationKind = new PropertyValue<RecurrentModification>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ModificationKind), RecurrentModification.All);
         
         [JsonPropertyName("modificationKind")]
         public RecurrentModification ModificationKind

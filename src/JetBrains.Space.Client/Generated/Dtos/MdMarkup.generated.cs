@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             Unfurl = unfurl;
         }
         
-        private PropertyValue<List<Unfurl>> _unfurl = new PropertyValue<List<Unfurl>>(nameof(MdMarkup), nameof(Unfurl));
+        private PropertyValue<List<Unfurl>> _unfurl = new PropertyValue<List<Unfurl>>(nameof(MdMarkup), nameof(Unfurl), new List<Unfurl>());
         
         [Required]
         [JsonPropertyName("unfurl")]

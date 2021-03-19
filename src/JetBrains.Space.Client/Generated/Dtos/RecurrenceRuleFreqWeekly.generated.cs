@@ -41,7 +41,7 @@ namespace JetBrains.Space.Client
             Interval = interval;
         }
         
-        private PropertyValue<List<Weekday>> _weekdays = new PropertyValue<List<Weekday>>(nameof(RecurrenceRuleFreqWeekly), nameof(Weekdays));
+        private PropertyValue<List<Weekday>> _weekdays = new PropertyValue<List<Weekday>>(nameof(RecurrenceRuleFreqWeekly), nameof(Weekdays), new List<Weekday>());
         
         [Required]
         [JsonPropertyName("weekdays")]

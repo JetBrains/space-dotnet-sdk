@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _name.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _targets = new PropertyValue<List<string>>(nameof(KotlinPlatform), nameof(Targets));
+        private PropertyValue<List<string>> _targets = new PropertyValue<List<string>>(nameof(KotlinPlatform), nameof(Targets), new List<string>());
         
         [Required]
         [JsonPropertyName("targets")]

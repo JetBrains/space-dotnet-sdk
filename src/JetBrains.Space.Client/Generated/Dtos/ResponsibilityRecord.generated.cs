@@ -69,7 +69,7 @@ namespace JetBrains.Space.Client
             set => _notes.SetValue(value);
         }
     
-        private PropertyValue<List<AssignedPerson>> _assignedPeople = new PropertyValue<List<AssignedPerson>>(nameof(ResponsibilityRecord), nameof(AssignedPeople));
+        private PropertyValue<List<AssignedPerson>> _assignedPeople = new PropertyValue<List<AssignedPerson>>(nameof(ResponsibilityRecord), nameof(AssignedPeople), new List<AssignedPerson>());
         
         [Required]
         [JsonPropertyName("assignedPeople")]

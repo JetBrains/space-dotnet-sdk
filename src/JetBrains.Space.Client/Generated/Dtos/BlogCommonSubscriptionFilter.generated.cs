@@ -42,7 +42,7 @@ namespace JetBrains.Space.Client
             Authors = authors;
         }
         
-        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(BlogCommonSubscriptionFilter), nameof(Teams));
+        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(BlogCommonSubscriptionFilter), nameof(Teams), new List<TDTeam>());
         
         [Required]
         [JsonPropertyName("teams")]
@@ -52,7 +52,7 @@ namespace JetBrains.Space.Client
             set => _teams.SetValue(value);
         }
     
-        private PropertyValue<List<TDLocation>> _locations = new PropertyValue<List<TDLocation>>(nameof(BlogCommonSubscriptionFilter), nameof(Locations));
+        private PropertyValue<List<TDLocation>> _locations = new PropertyValue<List<TDLocation>>(nameof(BlogCommonSubscriptionFilter), nameof(Locations), new List<TDLocation>());
         
         [Required]
         [JsonPropertyName("locations")]
@@ -62,7 +62,7 @@ namespace JetBrains.Space.Client
             set => _locations.SetValue(value);
         }
     
-        private PropertyValue<List<TDMemberProfile>> _authors = new PropertyValue<List<TDMemberProfile>>(nameof(BlogCommonSubscriptionFilter), nameof(Authors));
+        private PropertyValue<List<TDMemberProfile>> _authors = new PropertyValue<List<TDMemberProfile>>(nameof(BlogCommonSubscriptionFilter), nameof(Authors), new List<TDMemberProfile>());
         
         [Required]
         [JsonPropertyName("authors")]

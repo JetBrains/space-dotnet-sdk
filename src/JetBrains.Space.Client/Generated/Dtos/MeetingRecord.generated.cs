@@ -106,7 +106,7 @@ namespace JetBrains.Space.Client
             set => _allDay.SetValue(value);
         }
     
-        private PropertyValue<List<TDLocation>> _rooms = new PropertyValue<List<TDLocation>>(nameof(MeetingRecord), nameof(Rooms));
+        private PropertyValue<List<TDLocation>> _rooms = new PropertyValue<List<TDLocation>>(nameof(MeetingRecord), nameof(Rooms), new List<TDLocation>());
         
         [Required]
         [JsonPropertyName("rooms")]
@@ -116,7 +116,7 @@ namespace JetBrains.Space.Client
             set => _rooms.SetValue(value);
         }
     
-        private PropertyValue<List<Participant>> _participants = new PropertyValue<List<Participant>>(nameof(MeetingRecord), nameof(Participants));
+        private PropertyValue<List<Participant>> _participants = new PropertyValue<List<Participant>>(nameof(MeetingRecord), nameof(Participants), new List<Participant>());
         
         [Required]
         [JsonPropertyName("participants")]

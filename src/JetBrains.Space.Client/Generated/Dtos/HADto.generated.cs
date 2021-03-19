@@ -65,7 +65,7 @@ namespace JetBrains.Space.Client
             set => _name.SetValue(value);
         }
     
-        private PropertyValue<List<HADtoField>> _fields = new PropertyValue<List<HADtoField>>(nameof(HADto), nameof(Fields));
+        private PropertyValue<List<HADtoField>> _fields = new PropertyValue<List<HADtoField>>(nameof(HADto), nameof(Fields), new List<HADtoField>());
         
         [Required]
         [JsonPropertyName("fields")]
@@ -94,7 +94,7 @@ namespace JetBrains.Space.Client
             set => _extends.SetValue(value);
         }
     
-        private PropertyValue<List<HADto>> _implements = new PropertyValue<List<HADto>>(nameof(HADto), nameof(Implements));
+        private PropertyValue<List<HADto>> _implements = new PropertyValue<List<HADto>>(nameof(HADto), nameof(Implements), new List<HADto>());
         
         [Required]
         [JsonPropertyName("implements")]
@@ -104,7 +104,7 @@ namespace JetBrains.Space.Client
             set => _implements.SetValue(value);
         }
     
-        private PropertyValue<List<HADto>> _inheritors = new PropertyValue<List<HADto>>(nameof(HADto), nameof(Inheritors));
+        private PropertyValue<List<HADto>> _inheritors = new PropertyValue<List<HADto>>(nameof(HADto), nameof(Inheritors), new List<HADto>());
         
         [Required]
         [JsonPropertyName("inheritors")]

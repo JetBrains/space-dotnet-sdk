@@ -137,7 +137,7 @@ namespace JetBrains.Space.Client
             set => _profilePicture.SetValue(value);
         }
     
-        private PropertyValue<List<TDProfileLanguage>> _languages = new PropertyValue<List<TDProfileLanguage>>(nameof(TDMemberProfile), nameof(Languages));
+        private PropertyValue<List<TDProfileLanguage>> _languages = new PropertyValue<List<TDProfileLanguage>>(nameof(TDMemberProfile), nameof(Languages), new List<TDProfileLanguage>());
         
         [Required]
         [JsonPropertyName("languages")]
@@ -206,7 +206,7 @@ namespace JetBrains.Space.Client
             set => _about.SetValue(value);
         }
     
-        private PropertyValue<List<AbsenceRecord>> _absences = new PropertyValue<List<AbsenceRecord>>(nameof(TDMemberProfile), nameof(Absences));
+        private PropertyValue<List<AbsenceRecord>> _absences = new PropertyValue<List<AbsenceRecord>>(nameof(TDMemberProfile), nameof(Absences), new List<AbsenceRecord>());
         
         [Required]
         [JsonPropertyName("absences")]
@@ -235,7 +235,7 @@ namespace JetBrains.Space.Client
             set => _birthday.SetValue(value);
         }
     
-        private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(TDMemberProfile), nameof(CustomFields));
+        private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(TDMemberProfile), nameof(CustomFields), new Dictionary<string, CFValue>());
         
         [Required]
         [JsonPropertyName("customFields")]
@@ -245,7 +245,7 @@ namespace JetBrains.Space.Client
             set => _customFields.SetValue(value);
         }
     
-        private PropertyValue<List<TDProfileEmail>> _emails = new PropertyValue<List<TDProfileEmail>>(nameof(TDMemberProfile), nameof(Emails));
+        private PropertyValue<List<TDProfileEmail>> _emails = new PropertyValue<List<TDProfileEmail>>(nameof(TDMemberProfile), nameof(Emails), new List<TDProfileEmail>());
         
         [Required]
         [JsonPropertyName("emails")]
@@ -274,7 +274,7 @@ namespace JetBrains.Space.Client
             set => _gender.SetValue(value);
         }
     
-        private PropertyValue<List<PublicHoliday>> _holidays = new PropertyValue<List<PublicHoliday>>(nameof(TDMemberProfile), nameof(Holidays));
+        private PropertyValue<List<PublicHoliday>> _holidays = new PropertyValue<List<PublicHoliday>>(nameof(TDMemberProfile), nameof(Holidays), new List<PublicHoliday>());
         
         [Required]
         [JsonPropertyName("holidays")]
@@ -284,7 +284,7 @@ namespace JetBrains.Space.Client
             set => _holidays.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _links = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Links));
+        private PropertyValue<List<string>> _links = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Links), new List<string>());
         
         [Required]
         [JsonPropertyName("links")]
@@ -294,7 +294,7 @@ namespace JetBrains.Space.Client
             set => _links.SetValue(value);
         }
     
-        private PropertyValue<List<TDMemberLocation>> _locations = new PropertyValue<List<TDMemberLocation>>(nameof(TDMemberProfile), nameof(Locations));
+        private PropertyValue<List<TDMemberLocation>> _locations = new PropertyValue<List<TDMemberLocation>>(nameof(TDMemberProfile), nameof(Locations), new List<TDMemberLocation>());
         
         [Required]
         [JsonPropertyName("locations")]
@@ -304,7 +304,7 @@ namespace JetBrains.Space.Client
             set => _locations.SetValue(value);
         }
     
-        private PropertyValue<List<TDMemberProfile>> _managers = new PropertyValue<List<TDMemberProfile>>(nameof(TDMemberProfile), nameof(Managers));
+        private PropertyValue<List<TDMemberProfile>> _managers = new PropertyValue<List<TDMemberProfile>>(nameof(TDMemberProfile), nameof(Managers), new List<TDMemberProfile>());
         
         [Required]
         [JsonPropertyName("managers")]
@@ -314,7 +314,7 @@ namespace JetBrains.Space.Client
             set => _managers.SetValue(value);
         }
     
-        private PropertyValue<List<TDMembership>> _membershipHistory = new PropertyValue<List<TDMembership>>(nameof(TDMemberProfile), nameof(MembershipHistory));
+        private PropertyValue<List<TDMembership>> _membershipHistory = new PropertyValue<List<TDMembership>>(nameof(TDMemberProfile), nameof(MembershipHistory), new List<TDMembership>());
         
         [Required]
         [JsonPropertyName("membershipHistory")]
@@ -324,7 +324,7 @@ namespace JetBrains.Space.Client
             set => _membershipHistory.SetValue(value);
         }
     
-        private PropertyValue<List<TDMembership>> _memberships = new PropertyValue<List<TDMembership>>(nameof(TDMemberProfile), nameof(Memberships));
+        private PropertyValue<List<TDMembership>> _memberships = new PropertyValue<List<TDMembership>>(nameof(TDMemberProfile), nameof(Memberships), new List<TDMembership>());
         
         [Required]
         [JsonPropertyName("memberships")]
@@ -334,7 +334,7 @@ namespace JetBrains.Space.Client
             set => _memberships.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _messengers = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Messengers));
+        private PropertyValue<List<string>> _messengers = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Messengers), new List<string>());
         
         [Required]
         [JsonPropertyName("messengers")]
@@ -354,7 +354,7 @@ namespace JetBrains.Space.Client
             set => _onboardingRequired.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Phones));
+        private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Phones), new List<string>());
         
         [Required]
         [JsonPropertyName("phones")]

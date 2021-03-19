@@ -88,7 +88,7 @@ namespace JetBrains.Space.Client
             set => _parent.SetValue(value);
         }
     
-        private PropertyValue<List<KBFolder>> _subfolders = new PropertyValue<List<KBFolder>>(nameof(KBFolder), nameof(Subfolders));
+        private PropertyValue<List<KBFolder>> _subfolders = new PropertyValue<List<KBFolder>>(nameof(KBFolder), nameof(Subfolders), new List<KBFolder>());
         
         [Required]
         [JsonPropertyName("subfolders")]
@@ -98,7 +98,7 @@ namespace JetBrains.Space.Client
             set => _subfolders.SetValue(value);
         }
     
-        private PropertyValue<List<KBArticle>> _articles = new PropertyValue<List<KBArticle>>(nameof(KBFolder), nameof(Articles));
+        private PropertyValue<List<KBArticle>> _articles = new PropertyValue<List<KBArticle>>(nameof(KBFolder), nameof(Articles), new List<KBArticle>());
         
         [Required]
         [JsonPropertyName("articles")]

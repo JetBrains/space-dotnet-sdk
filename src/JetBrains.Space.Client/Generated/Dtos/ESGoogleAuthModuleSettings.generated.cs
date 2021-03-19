@@ -73,7 +73,7 @@ namespace JetBrains.Space.Client
             set => _registerNewUsers.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ESGoogleAuthModuleSettings), nameof(Domains));
+        private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ESGoogleAuthModuleSettings), nameof(Domains), new List<string>());
         
         [Required]
         [JsonPropertyName("domains")]

@@ -102,7 +102,7 @@ namespace JetBrains.Space.Client
             set => _archived.SetValue(value);
         }
     
-        private PropertyValue<List<PackageRepositoryConnection>> _mirrors = new PropertyValue<List<PackageRepositoryConnection>>(nameof(ProjectPackageRepository), nameof(Mirrors));
+        private PropertyValue<List<PackageRepositoryConnection>> _mirrors = new PropertyValue<List<PackageRepositoryConnection>>(nameof(ProjectPackageRepository), nameof(Mirrors), new List<PackageRepositoryConnection>());
         
         [Required]
         [JsonPropertyName("mirrors")]

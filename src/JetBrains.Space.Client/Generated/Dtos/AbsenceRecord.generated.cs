@@ -156,7 +156,7 @@ namespace JetBrains.Space.Client
             set => _approval.SetValue(value);
         }
     
-        private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(AbsenceRecord), nameof(CustomFields));
+        private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(AbsenceRecord), nameof(CustomFields), new Dictionary<string, CFValue>());
         
         [Required]
         [JsonPropertyName("customFields")]

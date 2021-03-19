@@ -70,7 +70,7 @@ namespace JetBrains.Space.Client
             set => _length.SetValue(value);
         }
     
-        private PropertyValue<List<MavenChecksum>> _checksums = new PropertyValue<List<MavenChecksum>>(nameof(MavenPackageFile), nameof(Checksums));
+        private PropertyValue<List<MavenChecksum>> _checksums = new PropertyValue<List<MavenChecksum>>(nameof(MavenPackageFile), nameof(Checksums), new List<MavenChecksum>());
         
         [Required]
         [JsonPropertyName("checksums")]

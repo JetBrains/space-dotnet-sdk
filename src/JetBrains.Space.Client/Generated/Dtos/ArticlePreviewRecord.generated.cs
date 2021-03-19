@@ -62,7 +62,7 @@ namespace JetBrains.Space.Client
             set => _archived.SetValue(value);
         }
     
-        private PropertyValue<List<ArticleMarkdownImage>> _previewImages = new PropertyValue<List<ArticleMarkdownImage>>(nameof(ArticlePreviewRecord), nameof(PreviewImages));
+        private PropertyValue<List<ArticleMarkdownImage>> _previewImages = new PropertyValue<List<ArticleMarkdownImage>>(nameof(ArticlePreviewRecord), nameof(PreviewImages), new List<ArticleMarkdownImage>());
         
         [Required]
         [JsonPropertyName("previewImages")]

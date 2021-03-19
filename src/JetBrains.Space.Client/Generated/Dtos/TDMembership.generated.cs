@@ -197,7 +197,7 @@ namespace JetBrains.Space.Client
             set => _approver.SetValue(value);
         }
     
-        private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(TDMembership), nameof(CustomFields));
+        private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(TDMembership), nameof(CustomFields), new Dictionary<string, CFValue>());
         
         [Required]
         [JsonPropertyName("customFields")]

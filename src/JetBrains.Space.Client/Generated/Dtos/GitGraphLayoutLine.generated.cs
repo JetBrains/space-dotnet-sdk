@@ -38,7 +38,7 @@ namespace JetBrains.Space.Client
             Edges = edges;
         }
         
-        private PropertyValue<List<GitGraphLayoutNode>> _nodes = new PropertyValue<List<GitGraphLayoutNode>>(nameof(GitGraphLayoutLine), nameof(Nodes));
+        private PropertyValue<List<GitGraphLayoutNode>> _nodes = new PropertyValue<List<GitGraphLayoutNode>>(nameof(GitGraphLayoutLine), nameof(Nodes), new List<GitGraphLayoutNode>());
         
         [Required]
         [JsonPropertyName("nodes")]
@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _nodes.SetValue(value);
         }
     
-        private PropertyValue<List<GitGraphLayoutEdge>> _edges = new PropertyValue<List<GitGraphLayoutEdge>>(nameof(GitGraphLayoutLine), nameof(Edges));
+        private PropertyValue<List<GitGraphLayoutEdge>> _edges = new PropertyValue<List<GitGraphLayoutEdge>>(nameof(GitGraphLayoutLine), nameof(Edges), new List<GitGraphLayoutEdge>());
         
         [Required]
         [JsonPropertyName("edges")]

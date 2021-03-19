@@ -62,7 +62,7 @@ namespace JetBrains.Space.Client
             set => _subject.SetValue(value);
         }
     
-        private PropertyValue<List<TDMemberProfile>> _members = new PropertyValue<List<TDMemberProfile>>(nameof(M2PrivateConversationChannelContent), nameof(Members));
+        private PropertyValue<List<TDMemberProfile>> _members = new PropertyValue<List<TDMemberProfile>>(nameof(M2PrivateConversationChannelContent), nameof(Members), new List<TDMemberProfile>());
         
         [Required]
         [JsonPropertyName("members")]

@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _repository.SetValue(value);
         }
     
-        private PropertyValue<List<GitCommitWithGraph>> _commits = new PropertyValue<List<GitCommitWithGraph>>(nameof(RevisionsInReview), nameof(Commits));
+        private PropertyValue<List<GitCommitWithGraph>> _commits = new PropertyValue<List<GitCommitWithGraph>>(nameof(RevisionsInReview), nameof(Commits), new List<GitCommitWithGraph>());
         
         [Required]
         [JsonPropertyName("commits")]

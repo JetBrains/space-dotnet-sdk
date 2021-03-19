@@ -66,7 +66,7 @@ namespace JetBrains.Space.Client
             set => _digest.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ContainerManifest), nameof(Tags));
+        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ContainerManifest), nameof(Tags), new List<string>());
         
         [Required]
         [JsonPropertyName("tags")]

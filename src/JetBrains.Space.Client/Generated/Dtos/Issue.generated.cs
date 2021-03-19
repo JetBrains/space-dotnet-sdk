@@ -173,7 +173,7 @@ namespace JetBrains.Space.Client
             set => _externalEntityInfo.SetValue(value);
         }
     
-        private PropertyValue<List<PlanningTag>> _tags = new PropertyValue<List<PlanningTag>>(nameof(Issue), nameof(Tags));
+        private PropertyValue<List<PlanningTag>> _tags = new PropertyValue<List<PlanningTag>>(nameof(Issue), nameof(Tags), new List<PlanningTag>());
         
         [Required]
         [JsonPropertyName("tags")]
@@ -202,7 +202,7 @@ namespace JetBrains.Space.Client
             set => _attachmentsCount.SetValue(value);
         }
     
-        private PropertyValue<List<AttachmentInfo>> _attachments = new PropertyValue<List<AttachmentInfo>>(nameof(Issue), nameof(Attachments));
+        private PropertyValue<List<AttachmentInfo>> _attachments = new PropertyValue<List<AttachmentInfo>>(nameof(Issue), nameof(Attachments), new List<AttachmentInfo>());
         
         [Required]
         [JsonPropertyName("attachments")]
@@ -222,7 +222,7 @@ namespace JetBrains.Space.Client
             set => _channel.SetValue(value);
         }
     
-        private PropertyValue<List<Checklist>> _checklists = new PropertyValue<List<Checklist>>(nameof(Issue), nameof(Checklists));
+        private PropertyValue<List<Checklist>> _checklists = new PropertyValue<List<Checklist>>(nameof(Issue), nameof(Checklists), new List<Checklist>());
         
         [Required]
         [JsonPropertyName("checklists")]
@@ -241,7 +241,7 @@ namespace JetBrains.Space.Client
             set => _description.SetValue(value);
         }
     
-        private PropertyValue<List<SprintRecord>> _sprints = new PropertyValue<List<SprintRecord>>(nameof(Issue), nameof(Sprints));
+        private PropertyValue<List<SprintRecord>> _sprints = new PropertyValue<List<SprintRecord>>(nameof(Issue), nameof(Sprints), new List<SprintRecord>());
         
         [Required]
         [JsonPropertyName("sprints")]

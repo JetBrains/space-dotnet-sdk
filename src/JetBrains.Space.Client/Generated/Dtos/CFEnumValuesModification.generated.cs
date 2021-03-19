@@ -39,7 +39,7 @@ namespace JetBrains.Space.Client
             ValuesToDelete = valuesToDelete;
         }
         
-        private PropertyValue<List<EnumValueData>> _valuesToAdd = new PropertyValue<List<EnumValueData>>(nameof(CFEnumValuesModification), nameof(ValuesToAdd));
+        private PropertyValue<List<EnumValueData>> _valuesToAdd = new PropertyValue<List<EnumValueData>>(nameof(CFEnumValuesModification), nameof(ValuesToAdd), new List<EnumValueData>());
         
         [Required]
         [JsonPropertyName("valuesToAdd")]
@@ -49,7 +49,7 @@ namespace JetBrains.Space.Client
             set => _valuesToAdd.SetValue(value);
         }
     
-        private PropertyValue<List<EnumValueData>> _valuesToUpdate = new PropertyValue<List<EnumValueData>>(nameof(CFEnumValuesModification), nameof(ValuesToUpdate));
+        private PropertyValue<List<EnumValueData>> _valuesToUpdate = new PropertyValue<List<EnumValueData>>(nameof(CFEnumValuesModification), nameof(ValuesToUpdate), new List<EnumValueData>());
         
         [Required]
         [JsonPropertyName("valuesToUpdate")]
@@ -59,7 +59,7 @@ namespace JetBrains.Space.Client
             set => _valuesToUpdate.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _valuesToDelete = new PropertyValue<List<string>>(nameof(CFEnumValuesModification), nameof(ValuesToDelete));
+        private PropertyValue<List<string>> _valuesToDelete = new PropertyValue<List<string>>(nameof(CFEnumValuesModification), nameof(ValuesToDelete), new List<string>());
         
         [Required]
         [JsonPropertyName("valuesToDelete")]

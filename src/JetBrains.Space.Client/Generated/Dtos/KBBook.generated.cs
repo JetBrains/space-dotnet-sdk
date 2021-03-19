@@ -116,7 +116,7 @@ namespace JetBrains.Space.Client
             set => _alias.SetValue(value);
         }
     
-        private PropertyValue<List<KBBookContext>> _contexts = new PropertyValue<List<KBBookContext>>(nameof(KBBook), nameof(Contexts));
+        private PropertyValue<List<KBBookContext>> _contexts = new PropertyValue<List<KBBookContext>>(nameof(KBBook), nameof(Contexts), new List<KBBookContext>());
         
         [Required]
         [JsonPropertyName("contexts")]
@@ -126,7 +126,7 @@ namespace JetBrains.Space.Client
             set => _contexts.SetValue(value);
         }
     
-        private PropertyValue<List<TDLocation>> _locations = new PropertyValue<List<TDLocation>>(nameof(KBBook), nameof(Locations));
+        private PropertyValue<List<TDLocation>> _locations = new PropertyValue<List<TDLocation>>(nameof(KBBook), nameof(Locations), new List<TDLocation>());
         
         [Required]
         [JsonPropertyName("locations")]
@@ -146,7 +146,7 @@ namespace JetBrains.Space.Client
             set => _rootFolder.SetValue(value);
         }
     
-        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(KBBook), nameof(Teams));
+        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(KBBook), nameof(Teams), new List<TDTeam>());
         
         [Required]
         [JsonPropertyName("teams")]

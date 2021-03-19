@@ -92,7 +92,7 @@ namespace JetBrains.Space.Client
             set => _parentResource.SetValue(value);
         }
     
-        private PropertyValue<List<HAEndpoint>> _endpoints = new PropertyValue<List<HAEndpoint>>(nameof(HAResource), nameof(Endpoints));
+        private PropertyValue<List<HAEndpoint>> _endpoints = new PropertyValue<List<HAEndpoint>>(nameof(HAResource), nameof(Endpoints), new List<HAEndpoint>());
         
         [Required]
         [JsonPropertyName("endpoints")]
@@ -102,7 +102,7 @@ namespace JetBrains.Space.Client
             set => _endpoints.SetValue(value);
         }
     
-        private PropertyValue<List<HAResource>> _nestedResources = new PropertyValue<List<HAResource>>(nameof(HAResource), nameof(NestedResources));
+        private PropertyValue<List<HAResource>> _nestedResources = new PropertyValue<List<HAResource>>(nameof(HAResource), nameof(NestedResources), new List<HAResource>());
         
         [Required]
         [JsonPropertyName("nestedResources")]

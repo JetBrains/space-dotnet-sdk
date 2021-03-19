@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             Values = values;
         }
         
-        private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(StringListCFValue), nameof(Values));
+        private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(StringListCFValue), nameof(Values), new List<string>());
         
         [Required]
         [JsonPropertyName("values")]

@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             Elements = elements;
         }
         
-        private PropertyValue<List<HADefaultValue>> _elements = new PropertyValue<List<HADefaultValue>>(nameof(HADefaultValueCollection), nameof(Elements));
+        private PropertyValue<List<HADefaultValue>> _elements = new PropertyValue<List<HADefaultValue>>(nameof(HADefaultValueCollection), nameof(Elements), new List<HADefaultValue>());
         
         [Required]
         [JsonPropertyName("elements")]

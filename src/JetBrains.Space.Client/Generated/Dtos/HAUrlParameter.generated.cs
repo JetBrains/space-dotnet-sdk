@@ -60,7 +60,7 @@ namespace JetBrains.Space.Client
             set => _name.SetValue(value);
         }
     
-        private PropertyValue<List<HAUrlParameterOption>> _options = new PropertyValue<List<HAUrlParameterOption>>(nameof(HAUrlParameter), nameof(Options));
+        private PropertyValue<List<HAUrlParameterOption>> _options = new PropertyValue<List<HAUrlParameterOption>>(nameof(HAUrlParameter), nameof(Options), new List<HAUrlParameterOption>());
         
         [Required]
         [JsonPropertyName("options")]

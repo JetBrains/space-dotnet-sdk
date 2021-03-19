@@ -214,7 +214,7 @@ namespace JetBrains.Space.Client
             set => _description.SetValue(value);
         }
     
-        private PropertyValue<List<NpmPackageDependency>> _dependencies = new PropertyValue<List<NpmPackageDependency>>(nameof(NpmPackageVersionDetails), nameof(Dependencies));
+        private PropertyValue<List<NpmPackageDependency>> _dependencies = new PropertyValue<List<NpmPackageDependency>>(nameof(NpmPackageVersionDetails), nameof(Dependencies), new List<NpmPackageDependency>());
         
         [Required]
         [JsonPropertyName("dependencies")]
@@ -224,7 +224,7 @@ namespace JetBrains.Space.Client
             set => _dependencies.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _keywords = new PropertyValue<List<string>>(nameof(NpmPackageVersionDetails), nameof(Keywords));
+        private PropertyValue<List<string>> _keywords = new PropertyValue<List<string>>(nameof(NpmPackageVersionDetails), nameof(Keywords), new List<string>());
         
         [Required]
         [JsonPropertyName("keywords")]

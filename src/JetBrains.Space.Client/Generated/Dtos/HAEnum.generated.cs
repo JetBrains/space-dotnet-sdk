@@ -60,7 +60,7 @@ namespace JetBrains.Space.Client
             set => _name.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(HAEnum), nameof(Values));
+        private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(HAEnum), nameof(Values), new List<string>());
         
         [Required]
         [JsonPropertyName("values")]

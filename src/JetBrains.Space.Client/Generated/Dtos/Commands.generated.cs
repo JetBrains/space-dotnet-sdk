@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             CommandsItems = commands;
         }
         
-        private PropertyValue<List<CommandDetail>> _commands = new PropertyValue<List<CommandDetail>>(nameof(Commands), nameof(CommandsItems));
+        private PropertyValue<List<CommandDetail>> _commands = new PropertyValue<List<CommandDetail>>(nameof(Commands), nameof(CommandsItems), new List<CommandDetail>());
         
         [Required]
         [JsonPropertyName("commands")]

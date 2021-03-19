@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             Lines = lines;
         }
         
-        private PropertyValue<List<CodeLine>> _lines = new PropertyValue<List<CodeLine>>(nameof(CodeDiscussionSnippetPlainSnippet), nameof(Lines));
+        private PropertyValue<List<CodeLine>> _lines = new PropertyValue<List<CodeLine>>(nameof(CodeDiscussionSnippetPlainSnippet), nameof(Lines), new List<CodeLine>());
         
         [Required]
         [JsonPropertyName("lines")]

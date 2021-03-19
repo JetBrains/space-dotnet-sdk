@@ -110,7 +110,7 @@ namespace JetBrains.Space.Client
             set => _author.SetValue(value);
         }
     
-        private PropertyValue<List<BGArticleAlias>> _aliases = new PropertyValue<List<BGArticleAlias>>(nameof(ArticleRecord), nameof(Aliases));
+        private PropertyValue<List<BGArticleAlias>> _aliases = new PropertyValue<List<BGArticleAlias>>(nameof(ArticleRecord), nameof(Aliases), new List<BGArticleAlias>());
         
         [Required]
         [JsonPropertyName("aliases")]
@@ -234,7 +234,7 @@ namespace JetBrains.Space.Client
             set => _preview.SetValue(value);
         }
     
-        private PropertyValue<List<ArticleMarkdownImage>> _previewImages = new PropertyValue<List<ArticleMarkdownImage>>(nameof(ArticleRecord), nameof(PreviewImages));
+        private PropertyValue<List<ArticleMarkdownImage>> _previewImages = new PropertyValue<List<ArticleMarkdownImage>>(nameof(ArticleRecord), nameof(PreviewImages), new List<ArticleMarkdownImage>());
         
         [Required]
         [JsonPropertyName("previewImages")]

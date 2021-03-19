@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _profile.SetValue(value);
         }
     
-        private PropertyValue<List<PublicHoliday>> _holidays = new PropertyValue<List<PublicHoliday>>(nameof(HolidaysEvent), nameof(Holidays));
+        private PropertyValue<List<PublicHoliday>> _holidays = new PropertyValue<List<PublicHoliday>>(nameof(HolidaysEvent), nameof(Holidays), new List<PublicHoliday>());
         
         [Required]
         [JsonPropertyName("holidays")]

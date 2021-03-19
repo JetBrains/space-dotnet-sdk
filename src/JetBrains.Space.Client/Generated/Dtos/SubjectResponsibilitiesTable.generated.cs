@@ -59,7 +59,7 @@ namespace JetBrains.Space.Client
             set => _name.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _reusedInProjects = new PropertyValue<List<string>>(nameof(SubjectResponsibilitiesTable), nameof(ReusedInProjects));
+        private PropertyValue<List<string>> _reusedInProjects = new PropertyValue<List<string>>(nameof(SubjectResponsibilitiesTable), nameof(ReusedInProjects), new List<string>());
         
         [Required]
         [JsonPropertyName("reusedInProjects")]
@@ -69,7 +69,7 @@ namespace JetBrains.Space.Client
             set => _reusedInProjects.SetValue(value);
         }
     
-        private PropertyValue<List<ResponsibilityRecord>> _responsibilityRecords = new PropertyValue<List<ResponsibilityRecord>>(nameof(SubjectResponsibilitiesTable), nameof(ResponsibilityRecords));
+        private PropertyValue<List<ResponsibilityRecord>> _responsibilityRecords = new PropertyValue<List<ResponsibilityRecord>>(nameof(SubjectResponsibilitiesTable), nameof(ResponsibilityRecords), new List<ResponsibilityRecord>());
         
         [Required]
         [JsonPropertyName("responsibilityRecords")]

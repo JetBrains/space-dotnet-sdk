@@ -51,7 +51,7 @@ namespace JetBrains.Space.Client
             set => _shortInfo.SetValue(value);
         }
     
-        private PropertyValue<List<RevisionsInReview>> _commits = new PropertyValue<List<RevisionsInReview>>(nameof(CodeReviewDetailedInfo), nameof(Commits));
+        private PropertyValue<List<RevisionsInReview>> _commits = new PropertyValue<List<RevisionsInReview>>(nameof(CodeReviewDetailedInfo), nameof(Commits), new List<RevisionsInReview>());
         
         [Required]
         [JsonPropertyName("commits")]
@@ -80,7 +80,7 @@ namespace JetBrains.Space.Client
             set => _unboundDiscussionCounter.SetValue(value);
         }
     
-        private PropertyValue<List<TrackedBranchesInReview>> _branches = new PropertyValue<List<TrackedBranchesInReview>>(nameof(CodeReviewDetailedInfo), nameof(Branches));
+        private PropertyValue<List<TrackedBranchesInReview>> _branches = new PropertyValue<List<TrackedBranchesInReview>>(nameof(CodeReviewDetailedInfo), nameof(Branches), new List<TrackedBranchesInReview>());
         
         [Required]
         [JsonPropertyName("branches")]

@@ -50,7 +50,7 @@ namespace JetBrains.Space.Client
             set => _totalMembers.SetValue(value);
         }
     
-        private PropertyValue<List<Pair<TDTeam, int>>> _teams = new PropertyValue<List<Pair<TDTeam, int>>>(nameof(TDStats), nameof(Teams));
+        private PropertyValue<List<Pair<TDTeam, int>>> _teams = new PropertyValue<List<Pair<TDTeam, int>>>(nameof(TDStats), nameof(Teams), new List<Pair<TDTeam, int>>());
         
         [Required]
         [JsonPropertyName("teams")]
@@ -60,7 +60,7 @@ namespace JetBrains.Space.Client
             set => _teams.SetValue(value);
         }
     
-        private PropertyValue<List<Pair<TDRole, int>>> _roles = new PropertyValue<List<Pair<TDRole, int>>>(nameof(TDStats), nameof(Roles));
+        private PropertyValue<List<Pair<TDRole, int>>> _roles = new PropertyValue<List<Pair<TDRole, int>>>(nameof(TDStats), nameof(Roles), new List<Pair<TDRole, int>>());
         
         [Required]
         [JsonPropertyName("roles")]
@@ -70,7 +70,7 @@ namespace JetBrains.Space.Client
             set => _roles.SetValue(value);
         }
     
-        private PropertyValue<List<Pair<TDLocation, int>>> _locations = new PropertyValue<List<Pair<TDLocation, int>>>(nameof(TDStats), nameof(Locations));
+        private PropertyValue<List<Pair<TDLocation, int>>> _locations = new PropertyValue<List<Pair<TDLocation, int>>>(nameof(TDStats), nameof(Locations), new List<Pair<TDLocation, int>>());
         
         [Required]
         [JsonPropertyName("locations")]

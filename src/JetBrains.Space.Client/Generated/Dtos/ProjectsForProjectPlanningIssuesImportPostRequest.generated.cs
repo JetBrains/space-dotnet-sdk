@@ -52,7 +52,7 @@ namespace JetBrains.Space.Client
             set => _metadata.SetValue(value);
         }
     
-        private PropertyValue<List<ExternalIssue>> _issues = new PropertyValue<List<ExternalIssue>>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(Issues));
+        private PropertyValue<List<ExternalIssue>> _issues = new PropertyValue<List<ExternalIssue>>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(Issues), new List<ExternalIssue>());
         
         [Required]
         [JsonPropertyName("issues")]

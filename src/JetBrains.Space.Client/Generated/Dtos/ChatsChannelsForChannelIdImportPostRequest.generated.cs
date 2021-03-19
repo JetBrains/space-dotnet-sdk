@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             Messages = messages;
         }
         
-        private PropertyValue<List<MessageForImport>> _messages = new PropertyValue<List<MessageForImport>>(nameof(ChatsChannelsForChannelIdImportPostRequest), nameof(Messages));
+        private PropertyValue<List<MessageForImport>> _messages = new PropertyValue<List<MessageForImport>>(nameof(ChatsChannelsForChannelIdImportPostRequest), nameof(Messages), new List<MessageForImport>());
         
         [Required]
         [JsonPropertyName("messages")]

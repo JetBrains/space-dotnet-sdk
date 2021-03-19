@@ -69,7 +69,7 @@ namespace JetBrains.Space.Client
             set => _textVersion.SetValue(value);
         }
     
-        private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(DocsDraftsPostRequest), nameof(Type));
+        private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(DocsDraftsPostRequest), nameof(Type), DraftDocumentType.WYSIWYG);
         
         [JsonPropertyName("type")]
         public DraftDocumentType Type

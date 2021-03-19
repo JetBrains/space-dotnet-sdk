@@ -83,7 +83,7 @@ namespace JetBrains.Space.Client
             set => _lastName.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _emails = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Emails));
+        private PropertyValue<List<string>> _emails = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Emails), new List<string>());
         
         [JsonPropertyName("emails")]
         public List<string> Emails
@@ -92,7 +92,7 @@ namespace JetBrains.Space.Client
             set => _emails.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Phones));
+        private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Phones), new List<string>());
         
         [JsonPropertyName("phones")]
         public List<string> Phones
@@ -120,7 +120,7 @@ namespace JetBrains.Space.Client
             set => _about.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _messengers = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Messengers));
+        private PropertyValue<List<string>> _messengers = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Messengers), new List<string>());
         
         [JsonPropertyName("messengers")]
         public List<string> Messengers
@@ -129,7 +129,7 @@ namespace JetBrains.Space.Client
             set => _messengers.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _links = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Links));
+        private PropertyValue<List<string>> _links = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Links), new List<string>());
         
         [JsonPropertyName("links")]
         public List<string> Links
@@ -204,7 +204,7 @@ namespace JetBrains.Space.Client
             set => _avatarCropSquare.SetValue(value);
         }
     
-        private PropertyValue<List<CustomFieldInputValue>> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>>(nameof(TeamDirectoryProfilesPostRequest), nameof(CustomFieldValues));
+        private PropertyValue<List<CustomFieldInputValue>> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>>(nameof(TeamDirectoryProfilesPostRequest), nameof(CustomFieldValues), new List<CustomFieldInputValue>());
         
         [JsonPropertyName("customFieldValues")]
         public List<CustomFieldInputValue> CustomFieldValues

@@ -146,7 +146,7 @@ namespace JetBrains.Space.Client
             set => _feedChannel.SetValue(value);
         }
     
-        private PropertyValue<List<MergeRequestBranchPair>> _branchPairs = new PropertyValue<List<MergeRequestBranchPair>>(nameof(MergeRequestRecord), nameof(BranchPairs));
+        private PropertyValue<List<MergeRequestBranchPair>> _branchPairs = new PropertyValue<List<MergeRequestBranchPair>>(nameof(MergeRequestRecord), nameof(BranchPairs), new List<MergeRequestBranchPair>());
         
         [Required]
         [JsonPropertyName("branchPairs")]

@@ -51,7 +51,7 @@ namespace JetBrains.Space.Client
             set => _anchor.SetValue(value);
         }
     
-        private PropertyValue<List<CodeLine>> _lines = new PropertyValue<List<CodeLine>>(nameof(UnfurlDetailsCodeSnippet), nameof(Lines));
+        private PropertyValue<List<CodeLine>> _lines = new PropertyValue<List<CodeLine>>(nameof(UnfurlDetailsCodeSnippet), nameof(Lines), new List<CodeLine>());
         
         [Required]
         [JsonPropertyName("lines")]

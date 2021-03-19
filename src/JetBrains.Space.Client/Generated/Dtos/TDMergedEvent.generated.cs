@@ -38,7 +38,7 @@ namespace JetBrains.Space.Client
             Profile = profile;
         }
         
-        private PropertyValue<List<Pair<TDMembership, int>>> _events = new PropertyValue<List<Pair<TDMembership, int>>>(nameof(TDMergedEvent), nameof(Events));
+        private PropertyValue<List<Pair<TDMembership, int>>> _events = new PropertyValue<List<Pair<TDMembership, int>>>(nameof(TDMergedEvent), nameof(Events), new List<Pair<TDMembership, int>>());
         
         [Required]
         [JsonPropertyName("events")]

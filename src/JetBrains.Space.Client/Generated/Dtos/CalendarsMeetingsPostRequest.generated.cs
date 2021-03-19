@@ -77,7 +77,7 @@ namespace JetBrains.Space.Client
             set => _occurrenceRule.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _locations = new PropertyValue<List<string>>(nameof(CalendarsMeetingsPostRequest), nameof(Locations));
+        private PropertyValue<List<string>> _locations = new PropertyValue<List<string>>(nameof(CalendarsMeetingsPostRequest), nameof(Locations), new List<string>());
         
         [JsonPropertyName("locations")]
         public List<string> Locations
@@ -86,7 +86,7 @@ namespace JetBrains.Space.Client
             set => _locations.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _profiles = new PropertyValue<List<string>>(nameof(CalendarsMeetingsPostRequest), nameof(Profiles));
+        private PropertyValue<List<string>> _profiles = new PropertyValue<List<string>>(nameof(CalendarsMeetingsPostRequest), nameof(Profiles), new List<string>());
         
         [JsonPropertyName("profiles")]
         public List<string> Profiles
@@ -95,7 +95,7 @@ namespace JetBrains.Space.Client
             set => _profiles.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _externalParticipants = new PropertyValue<List<string>>(nameof(CalendarsMeetingsPostRequest), nameof(ExternalParticipants));
+        private PropertyValue<List<string>> _externalParticipants = new PropertyValue<List<string>>(nameof(CalendarsMeetingsPostRequest), nameof(ExternalParticipants), new List<string>());
         
         [JsonPropertyName("externalParticipants")]
         public List<string> ExternalParticipants
@@ -104,7 +104,7 @@ namespace JetBrains.Space.Client
             set => _externalParticipants.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _teams = new PropertyValue<List<string>>(nameof(CalendarsMeetingsPostRequest), nameof(Teams));
+        private PropertyValue<List<string>> _teams = new PropertyValue<List<string>>(nameof(CalendarsMeetingsPostRequest), nameof(Teams), new List<string>());
         
         [JsonPropertyName("teams")]
         public List<string> Teams
@@ -113,7 +113,7 @@ namespace JetBrains.Space.Client
             set => _teams.SetValue(value);
         }
     
-        private PropertyValue<MeetingVisibility> _visibility = new PropertyValue<MeetingVisibility>(nameof(CalendarsMeetingsPostRequest), nameof(Visibility));
+        private PropertyValue<MeetingVisibility> _visibility = new PropertyValue<MeetingVisibility>(nameof(CalendarsMeetingsPostRequest), nameof(Visibility), MeetingVisibility.EVERYONE);
         
         [JsonPropertyName("visibility")]
         public MeetingVisibility Visibility
@@ -122,7 +122,7 @@ namespace JetBrains.Space.Client
             set => _visibility.SetValue(value);
         }
     
-        private PropertyValue<MeetingModificationPreference> _modificationPreference = new PropertyValue<MeetingModificationPreference>(nameof(CalendarsMeetingsPostRequest), nameof(ModificationPreference));
+        private PropertyValue<MeetingModificationPreference> _modificationPreference = new PropertyValue<MeetingModificationPreference>(nameof(CalendarsMeetingsPostRequest), nameof(ModificationPreference), MeetingModificationPreference.PARTICIPANTS);
         
         [JsonPropertyName("modificationPreference")]
         public MeetingModificationPreference ModificationPreference
@@ -131,7 +131,7 @@ namespace JetBrains.Space.Client
             set => _modificationPreference.SetValue(value);
         }
     
-        private PropertyValue<MeetingJoiningPreference> _joiningPreference = new PropertyValue<MeetingJoiningPreference>(nameof(CalendarsMeetingsPostRequest), nameof(JoiningPreference));
+        private PropertyValue<MeetingJoiningPreference> _joiningPreference = new PropertyValue<MeetingJoiningPreference>(nameof(CalendarsMeetingsPostRequest), nameof(JoiningPreference), MeetingJoiningPreference.NOBODY);
         
         [JsonPropertyName("joiningPreference")]
         public MeetingJoiningPreference JoiningPreference

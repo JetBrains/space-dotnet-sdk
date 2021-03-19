@@ -50,7 +50,7 @@ namespace JetBrains.Space.Client
             set => _id.SetValue(value);
         }
     
-        private PropertyValue<List<CodeReviewParticipantRecord>> _authors = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Authors));
+        private PropertyValue<List<CodeReviewParticipantRecord>> _authors = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Authors), new List<CodeReviewParticipantRecord>());
         
         [Required]
         [Obsolete("Use participants (since 2020-11-03) (marked for removal)")]
@@ -80,7 +80,7 @@ namespace JetBrains.Space.Client
             set => _participants.SetValue(value);
         }
     
-        private PropertyValue<List<CodeReviewParticipantRecord>> _reviewers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Reviewers));
+        private PropertyValue<List<CodeReviewParticipantRecord>> _reviewers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Reviewers), new List<CodeReviewParticipantRecord>());
         
         [Required]
         [Obsolete("Use participants (since 2020-11-03) (marked for removal)")]
@@ -91,7 +91,7 @@ namespace JetBrains.Space.Client
             set => _reviewers.SetValue(value);
         }
     
-        private PropertyValue<List<CodeReviewParticipantRecord>> _watchers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Watchers));
+        private PropertyValue<List<CodeReviewParticipantRecord>> _watchers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Watchers), new List<CodeReviewParticipantRecord>());
         
         [Required]
         [Obsolete("Use participants (since 2020-11-03) (marked for removal)")]

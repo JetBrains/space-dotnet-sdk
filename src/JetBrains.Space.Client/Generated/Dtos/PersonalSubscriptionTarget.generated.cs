@@ -70,7 +70,7 @@ namespace JetBrains.Space.Client
             set => _description.SetValue(value);
         }
     
-        private PropertyValue<List<PersonalSubscriptionEvent>> _events = new PropertyValue<List<PersonalSubscriptionEvent>>(nameof(PersonalSubscriptionTarget), nameof(Events));
+        private PropertyValue<List<PersonalSubscriptionEvent>> _events = new PropertyValue<List<PersonalSubscriptionEvent>>(nameof(PersonalSubscriptionTarget), nameof(Events), new List<PersonalSubscriptionEvent>());
         
         [Required]
         [JsonPropertyName("events")]

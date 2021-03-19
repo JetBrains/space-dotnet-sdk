@@ -118,7 +118,7 @@ namespace JetBrains.Space.Client
             set => _appVersion.SetValue(value);
         }
     
-        private PropertyValue<List<ContainerHelmChartDependency>> _dependencies = new PropertyValue<List<ContainerHelmChartDependency>>(nameof(ContainerHelmChart), nameof(Dependencies));
+        private PropertyValue<List<ContainerHelmChartDependency>> _dependencies = new PropertyValue<List<ContainerHelmChartDependency>>(nameof(ContainerHelmChart), nameof(Dependencies), new List<ContainerHelmChartDependency>());
         
         [Required]
         [JsonPropertyName("dependencies")]

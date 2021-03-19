@@ -59,7 +59,7 @@ namespace JetBrains.Space.Client
             set => _qrCode.SetValue(value);
         }
     
-        private PropertyValue<List<int>> _scratchCodes = new PropertyValue<List<int>>(nameof(TwoFactorAuthenticationSecret), nameof(ScratchCodes));
+        private PropertyValue<List<int>> _scratchCodes = new PropertyValue<List<int>>(nameof(TwoFactorAuthenticationSecret), nameof(ScratchCodes), new List<int>());
         
         [Required]
         [JsonPropertyName("scratchCodes")]

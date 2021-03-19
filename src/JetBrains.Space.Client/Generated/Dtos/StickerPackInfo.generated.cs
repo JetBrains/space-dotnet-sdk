@@ -114,7 +114,7 @@ namespace JetBrains.Space.Client
             set => _pack.SetValue(value);
         }
     
-        private PropertyValue<List<Sticker>> _stickers = new PropertyValue<List<Sticker>>(nameof(StickerPackInfo), nameof(Stickers));
+        private PropertyValue<List<Sticker>> _stickers = new PropertyValue<List<Sticker>>(nameof(StickerPackInfo), nameof(Stickers), new List<Sticker>());
         
         [Required]
         [JsonPropertyName("stickers")]

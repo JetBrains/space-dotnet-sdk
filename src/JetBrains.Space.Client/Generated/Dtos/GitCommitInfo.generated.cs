@@ -115,7 +115,7 @@ namespace JetBrains.Space.Client
             set => _authorProfile.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _parents = new PropertyValue<List<string>>(nameof(GitCommitInfo), nameof(Parents));
+        private PropertyValue<List<string>> _parents = new PropertyValue<List<string>>(nameof(GitCommitInfo), nameof(Parents), new List<string>());
         
         [Required]
         [JsonPropertyName("parents")]
@@ -125,7 +125,7 @@ namespace JetBrains.Space.Client
             set => _parents.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _heads = new PropertyValue<List<string>>(nameof(GitCommitInfo), nameof(Heads));
+        private PropertyValue<List<string>> _heads = new PropertyValue<List<string>>(nameof(GitCommitInfo), nameof(Heads), new List<string>());
         
         [Required]
         [JsonPropertyName("heads")]

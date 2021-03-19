@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             Order = order;
         }
         
-        private PropertyValue<List<string>> _order = new PropertyValue<List<string>>(nameof(AuthModulesReorderPostRequest), nameof(Order));
+        private PropertyValue<List<string>> _order = new PropertyValue<List<string>>(nameof(AuthModulesReorderPostRequest), nameof(Order), new List<string>());
         
         [Required]
         [JsonPropertyName("order")]

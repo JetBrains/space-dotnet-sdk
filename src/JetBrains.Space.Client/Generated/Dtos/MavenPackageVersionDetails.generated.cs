@@ -244,7 +244,7 @@ namespace JetBrains.Space.Client
             set => _url.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _licenses = new PropertyValue<List<string>>(nameof(MavenPackageVersionDetails), nameof(Licenses));
+        private PropertyValue<List<string>> _licenses = new PropertyValue<List<string>>(nameof(MavenPackageVersionDetails), nameof(Licenses), new List<string>());
         
         [Required]
         [JsonPropertyName("licenses")]
@@ -263,7 +263,7 @@ namespace JetBrains.Space.Client
             set => _scmUrl.SetValue(value);
         }
     
-        private PropertyValue<List<MavenPackageDependency>> _dependencies = new PropertyValue<List<MavenPackageDependency>>(nameof(MavenPackageVersionDetails), nameof(Dependencies));
+        private PropertyValue<List<MavenPackageDependency>> _dependencies = new PropertyValue<List<MavenPackageDependency>>(nameof(MavenPackageVersionDetails), nameof(Dependencies), new List<MavenPackageDependency>());
         
         [Required]
         [JsonPropertyName("dependencies")]
@@ -300,7 +300,7 @@ namespace JetBrains.Space.Client
             set => _pathPrefix.SetValue(value);
         }
     
-        private PropertyValue<List<MavenPackageFile>> _files = new PropertyValue<List<MavenPackageFile>>(nameof(MavenPackageVersionDetails), nameof(Files));
+        private PropertyValue<List<MavenPackageFile>> _files = new PropertyValue<List<MavenPackageFile>>(nameof(MavenPackageVersionDetails), nameof(Files), new List<MavenPackageFile>());
         
         [Required]
         [JsonPropertyName("files")]

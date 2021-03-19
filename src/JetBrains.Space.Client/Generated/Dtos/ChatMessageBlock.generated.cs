@@ -61,7 +61,7 @@ namespace JetBrains.Space.Client
             set => _outline.SetValue(value);
         }
     
-        private PropertyValue<List<MessageSectionElement>> _sections = new PropertyValue<List<MessageSectionElement>>(nameof(ChatMessageBlock), nameof(Sections));
+        private PropertyValue<List<MessageSectionElement>> _sections = new PropertyValue<List<MessageSectionElement>>(nameof(ChatMessageBlock), nameof(Sections), new List<MessageSectionElement>());
         
         [Required]
         [JsonPropertyName("sections")]

@@ -93,7 +93,7 @@ namespace JetBrains.Space.Client
             set => _meReacted.SetValue(value);
         }
     
-        private PropertyValue<List<CPrincipal>> _principals = new PropertyValue<List<CPrincipal>>(nameof(CertainReactionToItemRecord), nameof(Principals));
+        private PropertyValue<List<CPrincipal>> _principals = new PropertyValue<List<CPrincipal>>(nameof(CertainReactionToItemRecord), nameof(Principals), new List<CPrincipal>());
         
         [Required]
         [JsonPropertyName("principals")]

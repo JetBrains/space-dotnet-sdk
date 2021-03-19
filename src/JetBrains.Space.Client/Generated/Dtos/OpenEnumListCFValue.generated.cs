@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             Values = values;
         }
         
-        private PropertyValue<List<EnumValueData>> _values = new PropertyValue<List<EnumValueData>>(nameof(OpenEnumListCFValue), nameof(Values));
+        private PropertyValue<List<EnumValueData>> _values = new PropertyValue<List<EnumValueData>>(nameof(OpenEnumListCFValue), nameof(Values), new List<EnumValueData>());
         
         [Required]
         [JsonPropertyName("values")]

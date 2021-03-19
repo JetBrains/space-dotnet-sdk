@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             Members = members;
         }
         
-        private PropertyValue<List<TDMemberProfile>> _members = new PropertyValue<List<TDMemberProfile>>(nameof(BoardMemberOwners), nameof(Members));
+        private PropertyValue<List<TDMemberProfile>> _members = new PropertyValue<List<TDMemberProfile>>(nameof(BoardMemberOwners), nameof(Members), new List<TDMemberProfile>());
         
         [Required]
         [JsonPropertyName("members")]

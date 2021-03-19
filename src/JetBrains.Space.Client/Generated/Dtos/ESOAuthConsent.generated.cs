@@ -59,7 +59,7 @@ namespace JetBrains.Space.Client
             set => _clientApplication.SetValue(value);
         }
     
-        private PropertyValue<List<ESApprovedScope>> _approvedScopes = new PropertyValue<List<ESApprovedScope>>(nameof(ESOAuthConsent), nameof(ApprovedScopes));
+        private PropertyValue<List<ESApprovedScope>> _approvedScopes = new PropertyValue<List<ESApprovedScope>>(nameof(ESOAuthConsent), nameof(ApprovedScopes), new List<ESApprovedScope>());
         
         [Required]
         [JsonPropertyName("approvedScopes")]
@@ -69,7 +69,7 @@ namespace JetBrains.Space.Client
             set => _approvedScopes.SetValue(value);
         }
     
-        private PropertyValue<List<ESRefreshToken>> _refreshTokens = new PropertyValue<List<ESRefreshToken>>(nameof(ESOAuthConsent), nameof(RefreshTokens));
+        private PropertyValue<List<ESRefreshToken>> _refreshTokens = new PropertyValue<List<ESRefreshToken>>(nameof(ESOAuthConsent), nameof(RefreshTokens), new List<ESRefreshToken>());
         
         [Required]
         [JsonPropertyName("refreshTokens")]

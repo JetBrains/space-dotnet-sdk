@@ -71,7 +71,7 @@ namespace JetBrains.Space.Client
             set => _meVote.SetValue(value);
         }
     
-        private PropertyValue<List<TDMemberProfile>> _lastUsers = new PropertyValue<List<TDMemberProfile>>(nameof(VoteGroup), nameof(LastUsers));
+        private PropertyValue<List<TDMemberProfile>> _lastUsers = new PropertyValue<List<TDMemberProfile>>(nameof(VoteGroup), nameof(LastUsers), new List<TDMemberProfile>());
         
         [Required]
         [JsonPropertyName("lastUsers")]

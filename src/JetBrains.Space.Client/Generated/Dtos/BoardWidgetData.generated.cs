@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _max.SetValue(value);
         }
     
-        private PropertyValue<List<int>> _perColumns = new PropertyValue<List<int>>(nameof(BoardWidgetData), nameof(PerColumns));
+        private PropertyValue<List<int>> _perColumns = new PropertyValue<List<int>>(nameof(BoardWidgetData), nameof(PerColumns), new List<int>());
         
         [Required]
         [JsonPropertyName("perColumns")]

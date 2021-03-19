@@ -61,7 +61,7 @@ namespace JetBrains.Space.Client
             set => _commit.SetValue(value);
         }
     
-        private PropertyValue<List<CodeReviewRecord>> _reviews = new PropertyValue<List<CodeReviewRecord>>(nameof(GitCommitWithGraph), nameof(Reviews));
+        private PropertyValue<List<CodeReviewRecord>> _reviews = new PropertyValue<List<CodeReviewRecord>>(nameof(GitCommitWithGraph), nameof(Reviews), new List<CodeReviewRecord>());
         
         [Required]
         [JsonPropertyName("reviews")]

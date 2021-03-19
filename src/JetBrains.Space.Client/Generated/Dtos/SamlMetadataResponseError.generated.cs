@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             Messages = messages;
         }
         
-        private PropertyValue<List<string>> _messages = new PropertyValue<List<string>>(nameof(SamlMetadataResponseError), nameof(Messages));
+        private PropertyValue<List<string>> _messages = new PropertyValue<List<string>>(nameof(SamlMetadataResponseError), nameof(Messages), new List<string>());
         
         [Required]
         [JsonPropertyName("messages")]

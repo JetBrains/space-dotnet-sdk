@@ -41,7 +41,7 @@ namespace JetBrains.Space.Client
             OthersDisplayNames = othersDisplayNames;
         }
         
-        private PropertyValue<List<CPrincipal>> _principals = new PropertyValue<List<CPrincipal>>(nameof(MembersAddedItemDetails), nameof(Principals));
+        private PropertyValue<List<CPrincipal>> _principals = new PropertyValue<List<CPrincipal>>(nameof(MembersAddedItemDetails), nameof(Principals), new List<CPrincipal>());
         
         [Required]
         [JsonPropertyName("principals")]
@@ -51,7 +51,7 @@ namespace JetBrains.Space.Client
             set => _principals.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _othersDisplayNames = new PropertyValue<List<string>>(nameof(MembersAddedItemDetails), nameof(OthersDisplayNames));
+        private PropertyValue<List<string>> _othersDisplayNames = new PropertyValue<List<string>>(nameof(MembersAddedItemDetails), nameof(OthersDisplayNames), new List<string>());
         
         [Required]
         [JsonPropertyName("othersDisplayNames")]

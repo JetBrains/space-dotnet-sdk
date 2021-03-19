@@ -110,7 +110,7 @@ namespace JetBrains.Space.Client
             set => _platform.SetValue(value);
         }
     
-        private PropertyValue<List<ContainerImageLayer>> _history = new PropertyValue<List<ContainerImageLayer>>(nameof(ContainerImage), nameof(History));
+        private PropertyValue<List<ContainerImageLayer>> _history = new PropertyValue<List<ContainerImageLayer>>(nameof(ContainerImage), nameof(History), new List<ContainerImageLayer>());
         
         [Required]
         [JsonPropertyName("history")]
@@ -120,7 +120,7 @@ namespace JetBrains.Space.Client
             set => _history.SetValue(value);
         }
     
-        private PropertyValue<List<ContainerManifest>> _children = new PropertyValue<List<ContainerManifest>>(nameof(ContainerImage), nameof(Children));
+        private PropertyValue<List<ContainerManifest>> _children = new PropertyValue<List<ContainerManifest>>(nameof(ContainerImage), nameof(Children), new List<ContainerManifest>());
         
         [Required]
         [JsonPropertyName("children")]

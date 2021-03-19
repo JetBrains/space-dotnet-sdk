@@ -158,7 +158,7 @@ namespace JetBrains.Space.Client
             set => _expirationTime.SetValue(value);
         }
     
-        private PropertyValue<List<VoteGroup>> _votes = new PropertyValue<List<VoteGroup>>(nameof(PollRecord), nameof(Votes));
+        private PropertyValue<List<VoteGroup>> _votes = new PropertyValue<List<VoteGroup>>(nameof(PollRecord), nameof(Votes), new List<VoteGroup>());
         
         [Required]
         [JsonPropertyName("votes")]

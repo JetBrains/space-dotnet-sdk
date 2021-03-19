@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             Elements = elements;
         }
         
-        private PropertyValue<List<MessageControlElement>> _elements = new PropertyValue<List<MessageControlElement>>(nameof(MessageControlGroup), nameof(Elements));
+        private PropertyValue<List<MessageControlElement>> _elements = new PropertyValue<List<MessageControlElement>>(nameof(MessageControlGroup), nameof(Elements), new List<MessageControlElement>());
         
         [Required]
         [JsonPropertyName("elements")]

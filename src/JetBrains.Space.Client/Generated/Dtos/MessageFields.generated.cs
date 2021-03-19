@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             Fields = fields;
         }
         
-        private PropertyValue<List<MessageFieldElement>> _fields = new PropertyValue<List<MessageFieldElement>>(nameof(MessageFields), nameof(Fields));
+        private PropertyValue<List<MessageFieldElement>> _fields = new PropertyValue<List<MessageFieldElement>>(nameof(MessageFields), nameof(Fields), new List<MessageFieldElement>());
         
         [Required]
         [JsonPropertyName("fields")]

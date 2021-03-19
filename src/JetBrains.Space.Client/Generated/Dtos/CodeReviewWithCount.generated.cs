@@ -60,7 +60,7 @@ namespace JetBrains.Space.Client
             set => _messagesCount.SetValue(value);
         }
     
-        private PropertyValue<List<GitCommitterProfile>> _authors = new PropertyValue<List<GitCommitterProfile>>(nameof(CodeReviewWithCount), nameof(Authors));
+        private PropertyValue<List<GitCommitterProfile>> _authors = new PropertyValue<List<GitCommitterProfile>>(nameof(CodeReviewWithCount), nameof(Authors), new List<GitCommitterProfile>());
         
         [Required]
         [JsonPropertyName("authors")]

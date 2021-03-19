@@ -70,7 +70,7 @@ namespace JetBrains.Space.Client
             set => _description.SetValue(value);
         }
     
-        private PropertyValue<List<CRight>> _rights = new PropertyValue<List<CRight>>(nameof(EventTypeInfo), nameof(Rights));
+        private PropertyValue<List<CRight>> _rights = new PropertyValue<List<CRight>>(nameof(EventTypeInfo), nameof(Rights), new List<CRight>());
         
         [Required]
         [JsonPropertyName("rights")]

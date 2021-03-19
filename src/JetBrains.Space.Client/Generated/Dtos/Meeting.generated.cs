@@ -97,7 +97,7 @@ namespace JetBrains.Space.Client
             set => _description.SetValue(value);
         }
     
-        private PropertyValue<List<TDLocation>> _locations = new PropertyValue<List<TDLocation>>(nameof(Meeting), nameof(Locations));
+        private PropertyValue<List<TDLocation>> _locations = new PropertyValue<List<TDLocation>>(nameof(Meeting), nameof(Locations), new List<TDLocation>());
         
         [Required]
         [JsonPropertyName("locations")]
@@ -107,7 +107,7 @@ namespace JetBrains.Space.Client
             set => _locations.SetValue(value);
         }
     
-        private PropertyValue<List<TDMemberProfile>> _profiles = new PropertyValue<List<TDMemberProfile>>(nameof(Meeting), nameof(Profiles));
+        private PropertyValue<List<TDMemberProfile>> _profiles = new PropertyValue<List<TDMemberProfile>>(nameof(Meeting), nameof(Profiles), new List<TDMemberProfile>());
         
         [Required]
         [JsonPropertyName("profiles")]
@@ -117,7 +117,7 @@ namespace JetBrains.Space.Client
             set => _profiles.SetValue(value);
         }
     
-        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(Meeting), nameof(Teams));
+        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(Meeting), nameof(Teams), new List<TDTeam>());
         
         [Required]
         [JsonPropertyName("teams")]
@@ -244,7 +244,7 @@ namespace JetBrains.Space.Client
             set => _canJoin.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _externalParticipants = new PropertyValue<List<string>>(nameof(Meeting), nameof(ExternalParticipants));
+        private PropertyValue<List<string>> _externalParticipants = new PropertyValue<List<string>>(nameof(Meeting), nameof(ExternalParticipants), new List<string>());
         
         [Required]
         [JsonPropertyName("externalParticipants")]

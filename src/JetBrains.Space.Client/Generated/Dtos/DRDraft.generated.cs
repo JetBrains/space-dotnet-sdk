@@ -178,7 +178,7 @@ namespace JetBrains.Space.Client
             set => _accessOrdinal.SetValue(value);
         }
     
-        private PropertyValue<List<TDMemberProfile>> _editors = new PropertyValue<List<TDMemberProfile>>(nameof(DRDraft), nameof(Editors));
+        private PropertyValue<List<TDMemberProfile>> _editors = new PropertyValue<List<TDMemberProfile>>(nameof(DRDraft), nameof(Editors), new List<TDMemberProfile>());
         
         [Required]
         [JsonPropertyName("editors")]
@@ -188,7 +188,7 @@ namespace JetBrains.Space.Client
             set => _editors.SetValue(value);
         }
     
-        private PropertyValue<List<TDTeam>> _editorsTeams = new PropertyValue<List<TDTeam>>(nameof(DRDraft), nameof(EditorsTeams));
+        private PropertyValue<List<TDTeam>> _editorsTeams = new PropertyValue<List<TDTeam>>(nameof(DRDraft), nameof(EditorsTeams), new List<TDTeam>());
         
         [Required]
         [JsonPropertyName("editorsTeams")]

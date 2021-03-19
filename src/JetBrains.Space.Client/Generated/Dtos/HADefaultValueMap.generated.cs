@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             Elements = elements;
         }
         
-        private PropertyValue<Dictionary<string, HADefaultValue>> _elements = new PropertyValue<Dictionary<string, HADefaultValue>>(nameof(HADefaultValueMap), nameof(Elements));
+        private PropertyValue<Dictionary<string, HADefaultValue>> _elements = new PropertyValue<Dictionary<string, HADefaultValue>>(nameof(HADefaultValueMap), nameof(Elements), new Dictionary<string, HADefaultValue>());
         
         [Required]
         [JsonPropertyName("elements")]

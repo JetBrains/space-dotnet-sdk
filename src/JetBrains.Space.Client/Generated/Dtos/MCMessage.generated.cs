@@ -64,7 +64,7 @@ namespace JetBrains.Space.Client
             set => _outline.SetValue(value);
         }
     
-        private PropertyValue<List<MCElement>> _content = new PropertyValue<List<MCElement>>(nameof(MCMessage), nameof(Content));
+        private PropertyValue<List<MCElement>> _content = new PropertyValue<List<MCElement>>(nameof(MCMessage), nameof(Content), new List<MCElement>());
         
         [Required]
         [JsonPropertyName("content")]

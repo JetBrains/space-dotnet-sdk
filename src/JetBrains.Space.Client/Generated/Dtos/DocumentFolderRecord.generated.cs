@@ -87,7 +87,7 @@ namespace JetBrains.Space.Client
             set => _parent.SetValue(value);
         }
     
-        private PropertyValue<List<DocumentFolderRecord>> _subfolders = new PropertyValue<List<DocumentFolderRecord>>(nameof(DocumentFolderRecord), nameof(Subfolders));
+        private PropertyValue<List<DocumentFolderRecord>> _subfolders = new PropertyValue<List<DocumentFolderRecord>>(nameof(DocumentFolderRecord), nameof(Subfolders), new List<DocumentFolderRecord>());
         
         [Required]
         [JsonPropertyName("subfolders")]
@@ -97,7 +97,7 @@ namespace JetBrains.Space.Client
             set => _subfolders.SetValue(value);
         }
     
-        private PropertyValue<List<DRDraftHeader>> _documents = new PropertyValue<List<DRDraftHeader>>(nameof(DocumentFolderRecord), nameof(Documents));
+        private PropertyValue<List<DRDraftHeader>> _documents = new PropertyValue<List<DRDraftHeader>>(nameof(DocumentFolderRecord), nameof(Documents), new List<DRDraftHeader>());
         
         [Required]
         [JsonPropertyName("documents")]

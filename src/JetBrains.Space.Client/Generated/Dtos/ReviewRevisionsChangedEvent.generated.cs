@@ -43,7 +43,7 @@ namespace JetBrains.Space.Client
             Review = review;
         }
         
-        private PropertyValue<List<RepositoryCommitRecord>> _commits = new PropertyValue<List<RepositoryCommitRecord>>(nameof(ReviewRevisionsChangedEvent), nameof(Commits));
+        private PropertyValue<List<RepositoryCommitRecord>> _commits = new PropertyValue<List<RepositoryCommitRecord>>(nameof(ReviewRevisionsChangedEvent), nameof(Commits), new List<RepositoryCommitRecord>());
         
         [Required]
         [JsonPropertyName("commits")]

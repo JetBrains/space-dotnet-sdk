@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             FileNames = fileNames;
         }
         
-        private PropertyValue<List<string>> _fileNames = new PropertyValue<List<string>>(nameof(ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest), nameof(FileNames));
+        private PropertyValue<List<string>> _fileNames = new PropertyValue<List<string>>(nameof(ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest), nameof(FileNames), new List<string>());
         
         [Required]
         [JsonPropertyName("fileNames")]

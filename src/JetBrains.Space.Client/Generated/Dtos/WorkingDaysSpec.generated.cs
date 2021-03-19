@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             Timezone = timezone;
         }
         
-        private PropertyValue<List<Workday>> _days = new PropertyValue<List<Workday>>(nameof(WorkingDaysSpec), nameof(Days));
+        private PropertyValue<List<Workday>> _days = new PropertyValue<List<Workday>>(nameof(WorkingDaysSpec), nameof(Days), new List<Workday>());
         
         [Required]
         [Obsolete("Use workingHours and notificationHours instead (since 2020-11-10)")]

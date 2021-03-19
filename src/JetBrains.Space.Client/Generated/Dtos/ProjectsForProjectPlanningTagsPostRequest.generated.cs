@@ -47,7 +47,7 @@ namespace JetBrains.Space.Client
             set => _parentTagId.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _path = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningTagsPostRequest), nameof(Path));
+        private PropertyValue<List<string>> _path = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningTagsPostRequest), nameof(Path), new List<string>());
         
         [Required]
         [JsonPropertyName("path")]

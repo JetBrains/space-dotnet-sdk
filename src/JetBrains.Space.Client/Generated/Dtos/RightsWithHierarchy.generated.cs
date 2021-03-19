@@ -39,7 +39,7 @@ namespace JetBrains.Space.Client
             Deps = deps;
         }
         
-        private PropertyValue<List<RightTypeRight>> _rights = new PropertyValue<List<RightTypeRight>>(nameof(RightsWithHierarchy), nameof(Rights));
+        private PropertyValue<List<RightTypeRight>> _rights = new PropertyValue<List<RightTypeRight>>(nameof(RightsWithHierarchy), nameof(Rights), new List<RightTypeRight>());
         
         [Required]
         [JsonPropertyName("rights")]
@@ -49,7 +49,7 @@ namespace JetBrains.Space.Client
             set => _rights.SetValue(value);
         }
     
-        private PropertyValue<List<RightsGroup>> _rightsGroups = new PropertyValue<List<RightsGroup>>(nameof(RightsWithHierarchy), nameof(RightsGroups));
+        private PropertyValue<List<RightsGroup>> _rightsGroups = new PropertyValue<List<RightsGroup>>(nameof(RightsWithHierarchy), nameof(RightsGroups), new List<RightsGroup>());
         
         [Required]
         [JsonPropertyName("rightsGroups")]
@@ -59,7 +59,7 @@ namespace JetBrains.Space.Client
             set => _rightsGroups.SetValue(value);
         }
     
-        private PropertyValue<List<RightsDeps>> _deps = new PropertyValue<List<RightsDeps>>(nameof(RightsWithHierarchy), nameof(Deps));
+        private PropertyValue<List<RightsDeps>> _deps = new PropertyValue<List<RightsDeps>>(nameof(RightsWithHierarchy), nameof(Deps), new List<RightsDeps>());
         
         [Required]
         [JsonPropertyName("deps")]

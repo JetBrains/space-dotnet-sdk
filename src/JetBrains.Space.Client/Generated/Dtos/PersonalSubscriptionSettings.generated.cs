@@ -38,7 +38,7 @@ namespace JetBrains.Space.Client
             EnabledCodes = enabledCodes;
         }
         
-        private PropertyValue<List<PersonalSubscriptionSubjectSettings>> _subjectSettings = new PropertyValue<List<PersonalSubscriptionSubjectSettings>>(nameof(PersonalSubscriptionSettings), nameof(SubjectSettings));
+        private PropertyValue<List<PersonalSubscriptionSubjectSettings>> _subjectSettings = new PropertyValue<List<PersonalSubscriptionSubjectSettings>>(nameof(PersonalSubscriptionSettings), nameof(SubjectSettings), new List<PersonalSubscriptionSubjectSettings>());
         
         [Required]
         [JsonPropertyName("subjectSettings")]
@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _subjectSettings.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _enabledCodes = new PropertyValue<List<string>>(nameof(PersonalSubscriptionSettings), nameof(EnabledCodes));
+        private PropertyValue<List<string>> _enabledCodes = new PropertyValue<List<string>>(nameof(PersonalSubscriptionSettings), nameof(EnabledCodes), new List<string>());
         
         [Required]
         [JsonPropertyName("enabledCodes")]

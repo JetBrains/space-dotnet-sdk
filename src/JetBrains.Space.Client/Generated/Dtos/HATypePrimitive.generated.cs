@@ -62,7 +62,7 @@ namespace JetBrains.Space.Client
             set => _nullable.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypePrimitive), nameof(Tags));
+        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypePrimitive), nameof(Tags), new List<string>());
         
         [Required]
         [JsonPropertyName("tags")]

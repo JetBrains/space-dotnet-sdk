@@ -38,7 +38,7 @@ namespace JetBrains.Space.Client
             Scope = scope;
         }
         
-        private PropertyValue<List<EnumValueData>> _valuesToAdd = new PropertyValue<List<EnumValueData>>(nameof(CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest), nameof(ValuesToAdd));
+        private PropertyValue<List<EnumValueData>> _valuesToAdd = new PropertyValue<List<EnumValueData>>(nameof(CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest), nameof(ValuesToAdd), new List<EnumValueData>());
         
         [Required]
         [JsonPropertyName("valuesToAdd")]

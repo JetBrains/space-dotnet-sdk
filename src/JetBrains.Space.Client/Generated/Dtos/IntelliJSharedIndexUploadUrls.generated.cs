@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             Urls = urls;
         }
         
-        private PropertyValue<List<IntelliJSharedIndexNamedUploadUrl>> _urls = new PropertyValue<List<IntelliJSharedIndexNamedUploadUrl>>(nameof(IntelliJSharedIndexUploadUrls), nameof(Urls));
+        private PropertyValue<List<IntelliJSharedIndexNamedUploadUrl>> _urls = new PropertyValue<List<IntelliJSharedIndexNamedUploadUrl>>(nameof(IntelliJSharedIndexUploadUrls), nameof(Urls), new List<IntelliJSharedIndexNamedUploadUrl>());
         
         [Required]
         [JsonPropertyName("urls")]

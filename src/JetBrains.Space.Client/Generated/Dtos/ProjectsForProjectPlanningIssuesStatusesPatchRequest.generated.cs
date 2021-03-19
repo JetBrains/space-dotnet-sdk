@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             Statuses = statuses;
         }
         
-        private PropertyValue<List<IssueStatusData>> _statuses = new PropertyValue<List<IssueStatusData>>(nameof(ProjectsForProjectPlanningIssuesStatusesPatchRequest), nameof(Statuses));
+        private PropertyValue<List<IssueStatusData>> _statuses = new PropertyValue<List<IssueStatusData>>(nameof(ProjectsForProjectPlanningIssuesStatusesPatchRequest), nameof(Statuses), new List<IssueStatusData>());
         
         [Required]
         [JsonPropertyName("statuses")]

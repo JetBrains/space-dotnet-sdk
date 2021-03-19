@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _id.SetValue(value);
         }
     
-        private PropertyValue<List<PlanItem>> _children = new PropertyValue<List<PlanItem>>(nameof(PlanItemChildren), nameof(Children));
+        private PropertyValue<List<PlanItem>> _children = new PropertyValue<List<PlanItem>>(nameof(PlanItemChildren), nameof(Children), new List<PlanItem>());
         
         [Required]
         [JsonPropertyName("children")]

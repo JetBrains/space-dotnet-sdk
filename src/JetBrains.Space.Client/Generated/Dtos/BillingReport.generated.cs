@@ -75,7 +75,7 @@ namespace JetBrains.Space.Client
             set => _till.SetValue(value);
         }
     
-        private PropertyValue<List<PurchasedBillingPlan>> _plans = new PropertyValue<List<PurchasedBillingPlan>>(nameof(BillingReport), nameof(Plans));
+        private PropertyValue<List<PurchasedBillingPlan>> _plans = new PropertyValue<List<PurchasedBillingPlan>>(nameof(BillingReport), nameof(Plans), new List<PurchasedBillingPlan>());
         
         [Required]
         [JsonPropertyName("plans")]
@@ -85,7 +85,7 @@ namespace JetBrains.Space.Client
             set => _plans.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _activeUsers = new PropertyValue<List<long>>(nameof(BillingReport), nameof(ActiveUsers));
+        private PropertyValue<List<long>> _activeUsers = new PropertyValue<List<long>>(nameof(BillingReport), nameof(ActiveUsers), new List<long>());
         
         [Required]
         [JsonPropertyName("activeUsers")]
@@ -95,7 +95,7 @@ namespace JetBrains.Space.Client
             set => _activeUsers.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _applications = new PropertyValue<List<long>>(nameof(BillingReport), nameof(Applications));
+        private PropertyValue<List<long>> _applications = new PropertyValue<List<long>>(nameof(BillingReport), nameof(Applications), new List<long>());
         
         [Required]
         [JsonPropertyName("applications")]
@@ -105,7 +105,7 @@ namespace JetBrains.Space.Client
             set => _applications.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _chatMessages = new PropertyValue<List<long>>(nameof(BillingReport), nameof(ChatMessages));
+        private PropertyValue<List<long>> _chatMessages = new PropertyValue<List<long>>(nameof(BillingReport), nameof(ChatMessages), new List<long>());
         
         [Required]
         [JsonPropertyName("chatMessages")]
@@ -115,7 +115,7 @@ namespace JetBrains.Space.Client
             set => _chatMessages.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _ciCredits = new PropertyValue<List<long>>(nameof(BillingReport), nameof(CiCredits));
+        private PropertyValue<List<long>> _ciCredits = new PropertyValue<List<long>>(nameof(BillingReport), nameof(CiCredits), new List<long>());
         
         [Required]
         [JsonPropertyName("ciCredits")]
@@ -125,7 +125,7 @@ namespace JetBrains.Space.Client
             set => _ciCredits.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _trafficTotal = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficTotal));
+        private PropertyValue<List<long>> _trafficTotal = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficTotal), new List<long>());
         
         [Required]
         [JsonPropertyName("trafficTotal")]
@@ -135,7 +135,7 @@ namespace JetBrains.Space.Client
             set => _trafficTotal.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _trafficFiles = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficFiles));
+        private PropertyValue<List<long>> _trafficFiles = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficFiles), new List<long>());
         
         [Required]
         [JsonPropertyName("trafficFiles")]
@@ -145,7 +145,7 @@ namespace JetBrains.Space.Client
             set => _trafficFiles.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _trafficGit = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficGit));
+        private PropertyValue<List<long>> _trafficGit = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficGit), new List<long>());
         
         [Required]
         [JsonPropertyName("trafficGit")]
@@ -155,7 +155,7 @@ namespace JetBrains.Space.Client
             set => _trafficGit.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _trafficPackages = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficPackages));
+        private PropertyValue<List<long>> _trafficPackages = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficPackages), new List<long>());
         
         [Required]
         [JsonPropertyName("trafficPackages")]
@@ -165,7 +165,7 @@ namespace JetBrains.Space.Client
             set => _trafficPackages.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _trafficAutomation = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficAutomation));
+        private PropertyValue<List<long>> _trafficAutomation = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficAutomation), new List<long>());
         
         [Required]
         [JsonPropertyName("trafficAutomation")]
@@ -175,7 +175,7 @@ namespace JetBrains.Space.Client
             set => _trafficAutomation.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _storageTotal = new PropertyValue<List<long>>(nameof(BillingReport), nameof(StorageTotal));
+        private PropertyValue<List<long>> _storageTotal = new PropertyValue<List<long>>(nameof(BillingReport), nameof(StorageTotal), new List<long>());
         
         [Required]
         [JsonPropertyName("storageTotal")]
@@ -185,7 +185,7 @@ namespace JetBrains.Space.Client
             set => _storageTotal.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _storageFiles = new PropertyValue<List<long>>(nameof(BillingReport), nameof(StorageFiles));
+        private PropertyValue<List<long>> _storageFiles = new PropertyValue<List<long>>(nameof(BillingReport), nameof(StorageFiles), new List<long>());
         
         [Required]
         [JsonPropertyName("storageFiles")]
@@ -195,7 +195,7 @@ namespace JetBrains.Space.Client
             set => _storageFiles.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _storageGit = new PropertyValue<List<long>>(nameof(BillingReport), nameof(StorageGit));
+        private PropertyValue<List<long>> _storageGit = new PropertyValue<List<long>>(nameof(BillingReport), nameof(StorageGit), new List<long>());
         
         [Required]
         [JsonPropertyName("storageGit")]
@@ -205,7 +205,7 @@ namespace JetBrains.Space.Client
             set => _storageGit.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _storagePackages = new PropertyValue<List<long>>(nameof(BillingReport), nameof(StoragePackages));
+        private PropertyValue<List<long>> _storagePackages = new PropertyValue<List<long>>(nameof(BillingReport), nameof(StoragePackages), new List<long>());
         
         [Required]
         [JsonPropertyName("storagePackages")]

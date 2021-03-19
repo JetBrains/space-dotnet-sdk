@@ -38,7 +38,7 @@ namespace JetBrains.Space.Client
             Title = title;
         }
         
-        private PropertyValue<List<string>> _revisions = new PropertyValue<List<string>>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest), nameof(Revisions));
+        private PropertyValue<List<string>> _revisions = new PropertyValue<List<string>>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest), nameof(Revisions), new List<string>());
         
         [Required]
         [JsonPropertyName("revisions")]

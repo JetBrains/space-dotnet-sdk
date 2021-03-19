@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             Attachments = attachments;
         }
         
-        private PropertyValue<List<AttachmentIn>> _attachments = new PropertyValue<List<AttachmentIn>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest), nameof(Attachments));
+        private PropertyValue<List<AttachmentIn>> _attachments = new PropertyValue<List<AttachmentIn>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest), nameof(Attachments), new List<AttachmentIn>());
         
         [Required]
         [JsonPropertyName("attachments")]

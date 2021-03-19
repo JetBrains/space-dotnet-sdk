@@ -101,7 +101,7 @@ namespace JetBrains.Space.Client
             set => _workdays.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TDLocation), nameof(Phones));
+        private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TDLocation), nameof(Phones), new List<string>());
         
         [Required]
         [JsonPropertyName("phones")]
@@ -111,7 +111,7 @@ namespace JetBrains.Space.Client
             set => _phones.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _emails = new PropertyValue<List<string>>(nameof(TDLocation), nameof(Emails));
+        private PropertyValue<List<string>> _emails = new PropertyValue<List<string>>(nameof(TDLocation), nameof(Emails), new List<string>());
         
         [Required]
         [JsonPropertyName("emails")]

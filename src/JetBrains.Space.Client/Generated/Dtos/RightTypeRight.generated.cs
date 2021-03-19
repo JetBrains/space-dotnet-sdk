@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _rightType.SetValue(value);
         }
     
-        private PropertyValue<List<FullRightWithoutType>> _rights = new PropertyValue<List<FullRightWithoutType>>(nameof(RightTypeRight), nameof(Rights));
+        private PropertyValue<List<FullRightWithoutType>> _rights = new PropertyValue<List<FullRightWithoutType>>(nameof(RightTypeRight), nameof(Rights), new List<FullRightWithoutType>());
         
         [Required]
         [JsonPropertyName("rights")]

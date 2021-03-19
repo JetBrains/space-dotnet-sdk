@@ -153,7 +153,7 @@ namespace JetBrains.Space.Client
             set => _defaultManager.SetValue(value);
         }
     
-        private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(TDTeam), nameof(CustomFields));
+        private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(TDTeam), nameof(CustomFields), new Dictionary<string, CFValue>());
         
         [Required]
         [JsonPropertyName("customFields")]
@@ -163,7 +163,7 @@ namespace JetBrains.Space.Client
             set => _customFields.SetValue(value);
         }
     
-        private PropertyValue<List<TDMembership>> _memberships = new PropertyValue<List<TDMembership>>(nameof(TDTeam), nameof(Memberships));
+        private PropertyValue<List<TDMembership>> _memberships = new PropertyValue<List<TDMembership>>(nameof(TDTeam), nameof(Memberships), new List<TDMembership>());
         
         [Required]
         [JsonPropertyName("memberships")]

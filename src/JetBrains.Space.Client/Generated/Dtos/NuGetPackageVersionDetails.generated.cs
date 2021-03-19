@@ -269,7 +269,7 @@ namespace JetBrains.Space.Client
             set => _title.SetValue(value);
         }
     
-        private PropertyValue<List<NuGetDependencyGroup>> _dependencies = new PropertyValue<List<NuGetDependencyGroup>>(nameof(NuGetPackageVersionDetails), nameof(Dependencies));
+        private PropertyValue<List<NuGetDependencyGroup>> _dependencies = new PropertyValue<List<NuGetDependencyGroup>>(nameof(NuGetPackageVersionDetails), nameof(Dependencies), new List<NuGetDependencyGroup>());
         
         [Required]
         [JsonPropertyName("dependencies")]

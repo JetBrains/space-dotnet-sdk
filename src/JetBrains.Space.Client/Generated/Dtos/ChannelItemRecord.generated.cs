@@ -195,7 +195,7 @@ namespace JetBrains.Space.Client
             set => _suggestedParticipants.SetValue(value);
         }
     
-        private PropertyValue<List<Issue>> _issues = new PropertyValue<List<Issue>>(nameof(ChannelItemRecord), nameof(Issues));
+        private PropertyValue<List<Issue>> _issues = new PropertyValue<List<Issue>>(nameof(ChannelItemRecord), nameof(Issues), new List<Issue>());
         
         [Required]
         [JsonPropertyName("issues")]

@@ -138,7 +138,7 @@ namespace JetBrains.Space.Client
             set => _userInfoEndpoint.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ESOIDCAuthModuleSettings), nameof(Domains));
+        private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ESOIDCAuthModuleSettings), nameof(Domains), new List<string>());
         
         [Required]
         [JsonPropertyName("domains")]

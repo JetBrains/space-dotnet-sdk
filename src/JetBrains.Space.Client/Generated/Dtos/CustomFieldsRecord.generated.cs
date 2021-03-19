@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _id.SetValue(value);
         }
     
-        private PropertyValue<List<CustomFieldValue>> _values = new PropertyValue<List<CustomFieldValue>>(nameof(CustomFieldsRecord), nameof(Values));
+        private PropertyValue<List<CustomFieldValue>> _values = new PropertyValue<List<CustomFieldValue>>(nameof(CustomFieldsRecord), nameof(Values), new List<CustomFieldValue>());
         
         [Required]
         [JsonPropertyName("values")]

@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             Variants = variants;
         }
         
-        private PropertyValue<List<ImageAttachmentVariantsMeta>> _variants = new PropertyValue<List<ImageAttachmentVariantsMeta>>(nameof(ImageAttachmentMeta), nameof(Variants));
+        private PropertyValue<List<ImageAttachmentVariantsMeta>> _variants = new PropertyValue<List<ImageAttachmentVariantsMeta>>(nameof(ImageAttachmentMeta), nameof(Variants), new List<ImageAttachmentVariantsMeta>());
         
         [Required]
         [JsonPropertyName("variants")]

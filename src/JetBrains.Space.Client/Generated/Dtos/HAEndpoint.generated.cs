@@ -67,7 +67,7 @@ namespace JetBrains.Space.Client
             set => _method.SetValue(value);
         }
     
-        private PropertyValue<List<HAParameter>> _parameters = new PropertyValue<List<HAParameter>>(nameof(HAEndpoint), nameof(Parameters));
+        private PropertyValue<List<HAParameter>> _parameters = new PropertyValue<List<HAParameter>>(nameof(HAEndpoint), nameof(Parameters), new List<HAParameter>());
         
         [Required]
         [JsonPropertyName("parameters")]

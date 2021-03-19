@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _code.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _deps = new PropertyValue<List<string>>(nameof(RightsDeps), nameof(Deps));
+        private PropertyValue<List<string>> _deps = new PropertyValue<List<string>>(nameof(RightsDeps), nameof(Deps), new List<string>());
         
         [Required]
         [JsonPropertyName("deps")]

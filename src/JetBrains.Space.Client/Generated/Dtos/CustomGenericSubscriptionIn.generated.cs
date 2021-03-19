@@ -49,7 +49,7 @@ namespace JetBrains.Space.Client
             set => _subjectCode.SetValue(value);
         }
     
-        private PropertyValue<List<SubscriptionFilterIn>> _filters = new PropertyValue<List<SubscriptionFilterIn>>(nameof(CustomGenericSubscriptionIn), nameof(Filters));
+        private PropertyValue<List<SubscriptionFilterIn>> _filters = new PropertyValue<List<SubscriptionFilterIn>>(nameof(CustomGenericSubscriptionIn), nameof(Filters), new List<SubscriptionFilterIn>());
         
         [Required]
         [JsonPropertyName("filters")]
@@ -59,7 +59,7 @@ namespace JetBrains.Space.Client
             set => _filters.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _eventTypeCodes = new PropertyValue<List<string>>(nameof(CustomGenericSubscriptionIn), nameof(EventTypeCodes));
+        private PropertyValue<List<string>> _eventTypeCodes = new PropertyValue<List<string>>(nameof(CustomGenericSubscriptionIn), nameof(EventTypeCodes), new List<string>());
         
         [Required]
         [JsonPropertyName("eventTypeCodes")]

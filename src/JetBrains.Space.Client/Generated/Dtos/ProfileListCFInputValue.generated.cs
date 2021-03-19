@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             Profiles = profiles;
         }
         
-        private PropertyValue<List<ProfileIdentifier>> _profiles = new PropertyValue<List<ProfileIdentifier>>(nameof(ProfileListCFInputValue), nameof(Profiles));
+        private PropertyValue<List<ProfileIdentifier>> _profiles = new PropertyValue<List<ProfileIdentifier>>(nameof(ProfileListCFInputValue), nameof(Profiles), new List<ProfileIdentifier>());
         
         [Required]
         [JsonPropertyName("profiles")]

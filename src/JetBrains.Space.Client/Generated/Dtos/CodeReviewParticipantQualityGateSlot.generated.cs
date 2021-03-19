@@ -38,7 +38,7 @@ namespace JetBrains.Space.Client
             Index = index;
         }
         
-        private PropertyValue<List<string>> _rule = new PropertyValue<List<string>>(nameof(CodeReviewParticipantQualityGateSlot), nameof(Rule));
+        private PropertyValue<List<string>> _rule = new PropertyValue<List<string>>(nameof(CodeReviewParticipantQualityGateSlot), nameof(Rule), new List<string>());
         
         [Required]
         [JsonPropertyName("rule")]

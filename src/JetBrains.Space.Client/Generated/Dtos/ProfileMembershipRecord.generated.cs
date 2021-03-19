@@ -49,7 +49,7 @@ namespace JetBrains.Space.Client
             set => _id.SetValue(value);
         }
     
-        private PropertyValue<List<TDMembership>> _memberships = new PropertyValue<List<TDMembership>>(nameof(ProfileMembershipRecord), nameof(Memberships));
+        private PropertyValue<List<TDMembership>> _memberships = new PropertyValue<List<TDMembership>>(nameof(ProfileMembershipRecord), nameof(Memberships), new List<TDMembership>());
         
         [Required]
         [JsonPropertyName("memberships")]

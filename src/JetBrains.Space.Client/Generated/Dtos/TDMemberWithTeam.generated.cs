@@ -48,7 +48,7 @@ namespace JetBrains.Space.Client
             set => _profile.SetValue(value);
         }
     
-        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(TDMemberWithTeam), nameof(Teams));
+        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(TDMemberWithTeam), nameof(Teams), new List<TDTeam>());
         
         [Required]
         [JsonPropertyName("teams")]

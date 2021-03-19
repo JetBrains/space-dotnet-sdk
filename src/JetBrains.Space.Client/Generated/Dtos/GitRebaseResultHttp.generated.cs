@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             ResultCommitIds = resultCommitIds;
         }
         
-        private PropertyValue<List<string>> _resultCommitIds = new PropertyValue<List<string>>(nameof(GitRebaseResultHttp), nameof(ResultCommitIds));
+        private PropertyValue<List<string>> _resultCommitIds = new PropertyValue<List<string>>(nameof(GitRebaseResultHttp), nameof(ResultCommitIds), new List<string>());
         
         [Required]
         [JsonPropertyName("resultCommitIds")]

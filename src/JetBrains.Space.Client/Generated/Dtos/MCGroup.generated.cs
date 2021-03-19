@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             Elements = elements;
         }
         
-        private PropertyValue<List<MCElement>> _elements = new PropertyValue<List<MCElement>>(nameof(MCGroup), nameof(Elements));
+        private PropertyValue<List<MCElement>> _elements = new PropertyValue<List<MCElement>>(nameof(MCGroup), nameof(Elements), new List<MCElement>());
         
         [Required]
         [JsonPropertyName("elements")]

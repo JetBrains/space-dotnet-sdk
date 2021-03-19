@@ -137,7 +137,7 @@ namespace JetBrains.Space.Client
             set => _archived.SetValue(value);
         }
     
-        private PropertyValue<List<TDMemberProfile>> _adminProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(AdminProfiles));
+        private PropertyValue<List<TDMemberProfile>> _adminProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(AdminProfiles), new List<TDMemberProfile>());
         
         [Required]
         [JsonPropertyName("adminProfiles")]
@@ -147,7 +147,7 @@ namespace JetBrains.Space.Client
             set => _adminProfiles.SetValue(value);
         }
     
-        private PropertyValue<List<TDTeam>> _adminTeams = new PropertyValue<List<TDTeam>>(nameof(PRProject), nameof(AdminTeams));
+        private PropertyValue<List<TDTeam>> _adminTeams = new PropertyValue<List<TDTeam>>(nameof(PRProject), nameof(AdminTeams), new List<TDTeam>());
         
         [Required]
         [JsonPropertyName("adminTeams")]
@@ -157,7 +157,7 @@ namespace JetBrains.Space.Client
             set => _adminTeams.SetValue(value);
         }
     
-        private PropertyValue<List<BoardRecord>> _boards = new PropertyValue<List<BoardRecord>>(nameof(PRProject), nameof(Boards));
+        private PropertyValue<List<BoardRecord>> _boards = new PropertyValue<List<BoardRecord>>(nameof(PRProject), nameof(Boards), new List<BoardRecord>());
         
         [Required]
         [JsonPropertyName("boards")]
@@ -167,7 +167,7 @@ namespace JetBrains.Space.Client
             set => _boards.SetValue(value);
         }
     
-        private PropertyValue<List<TDMemberProfile>> _collaboratorsProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(CollaboratorsProfiles));
+        private PropertyValue<List<TDMemberProfile>> _collaboratorsProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(CollaboratorsProfiles), new List<TDMemberProfile>());
         
         [Required]
         [JsonPropertyName("collaboratorsProfiles")]
@@ -177,7 +177,7 @@ namespace JetBrains.Space.Client
             set => _collaboratorsProfiles.SetValue(value);
         }
     
-        private PropertyValue<List<TDTeam>> _collaboratorsTeams = new PropertyValue<List<TDTeam>>(nameof(PRProject), nameof(CollaboratorsTeams));
+        private PropertyValue<List<TDTeam>> _collaboratorsTeams = new PropertyValue<List<TDTeam>>(nameof(PRProject), nameof(CollaboratorsTeams), new List<TDTeam>());
         
         [Required]
         [JsonPropertyName("collaboratorsTeams")]
@@ -187,7 +187,7 @@ namespace JetBrains.Space.Client
             set => _collaboratorsTeams.SetValue(value);
         }
     
-        private PropertyValue<List<TDMemberProfile>> _memberProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(MemberProfiles));
+        private PropertyValue<List<TDMemberProfile>> _memberProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(MemberProfiles), new List<TDMemberProfile>());
         
         [Required]
         [JsonPropertyName("memberProfiles")]
@@ -197,7 +197,7 @@ namespace JetBrains.Space.Client
             set => _memberProfiles.SetValue(value);
         }
     
-        private PropertyValue<List<TDTeam>> _memberTeams = new PropertyValue<List<TDTeam>>(nameof(PRProject), nameof(MemberTeams));
+        private PropertyValue<List<TDTeam>> _memberTeams = new PropertyValue<List<TDTeam>>(nameof(PRProject), nameof(MemberTeams), new List<TDTeam>());
         
         [Required]
         [JsonPropertyName("memberTeams")]
@@ -216,7 +216,7 @@ namespace JetBrains.Space.Client
             set => _members.SetValue(value);
         }
     
-        private PropertyValue<List<ProjectPackageRepository>> _packages = new PropertyValue<List<ProjectPackageRepository>>(nameof(PRProject), nameof(Packages));
+        private PropertyValue<List<ProjectPackageRepository>> _packages = new PropertyValue<List<ProjectPackageRepository>>(nameof(PRProject), nameof(Packages), new List<ProjectPackageRepository>());
         
         [Required]
         [JsonPropertyName("packages")]
@@ -226,7 +226,7 @@ namespace JetBrains.Space.Client
             set => _packages.SetValue(value);
         }
     
-        private PropertyValue<List<PRRepositoryInfo>> _repos = new PropertyValue<List<PRRepositoryInfo>>(nameof(PRProject), nameof(Repos));
+        private PropertyValue<List<PRRepositoryInfo>> _repos = new PropertyValue<List<PRRepositoryInfo>>(nameof(PRProject), nameof(Repos), new List<PRRepositoryInfo>());
         
         [Required]
         [JsonPropertyName("repos")]
@@ -236,7 +236,7 @@ namespace JetBrains.Space.Client
             set => _repos.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(PRProject), nameof(Tags));
+        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(PRProject), nameof(Tags), new List<string>());
         
         [Required]
         [JsonPropertyName("tags")]
@@ -264,7 +264,7 @@ namespace JetBrains.Space.Client
             set => _teams.SetValue(value);
         }
     
-        private PropertyValue<List<ProjectIssueTrackerItem>> _trackers = new PropertyValue<List<ProjectIssueTrackerItem>>(nameof(PRProject), nameof(Trackers));
+        private PropertyValue<List<ProjectIssueTrackerItem>> _trackers = new PropertyValue<List<ProjectIssueTrackerItem>>(nameof(PRProject), nameof(Trackers), new List<ProjectIssueTrackerItem>());
         
         [Required]
         [JsonPropertyName("trackers")]

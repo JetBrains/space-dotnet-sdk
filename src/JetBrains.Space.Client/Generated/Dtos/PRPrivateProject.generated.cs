@@ -70,7 +70,7 @@ namespace JetBrains.Space.Client
             set => _accessAllowed.SetValue(value);
         }
     
-        private PropertyValue<List<TDMemberProfile>> _admins = new PropertyValue<List<TDMemberProfile>>(nameof(PRPrivateProject), nameof(Admins));
+        private PropertyValue<List<TDMemberProfile>> _admins = new PropertyValue<List<TDMemberProfile>>(nameof(PRPrivateProject), nameof(Admins), new List<TDMemberProfile>());
         
         [Required]
         [JsonPropertyName("admins")]

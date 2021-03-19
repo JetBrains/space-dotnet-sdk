@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
             LastActivity = lastActivity;
         }
         
-        private PropertyValue<List<Pair<DateTime, int>>> _lastActivity = new PropertyValue<List<Pair<DateTime, int>>>(nameof(RepositoryActivity), nameof(LastActivity));
+        private PropertyValue<List<Pair<DateTime, int>>> _lastActivity = new PropertyValue<List<Pair<DateTime, int>>>(nameof(RepositoryActivity), nameof(LastActivity), new List<Pair<DateTime, int>>());
         
         [Required]
         [JsonPropertyName("lastActivity")]

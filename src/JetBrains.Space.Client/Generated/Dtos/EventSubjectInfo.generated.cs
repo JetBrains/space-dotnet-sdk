@@ -81,7 +81,7 @@ namespace JetBrains.Space.Client
             set => _description.SetValue(value);
         }
     
-        private PropertyValue<List<EventTypeInfo>> _events = new PropertyValue<List<EventTypeInfo>>(nameof(EventSubjectInfo), nameof(Events));
+        private PropertyValue<List<EventTypeInfo>> _events = new PropertyValue<List<EventTypeInfo>>(nameof(EventSubjectInfo), nameof(Events), new List<EventTypeInfo>());
         
         [Required]
         [JsonPropertyName("events")]
@@ -91,7 +91,7 @@ namespace JetBrains.Space.Client
             set => _events.SetValue(value);
         }
     
-        private PropertyValue<List<SubscriptionFilter>> _defaultFilters = new PropertyValue<List<SubscriptionFilter>>(nameof(EventSubjectInfo), nameof(DefaultFilters));
+        private PropertyValue<List<SubscriptionFilter>> _defaultFilters = new PropertyValue<List<SubscriptionFilter>>(nameof(EventSubjectInfo), nameof(DefaultFilters), new List<SubscriptionFilter>());
         
         [Required]
         [JsonPropertyName("defaultFilters")]

@@ -84,7 +84,7 @@ namespace JetBrains.Space.Client
             set => _registerNewUsers.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _organizations = new PropertyValue<List<string>>(nameof(ESGithubAuthModuleSettings), nameof(Organizations));
+        private PropertyValue<List<string>> _organizations = new PropertyValue<List<string>>(nameof(ESGithubAuthModuleSettings), nameof(Organizations), new List<string>());
         
         [Required]
         [JsonPropertyName("organizations")]

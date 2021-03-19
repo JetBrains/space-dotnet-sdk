@@ -41,7 +41,7 @@ namespace JetBrains.Space.Client
             Locations = locations;
         }
         
-        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(MemberCommonSubscriptionFilter), nameof(Teams));
+        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(MemberCommonSubscriptionFilter), nameof(Teams), new List<TDTeam>());
         
         [Required]
         [JsonPropertyName("teams")]
@@ -51,7 +51,7 @@ namespace JetBrains.Space.Client
             set => _teams.SetValue(value);
         }
     
-        private PropertyValue<List<TDLocation>> _locations = new PropertyValue<List<TDLocation>>(nameof(MemberCommonSubscriptionFilter), nameof(Locations));
+        private PropertyValue<List<TDLocation>> _locations = new PropertyValue<List<TDLocation>>(nameof(MemberCommonSubscriptionFilter), nameof(Locations), new List<TDLocation>());
         
         [Required]
         [JsonPropertyName("locations")]

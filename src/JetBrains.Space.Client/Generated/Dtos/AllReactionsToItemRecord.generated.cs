@@ -49,7 +49,7 @@ namespace JetBrains.Space.Client
             set => _id.SetValue(value);
         }
     
-        private PropertyValue<List<CertainReactionToItemRecord>> _reactions = new PropertyValue<List<CertainReactionToItemRecord>>(nameof(AllReactionsToItemRecord), nameof(Reactions));
+        private PropertyValue<List<CertainReactionToItemRecord>> _reactions = new PropertyValue<List<CertainReactionToItemRecord>>(nameof(AllReactionsToItemRecord), nameof(Reactions), new List<CertainReactionToItemRecord>());
         
         [Required]
         [JsonPropertyName("reactions")]

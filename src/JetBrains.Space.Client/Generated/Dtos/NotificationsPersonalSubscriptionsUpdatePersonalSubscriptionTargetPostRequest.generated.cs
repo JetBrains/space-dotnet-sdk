@@ -59,7 +59,7 @@ namespace JetBrains.Space.Client
             set => _targetCode.SetValue(value);
         }
     
-        private PropertyValue<List<string>> _eventCodes = new PropertyValue<List<string>>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(EventCodes));
+        private PropertyValue<List<string>> _eventCodes = new PropertyValue<List<string>>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(EventCodes), new List<string>());
         
         [Required]
         [JsonPropertyName("eventCodes")]

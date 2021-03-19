@@ -110,7 +110,7 @@ namespace JetBrains.Space.Client
             set => _sslKeystore.SetValue(value);
         }
     
-        private PropertyValue<List<ESTeamMapping>> _teamMappings = new PropertyValue<List<ESTeamMapping>>(nameof(ESLdapAuthModuleSettings), nameof(TeamMappings));
+        private PropertyValue<List<ESTeamMapping>> _teamMappings = new PropertyValue<List<ESTeamMapping>>(nameof(ESLdapAuthModuleSettings), nameof(TeamMappings), new List<ESTeamMapping>());
         
         [Required]
         [JsonPropertyName("teamMappings")]
