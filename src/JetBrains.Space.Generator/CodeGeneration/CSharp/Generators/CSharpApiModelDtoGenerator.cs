@@ -217,9 +217,37 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             {
                 builder.Append("?");
             }
+            
+            // For non-nullable List<> and Dictionary<>, make sure the field is initialized.
+            // We do this by setting a temporary default value for this pass.
+            var overrideDefaultValue = !apiField.Type.Nullable && apiField.DefaultValue == null;
+            if (overrideDefaultValue)
+            {
+                // TODO When switching to records (.NET 6 LTS), replace this construct to be immutable.
+                apiField.DefaultValue = apiField.Type switch
+                {
+                    ApiFieldType.Array _ => new ApiDefaultValue.Collection(),
+                    ApiFieldType.Map _ => new ApiDefaultValue.Map(),
+                    _ => apiField.DefaultValue
+                };
+            }
 
-            builder.AppendLine($">(nameof({typeNameForDto}), nameof({propertyNameForField}));");
+            var initialValueForAssignment = apiField.ToCSharpDefaultValueForAssignment(_codeGenerationContext);
+            if (initialValueForAssignment != null)
+            {
+                builder.AppendLine($">(nameof({typeNameForDto}), nameof({propertyNameForField}), {initialValueForAssignment});");
+            }
+            else
+            {
+                builder.AppendLine($">(nameof({typeNameForDto}), nameof({propertyNameForField}));");
+            }
             builder.AppendLine($"{indent}");
+
+            // Restore null default value
+            if (overrideDefaultValue)
+            {
+                apiField.DefaultValue = null;
+            }
 
             // Property
             if (!apiField.Optional && !apiField.Type.Nullable)

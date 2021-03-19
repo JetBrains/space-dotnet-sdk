@@ -35,6 +35,20 @@ namespace JetBrains.Space.Common.Types
         }
 
         /// <summary>
+        /// Creates a new <see cref="PropertyValue{T}"/> instance with a default value.
+        /// </summary>
+        /// <param name="className">The class name as string.</param>
+        /// <param name="propertyName">The property name as string.</param>
+        /// <param name="initialValue">The property initial value.</param>
+        public PropertyValue(string className, string propertyName, T initialValue)
+        {
+            _className = className;
+            _propertyName = propertyName;
+            _value = initialValue;
+            _hasBeenSet = true;
+        }
+
+        /// <summary>
         /// Sets the value for this property.
         /// </summary>
         /// <param name="value">The property value.</param>
