@@ -99,32 +99,52 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Formatters
                         ? _options.Get(optionsName.ToString())
                         : _options.CurrentValue;
 
-                // Get secret
-                var secret = Encoding.ASCII.GetBytes(options.EndpointSigningKey);
-                    
-                var signatureBytes = Encoding.UTF8.GetBytes(context.HttpContext.Request.Headers[HeaderSpaceTimestamp] + ":" + inputJsonString);
-                using (var hmSha1 = new HMACSHA256(secret))
+                // Verify signature
+                if (options.ValidatePayloadSignature) 
                 {
-                    var signatureHash = hmSha1.ComputeHash(signatureBytes);
-                    var signatureString = ToHexString(signatureHash);
-                    if (options.ValidatePayloadSignature && !signatureString.Equals(context.HttpContext.Request.Headers[HeaderSpaceSignature]))
+                    if (!string.IsNullOrEmpty(options.EndpointSigningKey))
                     {
-                        throw new InvalidOperationException("The webhook signature does not match the webhook payload. Make sure the endpoint signing key is configured correctly in your Space organization, and the current application.");
+                        var secret = Encoding.ASCII.GetBytes(options.EndpointSigningKey);
+                        
+                        var signatureBytes = Encoding.UTF8.GetBytes(context.HttpContext.Request.Headers[HeaderSpaceTimestamp] + ":" + inputJsonString);
+                        using (var hmSha1 = new HMACSHA256(secret))
+                        {
+                            var signatureHash = hmSha1.ComputeHash(signatureBytes);
+                            var signatureString = ToHexString(signatureHash);
+                            if (!signatureString.Equals(context.HttpContext.Request.Headers[HeaderSpaceSignature]))
+                            {
+                                throw new InvalidOperationException("The webhook signature does not match the webhook payload. Make sure the endpoint signing key is configured correctly in your Space organization, and the current application.");
+                            }
+                        }
+                    } 
+                    else
+                    {
+                        _logger.LogWarning(nameof(SpaceWebHookOptions.ValidatePayloadSignature) + " is enabled, but no " + nameof(SpaceWebHookOptions.EndpointSigningKey) + " is configured. Skipping payload signature validation.");
                     }
                 }
-                    
+                
+                // Deserialize model
                 model = JsonSerializer.Deserialize(inputJsonString, context.ModelType, _jsonSerializerOptions) as ApplicationPayload;
                 if (model != null)
                 {
                     PropagatePropertyAccessPathHelper.SetAccessPathForValue(string.Empty, false, model);
                 }
-                
-                var payloadVerificationTokenValue = GetPayloadVerificationTokenValue(model);
-                if (!string.IsNullOrEmpty(payloadVerificationTokenValue))
+
+                // Verify payload
+                if (options.ValidatePayloadVerificationToken)
                 {
-                    if (options.ValidatePayloadVerificationToken && payloadVerificationTokenValue != options.EndpointVerificationToken)
+                    var payloadVerificationTokenValue = GetPayloadVerificationTokenValue(model);
+                    if (!string.IsNullOrEmpty(payloadVerificationTokenValue))
                     {
-                        throw new InvalidOperationException("The webhook verification token does not your configured verification token. Make sure the endpoint verification token is configured correctly in your Space organization, and the current application.");
+                        if (payloadVerificationTokenValue != options.EndpointVerificationToken)
+                        {
+                            throw new InvalidOperationException(
+                                "The webhook verification token does not your configured verification token. Make sure the endpoint verification token is configured correctly in your Space organization, and the current application.");
+                        }
+                    }
+                    else
+                    {
+                        _logger.LogWarning(nameof(SpaceWebHookOptions.ValidatePayloadVerificationToken) + " is enabled, but no " + nameof(SpaceWebHookOptions.EndpointVerificationToken) + " is configured. Skipping verification token validation.");
                     }
                 }
             }

@@ -44,8 +44,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.Configure(optionsName, configureOptions);
             
             services.AddOptions<SpaceWebHookOptions>(optionsName)
-                .Validate(o => !string.IsNullOrEmpty(o.EndpointSigningKey), "Space.EndpointSigningKey is required.")
-                .Validate(o => !string.IsNullOrEmpty(o.EndpointVerificationToken), "Space.EndpointVerificationToken is required.");
+                .Validate(o => !o.ValidatePayloadSignature || !string.IsNullOrEmpty(o.EndpointSigningKey), "Space.EndpointSigningKey is required.")
+                .Validate(o => !o.ValidatePayloadVerificationToken || !string.IsNullOrEmpty(o.EndpointVerificationToken), "Space.EndpointVerificationToken is required.");
 
             // We're leaning on MVC, so need to have a minimal setup of that...
             services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<MvcOptions>, SpaceWebHookPostMvcConfigureOptions>());

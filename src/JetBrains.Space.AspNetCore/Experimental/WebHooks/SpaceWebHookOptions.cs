@@ -27,12 +27,12 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks
         /// <summary>
         /// Gets or sets the endpoint signing key. This can be found on your application's endpoint registration in Space.
         /// </summary>
-        public string EndpointSigningKey { get; set; } = default!;
+        public string? EndpointSigningKey { get; set; }
 
         /// <summary>
         /// Gets or sets the endpoint verification token. This can be found on your application's endpoint registration in Space.
         /// </summary>
-        public string EndpointVerificationToken { get; set; } = default!;
+        public string? EndpointVerificationToken { get; set; }
 
         /// <summary>
         /// Validate payload signature. Requires endpoint signing key to be set. Enabled by default.
