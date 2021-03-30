@@ -89,6 +89,9 @@ namespace JetBrains.Space.Client.PurchasedBillingPlanPartialBuilder
         public static Partial<PurchasedBillingPlan> WithCiCreditsReserve(this Partial<PurchasedBillingPlan> it)
             => it.AddFieldName("ciCreditsReserve");
         
+        public static Partial<PurchasedBillingPlan> WithCiCreditsRateForExternalWorker(this Partial<PurchasedBillingPlan> it)
+            => it.AddFieldName("ciCreditsRateForExternalWorker");
+        
         public static Partial<PurchasedBillingPlan> WithIntegrations(this Partial<PurchasedBillingPlan> it)
             => it.AddFieldName("integrations");
         

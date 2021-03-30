@@ -32,10 +32,11 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest() { }
         
-        public ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest(List<string> revisions, string? title = null)
+        public ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest(List<string> revisions, string? title = null, List<string>? authorProfileIds = null)
         {
             Revisions = revisions;
             Title = title;
+            AuthorProfileIds = authorProfileIds;
         }
         
         private PropertyValue<List<string>> _revisions = new PropertyValue<List<string>>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest), nameof(Revisions), new List<string>());
@@ -57,10 +58,20 @@ namespace JetBrains.Space.Client
             set => _title.SetValue(value);
         }
     
+        private PropertyValue<List<string>?> _authorProfileIds = new PropertyValue<List<string>?>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest), nameof(AuthorProfileIds));
+        
+        [JsonPropertyName("authorProfileIds")]
+        public List<string>? AuthorProfileIds
+        {
+            get => _authorProfileIds.GetValue();
+            set => _authorProfileIds.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _revisions.SetAccessPath(path, validateHasBeenSet);
             _title.SetAccessPath(path, validateHasBeenSet);
+            _authorProfileIds.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

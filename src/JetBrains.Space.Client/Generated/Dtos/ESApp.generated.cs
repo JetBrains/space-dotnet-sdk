@@ -32,13 +32,14 @@ namespace JetBrains.Space.Client
     {
         public ESApp() { }
         
-        public ESApp(string id, string clientId, string name, bool clientCredentialsFlowEnabled, bool codeFlowEnabled, bool implicitFlowEnabled, bool hasVerificationToken, bool hasSigningKey, bool archived, TDMemberProfile? owner = null, ApplicationType? applicationType = null, string? codeFlowRedirectURIs = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null)
+        public ESApp(string id, string clientId, string name, bool clientCredentialsFlowEnabled, bool codeFlowEnabled, bool implicitFlowEnabled, bool hasVerificationToken, bool hasSigningKey, bool archived, TDMemberProfile? owner = null, ApplicationType? applicationType = null, ApplicationMetadata? metadata = null, string? codeFlowRedirectURIs = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null)
         {
             Id = id;
             Owner = owner;
             ClientId = clientId;
             Name = name;
             ApplicationType = applicationType;
+            Metadata = metadata;
             IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled;
             IsCodeFlowEnabled = codeFlowEnabled;
             CodeFlowRedirectURIs = codeFlowRedirectURIs;
@@ -96,6 +97,15 @@ namespace JetBrains.Space.Client
         {
             get => _applicationType.GetValue();
             set => _applicationType.SetValue(value);
+        }
+    
+        private PropertyValue<ApplicationMetadata?> _metadata = new PropertyValue<ApplicationMetadata?>(nameof(ESApp), nameof(Metadata));
+        
+        [JsonPropertyName("metadata")]
+        public ApplicationMetadata? Metadata
+        {
+            get => _metadata.GetValue();
+            set => _metadata.SetValue(value);
         }
     
         private PropertyValue<bool> _clientCredentialsFlowEnabled = new PropertyValue<bool>(nameof(ESApp), nameof(IsClientCredentialsFlowEnabled));
@@ -192,6 +202,7 @@ namespace JetBrains.Space.Client
             _clientId.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
             _applicationType.SetAccessPath(path, validateHasBeenSet);
+            _metadata.SetAccessPath(path, validateHasBeenSet);
             _clientCredentialsFlowEnabled.SetAccessPath(path, validateHasBeenSet);
             _codeFlowEnabled.SetAccessPath(path, validateHasBeenSet);
             _codeFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);

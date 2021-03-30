@@ -59,6 +59,12 @@ namespace JetBrains.Space.Client.SubscriptionPartialBuilder
         public static Partial<Subscription> WithApplication(this Partial<Subscription> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
             => it.AddFieldName("application", partialBuilder(new Partial<ESApp>(it)));
         
+        public static Partial<Subscription> WithRequestedAuthentication(this Partial<Subscription> it)
+            => it.AddFieldName("requestedAuthentication");
+        
+        public static Partial<Subscription> WithRequestedAuthentication(this Partial<Subscription> it, Func<Partial<SubscriptionRequestedAuthorizations>, Partial<SubscriptionRequestedAuthorizations>> partialBuilder)
+            => it.AddFieldName("requestedAuthentication", partialBuilder(new Partial<SubscriptionRequestedAuthorizations>(it)));
+        
     }
     
 }

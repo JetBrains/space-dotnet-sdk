@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public PurchasedBillingPlan() { }
         
-        public PurchasedBillingPlan(string id, string plan, string billingPeriod, DateTime since, DateTime till, Currency currency, double addUserPrice, double addStoragePrice, double addBandwidthPrice, double addCiCreditPrice, int minActiveUsers, int prepaidUsers, int storagePerUser, int storageOverall, int bandwidthPerUser, int bandwidthOverall, int ciCredits, int ciCreditsReserve, int integrations, int searchHistory, double hardLimitAmount, string? jetSalesId = null)
+        public PurchasedBillingPlan(string id, string plan, string billingPeriod, DateTime since, DateTime till, Currency currency, double addUserPrice, double addStoragePrice, double addBandwidthPrice, double addCiCreditPrice, int minActiveUsers, int prepaidUsers, int storagePerUser, int storageOverall, int bandwidthPerUser, int bandwidthOverall, int ciCredits, int ciCreditsReserve, int integrations, int searchHistory, double hardLimitAmount, string? jetSalesId = null, double? ciCreditsRateForExternalWorker = null)
         {
             Id = id;
             JetSalesId = jetSalesId;
@@ -53,6 +53,7 @@ namespace JetBrains.Space.Client
             BandwidthOverall = bandwidthOverall;
             CiCredits = ciCredits;
             CiCreditsReserve = ciCreditsReserve;
+            CiCreditsRateForExternalWorker = ciCreditsRateForExternalWorker;
             Integrations = integrations;
             SearchHistory = searchHistory;
             HardLimitAmount = hardLimitAmount;
@@ -249,6 +250,15 @@ namespace JetBrains.Space.Client
             set => _ciCreditsReserve.SetValue(value);
         }
     
+        private PropertyValue<double?> _ciCreditsRateForExternalWorker = new PropertyValue<double?>(nameof(PurchasedBillingPlan), nameof(CiCreditsRateForExternalWorker));
+        
+        [JsonPropertyName("ciCreditsRateForExternalWorker")]
+        public double? CiCreditsRateForExternalWorker
+        {
+            get => _ciCreditsRateForExternalWorker.GetValue();
+            set => _ciCreditsRateForExternalWorker.SetValue(value);
+        }
+    
         private PropertyValue<int> _integrations = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(Integrations));
         
         [Required]
@@ -300,6 +310,7 @@ namespace JetBrains.Space.Client
             _bandwidthOverall.SetAccessPath(path, validateHasBeenSet);
             _ciCredits.SetAccessPath(path, validateHasBeenSet);
             _ciCreditsReserve.SetAccessPath(path, validateHasBeenSet);
+            _ciCreditsRateForExternalWorker.SetAccessPath(path, validateHasBeenSet);
             _integrations.SetAccessPath(path, validateHasBeenSet);
             _searchHistory.SetAccessPath(path, validateHasBeenSet);
             _hardLimitAmount.SetAccessPath(path, validateHasBeenSet);

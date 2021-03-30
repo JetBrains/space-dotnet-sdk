@@ -35,13 +35,14 @@ namespace JetBrains.Space.Client
         
         public PackageRepositoryConnectionRemote() { }
         
-        public PackageRepositoryConnectionRemote(string id, string url, PackageRepositoryCredentials credentials, string? secretId = null, string? secretValue = null)
+        public PackageRepositoryConnectionRemote(string id, string url, PackageRepositoryCredentials credentials, string? secretId = null, string? secretValue = null, List<Pair<string, string>>? parameters = null)
         {
             Id = id;
             Url = url;
             Credentials = credentials;
             SecretId = secretId;
             SecretValue = secretValue;
+            Parameters = parameters;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PackageRepositoryConnectionRemote), nameof(Id));
@@ -92,6 +93,15 @@ namespace JetBrains.Space.Client
             set => _secretValue.SetValue(value);
         }
     
+        private PropertyValue<List<Pair<string, string>>?> _parameters = new PropertyValue<List<Pair<string, string>>?>(nameof(PackageRepositoryConnectionRemote), nameof(Parameters));
+        
+        [JsonPropertyName("parameters")]
+        public List<Pair<string, string>>? Parameters
+        {
+            get => _parameters.GetValue();
+            set => _parameters.SetValue(value);
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -99,6 +109,7 @@ namespace JetBrains.Space.Client
             _credentials.SetAccessPath(path, validateHasBeenSet);
             _secretId.SetAccessPath(path, validateHasBeenSet);
             _secretValue.SetAccessPath(path, validateHasBeenSet);
+            _parameters.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -30,9 +30,6 @@ namespace JetBrains.Space.Client
     public interface KBBookContext
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static KbGlobalContext KbGlobalContext()
-            => new KbGlobalContext();
-        
         public static KbNoneContext KbNoneContext()
             => new KbNoneContext();
         

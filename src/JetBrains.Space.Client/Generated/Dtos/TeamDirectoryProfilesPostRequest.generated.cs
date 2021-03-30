@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryProfilesPostRequest() { }
         
-        public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null)
+        public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? location = null)
         {
             Username = username;
             FirstName = firstName;
@@ -51,6 +51,7 @@ namespace JetBrains.Space.Client
             PictureAttachmentId = pictureAttachmentId;
             AvatarCropSquare = avatarCropSquare;
             CustomFieldValues = (customFieldValues ?? new List<CustomFieldInputValue>());
+            Location = location;
         }
         
         private PropertyValue<string> _username = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(Username));
@@ -213,6 +214,15 @@ namespace JetBrains.Space.Client
             set => _customFieldValues.SetValue(value);
         }
     
+        private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Location));
+        
+        [JsonPropertyName("location")]
+        public string? Location
+        {
+            get => _location.GetValue();
+            set => _location.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _username.SetAccessPath(path, validateHasBeenSet);
@@ -232,6 +242,7 @@ namespace JetBrains.Space.Client
             _pictureAttachmentId.SetAccessPath(path, validateHasBeenSet);
             _avatarCropSquare.SetAccessPath(path, validateHasBeenSet);
             _customFieldValues.SetAccessPath(path, validateHasBeenSet);
+            _location.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

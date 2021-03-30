@@ -32,6 +32,9 @@ namespace JetBrains.Space.Client.PlanningTagPartialBuilder
         public static Partial<PlanningTag> WithId(this Partial<PlanningTag> it)
             => it.AddFieldName("id");
         
+        public static Partial<PlanningTag> WithIsArchived(this Partial<PlanningTag> it)
+            => it.AddFieldName("archived");
+        
         public static Partial<PlanningTag> WithProjectId(this Partial<PlanningTag> it)
             => it.AddFieldName("projectId");
         

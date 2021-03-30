@@ -51,6 +51,9 @@ namespace JetBrains.Space.Client
         public static IntListCFValue IntListCFValue(List<int> values)
             => new IntListCFValue(values: values);
         
+        public static LocationCFInputValue Location(string? location = null)
+            => new LocationCFInputValue(location: location);
+        
         public static OpenEnumCFValue OpenEnumCFValue(EnumValueData? value = null)
             => new OpenEnumCFValue(value: value);
         
@@ -66,11 +69,17 @@ namespace JetBrains.Space.Client
         public static ProfileListCFInputValue ProfileList(List<ProfileIdentifier> profiles)
             => new ProfileListCFInputValue(profiles: profiles);
         
+        public static ProjectCFInputValue Project(string? project = null)
+            => new ProjectCFInputValue(project: project);
+        
         public static StringCFValue StringCFValue(string? value = null)
             => new StringCFValue(value: value);
         
         public static StringListCFValue StringListCFValue(List<string> values)
             => new StringListCFValue(values: values);
+        
+        public static TeamCFInputValue Team(string? team = null)
+            => new TeamCFInputValue(team: team);
         
         public static UrlCFValue UrlCFValue(string? href = null)
             => new UrlCFValue(href: href);

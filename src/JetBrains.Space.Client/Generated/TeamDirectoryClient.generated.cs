@@ -1464,7 +1464,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? location = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
@@ -1489,6 +1489,7 @@ namespace JetBrains.Space.Client
                         PictureAttachmentId = pictureAttachmentId,
                         AvatarCropSquare = avatarCropSquare,
                         CustomFieldValues = (customFieldValues ?? new List<CustomFieldInputValue>()),
+                        Location = location,
                     }, cancellationToken);
             }
             
@@ -2482,6 +2483,43 @@ namespace JetBrains.Space.Client
                     var queryParameters = new NameValueCollection();
                     
                     await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/nav-bar-projects/{project}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+            public NotificationSettingClient NotificationSettings => new NotificationSettingClient(_connection);
+            
+            public partial class NotificationSettingClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public NotificationSettingClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<GlobalNotificationSettings> GetProfilesSpaceGlobalNotificationSettingsAsync(ProfileIdentifier profile, Func<Partial<GlobalNotificationSettings>, Partial<GlobalNotificationSettings>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<GlobalNotificationSettings>()) : Partial<GlobalNotificationSettings>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<GlobalNotificationSettings>("GET", $"api/http/team-directory/profiles/{profile}/notification-settings{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                public async Task SetProfilesSpaceGlobalNotificationSettingsAsync(ProfileIdentifier profile, bool? emailNotificationsEnabled = null, string? notificationEmail = null, bool? pushNotificationEnabled = null, int? desktopInactivityTimeout = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/notification-settings{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest
+                        { 
+                            IsEmailNotificationsEnabled = emailNotificationsEnabled,
+                            NotificationEmail = notificationEmail,
+                            IsPushNotificationEnabled = pushNotificationEnabled,
+                            DesktopInactivityTimeout = desktopInactivityTimeout,
+                        }, cancellationToken);
                 }
                 
             

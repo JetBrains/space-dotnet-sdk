@@ -95,17 +95,17 @@ namespace JetBrains.Space.Client
             /// </summary>
             public static readonly string Tools = "Internal.Tools";
             
-            /// <summary>
-            /// Represents the "Internal.Ui" menu.
-            /// </summary>
-            public static readonly string Ui = "Internal.Ui";
-            
         }
         
         /// <summary>
         /// Represents the "Personal" menu.
         /// </summary>
         public static readonly string Personal = "Personal";
+        
+        /// <summary>
+        /// Represents the "Plugins" menu.
+        /// </summary>
+        public static readonly string Plugins = "Plugins";
         
         public static class Project
         {
@@ -241,6 +241,11 @@ namespace JetBrains.Space.Client
             public static readonly string Team = "Sidebar.Team";
             
         }
+        
+        /// <summary>
+        /// Represents the "Ui" menu.
+        /// </summary>
+        public static readonly string Ui = "Ui";
         
     }
     

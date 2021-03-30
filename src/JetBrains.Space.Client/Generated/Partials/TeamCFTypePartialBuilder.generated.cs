@@ -25,22 +25,10 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsSecretsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamCFTypePartialBuilder
 {
-    public static class ProjectsSecretsPostRequestPartialExtensions
+    public static class TeamCFTypePartialExtensions
     {
-        public static Partial<ProjectsSecretsPostRequest> WithBundleId(this Partial<ProjectsSecretsPostRequest> it)
-            => it.AddFieldName("bundleId");
-        
-        public static Partial<ProjectsSecretsPostRequest> WithKey(this Partial<ProjectsSecretsPostRequest> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<ProjectsSecretsPostRequest> WithValueBase64(this Partial<ProjectsSecretsPostRequest> it)
-            => it.AddFieldName("valueBase64");
-        
-        public static Partial<ProjectsSecretsPostRequest> WithPublicKeyId(this Partial<ProjectsSecretsPostRequest> it)
-            => it.AddFieldName("publicKeyId");
-        
     }
     
 }

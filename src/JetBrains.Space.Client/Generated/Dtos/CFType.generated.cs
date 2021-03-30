@@ -55,6 +55,9 @@ namespace JetBrains.Space.Client
         public static IntListCFType IntList()
             => new IntListCFType();
         
+        public static LocationCFType Location()
+            => new LocationCFType();
+        
         public static OpenEnumCFType OpenEnum()
             => new OpenEnumCFType();
         
@@ -70,11 +73,17 @@ namespace JetBrains.Space.Client
         public static ProfileListCFType ProfileList()
             => new ProfileListCFType();
         
+        public static ProjectCFType Project()
+            => new ProjectCFType();
+        
         public static StringCFType String()
             => new StringCFType();
         
         public static StringListCFType StringList()
             => new StringListCFType();
+        
+        public static TeamCFType Team()
+            => new TeamCFType();
         
         public static UrlCFType Url()
             => new UrlCFType();

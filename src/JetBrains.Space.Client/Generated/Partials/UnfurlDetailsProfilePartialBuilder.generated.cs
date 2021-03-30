@@ -35,6 +35,9 @@ namespace JetBrains.Space.Client.UnfurlDetailsProfilePartialBuilder
         public static Partial<UnfurlDetailsProfile> WithProfile(this Partial<UnfurlDetailsProfile> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
             => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
         
+        public static Partial<UnfurlDetailsProfile> WithIsStrikeThrough(this Partial<UnfurlDetailsProfile> it)
+            => it.AddFieldName("strikeThrough");
+        
     }
     
 }

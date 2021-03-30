@@ -34,8 +34,8 @@ namespace JetBrains.Space.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "PackageRepositoryConnection";
         
-        public static PackageRepositoryConnectionRemote Remote(string id, string url, PackageRepositoryCredentials credentials, string? secretId = null, string? secretValue = null)
-            => new PackageRepositoryConnectionRemote(id: id, url: url, credentials: credentials, secretId: secretId, secretValue: secretValue);
+        public static PackageRepositoryConnectionRemote Remote(string id, string url, PackageRepositoryCredentials credentials, string? secretId = null, string? secretValue = null, List<Pair<string, string>>? parameters = null)
+            => new PackageRepositoryConnectionRemote(id: id, url: url, credentials: credentials, secretId: secretId, secretValue: secretValue, parameters: parameters);
         
         public static PackageRepositoryConnectionSpace Space(string id, ProjectPackageRepository repository)
             => new PackageRepositoryConnectionSpace(id: id, repository: repository);

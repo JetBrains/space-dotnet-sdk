@@ -47,6 +47,12 @@ namespace JetBrains.Space.Client.PackageRepositoryConnectionRemotePartialBuilder
         public static Partial<PackageRepositoryConnectionRemote> WithSecretValue(this Partial<PackageRepositoryConnectionRemote> it)
             => it.AddFieldName("secretValue");
         
+        public static Partial<PackageRepositoryConnectionRemote> WithParameters(this Partial<PackageRepositoryConnectionRemote> it)
+            => it.AddFieldName("parameters");
+        
+        public static Partial<PackageRepositoryConnectionRemote> WithParameters(this Partial<PackageRepositoryConnectionRemote> it, Func<Partial<Pair<string, string>>, Partial<Pair<string, string>>> partialBuilder)
+            => it.AddFieldName("parameters", partialBuilder(new Partial<Pair<string, string>>(it)));
+        
     }
     
 }

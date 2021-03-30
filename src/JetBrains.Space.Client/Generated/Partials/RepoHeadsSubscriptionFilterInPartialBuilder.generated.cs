@@ -25,10 +25,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.KbGlobalContextPartialBuilder
+namespace JetBrains.Space.Client.RepoHeadsSubscriptionFilterInPartialBuilder
 {
-    public static class KbGlobalContextPartialExtensions
+    public static class RepoHeadsSubscriptionFilterInPartialExtensions
     {
+        public static Partial<RepoHeadsSubscriptionFilterIn> WithProjects(this Partial<RepoHeadsSubscriptionFilterIn> it)
+            => it.AddFieldName("projects");
+        
+        public static Partial<RepoHeadsSubscriptionFilterIn> WithRepository(this Partial<RepoHeadsSubscriptionFilterIn> it)
+            => it.AddFieldName("repository");
+        
     }
     
 }

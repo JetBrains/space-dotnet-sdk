@@ -25,18 +25,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsParamsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.LocationCFValuePartialBuilder
 {
-    public static class ProjectsParamsPostRequestPartialExtensions
+    public static class LocationCFValuePartialExtensions
     {
-        public static Partial<ProjectsParamsPostRequest> WithBundleId(this Partial<ProjectsParamsPostRequest> it)
-            => it.AddFieldName("bundleId");
+        public static Partial<LocationCFValue> WithLocation(this Partial<LocationCFValue> it)
+            => it.AddFieldName("location");
         
-        public static Partial<ProjectsParamsPostRequest> WithKey(this Partial<ProjectsParamsPostRequest> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<ProjectsParamsPostRequest> WithValue(this Partial<ProjectsParamsPostRequest> it)
-            => it.AddFieldName("value");
+        public static Partial<LocationCFValue> WithLocation(this Partial<LocationCFValue> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
+            => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
         
     }
     

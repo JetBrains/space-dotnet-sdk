@@ -35,6 +35,9 @@ namespace JetBrains.Space.Client.ProjectsForProjectRepositoriesForRepositoryComm
         public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest> WithTitle(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest> it)
             => it.AddFieldName("title");
         
+        public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest> WithAuthorProfileIds(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest> it)
+            => it.AddFieldName("authorProfileIds");
+        
     }
     
 }

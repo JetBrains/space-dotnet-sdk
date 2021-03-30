@@ -45,6 +45,12 @@ namespace JetBrains.Space.Client
         public static ProjectCommonSubscriptionFilter ProjectCommon(PRProject? project = null)
             => new ProjectCommonSubscriptionFilter(project: project);
         
+        public static RepoCommitsSubscriptionFilter RepoCommits(List<PRProject> projects, string repository, RepoCommitsSubscriptionFilterSpec spec)
+            => new RepoCommitsSubscriptionFilter(projects: projects, repository: repository, spec: spec);
+        
+        public static RepoHeadsSubscriptionFilter RepoHeads(List<PRProject> projects, string repository)
+            => new RepoHeadsSubscriptionFilter(projects: projects, repository: repository);
+        
     }
     
 }

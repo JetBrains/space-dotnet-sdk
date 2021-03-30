@@ -448,71 +448,6 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create a new project parameter in a parameter bundle
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Modify parameters</term>
-            /// <description>Create or edit project parameters</description>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<string> CreateParamAsync(string bundleId, string key, string value, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                return await _connection.RequestResourceAsync<ProjectsParamsPostRequest, string>("POST", $"api/http/projects/params{queryParameters.ToQueryString()}", 
-                    new ProjectsParamsPostRequest
-                    { 
-                        BundleId = bundleId,
-                        Key = key,
-                        Value = value,
-                    }, cancellationToken);
-            }
-            
-        
-            /// <summary>
-            /// List project parameters in a parameter bundle
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View parameters</term>
-            /// <description>View project parameters</description>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<Batch<PlainParameterRecord>> GetAllParamsAsync(string bundleId, string? skip = null, int? top = 100, Func<Partial<Batch<PlainParameterRecord>>, Partial<Batch<PlainParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("bundleId", bundleId);
-                if (skip != null) queryParameters.Append("$skip", skip);
-                if (top != null) queryParameters.Append("$top", top?.ToString());
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PlainParameterRecord>>()) : Partial<Batch<PlainParameterRecord>>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<Batch<PlainParameterRecord>>("GET", $"api/http/projects/params{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-            
-            /// <summary>
-            /// List project parameters in a parameter bundle
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View parameters</term>
-            /// <description>View project parameters</description>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public IAsyncEnumerable<PlainParameterRecord> GetAllParamsAsyncEnumerable(string bundleId, string? skip = null, int? top = 100, Func<Partial<PlainParameterRecord>, Partial<PlainParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllParamsAsync(bundleId: bundleId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlainParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlainParameterRecord>.Default())), skip, cancellationToken);
-        
-            /// <summary>
             /// Update an existing project parameter.
             /// </summary>
             /// <remarks>
@@ -592,6 +527,45 @@ namespace JetBrains.Space.Client
                         }, cancellationToken);
                 }
                 
+            
+                /// <summary>
+                /// List project parameters in a parameter bundle
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View parameters</term>
+                /// <description>View project parameters</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<Batch<PlainParameterRecord>> GetAllInDefaultBundleAsync(string projectId, string? skip = null, int? top = 100, Func<Partial<Batch<PlainParameterRecord>>, Partial<Batch<PlainParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("projectId", projectId);
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PlainParameterRecord>>()) : Partial<Batch<PlainParameterRecord>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<PlainParameterRecord>>("GET", $"api/http/projects/params/in-default-bundle{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+                
+                /// <summary>
+                /// List project parameters in a parameter bundle
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View parameters</term>
+                /// <description>View project parameters</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public IAsyncEnumerable<PlainParameterRecord> GetAllInDefaultBundleAsyncEnumerable(string projectId, string? skip = null, int? top = 100, Func<Partial<PlainParameterRecord>, Partial<PlainParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInDefaultBundleAsync(projectId: projectId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlainParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlainParameterRecord>.Default())), skip, cancellationToken);
             
             }
         
@@ -830,72 +804,6 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create a new secret in a parameter bundle. Value is base64 encoded bytes of the secret value, possibly after client side encryption. If the secret value bytes are encrypted then the id of the Space public key must be provided
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Create secrets</term>
-            /// <description>Create project secrets</description>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<string> CreateSecretAsync(string bundleId, string key, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                return await _connection.RequestResourceAsync<ProjectsSecretsPostRequest, string>("POST", $"api/http/projects/secrets{queryParameters.ToQueryString()}", 
-                    new ProjectsSecretsPostRequest
-                    { 
-                        BundleId = bundleId,
-                        Key = key,
-                        ValueBase64 = valueBase64,
-                        PublicKeyId = publicKeyId,
-                    }, cancellationToken);
-            }
-            
-        
-            /// <summary>
-            /// List project secrets in a parameter bundle
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View keys of secrets</term>
-            /// <description>View keys of project secrets</description>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<Batch<SecretParameterRecord>> GetAllSecretsAsync(string bundleId, string? skip = null, int? top = 100, Func<Partial<Batch<SecretParameterRecord>>, Partial<Batch<SecretParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("bundleId", bundleId);
-                if (skip != null) queryParameters.Append("$skip", skip);
-                if (top != null) queryParameters.Append("$top", top?.ToString());
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<SecretParameterRecord>>()) : Partial<Batch<SecretParameterRecord>>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-            
-            /// <summary>
-            /// List project secrets in a parameter bundle
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View keys of secrets</term>
-            /// <description>View keys of project secrets</description>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public IAsyncEnumerable<SecretParameterRecord> GetAllSecretsAsyncEnumerable(string bundleId, string? skip = null, int? top = 100, Func<Partial<SecretParameterRecord>, Partial<SecretParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllSecretsAsync(bundleId: bundleId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<SecretParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<SecretParameterRecord>.Default())), skip, cancellationToken);
-        
-            /// <summary>
             /// Update an existing project secret.
             /// </summary>
             /// <remarks>
@@ -977,6 +885,45 @@ namespace JetBrains.Space.Client
                         }, cancellationToken);
                 }
                 
+            
+                /// <summary>
+                /// List project secrets in a parameter bundle
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View keys of secrets</term>
+                /// <description>View keys of project secrets</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<Batch<SecretParameterRecord>> GetAllInDefaultBundleAsync(string projectId, string? skip = null, int? top = 100, Func<Partial<Batch<SecretParameterRecord>>, Partial<Batch<SecretParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("projectId", projectId);
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<SecretParameterRecord>>()) : Partial<Batch<SecretParameterRecord>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets/in-default-bundle{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+                
+                /// <summary>
+                /// List project secrets in a parameter bundle
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View keys of secrets</term>
+                /// <description>View keys of project secrets</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public IAsyncEnumerable<SecretParameterRecord> GetAllInDefaultBundleAsyncEnumerable(string projectId, string? skip = null, int? top = 100, Func<Partial<SecretParameterRecord>, Partial<SecretParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInDefaultBundleAsync(projectId: projectId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<SecretParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<SecretParameterRecord>.Default())), skip, cancellationToken);
             
             }
         
@@ -2584,8 +2531,8 @@ namespace JetBrains.Space.Client
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
+                /// <term>Create issues</term>
+                /// <description>Create issues in a project</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -3025,8 +2972,8 @@ namespace JetBrains.Space.Client
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>View issues</term>
-                    /// <description>View issues in a project</description>
+                    /// <term>Import issues</term>
+                    /// <description>Import issues</description>
                     /// </item>
                     /// </list>
                     /// </remarks>
@@ -3113,6 +3060,15 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Create a new hierarchical tag in a project.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage checklists</term>
+                /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<PlanningTag> CreateHierarchicalTagAsync(ProjectIdentifier project, List<string> path, string? parentTagId = null, Func<Partial<PlanningTag>, Partial<PlanningTag>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3130,6 +3086,14 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Search existing tags in a project.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View project data</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<Batch<PlanningTag>> GetAllHierarchicalTagsAsync(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<PlanningTag>>, Partial<Batch<PlanningTag>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3145,8 +3109,67 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Search existing tags in a project.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View project data</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public IAsyncEnumerable<PlanningTag> GetAllHierarchicalTagsAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<PlanningTag>, Partial<PlanningTag>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllHierarchicalTagsAsync(project: project, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlanningTag>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlanningTag>.Default())), skip, cancellationToken);
+            
+                /// <summary>
+                /// Edit an existing tag in a project.
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage checklists</term>
+                /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<PlanningTag> EditHierarchicalTagAsync(ProjectIdentifier project, string tagId, string name, Func<Partial<PlanningTag>, Partial<PlanningTag>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanningTag>()) : Partial<PlanningTag>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<ProjectsForProjectPlanningTagsPatchRequest, PlanningTag>("PATCH", $"api/http/projects/{project}/planning/tags{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningTagsPatchRequest
+                        { 
+                            TagId = tagId,
+                            Name = name,
+                        }, cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Delete a hierarchical tag in a project. The tag will be removed from the related issues.
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage checklists</term>
+                /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
+                /// </item>
+                /// <item>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task DeleteHierarchicalTagAsync(ProjectIdentifier project, string tagId, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("tagId", tagId);
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/tags{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -3206,7 +3229,7 @@ namespace JetBrains.Space.Client
                     _connection = connection;
                 }
                 
-                public async Task<CommitSetReviewRecord> CreateCommitSetReviewAsync(ProjectIdentifier project, string repository, List<string> revisions, string? title = null, Func<Partial<CommitSetReviewRecord>, Partial<CommitSetReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<CommitSetReviewRecord> CreateCommitSetReviewAsync(ProjectIdentifier project, string repository, List<string> revisions, string? title = null, List<string>? authorProfileIds = null, Func<Partial<CommitSetReviewRecord>, Partial<CommitSetReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<CommitSetReviewRecord>()) : Partial<CommitSetReviewRecord>.Default()).ToString());
@@ -3216,6 +3239,7 @@ namespace JetBrains.Space.Client
                         { 
                             Revisions = revisions,
                             Title = title,
+                            AuthorProfileIds = authorProfileIds,
                         }, cancellationToken);
                 }
                 

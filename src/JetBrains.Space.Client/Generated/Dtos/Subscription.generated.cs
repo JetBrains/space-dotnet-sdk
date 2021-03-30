@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public Subscription() { }
         
-        public Subscription(string id, string name, bool enabled, Subscription subscription, PrivateFeed? privateFeed = null, ESApp? application = null)
+        public Subscription(string id, string name, bool enabled, Subscription subscription, PrivateFeed? privateFeed = null, ESApp? application = null, SubscriptionRequestedAuthorizations? requestedAuthentication = null)
         {
             Id = id;
             Name = name;
@@ -40,6 +40,7 @@ namespace JetBrains.Space.Client
             SubscriptionItem = subscription;
             PrivateFeed = privateFeed;
             Application = application;
+            RequestedAuthentication = requestedAuthentication;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(Subscription), nameof(Id));
@@ -100,6 +101,15 @@ namespace JetBrains.Space.Client
             set => _application.SetValue(value);
         }
     
+        private PropertyValue<SubscriptionRequestedAuthorizations?> _requestedAuthentication = new PropertyValue<SubscriptionRequestedAuthorizations?>(nameof(Subscription), nameof(RequestedAuthentication));
+        
+        [JsonPropertyName("requestedAuthentication")]
+        public SubscriptionRequestedAuthorizations? RequestedAuthentication
+        {
+            get => _requestedAuthentication.GetValue();
+            set => _requestedAuthentication.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -108,6 +118,7 @@ namespace JetBrains.Space.Client
             _subscription.SetAccessPath(path, validateHasBeenSet);
             _privateFeed.SetAccessPath(path, validateHasBeenSet);
             _application.SetAccessPath(path, validateHasBeenSet);
+            _requestedAuthentication.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

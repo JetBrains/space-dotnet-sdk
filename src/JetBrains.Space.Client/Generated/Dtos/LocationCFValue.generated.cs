@@ -27,16 +27,31 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class KbGlobalContext
-         : KBBookContext, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class LocationCFValue
+         : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public  string? ClassName => "KbGlobalContext";
+        public override string? ClassName => "LocationCFValue";
         
-        public KbGlobalContext() { }
+        public LocationCFValue() { }
         
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        public LocationCFValue(TDLocation? location = null)
         {
+            Location = location;
+        }
+        
+        private PropertyValue<TDLocation?> _location = new PropertyValue<TDLocation?>(nameof(LocationCFValue), nameof(Location));
+        
+        [JsonPropertyName("location")]
+        public TDLocation? Location
+        {
+            get => _location.GetValue();
+            set => _location.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _location.SetAccessPath(path, validateHasBeenSet);
         }
     
     }
