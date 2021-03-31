@@ -3120,57 +3120,6 @@ namespace JetBrains.Space.Client
                 public IAsyncEnumerable<PlanningTag> GetAllHierarchicalTagsAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<PlanningTag>, Partial<PlanningTag>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllHierarchicalTagsAsync(project: project, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlanningTag>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlanningTag>.Default())), skip, cancellationToken);
             
-                /// <summary>
-                /// Edit an existing tag in a project.
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Manage checklists</term>
-                /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<PlanningTag> EditHierarchicalTagAsync(ProjectIdentifier project, string tagId, string name, Func<Partial<PlanningTag>, Partial<PlanningTag>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanningTag>()) : Partial<PlanningTag>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<ProjectsForProjectPlanningTagsPatchRequest, PlanningTag>("PATCH", $"api/http/projects/{project}/planning/tags{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectPlanningTagsPatchRequest
-                        { 
-                            TagId = tagId,
-                            Name = name,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Delete a hierarchical tag in a project. The tag will be removed from the related issues.
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Manage checklists</term>
-                /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
-                /// </item>
-                /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task DeleteHierarchicalTagAsync(ProjectIdentifier project, string tagId, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("tagId", tagId);
-                    
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/tags{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
             }
         
         }
