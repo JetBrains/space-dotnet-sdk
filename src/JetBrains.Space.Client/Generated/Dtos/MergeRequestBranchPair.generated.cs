@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public MergeRequestBranchPair() { }
         
-        public MergeRequestBranchPair(string repository, string sourceBranch, string targetBranch, string sourceBranchRef, MergeRequestBranch? sourceBranchInfo = null, MergeRequestBranch? targetBranchInfo = null)
+        public MergeRequestBranchPair(string repository, string sourceBranch, string targetBranch, string sourceBranchRef, MergeRequestBranch? sourceBranchInfo = null, MergeRequestBranch? targetBranchInfo = null, bool? isMerged = null)
         {
             Repository = repository;
             SourceBranch = sourceBranch;
@@ -40,6 +40,7 @@ namespace JetBrains.Space.Client
             SourceBranchRef = sourceBranchRef;
             SourceBranchInfo = sourceBranchInfo;
             TargetBranchInfo = targetBranchInfo;
+            IsMerged = isMerged;
         }
         
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MergeRequestBranchPair), nameof(Repository));
@@ -100,6 +101,15 @@ namespace JetBrains.Space.Client
             set => _targetBranchInfo.SetValue(value);
         }
     
+        private PropertyValue<bool?> _isMerged = new PropertyValue<bool?>(nameof(MergeRequestBranchPair), nameof(IsMerged));
+        
+        [JsonPropertyName("isMerged")]
+        public bool? IsMerged
+        {
+            get => _isMerged.GetValue();
+            set => _isMerged.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _repository.SetAccessPath(path, validateHasBeenSet);
@@ -108,6 +118,7 @@ namespace JetBrains.Space.Client
             _sourceBranchRef.SetAccessPath(path, validateHasBeenSet);
             _sourceBranchInfo.SetAccessPath(path, validateHasBeenSet);
             _targetBranchInfo.SetAccessPath(path, validateHasBeenSet);
+            _isMerged.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

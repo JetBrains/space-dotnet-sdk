@@ -53,6 +53,9 @@ namespace JetBrains.Space.Client.MergeRequestBranchPairPartialBuilder
         public static Partial<MergeRequestBranchPair> WithTargetBranchInfo(this Partial<MergeRequestBranchPair> it, Func<Partial<MergeRequestBranch>, Partial<MergeRequestBranch>> partialBuilder)
             => it.AddFieldName("targetBranchInfo", partialBuilder(new Partial<MergeRequestBranch>(it)));
         
+        public static Partial<MergeRequestBranchPair> WithIsMerged(this Partial<MergeRequestBranchPair> it)
+            => it.AddFieldName("isMerged");
+        
     }
     
 }

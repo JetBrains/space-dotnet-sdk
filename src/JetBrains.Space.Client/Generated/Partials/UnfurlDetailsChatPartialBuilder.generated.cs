@@ -25,25 +25,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.UnfurlDetailsChatPartialBuilder
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum CodeReviewStateFilter
+    public static class UnfurlDetailsChatPartialExtensions
     {
-        [EnumMember(Value = "Opened")]
-        Opened,
+        public static Partial<UnfurlDetailsChat> WithChannel(this Partial<UnfurlDetailsChat> it)
+            => it.AddFieldName("channel");
         
-        [EnumMember(Value = "Closed")]
-        Closed,
-        
-        [EnumMember(Value = "RequiresAuthorAttention")]
-        RequiresAuthorAttention,
-        
-        [EnumMember(Value = "NeedsReview")]
-        NeedsReview,
-        
-        [EnumMember(Value = "Merged")]
-        Merged,
+        public static Partial<UnfurlDetailsChat> WithTitle(this Partial<UnfurlDetailsChat> it)
+            => it.AddFieldName("title");
         
     }
     

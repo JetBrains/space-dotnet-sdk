@@ -48,6 +48,9 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsArticle Article(ArticleRecord article, ArticleContentRecord content, ArticleChannelRecord channel, ArticleDetailsRecord? details = null)
             => new UnfurlDetailsArticle(article: article, content: content, channel: channel, details: details);
         
+        public static UnfurlDetailsChat Chat(string channel, string title)
+            => new UnfurlDetailsChat(channel: channel, title: title);
+        
         public static UnfurlDetailsChecklist Checklist(Checklist checklist)
             => new UnfurlDetailsChecklist(checklist: checklist);
         
