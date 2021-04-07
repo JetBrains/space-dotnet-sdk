@@ -107,14 +107,12 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Formatters
                         var secret = Encoding.ASCII.GetBytes(options.EndpointSigningKey);
                         
                         var signatureBytes = Encoding.UTF8.GetBytes(context.HttpContext.Request.Headers[HeaderSpaceTimestamp] + ":" + inputJsonString);
-                        using (var hmSha1 = new HMACSHA256(secret))
+                        using var hmSha1 = new HMACSHA256(secret);
+                        var signatureHash = hmSha1.ComputeHash(signatureBytes);
+                        var signatureString = ToHexString(signatureHash);
+                        if (!signatureString.Equals(context.HttpContext.Request.Headers[HeaderSpaceSignature]))
                         {
-                            var signatureHash = hmSha1.ComputeHash(signatureBytes);
-                            var signatureString = ToHexString(signatureHash);
-                            if (!signatureString.Equals(context.HttpContext.Request.Headers[HeaderSpaceSignature]))
-                            {
-                                throw new InvalidOperationException("The webhook signature does not match the webhook payload. Make sure the endpoint signing key is configured correctly in your Space organization, and the current application.");
-                            }
+                            throw new InvalidOperationException("The webhook signature does not match the webhook payload. Make sure the endpoint signing key is configured correctly in your Space organization, and the current application.");
                         }
                     } 
                     else

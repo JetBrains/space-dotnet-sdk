@@ -40,9 +40,9 @@ namespace JetBrains.Space.Common.Types
         public static string ToEnumString<T>(this T? type)
             where T : struct, Enum
         {
-            if (type == null) return "";
-            
-            return type.Value.ToEnumString();
+            return type == null
+                ? string.Empty
+                : type.Value.ToEnumString();
         }
     }
 }
