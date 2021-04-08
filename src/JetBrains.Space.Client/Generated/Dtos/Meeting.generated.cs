@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public Meeting() { }
         
-        public Meeting(string id, bool archived, string summary, List<TDLocation> locations, List<TDMemberProfile> profiles, List<TDTeam> teams, CalendarEventSpec occurrenceRule, MeetingOrigin origin, MeetingVisibility visibility, MeetingModificationPreference modificationPreference, long etag, bool privateDataSubstituted, bool canModify, bool canDelete, bool canJoin, List<string> externalParticipants, string? description = null, string? conferenceLink = null, MeetingJoiningPreference? joiningPreference = null, MeetingOrganizer? organizer = null, string? linkToExternalSource = null, List<MeetingAttachment>? eventAttachments = null)
+        public Meeting(string id, bool archived, string summary, List<TDLocation> locations, List<TDMemberProfile> profiles, List<TDTeam> teams, CalendarEventSpec occurrenceRule, MeetingOrigin origin, MeetingVisibility visibility, MeetingModificationPreference modificationPreference, long etag, bool privateDataSubstituted, bool canModify, bool canDelete, bool canJoin, List<string> externalParticipants, string? description = null, string? conferenceLink = null, MeetingJoiningPreference? joiningPreference = null, MeetingOrganizer? organizer = null, string? linkToExternalSource = null, List<MeetingAttachment>? eventAttachments = null, EventConferenceData? conferenceData = null)
         {
             Id = id;
             IsArchived = archived;
@@ -56,6 +56,7 @@ namespace JetBrains.Space.Client
             ExternalParticipants = externalParticipants;
             LinkToExternalSource = linkToExternalSource;
             EventAttachments = eventAttachments;
+            ConferenceData = conferenceData;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(Meeting), nameof(Id));
@@ -272,6 +273,15 @@ namespace JetBrains.Space.Client
             set => _eventAttachments.SetValue(value);
         }
     
+        private PropertyValue<EventConferenceData?> _conferenceData = new PropertyValue<EventConferenceData?>(nameof(Meeting), nameof(ConferenceData));
+        
+        [JsonPropertyName("conferenceData")]
+        public EventConferenceData? ConferenceData
+        {
+            get => _conferenceData.GetValue();
+            set => _conferenceData.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -296,6 +306,7 @@ namespace JetBrains.Space.Client
             _externalParticipants.SetAccessPath(path, validateHasBeenSet);
             _linkToExternalSource.SetAccessPath(path, validateHasBeenSet);
             _eventAttachments.SetAccessPath(path, validateHasBeenSet);
+            _conferenceData.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

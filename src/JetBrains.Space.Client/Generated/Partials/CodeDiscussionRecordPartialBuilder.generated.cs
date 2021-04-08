@@ -68,6 +68,12 @@ namespace JetBrains.Space.Client.CodeDiscussionRecordPartialBuilder
         public static Partial<CodeDiscussionRecord> WithSnippet(this Partial<CodeDiscussionRecord> it, Func<Partial<CodeDiscussionSnippet>, Partial<CodeDiscussionSnippet>> partialBuilder)
             => it.AddFieldName("snippet", partialBuilder(new Partial<CodeDiscussionSnippet>(it)));
         
+        public static Partial<CodeDiscussionRecord> WithResolvedBy(this Partial<CodeDiscussionRecord> it)
+            => it.AddFieldName("resolvedBy");
+        
+        public static Partial<CodeDiscussionRecord> WithResolvedBy(this Partial<CodeDiscussionRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("resolvedBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
         public static Partial<CodeDiscussionRecord> WithIsPending(this Partial<CodeDiscussionRecord> it)
             => it.AddFieldName("pending");
         

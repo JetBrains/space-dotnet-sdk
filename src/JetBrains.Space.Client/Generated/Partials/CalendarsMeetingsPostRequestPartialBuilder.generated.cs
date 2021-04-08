@@ -77,6 +77,12 @@ namespace JetBrains.Space.Client.CalendarsMeetingsPostRequestPartialBuilder
         public static Partial<CalendarsMeetingsPostRequest> WithOrganizer(this Partial<CalendarsMeetingsPostRequest> it)
             => it.AddFieldName("organizer");
         
+        public static Partial<CalendarsMeetingsPostRequest> WithConferenceData(this Partial<CalendarsMeetingsPostRequest> it)
+            => it.AddFieldName("conferenceData");
+        
+        public static Partial<CalendarsMeetingsPostRequest> WithConferenceData(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<EventConferenceData>, Partial<EventConferenceData>> partialBuilder)
+            => it.AddFieldName("conferenceData", partialBuilder(new Partial<EventConferenceData>(it)));
+        
     }
     
 }

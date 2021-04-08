@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public CalendarsMeetingsPostRequest() { }
         
-        public CalendarsMeetingsPostRequest(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility visibility = MeetingVisibility.EVERYONE, MeetingModificationPreference modificationPreference = MeetingModificationPreference.PARTICIPANTS, MeetingJoiningPreference joiningPreference = MeetingJoiningPreference.NOBODY, bool notifyOnExport = true, string? description = null, string? organizer = null)
+        public CalendarsMeetingsPostRequest(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility visibility = MeetingVisibility.EVERYONE, MeetingModificationPreference modificationPreference = MeetingModificationPreference.PARTICIPANTS, MeetingJoiningPreference joiningPreference = MeetingJoiningPreference.NOBODY, bool notifyOnExport = true, string? description = null, string? organizer = null, EventConferenceData? conferenceData = null)
         {
             Summary = summary;
             Description = description;
@@ -46,6 +46,7 @@ namespace JetBrains.Space.Client
             JoiningPreference = joiningPreference;
             IsNotifyOnExport = notifyOnExport;
             Organizer = organizer;
+            ConferenceData = conferenceData;
         }
         
         private PropertyValue<string> _summary = new PropertyValue<string>(nameof(CalendarsMeetingsPostRequest), nameof(Summary));
@@ -158,6 +159,15 @@ namespace JetBrains.Space.Client
             set => _organizer.SetValue(value);
         }
     
+        private PropertyValue<EventConferenceData?> _conferenceData = new PropertyValue<EventConferenceData?>(nameof(CalendarsMeetingsPostRequest), nameof(ConferenceData));
+        
+        [JsonPropertyName("conferenceData")]
+        public EventConferenceData? ConferenceData
+        {
+            get => _conferenceData.GetValue();
+            set => _conferenceData.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _summary.SetAccessPath(path, validateHasBeenSet);
@@ -172,6 +182,7 @@ namespace JetBrains.Space.Client
             _joiningPreference.SetAccessPath(path, validateHasBeenSet);
             _notifyOnExport.SetAccessPath(path, validateHasBeenSet);
             _organizer.SetAccessPath(path, validateHasBeenSet);
+            _conferenceData.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

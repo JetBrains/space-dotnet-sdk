@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public CalendarsMeetingsForIdPatchRequest() { }
         
-        public CalendarsMeetingsForIdPatchRequest(Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification modificationKind = RecurrentModification.All, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, DateTime? targetDate = null)
+        public CalendarsMeetingsForIdPatchRequest(Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification modificationKind = RecurrentModification.All, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, DateTime? targetDate = null, EventConferenceData? conferenceData = null)
         {
             Summary = summary;
             Description = description;
@@ -48,6 +48,7 @@ namespace JetBrains.Space.Client
             Organizer = organizer;
             TargetDate = targetDate;
             ModificationKind = modificationKind;
+            ConferenceData = conferenceData;
         }
         
         private PropertyValue<string?> _summary = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Summary));
@@ -177,6 +178,15 @@ namespace JetBrains.Space.Client
             set => _modificationKind.SetValue(value);
         }
     
+        private PropertyValue<EventConferenceData?> _conferenceData = new PropertyValue<EventConferenceData?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ConferenceData));
+        
+        [JsonPropertyName("conferenceData")]
+        public EventConferenceData? ConferenceData
+        {
+            get => _conferenceData.GetValue();
+            set => _conferenceData.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _summary.SetAccessPath(path, validateHasBeenSet);
@@ -193,6 +203,7 @@ namespace JetBrains.Space.Client
             _organizer.SetAccessPath(path, validateHasBeenSet);
             _targetDate.SetAccessPath(path, validateHasBeenSet);
             _modificationKind.SetAccessPath(path, validateHasBeenSet);
+            _conferenceData.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

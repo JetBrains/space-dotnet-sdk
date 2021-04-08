@@ -125,6 +125,12 @@ namespace JetBrains.Space.Client.MeetingPartialBuilder
         public static Partial<Meeting> WithEventAttachments(this Partial<Meeting> it, Func<Partial<MeetingAttachment>, Partial<MeetingAttachment>> partialBuilder)
             => it.AddFieldName("eventAttachments", partialBuilder(new Partial<MeetingAttachment>(it)));
         
+        public static Partial<Meeting> WithConferenceData(this Partial<Meeting> it)
+            => it.AddFieldName("conferenceData");
+        
+        public static Partial<Meeting> WithConferenceData(this Partial<Meeting> it, Func<Partial<EventConferenceData>, Partial<EventConferenceData>> partialBuilder)
+            => it.AddFieldName("conferenceData", partialBuilder(new Partial<EventConferenceData>(it)));
+        
     }
     
 }

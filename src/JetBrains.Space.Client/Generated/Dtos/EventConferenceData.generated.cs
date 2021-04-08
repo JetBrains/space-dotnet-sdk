@@ -27,43 +27,40 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class UnfurlDetailsMeeting
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class EventConferenceData
+         : IPropagatePropertyAccessPath
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsMeeting";
+        public EventConferenceData() { }
         
-        public UnfurlDetailsMeeting() { }
-        
-        public UnfurlDetailsMeeting(Meeting meeting, bool? compact = null)
+        public EventConferenceData(EventConferenceKind kind, string? url = null)
         {
-            Meeting = meeting;
-            IsCompact = compact;
+            Kind = kind;
+            Url = url;
         }
         
-        private PropertyValue<Meeting> _meeting = new PropertyValue<Meeting>(nameof(UnfurlDetailsMeeting), nameof(Meeting));
+        private PropertyValue<EventConferenceKind> _kind = new PropertyValue<EventConferenceKind>(nameof(EventConferenceData), nameof(Kind));
         
         [Required]
-        [JsonPropertyName("meeting")]
-        public Meeting Meeting
+        [JsonPropertyName("kind")]
+        public EventConferenceKind Kind
         {
-            get => _meeting.GetValue();
-            set => _meeting.SetValue(value);
+            get => _kind.GetValue();
+            set => _kind.SetValue(value);
         }
     
-        private PropertyValue<bool?> _compact = new PropertyValue<bool?>(nameof(UnfurlDetailsMeeting), nameof(IsCompact));
+        private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(EventConferenceData), nameof(Url));
         
-        [JsonPropertyName("compact")]
-        public bool? IsCompact
+        [JsonPropertyName("url")]
+        public string? Url
         {
-            get => _compact.GetValue();
-            set => _compact.SetValue(value);
+            get => _url.GetValue();
+            set => _url.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _meeting.SetAccessPath(path, validateHasBeenSet);
-            _compact.SetAccessPath(path, validateHasBeenSet);
+            _kind.SetAccessPath(path, validateHasBeenSet);
+            _url.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

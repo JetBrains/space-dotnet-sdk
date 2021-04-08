@@ -25,19 +25,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsMeetingPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class UnfurlDetailsMeetingPartialExtensions
+    public sealed class UnfurlDetailsProject
+         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<UnfurlDetailsMeeting> WithMeeting(this Partial<UnfurlDetailsMeeting> it)
-            => it.AddFieldName("meeting");
+        [JsonPropertyName("className")]
+        public  string? ClassName => "UnfurlDetailsProject";
         
-        public static Partial<UnfurlDetailsMeeting> WithMeeting(this Partial<UnfurlDetailsMeeting> it, Func<Partial<Meeting>, Partial<Meeting>> partialBuilder)
-            => it.AddFieldName("meeting", partialBuilder(new Partial<Meeting>(it)));
+        public UnfurlDetailsProject() { }
         
-        public static Partial<UnfurlDetailsMeeting> WithIsCompact(this Partial<UnfurlDetailsMeeting> it)
-            => it.AddFieldName("compact");
+        public UnfurlDetailsProject(PRProject project)
+        {
+            Project = project;
+        }
         
+        private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsProject), nameof(Project));
+        
+        [Required]
+        [JsonPropertyName("project")]
+        public PRProject Project
+        {
+            get => _project.GetValue();
+            set => _project.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _project.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

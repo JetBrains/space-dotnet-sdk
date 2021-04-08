@@ -84,11 +84,14 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsMC MC(MCMessage message, List<AttachmentInfo>? inlineUnfurls = null)
             => new UnfurlDetailsMC(message: message, inlineUnfurls: inlineUnfurls);
         
-        public static UnfurlDetailsMeeting Meeting(Meeting meeting)
-            => new UnfurlDetailsMeeting(meeting: meeting);
+        public static UnfurlDetailsMeeting Meeting(Meeting meeting, bool? compact = null)
+            => new UnfurlDetailsMeeting(meeting: meeting, compact: compact);
         
         public static UnfurlDetailsProfile Profile(TDMemberProfile profile, bool? strikeThrough = null)
             => new UnfurlDetailsProfile(profile: profile, strikeThrough: strikeThrough);
+        
+        public static UnfurlDetailsProject Project(PRProject project)
+            => new UnfurlDetailsProject(project: project);
         
         public static UnfurlDetailsRepositoryBranch RepositoryBranch(PRProject project, string repository, string branchHead, bool deleted)
             => new UnfurlDetailsRepositoryBranch(project: project, repository: repository, branchHead: branchHead, deleted: deleted);

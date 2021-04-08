@@ -25,18 +25,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsMeetingPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class UnfurlDetailsMeetingPartialExtensions
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum EventConferenceKind
     {
-        public static Partial<UnfurlDetailsMeeting> WithMeeting(this Partial<UnfurlDetailsMeeting> it)
-            => it.AddFieldName("meeting");
+        [EnumMember(Value = "NONE")]
+        NONE,
         
-        public static Partial<UnfurlDetailsMeeting> WithMeeting(this Partial<UnfurlDetailsMeeting> it, Func<Partial<Meeting>, Partial<Meeting>> partialBuilder)
-            => it.AddFieldName("meeting", partialBuilder(new Partial<Meeting>(it)));
-        
-        public static Partial<UnfurlDetailsMeeting> WithIsCompact(this Partial<UnfurlDetailsMeeting> it)
-            => it.AddFieldName("compact");
+        [EnumMember(Value = "GOOGLE_MEET")]
+        GOOGLEMEET,
         
     }
     

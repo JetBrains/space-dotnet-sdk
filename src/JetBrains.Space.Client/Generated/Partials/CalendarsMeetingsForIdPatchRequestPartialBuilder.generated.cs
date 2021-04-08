@@ -98,6 +98,12 @@ namespace JetBrains.Space.Client.CalendarsMeetingsForIdPatchRequestPartialBuilde
         public static Partial<CalendarsMeetingsForIdPatchRequest> WithModificationKind(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<RecurrentModification>, Partial<RecurrentModification>> partialBuilder)
             => it.AddFieldName("modificationKind", partialBuilder(new Partial<RecurrentModification>(it)));
         
+        public static Partial<CalendarsMeetingsForIdPatchRequest> WithConferenceData(this Partial<CalendarsMeetingsForIdPatchRequest> it)
+            => it.AddFieldName("conferenceData");
+        
+        public static Partial<CalendarsMeetingsForIdPatchRequest> WithConferenceData(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<EventConferenceData>, Partial<EventConferenceData>> partialBuilder)
+            => it.AddFieldName("conferenceData", partialBuilder(new Partial<EventConferenceData>(it)));
+        
     }
     
 }

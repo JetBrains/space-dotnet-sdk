@@ -236,7 +236,15 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Create a meeting.
             /// </summary>
-            public async Task<Meeting> CreateMeetingAsync(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility visibility = MeetingVisibility.EVERYONE, MeetingModificationPreference modificationPreference = MeetingModificationPreference.PARTICIPANTS, MeetingJoiningPreference joiningPreference = MeetingJoiningPreference.NOBODY, bool notifyOnExport = true, string? description = null, string? organizer = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit meeting</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Meeting> CreateMeetingAsync(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility visibility = MeetingVisibility.EVERYONE, MeetingModificationPreference modificationPreference = MeetingModificationPreference.PARTICIPANTS, MeetingJoiningPreference joiningPreference = MeetingJoiningPreference.NOBODY, bool notifyOnExport = true, string? description = null, string? organizer = null, EventConferenceData? conferenceData = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
@@ -256,6 +264,7 @@ namespace JetBrains.Space.Client
                         JoiningPreference = joiningPreference,
                         IsNotifyOnExport = notifyOnExport,
                         Organizer = organizer,
+                        ConferenceData = conferenceData,
                     }, cancellationToken);
             }
             
@@ -263,6 +272,14 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Search meetings by name, location, time period and other parameters. Parameters are applied as 'AND' filters while values in lists of locations, profiles and teams have 'OR' semantics.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View meeting</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<Batch<Meeting>> GetAllMeetingsAsync(string summaryQuery = "", List<string>? locationsQuery = null, List<string>? profiles = null, List<string>? teams = null, bool includePrivate = false, bool includeArchived = false, bool includeMeetingInstances = true, string? skip = null, int? top = 100, DateTime? startingAfter = null, DateTime? endingAfter = null, DateTime? endingBefore = null, DateTime? startingBefore = null, string? organizer = null, Func<Partial<Batch<Meeting>>, Partial<Batch<Meeting>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -289,12 +306,28 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Search meetings by name, location, time period and other parameters. Parameters are applied as 'AND' filters while values in lists of locations, profiles and teams have 'OR' semantics.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View meeting</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public IAsyncEnumerable<Meeting> GetAllMeetingsAsyncEnumerable(string summaryQuery = "", List<string>? locationsQuery = null, List<string>? profiles = null, List<string>? teams = null, bool includePrivate = false, bool includeArchived = false, bool includeMeetingInstances = true, string? skip = null, int? top = 100, DateTime? startingAfter = null, DateTime? endingAfter = null, DateTime? endingBefore = null, DateTime? startingBefore = null, string? organizer = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMeetingsAsync(summaryQuery: summaryQuery, locationsQuery: locationsQuery, profiles: profiles, teams: teams, includePrivate: includePrivate, includeArchived: includeArchived, includeMeetingInstances: includeMeetingInstances, top: top, startingAfter: startingAfter, endingAfter: endingAfter, endingBefore: endingBefore, startingBefore: startingBefore, organizer: organizer, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Meeting>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Meeting>.Default())), skip, cancellationToken);
         
             /// <summary>
             /// Search for the next meeting occurrence that starts after the provided time point or after the current time if it is not specified
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View meeting</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<MeetingOccurrenceTime> GetNextMeetingOccurrenceAsync(string meetingId, DateTime? since = null, Func<Partial<MeetingOccurrenceTime>, Partial<MeetingOccurrenceTime>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -309,6 +342,14 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Search for occurrences of a meeting that start in the provided time interval. Interval limits are inclusive, response is limited by the first 1_000 results by default.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View meeting</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<List<MeetingOccurrenceTime>> GetMeetingOccurrencesForPeriodAsync(string meetingId, DateTime since, DateTime until, int? limit = null, Func<Partial<MeetingOccurrenceTime>, Partial<MeetingOccurrenceTime>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -322,6 +363,14 @@ namespace JetBrains.Space.Client
             }
             
         
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View meeting</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<Meeting> GetMeetingAsync(string id, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -334,7 +383,15 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Patch a meeting. Only not-null parameters and not empty diffs will be applied.
             /// </summary>
-            public async Task<Meeting> UpdateMeetingAsync(string id, Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification modificationKind = RecurrentModification.All, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, DateTime? targetDate = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit meeting</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Meeting> UpdateMeetingAsync(string id, Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification modificationKind = RecurrentModification.All, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, DateTime? targetDate = null, EventConferenceData? conferenceData = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
@@ -356,10 +413,19 @@ namespace JetBrains.Space.Client
                         Organizer = organizer,
                         TargetDate = targetDate,
                         ModificationKind = modificationKind,
+                        ConferenceData = conferenceData,
                     }, cancellationToken);
             }
             
         
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit meeting</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<Meeting> DeleteMeetingAsync(string id, RecurrentModification modificationKind = RecurrentModification.All, DateTime? targetDate = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();

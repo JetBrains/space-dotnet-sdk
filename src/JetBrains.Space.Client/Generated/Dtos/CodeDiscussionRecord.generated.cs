@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public CodeDiscussionRecord() { }
         
-        public CodeDiscussionRecord(string id, string projectId, CodeDiscussionAnchor anchor, DateTime created, M2ChannelRecord channel, bool resolved, bool archived, PRProject? project = null, bool? resolvable = null, CodeDiscussionSnippet? snippet = null, bool? pending = null, CodeReviewRecord? review = null, string? feedItemId = null, List<CodeReviewRecord>? reviews = null)
+        public CodeDiscussionRecord(string id, string projectId, CodeDiscussionAnchor anchor, DateTime created, M2ChannelRecord channel, bool resolved, bool archived, PRProject? project = null, bool? resolvable = null, CodeDiscussionSnippet? snippet = null, CPrincipal? resolvedBy = null, bool? pending = null, CodeReviewRecord? review = null, string? feedItemId = null, List<CodeReviewRecord>? reviews = null)
         {
             Id = id;
             ProjectId = projectId;
@@ -43,6 +43,7 @@ namespace JetBrains.Space.Client
             IsResolvable = resolvable;
             IsResolved = resolved;
             Snippet = snippet;
+            ResolvedBy = resolvedBy;
             IsPending = pending;
             Review = review;
             FeedItemId = feedItemId;
@@ -139,6 +140,15 @@ namespace JetBrains.Space.Client
             set => _snippet.SetValue(value);
         }
     
+        private PropertyValue<CPrincipal?> _resolvedBy = new PropertyValue<CPrincipal?>(nameof(CodeDiscussionRecord), nameof(ResolvedBy));
+        
+        [JsonPropertyName("resolvedBy")]
+        public CPrincipal? ResolvedBy
+        {
+            get => _resolvedBy.GetValue();
+            set => _resolvedBy.SetValue(value);
+        }
+    
         private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(CodeDiscussionRecord), nameof(IsPending));
         
         [JsonPropertyName("pending")]
@@ -196,6 +206,7 @@ namespace JetBrains.Space.Client
             _resolvable.SetAccessPath(path, validateHasBeenSet);
             _resolved.SetAccessPath(path, validateHasBeenSet);
             _snippet.SetAccessPath(path, validateHasBeenSet);
+            _resolvedBy.SetAccessPath(path, validateHasBeenSet);
             _pending.SetAccessPath(path, validateHasBeenSet);
             _review.SetAccessPath(path, validateHasBeenSet);
             _feedItemId.SetAccessPath(path, validateHasBeenSet);
