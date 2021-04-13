@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using JetBrains.Space.Common.Utilities;
@@ -101,6 +102,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             return builder.ToString();
         }
 
+        [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
         private Node BuildTree(string prefix, IEnumerable<ApiMenuId> children) =>
             new Node
             {
