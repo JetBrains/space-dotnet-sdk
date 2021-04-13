@@ -49,14 +49,12 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                 dtoHierarchy.Add(apiDtoExtends!.ToCSharpClassName());
                 dtoHierarchyFieldNames.AddRange(apiDtoExtends!.Fields.Select(it => it.Field.Name));
             }
-            if (apiDto.Implements != null)
+
+            foreach (var dtoImplements in apiDto.Implements)
             {
-                foreach (var dtoImplements in apiDto.Implements)
+                if (_codeGenerationContext.TryGetDto(dtoImplements.Id, out var apiDtoImplements))
                 {
-                    if (_codeGenerationContext.TryGetDto(dtoImplements.Id, out var apiDtoImplements))
-                    {
-                        dtoHierarchy.Add(apiDtoImplements!.ToCSharpClassName());
-                    }
+                    dtoHierarchy.Add(apiDtoImplements!.ToCSharpClassName());
                 }
             }
             if (dtoHierarchy.Count > 0 || apiDto.Inheritors.Count > 0)
@@ -172,17 +170,14 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                 
             // For implements, add all referenced types' fields
             var apiDtoFields = new List<ApiDtoField>();
-            if (apiDto.Implements != null)
+            foreach (var dtoReference in apiDto.Implements)
             {
-                foreach (var dtoReference in apiDto.Implements)
+                if (_codeGenerationContext.TryGetDto(dtoReference.Id, out var apiDtoImplements))
                 {
-                    if (_codeGenerationContext.TryGetDto(dtoReference.Id, out var apiDtoImplements))
-                    {
-                        apiDtoFields.AddRange(apiDtoImplements!.Fields);
-                    }
+                    apiDtoFields.AddRange(apiDtoImplements!.Fields);
                 }
             }
-        
+
             // Add own fields
             apiDtoFields.AddRange(apiDto.Fields);
             
