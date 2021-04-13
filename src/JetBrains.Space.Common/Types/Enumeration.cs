@@ -119,6 +119,6 @@ namespace JetBrains.Space.Common.Types
         }
 
         /// <inheritdoc />
-        public int CompareTo(object? other) => string.Compare(Value, ((Enumeration)other)!.Value, StringComparison.OrdinalIgnoreCase);
+        public int CompareTo(object? other) => string.Compare(Value, (other as Enumeration)?.Value, StringComparison.OrdinalIgnoreCase);
     }
 }

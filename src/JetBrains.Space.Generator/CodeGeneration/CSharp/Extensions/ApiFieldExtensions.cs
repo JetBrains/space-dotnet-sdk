@@ -56,43 +56,13 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
                         return primitive.Expression;
                     
                     case ApiDefaultValue.Const.EnumEntry _:
-                        if (FeatureFlags.GenerateOptionalParameterDefaultReferenceTypes ||
-                            FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
-                        {
-                            return subject.ToCSharpDefaultValueForAssignment(context);
-                        }
-                        else
-                        {
-                            return null;
-                        }
+                        return subject.ToCSharpDefaultValueForAssignment(context);
 
                     case ApiDefaultValue.Collection _:
-                        if (FeatureFlags.GenerateOptionalParameterDefaultReferenceTypes)
-                        {
-                            return subject.ToCSharpDefaultValueForAssignment(context);
-                        }
-                        else if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
-                        {
-                            return CSharpExpression.NullLiteral;
-                        }
-                        else
-                        {
-                            return null;
-                        }
+                        return CSharpExpression.NullLiteral;
 
                     case ApiDefaultValue.Map _:
-                        if (FeatureFlags.GenerateOptionalParameterDefaultReferenceTypes)
-                        {
-                            return subject.ToCSharpDefaultValueForAssignment(context);
-                        }
-                        else if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
-                        {
-                            return CSharpExpression.NullLiteral;
-                        }
-                        else
-                        {
-                            return null;
-                        }
+                        return CSharpExpression.NullLiteral;
 
                     case ApiDefaultValue.Reference _:
                         throw new NotSupportedException(nameof(ApiDefaultValue.Reference) + " is not supported yet.");

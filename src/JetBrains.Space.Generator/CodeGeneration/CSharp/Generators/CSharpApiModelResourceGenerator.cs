@@ -330,7 +330,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             var typeNameForDto = apiEndpoint.ToCSharpRequestBodyClassName(endpointPath);
             foreach (var field in apiEndpoint.RequestBody!.Fields)
             {
-                if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes && field.Type.IsCSharpReferenceType())
+                if (field.Type.IsCSharpReferenceType())
                 {
                     builder.AppendLine($"{indent}{field.ToCSharpPropertyName(typeNameForDto)} = {field.ToCSharpVariableInstanceOrDefaultValue(_codeGenerationContext)},");
                 }
