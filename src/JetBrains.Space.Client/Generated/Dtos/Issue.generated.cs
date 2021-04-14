@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public Issue() { }
         
-        public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, List<SprintRecord> sprints, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, string? description = null)
+        public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, List<string> codeReviewIds, List<CommitIdsInRepository> commitsByRepos, List<SprintRecord> sprints, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, string? description = null)
         {
             Id = id;
             IsArchived = archived;
@@ -52,6 +52,8 @@ namespace JetBrains.Space.Client
             Attachments = attachments;
             Channel = channel;
             Checklists = checklists;
+            CodeReviewIds = codeReviewIds;
+            CommitsByRepos = commitsByRepos;
             Description = description;
             Sprints = sprints;
         }
@@ -232,6 +234,26 @@ namespace JetBrains.Space.Client
             set => _checklists.SetValue(value);
         }
     
+        private PropertyValue<List<string>> _codeReviewIds = new PropertyValue<List<string>>(nameof(Issue), nameof(CodeReviewIds), new List<string>());
+        
+        [Required]
+        [JsonPropertyName("codeReviewIds")]
+        public List<string> CodeReviewIds
+        {
+            get => _codeReviewIds.GetValue();
+            set => _codeReviewIds.SetValue(value);
+        }
+    
+        private PropertyValue<List<CommitIdsInRepository>> _commitsByRepos = new PropertyValue<List<CommitIdsInRepository>>(nameof(Issue), nameof(CommitsByRepos), new List<CommitIdsInRepository>());
+        
+        [Required]
+        [JsonPropertyName("commitsByRepos")]
+        public List<CommitIdsInRepository> CommitsByRepos
+        {
+            get => _commitsByRepos.GetValue();
+            set => _commitsByRepos.SetValue(value);
+        }
+    
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(Issue), nameof(Description));
         
         [JsonPropertyName("description")]
@@ -271,6 +293,8 @@ namespace JetBrains.Space.Client
             _attachments.SetAccessPath(path, validateHasBeenSet);
             _channel.SetAccessPath(path, validateHasBeenSet);
             _checklists.SetAccessPath(path, validateHasBeenSet);
+            _codeReviewIds.SetAccessPath(path, validateHasBeenSet);
+            _commitsByRepos.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
             _sprints.SetAccessPath(path, validateHasBeenSet);
         }

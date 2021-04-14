@@ -44,6 +44,12 @@ namespace JetBrains.Space.Client.ArticlePreviewRecordPartialBuilder
         public static Partial<ArticlePreviewRecord> WithPreview(this Partial<ArticlePreviewRecord> it)
             => it.AddFieldName("preview");
         
+        public static Partial<ArticlePreviewRecord> WithPreviewAttachments(this Partial<ArticlePreviewRecord> it)
+            => it.AddFieldName("previewAttachments");
+        
+        public static Partial<ArticlePreviewRecord> WithPreviewAttachments(this Partial<ArticlePreviewRecord> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
+            => it.AddFieldName("previewAttachments", partialBuilder(new Partial<AttachmentInfo>(it)));
+        
         public static Partial<ArticlePreviewRecord> WithWordsNumber(this Partial<ArticlePreviewRecord> it)
             => it.AddFieldName("wordsNumber");
         

@@ -86,6 +86,9 @@ namespace JetBrains.Space.Client.CustomFieldPartialBuilder
         public static Partial<CustomField> WithScope(this Partial<CustomField> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
             => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
         
+        public static Partial<CustomField> WithIsDeleted(this Partial<CustomField> it)
+            => it.AddFieldName("deleted");
+        
         public static Partial<CustomField> WithIsArchived(this Partial<CustomField> it)
             => it.AddFieldName("archived");
         

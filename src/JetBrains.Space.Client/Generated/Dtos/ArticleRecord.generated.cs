@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public ArticleRecord() { }
         
-        public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, M2ChannelContentRecord channelContent, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, bool? cut = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, TDLocation? location = null, List<TDLocation>? locations = null, TDTeam? team = null, List<TDTeam>? teams = null, int? wordsNumber = null)
+        public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, M2ChannelContentRecord channelContent, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, List<AttachmentInfo>? attachments = null, bool? cut = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, TDLocation? location = null, List<TDLocation>? locations = null, List<AttachmentInfo>? previewAttachments = null, TDTeam? team = null, List<TDTeam>? teams = null, int? wordsNumber = null)
         {
             Id = id;
             IsArchived = archived;
@@ -42,6 +42,7 @@ namespace JetBrains.Space.Client
             Aliases = aliases;
             ArchivedBy = archivedBy;
             ArchivedAt = archivedAt;
+            Attachments = attachments;
             Channel = channel;
             ChannelContent = channelContent;
             Content = content;
@@ -52,6 +53,7 @@ namespace JetBrains.Space.Client
             Location = location;
             Locations = locations;
             Preview = preview;
+            PreviewAttachments = previewAttachments;
             PreviewImages = previewImages;
             Reactions = reactions;
             Team = team;
@@ -137,6 +139,15 @@ namespace JetBrains.Space.Client
         {
             get => _archivedAt.GetValue();
             set => _archivedAt.SetValue(value);
+        }
+    
+        private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ArticleRecord), nameof(Attachments));
+        
+        [JsonPropertyName("attachments")]
+        public List<AttachmentInfo>? Attachments
+        {
+            get => _attachments.GetValue();
+            set => _attachments.SetValue(value);
         }
     
         private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(ArticleRecord), nameof(Channel));
@@ -234,6 +245,15 @@ namespace JetBrains.Space.Client
             set => _preview.SetValue(value);
         }
     
+        private PropertyValue<List<AttachmentInfo>?> _previewAttachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ArticleRecord), nameof(PreviewAttachments));
+        
+        [JsonPropertyName("previewAttachments")]
+        public List<AttachmentInfo>? PreviewAttachments
+        {
+            get => _previewAttachments.GetValue();
+            set => _previewAttachments.SetValue(value);
+        }
+    
         private PropertyValue<List<ArticleMarkdownImage>> _previewImages = new PropertyValue<List<ArticleMarkdownImage>>(nameof(ArticleRecord), nameof(PreviewImages), new List<ArticleMarkdownImage>());
         
         [Required]
@@ -291,6 +311,7 @@ namespace JetBrains.Space.Client
             _aliases.SetAccessPath(path, validateHasBeenSet);
             _archivedBy.SetAccessPath(path, validateHasBeenSet);
             _archivedAt.SetAccessPath(path, validateHasBeenSet);
+            _attachments.SetAccessPath(path, validateHasBeenSet);
             _channel.SetAccessPath(path, validateHasBeenSet);
             _channelContent.SetAccessPath(path, validateHasBeenSet);
             _content.SetAccessPath(path, validateHasBeenSet);
@@ -301,6 +322,7 @@ namespace JetBrains.Space.Client
             _location.SetAccessPath(path, validateHasBeenSet);
             _locations.SetAccessPath(path, validateHasBeenSet);
             _preview.SetAccessPath(path, validateHasBeenSet);
+            _previewAttachments.SetAccessPath(path, validateHasBeenSet);
             _previewImages.SetAccessPath(path, validateHasBeenSet);
             _reactions.SetAccessPath(path, validateHasBeenSet);
             _team.SetAccessPath(path, validateHasBeenSet);

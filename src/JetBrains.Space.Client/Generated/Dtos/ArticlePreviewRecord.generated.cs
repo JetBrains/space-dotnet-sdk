@@ -32,12 +32,13 @@ namespace JetBrains.Space.Client
     {
         public ArticlePreviewRecord() { }
         
-        public ArticlePreviewRecord(string id, bool archived, List<ArticleMarkdownImage> previewImages, string preview, int? wordsNumber = null, bool? cut = null)
+        public ArticlePreviewRecord(string id, bool archived, List<ArticleMarkdownImage> previewImages, string preview, List<AttachmentInfo>? previewAttachments = null, int? wordsNumber = null, bool? cut = null)
         {
             Id = id;
             IsArchived = archived;
             PreviewImages = previewImages;
             Preview = preview;
+            PreviewAttachments = previewAttachments;
             WordsNumber = wordsNumber;
             IsCut = cut;
         }
@@ -82,6 +83,15 @@ namespace JetBrains.Space.Client
             set => _preview.SetValue(value);
         }
     
+        private PropertyValue<List<AttachmentInfo>?> _previewAttachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ArticlePreviewRecord), nameof(PreviewAttachments));
+        
+        [JsonPropertyName("previewAttachments")]
+        public List<AttachmentInfo>? PreviewAttachments
+        {
+            get => _previewAttachments.GetValue();
+            set => _previewAttachments.SetValue(value);
+        }
+    
         private PropertyValue<int?> _wordsNumber = new PropertyValue<int?>(nameof(ArticlePreviewRecord), nameof(WordsNumber));
         
         [JsonPropertyName("wordsNumber")]
@@ -106,6 +116,7 @@ namespace JetBrains.Space.Client
             _archived.SetAccessPath(path, validateHasBeenSet);
             _previewImages.SetAccessPath(path, validateHasBeenSet);
             _preview.SetAccessPath(path, validateHasBeenSet);
+            _previewAttachments.SetAccessPath(path, validateHasBeenSet);
             _wordsNumber.SetAccessPath(path, validateHasBeenSet);
             _cut.SetAccessPath(path, validateHasBeenSet);
         }

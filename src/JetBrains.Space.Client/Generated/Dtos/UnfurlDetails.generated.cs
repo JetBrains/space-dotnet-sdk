@@ -51,6 +51,9 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsChat Chat(string channel, string title)
             => new UnfurlDetailsChat(channel: channel, title: title);
         
+        public static UnfurlDetailsChatLink ChatLink(string contactKey, string title)
+            => new UnfurlDetailsChatLink(contactKey: contactKey, title: title);
+        
         public static UnfurlDetailsChecklist Checklist(Checklist checklist)
             => new UnfurlDetailsChecklist(checklist: checklist);
         

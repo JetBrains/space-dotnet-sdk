@@ -113,6 +113,15 @@ namespace JetBrains.Space.Client.IssuePartialBuilder
         public static Partial<Issue> WithChecklists(this Partial<Issue> it, Func<Partial<Checklist>, Partial<Checklist>> partialBuilder)
             => it.AddFieldName("checklists", partialBuilder(new Partial<Checklist>(it)));
         
+        public static Partial<Issue> WithCodeReviewIds(this Partial<Issue> it)
+            => it.AddFieldName("codeReviewIds");
+        
+        public static Partial<Issue> WithCommitsByRepos(this Partial<Issue> it)
+            => it.AddFieldName("commitsByRepos");
+        
+        public static Partial<Issue> WithCommitsByRepos(this Partial<Issue> it, Func<Partial<CommitIdsInRepository>, Partial<CommitIdsInRepository>> partialBuilder)
+            => it.AddFieldName("commitsByRepos", partialBuilder(new Partial<CommitIdsInRepository>(it)));
+        
         public static Partial<Issue> WithDescription(this Partial<Issue> it)
             => it.AddFieldName("description");
         

@@ -32,11 +32,12 @@ namespace JetBrains.Space.Client
     {
         public ArticleContentRecord() { }
         
-        public ArticleContentRecord(string id, bool archived, string content)
+        public ArticleContentRecord(string id, bool archived, string content, List<AttachmentInfo>? attachments = null)
         {
             Id = id;
             IsArchived = archived;
             Content = content;
+            Attachments = attachments;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticleContentRecord), nameof(Id));
@@ -69,11 +70,21 @@ namespace JetBrains.Space.Client
             set => _content.SetValue(value);
         }
     
+        private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ArticleContentRecord), nameof(Attachments));
+        
+        [JsonPropertyName("attachments")]
+        public List<AttachmentInfo>? Attachments
+        {
+            get => _attachments.GetValue();
+            set => _attachments.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
             _content.SetAccessPath(path, validateHasBeenSet);
+            _attachments.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

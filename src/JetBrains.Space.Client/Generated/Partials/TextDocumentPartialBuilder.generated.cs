@@ -50,6 +50,12 @@ namespace JetBrains.Space.Client.TextDocumentPartialBuilder
         public static Partial<TextDocument> WithModel(this Partial<TextDocument> it)
             => it.AddFieldName("model");
         
+        public static Partial<TextDocument> WithAttachments(this Partial<TextDocument> it)
+            => it.AddFieldName("attachments");
+        
+        public static Partial<TextDocument> WithAttachments(this Partial<TextDocument> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
+            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
+        
     }
     
 }

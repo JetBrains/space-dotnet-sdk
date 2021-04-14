@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public CustomField() { }
         
-        public CustomField(ExtendedType extendedType, string id, string name, CFType type, bool required, bool @private, CFValue defaultValue, int order, bool archived, string? description = null, string? key = null, CFConstraint? constraint = null, AccessType? access = null, ExtendedTypeScope? scope = null)
+        public CustomField(ExtendedType extendedType, string id, string name, CFType type, bool required, bool @private, CFValue defaultValue, int order, bool archived, string? description = null, string? key = null, CFConstraint? constraint = null, AccessType? access = null, ExtendedTypeScope? scope = null, bool? deleted = null)
         {
             ExtendedType = extendedType;
             Id = id;
@@ -47,6 +47,7 @@ namespace JetBrains.Space.Client
             DefaultValue = defaultValue;
             Order = order;
             Scope = scope;
+            IsDeleted = deleted;
             IsArchived = archived;
         }
         
@@ -176,6 +177,15 @@ namespace JetBrains.Space.Client
             set => _scope.SetValue(value);
         }
     
+        private PropertyValue<bool?> _deleted = new PropertyValue<bool?>(nameof(CustomField), nameof(IsDeleted));
+        
+        [JsonPropertyName("deleted")]
+        public bool? IsDeleted
+        {
+            get => _deleted.GetValue();
+            set => _deleted.SetValue(value);
+        }
+    
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CustomField), nameof(IsArchived));
         
         [Required]
@@ -201,6 +211,7 @@ namespace JetBrains.Space.Client
             _defaultValue.SetAccessPath(path, validateHasBeenSet);
             _order.SetAccessPath(path, validateHasBeenSet);
             _scope.SetAccessPath(path, validateHasBeenSet);
+            _deleted.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
         }
     

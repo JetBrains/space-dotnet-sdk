@@ -62,6 +62,12 @@ namespace JetBrains.Space.Client.ArticleRecordPartialBuilder
         public static Partial<ArticleRecord> WithArchivedAt(this Partial<ArticleRecord> it)
             => it.AddFieldName("archivedAt");
         
+        public static Partial<ArticleRecord> WithAttachments(this Partial<ArticleRecord> it)
+            => it.AddFieldName("attachments");
+        
+        public static Partial<ArticleRecord> WithAttachments(this Partial<ArticleRecord> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
+            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
+        
         public static Partial<ArticleRecord> WithChannel(this Partial<ArticleRecord> it)
             => it.AddFieldName("channel");
         
@@ -109,6 +115,12 @@ namespace JetBrains.Space.Client.ArticleRecordPartialBuilder
         
         public static Partial<ArticleRecord> WithPreview(this Partial<ArticleRecord> it)
             => it.AddFieldName("preview");
+        
+        public static Partial<ArticleRecord> WithPreviewAttachments(this Partial<ArticleRecord> it)
+            => it.AddFieldName("previewAttachments");
+        
+        public static Partial<ArticleRecord> WithPreviewAttachments(this Partial<ArticleRecord> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
+            => it.AddFieldName("previewAttachments", partialBuilder(new Partial<AttachmentInfo>(it)));
         
         public static Partial<ArticleRecord> WithPreviewImages(this Partial<ArticleRecord> it)
             => it.AddFieldName("previewImages");

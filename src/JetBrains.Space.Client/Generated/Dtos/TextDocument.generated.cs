@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public TextDocument() { }
         
-        public TextDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null, string? model = null)
+        public TextDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null, string? model = null, List<AttachmentInfo>? attachments = null)
         {
             Id = id;
             ResetCounter = resetCounter;
@@ -40,6 +40,7 @@ namespace JetBrains.Space.Client
             Type = type;
             Text = text;
             Model = model;
+            Attachments = attachments;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TextDocument), nameof(Id));
@@ -100,6 +101,15 @@ namespace JetBrains.Space.Client
             set => _model.SetValue(value);
         }
     
+        private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(TextDocument), nameof(Attachments));
+        
+        [JsonPropertyName("attachments")]
+        public List<AttachmentInfo>? Attachments
+        {
+            get => _attachments.GetValue();
+            set => _attachments.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -108,6 +118,7 @@ namespace JetBrains.Space.Client
             _type.SetAccessPath(path, validateHasBeenSet);
             _text.SetAccessPath(path, validateHasBeenSet);
             _model.SetAccessPath(path, validateHasBeenSet);
+            _attachments.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

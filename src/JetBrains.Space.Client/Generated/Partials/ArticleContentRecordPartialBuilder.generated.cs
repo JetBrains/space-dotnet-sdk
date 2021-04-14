@@ -38,6 +38,12 @@ namespace JetBrains.Space.Client.ArticleContentRecordPartialBuilder
         public static Partial<ArticleContentRecord> WithContent(this Partial<ArticleContentRecord> it)
             => it.AddFieldName("content");
         
+        public static Partial<ArticleContentRecord> WithAttachments(this Partial<ArticleContentRecord> it)
+            => it.AddFieldName("attachments");
+        
+        public static Partial<ArticleContentRecord> WithAttachments(this Partial<ArticleContentRecord> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
+            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
+        
     }
     
 }
