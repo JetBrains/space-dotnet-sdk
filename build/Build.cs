@@ -90,6 +90,7 @@ namespace _build
                 {
                     DotNetPack(_ => _
                         .SetProject(project)
+                        .SetConfiguration(Configuration)
                         .EnableIncludeSource()
                         .EnableIncludeSymbols()
                         .EnableNoRestore()
