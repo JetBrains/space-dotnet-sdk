@@ -3,6 +3,20 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="\build.sh">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\JetBrains.Space.Client\Generated\Partials\CommitIdsInRepositoryPartialBuilder.generated.cs">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\JetBrains.Space.Generator\CodeGeneration\CSharp\Extensions\ApiFieldExtensions.cs">
           <value>
             <Attribute>

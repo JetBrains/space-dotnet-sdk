@@ -14,6 +14,13 @@ job("Continuous integration build") {
 
         shellScript {
             content = """
+                mkdir .nuke/temp/
+                curl -Lsfo .nuke/temp/dotnet-install.sh https://dot.net/v1/dotnet-install.sh
+                chmod -x .nuke/temp/dotnet-install.sh
+                
+                ./dotnet-install.sh --channel 3.1
+                ./dotnet-install.sh --channel 5.0
+            
             	./build.sh
             """.trimIndent()
         }
