@@ -55,6 +55,12 @@ namespace JetBrains.Space.Client
         public static IntListCFValue IntList(List<int> values)
             => new IntListCFValue(values: values);
         
+        public static IssueCFValue Issue(Issue? issue = null)
+            => new IssueCFValue(issue: issue);
+        
+        public static IssueListCFValue IssueList(List<Issue> issues)
+            => new IssueListCFValue(issues: issues);
+        
         public static LocationCFValue Location(TDLocation? location = null)
             => new LocationCFValue(location: location);
         

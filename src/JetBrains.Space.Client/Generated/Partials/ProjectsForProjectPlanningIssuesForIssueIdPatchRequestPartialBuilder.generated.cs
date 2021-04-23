@@ -44,6 +44,12 @@ namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesForIssueIdPatch
         public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithDueDate(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
             => it.AddFieldName("dueDate");
         
+        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
+            => it.AddFieldName("customFields");
+        
+        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+            => it.AddFieldName("customFields", partialBuilder(new Partial<CustomFieldInputValue>(it)));
+        
     }
     
 }

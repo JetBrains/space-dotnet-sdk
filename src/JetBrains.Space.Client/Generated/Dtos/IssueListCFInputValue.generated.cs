@@ -27,15 +27,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public interface ApplicationMetadata
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class IssueListCFInputValue
+         : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static AutomationServiceMetadata AutomationServiceMetadata(PRProject project)
-            => new AutomationServiceMetadata(project: project);
+        [JsonPropertyName("className")]
+        public  string? ClassName => "IssueListCFInputValue";
         
-        public static SubscriptionMetadata SubscriptionMetadata(M2ChannelRecord channel, string subscription, string subscriptionName)
-            => new SubscriptionMetadata(channel: channel, subscription: subscription, subscriptionName: subscriptionName);
+        public IssueListCFInputValue() { }
         
+        public IssueListCFInputValue(List<IssueIdentifier> issues)
+        {
+            Issues = issues;
+        }
+        
+        private PropertyValue<List<IssueIdentifier>> _issues = new PropertyValue<List<IssueIdentifier>>(nameof(IssueListCFInputValue), nameof(Issues), new List<IssueIdentifier>());
+        
+        [Required]
+        [JsonPropertyName("issues")]
+        public List<IssueIdentifier> Issues
+        {
+            get => _issues.GetValue();
+            set => _issues.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _issues.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

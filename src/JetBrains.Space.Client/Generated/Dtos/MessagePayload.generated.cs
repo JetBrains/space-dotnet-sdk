@@ -35,12 +35,13 @@ namespace JetBrains.Space.Client
         
         public MessagePayload() { }
         
-        public MessagePayload(MessageContext message, string userId, string? accessToken = null, string? verificationToken = null)
+        public MessagePayload(MessageContext message, string userId, string? accessToken = null, string? verificationToken = null, string? serverUrl = null)
         {
             Message = message;
             AccessToken = accessToken;
             VerificationToken = verificationToken;
             UserId = userId;
+            ServerUrl = serverUrl;
         }
         
         private PropertyValue<MessageContext> _message = new PropertyValue<MessageContext>(nameof(MessagePayload), nameof(Message));
@@ -81,12 +82,22 @@ namespace JetBrains.Space.Client
             set => _userId.SetValue(value);
         }
     
+        private PropertyValue<string?> _serverUrl = new PropertyValue<string?>(nameof(MessagePayload), nameof(ServerUrl));
+        
+        [JsonPropertyName("serverUrl")]
+        public string? ServerUrl
+        {
+            get => _serverUrl.GetValue();
+            set => _serverUrl.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _message.SetAccessPath(path, validateHasBeenSet);
             _accessToken.SetAccessPath(path, validateHasBeenSet);
             _verificationToken.SetAccessPath(path, validateHasBeenSet);
             _userId.SetAccessPath(path, validateHasBeenSet);
+            _serverUrl.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

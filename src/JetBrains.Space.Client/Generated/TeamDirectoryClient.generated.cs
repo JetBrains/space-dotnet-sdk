@@ -50,7 +50,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get calendar events attached to an article in a specific time period.
             /// </summary>
-            [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
+            [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (will be removed in a future version)")]
             public async Task<List<MeetingRecord>> GetAllCalendarEventsAsync(DateTime dateFrom, DateTime dateTo, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -65,7 +65,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get a calendar event attached to an article.
             /// </summary>
-            [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
+            [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (will be removed in a future version)")]
             public async Task<MeetingRecord> GetCalendarEventAsync(string id, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -89,7 +89,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Get/search absences. Parameters are applied as 'AND' filters.
                 /// </summary>
-                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
+                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (will be removed in a future version)")]
                 public async Task<List<AbsenceEvent>> GetAllAbsenceEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<AbsenceEvent>, Partial<AbsenceEvent>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -120,7 +120,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Get/search birthdays. Parameters are applied as 'AND' filters.
                 /// </summary>
-                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
+                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (will be removed in a future version)")]
                 public async Task<List<BirthdayEvent>> GetAllBirthdayEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<BirthdayEvent>, Partial<BirthdayEvent>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -149,7 +149,7 @@ namespace JetBrains.Space.Client
                     /// <summary>
                     /// Get/search birthdays in a specific time period for starred profiles.
                     /// </summary>
-                    [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
+                    [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (will be removed in a future version)")]
                     public async Task<List<BirthdayEvent>> GetAllStarredBirthdayEventsAsync(DateTime dateFrom, DateTime dateTo, Func<Partial<BirthdayEvent>, Partial<BirthdayEvent>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
@@ -179,7 +179,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Get/search holidays. Parameters are applied as 'AND' filters.
                 /// </summary>
-                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
+                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (will be removed in a future version)")]
                 public async Task<List<HolidaysEvent>> GetAllHolidaysAsync(DateTime startDate, DateTime endDate, string? team = null, string? location = null, string? role = null, bool? workingDays = null, Func<Partial<HolidaysEvent>, Partial<HolidaysEvent>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -211,7 +211,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Update RSVP / calendar event participation status for a calendar event attached to an article.
                 /// </summary>
-                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
+                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (will be removed in a future version)")]
                 public async Task<MeetingRecord> UpdateMeetingParticipationAsync(string id, EventParticipationStatus newStatus, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -249,7 +249,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
+                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (will be removed in a future version)")]
                 public async Task<List<MembershipEvent>> GetAllMembershipEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<MembershipEvent>, Partial<MembershipEvent>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -280,7 +280,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Get/search non-working day events. Parameters are applied as 'AND' filters.
                 /// </summary>
-                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
+                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (will be removed in a future version)")]
                 public async Task<List<NonWorkingDaysEvent>> GetAllNonWorkingDaysEventsAsync(DateTime dateFrom, DateTime dateTo, string? member = null, string? team = null, string? location = null, string? role = null, Func<Partial<NonWorkingDaysEvent>, Partial<NonWorkingDaysEvent>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2387,7 +2387,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Get team leads for a given profile id.
                 /// </summary>
-                [Obsolete("To be removed (since 2020-12-01) (marked for removal)")]
+                [Obsolete("To be removed (since 2020-12-01) (will be removed in a future version)")]
                 public async Task<List<TDMemberProfile>> GetAllLeadsAsync(ProfileIdentifier profile, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();

@@ -25,19 +25,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsIssuePartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class UnfurlDetailsIssuePartialExtensions
+    public sealed class IssueListCFValue
+         : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<UnfurlDetailsIssue> WithIssue(this Partial<UnfurlDetailsIssue> it)
-            => it.AddFieldName("issue");
+        [JsonPropertyName("className")]
+        public override string? ClassName => "IssueListCFValue";
         
-        public static Partial<UnfurlDetailsIssue> WithIssue(this Partial<UnfurlDetailsIssue> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
-            => it.AddFieldName("issue", partialBuilder(new Partial<Issue>(it)));
+        public IssueListCFValue() { }
         
-        public static Partial<UnfurlDetailsIssue> WithIsStrikeThrough(this Partial<UnfurlDetailsIssue> it)
-            => it.AddFieldName("strikeThrough");
+        public IssueListCFValue(List<Issue> issues)
+        {
+            Issues = issues;
+        }
         
+        private PropertyValue<List<Issue>> _issues = new PropertyValue<List<Issue>>(nameof(IssueListCFValue), nameof(Issues), new List<Issue>());
+        
+        [Required]
+        [JsonPropertyName("issues")]
+        public List<Issue> Issues
+        {
+            get => _issues.GetValue();
+            set => _issues.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _issues.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

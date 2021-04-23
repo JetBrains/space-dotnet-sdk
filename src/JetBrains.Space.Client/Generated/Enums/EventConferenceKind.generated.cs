@@ -36,6 +36,12 @@ namespace JetBrains.Space.Client
         [EnumMember(Value = "GOOGLE_MEET")]
         GOOGLEMEET,
         
+        [EnumMember(Value = "SPACE_TELEKOM")]
+        SPACETELEKOM,
+        
+        [EnumMember(Value = "CUSTOM")]
+        CUSTOM,
+        
     }
     
 }

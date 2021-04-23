@@ -47,6 +47,9 @@ namespace JetBrains.Space.Client.MenuActionPayloadPartialBuilder
         public static Partial<MenuActionPayload> WithUserId(this Partial<MenuActionPayload> it)
             => it.AddFieldName("userId");
         
+        public static Partial<MenuActionPayload> WithServerUrl(this Partial<MenuActionPayload> it)
+            => it.AddFieldName("serverUrl");
+        
     }
     
 }

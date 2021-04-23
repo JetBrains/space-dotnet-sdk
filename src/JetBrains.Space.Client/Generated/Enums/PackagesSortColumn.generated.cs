@@ -33,8 +33,8 @@ namespace JetBrains.Space.Client
         [EnumMember(Value = "Downloads")]
         Downloads,
         
-        [EnumMember(Value = "LastUpdated")]
-        LastUpdated,
+        [EnumMember(Value = "LastAccessed")]
+        LastAccessed,
         
         [EnumMember(Value = "Created")]
         Created,

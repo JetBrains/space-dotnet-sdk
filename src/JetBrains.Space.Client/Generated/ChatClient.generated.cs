@@ -218,7 +218,7 @@ namespace JetBrains.Space.Client
             }
             
         
-            [Obsolete("Use POST chats/messages/edit-message (since 2020-06-06) (marked for removal)")]
+            [Obsolete("Use POST chats/messages/edit-message (since 2020-06-06) (will be removed in a future version)")]
             public async Task EditTextMessageAsync(string channelId, string text, string messageId, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -233,7 +233,7 @@ namespace JetBrains.Space.Client
             }
             
         
-            [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17) (marked for removal)")]
+            [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17) (will be removed in a future version)")]
             public async Task<ChannelItemRecord> SendTextMessageAsync(string channel, string text, bool pending = false, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();

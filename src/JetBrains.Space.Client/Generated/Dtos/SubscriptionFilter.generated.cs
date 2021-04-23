@@ -39,6 +39,9 @@ namespace JetBrains.Space.Client
         public static BlogCommonSubscriptionFilter BlogCommon(List<TDTeam> teams, List<TDLocation> locations, List<TDMemberProfile> authors)
             => new BlogCommonSubscriptionFilter(teams: teams, locations: locations, authors: authors);
         
+        public static DocumentCustomSubscriptionFilter DocumentCustom(List<string> documents)
+            => new DocumentCustomSubscriptionFilter(documents: documents);
+        
         public static MemberCommonSubscriptionFilter MemberCommon(List<TDTeam> teams, List<TDLocation> locations)
             => new MemberCommonSubscriptionFilter(teams: teams, locations: locations);
         

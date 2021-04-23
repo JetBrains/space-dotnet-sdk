@@ -2105,7 +2105,7 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages (since 2020-09-01) (marked for removal)")]
+                    [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages (since 2020-09-01) (will be removed in a future version)")]
                     public async Task<Batch<PackageData>> GetAllPackagesAsync(ProjectIdentifier project, string type, string repositoryName, string query, string? skip = null, int? top = 100, Func<Partial<Batch<PackageData>>, Partial<Batch<PackageData>>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
@@ -2129,7 +2129,7 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages (since 2020-09-01) (marked for removal)")]
+                    [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages (since 2020-09-01) (will be removed in a future version)")]
                     public IAsyncEnumerable<PackageData> GetAllPackagesAsyncEnumerable(ProjectIdentifier project, string type, string repositoryName, string query, string? skip = null, int? top = 100, Func<Partial<PackageData>, Partial<PackageData>>? partial = null, CancellationToken cancellationToken = default)
                         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackagesAsync(project: project, type: type, repositoryName: repositoryName, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageData>.Default())), skip, cancellationToken);
                 
@@ -2146,7 +2146,7 @@ namespace JetBrains.Space.Client
                         /// </item>
                         /// </list>
                         /// </remarks>
-                        [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (marked for removal)")]
+                        [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (will be removed in a future version)")]
                         public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, PackagesSortColumn sortColumn, ColumnSortOrder sortOrder, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
                         {
                             var queryParameters = new NameValueCollection();
@@ -2172,7 +2172,7 @@ namespace JetBrains.Space.Client
                         /// </item>
                         /// </list>
                         /// </remarks>
-                        [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (marked for removal)")]
+                        [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (will be removed in a future version)")]
                         public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, PackagesSortColumn sortColumn, ColumnSortOrder sortOrder, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
                             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, type: type, repositoryName: repositoryName, packageName: packageName, query: query, sortColumn: sortColumn, sortOrder: sortOrder, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
                     
@@ -2187,7 +2187,7 @@ namespace JetBrains.Space.Client
                         /// </item>
                         /// </list>
                         /// </remarks>
-                        [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion} (since 2020-09-01) (marked for removal)")]
+                        [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion} (since 2020-09-01) (will be removed in a future version)")]
                         public async Task<PackageVersionDetails> GetPackageVersionDetailsAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string packageVersion, Func<Partial<PackageVersionDetails>, Partial<PackageVersionDetails>>? partial = null, CancellationToken cancellationToken = default)
                         {
                             var queryParameters = new NameValueCollection();
@@ -2208,7 +2208,7 @@ namespace JetBrains.Space.Client
                         /// </item>
                         /// </list>
                         /// </remarks>
-                        [Obsolete("Use DELETE /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion} (since 2020-09-01) (marked for removal)")]
+                        [Obsolete("Use DELETE /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion} (since 2020-09-01) (will be removed in a future version)")]
                         public async Task DeletePackageVersionAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string packageVersion, CancellationToken cancellationToken = default)
                         {
                             var queryParameters = new NameValueCollection();
@@ -2718,7 +2718,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task UpdateIssueAsync(ProjectIdentifier project, string issueId, string title, string status, string? description = null, string? assignee = null, DateTime? dueDate = null, CancellationToken cancellationToken = default)
+                public async Task UpdateIssueAsync(ProjectIdentifier project, string issueId, string title, string status, List<CustomFieldInputValue>? customFields = null, string? description = null, string? assignee = null, DateTime? dueDate = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -2730,6 +2730,7 @@ namespace JetBrains.Space.Client
                             Assignee = assignee,
                             Status = status,
                             DueDate = dueDate,
+                            CustomFields = (customFields ?? new List<CustomFieldInputValue>()),
                         }, cancellationToken);
                 }
                 

@@ -25,16 +25,10 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CommitIdsInRepositoryPartialBuilder
+namespace JetBrains.Space.Client.IssueListCFTypePartialBuilder
 {
-    public static class CommitIdsInRepositoryPartialExtensions
+    public static class IssueListCFTypePartialExtensions
     {
-        public static Partial<CommitIdsInRepository> WithRepoId(this Partial<CommitIdsInRepository> it)
-            => it.AddFieldName("repoId");
-        
-        public static Partial<CommitIdsInRepository> WithCommitIds(this Partial<CommitIdsInRepository> it)
-            => it.AddFieldName("commitIds");
-        
     }
     
 }

@@ -27,43 +27,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class UnfurlDetailsIssue
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class DocumentCustomSubscriptionFilter
+         : SubscriptionFilter, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsIssue";
+        public  string? ClassName => "DocumentCustomSubscriptionFilter";
         
-        public UnfurlDetailsIssue() { }
+        public DocumentCustomSubscriptionFilter() { }
         
-        public UnfurlDetailsIssue(Issue issue, bool? strikeThrough = null)
+        public DocumentCustomSubscriptionFilter(List<string> documents)
         {
-            Issue = issue;
-            IsStrikeThrough = strikeThrough;
+            Documents = documents;
         }
         
-        private PropertyValue<Issue> _issue = new PropertyValue<Issue>(nameof(UnfurlDetailsIssue), nameof(Issue));
+        private PropertyValue<List<string>> _documents = new PropertyValue<List<string>>(nameof(DocumentCustomSubscriptionFilter), nameof(Documents), new List<string>());
         
         [Required]
-        [JsonPropertyName("issue")]
-        public Issue Issue
+        [JsonPropertyName("documents")]
+        public List<string> Documents
         {
-            get => _issue.GetValue();
-            set => _issue.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsIssue), nameof(IsStrikeThrough));
-        
-        [JsonPropertyName("strikeThrough")]
-        public bool? IsStrikeThrough
-        {
-            get => _strikeThrough.GetValue();
-            set => _strikeThrough.SetValue(value);
+            get => _documents.GetValue();
+            set => _documents.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _issue.SetAccessPath(path, validateHasBeenSet);
-            _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+            _documents.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

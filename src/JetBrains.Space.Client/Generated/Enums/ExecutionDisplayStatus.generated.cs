@@ -48,6 +48,12 @@ namespace JetBrains.Space.Client
         [EnumMember(Value = "Failed")]
         Failed,
         
+        [EnumMember(Value = "NoSuitableWorkers")]
+        NoSuitableWorkers,
+        
+        [EnumMember(Value = "WaitingForWorkers")]
+        WaitingForWorkers,
+        
     }
     
 }

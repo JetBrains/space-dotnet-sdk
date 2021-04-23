@@ -38,6 +38,9 @@ namespace JetBrains.Space.Client.ListCommandsPayloadPartialBuilder
         public static Partial<ListCommandsPayload> WithUserId(this Partial<ListCommandsPayload> it)
             => it.AddFieldName("userId");
         
+        public static Partial<ListCommandsPayload> WithServerUrl(this Partial<ListCommandsPayload> it)
+            => it.AddFieldName("serverUrl");
+        
     }
     
 }

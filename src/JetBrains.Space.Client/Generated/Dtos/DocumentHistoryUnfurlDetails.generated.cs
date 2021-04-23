@@ -35,12 +35,13 @@ namespace JetBrains.Space.Client
         
         public DocumentHistoryUnfurlDetails() { }
         
-        public DocumentHistoryUnfurlDetails(string document, string title, DateTime version, DateTime @base)
+        public DocumentHistoryUnfurlDetails(string document, string title, DateTime? version = null, DateTime? @base = null, DateTime? preview = null)
         {
             Document = document;
             Title = title;
             Version = version;
             Base = @base;
+            Preview = preview;
         }
         
         private PropertyValue<string> _document = new PropertyValue<string>(nameof(DocumentHistoryUnfurlDetails), nameof(Document));
@@ -63,26 +64,34 @@ namespace JetBrains.Space.Client
             set => _title.SetValue(value);
         }
     
-        private PropertyValue<DateTime> _version = new PropertyValue<DateTime>(nameof(DocumentHistoryUnfurlDetails), nameof(Version));
+        private PropertyValue<DateTime?> _version = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Version));
         
-        [Required]
         [JsonPropertyName("version")]
         [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Version
+        public DateTime? Version
         {
             get => _version.GetValue();
             set => _version.SetValue(value);
         }
     
-        private PropertyValue<DateTime> _base = new PropertyValue<DateTime>(nameof(DocumentHistoryUnfurlDetails), nameof(Base));
+        private PropertyValue<DateTime?> _base = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Base));
         
-        [Required]
         [JsonPropertyName("base")]
         [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Base
+        public DateTime? Base
         {
             get => _base.GetValue();
             set => _base.SetValue(value);
+        }
+    
+        private PropertyValue<DateTime?> _preview = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Preview));
+        
+        [JsonPropertyName("preview")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? Preview
+        {
+            get => _preview.GetValue();
+            set => _preview.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
@@ -91,6 +100,7 @@ namespace JetBrains.Space.Client
             _title.SetAccessPath(path, validateHasBeenSet);
             _version.SetAccessPath(path, validateHasBeenSet);
             _base.SetAccessPath(path, validateHasBeenSet);
+            _preview.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

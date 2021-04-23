@@ -111,7 +111,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<bool?> _emailNotificationsEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(IsEmailNotificationsEnabled));
         
-        [Obsolete("Use notification-settings (since 24 Feb 2021) (marked for removal)")]
+        [Obsolete("Use notification-settings (since 24 Feb 2021) (will be removed in a future version)")]
         [JsonPropertyName("emailNotificationsEnabled")]
         public bool? IsEmailNotificationsEnabled
         {
@@ -121,7 +121,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<string?> _notificationEmail = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(NotificationEmail));
         
-        [Obsolete("Use notification-settings (since 24 Feb 2021) (marked for removal)")]
+        [Obsolete("Use notification-settings (since 24 Feb 2021) (will be removed in a future version)")]
         [JsonPropertyName("notificationEmail")]
         public string? NotificationEmail
         {

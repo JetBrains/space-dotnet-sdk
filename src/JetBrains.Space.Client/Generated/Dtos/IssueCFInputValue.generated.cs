@@ -27,41 +27,31 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class CommitIdsInRepository
-         : IPropagatePropertyAccessPath
+    public sealed class IssueCFInputValue
+         : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public CommitIdsInRepository() { }
+        [JsonPropertyName("className")]
+        public  string? ClassName => "IssueCFInputValue";
         
-        public CommitIdsInRepository(string repoId, List<string> commitIds)
+        public IssueCFInputValue() { }
+        
+        public IssueCFInputValue(IssueIdentifier? issue = null)
         {
-            RepoId = repoId;
-            CommitIds = commitIds;
+            Issue = issue;
         }
         
-        private PropertyValue<string> _repoId = new PropertyValue<string>(nameof(CommitIdsInRepository), nameof(RepoId));
+        private PropertyValue<IssueIdentifier?> _issue = new PropertyValue<IssueIdentifier?>(nameof(IssueCFInputValue), nameof(Issue));
         
-        [Required]
-        [JsonPropertyName("repoId")]
-        public string RepoId
+        [JsonPropertyName("issue")]
+        public IssueIdentifier? Issue
         {
-            get => _repoId.GetValue();
-            set => _repoId.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _commitIds = new PropertyValue<List<string>>(nameof(CommitIdsInRepository), nameof(CommitIds), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("commitIds")]
-        public List<string> CommitIds
-        {
-            get => _commitIds.GetValue();
-            set => _commitIds.SetValue(value);
+            get => _issue.GetValue();
+            set => _issue.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _repoId.SetAccessPath(path, validateHasBeenSet);
-            _commitIds.SetAccessPath(path, validateHasBeenSet);
+            _issue.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

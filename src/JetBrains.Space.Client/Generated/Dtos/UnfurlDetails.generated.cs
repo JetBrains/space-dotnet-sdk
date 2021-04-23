@@ -39,8 +39,8 @@ namespace JetBrains.Space.Client
         public static ChannelItemSnapshot ChannelItemSnapshot(string id, string text, CPrincipal author, DateTime created, long time, string? channelId = null, M2ItemContentDetails? details = null, List<AttachmentInfo>? attachments = null)
             => new ChannelItemSnapshot(id: id, text: text, author: author, created: created, time: time, channelId: channelId, details: details, attachments: attachments);
         
-        public static DocumentHistoryUnfurlDetails DocumentHistory(string document, string title, DateTime version, DateTime @base)
-            => new DocumentHistoryUnfurlDetails(document: document, title: title, version: version, @base: @base);
+        public static DocumentHistoryUnfurlDetails DocumentHistory(string document, string title, DateTime? version = null, DateTime? @base = null, DateTime? preview = null)
+            => new DocumentHistoryUnfurlDetails(document: document, title: title, version: version, @base: @base, preview: preview);
         
         public static UnfurlDetailsApplication Application(ESApp app)
             => new UnfurlDetailsApplication(app: app);
@@ -72,8 +72,8 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsDraft Draft(string draft, string title)
             => new UnfurlDetailsDraft(draft: draft, title: title);
         
-        public static UnfurlDetailsIssue Issue(Issue issue)
-            => new UnfurlDetailsIssue(issue: issue);
+        public static UnfurlDetailsIssue Issue(Issue issue, bool? strikeThrough = null)
+            => new UnfurlDetailsIssue(issue: issue, strikeThrough: strikeThrough);
         
         public static UnfurlDetailsIssueStatus IssueStatus(IssueStatus status)
             => new UnfurlDetailsIssueStatus(status: status);

@@ -55,6 +55,12 @@ namespace JetBrains.Space.Client
         public static IntListCFType IntList()
             => new IntListCFType();
         
+        public static IssueCFType Issue()
+            => new IssueCFType();
+        
+        public static IssueListCFType IssueList()
+            => new IssueListCFType();
+        
         public static LocationCFType Location()
             => new LocationCFType();
         

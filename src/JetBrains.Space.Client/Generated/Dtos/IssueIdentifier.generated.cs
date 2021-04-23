@@ -25,22 +25,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ListMenuExtensionsPayloadPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class ListMenuExtensionsPayloadPartialExtensions
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public class IssueIdentifier
+         : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<ListMenuExtensionsPayload> WithAccessToken(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("accessToken");
+        [JsonPropertyName("className")]
+        public virtual string? ClassName => "IssueIdentifier";
         
-        public static Partial<ListMenuExtensionsPayload> WithVerificationToken(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("verificationToken");
+        public static IssueIdentifierId Id(string id)
+            => new IssueIdentifierId(id: id);
         
-        public static Partial<ListMenuExtensionsPayload> WithUserId(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("userId");
+        public static IssueIdentifierKey Key(string key)
+            => new IssueIdentifierKey(key: key);
         
-        public static Partial<ListMenuExtensionsPayload> WithServerUrl(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("serverUrl");
+        public IssueIdentifier() { }
         
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

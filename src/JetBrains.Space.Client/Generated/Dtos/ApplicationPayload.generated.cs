@@ -30,20 +30,20 @@ namespace JetBrains.Space.Client
     public interface ApplicationPayload
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static ListCommandsPayload ListCommandsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null)
-            => new ListCommandsPayload(accessToken: accessToken, verificationToken: verificationToken, userId: userId);
+        public static ListCommandsPayload ListCommandsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null, string? serverUrl = null)
+            => new ListCommandsPayload(accessToken: accessToken, verificationToken: verificationToken, userId: userId, serverUrl: serverUrl);
         
-        public static ListMenuExtensionsPayload ListMenuExtensionsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null)
-            => new ListMenuExtensionsPayload(accessToken: accessToken, verificationToken: verificationToken, userId: userId);
+        public static ListMenuExtensionsPayload ListMenuExtensionsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null, string? serverUrl = null)
+            => new ListMenuExtensionsPayload(accessToken: accessToken, verificationToken: verificationToken, userId: userId, serverUrl: serverUrl);
         
-        public static MenuActionPayload MenuActionPayload(string extensionName, MenuActionContext context, string userId, string? accessToken = null, string? verificationToken = null)
-            => new MenuActionPayload(extensionName: extensionName, context: context, userId: userId, accessToken: accessToken, verificationToken: verificationToken);
+        public static MenuActionPayload MenuActionPayload(string extensionName, MenuActionContext context, string userId, string? accessToken = null, string? verificationToken = null, string? serverUrl = null)
+            => new MenuActionPayload(extensionName: extensionName, context: context, userId: userId, accessToken: accessToken, verificationToken: verificationToken, serverUrl: serverUrl);
         
-        public static MessageActionPayload MessageActionPayload(string actionId, string actionValue, MessageContext message, string userId, string? accessToken = null, string? verificationToken = null)
-            => new MessageActionPayload(actionId: actionId, actionValue: actionValue, message: message, userId: userId, accessToken: accessToken, verificationToken: verificationToken);
+        public static MessageActionPayload MessageActionPayload(string actionId, string actionValue, MessageContext message, string userId, string? accessToken = null, string? verificationToken = null, string? serverUrl = null)
+            => new MessageActionPayload(actionId: actionId, actionValue: actionValue, message: message, userId: userId, accessToken: accessToken, verificationToken: verificationToken, serverUrl: serverUrl);
         
-        public static MessagePayload MessagePayload(MessageContext message, string userId, string? accessToken = null, string? verificationToken = null)
-            => new MessagePayload(message: message, userId: userId, accessToken: accessToken, verificationToken: verificationToken);
+        public static MessagePayload MessagePayload(MessageContext message, string userId, string? accessToken = null, string? verificationToken = null, string? serverUrl = null)
+            => new MessagePayload(message: message, userId: userId, accessToken: accessToken, verificationToken: verificationToken, serverUrl: serverUrl);
         
     }
     

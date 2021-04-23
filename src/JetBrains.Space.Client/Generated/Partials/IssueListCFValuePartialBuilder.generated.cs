@@ -25,21 +25,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ListMenuExtensionsPayloadPartialBuilder
+namespace JetBrains.Space.Client.IssueListCFValuePartialBuilder
 {
-    public static class ListMenuExtensionsPayloadPartialExtensions
+    public static class IssueListCFValuePartialExtensions
     {
-        public static Partial<ListMenuExtensionsPayload> WithAccessToken(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("accessToken");
+        public static Partial<IssueListCFValue> WithIssues(this Partial<IssueListCFValue> it)
+            => it.AddFieldName("issues");
         
-        public static Partial<ListMenuExtensionsPayload> WithVerificationToken(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("verificationToken");
-        
-        public static Partial<ListMenuExtensionsPayload> WithUserId(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("userId");
-        
-        public static Partial<ListMenuExtensionsPayload> WithServerUrl(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("serverUrl");
+        public static Partial<IssueListCFValue> WithIssues(this Partial<IssueListCFValue> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
+            => it.AddFieldName("issues", partialBuilder(new Partial<Issue>(it)));
         
     }
     

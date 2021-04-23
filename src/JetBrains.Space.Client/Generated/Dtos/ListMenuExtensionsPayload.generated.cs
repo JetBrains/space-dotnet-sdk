@@ -35,11 +35,12 @@ namespace JetBrains.Space.Client
         
         public ListMenuExtensionsPayload() { }
         
-        public ListMenuExtensionsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null)
+        public ListMenuExtensionsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null, string? serverUrl = null)
         {
             AccessToken = accessToken;
             VerificationToken = verificationToken;
             UserId = userId;
+            ServerUrl = serverUrl;
         }
         
         private PropertyValue<string?> _accessToken = new PropertyValue<string?>(nameof(ListMenuExtensionsPayload), nameof(AccessToken));
@@ -69,11 +70,21 @@ namespace JetBrains.Space.Client
             set => _userId.SetValue(value);
         }
     
+        private PropertyValue<string?> _serverUrl = new PropertyValue<string?>(nameof(ListMenuExtensionsPayload), nameof(ServerUrl));
+        
+        [JsonPropertyName("serverUrl")]
+        public string? ServerUrl
+        {
+            get => _serverUrl.GetValue();
+            set => _serverUrl.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _accessToken.SetAccessPath(path, validateHasBeenSet);
             _verificationToken.SetAccessPath(path, validateHasBeenSet);
             _userId.SetAccessPath(path, validateHasBeenSet);
+            _serverUrl.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

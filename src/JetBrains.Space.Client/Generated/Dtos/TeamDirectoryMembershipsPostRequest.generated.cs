@@ -78,7 +78,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<bool> _lead = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsPostRequest), nameof(IsLead));
         
-        [Obsolete("The property is deprecated (since 2020-12-01) (marked for removal)")]
+        [Obsolete("The property is deprecated (since 2020-12-01) (will be removed in a future version)")]
         [JsonPropertyName("lead")]
         public bool IsLead
         {

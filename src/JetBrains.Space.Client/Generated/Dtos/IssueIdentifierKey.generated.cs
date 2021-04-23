@@ -25,22 +25,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ListMenuExtensionsPayloadPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class ListMenuExtensionsPayloadPartialExtensions
+    public sealed class IssueIdentifierKey
+         : IssueIdentifier, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<ListMenuExtensionsPayload> WithAccessToken(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("accessToken");
+        [JsonPropertyName("className")]
+        public override string? ClassName => "IssueIdentifier.Key";
         
-        public static Partial<ListMenuExtensionsPayload> WithVerificationToken(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("verificationToken");
+        public IssueIdentifierKey() { }
         
-        public static Partial<ListMenuExtensionsPayload> WithUserId(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("userId");
+        public IssueIdentifierKey(string key)
+        {
+            Key = key;
+        }
         
-        public static Partial<ListMenuExtensionsPayload> WithServerUrl(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("serverUrl");
+        private PropertyValue<string> _key = new PropertyValue<string>(nameof(IssueIdentifierKey), nameof(Key));
         
+        [Required]
+        [JsonPropertyName("key")]
+        public string Key
+        {
+            get => _key.GetValue();
+            set => _key.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _key.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

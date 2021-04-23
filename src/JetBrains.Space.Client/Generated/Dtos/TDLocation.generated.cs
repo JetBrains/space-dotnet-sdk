@@ -75,7 +75,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<ATimeZoneWithOffset?> _timezone = new PropertyValue<ATimeZoneWithOffset?>(nameof(TDLocation), nameof(Timezone));
         
-        [Obsolete("Use tz field that contains no specific offset for a timezone. Field timezone is always null (since 2019.0.1) (marked for removal)")]
+        [Obsolete("Use tz field that contains no specific offset for a timezone. Field timezone is always null (since 2019.0.1) (will be removed in a future version)")]
         [JsonPropertyName("timezone")]
         public ATimeZoneWithOffset? Timezone
         {

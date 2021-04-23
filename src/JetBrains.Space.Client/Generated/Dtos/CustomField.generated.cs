@@ -92,7 +92,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<string?> _key = new PropertyValue<string?>(nameof(CustomField), nameof(Key));
         
-        [Obsolete("Use name instead (since 2020-09-28) (marked for removal)")]
+        [Obsolete("Use name instead (since 2020-09-28) (will be removed in a future version)")]
         [JsonPropertyName("key")]
         public string? Key
         {

@@ -32,13 +32,14 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest() { }
         
-        public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest(string title, string status, string? description = null, string? assignee = null, DateTime? dueDate = null)
+        public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest(string title, string status, List<CustomFieldInputValue>? customFields = null, string? description = null, string? assignee = null, DateTime? dueDate = null)
         {
             Title = title;
             Description = description;
             Assignee = assignee;
             Status = status;
             DueDate = dueDate;
+            CustomFields = (customFields ?? new List<CustomFieldInputValue>());
         }
         
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Title));
@@ -87,6 +88,15 @@ namespace JetBrains.Space.Client
             set => _dueDate.SetValue(value);
         }
     
+        private PropertyValue<List<CustomFieldInputValue>> _customFields = new PropertyValue<List<CustomFieldInputValue>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(CustomFields), new List<CustomFieldInputValue>());
+        
+        [JsonPropertyName("customFields")]
+        public List<CustomFieldInputValue> CustomFields
+        {
+            get => _customFields.GetValue();
+            set => _customFields.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _title.SetAccessPath(path, validateHasBeenSet);
@@ -94,6 +104,7 @@ namespace JetBrains.Space.Client
             _assignee.SetAccessPath(path, validateHasBeenSet);
             _status.SetAccessPath(path, validateHasBeenSet);
             _dueDate.SetAccessPath(path, validateHasBeenSet);
+            _customFields.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

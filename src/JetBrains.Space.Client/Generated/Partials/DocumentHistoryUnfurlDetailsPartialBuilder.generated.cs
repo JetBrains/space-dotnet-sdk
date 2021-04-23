@@ -41,6 +41,9 @@ namespace JetBrains.Space.Client.DocumentHistoryUnfurlDetailsPartialBuilder
         public static Partial<DocumentHistoryUnfurlDetails> WithBase(this Partial<DocumentHistoryUnfurlDetails> it)
             => it.AddFieldName("base");
         
+        public static Partial<DocumentHistoryUnfurlDetails> WithPreview(this Partial<DocumentHistoryUnfurlDetails> it)
+            => it.AddFieldName("preview");
+        
     }
     
 }
