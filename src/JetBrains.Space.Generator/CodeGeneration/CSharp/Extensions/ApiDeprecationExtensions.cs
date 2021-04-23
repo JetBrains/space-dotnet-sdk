@@ -24,7 +24,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
             }
             if (subject.ForRemoval)
             {
-                builder.Append(" (marked for removal)");
+                builder.Append(" (will be removed in a future version)");
             }
             builder.Append("\")]");
             return builder.ToString();
