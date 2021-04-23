@@ -4,5 +4,5 @@
 # The last matching rule always wins; those that appear lower in the file take precedence over rules that appear higher up.
 # Specify owners by their username, email, or role assignment in the project.
 
-* Khalid.Abuhakmeh
+* "Khalid.Abuhakmeh"
 CODEOWNERS "Project Admin"
