@@ -36,9 +36,11 @@ namespace JetBrains.Space.Samples.Web.Pages
         private readonly ToDoItemClient _todoClient;
         private readonly TeamDirectoryClient _teamDirectoryClient;
         private readonly CalendarClient _calendarClient;
+        private readonly AbsenceClient _absenceClient;
 
         public TDMemberProfile? MemberProfile { get; set; }
         public List<Meeting> MeetingsToday { get; set; } = new List<Meeting>();
+        public List<AbsenceRecord> Absences { get; set; } = new List<AbsenceRecord>();
         public int IssuesCreatedThisWeek { get; set; }
         public int IssuesResolvedThisWeek { get; set; }
         public int ReviewsCreatedThisWeek { get; set; }
@@ -51,13 +53,15 @@ namespace JetBrains.Space.Samples.Web.Pages
             ProjectClient projectClient,
             ToDoItemClient todoClient,
             TeamDirectoryClient teamDirectoryClient,
-            CalendarClient calendarClient)
+            CalendarClient calendarClient,
+            AbsenceClient absenceClient)
         {
             _logger = logger;
             _projectClient = projectClient;
             _todoClient = todoClient;
             _teamDirectoryClient = teamDirectoryClient;
             _calendarClient = calendarClient;
+            _absenceClient = absenceClient;
         }
 
         public async Task OnGet()
@@ -97,8 +101,8 @@ namespace JetBrains.Space.Samples.Web.Pages
             #endregion
             
             var weekStart = StartOfWeek(DateTime.UtcNow, DayOfWeek.Monday);
-            var weekEnd = weekStart.AddDays(7).AddHours(23).AddMinutes(59).AddSeconds(59);
-
+            var weekEnd = weekStart.AddDays(7).AddHours(23).AddMinutes(59).AddSeconds(59);;
+            
             var issuesCreatedThisWeek = 0;
             var issuesResolvedThisWeek = 0;
             var reviewsCreatedThisWeek = 0;
@@ -244,6 +248,16 @@ namespace JetBrains.Space.Samples.Web.Pages
                         MeetingsToday.Add(meeting);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred");
+            }
+
+            try
+            {
+                Absences = await _absenceClient.GetAllAbsencesAsyncEnumerable(AbsenceListMode.All,
+                    members: new List<string> { MemberProfile.Id }, since: weekStart, till: weekEnd).ToListAsync();
             }
             catch (Exception ex)
             {

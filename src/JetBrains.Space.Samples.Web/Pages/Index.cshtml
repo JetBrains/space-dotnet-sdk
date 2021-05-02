@@ -125,11 +125,7 @@
             <div class="col-12">
                 <h4>Absences</h4>
                 <ul class="list-group">
-                    @{
-                        var absences = Model.MemberProfile.Absences;
-                        absences.Reverse();
-                    }
-                    @foreach (var absence in absences.Take(5))
+                    @foreach (var absence in Model.Absences.Take(5))
                     {
                         <li class="list-group-item">
                             <small>@absence.Since.ToString("yyyy-MM-dd") - @absence.Till.ToString("yyyy-MM-dd")</small><br/>

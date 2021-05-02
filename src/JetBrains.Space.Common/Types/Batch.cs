@@ -43,7 +43,7 @@ namespace JetBrains.Space.Common.Types
             // According to internal discussion, a batch is exhausted if there is no more data...
             if (Data != null)
             {
-                return Data.Count > 0;
+                return Data.Count > 0 && !string.IsNullOrEmpty(Next);
             }
 
             // ...but if no data was requested, see if there is a total count and use that...
