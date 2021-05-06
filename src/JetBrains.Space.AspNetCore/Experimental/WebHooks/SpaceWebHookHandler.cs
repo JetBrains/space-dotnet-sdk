@@ -27,5 +27,9 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks
         /// <inheritdoc/>
         public virtual Task<ApplicationExecutionResult> HandleMenuActionAsync(MenuActionPayload payload)
             => Task.FromResult(new ApplicationExecutionResult());
+        
+        /// <inheritdoc/>
+        public virtual Task<ApplicationExecutionResult> HandleWebhookRequestAsync(WebhookRequestPayload payload)
+            => Task.FromResult(new ApplicationExecutionResult());
     }
 }

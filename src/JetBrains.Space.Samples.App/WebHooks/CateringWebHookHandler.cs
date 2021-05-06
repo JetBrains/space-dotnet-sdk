@@ -296,6 +296,16 @@ namespace JetBrains.Space.Samples.App.WebHooks
             return new ApplicationExecutionResult("Catering choice was received.");
         }
 
+        public override async Task<ApplicationExecutionResult> HandleWebhookRequestAsync(WebhookRequestPayload payload)
+        {
+            if (payload.Payload is PingWebhookEvent)
+            {
+                return new ApplicationExecutionResult("Pong!");
+            }
+            
+            return new ApplicationExecutionResult($"This endpoint has no support for {payload.Payload.GetType()}", statusCode: 400);
+        }
+
         private async Task SendOrEditMessageAsync(
             string? channelId, 
             MessageRecipient recipient, 

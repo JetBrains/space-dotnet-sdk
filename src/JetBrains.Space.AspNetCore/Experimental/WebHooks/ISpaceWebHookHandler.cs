@@ -43,5 +43,12 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks
         /// <param name="payload">The <see cref="MenuActionPayload"/>.</param>
         /// <returns>The result of executing this action. The result message will be displayed in the Space user interface.</returns>
         Task<ApplicationExecutionResult> HandleMenuActionAsync(MenuActionPayload payload);
+
+        /// <summary>
+        /// Handle webhook request.
+        /// </summary>
+        /// <param name="payload">The <see cref="WebhookRequestPayload"/>.</param>
+        /// <returns>The result of executing this action. The result message will be displayed in the Space user interface.</returns>
+        Task<ApplicationExecutionResult> HandleWebhookRequestAsync(WebhookRequestPayload payload);
     }
 }

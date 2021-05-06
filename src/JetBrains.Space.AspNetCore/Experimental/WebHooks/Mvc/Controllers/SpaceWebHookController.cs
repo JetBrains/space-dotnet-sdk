@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using JetBrains.Space.Client;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
@@ -79,19 +80,37 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Controllers
                 // Action?
                 case MessageActionPayload actionPayload:
                     var actionResult = await handler.HandleMessageActionAsync(actionPayload);
-                    return !string.IsNullOrEmpty(actionResult.Message)
-                        ? Content(actionResult.Message, "text/plain") as IActionResult
-                        : Ok();
+                    return BuildActionResultFrom(actionResult);
                 
                 // Menu action?
                 case MenuActionPayload menuActionPayload:
                     var menuActionResult = await handler.HandleMenuActionAsync(menuActionPayload);
-                    return !string.IsNullOrEmpty(menuActionResult.Message)
-                        ? Content(menuActionResult.Message, "text/plain") as IActionResult
-                        : Ok();
+                    return BuildActionResultFrom(menuActionResult);
+                
+                // Webhook?
+                case WebhookRequestPayload webhookRequestPayload:
+                    var webhookActionResult = await handler.HandleWebhookRequestAsync(webhookRequestPayload);
+                    return BuildActionResultFrom(webhookActionResult);
             }
 
             return BadRequest("Payload is not supported.");
+        }
+
+        /// <summary>
+        /// Builds an <see cref="IActionResult"/> from a given <see cref="ApplicationExecutionResult"/>.
+        /// </summary>
+        /// <param name="executionResult">The <see cref="ApplicationExecutionResult"/> to create an <see cref="IActionResult"/> for.</param>
+        /// <returns>An <see cref="IActionResult"/> that can be dispatched by ASP.NET Core.</returns>
+        private IActionResult BuildActionResultFrom(ApplicationExecutionResult executionResult)
+        {
+            if (!string.IsNullOrEmpty(executionResult.Message))
+            {
+                var contentResult = Content(executionResult.Message, "text/plain");
+                contentResult.StatusCode = executionResult.StatusCode;
+                return contentResult;
+            }
+
+            return new StatusCodeResult(executionResult.StatusCode);
         }
     }
 }

@@ -361,6 +361,7 @@ An application webhook handler can be created by extending the `SpaceWebHookHand
 * `HandleMessageAsync` is called when a user sends our application a chat message.
 * `HandleMessageActionAsync` is called when a user interacts with our application by clicking a button.
 * `HandleMenuActionAsync` is called when a user interacts with our application by clicking a menu item on a message.
+* `HandleWebhookRequestAsync` is called when a webhook payload is delivered from Space.
 
 The `CateringWebHookHandler` class is an example application that implements the above, and provides an interactive means of ordering (virtual) food and beverages.
 
