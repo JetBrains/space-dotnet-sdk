@@ -47,6 +47,12 @@ namespace JetBrains.Space.Client.MessagePayloadPartialBuilder
         public static Partial<MessagePayload> WithServerUrl(this Partial<MessagePayload> it)
             => it.AddFieldName("serverUrl");
         
+        public static Partial<MessagePayload> WithClientId(this Partial<MessagePayload> it)
+            => it.AddFieldName("clientId");
+        
+        public static Partial<MessagePayload> WithOrgId(this Partial<MessagePayload> it)
+            => it.AddFieldName("orgId");
+        
     }
     
 }

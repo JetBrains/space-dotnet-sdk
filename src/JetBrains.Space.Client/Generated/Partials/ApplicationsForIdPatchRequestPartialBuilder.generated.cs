@@ -53,6 +53,27 @@ namespace JetBrains.Space.Client.ApplicationsForIdPatchRequestPartialBuilder
         public static Partial<ApplicationsForIdPatchRequest> WithEndpointUri(this Partial<ApplicationsForIdPatchRequest> it)
             => it.AddFieldName("endpointUri");
         
+        public static Partial<ApplicationsForIdPatchRequest> WithIsEndpointSslVerification(this Partial<ApplicationsForIdPatchRequest> it)
+            => it.AddFieldName("endpointSslVerification");
+        
+        public static Partial<ApplicationsForIdPatchRequest> WithIsHasVerificationToken(this Partial<ApplicationsForIdPatchRequest> it)
+            => it.AddFieldName("hasVerificationToken");
+        
+        public static Partial<ApplicationsForIdPatchRequest> WithIsHasSigningKey(this Partial<ApplicationsForIdPatchRequest> it)
+            => it.AddFieldName("hasSigningKey");
+        
+        public static Partial<ApplicationsForIdPatchRequest> WithBasicAuthUsername(this Partial<ApplicationsForIdPatchRequest> it)
+            => it.AddFieldName("basicAuthUsername");
+        
+        public static Partial<ApplicationsForIdPatchRequest> WithBasicAuthPassword(this Partial<ApplicationsForIdPatchRequest> it)
+            => it.AddFieldName("basicAuthPassword");
+        
+        public static Partial<ApplicationsForIdPatchRequest> WithBearerAuthToken(this Partial<ApplicationsForIdPatchRequest> it)
+            => it.AddFieldName("bearerAuthToken");
+        
+        public static Partial<ApplicationsForIdPatchRequest> WithSslKeystoreAuth(this Partial<ApplicationsForIdPatchRequest> it)
+            => it.AddFieldName("sslKeystoreAuth");
+        
     }
     
 }

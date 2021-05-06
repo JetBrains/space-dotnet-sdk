@@ -57,8 +57,8 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsChecklist Checklist(Checklist checklist)
             => new UnfurlDetailsChecklist(checklist: checklist);
         
-        public static UnfurlDetailsCodeReview CodeReview(CodeReviewRecord review)
-            => new UnfurlDetailsCodeReview(review: review);
+        public static UnfurlDetailsCodeReview CodeReview(CodeReviewRecord review, bool? withBranchPair = null, string? defaultBranchInRepo = null)
+            => new UnfurlDetailsCodeReview(review: review, withBranchPair: withBranchPair, defaultBranchInRepo: defaultBranchInRepo);
         
         public static UnfurlDetailsCodeSnippet CodeSnippet(CodeSnippetAnchor anchor, List<CodeLine> lines)
             => new UnfurlDetailsCodeSnippet(anchor: anchor, lines: lines);
@@ -81,8 +81,8 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsIssueTag IssueTag(PlanningTag tag, bool strikeThrough)
             => new UnfurlDetailsIssueTag(tag: tag, strikeThrough: strikeThrough);
         
-        public static UnfurlDetailsLocation Location(TDLocation location)
-            => new UnfurlDetailsLocation(location: location);
+        public static UnfurlDetailsLocation Location(TDLocation location, bool? strikeThrough = null)
+            => new UnfurlDetailsLocation(location: location, strikeThrough: strikeThrough);
         
         public static UnfurlDetailsMC MC(MCMessage message, List<AttachmentInfo>? inlineUnfurls = null)
             => new UnfurlDetailsMC(message: message, inlineUnfurls: inlineUnfurls);
@@ -93,11 +93,11 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsProfile Profile(TDMemberProfile profile, bool? strikeThrough = null)
             => new UnfurlDetailsProfile(profile: profile, strikeThrough: strikeThrough);
         
-        public static UnfurlDetailsProject Project(PRProject project)
-            => new UnfurlDetailsProject(project: project);
+        public static UnfurlDetailsProject Project(PRProject project, bool? strikeThrough = null)
+            => new UnfurlDetailsProject(project: project, strikeThrough: strikeThrough);
         
-        public static UnfurlDetailsRepositoryBranch RepositoryBranch(PRProject project, string repository, string branchHead, bool deleted)
-            => new UnfurlDetailsRepositoryBranch(project: project, repository: repository, branchHead: branchHead, deleted: deleted);
+        public static UnfurlDetailsRepositoryBranch RepositoryBranch(PRProject project, string repository, string branchHead, bool deleted, bool? isDefault = null)
+            => new UnfurlDetailsRepositoryBranch(project: project, repository: repository, branchHead: branchHead, deleted: deleted, isDefault: isDefault);
         
         public static UnfurlDetailsRole Role(TDRole role)
             => new UnfurlDetailsRole(role: role);
@@ -105,8 +105,8 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsSprint Sprint(PRProject project, SprintRecord sprint)
             => new UnfurlDetailsSprint(project: project, sprint: sprint);
         
-        public static UnfurlDetailsTeam Team(TDTeam team)
-            => new UnfurlDetailsTeam(team: team);
+        public static UnfurlDetailsTeam Team(TDTeam team, bool? strikeThrough = null)
+            => new UnfurlDetailsTeam(team: team, strikeThrough: strikeThrough);
         
     }
     

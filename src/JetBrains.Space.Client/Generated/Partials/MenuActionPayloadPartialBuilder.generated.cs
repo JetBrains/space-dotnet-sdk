@@ -50,6 +50,12 @@ namespace JetBrains.Space.Client.MenuActionPayloadPartialBuilder
         public static Partial<MenuActionPayload> WithServerUrl(this Partial<MenuActionPayload> it)
             => it.AddFieldName("serverUrl");
         
+        public static Partial<MenuActionPayload> WithClientId(this Partial<MenuActionPayload> it)
+            => it.AddFieldName("clientId");
+        
+        public static Partial<MenuActionPayload> WithOrgId(this Partial<MenuActionPayload> it)
+            => it.AddFieldName("orgId");
+        
     }
     
 }

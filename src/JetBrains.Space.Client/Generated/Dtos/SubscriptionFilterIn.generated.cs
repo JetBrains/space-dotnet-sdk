@@ -39,6 +39,9 @@ namespace JetBrains.Space.Client
         public static BlogCommonSubscriptionFilterIn BlogCommon(List<string> teams, List<string> locations, List<string> authors)
             => new BlogCommonSubscriptionFilterIn(teams: teams, locations: locations, authors: authors);
         
+        public static CodeReviewSubscriptionFilterIn CodeReview(List<string> authors, List<string> participants, List<string> branchSpec, List<string> pathSpec, string titleRegex, string? project = null, string? repository = null)
+            => new CodeReviewSubscriptionFilterIn(authors: authors, participants: participants, branchSpec: branchSpec, pathSpec: pathSpec, titleRegex: titleRegex, project: project, repository: repository);
+        
         public static DocumentCustomSubscriptionFilterIn DocumentCustom(List<string> documents)
             => new DocumentCustomSubscriptionFilterIn(documents: documents);
         

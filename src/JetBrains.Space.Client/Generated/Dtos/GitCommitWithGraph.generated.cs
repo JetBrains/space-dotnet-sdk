@@ -32,11 +32,12 @@ namespace JetBrains.Space.Client
     {
         public GitCommitWithGraph() { }
         
-        public GitCommitWithGraph(string repositoryName, GitCommitInfo commit, List<CodeReviewRecord> reviews, bool unreachable, GitGraphLayoutLine? layout = null)
+        public GitCommitWithGraph(string repositoryName, GitCommitInfo commit, List<CodeReviewRecord> reviews, List<string> issueIds, bool unreachable, GitGraphLayoutLine? layout = null)
         {
             RepositoryName = repositoryName;
             Commit = commit;
             Reviews = reviews;
+            IssueIds = issueIds;
             Layout = layout;
             IsUnreachable = unreachable;
         }
@@ -71,6 +72,16 @@ namespace JetBrains.Space.Client
             set => _reviews.SetValue(value);
         }
     
+        private PropertyValue<List<string>> _issueIds = new PropertyValue<List<string>>(nameof(GitCommitWithGraph), nameof(IssueIds), new List<string>());
+        
+        [Required]
+        [JsonPropertyName("issueIds")]
+        public List<string> IssueIds
+        {
+            get => _issueIds.GetValue();
+            set => _issueIds.SetValue(value);
+        }
+    
         private PropertyValue<GitGraphLayoutLine?> _layout = new PropertyValue<GitGraphLayoutLine?>(nameof(GitCommitWithGraph), nameof(Layout));
         
         [JsonPropertyName("layout")]
@@ -95,6 +106,7 @@ namespace JetBrains.Space.Client
             _repositoryName.SetAccessPath(path, validateHasBeenSet);
             _commit.SetAccessPath(path, validateHasBeenSet);
             _reviews.SetAccessPath(path, validateHasBeenSet);
+            _issueIds.SetAccessPath(path, validateHasBeenSet);
             _layout.SetAccessPath(path, validateHasBeenSet);
             _unreachable.SetAccessPath(path, validateHasBeenSet);
         }

@@ -44,7 +44,7 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ESApp> CreateApplicationAsync(string name, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ESApp> CreateApplicationAsync(string name, bool endpointSslVerification = true, bool hasVerificationToken = false, bool hasSigningKey = true, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -61,6 +61,13 @@ namespace JetBrains.Space.Client
                     IsImplicitFlowEnabled = implicitFlowEnabled,
                     ImplicitFlowRedirectURIs = implicitFlowRedirectURIs,
                     EndpointUri = endpointUri,
+                    IsEndpointSslVerification = endpointSslVerification,
+                    IsHasVerificationToken = hasVerificationToken,
+                    IsHasSigningKey = hasSigningKey,
+                    BasicAuthUsername = basicAuthUsername,
+                    BasicAuthPassword = basicAuthPassword,
+                    BearerAuthToken = bearerAuthToken,
+                    SslKeystoreAuth = sslKeystoreAuth,
                 }, cancellationToken);
         }
         
@@ -101,6 +108,7 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
+        [Obsolete("Use GET applications/paged (since 2021-03-18) (will be removed in a future version)")]
         public async Task<List<ESApp>> GetAllApplicationsAsync(string query, bool withArchived = false, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -154,7 +162,7 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ESApp> UpdateApplicationAsync(string id, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ESApp> UpdateApplicationAsync(string id, bool endpointSslVerification, bool hasVerificationToken, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -170,6 +178,13 @@ namespace JetBrains.Space.Client
                     IsImplicitFlowEnabled = implicitFlowEnabled,
                     ImplicitFlowRedirectURIs = implicitFlowRedirectURIs,
                     EndpointUri = endpointUri,
+                    IsEndpointSslVerification = endpointSslVerification,
+                    IsHasVerificationToken = hasVerificationToken,
+                    IsHasSigningKey = hasSigningKey,
+                    BasicAuthUsername = basicAuthUsername,
+                    BasicAuthPassword = basicAuthPassword,
+                    BearerAuthToken = bearerAuthToken,
+                    SslKeystoreAuth = sslKeystoreAuth,
                 }, cancellationToken);
         }
         
@@ -189,6 +204,53 @@ namespace JetBrains.Space.Client
             await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{id}{queryParameters.ToQueryString()}", cancellationToken);
         }
         
+    
+        public PagedClient Paged => new PagedClient(_connection);
+        
+        public partial class PagedClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public PagedClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View application</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Batch<ESApp>> GetAllApplicationsAsync(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, AppsOrdering? ordering = null, Func<Partial<Batch<ESApp>>, Partial<Batch<ESApp>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                if (name != null) queryParameters.Append("name", name);
+                if (owner != null) queryParameters.Append("owner", owner.Select(it => it.ToString()));
+                if (withArchived != null) queryParameters.Append("withArchived", withArchived?.ToString("l"));
+                queryParameters.Append("ordering", ordering.ToEnumString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESApp>>()) : Partial<Batch<ESApp>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<ESApp>>("GET", $"api/http/applications/paged{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View application</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<ESApp> GetAllApplicationsAsyncEnumerable(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, AppsOrdering? ordering = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllApplicationsAsync(top: top, name: name, owner: owner, withArchived: withArchived, ordering: ordering, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApp>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApp>.Default())), skip, cancellationToken);
+        
+        }
     
         public ClientSecretClient ClientSecret => new ClientSecretClient(_connection);
         

@@ -35,6 +35,9 @@ namespace JetBrains.Space.Client.UnfurlDetailsTeamPartialBuilder
         public static Partial<UnfurlDetailsTeam> WithTeam(this Partial<UnfurlDetailsTeam> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
             => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
         
+        public static Partial<UnfurlDetailsTeam> WithIsStrikeThrough(this Partial<UnfurlDetailsTeam> it)
+            => it.AddFieldName("strikeThrough");
+        
     }
     
 }

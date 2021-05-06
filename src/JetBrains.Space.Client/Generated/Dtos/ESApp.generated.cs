@@ -32,14 +32,16 @@ namespace JetBrains.Space.Client
     {
         public ESApp() { }
         
-        public ESApp(string id, string clientId, string name, bool clientCredentialsFlowEnabled, bool codeFlowEnabled, bool implicitFlowEnabled, bool hasVerificationToken, bool hasSigningKey, bool archived, TDMemberProfile? owner = null, ApplicationType? applicationType = null, ApplicationMetadata? metadata = null, string? codeFlowRedirectURIs = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null)
+        public ESApp(string id, string clientId, string name, bool clientCredentialsFlowEnabled, bool codeFlowEnabled, bool implicitFlowEnabled, bool hasVerificationToken, bool hasSigningKey, bool hasBearerToken, bool archived, TDMemberProfile? owner = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, string? codeFlowRedirectURIs = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null)
         {
             Id = id;
             Owner = owner;
             ClientId = clientId;
             Name = name;
+            CreatedAt = createdAt;
+            Kind = kind;
+            PresentableName = presentableName;
             ApplicationType = applicationType;
-            Metadata = metadata;
             IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled;
             IsCodeFlowEnabled = codeFlowEnabled;
             CodeFlowRedirectURIs = codeFlowRedirectURIs;
@@ -48,7 +50,12 @@ namespace JetBrains.Space.Client
             EndpointURI = endpointURI;
             IsHasVerificationToken = hasVerificationToken;
             IsHasSigningKey = hasSigningKey;
+            IsEndpointSslVerification = endpointSslVerification;
+            BasicAuthUsername = basicAuthUsername;
+            IsHasBearerToken = hasBearerToken;
+            SslKeystoreAuth = sslKeystoreAuth;
             IsArchived = archived;
+            Metadata = metadata;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApp), nameof(Id));
@@ -90,6 +97,34 @@ namespace JetBrains.Space.Client
             set => _name.SetValue(value);
         }
     
+        private PropertyValue<DateTime?> _createdAt = new PropertyValue<DateTime?>(nameof(ESApp), nameof(CreatedAt));
+        
+        [JsonPropertyName("createdAt")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? CreatedAt
+        {
+            get => _createdAt.GetValue();
+            set => _createdAt.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _kind = new PropertyValue<string?>(nameof(ESApp), nameof(Kind));
+        
+        [JsonPropertyName("kind")]
+        public string? Kind
+        {
+            get => _kind.GetValue();
+            set => _kind.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _presentableName = new PropertyValue<string?>(nameof(ESApp), nameof(PresentableName));
+        
+        [JsonPropertyName("presentableName")]
+        public string? PresentableName
+        {
+            get => _presentableName.GetValue();
+            set => _presentableName.SetValue(value);
+        }
+    
         private PropertyValue<ApplicationType?> _applicationType = new PropertyValue<ApplicationType?>(nameof(ESApp), nameof(ApplicationType));
         
         [JsonPropertyName("applicationType")]
@@ -97,15 +132,6 @@ namespace JetBrains.Space.Client
         {
             get => _applicationType.GetValue();
             set => _applicationType.SetValue(value);
-        }
-    
-        private PropertyValue<ApplicationMetadata?> _metadata = new PropertyValue<ApplicationMetadata?>(nameof(ESApp), nameof(Metadata));
-        
-        [JsonPropertyName("metadata")]
-        public ApplicationMetadata? Metadata
-        {
-            get => _metadata.GetValue();
-            set => _metadata.SetValue(value);
         }
     
         private PropertyValue<bool> _clientCredentialsFlowEnabled = new PropertyValue<bool>(nameof(ESApp), nameof(IsClientCredentialsFlowEnabled));
@@ -185,6 +211,43 @@ namespace JetBrains.Space.Client
             set => _hasSigningKey.SetValue(value);
         }
     
+        private PropertyValue<bool?> _endpointSslVerification = new PropertyValue<bool?>(nameof(ESApp), nameof(IsEndpointSslVerification));
+        
+        [JsonPropertyName("endpointSslVerification")]
+        public bool? IsEndpointSslVerification
+        {
+            get => _endpointSslVerification.GetValue();
+            set => _endpointSslVerification.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _basicAuthUsername = new PropertyValue<string?>(nameof(ESApp), nameof(BasicAuthUsername));
+        
+        [JsonPropertyName("basicAuthUsername")]
+        public string? BasicAuthUsername
+        {
+            get => _basicAuthUsername.GetValue();
+            set => _basicAuthUsername.SetValue(value);
+        }
+    
+        private PropertyValue<bool> _hasBearerToken = new PropertyValue<bool>(nameof(ESApp), nameof(IsHasBearerToken));
+        
+        [Required]
+        [JsonPropertyName("hasBearerToken")]
+        public bool IsHasBearerToken
+        {
+            get => _hasBearerToken.GetValue();
+            set => _hasBearerToken.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _sslKeystoreAuth = new PropertyValue<string?>(nameof(ESApp), nameof(SslKeystoreAuth));
+        
+        [JsonPropertyName("sslKeystoreAuth")]
+        public string? SslKeystoreAuth
+        {
+            get => _sslKeystoreAuth.GetValue();
+            set => _sslKeystoreAuth.SetValue(value);
+        }
+    
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ESApp), nameof(IsArchived));
         
         [Required]
@@ -195,14 +258,25 @@ namespace JetBrains.Space.Client
             set => _archived.SetValue(value);
         }
     
+        private PropertyValue<ApplicationMetadata?> _metadata = new PropertyValue<ApplicationMetadata?>(nameof(ESApp), nameof(Metadata));
+        
+        [JsonPropertyName("metadata")]
+        public ApplicationMetadata? Metadata
+        {
+            get => _metadata.GetValue();
+            set => _metadata.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _owner.SetAccessPath(path, validateHasBeenSet);
             _clientId.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
+            _createdAt.SetAccessPath(path, validateHasBeenSet);
+            _kind.SetAccessPath(path, validateHasBeenSet);
+            _presentableName.SetAccessPath(path, validateHasBeenSet);
             _applicationType.SetAccessPath(path, validateHasBeenSet);
-            _metadata.SetAccessPath(path, validateHasBeenSet);
             _clientCredentialsFlowEnabled.SetAccessPath(path, validateHasBeenSet);
             _codeFlowEnabled.SetAccessPath(path, validateHasBeenSet);
             _codeFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
@@ -211,7 +285,12 @@ namespace JetBrains.Space.Client
             _endpointURI.SetAccessPath(path, validateHasBeenSet);
             _hasVerificationToken.SetAccessPath(path, validateHasBeenSet);
             _hasSigningKey.SetAccessPath(path, validateHasBeenSet);
+            _endpointSslVerification.SetAccessPath(path, validateHasBeenSet);
+            _basicAuthUsername.SetAccessPath(path, validateHasBeenSet);
+            _hasBearerToken.SetAccessPath(path, validateHasBeenSet);
+            _sslKeystoreAuth.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
+            _metadata.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

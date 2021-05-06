@@ -71,6 +71,16 @@ namespace JetBrains.Space.Client
             set => _discussionCounter.SetValue(value);
         }
     
+        private PropertyValue<List<string>> _issueIds = new PropertyValue<List<string>>(nameof(CodeReviewRecord), nameof(IssueIds), new List<string>());
+        
+        [Required]
+        [JsonPropertyName("issueIds")]
+        public List<string> IssueIds
+        {
+            get => _issueIds.GetValue();
+            set => _issueIds.SetValue(value);
+        }
+    
         private PropertyValue<List<CodeReviewParticipant>?> _participants = new PropertyValue<List<CodeReviewParticipant>?>(nameof(CodeReviewRecord), nameof(Participants));
         
         [JsonPropertyName("participants")]
@@ -107,6 +117,7 @@ namespace JetBrains.Space.Client
             _id.SetAccessPath(path, validateHasBeenSet);
             _authors.SetAccessPath(path, validateHasBeenSet);
             _discussionCounter.SetAccessPath(path, validateHasBeenSet);
+            _issueIds.SetAccessPath(path, validateHasBeenSet);
             _participants.SetAccessPath(path, validateHasBeenSet);
             _reviewers.SetAccessPath(path, validateHasBeenSet);
             _watchers.SetAccessPath(path, validateHasBeenSet);

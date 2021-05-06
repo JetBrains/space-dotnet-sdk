@@ -35,12 +35,13 @@ namespace JetBrains.Space.Client
         
         public UnfurlDetailsRepositoryBranch() { }
         
-        public UnfurlDetailsRepositoryBranch(PRProject project, string repository, string branchHead, bool deleted)
+        public UnfurlDetailsRepositoryBranch(PRProject project, string repository, string branchHead, bool deleted, bool? isDefault = null)
         {
             Project = project;
             Repository = repository;
             BranchHead = branchHead;
             IsDeleted = deleted;
+            IsDefault = isDefault;
         }
         
         private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsRepositoryBranch), nameof(Project));
@@ -83,12 +84,22 @@ namespace JetBrains.Space.Client
             set => _deleted.SetValue(value);
         }
     
+        private PropertyValue<bool?> _isDefault = new PropertyValue<bool?>(nameof(UnfurlDetailsRepositoryBranch), nameof(IsDefault));
+        
+        [JsonPropertyName("isDefault")]
+        public bool? IsDefault
+        {
+            get => _isDefault.GetValue();
+            set => _isDefault.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _project.SetAccessPath(path, validateHasBeenSet);
             _repository.SetAccessPath(path, validateHasBeenSet);
             _branchHead.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);
+            _isDefault.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

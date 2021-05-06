@@ -35,6 +35,12 @@ namespace JetBrains.Space.Client.MCActionPartialBuilder
         public static Partial<MCAction> WithValue(this Partial<MCAction> it)
             => it.AddFieldName("value");
         
+        public static Partial<MCAction> WithIsClientSide(this Partial<MCAction> it)
+            => it.AddFieldName("clientSide");
+        
+        public static Partial<MCAction> WithFallbackUrl(this Partial<MCAction> it)
+            => it.AddFieldName("fallbackUrl");
+        
     }
     
 }

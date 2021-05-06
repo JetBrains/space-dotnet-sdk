@@ -56,6 +56,27 @@ namespace JetBrains.Space.Client.ApplicationsPostRequestPartialBuilder
         public static Partial<ApplicationsPostRequest> WithEndpointUri(this Partial<ApplicationsPostRequest> it)
             => it.AddFieldName("endpointUri");
         
+        public static Partial<ApplicationsPostRequest> WithIsEndpointSslVerification(this Partial<ApplicationsPostRequest> it)
+            => it.AddFieldName("endpointSslVerification");
+        
+        public static Partial<ApplicationsPostRequest> WithIsHasVerificationToken(this Partial<ApplicationsPostRequest> it)
+            => it.AddFieldName("hasVerificationToken");
+        
+        public static Partial<ApplicationsPostRequest> WithIsHasSigningKey(this Partial<ApplicationsPostRequest> it)
+            => it.AddFieldName("hasSigningKey");
+        
+        public static Partial<ApplicationsPostRequest> WithBasicAuthUsername(this Partial<ApplicationsPostRequest> it)
+            => it.AddFieldName("basicAuthUsername");
+        
+        public static Partial<ApplicationsPostRequest> WithBasicAuthPassword(this Partial<ApplicationsPostRequest> it)
+            => it.AddFieldName("basicAuthPassword");
+        
+        public static Partial<ApplicationsPostRequest> WithBearerAuthToken(this Partial<ApplicationsPostRequest> it)
+            => it.AddFieldName("bearerAuthToken");
+        
+        public static Partial<ApplicationsPostRequest> WithSslKeystoreAuth(this Partial<ApplicationsPostRequest> it)
+            => it.AddFieldName("sslKeystoreAuth");
+        
     }
     
 }

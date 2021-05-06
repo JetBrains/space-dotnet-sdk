@@ -30,6 +30,9 @@ namespace JetBrains.Space.Client
     public interface M2ItemContentDetails
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static IssueCodeChangesMCExtension IssueCodeChangesMCExtension()
+            => new IssueCodeChangesMCExtension();
+        
         public static M2AbsenceItemApproveDeletedContent M2AbsenceItemApproveDeletedContent(AbsenceRecord absence, TDMemberProfile by, bool approve)
             => new M2AbsenceItemApproveDeletedContent(absence: absence, by: by, approve: approve);
         

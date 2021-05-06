@@ -35,9 +35,11 @@ namespace JetBrains.Space.Client
         
         public UnfurlDetailsCodeReview() { }
         
-        public UnfurlDetailsCodeReview(CodeReviewRecord review)
+        public UnfurlDetailsCodeReview(CodeReviewRecord review, bool? withBranchPair = null, string? defaultBranchInRepo = null)
         {
             Review = review;
+            IsWithBranchPair = withBranchPair;
+            DefaultBranchInRepo = defaultBranchInRepo;
         }
         
         private PropertyValue<CodeReviewRecord> _review = new PropertyValue<CodeReviewRecord>(nameof(UnfurlDetailsCodeReview), nameof(Review));
@@ -50,9 +52,29 @@ namespace JetBrains.Space.Client
             set => _review.SetValue(value);
         }
     
+        private PropertyValue<bool?> _withBranchPair = new PropertyValue<bool?>(nameof(UnfurlDetailsCodeReview), nameof(IsWithBranchPair));
+        
+        [JsonPropertyName("withBranchPair")]
+        public bool? IsWithBranchPair
+        {
+            get => _withBranchPair.GetValue();
+            set => _withBranchPair.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _defaultBranchInRepo = new PropertyValue<string?>(nameof(UnfurlDetailsCodeReview), nameof(DefaultBranchInRepo));
+        
+        [JsonPropertyName("defaultBranchInRepo")]
+        public string? DefaultBranchInRepo
+        {
+            get => _defaultBranchInRepo.GetValue();
+            set => _defaultBranchInRepo.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _review.SetAccessPath(path, validateHasBeenSet);
+            _withBranchPair.SetAccessPath(path, validateHasBeenSet);
+            _defaultBranchInRepo.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

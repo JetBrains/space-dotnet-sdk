@@ -35,7 +35,7 @@ namespace JetBrains.Space.Client
         
         public MenuActionPayload() { }
         
-        public MenuActionPayload(string extensionName, MenuActionContext context, string userId, string? accessToken = null, string? verificationToken = null, string? serverUrl = null)
+        public MenuActionPayload(string extensionName, MenuActionContext context, string userId, string? accessToken = null, string? verificationToken = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
         {
             ExtensionName = extensionName;
             Context = context;
@@ -43,6 +43,8 @@ namespace JetBrains.Space.Client
             VerificationToken = verificationToken;
             UserId = userId;
             ServerUrl = serverUrl;
+            ClientId = clientId;
+            OrgId = orgId;
         }
         
         private PropertyValue<string> _extensionName = new PropertyValue<string>(nameof(MenuActionPayload), nameof(ExtensionName));
@@ -102,6 +104,24 @@ namespace JetBrains.Space.Client
             set => _serverUrl.SetValue(value);
         }
     
+        private PropertyValue<string?> _clientId = new PropertyValue<string?>(nameof(MenuActionPayload), nameof(ClientId));
+        
+        [JsonPropertyName("clientId")]
+        public string? ClientId
+        {
+            get => _clientId.GetValue();
+            set => _clientId.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _orgId = new PropertyValue<string?>(nameof(MenuActionPayload), nameof(OrgId));
+        
+        [JsonPropertyName("orgId")]
+        public string? OrgId
+        {
+            get => _orgId.GetValue();
+            set => _orgId.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _extensionName.SetAccessPath(path, validateHasBeenSet);
@@ -110,6 +130,8 @@ namespace JetBrains.Space.Client
             _verificationToken.SetAccessPath(path, validateHasBeenSet);
             _userId.SetAccessPath(path, validateHasBeenSet);
             _serverUrl.SetAccessPath(path, validateHasBeenSet);
+            _clientId.SetAccessPath(path, validateHasBeenSet);
+            _orgId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

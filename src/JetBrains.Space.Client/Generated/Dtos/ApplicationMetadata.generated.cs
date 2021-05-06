@@ -33,6 +33,9 @@ namespace JetBrains.Space.Client
         public static AutomationServiceMetadata AutomationServiceMetadata(PRProject project)
             => new AutomationServiceMetadata(project: project);
         
+        public static MarketplaceAppMetadata MarketplaceAppMetadata(string marketplaceAppId)
+            => new MarketplaceAppMetadata(marketplaceAppId: marketplaceAppId);
+        
         public static SubscriptionMetadata SubscriptionMetadata(M2ChannelRecord channel, string subscription, string subscriptionName)
             => new SubscriptionMetadata(channel: channel, subscription: subscription, subscriptionName: subscriptionName);
         

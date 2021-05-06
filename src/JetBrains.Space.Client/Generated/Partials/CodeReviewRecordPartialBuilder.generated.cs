@@ -44,6 +44,9 @@ namespace JetBrains.Space.Client.CodeReviewRecordPartialBuilder
         public static Partial<CodeReviewRecord> WithDiscussionCounter(this Partial<CodeReviewRecord> it, Func<Partial<Counter>, Partial<Counter>> partialBuilder)
             => it.AddFieldName("discussionCounter", partialBuilder(new Partial<Counter>(it)));
         
+        public static Partial<CodeReviewRecord> WithIssueIds(this Partial<CodeReviewRecord> it)
+            => it.AddFieldName("issueIds");
+        
         public static Partial<CodeReviewRecord> WithParticipants(this Partial<CodeReviewRecord> it)
             => it.AddFieldName("participants");
         

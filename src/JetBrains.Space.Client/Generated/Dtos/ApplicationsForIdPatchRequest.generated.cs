@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public ApplicationsForIdPatchRequest() { }
         
-        public ApplicationsForIdPatchRequest(string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null)
+        public ApplicationsForIdPatchRequest(bool endpointSslVerification, bool hasVerificationToken, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null)
         {
             Name = name;
             ClientSecret = clientSecret;
@@ -42,6 +42,13 @@ namespace JetBrains.Space.Client
             IsImplicitFlowEnabled = implicitFlowEnabled;
             ImplicitFlowRedirectURIs = implicitFlowRedirectURIs;
             EndpointUri = endpointUri;
+            IsEndpointSslVerification = endpointSslVerification;
+            IsHasVerificationToken = hasVerificationToken;
+            IsHasSigningKey = hasSigningKey;
+            BasicAuthUsername = basicAuthUsername;
+            BasicAuthPassword = basicAuthPassword;
+            BearerAuthToken = bearerAuthToken;
+            SslKeystoreAuth = sslKeystoreAuth;
         }
         
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ApplicationsForIdPatchRequest), nameof(Name));
@@ -116,6 +123,69 @@ namespace JetBrains.Space.Client
             set => _endpointUri.SetValue(value);
         }
     
+        private PropertyValue<bool> _endpointSslVerification = new PropertyValue<bool>(nameof(ApplicationsForIdPatchRequest), nameof(IsEndpointSslVerification));
+        
+        [JsonPropertyName("endpointSslVerification")]
+        public bool IsEndpointSslVerification
+        {
+            get => _endpointSslVerification.GetValue();
+            set => _endpointSslVerification.SetValue(value);
+        }
+    
+        private PropertyValue<bool> _hasVerificationToken = new PropertyValue<bool>(nameof(ApplicationsForIdPatchRequest), nameof(IsHasVerificationToken));
+        
+        [JsonPropertyName("hasVerificationToken")]
+        public bool IsHasVerificationToken
+        {
+            get => _hasVerificationToken.GetValue();
+            set => _hasVerificationToken.SetValue(value);
+        }
+    
+        private PropertyValue<bool> _hasSigningKey = new PropertyValue<bool>(nameof(ApplicationsForIdPatchRequest), nameof(IsHasSigningKey));
+        
+        [JsonPropertyName("hasSigningKey")]
+        public bool IsHasSigningKey
+        {
+            get => _hasSigningKey.GetValue();
+            set => _hasSigningKey.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _basicAuthUsername = new PropertyValue<string?>(nameof(ApplicationsForIdPatchRequest), nameof(BasicAuthUsername));
+        
+        [JsonPropertyName("basicAuthUsername")]
+        public string? BasicAuthUsername
+        {
+            get => _basicAuthUsername.GetValue();
+            set => _basicAuthUsername.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _basicAuthPassword = new PropertyValue<string?>(nameof(ApplicationsForIdPatchRequest), nameof(BasicAuthPassword));
+        
+        [JsonPropertyName("basicAuthPassword")]
+        public string? BasicAuthPassword
+        {
+            get => _basicAuthPassword.GetValue();
+            set => _basicAuthPassword.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _bearerAuthToken = new PropertyValue<string?>(nameof(ApplicationsForIdPatchRequest), nameof(BearerAuthToken));
+        
+        [JsonPropertyName("bearerAuthToken")]
+        public string? BearerAuthToken
+        {
+            get => _bearerAuthToken.GetValue();
+            set => _bearerAuthToken.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _sslKeystoreAuth = new PropertyValue<string?>(nameof(ApplicationsForIdPatchRequest), nameof(SslKeystoreAuth));
+        
+        [JsonPropertyName("sslKeystoreAuth")]
+        public string? SslKeystoreAuth
+        {
+            get => _sslKeystoreAuth.GetValue();
+            set => _sslKeystoreAuth.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
@@ -126,6 +196,13 @@ namespace JetBrains.Space.Client
             _implicitFlowEnabled.SetAccessPath(path, validateHasBeenSet);
             _implicitFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
             _endpointUri.SetAccessPath(path, validateHasBeenSet);
+            _endpointSslVerification.SetAccessPath(path, validateHasBeenSet);
+            _hasVerificationToken.SetAccessPath(path, validateHasBeenSet);
+            _hasSigningKey.SetAccessPath(path, validateHasBeenSet);
+            _basicAuthUsername.SetAccessPath(path, validateHasBeenSet);
+            _basicAuthPassword.SetAccessPath(path, validateHasBeenSet);
+            _bearerAuthToken.SetAccessPath(path, validateHasBeenSet);
+            _sslKeystoreAuth.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

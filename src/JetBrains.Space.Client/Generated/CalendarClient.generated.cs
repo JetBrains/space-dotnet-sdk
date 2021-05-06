@@ -371,6 +371,63 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
+            public async Task<List<EventParticipationStatus>> GetMeetingParticipationStatusesForProfilesAsync(string id, List<string> profileIds, Func<Partial<EventParticipationStatus>, Partial<EventParticipationStatus>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("id", id);
+                queryParameters.Append("profileIds", profileIds.Select(it => it));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<EventParticipationStatus>()) : Partial<EventParticipationStatus>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<EventParticipationStatus>>("GET", $"api/http/calendars/meetings/participation-statuses{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View meeting</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<List<EventParticipationStatus>> GetRsvpStatusesForExternalUsersAsync(string id, List<string> emails, Func<Partial<EventParticipationStatus>, Partial<EventParticipationStatus>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("id", id);
+                queryParameters.Append("emails", emails.Select(it => it));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<EventParticipationStatus>()) : Partial<EventParticipationStatus>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<EventParticipationStatus>>("GET", $"api/http/calendars/meetings/participation-statuses-external{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View meeting</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<List<Pair<string, EventParticipationStatus>>> GetProfileParticipationStatusesForMeetingsAsync(string profileId, List<string> events, Func<Partial<Pair<string, EventParticipationStatus>>, Partial<Pair<string, EventParticipationStatus>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("profileId", profileId);
+                queryParameters.Append("events", events.Select(it => it));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<string, EventParticipationStatus>>()) : Partial<Pair<string, EventParticipationStatus>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<Pair<string, EventParticipationStatus>>>("GET", $"api/http/calendars/meetings/profile-participation{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View meeting</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<Meeting> GetMeetingAsync(string id, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();

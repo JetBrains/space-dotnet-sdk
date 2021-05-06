@@ -32,10 +32,12 @@ namespace JetBrains.Space.Client
     {
         public MCAction() { }
         
-        public MCAction(string id, string value)
+        public MCAction(string id, string value, bool? clientSide = null, string? fallbackUrl = null)
         {
             Id = id;
             Value = value;
+            IsClientSide = clientSide;
+            FallbackUrl = fallbackUrl;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(MCAction), nameof(Id));
@@ -58,10 +60,30 @@ namespace JetBrains.Space.Client
             set => _value.SetValue(value);
         }
     
+        private PropertyValue<bool?> _clientSide = new PropertyValue<bool?>(nameof(MCAction), nameof(IsClientSide));
+        
+        [JsonPropertyName("clientSide")]
+        public bool? IsClientSide
+        {
+            get => _clientSide.GetValue();
+            set => _clientSide.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _fallbackUrl = new PropertyValue<string?>(nameof(MCAction), nameof(FallbackUrl));
+        
+        [JsonPropertyName("fallbackUrl")]
+        public string? FallbackUrl
+        {
+            get => _fallbackUrl.GetValue();
+            set => _fallbackUrl.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _value.SetAccessPath(path, validateHasBeenSet);
+            _clientSide.SetAccessPath(path, validateHasBeenSet);
+            _fallbackUrl.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -44,6 +44,9 @@ namespace JetBrains.Space.Client.UnfurlDetailsRepositoryBranchPartialBuilder
         public static Partial<UnfurlDetailsRepositoryBranch> WithIsDeleted(this Partial<UnfurlDetailsRepositoryBranch> it)
             => it.AddFieldName("deleted");
         
+        public static Partial<UnfurlDetailsRepositoryBranch> WithIsDefault(this Partial<UnfurlDetailsRepositoryBranch> it)
+            => it.AddFieldName("isDefault");
+        
     }
     
 }

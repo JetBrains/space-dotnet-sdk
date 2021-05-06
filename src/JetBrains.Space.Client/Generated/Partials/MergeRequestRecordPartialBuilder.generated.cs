@@ -92,6 +92,9 @@ namespace JetBrains.Space.Client.MergeRequestRecordPartialBuilder
         public static Partial<MergeRequestRecord> WithDiscussionCounter(this Partial<MergeRequestRecord> it, Func<Partial<Counter>, Partial<Counter>> partialBuilder)
             => it.AddFieldName("discussionCounter", partialBuilder(new Partial<Counter>(it)));
         
+        public static Partial<MergeRequestRecord> WithIssueIds(this Partial<MergeRequestRecord> it)
+            => it.AddFieldName("issueIds");
+        
         public static Partial<MergeRequestRecord> WithParticipants(this Partial<MergeRequestRecord> it)
             => it.AddFieldName("participants");
         

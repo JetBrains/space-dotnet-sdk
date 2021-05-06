@@ -44,6 +44,9 @@ namespace JetBrains.Space.Client.GitCommitWithGraphPartialBuilder
         public static Partial<GitCommitWithGraph> WithReviews(this Partial<GitCommitWithGraph> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
             => it.AddFieldName("reviews", partialBuilder(new Partial<CodeReviewRecord>(it)));
         
+        public static Partial<GitCommitWithGraph> WithIssueIds(this Partial<GitCommitWithGraph> it)
+            => it.AddFieldName("issueIds");
+        
         public static Partial<GitCommitWithGraph> WithLayout(this Partial<GitCommitWithGraph> it)
             => it.AddFieldName("layout");
         

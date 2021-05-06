@@ -41,6 +41,12 @@ namespace JetBrains.Space.Client.ListMenuExtensionsPayloadPartialBuilder
         public static Partial<ListMenuExtensionsPayload> WithServerUrl(this Partial<ListMenuExtensionsPayload> it)
             => it.AddFieldName("serverUrl");
         
+        public static Partial<ListMenuExtensionsPayload> WithClientId(this Partial<ListMenuExtensionsPayload> it)
+            => it.AddFieldName("clientId");
+        
+        public static Partial<ListMenuExtensionsPayload> WithOrgId(this Partial<ListMenuExtensionsPayload> it)
+            => it.AddFieldName("orgId");
+        
     }
     
 }

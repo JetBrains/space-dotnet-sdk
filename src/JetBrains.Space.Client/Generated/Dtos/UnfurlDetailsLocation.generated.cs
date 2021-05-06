@@ -35,9 +35,10 @@ namespace JetBrains.Space.Client
         
         public UnfurlDetailsLocation() { }
         
-        public UnfurlDetailsLocation(TDLocation location)
+        public UnfurlDetailsLocation(TDLocation location, bool? strikeThrough = null)
         {
             Location = location;
+            IsStrikeThrough = strikeThrough;
         }
         
         private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(UnfurlDetailsLocation), nameof(Location));
@@ -50,9 +51,19 @@ namespace JetBrains.Space.Client
             set => _location.SetValue(value);
         }
     
+        private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsLocation), nameof(IsStrikeThrough));
+        
+        [JsonPropertyName("strikeThrough")]
+        public bool? IsStrikeThrough
+        {
+            get => _strikeThrough.GetValue();
+            set => _strikeThrough.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _location.SetAccessPath(path, validateHasBeenSet);
+            _strikeThrough.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

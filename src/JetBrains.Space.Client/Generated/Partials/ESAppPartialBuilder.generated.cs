@@ -44,17 +44,20 @@ namespace JetBrains.Space.Client.ESAppPartialBuilder
         public static Partial<ESApp> WithName(this Partial<ESApp> it)
             => it.AddFieldName("name");
         
+        public static Partial<ESApp> WithCreatedAt(this Partial<ESApp> it)
+            => it.AddFieldName("createdAt");
+        
+        public static Partial<ESApp> WithKind(this Partial<ESApp> it)
+            => it.AddFieldName("kind");
+        
+        public static Partial<ESApp> WithPresentableName(this Partial<ESApp> it)
+            => it.AddFieldName("presentableName");
+        
         public static Partial<ESApp> WithApplicationType(this Partial<ESApp> it)
             => it.AddFieldName("applicationType");
         
         public static Partial<ESApp> WithApplicationType(this Partial<ESApp> it, Func<Partial<ApplicationType>, Partial<ApplicationType>> partialBuilder)
             => it.AddFieldName("applicationType", partialBuilder(new Partial<ApplicationType>(it)));
-        
-        public static Partial<ESApp> WithMetadata(this Partial<ESApp> it)
-            => it.AddFieldName("metadata");
-        
-        public static Partial<ESApp> WithMetadata(this Partial<ESApp> it, Func<Partial<ApplicationMetadata>, Partial<ApplicationMetadata>> partialBuilder)
-            => it.AddFieldName("metadata", partialBuilder(new Partial<ApplicationMetadata>(it)));
         
         public static Partial<ESApp> WithIsClientCredentialsFlowEnabled(this Partial<ESApp> it)
             => it.AddFieldName("clientCredentialsFlowEnabled");
@@ -80,8 +83,26 @@ namespace JetBrains.Space.Client.ESAppPartialBuilder
         public static Partial<ESApp> WithIsHasSigningKey(this Partial<ESApp> it)
             => it.AddFieldName("hasSigningKey");
         
+        public static Partial<ESApp> WithIsEndpointSslVerification(this Partial<ESApp> it)
+            => it.AddFieldName("endpointSslVerification");
+        
+        public static Partial<ESApp> WithBasicAuthUsername(this Partial<ESApp> it)
+            => it.AddFieldName("basicAuthUsername");
+        
+        public static Partial<ESApp> WithIsHasBearerToken(this Partial<ESApp> it)
+            => it.AddFieldName("hasBearerToken");
+        
+        public static Partial<ESApp> WithSslKeystoreAuth(this Partial<ESApp> it)
+            => it.AddFieldName("sslKeystoreAuth");
+        
         public static Partial<ESApp> WithIsArchived(this Partial<ESApp> it)
             => it.AddFieldName("archived");
+        
+        public static Partial<ESApp> WithMetadata(this Partial<ESApp> it)
+            => it.AddFieldName("metadata");
+        
+        public static Partial<ESApp> WithMetadata(this Partial<ESApp> it, Func<Partial<ApplicationMetadata>, Partial<ApplicationMetadata>> partialBuilder)
+            => it.AddFieldName("metadata", partialBuilder(new Partial<ApplicationMetadata>(it)));
         
     }
     

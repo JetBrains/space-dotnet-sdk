@@ -35,6 +35,9 @@ namespace JetBrains.Space.Client.UnfurlDetailsLocationPartialBuilder
         public static Partial<UnfurlDetailsLocation> WithLocation(this Partial<UnfurlDetailsLocation> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
             => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
         
+        public static Partial<UnfurlDetailsLocation> WithIsStrikeThrough(this Partial<UnfurlDetailsLocation> it)
+            => it.AddFieldName("strikeThrough");
+        
     }
     
 }

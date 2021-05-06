@@ -35,12 +35,14 @@ namespace JetBrains.Space.Client
         
         public ListMenuExtensionsPayload() { }
         
-        public ListMenuExtensionsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null, string? serverUrl = null)
+        public ListMenuExtensionsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
         {
             AccessToken = accessToken;
             VerificationToken = verificationToken;
             UserId = userId;
             ServerUrl = serverUrl;
+            ClientId = clientId;
+            OrgId = orgId;
         }
         
         private PropertyValue<string?> _accessToken = new PropertyValue<string?>(nameof(ListMenuExtensionsPayload), nameof(AccessToken));
@@ -79,12 +81,32 @@ namespace JetBrains.Space.Client
             set => _serverUrl.SetValue(value);
         }
     
+        private PropertyValue<string?> _clientId = new PropertyValue<string?>(nameof(ListMenuExtensionsPayload), nameof(ClientId));
+        
+        [JsonPropertyName("clientId")]
+        public string? ClientId
+        {
+            get => _clientId.GetValue();
+            set => _clientId.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _orgId = new PropertyValue<string?>(nameof(ListMenuExtensionsPayload), nameof(OrgId));
+        
+        [JsonPropertyName("orgId")]
+        public string? OrgId
+        {
+            get => _orgId.GetValue();
+            set => _orgId.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _accessToken.SetAccessPath(path, validateHasBeenSet);
             _verificationToken.SetAccessPath(path, validateHasBeenSet);
             _userId.SetAccessPath(path, validateHasBeenSet);
             _serverUrl.SetAccessPath(path, validateHasBeenSet);
+            _clientId.SetAccessPath(path, validateHasBeenSet);
+            _orgId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }
