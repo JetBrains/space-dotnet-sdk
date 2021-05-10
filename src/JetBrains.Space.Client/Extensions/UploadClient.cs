@@ -27,7 +27,7 @@ namespace JetBrains.Space.Client
         /// <param name="mediaType">Media type. See <see cref="CreateUploadAsync"/> for supported values.</param>
         /// <param name="httpClient"><see cref="HttpClient"/> instance to use for uploading the stream. Defaults to <see cref="SharedHttpClient.Instance"/>.</param>
         /// <param name="cancellationToken">Cancellation token to abort the upload.</param>
-        /// <returns>String path where the upload is available.</returns>
+        /// <returns>String path where the upload is available, e.g. `/d/yjojA0f1Jiv`.</returns>
         /// <exception cref="ResourceException">Exception when uploading the stream fails.</exception>
         public async Task<string?> UploadAsync(
             string storagePrefix,
