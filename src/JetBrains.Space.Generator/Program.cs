@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using JetBrains.Space.Common;
@@ -75,7 +74,7 @@ namespace JetBrains.Space.Generator
             
             Console.WriteLine("Generating code from remote API model...");
 
-            using var httpClient = new HttpClient();
+            using var httpClient = SharedHttpClient.Instance;
             return await ExecuteCodeGenerator(
                 async () =>
                 {

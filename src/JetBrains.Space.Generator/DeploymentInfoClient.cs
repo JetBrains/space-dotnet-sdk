@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using JetBrains.Space.Common;
 
 namespace JetBrains.Space.Generator
 {
@@ -23,7 +24,7 @@ namespace JetBrains.Space.Generator
             }
             
             _serverUrl = serverUri;
-            _httpClient = httpClient ?? new HttpClient();
+            _httpClient = httpClient ?? SharedHttpClient.Instance;
         }
         
         public async Task<DeploymentInfo> GetDeploymentInfoAsync()

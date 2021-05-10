@@ -36,7 +36,7 @@ namespace JetBrains.Space.Common
         protected BearerTokenConnection(Uri serverUrl, HttpClient? httpClient = null)
             : base(serverUrl)
         {
-            HttpClient = httpClient ?? new HttpClient();
+            HttpClient = httpClient ?? SharedHttpClient.Instance;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace JetBrains.Space.Common
             : base(serverUrl)
         {
             AuthenticationTokens = authenticationTokens;
-            HttpClient = httpClient ?? new HttpClient();
+            HttpClient = httpClient ?? SharedHttpClient.Instance;
         }
 
         /// <inheritdoc />
