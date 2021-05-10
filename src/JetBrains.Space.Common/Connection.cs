@@ -16,7 +16,7 @@ namespace JetBrains.Space.Common
         /// <summary>
         /// Space organization URL that will be connected against.
         /// </summary>
-        protected Uri ServerUrl { get; }
+        public Uri ServerUrl { get; }
 
         /// <summary>
         /// JSON serializer options that will be used when (de)serializing options.
