@@ -43,7 +43,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Controllers
             // Find handler
             if (!RouteData.Values.TryGetValue(RouteKeyConstants.HandlerType, out object t) 
                 || !(t is Type handlerType)
-                || !(_serviceProvider.GetService(handlerType)is ISpaceWebHookHandler handler))
+                || !(_serviceProvider.GetService(handlerType) is ISpaceWebHookHandler handler))
             {
                 return BadRequest($"No registered {nameof(ISpaceWebHookHandler)} could be found.");
             }
