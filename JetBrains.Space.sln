@@ -42,6 +42,11 @@ ProjectSection(SolutionItems) = preProject
 	docs\generate-client.md = docs\generate-client.md
 EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{5106E67A-DDFE-4728-812F-7FEDEE6533D5}"
+ProjectSection(SolutionItems) = preProject
+	.config\dotnet-tools.json = .config\dotnet-tools.json
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,5 +103,6 @@ Global
 		{96D76BCD-972C-4F71-8483-D26F9D44AE7B} = {7A89F53D-DD8B-49C7-BA81-19861CE84F9E}
 		{84D67980-E6F0-45C8-B030-392FEB83848B} = {1E220DAF-BE55-4503-9372-FF930F4225BC}
 		{AF5AD74B-2C0B-4632-B1F6-217C17B14F87} = {1E220DAF-BE55-4503-9372-FF930F4225BC}
+		{5106E67A-DDFE-4728-812F-7FEDEE6533D5} = {0E5096B8-C938-4581-A331-C92F8F058219}
 	EndGlobalSection
 EndGlobal
