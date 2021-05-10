@@ -117,7 +117,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Formatters
                     } 
                     else
                     {
-                        _logger.LogWarning(nameof(SpaceWebHookOptions.ValidatePayloadSignature) + " is enabled, but no " + nameof(SpaceWebHookOptions.EndpointSigningKey) + " is configured. Skipping payload signature validation.");
+                        _logger.LogWarning(nameof(SpaceWebHookOptions.ValidatePayloadSignature) + " is enabled, but no " + nameof(SpaceWebHookOptions.EndpointSigningKey) + " is configured. Skipping payload signature validation");
                     }
                 }
                 
@@ -142,7 +142,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Formatters
                     }
                     else
                     {
-                        _logger.LogWarning(nameof(SpaceWebHookOptions.ValidatePayloadVerificationToken) + " is enabled, but no " + nameof(SpaceWebHookOptions.EndpointVerificationToken) + " is configured. Skipping verification token validation.");
+                        _logger.LogWarning(nameof(SpaceWebHookOptions.ValidatePayloadVerificationToken) + " is enabled, but no " + nameof(SpaceWebHookOptions.EndpointVerificationToken) + " is configured. Skipping verification token validation");
                     }
                 }
             }
