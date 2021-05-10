@@ -115,7 +115,7 @@ namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
                         var spaceTokenResponse = await httpClient.SendAsync(spaceTokenRequest);
                         if (!spaceTokenResponse.IsSuccessStatusCode)
                         {
-                            _logger.LogWarning("Error refreshing token: {statusCode} {message}", spaceTokenResponse.StatusCode, spaceTokenResponse.ReasonPhrase);
+                            _logger.LogWarning("Error refreshing token: {StatusCode} {Message}", spaceTokenResponse.StatusCode, spaceTokenResponse.ReasonPhrase);
 
                             context.RejectPrincipal();
                             return;
