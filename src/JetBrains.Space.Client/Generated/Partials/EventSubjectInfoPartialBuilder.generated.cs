@@ -53,6 +53,9 @@ namespace JetBrains.Space.Client.EventSubjectInfoPartialBuilder
         public static Partial<EventSubjectInfo> WithDefaultFilters(this Partial<EventSubjectInfo> it, Func<Partial<SubscriptionFilter>, Partial<SubscriptionFilter>> partialBuilder)
             => it.AddFieldName("defaultFilters", partialBuilder(new Partial<SubscriptionFilter>(it)));
         
+        public static Partial<EventSubjectInfo> WithFeatureFlag(this Partial<EventSubjectInfo> it)
+            => it.AddFieldName("featureFlag");
+        
     }
     
 }

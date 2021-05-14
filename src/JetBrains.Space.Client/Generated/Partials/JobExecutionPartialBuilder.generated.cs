@@ -41,6 +41,9 @@ namespace JetBrains.Space.Client.JobExecutionPartialBuilder
         public static Partial<JobExecution> WithJobName(this Partial<JobExecution> it)
             => it.AddFieldName("jobName");
         
+        public static Partial<JobExecution> WithProjectId(this Partial<JobExecution> it)
+            => it.AddFieldName("projectId");
+        
         public static Partial<JobExecution> WithBranch(this Partial<JobExecution> it)
             => it.AddFieldName("branch");
         

@@ -35,7 +35,7 @@ namespace JetBrains.Space.Client
         
         public M2SharedChannelContent() { }
         
-        public M2SharedChannelContent(string name, string group, M2Access access, string description, ChannelSpecificDefaults notificationDefaults, string? iconId = null, List<TDTeam>? teams = null, bool? canEdit = null)
+        public M2SharedChannelContent(string name, string group, M2Access access, string description, ChannelSpecificDefaults notificationDefaults, string? iconId = null, List<TDTeam>? teams = null, bool? canEdit = null, PRProject? project = null)
         {
             Name = name;
             Group = group;
@@ -45,6 +45,7 @@ namespace JetBrains.Space.Client
             NotificationDefaults = notificationDefaults;
             Teams = teams;
             CanEdit = canEdit;
+            Project = project;
         }
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2SharedChannelContent), nameof(Name));
@@ -124,6 +125,15 @@ namespace JetBrains.Space.Client
             set => _canEdit.SetValue(value);
         }
     
+        private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(M2SharedChannelContent), nameof(Project));
+        
+        [JsonPropertyName("project")]
+        public PRProject? Project
+        {
+            get => _project.GetValue();
+            set => _project.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
@@ -134,6 +144,7 @@ namespace JetBrains.Space.Client
             _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
             _teams.SetAccessPath(path, validateHasBeenSet);
             _canEdit.SetAccessPath(path, validateHasBeenSet);
+            _project.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

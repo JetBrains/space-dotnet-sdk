@@ -62,6 +62,12 @@ namespace JetBrains.Space.Client.M2SharedChannelContentPartialBuilder
         public static Partial<M2SharedChannelContent> WithCanEdit(this Partial<M2SharedChannelContent> it)
             => it.AddFieldName("canEdit");
         
+        public static Partial<M2SharedChannelContent> WithProject(this Partial<M2SharedChannelContent> it)
+            => it.AddFieldName("project");
+        
+        public static Partial<M2SharedChannelContent> WithProject(this Partial<M2SharedChannelContent> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+        
     }
     
 }

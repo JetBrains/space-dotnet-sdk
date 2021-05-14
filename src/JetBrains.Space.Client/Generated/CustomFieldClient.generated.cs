@@ -109,7 +109,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Add new option to custom field of `Select from options` type. Options can only be added via this API call if custom field has the `New options can be added on the fly` flag set. Returns saved records.
+            /// Add new option to custom field of `Select from options` type. Options can only be added via this API call if custom field has the `Open-ended` flag set. Returns saved records.
             /// </summary>
             public async Task<List<EnumValueData>> CreateEnumValueAsync(string typeKey, string customFieldId, List<EnumValueData> valuesToAdd, ExtendedTypeScope scope, Func<Partial<EnumValueData>, Partial<EnumValueData>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -126,7 +126,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get a page of options for custom field of `Select from options` type with `New options can be added on the fly` flag set.
+            /// Get a page of options for custom field of `Select from options` type with `Open-ended` flag set.
             /// </summary>
             public async Task<Batch<EnumValueData>> GetAllEnumValuesAsync(string typeKey, string customFieldId, ExtendedTypeScope scope, EnumValueOrdering ordering = EnumValueOrdering.NAMEASC, string? skip = null, int? top = 100, string? query = null, bool? countRecords = null, string? addedByProfileId = null, Func<Partial<Batch<EnumValueData>>, Partial<Batch<EnumValueData>>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -145,7 +145,7 @@ namespace JetBrains.Space.Client
             
             
             /// <summary>
-            /// Get a page of options for custom field of `Select from options` type with `New options can be added on the fly` flag set.
+            /// Get a page of options for custom field of `Select from options` type with `Open-ended` flag set.
             /// </summary>
             public IAsyncEnumerable<EnumValueData> GetAllEnumValuesAsyncEnumerable(string typeKey, string customFieldId, ExtendedTypeScope scope, EnumValueOrdering ordering = EnumValueOrdering.NAMEASC, string? skip = null, int? top = 100, string? query = null, bool? countRecords = null, string? addedByProfileId = null, Func<Partial<EnumValueData>, Partial<EnumValueData>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllEnumValuesAsync(typeKey: typeKey, customFieldId: customFieldId, ordering: ordering, scope: scope, top: top, query: query, countRecords: countRecords, addedByProfileId: addedByProfileId, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<EnumValueData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EnumValueData>.Default())), skip, cancellationToken);

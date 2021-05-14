@@ -44,6 +44,12 @@ namespace JetBrains.Space.Client.EventTypeInfoPartialBuilder
         public static Partial<EventTypeInfo> WithRights(this Partial<EventTypeInfo> it, Func<Partial<CRight>, Partial<CRight>> partialBuilder)
             => it.AddFieldName("rights", partialBuilder(new Partial<CRight>(it)));
         
+        public static Partial<EventTypeInfo> WithFeatureFlag(this Partial<EventTypeInfo> it)
+            => it.AddFieldName("featureFlag");
+        
+        public static Partial<EventTypeInfo> WithSortOrder(this Partial<EventTypeInfo> it)
+            => it.AddFieldName("sortOrder");
+        
     }
     
 }

@@ -25,19 +25,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PersonalSubscriptionEventPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class PersonalSubscriptionEventPartialExtensions
+    public sealed class JobExecutionTriggerGitPush
+         : JobExecutionTrigger, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<PersonalSubscriptionEvent> WithEventCode(this Partial<PersonalSubscriptionEvent> it)
-            => it.AddFieldName("eventCode");
+        [JsonPropertyName("className")]
+        public override string? ClassName => "JobExecutionTrigger.GitPush";
         
-        public static Partial<PersonalSubscriptionEvent> WithName(this Partial<PersonalSubscriptionEvent> it)
-            => it.AddFieldName("name");
+        public JobExecutionTriggerGitPush() { }
         
-        public static Partial<PersonalSubscriptionEvent> WithFeatureFlag(this Partial<PersonalSubscriptionEvent> it)
-            => it.AddFieldName("featureFlag");
+        public JobExecutionTriggerGitPush(string commit)
+        {
+            Commit = commit;
+        }
         
+        private PropertyValue<string> _commit = new PropertyValue<string>(nameof(JobExecutionTriggerGitPush), nameof(Commit));
+        
+        [Required]
+        [JsonPropertyName("commit")]
+        public string Commit
+        {
+            get => _commit.GetValue();
+            set => _commit.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _commit.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

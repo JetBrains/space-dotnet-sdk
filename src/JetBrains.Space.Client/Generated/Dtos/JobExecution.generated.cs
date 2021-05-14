@@ -32,12 +32,13 @@ namespace JetBrains.Space.Client
     {
         public JobExecution() { }
         
-        public JobExecution(string executionId, long executionNumber, string jobId, string jobName, string branch, ExecutionStatus status, long triggeredTime, int changesCount, List<FailureCondition> failureConditions, long? startedTime = null, long? finishedTime = null, Estimation? predictedEndTime = null)
+        public JobExecution(string executionId, long executionNumber, string jobId, string jobName, string projectId, string branch, ExecutionStatus status, long triggeredTime, int changesCount, List<FailureCondition> failureConditions, long? startedTime = null, long? finishedTime = null, Estimation? predictedEndTime = null)
         {
             ExecutionId = executionId;
             ExecutionNumber = executionNumber;
             JobId = jobId;
             JobName = jobName;
+            ProjectId = projectId;
             Branch = branch;
             Status = status;
             TriggeredTime = triggeredTime;
@@ -86,6 +87,16 @@ namespace JetBrains.Space.Client
         {
             get => _jobName.GetValue();
             set => _jobName.SetValue(value);
+        }
+    
+        private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(JobExecution), nameof(ProjectId));
+        
+        [Required]
+        [JsonPropertyName("projectId")]
+        public string ProjectId
+        {
+            get => _projectId.GetValue();
+            set => _projectId.SetValue(value);
         }
     
         private PropertyValue<string> _branch = new PropertyValue<string>(nameof(JobExecution), nameof(Branch));
@@ -171,6 +182,7 @@ namespace JetBrains.Space.Client
             _executionNumber.SetAccessPath(path, validateHasBeenSet);
             _jobId.SetAccessPath(path, validateHasBeenSet);
             _jobName.SetAccessPath(path, validateHasBeenSet);
+            _projectId.SetAccessPath(path, validateHasBeenSet);
             _branch.SetAccessPath(path, validateHasBeenSet);
             _status.SetAccessPath(path, validateHasBeenSet);
             _triggeredTime.SetAccessPath(path, validateHasBeenSet);

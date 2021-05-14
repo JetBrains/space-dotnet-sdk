@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public EventSubjectInfo() { }
         
-        public EventSubjectInfo(string code, string name, string description, List<EventTypeInfo> events, List<SubscriptionFilter> defaultFilters, string? parentCode = null)
+        public EventSubjectInfo(string code, string name, string description, List<EventTypeInfo> events, List<SubscriptionFilter> defaultFilters, string? parentCode = null, string? featureFlag = null)
         {
             Code = code;
             ParentCode = parentCode;
@@ -40,6 +40,7 @@ namespace JetBrains.Space.Client
             Description = description;
             Events = events;
             DefaultFilters = defaultFilters;
+            FeatureFlag = featureFlag;
         }
         
         private PropertyValue<string> _code = new PropertyValue<string>(nameof(EventSubjectInfo), nameof(Code));
@@ -101,6 +102,15 @@ namespace JetBrains.Space.Client
             set => _defaultFilters.SetValue(value);
         }
     
+        private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(EventSubjectInfo), nameof(FeatureFlag));
+        
+        [JsonPropertyName("featureFlag")]
+        public string? FeatureFlag
+        {
+            get => _featureFlag.GetValue();
+            set => _featureFlag.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _code.SetAccessPath(path, validateHasBeenSet);
@@ -109,6 +119,7 @@ namespace JetBrains.Space.Client
             _description.SetAccessPath(path, validateHasBeenSet);
             _events.SetAccessPath(path, validateHasBeenSet);
             _defaultFilters.SetAccessPath(path, validateHasBeenSet);
+            _featureFlag.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

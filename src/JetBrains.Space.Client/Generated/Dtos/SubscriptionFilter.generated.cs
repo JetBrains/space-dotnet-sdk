@@ -36,6 +36,9 @@ namespace JetBrains.Space.Client
         public static ApplicationsSubscriptionFilter Applications(ESApp? application = null)
             => new ApplicationsSubscriptionFilter(application: application);
         
+        public static AutomationJobSubscriptionFilter AutomationJob(List<PRProject> projects, string? repositoryName = null, List<string>? branchSpec = null, List<string>? jobs = null)
+            => new AutomationJobSubscriptionFilter(projects: projects, repositoryName: repositoryName, branchSpec: branchSpec, jobs: jobs);
+        
         public static BlogCommonSubscriptionFilter BlogCommon(List<TDTeam> teams, List<TDLocation> locations, List<TDMemberProfile> authors)
             => new BlogCommonSubscriptionFilter(teams: teams, locations: locations, authors: authors);
         

@@ -99,21 +99,22 @@ namespace JetBrains.Space.Client
         public IAsyncEnumerable<PRProject> GetAllProjectsByMemberAsyncEnumerable(ProfileIdentifier member, string? skip = null, int? top = 100, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsByMemberAsync(member: member, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
     
-        public async Task<Batch<PRProject>> GetAllProjectsWithRightAsync(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<PRProject>> GetAllProjectsWithRightAsync(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
             if (top != null) queryParameters.Append("$top", top?.ToString());
             if (term != null) queryParameters.Append("term", term);
             if (path != null) queryParameters.Append("path", path);
+            if (starred != null) queryParameters.Append("starred", starred?.ToString("l"));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
             
             return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/right-code:{rightCode}{queryParameters.ToQueryString()}", cancellationToken);
         }
         
         
-        public IAsyncEnumerable<PRProject> GetAllProjectsWithRightAsyncEnumerable(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsWithRightAsync(rightCode: rightCode, top: top, term: term, path: path, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
+        public IAsyncEnumerable<PRProject> GetAllProjectsWithRightAsyncEnumerable(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsWithRightAsync(rightCode: rightCode, top: top, term: term, path: path, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
     
         /// <summary>
         /// Get all projects for a team.
@@ -239,6 +240,67 @@ namespace JetBrains.Space.Client
             
             }
         
+            public JobExecutionClient JobExecutions => new JobExecutionClient(_connection);
+            
+            public partial class JobExecutionClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public JobExecutionClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<JobExecution> GetCurrentAsync(Func<Partial<JobExecution>, Partial<JobExecution>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<JobExecution>()) : Partial<JobExecution>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<JobExecution>("GET", $"api/http/projects/automation/job-executions/current{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+            public JobClient Jobs => new JobClient(_connection);
+            
+            public partial class JobClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public JobClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<Job> GetJobAsync(string jobId, ProjectIdentifier project, Func<Partial<Job>, Partial<Job>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("project", project.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Job>()) : Partial<Job>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Job>("GET", $"api/http/projects/automation/jobs/{jobId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
             public StepExecutionClient StepExecutions => new StepExecutionClient(_connection);
             
             public partial class StepExecutionClient : ISpaceClient
@@ -341,17 +403,8 @@ namespace JetBrains.Space.Client
             
             }
         
-            public JobClient Jobs => new JobClient(_connection);
-            
             public partial class JobClient : ISpaceClient
             {
-                private readonly Connection _connection;
-                
-                public JobClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
                 /// <summary>
                 /// Start Job. Returns Execution id, see projects/automation/graph-executions/{id}
                 /// </summary>
@@ -377,7 +430,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Search jobs. Parameters are applied as 'AND' filters.
+                /// List jobs. Parameters are applied as 'AND' filters.
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -402,7 +455,7 @@ namespace JetBrains.Space.Client
                 
                 
                 /// <summary>
-                /// Search jobs. Parameters are applied as 'AND' filters.
+                /// List jobs. Parameters are applied as 'AND' filters.
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -414,23 +467,6 @@ namespace JetBrains.Space.Client
                 /// </remarks>
                 public IAsyncEnumerable<Job> GetAllJobsAsyncEnumerable(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = 100, Func<Partial<Job>, Partial<Job>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllJobsAsync(project: project, repoFilter: repoFilter, branchFilter: branchFilter, trigger: trigger, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Job>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Job>.Default())), skip, cancellationToken);
-            
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<Job> GetJobAsync(ProjectIdentifier project, string jobId, Func<Partial<Job>, Partial<Job>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Job>()) : Partial<Job>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Job>("GET", $"api/http/projects/{project}/automation/jobs/{jobId}{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
             
             }
         

@@ -44,6 +44,9 @@ namespace JetBrains.Space.Client.PersonalSubscriptionTargetPartialBuilder
         public static Partial<PersonalSubscriptionTarget> WithEvents(this Partial<PersonalSubscriptionTarget> it, Func<Partial<PersonalSubscriptionEvent>, Partial<PersonalSubscriptionEvent>> partialBuilder)
             => it.AddFieldName("events", partialBuilder(new Partial<PersonalSubscriptionEvent>(it)));
         
+        public static Partial<PersonalSubscriptionTarget> WithFeatureFlag(this Partial<PersonalSubscriptionTarget> it)
+            => it.AddFieldName("featureFlag");
+        
     }
     
 }

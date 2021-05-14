@@ -25,18 +25,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PersonalSubscriptionEventPartialBuilder
+namespace JetBrains.Space.Client.JobExecutionTriggerCodeReviewOpenedPartialBuilder
 {
-    public static class PersonalSubscriptionEventPartialExtensions
+    public static class JobExecutionTriggerCodeReviewOpenedPartialExtensions
     {
-        public static Partial<PersonalSubscriptionEvent> WithEventCode(this Partial<PersonalSubscriptionEvent> it)
-            => it.AddFieldName("eventCode");
-        
-        public static Partial<PersonalSubscriptionEvent> WithName(this Partial<PersonalSubscriptionEvent> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<PersonalSubscriptionEvent> WithFeatureFlag(this Partial<PersonalSubscriptionEvent> it)
-            => it.AddFieldName("featureFlag");
+        public static Partial<JobExecutionTriggerCodeReviewOpened> WithReviewId(this Partial<JobExecutionTriggerCodeReviewOpened> it)
+            => it.AddFieldName("reviewId");
         
     }
     

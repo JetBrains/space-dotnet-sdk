@@ -32,12 +32,13 @@ namespace JetBrains.Space.Client
     {
         public PersonalSubscriptionTarget() { }
         
-        public PersonalSubscriptionTarget(string subjectCode, string targetCode, string description, List<PersonalSubscriptionEvent> events)
+        public PersonalSubscriptionTarget(string subjectCode, string targetCode, string description, List<PersonalSubscriptionEvent> events, string? featureFlag = null)
         {
             SubjectCode = subjectCode;
             TargetCode = targetCode;
             Description = description;
             Events = events;
+            FeatureFlag = featureFlag;
         }
         
         private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(PersonalSubscriptionTarget), nameof(SubjectCode));
@@ -80,12 +81,22 @@ namespace JetBrains.Space.Client
             set => _events.SetValue(value);
         }
     
+        private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(PersonalSubscriptionTarget), nameof(FeatureFlag));
+        
+        [JsonPropertyName("featureFlag")]
+        public string? FeatureFlag
+        {
+            get => _featureFlag.GetValue();
+            set => _featureFlag.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _subjectCode.SetAccessPath(path, validateHasBeenSet);
             _targetCode.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
             _events.SetAccessPath(path, validateHasBeenSet);
+            _featureFlag.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

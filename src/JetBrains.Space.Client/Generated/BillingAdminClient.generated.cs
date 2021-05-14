@@ -100,7 +100,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Returns a billing report for the given 
+            /// Returns a billing report for the given billing period
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -118,6 +118,39 @@ namespace JetBrains.Space.Client
                 return await _connection.RequestResourceAsync<BillingReport>("GET", $"api/http/billing-admin/reports/{billingPeriod}{queryParameters.ToQueryString()}", cancellationToken);
             }
             
+        
+            public TodayClient Today => new TodayClient(_connection);
+            
+            public partial class TodayClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public TodayClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Returns a billing report for today
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View usage data</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<TodayBillingReport> GetBillingReportForTodayAsync(Func<Partial<TodayBillingReport>, Partial<TodayBillingReport>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TodayBillingReport>()) : Partial<TodayBillingReport>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TodayBillingReport>("GET", $"api/http/billing-admin/reports/today{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
         
         }
     

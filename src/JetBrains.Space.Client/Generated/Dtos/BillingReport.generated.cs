@@ -32,49 +32,13 @@ namespace JetBrains.Space.Client
     {
         public BillingReport() { }
         
-        public BillingReport(DateTime since, DateTime till, List<PurchasedBillingPlan> plans, List<long> activeUsers, List<long> applications, List<long> chatMessages, List<long> ciCredits, List<long> trafficTotal, List<long> trafficFiles, List<long> trafficGit, List<long> trafficPackages, List<long> trafficAutomation, List<long> storageTotal, List<long> storageFiles, List<long> storageGit, List<long> storagePackages, DateTime earliestBillingDate)
+        public BillingReport(List<PurchasedBillingPlan> plans, List<BillingReportDay> reportDays, DateTime earliestBillingDate)
         {
-            Since = since;
-            Till = till;
             Plans = plans;
-            ActiveUsers = activeUsers;
-            Applications = applications;
-            ChatMessages = chatMessages;
-            CiCredits = ciCredits;
-            TrafficTotal = trafficTotal;
-            TrafficFiles = trafficFiles;
-            TrafficGit = trafficGit;
-            TrafficPackages = trafficPackages;
-            TrafficAutomation = trafficAutomation;
-            StorageTotal = storageTotal;
-            StorageFiles = storageFiles;
-            StorageGit = storageGit;
-            StoragePackages = storagePackages;
+            ReportDays = reportDays;
             EarliestBillingDate = earliestBillingDate;
         }
         
-        private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(BillingReport), nameof(Since));
-        
-        [Required]
-        [JsonPropertyName("since")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime Since
-        {
-            get => _since.GetValue();
-            set => _since.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(BillingReport), nameof(Till));
-        
-        [Required]
-        [JsonPropertyName("till")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime Till
-        {
-            get => _till.GetValue();
-            set => _till.SetValue(value);
-        }
-    
         private PropertyValue<List<PurchasedBillingPlan>> _plans = new PropertyValue<List<PurchasedBillingPlan>>(nameof(BillingReport), nameof(Plans), new List<PurchasedBillingPlan>());
         
         [Required]
@@ -85,134 +49,14 @@ namespace JetBrains.Space.Client
             set => _plans.SetValue(value);
         }
     
-        private PropertyValue<List<long>> _activeUsers = new PropertyValue<List<long>>(nameof(BillingReport), nameof(ActiveUsers), new List<long>());
+        private PropertyValue<List<BillingReportDay>> _reportDays = new PropertyValue<List<BillingReportDay>>(nameof(BillingReport), nameof(ReportDays), new List<BillingReportDay>());
         
         [Required]
-        [JsonPropertyName("activeUsers")]
-        public List<long> ActiveUsers
+        [JsonPropertyName("reportDays")]
+        public List<BillingReportDay> ReportDays
         {
-            get => _activeUsers.GetValue();
-            set => _activeUsers.SetValue(value);
-        }
-    
-        private PropertyValue<List<long>> _applications = new PropertyValue<List<long>>(nameof(BillingReport), nameof(Applications), new List<long>());
-        
-        [Required]
-        [JsonPropertyName("applications")]
-        public List<long> Applications
-        {
-            get => _applications.GetValue();
-            set => _applications.SetValue(value);
-        }
-    
-        private PropertyValue<List<long>> _chatMessages = new PropertyValue<List<long>>(nameof(BillingReport), nameof(ChatMessages), new List<long>());
-        
-        [Required]
-        [JsonPropertyName("chatMessages")]
-        public List<long> ChatMessages
-        {
-            get => _chatMessages.GetValue();
-            set => _chatMessages.SetValue(value);
-        }
-    
-        private PropertyValue<List<long>> _ciCredits = new PropertyValue<List<long>>(nameof(BillingReport), nameof(CiCredits), new List<long>());
-        
-        [Required]
-        [JsonPropertyName("ciCredits")]
-        public List<long> CiCredits
-        {
-            get => _ciCredits.GetValue();
-            set => _ciCredits.SetValue(value);
-        }
-    
-        private PropertyValue<List<long>> _trafficTotal = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficTotal), new List<long>());
-        
-        [Required]
-        [JsonPropertyName("trafficTotal")]
-        public List<long> TrafficTotal
-        {
-            get => _trafficTotal.GetValue();
-            set => _trafficTotal.SetValue(value);
-        }
-    
-        private PropertyValue<List<long>> _trafficFiles = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficFiles), new List<long>());
-        
-        [Required]
-        [JsonPropertyName("trafficFiles")]
-        public List<long> TrafficFiles
-        {
-            get => _trafficFiles.GetValue();
-            set => _trafficFiles.SetValue(value);
-        }
-    
-        private PropertyValue<List<long>> _trafficGit = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficGit), new List<long>());
-        
-        [Required]
-        [JsonPropertyName("trafficGit")]
-        public List<long> TrafficGit
-        {
-            get => _trafficGit.GetValue();
-            set => _trafficGit.SetValue(value);
-        }
-    
-        private PropertyValue<List<long>> _trafficPackages = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficPackages), new List<long>());
-        
-        [Required]
-        [JsonPropertyName("trafficPackages")]
-        public List<long> TrafficPackages
-        {
-            get => _trafficPackages.GetValue();
-            set => _trafficPackages.SetValue(value);
-        }
-    
-        private PropertyValue<List<long>> _trafficAutomation = new PropertyValue<List<long>>(nameof(BillingReport), nameof(TrafficAutomation), new List<long>());
-        
-        [Required]
-        [JsonPropertyName("trafficAutomation")]
-        public List<long> TrafficAutomation
-        {
-            get => _trafficAutomation.GetValue();
-            set => _trafficAutomation.SetValue(value);
-        }
-    
-        private PropertyValue<List<long>> _storageTotal = new PropertyValue<List<long>>(nameof(BillingReport), nameof(StorageTotal), new List<long>());
-        
-        [Required]
-        [JsonPropertyName("storageTotal")]
-        public List<long> StorageTotal
-        {
-            get => _storageTotal.GetValue();
-            set => _storageTotal.SetValue(value);
-        }
-    
-        private PropertyValue<List<long>> _storageFiles = new PropertyValue<List<long>>(nameof(BillingReport), nameof(StorageFiles), new List<long>());
-        
-        [Required]
-        [JsonPropertyName("storageFiles")]
-        public List<long> StorageFiles
-        {
-            get => _storageFiles.GetValue();
-            set => _storageFiles.SetValue(value);
-        }
-    
-        private PropertyValue<List<long>> _storageGit = new PropertyValue<List<long>>(nameof(BillingReport), nameof(StorageGit), new List<long>());
-        
-        [Required]
-        [JsonPropertyName("storageGit")]
-        public List<long> StorageGit
-        {
-            get => _storageGit.GetValue();
-            set => _storageGit.SetValue(value);
-        }
-    
-        private PropertyValue<List<long>> _storagePackages = new PropertyValue<List<long>>(nameof(BillingReport), nameof(StoragePackages), new List<long>());
-        
-        [Required]
-        [JsonPropertyName("storagePackages")]
-        public List<long> StoragePackages
-        {
-            get => _storagePackages.GetValue();
-            set => _storagePackages.SetValue(value);
+            get => _reportDays.GetValue();
+            set => _reportDays.SetValue(value);
         }
     
         private PropertyValue<DateTime> _earliestBillingDate = new PropertyValue<DateTime>(nameof(BillingReport), nameof(EarliestBillingDate));
@@ -228,22 +72,8 @@ namespace JetBrains.Space.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _since.SetAccessPath(path, validateHasBeenSet);
-            _till.SetAccessPath(path, validateHasBeenSet);
             _plans.SetAccessPath(path, validateHasBeenSet);
-            _activeUsers.SetAccessPath(path, validateHasBeenSet);
-            _applications.SetAccessPath(path, validateHasBeenSet);
-            _chatMessages.SetAccessPath(path, validateHasBeenSet);
-            _ciCredits.SetAccessPath(path, validateHasBeenSet);
-            _trafficTotal.SetAccessPath(path, validateHasBeenSet);
-            _trafficFiles.SetAccessPath(path, validateHasBeenSet);
-            _trafficGit.SetAccessPath(path, validateHasBeenSet);
-            _trafficPackages.SetAccessPath(path, validateHasBeenSet);
-            _trafficAutomation.SetAccessPath(path, validateHasBeenSet);
-            _storageTotal.SetAccessPath(path, validateHasBeenSet);
-            _storageFiles.SetAccessPath(path, validateHasBeenSet);
-            _storageGit.SetAccessPath(path, validateHasBeenSet);
-            _storagePackages.SetAccessPath(path, validateHasBeenSet);
+            _reportDays.SetAccessPath(path, validateHasBeenSet);
             _earliestBillingDate.SetAccessPath(path, validateHasBeenSet);
         }
     

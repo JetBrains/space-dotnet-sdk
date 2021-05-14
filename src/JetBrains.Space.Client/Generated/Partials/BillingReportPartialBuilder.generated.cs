@@ -29,56 +29,17 @@ namespace JetBrains.Space.Client.BillingReportPartialBuilder
 {
     public static class BillingReportPartialExtensions
     {
-        public static Partial<BillingReport> WithSince(this Partial<BillingReport> it)
-            => it.AddFieldName("since");
-        
-        public static Partial<BillingReport> WithTill(this Partial<BillingReport> it)
-            => it.AddFieldName("till");
-        
         public static Partial<BillingReport> WithPlans(this Partial<BillingReport> it)
             => it.AddFieldName("plans");
         
         public static Partial<BillingReport> WithPlans(this Partial<BillingReport> it, Func<Partial<PurchasedBillingPlan>, Partial<PurchasedBillingPlan>> partialBuilder)
             => it.AddFieldName("plans", partialBuilder(new Partial<PurchasedBillingPlan>(it)));
         
-        public static Partial<BillingReport> WithActiveUsers(this Partial<BillingReport> it)
-            => it.AddFieldName("activeUsers");
+        public static Partial<BillingReport> WithReportDays(this Partial<BillingReport> it)
+            => it.AddFieldName("reportDays");
         
-        public static Partial<BillingReport> WithApplications(this Partial<BillingReport> it)
-            => it.AddFieldName("applications");
-        
-        public static Partial<BillingReport> WithChatMessages(this Partial<BillingReport> it)
-            => it.AddFieldName("chatMessages");
-        
-        public static Partial<BillingReport> WithCiCredits(this Partial<BillingReport> it)
-            => it.AddFieldName("ciCredits");
-        
-        public static Partial<BillingReport> WithTrafficTotal(this Partial<BillingReport> it)
-            => it.AddFieldName("trafficTotal");
-        
-        public static Partial<BillingReport> WithTrafficFiles(this Partial<BillingReport> it)
-            => it.AddFieldName("trafficFiles");
-        
-        public static Partial<BillingReport> WithTrafficGit(this Partial<BillingReport> it)
-            => it.AddFieldName("trafficGit");
-        
-        public static Partial<BillingReport> WithTrafficPackages(this Partial<BillingReport> it)
-            => it.AddFieldName("trafficPackages");
-        
-        public static Partial<BillingReport> WithTrafficAutomation(this Partial<BillingReport> it)
-            => it.AddFieldName("trafficAutomation");
-        
-        public static Partial<BillingReport> WithStorageTotal(this Partial<BillingReport> it)
-            => it.AddFieldName("storageTotal");
-        
-        public static Partial<BillingReport> WithStorageFiles(this Partial<BillingReport> it)
-            => it.AddFieldName("storageFiles");
-        
-        public static Partial<BillingReport> WithStorageGit(this Partial<BillingReport> it)
-            => it.AddFieldName("storageGit");
-        
-        public static Partial<BillingReport> WithStoragePackages(this Partial<BillingReport> it)
-            => it.AddFieldName("storagePackages");
+        public static Partial<BillingReport> WithReportDays(this Partial<BillingReport> it, Func<Partial<BillingReportDay>, Partial<BillingReportDay>> partialBuilder)
+            => it.AddFieldName("reportDays", partialBuilder(new Partial<BillingReportDay>(it)));
         
         public static Partial<BillingReport> WithEarliestBillingDate(this Partial<BillingReport> it)
             => it.AddFieldName("earliestBillingDate");

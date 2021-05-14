@@ -25,18 +25,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PersonalSubscriptionEventPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class PersonalSubscriptionEventPartialExtensions
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum JobExecutionStatus
     {
-        public static Partial<PersonalSubscriptionEvent> WithEventCode(this Partial<PersonalSubscriptionEvent> it)
-            => it.AddFieldName("eventCode");
+        [EnumMember(Value = "Started")]
+        Started,
         
-        public static Partial<PersonalSubscriptionEvent> WithName(this Partial<PersonalSubscriptionEvent> it)
-            => it.AddFieldName("name");
+        [EnumMember(Value = "Succeeded")]
+        Succeeded,
         
-        public static Partial<PersonalSubscriptionEvent> WithFeatureFlag(this Partial<PersonalSubscriptionEvent> it)
-            => it.AddFieldName("featureFlag");
+        [EnumMember(Value = "Failed")]
+        Failed,
+        
+        [EnumMember(Value = "Terminated")]
+        Terminated,
         
     }
     

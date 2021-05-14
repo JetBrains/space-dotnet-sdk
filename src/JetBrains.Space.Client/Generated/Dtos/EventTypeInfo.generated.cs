@@ -32,12 +32,14 @@ namespace JetBrains.Space.Client
     {
         public EventTypeInfo() { }
         
-        public EventTypeInfo(string code, string name, string description, List<CRight> rights)
+        public EventTypeInfo(string code, string name, string description, List<CRight> rights, int sortOrder, string? featureFlag = null)
         {
             Code = code;
             Name = name;
             Description = description;
             Rights = rights;
+            FeatureFlag = featureFlag;
+            SortOrder = sortOrder;
         }
         
         private PropertyValue<string> _code = new PropertyValue<string>(nameof(EventTypeInfo), nameof(Code));
@@ -80,12 +82,33 @@ namespace JetBrains.Space.Client
             set => _rights.SetValue(value);
         }
     
+        private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(EventTypeInfo), nameof(FeatureFlag));
+        
+        [JsonPropertyName("featureFlag")]
+        public string? FeatureFlag
+        {
+            get => _featureFlag.GetValue();
+            set => _featureFlag.SetValue(value);
+        }
+    
+        private PropertyValue<int> _sortOrder = new PropertyValue<int>(nameof(EventTypeInfo), nameof(SortOrder));
+        
+        [Required]
+        [JsonPropertyName("sortOrder")]
+        public int SortOrder
+        {
+            get => _sortOrder.GetValue();
+            set => _sortOrder.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _code.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
             _rights.SetAccessPath(path, validateHasBeenSet);
+            _featureFlag.SetAccessPath(path, validateHasBeenSet);
+            _sortOrder.SetAccessPath(path, validateHasBeenSet);
         }
     
     }
