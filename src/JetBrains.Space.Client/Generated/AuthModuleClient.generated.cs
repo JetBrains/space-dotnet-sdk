@@ -277,15 +277,52 @@ namespace JetBrains.Space.Client
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetThrottledLoginsAsync(top: top, login: login, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ThrottledLogin>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ThrottledLogin>.Default())), skip, cancellationToken);
         
             /// <summary>
-            /// Resets the counter that tracks failed login attempts for the account with the specified ID. The member who uses this account is no longer blocked from attempting to log in to Space.
+            /// Resets the counter that tracks failed login attempts for the account with the specified logins. The member who use these accounts are no longer blocked from attempting to log in to Space.
             /// </summary>
-            public async Task ResetThrottlingStatusAsync(string id, CancellationToken cancellationToken = default)
+            public async Task ResetThrottlingStatusAsync(List<string> logins, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
+                queryParameters.Append("logins", logins.Select(it => it));
                 
-                await _connection.RequestResourceAsync("PATCH", $"api/http/auth-modules/throttled-logins/{id}{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/throttled-logins{queryParameters.ToQueryString()}", cancellationToken);
             }
             
+        
+            public OrgStatuClient OrgStatus => new OrgStatuClient(_connection);
+            
+            public partial class OrgStatuClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public OrgStatuClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Returns date and time until which the organization are throttled.
+                /// </summary>
+                public async Task<OrgThrottlingStatus> GetOrganizationThrottlingStatusAsync(Func<Partial<OrgThrottlingStatus>, Partial<OrgThrottlingStatus>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<OrgThrottlingStatus>()) : Partial<OrgThrottlingStatus>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<OrgThrottlingStatus>("GET", $"api/http/auth-modules/throttled-logins/org-status{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Resets date and time until which the organization are throttled.
+                /// </summary>
+                public async Task ResetOrganizationThrottlingAsync(CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/throttled-logins/org-status{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
         
         }
     

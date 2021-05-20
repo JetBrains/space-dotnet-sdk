@@ -47,6 +47,9 @@ namespace JetBrains.Space.Client.ApplicationsPostRequestPartialBuilder
         public static Partial<ApplicationsPostRequest> WithCodeFlowRedirectURIs(this Partial<ApplicationsPostRequest> it)
             => it.AddFieldName("codeFlowRedirectURIs");
         
+        public static Partial<ApplicationsPostRequest> WithIsPkceRequired(this Partial<ApplicationsPostRequest> it)
+            => it.AddFieldName("pkceRequired");
+        
         public static Partial<ApplicationsPostRequest> WithIsImplicitFlowEnabled(this Partial<ApplicationsPostRequest> it)
             => it.AddFieldName("implicitFlowEnabled");
         

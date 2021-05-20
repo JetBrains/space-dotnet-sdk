@@ -57,6 +57,12 @@ namespace JetBrains.Space.Client
         [EnumMember(Value = "IDENTIFIER_DECLARATION")]
         IDENTIFIERDECLARATION,
         
+        [EnumMember(Value = "KEY")]
+        KEY,
+        
+        [EnumMember(Value = "TAG")]
+        TAG,
+        
         [EnumMember(Value = "ANNOTATION")]
         ANNOTATION,
         

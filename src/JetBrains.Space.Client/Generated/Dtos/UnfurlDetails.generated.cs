@@ -57,8 +57,8 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsChecklist Checklist(Checklist checklist)
             => new UnfurlDetailsChecklist(checklist: checklist);
         
-        public static UnfurlDetailsCodeReview CodeReview(CodeReviewRecord review, bool? withBranchPair = null, string? defaultBranchInRepo = null)
-            => new UnfurlDetailsCodeReview(review: review, withBranchPair: withBranchPair, defaultBranchInRepo: defaultBranchInRepo);
+        public static UnfurlDetailsCodeReview CodeReview(CodeReviewRecord review, bool? withBranchPair = null, string? defaultBranchInRepo = null, CodeReviewState? reviewState = null, bool? isMerged = null)
+            => new UnfurlDetailsCodeReview(review: review, withBranchPair: withBranchPair, defaultBranchInRepo: defaultBranchInRepo, reviewState: reviewState, isMerged: isMerged);
         
         public static UnfurlDetailsCodeSnippet CodeSnippet(CodeSnippetAnchor anchor, List<CodeLine> lines)
             => new UnfurlDetailsCodeSnippet(anchor: anchor, lines: lines);

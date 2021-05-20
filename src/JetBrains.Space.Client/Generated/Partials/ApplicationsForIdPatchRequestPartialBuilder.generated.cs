@@ -44,6 +44,9 @@ namespace JetBrains.Space.Client.ApplicationsForIdPatchRequestPartialBuilder
         public static Partial<ApplicationsForIdPatchRequest> WithCodeFlowRedirectURIs(this Partial<ApplicationsForIdPatchRequest> it)
             => it.AddFieldName("codeFlowRedirectURIs");
         
+        public static Partial<ApplicationsForIdPatchRequest> WithIsPkceRequired(this Partial<ApplicationsForIdPatchRequest> it)
+            => it.AddFieldName("pkceRequired");
+        
         public static Partial<ApplicationsForIdPatchRequest> WithIsImplicitFlowEnabled(this Partial<ApplicationsForIdPatchRequest> it)
             => it.AddFieldName("implicitFlowEnabled");
         

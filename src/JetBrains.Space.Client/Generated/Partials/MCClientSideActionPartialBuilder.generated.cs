@@ -25,15 +25,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ThrottledLoginPartialBuilder
+namespace JetBrains.Space.Client.MCClientSideActionPartialBuilder
 {
-    public static class ThrottledLoginPartialExtensions
+    public static class MCClientSideActionPartialExtensions
     {
-        public static Partial<ThrottledLogin> WithLogin(this Partial<ThrottledLogin> it)
-            => it.AddFieldName("login");
+        public static Partial<MCClientSideAction> WithFallbackUrl(this Partial<MCClientSideAction> it)
+            => it.AddFieldName("fallbackUrl");
         
-        public static Partial<ThrottledLogin> WithThrottledUntil(this Partial<ThrottledLogin> it)
-            => it.AddFieldName("throttledUntil");
+        public static Partial<MCClientSideAction> WithContext(this Partial<MCClientSideAction> it)
+            => it.AddFieldName("context");
+        
+        public static Partial<MCClientSideAction> WithContext(this Partial<MCClientSideAction> it, Func<Partial<ClientSideActionContext>, Partial<ClientSideActionContext>> partialBuilder)
+            => it.AddFieldName("context", partialBuilder(new Partial<ClientSideActionContext>(it)));
         
     }
     

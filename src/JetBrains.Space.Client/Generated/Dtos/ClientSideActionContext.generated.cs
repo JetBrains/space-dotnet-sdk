@@ -25,15 +25,13 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ThrottledLoginPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class ThrottledLoginPartialExtensions
+    public interface ClientSideActionContext
+         : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<ThrottledLogin> WithLogin(this Partial<ThrottledLogin> it)
-            => it.AddFieldName("login");
-        
-        public static Partial<ThrottledLogin> WithThrottledUntil(this Partial<ThrottledLogin> it)
-            => it.AddFieldName("throttledUntil");
+        public static NewMergeRequestDialogAction NewMergeRequestDialogAction(string projectKey, string repository, string targetBranch, string sourceBranch, int? linkToIssueNumber = null)
+            => new NewMergeRequestDialogAction(projectKey: projectKey, repository: repository, targetBranch: targetBranch, sourceBranch: sourceBranch, linkToIssueNumber: linkToIssueNumber);
         
     }
     

@@ -50,8 +50,8 @@ namespace JetBrains.Space.Client.PackageVersionDataPartialBuilder
         public static Partial<PackageVersionData> WithCreated(this Partial<PackageVersionData> it)
             => it.AddFieldName("created");
         
-        public static Partial<PackageVersionData> WithUpdated(this Partial<PackageVersionData> it)
-            => it.AddFieldName("updated");
+        public static Partial<PackageVersionData> WithLastAccessed(this Partial<PackageVersionData> it)
+            => it.AddFieldName("lastAccessed");
         
         public static Partial<PackageVersionData> WithDownloads(this Partial<PackageVersionData> it)
             => it.AddFieldName("downloads");

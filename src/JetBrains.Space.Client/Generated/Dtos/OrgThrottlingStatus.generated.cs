@@ -25,16 +25,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ThrottledLoginPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class ThrottledLoginPartialExtensions
+    public sealed class OrgThrottlingStatus
+         : IPropagatePropertyAccessPath
     {
-        public static Partial<ThrottledLogin> WithLogin(this Partial<ThrottledLogin> it)
-            => it.AddFieldName("login");
+        public OrgThrottlingStatus() { }
         
-        public static Partial<ThrottledLogin> WithThrottledUntil(this Partial<ThrottledLogin> it)
-            => it.AddFieldName("throttledUntil");
+        public OrgThrottlingStatus(DateTime? throttledUntil = null)
+        {
+            ThrottledUntil = throttledUntil;
+        }
         
+        private PropertyValue<DateTime?> _throttledUntil = new PropertyValue<DateTime?>(nameof(OrgThrottlingStatus), nameof(ThrottledUntil));
+        
+        [JsonPropertyName("throttledUntil")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? ThrottledUntil
+        {
+            get => _throttledUntil.GetValue();
+            set => _throttledUntil.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _throttledUntil.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

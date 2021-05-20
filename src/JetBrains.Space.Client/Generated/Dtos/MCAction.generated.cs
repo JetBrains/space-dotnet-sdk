@@ -32,12 +32,11 @@ namespace JetBrains.Space.Client
     {
         public MCAction() { }
         
-        public MCAction(string id, string value, bool? clientSide = null, string? fallbackUrl = null)
+        public MCAction(string id, string value, MCClientSideAction? clientSideAction = null)
         {
             Id = id;
             Value = value;
-            IsClientSide = clientSide;
-            FallbackUrl = fallbackUrl;
+            ClientSideAction = clientSideAction;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(MCAction), nameof(Id));
@@ -60,30 +59,20 @@ namespace JetBrains.Space.Client
             set => _value.SetValue(value);
         }
     
-        private PropertyValue<bool?> _clientSide = new PropertyValue<bool?>(nameof(MCAction), nameof(IsClientSide));
+        private PropertyValue<MCClientSideAction?> _clientSideAction = new PropertyValue<MCClientSideAction?>(nameof(MCAction), nameof(ClientSideAction));
         
-        [JsonPropertyName("clientSide")]
-        public bool? IsClientSide
+        [JsonPropertyName("clientSideAction")]
+        public MCClientSideAction? ClientSideAction
         {
-            get => _clientSide.GetValue();
-            set => _clientSide.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _fallbackUrl = new PropertyValue<string?>(nameof(MCAction), nameof(FallbackUrl));
-        
-        [JsonPropertyName("fallbackUrl")]
-        public string? FallbackUrl
-        {
-            get => _fallbackUrl.GetValue();
-            set => _fallbackUrl.SetValue(value);
+            get => _clientSideAction.GetValue();
+            set => _clientSideAction.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _value.SetAccessPath(path, validateHasBeenSet);
-            _clientSide.SetAccessPath(path, validateHasBeenSet);
-            _fallbackUrl.SetAccessPath(path, validateHasBeenSet);
+            _clientSideAction.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

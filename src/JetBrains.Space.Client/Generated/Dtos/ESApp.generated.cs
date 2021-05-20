@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public ESApp() { }
         
-        public ESApp(string id, string clientId, string name, bool clientCredentialsFlowEnabled, bool codeFlowEnabled, bool implicitFlowEnabled, bool hasVerificationToken, bool hasSigningKey, bool hasBearerToken, bool archived, TDMemberProfile? owner = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, string? codeFlowRedirectURIs = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null)
+        public ESApp(string id, string clientId, string name, bool clientCredentialsFlowEnabled, bool codeFlowEnabled, bool implicitFlowEnabled, bool hasVerificationToken, bool hasSigningKey, bool hasBearerToken, bool archived, TDMemberProfile? owner = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null)
         {
             Id = id;
             Owner = owner;
@@ -45,6 +45,7 @@ namespace JetBrains.Space.Client
             IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled;
             IsCodeFlowEnabled = codeFlowEnabled;
             CodeFlowRedirectURIs = codeFlowRedirectURIs;
+            IsPkceRequired = pkceRequired;
             IsImplicitFlowEnabled = implicitFlowEnabled;
             ImplicitFlowRedirectURIs = implicitFlowRedirectURIs;
             EndpointURI = endpointURI;
@@ -161,6 +162,15 @@ namespace JetBrains.Space.Client
         {
             get => _codeFlowRedirectURIs.GetValue();
             set => _codeFlowRedirectURIs.SetValue(value);
+        }
+    
+        private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ESApp), nameof(IsPkceRequired));
+        
+        [JsonPropertyName("pkceRequired")]
+        public bool? IsPkceRequired
+        {
+            get => _pkceRequired.GetValue();
+            set => _pkceRequired.SetValue(value);
         }
     
         private PropertyValue<bool> _implicitFlowEnabled = new PropertyValue<bool>(nameof(ESApp), nameof(IsImplicitFlowEnabled));
@@ -280,6 +290,7 @@ namespace JetBrains.Space.Client
             _clientCredentialsFlowEnabled.SetAccessPath(path, validateHasBeenSet);
             _codeFlowEnabled.SetAccessPath(path, validateHasBeenSet);
             _codeFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
+            _pkceRequired.SetAccessPath(path, validateHasBeenSet);
             _implicitFlowEnabled.SetAccessPath(path, validateHasBeenSet);
             _implicitFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
             _endpointURI.SetAccessPath(path, validateHasBeenSet);

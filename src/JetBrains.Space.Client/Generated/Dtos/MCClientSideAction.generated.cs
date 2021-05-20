@@ -27,42 +27,40 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class ThrottledLogin
+    public sealed class MCClientSideAction
          : IPropagatePropertyAccessPath
     {
-        public ThrottledLogin() { }
+        public MCClientSideAction() { }
         
-        public ThrottledLogin(string login, DateTime throttledUntil)
+        public MCClientSideAction(string fallbackUrl, ClientSideActionContext? context = null)
         {
-            Login = login;
-            ThrottledUntil = throttledUntil;
+            FallbackUrl = fallbackUrl;
+            Context = context;
         }
         
-        private PropertyValue<string> _login = new PropertyValue<string>(nameof(ThrottledLogin), nameof(Login));
+        private PropertyValue<string> _fallbackUrl = new PropertyValue<string>(nameof(MCClientSideAction), nameof(FallbackUrl));
         
         [Required]
-        [JsonPropertyName("login")]
-        public string Login
+        [JsonPropertyName("fallbackUrl")]
+        public string FallbackUrl
         {
-            get => _login.GetValue();
-            set => _login.SetValue(value);
+            get => _fallbackUrl.GetValue();
+            set => _fallbackUrl.SetValue(value);
         }
     
-        private PropertyValue<DateTime> _throttledUntil = new PropertyValue<DateTime>(nameof(ThrottledLogin), nameof(ThrottledUntil));
+        private PropertyValue<ClientSideActionContext?> _context = new PropertyValue<ClientSideActionContext?>(nameof(MCClientSideAction), nameof(Context));
         
-        [Required]
-        [JsonPropertyName("throttledUntil")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime ThrottledUntil
+        [JsonPropertyName("context")]
+        public ClientSideActionContext? Context
         {
-            get => _throttledUntil.GetValue();
-            set => _throttledUntil.SetValue(value);
+            get => _context.GetValue();
+            set => _context.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _login.SetAccessPath(path, validateHasBeenSet);
-            _throttledUntil.SetAccessPath(path, validateHasBeenSet);
+            _fallbackUrl.SetAccessPath(path, validateHasBeenSet);
+            _context.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

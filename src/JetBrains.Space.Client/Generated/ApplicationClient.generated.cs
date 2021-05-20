@@ -44,7 +44,7 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ESApp> CreateApplicationAsync(string name, bool endpointSslVerification = true, bool hasVerificationToken = false, bool hasSigningKey = true, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ESApp> CreateApplicationAsync(string name, bool endpointSslVerification = true, bool hasVerificationToken = false, bool hasSigningKey = true, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -58,6 +58,7 @@ namespace JetBrains.Space.Client
                     IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled,
                     IsCodeFlowEnabled = codeFlowEnabled,
                     CodeFlowRedirectURIs = codeFlowRedirectURIs,
+                    IsPkceRequired = pkceRequired,
                     IsImplicitFlowEnabled = implicitFlowEnabled,
                     ImplicitFlowRedirectURIs = implicitFlowRedirectURIs,
                     EndpointUri = endpointUri,
@@ -162,7 +163,7 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ESApp> UpdateApplicationAsync(string id, bool endpointSslVerification, bool hasVerificationToken, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ESApp> UpdateApplicationAsync(string id, bool endpointSslVerification, bool hasVerificationToken, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -175,6 +176,7 @@ namespace JetBrains.Space.Client
                     IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled,
                     IsCodeFlowEnabled = codeFlowEnabled,
                     CodeFlowRedirectURIs = codeFlowRedirectURIs,
+                    IsPkceRequired = pkceRequired,
                     IsImplicitFlowEnabled = implicitFlowEnabled,
                     ImplicitFlowRedirectURIs = implicitFlowRedirectURIs,
                     EndpointUri = endpointUri,

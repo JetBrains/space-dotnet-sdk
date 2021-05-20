@@ -35,11 +35,13 @@ namespace JetBrains.Space.Client
         
         public UnfurlDetailsCodeReview() { }
         
-        public UnfurlDetailsCodeReview(CodeReviewRecord review, bool? withBranchPair = null, string? defaultBranchInRepo = null)
+        public UnfurlDetailsCodeReview(CodeReviewRecord review, bool? withBranchPair = null, string? defaultBranchInRepo = null, CodeReviewState? reviewState = null, bool? isMerged = null)
         {
             Review = review;
             IsWithBranchPair = withBranchPair;
             DefaultBranchInRepo = defaultBranchInRepo;
+            ReviewState = reviewState;
+            IsMerged = isMerged;
         }
         
         private PropertyValue<CodeReviewRecord> _review = new PropertyValue<CodeReviewRecord>(nameof(UnfurlDetailsCodeReview), nameof(Review));
@@ -70,11 +72,31 @@ namespace JetBrains.Space.Client
             set => _defaultBranchInRepo.SetValue(value);
         }
     
+        private PropertyValue<CodeReviewState?> _reviewState = new PropertyValue<CodeReviewState?>(nameof(UnfurlDetailsCodeReview), nameof(ReviewState));
+        
+        [JsonPropertyName("reviewState")]
+        public CodeReviewState? ReviewState
+        {
+            get => _reviewState.GetValue();
+            set => _reviewState.SetValue(value);
+        }
+    
+        private PropertyValue<bool?> _isMerged = new PropertyValue<bool?>(nameof(UnfurlDetailsCodeReview), nameof(IsMerged));
+        
+        [JsonPropertyName("isMerged")]
+        public bool? IsMerged
+        {
+            get => _isMerged.GetValue();
+            set => _isMerged.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _review.SetAccessPath(path, validateHasBeenSet);
             _withBranchPair.SetAccessPath(path, validateHasBeenSet);
             _defaultBranchInRepo.SetAccessPath(path, validateHasBeenSet);
+            _reviewState.SetAccessPath(path, validateHasBeenSet);
+            _isMerged.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

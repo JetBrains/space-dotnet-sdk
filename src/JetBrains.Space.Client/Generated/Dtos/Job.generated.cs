@@ -32,11 +32,12 @@ namespace JetBrains.Space.Client
     {
         public Job() { }
         
-        public Job(string id, string name, string repoName, bool archive)
+        public Job(string id, string name, string repoName, RepositoryInProject repository, bool archive)
         {
             Id = id;
             Name = name;
             RepoName = repoName;
+            Repository = repository;
             IsArchive = archive;
         }
         
@@ -70,6 +71,16 @@ namespace JetBrains.Space.Client
             set => _repoName.SetValue(value);
         }
     
+        private PropertyValue<RepositoryInProject> _repository = new PropertyValue<RepositoryInProject>(nameof(Job), nameof(Repository));
+        
+        [Required]
+        [JsonPropertyName("repository")]
+        public RepositoryInProject Repository
+        {
+            get => _repository.GetValue();
+            set => _repository.SetValue(value);
+        }
+    
         private PropertyValue<bool> _archive = new PropertyValue<bool>(nameof(Job), nameof(IsArchive));
         
         [Required]
@@ -85,6 +96,7 @@ namespace JetBrains.Space.Client
             _id.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
             _repoName.SetAccessPath(path, validateHasBeenSet);
+            _repository.SetAccessPath(path, validateHasBeenSet);
             _archive.SetAccessPath(path, validateHasBeenSet);
         }
     

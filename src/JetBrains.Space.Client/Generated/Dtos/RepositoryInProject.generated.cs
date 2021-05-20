@@ -27,42 +27,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class ThrottledLogin
+    public sealed class RepositoryInProject
          : IPropagatePropertyAccessPath
     {
-        public ThrottledLogin() { }
+        public RepositoryInProject() { }
         
-        public ThrottledLogin(string login, DateTime throttledUntil)
+        public RepositoryInProject(string name, bool isDeleted)
         {
-            Login = login;
-            ThrottledUntil = throttledUntil;
+            Name = name;
+            IsDeleted = isDeleted;
         }
         
-        private PropertyValue<string> _login = new PropertyValue<string>(nameof(ThrottledLogin), nameof(Login));
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(RepositoryInProject), nameof(Name));
         
         [Required]
-        [JsonPropertyName("login")]
-        public string Login
+        [JsonPropertyName("name")]
+        public string Name
         {
-            get => _login.GetValue();
-            set => _login.SetValue(value);
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
-        private PropertyValue<DateTime> _throttledUntil = new PropertyValue<DateTime>(nameof(ThrottledLogin), nameof(ThrottledUntil));
+        private PropertyValue<bool> _isDeleted = new PropertyValue<bool>(nameof(RepositoryInProject), nameof(IsDeleted));
         
         [Required]
-        [JsonPropertyName("throttledUntil")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime ThrottledUntil
+        [JsonPropertyName("isDeleted")]
+        public bool IsDeleted
         {
-            get => _throttledUntil.GetValue();
-            set => _throttledUntil.SetValue(value);
+            get => _isDeleted.GetValue();
+            set => _isDeleted.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _login.SetAccessPath(path, validateHasBeenSet);
-            _throttledUntil.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _isDeleted.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

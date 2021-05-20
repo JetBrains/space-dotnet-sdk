@@ -25,27 +25,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.JobPartialBuilder
+namespace JetBrains.Space.Client.NewMergeRequestDialogActionPartialBuilder
 {
-    public static class JobPartialExtensions
+    public static class NewMergeRequestDialogActionPartialExtensions
     {
-        public static Partial<Job> WithId(this Partial<Job> it)
-            => it.AddFieldName("id");
+        public static Partial<NewMergeRequestDialogAction> WithProjectKey(this Partial<NewMergeRequestDialogAction> it)
+            => it.AddFieldName("projectKey");
         
-        public static Partial<Job> WithName(this Partial<Job> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<Job> WithRepoName(this Partial<Job> it)
-            => it.AddFieldName("repoName");
-        
-        public static Partial<Job> WithRepository(this Partial<Job> it)
+        public static Partial<NewMergeRequestDialogAction> WithRepository(this Partial<NewMergeRequestDialogAction> it)
             => it.AddFieldName("repository");
         
-        public static Partial<Job> WithRepository(this Partial<Job> it, Func<Partial<RepositoryInProject>, Partial<RepositoryInProject>> partialBuilder)
-            => it.AddFieldName("repository", partialBuilder(new Partial<RepositoryInProject>(it)));
+        public static Partial<NewMergeRequestDialogAction> WithTargetBranch(this Partial<NewMergeRequestDialogAction> it)
+            => it.AddFieldName("targetBranch");
         
-        public static Partial<Job> WithIsArchive(this Partial<Job> it)
-            => it.AddFieldName("archive");
+        public static Partial<NewMergeRequestDialogAction> WithSourceBranch(this Partial<NewMergeRequestDialogAction> it)
+            => it.AddFieldName("sourceBranch");
+        
+        public static Partial<NewMergeRequestDialogAction> WithLinkToIssueNumber(this Partial<NewMergeRequestDialogAction> it)
+            => it.AddFieldName("linkToIssueNumber");
         
     }
     

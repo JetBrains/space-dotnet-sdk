@@ -41,6 +41,15 @@ namespace JetBrains.Space.Client.UnfurlDetailsCodeReviewPartialBuilder
         public static Partial<UnfurlDetailsCodeReview> WithDefaultBranchInRepo(this Partial<UnfurlDetailsCodeReview> it)
             => it.AddFieldName("defaultBranchInRepo");
         
+        public static Partial<UnfurlDetailsCodeReview> WithReviewState(this Partial<UnfurlDetailsCodeReview> it)
+            => it.AddFieldName("reviewState");
+        
+        public static Partial<UnfurlDetailsCodeReview> WithReviewState(this Partial<UnfurlDetailsCodeReview> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
+            => it.AddFieldName("reviewState", partialBuilder(new Partial<CodeReviewState>(it)));
+        
+        public static Partial<UnfurlDetailsCodeReview> WithIsMerged(this Partial<UnfurlDetailsCodeReview> it)
+            => it.AddFieldName("isMerged");
+        
     }
     
 }

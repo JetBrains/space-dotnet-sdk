@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public PackageVersionData() { }
         
-        public PackageVersionData(PackageType type, string repository, string name, string version, bool pinned, List<string>? tags = null, long? created = null, long? updated = null, long? downloads = null, string? comment = null, long? diskSize = null)
+        public PackageVersionData(PackageType type, string repository, string name, string version, bool pinned, List<string>? tags = null, long? created = null, long? lastAccessed = null, long? downloads = null, string? comment = null, long? diskSize = null)
         {
             Type = type;
             Repository = repository;
@@ -40,7 +40,7 @@ namespace JetBrains.Space.Client
             Version = version;
             Tags = tags;
             Created = created;
-            Updated = updated;
+            LastAccessed = lastAccessed;
             Downloads = downloads;
             IsPinned = pinned;
             Comment = comment;
@@ -105,13 +105,13 @@ namespace JetBrains.Space.Client
             set => _created.SetValue(value);
         }
     
-        private PropertyValue<long?> _updated = new PropertyValue<long?>(nameof(PackageVersionData), nameof(Updated));
+        private PropertyValue<long?> _lastAccessed = new PropertyValue<long?>(nameof(PackageVersionData), nameof(LastAccessed));
         
-        [JsonPropertyName("updated")]
-        public long? Updated
+        [JsonPropertyName("lastAccessed")]
+        public long? LastAccessed
         {
-            get => _updated.GetValue();
-            set => _updated.SetValue(value);
+            get => _lastAccessed.GetValue();
+            set => _lastAccessed.SetValue(value);
         }
     
         private PropertyValue<long?> _downloads = new PropertyValue<long?>(nameof(PackageVersionData), nameof(Downloads));
@@ -159,7 +159,7 @@ namespace JetBrains.Space.Client
             _version.SetAccessPath(path, validateHasBeenSet);
             _tags.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
-            _updated.SetAccessPath(path, validateHasBeenSet);
+            _lastAccessed.SetAccessPath(path, validateHasBeenSet);
             _downloads.SetAccessPath(path, validateHasBeenSet);
             _pinned.SetAccessPath(path, validateHasBeenSet);
             _comment.SetAccessPath(path, validateHasBeenSet);

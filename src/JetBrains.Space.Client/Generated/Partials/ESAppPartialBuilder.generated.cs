@@ -68,6 +68,9 @@ namespace JetBrains.Space.Client.ESAppPartialBuilder
         public static Partial<ESApp> WithCodeFlowRedirectURIs(this Partial<ESApp> it)
             => it.AddFieldName("codeFlowRedirectURIs");
         
+        public static Partial<ESApp> WithIsPkceRequired(this Partial<ESApp> it)
+            => it.AddFieldName("pkceRequired");
+        
         public static Partial<ESApp> WithIsImplicitFlowEnabled(this Partial<ESApp> it)
             => it.AddFieldName("implicitFlowEnabled");
         

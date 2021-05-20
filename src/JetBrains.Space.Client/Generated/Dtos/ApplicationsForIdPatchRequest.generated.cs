@@ -32,13 +32,14 @@ namespace JetBrains.Space.Client
     {
         public ApplicationsForIdPatchRequest() { }
         
-        public ApplicationsForIdPatchRequest(bool endpointSslVerification, bool hasVerificationToken, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null)
+        public ApplicationsForIdPatchRequest(bool endpointSslVerification, bool hasVerificationToken, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null)
         {
             Name = name;
             ClientSecret = clientSecret;
             IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled;
             IsCodeFlowEnabled = codeFlowEnabled;
             CodeFlowRedirectURIs = codeFlowRedirectURIs;
+            IsPkceRequired = pkceRequired;
             IsImplicitFlowEnabled = implicitFlowEnabled;
             ImplicitFlowRedirectURIs = implicitFlowRedirectURIs;
             EndpointUri = endpointUri;
@@ -94,6 +95,15 @@ namespace JetBrains.Space.Client
         {
             get => _codeFlowRedirectURIs.GetValue();
             set => _codeFlowRedirectURIs.SetValue(value);
+        }
+    
+        private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ApplicationsForIdPatchRequest), nameof(IsPkceRequired));
+        
+        [JsonPropertyName("pkceRequired")]
+        public bool? IsPkceRequired
+        {
+            get => _pkceRequired.GetValue();
+            set => _pkceRequired.SetValue(value);
         }
     
         private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsForIdPatchRequest), nameof(IsImplicitFlowEnabled));
@@ -193,6 +203,7 @@ namespace JetBrains.Space.Client
             _clientCredentialsFlowEnabled.SetAccessPath(path, validateHasBeenSet);
             _codeFlowEnabled.SetAccessPath(path, validateHasBeenSet);
             _codeFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
+            _pkceRequired.SetAccessPath(path, validateHasBeenSet);
             _implicitFlowEnabled.SetAccessPath(path, validateHasBeenSet);
             _implicitFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
             _endpointUri.SetAccessPath(path, validateHasBeenSet);
