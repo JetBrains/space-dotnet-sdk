@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -63,14 +64,7 @@ namespace JetBrains.Space.Common
                 }
             };
             
-            await EnsureAuthenticatedAsync(request, cancellationToken);
-
-            var response = await HttpClient.SendAsync(request, cancellationToken);
-            if (!response.IsSuccessStatusCode)
-            {
-                var exception = await BuildException(response);
-                throw exception;
-            }
+            await SendRequestAsync(request, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -84,14 +78,7 @@ namespace JetBrains.Space.Common
                 }
             };
             
-            await EnsureAuthenticatedAsync(request, cancellationToken);
-
-            var response = await HttpClient.SendAsync(request, cancellationToken);
-            if (!response.IsSuccessStatusCode)
-            {
-                var exception = await BuildException(response);
-                throw exception;
-            }
+            var response = await SendRequestAsync(request, cancellationToken);
             
             return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions, cancellationToken);
         }
@@ -108,14 +95,7 @@ namespace JetBrains.Space.Common
                 Content = new StringContent(JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
             };
             
-            await EnsureAuthenticatedAsync(request, cancellationToken);
-
-            var response = await HttpClient.SendAsync(request, cancellationToken);
-            if (!response.IsSuccessStatusCode)
-            {
-                var exception = await BuildException(response);
-                throw exception;
-            }
+            await SendRequestAsync(request, cancellationToken);
         }
         
         /// <inheritdoc />
@@ -130,18 +110,31 @@ namespace JetBrains.Space.Common
                 Content = new StringContent(JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
             };
             
-            await EnsureAuthenticatedAsync(request, cancellationToken);
-
-            var response = await HttpClient.SendAsync(request, cancellationToken);
-            if (!response.IsSuccessStatusCode)
-            {
-                var exception = await BuildException(response);
-                throw exception;
-            }
+            var response = await SendRequestAsync(request, cancellationToken);
             
             return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions, cancellationToken);
         }
-        
+
+        /// <inheritdoc />
+        protected override async Task<SpaceBlob> RequestBlobResourceInternalAsync(string httpMethod, string urlPath, CancellationToken cancellationToken)
+        {
+            var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath);
+            
+            var response = await SendRequestAsync(request, cancellationToken);
+
+            return new SpaceBlob
+            {
+                Etag = response.Headers.ETag?.ToString(),
+                LastModified = response.Content.Headers.LastModified?.ToString(),
+                ContentType = response.Content.Headers.ContentType?.ToString(),
+                ContentLength = response.Content.Headers.ContentLength,
+                ContentDisposition = response.Content.Headers.ContentDisposition?.ToString(),
+                ContentEncoding = response.Content.Headers.ContentEncoding?.ToString(),
+                ContentLanguage = response.Content.Headers.ContentLanguage?.ToString(),
+                Stream = await response.Content.ReadAsStreamAsync()
+            };
+        }
+
         /// <summary>
         /// Ensure the request is authenticated, if needed.
         /// Can be used in derived classes to update authorization headers to communicate with the Space organization.
@@ -157,6 +150,27 @@ namespace JetBrains.Space.Common
             }
 
             return Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// Sends an HTTP request as an asynchronous operation.
+        /// </summary>
+        /// <param name="request">The <see cref="HttpRequestMessage"/> to send.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        /// <returns>A <see cref="Task"/> that represents the HTTP response.</returns>
+        /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
+        protected virtual async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            await EnsureAuthenticatedAsync(request, cancellationToken);
+
+            var response = await HttpClient.SendAsync(request, cancellationToken);
+            if (!response.IsSuccessStatusCode)
+            {
+                var exception = await BuildException(response);
+                throw exception;
+            }
+
+            return response;
         }
         
         private static async Task<ResourceException> BuildException(HttpResponseMessage response)

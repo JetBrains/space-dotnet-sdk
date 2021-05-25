@@ -50,6 +50,16 @@ namespace JetBrains.Space.Samples.Web
             
             // Space client API
             services.AddSpaceClientApi();
+            
+            // CORS
+            services.AddCors(setup =>
+            {
+                // ...for Space asset proxy
+                setup.AddPolicy("SpaceAssetProxy", _ => _
+                    .WithMethods("GET")
+                    .WithOrigins("http://localhost:5000", 
+                        "https://localhost:5001"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,14 +78,19 @@ namespace JetBrains.Space.Samples.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints
+                    .MapSpaceAssetProxy("/space-assets")
+                    .RequireCors("SpaceAssetProxy");
+
                 endpoints.MapRazorPages();
             });
         }

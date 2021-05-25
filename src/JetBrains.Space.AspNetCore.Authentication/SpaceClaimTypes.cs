@@ -21,6 +21,11 @@ namespace JetBrains.Space.AspNetCore.Authentication
         public const string SmallAvatar = "urn:space:smallAvatar";
         
         /// <summary>
+        /// Avatar claim.
+        /// </summary>
+        public const string Avatar = "urn:space:avatar";
+        
+        /// <summary>
         /// ProfilePicture claim.
         /// </summary>
         public const string ProfilePicture = "urn:space:profilePicture";

@@ -28,6 +28,6 @@ namespace JetBrains.Space.AspNetCore.Authentication
         /// <summary>
         /// Default user information endpoint path.
         /// </summary>
-        public const string UserInformationEndpointPath = "/api/http/team-directory/profiles/me?$fields=id,username,emails(email),name(firstName,lastName),profilePicture,smallAvatar";
+        public const string UserInformationEndpointPath = "/api/http/team-directory/profiles/me?$fields=id,username,emails(email),name(firstName,lastName),profilePicture,smallAvatar,avatar";
     }
 }

@@ -1,7 +1,9 @@
 using System;
+using System.IO;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
@@ -11,6 +13,7 @@ namespace JetBrains.Space.Common
     /// Abstract base class which represents a connection against a Space organization and provides
     /// the necessary infrastructure to make requests to it.
     /// </summary>
+    [PublicAPI]
     public abstract class Connection
     {
         /// <summary>
@@ -101,6 +104,19 @@ namespace JetBrains.Space.Common
         }
         
         /// <summary>
+        /// Requests a blob resource at a given URL.
+        /// </summary>
+        /// <param name="httpMethod">The HTTP method to use.</param>
+        /// <param name="urlPath">The path to access the resource.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        /// <returns>The requested resource.</returns>
+        /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
+        public async Task<SpaceBlob> RequestBlobResourceAsync(string httpMethod, string urlPath, CancellationToken cancellationToken = default)
+        {
+            return await RequestBlobResourceInternalAsync(httpMethod, urlPath, cancellationToken);
+        }
+        
+        /// <summary>
         /// Requests a resource at a given URL.
         /// </summary>
         /// <param name="httpMethod">The HTTP method to use.</param>
@@ -139,5 +155,15 @@ namespace JetBrains.Space.Common
         /// <returns>The requested resource.</returns>
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         protected abstract Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken);
+        
+        /// <summary>
+        /// Requests a blob resource at a given URL.
+        /// </summary>
+        /// <param name="httpMethod">The HTTP method to use.</param>
+        /// <param name="urlPath">The path to access the resource.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        /// <returns>The requested resource.</returns>
+        /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
+        protected abstract Task<SpaceBlob> RequestBlobResourceInternalAsync(string httpMethod, string urlPath, CancellationToken cancellationToken);
     }
 }

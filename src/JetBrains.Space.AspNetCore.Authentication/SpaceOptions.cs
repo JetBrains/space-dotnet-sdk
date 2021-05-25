@@ -5,6 +5,7 @@ using System.Text.Json;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OAuth;
+using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.AspNetCore.Http;
 
 namespace JetBrains.Space.AspNetCore.Authentication
@@ -31,8 +32,9 @@ namespace JetBrains.Space.AspNetCore.Authentication
             ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
             ClaimActions.MapJsonKey(SpaceClaimTypes.UserId, "id");
             ClaimActions.MapJsonKey(SpaceClaimTypes.UserName, "username");
-            ClaimActions.MapCustomJson(SpaceClaimTypes.SmallAvatar, element => element.TryGetProperty("smallAvatar", out var p) && ServerUrl != null ? ServerUrl.ToString().TrimEnd('/') + "/d/" + p.GetString() : null);
-            ClaimActions.MapCustomJson(SpaceClaimTypes.ProfilePicture, element => element.TryGetProperty("profilePicture", out var p) && ServerUrl != null ? ServerUrl.ToString().TrimEnd('/') + "/d/" + p.GetString() : null);
+            ClaimActions.MapJsonKey(SpaceClaimTypes.SmallAvatar, "smallAvatar");
+            ClaimActions.MapJsonKey(SpaceClaimTypes.Avatar, "avatar");
+            ClaimActions.MapJsonKey(SpaceClaimTypes.ProfilePicture, "profilePicture");
             ClaimActions.MapJsonSubKey(SpaceClaimTypes.FirstName, "name", "firstName");
             ClaimActions.MapJsonSubKey(SpaceClaimTypes.LastName, "name", "lastName");
             ClaimActions.MapCustomJson(ClaimTypes.Name, element =>

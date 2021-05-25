@@ -19,7 +19,8 @@ Other (optional) packages are available. These can be installed to satisfy addit
 * `JetBrains.Space.Client` — The generated client code to work with the Space API.
 * `JetBrains.Space.AspNetCore` — Helpers for using JetBrains.Space with ASP.NET Core, such as:
   * An extension method for `IServiceCollection` to register all JetBrains.Space clients as ASP.NET Core services
-  * Helpers for Space Applications webhooks
+  * Helpers for Space Applications webhooks (experimental)
+  * Space asset proxy for images and files in a Space organization (experimental)
 * `JetBrains.Space.AspNetCore.Authentication` — Authentication provider that integrates with ASP.NET Core.
 
 Let's have a look at how we can start working with `JetBrains.Space.Client`.
@@ -350,7 +351,7 @@ There are extension methods for `IServiceCollection`:
 
 ### Space Applications webhooks (Experimental)
 
-> **Warning:** Space Applications are not yet available in all Space organizations. Application webhooks are under development and are subject to change.
+> **Warning:** Application webhooks are under development and are subject to change.
 
 We can build interactive [Space Applications](https://www.jetbrains.com/help/space/applications.html#register-your-client-in-space), that let us extend Space with slash commands and interactive chat messages.
 
@@ -406,6 +407,43 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 ```
 
 Our application can now be registered in Space using this URL endpoint, for example `https://apps.example.org/space/receive`.
+
+### Space asset proxy (Experimental)
+
+When building web applications, you may want to include images from your Space organization, such as profile pictures or avatars.
+
+Images (and other binaries) hosted on Space typically require authentication. For security reasons, Space does not allow third-party to use its authentication cookies. In other words: it is impossible for third-party web applications to display images (or other files).
+
+To overcome this limitation in a secure manner, you may want to *proxy* these images. When a user is authenticated with your application, your application can then make an authenticated request to Space, and proxy the requested image for the end user.
+
+The .NET SDK for Space comes with an (experimental) asset proxy that does just that. You can register it in the `Startup` class: in the `Configure()` method, use the `MapSpaceAssetProxy()` method:
+
+```csharp
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    app.UseEndpoints(endpoints =>
+    {
+        // Asset proxy endpoint
+        endpoints.MapSpaceAssetProxy("/space-assets");
+    });
+}
+```
+
+> **Note:** It is recommended to configure a CORS policy that allows only `GET` requests to this endpoint, from your application.
+
+Next, you can embed images from Space by making use of the asset proxy URL.
+
+In Space, images (and other files) are typically served from the `/d/{identifier}` URL, e.g. `https://{organization}.jetbrains.space/d/{identifier}`. With the Space asset proxy configured at the `/space-assets` endpoint path, your application can use the `/space-assets/{identifier}` URL.
+
+For example, if you use the `JetBrains.Space.AspNetCore.Authentication` package, you can render the current user's small avatar as follows:
+
+```html
+<img src="/space-assets/@User.Identity.GetClaimValue(SpaceClaimTypes.SmallAvatar)" alt="Profile picture" width="32" height="32" />
+```
+
+The `JetBrains.Space.Samples.Web` project contains an example of how to use the asset proxy.
+
+> **Tip:** Use the (experimental) Space Token Management to have the Space asset proxy authenticate using your application's current authenticated user.
 
 ## JetBrains.Space.AspNetCore.Authentication
 
@@ -476,8 +514,9 @@ An identity constructed by Space provides us with several claims and their value
 
 * `SpaceClaimTypes.UserId` / `urn:space:userid` — The user id.
 * `SpaceClaimTypes.UserName` / `urn:space:username` — The username.
-* `SpaceClaimTypes.SmallAvatar` / `urn:space:smallAvatar` — The small avatar picture URL path. When appended to our Space organization URL, can be used to render a small profile picture.
-* `SpaceClaimTypes.ProfilePicture` / `urn:space:profilePicture` — The profile picture URL path. When appended to our Space organization URL, can be used to render a profile picture.
+* `SpaceClaimTypes.SmallAvatar` / `urn:space:smallAvatar` — The small avatar identifier. Can be used to render a small avatar by appending it to the Space organization URL, e.g. `https://{organization}.jetbrains.space/d/{identifier}`.
+* `SpaceClaimTypes.Avatar` / `urn:space:avatar` — The avatar identifier. Can be used to render an avatar  by appending it to the Space organization URL, e.g. `https://{organization}.jetbrains.space/d/{identifier}`.
+* `SpaceClaimTypes.ProfilePicture` / `urn:space:profilePicture` — The profile picture identifier. Can be used to render a profile picture  by appending it to the Space organization URL, e.g. `https://{organization}.jetbrains.space/d/{identifier}`.
 * `SpaceClaimTypes.FirstName` / `urn:space:firstName` — The user's first name.
 * `SpaceClaimTypes.LastName` / `urn:space:lastName` — The user's last name.
 

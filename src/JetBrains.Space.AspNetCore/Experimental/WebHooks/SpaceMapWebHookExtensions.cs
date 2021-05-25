@@ -31,11 +31,12 @@ namespace Microsoft.AspNetCore.Builder
                 throw new ArgumentNullException(nameof(path));
             }
             
-            var handler = endpoints.ServiceProvider.GetService<TWebHookHandler>();
+            // Is a handler registered?
+            var handler = endpoints.ServiceProvider.GetService<TWebHookHandler?>();
             if (handler == null)
             {
                 throw new InvalidOperationException(
-                    $"Unable to find {typeof(TWebHookHandler)} in {nameof(IServiceCollection)}. Make sure to call {nameof(SpaceAddWebHookExtensions.AddSpaceWebHookHandler)}<{typeof(TWebHookHandler)}>(...) in ConfigureServices(...)");
+                    $"Unable to resolve the scoped {typeof(TWebHookHandler)} service. Make sure to call {nameof(SpaceAddWebHookExtensions.AddSpaceWebHookHandler)}<{typeof(TWebHookHandler)}>(...) in ConfigureServices(...)");
             }
             
             return endpoints.MapControllerRoute("Space_" + typeof(TWebHookHandler).Name, path,
