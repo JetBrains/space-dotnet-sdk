@@ -7,15 +7,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
 
-namespace JetBrains.Space.AspNetCore.Experimental.AssetProxy
+namespace JetBrains.Space.AspNetCore.Experimental.AttachmentProxy
 {
     /// <summary>
-    /// Space asset proxy middleware.
+    /// Space attachment proxy middleware.
     /// </summary>
     [PublicAPI]
-    public class SpaceAssetProxyMiddleware
+    public class SpaceAttachmentProxyMiddleware
     {
-        private readonly ILogger<SpaceAssetProxyMiddleware> _logger;
+        private readonly ILogger<SpaceAttachmentProxyMiddleware> _logger;
 
         private readonly Dictionary<string, string> _defaultHeaders = new Dictionary<string, string>
         {
@@ -26,13 +26,13 @@ namespace JetBrains.Space.AspNetCore.Experimental.AssetProxy
         };
 
         /// <summary>
-        /// Creates a new <see cref="SpaceAssetProxyMiddleware"/>.
+        /// Creates a new <see cref="SpaceAttachmentProxyMiddleware"/>.
         /// </summary>
         /// <param name="next">Next <see cref="RequestDelegate"/>. Will be ignored by this middleware.</param>
         /// <param name="logger">Logger to emit log entries.</param>
-        public SpaceAssetProxyMiddleware(
+        public SpaceAttachmentProxyMiddleware(
             RequestDelegate next,
-            ILogger<SpaceAssetProxyMiddleware> logger)
+            ILogger<SpaceAttachmentProxyMiddleware> logger)
         {
             _logger = logger;
         }

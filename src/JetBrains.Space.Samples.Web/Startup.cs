@@ -54,8 +54,8 @@ namespace JetBrains.Space.Samples.Web
             // CORS
             services.AddCors(setup =>
             {
-                // ...for Space asset proxy
-                setup.AddPolicy("SpaceAssetProxy", _ => _
+                // ...for Space attachment proxy
+                setup.AddPolicy("SpaceAttachmentProxy", _ => _
                     .WithMethods("GET")
                     .WithOrigins("http://localhost:5000", 
                         "https://localhost:5001"));
@@ -88,8 +88,8 @@ namespace JetBrains.Space.Samples.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints
-                    .MapSpaceAssetProxy("/space-assets")
-                    .RequireCors("SpaceAssetProxy");
+                    .MapSpaceAttachmentProxy("/space-attachments")
+                    .RequireCors("SpaceAttachmentProxy");
 
                 endpoints.MapRazorPages();
             });
