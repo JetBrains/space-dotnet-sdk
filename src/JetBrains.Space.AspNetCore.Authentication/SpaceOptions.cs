@@ -5,7 +5,6 @@ using System.Text.Json;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OAuth;
-using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.AspNetCore.Http;
 
 namespace JetBrains.Space.AspNetCore.Authentication

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Net;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using JetBrains.Space.Common;
