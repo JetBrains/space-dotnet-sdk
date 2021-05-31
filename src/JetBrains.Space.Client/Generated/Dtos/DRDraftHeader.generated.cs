@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public DRDraftHeader() { }
         
-        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null)
+        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null, DocumentBodyType? bodyType = null)
         {
             Id = id;
             Title = title;
@@ -45,6 +45,7 @@ namespace JetBrains.Space.Client
             IsDeleted = deleted;
             Folder = folder;
             ContainerInfo = containerInfo;
+            BodyType = bodyType;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(DRDraftHeader), nameof(Id));
@@ -154,6 +155,15 @@ namespace JetBrains.Space.Client
             set => _containerInfo.SetValue(value);
         }
     
+        private PropertyValue<DocumentBodyType?> _bodyType = new PropertyValue<DocumentBodyType?>(nameof(DRDraftHeader), nameof(BodyType));
+        
+        [JsonPropertyName("bodyType")]
+        public DocumentBodyType? BodyType
+        {
+            get => _bodyType.GetValue();
+            set => _bodyType.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -167,6 +177,7 @@ namespace JetBrains.Space.Client
             _deleted.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
             _containerInfo.SetAccessPath(path, validateHasBeenSet);
+            _bodyType.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

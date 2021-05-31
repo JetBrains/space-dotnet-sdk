@@ -45,7 +45,7 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsApplication Application(ESApp app)
             => new UnfurlDetailsApplication(app: app);
         
-        public static UnfurlDetailsArticle Article(ArticleRecord article, ArticleContentRecord content, ArticleChannelRecord channel, ArticleDetailsRecord? details = null)
+        public static UnfurlDetailsArticle Article(ArticleRecord article, ArticleContentRecord? content = null, ArticleChannelRecord? channel = null, ArticleDetailsRecord? details = null)
             => new UnfurlDetailsArticle(article: article, content: content, channel: channel, details: details);
         
         public static UnfurlDetailsChat Chat(string channel, string title)
@@ -57,11 +57,14 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsChecklist Checklist(Checklist checklist)
             => new UnfurlDetailsChecklist(checklist: checklist);
         
-        public static UnfurlDetailsCodeReview CodeReview(CodeReviewRecord review, bool? withBranchPair = null, string? defaultBranchInRepo = null, CodeReviewState? reviewState = null, bool? isMerged = null)
-            => new UnfurlDetailsCodeReview(review: review, withBranchPair: withBranchPair, defaultBranchInRepo: defaultBranchInRepo, reviewState: reviewState, isMerged: isMerged);
+        public static UnfurlDetailsCodeReview CodeReview(CodeReviewRecord review, bool withBranchPair, bool? withIcon = null, string? defaultBranchInRepo = null, CodeReviewState? reviewState = null, bool? isMerged = null)
+            => new UnfurlDetailsCodeReview(review: review, withBranchPair: withBranchPair, withIcon: withIcon, defaultBranchInRepo: defaultBranchInRepo, reviewState: reviewState, isMerged: isMerged);
         
         public static UnfurlDetailsCodeSnippet CodeSnippet(CodeSnippetAnchor anchor, List<CodeLine> lines)
             => new UnfurlDetailsCodeSnippet(anchor: anchor, lines: lines);
+        
+        public static UnfurlDetailsCommit Commit(PRProject project, string repository, string commitId, string message, DateTime commitDate, GitAuthorInfo author, TDMemberProfile? authorProfile = null)
+            => new UnfurlDetailsCommit(project: project, repository: repository, commitId: commitId, message: message, commitDate: commitDate, author: author, authorProfile: authorProfile);
         
         public static UnfurlDetailsDateTime DateTime(long utcMilliseconds, DateTimeViewParams? @params = null)
             => new UnfurlDetailsDateTime(utcMilliseconds: utcMilliseconds, @params: @params);
@@ -72,8 +75,8 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsDraft Draft(string draft, string title)
             => new UnfurlDetailsDraft(draft: draft, title: title);
         
-        public static UnfurlDetailsIssue Issue(Issue issue, bool? strikeThrough = null)
-            => new UnfurlDetailsIssue(issue: issue, strikeThrough: strikeThrough);
+        public static UnfurlDetailsIssue Issue(Issue issue, bool? strikeThrough = null, bool? compact = null)
+            => new UnfurlDetailsIssue(issue: issue, strikeThrough: strikeThrough, compact: compact);
         
         public static UnfurlDetailsIssueStatus IssueStatus(IssueStatus status)
             => new UnfurlDetailsIssueStatus(status: status);

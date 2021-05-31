@@ -38,6 +38,9 @@ namespace JetBrains.Space.Client.PlanItemChildrenPartialBuilder
         public static Partial<PlanItemChildren> WithChildren(this Partial<PlanItemChildren> it, Func<Partial<PlanItem>, Partial<PlanItem>> partialBuilder)
             => it.AddFieldName("children", partialBuilder(new Partial<PlanItem>(it)));
         
+        public static Partial<PlanItemChildren> WithIsArchived(this Partial<PlanItemChildren> it)
+            => it.AddFieldName("archived");
+        
     }
     
 }

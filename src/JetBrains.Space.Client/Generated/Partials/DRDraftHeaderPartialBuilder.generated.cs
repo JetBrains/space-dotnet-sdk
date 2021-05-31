@@ -77,6 +77,12 @@ namespace JetBrains.Space.Client.DRDraftHeaderPartialBuilder
         public static Partial<DRDraftHeader> WithContainerInfo(this Partial<DRDraftHeader> it, Func<Partial<DocumentContainerInfo>, Partial<DocumentContainerInfo>> partialBuilder)
             => it.AddFieldName("containerInfo", partialBuilder(new Partial<DocumentContainerInfo>(it)));
         
+        public static Partial<DRDraftHeader> WithBodyType(this Partial<DRDraftHeader> it)
+            => it.AddFieldName("bodyType");
+        
+        public static Partial<DRDraftHeader> WithBodyType(this Partial<DRDraftHeader> it, Func<Partial<DocumentBodyType>, Partial<DocumentBodyType>> partialBuilder)
+            => it.AddFieldName("bodyType", partialBuilder(new Partial<DocumentBodyType>(it)));
+        
     }
     
 }

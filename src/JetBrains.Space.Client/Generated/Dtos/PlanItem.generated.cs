@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public PlanItem() { }
         
-        public PlanItem(string id, string checklistId, bool hasChildren, List<PlanItem> children, PlanningTag? tag = null, string? simpleText = null, bool? simpleDone = null, Issue? issue = null, string? issueProblem = null, bool? canEditIssue = null)
+        public PlanItem(string id, string checklistId, bool hasChildren, bool archived, List<PlanItem> children, PlanningTag? tag = null, string? simpleText = null, bool? simpleDone = null, Issue? issue = null, string? issueProblem = null, bool? canEditIssue = null)
         {
             Id = id;
             ChecklistId = checklistId;
@@ -43,6 +43,7 @@ namespace JetBrains.Space.Client
             IssueProblem = issueProblem;
             CanEditIssue = canEditIssue;
             IsHasChildren = hasChildren;
+            IsArchived = archived;
             Children = children;
         }
         
@@ -130,6 +131,16 @@ namespace JetBrains.Space.Client
             set => _hasChildren.SetValue(value);
         }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PlanItem), nameof(IsArchived));
+        
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool IsArchived
+        {
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
+        }
+    
         private PropertyValue<List<PlanItem>> _children = new PropertyValue<List<PlanItem>>(nameof(PlanItem), nameof(Children), new List<PlanItem>());
         
         [Required]
@@ -151,6 +162,7 @@ namespace JetBrains.Space.Client
             _issueProblem.SetAccessPath(path, validateHasBeenSet);
             _canEditIssue.SetAccessPath(path, validateHasBeenSet);
             _hasChildren.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
             _children.SetAccessPath(path, validateHasBeenSet);
         }
     

@@ -27,23 +27,23 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class ESPermanentToken
+    public sealed class ESApplicationPermanentToken
          : IPropagatePropertyAccessPath
     {
-        public ESPermanentToken() { }
+        public ESApplicationPermanentToken() { }
         
-        public ESPermanentToken(string id, string name, TDMemberProfile profile, string scope, DateTime created, DateTime? expires = null, AccessRecord? lastAccess = null)
+        public ESApplicationPermanentToken(string id, string name, ESApp application, string scope, DateTime created, DateTime? expires = null, AccessRecord? lastAccess = null)
         {
             Id = id;
             Name = name;
-            Profile = profile;
+            Application = application;
             Scope = scope;
             Created = created;
             Expires = expires;
             LastAccess = lastAccess;
         }
         
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESPermanentToken), nameof(Id));
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Id));
         
         [Required]
         [JsonPropertyName("id")]
@@ -53,7 +53,7 @@ namespace JetBrains.Space.Client
             set => _id.SetValue(value);
         }
     
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESPermanentToken), nameof(Name));
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
@@ -63,17 +63,17 @@ namespace JetBrains.Space.Client
             set => _name.SetValue(value);
         }
     
-        private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(ESPermanentToken), nameof(Profile));
+        private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ESApplicationPermanentToken), nameof(Application));
         
         [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfile Profile
+        [JsonPropertyName("application")]
+        public ESApp Application
         {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
+            get => _application.GetValue();
+            set => _application.SetValue(value);
         }
     
-        private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESPermanentToken), nameof(Scope));
+        private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Scope));
         
         [Required]
         [JsonPropertyName("scope")]
@@ -83,7 +83,7 @@ namespace JetBrains.Space.Client
             set => _scope.SetValue(value);
         }
     
-        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESPermanentToken), nameof(Created));
+        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESApplicationPermanentToken), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
@@ -94,7 +94,7 @@ namespace JetBrains.Space.Client
             set => _created.SetValue(value);
         }
     
-        private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(ESPermanentToken), nameof(Expires));
+        private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(ESApplicationPermanentToken), nameof(Expires));
         
         [JsonPropertyName("expires")]
         [JsonConverter(typeof(SpaceDateTimeConverter))]
@@ -104,7 +104,7 @@ namespace JetBrains.Space.Client
             set => _expires.SetValue(value);
         }
     
-        private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESPermanentToken), nameof(LastAccess));
+        private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESApplicationPermanentToken), nameof(LastAccess));
         
         [JsonPropertyName("lastAccess")]
         public AccessRecord? LastAccess
@@ -117,7 +117,7 @@ namespace JetBrains.Space.Client
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
-            _profile.SetAccessPath(path, validateHasBeenSet);
+            _application.SetAccessPath(path, validateHasBeenSet);
             _scope.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
             _expires.SetAccessPath(path, validateHasBeenSet);

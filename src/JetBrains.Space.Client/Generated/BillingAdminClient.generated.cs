@@ -141,9 +141,10 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<TodayBillingReport> GetBillingReportForTodayAsync(Func<Partial<TodayBillingReport>, Partial<TodayBillingReport>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<TodayBillingReport> GetBillingReportForTodayAsync(DateTime date, Func<Partial<TodayBillingReport>, Partial<TodayBillingReport>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
+                    queryParameters.Append("date", date.ToString("yyyy-MM-dd"));
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<TodayBillingReport>()) : Partial<TodayBillingReport>.Default()).ToString());
                     
                     return await _connection.RequestResourceAsync<TodayBillingReport>("GET", $"api/http/billing-admin/reports/today{queryParameters.ToQueryString()}", cancellationToken);

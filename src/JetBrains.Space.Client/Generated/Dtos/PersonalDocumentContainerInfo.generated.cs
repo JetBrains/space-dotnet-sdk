@@ -35,9 +35,10 @@ namespace JetBrains.Space.Client
         
         public PersonalDocumentContainerInfo() { }
         
-        public PersonalDocumentContainerInfo(TDMemberProfile owner)
+        public PersonalDocumentContainerInfo(TDMemberProfile owner, DocumentFolderRecord? folder = null)
         {
             Owner = owner;
+            Folder = folder;
         }
         
         private PropertyValue<TDMemberProfile> _owner = new PropertyValue<TDMemberProfile>(nameof(PersonalDocumentContainerInfo), nameof(Owner));
@@ -50,9 +51,19 @@ namespace JetBrains.Space.Client
             set => _owner.SetValue(value);
         }
     
+        private PropertyValue<DocumentFolderRecord?> _folder = new PropertyValue<DocumentFolderRecord?>(nameof(PersonalDocumentContainerInfo), nameof(Folder));
+        
+        [JsonPropertyName("folder")]
+        public DocumentFolderRecord? Folder
+        {
+            get => _folder.GetValue();
+            set => _folder.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _owner.SetAccessPath(path, validateHasBeenSet);
+            _folder.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

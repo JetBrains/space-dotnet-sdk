@@ -38,6 +38,9 @@ namespace JetBrains.Space.Client.UnfurlDetailsIssuePartialBuilder
         public static Partial<UnfurlDetailsIssue> WithIsStrikeThrough(this Partial<UnfurlDetailsIssue> it)
             => it.AddFieldName("strikeThrough");
         
+        public static Partial<UnfurlDetailsIssue> WithIsCompact(this Partial<UnfurlDetailsIssue> it)
+            => it.AddFieldName("compact");
+        
     }
     
 }

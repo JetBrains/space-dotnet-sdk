@@ -32,10 +32,11 @@ namespace JetBrains.Space.Client
     {
         public PlanItemChildren() { }
         
-        public PlanItemChildren(string id, List<PlanItem> children)
+        public PlanItemChildren(string id, List<PlanItem> children, bool archived)
         {
             Id = id;
             Children = children;
+            IsArchived = archived;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PlanItemChildren), nameof(Id));
@@ -58,10 +59,21 @@ namespace JetBrains.Space.Client
             set => _children.SetValue(value);
         }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PlanItemChildren), nameof(IsArchived));
+        
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool IsArchived
+        {
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _children.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

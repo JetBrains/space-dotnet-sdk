@@ -27,41 +27,29 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class ApplicationsForIdSshKeysPostRequest
+    public class OrganizationPatchRequest
          : IPropagatePropertyAccessPath
     {
-        public ApplicationsForIdSshKeysPostRequest() { }
+        public OrganizationPatchRequest() { }
         
-        public ApplicationsForIdSshKeysPostRequest(string publicKey, string comment)
+        public OrganizationPatchRequest(OrganizationForUpdate orgData)
         {
-            PublicKey = publicKey;
-            Comment = comment;
+            OrgData = orgData;
         }
         
-        private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(ApplicationsForIdSshKeysPostRequest), nameof(PublicKey));
+        private PropertyValue<OrganizationForUpdate> _orgData = new PropertyValue<OrganizationForUpdate>(nameof(OrganizationPatchRequest), nameof(OrgData));
         
         [Required]
-        [JsonPropertyName("publicKey")]
-        public string PublicKey
+        [JsonPropertyName("orgData")]
+        public OrganizationForUpdate OrgData
         {
-            get => _publicKey.GetValue();
-            set => _publicKey.SetValue(value);
-        }
-    
-        private PropertyValue<string> _comment = new PropertyValue<string>(nameof(ApplicationsForIdSshKeysPostRequest), nameof(Comment));
-        
-        [Required]
-        [JsonPropertyName("comment")]
-        public string Comment
-        {
-            get => _comment.GetValue();
-            set => _comment.SetValue(value);
+            get => _orgData.GetValue();
+            set => _orgData.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _publicKey.SetAccessPath(path, validateHasBeenSet);
-            _comment.SetAccessPath(path, validateHasBeenSet);
+            _orgData.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

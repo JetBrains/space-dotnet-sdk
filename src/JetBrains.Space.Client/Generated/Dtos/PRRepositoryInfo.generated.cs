@@ -32,13 +32,14 @@ namespace JetBrains.Space.Client
     {
         public PRRepositoryInfo() { }
         
-        public PRRepositoryInfo(string name, string description, RepositoryState state, string? id = null, DateTime? latestActivity = null, DateTime? proxyPushNotification = null, string? initProgress = null, string? readmeName = null, RepositoryActivity? monthlyActivity = null)
+        public PRRepositoryInfo(string name, string description, RepositoryState state, string? id = null, DateTime? latestActivity = null, DateTime? proxyPushNotification = null, string? proxyPushNotificationBody = null, string? initProgress = null, string? readmeName = null, RepositoryActivity? monthlyActivity = null)
         {
             Id = id;
             Name = name;
             Description = description;
             LatestActivity = latestActivity;
             ProxyPushNotification = proxyPushNotification;
+            ProxyPushNotificationBody = proxyPushNotificationBody;
             State = state;
             InitProgress = initProgress;
             ReadmeName = readmeName;
@@ -94,6 +95,15 @@ namespace JetBrains.Space.Client
             set => _proxyPushNotification.SetValue(value);
         }
     
+        private PropertyValue<string?> _proxyPushNotificationBody = new PropertyValue<string?>(nameof(PRRepositoryInfo), nameof(ProxyPushNotificationBody));
+        
+        [JsonPropertyName("proxyPushNotificationBody")]
+        public string? ProxyPushNotificationBody
+        {
+            get => _proxyPushNotificationBody.GetValue();
+            set => _proxyPushNotificationBody.SetValue(value);
+        }
+    
         private PropertyValue<RepositoryState> _state = new PropertyValue<RepositoryState>(nameof(PRRepositoryInfo), nameof(State));
         
         [Required]
@@ -138,6 +148,7 @@ namespace JetBrains.Space.Client
             _description.SetAccessPath(path, validateHasBeenSet);
             _latestActivity.SetAccessPath(path, validateHasBeenSet);
             _proxyPushNotification.SetAccessPath(path, validateHasBeenSet);
+            _proxyPushNotificationBody.SetAccessPath(path, validateHasBeenSet);
             _state.SetAccessPath(path, validateHasBeenSet);
             _initProgress.SetAccessPath(path, validateHasBeenSet);
             _readmeName.SetAccessPath(path, validateHasBeenSet);

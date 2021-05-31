@@ -35,6 +35,12 @@ namespace JetBrains.Space.Client.PersonalDocumentContainerInfoPartialBuilder
         public static Partial<PersonalDocumentContainerInfo> WithOwner(this Partial<PersonalDocumentContainerInfo> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
             => it.AddFieldName("owner", partialBuilder(new Partial<TDMemberProfile>(it)));
         
+        public static Partial<PersonalDocumentContainerInfo> WithFolder(this Partial<PersonalDocumentContainerInfo> it)
+            => it.AddFieldName("folder");
+        
+        public static Partial<PersonalDocumentContainerInfo> WithFolder(this Partial<PersonalDocumentContainerInfo> it, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>> partialBuilder)
+            => it.AddFieldName("folder", partialBuilder(new Partial<DocumentFolderRecord>(it)));
+        
     }
     
 }

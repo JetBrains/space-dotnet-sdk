@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public ArticleChannelRecord() { }
         
-        public ArticleChannelRecord(string id, bool archived, M2ChannelRecord channel, M2ChannelContentRecord channelContent, AllReactionsToItemRecord reactions)
+        public ArticleChannelRecord(string id, bool archived, M2ChannelRecord channel, AllReactionsToItemRecord reactions, M2ChannelContentRecord? channelContent = null)
         {
             Id = id;
             IsArchived = archived;
@@ -71,11 +71,10 @@ namespace JetBrains.Space.Client
             set => _channel.SetValue(value);
         }
     
-        private PropertyValue<M2ChannelContentRecord> _channelContent = new PropertyValue<M2ChannelContentRecord>(nameof(ArticleChannelRecord), nameof(ChannelContent));
+        private PropertyValue<M2ChannelContentRecord?> _channelContent = new PropertyValue<M2ChannelContentRecord?>(nameof(ArticleChannelRecord), nameof(ChannelContent));
         
-        [Required]
         [JsonPropertyName("channelContent")]
-        public M2ChannelContentRecord ChannelContent
+        public M2ChannelContentRecord? ChannelContent
         {
             get => _channelContent.GetValue();
             set => _channelContent.SetValue(value);

@@ -2537,14 +2537,14 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Create a personal token for a given profile id that can be used to access the current organisation.
+                /// Create a personal token for the given profile that can be used to access the current organisation
                 /// </summary>
-                public async Task<Pair<ESPermanentToken, string>> CreatePermanentTokenAsync(ProfileIdentifier profile, string name, string scope, DateTime? expires = null, Func<Partial<Pair<ESPermanentToken, string>>, Partial<Pair<ESPermanentToken, string>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Pair<ESPersonalToken, string>> CreatePermanentTokenAsync(ProfileIdentifier profile, string name, string scope, DateTime? expires = null, Func<Partial<Pair<ESPersonalToken, string>>, Partial<Pair<ESPersonalToken, string>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<ESPermanentToken, string>>()) : Partial<Pair<ESPermanentToken, string>>.Default()).ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<ESPersonalToken, string>>()) : Partial<Pair<ESPersonalToken, string>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfilePermanentTokensPostRequest, Pair<ESPermanentToken, string>>("POST", $"api/http/team-directory/profiles/{profile}/permanent-tokens{queryParameters.ToQueryString()}", 
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfilePermanentTokensPostRequest, Pair<ESPersonalToken, string>>("POST", $"api/http/team-directory/profiles/{profile}/permanent-tokens{queryParameters.ToQueryString()}", 
                         new TeamDirectoryProfilesForProfilePermanentTokensPostRequest
                         { 
                             Name = name,
@@ -2555,27 +2555,27 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Get personal tokens used to access the current organisation for a given profile id.
+                /// Get personal tokens used to access the current organisation for the given profile
                 /// </summary>
-                public async Task<Batch<ESPermanentToken>> GetAllPermanentTokensAsync(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<Batch<ESPermanentToken>>, Partial<Batch<ESPermanentToken>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<ESPersonalToken>> GetAllPermanentTokensAsync(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<Batch<ESPersonalToken>>, Partial<Batch<ESPersonalToken>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESPermanentToken>>()) : Partial<Batch<ESPermanentToken>>.Default()).ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESPersonalToken>>()) : Partial<Batch<ESPersonalToken>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<ESPermanentToken>>("GET", $"api/http/team-directory/profiles/{profile}/permanent-tokens{queryParameters.ToQueryString()}", cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<ESPersonalToken>>("GET", $"api/http/team-directory/profiles/{profile}/permanent-tokens{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
                 
                 /// <summary>
-                /// Get personal tokens used to access the current organisation for a given profile id.
+                /// Get personal tokens used to access the current organisation for the given profile
                 /// </summary>
-                public IAsyncEnumerable<ESPermanentToken> GetAllPermanentTokensAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<ESPermanentToken>, Partial<ESPermanentToken>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPermanentTokensAsync(profile: profile, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESPermanentToken>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESPermanentToken>.Default())), skip, cancellationToken);
+                public IAsyncEnumerable<ESPersonalToken> GetAllPermanentTokensAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<ESPersonalToken>, Partial<ESPersonalToken>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPermanentTokensAsync(profile: profile, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESPersonalToken>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESPersonalToken>.Default())), skip, cancellationToken);
             
                 /// <summary>
-                /// Update an existing personal token used to access the current organisation. The permanent token name and/or scope can be updated.
+                /// Update an existing personal token used to access the current organisation. The name and/or scope of the personal token can be updated.
                 /// </summary>
                 public async Task UpdatePermanentTokenAsync(ProfileIdentifier profile, string tokenId, string? name = null, string? scope = null, DateTime? expires = null, CancellationToken cancellationToken = default)
                 {
@@ -2614,7 +2614,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Delete personal token for a given profile id.
+                    /// Delete personal token of the given profile.
                     /// </summary>
                     public async Task DeleteCurrentPermanentTokenAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
                     {

@@ -45,8 +45,8 @@ namespace JetBrains.Space.Client
         public static CodeReviewSubscriptionFilter CodeReview(List<TDMemberProfile> authors, List<TDMemberProfile> participants, List<string> branchSpec, List<string> pathSpec, string titleRegex, PRProject? project = null, string? repository = null)
             => new CodeReviewSubscriptionFilter(authors: authors, participants: participants, branchSpec: branchSpec, pathSpec: pathSpec, titleRegex: titleRegex, project: project, repository: repository);
         
-        public static DocumentCustomSubscriptionFilter DocumentCustom(List<string> documents)
-            => new DocumentCustomSubscriptionFilter(documents: documents);
+        public static DocumentCustomSubscriptionFilter DocumentCustom(List<KbDocumentItem> documents, PRProject? project = null, List<KBBook>? books = null, List<KbFolderItem>? folders = null)
+            => new DocumentCustomSubscriptionFilter(documents: documents, project: project, books: books, folders: folders);
         
         public static MemberCommonSubscriptionFilter MemberCommon(List<TDTeam> teams, List<TDLocation> locations)
             => new MemberCommonSubscriptionFilter(teams: teams, locations: locations);

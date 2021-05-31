@@ -35,7 +35,7 @@ namespace JetBrains.Space.Client
         
         public UnfurlDetailsArticle() { }
         
-        public UnfurlDetailsArticle(ArticleRecord article, ArticleContentRecord content, ArticleChannelRecord channel, ArticleDetailsRecord? details = null)
+        public UnfurlDetailsArticle(ArticleRecord article, ArticleContentRecord? content = null, ArticleChannelRecord? channel = null, ArticleDetailsRecord? details = null)
         {
             Article = article;
             Content = content;
@@ -53,21 +53,19 @@ namespace JetBrains.Space.Client
             set => _article.SetValue(value);
         }
     
-        private PropertyValue<ArticleContentRecord> _content = new PropertyValue<ArticleContentRecord>(nameof(UnfurlDetailsArticle), nameof(Content));
+        private PropertyValue<ArticleContentRecord?> _content = new PropertyValue<ArticleContentRecord?>(nameof(UnfurlDetailsArticle), nameof(Content));
         
-        [Required]
         [JsonPropertyName("content")]
-        public ArticleContentRecord Content
+        public ArticleContentRecord? Content
         {
             get => _content.GetValue();
             set => _content.SetValue(value);
         }
     
-        private PropertyValue<ArticleChannelRecord> _channel = new PropertyValue<ArticleChannelRecord>(nameof(UnfurlDetailsArticle), nameof(Channel));
+        private PropertyValue<ArticleChannelRecord?> _channel = new PropertyValue<ArticleChannelRecord?>(nameof(UnfurlDetailsArticle), nameof(Channel));
         
-        [Required]
         [JsonPropertyName("channel")]
-        public ArticleChannelRecord Channel
+        public ArticleChannelRecord? Channel
         {
             get => _channel.GetValue();
             set => _channel.SetValue(value);

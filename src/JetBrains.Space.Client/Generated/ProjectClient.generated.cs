@@ -527,13 +527,13 @@ namespace JetBrains.Space.Client
             }
             
         
-            public InDefaultBundleClient InDefaultBundle => new InDefaultBundleClient(_connection);
+            public DefaultBundleClient DefaultBundle => new DefaultBundleClient(_connection);
             
-            public partial class InDefaultBundleClient : ISpaceClient
+            public partial class DefaultBundleClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
-                public InDefaultBundleClient(Connection connection)
+                public DefaultBundleClient(Connection connection)
                 {
                     _connection = connection;
                 }
@@ -550,6 +550,82 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
+                public async Task<string> CreateDefaultBundleAsync(ProjectIdentifier project, string key, string value, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    return await _connection.RequestResourceAsync<ProjectsParamsDefaultBundlePostRequest, string>("POST", $"api/http/projects/params/default-bundle{queryParameters.ToQueryString()}", 
+                        new ProjectsParamsDefaultBundlePostRequest
+                        { 
+                            Project = project,
+                            Key = key,
+                            Value = value,
+                        }, cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// List project parameters in a parameter bundle
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View parameters</term>
+                /// <description>View project parameters</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<Batch<PlainParameterRecord>> GetAllDefaultBundleAsync(ProjectIdentifier project, string? skip = null, int? top = 100, Func<Partial<Batch<PlainParameterRecord>>, Partial<Batch<PlainParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("project", project.ToString());
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PlainParameterRecord>>()) : Partial<Batch<PlainParameterRecord>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<PlainParameterRecord>>("GET", $"api/http/projects/params/default-bundle{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+                
+                /// <summary>
+                /// List project parameters in a parameter bundle
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View parameters</term>
+                /// <description>View project parameters</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public IAsyncEnumerable<PlainParameterRecord> GetAllDefaultBundleAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, Func<Partial<PlainParameterRecord>, Partial<PlainParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllDefaultBundleAsync(project: project, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlainParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlainParameterRecord>.Default())), skip, cancellationToken);
+            
+            }
+        
+            public InDefaultBundleClient InDefaultBundle => new InDefaultBundleClient(_connection);
+            
+            public partial class InDefaultBundleClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public InDefaultBundleClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Modify parameters</term>
+                /// <description>Create or edit project parameters</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
                 public async Task<string> CreateInDefaultBundleAsync(string projectId, string key, string value, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -576,6 +652,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
+                [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
                 public async Task<Batch<PlainParameterRecord>> GetAllInDefaultBundleAsync(string projectId, string? skip = null, int? top = 100, Func<Partial<Batch<PlainParameterRecord>>, Partial<Batch<PlainParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -600,6 +677,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
+                [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
                 public IAsyncEnumerable<PlainParameterRecord> GetAllInDefaultBundleAsyncEnumerable(string projectId, string? skip = null, int? top = 100, Func<Partial<PlainParameterRecord>, Partial<PlainParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInDefaultBundleAsync(projectId: projectId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlainParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlainParameterRecord>.Default())), skip, cancellationToken);
             
@@ -884,13 +962,13 @@ namespace JetBrains.Space.Client
             }
             
         
-            public InDefaultBundleClient InDefaultBundle => new InDefaultBundleClient(_connection);
+            public DefaultBundleClient DefaultBundle => new DefaultBundleClient(_connection);
             
-            public partial class InDefaultBundleClient : ISpaceClient
+            public partial class DefaultBundleClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
-                public InDefaultBundleClient(Connection connection)
+                public DefaultBundleClient(Connection connection)
                 {
                     _connection = connection;
                 }
@@ -907,14 +985,14 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<string> CreateInDefaultBundleAsync(string projectId, string key, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
+                public async Task<string> CreateDefaultBundleAsync(ProjectIdentifier project, string key, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    return await _connection.RequestResourceAsync<ProjectsSecretsInDefaultBundlePostRequest, string>("POST", $"api/http/projects/secrets/in-default-bundle{queryParameters.ToQueryString()}", 
-                        new ProjectsSecretsInDefaultBundlePostRequest
+                    return await _connection.RequestResourceAsync<ProjectsSecretsDefaultBundlePostRequest, string>("POST", $"api/http/projects/secrets/default-bundle{queryParameters.ToQueryString()}", 
+                        new ProjectsSecretsDefaultBundlePostRequest
                         { 
-                            ProjectId = projectId,
+                            Project = project,
                             Key = key,
                             ValueBase64 = valueBase64,
                             PublicKeyId = publicKeyId,
@@ -934,15 +1012,15 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<SecretParameterRecord>> GetAllInDefaultBundleAsync(string projectId, string? skip = null, int? top = 100, Func<Partial<Batch<SecretParameterRecord>>, Partial<Batch<SecretParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<SecretParameterRecord>> GetAllDefaultBundleAsync(ProjectIdentifier project, string? skip = null, int? top = 100, Func<Partial<Batch<SecretParameterRecord>>, Partial<Batch<SecretParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
-                    queryParameters.Append("projectId", projectId);
+                    queryParameters.Append("project", project.ToString());
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<SecretParameterRecord>>()) : Partial<Batch<SecretParameterRecord>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets/in-default-bundle{queryParameters.ToQueryString()}", cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets/default-bundle{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
                 
@@ -958,6 +1036,79 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
+                public IAsyncEnumerable<SecretParameterRecord> GetAllDefaultBundleAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, Func<Partial<SecretParameterRecord>, Partial<SecretParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllDefaultBundleAsync(project: project, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<SecretParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<SecretParameterRecord>.Default())), skip, cancellationToken);
+            
+            }
+        
+            public InDefaultBundleClient InDefaultBundle => new InDefaultBundleClient(_connection);
+            
+            public partial class InDefaultBundleClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public InDefaultBundleClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Create secrets</term>
+                /// <description>Create project secrets</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
+                public async Task<string> CreateInDefaultBundleAsync(string projectId, string key, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    return await _connection.RequestResourceAsync<ProjectsSecretsInDefaultBundlePostRequest, string>("POST", $"api/http/projects/secrets/in-default-bundle{queryParameters.ToQueryString()}", 
+                        new ProjectsSecretsInDefaultBundlePostRequest
+                        { 
+                            ProjectId = projectId,
+                            Key = key,
+                            ValueBase64 = valueBase64,
+                            PublicKeyId = publicKeyId,
+                        }, cancellationToken);
+                }
+                
+            
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View keys of secrets</term>
+                /// <description>View keys of project secrets</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
+                public async Task<Batch<SecretParameterRecord>> GetAllInDefaultBundleAsync(string projectId, string? skip = null, int? top = 100, Func<Partial<Batch<SecretParameterRecord>>, Partial<Batch<SecretParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("projectId", projectId);
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<SecretParameterRecord>>()) : Partial<Batch<SecretParameterRecord>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets/in-default-bundle{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View keys of secrets</term>
+                /// <description>View keys of project secrets</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
                 public IAsyncEnumerable<SecretParameterRecord> GetAllInDefaultBundleAsyncEnumerable(string projectId, string? skip = null, int? top = 100, Func<Partial<SecretParameterRecord>, Partial<SecretParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInDefaultBundleAsync(projectId: projectId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<SecretParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<SecretParameterRecord>.Default())), skip, cancellationToken);
             
@@ -2962,6 +3113,13 @@ namespace JetBrains.Space.Client
                     /// <term>Edit issues</term>
                     /// <description>Edit issues that were created by other users</description>
                     /// </item>
+                    /// <item>
+                    /// <term>Manage checklists</term>
+                    /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
+                    /// </item>
+                    /// <item>
+                    /// <term>Edit content</term>
+                    /// </item>
                     /// </list>
                     /// </remarks>
                     public async Task AddIssueChecklistAsync(ProjectIdentifier project, string issueId, string checklistId, CancellationToken cancellationToken = default)
@@ -2981,6 +3139,13 @@ namespace JetBrains.Space.Client
                     /// <item>
                     /// <term>Edit issues</term>
                     /// <description>Edit issues that were created by other users</description>
+                    /// </item>
+                    /// <item>
+                    /// <term>Manage checklists</term>
+                    /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
+                    /// </item>
+                    /// <item>
+                    /// <term>Edit content</term>
                     /// </item>
                     /// </list>
                     /// </remarks>

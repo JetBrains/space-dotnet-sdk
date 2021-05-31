@@ -35,9 +35,10 @@ namespace JetBrains.Space.Client
         
         public UnfurlDetailsCodeReview() { }
         
-        public UnfurlDetailsCodeReview(CodeReviewRecord review, bool? withBranchPair = null, string? defaultBranchInRepo = null, CodeReviewState? reviewState = null, bool? isMerged = null)
+        public UnfurlDetailsCodeReview(CodeReviewRecord review, bool withBranchPair, bool? withIcon = null, string? defaultBranchInRepo = null, CodeReviewState? reviewState = null, bool? isMerged = null)
         {
             Review = review;
+            IsWithIcon = withIcon;
             IsWithBranchPair = withBranchPair;
             DefaultBranchInRepo = defaultBranchInRepo;
             ReviewState = reviewState;
@@ -54,10 +55,20 @@ namespace JetBrains.Space.Client
             set => _review.SetValue(value);
         }
     
-        private PropertyValue<bool?> _withBranchPair = new PropertyValue<bool?>(nameof(UnfurlDetailsCodeReview), nameof(IsWithBranchPair));
+        private PropertyValue<bool?> _withIcon = new PropertyValue<bool?>(nameof(UnfurlDetailsCodeReview), nameof(IsWithIcon));
         
+        [JsonPropertyName("withIcon")]
+        public bool? IsWithIcon
+        {
+            get => _withIcon.GetValue();
+            set => _withIcon.SetValue(value);
+        }
+    
+        private PropertyValue<bool> _withBranchPair = new PropertyValue<bool>(nameof(UnfurlDetailsCodeReview), nameof(IsWithBranchPair));
+        
+        [Required]
         [JsonPropertyName("withBranchPair")]
-        public bool? IsWithBranchPair
+        public bool IsWithBranchPair
         {
             get => _withBranchPair.GetValue();
             set => _withBranchPair.SetValue(value);
@@ -93,6 +104,7 @@ namespace JetBrains.Space.Client
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _review.SetAccessPath(path, validateHasBeenSet);
+            _withIcon.SetAccessPath(path, validateHasBeenSet);
             _withBranchPair.SetAccessPath(path, validateHasBeenSet);
             _defaultBranchInRepo.SetAccessPath(path, validateHasBeenSet);
             _reviewState.SetAccessPath(path, validateHasBeenSet);

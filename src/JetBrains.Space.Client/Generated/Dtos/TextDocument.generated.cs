@@ -28,8 +28,11 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client
 {
     public sealed class TextDocument
-         : IPropagatePropertyAccessPath
+         : DocumentBody, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public  string? ClassName => "TextDocument";
+        
         public TextDocument() { }
         
         public TextDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null, string? model = null, List<AttachmentInfo>? attachments = null)

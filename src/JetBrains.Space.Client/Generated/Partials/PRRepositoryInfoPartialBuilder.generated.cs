@@ -44,6 +44,9 @@ namespace JetBrains.Space.Client.PRRepositoryInfoPartialBuilder
         public static Partial<PRRepositoryInfo> WithProxyPushNotification(this Partial<PRRepositoryInfo> it)
             => it.AddFieldName("proxyPushNotification");
         
+        public static Partial<PRRepositoryInfo> WithProxyPushNotificationBody(this Partial<PRRepositoryInfo> it)
+            => it.AddFieldName("proxyPushNotificationBody");
+        
         public static Partial<PRRepositoryInfo> WithState(this Partial<PRRepositoryInfo> it)
             => it.AddFieldName("state");
         

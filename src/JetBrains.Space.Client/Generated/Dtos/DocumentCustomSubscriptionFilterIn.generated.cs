@@ -35,11 +35,41 @@ namespace JetBrains.Space.Client
         
         public DocumentCustomSubscriptionFilterIn() { }
         
-        public DocumentCustomSubscriptionFilterIn(List<string> documents)
+        public DocumentCustomSubscriptionFilterIn(List<string> documents, string? project = null, List<string>? books = null, List<string>? folders = null)
         {
+            Project = project;
+            Books = books;
+            Folders = folders;
             Documents = documents;
         }
         
+        private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(DocumentCustomSubscriptionFilterIn), nameof(Project));
+        
+        [JsonPropertyName("project")]
+        public string? Project
+        {
+            get => _project.GetValue();
+            set => _project.SetValue(value);
+        }
+    
+        private PropertyValue<List<string>?> _books = new PropertyValue<List<string>?>(nameof(DocumentCustomSubscriptionFilterIn), nameof(Books));
+        
+        [JsonPropertyName("books")]
+        public List<string>? Books
+        {
+            get => _books.GetValue();
+            set => _books.SetValue(value);
+        }
+    
+        private PropertyValue<List<string>?> _folders = new PropertyValue<List<string>?>(nameof(DocumentCustomSubscriptionFilterIn), nameof(Folders));
+        
+        [JsonPropertyName("folders")]
+        public List<string>? Folders
+        {
+            get => _folders.GetValue();
+            set => _folders.SetValue(value);
+        }
+    
         private PropertyValue<List<string>> _documents = new PropertyValue<List<string>>(nameof(DocumentCustomSubscriptionFilterIn), nameof(Documents), new List<string>());
         
         [Required]
@@ -52,6 +82,9 @@ namespace JetBrains.Space.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
+            _project.SetAccessPath(path, validateHasBeenSet);
+            _books.SetAccessPath(path, validateHasBeenSet);
+            _folders.SetAccessPath(path, validateHasBeenSet);
             _documents.SetAccessPath(path, validateHasBeenSet);
         }
     

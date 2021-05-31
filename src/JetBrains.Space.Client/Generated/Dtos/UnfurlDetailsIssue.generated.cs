@@ -35,10 +35,11 @@ namespace JetBrains.Space.Client
         
         public UnfurlDetailsIssue() { }
         
-        public UnfurlDetailsIssue(Issue issue, bool? strikeThrough = null)
+        public UnfurlDetailsIssue(Issue issue, bool? strikeThrough = null, bool? compact = null)
         {
             Issue = issue;
             IsStrikeThrough = strikeThrough;
+            IsCompact = compact;
         }
         
         private PropertyValue<Issue> _issue = new PropertyValue<Issue>(nameof(UnfurlDetailsIssue), nameof(Issue));
@@ -60,10 +61,20 @@ namespace JetBrains.Space.Client
             set => _strikeThrough.SetValue(value);
         }
     
+        private PropertyValue<bool?> _compact = new PropertyValue<bool?>(nameof(UnfurlDetailsIssue), nameof(IsCompact));
+        
+        [JsonPropertyName("compact")]
+        public bool? IsCompact
+        {
+            get => _compact.GetValue();
+            set => _compact.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _issue.SetAccessPath(path, validateHasBeenSet);
             _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+            _compact.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -35,6 +35,9 @@ namespace JetBrains.Space.Client.UnfurlDetailsCodeReviewPartialBuilder
         public static Partial<UnfurlDetailsCodeReview> WithReview(this Partial<UnfurlDetailsCodeReview> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
             => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecord>(it)));
         
+        public static Partial<UnfurlDetailsCodeReview> WithIsWithIcon(this Partial<UnfurlDetailsCodeReview> it)
+            => it.AddFieldName("withIcon");
+        
         public static Partial<UnfurlDetailsCodeReview> WithIsWithBranchPair(this Partial<UnfurlDetailsCodeReview> it)
             => it.AddFieldName("withBranchPair");
         

@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public KBBook() { }
         
-        public KBBook(string id, bool archived, string name, string summary, long updated, string alias, List<KBBookContext> contexts, List<TDLocation> locations, KBFolder rootFolder, List<TDTeam> teams, CPrincipal? updatedBy = null)
+        public KBBook(string id, bool archived, string name, string summary, long updated, string alias, List<KBBookContext> contexts, KBFolder rootFolder, CPrincipal? updatedBy = null)
         {
             Id = id;
             IsArchived = archived;
@@ -42,9 +42,7 @@ namespace JetBrains.Space.Client
             UpdatedBy = updatedBy;
             Alias = alias;
             Contexts = contexts;
-            Locations = locations;
             RootFolder = rootFolder;
-            Teams = teams;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(KBBook), nameof(Id));
@@ -126,16 +124,6 @@ namespace JetBrains.Space.Client
             set => _contexts.SetValue(value);
         }
     
-        private PropertyValue<List<TDLocation>> _locations = new PropertyValue<List<TDLocation>>(nameof(KBBook), nameof(Locations), new List<TDLocation>());
-        
-        [Required]
-        [JsonPropertyName("locations")]
-        public List<TDLocation> Locations
-        {
-            get => _locations.GetValue();
-            set => _locations.SetValue(value);
-        }
-    
         private PropertyValue<KBFolder> _rootFolder = new PropertyValue<KBFolder>(nameof(KBBook), nameof(RootFolder));
         
         [Required]
@@ -144,16 +132,6 @@ namespace JetBrains.Space.Client
         {
             get => _rootFolder.GetValue();
             set => _rootFolder.SetValue(value);
-        }
-    
-        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(KBBook), nameof(Teams), new List<TDTeam>());
-        
-        [Required]
-        [JsonPropertyName("teams")]
-        public List<TDTeam> Teams
-        {
-            get => _teams.GetValue();
-            set => _teams.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
@@ -166,9 +144,7 @@ namespace JetBrains.Space.Client
             _updatedBy.SetAccessPath(path, validateHasBeenSet);
             _alias.SetAccessPath(path, validateHasBeenSet);
             _contexts.SetAccessPath(path, validateHasBeenSet);
-            _locations.SetAccessPath(path, validateHasBeenSet);
             _rootFolder.SetAccessPath(path, validateHasBeenSet);
-            _teams.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

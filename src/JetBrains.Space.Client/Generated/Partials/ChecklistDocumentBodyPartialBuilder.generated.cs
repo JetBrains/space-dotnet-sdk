@@ -25,15 +25,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationsForIdSshKeysPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ChecklistDocumentBodyPartialBuilder
 {
-    public static class ApplicationsForIdSshKeysPostRequestPartialExtensions
+    public static class ChecklistDocumentBodyPartialExtensions
     {
-        public static Partial<ApplicationsForIdSshKeysPostRequest> WithPublicKey(this Partial<ApplicationsForIdSshKeysPostRequest> it)
-            => it.AddFieldName("publicKey");
+        public static Partial<ChecklistDocumentBody> WithChecklist(this Partial<ChecklistDocumentBody> it)
+            => it.AddFieldName("checklist");
         
-        public static Partial<ApplicationsForIdSshKeysPostRequest> WithComment(this Partial<ApplicationsForIdSshKeysPostRequest> it)
-            => it.AddFieldName("comment");
+        public static Partial<ChecklistDocumentBody> WithChecklist(this Partial<ChecklistDocumentBody> it, Func<Partial<Checklist>, Partial<Checklist>> partialBuilder)
+            => it.AddFieldName("checklist", partialBuilder(new Partial<Checklist>(it)));
+        
+        public static Partial<ChecklistDocumentBody> WithCanConvertItemsToIssues(this Partial<ChecklistDocumentBody> it)
+            => it.AddFieldName("canConvertItemsToIssues");
         
     }
     

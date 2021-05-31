@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public KBArticle() { }
         
-        public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, string documentId, DateTime created, DateTime updated, string alias, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
+        public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, string documentId, DateTime created, DateTime updated, string alias, DocumentInContainer? document = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
         {
             Id = id;
             IsArchived = archived;
@@ -40,6 +40,7 @@ namespace JetBrains.Space.Client
             Book = book;
             Folder = folder;
             DocumentId = documentId;
+            Document = document;
             Created = created;
             CreatedBy = createdBy;
             Updated = updated;
@@ -107,6 +108,15 @@ namespace JetBrains.Space.Client
             set => _documentId.SetValue(value);
         }
     
+        private PropertyValue<DocumentInContainer?> _document = new PropertyValue<DocumentInContainer?>(nameof(KBArticle), nameof(Document));
+        
+        [JsonPropertyName("document")]
+        public DocumentInContainer? Document
+        {
+            get => _document.GetValue();
+            set => _document.SetValue(value);
+        }
+    
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(KBArticle), nameof(Created));
         
         [Required]
@@ -165,6 +175,7 @@ namespace JetBrains.Space.Client
             _book.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
             _documentId.SetAccessPath(path, validateHasBeenSet);
+            _document.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
             _createdBy.SetAccessPath(path, validateHasBeenSet);
             _updated.SetAccessPath(path, validateHasBeenSet);

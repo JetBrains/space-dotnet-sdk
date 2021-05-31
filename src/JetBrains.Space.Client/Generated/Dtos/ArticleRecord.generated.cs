@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public ArticleRecord() { }
         
-        public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, M2ChannelContentRecord channelContent, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, List<AttachmentInfo>? attachments = null, bool? cut = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, TDLocation? location = null, List<TDLocation>? locations = null, List<AttachmentInfo>? previewAttachments = null, TDTeam? team = null, List<TDTeam>? teams = null, int? wordsNumber = null)
+        public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, List<AttachmentInfo>? attachments = null, M2ChannelContentRecord? channelContent = null, bool? cut = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, TDLocation? location = null, List<TDLocation>? locations = null, List<AttachmentInfo>? previewAttachments = null, TDTeam? team = null, List<TDTeam>? teams = null, int? wordsNumber = null)
         {
             Id = id;
             IsArchived = archived;
@@ -160,11 +160,10 @@ namespace JetBrains.Space.Client
             set => _channel.SetValue(value);
         }
     
-        private PropertyValue<M2ChannelContentRecord> _channelContent = new PropertyValue<M2ChannelContentRecord>(nameof(ArticleRecord), nameof(ChannelContent));
+        private PropertyValue<M2ChannelContentRecord?> _channelContent = new PropertyValue<M2ChannelContentRecord?>(nameof(ArticleRecord), nameof(ChannelContent));
         
-        [Required]
         [JsonPropertyName("channelContent")]
-        public M2ChannelContentRecord ChannelContent
+        public M2ChannelContentRecord? ChannelContent
         {
             get => _channelContent.GetValue();
             set => _channelContent.SetValue(value);
