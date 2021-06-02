@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client
     {
         public Issue() { }
         
-        public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, List<SprintRecord> sprints, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, string? description = null)
+        public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<SprintRecord> sprints, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, string? description = null)
         {
             Id = id;
             IsArchived = archived;
@@ -52,6 +52,7 @@ namespace JetBrains.Space.Client
             Attachments = attachments;
             Channel = channel;
             Checklists = checklists;
+            CustomFields = customFields;
             Description = description;
             Sprints = sprints;
         }
@@ -232,6 +233,16 @@ namespace JetBrains.Space.Client
             set => _checklists.SetValue(value);
         }
     
+        private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(Issue), nameof(CustomFields), new Dictionary<string, CFValue>());
+        
+        [Required]
+        [JsonPropertyName("customFields")]
+        public Dictionary<string, CFValue> CustomFields
+        {
+            get => _customFields.GetValue();
+            set => _customFields.SetValue(value);
+        }
+    
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(Issue), nameof(Description));
         
         [JsonPropertyName("description")]
@@ -271,6 +282,7 @@ namespace JetBrains.Space.Client
             _attachments.SetAccessPath(path, validateHasBeenSet);
             _channel.SetAccessPath(path, validateHasBeenSet);
             _checklists.SetAccessPath(path, validateHasBeenSet);
+            _customFields.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
             _sprints.SetAccessPath(path, validateHasBeenSet);
         }

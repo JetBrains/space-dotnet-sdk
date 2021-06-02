@@ -113,6 +113,12 @@ namespace JetBrains.Space.Client.IssuePartialBuilder
         public static Partial<Issue> WithChecklists(this Partial<Issue> it, Func<Partial<Checklist>, Partial<Checklist>> partialBuilder)
             => it.AddFieldName("checklists", partialBuilder(new Partial<Checklist>(it)));
         
+        public static Partial<Issue> WithCustomFields(this Partial<Issue> it)
+            => it.AddFieldName("customFields");
+        
+        public static Partial<Issue> WithCustomFields(this Partial<Issue> it, Func<Partial<CFValue>, Partial<CFValue>> partialBuilder)
+            => it.AddFieldName("customFields", partialBuilder(new Partial<CFValue>(it)));
+        
         public static Partial<Issue> WithDescription(this Partial<Issue> it)
             => it.AddFieldName("description");
         
