@@ -10,6 +10,7 @@
 #nullable enable
 #pragma warning disable CS1591
 #pragma warning disable CS0108
+#pragma warning disable 618
 
 using System;
 using System.Collections.Generic;
