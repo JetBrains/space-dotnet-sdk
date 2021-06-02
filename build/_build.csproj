@@ -13,6 +13,11 @@
   <ItemGroup>
     <PackageReference Include="Nuke.Common" Version="5.1.2" />
     <PackageDownload Include="GitVersion.Tool" Version="[5.1.1]" />
+
+    <PackageReference Include="Microsoft.Build" Version="16.10.0" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="16.10.0" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="16.10.0" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.10.0" />
   </ItemGroup>
 
 </Project>
