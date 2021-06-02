@@ -78,8 +78,14 @@ namespace JetBrains.Space.Common
             };
             
             var response = await SendRequestAsync(request, cancellationToken);
-            
-            return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions, cancellationToken);
+
+#if NET6_0_OR_GREATER
+            return (await JsonSerializer.DeserializeAsync<TResult>(
+                await response.Content.ReadAsStreamAsync(cancellationToken), JsonSerializerOptions, cancellationToken))!;
+#else
+            return (await JsonSerializer.DeserializeAsync<TResult>(
+                await response.Content.ReadAsStreamAsync(), JsonSerializerOptions, cancellationToken))!;
+#endif
         }
 
         /// <inheritdoc />
@@ -111,7 +117,13 @@ namespace JetBrains.Space.Common
             
             var response = await SendRequestAsync(request, cancellationToken);
             
-            return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions, cancellationToken);
+#if NET6_0_OR_GREATER
+            return (await JsonSerializer.DeserializeAsync<TResult>(
+                await response.Content.ReadAsStreamAsync(cancellationToken), JsonSerializerOptions, cancellationToken))!;
+#else
+            return (await JsonSerializer.DeserializeAsync<TResult>(
+                await response.Content.ReadAsStreamAsync(), JsonSerializerOptions, cancellationToken))!;
+#endif
         }
 
         /// <inheritdoc />
@@ -128,9 +140,13 @@ namespace JetBrains.Space.Common
                 ContentType = response.Content.Headers.ContentType?.ToString(),
                 ContentLength = response.Content.Headers.ContentLength,
                 ContentDisposition = response.Content.Headers.ContentDisposition?.ToString(),
-                ContentEncoding = response.Content.Headers.ContentEncoding?.ToString(),
-                ContentLanguage = response.Content.Headers.ContentLanguage?.ToString(),
+                ContentEncoding = response.Content.Headers.ContentEncoding.ToString(),
+                ContentLanguage = response.Content.Headers.ContentLanguage.ToString(),
+#if NET6_0_OR_GREATER
+                Stream = await response.Content.ReadAsStreamAsync(cancellationToken)
+#else
                 Stream = await response.Content.ReadAsStreamAsync()
+#endif
             };
         }
 

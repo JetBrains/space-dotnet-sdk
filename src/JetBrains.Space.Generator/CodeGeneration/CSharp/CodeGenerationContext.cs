@@ -33,17 +33,17 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                 idToEnumMap: new SortedDictionary<string, ApiEnum>(
                     apiModel.Enums.ToImmutableSortedDictionary(
                         it => it.Id,
-                        it => it)!,
+                        it => it),
                     StringComparer.OrdinalIgnoreCase), 
                 idToDtoMap: new SortedDictionary<string, ApiDto>(
                     apiModel.Dto.ToImmutableSortedDictionary(
                         it => it.Id,
-                        it => it)!,
+                        it => it),
                     StringComparer.OrdinalIgnoreCase), 
                 idToUrlParameterMap: new SortedDictionary<string, ApiUrlParameter>(
                     apiModel.UrlParameters.ToImmutableSortedDictionary(
                         it => it.Id,
-                        it => it)!,
+                        it => it),
                     StringComparer.OrdinalIgnoreCase));
 #pragma warning restore 8619
             

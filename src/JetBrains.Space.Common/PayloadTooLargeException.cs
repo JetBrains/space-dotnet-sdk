@@ -22,7 +22,7 @@ namespace JetBrains.Space.Common
         }
 
         /// <inheritdoc />
-        public PayloadTooLargeException(string message, HttpStatusCode statusCode, string response) 
+        public PayloadTooLargeException(string message, HttpStatusCode statusCode, string? response) 
             : base(message, statusCode, response)
         {
         }

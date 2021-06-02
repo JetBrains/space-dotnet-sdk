@@ -190,10 +190,7 @@ namespace JetBrains.Space.Common
                         }
                     }
 
-                    if (fieldNameToAdd != null)
-                    {
-                        fieldNames.Add(fieldNameToAdd);
-                    }
+                    fieldNames.Add(fieldNameToAdd);
                 }
             }
 

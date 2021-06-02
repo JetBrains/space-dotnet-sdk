@@ -20,7 +20,8 @@ namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
         /// <param name="provider">An <see cref="IAuthenticationSchemeProvider"/> used by the current <see cref="SpaceTokenManagementConfigureCookieOptions"/>.</param>
         public SpaceTokenManagementConfigureCookieOptions(IAuthenticationSchemeProvider provider)
         {
-            _scheme = provider.GetDefaultSignInSchemeAsync().GetAwaiter().GetResult();
+            // ReSharper disable once RedundantSuppressNullableWarningExpression
+            _scheme = provider.GetDefaultSignInSchemeAsync().GetAwaiter().GetResult()!;
         }
 
         /// <inheritdoc />

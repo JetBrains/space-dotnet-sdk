@@ -26,7 +26,7 @@ namespace JetBrains.Space.Client.Tests.Json.Serialization
         {
             var inputJsonString = "{\"iso\":\"2020-10-21T16:30:00.000Z\",\"timestamp\":1603297800000}";
 
-            var result = (DateTime)JsonSerializer.Deserialize(inputJsonString, typeof(DateTime), CreateSerializerOptions());
+            var result = (DateTime)(JsonSerializer.Deserialize(inputJsonString, typeof(DateTime), CreateSerializerOptions()) ?? throw new NullReferenceException("Deserialized value is null."));
 
             Assert.Equal("2020-10-21", result.ToString("yyyy-MM-dd"));
             Assert.True(result.Kind == DateTimeKind.Utc);
@@ -40,8 +40,11 @@ namespace JetBrains.Space.Client.Tests.Json.Serialization
             var result = (DateTime?)JsonSerializer.Deserialize(inputJsonString, typeof(DateTime?), CreateSerializerOptions());
 
             Assert.NotNull(result);
-            Assert.Equal("2020-10-21", result.Value.ToString("yyyy-MM-dd"));
-            Assert.True(result.Value.Kind == DateTimeKind.Utc);
+            if (result != null)
+            {
+                Assert.Equal("2020-10-21", result.Value.ToString("yyyy-MM-dd"));
+                Assert.True(result.Value.Kind == DateTimeKind.Utc);
+            }
         }
     }
 }

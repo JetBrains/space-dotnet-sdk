@@ -109,7 +109,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                 Prefix = prefix.TrimEnd('.'),
                 Children = children
                     .Where(it => string.IsNullOrEmpty(prefix) || it.MenuId.StartsWith($"{prefix}.") || it.MenuId == prefix)
-                    .GroupBy(it => it.MenuId.RemovePrefix($"{prefix}.").SubstringBefore("."))
+                    .GroupBy(it => it.MenuId.RemovePrefix($"{prefix}.").SubstringBefore(".")!)
                     .Select(it => BuildTree(string.IsNullOrEmpty(prefix) ? it.Key : $"{prefix}.{it.Key}", it))
                     .ToList(),
                 Context = children.FirstOrDefault(it => it.MenuId == prefix)?.Context

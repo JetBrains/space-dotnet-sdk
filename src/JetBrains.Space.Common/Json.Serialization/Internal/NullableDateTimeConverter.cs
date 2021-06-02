@@ -32,7 +32,7 @@ namespace JetBrains.Space.Common.Json.Serialization.Internal
                 if (reader.TokenType == JsonTokenType.PropertyName)
                 {
                     var propertyName = reader.GetString();
-                    if (propertyName.Equals("iso", StringComparison.OrdinalIgnoreCase))
+                    if (propertyName != null && propertyName.Equals("iso", StringComparison.OrdinalIgnoreCase))
                     {
                         reader.Read();
                         var iso = reader.GetString();

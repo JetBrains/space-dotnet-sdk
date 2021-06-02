@@ -69,7 +69,7 @@ namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
             if (string.IsNullOrEmpty(_options.Scheme))
             {
                 var scheme = await _schemeProvider.GetDefaultChallengeSchemeAsync();
-                return _spaceOptions.Get(scheme.Name);
+                return _spaceOptions.Get(scheme?.Name);
             }
 
             return _spaceOptions.Get(_options.Scheme);

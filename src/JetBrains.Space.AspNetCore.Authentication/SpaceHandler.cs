@@ -57,7 +57,9 @@ namespace JetBrains.Space.AspNetCore.Authentication
             var context = new OAuthCreatingTicketContext(new ClaimsPrincipal(identity), properties, Context, Scheme, Options, Backchannel, tokens, payload.RootElement);
             context.RunClaimActions();
             await Events.CreatingTicket(context);
-            return new AuthenticationTicket(context.Principal, context.Properties, Scheme.Name);
+            
+            // ReSharper disable once RedundantSuppressNullableWarningExpression
+            return new AuthenticationTicket(context.Principal!, context.Properties, Scheme.Name);
         }
 
         /// <inheritdoc />
@@ -66,7 +68,7 @@ namespace JetBrains.Space.AspNetCore.Authentication
             var scopeParameter = properties.GetParameter<ICollection<string>>(OAuthChallengeProperties.ScopeKey);
             var scope = scopeParameter != null ? FormatScope(scopeParameter) : FormatScope();
 
-            var parameters = new Dictionary<string, string>
+            var parameters = new Dictionary<string, string?>
             {
                 { "client_id", Options.ClientId },
                 { "scope", scope },
@@ -101,7 +103,7 @@ namespace JetBrains.Space.AspNetCore.Authentication
         /// <inheritdoc />
         protected override async Task<OAuthTokenResponse> ExchangeCodeAsync(OAuthCodeExchangeContext context)
         {
-            var tokenRequestParameters = new Dictionary<string, string>
+            var tokenRequestParameters = new Dictionary<string, string?>
             {
                 { "client_id", Options.ClientId },
                 { "redirect_uri", context.RedirectUri },
@@ -117,7 +119,9 @@ namespace JetBrains.Space.AspNetCore.Authentication
                 context.Properties.Items.Remove(OAuthConstants.CodeVerifierKey);
             }
 
+#pragma warning disable 8620 // new Dictionary<string, string?> -> new FormUrlEncodedContent(tokenRequestParameters)
             var requestContent = new FormUrlEncodedContent(tokenRequestParameters);
+#pragma warning restore 8620
 
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, Options.TokenEndpoint);
             requestMessage.Headers.Authorization = AuthenticationHeaderValue.Parse(

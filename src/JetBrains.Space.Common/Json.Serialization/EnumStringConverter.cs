@@ -154,15 +154,15 @@ namespace JetBrains.Space.Common.Json.Serialization
 
 			if (token == JsonTokenType.String)
 			{
-				var enumString = reader.GetString()!;
+				var enumString = reader.GetString();
 
 				// Case sensitive search attempted first.
-				if (_transformedToRaw.TryGetValue(enumString, out var enumInfo))
+				if (enumString != null && _transformedToRaw.TryGetValue(enumString, out var enumInfo))
 				{
 					return (T)Enum.ToObject(_enumType, enumInfo.RawValue);
 				}
 
-				if (_isFlags)
+				if (enumString != null && _isFlags)
 				{
 					ulong calculatedValue = 0;
 					var flagValues = enumString.Split(", ");

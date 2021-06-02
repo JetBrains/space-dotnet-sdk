@@ -47,8 +47,9 @@ namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
             builder.Services.AddSingleton<IConfigureOptions<CookieAuthenticationOptions>, SpaceTokenManagementConfigureCookieOptions>();
 
             builder.Services.AddScoped<BearerTokenConnectionProvider>();
+            // ReSharper disable once RedundantSuppressNullableWarningExpression
             builder.Services.AddScoped<Connection, BearerTokenConnection>(provider => 
-                provider.GetService<BearerTokenConnectionProvider>().CreateAsync().GetAwaiter().GetResult()!);
+                provider.GetService<BearerTokenConnectionProvider>()!.CreateAsync().GetAwaiter().GetResult()!);
 
             return builder;
         }

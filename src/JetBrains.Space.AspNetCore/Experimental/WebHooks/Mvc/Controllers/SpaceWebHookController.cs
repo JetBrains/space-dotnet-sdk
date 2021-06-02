@@ -41,9 +41,9 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Controllers
         public async Task<IActionResult> Receive([FromBody]ApplicationPayload payload)
         {
             // Find handler
-            if (!RouteData.Values.TryGetValue(RouteKeyConstants.HandlerType, out object t) 
-                || !(t is Type handlerType)
-                || !(_serviceProvider.GetService(handlerType) is ISpaceWebHookHandler handler))
+            if (!RouteData.Values.TryGetValue(RouteKeyConstants.HandlerType, out var t) 
+                || t is not Type handlerType
+                || _serviceProvider.GetService(handlerType) is not ISpaceWebHookHandler handler)
             {
                 return BadRequest($"No registered {nameof(ISpaceWebHookHandler)} could be found.");
             }

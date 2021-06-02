@@ -63,8 +63,8 @@ namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
         /// <inheritdoc />
         public override async Task ValidatePrincipal(CookieValidatePrincipalContext context)
         {
-            var tokens = context.Properties.GetTokens()?.ToList();
-            if (tokens == null || tokens.Count == 0)
+            var tokens = context.Properties.GetTokens().ToList();
+            if (tokens.Count == 0)
             {
                 _logger.LogDebug("No tokens found in cookie properties. SaveTokens must be enabled for automatic token refresh.");
                 return;
@@ -106,9 +106,9 @@ namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
                             },
                             Content = new FormUrlEncodedContent(new []
                             {
-                                new KeyValuePair<string, string>("grant_type", "refresh_token"),
-                                new KeyValuePair<string, string>("refresh_token", refreshToken.Value),
-                                new KeyValuePair<string, string>("scope", string.Join(" ", spaceOptions.Scope))
+                                new KeyValuePair<string?, string?>("grant_type", "refresh_token"),
+                                new KeyValuePair<string?, string?>("refresh_token", refreshToken.Value),
+                                new KeyValuePair<string?, string?>("scope", string.Join(" ", spaceOptions.Scope))
                             })
                         };
 
@@ -124,13 +124,14 @@ namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
                         using var spaceTokenDocument = await JsonDocument.ParseAsync(await spaceTokenResponse.Content.ReadAsStreamAsync());
                         var spaceToken = spaceTokenDocument.RootElement;
 
-                        context.Properties.UpdateTokenValue("access_token",  spaceToken.GetStringValue("access_token"));
+                        context.Properties.UpdateTokenValue("access_token",  spaceToken.GetStringValue("access_token")!);
                         context.Properties.UpdateTokenValue("refresh_token", spaceToken.GetStringValue("refresh_token") ?? refreshToken.Value);
 
                         var newExpiresAt = DateTime.UtcNow + TimeSpan.FromSeconds(spaceToken.GetInt32Value("expires_in"));
                         context.Properties.UpdateTokenValue("expires_at", newExpiresAt.ToString("o", CultureInfo.InvariantCulture));
 
-                        await context.HttpContext.SignInAsync(context.Principal, context.Properties);
+                        // ReSharper disable once RedundantSuppressNullableWarningExpression
+                        await context.HttpContext.SignInAsync(context.Principal!, context.Properties);
                     }
                     finally
                     {
@@ -145,7 +146,7 @@ namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
             if (string.IsNullOrEmpty(_options.Scheme))
             {
                 var scheme = await _schemeProvider.GetDefaultChallengeSchemeAsync();
-                return _spaceOptions.Get(scheme.Name);
+                return _spaceOptions.Get(scheme?.Name);
             }
             else
             {

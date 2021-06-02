@@ -99,7 +99,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                     var inheritorFactoryMethodName = apiDtoInheritor.ToCSharpFactoryMethodName(apiDto);
                     
                     var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
-                        .WithParametersForApiDtoFields(DetermineFieldsToGenerateFor(apiDtoInheritor!));
+                        .WithParametersForApiDtoFields(DetermineFieldsToGenerateFor(apiDtoInheritor));
                     
                     builder.AppendLine($"{indent}public static {inheritorTypeName} {inheritorFactoryMethodName}({methodParametersBuilder.BuildMethodParametersList()})");
                     indent.Increment();

@@ -48,7 +48,11 @@ namespace JetBrains.Space.Client
             var response = await uploadHttpClient.SendAsync(request, cancellationToken);
             if (response.IsSuccessStatusCode)
             {
+#if NET6_0_OR_GREATER
+                return await response.Content.ReadAsStringAsync(cancellationToken);
+#else
                 return await response.Content.ReadAsStringAsync() ?? string.Empty;
+#endif
             }
 
             throw new ResourceException("Could not upload stream.", response.StatusCode, response.ReasonPhrase);

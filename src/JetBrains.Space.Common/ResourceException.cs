@@ -36,7 +36,7 @@ namespace JetBrains.Space.Common
         /// <param name="message">A message that describes the current exception.</param>
         /// <param name="statusCode">The <see cref="T:System.Net.Http.HttpStatusCode" /> that was received from the server.</param>
         /// <param name="response">The HTTP response body which was received from the server.</param>
-        public ResourceException(string message, HttpStatusCode statusCode, string response) 
+        public ResourceException(string message, HttpStatusCode statusCode, string? response) 
             : base(message)
         {
             StatusCode = statusCode;

@@ -95,7 +95,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Formatters
                 var inputJsonString = await inputStreamReader.ReadToEndAsync();
                 
                 // Determine options name to use (in case multiple are registered)
-                var options = httpContext.Request.RouteValues.TryGetValue(RouteKeyConstants.OptionsName, out object optionsName)
+                var options = httpContext.Request.RouteValues.TryGetValue(RouteKeyConstants.OptionsName, out var optionsName) && optionsName != null
                         ? _options.Get(optionsName.ToString())
                         : _options.CurrentValue;
 
@@ -151,7 +151,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Formatters
                 var path = jsonException.Path;
                 
                 var formatterException = new InputFormatterException(jsonException.Message, jsonException);
-                context.ModelState.TryAddModelError(path, formatterException, context.Metadata);
+                context.ModelState.TryAddModelError(path?? string.Empty, formatterException, context.Metadata);
                 
                 Log.JsonInputException(_logger, jsonException);
                 

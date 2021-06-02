@@ -57,8 +57,8 @@ namespace JetBrains.Space.Common
                     },
                     Content = new FormUrlEncodedContent(new []
                     {
-                        new KeyValuePair<string, string>("grant_type", "client_credentials"),
-                        new KeyValuePair<string, string>("scope", Scope)
+                        new KeyValuePair<string?, string?>("grant_type", "client_credentials"),
+                        new KeyValuePair<string?, string?>("scope", Scope)
                     })
                 };
 

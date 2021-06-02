@@ -63,9 +63,9 @@ namespace JetBrains.Space.Common
                     },
                     Content = new FormUrlEncodedContent(new []
                     {
-                        new KeyValuePair<string, string>("grant_type", "refresh_token"),
-                        new KeyValuePair<string, string>("refresh_token", AuthenticationTokens.RefreshToken),
-                        new KeyValuePair<string, string>("scope", Scope)
+                        new KeyValuePair<string?, string?>("grant_type", "refresh_token"),
+                        new KeyValuePair<string?, string?>("refresh_token", AuthenticationTokens.RefreshToken),
+                        new KeyValuePair<string?, string?>("scope", Scope)
                     })
                 };
 

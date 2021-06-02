@@ -80,9 +80,9 @@ namespace JetBrains.Space.Generator
                 {
                     // Load model from API
                     var connection = new ClientCredentialsConnection(
-                        new Uri(organizationUrl!), 
-                        clientId!,
-                        clientSecret!,
+                        new Uri(organizationUrl), 
+                        clientId,
+                        clientSecret,
                         httpClient);
             
                     var apiModel = await connection.RequestResourceAsync<ApiModel>(
@@ -94,7 +94,7 @@ namespace JetBrains.Space.Generator
                 {
                     // Deployment info
                     var deploymentInfoClient = new DeploymentInfoClient(
-                        organizationUrl!, 
+                        organizationUrl, 
                         httpClient);
 
                     var deploymentInfo = await deploymentInfoClient.GetDeploymentInfoAsync();
@@ -131,13 +131,27 @@ namespace JetBrains.Space.Generator
                 () => Task.FromResult(version)!);
         }
 
-        private static async Task<int> ExecuteCodeGenerator(Func<Task<ApiModel>> retrieveModel, Func<Task<string?>> retrieveVersion)
+        private static async Task<int> ExecuteCodeGenerator(Func<Task<ApiModel?>> retrieveModel, Func<Task<string?>> retrieveVersion)
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
+            // Get data
             var apiModel = await retrieveModel();
+            if (apiModel == null)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"ERROR: HTTP API model information is not available.");
+                return -1;
+            }
+            
             var version = await retrieveVersion();
+            if (string.IsNullOrEmpty(version))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"ERROR: Version information is not available.");
+                return -1;
+            }
             
             // Remove old code
             var generatedCodePath = Path.GetFullPath(OutputPath);
@@ -161,12 +175,6 @@ namespace JetBrains.Space.Generator
             Console.WriteLine($"  Number of Resources (top level): {codeGenerationContext.GetResources().Count()}");
             
             // Write version marker
-            if (string.IsNullOrEmpty(version))
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"ERROR: Version information is not available.");
-                return -1;
-            }
             await File.WriteAllTextAsync("../../../../../version-info.txt", version);
             
             return 0;

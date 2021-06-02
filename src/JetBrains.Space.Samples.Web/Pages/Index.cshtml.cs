@@ -38,7 +38,7 @@ namespace JetBrains.Space.Samples.Web.Pages
         private readonly CalendarClient _calendarClient;
         private readonly AbsenceClient _absenceClient;
 
-        public TDMemberProfile? MemberProfile { get; set; }
+        public TDMemberProfile MemberProfile { get; set; } = default!;
         public List<Meeting> MeetingsToday { get; set; } = new List<Meeting>();
         public List<AbsenceRecord> Absences { get; set; } = new List<AbsenceRecord>();
         public int IssuesCreatedThisWeek { get; set; }
@@ -101,7 +101,7 @@ namespace JetBrains.Space.Samples.Web.Pages
             #endregion
             
             var weekStart = StartOfWeek(DateTime.UtcNow, DayOfWeek.Monday);
-            var weekEnd = weekStart.AddDays(7).AddHours(23).AddMinutes(59).AddSeconds(59);;
+            var weekEnd = weekStart.AddDays(7).AddHours(23).AddMinutes(59).AddSeconds(59);
             
             var issuesCreatedThisWeek = 0;
             var issuesResolvedThisWeek = 0;
@@ -193,13 +193,13 @@ namespace JetBrains.Space.Samples.Web.Pages
                         
                         if (createdAt >= weekStart && createdAt <= weekEnd)
                         {
-                            if (review.Participants.Participants.Any(it => it.User.Id == MemberProfile.Id && it.Role == CodeReviewParticipantRole.Author))
+                            if (review.Participants.Participants?.Any(it => it.User.Id == MemberProfile.Id && it.Role == CodeReviewParticipantRole.Author) == true)
                             {
                                 reviewsCreatedThisWeek++;
                             }
                         }
                         
-                        if (review.Participants.Participants.Any(it => it.User.Id == MemberProfile.Id && it.Role == CodeReviewParticipantRole.Reviewer))
+                        if (review.Participants.Participants?.Any(it => it.User.Id == MemberProfile.Id && it.Role == CodeReviewParticipantRole.Reviewer) == true)
                         {
                             reviewsParticipatedThisWeek++;
                         }

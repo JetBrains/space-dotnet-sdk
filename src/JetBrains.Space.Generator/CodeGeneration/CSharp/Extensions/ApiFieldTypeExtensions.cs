@@ -134,7 +134,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
                     }
                 
                 case ApiFieldType.Primitive apiFieldTypePrimitive:
-                    return apiFieldTypePrimitive.ToCSharpPrimitiveType()!.Value;
+                    return apiFieldTypePrimitive.ToCSharpPrimitiveType().Value;
         
                 case ApiFieldType.Ref apiFieldTypeReference:
                     if (apiFieldTypeReference.DtoRef?.Id != null && context.TryGetDto(apiFieldTypeReference.DtoRef.Id, out var apiReferenceDto))
