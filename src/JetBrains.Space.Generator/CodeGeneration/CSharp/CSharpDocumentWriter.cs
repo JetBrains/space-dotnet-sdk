@@ -15,7 +15,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
         {
             _rootDirectory.Create();
             var filePath = Path.Combine(_rootDirectory.FullName, relativePath);
-            Directory.GetParent(filePath).Create();
+            Directory.GetParent(filePath)?.Create();
             File.WriteAllText(filePath, content);
         }
     }
