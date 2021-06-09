@@ -29,37 +29,31 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client
 {
     [JsonConverter(typeof(EnumStringConverter))]
-    public enum ExecutionStatus
+    public enum AppMessageDeliveryType
     {
-        [EnumMember(Value = "SCHEDULED")]
-        SCHEDULED,
+        [EnumMember(Value = "Webhook")]
+        Webhook,
         
-        [EnumMember(Value = "PENDING")]
-        PENDING,
+        [EnumMember(Value = "Message")]
+        Message,
         
-        [EnumMember(Value = "READY_TO_START")]
-        READYTOSTART,
+        [EnumMember(Value = "ListCommands")]
+        ListCommands,
         
-        [EnumMember(Value = "RUNNING")]
-        RUNNING,
+        [EnumMember(Value = "ListMenuExtensions")]
+        ListMenuExtensions,
         
-        [EnumMember(Value = "FINISHING")]
-        FINISHING,
+        [EnumMember(Value = "DispatchAction")]
+        DispatchAction,
         
-        [EnumMember(Value = "FINISHED")]
-        FINISHED,
+        [EnumMember(Value = "DispatchMenuAction")]
+        DispatchMenuAction,
         
-        [EnumMember(Value = "TERMINATED")]
-        TERMINATED,
+        [EnumMember(Value = "InitPayload")]
+        InitPayload,
         
-        [EnumMember(Value = "HIBERNATING")]
-        HIBERNATING,
-        
-        [EnumMember(Value = "HIBERNATED")]
-        HIBERNATED,
-        
-        [EnumMember(Value = "FAILED")]
-        FAILED,
+        [EnumMember(Value = "Unknown")]
+        Unknown,
         
     }
     

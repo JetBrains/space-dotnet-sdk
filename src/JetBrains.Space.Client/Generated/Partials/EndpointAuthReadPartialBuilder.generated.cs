@@ -26,13 +26,10 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueIdentifierIdPartialBuilder
+namespace JetBrains.Space.Client.EndpointAuthReadPartialBuilder
 {
-    public static class IssueIdentifierIdPartialExtensions
+    public static class EndpointAuthReadPartialExtensions
     {
-        public static Partial<IssueIdentifierId> WithId(this Partial<IssueIdentifierId> it)
-            => it.AddFieldName("id");
-        
     }
     
 }

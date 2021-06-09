@@ -28,41 +28,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class BoardWidgetData
+    public sealed class PackageVersionRef
          : IPropagatePropertyAccessPath
     {
-        public BoardWidgetData() { }
+        public PackageVersionRef() { }
         
-        public BoardWidgetData(int max, List<int> perColumns)
+        public PackageVersionRef(string name, string version)
         {
-            Max = max;
-            PerColumns = perColumns;
+            Name = name;
+            Version = version;
         }
         
-        private PropertyValue<int> _max = new PropertyValue<int>(nameof(BoardWidgetData), nameof(Max));
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(PackageVersionRef), nameof(Name));
         
         [Required]
-        [JsonPropertyName("max")]
-        public int Max
+        [JsonPropertyName("name")]
+        public string Name
         {
-            get => _max.GetValue();
-            set => _max.SetValue(value);
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
-        private PropertyValue<List<int>> _perColumns = new PropertyValue<List<int>>(nameof(BoardWidgetData), nameof(PerColumns), new List<int>());
+        private PropertyValue<string> _version = new PropertyValue<string>(nameof(PackageVersionRef), nameof(Version));
         
         [Required]
-        [JsonPropertyName("perColumns")]
-        public List<int> PerColumns
+        [JsonPropertyName("version")]
+        public string Version
         {
-            get => _perColumns.GetValue();
-            set => _perColumns.SetValue(value);
+            get => _version.GetValue();
+            set => _version.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _max.SetAccessPath(path, validateHasBeenSet);
-            _perColumns.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _version.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

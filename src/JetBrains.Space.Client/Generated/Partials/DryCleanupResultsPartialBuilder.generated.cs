@@ -26,40 +26,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.DryCleanupResultsPartialBuilder
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ExecutionStatus
+    public static class DryCleanupResultsPartialExtensions
     {
-        [EnumMember(Value = "SCHEDULED")]
-        SCHEDULED,
+        public static Partial<DryCleanupResults> WithTotalSize(this Partial<DryCleanupResults> it)
+            => it.AddFieldName("totalSize");
         
-        [EnumMember(Value = "PENDING")]
-        PENDING,
+        public static Partial<DryCleanupResults> WithPackageVersions(this Partial<DryCleanupResults> it)
+            => it.AddFieldName("packageVersions");
         
-        [EnumMember(Value = "READY_TO_START")]
-        READYTOSTART,
-        
-        [EnumMember(Value = "RUNNING")]
-        RUNNING,
-        
-        [EnumMember(Value = "FINISHING")]
-        FINISHING,
-        
-        [EnumMember(Value = "FINISHED")]
-        FINISHED,
-        
-        [EnumMember(Value = "TERMINATED")]
-        TERMINATED,
-        
-        [EnumMember(Value = "HIBERNATING")]
-        HIBERNATING,
-        
-        [EnumMember(Value = "HIBERNATED")]
-        HIBERNATED,
-        
-        [EnumMember(Value = "FAILED")]
-        FAILED,
+        public static Partial<DryCleanupResults> WithPackageVersions(this Partial<DryCleanupResults> it, Func<Partial<PackageVersionRef>, Partial<PackageVersionRef>> partialBuilder)
+            => it.AddFieldName("packageVersions", partialBuilder(new Partial<PackageVersionRef>(it)));
         
     }
     

@@ -36,12 +36,13 @@ namespace JetBrains.Space.Client
         
         public UnfurlDetailsCodeReview() { }
         
-        public UnfurlDetailsCodeReview(CodeReviewRecord review, bool withBranchPair, bool? withIcon = null, string? defaultBranchInRepo = null, CodeReviewState? reviewState = null, bool? isMerged = null)
+        public UnfurlDetailsCodeReview(CodeReviewRecord review, bool withBranchPair, bool? withIcon = null, string? defaultBranchInRepo = null, bool? hideIfCannotResolve = null, CodeReviewState? reviewState = null, bool? isMerged = null)
         {
             Review = review;
             IsWithIcon = withIcon;
             IsWithBranchPair = withBranchPair;
             DefaultBranchInRepo = defaultBranchInRepo;
+            IsHideIfCannotResolve = hideIfCannotResolve;
             ReviewState = reviewState;
             IsMerged = isMerged;
         }
@@ -84,6 +85,15 @@ namespace JetBrains.Space.Client
             set => _defaultBranchInRepo.SetValue(value);
         }
     
+        private PropertyValue<bool?> _hideIfCannotResolve = new PropertyValue<bool?>(nameof(UnfurlDetailsCodeReview), nameof(IsHideIfCannotResolve));
+        
+        [JsonPropertyName("hideIfCannotResolve")]
+        public bool? IsHideIfCannotResolve
+        {
+            get => _hideIfCannotResolve.GetValue();
+            set => _hideIfCannotResolve.SetValue(value);
+        }
+    
         private PropertyValue<CodeReviewState?> _reviewState = new PropertyValue<CodeReviewState?>(nameof(UnfurlDetailsCodeReview), nameof(ReviewState));
         
         [JsonPropertyName("reviewState")]
@@ -108,6 +118,7 @@ namespace JetBrains.Space.Client
             _withIcon.SetAccessPath(path, validateHasBeenSet);
             _withBranchPair.SetAccessPath(path, validateHasBeenSet);
             _defaultBranchInRepo.SetAccessPath(path, validateHasBeenSet);
+            _hideIfCannotResolve.SetAccessPath(path, validateHasBeenSet);
             _reviewState.SetAccessPath(path, validateHasBeenSet);
             _isMerged.SetAccessPath(path, validateHasBeenSet);
         }

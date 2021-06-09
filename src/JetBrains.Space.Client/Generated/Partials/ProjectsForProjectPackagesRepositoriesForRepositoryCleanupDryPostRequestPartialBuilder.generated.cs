@@ -26,40 +26,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.ProjectsForProjectPackagesRepositoriesForRepositoryCleanupDryPostRequestPartialBuilder
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ExecutionStatus
+    public static class ProjectsForProjectPackagesRepositoriesForRepositoryCleanupDryPostRequestPartialExtensions
     {
-        [EnumMember(Value = "SCHEDULED")]
-        SCHEDULED,
+        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupDryPostRequest> WithRetentionParams(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupDryPostRequest> it)
+            => it.AddFieldName("retentionParams");
         
-        [EnumMember(Value = "PENDING")]
-        PENDING,
-        
-        [EnumMember(Value = "READY_TO_START")]
-        READYTOSTART,
-        
-        [EnumMember(Value = "RUNNING")]
-        RUNNING,
-        
-        [EnumMember(Value = "FINISHING")]
-        FINISHING,
-        
-        [EnumMember(Value = "FINISHED")]
-        FINISHED,
-        
-        [EnumMember(Value = "TERMINATED")]
-        TERMINATED,
-        
-        [EnumMember(Value = "HIBERNATING")]
-        HIBERNATING,
-        
-        [EnumMember(Value = "HIBERNATED")]
-        HIBERNATED,
-        
-        [EnumMember(Value = "FAILED")]
-        FAILED,
+        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupDryPostRequest> WithRetentionParams(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupDryPostRequest> it, Func<Partial<RetentionPolicyParams>, Partial<RetentionPolicyParams>> partialBuilder)
+            => it.AddFieldName("retentionParams", partialBuilder(new Partial<RetentionPolicyParams>(it)));
         
     }
     

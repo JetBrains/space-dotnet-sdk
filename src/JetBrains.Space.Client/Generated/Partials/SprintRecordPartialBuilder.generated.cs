@@ -57,9 +57,6 @@ namespace JetBrains.Space.Client.SprintRecordPartialBuilder
         public static Partial<SprintRecord> WithTo(this Partial<SprintRecord> it)
             => it.AddFieldName("to");
         
-        public static Partial<SprintRecord> WithIsDefault(this Partial<SprintRecord> it)
-            => it.AddFieldName("default");
-        
         public static Partial<SprintRecord> WithDescription(this Partial<SprintRecord> it)
             => it.AddFieldName("description");
         

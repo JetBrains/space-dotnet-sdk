@@ -26,9 +26,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueIdentifierPartialBuilder
+namespace JetBrains.Space.Client.EndpointAuthReadUnknownPartialBuilder
 {
-    public static class IssueIdentifierPartialExtensions
+    public static class EndpointAuthReadUnknownPartialExtensions
     {
     }
     

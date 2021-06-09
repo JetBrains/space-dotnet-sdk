@@ -26,40 +26,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.WebhookDeliveryStatusDTOInternalErrorPartialBuilder
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ExecutionStatus
+    public static class WebhookDeliveryStatusDTOInternalErrorPartialExtensions
     {
-        [EnumMember(Value = "SCHEDULED")]
-        SCHEDULED,
+        public static Partial<WebhookDeliveryStatusDTOInternalError> WithDeliveryId(this Partial<WebhookDeliveryStatusDTOInternalError> it)
+            => it.AddFieldName("deliveryId");
         
-        [EnumMember(Value = "PENDING")]
-        PENDING,
-        
-        [EnumMember(Value = "READY_TO_START")]
-        READYTOSTART,
-        
-        [EnumMember(Value = "RUNNING")]
-        RUNNING,
-        
-        [EnumMember(Value = "FINISHING")]
-        FINISHING,
-        
-        [EnumMember(Value = "FINISHED")]
-        FINISHED,
-        
-        [EnumMember(Value = "TERMINATED")]
-        TERMINATED,
-        
-        [EnumMember(Value = "HIBERNATING")]
-        HIBERNATING,
-        
-        [EnumMember(Value = "HIBERNATED")]
-        HIBERNATED,
-        
-        [EnumMember(Value = "FAILED")]
-        FAILED,
+        public static Partial<WebhookDeliveryStatusDTOInternalError> WithSentTime(this Partial<WebhookDeliveryStatusDTOInternalError> it)
+            => it.AddFieldName("sentTime");
         
     }
     

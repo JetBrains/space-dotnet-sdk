@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public SprintRecord() { }
         
-        public SprintRecord(string id, bool archived, BoardRecord board, string name, SprintState state, DateTime from, DateTime to, bool @default, string? description = null)
+        public SprintRecord(string id, bool archived, BoardRecord board, string name, SprintState state, DateTime from, DateTime to, string? description = null)
         {
             Id = id;
             IsArchived = archived;
@@ -42,7 +42,6 @@ namespace JetBrains.Space.Client
             State = state;
             From = from;
             To = to;
-            IsDefault = @default;
             Description = description;
         }
         
@@ -118,16 +117,6 @@ namespace JetBrains.Space.Client
             set => _to.SetValue(value);
         }
     
-        private PropertyValue<bool> _default = new PropertyValue<bool>(nameof(SprintRecord), nameof(IsDefault));
-        
-        [Required]
-        [JsonPropertyName("default")]
-        public bool IsDefault
-        {
-            get => _default.GetValue();
-            set => _default.SetValue(value);
-        }
-    
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(SprintRecord), nameof(Description));
         
         [JsonPropertyName("description")]
@@ -146,7 +135,6 @@ namespace JetBrains.Space.Client
             _state.SetAccessPath(path, validateHasBeenSet);
             _from.SetAccessPath(path, validateHasBeenSet);
             _to.SetAccessPath(path, validateHasBeenSet);
-            _default.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
         }
     

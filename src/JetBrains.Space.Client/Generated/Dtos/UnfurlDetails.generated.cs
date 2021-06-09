@@ -58,8 +58,8 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsChecklist Checklist(Checklist checklist)
             => new UnfurlDetailsChecklist(checklist: checklist);
         
-        public static UnfurlDetailsCodeReview CodeReview(CodeReviewRecord review, bool withBranchPair, bool? withIcon = null, string? defaultBranchInRepo = null, CodeReviewState? reviewState = null, bool? isMerged = null)
-            => new UnfurlDetailsCodeReview(review: review, withBranchPair: withBranchPair, withIcon: withIcon, defaultBranchInRepo: defaultBranchInRepo, reviewState: reviewState, isMerged: isMerged);
+        public static UnfurlDetailsCodeReview CodeReview(CodeReviewRecord review, bool withBranchPair, bool? withIcon = null, string? defaultBranchInRepo = null, bool? hideIfCannotResolve = null, CodeReviewState? reviewState = null, bool? isMerged = null)
+            => new UnfurlDetailsCodeReview(review: review, withBranchPair: withBranchPair, withIcon: withIcon, defaultBranchInRepo: defaultBranchInRepo, hideIfCannotResolve: hideIfCannotResolve, reviewState: reviewState, isMerged: isMerged);
         
         public static UnfurlDetailsCodeSnippet CodeSnippet(CodeSnippetAnchor anchor, List<CodeLine> lines)
             => new UnfurlDetailsCodeSnippet(anchor: anchor, lines: lines);
@@ -93,6 +93,9 @@ namespace JetBrains.Space.Client
         
         public static UnfurlDetailsMeeting Meeting(Meeting meeting, bool? compact = null)
             => new UnfurlDetailsMeeting(meeting: meeting, compact: compact);
+        
+        public static UnfurlDetailsPackageDetails PackageDetails(ProjectPackageRepository repoRef, string? packageName = null, string? version = null)
+            => new UnfurlDetailsPackageDetails(repoRef: repoRef, packageName: packageName, version: version);
         
         public static UnfurlDetailsProfile Profile(TDMemberProfile profile, bool? strikeThrough = null)
             => new UnfurlDetailsProfile(profile: profile, strikeThrough: strikeThrough);

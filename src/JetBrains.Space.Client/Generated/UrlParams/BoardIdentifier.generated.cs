@@ -28,38 +28,22 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ExecutionStatus
+    [JsonConverter(typeof(UrlParameterConverter))]
+    public abstract class BoardIdentifier : IUrlParameter
     {
-        [EnumMember(Value = "SCHEDULED")]
-        SCHEDULED,
+        public static BoardIdentifier Id(string id)
+            => new BoardIdentifierId(id);
         
-        [EnumMember(Value = "PENDING")]
-        PENDING,
-        
-        [EnumMember(Value = "READY_TO_START")]
-        READYTOSTART,
-        
-        [EnumMember(Value = "RUNNING")]
-        RUNNING,
-        
-        [EnumMember(Value = "FINISHING")]
-        FINISHING,
-        
-        [EnumMember(Value = "FINISHED")]
-        FINISHED,
-        
-        [EnumMember(Value = "TERMINATED")]
-        TERMINATED,
-        
-        [EnumMember(Value = "HIBERNATING")]
-        HIBERNATING,
-        
-        [EnumMember(Value = "HIBERNATED")]
-        HIBERNATED,
-        
-        [EnumMember(Value = "FAILED")]
-        FAILED,
+        private class BoardIdentifierId : BoardIdentifier
+        {
+            private readonly string _id;
+            
+            public BoardIdentifierId(string id)
+                => _id = id;
+            
+            public override string ToString()
+                => $"id:{_id}";
+        }
         
     }
     

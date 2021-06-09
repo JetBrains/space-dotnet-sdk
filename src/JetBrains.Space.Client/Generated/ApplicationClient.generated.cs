@@ -156,6 +156,15 @@ namespace JetBrains.Space.Client
         }
         
     
+        public async Task<List<AppMessageDelivery>> LatestMessagesDeliveriesAsync(string applicationId, Func<Partial<AppMessageDelivery>, Partial<AppMessageDelivery>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<AppMessageDelivery>()) : Partial<AppMessageDelivery>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<AppMessageDelivery>>("GET", $"api/http/applications/{applicationId}/latest-messages-deliveries{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">

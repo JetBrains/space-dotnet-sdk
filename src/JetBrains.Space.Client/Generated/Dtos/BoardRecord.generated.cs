@@ -33,13 +33,11 @@ namespace JetBrains.Space.Client
     {
         public BoardRecord() { }
         
-        public BoardRecord(string id, bool archived, string name, BoardRecord board, BoardInfo info, BoardWidgetData? data = null, DateTime? from = null, DateTime? to = null)
+        public BoardRecord(string id, bool archived, string name, BoardInfo info, DateTime? from = null, DateTime? to = null)
         {
             Id = id;
             IsArchived = archived;
             Name = name;
-            Board = board;
-            Data = data;
             From = from;
             Info = info;
             To = to;
@@ -73,25 +71,6 @@ namespace JetBrains.Space.Client
         {
             get => _name.GetValue();
             set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<BoardRecord> _board = new PropertyValue<BoardRecord>(nameof(BoardRecord), nameof(Board));
-        
-        [Required]
-        [JsonPropertyName("board")]
-        public BoardRecord Board
-        {
-            get => _board.GetValue();
-            set => _board.SetValue(value);
-        }
-    
-        private PropertyValue<BoardWidgetData?> _data = new PropertyValue<BoardWidgetData?>(nameof(BoardRecord), nameof(Data));
-        
-        [JsonPropertyName("data")]
-        public BoardWidgetData? Data
-        {
-            get => _data.GetValue();
-            set => _data.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _from = new PropertyValue<DateTime?>(nameof(BoardRecord), nameof(From));
@@ -129,8 +108,6 @@ namespace JetBrains.Space.Client
             _id.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
-            _board.SetAccessPath(path, validateHasBeenSet);
-            _data.SetAccessPath(path, validateHasBeenSet);
             _from.SetAccessPath(path, validateHasBeenSet);
             _info.SetAccessPath(path, validateHasBeenSet);
             _to.SetAccessPath(path, validateHasBeenSet);

@@ -28,32 +28,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class IssueIdentifierId
-         : IssueIdentifier, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class HttpHeader
+         : IPropagatePropertyAccessPath
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "IssueIdentifier.Id";
+        public HttpHeader() { }
         
-        public IssueIdentifierId() { }
-        
-        public IssueIdentifierId(string id)
+        public HttpHeader(string name, List<string> values)
         {
-            Id = id;
+            Name = name;
+            Values = values;
         }
         
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(IssueIdentifierId), nameof(Id));
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(HttpHeader), nameof(Name));
         
         [Required]
-        [JsonPropertyName("id")]
-        public string Id
+        [JsonPropertyName("name")]
+        public string Name
         {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(HttpHeader), nameof(Values), new List<string>());
+        
+        [Required]
+        [JsonPropertyName("values")]
+        public List<string> Values
         {
-            _id.SetAccessPath(path, validateHasBeenSet);
+            get => _values.GetValue();
+            set => _values.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _values.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

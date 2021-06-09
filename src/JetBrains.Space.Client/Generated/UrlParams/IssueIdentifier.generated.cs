@@ -28,38 +28,36 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ExecutionStatus
+    [JsonConverter(typeof(UrlParameterConverter))]
+    public abstract class IssueIdentifier : IUrlParameter
     {
-        [EnumMember(Value = "SCHEDULED")]
-        SCHEDULED,
+        public static IssueIdentifier Id(string id)
+            => new IssueIdentifierId(id);
         
-        [EnumMember(Value = "PENDING")]
-        PENDING,
+        public static IssueIdentifier Key(string key)
+            => new IssueIdentifierKey(key);
         
-        [EnumMember(Value = "READY_TO_START")]
-        READYTOSTART,
+        private class IssueIdentifierId : IssueIdentifier
+        {
+            private readonly string _id;
+            
+            public IssueIdentifierId(string id)
+                => _id = id;
+            
+            public override string ToString()
+                => $"id:{_id}";
+        }
         
-        [EnumMember(Value = "RUNNING")]
-        RUNNING,
-        
-        [EnumMember(Value = "FINISHING")]
-        FINISHING,
-        
-        [EnumMember(Value = "FINISHED")]
-        FINISHED,
-        
-        [EnumMember(Value = "TERMINATED")]
-        TERMINATED,
-        
-        [EnumMember(Value = "HIBERNATING")]
-        HIBERNATING,
-        
-        [EnumMember(Value = "HIBERNATED")]
-        HIBERNATED,
-        
-        [EnumMember(Value = "FAILED")]
-        FAILED,
+        private class IssueIdentifierKey : IssueIdentifier
+        {
+            private readonly string _key;
+            
+            public IssueIdentifierKey(string key)
+                => _key = key;
+            
+            public override string ToString()
+                => $"key:{_key}";
+        }
         
     }
     

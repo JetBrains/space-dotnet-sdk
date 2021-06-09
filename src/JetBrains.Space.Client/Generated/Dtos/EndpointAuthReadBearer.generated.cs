@@ -26,16 +26,20 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BoardWidgetDataPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class BoardWidgetDataPartialExtensions
+    public sealed class EndpointAuthReadBearer
+         : EndpointAuthRead, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<BoardWidgetData> WithMax(this Partial<BoardWidgetData> it)
-            => it.AddFieldName("max");
+        [JsonPropertyName("className")]
+        public override string? ClassName => "EndpointAuthRead.Bearer";
         
-        public static Partial<BoardWidgetData> WithPerColumns(this Partial<BoardWidgetData> it)
-            => it.AddFieldName("perColumns");
+        public EndpointAuthReadBearer() { }
         
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

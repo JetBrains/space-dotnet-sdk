@@ -45,6 +45,9 @@ namespace JetBrains.Space.Client.UnfurlDetailsCodeReviewPartialBuilder
         public static Partial<UnfurlDetailsCodeReview> WithDefaultBranchInRepo(this Partial<UnfurlDetailsCodeReview> it)
             => it.AddFieldName("defaultBranchInRepo");
         
+        public static Partial<UnfurlDetailsCodeReview> WithIsHideIfCannotResolve(this Partial<UnfurlDetailsCodeReview> it)
+            => it.AddFieldName("hideIfCannotResolve");
+        
         public static Partial<UnfurlDetailsCodeReview> WithReviewState(this Partial<UnfurlDetailsCodeReview> it)
             => it.AddFieldName("reviewState");
         

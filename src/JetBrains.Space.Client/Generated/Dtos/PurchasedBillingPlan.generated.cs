@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public PurchasedBillingPlan() { }
         
-        public PurchasedBillingPlan(string id, string plan, string billingPeriod, DateTime since, DateTime till, Currency currency, double addUserPrice, double addStoragePrice, double addBandwidthPrice, double addCiCreditPrice, int minActiveUsers, int prepaidUsers, int storagePerUser, int storageOverall, int bandwidthPerUser, int bandwidthOverall, int ciCredits, int ciCreditsReserve, int integrations, int searchHistory, double hardLimitAmount, string? jetSalesId = null, double? ciCreditsRateForExternalWorker = null)
+        public PurchasedBillingPlan(string id, string plan, string billingPeriod, DateTime since, DateTime till, Currency currency, double addUserPrice, double addStoragePrice, double addBandwidthPrice, double addCiCreditPrice, int minActiveUsers, int prepaidUsers, int storagePerUser, int storageOverall, int bandwidthPerUser, int bandwidthOverall, int ciCredits, int ciCreditsReserve, int integrations, int searchHistory, double hardLimitAmount, string? jetSalesId = null, double? ciCreditsRateForExternalWorker = null, bool? recurrentPaymentEnabled = null)
         {
             Id = id;
             JetSalesId = jetSalesId;
@@ -58,6 +58,7 @@ namespace JetBrains.Space.Client
             Integrations = integrations;
             SearchHistory = searchHistory;
             HardLimitAmount = hardLimitAmount;
+            IsRecurrentPaymentEnabled = recurrentPaymentEnabled;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PurchasedBillingPlan), nameof(Id));
@@ -290,6 +291,15 @@ namespace JetBrains.Space.Client
             set => _hardLimitAmount.SetValue(value);
         }
     
+        private PropertyValue<bool?> _recurrentPaymentEnabled = new PropertyValue<bool?>(nameof(PurchasedBillingPlan), nameof(IsRecurrentPaymentEnabled));
+        
+        [JsonPropertyName("recurrentPaymentEnabled")]
+        public bool? IsRecurrentPaymentEnabled
+        {
+            get => _recurrentPaymentEnabled.GetValue();
+            set => _recurrentPaymentEnabled.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -315,6 +325,7 @@ namespace JetBrains.Space.Client
             _integrations.SetAccessPath(path, validateHasBeenSet);
             _searchHistory.SetAccessPath(path, validateHasBeenSet);
             _hardLimitAmount.SetAccessPath(path, validateHasBeenSet);
+            _recurrentPaymentEnabled.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

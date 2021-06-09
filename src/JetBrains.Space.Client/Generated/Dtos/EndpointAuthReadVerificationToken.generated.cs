@@ -26,13 +26,20 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueIdentifierKeyPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class IssueIdentifierKeyPartialExtensions
+    public sealed class EndpointAuthReadVerificationToken
+         : EndpointAuthRead, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<IssueIdentifierKey> WithKey(this Partial<IssueIdentifierKey> it)
-            => it.AddFieldName("key");
+        [JsonPropertyName("className")]
+        public override string? ClassName => "EndpointAuthRead.VerificationToken";
         
+        public EndpointAuthReadVerificationToken() { }
+        
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

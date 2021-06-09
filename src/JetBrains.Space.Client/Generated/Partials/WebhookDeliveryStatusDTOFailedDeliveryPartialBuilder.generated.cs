@@ -26,40 +26,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.WebhookDeliveryStatusDTOFailedDeliveryPartialBuilder
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ExecutionStatus
+    public static class WebhookDeliveryStatusDTOFailedDeliveryPartialExtensions
     {
-        [EnumMember(Value = "SCHEDULED")]
-        SCHEDULED,
+        public static Partial<WebhookDeliveryStatusDTOFailedDelivery> WithDeliveryId(this Partial<WebhookDeliveryStatusDTOFailedDelivery> it)
+            => it.AddFieldName("deliveryId");
         
-        [EnumMember(Value = "PENDING")]
-        PENDING,
+        public static Partial<WebhookDeliveryStatusDTOFailedDelivery> WithResponseCode(this Partial<WebhookDeliveryStatusDTOFailedDelivery> it)
+            => it.AddFieldName("responseCode");
         
-        [EnumMember(Value = "READY_TO_START")]
-        READYTOSTART,
+        public static Partial<WebhookDeliveryStatusDTOFailedDelivery> WithMessage(this Partial<WebhookDeliveryStatusDTOFailedDelivery> it)
+            => it.AddFieldName("message");
         
-        [EnumMember(Value = "RUNNING")]
-        RUNNING,
-        
-        [EnumMember(Value = "FINISHING")]
-        FINISHING,
-        
-        [EnumMember(Value = "FINISHED")]
-        FINISHED,
-        
-        [EnumMember(Value = "TERMINATED")]
-        TERMINATED,
-        
-        [EnumMember(Value = "HIBERNATING")]
-        HIBERNATING,
-        
-        [EnumMember(Value = "HIBERNATED")]
-        HIBERNATED,
-        
-        [EnumMember(Value = "FAILED")]
-        FAILED,
+        public static Partial<WebhookDeliveryStatusDTOFailedDelivery> WithSentTime(this Partial<WebhookDeliveryStatusDTOFailedDelivery> it)
+            => it.AddFieldName("sentTime");
         
     }
     

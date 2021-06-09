@@ -28,32 +28,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class IssueIdentifierKey
-         : IssueIdentifier, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class EndpointAuthReadSSLKeystore
+         : EndpointAuthRead, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public override string? ClassName => "IssueIdentifier.Key";
+        public override string? ClassName => "EndpointAuthRead.SSLKeystore";
         
-        public IssueIdentifierKey() { }
+        public EndpointAuthReadSSLKeystore() { }
         
-        public IssueIdentifierKey(string key)
+        public EndpointAuthReadSSLKeystore(string sslKeystore)
         {
-            Key = key;
+            SslKeystore = sslKeystore;
         }
         
-        private PropertyValue<string> _key = new PropertyValue<string>(nameof(IssueIdentifierKey), nameof(Key));
+        private PropertyValue<string> _sslKeystore = new PropertyValue<string>(nameof(EndpointAuthReadSSLKeystore), nameof(SslKeystore));
         
         [Required]
-        [JsonPropertyName("key")]
-        public string Key
+        [JsonPropertyName("sslKeystore")]
+        public string SslKeystore
         {
-            get => _key.GetValue();
-            set => _key.SetValue(value);
+            get => _sslKeystore.GetValue();
+            set => _sslKeystore.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _key.SetAccessPath(path, validateHasBeenSet);
+            _sslKeystore.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

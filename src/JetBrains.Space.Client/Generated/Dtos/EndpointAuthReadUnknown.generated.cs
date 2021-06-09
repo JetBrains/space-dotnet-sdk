@@ -28,39 +28,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ExecutionStatus
+    public sealed class EndpointAuthReadUnknown
+         : EndpointAuthRead, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        [EnumMember(Value = "SCHEDULED")]
-        SCHEDULED,
+        [JsonPropertyName("className")]
+        public override string? ClassName => "EndpointAuthRead.Unknown";
         
-        [EnumMember(Value = "PENDING")]
-        PENDING,
+        public EndpointAuthReadUnknown() { }
         
-        [EnumMember(Value = "READY_TO_START")]
-        READYTOSTART,
-        
-        [EnumMember(Value = "RUNNING")]
-        RUNNING,
-        
-        [EnumMember(Value = "FINISHING")]
-        FINISHING,
-        
-        [EnumMember(Value = "FINISHED")]
-        FINISHED,
-        
-        [EnumMember(Value = "TERMINATED")]
-        TERMINATED,
-        
-        [EnumMember(Value = "HIBERNATING")]
-        HIBERNATING,
-        
-        [EnumMember(Value = "HIBERNATED")]
-        HIBERNATED,
-        
-        [EnumMember(Value = "FAILED")]
-        FAILED,
-        
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

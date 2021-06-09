@@ -26,27 +26,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.UnfurlDetailsPackageDetailsPartialBuilder
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class IssueIdentifier
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class UnfurlDetailsPackageDetailsPartialExtensions
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "IssueIdentifier";
+        public static Partial<UnfurlDetailsPackageDetails> WithRepoRef(this Partial<UnfurlDetailsPackageDetails> it)
+            => it.AddFieldName("repoRef");
         
-        public static IssueIdentifierId Id(string id)
-            => new IssueIdentifierId(id: id);
+        public static Partial<UnfurlDetailsPackageDetails> WithRepoRef(this Partial<UnfurlDetailsPackageDetails> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
+            => it.AddFieldName("repoRef", partialBuilder(new Partial<ProjectPackageRepository>(it)));
         
-        public static IssueIdentifierKey Key(string key)
-            => new IssueIdentifierKey(key: key);
+        public static Partial<UnfurlDetailsPackageDetails> WithPackageName(this Partial<UnfurlDetailsPackageDetails> it)
+            => it.AddFieldName("packageName");
         
-        public IssueIdentifier() { }
+        public static Partial<UnfurlDetailsPackageDetails> WithVersion(this Partial<UnfurlDetailsPackageDetails> it)
+            => it.AddFieldName("version");
         
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
     
 }

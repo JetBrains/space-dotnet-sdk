@@ -28,39 +28,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ExecutionStatus
+    public sealed class EndpointAuthReadBasic
+         : EndpointAuthRead, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        [EnumMember(Value = "SCHEDULED")]
-        SCHEDULED,
+        [JsonPropertyName("className")]
+        public override string? ClassName => "EndpointAuthRead.Basic";
         
-        [EnumMember(Value = "PENDING")]
-        PENDING,
+        public EndpointAuthReadBasic() { }
         
-        [EnumMember(Value = "READY_TO_START")]
-        READYTOSTART,
+        public EndpointAuthReadBasic(string username)
+        {
+            Username = username;
+        }
         
-        [EnumMember(Value = "RUNNING")]
-        RUNNING,
+        private PropertyValue<string> _username = new PropertyValue<string>(nameof(EndpointAuthReadBasic), nameof(Username));
         
-        [EnumMember(Value = "FINISHING")]
-        FINISHING,
-        
-        [EnumMember(Value = "FINISHED")]
-        FINISHED,
-        
-        [EnumMember(Value = "TERMINATED")]
-        TERMINATED,
-        
-        [EnumMember(Value = "HIBERNATING")]
-        HIBERNATING,
-        
-        [EnumMember(Value = "HIBERNATED")]
-        HIBERNATED,
-        
-        [EnumMember(Value = "FAILED")]
-        FAILED,
-        
+        [Required]
+        [JsonPropertyName("username")]
+        public string Username
+        {
+            get => _username.GetValue();
+            set => _username.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _username.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

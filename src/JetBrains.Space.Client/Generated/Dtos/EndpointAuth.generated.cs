@@ -28,39 +28,31 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ExecutionStatus
+    public sealed class EndpointAuth
+         : IPropagatePropertyAccessPath
     {
-        [EnumMember(Value = "SCHEDULED")]
-        SCHEDULED,
+        public EndpointAuth() { }
         
-        [EnumMember(Value = "PENDING")]
-        PENDING,
+        public EndpointAuth(List<EndpointAuthRead> auth)
+        {
+            Auth = auth;
+        }
         
-        [EnumMember(Value = "READY_TO_START")]
-        READYTOSTART,
+        private PropertyValue<List<EndpointAuthRead>> _auth = new PropertyValue<List<EndpointAuthRead>>(nameof(EndpointAuth), nameof(Auth), new List<EndpointAuthRead>());
         
-        [EnumMember(Value = "RUNNING")]
-        RUNNING,
-        
-        [EnumMember(Value = "FINISHING")]
-        FINISHING,
-        
-        [EnumMember(Value = "FINISHED")]
-        FINISHED,
-        
-        [EnumMember(Value = "TERMINATED")]
-        TERMINATED,
-        
-        [EnumMember(Value = "HIBERNATING")]
-        HIBERNATING,
-        
-        [EnumMember(Value = "HIBERNATED")]
-        HIBERNATED,
-        
-        [EnumMember(Value = "FAILED")]
-        FAILED,
-        
+        [Required]
+        [JsonPropertyName("auth")]
+        public List<EndpointAuthRead> Auth
+        {
+            get => _auth.GetValue();
+            set => _auth.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _auth.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }
