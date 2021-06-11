@@ -130,7 +130,6 @@ namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
                         var newExpiresAt = DateTime.UtcNow + TimeSpan.FromSeconds(spaceToken.GetInt32Value("expires_in"));
                         context.Properties.UpdateTokenValue("expires_at", newExpiresAt.ToString("o", CultureInfo.InvariantCulture));
 
-                        // ReSharper disable once RedundantSuppressNullableWarningExpression
                         await context.HttpContext.SignInAsync(context.Principal!, context.Properties);
                     }
                     finally

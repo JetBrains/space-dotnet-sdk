@@ -58,7 +58,6 @@ namespace JetBrains.Space.AspNetCore.Authentication
             context.RunClaimActions();
             await Events.CreatingTicket(context);
             
-            // ReSharper disable once RedundantSuppressNullableWarningExpression
             return new AuthenticationTicket(context.Principal!, context.Properties, Scheme.Name);
         }
 
