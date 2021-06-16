@@ -57,6 +57,11 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                     parameterConditionBuilder.Append($"{csharpVariableName} != null");
                 }
                 
+                if (apiEndpointParameter.Field.IsPrimitiveAndRequiresAddedNullability())
+                {
+                    parameterConditionBuilder.Append($"{csharpVariableName} != null");
+                }
+                
                 // Build value generator
                 if (apiEndpointParameter.Field.Type.IsCSharpReferenceType())
                 {

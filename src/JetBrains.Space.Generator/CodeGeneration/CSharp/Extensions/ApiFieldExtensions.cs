@@ -69,6 +69,11 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
                 }
             } 
             
+            if (subject.IsPrimitiveAndRequiresAddedNullability())
+            {
+                return CSharpExpression.NullLiteral;
+            }
+            
             return subject.Type.Nullable 
                 ? CSharpExpression.NullLiteral 
                 : null;
@@ -76,6 +81,11 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
         
         public static string? ToCSharpDefaultValueForAssignment(this ApiField subject, CodeGenerationContext context)
         {
+            if (subject.IsPrimitiveAndRequiresAddedNullability())
+            {
+                return "string.Empty";
+            }
+
             if (subject.DefaultValue == null) return null;
             
             if (subject.DefaultValue is ApiDefaultValue.Const.EnumEntry enumEntry)
@@ -125,6 +135,16 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
             }
 
             return null;
+        }
+        
+        public static bool IsPrimitiveAndRequiresAddedNullability(this ApiField subject)
+        {
+            // For optional strings, add nullability if not present
+            return subject.Optional && 
+                   !subject.Type.Nullable &&
+                   subject.DefaultValue == null && 
+                   subject.Type is ApiFieldType.Primitive primitiveType &&
+                   primitiveType.ToCSharpPrimitiveType() == CSharpType.String;
         }
     }
 }

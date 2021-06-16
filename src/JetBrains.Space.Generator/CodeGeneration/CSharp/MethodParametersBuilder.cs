@@ -52,6 +52,11 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
 
                 if (!field.Type.Nullable)
                 {
+                    if (field.IsPrimitiveAndRequiresAddedNullability())
+                    {
+                        parameterType += "?";
+                    }
+                    
                     if (field.DefaultValue is ApiDefaultValue.Collection ||
                         field.DefaultValue is ApiDefaultValue.Map)
                     {
@@ -83,6 +88,11 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
 
                 if (!parameter.Field.Type.Nullable)
                 {
+                    if (parameter.Field.IsPrimitiveAndRequiresAddedNullability())
+                    {
+                        parameterType += "?";
+                    }
+                    
                     if (parameter.Field.DefaultValue is ApiDefaultValue.Collection ||
                         parameter.Field.DefaultValue is ApiDefaultValue.Map)
                     {
