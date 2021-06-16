@@ -28,12 +28,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public interface ClientSideActionContext
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class IssueCommits
+         : CommitLinksContainer, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static NewMergeRequestFromIssueActionContext NewMergeRequestFromIssueActionContext(ProjectKey projectKey, string repository, string commitId, int issueNumber, ProjectReposRecord projectRepos, CommitLinksContainer issueCommitsRef)
-            => new NewMergeRequestFromIssueActionContext(projectKey: projectKey, repository: repository, commitId: commitId, issueNumber: issueNumber, projectRepos: projectRepos, issueCommitsRef: issueCommitsRef);
+        [JsonPropertyName("className")]
+        public  string? ClassName => "IssueCommits";
         
+        public IssueCommits() { }
+        
+        public IssueCommits(string id)
+        {
+            Id = id;
+        }
+        
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(IssueCommits), nameof(Id));
+        
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id
+        {
+            get => _id.GetValue();
+            set => _id.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

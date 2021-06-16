@@ -30,9 +30,6 @@ namespace JetBrains.Space.Client.MCClientSideActionPartialBuilder
 {
     public static class MCClientSideActionPartialExtensions
     {
-        public static Partial<MCClientSideAction> WithFallbackUrl(this Partial<MCClientSideAction> it)
-            => it.AddFieldName("fallbackUrl");
-        
         public static Partial<MCClientSideAction> WithContext(this Partial<MCClientSideAction> it)
             => it.AddFieldName("context");
         

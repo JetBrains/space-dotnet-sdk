@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public ReviewerParam() { }
         
-        public ReviewerParam(string profileId, CodeReviewParticipantQualityGateSlot? qualityGateSlot = null)
+        public ReviewerParam(string profileId, CodeReviewParticipantSlotBase? qualityGateSlot = null)
         {
             ProfileId = profileId;
             QualityGateSlot = qualityGateSlot;
@@ -49,10 +49,10 @@ namespace JetBrains.Space.Client
             set => _profileId.SetValue(value);
         }
     
-        private PropertyValue<CodeReviewParticipantQualityGateSlot?> _qualityGateSlot = new PropertyValue<CodeReviewParticipantQualityGateSlot?>(nameof(ReviewerParam), nameof(QualityGateSlot));
+        private PropertyValue<CodeReviewParticipantSlotBase?> _qualityGateSlot = new PropertyValue<CodeReviewParticipantSlotBase?>(nameof(ReviewerParam), nameof(QualityGateSlot));
         
         [JsonPropertyName("qualityGateSlot")]
-        public CodeReviewParticipantQualityGateSlot? QualityGateSlot
+        public CodeReviewParticipantSlotBase? QualityGateSlot
         {
             get => _qualityGateSlot.GetValue();
             set => _qualityGateSlot.SetValue(value);

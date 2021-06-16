@@ -33,13 +33,14 @@ namespace JetBrains.Space.Client
     {
         public CodeReviewParticipant() { }
         
-        public CodeReviewParticipant(TDMemberProfile user, CodeReviewParticipantRole role, ReviewerState? state = null, bool? theirTurn = null, List<CodeReviewParticipantQualityGateSlot>? qualityGateSlots = null, DateTime? addedAt = null)
+        public CodeReviewParticipant(TDMemberProfile user, CodeReviewParticipantRole role, ReviewerState? state = null, bool? theirTurn = null, List<CodeReviewParticipantQualityGateSlot>? qualityGateSlots = null, List<CodeReviewParticipantCodeOwnerSlot>? codeOwnerSlots = null, DateTime? addedAt = null)
         {
             User = user;
             Role = role;
             State = state;
             IsTheirTurn = theirTurn;
             QualityGateSlots = qualityGateSlots;
+            CodeOwnerSlots = codeOwnerSlots;
             AddedAt = addedAt;
         }
         
@@ -90,6 +91,15 @@ namespace JetBrains.Space.Client
             set => _qualityGateSlots.SetValue(value);
         }
     
+        private PropertyValue<List<CodeReviewParticipantCodeOwnerSlot>?> _codeOwnerSlots = new PropertyValue<List<CodeReviewParticipantCodeOwnerSlot>?>(nameof(CodeReviewParticipant), nameof(CodeOwnerSlots));
+        
+        [JsonPropertyName("codeOwnerSlots")]
+        public List<CodeReviewParticipantCodeOwnerSlot>? CodeOwnerSlots
+        {
+            get => _codeOwnerSlots.GetValue();
+            set => _codeOwnerSlots.SetValue(value);
+        }
+    
         private PropertyValue<DateTime?> _addedAt = new PropertyValue<DateTime?>(nameof(CodeReviewParticipant), nameof(AddedAt));
         
         [JsonPropertyName("addedAt")]
@@ -107,6 +117,7 @@ namespace JetBrains.Space.Client
             _state.SetAccessPath(path, validateHasBeenSet);
             _theirTurn.SetAccessPath(path, validateHasBeenSet);
             _qualityGateSlots.SetAccessPath(path, validateHasBeenSet);
+            _codeOwnerSlots.SetAccessPath(path, validateHasBeenSet);
             _addedAt.SetAccessPath(path, validateHasBeenSet);
         }
     

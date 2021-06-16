@@ -28,12 +28,33 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public interface ClientSideActionContext
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class AutonumberCFValue
+         : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static NewMergeRequestFromIssueActionContext NewMergeRequestFromIssueActionContext(ProjectKey projectKey, string repository, string commitId, int issueNumber, ProjectReposRecord projectRepos, CommitLinksContainer issueCommitsRef)
-            => new NewMergeRequestFromIssueActionContext(projectKey: projectKey, repository: repository, commitId: commitId, issueNumber: issueNumber, projectRepos: projectRepos, issueCommitsRef: issueCommitsRef);
+        [JsonPropertyName("className")]
+        public override string? ClassName => "AutonumberCFValue";
         
+        public AutonumberCFValue() { }
+        
+        public AutonumberCFValue(string? value = null)
+        {
+            Value = value;
+        }
+        
+        private PropertyValue<string?> _value = new PropertyValue<string?>(nameof(AutonumberCFValue), nameof(Value));
+        
+        [JsonPropertyName("value")]
+        public string? Value
+        {
+            get => _value.GetValue();
+            set => _value.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _value.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

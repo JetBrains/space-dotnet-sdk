@@ -90,6 +90,12 @@ namespace JetBrains.Space.Client.CustomFieldPartialBuilder
         public static Partial<CustomField> WithIsDeleted(this Partial<CustomField> it)
             => it.AddFieldName("deleted");
         
+        public static Partial<CustomField> WithParameters(this Partial<CustomField> it)
+            => it.AddFieldName("parameters");
+        
+        public static Partial<CustomField> WithParameters(this Partial<CustomField> it, Func<Partial<CFParameters>, Partial<CFParameters>> partialBuilder)
+            => it.AddFieldName("parameters", partialBuilder(new Partial<CFParameters>(it)));
+        
         public static Partial<CustomField> WithIsArchived(this Partial<CustomField> it)
             => it.AddFieldName("archived");
         

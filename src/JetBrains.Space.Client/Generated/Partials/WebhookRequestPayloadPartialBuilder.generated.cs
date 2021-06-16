@@ -45,6 +45,9 @@ namespace JetBrains.Space.Client.WebhookRequestPayloadPartialBuilder
         public static Partial<WebhookRequestPayload> WithOrgId(this Partial<WebhookRequestPayload> it)
             => it.AddFieldName("orgId");
         
+        public static Partial<WebhookRequestPayload> WithWebhookId(this Partial<WebhookRequestPayload> it)
+            => it.AddFieldName("webhookId");
+        
         public static Partial<WebhookRequestPayload> WithPayload(this Partial<WebhookRequestPayload> it)
             => it.AddFieldName("payload");
         

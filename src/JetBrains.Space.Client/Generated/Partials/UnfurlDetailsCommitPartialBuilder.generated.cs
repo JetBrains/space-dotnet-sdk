@@ -60,6 +60,12 @@ namespace JetBrains.Space.Client.UnfurlDetailsCommitPartialBuilder
         public static Partial<UnfurlDetailsCommit> WithAuthorProfile(this Partial<UnfurlDetailsCommit> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
             => it.AddFieldName("authorProfile", partialBuilder(new Partial<TDMemberProfile>(it)));
         
+        public static Partial<UnfurlDetailsCommit> WithIsHideAuthorAndDate(this Partial<UnfurlDetailsCommit> it)
+            => it.AddFieldName("hideAuthorAndDate");
+        
+        public static Partial<UnfurlDetailsCommit> WithIsWithBranchTags(this Partial<UnfurlDetailsCommit> it)
+            => it.AddFieldName("withBranchTags");
+        
     }
     
 }

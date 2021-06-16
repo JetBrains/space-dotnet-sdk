@@ -49,8 +49,8 @@ namespace JetBrains.Space.Client
         public static MessagePayload MessagePayload(MessageContext message, string userId, string? accessToken = null, string? verificationToken = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
             => new MessagePayload(message: message, userId: userId, accessToken: accessToken, verificationToken: verificationToken, serverUrl: serverUrl, clientId: clientId, orgId: orgId);
         
-        public static WebhookRequestPayload WebhookRequestPayload(WebhookEvent payload, string? accessToken = null, string? verificationToken = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
-            => new WebhookRequestPayload(payload: payload, accessToken: accessToken, verificationToken: verificationToken, serverUrl: serverUrl, clientId: clientId, orgId: orgId);
+        public static WebhookRequestPayload WebhookRequestPayload(string webhookId, WebhookEvent payload, string? accessToken = null, string? verificationToken = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
+            => new WebhookRequestPayload(webhookId: webhookId, payload: payload, accessToken: accessToken, verificationToken: verificationToken, serverUrl: serverUrl, clientId: clientId, orgId: orgId);
         
     }
     

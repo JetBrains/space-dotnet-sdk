@@ -28,11 +28,11 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public interface ClientSideActionContext
+    public interface CommitLinksContainer
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static NewMergeRequestFromIssueActionContext NewMergeRequestFromIssueActionContext(ProjectKey projectKey, string repository, string commitId, int issueNumber, ProjectReposRecord projectRepos, CommitLinksContainer issueCommitsRef)
-            => new NewMergeRequestFromIssueActionContext(projectKey: projectKey, repository: repository, commitId: commitId, issueNumber: issueNumber, projectRepos: projectRepos, issueCommitsRef: issueCommitsRef);
+        public static IssueCommits IssueCommits(string id)
+            => new IssueCommits(id: id);
         
     }
     

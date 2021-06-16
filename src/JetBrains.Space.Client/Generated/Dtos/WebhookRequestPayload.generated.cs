@@ -36,13 +36,14 @@ namespace JetBrains.Space.Client
         
         public WebhookRequestPayload() { }
         
-        public WebhookRequestPayload(WebhookEvent payload, string? accessToken = null, string? verificationToken = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
+        public WebhookRequestPayload(string webhookId, WebhookEvent payload, string? accessToken = null, string? verificationToken = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
         {
             AccessToken = accessToken;
             VerificationToken = verificationToken;
             ServerUrl = serverUrl;
             ClientId = clientId;
             OrgId = orgId;
+            WebhookId = webhookId;
             Payload = payload;
         }
         
@@ -91,6 +92,16 @@ namespace JetBrains.Space.Client
             set => _orgId.SetValue(value);
         }
     
+        private PropertyValue<string> _webhookId = new PropertyValue<string>(nameof(WebhookRequestPayload), nameof(WebhookId));
+        
+        [Required]
+        [JsonPropertyName("webhookId")]
+        public string WebhookId
+        {
+            get => _webhookId.GetValue();
+            set => _webhookId.SetValue(value);
+        }
+    
         private PropertyValue<WebhookEvent> _payload = new PropertyValue<WebhookEvent>(nameof(WebhookRequestPayload), nameof(Payload));
         
         [Required]
@@ -108,6 +119,7 @@ namespace JetBrains.Space.Client
             _serverUrl.SetAccessPath(path, validateHasBeenSet);
             _clientId.SetAccessPath(path, validateHasBeenSet);
             _orgId.SetAccessPath(path, validateHasBeenSet);
+            _webhookId.SetAccessPath(path, validateHasBeenSet);
             _payload.SetAccessPath(path, validateHasBeenSet);
         }
     

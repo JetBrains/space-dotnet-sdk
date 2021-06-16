@@ -33,12 +33,12 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest() { }
         
-        public TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest(string comment = "")
+        public TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest(string? comment = null)
         {
-            Comment = comment;
+            Comment = (comment ?? string.Empty);
         }
         
-        private PropertyValue<string> _comment = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest), nameof(Comment));
+        private PropertyValue<string> _comment = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest), nameof(Comment), string.Empty);
         
         [JsonPropertyName("comment")]
         public string Comment

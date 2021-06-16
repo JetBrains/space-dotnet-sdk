@@ -28,12 +28,20 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public interface ClientSideActionContext
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public abstract class CFParameters
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static NewMergeRequestFromIssueActionContext NewMergeRequestFromIssueActionContext(ProjectKey projectKey, string repository, string commitId, int issueNumber, ProjectReposRecord projectRepos, CommitLinksContainer issueCommitsRef)
-            => new NewMergeRequestFromIssueActionContext(projectKey: projectKey, repository: repository, commitId: commitId, issueNumber: issueNumber, projectRepos: projectRepos, issueCommitsRef: issueCommitsRef);
+        [JsonPropertyName("className")]
+        public virtual string? ClassName => "CFParameters";
         
+        public static AutonumberCFParameters Autonumber(string prefix, string suffix)
+            => new AutonumberCFParameters(prefix: prefix, suffix: suffix);
+        
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

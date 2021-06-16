@@ -751,10 +751,10 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<List<TDLocation>> GetAllLocationsAsync(string query = "", bool withArchived = false, string? type = null, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<TDLocation>> GetAllLocationsAsync(string? query = null, bool withArchived = false, string? type = null, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("query", query);
+                if (query != null) queryParameters.Append("query", (query ?? string.Empty));
                 if (type != null) queryParameters.Append("type", type);
                 queryParameters.Append("withArchived", withArchived.ToString("l"));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default()).ToString());
@@ -1506,12 +1506,12 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Batch<TDMemberProfile>> GetAllProfilesAsync(string query = "", bool reportPastMembers = false, bool meOnTop = false, string? skip = null, int? top = 100, bool? reportFutureMembers = false, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<TDMemberProfile>> GetAllProfilesAsync(string? query = null, bool reportPastMembers = false, bool meOnTop = false, string? skip = null, int? top = 100, bool? reportFutureMembers = false, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (skip != null) queryParameters.Append("$skip", skip);
                 if (top != null) queryParameters.Append("$top", top?.ToString());
-                queryParameters.Append("query", query);
+                if (query != null) queryParameters.Append("query", (query ?? string.Empty));
                 queryParameters.Append("reportPastMembers", reportPastMembers.ToString("l"));
                 if (reportFutureMembers != null) queryParameters.Append("reportFutureMembers", reportFutureMembers?.ToString("l"));
                 if (teamId != null) queryParameters.Append("teamId", teamId);
@@ -1536,7 +1536,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public IAsyncEnumerable<TDMemberProfile> GetAllProfilesAsyncEnumerable(string query = "", bool reportPastMembers = false, bool meOnTop = false, string? skip = null, int? top = 100, bool? reportFutureMembers = false, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+            public IAsyncEnumerable<TDMemberProfile> GetAllProfilesAsyncEnumerable(string? query = null, bool reportPastMembers = false, bool meOnTop = false, string? skip = null, int? top = 100, bool? reportFutureMembers = false, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProfilesAsync(query: query, reportPastMembers: reportPastMembers, meOnTop: meOnTop, top: top, reportFutureMembers: reportFutureMembers, teamId: teamId, locationId: locationId, roleId: roleId, order: order, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
         
             /// <summary>
@@ -2215,14 +2215,14 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Update an existing checklist associated with the profile.
                 /// </summary>
-                public async Task UpdateChecklistAsync(ProfileIdentifier profile, string checklistId, string name, string? description = null, CancellationToken cancellationToken = default)
+                public async Task UpdateChecklistAsync(ProfileIdentifier profile, string checklistId, string? name = null, string? description = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
                     await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/checklists/{checklistId}{queryParameters.ToQueryString()}", 
                         new TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest
                         { 
-                            Name = name,
+                            Name = (name ?? string.Empty),
                             Description = description,
                         }, cancellationToken);
                 }
@@ -2310,7 +2310,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<GpgKeyData> CreateGpgKeyAsync(ProfileIdentifier profile, string key, string comment = "", Func<Partial<GpgKeyData>, Partial<GpgKeyData>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<GpgKeyData> CreateGpgKeyAsync(ProfileIdentifier profile, string key, string? comment = null, Func<Partial<GpgKeyData>, Partial<GpgKeyData>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<GpgKeyData>()) : Partial<GpgKeyData>.Default()).ToString());
@@ -2319,7 +2319,7 @@ namespace JetBrains.Space.Client
                         new TeamDirectoryProfilesForProfileGpgKeysPostRequest
                         { 
                             Key = key,
-                            Comment = comment,
+                            Comment = (comment ?? string.Empty),
                         }, cancellationToken);
                 }
                 
@@ -2344,14 +2344,14 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task UpdateGpgKeyAsync(ProfileIdentifier profile, string fingerprint, string comment = "", CancellationToken cancellationToken = default)
+                public async Task UpdateGpgKeyAsync(ProfileIdentifier profile, string fingerprint, string? comment = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
                     await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/gpg-keys/{fingerprint}{queryParameters.ToQueryString()}", 
                         new TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest
                         { 
-                            Comment = comment,
+                            Comment = (comment ?? string.Empty),
                         }, cancellationToken);
                 }
                 
@@ -2775,7 +2775,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task CreateSshKeyAsync(ProfileIdentifier profile, string key, string comment = "", CancellationToken cancellationToken = default)
+                public async Task CreateSshKeyAsync(ProfileIdentifier profile, string key, string? comment = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -2783,7 +2783,7 @@ namespace JetBrains.Space.Client
                         new TeamDirectoryProfilesForProfileSshKeysPostRequest
                         { 
                             Key = key,
-                            Comment = comment,
+                            Comment = (comment ?? string.Empty),
                         }, cancellationToken);
                 }
                 
@@ -2974,10 +2974,10 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<List<TDRole>> GetAllRolesAsync(string query = "", bool withArchived = false, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<TDRole>> GetAllRolesAsync(string? query = null, bool withArchived = false, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("query", query);
+                if (query != null) queryParameters.Append("query", (query ?? string.Empty));
                 queryParameters.Append("withArchived", withArchived.ToString("l"));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default()).ToString());
                 
@@ -3184,12 +3184,12 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Batch<TDTeam>> GetAllTeamsAsync(string query = "", bool withArchived = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDTeam>>, Partial<Batch<TDTeam>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<TDTeam>> GetAllTeamsAsync(string? query = null, bool withArchived = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDTeam>>, Partial<Batch<TDTeam>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (skip != null) queryParameters.Append("$skip", skip);
                 if (top != null) queryParameters.Append("$top", top?.ToString());
-                queryParameters.Append("query", query);
+                if (query != null) queryParameters.Append("query", (query ?? string.Empty));
                 queryParameters.Append("withArchived", withArchived.ToString("l"));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDTeam>>()) : Partial<Batch<TDTeam>>.Default()).ToString());
                 
@@ -3208,7 +3208,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public IAsyncEnumerable<TDTeam> GetAllTeamsAsyncEnumerable(string query = "", bool withArchived = false, string? skip = null, int? top = 100, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+            public IAsyncEnumerable<TDTeam> GetAllTeamsAsyncEnumerable(string? query = null, bool withArchived = false, string? skip = null, int? top = 100, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllTeamsAsync(query: query, withArchived: withArchived, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDTeam>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDTeam>.Default())), skip, cancellationToken);
         
             /// <summary>
@@ -3242,7 +3242,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDTeam> UpdateTeamAsync(string id, string name, string? description = null, List<string>? emails = null, string? parentId = null, string? defaultManager = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDTeam> UpdateTeamAsync(string id, string? name = null, string? description = null, List<string>? emails = null, string? parentId = null, string? defaultManager = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
@@ -3250,7 +3250,7 @@ namespace JetBrains.Space.Client
                 return await _connection.RequestResourceAsync<TeamDirectoryTeamsForIdPatchRequest, TDTeam>("PATCH", $"api/http/team-directory/teams/{id}{queryParameters.ToQueryString()}", 
                     new TeamDirectoryTeamsForIdPatchRequest
                     { 
-                        Name = name,
+                        Name = (name ?? string.Empty),
                         Description = description,
                         Emails = emails,
                         ParentId = parentId,
@@ -3315,12 +3315,12 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Get or search direct members of a given team.
                 /// </summary>
-                public async Task<Batch<TDMemberProfile>> GetAllDirectMembersAsync(string id, string query = "", string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<TDMemberProfile>> GetAllDirectMembersAsync(string id, string? query = null, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
-                    queryParameters.Append("query", query);
+                    if (query != null) queryParameters.Append("query", (query ?? string.Empty));
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
                     
                     return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/team-directory/teams/{id}/direct-members{queryParameters.ToQueryString()}", cancellationToken);
@@ -3330,7 +3330,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Get or search direct members of a given team.
                 /// </summary>
-                public IAsyncEnumerable<TDMemberProfile> GetAllDirectMembersAsyncEnumerable(string id, string query = "", string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+                public IAsyncEnumerable<TDMemberProfile> GetAllDirectMembersAsyncEnumerable(string id, string? query = null, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllDirectMembersAsync(id: id, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
             
             }

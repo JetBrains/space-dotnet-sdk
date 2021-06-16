@@ -33,10 +33,10 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryProfilesForProfileGpgKeysPostRequest() { }
         
-        public TeamDirectoryProfilesForProfileGpgKeysPostRequest(string key, string comment = "")
+        public TeamDirectoryProfilesForProfileGpgKeysPostRequest(string key, string? comment = null)
         {
             Key = key;
-            Comment = comment;
+            Comment = (comment ?? string.Empty);
         }
         
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileGpgKeysPostRequest), nameof(Key));
@@ -49,7 +49,7 @@ namespace JetBrains.Space.Client
             set => _key.SetValue(value);
         }
     
-        private PropertyValue<string> _comment = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileGpgKeysPostRequest), nameof(Comment));
+        private PropertyValue<string> _comment = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileGpgKeysPostRequest), nameof(Comment), string.Empty);
         
         [JsonPropertyName("comment")]
         public string Comment

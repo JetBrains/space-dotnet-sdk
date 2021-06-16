@@ -36,8 +36,8 @@ namespace JetBrains.Space.Client.ReviewerParamPartialBuilder
         public static Partial<ReviewerParam> WithQualityGateSlot(this Partial<ReviewerParam> it)
             => it.AddFieldName("qualityGateSlot");
         
-        public static Partial<ReviewerParam> WithQualityGateSlot(this Partial<ReviewerParam> it, Func<Partial<CodeReviewParticipantQualityGateSlot>, Partial<CodeReviewParticipantQualityGateSlot>> partialBuilder)
-            => it.AddFieldName("qualityGateSlot", partialBuilder(new Partial<CodeReviewParticipantQualityGateSlot>(it)));
+        public static Partial<ReviewerParam> WithQualityGateSlot(this Partial<ReviewerParam> it, Func<Partial<CodeReviewParticipantSlotBase>, Partial<CodeReviewParticipantSlotBase>> partialBuilder)
+            => it.AddFieldName("qualityGateSlot", partialBuilder(new Partial<CodeReviewParticipantSlotBase>(it)));
         
     }
     

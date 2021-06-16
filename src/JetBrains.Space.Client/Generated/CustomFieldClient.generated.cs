@@ -167,7 +167,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Create custom field for a type.
             /// </summary>
-            public async Task<CustomField> CreateFieldAsync(string typeKey, string name, CFType type, bool required, bool @private, CFInputValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null, CFEnumValuesModification? openEnumValuesModification = null, Func<Partial<CustomField>, Partial<CustomField>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<CustomField> CreateFieldAsync(string typeKey, string name, CFType type, bool required, bool @private, CFInputValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null, CFEnumValuesModification? openEnumValuesModification = null, CFParameters? cfParameters = null, Func<Partial<CustomField>, Partial<CustomField>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomField>()) : Partial<CustomField>.Default()).ToString());
@@ -184,6 +184,7 @@ namespace JetBrains.Space.Client
                         Access = access,
                         DefaultValue = defaultValue,
                         OpenEnumValuesModification = openEnumValuesModification,
+                        CfParameters = cfParameters,
                         Scope = scope,
                     }, cancellationToken);
             }
@@ -252,7 +253,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Update custom field for a type. Optional parameters will be ignored when not specified, and updated otherwise.
             /// </summary>
-            public async Task UpdateFieldAsync(string typeKey, string id, ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFInputValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null, CancellationToken cancellationToken = default)
+            public async Task UpdateFieldAsync(string typeKey, string id, ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFInputValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null, CFParameters? cfParameters = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -268,6 +269,7 @@ namespace JetBrains.Space.Client
                         DefaultValue = defaultValue,
                         EnumValues = enumValues,
                         OpenEnumValuesModification = openEnumValuesModification,
+                        CfParameters = cfParameters,
                         Scope = scope,
                     }, cancellationToken);
             }

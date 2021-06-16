@@ -26,13 +26,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.AutonumberCFParametersPartialBuilder
 {
-    public interface ClientSideActionContext
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class AutonumberCFParametersPartialExtensions
     {
-        public static NewMergeRequestFromIssueActionContext NewMergeRequestFromIssueActionContext(ProjectKey projectKey, string repository, string commitId, int issueNumber, ProjectReposRecord projectRepos, CommitLinksContainer issueCommitsRef)
-            => new NewMergeRequestFromIssueActionContext(projectKey: projectKey, repository: repository, commitId: commitId, issueNumber: issueNumber, projectRepos: projectRepos, issueCommitsRef: issueCommitsRef);
+        public static Partial<AutonumberCFParameters> WithPrefix(this Partial<AutonumberCFParameters> it)
+            => it.AddFieldName("prefix");
+        
+        public static Partial<AutonumberCFParameters> WithSuffix(this Partial<AutonumberCFParameters> it)
+            => it.AddFieldName("suffix");
         
     }
     

@@ -28,40 +28,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class TeamDirectoryProfilesForProfileSshKeysPostRequest
+    public sealed class ProjectReposRecord
          : IPropagatePropertyAccessPath
     {
-        public TeamDirectoryProfilesForProfileSshKeysPostRequest() { }
+        public ProjectReposRecord() { }
         
-        public TeamDirectoryProfilesForProfileSshKeysPostRequest(string key, string? comment = null)
+        public ProjectReposRecord(string id, List<PRRepositoryInfo> repos)
         {
-            Key = key;
-            Comment = (comment ?? string.Empty);
+            Id = id;
+            Repos = repos;
         }
         
-        private PropertyValue<string> _key = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileSshKeysPostRequest), nameof(Key));
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectReposRecord), nameof(Id));
         
         [Required]
-        [JsonPropertyName("key")]
-        public string Key
+        [JsonPropertyName("id")]
+        public string Id
         {
-            get => _key.GetValue();
-            set => _key.SetValue(value);
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
-        private PropertyValue<string> _comment = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileSshKeysPostRequest), nameof(Comment), string.Empty);
+        private PropertyValue<List<PRRepositoryInfo>> _repos = new PropertyValue<List<PRRepositoryInfo>>(nameof(ProjectReposRecord), nameof(Repos), new List<PRRepositoryInfo>());
         
-        [JsonPropertyName("comment")]
-        public string Comment
+        [Required]
+        [JsonPropertyName("repos")]
+        public List<PRRepositoryInfo> Repos
         {
-            get => _comment.GetValue();
-            set => _comment.SetValue(value);
+            get => _repos.GetValue();
+            set => _repos.SetValue(value);
         }
     
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _key.SetAccessPath(path, validateHasBeenSet);
-            _comment.SetAccessPath(path, validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _repos.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

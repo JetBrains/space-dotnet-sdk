@@ -33,15 +33,15 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest() { }
         
-        public ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest(string name, string? description = null, string? owner = null, string? tag = null)
+        public ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest(string? name = null, string? description = null, string? owner = null, string? tag = null)
         {
-            Name = name;
+            Name = (name ?? string.Empty);
             Description = description;
             Owner = owner;
             Tag = tag;
         }
         
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Name));
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Name), string.Empty);
         
         [JsonPropertyName("name")]
         public string Name

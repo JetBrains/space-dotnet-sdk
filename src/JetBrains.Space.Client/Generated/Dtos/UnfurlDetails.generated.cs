@@ -64,8 +64,8 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsCodeSnippet CodeSnippet(CodeSnippetAnchor anchor, List<CodeLine> lines)
             => new UnfurlDetailsCodeSnippet(anchor: anchor, lines: lines);
         
-        public static UnfurlDetailsCommit Commit(PRProject project, string repository, string commitId, string message, DateTime commitDate, GitAuthorInfo author, TDMemberProfile? authorProfile = null)
-            => new UnfurlDetailsCommit(project: project, repository: repository, commitId: commitId, message: message, commitDate: commitDate, author: author, authorProfile: authorProfile);
+        public static UnfurlDetailsCommit Commit(PRProject project, string repository, string commitId, string message, DateTime commitDate, GitAuthorInfo author, TDMemberProfile? authorProfile = null, bool? hideAuthorAndDate = null, bool? withBranchTags = null)
+            => new UnfurlDetailsCommit(project: project, repository: repository, commitId: commitId, message: message, commitDate: commitDate, author: author, authorProfile: authorProfile, hideAuthorAndDate: hideAuthorAndDate, withBranchTags: withBranchTags);
         
         public static UnfurlDetailsDateTime DateTime(long utcMilliseconds, DateTimeViewParams? @params = null)
             => new UnfurlDetailsDateTime(utcMilliseconds: utcMilliseconds, @params: @params);

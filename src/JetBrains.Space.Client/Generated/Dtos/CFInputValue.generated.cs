@@ -31,6 +31,9 @@ namespace JetBrains.Space.Client
     public interface CFInputValue
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static AutonumberCFValue AutonumberCFValue(string? value = null)
+            => new AutonumberCFValue(value: value);
+        
         public static BooleanCFValue BooleanCFValue(bool? value = null)
             => new BooleanCFValue(value: value);
         

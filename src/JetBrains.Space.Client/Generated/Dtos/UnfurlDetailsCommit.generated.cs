@@ -36,7 +36,7 @@ namespace JetBrains.Space.Client
         
         public UnfurlDetailsCommit() { }
         
-        public UnfurlDetailsCommit(PRProject project, string repository, string commitId, string message, DateTime commitDate, GitAuthorInfo author, TDMemberProfile? authorProfile = null)
+        public UnfurlDetailsCommit(PRProject project, string repository, string commitId, string message, DateTime commitDate, GitAuthorInfo author, TDMemberProfile? authorProfile = null, bool? hideAuthorAndDate = null, bool? withBranchTags = null)
         {
             Project = project;
             Repository = repository;
@@ -45,6 +45,8 @@ namespace JetBrains.Space.Client
             CommitDate = commitDate;
             Author = author;
             AuthorProfile = authorProfile;
+            IsHideAuthorAndDate = hideAuthorAndDate;
+            IsWithBranchTags = withBranchTags;
         }
         
         private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsCommit), nameof(Project));
@@ -117,6 +119,24 @@ namespace JetBrains.Space.Client
             set => _authorProfile.SetValue(value);
         }
     
+        private PropertyValue<bool?> _hideAuthorAndDate = new PropertyValue<bool?>(nameof(UnfurlDetailsCommit), nameof(IsHideAuthorAndDate));
+        
+        [JsonPropertyName("hideAuthorAndDate")]
+        public bool? IsHideAuthorAndDate
+        {
+            get => _hideAuthorAndDate.GetValue();
+            set => _hideAuthorAndDate.SetValue(value);
+        }
+    
+        private PropertyValue<bool?> _withBranchTags = new PropertyValue<bool?>(nameof(UnfurlDetailsCommit), nameof(IsWithBranchTags));
+        
+        [JsonPropertyName("withBranchTags")]
+        public bool? IsWithBranchTags
+        {
+            get => _withBranchTags.GetValue();
+            set => _withBranchTags.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _project.SetAccessPath(path, validateHasBeenSet);
@@ -126,6 +146,8 @@ namespace JetBrains.Space.Client
             _commitDate.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
             _authorProfile.SetAccessPath(path, validateHasBeenSet);
+            _hideAuthorAndDate.SetAccessPath(path, validateHasBeenSet);
+            _withBranchTags.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

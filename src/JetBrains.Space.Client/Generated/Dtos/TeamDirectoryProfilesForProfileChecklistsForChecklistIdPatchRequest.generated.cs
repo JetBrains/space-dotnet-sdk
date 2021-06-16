@@ -33,13 +33,13 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest() { }
         
-        public TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest(string name, string? description = null)
+        public TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest(string? name = null, string? description = null)
         {
-            Name = name;
+            Name = (name ?? string.Empty);
             Description = description;
         }
         
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest), nameof(Name));
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest), nameof(Name), string.Empty);
         
         [JsonPropertyName("name")]
         public string Name

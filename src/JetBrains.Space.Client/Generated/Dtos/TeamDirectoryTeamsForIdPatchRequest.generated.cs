@@ -33,9 +33,9 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryTeamsForIdPatchRequest() { }
         
-        public TeamDirectoryTeamsForIdPatchRequest(string name, string? description = null, List<string>? emails = null, string? parentId = null, string? defaultManager = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null)
+        public TeamDirectoryTeamsForIdPatchRequest(string? name = null, string? description = null, List<string>? emails = null, string? parentId = null, string? defaultManager = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null)
         {
-            Name = name;
+            Name = (name ?? string.Empty);
             Description = description;
             Emails = emails;
             ParentId = parentId;
@@ -44,7 +44,7 @@ namespace JetBrains.Space.Client
             ExternalId = externalId;
         }
         
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(Name));
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(Name), string.Empty);
         
         [JsonPropertyName("name")]
         public string Name

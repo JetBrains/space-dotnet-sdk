@@ -28,44 +28,44 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class CodeReviewParticipantQualityGateSlot
-         : CodeReviewParticipantSlotBase, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class AutonumberCFParameters
+         : CFParameters, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public override string? ClassName => "CodeReviewParticipantQualityGateSlot";
+        public override string? ClassName => "AutonumberCFParameters";
         
-        public CodeReviewParticipantQualityGateSlot() { }
+        public AutonumberCFParameters() { }
         
-        public CodeReviewParticipantQualityGateSlot(List<string> rule, int index)
+        public AutonumberCFParameters(string prefix, string suffix)
         {
-            Rule = rule;
-            Index = index;
+            Prefix = prefix;
+            Suffix = suffix;
         }
         
-        private PropertyValue<List<string>> _rule = new PropertyValue<List<string>>(nameof(CodeReviewParticipantQualityGateSlot), nameof(Rule), new List<string>());
+        private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(AutonumberCFParameters), nameof(Prefix));
         
         [Required]
-        [JsonPropertyName("rule")]
-        public List<string> Rule
+        [JsonPropertyName("prefix")]
+        public string Prefix
         {
-            get => _rule.GetValue();
-            set => _rule.SetValue(value);
+            get => _prefix.GetValue();
+            set => _prefix.SetValue(value);
         }
     
-        private PropertyValue<int> _index = new PropertyValue<int>(nameof(CodeReviewParticipantQualityGateSlot), nameof(Index));
+        private PropertyValue<string> _suffix = new PropertyValue<string>(nameof(AutonumberCFParameters), nameof(Suffix));
         
         [Required]
-        [JsonPropertyName("index")]
-        public int Index
+        [JsonPropertyName("suffix")]
+        public string Suffix
         {
-            get => _index.GetValue();
-            set => _index.SetValue(value);
+            get => _suffix.GetValue();
+            set => _suffix.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _rule.SetAccessPath(path, validateHasBeenSet);
-            _index.SetAccessPath(path, validateHasBeenSet);
+            _prefix.SetAccessPath(path, validateHasBeenSet);
+            _suffix.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

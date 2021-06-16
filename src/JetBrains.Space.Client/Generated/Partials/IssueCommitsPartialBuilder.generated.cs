@@ -26,13 +26,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.IssueCommitsPartialBuilder
 {
-    public interface ClientSideActionContext
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class IssueCommitsPartialExtensions
     {
-        public static NewMergeRequestFromIssueActionContext NewMergeRequestFromIssueActionContext(ProjectKey projectKey, string repository, string commitId, int issueNumber, ProjectReposRecord projectRepos, CommitLinksContainer issueCommitsRef)
-            => new NewMergeRequestFromIssueActionContext(projectKey: projectKey, repository: repository, commitId: commitId, issueNumber: issueNumber, projectRepos: projectRepos, issueCommitsRef: issueCommitsRef);
+        public static Partial<IssueCommits> WithId(this Partial<IssueCommits> it)
+            => it.AddFieldName("id");
         
     }
     

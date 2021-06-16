@@ -35,6 +35,9 @@ namespace JetBrains.Space.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "CFType";
         
+        public static AutonumberCFType Autonumber()
+            => new AutonumberCFType();
+        
         public static BooleanCFType Boolean()
             => new BooleanCFType();
         

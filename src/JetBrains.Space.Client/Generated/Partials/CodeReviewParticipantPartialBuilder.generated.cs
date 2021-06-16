@@ -57,6 +57,12 @@ namespace JetBrains.Space.Client.CodeReviewParticipantPartialBuilder
         public static Partial<CodeReviewParticipant> WithQualityGateSlots(this Partial<CodeReviewParticipant> it, Func<Partial<CodeReviewParticipantQualityGateSlot>, Partial<CodeReviewParticipantQualityGateSlot>> partialBuilder)
             => it.AddFieldName("qualityGateSlots", partialBuilder(new Partial<CodeReviewParticipantQualityGateSlot>(it)));
         
+        public static Partial<CodeReviewParticipant> WithCodeOwnerSlots(this Partial<CodeReviewParticipant> it)
+            => it.AddFieldName("codeOwnerSlots");
+        
+        public static Partial<CodeReviewParticipant> WithCodeOwnerSlots(this Partial<CodeReviewParticipant> it, Func<Partial<CodeReviewParticipantCodeOwnerSlot>, Partial<CodeReviewParticipantCodeOwnerSlot>> partialBuilder)
+            => it.AddFieldName("codeOwnerSlots", partialBuilder(new Partial<CodeReviewParticipantCodeOwnerSlot>(it)));
+        
         public static Partial<CodeReviewParticipant> WithAddedAt(this Partial<CodeReviewParticipant> it)
             => it.AddFieldName("addedAt");
         

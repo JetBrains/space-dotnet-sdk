@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public CustomFieldsForTypeKeyFieldsPostRequest() { }
         
-        public CustomFieldsForTypeKeyFieldsPostRequest(string name, CFType type, bool required, bool @private, CFInputValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null, CFEnumValuesModification? openEnumValuesModification = null)
+        public CustomFieldsForTypeKeyFieldsPostRequest(string name, CFType type, bool required, bool @private, CFInputValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null, CFEnumValuesModification? openEnumValuesModification = null, CFParameters? cfParameters = null)
         {
             Name = name;
             Description = description;
@@ -44,6 +44,7 @@ namespace JetBrains.Space.Client
             Access = access;
             DefaultValue = defaultValue;
             OpenEnumValuesModification = openEnumValuesModification;
+            CfParameters = cfParameters;
             Scope = scope;
         }
         
@@ -133,6 +134,15 @@ namespace JetBrains.Space.Client
             set => _openEnumValuesModification.SetValue(value);
         }
     
+        private PropertyValue<CFParameters?> _cfParameters = new PropertyValue<CFParameters?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(CfParameters));
+        
+        [JsonPropertyName("cfParameters")]
+        public CFParameters? CfParameters
+        {
+            get => _cfParameters.GetValue();
+            set => _cfParameters.SetValue(value);
+        }
+    
         private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Scope));
         
         [Required]
@@ -154,6 +164,7 @@ namespace JetBrains.Space.Client
             _access.SetAccessPath(path, validateHasBeenSet);
             _defaultValue.SetAccessPath(path, validateHasBeenSet);
             _openEnumValuesModification.SetAccessPath(path, validateHasBeenSet);
+            _cfParameters.SetAccessPath(path, validateHasBeenSet);
             _scope.SetAccessPath(path, validateHasBeenSet);
         }
     

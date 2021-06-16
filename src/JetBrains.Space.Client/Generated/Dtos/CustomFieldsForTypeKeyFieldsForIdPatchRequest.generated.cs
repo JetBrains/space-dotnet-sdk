@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public CustomFieldsForTypeKeyFieldsForIdPatchRequest() { }
         
-        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFInputValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null)
+        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFInputValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null, CFParameters? cfParameters = null)
         {
             Name = name;
             Description = description;
@@ -44,6 +44,7 @@ namespace JetBrains.Space.Client
             DefaultValue = defaultValue;
             EnumValues = enumValues;
             OpenEnumValuesModification = openEnumValuesModification;
+            CfParameters = cfParameters;
             Scope = scope;
         }
         
@@ -128,6 +129,15 @@ namespace JetBrains.Space.Client
             set => _openEnumValuesModification.SetValue(value);
         }
     
+        private PropertyValue<CFParameters?> _cfParameters = new PropertyValue<CFParameters?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(CfParameters));
+        
+        [JsonPropertyName("cfParameters")]
+        public CFParameters? CfParameters
+        {
+            get => _cfParameters.GetValue();
+            set => _cfParameters.SetValue(value);
+        }
+    
         private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(Scope));
         
         [Required]
@@ -149,6 +159,7 @@ namespace JetBrains.Space.Client
             _defaultValue.SetAccessPath(path, validateHasBeenSet);
             _enumValues.SetAccessPath(path, validateHasBeenSet);
             _openEnumValuesModification.SetAccessPath(path, validateHasBeenSet);
+            _cfParameters.SetAccessPath(path, validateHasBeenSet);
             _scope.SetAccessPath(path, validateHasBeenSet);
         }
     

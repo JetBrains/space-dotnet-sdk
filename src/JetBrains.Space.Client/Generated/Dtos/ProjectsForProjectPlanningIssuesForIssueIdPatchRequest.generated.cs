@@ -33,17 +33,17 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest() { }
         
-        public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest(string title, string status, List<CustomFieldInputValue>? customFields = null, string? description = null, string? assignee = null, DateTime? dueDate = null)
+        public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest(string? title = null, string? status = null, List<CustomFieldInputValue>? customFields = null, string? description = null, string? assignee = null, DateTime? dueDate = null)
         {
-            Title = title;
+            Title = (title ?? string.Empty);
             Description = description;
             Assignee = assignee;
-            Status = status;
+            Status = (status ?? string.Empty);
             DueDate = dueDate;
             CustomFields = (customFields ?? new List<CustomFieldInputValue>());
         }
         
-        private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Title));
+        private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Title), string.Empty);
         
         [JsonPropertyName("title")]
         public string Title
@@ -70,7 +70,7 @@ namespace JetBrains.Space.Client
             set => _assignee.SetValue(value);
         }
     
-        private PropertyValue<string> _status = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Status));
+        private PropertyValue<string> _status = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Status), string.Empty);
         
         [JsonPropertyName("status")]
         public string Status

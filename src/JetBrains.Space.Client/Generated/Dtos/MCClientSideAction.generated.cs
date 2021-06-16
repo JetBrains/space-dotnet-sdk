@@ -33,22 +33,11 @@ namespace JetBrains.Space.Client
     {
         public MCClientSideAction() { }
         
-        public MCClientSideAction(string fallbackUrl, ClientSideActionContext? context = null)
+        public MCClientSideAction(ClientSideActionContext? context = null)
         {
-            FallbackUrl = fallbackUrl;
             Context = context;
         }
         
-        private PropertyValue<string> _fallbackUrl = new PropertyValue<string>(nameof(MCClientSideAction), nameof(FallbackUrl));
-        
-        [Required]
-        [JsonPropertyName("fallbackUrl")]
-        public string FallbackUrl
-        {
-            get => _fallbackUrl.GetValue();
-            set => _fallbackUrl.SetValue(value);
-        }
-    
         private PropertyValue<ClientSideActionContext?> _context = new PropertyValue<ClientSideActionContext?>(nameof(MCClientSideAction), nameof(Context));
         
         [JsonPropertyName("context")]
@@ -60,7 +49,6 @@ namespace JetBrains.Space.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _fallbackUrl.SetAccessPath(path, validateHasBeenSet);
             _context.SetAccessPath(path, validateHasBeenSet);
         }
     

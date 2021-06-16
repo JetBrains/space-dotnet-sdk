@@ -28,12 +28,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public interface ClientSideActionContext
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class CodeReviewParticipantCodeOwnerSlot
+         : CodeReviewParticipantSlotBase, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static NewMergeRequestFromIssueActionContext NewMergeRequestFromIssueActionContext(ProjectKey projectKey, string repository, string commitId, int issueNumber, ProjectReposRecord projectRepos, CommitLinksContainer issueCommitsRef)
-            => new NewMergeRequestFromIssueActionContext(projectKey: projectKey, repository: repository, commitId: commitId, issueNumber: issueNumber, projectRepos: projectRepos, issueCommitsRef: issueCommitsRef);
+        [JsonPropertyName("className")]
+        public override string? ClassName => "CodeReviewParticipantCodeOwnerSlot";
         
+        public CodeReviewParticipantCodeOwnerSlot() { }
+        
+        public CodeReviewParticipantCodeOwnerSlot(string pattern)
+        {
+            Pattern = pattern;
+        }
+        
+        private PropertyValue<string> _pattern = new PropertyValue<string>(nameof(CodeReviewParticipantCodeOwnerSlot), nameof(Pattern));
+        
+        [Required]
+        [JsonPropertyName("pattern")]
+        public string Pattern
+        {
+            get => _pattern.GetValue();
+            set => _pattern.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _pattern.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

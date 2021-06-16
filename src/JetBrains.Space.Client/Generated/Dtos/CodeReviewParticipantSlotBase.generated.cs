@@ -28,12 +28,25 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public interface ClientSideActionContext
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public class CodeReviewParticipantSlotBase
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static NewMergeRequestFromIssueActionContext NewMergeRequestFromIssueActionContext(ProjectKey projectKey, string repository, string commitId, int issueNumber, ProjectReposRecord projectRepos, CommitLinksContainer issueCommitsRef)
-            => new NewMergeRequestFromIssueActionContext(projectKey: projectKey, repository: repository, commitId: commitId, issueNumber: issueNumber, projectRepos: projectRepos, issueCommitsRef: issueCommitsRef);
+        [JsonPropertyName("className")]
+        public virtual string? ClassName => "CodeReviewParticipantSlotBase";
         
+        public static CodeReviewParticipantCodeOwnerSlot CodeReviewParticipantCodeOwnerSlot(string pattern)
+            => new CodeReviewParticipantCodeOwnerSlot(pattern: pattern);
+        
+        public static CodeReviewParticipantQualityGateSlot CodeReviewParticipantQualityGateSlot(List<string> rule, int index)
+            => new CodeReviewParticipantQualityGateSlot(rule: rule, index: index);
+        
+        public CodeReviewParticipantSlotBase() { }
+        
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }
