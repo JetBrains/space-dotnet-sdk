@@ -29,19 +29,14 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client
 {
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class DryCleanupResults
+    public abstract class PackageRepositoryConnectionSettings
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public virtual string? ClassName => "DryCleanupResults";
+        public virtual string? ClassName => "PackageRepositoryConnectionSettings";
         
-        public static DryCleanupResultsFailure Failure(string error)
-            => new DryCleanupResultsFailure(error: error);
-        
-        public static DryCleanupResultsResults Results(long totalSize, List<PackageVersionRef> packageVersions)
-            => new DryCleanupResultsResults(totalSize: totalSize, packageVersions: packageVersions);
-        
-        public DryCleanupResults() { }
+        public static MavenRepositoryConnectionSettings MavenRepositoryConnectionSettings(NexusStagingProfile? nexusStagingProfile = null)
+            => new MavenRepositoryConnectionSettings(nexusStagingProfile: nexusStagingProfile);
         
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {

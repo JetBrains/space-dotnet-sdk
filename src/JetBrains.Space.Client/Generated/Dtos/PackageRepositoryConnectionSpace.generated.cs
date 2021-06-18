@@ -36,9 +36,11 @@ namespace JetBrains.Space.Client
         
         public PackageRepositoryConnectionSpace() { }
         
-        public PackageRepositoryConnectionSpace(string id, ProjectPackageRepository repository)
+        public PackageRepositoryConnectionSpace(string id, bool enableCaching, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
         {
             Id = id;
+            IsEnableCaching = enableCaching;
+            PackageNameFilters = packageNameFilters;
             Repository = repository;
         }
         
@@ -50,6 +52,25 @@ namespace JetBrains.Space.Client
         {
             get => _id.GetValue();
             set => _id.SetValue(value);
+        }
+    
+        private PropertyValue<bool> _enableCaching = new PropertyValue<bool>(nameof(PackageRepositoryConnectionSpace), nameof(IsEnableCaching));
+        
+        [Required]
+        [JsonPropertyName("enableCaching")]
+        public bool IsEnableCaching
+        {
+            get => _enableCaching.GetValue();
+            set => _enableCaching.SetValue(value);
+        }
+    
+        private PropertyValue<List<string>?> _packageNameFilters = new PropertyValue<List<string>?>(nameof(PackageRepositoryConnectionSpace), nameof(PackageNameFilters));
+        
+        [JsonPropertyName("packageNameFilters")]
+        public List<string>? PackageNameFilters
+        {
+            get => _packageNameFilters.GetValue();
+            set => _packageNameFilters.SetValue(value);
         }
     
         private PropertyValue<ProjectPackageRepository> _repository = new PropertyValue<ProjectPackageRepository>(nameof(PackageRepositoryConnectionSpace), nameof(Repository));
@@ -65,6 +86,8 @@ namespace JetBrains.Space.Client
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
+            _enableCaching.SetAccessPath(path, validateHasBeenSet);
+            _packageNameFilters.SetAccessPath(path, validateHasBeenSet);
             _repository.SetAccessPath(path, validateHasBeenSet);
         }
     

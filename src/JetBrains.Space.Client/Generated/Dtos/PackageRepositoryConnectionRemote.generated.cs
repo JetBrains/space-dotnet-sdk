@@ -36,14 +36,17 @@ namespace JetBrains.Space.Client
         
         public PackageRepositoryConnectionRemote() { }
         
-        public PackageRepositoryConnectionRemote(string id, string url, PackageRepositoryCredentials credentials, string? secretId = null, string? secretValue = null, List<Pair<string, string>>? parameters = null)
+        public PackageRepositoryConnectionRemote(string id, bool enableCaching, bool enablePublishing, string url, PackageRepositoryCredentials credentials, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
         {
             Id = id;
+            IsEnableCaching = enableCaching;
+            IsEnablePublishing = enablePublishing;
+            PackageNameFilters = packageNameFilters;
             Url = url;
             Credentials = credentials;
             SecretId = secretId;
             SecretValue = secretValue;
-            Parameters = parameters;
+            Settings = settings;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PackageRepositoryConnectionRemote), nameof(Id));
@@ -54,6 +57,35 @@ namespace JetBrains.Space.Client
         {
             get => _id.GetValue();
             set => _id.SetValue(value);
+        }
+    
+        private PropertyValue<bool> _enableCaching = new PropertyValue<bool>(nameof(PackageRepositoryConnectionRemote), nameof(IsEnableCaching));
+        
+        [Required]
+        [JsonPropertyName("enableCaching")]
+        public bool IsEnableCaching
+        {
+            get => _enableCaching.GetValue();
+            set => _enableCaching.SetValue(value);
+        }
+    
+        private PropertyValue<bool> _enablePublishing = new PropertyValue<bool>(nameof(PackageRepositoryConnectionRemote), nameof(IsEnablePublishing));
+        
+        [Required]
+        [JsonPropertyName("enablePublishing")]
+        public bool IsEnablePublishing
+        {
+            get => _enablePublishing.GetValue();
+            set => _enablePublishing.SetValue(value);
+        }
+    
+        private PropertyValue<List<string>?> _packageNameFilters = new PropertyValue<List<string>?>(nameof(PackageRepositoryConnectionRemote), nameof(PackageNameFilters));
+        
+        [JsonPropertyName("packageNameFilters")]
+        public List<string>? PackageNameFilters
+        {
+            get => _packageNameFilters.GetValue();
+            set => _packageNameFilters.SetValue(value);
         }
     
         private PropertyValue<string> _url = new PropertyValue<string>(nameof(PackageRepositoryConnectionRemote), nameof(Url));
@@ -94,23 +126,26 @@ namespace JetBrains.Space.Client
             set => _secretValue.SetValue(value);
         }
     
-        private PropertyValue<List<Pair<string, string>>?> _parameters = new PropertyValue<List<Pair<string, string>>?>(nameof(PackageRepositoryConnectionRemote), nameof(Parameters));
+        private PropertyValue<PackageRepositoryConnectionSettings?> _settings = new PropertyValue<PackageRepositoryConnectionSettings?>(nameof(PackageRepositoryConnectionRemote), nameof(Settings));
         
-        [JsonPropertyName("parameters")]
-        public List<Pair<string, string>>? Parameters
+        [JsonPropertyName("settings")]
+        public PackageRepositoryConnectionSettings? Settings
         {
-            get => _parameters.GetValue();
-            set => _parameters.SetValue(value);
+            get => _settings.GetValue();
+            set => _settings.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
+            _enableCaching.SetAccessPath(path, validateHasBeenSet);
+            _enablePublishing.SetAccessPath(path, validateHasBeenSet);
+            _packageNameFilters.SetAccessPath(path, validateHasBeenSet);
             _url.SetAccessPath(path, validateHasBeenSet);
             _credentials.SetAccessPath(path, validateHasBeenSet);
             _secretId.SetAccessPath(path, validateHasBeenSet);
             _secretValue.SetAccessPath(path, validateHasBeenSet);
-            _parameters.SetAccessPath(path, validateHasBeenSet);
+            _settings.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -28,23 +28,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class DryCleanupResults
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class PublishingSourcePackages
+         : PublishingSource, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public virtual string? ClassName => "DryCleanupResults";
+        public override string? ClassName => "PublishingSource.Packages";
         
-        public static DryCleanupResultsFailure Failure(string error)
-            => new DryCleanupResultsFailure(error: error);
+        public PublishingSourcePackages() { }
         
-        public static DryCleanupResultsResults Results(long totalSize, List<PackageVersionRef> packageVersions)
-            => new DryCleanupResultsResults(totalSize: totalSize, packageVersions: packageVersions);
-        
-        public DryCleanupResults() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        public PublishingSourcePackages(List<PackageVersionRef> items)
         {
+            Items = items;
+        }
+        
+        private PropertyValue<List<PackageVersionRef>> _items = new PropertyValue<List<PackageVersionRef>>(nameof(PublishingSourcePackages), nameof(Items), new List<PackageVersionRef>());
+        
+        [Required]
+        [JsonPropertyName("items")]
+        public List<PackageVersionRef> Items
+        {
+            get => _items.GetValue();
+            set => _items.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _items.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

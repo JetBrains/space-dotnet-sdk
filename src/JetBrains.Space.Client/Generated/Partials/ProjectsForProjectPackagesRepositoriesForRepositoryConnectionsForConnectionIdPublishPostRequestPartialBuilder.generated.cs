@@ -30,11 +30,11 @@ namespace JetBrains.Space.Client.ProjectsForProjectPackagesRepositoriesForReposi
 {
     public static class ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequestPartialExtensions
     {
-        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> WithPackageName(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> it)
-            => it.AddFieldName("packageName");
+        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> WithSource(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> it)
+            => it.AddFieldName("source");
         
-        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> WithPackageVersion(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> it)
-            => it.AddFieldName("packageVersion");
+        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> WithSource(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> it, Func<Partial<PublishingSource>, Partial<PublishingSource>> partialBuilder)
+            => it.AddFieldName("source", partialBuilder(new Partial<PublishingSource>(it)));
         
     }
     

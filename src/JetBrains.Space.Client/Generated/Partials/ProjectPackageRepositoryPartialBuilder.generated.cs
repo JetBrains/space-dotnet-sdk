@@ -54,11 +54,11 @@ namespace JetBrains.Space.Client.ProjectPackageRepositoryPartialBuilder
         public static Partial<ProjectPackageRepository> WithIsArchived(this Partial<ProjectPackageRepository> it)
             => it.AddFieldName("archived");
         
-        public static Partial<ProjectPackageRepository> WithMirrors(this Partial<ProjectPackageRepository> it)
-            => it.AddFieldName("mirrors");
+        public static Partial<ProjectPackageRepository> WithConnections(this Partial<ProjectPackageRepository> it)
+            => it.AddFieldName("connections");
         
-        public static Partial<ProjectPackageRepository> WithMirrors(this Partial<ProjectPackageRepository> it, Func<Partial<PackageRepositoryConnection>, Partial<PackageRepositoryConnection>> partialBuilder)
-            => it.AddFieldName("mirrors", partialBuilder(new Partial<PackageRepositoryConnection>(it)));
+        public static Partial<ProjectPackageRepository> WithConnections(this Partial<ProjectPackageRepository> it, Func<Partial<PackageRepositoryConnection>, Partial<PackageRepositoryConnection>> partialBuilder)
+            => it.AddFieldName("connections", partialBuilder(new Partial<PackageRepositoryConnection>(it)));
         
     }
     

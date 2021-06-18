@@ -28,23 +28,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class DryCleanupResults
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class NexusStagingProfile
+         : IPropagatePropertyAccessPath
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "DryCleanupResults";
+        public NexusStagingProfile() { }
         
-        public static DryCleanupResultsFailure Failure(string error)
-            => new DryCleanupResultsFailure(error: error);
-        
-        public static DryCleanupResultsResults Results(long totalSize, List<PackageVersionRef> packageVersions)
-            => new DryCleanupResultsResults(totalSize: totalSize, packageVersions: packageVersions);
-        
-        public DryCleanupResults() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        public NexusStagingProfile(string id, string name)
         {
+            Id = id;
+            Name = name;
+        }
+        
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(NexusStagingProfile), nameof(Id));
+        
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id
+        {
+            get => _id.GetValue();
+            set => _id.SetValue(value);
+        }
+    
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(NexusStagingProfile), nameof(Name));
+        
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name
+        {
+            get => _name.GetValue();
+            set => _name.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

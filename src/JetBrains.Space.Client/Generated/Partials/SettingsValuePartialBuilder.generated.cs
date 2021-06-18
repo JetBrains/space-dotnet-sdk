@@ -66,6 +66,12 @@ namespace JetBrains.Space.Client.SettingsValuePartialBuilder
         public static Partial<SettingsValue> WithIsTodoFilters(this Partial<SettingsValue> it)
             => it.AddFieldName("todoFilters");
         
+        public static Partial<SettingsValue> WithDefaultProject(this Partial<SettingsValue> it)
+            => it.AddFieldName("defaultProject");
+        
+        public static Partial<SettingsValue> WithDefaultProject(this Partial<SettingsValue> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+            => it.AddFieldName("defaultProject", partialBuilder(new Partial<PRProject>(it)));
+        
     }
     
 }

@@ -33,36 +33,24 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest() { }
         
-        public ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest(string packageName, string packageVersion)
+        public ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest(PublishingSource source)
         {
-            PackageName = packageName;
-            PackageVersion = packageVersion;
+            Source = source;
         }
         
-        private PropertyValue<string> _packageName = new PropertyValue<string>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest), nameof(PackageName));
+        private PropertyValue<PublishingSource> _source = new PropertyValue<PublishingSource>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest), nameof(Source));
         
         [Required]
-        [JsonPropertyName("packageName")]
-        public string PackageName
+        [JsonPropertyName("source")]
+        public PublishingSource Source
         {
-            get => _packageName.GetValue();
-            set => _packageName.SetValue(value);
-        }
-    
-        private PropertyValue<string> _packageVersion = new PropertyValue<string>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest), nameof(PackageVersion));
-        
-        [Required]
-        [JsonPropertyName("packageVersion")]
-        public string PackageVersion
-        {
-            get => _packageVersion.GetValue();
-            set => _packageVersion.SetValue(value);
+            get => _source.GetValue();
+            set => _source.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _packageName.SetAccessPath(path, validateHasBeenSet);
-            _packageVersion.SetAccessPath(path, validateHasBeenSet);
+            _source.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -26,27 +26,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.DryCleanupResultsResultsPartialBuilder
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class DryCleanupResults
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class DryCleanupResultsResultsPartialExtensions
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "DryCleanupResults";
+        public static Partial<DryCleanupResultsResults> WithTotalSize(this Partial<DryCleanupResultsResults> it)
+            => it.AddFieldName("totalSize");
         
-        public static DryCleanupResultsFailure Failure(string error)
-            => new DryCleanupResultsFailure(error: error);
+        public static Partial<DryCleanupResultsResults> WithPackageVersions(this Partial<DryCleanupResultsResults> it)
+            => it.AddFieldName("packageVersions");
         
-        public static DryCleanupResultsResults Results(long totalSize, List<PackageVersionRef> packageVersions)
-            => new DryCleanupResultsResults(totalSize: totalSize, packageVersions: packageVersions);
+        public static Partial<DryCleanupResultsResults> WithPackageVersions(this Partial<DryCleanupResultsResults> it, Func<Partial<PackageVersionRef>, Partial<PackageVersionRef>> partialBuilder)
+            => it.AddFieldName("packageVersions", partialBuilder(new Partial<PackageVersionRef>(it)));
         
-        public DryCleanupResults() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
     
 }

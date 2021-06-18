@@ -2652,7 +2652,7 @@ namespace JetBrains.Space.Client
                 }
                 
             
-                public async Task SetProfilesSpacePersonalizationDataAsync(ProfileIdentifier profile, DarkTheme? darkTheme = null, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? fontLigaturesEnabled = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null, CancellationToken cancellationToken = default)
+                public async Task SetProfilesSpacePersonalizationDataAsync(ProfileIdentifier profile, DarkTheme? darkTheme = null, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? fontLigaturesEnabled = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null, ProjectIdentifier? defaultProject = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -2669,6 +2669,7 @@ namespace JetBrains.Space.Client
                             IsEmailNotificationsEnabled = emailNotificationsEnabled,
                             NotificationEmail = notificationEmail,
                             PreferredLanguage = preferredLanguage,
+                            DefaultProject = defaultProject,
                         }, cancellationToken);
                 }
                 

@@ -30,15 +30,6 @@ namespace JetBrains.Space.Client.DryCleanupResultsPartialBuilder
 {
     public static class DryCleanupResultsPartialExtensions
     {
-        public static Partial<DryCleanupResults> WithTotalSize(this Partial<DryCleanupResults> it)
-            => it.AddFieldName("totalSize");
-        
-        public static Partial<DryCleanupResults> WithPackageVersions(this Partial<DryCleanupResults> it)
-            => it.AddFieldName("packageVersions");
-        
-        public static Partial<DryCleanupResults> WithPackageVersions(this Partial<DryCleanupResults> it, Func<Partial<PackageVersionRef>, Partial<PackageVersionRef>> partialBuilder)
-            => it.AddFieldName("packageVersions", partialBuilder(new Partial<PackageVersionRef>(it)));
-        
     }
     
 }

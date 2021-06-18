@@ -35,11 +35,11 @@ namespace JetBrains.Space.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "PackageRepositoryConnection";
         
-        public static PackageRepositoryConnectionRemote Remote(string id, string url, PackageRepositoryCredentials credentials, string? secretId = null, string? secretValue = null, List<Pair<string, string>>? parameters = null)
-            => new PackageRepositoryConnectionRemote(id: id, url: url, credentials: credentials, secretId: secretId, secretValue: secretValue, parameters: parameters);
+        public static PackageRepositoryConnectionRemote Remote(string id, bool enableCaching, bool enablePublishing, string url, PackageRepositoryCredentials credentials, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
+            => new PackageRepositoryConnectionRemote(id: id, enableCaching: enableCaching, enablePublishing: enablePublishing, url: url, credentials: credentials, packageNameFilters: packageNameFilters, secretId: secretId, secretValue: secretValue, settings: settings);
         
-        public static PackageRepositoryConnectionSpace Space(string id, ProjectPackageRepository repository)
-            => new PackageRepositoryConnectionSpace(id: id, repository: repository);
+        public static PackageRepositoryConnectionSpace Space(string id, bool enableCaching, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
+            => new PackageRepositoryConnectionSpace(id: id, enableCaching: enableCaching, repository: repository, packageNameFilters: packageNameFilters);
         
         public PackageRepositoryConnection() { }
         

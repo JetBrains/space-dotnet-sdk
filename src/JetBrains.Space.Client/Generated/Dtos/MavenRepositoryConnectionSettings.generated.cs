@@ -28,23 +28,31 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class DryCleanupResults
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class MavenRepositoryConnectionSettings
+         : PackageRepositoryConnectionSettings, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public virtual string? ClassName => "DryCleanupResults";
+        public override string? ClassName => "MavenRepositoryConnectionSettings";
         
-        public static DryCleanupResultsFailure Failure(string error)
-            => new DryCleanupResultsFailure(error: error);
+        public MavenRepositoryConnectionSettings() { }
         
-        public static DryCleanupResultsResults Results(long totalSize, List<PackageVersionRef> packageVersions)
-            => new DryCleanupResultsResults(totalSize: totalSize, packageVersions: packageVersions);
-        
-        public DryCleanupResults() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        public MavenRepositoryConnectionSettings(NexusStagingProfile? nexusStagingProfile = null)
         {
+            NexusStagingProfile = nexusStagingProfile;
+        }
+        
+        private PropertyValue<NexusStagingProfile?> _nexusStagingProfile = new PropertyValue<NexusStagingProfile?>(nameof(MavenRepositoryConnectionSettings), nameof(NexusStagingProfile));
+        
+        [JsonPropertyName("nexusStagingProfile")]
+        public NexusStagingProfile? NexusStagingProfile
+        {
+            get => _nexusStagingProfile.GetValue();
+            set => _nexusStagingProfile.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _nexusStagingProfile.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

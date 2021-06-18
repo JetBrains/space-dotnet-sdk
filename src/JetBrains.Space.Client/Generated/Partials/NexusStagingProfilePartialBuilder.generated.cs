@@ -26,27 +26,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.NexusStagingProfilePartialBuilder
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class DryCleanupResults
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class NexusStagingProfilePartialExtensions
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "DryCleanupResults";
+        public static Partial<NexusStagingProfile> WithId(this Partial<NexusStagingProfile> it)
+            => it.AddFieldName("id");
         
-        public static DryCleanupResultsFailure Failure(string error)
-            => new DryCleanupResultsFailure(error: error);
+        public static Partial<NexusStagingProfile> WithName(this Partial<NexusStagingProfile> it)
+            => it.AddFieldName("name");
         
-        public static DryCleanupResultsResults Results(long totalSize, List<PackageVersionRef> packageVersions)
-            => new DryCleanupResultsResults(totalSize: totalSize, packageVersions: packageVersions);
-        
-        public DryCleanupResults() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
     
 }

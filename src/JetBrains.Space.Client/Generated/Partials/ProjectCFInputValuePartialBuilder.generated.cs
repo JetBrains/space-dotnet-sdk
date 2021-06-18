@@ -33,6 +33,9 @@ namespace JetBrains.Space.Client.ProjectCFInputValuePartialBuilder
         public static Partial<ProjectCFInputValue> WithProject(this Partial<ProjectCFInputValue> it)
             => it.AddFieldName("project");
         
+        public static Partial<ProjectCFInputValue> WithProject(this Partial<ProjectCFInputValue> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
+            => it.AddFieldName("project", partialBuilder(new Partial<ProjectIdentifier>(it)));
+        
     }
     
 }

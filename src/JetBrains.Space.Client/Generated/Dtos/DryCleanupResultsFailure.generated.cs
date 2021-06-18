@@ -28,23 +28,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class DryCleanupResults
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class DryCleanupResultsFailure
+         : DryCleanupResults, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public virtual string? ClassName => "DryCleanupResults";
+        public override string? ClassName => "DryCleanupResults.Failure";
         
-        public static DryCleanupResultsFailure Failure(string error)
-            => new DryCleanupResultsFailure(error: error);
+        public DryCleanupResultsFailure() { }
         
-        public static DryCleanupResultsResults Results(long totalSize, List<PackageVersionRef> packageVersions)
-            => new DryCleanupResultsResults(totalSize: totalSize, packageVersions: packageVersions);
-        
-        public DryCleanupResults() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        public DryCleanupResultsFailure(string error)
         {
+            Error = error;
+        }
+        
+        private PropertyValue<string> _error = new PropertyValue<string>(nameof(DryCleanupResultsFailure), nameof(Error));
+        
+        [Required]
+        [JsonPropertyName("error")]
+        public string Error
+        {
+            get => _error.GetValue();
+            set => _error.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _error.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

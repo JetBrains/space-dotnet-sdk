@@ -33,6 +33,12 @@ namespace JetBrains.Space.Client.PackageRepositoryConnectionSpacePartialBuilder
         public static Partial<PackageRepositoryConnectionSpace> WithId(this Partial<PackageRepositoryConnectionSpace> it)
             => it.AddFieldName("id");
         
+        public static Partial<PackageRepositoryConnectionSpace> WithIsEnableCaching(this Partial<PackageRepositoryConnectionSpace> it)
+            => it.AddFieldName("enableCaching");
+        
+        public static Partial<PackageRepositoryConnectionSpace> WithPackageNameFilters(this Partial<PackageRepositoryConnectionSpace> it)
+            => it.AddFieldName("packageNameFilters");
+        
         public static Partial<PackageRepositoryConnectionSpace> WithRepository(this Partial<PackageRepositoryConnectionSpace> it)
             => it.AddFieldName("repository");
         

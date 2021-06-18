@@ -33,6 +33,15 @@ namespace JetBrains.Space.Client.PackageRepositoryConnectionRemotePartialBuilder
         public static Partial<PackageRepositoryConnectionRemote> WithId(this Partial<PackageRepositoryConnectionRemote> it)
             => it.AddFieldName("id");
         
+        public static Partial<PackageRepositoryConnectionRemote> WithIsEnableCaching(this Partial<PackageRepositoryConnectionRemote> it)
+            => it.AddFieldName("enableCaching");
+        
+        public static Partial<PackageRepositoryConnectionRemote> WithIsEnablePublishing(this Partial<PackageRepositoryConnectionRemote> it)
+            => it.AddFieldName("enablePublishing");
+        
+        public static Partial<PackageRepositoryConnectionRemote> WithPackageNameFilters(this Partial<PackageRepositoryConnectionRemote> it)
+            => it.AddFieldName("packageNameFilters");
+        
         public static Partial<PackageRepositoryConnectionRemote> WithUrl(this Partial<PackageRepositoryConnectionRemote> it)
             => it.AddFieldName("url");
         
@@ -48,11 +57,11 @@ namespace JetBrains.Space.Client.PackageRepositoryConnectionRemotePartialBuilder
         public static Partial<PackageRepositoryConnectionRemote> WithSecretValue(this Partial<PackageRepositoryConnectionRemote> it)
             => it.AddFieldName("secretValue");
         
-        public static Partial<PackageRepositoryConnectionRemote> WithParameters(this Partial<PackageRepositoryConnectionRemote> it)
-            => it.AddFieldName("parameters");
+        public static Partial<PackageRepositoryConnectionRemote> WithSettings(this Partial<PackageRepositoryConnectionRemote> it)
+            => it.AddFieldName("settings");
         
-        public static Partial<PackageRepositoryConnectionRemote> WithParameters(this Partial<PackageRepositoryConnectionRemote> it, Func<Partial<Pair<string, string>>, Partial<Pair<string, string>>> partialBuilder)
-            => it.AddFieldName("parameters", partialBuilder(new Partial<Pair<string, string>>(it)));
+        public static Partial<PackageRepositoryConnectionRemote> WithSettings(this Partial<PackageRepositoryConnectionRemote> it, Func<Partial<PackageRepositoryConnectionSettings>, Partial<PackageRepositoryConnectionSettings>> partialBuilder)
+            => it.AddFieldName("settings", partialBuilder(new Partial<PackageRepositoryConnectionSettings>(it)));
         
     }
     

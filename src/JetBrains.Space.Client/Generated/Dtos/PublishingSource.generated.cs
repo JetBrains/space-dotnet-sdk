@@ -29,19 +29,16 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client
 {
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class DryCleanupResults
+    public class PublishingSource
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public virtual string? ClassName => "DryCleanupResults";
+        public virtual string? ClassName => "PublishingSource";
         
-        public static DryCleanupResultsFailure Failure(string error)
-            => new DryCleanupResultsFailure(error: error);
+        public static PublishingSourcePackages Packages(List<PackageVersionRef> items)
+            => new PublishingSourcePackages(items: items);
         
-        public static DryCleanupResultsResults Results(long totalSize, List<PackageVersionRef> packageVersions)
-            => new DryCleanupResultsResults(totalSize: totalSize, packageVersions: packageVersions);
-        
-        public DryCleanupResults() { }
+        public PublishingSource() { }
         
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {

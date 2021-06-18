@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public SettingsValue() { }
         
-        public SettingsValue(bool emailNotificationsEnabled, Weekday firstDayOfWeek, DarkTheme? darkTheme = null, string? themeName = null, string? calendarView = null, TDProfileEmail? notificationEmail = null, DraftDocumentType? draftType = null, bool? todoFilters = null)
+        public SettingsValue(bool emailNotificationsEnabled, Weekday firstDayOfWeek, DarkTheme? darkTheme = null, string? themeName = null, string? calendarView = null, TDProfileEmail? notificationEmail = null, DraftDocumentType? draftType = null, bool? todoFilters = null, PRProject? defaultProject = null)
         {
             IsEmailNotificationsEnabled = emailNotificationsEnabled;
             FirstDayOfWeek = firstDayOfWeek;
@@ -43,6 +43,7 @@ namespace JetBrains.Space.Client
             NotificationEmail = notificationEmail;
             DraftType = draftType;
             IsTodoFilters = todoFilters;
+            DefaultProject = defaultProject;
         }
         
         private PropertyValue<bool> _emailNotificationsEnabled = new PropertyValue<bool>(nameof(SettingsValue), nameof(IsEmailNotificationsEnabled));
@@ -119,6 +120,15 @@ namespace JetBrains.Space.Client
             set => _todoFilters.SetValue(value);
         }
     
+        private PropertyValue<PRProject?> _defaultProject = new PropertyValue<PRProject?>(nameof(SettingsValue), nameof(DefaultProject));
+        
+        [JsonPropertyName("defaultProject")]
+        public PRProject? DefaultProject
+        {
+            get => _defaultProject.GetValue();
+            set => _defaultProject.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _emailNotificationsEnabled.SetAccessPath(path, validateHasBeenSet);
@@ -129,6 +139,7 @@ namespace JetBrains.Space.Client
             _notificationEmail.SetAccessPath(path, validateHasBeenSet);
             _draftType.SetAccessPath(path, validateHasBeenSet);
             _todoFilters.SetAccessPath(path, validateHasBeenSet);
+            _defaultProject.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

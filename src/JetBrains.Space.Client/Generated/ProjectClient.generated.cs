@@ -1432,7 +1432,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task RestoreIssueAsync(ProjectIdentifier project, string issueId, CancellationToken cancellationToken = default)
+                public async Task RestoreIssueAsync(ProjectIdentifier project, IssueIdentifier issueId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -1452,7 +1452,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task ToggleIssueResolvedAsync(ProjectIdentifier project, string issueId, bool resolved, CancellationToken cancellationToken = default)
+                public async Task ToggleIssueResolvedAsync(ProjectIdentifier project, IssueIdentifier issueId, bool resolved, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -1537,6 +1537,24 @@ namespace JetBrains.Space.Client
                 }
                 
             
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View issues</term>
+                /// <description>View issues in a project</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<Issue> GetIssueAsync(ProjectIdentifier project, IssueIdentifier issueId, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Issue>("GET", $"api/http/projects/{project}/planning/issues/{issueId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
                 /// <summary>
                 /// Update an existing issue in a project.
                 /// </summary>
@@ -1549,7 +1567,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task UpdateIssueAsync(ProjectIdentifier project, string issueId, string? title = null, string? status = null, List<CustomFieldInputValue>? customFields = null, string? description = null, string? assignee = null, DateTime? dueDate = null, CancellationToken cancellationToken = default)
+                public async Task UpdateIssueAsync(ProjectIdentifier project, IssueIdentifier issueId, string? title = null, string? status = null, List<CustomFieldInputValue>? customFields = null, string? description = null, string? assignee = null, DateTime? dueDate = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -1578,7 +1596,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task DeleteIssueAsync(ProjectIdentifier project, string issueId, CancellationToken cancellationToken = default)
+                public async Task DeleteIssueAsync(ProjectIdentifier project, IssueIdentifier issueId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -1701,7 +1719,7 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task AddAttachmentsAsync(ProjectIdentifier project, string issueId, List<AttachmentIn> attachments, CancellationToken cancellationToken = default)
+                    public async Task AddAttachmentsAsync(ProjectIdentifier project, IssueIdentifier issueId, List<AttachmentIn> attachments, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         
@@ -1725,7 +1743,7 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task RemoveAttachmentsAsync(ProjectIdentifier project, string issueId, List<string> identities, CancellationToken cancellationToken = default)
+                    public async Task RemoveAttachmentsAsync(ProjectIdentifier project, IssueIdentifier issueId, List<string> identities, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         queryParameters.Append("identities", identities.Select(it => it));
@@ -1823,7 +1841,7 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task<List<string>> ImportIssueCommentHistoryAsync(ProjectIdentifier project, string issueId, List<MessageForImport> comments, CancellationToken cancellationToken = default)
+                    public async Task<List<string>> ImportIssueCommentHistoryAsync(ProjectIdentifier project, IssueIdentifier issueId, List<MessageForImport> comments, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         
@@ -1860,7 +1878,7 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task AddIssueTagAsync(ProjectIdentifier project, string issueId, string tagId, CancellationToken cancellationToken = default)
+                    public async Task AddIssueTagAsync(ProjectIdentifier project, IssueIdentifier issueId, string tagId, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         
@@ -1880,7 +1898,7 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task RemoveIssueTagAsync(ProjectIdentifier project, string issueId, string tagId, CancellationToken cancellationToken = default)
+                    public async Task RemoveIssueTagAsync(ProjectIdentifier project, IssueIdentifier issueId, string tagId, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         
@@ -3406,7 +3424,7 @@ namespace JetBrains.Space.Client
                         }
                         
                         /// <summary>
-                        /// Publishes package to remote repository.
+                        /// Publishes packages to remote repository.
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -3416,19 +3434,53 @@ namespace JetBrains.Space.Client
                         /// </item>
                         /// </list>
                         /// </remarks>
-                        public async Task<PackagesExecutionResult> PublishPackageToRemoteRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string connectionId, string packageName, string packageVersion, Func<Partial<PackagesExecutionResult>, Partial<PackagesExecutionResult>>? partial = null, CancellationToken cancellationToken = default)
+                        public async Task<string> PublishPackagesToRemoteRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string connectionId, PublishingSource source, CancellationToken cancellationToken = default)
                         {
                             var queryParameters = new NameValueCollection();
-                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackagesExecutionResult>()) : Partial<PackagesExecutionResult>.Default()).ToString());
                             
-                            return await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest, PackagesExecutionResult>("POST", $"api/http/projects/{project}/packages/repositories/{repository}/connections/{connectionId}/publish{queryParameters.ToQueryString()}", 
+                            return await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest, string>("POST", $"api/http/projects/{project}/packages/repositories/{repository}/connections/{connectionId}/publish{queryParameters.ToQueryString()}", 
                                 new ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest
                                 { 
-                                    PackageName = packageName,
-                                    PackageVersion = packageVersion,
+                                    Source = source,
                                 }, cancellationToken);
                         }
                         
+                    
+                        /// <summary>
+                        /// Get list of publishing to remote repository.
+                        /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Read</term>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
+                        public async Task<Batch<PackagesPublishing>> GetListOfPublishingToRemoteRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string connectionId, string? skip = null, int? top = 100, Func<Partial<Batch<PackagesPublishing>>, Partial<Batch<PackagesPublishing>>>? partial = null, CancellationToken cancellationToken = default)
+                        {
+                            var queryParameters = new NameValueCollection();
+                            if (skip != null) queryParameters.Append("$skip", skip);
+                            if (top != null) queryParameters.Append("$top", top?.ToString());
+                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackagesPublishing>>()) : Partial<Batch<PackagesPublishing>>.Default()).ToString());
+                            
+                            return await _connection.RequestResourceAsync<Batch<PackagesPublishing>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/connections/{connectionId}/publish{queryParameters.ToQueryString()}", cancellationToken);
+                        }
+                        
+                        
+                        /// <summary>
+                        /// Get list of publishing to remote repository.
+                        /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Read</term>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
+                        public IAsyncEnumerable<PackagesPublishing> GetListOfPublishingToRemoteRepositoryAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string connectionId, string? skip = null, int? top = 100, Func<Partial<PackagesPublishing>, Partial<PackagesPublishing>>? partial = null, CancellationToken cancellationToken = default)
+                            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetListOfPublishingToRemoteRepositoryAsync(project: project, repository: repository, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackagesPublishing>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackagesPublishing>.Default())), skip, cancellationToken);
                     
                     }
                 

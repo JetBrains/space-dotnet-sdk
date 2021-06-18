@@ -69,6 +69,12 @@ namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileSettingsPatchReq
         public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithPreferredLanguage(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
             => it.AddFieldName("preferredLanguage");
         
+        public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithDefaultProject(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
+            => it.AddFieldName("defaultProject");
+        
+        public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithDefaultProject(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
+            => it.AddFieldName("defaultProject", partialBuilder(new Partial<ProjectIdentifier>(it)));
+        
     }
     
 }

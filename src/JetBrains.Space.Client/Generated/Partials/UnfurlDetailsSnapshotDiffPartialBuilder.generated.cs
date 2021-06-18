@@ -26,27 +26,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.UnfurlDetailsSnapshotDiffPartialBuilder
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class DryCleanupResults
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class UnfurlDetailsSnapshotDiffPartialExtensions
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "DryCleanupResults";
+        public static Partial<UnfurlDetailsSnapshotDiff> WithSnapshotId(this Partial<UnfurlDetailsSnapshotDiff> it)
+            => it.AddFieldName("snapshotId");
         
-        public static DryCleanupResultsFailure Failure(string error)
-            => new DryCleanupResultsFailure(error: error);
+        public static Partial<UnfurlDetailsSnapshotDiff> WithBaseSnapshotId(this Partial<UnfurlDetailsSnapshotDiff> it)
+            => it.AddFieldName("baseSnapshotId");
         
-        public static DryCleanupResultsResults Results(long totalSize, List<PackageVersionRef> packageVersions)
-            => new DryCleanupResultsResults(totalSize: totalSize, packageVersions: packageVersions);
-        
-        public DryCleanupResults() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
     
 }

@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryProfilesForProfileSettingsPatchRequest() { }
         
-        public TeamDirectoryProfilesForProfileSettingsPatchRequest(DarkTheme? darkTheme = null, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? fontLigaturesEnabled = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null)
+        public TeamDirectoryProfilesForProfileSettingsPatchRequest(DarkTheme? darkTheme = null, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? fontLigaturesEnabled = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null, ProjectIdentifier? defaultProject = null)
         {
             DarkTheme = darkTheme;
             ThemeName = themeName;
@@ -45,6 +45,7 @@ namespace JetBrains.Space.Client
             IsEmailNotificationsEnabled = emailNotificationsEnabled;
             NotificationEmail = notificationEmail;
             PreferredLanguage = preferredLanguage;
+            DefaultProject = defaultProject;
         }
         
         private PropertyValue<DarkTheme?> _darkTheme = new PropertyValue<DarkTheme?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(DarkTheme));
@@ -139,6 +140,15 @@ namespace JetBrains.Space.Client
             set => _preferredLanguage.SetValue(value);
         }
     
+        private PropertyValue<ProjectIdentifier?> _defaultProject = new PropertyValue<ProjectIdentifier?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(DefaultProject));
+        
+        [JsonPropertyName("defaultProject")]
+        public ProjectIdentifier? DefaultProject
+        {
+            get => _defaultProject.GetValue();
+            set => _defaultProject.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _darkTheme.SetAccessPath(path, validateHasBeenSet);
@@ -151,6 +161,7 @@ namespace JetBrains.Space.Client
             _emailNotificationsEnabled.SetAccessPath(path, validateHasBeenSet);
             _notificationEmail.SetAccessPath(path, validateHasBeenSet);
             _preferredLanguage.SetAccessPath(path, validateHasBeenSet);
+            _defaultProject.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

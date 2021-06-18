@@ -79,7 +79,7 @@ namespace JetBrains.Space.Client
         public static ProfileListCFInputValue ProfileList(List<ProfileIdentifier> profiles)
             => new ProfileListCFInputValue(profiles: profiles);
         
-        public static ProjectCFInputValue Project(string? project = null)
+        public static ProjectCFInputValue Project(ProjectIdentifier? project = null)
             => new ProjectCFInputValue(project: project);
         
         public static StringCFValue StringCFValue(string? value = null)

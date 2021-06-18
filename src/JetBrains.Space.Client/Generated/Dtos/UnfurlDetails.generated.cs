@@ -109,6 +109,9 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsRole Role(TDRole role)
             => new UnfurlDetailsRole(role: role);
         
+        public static UnfurlDetailsSnapshotDiff SnapshotDiff(string snapshotId, string baseSnapshotId)
+            => new UnfurlDetailsSnapshotDiff(snapshotId: snapshotId, baseSnapshotId: baseSnapshotId);
+        
         public static UnfurlDetailsSprint Sprint(PRProject project, SprintRecord sprint)
             => new UnfurlDetailsSprint(project: project, sprint: sprint);
         

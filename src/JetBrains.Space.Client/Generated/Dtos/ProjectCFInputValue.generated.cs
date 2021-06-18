@@ -36,15 +36,15 @@ namespace JetBrains.Space.Client
         
         public ProjectCFInputValue() { }
         
-        public ProjectCFInputValue(string? project = null)
+        public ProjectCFInputValue(ProjectIdentifier? project = null)
         {
             Project = project;
         }
         
-        private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(ProjectCFInputValue), nameof(Project));
+        private PropertyValue<ProjectIdentifier?> _project = new PropertyValue<ProjectIdentifier?>(nameof(ProjectCFInputValue), nameof(Project));
         
         [JsonPropertyName("project")]
-        public string? Project
+        public ProjectIdentifier? Project
         {
             get => _project.GetValue();
             set => _project.SetValue(value);
