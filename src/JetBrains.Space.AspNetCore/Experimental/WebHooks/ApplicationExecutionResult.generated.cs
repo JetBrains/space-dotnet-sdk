@@ -38,6 +38,7 @@ namespace JetBrains.Space.Client
         /// Creates a new <see cref="ApplicationExecutionResult"/> with a message to return to Space.
         /// </summary>
         /// <param name="message">Optional message to return to Space.</param>
+        /// <param name="statusCode">Status code to return to Space.</param>
         public ApplicationExecutionResult(string? message, int statusCode = 200)
         {
             Message = message;
