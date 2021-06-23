@@ -8,10 +8,11 @@
     <NoWarn>CS0649;CS0169</NoWarn>
     <NukeRootDirectory>..</NukeRootDirectory>
     <NukeScriptDirectory>..</NukeScriptDirectory>
+    <NukeTelemetryVersion>1</NukeTelemetryVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Nuke.Common" Version="5.1.4" />
+    <PackageReference Include="Nuke.Common" Version="5.2.1" />
     <PackageDownload Include="GitVersion.Tool" Version="[5.1.1]" />
 
     <PackageReference Include="Microsoft.Build" Version="16.10.0" />
