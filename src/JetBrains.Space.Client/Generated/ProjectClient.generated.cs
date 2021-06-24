@@ -3364,7 +3364,7 @@ namespace JetBrains.Space.Client
                         /// </item>
                         /// </list>
                         /// </remarks>
-                        public async Task<DryCleanupResults> DryCleanupRepositoryRunAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, RetentionPolicyParams retentionParams, Func<Partial<DryCleanupResults>, Partial<DryCleanupResults>>? partial = null, CancellationToken cancellationToken = default)
+                        public async Task<DryCleanupResults> DryRunRepositoryCleanupAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, RetentionPolicyParams retentionParams, Func<Partial<DryCleanupResults>, Partial<DryCleanupResults>>? partial = null, CancellationToken cancellationToken = default)
                         {
                             var queryParameters = new NameValueCollection();
                             queryParameters.Append("$fields", (partial != null ? partial(new Partial<DryCleanupResults>()) : Partial<DryCleanupResults>.Default()).ToString());

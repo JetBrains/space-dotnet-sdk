@@ -156,14 +156,19 @@ namespace JetBrains.Space.Client
         }
         
     
-        public async Task<List<AppMessageDelivery>> LatestMessagesDeliveriesAsync(string applicationId, Func<Partial<AppMessageDelivery>, Partial<AppMessageDelivery>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<AppMessageDelivery>> LatestMessagesDeliveriesAsync(string applicationId, string? skip = null, int? top = 100, Func<Partial<Batch<AppMessageDelivery>>, Partial<Batch<AppMessageDelivery>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<AppMessageDelivery>()) : Partial<AppMessageDelivery>.Default()).ToString());
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AppMessageDelivery>>()) : Partial<Batch<AppMessageDelivery>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<AppMessageDelivery>>("GET", $"api/http/applications/{applicationId}/latest-messages-deliveries{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<AppMessageDelivery>>("GET", $"api/http/applications/{applicationId}/latest-messages-deliveries{queryParameters.ToQueryString()}", cancellationToken);
         }
         
+        
+        public IAsyncEnumerable<AppMessageDelivery> LatestMessagesDeliveriesAsyncEnumerable(string applicationId, string? skip = null, int? top = 100, Func<Partial<AppMessageDelivery>, Partial<AppMessageDelivery>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => LatestMessagesDeliveriesAsync(applicationId: applicationId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AppMessageDelivery>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AppMessageDelivery>.Default())), skip, cancellationToken);
     
         /// <remarks>
         /// Required permissions:

@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public DRDraftHeader() { }
         
-        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null, DocumentBodyType? bodyType = null)
+        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null)
         {
             Id = id;
             Title = title;
@@ -156,10 +156,11 @@ namespace JetBrains.Space.Client
             set => _containerInfo.SetValue(value);
         }
     
-        private PropertyValue<DocumentBodyType?> _bodyType = new PropertyValue<DocumentBodyType?>(nameof(DRDraftHeader), nameof(BodyType));
+        private PropertyValue<DocumentBodyType> _bodyType = new PropertyValue<DocumentBodyType>(nameof(DRDraftHeader), nameof(BodyType));
         
+        [Required]
         [JsonPropertyName("bodyType")]
-        public DocumentBodyType? BodyType
+        public DocumentBodyType BodyType
         {
             get => _bodyType.GetValue();
             set => _bodyType.SetValue(value);

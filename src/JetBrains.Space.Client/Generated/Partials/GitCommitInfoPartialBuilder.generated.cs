@@ -48,17 +48,23 @@ namespace JetBrains.Space.Client.GitCommitInfoPartialBuilder
         public static Partial<GitCommitInfo> WithAuthor(this Partial<GitCommitInfo> it, Func<Partial<GitAuthorInfo>, Partial<GitAuthorInfo>> partialBuilder)
             => it.AddFieldName("author", partialBuilder(new Partial<GitAuthorInfo>(it)));
         
+        public static Partial<GitCommitInfo> WithAuthorProfile(this Partial<GitCommitInfo> it)
+            => it.AddFieldName("authorProfile");
+        
+        public static Partial<GitCommitInfo> WithAuthorProfile(this Partial<GitCommitInfo> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+            => it.AddFieldName("authorProfile", partialBuilder(new Partial<TDMemberProfile>(it)));
+        
         public static Partial<GitCommitInfo> WithCommitter(this Partial<GitCommitInfo> it)
             => it.AddFieldName("committer");
         
         public static Partial<GitCommitInfo> WithCommitter(this Partial<GitCommitInfo> it, Func<Partial<GitAuthorInfo>, Partial<GitAuthorInfo>> partialBuilder)
             => it.AddFieldName("committer", partialBuilder(new Partial<GitAuthorInfo>(it)));
         
-        public static Partial<GitCommitInfo> WithAuthorProfile(this Partial<GitCommitInfo> it)
-            => it.AddFieldName("authorProfile");
+        public static Partial<GitCommitInfo> WithCommitterProfile(this Partial<GitCommitInfo> it)
+            => it.AddFieldName("committerProfile");
         
-        public static Partial<GitCommitInfo> WithAuthorProfile(this Partial<GitCommitInfo> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("authorProfile", partialBuilder(new Partial<TDMemberProfile>(it)));
+        public static Partial<GitCommitInfo> WithCommitterProfile(this Partial<GitCommitInfo> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+            => it.AddFieldName("committerProfile", partialBuilder(new Partial<TDMemberProfile>(it)));
         
         public static Partial<GitCommitInfo> WithParents(this Partial<GitCommitInfo> it)
             => it.AddFieldName("parents");

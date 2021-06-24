@@ -78,6 +78,9 @@ namespace JetBrains.Space.Client.UnfurlPartialBuilder
         public static Partial<Unfurl> WithFavicon(this Partial<Unfurl> it)
             => it.AddFieldName("favicon");
         
+        public static Partial<Unfurl> WithIsAlwaysInline(this Partial<Unfurl> it)
+            => it.AddFieldName("alwaysInline");
+        
     }
     
 }

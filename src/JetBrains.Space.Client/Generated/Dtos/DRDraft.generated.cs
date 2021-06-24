@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public DRDraft() { }
         
-        public DRDraft(string id, string title, DateTime modified, bool shared, bool published, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, DocumentFolderRecord? folder = null, TextDocument? document = null, DocumentBody? documentBody = null, DocumentBodyType? bodyType = null)
+        public DRDraft(string id, string title, DateTime modified, bool shared, bool published, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBody documentBody, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, DocumentFolderRecord? folder = null)
         {
             Id = id;
             Title = title;
@@ -50,7 +50,6 @@ namespace JetBrains.Space.Client
             AccessOrdinal = accessOrdinal;
             Editors = editors;
             EditorsTeams = editorsTeams;
-            Document = document;
             DocumentBody = documentBody;
             BodyType = bodyType;
         }
@@ -201,28 +200,21 @@ namespace JetBrains.Space.Client
             set => _editorsTeams.SetValue(value);
         }
     
-        private PropertyValue<TextDocument?> _document = new PropertyValue<TextDocument?>(nameof(DRDraft), nameof(Document));
+        private PropertyValue<DocumentBody> _documentBody = new PropertyValue<DocumentBody>(nameof(DRDraft), nameof(DocumentBody));
         
-        [JsonPropertyName("document")]
-        public TextDocument? Document
-        {
-            get => _document.GetValue();
-            set => _document.SetValue(value);
-        }
-    
-        private PropertyValue<DocumentBody?> _documentBody = new PropertyValue<DocumentBody?>(nameof(DRDraft), nameof(DocumentBody));
-        
+        [Required]
         [JsonPropertyName("documentBody")]
-        public DocumentBody? DocumentBody
+        public DocumentBody DocumentBody
         {
             get => _documentBody.GetValue();
             set => _documentBody.SetValue(value);
         }
     
-        private PropertyValue<DocumentBodyType?> _bodyType = new PropertyValue<DocumentBodyType?>(nameof(DRDraft), nameof(BodyType));
+        private PropertyValue<DocumentBodyType> _bodyType = new PropertyValue<DocumentBodyType>(nameof(DRDraft), nameof(BodyType));
         
+        [Required]
         [JsonPropertyName("bodyType")]
-        public DocumentBodyType? BodyType
+        public DocumentBodyType BodyType
         {
             get => _bodyType.GetValue();
             set => _bodyType.SetValue(value);
@@ -245,7 +237,6 @@ namespace JetBrains.Space.Client
             _accessOrdinal.SetAccessPath(path, validateHasBeenSet);
             _editors.SetAccessPath(path, validateHasBeenSet);
             _editorsTeams.SetAccessPath(path, validateHasBeenSet);
-            _document.SetAccessPath(path, validateHasBeenSet);
             _documentBody.SetAccessPath(path, validateHasBeenSet);
             _bodyType.SetAccessPath(path, validateHasBeenSet);
         }

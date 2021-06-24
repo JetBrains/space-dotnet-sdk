@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public Unfurl() { }
         
-        public Unfurl(string title, string link, string text, UnfurlDetails? details = null, string? sitename = null, string? image = null, string? imageMime = null, int? imageWidth = null, int? imageHeight = null, string? video = null, string? videoIFrame = null, string? videoMime = null, int? videoHeight = null, int? videoWidth = null, string? favicon = null)
+        public Unfurl(string title, string link, string text, UnfurlDetails? details = null, string? sitename = null, string? image = null, string? imageMime = null, int? imageWidth = null, int? imageHeight = null, string? video = null, string? videoIFrame = null, string? videoMime = null, int? videoHeight = null, int? videoWidth = null, string? favicon = null, bool? alwaysInline = null)
         {
             Title = title;
             Link = link;
@@ -50,6 +50,7 @@ namespace JetBrains.Space.Client
             VideoHeight = videoHeight;
             VideoWidth = videoWidth;
             Favicon = favicon;
+            IsAlwaysInline = alwaysInline;
         }
         
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(Unfurl), nameof(Title));
@@ -190,6 +191,15 @@ namespace JetBrains.Space.Client
             set => _favicon.SetValue(value);
         }
     
+        private PropertyValue<bool?> _alwaysInline = new PropertyValue<bool?>(nameof(Unfurl), nameof(IsAlwaysInline));
+        
+        [JsonPropertyName("alwaysInline")]
+        public bool? IsAlwaysInline
+        {
+            get => _alwaysInline.GetValue();
+            set => _alwaysInline.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _title.SetAccessPath(path, validateHasBeenSet);
@@ -207,6 +217,7 @@ namespace JetBrains.Space.Client
             _videoHeight.SetAccessPath(path, validateHasBeenSet);
             _videoWidth.SetAccessPath(path, validateHasBeenSet);
             _favicon.SetAccessPath(path, validateHasBeenSet);
+            _alwaysInline.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

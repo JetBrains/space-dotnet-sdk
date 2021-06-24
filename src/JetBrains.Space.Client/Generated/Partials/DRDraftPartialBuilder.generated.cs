@@ -96,12 +96,6 @@ namespace JetBrains.Space.Client.DRDraftPartialBuilder
         public static Partial<DRDraft> WithEditorsTeams(this Partial<DRDraft> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
             => it.AddFieldName("editorsTeams", partialBuilder(new Partial<TDTeam>(it)));
         
-        public static Partial<DRDraft> WithDocument(this Partial<DRDraft> it)
-            => it.AddFieldName("document");
-        
-        public static Partial<DRDraft> WithDocument(this Partial<DRDraft> it, Func<Partial<TextDocument>, Partial<TextDocument>> partialBuilder)
-            => it.AddFieldName("document", partialBuilder(new Partial<TextDocument>(it)));
-        
         public static Partial<DRDraft> WithDocumentBody(this Partial<DRDraft> it)
             => it.AddFieldName("documentBody");
         

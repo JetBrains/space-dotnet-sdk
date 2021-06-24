@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public KBArticle() { }
         
-        public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, string documentId, DateTime created, DateTime updated, string alias, DocumentInContainer? document = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
+        public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, string documentId, DocumentInContainer document, DateTime created, DateTime updated, string alias, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
         {
             Id = id;
             IsArchived = archived;
@@ -109,10 +109,11 @@ namespace JetBrains.Space.Client
             set => _documentId.SetValue(value);
         }
     
-        private PropertyValue<DocumentInContainer?> _document = new PropertyValue<DocumentInContainer?>(nameof(KBArticle), nameof(Document));
+        private PropertyValue<DocumentInContainer> _document = new PropertyValue<DocumentInContainer>(nameof(KBArticle), nameof(Document));
         
+        [Required]
         [JsonPropertyName("document")]
-        public DocumentInContainer? Document
+        public DocumentInContainer Document
         {
             get => _document.GetValue();
             set => _document.SetValue(value);

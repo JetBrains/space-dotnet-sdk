@@ -33,15 +33,16 @@ namespace JetBrains.Space.Client
     {
         public GitCommitInfo() { }
         
-        public GitCommitInfo(string id, string message, long authorDate, long commitDate, GitAuthorInfo author, GitAuthorInfo committer, List<string> parents, List<string> heads, TDMemberProfile? authorProfile = null, GitCommitSignature? signature = null)
+        public GitCommitInfo(string id, string message, long authorDate, long commitDate, GitAuthorInfo author, GitAuthorInfo committer, List<string> parents, List<string> heads, TDMemberProfile? authorProfile = null, TDMemberProfile? committerProfile = null, GitCommitSignature? signature = null)
         {
             Id = id;
             Message = message;
             AuthorDate = authorDate;
             CommitDate = commitDate;
             Author = author;
-            Committer = committer;
             AuthorProfile = authorProfile;
+            Committer = committer;
+            CommitterProfile = committerProfile;
             Parents = parents;
             Heads = heads;
             Signature = signature;
@@ -97,6 +98,15 @@ namespace JetBrains.Space.Client
             set => _author.SetValue(value);
         }
     
+        private PropertyValue<TDMemberProfile?> _authorProfile = new PropertyValue<TDMemberProfile?>(nameof(GitCommitInfo), nameof(AuthorProfile));
+        
+        [JsonPropertyName("authorProfile")]
+        public TDMemberProfile? AuthorProfile
+        {
+            get => _authorProfile.GetValue();
+            set => _authorProfile.SetValue(value);
+        }
+    
         private PropertyValue<GitAuthorInfo> _committer = new PropertyValue<GitAuthorInfo>(nameof(GitCommitInfo), nameof(Committer));
         
         [Required]
@@ -107,13 +117,13 @@ namespace JetBrains.Space.Client
             set => _committer.SetValue(value);
         }
     
-        private PropertyValue<TDMemberProfile?> _authorProfile = new PropertyValue<TDMemberProfile?>(nameof(GitCommitInfo), nameof(AuthorProfile));
+        private PropertyValue<TDMemberProfile?> _committerProfile = new PropertyValue<TDMemberProfile?>(nameof(GitCommitInfo), nameof(CommitterProfile));
         
-        [JsonPropertyName("authorProfile")]
-        public TDMemberProfile? AuthorProfile
+        [JsonPropertyName("committerProfile")]
+        public TDMemberProfile? CommitterProfile
         {
-            get => _authorProfile.GetValue();
-            set => _authorProfile.SetValue(value);
+            get => _committerProfile.GetValue();
+            set => _committerProfile.SetValue(value);
         }
     
         private PropertyValue<List<string>> _parents = new PropertyValue<List<string>>(nameof(GitCommitInfo), nameof(Parents), new List<string>());
@@ -152,8 +162,9 @@ namespace JetBrains.Space.Client
             _authorDate.SetAccessPath(path, validateHasBeenSet);
             _commitDate.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
-            _committer.SetAccessPath(path, validateHasBeenSet);
             _authorProfile.SetAccessPath(path, validateHasBeenSet);
+            _committer.SetAccessPath(path, validateHasBeenSet);
+            _committerProfile.SetAccessPath(path, validateHasBeenSet);
             _parents.SetAccessPath(path, validateHasBeenSet);
             _heads.SetAccessPath(path, validateHasBeenSet);
             _signature.SetAccessPath(path, validateHasBeenSet);
