@@ -33,13 +33,14 @@ namespace JetBrains.Space.Client
     {
         public FeatureFlag() { }
         
-        public FeatureFlag(string name, string description, FeatureFlagStatus status, string owner, FeatureFlagDate? introduced = null)
+        public FeatureFlag(string name, string description, FeatureFlagStatus status, string owner, FeatureFlagDate? since = null, int? issueNumber = null)
         {
             Name = name;
             Description = description;
             Status = status;
             Owner = owner;
-            Introduced = introduced;
+            Since = since;
+            IssueNumber = issueNumber;
         }
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(FeatureFlag), nameof(Name));
@@ -82,13 +83,22 @@ namespace JetBrains.Space.Client
             set => _owner.SetValue(value);
         }
     
-        private PropertyValue<FeatureFlagDate?> _introduced = new PropertyValue<FeatureFlagDate?>(nameof(FeatureFlag), nameof(Introduced));
+        private PropertyValue<FeatureFlagDate?> _since = new PropertyValue<FeatureFlagDate?>(nameof(FeatureFlag), nameof(Since));
         
-        [JsonPropertyName("introduced")]
-        public FeatureFlagDate? Introduced
+        [JsonPropertyName("since")]
+        public FeatureFlagDate? Since
         {
-            get => _introduced.GetValue();
-            set => _introduced.SetValue(value);
+            get => _since.GetValue();
+            set => _since.SetValue(value);
+        }
+    
+        private PropertyValue<int?> _issueNumber = new PropertyValue<int?>(nameof(FeatureFlag), nameof(IssueNumber));
+        
+        [JsonPropertyName("issueNumber")]
+        public int? IssueNumber
+        {
+            get => _issueNumber.GetValue();
+            set => _issueNumber.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
@@ -97,7 +107,8 @@ namespace JetBrains.Space.Client
             _description.SetAccessPath(path, validateHasBeenSet);
             _status.SetAccessPath(path, validateHasBeenSet);
             _owner.SetAccessPath(path, validateHasBeenSet);
-            _introduced.SetAccessPath(path, validateHasBeenSet);
+            _since.SetAccessPath(path, validateHasBeenSet);
+            _issueNumber.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

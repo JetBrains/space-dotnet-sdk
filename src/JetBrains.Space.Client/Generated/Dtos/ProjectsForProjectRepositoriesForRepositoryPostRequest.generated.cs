@@ -33,15 +33,15 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectRepositoriesForRepositoryPostRequest() { }
         
-        public ProjectsForProjectRepositoriesForRepositoryPostRequest(string? description = null, bool initialize = true, bool defaultSetup = false, string? defaultBranch = null)
+        public ProjectsForProjectRepositoriesForRepositoryPostRequest(string description = "", bool initialize = true, bool defaultSetup = false, string? defaultBranch = null)
         {
-            Description = (description ?? string.Empty);
+            Description = description;
             DefaultBranch = defaultBranch;
             IsInitialize = initialize;
             IsDefaultSetup = defaultSetup;
         }
         
-        private PropertyValue<string> _description = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(Description), string.Empty);
+        private PropertyValue<string> _description = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(Description));
         
         [JsonPropertyName("description")]
         public string Description

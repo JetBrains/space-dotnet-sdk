@@ -2703,12 +2703,12 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<TDMemberProfile>> GetAllMemberProfilesAsync(ProjectIdentifier project, string? query = null, bool includingAdmins = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<TDMemberProfile>> GetAllMemberProfilesAsync(ProjectIdentifier project, string query = "", bool includingAdmins = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
-                    if (query != null) queryParameters.Append("query", (query ?? string.Empty));
+                    queryParameters.Append("query", query);
                     queryParameters.Append("includingAdmins", includingAdmins.ToString("l"));
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
                     
@@ -2727,7 +2727,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public IAsyncEnumerable<TDMemberProfile> GetAllMemberProfilesAsyncEnumerable(ProjectIdentifier project, string? query = null, bool includingAdmins = false, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+                public IAsyncEnumerable<TDMemberProfile> GetAllMemberProfilesAsyncEnumerable(ProjectIdentifier project, string query = "", bool includingAdmins = false, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMemberProfilesAsync(project: project, query: query, includingAdmins: includingAdmins, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
             
             }
@@ -3911,7 +3911,7 @@ namespace JetBrains.Space.Client
                 _connection = connection;
             }
             
-            public async Task<PRRepositoryInfo> CreateNewRepositoryAsync(ProjectIdentifier project, string repository, string? description = null, bool initialize = true, bool defaultSetup = false, string? defaultBranch = null, Func<Partial<PRRepositoryInfo>, Partial<PRRepositoryInfo>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<PRRepositoryInfo> CreateNewRepositoryAsync(ProjectIdentifier project, string repository, string description = "", bool initialize = true, bool defaultSetup = false, string? defaultBranch = null, Func<Partial<PRRepositoryInfo>, Partial<PRRepositoryInfo>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRRepositoryInfo>()) : Partial<PRRepositoryInfo>.Default()).ToString());
@@ -3919,7 +3919,7 @@ namespace JetBrains.Space.Client
                 return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryPostRequest, PRRepositoryInfo>("POST", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", 
                     new ProjectsForProjectRepositoriesForRepositoryPostRequest
                     { 
-                        Description = (description ?? string.Empty),
+                        Description = description,
                         DefaultBranch = defaultBranch,
                         IsInitialize = initialize,
                         IsDefaultSetup = defaultSetup,

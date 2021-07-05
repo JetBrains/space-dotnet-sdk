@@ -48,6 +48,12 @@ namespace JetBrains.Space.Client.HADtoPartialBuilder
         public static Partial<HADto> WithHierarchyRole(this Partial<HADto> it, Func<Partial<HierarchyRole>, Partial<HierarchyRole>> partialBuilder)
             => it.AddFieldName("hierarchyRole", partialBuilder(new Partial<HierarchyRole>(it)));
         
+        public static Partial<HADto> WithHierarchyRole2(this Partial<HADto> it)
+            => it.AddFieldName("hierarchyRole2");
+        
+        public static Partial<HADto> WithHierarchyRole2(this Partial<HADto> it, Func<Partial<HierarchyRole2>, Partial<HierarchyRole2>> partialBuilder)
+            => it.AddFieldName("hierarchyRole2", partialBuilder(new Partial<HierarchyRole2>(it)));
+        
         public static Partial<HADto> WithExtends(this Partial<HADto> it)
             => it.AddFieldName("extends");
         

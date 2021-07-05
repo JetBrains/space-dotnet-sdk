@@ -28,30 +28,27 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest
-         : IPropagatePropertyAccessPath
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum HierarchyRole2
     {
-        public TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest() { }
+        [EnumMember(Value = "SEALED_CLASS")]
+        SEALEDCLASS,
         
-        public TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest(string comment = "")
-        {
-            Comment = comment;
-        }
+        [EnumMember(Value = "OPEN_CLASS")]
+        OPENCLASS,
         
-        private PropertyValue<string> _comment = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest), nameof(Comment));
+        [EnumMember(Value = "FINAL_CLASS")]
+        FINALCLASS,
         
-        [JsonPropertyName("comment")]
-        public string Comment
-        {
-            get => _comment.GetValue();
-            set => _comment.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _comment.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        [EnumMember(Value = "ABSTRACT_CLASS")]
+        ABSTRACTCLASS,
+        
+        [EnumMember(Value = "INTERFACE")]
+        INTERFACE,
+        
+        [EnumMember(Value = "SEALED_INTERFACE")]
+        SEALEDINTERFACE,
+        
     }
     
 }

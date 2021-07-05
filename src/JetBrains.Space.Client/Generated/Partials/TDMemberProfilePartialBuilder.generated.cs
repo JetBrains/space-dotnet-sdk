@@ -171,6 +171,12 @@ namespace JetBrains.Space.Client.TDMemberProfilePartialBuilder
         public static Partial<TDMemberProfile> WithIsShowBannerOnTeamDirectoryHomePage(this Partial<TDMemberProfile> it)
             => it.AddFieldName("showBannerOnTeamDirectoryHomePage");
         
+        public static Partial<TDMemberProfile> WithTopics(this Partial<TDMemberProfile> it)
+            => it.AddFieldName("topics");
+        
+        public static Partial<TDMemberProfile> WithTopics(this Partial<TDMemberProfile> it, Func<Partial<Topic>, Partial<Topic>> partialBuilder)
+            => it.AddFieldName("topics", partialBuilder(new Partial<Topic>(it)));
+        
         public static Partial<TDMemberProfile> WithUnapprovedMemberships(this Partial<TDMemberProfile> it)
             => it.AddFieldName("unapprovedMemberships");
         

@@ -281,12 +281,12 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Batch<Meeting>> GetAllMeetingsAsync(string? summaryQuery = null, List<string>? locationsQuery = null, List<string>? profiles = null, List<string>? teams = null, bool includePrivate = false, bool includeArchived = false, bool includeMeetingInstances = true, string? skip = null, int? top = 100, DateTime? startingAfter = null, DateTime? endingAfter = null, DateTime? endingBefore = null, DateTime? startingBefore = null, string? organizer = null, Func<Partial<Batch<Meeting>>, Partial<Batch<Meeting>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<Meeting>> GetAllMeetingsAsync(string summaryQuery = "", List<string>? locationsQuery = null, List<string>? profiles = null, List<string>? teams = null, bool includePrivate = false, bool includeArchived = false, bool includeMeetingInstances = true, string? skip = null, int? top = 100, DateTime? startingAfter = null, DateTime? endingAfter = null, DateTime? endingBefore = null, DateTime? startingBefore = null, string? organizer = null, Func<Partial<Batch<Meeting>>, Partial<Batch<Meeting>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (skip != null) queryParameters.Append("$skip", skip);
                 if (top != null) queryParameters.Append("$top", top?.ToString());
-                if (summaryQuery != null) queryParameters.Append("summaryQuery", (summaryQuery ?? string.Empty));
+                queryParameters.Append("summaryQuery", summaryQuery);
                 queryParameters.Append("locationsQuery", (locationsQuery ?? new List<string>()).Select(it => it));
                 if (startingAfter != null) queryParameters.Append("startingAfter", startingAfter?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
                 if (endingAfter != null) queryParameters.Append("endingAfter", endingAfter?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
@@ -315,7 +315,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public IAsyncEnumerable<Meeting> GetAllMeetingsAsyncEnumerable(string? summaryQuery = null, List<string>? locationsQuery = null, List<string>? profiles = null, List<string>? teams = null, bool includePrivate = false, bool includeArchived = false, bool includeMeetingInstances = true, string? skip = null, int? top = 100, DateTime? startingAfter = null, DateTime? endingAfter = null, DateTime? endingBefore = null, DateTime? startingBefore = null, string? organizer = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
+            public IAsyncEnumerable<Meeting> GetAllMeetingsAsyncEnumerable(string summaryQuery = "", List<string>? locationsQuery = null, List<string>? profiles = null, List<string>? teams = null, bool includePrivate = false, bool includeArchived = false, bool includeMeetingInstances = true, string? skip = null, int? top = 100, DateTime? startingAfter = null, DateTime? endingAfter = null, DateTime? endingBefore = null, DateTime? startingBefore = null, string? organizer = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMeetingsAsync(summaryQuery: summaryQuery, locationsQuery: locationsQuery, profiles: profiles, teams: teams, includePrivate: includePrivate, includeArchived: includeArchived, includeMeetingInstances: includeMeetingInstances, top: top, startingAfter: startingAfter, endingAfter: endingAfter, endingBefore: endingBefore, startingBefore: startingBefore, organizer: organizer, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Meeting>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Meeting>.Default())), skip, cancellationToken);
         
             /// <summary>

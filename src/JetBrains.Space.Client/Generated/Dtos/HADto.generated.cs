@@ -33,12 +33,13 @@ namespace JetBrains.Space.Client
     {
         public HADto() { }
         
-        public HADto(string id, string name, List<HADtoField> fields, HierarchyRole hierarchyRole, List<HADto> implements, List<HADto> inheritors, bool record, HADto? extends = null, HADeprecation? deprecation = null)
+        public HADto(string id, string name, List<HADtoField> fields, HierarchyRole hierarchyRole, HierarchyRole2 hierarchyRole2, List<HADto> implements, List<HADto> inheritors, bool record, HADto? extends = null, HADeprecation? deprecation = null)
         {
             Id = id;
             Name = name;
             Fields = fields;
             HierarchyRole = hierarchyRole;
+            HierarchyRole2 = hierarchyRole2;
             Extends = extends;
             Implements = implements;
             Inheritors = inheritors;
@@ -79,11 +80,22 @@ namespace JetBrains.Space.Client
         private PropertyValue<HierarchyRole> _hierarchyRole = new PropertyValue<HierarchyRole>(nameof(HADto), nameof(HierarchyRole));
         
         [Required]
+        [Obsolete("Use hierarchyRole2 (since 20-07-2021)")]
         [JsonPropertyName("hierarchyRole")]
         public HierarchyRole HierarchyRole
         {
             get => _hierarchyRole.GetValue();
             set => _hierarchyRole.SetValue(value);
+        }
+    
+        private PropertyValue<HierarchyRole2> _hierarchyRole2 = new PropertyValue<HierarchyRole2>(nameof(HADto), nameof(HierarchyRole2));
+        
+        [Required]
+        [JsonPropertyName("hierarchyRole2")]
+        public HierarchyRole2 HierarchyRole2
+        {
+            get => _hierarchyRole2.GetValue();
+            set => _hierarchyRole2.SetValue(value);
         }
     
         private PropertyValue<HADto?> _extends = new PropertyValue<HADto?>(nameof(HADto), nameof(Extends));
@@ -140,6 +152,7 @@ namespace JetBrains.Space.Client
             _name.SetAccessPath(path, validateHasBeenSet);
             _fields.SetAccessPath(path, validateHasBeenSet);
             _hierarchyRole.SetAccessPath(path, validateHasBeenSet);
+            _hierarchyRole2.SetAccessPath(path, validateHasBeenSet);
             _extends.SetAccessPath(path, validateHasBeenSet);
             _implements.SetAccessPath(path, validateHasBeenSet);
             _inheritors.SetAccessPath(path, validateHasBeenSet);

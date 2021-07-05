@@ -172,12 +172,12 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<UAUserAgreementStatus>> GetAllUserAgreementStatusesAsync(string? query = null, bool activeProfilesOnly = true, string? skip = null, int? top = 100, bool? accepted = null, Func<Partial<Batch<UAUserAgreementStatus>>, Partial<Batch<UAUserAgreementStatus>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<UAUserAgreementStatus>> GetAllUserAgreementStatusesAsync(string query = "", bool activeProfilesOnly = true, string? skip = null, int? top = 100, bool? accepted = null, Func<Partial<Batch<UAUserAgreementStatus>>, Partial<Batch<UAUserAgreementStatus>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
-                    if (query != null) queryParameters.Append("query", (query ?? string.Empty));
+                    queryParameters.Append("query", query);
                     if (accepted != null) queryParameters.Append("accepted", accepted?.ToString("l"));
                     queryParameters.Append("activeProfilesOnly", activeProfilesOnly.ToString("l"));
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<UAUserAgreementStatus>>()) : Partial<Batch<UAUserAgreementStatus>>.Default()).ToString());
@@ -194,7 +194,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public IAsyncEnumerable<UAUserAgreementStatus> GetAllUserAgreementStatusesAsyncEnumerable(string? query = null, bool activeProfilesOnly = true, string? skip = null, int? top = 100, bool? accepted = null, Func<Partial<UAUserAgreementStatus>, Partial<UAUserAgreementStatus>>? partial = null, CancellationToken cancellationToken = default)
+                public IAsyncEnumerable<UAUserAgreementStatus> GetAllUserAgreementStatusesAsyncEnumerable(string query = "", bool activeProfilesOnly = true, string? skip = null, int? top = 100, bool? accepted = null, Func<Partial<UAUserAgreementStatus>, Partial<UAUserAgreementStatus>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllUserAgreementStatusesAsync(query: query, activeProfilesOnly: activeProfilesOnly, top: top, accepted: accepted, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<UAUserAgreementStatus>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<UAUserAgreementStatus>.Default())), skip, cancellationToken);
             
                 /// <remarks>
