@@ -217,11 +217,11 @@ The Space API may return polymorphic responses. In other words, there are severa
 
 One such example is `ProjectClient.Planing.Issues.GetAllIssuesAsync()`, where the `CreatedBy` property can be a subclass of `CPrincipalDetails`:
 
-* `CAutomationTaskPrincipalDetails`, when the issue was created by an automation task.
-* `CBuiltInServicePrincipalDetails`, when the issue was created by Space itself.
-* `CExternalServicePrincipalDetails`, when the issue was created by an external service.
-* `CUserWithEmailPrincipalDetails`, when the issue was created by a user that has an e-mail address.
-* `CUserPrincipalDetails`, when the issue was created by a user.
+* `CAutomationTaskPrincipalDetails` — when the issue was created by an automation task.
+* `CBuiltInServicePrincipalDetails` — when the issue was created by Space itself.
+* `CExternalServicePrincipalDetails` — when the issue was created by an external service.
+* `CUserWithEmailPrincipalDetails` — when the issue was created by a user that has an e-mail address.
+* `CUserPrincipalDetails` — when the issue was created by a user.
 
 By default, these instances will only contain properties from the `CPrincipalDetails` base class. To retrieve specific properties of inherited types, we have to use the `.ForInherited<TInherited>()` extension method, and build the partial response for that specific inheritor.
 
@@ -337,6 +337,37 @@ The [`System.Linq.Async`](https://www.nuget.org/packages/System.Linq.Async) NuGe
 > ```
 > 
 > **Keep in mind that some endpoints do not return the total count as part of tha batch.** For these cases, iterating over results is the only manner to get the total number of results.
+
+### Resource Retry Policies
+
+Transient errors may occur when an application communicates with a Space organization.
+For example, a connection error may occur that can be retried, or rate limiting may be in place and the application should lower the frequency of the requests it makes. 
+By transparently retrying a failed operation, stability of the application can be improved.
+
+The `BearerTokenConnection` connection (and its implementations) support setting a retry policy using the `ResourceRetryPolicy` property.
+
+In the .NET SDK for JetBrains Space, you can find two retry policies:
+* `RateLimitedResourceRetryPolicy` — The default retry policy that retries operations when a rate limit is in place (up to 5 times).
+* `NoResourceRetryPolicy` — Can be used to disable retry policies.
+
+> **Tip:** While not generally required, our application can implement its own retry policy based on the `IResourceRetryPolicy` interface.
+> 
+> Many applications already have retry policies and circuit breakers implemented using open-source libraries such as [Polly](https://github.com/App-vNext/Polly).
+> You can use Polly policies such as Retry, Circuit Breaker, Bulkhead Isolation, Timeout, and Fallback, by wrapping it in a `IResourceRetryPolicy` implementation:
+> ```csharp
+> class PollyRateLimitedResourceRetryPolicy
+>     : IResourceRetryPolicy
+> {
+>     // Setup Polly policy to retry RateLimitedException
+>     private readonly AsyncRetryPolicy _policy = Policy
+>         .Handle<RateLimitedException>()
+>         .WaitAndRetryAsync(5, retryAttempt => TimeSpan.FromSeconds(retryAttempt));
+>
+>     // Delegate Space retry policy to Polly
+>     public Task<TResult> ExecuteAsync<TResult>(
+>         Func<Task<TResult>> handler, CancellationToken cancellationToken) 
+>         => _policy.ExecuteAsync(async _ => await handler(), cancellationToken);
+> }
 
 ## JetBrains.Space.AspNetCore
 

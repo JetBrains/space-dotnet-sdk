@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using JetBrains.Space.Common.RetryPolicies;
 using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Common
@@ -27,6 +28,12 @@ namespace JetBrains.Space.Common
         /// The <see cref="AuthenticationTokens"/> required to communicate with a Space organization.
         /// </summary>
         public AuthenticationTokens? AuthenticationTokens { get; protected set; }
+        
+        /// <summary>
+        /// The <see cref="IResourceRetryPolicy"/> to use when retrying operations.
+        /// Defaults to an instance of <see cref="RateLimitedResourceRetryPolicy"/>.
+        /// </summary>
+        public IResourceRetryPolicy ResourceRetryPolicy { get; set; }
 
         /// <summary>
         /// Creates an instance of the <see cref="BearerTokenConnection" /> class.
@@ -37,6 +44,7 @@ namespace JetBrains.Space.Common
             : base(serverUrl)
         {
             HttpClient = httpClient ?? SharedHttpClient.Instance;
+            ResourceRetryPolicy = RateLimitedResourceRetryPolicy.Instance;
         }
 
         /// <summary>
@@ -50,6 +58,7 @@ namespace JetBrains.Space.Common
         {
             AuthenticationTokens = authenticationTokens;
             HttpClient = httpClient ?? SharedHttpClient.Instance;
+            ResourceRetryPolicy = RateLimitedResourceRetryPolicy.Instance;
         }
 
         /// <inheritdoc />
@@ -176,16 +185,19 @@ namespace JetBrains.Space.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         protected virtual async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            await EnsureAuthenticatedAsync(request, cancellationToken);
-
-            var response = await HttpClient.SendAsync(request, cancellationToken);
-            if (!response.IsSuccessStatusCode)
+            return await ResourceRetryPolicy.ExecuteAsync(async () =>
             {
-                var exception = await BuildException(response);
-                throw exception;
-            }
+                await EnsureAuthenticatedAsync(request, cancellationToken);
 
-            return response;
+                var response = await HttpClient.SendAsync(request, cancellationToken);
+                if (!response.IsSuccessStatusCode)
+                {
+                    var exception = await BuildException(response);
+                    throw exception;
+                }
+
+                return response;
+            }, cancellationToken);
         }
         
         private static async Task<ResourceException> BuildException(HttpResponseMessage response)

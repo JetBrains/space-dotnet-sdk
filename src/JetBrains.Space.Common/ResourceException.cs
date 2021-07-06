@@ -24,8 +24,9 @@ namespace JetBrains.Space.Common
         /// with a specific message, HTTP status code and HTTP response body.
         /// </summary>
         /// <param name="message">A message that describes the current exception.</param>
-        public ResourceException(string message) 
-            : base(message)
+        /// <param name="innerException">Inner exception, if available.</param>
+        public ResourceException(string message, Exception? innerException = null) 
+            : base(message, innerException)
         {
         }
 
@@ -36,8 +37,9 @@ namespace JetBrains.Space.Common
         /// <param name="message">A message that describes the current exception.</param>
         /// <param name="statusCode">The <see cref="T:System.Net.Http.HttpStatusCode" /> that was received from the server.</param>
         /// <param name="response">The HTTP response body which was received from the server.</param>
-        public ResourceException(string message, HttpStatusCode statusCode, string? response) 
-            : base(message)
+        /// <param name="innerException">Inner exception, if available.</param>
+        public ResourceException(string message, HttpStatusCode statusCode, string? response, Exception? innerException = null) 
+            : base(message, innerException)
         {
             StatusCode = statusCode;
             Response = response;
