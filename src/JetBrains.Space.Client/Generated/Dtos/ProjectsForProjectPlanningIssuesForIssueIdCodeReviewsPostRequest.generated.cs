@@ -28,32 +28,29 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class MessageRecipientChannel
-         : MessageRecipient, IClassNameConvertible, IPropagatePropertyAccessPath
+    public class ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest
+         : IPropagatePropertyAccessPath
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "MessageRecipient.Channel";
+        public ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest() { }
         
-        public MessageRecipientChannel() { }
-        
-        public MessageRecipientChannel(ChatChannel channel)
+        public ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest(List<ReviewIdentifier> codeReviewIds)
         {
-            Channel = channel;
+            CodeReviewIds = codeReviewIds;
         }
         
-        private PropertyValue<ChatChannel> _channel = new PropertyValue<ChatChannel>(nameof(MessageRecipientChannel), nameof(Channel));
+        private PropertyValue<List<ReviewIdentifier>> _codeReviewIds = new PropertyValue<List<ReviewIdentifier>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest), nameof(CodeReviewIds), new List<ReviewIdentifier>());
         
         [Required]
-        [JsonPropertyName("channel")]
-        public ChatChannel Channel
+        [JsonPropertyName("codeReviewIds")]
+        public List<ReviewIdentifier> CodeReviewIds
         {
-            get => _channel.GetValue();
-            set => _channel.SetValue(value);
+            get => _codeReviewIds.GetValue();
+            set => _codeReviewIds.SetValue(value);
         }
     
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _channel.SetAccessPath(path, validateHasBeenSet);
+            _codeReviewIds.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

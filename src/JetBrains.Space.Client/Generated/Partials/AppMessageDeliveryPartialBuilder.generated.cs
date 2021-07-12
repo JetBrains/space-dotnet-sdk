@@ -30,6 +30,9 @@ namespace JetBrains.Space.Client.AppMessageDeliveryPartialBuilder
 {
     public static class AppMessageDeliveryPartialExtensions
     {
+        public static Partial<AppMessageDelivery> WithId(this Partial<AppMessageDelivery> it)
+            => it.AddFieldName("id");
+        
         public static Partial<AppMessageDelivery> WithMessageType(this Partial<AppMessageDelivery> it)
             => it.AddFieldName("messageType");
         

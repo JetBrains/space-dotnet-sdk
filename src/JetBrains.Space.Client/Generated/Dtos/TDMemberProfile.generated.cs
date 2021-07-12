@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public TDMemberProfile() { }
         
-        public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, DocumentFolderRecord folder, List<PublicHoliday> holidays, List<string> links, List<TDMemberLocation> locations, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, List<Topic> topics, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, Gender? gender = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, List<TDMembership>? unapprovedMemberships = null)
+        public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, DocumentFolderRecord folder, List<PublicHoliday> holidays, List<string> links, List<TDMemberLocation> locations, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, List<Topic> topics, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? external = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, Gender? gender = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, List<TDMembership>? unapprovedMemberships = null)
         {
             Id = id;
             Username = username;
@@ -48,6 +48,7 @@ namespace JetBrains.Space.Client
             Joined = joined;
             Left = left;
             LeftAt = leftAt;
+            IsExternal = external;
             About = about;
             Absences = absences;
             AvatarCropSquare = avatarCropSquare;
@@ -197,6 +198,15 @@ namespace JetBrains.Space.Client
         {
             get => _leftAt.GetValue();
             set => _leftAt.SetValue(value);
+        }
+    
+        private PropertyValue<bool?> _external = new PropertyValue<bool?>(nameof(TDMemberProfile), nameof(IsExternal));
+        
+        [JsonPropertyName("external")]
+        public bool? IsExternal
+        {
+            get => _external.GetValue();
+            set => _external.SetValue(value);
         }
     
         private PropertyValue<string?> _about = new PropertyValue<string?>(nameof(TDMemberProfile), nameof(About));
@@ -427,6 +437,7 @@ namespace JetBrains.Space.Client
             _joined.SetAccessPath(path, validateHasBeenSet);
             _left.SetAccessPath(path, validateHasBeenSet);
             _leftAt.SetAccessPath(path, validateHasBeenSet);
+            _external.SetAccessPath(path, validateHasBeenSet);
             _about.SetAccessPath(path, validateHasBeenSet);
             _absences.SetAccessPath(path, validateHasBeenSet);
             _avatarCropSquare.SetAccessPath(path, validateHasBeenSet);

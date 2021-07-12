@@ -36,7 +36,7 @@ namespace JetBrains.Space.Client
         
         public AutomationJobUnfurlDetails() { }
         
-        public AutomationJobUnfurlDetails(string jobId, string jobName, PRProject projectRef, string repoName, ExecutionDisplayStatus? jobExecutionDisplayStatusFilter = null, JobTriggerType? jobTriggerFilter = null, Branch? branch = null)
+        public AutomationJobUnfurlDetails(string jobId, string jobName, PRProject projectRef, string repoName, JobExecutionDisplayStatus? jobExecutionDisplayStatusFilter = null, JobTriggerType? jobTriggerFilter = null, Branch? branch = null)
         {
             JobId = jobId;
             JobName = jobName;
@@ -87,10 +87,10 @@ namespace JetBrains.Space.Client
             set => _repoName.SetValue(value);
         }
     
-        private PropertyValue<ExecutionDisplayStatus?> _jobExecutionDisplayStatusFilter = new PropertyValue<ExecutionDisplayStatus?>(nameof(AutomationJobUnfurlDetails), nameof(JobExecutionDisplayStatusFilter));
+        private PropertyValue<JobExecutionDisplayStatus?> _jobExecutionDisplayStatusFilter = new PropertyValue<JobExecutionDisplayStatus?>(nameof(AutomationJobUnfurlDetails), nameof(JobExecutionDisplayStatusFilter));
         
         [JsonPropertyName("jobExecutionDisplayStatusFilter")]
-        public ExecutionDisplayStatus? JobExecutionDisplayStatusFilter
+        public JobExecutionDisplayStatus? JobExecutionDisplayStatusFilter
         {
             get => _jobExecutionDisplayStatusFilter.GetValue();
             set => _jobExecutionDisplayStatusFilter.SetValue(value);

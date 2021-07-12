@@ -26,36 +26,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequestPartialBuilder
 {
-    public sealed class MessageRecipientMember
-         : MessageRecipient, IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequestPartialExtensions
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "MessageRecipient.Member";
+        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest> WithRepository(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest> it)
+            => it.AddFieldName("repository");
         
-        public MessageRecipientMember() { }
+        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest> WithCommitIds(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest> it)
+            => it.AddFieldName("commitIds");
         
-        public MessageRecipientMember(ProfileIdentifier member)
-        {
-            Member = member;
-        }
-        
-        private PropertyValue<ProfileIdentifier> _member = new PropertyValue<ProfileIdentifier>(nameof(MessageRecipientMember), nameof(Member));
-        
-        [Required]
-        [JsonPropertyName("member")]
-        public ProfileIdentifier Member
-        {
-            get => _member.GetValue();
-            set => _member.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _member.SetAccessPath(path, validateHasBeenSet);
-        }
-    
     }
     
 }

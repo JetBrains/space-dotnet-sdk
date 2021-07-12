@@ -28,31 +28,33 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class MessageRecipient
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonConverter(typeof(EnumStringConverter))]
+    public enum JobExecutionDisplayStatus
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "MessageRecipient";
+        [EnumMember(Value = "Awaiting")]
+        Awaiting,
         
-        public static MessageRecipientChannel Channel(ChatChannel channel)
-            => new MessageRecipientChannel(channel: channel);
+        [EnumMember(Value = "Running")]
+        Running,
         
-        public static MessageRecipientCodeReview CodeReview(string codeReview)
-            => new MessageRecipientCodeReview(codeReview: codeReview);
+        [EnumMember(Value = "Finishing")]
+        Finishing,
         
-        public static MessageRecipientIssue Issue(string issue)
-            => new MessageRecipientIssue(issue: issue);
+        [EnumMember(Value = "Stopped")]
+        Stopped,
         
-        public static MessageRecipientMember Member(ProfileIdentifier member)
-            => new MessageRecipientMember(member: member);
+        [EnumMember(Value = "Succeeded")]
+        Succeeded,
         
-        public MessageRecipient() { }
+        [EnumMember(Value = "Failed")]
+        Failed,
         
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
+        [EnumMember(Value = "NoSuitableWorkers")]
+        NoSuitableWorkers,
+        
+        [EnumMember(Value = "WaitingForWorkers")]
+        WaitingForWorkers,
+        
     }
     
 }

@@ -75,6 +75,9 @@ namespace JetBrains.Space.Client.TDMemberProfilePartialBuilder
         public static Partial<TDMemberProfile> WithLeftAt(this Partial<TDMemberProfile> it)
             => it.AddFieldName("leftAt");
         
+        public static Partial<TDMemberProfile> WithIsExternal(this Partial<TDMemberProfile> it)
+            => it.AddFieldName("external");
+        
         public static Partial<TDMemberProfile> WithAbout(this Partial<TDMemberProfile> it)
             => it.AddFieldName("about");
         

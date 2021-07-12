@@ -33,8 +33,9 @@ namespace JetBrains.Space.Client
     {
         public AppMessageDelivery() { }
         
-        public AppMessageDelivery(AppMessageDeliveryType messageType, bool successful, DateTime sentAt, string duration, string method, WebhookRecord? webhook = null, string? deliveryId = null, string? url = null, List<HttpHeader>? requestHeaders = null, string? requestBody = null, int? responseStatusCode = null, List<HttpHeader>? responseHeaders = null, string? responseBody = null)
+        public AppMessageDelivery(string id, AppMessageDeliveryType messageType, bool successful, DateTime sentAt, string duration, string method, WebhookRecord? webhook = null, string? deliveryId = null, string? url = null, List<HttpHeader>? requestHeaders = null, string? requestBody = null, int? responseStatusCode = null, List<HttpHeader>? responseHeaders = null, string? responseBody = null)
         {
+            Id = id;
             MessageType = messageType;
             Webhook = webhook;
             DeliveryId = deliveryId;
@@ -50,6 +51,16 @@ namespace JetBrains.Space.Client
             ResponseBody = responseBody;
         }
         
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(AppMessageDelivery), nameof(Id));
+        
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id
+        {
+            get => _id.GetValue();
+            set => _id.SetValue(value);
+        }
+    
         private PropertyValue<AppMessageDeliveryType> _messageType = new PropertyValue<AppMessageDeliveryType>(nameof(AppMessageDelivery), nameof(MessageType));
         
         [Required]
@@ -175,6 +186,7 @@ namespace JetBrains.Space.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
+            _id.SetAccessPath(path, validateHasBeenSet);
             _messageType.SetAccessPath(path, validateHasBeenSet);
             _webhook.SetAccessPath(path, validateHasBeenSet);
             _deliveryId.SetAccessPath(path, validateHasBeenSet);

@@ -1821,6 +1821,64 @@ namespace JetBrains.Space.Client
                 
                 }
             
+                public CodeReviewClient CodeReviews => new CodeReviewClient(_connection);
+                
+                public partial class CodeReviewClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public CodeReviewClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    /// <summary>
+                    /// Add code review links to an existing issue in a project.
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Edit issues</term>
+                    /// <description>Edit issues that were created by other users</description>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public async Task AddCodeReviewLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, List<ReviewIdentifier> codeReviewIds, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/code-reviews{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest
+                            { 
+                                CodeReviewIds = codeReviewIds,
+                            }, cancellationToken);
+                    }
+                    
+                
+                    /// <summary>
+                    /// Remove code review links from an existing issue in a project.
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Edit issues</term>
+                    /// <description>Edit issues that were created by other users</description>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public async Task RemoveCodeReviewLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, List<ReviewIdentifier> codeReviewIds, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("codeReviewIds", codeReviewIds.Select(it => it.ToString()));
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/code-reviews{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                
+                }
+            
                 public CommentClient Comments => new CommentClient(_connection);
                 
                 public partial class CommentClient : ISpaceClient
@@ -1850,6 +1908,66 @@ namespace JetBrains.Space.Client
                             { 
                                 Comments = comments,
                             }, cancellationToken);
+                    }
+                    
+                
+                }
+            
+                public CommitClient Commits => new CommitClient(_connection);
+                
+                public partial class CommitClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public CommitClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    /// <summary>
+                    /// Add commit links to an existing issue in a project.
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Edit issues</term>
+                    /// <description>Edit issues that were created by other users</description>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public async Task AddCommitLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, string repository, List<string> commitIds, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/commits{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest
+                            { 
+                                Repository = repository,
+                                CommitIds = commitIds,
+                            }, cancellationToken);
+                    }
+                    
+                
+                    /// <summary>
+                    /// Remove commit links from an existing issue in a project.
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Edit issues</term>
+                    /// <description>Edit issues that were created by other users</description>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public async Task RemoveCommitLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, string repository, List<string> commitIds, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("repository", repository);
+                        queryParameters.Append("commitIds", commitIds.Select(it => it));
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/commits{queryParameters.ToQueryString()}", cancellationToken);
                     }
                     
                 

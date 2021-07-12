@@ -33,9 +33,10 @@ namespace JetBrains.Space.Client
     {
         public HttpHeader() { }
         
-        public HttpHeader(string name, List<string> values)
+        public HttpHeader(string name, bool maskedValue, List<string> values)
         {
             Name = name;
+            IsMaskedValue = maskedValue;
             Values = values;
         }
         
@@ -47,6 +48,16 @@ namespace JetBrains.Space.Client
         {
             get => _name.GetValue();
             set => _name.SetValue(value);
+        }
+    
+        private PropertyValue<bool> _maskedValue = new PropertyValue<bool>(nameof(HttpHeader), nameof(IsMaskedValue));
+        
+        [Required]
+        [JsonPropertyName("maskedValue")]
+        public bool IsMaskedValue
+        {
+            get => _maskedValue.GetValue();
+            set => _maskedValue.SetValue(value);
         }
     
         private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(HttpHeader), nameof(Values), new List<string>());
@@ -62,6 +73,7 @@ namespace JetBrains.Space.Client
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
+            _maskedValue.SetAccessPath(path, validateHasBeenSet);
             _values.SetAccessPath(path, validateHasBeenSet);
         }
     

@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryProfilesPostRequest() { }
         
-        public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? location = null)
+        public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? location = null, bool? external = null)
         {
             Username = username;
             FirstName = firstName;
@@ -53,6 +53,7 @@ namespace JetBrains.Space.Client
             AvatarCropSquare = avatarCropSquare;
             CustomFieldValues = (customFieldValues ?? new List<CustomFieldInputValue>());
             Location = location;
+            IsExternal = external;
         }
         
         private PropertyValue<string> _username = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(Username));
@@ -224,6 +225,15 @@ namespace JetBrains.Space.Client
             set => _location.SetValue(value);
         }
     
+        private PropertyValue<bool?> _external = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsExternal));
+        
+        [JsonPropertyName("external")]
+        public bool? IsExternal
+        {
+            get => _external.GetValue();
+            set => _external.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _username.SetAccessPath(path, validateHasBeenSet);
@@ -244,6 +254,7 @@ namespace JetBrains.Space.Client
             _avatarCropSquare.SetAccessPath(path, validateHasBeenSet);
             _customFieldValues.SetAccessPath(path, validateHasBeenSet);
             _location.SetAccessPath(path, validateHasBeenSet);
+            _external.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

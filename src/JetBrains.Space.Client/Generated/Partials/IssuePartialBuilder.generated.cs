@@ -129,6 +129,12 @@ namespace JetBrains.Space.Client.IssuePartialBuilder
         public static Partial<Issue> WithSprints(this Partial<Issue> it, Func<Partial<SprintRecord>, Partial<SprintRecord>> partialBuilder)
             => it.AddFieldName("sprints", partialBuilder(new Partial<SprintRecord>(it)));
         
+        public static Partial<Issue> WithTopics(this Partial<Issue> it)
+            => it.AddFieldName("topics");
+        
+        public static Partial<Issue> WithTopics(this Partial<Issue> it, Func<Partial<Topic>, Partial<Topic>> partialBuilder)
+            => it.AddFieldName("topics", partialBuilder(new Partial<Topic>(it)));
+        
     }
     
 }

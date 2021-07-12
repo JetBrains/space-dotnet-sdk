@@ -51,6 +51,9 @@ namespace JetBrains.Space.Client.OrganizationRecordPartialBuilder
         public static Partial<OrganizationRecord> WithIsAllowDomainsEdit(this Partial<OrganizationRecord> it)
             => it.AddFieldName("allowDomainsEdit");
         
+        public static Partial<OrganizationRecord> WithCreatedAt(this Partial<OrganizationRecord> it)
+            => it.AddFieldName("createdAt");
+        
         public static Partial<OrganizationRecord> WithTimezone(this Partial<OrganizationRecord> it)
             => it.AddFieldName("timezone");
         

@@ -48,8 +48,8 @@ namespace JetBrains.Space.Client.AutomationJobUnfurlDetailsPartialBuilder
         public static Partial<AutomationJobUnfurlDetails> WithJobExecutionDisplayStatusFilter(this Partial<AutomationJobUnfurlDetails> it)
             => it.AddFieldName("jobExecutionDisplayStatusFilter");
         
-        public static Partial<AutomationJobUnfurlDetails> WithJobExecutionDisplayStatusFilter(this Partial<AutomationJobUnfurlDetails> it, Func<Partial<ExecutionDisplayStatus>, Partial<ExecutionDisplayStatus>> partialBuilder)
-            => it.AddFieldName("jobExecutionDisplayStatusFilter", partialBuilder(new Partial<ExecutionDisplayStatus>(it)));
+        public static Partial<AutomationJobUnfurlDetails> WithJobExecutionDisplayStatusFilter(this Partial<AutomationJobUnfurlDetails> it, Func<Partial<JobExecutionDisplayStatus>, Partial<JobExecutionDisplayStatus>> partialBuilder)
+            => it.AddFieldName("jobExecutionDisplayStatusFilter", partialBuilder(new Partial<JobExecutionDisplayStatus>(it)));
         
         public static Partial<AutomationJobUnfurlDetails> WithJobTriggerFilter(this Partial<AutomationJobUnfurlDetails> it)
             => it.AddFieldName("jobTriggerFilter");

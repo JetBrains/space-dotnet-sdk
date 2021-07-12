@@ -33,6 +33,9 @@ namespace JetBrains.Space.Client.HttpHeaderPartialBuilder
         public static Partial<HttpHeader> WithName(this Partial<HttpHeader> it)
             => it.AddFieldName("name");
         
+        public static Partial<HttpHeader> WithIsMaskedValue(this Partial<HttpHeader> it)
+            => it.AddFieldName("maskedValue");
+        
         public static Partial<HttpHeader> WithValues(this Partial<HttpHeader> it)
             => it.AddFieldName("values");
         

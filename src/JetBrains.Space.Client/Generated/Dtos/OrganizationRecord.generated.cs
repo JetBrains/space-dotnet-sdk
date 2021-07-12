@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public OrganizationRecord() { }
         
-        public OrganizationRecord(string id, string orgId, string name, string? slogan = null, string? logoId = null, bool? onboardingRequired = null, bool? allowDomainsEdit = null, ATimeZone? timezone = null, string? slackWorkspace = null)
+        public OrganizationRecord(string id, string orgId, string name, string? slogan = null, string? logoId = null, bool? onboardingRequired = null, bool? allowDomainsEdit = null, long? createdAt = null, ATimeZone? timezone = null, string? slackWorkspace = null)
         {
             Id = id;
             OrgId = orgId;
@@ -42,6 +42,7 @@ namespace JetBrains.Space.Client
             LogoId = logoId;
             IsOnboardingRequired = onboardingRequired;
             IsAllowDomainsEdit = allowDomainsEdit;
+            CreatedAt = createdAt;
             Timezone = timezone;
             SlackWorkspace = slackWorkspace;
         }
@@ -112,6 +113,15 @@ namespace JetBrains.Space.Client
             set => _allowDomainsEdit.SetValue(value);
         }
     
+        private PropertyValue<long?> _createdAt = new PropertyValue<long?>(nameof(OrganizationRecord), nameof(CreatedAt));
+        
+        [JsonPropertyName("createdAt")]
+        public long? CreatedAt
+        {
+            get => _createdAt.GetValue();
+            set => _createdAt.SetValue(value);
+        }
+    
         private PropertyValue<ATimeZone?> _timezone = new PropertyValue<ATimeZone?>(nameof(OrganizationRecord), nameof(Timezone));
         
         [JsonPropertyName("timezone")]
@@ -139,6 +149,7 @@ namespace JetBrains.Space.Client
             _logoId.SetAccessPath(path, validateHasBeenSet);
             _onboardingRequired.SetAccessPath(path, validateHasBeenSet);
             _allowDomainsEdit.SetAccessPath(path, validateHasBeenSet);
+            _createdAt.SetAccessPath(path, validateHasBeenSet);
             _timezone.SetAccessPath(path, validateHasBeenSet);
             _slackWorkspace.SetAccessPath(path, validateHasBeenSet);
         }

@@ -35,8 +35,8 @@ namespace JetBrains.Space.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "CodeReviewParticipantSlotBase";
         
-        public static CodeReviewParticipantCodeOwnerSlot CodeReviewParticipantCodeOwnerSlot(string pattern)
-            => new CodeReviewParticipantCodeOwnerSlot(pattern: pattern);
+        public static CodeReviewParticipantCodeOwnerSlot CodeReviewParticipantCodeOwnerSlot(string pattern, List<string>? rule = null)
+            => new CodeReviewParticipantCodeOwnerSlot(pattern: pattern, rule: rule);
         
         public static CodeReviewParticipantQualityGateSlot CodeReviewParticipantQualityGateSlot(List<string> rule, int index)
             => new CodeReviewParticipantQualityGateSlot(rule: rule, index: index);

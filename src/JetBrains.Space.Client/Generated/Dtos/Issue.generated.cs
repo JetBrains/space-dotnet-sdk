@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public Issue() { }
         
-        public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<SprintRecord> sprints, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, string? description = null)
+        public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<SprintRecord> sprints, List<Topic> topics, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, string? description = null)
         {
             Id = id;
             IsArchived = archived;
@@ -56,6 +56,7 @@ namespace JetBrains.Space.Client
             CustomFields = customFields;
             Description = description;
             Sprints = sprints;
+            Topics = topics;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(Issue), nameof(Id));
@@ -263,6 +264,16 @@ namespace JetBrains.Space.Client
             set => _sprints.SetValue(value);
         }
     
+        private PropertyValue<List<Topic>> _topics = new PropertyValue<List<Topic>>(nameof(Issue), nameof(Topics), new List<Topic>());
+        
+        [Required]
+        [JsonPropertyName("topics")]
+        public List<Topic> Topics
+        {
+            get => _topics.GetValue();
+            set => _topics.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -286,6 +297,7 @@ namespace JetBrains.Space.Client
             _customFields.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
             _sprints.SetAccessPath(path, validateHasBeenSet);
+            _topics.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -90,6 +90,9 @@ namespace JetBrains.Space.Client.TeamDirectoryProfilesPostRequestPartialBuilder
         public static Partial<TeamDirectoryProfilesPostRequest> WithLocation(this Partial<TeamDirectoryProfilesPostRequest> it)
             => it.AddFieldName("location");
         
+        public static Partial<TeamDirectoryProfilesPostRequest> WithIsExternal(this Partial<TeamDirectoryProfilesPostRequest> it)
+            => it.AddFieldName("external");
+        
     }
     
 }

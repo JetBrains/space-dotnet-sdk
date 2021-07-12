@@ -31,6 +31,9 @@ namespace JetBrains.Space.Client
     [JsonConverter(typeof(EnumStringConverter))]
     public enum GitEntryType
     {
+        [EnumMember(Value = "EXE_FILE")]
+        EXEFILE,
+        
         [EnumMember(Value = "FILE")]
         FILE,
         

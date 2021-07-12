@@ -30,6 +30,9 @@ namespace JetBrains.Space.Client.CodeReviewParticipantCodeOwnerSlotPartialBuilde
 {
     public static class CodeReviewParticipantCodeOwnerSlotPartialExtensions
     {
+        public static Partial<CodeReviewParticipantCodeOwnerSlot> WithRule(this Partial<CodeReviewParticipantCodeOwnerSlot> it)
+            => it.AddFieldName("rule");
+        
         public static Partial<CodeReviewParticipantCodeOwnerSlot> WithPattern(this Partial<CodeReviewParticipantCodeOwnerSlot> it)
             => it.AddFieldName("pattern");
         
