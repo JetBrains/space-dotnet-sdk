@@ -26,15 +26,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationsForApplicationIdSshKeysPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequestPartialBuilder
 {
-    public static class ApplicationsForApplicationIdSshKeysPostRequestPartialExtensions
+    public static class ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequestPartialExtensions
     {
-        public static Partial<ApplicationsForApplicationIdSshKeysPostRequest> WithPublicKey(this Partial<ApplicationsForApplicationIdSshKeysPostRequest> it)
-            => it.AddFieldName("publicKey");
-        
-        public static Partial<ApplicationsForApplicationIdSshKeysPostRequest> WithComment(this Partial<ApplicationsForApplicationIdSshKeysPostRequest> it)
-            => it.AddFieldName("comment");
+        public static Partial<ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest> WithStatusId(this Partial<ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest> it)
+            => it.AddFieldName("statusId");
         
     }
     

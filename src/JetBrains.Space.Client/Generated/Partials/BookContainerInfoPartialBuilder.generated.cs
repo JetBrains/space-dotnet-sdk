@@ -26,19 +26,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.BookContainerInfoPartialBuilder
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ChecklistSorting
+    public static class BookContainerInfoPartialExtensions
     {
-        [EnumMember(Value = "UPDATED")]
-        UPDATED,
+        public static Partial<BookContainerInfo> WithBook(this Partial<BookContainerInfo> it)
+            => it.AddFieldName("book");
         
-        [EnumMember(Value = "TITLE")]
-        TITLE,
-        
-        [EnumMember(Value = "FAV_TITLE")]
-        FAVTITLE,
+        public static Partial<BookContainerInfo> WithBook(this Partial<BookContainerInfo> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
+            => it.AddFieldName("book", partialBuilder(new Partial<KBBook>(it)));
         
     }
     

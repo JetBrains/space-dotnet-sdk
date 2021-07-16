@@ -52,6 +52,9 @@ namespace JetBrains.Space.Client
         public static MemberCommonSubscriptionFilter MemberCommon(List<TDTeam> teams, List<TDLocation> locations)
             => new MemberCommonSubscriptionFilter(teams: teams, locations: locations);
         
+        public static PackagesSubscriptionFilter Packages(List<PRProject> projects, List<string> namePattern, ProjectPackageRepository? repository = null, string? versionPattern = null)
+            => new PackagesSubscriptionFilter(projects: projects, namePattern: namePattern, repository: repository, versionPattern: versionPattern);
+        
         public static ProjectCommonSubscriptionFilter ProjectCommon(PRProject? project = null)
             => new ProjectCommonSubscriptionFilter(project: project);
         

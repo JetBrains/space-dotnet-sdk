@@ -1367,7 +1367,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
@@ -1386,6 +1386,7 @@ namespace JetBrains.Space.Client
                             Attachments = (attachments ?? new List<AttachmentIn>()),
                             FromMessage = fromMessage,
                             CustomFields = customFields,
+                            Topics = topics,
                         }, cancellationToken);
                 }
                 
@@ -1427,8 +1428,8 @@ namespace JetBrains.Space.Client
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
+                /// <term>Restore issues</term>
+                /// <description>Restore issues that were created by other users</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -1648,7 +1649,7 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task UpdateStatusAsync(ProjectIdentifier project, List<IssueStatusData> statuses, CancellationToken cancellationToken = default)
+                    public async Task UpdateIssueStatusesListAsync(ProjectIdentifier project, List<IssueStatusData> statuses, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         
@@ -1659,6 +1660,64 @@ namespace JetBrains.Space.Client
                             }, cancellationToken);
                     }
                     
+                
+                    public AutoUpdateOnMergeRequestMergeClient AutoUpdateOnMergeRequestMerge => new AutoUpdateOnMergeRequestMergeClient(_connection);
+                    
+                    public partial class AutoUpdateOnMergeRequestMergeClient : ISpaceClient
+                    {
+                        private readonly Connection _connection;
+                        
+                        public AutoUpdateOnMergeRequestMergeClient(Connection connection)
+                        {
+                            _connection = connection;
+                        }
+                        
+                        /// <summary>
+                        /// Get target issue status for auto updating issues on linked merge request merge.
+                        /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>View issues</term>
+                        /// <description>View issues in a project</description>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
+                        public async Task<IssueStatus> GetAutoUpdateTargetIssueStatusForMergeRequestMergeAsync(ProjectIdentifier project, Func<Partial<IssueStatus>, Partial<IssueStatus>>? partial = null, CancellationToken cancellationToken = default)
+                        {
+                            var queryParameters = new NameValueCollection();
+                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueStatus>()) : Partial<IssueStatus>.Default()).ToString());
+                            
+                            return await _connection.RequestResourceAsync<IssueStatus>("GET", $"api/http/projects/{project}/planning/issues/statuses/auto-update-on-merge-request-merge{queryParameters.ToQueryString()}", cancellationToken);
+                        }
+                        
+                    
+                        /// <summary>
+                        /// Set target issue status for auto updating issues on linked merge request merge.
+                        /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Manage issue settings</term>
+                        /// <description>Manage settings of the issue tracker</description>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
+                        public async Task SetAutoUpdateTargetIssueStatusForMergeRequestMergeAsync(ProjectIdentifier project, string? statusId = null, CancellationToken cancellationToken = default)
+                        {
+                            var queryParameters = new NameValueCollection();
+                            
+                            await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/statuses/auto-update-on-merge-request-merge{queryParameters.ToQueryString()}", 
+                                new ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest
+                                { 
+                                    StatusId = statusId,
+                                }, cancellationToken);
+                        }
+                        
+                    
+                    }
                 
                     public DistributionClient Distribution => new DistributionClient(_connection);
                     

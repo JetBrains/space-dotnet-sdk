@@ -28,19 +28,19 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequest
+    public class ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest
          : IPropagatePropertyAccessPath
     {
-        public ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequest() { }
+        public ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest() { }
         
-        public ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequest(string? name = null, string? scope = null, DateTime? expires = null)
+        public ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest(string? name = null, string? scope = null, DateTime? expires = null)
         {
             Name = name;
             Scope = scope;
             Expires = expires;
         }
         
-        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequest), nameof(Name));
+        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest), nameof(Name));
         
         [JsonPropertyName("name")]
         public string? Name
@@ -49,7 +49,7 @@ namespace JetBrains.Space.Client
             set => _name.SetValue(value);
         }
     
-        private PropertyValue<string?> _scope = new PropertyValue<string?>(nameof(ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequest), nameof(Scope));
+        private PropertyValue<string?> _scope = new PropertyValue<string?>(nameof(ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest), nameof(Scope));
         
         [JsonPropertyName("scope")]
         public string? Scope
@@ -58,7 +58,7 @@ namespace JetBrains.Space.Client
             set => _scope.SetValue(value);
         }
     
-        private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequest), nameof(Expires));
+        private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest), nameof(Expires));
         
         [JsonPropertyName("expires")]
         [JsonConverter(typeof(SpaceDateTimeConverter))]

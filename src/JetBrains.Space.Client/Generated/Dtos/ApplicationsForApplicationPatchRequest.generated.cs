@@ -28,12 +28,12 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class ApplicationsForApplicationIdPatchRequest
+    public class ApplicationsForApplicationPatchRequest
          : IPropagatePropertyAccessPath
     {
-        public ApplicationsForApplicationIdPatchRequest() { }
+        public ApplicationsForApplicationPatchRequest() { }
         
-        public ApplicationsForApplicationIdPatchRequest(bool endpointSslVerification, bool hasVerificationToken, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null)
+        public ApplicationsForApplicationPatchRequest(bool endpointSslVerification, bool hasVerificationToken, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null)
         {
             Name = name;
             ClientSecret = clientSecret;
@@ -53,7 +53,7 @@ namespace JetBrains.Space.Client
             SslKeystoreAuth = sslKeystoreAuth;
         }
         
-        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(Name));
+        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(Name));
         
         [JsonPropertyName("name")]
         public string? Name
@@ -62,7 +62,7 @@ namespace JetBrains.Space.Client
             set => _name.SetValue(value);
         }
     
-        private PropertyValue<string?> _clientSecret = new PropertyValue<string?>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(ClientSecret));
+        private PropertyValue<string?> _clientSecret = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(ClientSecret));
         
         [JsonPropertyName("clientSecret")]
         public string? ClientSecret
@@ -71,7 +71,7 @@ namespace JetBrains.Space.Client
             set => _clientSecret.SetValue(value);
         }
     
-        private PropertyValue<bool?> _clientCredentialsFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(IsClientCredentialsFlowEnabled));
+        private PropertyValue<bool?> _clientCredentialsFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsClientCredentialsFlowEnabled));
         
         [JsonPropertyName("clientCredentialsFlowEnabled")]
         public bool? IsClientCredentialsFlowEnabled
@@ -80,7 +80,7 @@ namespace JetBrains.Space.Client
             set => _clientCredentialsFlowEnabled.SetValue(value);
         }
     
-        private PropertyValue<bool?> _codeFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(IsCodeFlowEnabled));
+        private PropertyValue<bool?> _codeFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsCodeFlowEnabled));
         
         [JsonPropertyName("codeFlowEnabled")]
         public bool? IsCodeFlowEnabled
@@ -89,7 +89,7 @@ namespace JetBrains.Space.Client
             set => _codeFlowEnabled.SetValue(value);
         }
     
-        private PropertyValue<string?> _codeFlowRedirectURIs = new PropertyValue<string?>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(CodeFlowRedirectURIs));
+        private PropertyValue<string?> _codeFlowRedirectURIs = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(CodeFlowRedirectURIs));
         
         [JsonPropertyName("codeFlowRedirectURIs")]
         public string? CodeFlowRedirectURIs
@@ -98,7 +98,7 @@ namespace JetBrains.Space.Client
             set => _codeFlowRedirectURIs.SetValue(value);
         }
     
-        private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(IsPkceRequired));
+        private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsPkceRequired));
         
         [JsonPropertyName("pkceRequired")]
         public bool? IsPkceRequired
@@ -107,7 +107,7 @@ namespace JetBrains.Space.Client
             set => _pkceRequired.SetValue(value);
         }
     
-        private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(IsImplicitFlowEnabled));
+        private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsImplicitFlowEnabled));
         
         [JsonPropertyName("implicitFlowEnabled")]
         public bool? IsImplicitFlowEnabled
@@ -116,7 +116,7 @@ namespace JetBrains.Space.Client
             set => _implicitFlowEnabled.SetValue(value);
         }
     
-        private PropertyValue<string?> _implicitFlowRedirectURIs = new PropertyValue<string?>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(ImplicitFlowRedirectURIs));
+        private PropertyValue<string?> _implicitFlowRedirectURIs = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(ImplicitFlowRedirectURIs));
         
         [JsonPropertyName("implicitFlowRedirectURIs")]
         public string? ImplicitFlowRedirectURIs
@@ -125,7 +125,7 @@ namespace JetBrains.Space.Client
             set => _implicitFlowRedirectURIs.SetValue(value);
         }
     
-        private PropertyValue<string?> _endpointUri = new PropertyValue<string?>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(EndpointUri));
+        private PropertyValue<string?> _endpointUri = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(EndpointUri));
         
         [JsonPropertyName("endpointUri")]
         public string? EndpointUri
@@ -134,7 +134,7 @@ namespace JetBrains.Space.Client
             set => _endpointUri.SetValue(value);
         }
     
-        private PropertyValue<bool> _endpointSslVerification = new PropertyValue<bool>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(IsEndpointSslVerification));
+        private PropertyValue<bool> _endpointSslVerification = new PropertyValue<bool>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsEndpointSslVerification));
         
         [JsonPropertyName("endpointSslVerification")]
         public bool IsEndpointSslVerification
@@ -143,7 +143,7 @@ namespace JetBrains.Space.Client
             set => _endpointSslVerification.SetValue(value);
         }
     
-        private PropertyValue<bool> _hasVerificationToken = new PropertyValue<bool>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(IsHasVerificationToken));
+        private PropertyValue<bool> _hasVerificationToken = new PropertyValue<bool>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsHasVerificationToken));
         
         [JsonPropertyName("hasVerificationToken")]
         public bool IsHasVerificationToken
@@ -152,7 +152,7 @@ namespace JetBrains.Space.Client
             set => _hasVerificationToken.SetValue(value);
         }
     
-        private PropertyValue<bool> _hasSigningKey = new PropertyValue<bool>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(IsHasSigningKey));
+        private PropertyValue<bool> _hasSigningKey = new PropertyValue<bool>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsHasSigningKey));
         
         [JsonPropertyName("hasSigningKey")]
         public bool IsHasSigningKey
@@ -161,7 +161,7 @@ namespace JetBrains.Space.Client
             set => _hasSigningKey.SetValue(value);
         }
     
-        private PropertyValue<string?> _basicAuthUsername = new PropertyValue<string?>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(BasicAuthUsername));
+        private PropertyValue<string?> _basicAuthUsername = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(BasicAuthUsername));
         
         [JsonPropertyName("basicAuthUsername")]
         public string? BasicAuthUsername
@@ -170,7 +170,7 @@ namespace JetBrains.Space.Client
             set => _basicAuthUsername.SetValue(value);
         }
     
-        private PropertyValue<string?> _basicAuthPassword = new PropertyValue<string?>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(BasicAuthPassword));
+        private PropertyValue<string?> _basicAuthPassword = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(BasicAuthPassword));
         
         [JsonPropertyName("basicAuthPassword")]
         public string? BasicAuthPassword
@@ -179,7 +179,7 @@ namespace JetBrains.Space.Client
             set => _basicAuthPassword.SetValue(value);
         }
     
-        private PropertyValue<string?> _bearerAuthToken = new PropertyValue<string?>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(BearerAuthToken));
+        private PropertyValue<string?> _bearerAuthToken = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(BearerAuthToken));
         
         [JsonPropertyName("bearerAuthToken")]
         public string? BearerAuthToken
@@ -188,7 +188,7 @@ namespace JetBrains.Space.Client
             set => _bearerAuthToken.SetValue(value);
         }
     
-        private PropertyValue<string?> _sslKeystoreAuth = new PropertyValue<string?>(nameof(ApplicationsForApplicationIdPatchRequest), nameof(SslKeystoreAuth));
+        private PropertyValue<string?> _sslKeystoreAuth = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(SslKeystoreAuth));
         
         [JsonPropertyName("sslKeystoreAuth")]
         public string? SslKeystoreAuth

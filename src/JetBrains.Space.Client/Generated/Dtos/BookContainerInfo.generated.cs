@@ -28,18 +28,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ChecklistSorting
+    public sealed class BookContainerInfo
+         : DocumentContainerInfo, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        [EnumMember(Value = "UPDATED")]
-        UPDATED,
+        [JsonPropertyName("className")]
+        public  string? ClassName => "BookContainerInfo";
         
-        [EnumMember(Value = "TITLE")]
-        TITLE,
+        public BookContainerInfo() { }
         
-        [EnumMember(Value = "FAV_TITLE")]
-        FAVTITLE,
+        public BookContainerInfo(KBBook book)
+        {
+            Book = book;
+        }
         
+        private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(BookContainerInfo), nameof(Book));
+        
+        [Required]
+        [JsonPropertyName("book")]
+        public KBBook Book
+        {
+            get => _book.GetValue();
+            set => _book.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _book.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

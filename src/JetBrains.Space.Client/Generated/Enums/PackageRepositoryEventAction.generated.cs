@@ -29,16 +29,13 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client
 {
     [JsonConverter(typeof(EnumStringConverter))]
-    public enum ChecklistSorting
+    public enum PackageRepositoryEventAction
     {
-        [EnumMember(Value = "UPDATED")]
-        UPDATED,
+        [EnumMember(Value = "published")]
+        Published,
         
-        [EnumMember(Value = "TITLE")]
-        TITLE,
-        
-        [EnumMember(Value = "FAV_TITLE")]
-        FAVTITLE,
+        [EnumMember(Value = "removed")]
+        Removed,
         
     }
     

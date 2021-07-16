@@ -94,11 +94,11 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task RestoreApplicationAsync(string applicationId, CancellationToken cancellationToken = default)
+        public async Task RestoreApplicationAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/applications/{applicationId}/restore{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/restore{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     
@@ -130,12 +130,12 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ESApp> GetApplicationAsync(string applicationId, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ESApp> GetApplicationAsync(ApplicationIdentifier application, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<ESApp>("GET", $"api/http/applications/{applicationId}{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<ESApp>("GET", $"api/http/applications/{application}{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     
@@ -147,28 +147,28 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<AccessRecord> GetLastClientCredentialsAccessInfoAsync(string applicationId, Func<Partial<AccessRecord>, Partial<AccessRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<AccessRecord> GetLastClientCredentialsAccessInfoAsync(ApplicationIdentifier application, Func<Partial<AccessRecord>, Partial<AccessRecord>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AccessRecord>()) : Partial<AccessRecord>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<AccessRecord>("GET", $"api/http/applications/{applicationId}/last-client-credentials-access{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<AccessRecord>("GET", $"api/http/applications/{application}/last-client-credentials-access{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     
-        public async Task<Batch<AppMessageDelivery>> LatestMessagesDeliveriesAsync(string applicationId, string? skip = null, int? top = 100, Func<Partial<Batch<AppMessageDelivery>>, Partial<Batch<AppMessageDelivery>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<AppMessageDelivery>> LatestMessagesDeliveriesAsync(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<Batch<AppMessageDelivery>>, Partial<Batch<AppMessageDelivery>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
             if (top != null) queryParameters.Append("$top", top?.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AppMessageDelivery>>()) : Partial<Batch<AppMessageDelivery>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<AppMessageDelivery>>("GET", $"api/http/applications/{applicationId}/latest-messages-deliveries{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<AppMessageDelivery>>("GET", $"api/http/applications/{application}/latest-messages-deliveries{queryParameters.ToQueryString()}", cancellationToken);
         }
         
         
-        public IAsyncEnumerable<AppMessageDelivery> LatestMessagesDeliveriesAsyncEnumerable(string applicationId, string? skip = null, int? top = 100, Func<Partial<AppMessageDelivery>, Partial<AppMessageDelivery>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => LatestMessagesDeliveriesAsync(applicationId: applicationId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AppMessageDelivery>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AppMessageDelivery>.Default())), skip, cancellationToken);
+        public IAsyncEnumerable<AppMessageDelivery> LatestMessagesDeliveriesAsyncEnumerable(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<AppMessageDelivery>, Partial<AppMessageDelivery>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => LatestMessagesDeliveriesAsync(application: application, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AppMessageDelivery>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AppMessageDelivery>.Default())), skip, cancellationToken);
     
         /// <remarks>
         /// Required permissions:
@@ -178,13 +178,13 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ESApp> UpdateApplicationAsync(string applicationId, bool endpointSslVerification, bool hasVerificationToken, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, bool endpointSslVerification, bool hasVerificationToken, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<ApplicationsForApplicationIdPatchRequest, ESApp>("PATCH", $"api/http/applications/{applicationId}{queryParameters.ToQueryString()}", 
-                new ApplicationsForApplicationIdPatchRequest
+            return await _connection.RequestResourceAsync<ApplicationsForApplicationPatchRequest, ESApp>("PATCH", $"api/http/applications/{application}{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationPatchRequest
                 { 
                     Name = name,
                     ClientSecret = clientSecret,
@@ -214,11 +214,11 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task DeleteApplicationAsync(string applicationId, CancellationToken cancellationToken = default)
+        public async Task DeleteApplicationAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{applicationId}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     
@@ -288,11 +288,11 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task RegenerateAsync(string applicationId, CancellationToken cancellationToken = default)
+            public async Task RegenerateAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/applications/{applicationId}/client-secret/regenerate{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/client-secret/regenerate{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -304,11 +304,11 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<string> GetClientSecretAsync(string applicationId, CancellationToken cancellationToken = default)
+            public async Task<string> GetClientSecretAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{applicationId}/client-secret{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/client-secret{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -336,13 +336,13 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Pair<ESApplicationPermanentToken, string>> CreatePermanentTokenAsync(string applicationId, string name, string scope, DateTime? expires = null, Func<Partial<Pair<ESApplicationPermanentToken, string>>, Partial<Pair<ESApplicationPermanentToken, string>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Pair<ESApplicationPermanentToken, string>> CreatePermanentTokenAsync(ApplicationIdentifier application, string name, string scope, DateTime? expires = null, Func<Partial<Pair<ESApplicationPermanentToken, string>>, Partial<Pair<ESApplicationPermanentToken, string>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<ESApplicationPermanentToken, string>>()) : Partial<Pair<ESApplicationPermanentToken, string>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<ApplicationsForApplicationIdPermanentTokensPostRequest, Pair<ESApplicationPermanentToken, string>>("POST", $"api/http/applications/{applicationId}/permanent-tokens{queryParameters.ToQueryString()}", 
-                    new ApplicationsForApplicationIdPermanentTokensPostRequest
+                return await _connection.RequestResourceAsync<ApplicationsForApplicationPermanentTokensPostRequest, Pair<ESApplicationPermanentToken, string>>("POST", $"api/http/applications/{application}/permanent-tokens{queryParameters.ToQueryString()}", 
+                    new ApplicationsForApplicationPermanentTokensPostRequest
                     { 
                         Name = name,
                         Scope = scope,
@@ -362,14 +362,14 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Batch<ESApplicationPermanentToken>> GetAllPermanentTokensAsync(string applicationId, string? skip = null, int? top = 100, Func<Partial<Batch<ESApplicationPermanentToken>>, Partial<Batch<ESApplicationPermanentToken>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<ESApplicationPermanentToken>> GetAllPermanentTokensAsync(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<Batch<ESApplicationPermanentToken>>, Partial<Batch<ESApplicationPermanentToken>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (skip != null) queryParameters.Append("$skip", skip);
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESApplicationPermanentToken>>()) : Partial<Batch<ESApplicationPermanentToken>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<ESApplicationPermanentToken>>("GET", $"api/http/applications/{applicationId}/permanent-tokens{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<ESApplicationPermanentToken>>("GET", $"api/http/applications/{application}/permanent-tokens{queryParameters.ToQueryString()}", cancellationToken);
             }
             
             
@@ -384,8 +384,8 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public IAsyncEnumerable<ESApplicationPermanentToken> GetAllPermanentTokensAsyncEnumerable(string applicationId, string? skip = null, int? top = 100, Func<Partial<ESApplicationPermanentToken>, Partial<ESApplicationPermanentToken>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPermanentTokensAsync(applicationId: applicationId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApplicationPermanentToken>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApplicationPermanentToken>.Default())), skip, cancellationToken);
+            public IAsyncEnumerable<ESApplicationPermanentToken> GetAllPermanentTokensAsyncEnumerable(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<ESApplicationPermanentToken>, Partial<ESApplicationPermanentToken>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPermanentTokensAsync(application: application, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApplicationPermanentToken>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApplicationPermanentToken>.Default())), skip, cancellationToken);
         
             /// <summary>
             /// Update an existing personal token used to access the current organisation. The permanent token's name and/or scope can be updated.
@@ -398,12 +398,12 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task UpdatePermanentTokenAsync(string applicationId, string tokenId, string? name = null, string? scope = null, DateTime? expires = null, CancellationToken cancellationToken = default)
+            public async Task UpdatePermanentTokenAsync(ApplicationIdentifier application, string tokenId, string? name = null, string? scope = null, DateTime? expires = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{applicationId}/permanent-tokens/{tokenId}{queryParameters.ToQueryString()}", 
-                    new ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequest
+                await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/permanent-tokens/{tokenId}{queryParameters.ToQueryString()}", 
+                    new ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest
                     { 
                         Name = name,
                         Scope = scope,
@@ -423,11 +423,11 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task DeletePermanentTokenAsync(string applicationId, string tokenId, CancellationToken cancellationToken = default)
+            public async Task DeletePermanentTokenAsync(ApplicationIdentifier application, string tokenId, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{applicationId}/permanent-tokens/{tokenId}{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/permanent-tokens/{tokenId}{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -445,11 +445,11 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Delete personal token of the given application.
                 /// </summary>
-                public async Task DeleteCurrentPermanentTokenAsync(string applicationId, CancellationToken cancellationToken = default)
+                public async Task DeleteCurrentPermanentTokenAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{applicationId}/permanent-tokens/current{queryParameters.ToQueryString()}", cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/permanent-tokens/current{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
             
@@ -476,11 +476,11 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task RegenerateAsync(string applicationId, CancellationToken cancellationToken = default)
+            public async Task RegenerateAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/applications/{applicationId}/signing-key/regenerate{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/signing-key/regenerate{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -492,11 +492,11 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<string> GetSigningKeyAsync(string applicationId, CancellationToken cancellationToken = default)
+            public async Task<string> GetSigningKeyAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{applicationId}/signing-key{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/signing-key{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -521,12 +521,12 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task AddSshKeyAsync(string applicationId, string publicKey, string comment, CancellationToken cancellationToken = default)
+            public async Task AddSshKeyAsync(ApplicationIdentifier application, string publicKey, string comment, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/applications/{applicationId}/ssh-keys{queryParameters.ToQueryString()}", 
-                    new ApplicationsForApplicationIdSshKeysPostRequest
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/ssh-keys{queryParameters.ToQueryString()}", 
+                    new ApplicationsForApplicationSshKeysPostRequest
                     { 
                         PublicKey = publicKey,
                         Comment = comment,
@@ -542,12 +542,12 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<List<ESSshKey>> GetSshKeyAsync(string applicationId, Func<Partial<ESSshKey>, Partial<ESSshKey>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<ESSshKey>> GetSshKeyAsync(ApplicationIdentifier application, Func<Partial<ESSshKey>, Partial<ESSshKey>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESSshKey>()) : Partial<ESSshKey>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<ESSshKey>>("GET", $"api/http/applications/{applicationId}/ssh-keys{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<List<ESSshKey>>("GET", $"api/http/applications/{application}/ssh-keys{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -559,11 +559,11 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task DeleteSshKeyAsync(string applicationId, string fingerprint, CancellationToken cancellationToken = default)
+            public async Task DeleteSshKeyAsync(ApplicationIdentifier application, string fingerprint, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{applicationId}/ssh-keys/{fingerprint}{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/ssh-keys/{fingerprint}{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -588,11 +588,11 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task RegenerateAsync(string applicationId, CancellationToken cancellationToken = default)
+            public async Task RegenerateAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/applications/{applicationId}/verification-token/regenerate{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/verification-token/regenerate{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -604,11 +604,11 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<string> GetVerificationTokenAsync(string applicationId, CancellationToken cancellationToken = default)
+            public async Task<string> GetVerificationTokenAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{applicationId}/verification-token{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/verification-token{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         

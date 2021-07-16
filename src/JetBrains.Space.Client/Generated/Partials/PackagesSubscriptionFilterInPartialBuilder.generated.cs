@@ -26,19 +26,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.PackagesSubscriptionFilterInPartialBuilder
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ChecklistSorting
+    public static class PackagesSubscriptionFilterInPartialExtensions
     {
-        [EnumMember(Value = "UPDATED")]
-        UPDATED,
+        public static Partial<PackagesSubscriptionFilterIn> WithProjects(this Partial<PackagesSubscriptionFilterIn> it)
+            => it.AddFieldName("projects");
         
-        [EnumMember(Value = "TITLE")]
-        TITLE,
+        public static Partial<PackagesSubscriptionFilterIn> WithRepository(this Partial<PackagesSubscriptionFilterIn> it)
+            => it.AddFieldName("repository");
         
-        [EnumMember(Value = "FAV_TITLE")]
-        FAVTITLE,
+        public static Partial<PackagesSubscriptionFilterIn> WithNamePattern(this Partial<PackagesSubscriptionFilterIn> it)
+            => it.AddFieldName("namePattern");
+        
+        public static Partial<PackagesSubscriptionFilterIn> WithVersionPattern(this Partial<PackagesSubscriptionFilterIn> it)
+            => it.AddFieldName("versionPattern");
         
     }
     

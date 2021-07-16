@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectPlanningIssuesPostRequest() { }
         
-        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null)
+        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null)
         {
             Title = title;
             Description = description;
@@ -46,6 +46,7 @@ namespace JetBrains.Space.Client
             Attachments = (attachments ?? new List<AttachmentIn>());
             FromMessage = fromMessage;
             CustomFields = customFields;
+            Topics = topics;
         }
         
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Title));
@@ -150,6 +151,15 @@ namespace JetBrains.Space.Client
             set => _customFields.SetValue(value);
         }
     
+        private PropertyValue<List<string>?> _topics = new PropertyValue<List<string>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Topics));
+        
+        [JsonPropertyName("topics")]
+        public List<string>? Topics
+        {
+            get => _topics.GetValue();
+            set => _topics.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _title.SetAccessPath(path, validateHasBeenSet);
@@ -163,6 +173,7 @@ namespace JetBrains.Space.Client
             _attachments.SetAccessPath(path, validateHasBeenSet);
             _fromMessage.SetAccessPath(path, validateHasBeenSet);
             _customFields.SetAccessPath(path, validateHasBeenSet);
+            _topics.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

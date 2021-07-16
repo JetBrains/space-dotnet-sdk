@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public DRDraft() { }
         
-        public DRDraft(string id, string title, DateTime modified, bool shared, bool published, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBody documentBody, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, DocumentFolderRecord? folder = null)
+        public DRDraft(string id, string title, DateTime modified, bool shared, bool published, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBody documentBody, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
         {
             Id = id;
             Title = title;
@@ -46,6 +46,7 @@ namespace JetBrains.Space.Client
             Author = author;
             IsPublished = published;
             Folder = folder;
+            FolderRef = folderRef;
             ContainerInfo = containerInfo;
             AccessOrdinal = accessOrdinal;
             Editors = editors;
@@ -160,6 +161,15 @@ namespace JetBrains.Space.Client
             set => _folder.SetValue(value);
         }
     
+        private PropertyValue<DocumentFolder?> _folderRef = new PropertyValue<DocumentFolder?>(nameof(DRDraft), nameof(FolderRef));
+        
+        [JsonPropertyName("folderRef")]
+        public DocumentFolder? FolderRef
+        {
+            get => _folderRef.GetValue();
+            set => _folderRef.SetValue(value);
+        }
+    
         private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(DRDraft), nameof(ContainerInfo));
         
         [Required]
@@ -233,6 +243,7 @@ namespace JetBrains.Space.Client
             _author.SetAccessPath(path, validateHasBeenSet);
             _published.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
+            _folderRef.SetAccessPath(path, validateHasBeenSet);
             _containerInfo.SetAccessPath(path, validateHasBeenSet);
             _accessOrdinal.SetAccessPath(path, validateHasBeenSet);
             _editors.SetAccessPath(path, validateHasBeenSet);

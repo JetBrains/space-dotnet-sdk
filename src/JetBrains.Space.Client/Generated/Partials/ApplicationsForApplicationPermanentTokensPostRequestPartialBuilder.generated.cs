@@ -26,17 +26,17 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationsForApplicationIdPermanentTokensPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ApplicationsForApplicationPermanentTokensPostRequestPartialBuilder
 {
-    public static class ApplicationsForApplicationIdPermanentTokensPostRequestPartialExtensions
+    public static class ApplicationsForApplicationPermanentTokensPostRequestPartialExtensions
     {
-        public static Partial<ApplicationsForApplicationIdPermanentTokensPostRequest> WithName(this Partial<ApplicationsForApplicationIdPermanentTokensPostRequest> it)
+        public static Partial<ApplicationsForApplicationPermanentTokensPostRequest> WithName(this Partial<ApplicationsForApplicationPermanentTokensPostRequest> it)
             => it.AddFieldName("name");
         
-        public static Partial<ApplicationsForApplicationIdPermanentTokensPostRequest> WithScope(this Partial<ApplicationsForApplicationIdPermanentTokensPostRequest> it)
+        public static Partial<ApplicationsForApplicationPermanentTokensPostRequest> WithScope(this Partial<ApplicationsForApplicationPermanentTokensPostRequest> it)
             => it.AddFieldName("scope");
         
-        public static Partial<ApplicationsForApplicationIdPermanentTokensPostRequest> WithExpires(this Partial<ApplicationsForApplicationIdPermanentTokensPostRequest> it)
+        public static Partial<ApplicationsForApplicationPermanentTokensPostRequest> WithExpires(this Partial<ApplicationsForApplicationPermanentTokensPostRequest> it)
             => it.AddFieldName("expires");
         
     }

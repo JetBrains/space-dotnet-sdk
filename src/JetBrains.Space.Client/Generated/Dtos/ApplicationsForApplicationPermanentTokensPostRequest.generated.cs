@@ -28,19 +28,19 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class ApplicationsForApplicationIdPermanentTokensPostRequest
+    public class ApplicationsForApplicationPermanentTokensPostRequest
          : IPropagatePropertyAccessPath
     {
-        public ApplicationsForApplicationIdPermanentTokensPostRequest() { }
+        public ApplicationsForApplicationPermanentTokensPostRequest() { }
         
-        public ApplicationsForApplicationIdPermanentTokensPostRequest(string name, string scope, DateTime? expires = null)
+        public ApplicationsForApplicationPermanentTokensPostRequest(string name, string scope, DateTime? expires = null)
         {
             Name = name;
             Scope = scope;
             Expires = expires;
         }
         
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ApplicationsForApplicationIdPermanentTokensPostRequest), nameof(Name));
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ApplicationsForApplicationPermanentTokensPostRequest), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
@@ -50,7 +50,7 @@ namespace JetBrains.Space.Client
             set => _name.SetValue(value);
         }
     
-        private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ApplicationsForApplicationIdPermanentTokensPostRequest), nameof(Scope));
+        private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ApplicationsForApplicationPermanentTokensPostRequest), nameof(Scope));
         
         [Required]
         [JsonPropertyName("scope")]
@@ -60,7 +60,7 @@ namespace JetBrains.Space.Client
             set => _scope.SetValue(value);
         }
     
-        private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(ApplicationsForApplicationIdPermanentTokensPostRequest), nameof(Expires));
+        private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(ApplicationsForApplicationPermanentTokensPostRequest), nameof(Expires));
         
         [JsonPropertyName("expires")]
         [JsonConverter(typeof(SpaceDateTimeConverter))]

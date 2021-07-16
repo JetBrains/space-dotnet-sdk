@@ -28,41 +28,28 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class ApplicationsForApplicationIdSshKeysPostRequest
+    public class ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest
          : IPropagatePropertyAccessPath
     {
-        public ApplicationsForApplicationIdSshKeysPostRequest() { }
+        public ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest() { }
         
-        public ApplicationsForApplicationIdSshKeysPostRequest(string publicKey, string comment)
+        public ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest(string? statusId = null)
         {
-            PublicKey = publicKey;
-            Comment = comment;
+            StatusId = statusId;
         }
         
-        private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(ApplicationsForApplicationIdSshKeysPostRequest), nameof(PublicKey));
+        private PropertyValue<string?> _statusId = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest), nameof(StatusId));
         
-        [Required]
-        [JsonPropertyName("publicKey")]
-        public string PublicKey
+        [JsonPropertyName("statusId")]
+        public string? StatusId
         {
-            get => _publicKey.GetValue();
-            set => _publicKey.SetValue(value);
-        }
-    
-        private PropertyValue<string> _comment = new PropertyValue<string>(nameof(ApplicationsForApplicationIdSshKeysPostRequest), nameof(Comment));
-        
-        [Required]
-        [JsonPropertyName("comment")]
-        public string Comment
-        {
-            get => _comment.GetValue();
-            set => _comment.SetValue(value);
+            get => _statusId.GetValue();
+            set => _statusId.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _publicKey.SetAccessPath(path, validateHasBeenSet);
-            _comment.SetAccessPath(path, validateHasBeenSet);
+            _statusId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

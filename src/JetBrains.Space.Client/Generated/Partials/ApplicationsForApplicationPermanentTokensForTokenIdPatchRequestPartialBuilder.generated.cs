@@ -26,19 +26,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.ApplicationsForApplicationPermanentTokensForTokenIdPatchRequestPartialBuilder
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ChecklistSorting
+    public static class ApplicationsForApplicationPermanentTokensForTokenIdPatchRequestPartialExtensions
     {
-        [EnumMember(Value = "UPDATED")]
-        UPDATED,
+        public static Partial<ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest> WithName(this Partial<ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest> it)
+            => it.AddFieldName("name");
         
-        [EnumMember(Value = "TITLE")]
-        TITLE,
+        public static Partial<ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest> WithScope(this Partial<ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest> it)
+            => it.AddFieldName("scope");
         
-        [EnumMember(Value = "FAV_TITLE")]
-        FAVTITLE,
+        public static Partial<ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest> WithExpires(this Partial<ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest> it)
+            => it.AddFieldName("expires");
         
     }
     

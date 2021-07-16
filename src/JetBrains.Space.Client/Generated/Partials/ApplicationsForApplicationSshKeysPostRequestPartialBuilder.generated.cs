@@ -26,18 +26,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.ApplicationsForApplicationSshKeysPostRequestPartialBuilder
 {
-    public static class ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequestPartialExtensions
+    public static class ApplicationsForApplicationSshKeysPostRequestPartialExtensions
     {
-        public static Partial<ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequest> WithName(this Partial<ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequest> it)
-            => it.AddFieldName("name");
+        public static Partial<ApplicationsForApplicationSshKeysPostRequest> WithPublicKey(this Partial<ApplicationsForApplicationSshKeysPostRequest> it)
+            => it.AddFieldName("publicKey");
         
-        public static Partial<ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequest> WithScope(this Partial<ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequest> it)
-            => it.AddFieldName("scope");
-        
-        public static Partial<ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequest> WithExpires(this Partial<ApplicationsForApplicationIdPermanentTokensForTokenIdPatchRequest> it)
-            => it.AddFieldName("expires");
+        public static Partial<ApplicationsForApplicationSshKeysPostRequest> WithComment(this Partial<ApplicationsForApplicationSshKeysPostRequest> it)
+            => it.AddFieldName("comment");
         
     }
     

@@ -52,6 +52,9 @@ namespace JetBrains.Space.Client
         public static MemberCommonSubscriptionFilterIn MemberCommon(List<string> teams, List<string> locations)
             => new MemberCommonSubscriptionFilterIn(teams: teams, locations: locations);
         
+        public static PackagesSubscriptionFilterIn Packages(List<string> projects, List<string> namePattern, string? repository = null, string? versionPattern = null)
+            => new PackagesSubscriptionFilterIn(projects: projects, namePattern: namePattern, repository: repository, versionPattern: versionPattern);
+        
         public static ProjectCommonSubscriptionFilterIn ProjectCommon(string? project = null)
             => new ProjectCommonSubscriptionFilterIn(project: project);
         

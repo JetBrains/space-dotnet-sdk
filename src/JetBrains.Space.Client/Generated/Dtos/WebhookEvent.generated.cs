@@ -88,6 +88,9 @@ namespace JetBrains.Space.Client
         public static ProjectEvent ProjectEvent(KMetaMod meta, PRProject project)
             => new ProjectEvent(meta: meta, project: project);
         
+        public static SPackageRepositoryWebhookEvent SPackageRepository(ProjectKey projectKey, string repository, PackageType repositoryType, PackageRepositoryEventAction action, PackageVersionRef packageInfo)
+            => new SPackageRepositoryWebhookEvent(projectKey: projectKey, repository: repository, repositoryType: repositoryType, action: action, packageInfo: packageInfo);
+        
         public static SRepoCommitsWebhookEvent SRepoCommits(ProjectKey projectKey, string repository, GitCommitInfoWithChanges commit)
             => new SRepoCommitsWebhookEvent(projectKey: projectKey, repository: repository, commit: commit);
         

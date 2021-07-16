@@ -69,6 +69,12 @@ namespace JetBrains.Space.Client.DocumentInContainerPartialBuilder
         public static Partial<DocumentInContainer> WithPublicationDetails2(this Partial<DocumentInContainer> it, Func<Partial<PublicationDetails>, Partial<PublicationDetails>> partialBuilder)
             => it.AddFieldName("publicationDetails2", partialBuilder(new Partial<PublicationDetails>(it)));
         
+        public static Partial<DocumentInContainer> WithFolderRef(this Partial<DocumentInContainer> it)
+            => it.AddFieldName("folderRef");
+        
+        public static Partial<DocumentInContainer> WithFolderRef(this Partial<DocumentInContainer> it, Func<Partial<DocumentFolder>, Partial<DocumentFolder>> partialBuilder)
+            => it.AddFieldName("folderRef", partialBuilder(new Partial<DocumentFolder>(it)));
+        
         public static Partial<DocumentInContainer> WithContainerInfo(this Partial<DocumentInContainer> it)
             => it.AddFieldName("containerInfo");
         

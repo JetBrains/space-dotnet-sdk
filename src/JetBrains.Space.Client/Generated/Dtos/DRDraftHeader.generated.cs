@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
     {
         public DRDraftHeader() { }
         
-        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null)
+        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
         {
             Id = id;
             Title = title;
@@ -45,6 +45,7 @@ namespace JetBrains.Space.Client
             PublicationDetails2 = publicationDetails2;
             IsDeleted = deleted;
             Folder = folder;
+            FolderRef = folderRef;
             ContainerInfo = containerInfo;
             BodyType = bodyType;
         }
@@ -146,6 +147,15 @@ namespace JetBrains.Space.Client
             set => _folder.SetValue(value);
         }
     
+        private PropertyValue<DocumentFolder?> _folderRef = new PropertyValue<DocumentFolder?>(nameof(DRDraftHeader), nameof(FolderRef));
+        
+        [JsonPropertyName("folderRef")]
+        public DocumentFolder? FolderRef
+        {
+            get => _folderRef.GetValue();
+            set => _folderRef.SetValue(value);
+        }
+    
         private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(DRDraftHeader), nameof(ContainerInfo));
         
         [Required]
@@ -178,6 +188,7 @@ namespace JetBrains.Space.Client
             _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
+            _folderRef.SetAccessPath(path, validateHasBeenSet);
             _containerInfo.SetAccessPath(path, validateHasBeenSet);
             _bodyType.SetAccessPath(path, validateHasBeenSet);
         }
