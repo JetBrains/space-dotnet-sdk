@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
@@ -98,8 +99,8 @@ namespace JetBrains.Space.Client
             if (skip != null) queryParameters.Append("$skip", skip);
             if (top != null) queryParameters.Append("$top", top?.ToString());
             if (term != null) queryParameters.Append("term", term);
-            if (dateFrom != null) queryParameters.Append("dateFrom", dateFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
-            if (dateTo != null) queryParameters.Append("dateTo", dateTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+            if (dateFrom != null) queryParameters.Append("dateFrom", dateFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+            if (dateTo != null) queryParameters.Append("dateTo", dateTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
             if (authorId != null) queryParameters.Append("authorId", authorId);
             if (teamId != null) queryParameters.Append("teamId", teamId);
             if (locationId != null) queryParameters.Append("locationId", locationId);
@@ -132,8 +133,8 @@ namespace JetBrains.Space.Client
         public async Task<BGStats> GetStatsAsync(DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, Func<Partial<BGStats>, Partial<BGStats>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
-            if (dateFrom != null) queryParameters.Append("dateFrom", dateFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
-            if (dateTo != null) queryParameters.Append("dateTo", dateTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+            if (dateFrom != null) queryParameters.Append("dateFrom", dateFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+            if (dateTo != null) queryParameters.Append("dateTo", dateTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
             if (authorId != null) queryParameters.Append("authorId", authorId);
             if (teamId != null) queryParameters.Append("teamId", teamId);
             if (locationId != null) queryParameters.Append("locationId", locationId);

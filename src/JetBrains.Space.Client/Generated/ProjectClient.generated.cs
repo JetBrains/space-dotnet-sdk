@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
@@ -1492,10 +1493,10 @@ namespace JetBrains.Space.Client
                     if (tags != null) queryParameters.Append("tags", tags.Select(it => it));
                     if (customFields != null) queryParameters.Append("customFields", customFields.Select(it => it));
                     if (importTransaction != null) queryParameters.Append("importTransaction", importTransaction);
-                    if (creationTimeFrom != null) queryParameters.Append("creationTimeFrom", creationTimeFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
-                    if (creationTimeTo != null) queryParameters.Append("creationTimeTo", creationTimeTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
-                    if (dueDateFrom != null) queryParameters.Append("dueDateFrom", dueDateFrom?.ToString("yyyy-MM-dd"));
-                    if (dueDateTo != null) queryParameters.Append("dueDateTo", dueDateTo?.ToString("yyyy-MM-dd"));
+                    if (creationTimeFrom != null) queryParameters.Append("creationTimeFrom", creationTimeFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+                    if (creationTimeTo != null) queryParameters.Append("creationTimeTo", creationTimeTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+                    if (dueDateFrom != null) queryParameters.Append("dueDateFrom", dueDateFrom?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                    if (dueDateTo != null) queryParameters.Append("dueDateTo", dueDateTo?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default()).ToString());
                     
                     return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/{project}/planning/issues{queryParameters.ToQueryString()}", cancellationToken);
@@ -3056,8 +3057,8 @@ namespace JetBrains.Space.Client
                 queryParameters.Append("state", state.ToEnumString());
                 if (text != null) queryParameters.Append("text", text);
                 if (author != null) queryParameters.Append("author", author?.ToString());
-                if (from != null) queryParameters.Append("from", from?.ToString("yyyy-MM-dd"));
-                if (to != null) queryParameters.Append("to", to?.ToString("yyyy-MM-dd"));
+                if (from != null) queryParameters.Append("from", from?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                if (to != null) queryParameters.Append("to", to?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                 queryParameters.Append("sort", sort.ToEnumString());
                 if (reviewer != null) queryParameters.Append("reviewer", reviewer?.ToString());
                 queryParameters.Append("type", type.ToEnumString());

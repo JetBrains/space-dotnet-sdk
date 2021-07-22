@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
@@ -172,8 +173,8 @@ namespace JetBrains.Space.Client
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 if (calendar != null) queryParameters.Append("calendar", calendar);
                 if (location != null) queryParameters.Append("location", location);
-                if (startDate != null) queryParameters.Append("startDate", startDate?.ToString("yyyy-MM-dd"));
-                if (endDate != null) queryParameters.Append("endDate", endDate?.ToString("yyyy-MM-dd"));
+                if (startDate != null) queryParameters.Append("startDate", startDate?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                if (endDate != null) queryParameters.Append("endDate", endDate?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PublicHoliday>>()) : Partial<Batch<PublicHoliday>>.Default()).ToString());
                 
                 return await _connection.RequestResourceAsync<Batch<PublicHoliday>>("GET", $"api/http/public-holidays/holidays{queryParameters.ToQueryString()}", cancellationToken);
@@ -234,8 +235,8 @@ namespace JetBrains.Space.Client
                 public async Task<List<PublicHoliday>> GetAllProfileHolidaysAsync(DateTime startDate, DateTime endDate, string profile, bool? workingDays = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
-                    queryParameters.Append("startDate", startDate.ToString("yyyy-MM-dd"));
-                    queryParameters.Append("endDate", endDate.ToString("yyyy-MM-dd"));
+                    queryParameters.Append("startDate", startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                    queryParameters.Append("endDate", endDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                     queryParameters.Append("profile", profile);
                     if (workingDays != null) queryParameters.Append("workingDays", workingDays?.ToString("l"));
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<PublicHoliday>()) : Partial<PublicHoliday>.Default()).ToString());
@@ -265,8 +266,8 @@ namespace JetBrains.Space.Client
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
-                    if (startDate != null) queryParameters.Append("startDate", startDate?.ToString("yyyy-MM-dd"));
-                    if (endDate != null) queryParameters.Append("endDate", endDate?.ToString("yyyy-MM-dd"));
+                    if (startDate != null) queryParameters.Append("startDate", startDate?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                    if (endDate != null) queryParameters.Append("endDate", endDate?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PublicHoliday>>()) : Partial<Batch<PublicHoliday>>.Default()).ToString());
                     
                     return await _connection.RequestResourceAsync<Batch<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/related-holidays{queryParameters.ToQueryString()}", cancellationToken);

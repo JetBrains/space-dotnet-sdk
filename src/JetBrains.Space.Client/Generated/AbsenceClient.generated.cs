@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
@@ -112,8 +113,8 @@ namespace JetBrains.Space.Client
             if (members != null) queryParameters.Append("members", members.Select(it => it));
             if (location != null) queryParameters.Append("location", location);
             if (team != null) queryParameters.Append("team", team);
-            if (since != null) queryParameters.Append("since", since?.ToString("yyyy-MM-dd"));
-            if (till != null) queryParameters.Append("till", till?.ToString("yyyy-MM-dd"));
+            if (since != null) queryParameters.Append("since", since?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+            if (till != null) queryParameters.Append("till", till?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
             queryParameters.Append("viewMode", viewMode.ToEnumString());
             if (reason != null) queryParameters.Append("reason", reason);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AbsenceRecord>>()) : Partial<Batch<AbsenceRecord>>.Default()).ToString());

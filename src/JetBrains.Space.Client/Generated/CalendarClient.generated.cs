@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
@@ -54,8 +55,8 @@ namespace JetBrains.Space.Client
             public async Task<List<AbsenceEvent>> GetAllAbsenceEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<AbsenceEvent>, Partial<AbsenceEvent>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
-                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                 if (team != null) queryParameters.Append("team", team);
                 if (location != null) queryParameters.Append("location", location);
                 if (role != null) queryParameters.Append("role", role);
@@ -84,8 +85,8 @@ namespace JetBrains.Space.Client
             public async Task<List<BirthdayEvent>> GetAllBirthdayEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<BirthdayEvent>, Partial<BirthdayEvent>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
-                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                 if (team != null) queryParameters.Append("team", team);
                 if (location != null) queryParameters.Append("location", location);
                 if (role != null) queryParameters.Append("role", role);
@@ -112,8 +113,8 @@ namespace JetBrains.Space.Client
                 public async Task<List<BirthdayEvent>> GetAllStarredBirthdayEventsAsync(DateTime dateFrom, DateTime dateTo, Func<Partial<BirthdayEvent>, Partial<BirthdayEvent>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
-                    queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
-                    queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                    queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                    queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default()).ToString());
                     
                     return await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/calendars/birthday-events/starred{queryParameters.ToQueryString()}", cancellationToken);
@@ -170,8 +171,8 @@ namespace JetBrains.Space.Client
             public async Task<List<MeetingRecord>> GetAllEventsAsync(DateTime dateFrom, DateTime dateTo, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
-                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default()).ToString());
                 
                 return await _connection.RequestResourceAsync<List<MeetingRecord>>("GET", $"api/http/calendars/events{queryParameters.ToQueryString()}", cancellationToken);
@@ -209,8 +210,8 @@ namespace JetBrains.Space.Client
             public async Task<List<HolidaysEvent>> GetAllHolidaysAsync(DateTime startDate, DateTime endDate, string? team = null, string? location = null, string? role = null, bool? workingDays = null, Func<Partial<HolidaysEvent>, Partial<HolidaysEvent>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("startDate", startDate.ToString("yyyy-MM-dd"));
-                queryParameters.Append("endDate", endDate.ToString("yyyy-MM-dd"));
+                queryParameters.Append("startDate", startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                queryParameters.Append("endDate", endDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                 if (team != null) queryParameters.Append("team", team);
                 if (location != null) queryParameters.Append("location", location);
                 if (role != null) queryParameters.Append("role", role);
@@ -288,10 +289,10 @@ namespace JetBrains.Space.Client
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 queryParameters.Append("summaryQuery", summaryQuery);
                 queryParameters.Append("locationsQuery", (locationsQuery ?? new List<string>()).Select(it => it));
-                if (startingAfter != null) queryParameters.Append("startingAfter", startingAfter?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
-                if (endingAfter != null) queryParameters.Append("endingAfter", endingAfter?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
-                if (endingBefore != null) queryParameters.Append("endingBefore", endingBefore?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
-                if (startingBefore != null) queryParameters.Append("startingBefore", startingBefore?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                if (startingAfter != null) queryParameters.Append("startingAfter", startingAfter?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+                if (endingAfter != null) queryParameters.Append("endingAfter", endingAfter?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+                if (endingBefore != null) queryParameters.Append("endingBefore", endingBefore?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+                if (startingBefore != null) queryParameters.Append("startingBefore", startingBefore?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
                 queryParameters.Append("profiles", (profiles ?? new List<string>()).Select(it => it));
                 queryParameters.Append("teams", (teams ?? new List<string>()).Select(it => it));
                 if (organizer != null) queryParameters.Append("organizer", organizer);
@@ -333,7 +334,7 @@ namespace JetBrains.Space.Client
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("meetingId", meetingId);
-                if (since != null) queryParameters.Append("since", since?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                if (since != null) queryParameters.Append("since", since?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingOccurrenceTime>()) : Partial<MeetingOccurrenceTime>.Default()).ToString());
                 
                 return await _connection.RequestResourceAsync<MeetingOccurrenceTime>("GET", $"api/http/calendars/meetings/next-occurrence{queryParameters.ToQueryString()}", cancellationToken);
@@ -355,8 +356,8 @@ namespace JetBrains.Space.Client
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("meetingId", meetingId);
-                queryParameters.Append("since", since.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
-                queryParameters.Append("until", until.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                queryParameters.Append("since", since.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+                queryParameters.Append("until", until.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
                 if (limit != null) queryParameters.Append("limit", limit?.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingOccurrenceTime>()) : Partial<MeetingOccurrenceTime>.Default()).ToString());
                 
@@ -487,7 +488,7 @@ namespace JetBrains.Space.Client
             public async Task<Meeting> DeleteMeetingAsync(string id, RecurrentModification modificationKind = RecurrentModification.All, DateTime? targetDate = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                if (targetDate != null) queryParameters.Append("targetDate", targetDate?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"));
+                if (targetDate != null) queryParameters.Append("targetDate", targetDate?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
                 queryParameters.Append("modificationKind", modificationKind.ToEnumString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
                 
@@ -522,8 +523,8 @@ namespace JetBrains.Space.Client
             public async Task<List<MembershipEvent>> GetAllMembershipEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<MembershipEvent>, Partial<MembershipEvent>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
-                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                 if (team != null) queryParameters.Append("team", team);
                 if (location != null) queryParameters.Append("location", location);
                 if (role != null) queryParameters.Append("role", role);
@@ -552,8 +553,8 @@ namespace JetBrains.Space.Client
             public async Task<List<NonWorkingDaysEvent>> GetAllNonWorkingDaysEventsAsync(DateTime dateFrom, DateTime dateTo, string? member = null, string? team = null, string? location = null, string? role = null, Func<Partial<NonWorkingDaysEvent>, Partial<NonWorkingDaysEvent>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd"));
-                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd"));
+                queryParameters.Append("dateFrom", dateFrom.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                 if (member != null) queryParameters.Append("member", member);
                 if (team != null) queryParameters.Append("team", team);
                 if (location != null) queryParameters.Append("location", location);
