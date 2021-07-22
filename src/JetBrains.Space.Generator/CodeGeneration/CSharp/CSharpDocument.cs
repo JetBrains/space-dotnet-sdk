@@ -37,6 +37,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
             builder.AppendLine($"{indent}using System.Collections.Generic;");
             builder.AppendLine($"{indent}using System.Collections.Specialized;");
             builder.AppendLine($"{indent}using System.ComponentModel.DataAnnotations;");
+            builder.AppendLine($"{indent}using System.Globalization;");
             builder.AppendLine($"{indent}using System.Linq;");
             builder.AppendLine($"{indent}using System.Runtime.Serialization;");
             builder.AppendLine($"{indent}using System.Text.Json.Serialization;");
