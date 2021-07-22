@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
@@ -75,8 +76,8 @@ namespace JetBrains.Space.Client
             if (skip != null) queryParameters.Append("$skip", skip);
             if (top != null) queryParameters.Append("$top", top?.ToString());
             if (open != null) queryParameters.Append("open", open?.ToString("l"));
-            if (from != null) queryParameters.Append("from", from?.ToString("yyyy-MM-dd"));
-            if (till != null) queryParameters.Append("till", till?.ToString("yyyy-MM-dd"));
+            if (from != null) queryParameters.Append("from", from?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+            if (till != null) queryParameters.Append("till", till?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TodoItemRecord>>()) : Partial<Batch<TodoItemRecord>>.Default()).ToString());
             
             return await _connection.RequestResourceAsync<Batch<TodoItemRecord>>("GET", $"api/http/todo{queryParameters.ToQueryString()}", cancellationToken);
