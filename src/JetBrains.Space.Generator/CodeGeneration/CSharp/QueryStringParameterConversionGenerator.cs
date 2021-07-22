@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using JetBrains.Space.Common;
@@ -127,6 +128,11 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                     if (csharpType.FormatString != null)
                     {
                         formatString = $"\"{csharpType.FormatString}\"";
+
+                        if (csharpType == CSharpType.SpaceDate || csharpType == CSharpType.SpaceTime)
+                        {
+                            formatString += ", CultureInfo.InvariantCulture";
+                        }
                     }
 
                     return !apiFieldType.Nullable
