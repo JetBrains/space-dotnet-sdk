@@ -74,8 +74,8 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsDateTimeRange DateTimeRange(long since, long till, DateTimeViewParams? @params = null)
             => new UnfurlDetailsDateTimeRange(since: since, till: till, @params: @params);
         
-        public static UnfurlDetailsDraft Draft(string draft, string title)
-            => new UnfurlDetailsDraft(draft: draft, title: title);
+        public static UnfurlDetailsDraft Draft(string draft, string title, bool? strikeThrough = null)
+            => new UnfurlDetailsDraft(draft: draft, title: title, strikeThrough: strikeThrough);
         
         public static UnfurlDetailsIssue Issue(Issue issue, bool? strikeThrough = null, bool? compact = null)
             => new UnfurlDetailsIssue(issue: issue, strikeThrough: strikeThrough, compact: compact);

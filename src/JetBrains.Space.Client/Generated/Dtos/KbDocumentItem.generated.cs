@@ -34,13 +34,14 @@ namespace JetBrains.Space.Client
     {
         public KbDocumentItem() { }
         
-        public KbDocumentItem(KBBook book, string articleId, string id, string name, List<string> path)
+        public KbDocumentItem(KBBook book, string articleId, string id, string name, List<string> path, string? containerLinkId = null)
         {
             Book = book;
             ArticleId = articleId;
             Id = id;
             Name = name;
             Path = path;
+            ContainerLinkId = containerLinkId;
         }
         
         private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(KbDocumentItem), nameof(Book));
@@ -93,6 +94,15 @@ namespace JetBrains.Space.Client
             set => _path.SetValue(value);
         }
     
+        private PropertyValue<string?> _containerLinkId = new PropertyValue<string?>(nameof(KbDocumentItem), nameof(ContainerLinkId));
+        
+        [JsonPropertyName("containerLinkId")]
+        public string? ContainerLinkId
+        {
+            get => _containerLinkId.GetValue();
+            set => _containerLinkId.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _book.SetAccessPath(path, validateHasBeenSet);
@@ -100,6 +110,7 @@ namespace JetBrains.Space.Client
             _id.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
             _path.SetAccessPath(path, validateHasBeenSet);
+            _containerLinkId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

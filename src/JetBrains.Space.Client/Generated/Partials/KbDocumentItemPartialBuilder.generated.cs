@@ -49,6 +49,9 @@ namespace JetBrains.Space.Client.KbDocumentItemPartialBuilder
         public static Partial<KbDocumentItem> WithPath(this Partial<KbDocumentItem> it)
             => it.AddFieldName("path");
         
+        public static Partial<KbDocumentItem> WithContainerLinkId(this Partial<KbDocumentItem> it)
+            => it.AddFieldName("containerLinkId");
+        
     }
     
 }

@@ -27,18 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsDraftPartialBuilder
+namespace JetBrains.Space.Client.DocumentListCFValuePartialBuilder
 {
-    public static class UnfurlDetailsDraftPartialExtensions
+    public static class DocumentListCFValuePartialExtensions
     {
-        public static Partial<UnfurlDetailsDraft> WithDraft(this Partial<UnfurlDetailsDraft> it)
-            => it.AddFieldName("draft");
+        public static Partial<DocumentListCFValue> WithDocuments(this Partial<DocumentListCFValue> it)
+            => it.AddFieldName("documents");
         
-        public static Partial<UnfurlDetailsDraft> WithTitle(this Partial<UnfurlDetailsDraft> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<UnfurlDetailsDraft> WithIsStrikeThrough(this Partial<UnfurlDetailsDraft> it)
-            => it.AddFieldName("strikeThrough");
+        public static Partial<DocumentListCFValue> WithDocuments(this Partial<DocumentListCFValue> it, Func<Partial<Document>, Partial<Document>> partialBuilder)
+            => it.AddFieldName("documents", partialBuilder(new Partial<Document>(it)));
         
     }
     

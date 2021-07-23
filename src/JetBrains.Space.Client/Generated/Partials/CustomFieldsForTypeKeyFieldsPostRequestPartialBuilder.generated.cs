@@ -76,8 +76,8 @@ namespace JetBrains.Space.Client.CustomFieldsForTypeKeyFieldsPostRequestPartialB
         public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithCfParameters(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
             => it.AddFieldName("cfParameters");
         
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithCfParameters(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFParameters>, Partial<CFParameters>> partialBuilder)
-            => it.AddFieldName("cfParameters", partialBuilder(new Partial<CFParameters>(it)));
+        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithCfParameters(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFParametersInput>, Partial<CFParametersInput>> partialBuilder)
+            => it.AddFieldName("cfParameters", partialBuilder(new Partial<CFParametersInput>(it)));
         
         public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
             => it.AddFieldName("scope");

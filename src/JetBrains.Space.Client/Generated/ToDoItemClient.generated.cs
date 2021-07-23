@@ -41,6 +41,14 @@ namespace JetBrains.Space.Client
         /// <summary>
         /// Create a new To-Do item, with an optional due date.
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit todo</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<TodoItemRecord> CreateTodoItemAsync(string text, DateTime? dueDate = null, Func<Partial<TodoItemRecord>, Partial<TodoItemRecord>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -55,6 +63,14 @@ namespace JetBrains.Space.Client
         }
         
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit todo</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task DeleteTasksAsync(string text, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -70,6 +86,14 @@ namespace JetBrains.Space.Client
         /// <summary>
         /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View todo</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<Batch<TodoItemRecord>> GetAllTodoItemsAsync(string? skip = null, int? top = 100, bool? open = null, DateTime? from = null, DateTime? till = null, Func<Partial<Batch<TodoItemRecord>>, Partial<Batch<TodoItemRecord>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -87,12 +111,28 @@ namespace JetBrains.Space.Client
         /// <summary>
         /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View todo</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public IAsyncEnumerable<TodoItemRecord> GetAllTodoItemsAsyncEnumerable(string? skip = null, int? top = 100, bool? open = null, DateTime? from = null, DateTime? till = null, Func<Partial<TodoItemRecord>, Partial<TodoItemRecord>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllTodoItemsAsync(top: top, open: open, from: from, till: till, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TodoItemRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TodoItemRecord>.Default())), skip, cancellationToken);
     
         /// <summary>
         /// Update an existing To-Do item. Optional parameters will be ignored when not specified, and updated otherwise.
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit todo</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task UpdateTodoItemAsync(string id, string? text = null, DateTime? dueDate = null, bool? open = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -110,6 +150,14 @@ namespace JetBrains.Space.Client
         /// <summary>
         /// Delete an existing To-Do item.
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit todo</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task DeleteTodoItemAsync(string id, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();

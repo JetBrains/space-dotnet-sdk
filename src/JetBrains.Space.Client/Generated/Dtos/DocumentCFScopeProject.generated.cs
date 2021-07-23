@@ -27,19 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsDraftPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class UnfurlDetailsDraftPartialExtensions
+    public sealed class DocumentCFScopeProject
+         : DocumentCFScope, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<UnfurlDetailsDraft> WithDraft(this Partial<UnfurlDetailsDraft> it)
-            => it.AddFieldName("draft");
+        [JsonPropertyName("className")]
+        public override string? ClassName => "DocumentCFScope.Project";
         
-        public static Partial<UnfurlDetailsDraft> WithTitle(this Partial<UnfurlDetailsDraft> it)
-            => it.AddFieldName("title");
+        public DocumentCFScopeProject() { }
         
-        public static Partial<UnfurlDetailsDraft> WithIsStrikeThrough(this Partial<UnfurlDetailsDraft> it)
-            => it.AddFieldName("strikeThrough");
+        public DocumentCFScopeProject(PRProject project)
+        {
+            Project = project;
+        }
         
+        private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(DocumentCFScopeProject), nameof(Project));
+        
+        [Required]
+        [JsonPropertyName("project")]
+        public PRProject Project
+        {
+            get => _project.GetValue();
+            set => _project.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _project.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

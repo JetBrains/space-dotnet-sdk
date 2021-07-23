@@ -29,22 +29,24 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest
+    public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
          : IPropagatePropertyAccessPath
     {
-        public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest() { }
+        public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest() { }
         
-        public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest(string text, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null)
+        public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest(string text, string repository, string revision, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null)
         {
             Text = text;
             DiffContext = diffContext;
+            Repository = repository;
+            Revision = revision;
             Filename = filename;
             Line = line;
             OldLine = oldLine;
             IsPending = pending;
         }
         
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(Text));
+        private PropertyValue<string> _text = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Text));
         
         [Required]
         [JsonPropertyName("text")]
@@ -54,7 +56,7 @@ namespace JetBrains.Space.Client
             set => _text.SetValue(value);
         }
     
-        private PropertyValue<DiffContext?> _diffContext = new PropertyValue<DiffContext?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(DiffContext));
+        private PropertyValue<DiffContext?> _diffContext = new PropertyValue<DiffContext?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(DiffContext));
         
         [JsonPropertyName("diffContext")]
         public DiffContext? DiffContext
@@ -63,7 +65,27 @@ namespace JetBrains.Space.Client
             set => _diffContext.SetValue(value);
         }
     
-        private PropertyValue<string?> _filename = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(Filename));
+        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Repository));
+        
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository
+        {
+            get => _repository.GetValue();
+            set => _repository.SetValue(value);
+        }
+    
+        private PropertyValue<string> _revision = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Revision));
+        
+        [Required]
+        [JsonPropertyName("revision")]
+        public string Revision
+        {
+            get => _revision.GetValue();
+            set => _revision.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _filename = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Filename));
         
         [JsonPropertyName("filename")]
         public string? Filename
@@ -72,7 +94,7 @@ namespace JetBrains.Space.Client
             set => _filename.SetValue(value);
         }
     
-        private PropertyValue<int?> _line = new PropertyValue<int?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(Line));
+        private PropertyValue<int?> _line = new PropertyValue<int?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Line));
         
         [JsonPropertyName("line")]
         public int? Line
@@ -81,7 +103,7 @@ namespace JetBrains.Space.Client
             set => _line.SetValue(value);
         }
     
-        private PropertyValue<int?> _oldLine = new PropertyValue<int?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(OldLine));
+        private PropertyValue<int?> _oldLine = new PropertyValue<int?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(OldLine));
         
         [JsonPropertyName("oldLine")]
         public int? OldLine
@@ -90,7 +112,7 @@ namespace JetBrains.Space.Client
             set => _oldLine.SetValue(value);
         }
     
-        private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(IsPending));
+        private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(IsPending));
         
         [JsonPropertyName("pending")]
         public bool IsPending
@@ -103,6 +125,8 @@ namespace JetBrains.Space.Client
         {
             _text.SetAccessPath(path, validateHasBeenSet);
             _diffContext.SetAccessPath(path, validateHasBeenSet);
+            _repository.SetAccessPath(path, validateHasBeenSet);
+            _revision.SetAccessPath(path, validateHasBeenSet);
             _filename.SetAccessPath(path, validateHasBeenSet);
             _line.SetAccessPath(path, validateHasBeenSet);
             _oldLine.SetAccessPath(path, validateHasBeenSet);

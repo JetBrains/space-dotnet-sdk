@@ -27,19 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequestPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequestPartialExtensions
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public class DocumentCFScope
+         : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest> WithRevisions(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest> it)
-            => it.AddFieldName("revisions");
+        [JsonPropertyName("className")]
+        public virtual string? ClassName => "DocumentCFScope";
         
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest> WithTitle(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest> it)
-            => it.AddFieldName("title");
+        public static DocumentCFScopeProject Project(PRProject project)
+            => new DocumentCFScopeProject(project: project);
         
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest> WithAuthorProfileIds(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest> it)
-            => it.AddFieldName("authorProfileIds");
+        public DocumentCFScope() { }
         
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

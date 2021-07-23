@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public CustomFieldsForTypeKeyFieldsForIdPatchRequest() { }
         
-        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFInputValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null, CFParameters? cfParameters = null)
+        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFInputValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null, CFParametersInput? cfParameters = null)
         {
             Name = name;
             Description = description;
@@ -130,10 +130,10 @@ namespace JetBrains.Space.Client
             set => _openEnumValuesModification.SetValue(value);
         }
     
-        private PropertyValue<CFParameters?> _cfParameters = new PropertyValue<CFParameters?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(CfParameters));
+        private PropertyValue<CFParametersInput?> _cfParameters = new PropertyValue<CFParametersInput?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(CfParameters));
         
         [JsonPropertyName("cfParameters")]
-        public CFParameters? CfParameters
+        public CFParametersInput? CfParameters
         {
             get => _cfParameters.GetValue();
             set => _cfParameters.SetValue(value);

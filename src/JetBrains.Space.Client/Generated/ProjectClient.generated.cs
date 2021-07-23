@@ -3049,6 +3049,59 @@ namespace JetBrains.Space.Client
                 _connection = connection;
             }
             
+            public async Task<CodeDiscussionRecord> CreateCodeDiscussionAsync(ProjectIdentifier project, string text, string repository, string revision, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeDiscussionRecord>()) : Partial<CodeDiscussionRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest, CodeDiscussionRecord>("POST", $"api/http/projects/{project}/code-reviews/code-discussions{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
+                    { 
+                        Text = text,
+                        DiffContext = diffContext,
+                        Repository = repository,
+                        Revision = revision,
+                        Filename = filename,
+                        Line = line,
+                        OldLine = oldLine,
+                        IsPending = pending,
+                    }, cancellationToken);
+            }
+            
+        
+            public async Task<CommitSetReviewRecord> CreateReviewBasedOnCommitSetAsync(ProjectIdentifier project, string repository, List<string> revisions, string? title = null, List<string>? authorProfileIds = null, Func<Partial<CommitSetReviewRecord>, Partial<CommitSetReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CommitSetReviewRecord>()) : Partial<CommitSetReviewRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest, CommitSetReviewRecord>("POST", $"api/http/projects/{project}/code-reviews/commit-set-review{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectCodeReviewsCommitSetReviewPostRequest
+                    { 
+                        Repository = repository,
+                        Revisions = revisions,
+                        Title = title,
+                        AuthorProfileIds = authorProfileIds,
+                    }, cancellationToken);
+            }
+            
+        
+            public async Task<MergeRequestRecord> CreateMergeRequestAsync(ProjectIdentifier project, string repository, string sourceBranch, string targetBranch, string title, List<ReviewerParam>? reviewers = null, Func<Partial<MergeRequestRecord>, Partial<MergeRequestRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<MergeRequestRecord>()) : Partial<MergeRequestRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsMergeRequestsPostRequest, MergeRequestRecord>("POST", $"api/http/projects/{project}/code-reviews/merge-requests{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectCodeReviewsMergeRequestsPostRequest
+                    { 
+                        Repository = repository,
+                        SourceBranch = sourceBranch,
+                        TargetBranch = targetBranch,
+                        Title = title,
+                        Reviewers = reviewers,
+                    }, cancellationToken);
+            }
+            
+        
             public async Task<Batch<CodeReviewWithCount>> GetAllCodeReviewsAsync(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<Batch<CodeReviewWithCount>>, Partial<Batch<CodeReviewWithCount>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -3077,6 +3130,57 @@ namespace JetBrains.Space.Client
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeReviewRecord>()) : Partial<CodeReviewRecord>.Default()).ToString());
                 
                 return await _connection.RequestResourceAsync<CodeReviewRecord>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            public async Task<CodeReviewDetailedInfo> GetReviewDetailsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<CodeReviewDetailedInfo>, Partial<CodeReviewDetailedInfo>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeReviewDetailedInfo>()) : Partial<CodeReviewDetailedInfo>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<CodeReviewDetailedInfo>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/details{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            public async Task<List<TDMemberProfile>> SuggestedReviewersAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/suggested-reviewers{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            public async Task<List<RevisionInReview>> UnreadRevisionsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<RevisionInReview>, Partial<RevisionInReview>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<RevisionInReview>()) : Partial<RevisionInReview>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<RevisionInReview>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/unread-revisions{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            public async Task EditReviewStateAsync(ProjectIdentifier project, ReviewIdentifier reviewId, CodeReviewState state, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/code-reviews/{reviewId}/state{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest
+                    { 
+                        State = state,
+                    }, cancellationToken);
+            }
+            
+        
+            public async Task EditReviewTitleAsync(ProjectIdentifier project, ReviewIdentifier reviewId, string title, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/code-reviews/{reviewId}/title{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest
+                    { 
+                        Title = title,
+                    }, cancellationToken);
             }
             
         
@@ -3109,28 +3213,6 @@ namespace JetBrains.Space.Client
                     }, cancellationToken);
             }
             
-        
-            public DetailClient Details => new DetailClient(_connection);
-            
-            public partial class DetailClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public DetailClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public async Task<CodeReviewDetailedInfo> GetReviewDetailsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<CodeReviewDetailedInfo>, Partial<CodeReviewDetailedInfo>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeReviewDetailedInfo>()) : Partial<CodeReviewDetailedInfo>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<CodeReviewDetailedInfo>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/details{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-            }
         
             public ParticipantClient Participants => new ParticipantClient(_connection);
             
@@ -3195,100 +3277,6 @@ namespace JetBrains.Space.Client
                     queryParameters.Append("revisions", revisions.Select(it => it));
                     
                     await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/code-reviews/{reviewId}/revisions{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-            }
-        
-            public StateClient State => new StateClient(_connection);
-            
-            public partial class StateClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public StateClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public async Task EditReviewStateAsync(ProjectIdentifier project, ReviewIdentifier reviewId, CodeReviewState state, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/code-reviews/{reviewId}/state{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest
-                        { 
-                            State = state,
-                        }, cancellationToken);
-                }
-                
-            
-            }
-        
-            public SuggestedReviewerClient SuggestedReviewers => new SuggestedReviewerClient(_connection);
-            
-            public partial class SuggestedReviewerClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public SuggestedReviewerClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public async Task<List<TDMemberProfile>> GetAllSuggestedReviewersAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/suggested-reviewers{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-            }
-        
-            public TitleClient Title => new TitleClient(_connection);
-            
-            public partial class TitleClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public TitleClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public async Task EditReviewTitleAsync(ProjectIdentifier project, ReviewIdentifier reviewId, string title, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/code-reviews/{reviewId}/title{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest
-                        { 
-                            Title = title,
-                        }, cancellationToken);
-                }
-                
-            
-            }
-        
-            public UnreadRevisionClient UnreadRevisions => new UnreadRevisionClient(_connection);
-            
-            public partial class UnreadRevisionClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public UnreadRevisionClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public async Task<List<RevisionInReview>> GetAllUnreadRevisionsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<RevisionInReview>, Partial<RevisionInReview>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<RevisionInReview>()) : Partial<RevisionInReview>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<List<RevisionInReview>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/unread-revisions{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
             
@@ -4113,6 +4101,21 @@ namespace JetBrains.Space.Client
             }
             
         
+            public async Task<Batch<GitCommitInfo>> CommitsAsync(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<GitCommitInfo>>, Partial<Batch<GitCommitInfo>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                if (query != null) queryParameters.Append("query", query);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<GitCommitInfo>>()) : Partial<Batch<GitCommitInfo>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<GitCommitInfo>>("GET", $"api/http/projects/{project}/repositories/{repository}/commits{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            public IAsyncEnumerable<GitCommitInfo> CommitsAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => CommitsAsync(project: project, repository: repository, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitCommitInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitCommitInfo>.Default())), skip, cancellationToken);
+        
             public async Task DeleteRepositoryAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -4120,63 +4123,6 @@ namespace JetBrains.Space.Client
                 await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", cancellationToken);
             }
             
-        
-            public CommitSetReviewClient CommitSetReviews => new CommitSetReviewClient(_connection);
-            
-            public partial class CommitSetReviewClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public CommitSetReviewClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public async Task<CommitSetReviewRecord> CreateCommitSetReviewAsync(ProjectIdentifier project, string repository, List<string> revisions, string? title = null, List<string>? authorProfileIds = null, Func<Partial<CommitSetReviewRecord>, Partial<CommitSetReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<CommitSetReviewRecord>()) : Partial<CommitSetReviewRecord>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest, CommitSetReviewRecord>("POST", $"api/http/projects/{project}/repositories/{repository}/commit-set-reviews{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest
-                        { 
-                            Revisions = revisions,
-                            Title = title,
-                            AuthorProfileIds = authorProfileIds,
-                        }, cancellationToken);
-                }
-                
-            
-            }
-        
-            public MergeRequestClient MergeRequests => new MergeRequestClient(_connection);
-            
-            public partial class MergeRequestClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public MergeRequestClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public async Task<MergeRequestRecord> CreateMergeRequestAsync(ProjectIdentifier project, string repository, string sourceBranch, string targetBranch, string title, List<ReviewerParam>? reviewers = null, Func<Partial<MergeRequestRecord>, Partial<MergeRequestRecord>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<MergeRequestRecord>()) : Partial<MergeRequestRecord>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest, MergeRequestRecord>("POST", $"api/http/projects/{project}/repositories/{repository}/merge-requests{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest
-                        { 
-                            SourceBranch = sourceBranch,
-                            TargetBranch = targetBranch,
-                            Title = title,
-                            Reviewers = reviewers,
-                        }, cancellationToken);
-                }
-                
-            
-            }
         
             public RevisionClient Revisions => new RevisionClient(_connection);
             
@@ -4189,37 +4135,6 @@ namespace JetBrains.Space.Client
                     _connection = connection;
                 }
                 
-                public CodeDiscussionClient CodeDiscussions => new CodeDiscussionClient(_connection);
-                
-                public partial class CodeDiscussionClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public CodeDiscussionClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    public async Task<CodeDiscussionRecord> CreateCodeDiscussionAsync(ProjectIdentifier project, string repository, string revision, string text, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeDiscussionRecord>()) : Partial<CodeDiscussionRecord>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest, CodeDiscussionRecord>("POST", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/code-discussions{queryParameters.ToQueryString()}", 
-                            new ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest
-                            { 
-                                Text = text,
-                                DiffContext = diffContext,
-                                Filename = filename,
-                                Line = line,
-                                OldLine = oldLine,
-                                IsPending = pending,
-                            }, cancellationToken);
-                    }
-                    
-                
-                }
-            
                 public ExternalCheckClient ExternalChecks => new ExternalCheckClient(_connection);
                 
                 public partial class ExternalCheckClient : ISpaceClient
@@ -4263,34 +4178,6 @@ namespace JetBrains.Space.Client
                 }
             
             }
-        
-        }
-    
-        public CommitClient Commits => new CommitClient(_connection);
-        
-        public partial class CommitClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public CommitClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            public async Task<Batch<GitCommitInfo>> ListCommitsMatchingQueryAsync(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<GitCommitInfo>>, Partial<Batch<GitCommitInfo>>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                if (skip != null) queryParameters.Append("$skip", skip);
-                if (top != null) queryParameters.Append("$top", top?.ToString());
-                if (query != null) queryParameters.Append("query", query);
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<GitCommitInfo>>()) : Partial<Batch<GitCommitInfo>>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<Batch<GitCommitInfo>>("GET", $"api/http/projects/{project}/{repository}/commits{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-            
-            public IAsyncEnumerable<GitCommitInfo> ListCommitsMatchingQueryAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListCommitsMatchingQueryAsync(project: project, repository: repository, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitCommitInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitCommitInfo>.Default())), skip, cancellationToken);
         
         }
     

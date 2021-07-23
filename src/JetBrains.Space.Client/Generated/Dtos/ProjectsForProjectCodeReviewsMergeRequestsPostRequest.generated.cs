@@ -29,20 +29,31 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest
+    public class ProjectsForProjectCodeReviewsMergeRequestsPostRequest
          : IPropagatePropertyAccessPath
     {
-        public ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest() { }
+        public ProjectsForProjectCodeReviewsMergeRequestsPostRequest() { }
         
-        public ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest(string sourceBranch, string targetBranch, string title, List<ReviewerParam>? reviewers = null)
+        public ProjectsForProjectCodeReviewsMergeRequestsPostRequest(string repository, string sourceBranch, string targetBranch, string title, List<ReviewerParam>? reviewers = null)
         {
+            Repository = repository;
             SourceBranch = sourceBranch;
             TargetBranch = targetBranch;
             Title = title;
             Reviewers = reviewers;
         }
         
-        private PropertyValue<string> _sourceBranch = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest), nameof(SourceBranch));
+        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(Repository));
+        
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository
+        {
+            get => _repository.GetValue();
+            set => _repository.SetValue(value);
+        }
+    
+        private PropertyValue<string> _sourceBranch = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(SourceBranch));
         
         [Required]
         [JsonPropertyName("sourceBranch")]
@@ -52,7 +63,7 @@ namespace JetBrains.Space.Client
             set => _sourceBranch.SetValue(value);
         }
     
-        private PropertyValue<string> _targetBranch = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest), nameof(TargetBranch));
+        private PropertyValue<string> _targetBranch = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(TargetBranch));
         
         [Required]
         [JsonPropertyName("targetBranch")]
@@ -62,7 +73,7 @@ namespace JetBrains.Space.Client
             set => _targetBranch.SetValue(value);
         }
     
-        private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest), nameof(Title));
+        private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(Title));
         
         [Required]
         [JsonPropertyName("title")]
@@ -72,7 +83,7 @@ namespace JetBrains.Space.Client
             set => _title.SetValue(value);
         }
     
-        private PropertyValue<List<ReviewerParam>?> _reviewers = new PropertyValue<List<ReviewerParam>?>(nameof(ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest), nameof(Reviewers));
+        private PropertyValue<List<ReviewerParam>?> _reviewers = new PropertyValue<List<ReviewerParam>?>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(Reviewers));
         
         [JsonPropertyName("reviewers")]
         public List<ReviewerParam>? Reviewers
@@ -83,6 +94,7 @@ namespace JetBrains.Space.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
+            _repository.SetAccessPath(path, validateHasBeenSet);
             _sourceBranch.SetAccessPath(path, validateHasBeenSet);
             _targetBranch.SetAccessPath(path, validateHasBeenSet);
             _title.SetAccessPath(path, validateHasBeenSet);

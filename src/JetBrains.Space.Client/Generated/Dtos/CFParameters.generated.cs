@@ -29,20 +29,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public abstract class CFParameters
+    public interface CFParameters
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "CFParameters";
-        
         public static AutonumberCFParameters Autonumber(string prefix, string suffix)
             => new AutonumberCFParameters(prefix: prefix, suffix: suffix);
         
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
+        public static DocumentCFParameters Document(DocumentCFScope documentScope)
+            => new DocumentCFParameters(documentScope: documentScope);
+        
     }
     
 }

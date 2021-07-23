@@ -37,10 +37,11 @@ namespace JetBrains.Space.Client
         
         public UnfurlDetailsDraft() { }
         
-        public UnfurlDetailsDraft(string draft, string title)
+        public UnfurlDetailsDraft(string draft, string title, bool? strikeThrough = null)
         {
             Draft = draft;
             Title = title;
+            IsStrikeThrough = strikeThrough;
         }
         
         private PropertyValue<string> _draft = new PropertyValue<string>(nameof(UnfurlDetailsDraft), nameof(Draft));
@@ -63,10 +64,20 @@ namespace JetBrains.Space.Client
             set => _title.SetValue(value);
         }
     
+        private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsDraft), nameof(IsStrikeThrough));
+        
+        [JsonPropertyName("strikeThrough")]
+        public bool? IsStrikeThrough
+        {
+            get => _strikeThrough.GetValue();
+            set => _strikeThrough.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _draft.SetAccessPath(path, validateHasBeenSet);
             _title.SetAccessPath(path, validateHasBeenSet);
+            _strikeThrough.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

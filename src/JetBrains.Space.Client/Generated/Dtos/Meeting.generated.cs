@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public Meeting() { }
         
-        public Meeting(string id, bool archived, string summary, List<TDLocation> locations, List<TDMemberProfile> profiles, List<TDTeam> teams, CalendarEventSpec occurrenceRule, MeetingOrigin origin, MeetingVisibility visibility, MeetingModificationPreference modificationPreference, long etag, bool privateDataSubstituted, bool canModify, bool canDelete, bool canJoin, List<string> externalParticipants, string? description = null, string? conferenceLink = null, MeetingJoiningPreference? joiningPreference = null, MeetingOrganizer? organizer = null, string? linkToExternalSource = null, List<MeetingAttachment>? eventAttachments = null, EventConferenceData? conferenceData = null)
+        public Meeting(string id, bool archived, string summary, List<TDLocation> locations, List<TDMemberProfile> profiles, List<TDTeam> teams, CalendarEventSpec occurrenceRule, MeetingOrigin origin, MeetingVisibility visibility, MeetingModificationPreference modificationPreference, long etag, bool privateDataSubstituted, bool canModify, bool canDelete, bool canJoin, List<string> externalParticipants, string? description = null, string? conferenceLink = null, MeetingJoiningPreference? joiningPreference = null, MeetingOrganizer? organizer = null, string? linkToExternalSource = null, List<MeetingAttachment>? eventAttachments = null, EventConferenceData? conferenceData = null, M2ChannelRecord? channelRef = null)
         {
             Id = id;
             IsArchived = archived;
@@ -59,6 +59,7 @@ namespace JetBrains.Space.Client
             LinkToExternalSource = linkToExternalSource;
             EventAttachments = eventAttachments;
             ConferenceData = conferenceData;
+            ChannelRef = channelRef;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(Meeting), nameof(Id));
@@ -284,6 +285,15 @@ namespace JetBrains.Space.Client
             set => _conferenceData.SetValue(value);
         }
     
+        private PropertyValue<M2ChannelRecord?> _channelRef = new PropertyValue<M2ChannelRecord?>(nameof(Meeting), nameof(ChannelRef));
+        
+        [JsonPropertyName("channelRef")]
+        public M2ChannelRecord? ChannelRef
+        {
+            get => _channelRef.GetValue();
+            set => _channelRef.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -309,6 +319,7 @@ namespace JetBrains.Space.Client
             _linkToExternalSource.SetAccessPath(path, validateHasBeenSet);
             _eventAttachments.SetAccessPath(path, validateHasBeenSet);
             _conferenceData.SetAccessPath(path, validateHasBeenSet);
+            _channelRef.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

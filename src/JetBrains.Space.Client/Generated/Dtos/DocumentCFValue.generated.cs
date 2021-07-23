@@ -27,19 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsDraftPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class UnfurlDetailsDraftPartialExtensions
+    public sealed class DocumentCFValue
+         : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<UnfurlDetailsDraft> WithDraft(this Partial<UnfurlDetailsDraft> it)
-            => it.AddFieldName("draft");
+        [JsonPropertyName("className")]
+        public override string? ClassName => "DocumentCFValue";
         
-        public static Partial<UnfurlDetailsDraft> WithTitle(this Partial<UnfurlDetailsDraft> it)
-            => it.AddFieldName("title");
+        public DocumentCFValue() { }
         
-        public static Partial<UnfurlDetailsDraft> WithIsStrikeThrough(this Partial<UnfurlDetailsDraft> it)
-            => it.AddFieldName("strikeThrough");
+        public DocumentCFValue(Document? document = null)
+        {
+            Document = document;
+        }
         
+        private PropertyValue<Document?> _document = new PropertyValue<Document?>(nameof(DocumentCFValue), nameof(Document));
+        
+        [JsonPropertyName("document")]
+        public Document? Document
+        {
+            get => _document.GetValue();
+            set => _document.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _document.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

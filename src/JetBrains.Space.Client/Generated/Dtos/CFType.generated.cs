@@ -48,6 +48,12 @@ namespace JetBrains.Space.Client
         public static DateTimeCFType DateTime()
             => new DateTimeCFType();
         
+        public static DocumentCFType Document()
+            => new DocumentCFType();
+        
+        public static DocumentListCFType DocumentList()
+            => new DocumentListCFType();
+        
         public static EnumCFType Enum(List<EnumValueData> values)
             => new EnumCFType(values: values);
         

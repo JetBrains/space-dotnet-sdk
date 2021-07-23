@@ -29,44 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class AutonumberCFParameters
-         : CFParameters, CFParametersInput, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class DocumentCFParametersInput
+         : CFParametersInput, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public  string? ClassName => "AutonumberCFParameters";
+        public  string? ClassName => "DocumentCFParametersInput";
         
-        public AutonumberCFParameters() { }
+        public DocumentCFParametersInput() { }
         
-        public AutonumberCFParameters(string prefix, string suffix)
+        public DocumentCFParametersInput(DocumentCFScopeInput documentScope)
         {
-            Prefix = prefix;
-            Suffix = suffix;
+            DocumentScope = documentScope;
         }
         
-        private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(AutonumberCFParameters), nameof(Prefix));
+        private PropertyValue<DocumentCFScopeInput> _documentScope = new PropertyValue<DocumentCFScopeInput>(nameof(DocumentCFParametersInput), nameof(DocumentScope));
         
         [Required]
-        [JsonPropertyName("prefix")]
-        public string Prefix
+        [JsonPropertyName("documentScope")]
+        public DocumentCFScopeInput DocumentScope
         {
-            get => _prefix.GetValue();
-            set => _prefix.SetValue(value);
-        }
-    
-        private PropertyValue<string> _suffix = new PropertyValue<string>(nameof(AutonumberCFParameters), nameof(Suffix));
-        
-        [Required]
-        [JsonPropertyName("suffix")]
-        public string Suffix
-        {
-            get => _suffix.GetValue();
-            set => _suffix.SetValue(value);
+            get => _documentScope.GetValue();
+            set => _documentScope.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _prefix.SetAccessPath(path, validateHasBeenSet);
-            _suffix.SetAccessPath(path, validateHasBeenSet);
+            _documentScope.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -27,19 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsDraftPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class UnfurlDetailsDraftPartialExtensions
+    public sealed class DocumentListCFInputValue
+         : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<UnfurlDetailsDraft> WithDraft(this Partial<UnfurlDetailsDraft> it)
-            => it.AddFieldName("draft");
+        [JsonPropertyName("className")]
+        public  string? ClassName => "DocumentListCFInputValue";
         
-        public static Partial<UnfurlDetailsDraft> WithTitle(this Partial<UnfurlDetailsDraft> it)
-            => it.AddFieldName("title");
+        public DocumentListCFInputValue() { }
         
-        public static Partial<UnfurlDetailsDraft> WithIsStrikeThrough(this Partial<UnfurlDetailsDraft> it)
-            => it.AddFieldName("strikeThrough");
+        public DocumentListCFInputValue(List<string> documents)
+        {
+            Documents = documents;
+        }
         
+        private PropertyValue<List<string>> _documents = new PropertyValue<List<string>>(nameof(DocumentListCFInputValue), nameof(Documents), new List<string>());
+        
+        [Required]
+        [JsonPropertyName("documents")]
+        public List<string> Documents
+        {
+            get => _documents.GetValue();
+            set => _documents.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _documents.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }
