@@ -50,7 +50,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create or get a direct messages channel with a profile.
+            /// Create or get a direct messages channel with a profile
             /// </summary>
             public async Task<M2ChannelRecord> GetOrCreateDirectMessagesChannelAsync(string profile, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -93,7 +93,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Restore an archived channel, and allow new messages to be added.
+            /// Restore an archived channel, and allow new messages to be added
             /// </summary>
             public async Task RestoreArchivedChannelAsync(string channelId, CancellationToken cancellationToken = default)
             {
@@ -187,7 +187,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Delete a message from a channel.
+            /// Delete a message from a channel
             /// </summary>
             public async Task DeleteMessageAsync(string channel, ChatMessageIdentifier id, CancellationToken cancellationToken = default)
             {

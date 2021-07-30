@@ -37,12 +37,6 @@ namespace JetBrains.Space.Client.PersonalSubscriptionSubjectSettingsPartialBuild
         public static Partial<PersonalSubscriptionSubjectSettings> WithIsEnabled(this Partial<PersonalSubscriptionSubjectSettings> it)
             => it.AddFieldName("enabled");
         
-        public static Partial<PersonalSubscriptionSubjectSettings> WithFeed(this Partial<PersonalSubscriptionSubjectSettings> it)
-            => it.AddFieldName("feed");
-        
-        public static Partial<PersonalSubscriptionSubjectSettings> WithFeed(this Partial<PersonalSubscriptionSubjectSettings> it, Func<Partial<PrivateFeed>, Partial<PrivateFeed>> partialBuilder)
-            => it.AddFieldName("feed", partialBuilder(new Partial<PrivateFeed>(it)));
-        
     }
     
 }

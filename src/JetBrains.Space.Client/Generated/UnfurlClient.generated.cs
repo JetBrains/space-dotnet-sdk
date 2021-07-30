@@ -39,7 +39,7 @@ namespace JetBrains.Space.Client
         }
         
         /// <summary>
-        /// Block link unfurling.
+        /// Block link unfurling
         /// </summary>
         public async Task BlockUnfurlAsync(string link, bool wholeHost, CancellationToken cancellationToken = default)
         {
@@ -55,7 +55,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Block link unfurling for organization.
+        /// Block link unfurling for organization
         /// </summary>
         public async Task BlockUnfurlGlobalAsync(string link, bool wholeHost, CancellationToken cancellationToken = default)
         {
@@ -83,7 +83,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Disable link unfurling.
+        /// Disable link unfurling
         /// </summary>
         public async Task UnblockUnfurlAsync(string link, bool wholeHost, CancellationToken cancellationToken = default)
         {
@@ -99,7 +99,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Disable blocking link unfurling for organization.
+        /// Disable blocking link unfurling for organization
         /// </summary>
         public async Task UnblockUnfurlGlobalAsync(string link, bool wholeHost, CancellationToken cancellationToken = default)
         {

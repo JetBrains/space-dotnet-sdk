@@ -31,11 +31,11 @@ namespace JetBrains.Space.Client.RepoCommitsSubscriptionFilterPartialBuilder
 {
     public static class RepoCommitsSubscriptionFilterPartialExtensions
     {
-        public static Partial<RepoCommitsSubscriptionFilter> WithProjects(this Partial<RepoCommitsSubscriptionFilter> it)
-            => it.AddFieldName("projects");
+        public static Partial<RepoCommitsSubscriptionFilter> WithProject(this Partial<RepoCommitsSubscriptionFilter> it)
+            => it.AddFieldName("project");
         
-        public static Partial<RepoCommitsSubscriptionFilter> WithProjects(this Partial<RepoCommitsSubscriptionFilter> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("projects", partialBuilder(new Partial<PRProject>(it)));
+        public static Partial<RepoCommitsSubscriptionFilter> WithProject(this Partial<RepoCommitsSubscriptionFilter> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
         
         public static Partial<RepoCommitsSubscriptionFilter> WithRepository(this Partial<RepoCommitsSubscriptionFilter> it)
             => it.AddFieldName("repository");

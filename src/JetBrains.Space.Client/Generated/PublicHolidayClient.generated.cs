@@ -50,7 +50,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create a public holiday calendar for a location.
+            /// Create a public holiday calendar for a location
             /// </summary>
             public async Task<PublicHolidayCalendarRecord> CreateCalendarAsync(string name, string location, Func<Partial<PublicHolidayCalendarRecord>, Partial<PublicHolidayCalendarRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -67,7 +67,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Import holidays in a public holiday calendar, using an attachment (.ics format) as the source.
+            /// Import holidays in a public holiday calendar, using an attachment (.ics format) as the source
             /// </summary>
             public async Task<string> ImportAsync(string calendar, string attachmentId, CancellationToken cancellationToken = default)
             {
@@ -83,7 +83,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get all public holiday calendars.
+            /// Get all public holiday calendars
             /// </summary>
             public async Task<Batch<PublicHolidayCalendarRecord>> GetAllCalendarsAsync(string? skip = null, int? top = 100, Func<Partial<Batch<PublicHolidayCalendarRecord>>, Partial<Batch<PublicHolidayCalendarRecord>>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -97,13 +97,13 @@ namespace JetBrains.Space.Client
             
             
             /// <summary>
-            /// Get all public holiday calendars.
+            /// Get all public holiday calendars
             /// </summary>
             public IAsyncEnumerable<PublicHolidayCalendarRecord> GetAllCalendarsAsyncEnumerable(string? skip = null, int? top = 100, Func<Partial<PublicHolidayCalendarRecord>, Partial<PublicHolidayCalendarRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllCalendarsAsync(top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PublicHolidayCalendarRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PublicHolidayCalendarRecord>.Default())), skip, cancellationToken);
         
             /// <summary>
-            /// Update an existing public holiday calendar.
+            /// Update an existing public holiday calendar
             /// </summary>
             public async Task<PublicHolidayCalendarRecord> UpdateCalendarAsync(string id, string name, string location, Func<Partial<PublicHolidayCalendarRecord>, Partial<PublicHolidayCalendarRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -120,7 +120,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Delete 
+            /// Delete a public holiday calendar
             /// </summary>
             public async Task DeleteCalendarAsync(string id, CancellationToken cancellationToken = default)
             {
@@ -144,7 +144,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Add a holiday to a public holiday calendar, and specify if it is a working day or not.
+            /// Add a holiday to a public holiday calendar, and specify if it is a working day or not
             /// </summary>
             public async Task<PublicHoliday> CreateHolidayAsync(string calendar, string name, DateTime date, bool workingDay, bool? halfDay = false, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -208,7 +208,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Delete a holiday from a public holiday calendar.
+            /// Delete a holiday from a public holiday calendar
             /// </summary>
             public async Task DeleteHolidayAsync(string id, CancellationToken cancellationToken = default)
             {
@@ -230,7 +230,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Get holidays observed in the location(s) of the current profile during the selected period.
+                /// Get holidays observed in the location(s) of the current profile during the selected period
                 /// </summary>
                 public async Task<List<PublicHoliday>> GetAllProfileHolidaysAsync(DateTime startDate, DateTime endDate, string profile, bool? workingDays = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -259,7 +259,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Search related holidays in all public holiday calendars, during the selected period.
+                /// Search related holidays in all public holiday calendars, during the selected period
                 /// </summary>
                 public async Task<Batch<PublicHoliday>> GetAllRelatedHolidaysAsync(string? skip = null, int? top = 100, DateTime? startDate = null, DateTime? endDate = null, Func<Partial<Batch<PublicHoliday>>, Partial<Batch<PublicHoliday>>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -275,7 +275,7 @@ namespace JetBrains.Space.Client
                 
                 
                 /// <summary>
-                /// Search related holidays in all public holiday calendars, during the selected period.
+                /// Search related holidays in all public holiday calendars, during the selected period
                 /// </summary>
                 public IAsyncEnumerable<PublicHoliday> GetAllRelatedHolidaysAsyncEnumerable(string? skip = null, int? top = 100, DateTime? startDate = null, DateTime? endDate = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllRelatedHolidaysAsync(top: top, startDate: startDate, endDate: endDate, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PublicHoliday>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PublicHoliday>.Default())), skip, cancellationToken);

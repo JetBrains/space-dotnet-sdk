@@ -29,43 +29,43 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class RepoHeadsSubscriptionFilter
-         : SubscriptionFilter, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class DeletePersonalFeedAction
+         : ClientSideActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public  string? ClassName => "RepoHeadsSubscriptionFilter";
+        public  string? ClassName => "DeletePersonalFeedAction";
         
-        public RepoHeadsSubscriptionFilter() { }
+        public DeletePersonalFeedAction() { }
         
-        public RepoHeadsSubscriptionFilter(string repository, PRProject? project = null)
+        public DeletePersonalFeedAction(string feed, string? feedId = null)
         {
-            Project = project;
-            Repository = repository;
+            Feed = feed;
+            FeedId = feedId;
         }
         
-        private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(RepoHeadsSubscriptionFilter), nameof(Project));
-        
-        [JsonPropertyName("project")]
-        public PRProject? Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(RepoHeadsSubscriptionFilter), nameof(Repository));
+        private PropertyValue<string> _feed = new PropertyValue<string>(nameof(DeletePersonalFeedAction), nameof(Feed));
         
         [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
+        [JsonPropertyName("feed")]
+        public string Feed
         {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
+            get => _feed.GetValue();
+            set => _feed.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _feedId = new PropertyValue<string?>(nameof(DeletePersonalFeedAction), nameof(FeedId));
+        
+        [JsonPropertyName("feedId")]
+        public string? FeedId
+        {
+            get => _feedId.GetValue();
+            set => _feedId.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
+            _feed.SetAccessPath(path, validateHasBeenSet);
+            _feedId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

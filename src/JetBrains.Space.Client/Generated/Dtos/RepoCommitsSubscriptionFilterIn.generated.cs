@@ -37,21 +37,20 @@ namespace JetBrains.Space.Client
         
         public RepoCommitsSubscriptionFilterIn() { }
         
-        public RepoCommitsSubscriptionFilterIn(List<string> projects, string repository, RepoCommitsSubscriptionFilterSpec spec)
+        public RepoCommitsSubscriptionFilterIn(string repository, RepoCommitsSubscriptionFilterSpec spec, string? project = null)
         {
-            Projects = projects;
+            Project = project;
             Repository = repository;
             Spec = spec;
         }
         
-        private PropertyValue<List<string>> _projects = new PropertyValue<List<string>>(nameof(RepoCommitsSubscriptionFilterIn), nameof(Projects), new List<string>());
+        private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(RepoCommitsSubscriptionFilterIn), nameof(Project));
         
-        [Required]
-        [JsonPropertyName("projects")]
-        public List<string> Projects
+        [JsonPropertyName("project")]
+        public string? Project
         {
-            get => _projects.GetValue();
-            set => _projects.SetValue(value);
+            get => _project.GetValue();
+            set => _project.SetValue(value);
         }
     
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(RepoCommitsSubscriptionFilterIn), nameof(Repository));
@@ -76,7 +75,7 @@ namespace JetBrains.Space.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _projects.SetAccessPath(path, validateHasBeenSet);
+            _project.SetAccessPath(path, validateHasBeenSet);
             _repository.SetAccessPath(path, validateHasBeenSet);
             _spec.SetAccessPath(path, validateHasBeenSet);
         }

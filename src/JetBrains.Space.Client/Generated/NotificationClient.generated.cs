@@ -39,7 +39,7 @@ namespace JetBrains.Space.Client
         }
         
         /// <summary>
-        /// List all subscription subjects.
+        /// List all subscription subjects
         /// </summary>
         public async Task<List<EventSubjectInfo>> GetAllNotificationsAsync(Func<Partial<EventSubjectInfo>, Partial<EventSubjectInfo>>? partial = null, CancellationToken cancellationToken = default)
         {
@@ -62,7 +62,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create subscription for a channel.
+            /// Add subscription for a channel
             /// </summary>
             public async Task<Subscription> CreateChannelSubscriptionAsync(ChatChannel channel, string name, CustomGenericSubscriptionIn subscription, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -80,7 +80,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// List subscriptions for a channel.
+            /// List subscriptions for a channel
             /// </summary>
             public async Task<List<Subscription>> GetAllChannelSubscriptionsAsync(ChatChannel channel, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -93,7 +93,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Create subscription for a channel.
+            /// Update subscription for a channel
             /// </summary>
             public async Task<Subscription> UpdateChannelSubscriptionAsync(string id, string? name = null, bool? enabled = null, CustomGenericSubscriptionIn? subscription = null, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -111,7 +111,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Delete channel subscription.
+            /// Delete channel subscription
             /// </summary>
             public async Task DeleteChannelSubscriptionAsync(string id, CancellationToken cancellationToken = default)
             {
@@ -135,7 +135,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create personal custom subscription.
+            /// Create personal custom subscription
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -162,7 +162,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// List personal custom subscriptions.
+            /// List personal custom subscriptions
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -183,7 +183,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Create personal custom subscription.
+            /// Create personal custom subscription
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -210,7 +210,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Delete personal custom subscription.
+            /// Delete personal custom subscription
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -242,7 +242,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Get personal subscription settings for a member.
+            /// Get personal subscription settings for a member
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -252,7 +252,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task UpdatePersonalSubscriptionSubjectAsync(ProfileIdentifier profile, string subjectCode, string? feed = null, bool? enabled = null, CancellationToken cancellationToken = default)
+            public async Task UpdatePersonalSubscriptionSubjectAsync(ProfileIdentifier profile, string subjectCode, string feed, bool enabled, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -268,7 +268,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get personal subscription settings for a member.
+            /// Get personal subscription settings for a member
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -278,7 +278,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task UpdatePersonalSubscriptionTargetAsync(ProfileIdentifier profile, string targetCode, List<string> eventCodes, CancellationToken cancellationToken = default)
+            public async Task UpdatePersonalSubscriptionTargetAsync(ProfileIdentifier profile, string targetCode, string feed, List<string> eventCodes, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -287,25 +287,26 @@ namespace JetBrains.Space.Client
                     { 
                         Profile = profile,
                         TargetCode = targetCode,
+                        Feed = feed,
                         EventCodes = eventCodes,
                     }, cancellationToken);
             }
             
         
             /// <summary>
-            /// List all personal subscription events.
+            /// List all personal subscription events
             /// </summary>
-            public async Task<List<PersonalSubscriptionTarget>> AllPersonalSubscriptionEventsAsync(Func<Partial<PersonalSubscriptionTarget>, Partial<PersonalSubscriptionTarget>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<PersonalSubscriptionTarget>> AllPersonalSubscriptionTargetsAsync(Func<Partial<PersonalSubscriptionTarget>, Partial<PersonalSubscriptionTarget>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<PersonalSubscriptionTarget>()) : Partial<PersonalSubscriptionTarget>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<PersonalSubscriptionTarget>>("GET", $"api/http/notifications/personal-subscriptions/all-personal-subscription-events{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<List<PersonalSubscriptionTarget>>("GET", $"api/http/notifications/personal-subscriptions/all-personal-subscription-targets{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
             /// <summary>
-            /// Get personal subscription settings for a member.
+            /// Get personal subscription settings for a member
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -315,10 +316,11 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<PersonalSubscriptionSettings> PersonalSubscriptionSettingsAsync(ProfileIdentifier profile, Func<Partial<PersonalSubscriptionSettings>, Partial<PersonalSubscriptionSettings>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<PersonalSubscriptionSettings> PersonalSubscriptionSettingsAsync(ProfileIdentifier profile, string feed, Func<Partial<PersonalSubscriptionSettings>, Partial<PersonalSubscriptionSettings>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("profile", profile.ToString());
+                queryParameters.Append("feed", feed);
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<PersonalSubscriptionSettings>()) : Partial<PersonalSubscriptionSettings>.Default()).ToString());
                 
                 return await _connection.RequestResourceAsync<PersonalSubscriptionSettings>("GET", $"api/http/notifications/personal-subscriptions/personal-subscription-settings{queryParameters.ToQueryString()}", cancellationToken);
@@ -339,7 +341,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create private feeds for member.
+            /// Create personal feed for member
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -366,7 +368,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// List private feeds for member.
+            /// List personal feeds for a member
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -387,7 +389,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Update private feeds for member.
+            /// Update personal feed for a member
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -413,7 +415,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Delete private feeds for member.
+            /// Delete personal feed for member
             /// </summary>
             /// <remarks>
             /// Required permissions:

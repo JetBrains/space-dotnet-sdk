@@ -68,6 +68,9 @@ namespace JetBrains.Space.Client
         public static DocumentWebhookEvent Document(KMetaMod meta, string document, List<CPrincipal> changeAuthors, DateTime version, DateTime @base)
             => new DocumentWebhookEvent(meta: meta, document: document, changeAuthors: changeAuthors, version: version, @base: @base);
         
+        public static EmailBouncedEvent EmailBouncedEvent(string email, string reason)
+            => new EmailBouncedEvent(email: email, reason: reason);
+        
         public static FeatureFlagWebhookEvent FeatureFlag(KMetaMod meta, string name, int? issueNumber = null, Modification<bool>? enabledForAll = null, Modification<bool>? selfManageable = null, List<TDTeam>? addedTeams = null, List<TDTeam>? addedProfiles = null, List<TDMemberProfile>? removedTeams = null, List<TDMemberProfile>? removedProfiles = null)
             => new FeatureFlagWebhookEvent(meta: meta, name: name, issueNumber: issueNumber, enabledForAll: enabledForAll, selfManageable: selfManageable, addedTeams: addedTeams, addedProfiles: addedProfiles, removedTeams: removedTeams, removedProfiles: removedProfiles);
         

@@ -50,7 +50,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create a profile for support.
+            /// Create a profile for support
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -206,7 +206,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<UAUserAgreementStatus> GetUserAgreementStatusForProfileAsync(ProfileIdentifier profile, Func<Partial<UAUserAgreementStatus>, Partial<UAUserAgreementStatus>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<UAUserAgreementStatus> GetUserAgreementStatusForAProfileAsync(ProfileIdentifier profile, Func<Partial<UAUserAgreementStatus>, Partial<UAUserAgreementStatus>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<UAUserAgreementStatus>()) : Partial<UAUserAgreementStatus>.Default()).ToString());

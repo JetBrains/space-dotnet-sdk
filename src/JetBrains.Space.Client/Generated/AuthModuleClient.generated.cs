@@ -107,7 +107,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Get all authentication modules.
+        /// Get all authentication modules
         /// </summary>
         public async Task<List<ESAuthModule>> GetAllAuthModulesAsync(bool withDisabled = false, Func<Partial<ESAuthModule>, Partial<ESAuthModule>>? partial = null, CancellationToken cancellationToken = default)
         {
@@ -141,7 +141,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Get an existing authentication module.
+        /// Get an existing authentication module
         /// </summary>
         public async Task<ESAuthModule> GetAuthModuleByKeyAsync(string key, Func<Partial<ESAuthModule>, Partial<ESAuthModule>>? partial = null, CancellationToken cancellationToken = default)
         {
@@ -179,7 +179,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Delete an existing authentication module.
+        /// Delete an existing authentication module
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -209,7 +209,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// For a username/password combination, test built-in authentication with updated settings.
+            /// For a username/password combination, test built-in authentication with updated settings
             /// </summary>
             public async Task<TDMemberProfile> TestBuiltinSettingsAsync(ESBuiltinAuthModuleSettings settings, string username, string password, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -227,7 +227,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// For a username/password combination, test LDAP authentication with updated settings.
+            /// For a username/password combination, test LDAP authentication with updated settings
             /// </summary>
             public async Task<ESDefaultProfileLoginDetails> TestLdapSettingsAsync(ESLdapAuthModuleSettings settings, string username, string password, Func<Partial<ESDefaultProfileLoginDetails>, Partial<ESDefaultProfileLoginDetails>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -258,7 +258,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Returns logins that are currently subjected to rate limits when logging in to Space.
+            /// Returns logins that are currently subjected to rate limits when logging in to Space
             /// </summary>
             public async Task<Batch<ThrottledLogin>> GetThrottledLoginsAsync(string? skip = null, int? top = 100, string? login = null, Func<Partial<Batch<ThrottledLogin>>, Partial<Batch<ThrottledLogin>>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -273,7 +273,7 @@ namespace JetBrains.Space.Client
             
             
             /// <summary>
-            /// Returns logins that are currently subjected to rate limits when logging in to Space.
+            /// Returns logins that are currently subjected to rate limits when logging in to Space
             /// </summary>
             public IAsyncEnumerable<ThrottledLogin> GetThrottledLoginsAsyncEnumerable(string? skip = null, int? top = 100, string? login = null, Func<Partial<ThrottledLogin>, Partial<ThrottledLogin>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetThrottledLoginsAsync(top: top, login: login, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ThrottledLogin>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ThrottledLogin>.Default())), skip, cancellationToken);
@@ -302,7 +302,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Returns date and time until which the organization are throttled.
+                /// Returns date and time until which the organization are throttled
                 /// </summary>
                 public async Task<OrgThrottlingStatus> GetOrganizationThrottlingStatusAsync(Func<Partial<OrgThrottlingStatus>, Partial<OrgThrottlingStatus>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -314,7 +314,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Resets date and time until which the organization are throttled.
+                /// Resets date and time until which the organization are throttled
                 /// </summary>
                 public async Task ResetOrganizationThrottlingAsync(CancellationToken cancellationToken = default)
                 {
@@ -340,7 +340,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Retrieve a list of authentication module usage count.
+            /// Retrieve a list of authentication module usage count
             /// </summary>
             /// <remarks>
             /// Required permissions:

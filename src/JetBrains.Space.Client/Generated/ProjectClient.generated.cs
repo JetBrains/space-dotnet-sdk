@@ -39,7 +39,7 @@ namespace JetBrains.Space.Client
         }
         
         /// <summary>
-        /// Create a new project.
+        /// Create a new project
         /// </summary>
         public async Task<PRProject> CreateProjectAsync(ProjectKey key, string name, bool @private = false, List<string>? tags = null, string? description = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
         {
@@ -82,7 +82,7 @@ namespace JetBrains.Space.Client
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsAsync(top: top, term: term, tag: tag, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
     
         /// <summary>
-        /// Get all projects for a member.
+        /// Get all projects for a member
         /// </summary>
         public async Task<Batch<PRProject>> GetAllProjectsByMemberAsync(ProfileIdentifier member, string? skip = null, int? top = 100, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
         {
@@ -96,7 +96,7 @@ namespace JetBrains.Space.Client
         
         
         /// <summary>
-        /// Get all projects for a member.
+        /// Get all projects for a member
         /// </summary>
         public IAsyncEnumerable<PRProject> GetAllProjectsByMemberAsyncEnumerable(ProfileIdentifier member, string? skip = null, int? top = 100, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsByMemberAsync(member: member, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
@@ -119,7 +119,7 @@ namespace JetBrains.Space.Client
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsWithRightAsync(rightCode: rightCode, top: top, term: term, path: path, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
     
         /// <summary>
-        /// Get all projects for a team.
+        /// Get all projects for a team
         /// </summary>
         public async Task<Batch<PRProject>> GetAllProjectsByTeamAsync(string team, string? skip = null, int? top = 100, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
         {
@@ -133,13 +133,13 @@ namespace JetBrains.Space.Client
         
         
         /// <summary>
-        /// Get all projects for a team.
+        /// Get all projects for a team
         /// </summary>
         public IAsyncEnumerable<PRProject> GetAllProjectsByTeamAsyncEnumerable(string team, string? skip = null, int? top = 100, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsByTeamAsync(team: team, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
     
         /// <summary>
-        /// Get project by id or project key.
+        /// Get project by ID or project key
         /// </summary>
         public async Task<PRProject> GetProjectAsync(ProjectIdentifier project, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
         {
@@ -172,7 +172,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Archive a project.
+        /// Archive a project
         /// </summary>
         public async Task ArchiveProjectAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
         {
@@ -408,7 +408,7 @@ namespace JetBrains.Space.Client
             public partial class JobClient : ISpaceClient
             {
                 /// <summary>
-                /// Start Job. Returns Execution id, see projects/automation/graph-executions/{id}
+                /// Start job. Returns ExecutionId, see projects/automation/graph-executions/{id}.
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -486,7 +486,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Update an existing project parameter.
+            /// Update an existing project parameter
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -510,7 +510,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Delete an existing project parameter.
+            /// Delete an existing project parameter
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -828,7 +828,7 @@ namespace JetBrains.Space.Client
                         }
                         
                         /// <summary>
-                        /// Add an existing issue in a project to a sprint.
+                        /// Add an existing issue in a project to a sprint
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -848,7 +848,7 @@ namespace JetBrains.Space.Client
                         
                     
                         /// <summary>
-                        /// Fetch issues from an existing non-archived sprint.
+                        /// Fetch issues from an existing non-archived sprint
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -871,7 +871,7 @@ namespace JetBrains.Space.Client
                         
                         
                         /// <summary>
-                        /// Fetch issues from an existing non-archived sprint.
+                        /// Fetch issues from an existing non-archived sprint
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -921,7 +921,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Add an existing issue in a project to a board or its current sprint.
+                    /// Add an existing issue in a project to a board or its current sprint
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -941,7 +941,7 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Fetch issues from the board across all its non-archived sprints.
+                    /// Fetch issues from the board across all its non-archived sprints
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -964,7 +964,7 @@ namespace JetBrains.Space.Client
                     
                     
                     /// <summary>
-                    /// Fetch issues from the board across all its non-archived sprints.
+                    /// Fetch issues from the board across all its non-archived sprints
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -979,7 +979,7 @@ namespace JetBrains.Space.Client
                         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesOnBoardAsync(board: board, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
                 
                     /// <summary>
-                    /// Remove an existing issue in a project from a board or all of its sprints.
+                    /// Remove an existing issue in a project from a board or all of its sprints
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1035,7 +1035,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Search existing boards in a project.
+                /// Search existing boards in a project
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -1059,7 +1059,7 @@ namespace JetBrains.Space.Client
                 
                 
                 /// <summary>
-                /// Search existing boards in a project.
+                /// Search existing boards in a project
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -1076,7 +1076,7 @@ namespace JetBrains.Space.Client
                 public partial class SprintClient : ISpaceClient
                 {
                     /// <summary>
-                    /// Search existing sprints in a project.
+                    /// Search existing sprints in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1101,7 +1101,7 @@ namespace JetBrains.Space.Client
                     
                     
                     /// <summary>
-                    /// Search existing sprints in a project.
+                    /// Search existing sprints in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1129,7 +1129,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Get all starred boards in a project.
+                    /// Get all starred boards in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1189,7 +1189,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Create a new checklist in a project.
+                /// Create a new checklist in a project
                 /// </summary>
                 public async Task<Checklist> CreateChecklistAsync(ProjectIdentifier project, string name, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -1242,7 +1242,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Search existing checklists in a project.
+                /// Search existing checklists in a project
                 /// </summary>
                 public async Task<Batch<Checklist>> GetAllChecklistsAsync(ProjectIdentifier project, ChecklistSorting sorting = ChecklistSorting.UPDATED, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<Checklist>>, Partial<Batch<Checklist>>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -1259,13 +1259,13 @@ namespace JetBrains.Space.Client
                 
                 
                 /// <summary>
-                /// Search existing checklists in a project.
+                /// Search existing checklists in a project
                 /// </summary>
                 public IAsyncEnumerable<Checklist> GetAllChecklistsAsyncEnumerable(ProjectIdentifier project, ChecklistSorting sorting = ChecklistSorting.UPDATED, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllChecklistsAsync(project: project, sorting: sorting, descending: descending, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Checklist>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Checklist>.Default())), skip, cancellationToken);
             
                 /// <summary>
-                /// Update an existing checklist in a project.
+                /// Update an existing checklist in a project
                 /// </summary>
                 public async Task UpdateChecklistAsync(ProjectIdentifier project, string checklistId, string? name = null, string? description = null, string? owner = null, string? tag = null, CancellationToken cancellationToken = default)
                 {
@@ -1283,7 +1283,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Delete an existing checklist in a project.
+                /// Delete an existing checklist in a project
                 /// </summary>
                 public async Task DeleteChecklistAsync(ProjectIdentifier project, string checklistId, CancellationToken cancellationToken = default)
                 {
@@ -1305,7 +1305,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Get all starred checklists in a project.
+                    /// Get all starred checklists in a project
                     /// </summary>
                     public async Task<List<Checklist>> GetAllStarredChecklistsAsync(ProjectIdentifier project, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                     {
@@ -1330,7 +1330,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Get the content of a checklist in a project.
+                    /// Get the content of a checklist in a project
                     /// </summary>
                     public async Task<List<PlanItemChildren>> GetFullChecklistTreeAsync(ProjectIdentifier project, string checklistId, Func<Partial<PlanItemChildren>, Partial<PlanItemChildren>>? partial = null, CancellationToken cancellationToken = default)
                     {
@@ -1357,7 +1357,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Create a new issue in a project.
+                /// Create a new issue in a project
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -1393,7 +1393,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Import issues in a project.
+                /// Import issues in a project
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -1423,7 +1423,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Restore an issue in a project.
+                /// Restore an issue in a project
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -1443,7 +1443,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Toggle status of an existing issue between resolved and unresolved.
+                /// Toggle status of an existing issue between resolved and unresolved
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -1454,7 +1454,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task ToggleIssueResolvedAsync(ProjectIdentifier project, IssueIdentifier issueId, bool resolved, CancellationToken cancellationToken = default)
+                public async Task ToggleIssueResolvedStatusAsync(ProjectIdentifier project, IssueIdentifier issueId, bool resolved, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -1519,7 +1519,7 @@ namespace JetBrains.Space.Client
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, statuses: statuses, sorting: sorting, descending: descending, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, customFields: customFields, importTransaction: importTransaction, creationTimeFrom: creationTimeFrom, creationTimeTo: creationTimeTo, dueDateFrom: dueDateFrom, dueDateTo: dueDateTo, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
             
                 /// <summary>
-                /// Find an existing issue by a given number in a project.
+                /// Find an existing issue by a given number in a project
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -1558,7 +1558,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Update an existing issue in a project.
+                /// Update an existing issue in a project
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -1587,7 +1587,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Delete an issue from a project.
+                /// Delete an issue from a project
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -1618,7 +1618,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Get all existing issue statuses in a project.
+                    /// Get all existing issue statuses in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1674,7 +1674,7 @@ namespace JetBrains.Space.Client
                         }
                         
                         /// <summary>
-                        /// Get target issue status for auto updating issues on linked merge request merge.
+                        /// Get target issue status for auto updating issues on linked merge request merge
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -1695,7 +1695,7 @@ namespace JetBrains.Space.Client
                         
                     
                         /// <summary>
-                        /// Set target issue status for auto updating issues on linked merge request merge.
+                        /// Set target issue status for auto updating issues on linked merge request merge
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -1732,7 +1732,7 @@ namespace JetBrains.Space.Client
                         }
                         
                         /// <summary>
-                        /// Get all existing issue statuses with their usage, number of existing issues, in a project.
+                        /// Get all existing issue statuses with their usage, number of existing issues, in a project
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -1768,7 +1768,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Add attachments to an existing issue in a project.
+                    /// Add attachments to an existing issue in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1792,7 +1792,7 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Remove attachments from an existing issue in a project.
+                    /// Remove attachments from an existing issue in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1826,7 +1826,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Add the checklist to an existing issue in a project.
+                    /// Add the checklist to an existing issue in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1853,7 +1853,7 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Remove the checklist from an existing issue in a project.
+                    /// Remove the checklist from an existing issue in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1893,7 +1893,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Add code review links to an existing issue in a project.
+                    /// Add code review links to an existing issue in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1917,7 +1917,7 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Remove code review links from an existing issue in a project.
+                    /// Remove code review links from an existing issue in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1985,7 +1985,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Add commit links to an existing issue in a project.
+                    /// Add commit links to an existing issue in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -2010,7 +2010,7 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Remove commit links from an existing issue in a project.
+                    /// Remove commit links from an existing issue in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -2045,7 +2045,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Add an existing tag to an issue in a project.
+                    /// Add an existing tag to an issue in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -2065,7 +2065,7 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Remove an existing tag from an issue in a project.
+                    /// Remove an existing tag from an issue in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -2100,7 +2100,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Create a new hierarchical tag in a project.
+                /// Create a new hierarchical tag in a project
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -2126,7 +2126,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Search existing tags in a project.
+                /// Search existing tags in a project
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -2149,7 +2149,7 @@ namespace JetBrains.Space.Client
                 
                 
                 /// <summary>
-                /// Search existing tags in a project.
+                /// Search existing tags in a project
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -2178,7 +2178,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Request access to a project.
+            /// Request access to a project
             /// </summary>
             public async Task RequestAccessToProjectAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
             {
@@ -2189,7 +2189,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// List private projects in the current organisation.
+            /// List private projects in the current organisation
             /// </summary>
             public async Task<List<PRPrivateProject>> GetAllPrivateProjectsAsync(Func<Partial<PRPrivateProject>, Partial<PRPrivateProject>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -2214,7 +2214,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Add a responsibility for a given subject id.
+            /// Add a responsibility for a given subject ID
             /// </summary>
             public async Task<string> AddResponsibilityAsync(string subjectId, string summary, string? notes = null, CancellationToken cancellationToken = default)
             {
@@ -2269,7 +2269,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Delete an existing responsibility subject for a given project id.
+                /// Delete an existing responsibility subject for a given project ID
                 /// </summary>
                 public async Task DeleteResponsibilitySubjectAsync(string subjectId, ProjectIdentifier? project = null, CancellationToken cancellationToken = default)
                 {
@@ -2298,7 +2298,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Get the responsibilities schema for a given project id.
+                /// Get the responsibilities schema for a given project ID
                 /// </summary>
                 public async Task<List<SubjectResponsibilitiesTable>> GetProjectResponsibilitySchemeAsync(ProjectIdentifier project, Func<Partial<SubjectResponsibilitiesTable>, Partial<SubjectResponsibilitiesTable>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -2314,7 +2314,7 @@ namespace JetBrains.Space.Client
             public partial class SubjectClient : ISpaceClient
             {
                 /// <summary>
-                /// Add a responsibility subject for a given project id.
+                /// Add a responsibility subject for a given project ID
                 /// </summary>
                 public async Task<string> AddResponsibilitySubjectAsync(ProjectIdentifier project, string? name = null, CancellationToken cancellationToken = default)
                 {
@@ -2329,7 +2329,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Update an existing responsibility subject for a given project id.
+                /// Update an existing responsibility subject for a given project ID
                 /// </summary>
                 public async Task EditResponsibilitySubjectAsync(ProjectIdentifier project, string subjectId, string? name = null, CancellationToken cancellationToken = default)
                 {
@@ -2357,7 +2357,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Assign a responsible person for a given project id and responsibility id.
+                /// Assign a responsible person for a given project ID and responsibility ID
                 /// </summary>
                 public async Task AssignResponsibleAsync(ProjectIdentifier project, string responsibilityId, string profileId, string? role = null, CancellationToken cancellationToken = default)
                 {
@@ -2372,7 +2372,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Remove a responsible person for a given project id and responsibility id.
+                /// Remove a responsible person for a given project ID and responsibility ID
                 /// </summary>
                 public async Task RemoveResponsibleAsync(ProjectIdentifier project, string responsibilityId, string profileId, string? role = null, CancellationToken cancellationToken = default)
                 {
@@ -2399,7 +2399,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Update an existing project secret.
+            /// Update an existing project secret
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -2424,7 +2424,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Delete an existing project secret.
+            /// Delete an existing project secret
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -2609,7 +2609,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Track a tag has been accessed.
+            /// Track a tag has been accessed
             /// </summary>
             public async Task TrackTagAccessAsync(string tag, CancellationToken cancellationToken = default)
             {
@@ -2624,7 +2624,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// List all tags, mapped to the number of projects they are used in.
+            /// List all tags, mapped to the number of projects they are used in
             /// </summary>
             public async Task<List<PRTag>> GetAllTagsAsync(Func<Partial<PRTag>, Partial<PRTag>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -2683,7 +2683,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Add a member as administrator to a project.
+                    /// Add a member as administrator to a project
                     /// </summary>
                     public async Task AddAdministratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                     {
@@ -2698,7 +2698,7 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Remove a member as administrator from a project.
+                    /// Remove a member as administrator from a project
                     /// </summary>
                     public async Task RemoveAdministratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                     {
@@ -2722,7 +2722,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Add a team as administrators to a project.
+                    /// Add a team as administrators to a project
                     /// </summary>
                     public async Task AddAdministratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
                     {
@@ -2737,7 +2737,7 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Remove a team as administrators from a project.
+                    /// Remove a team as administrators from a project
                     /// </summary>
                     public async Task RemoveAdministratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
                     {
@@ -2803,7 +2803,7 @@ namespace JetBrains.Space.Client
                     }
                     
                 
-                    public async Task RemoveAnIndividualCollaboratorsAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
+                    public async Task RemoveACollaboratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         queryParameters.Append("profile", profile.ToString());
@@ -2871,7 +2871,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Get project members for a given project key.
+                /// Get project members for a given project key
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -2895,7 +2895,7 @@ namespace JetBrains.Space.Client
                 
                 
                 /// <summary>
-                /// Get project members for a given project key.
+                /// Get project members for a given project key
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -2933,7 +2933,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Add a member to a project.
+                    /// Add a member to a project
                     /// </summary>
                     public async Task AddMemberAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                     {
@@ -2948,7 +2948,7 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Remove a member from a project.
+                    /// Remove a member from a project
                     /// </summary>
                     public async Task RemoveMemberAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                     {
@@ -2972,7 +2972,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Add a team to a project.
+                    /// Add a team to a project
                     /// </summary>
                     public async Task AddTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
                     {
@@ -2987,7 +2987,7 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Remove a team from a project.
+                    /// Remove a team from a project
                     /// </summary>
                     public async Task RemoveTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
                     {
@@ -3013,9 +3013,9 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Get organization members who can view a project.
+                /// Get organization members who can view a project
                 /// </summary>
-                public async Task<Batch<TDMemberProfile>> OrganizationProfilesWhoCanViewTheProjectAsync(ProjectIdentifier project, string term, bool meOnTop = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<TDMemberProfile>> OrganizationProfilesThatCanViewTheProjectAsync(ProjectIdentifier project, string term, bool meOnTop = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
@@ -3029,10 +3029,10 @@ namespace JetBrains.Space.Client
                 
                 
                 /// <summary>
-                /// Get organization members who can view a project.
+                /// Get organization members who can view a project
                 /// </summary>
-                public IAsyncEnumerable<TDMemberProfile> OrganizationProfilesWhoCanViewTheProjectAsyncEnumerable(ProjectIdentifier project, string term, bool meOnTop = false, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => OrganizationProfilesWhoCanViewTheProjectAsync(project: project, term: term, meOnTop: meOnTop, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
+                public IAsyncEnumerable<TDMemberProfile> OrganizationProfilesThatCanViewTheProjectAsyncEnumerable(ProjectIdentifier project, string term, bool meOnTop = false, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => OrganizationProfilesThatCanViewTheProjectAsync(project: project, term: term, meOnTop: meOnTop, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
             
             }
         
@@ -3184,7 +3184,7 @@ namespace JetBrains.Space.Client
             }
             
         
-            public async Task<GitMergeResultHttp> MergeMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitMergeMode mergeMode, Func<Partial<GitMergeResultHttp>, Partial<GitMergeResultHttp>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<GitMergeResultHttp> MergeAMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitMergeMode mergeMode, Func<Partial<GitMergeResultHttp>, Partial<GitMergeResultHttp>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitMergeResultHttp>()) : Partial<GitMergeResultHttp>.Default()).ToString());
@@ -3198,7 +3198,7 @@ namespace JetBrains.Space.Client
             }
             
         
-            public async Task<GitRebaseResultHttp> RebaseMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitRebaseMode rebaseMode, bool squash, string? squashedCommitMessage = null, Func<Partial<GitRebaseResultHttp>, Partial<GitRebaseResultHttp>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<GitRebaseResultHttp> RebaseAMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitRebaseMode rebaseMode, bool squash, string? squashedCommitMessage = null, Func<Partial<GitRebaseResultHttp>, Partial<GitRebaseResultHttp>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitRebaseResultHttp>()) : Partial<GitRebaseResultHttp>.Default()).ToString());
@@ -3357,7 +3357,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Creates a new package repository for a given project id.
+                /// Creates a new package repository for a given project ID
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -3387,7 +3387,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Gets a list of package repositories for a given project id.
+                /// Gets a list of package repositories for a given project ID
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -3409,7 +3409,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Gets a package repository for a given project id by type and name.
+                /// Gets a package repository for a given project ID by type and name
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -3429,7 +3429,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Updates package repository settings for a given project id.
+                /// Updates package repository settings for a given project ID
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -3455,7 +3455,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Removes package repository for a given project id.
+                /// Removes package repository for a given project ID
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -3485,7 +3485,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Cleanup specified package repository.
+                    /// Cleanup specified package repository
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -3520,7 +3520,7 @@ namespace JetBrains.Space.Client
                         }
                         
                         /// <summary>
-                        /// Dry run of cleanup for specified package repository.
+                        /// Dry run of cleanup for specified package repository
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -3559,7 +3559,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Gets a list of remote package repositories for given project.
+                    /// Gets a list of remote package repositories for given project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -3590,7 +3590,7 @@ namespace JetBrains.Space.Client
                         }
                         
                         /// <summary>
-                        /// Publishes packages to remote repository.
+                        /// Publishes packages to remote repository
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -3613,7 +3613,7 @@ namespace JetBrains.Space.Client
                         
                     
                         /// <summary>
-                        /// Get list of publishing to remote repository.
+                        /// Get list of publishing to remote repository
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -3635,7 +3635,7 @@ namespace JetBrains.Space.Client
                         
                         
                         /// <summary>
-                        /// Get list of publishing to remote repository.
+                        /// Get list of publishing to remote repository
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -3664,7 +3664,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Gets a list of repository packages for a given project id.
+                    /// Gets a list of repository packages for a given project ID
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -3688,7 +3688,7 @@ namespace JetBrains.Space.Client
                     
                     
                     /// <summary>
-                    /// Gets a list of repository packages for a given project id.
+                    /// Gets a list of repository packages for a given project ID
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -3713,7 +3713,7 @@ namespace JetBrains.Space.Client
                         }
                         
                         /// <summary>
-                        /// Report a package version metadata in repository for a given project id.
+                        /// Report a package version metadata in repository for a given project ID
                         /// </summary>
                         public async Task ReportPackageVersionMetadataAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string packageVersion, bool pin, string? comment = null, CancellationToken cancellationToken = default)
                         {
@@ -3742,7 +3742,7 @@ namespace JetBrains.Space.Client
                         }
                         
                         /// <summary>
-                        /// Gets a list of repository package versions for a given project id.
+                        /// Gets a list of repository package versions for a given project ID
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -3768,7 +3768,7 @@ namespace JetBrains.Space.Client
                         
                         
                         /// <summary>
-                        /// Gets a list of repository package versions for a given project id.
+                        /// Gets a list of repository package versions for a given project ID
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -3782,7 +3782,7 @@ namespace JetBrains.Space.Client
                             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, repository: repository, packageName: packageName, query: query, sortColumn: sortColumn, sortOrder: sortOrder, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
                     
                         /// <summary>
-                        /// Gets a details for repository package version for a given project id.
+                        /// Gets a details for repository package version for a given project ID
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -3802,7 +3802,7 @@ namespace JetBrains.Space.Client
                         
                     
                         /// <summary>
-                        /// Removes a package version in repository for a given project id.
+                        /// Removes a package version in repository for a given project ID
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -3827,7 +3827,7 @@ namespace JetBrains.Space.Client
                 public partial class PackageClient : ISpaceClient
                 {
                     /// <summary>
-                    /// Gets a list of repository packages for a given project id.
+                    /// Gets a list of repository packages for a given project ID
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -3851,7 +3851,7 @@ namespace JetBrains.Space.Client
                     
                     
                     /// <summary>
-                    /// Gets a list of repository packages for a given project id.
+                    /// Gets a list of repository packages for a given project ID
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -3868,7 +3868,7 @@ namespace JetBrains.Space.Client
                     public partial class VersionClient : ISpaceClient
                     {
                         /// <summary>
-                        /// Gets a list of repository package versions for a given project id.
+                        /// Gets a list of repository package versions for a given project ID
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -3894,7 +3894,7 @@ namespace JetBrains.Space.Client
                         
                         
                         /// <summary>
-                        /// Gets a list of repository package versions for a given project id.
+                        /// Gets a list of repository package versions for a given project ID
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -3909,7 +3909,7 @@ namespace JetBrains.Space.Client
                             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, type: type, repositoryName: repositoryName, packageName: packageName, query: query, sortColumn: sortColumn, sortOrder: sortOrder, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
                     
                         /// <summary>
-                        /// Gets a details for repository package version for a given project id.
+                        /// Gets a details for repository package version for a given project ID
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -3930,7 +3930,7 @@ namespace JetBrains.Space.Client
                         
                     
                         /// <summary>
-                        /// Removes a package version in repository for a given project id.
+                        /// Removes a package version in repository for a given project ID
                         /// </summary>
                         /// <remarks>
                         /// Required permissions:
@@ -3965,7 +3965,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Gets a package repository URL for a given project id.
+                    /// Gets a package repository URL for a given project ID
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -3999,7 +3999,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Executes a package search for a given project id.
+                /// Executes a package search for a given project ID
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -4024,7 +4024,7 @@ namespace JetBrains.Space.Client
                 
                 
                 /// <summary>
-                /// Executes a package search for a given project id.
+                /// Executes a package search for a given project ID
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -4051,7 +4051,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Creates a new package repository for a given project id.
+                /// Creates a new package repository for a given project ID
                 /// </summary>
                 public async Task<List<PackageType>> GetAllTypesAsync(ProjectIdentifier project, Func<Partial<PackageType>, Partial<PackageType>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -4116,6 +4116,15 @@ namespace JetBrains.Space.Client
             public IAsyncEnumerable<GitCommitInfo> CommitsAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => CommitsAsync(project: project, repository: repository, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitCommitInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitCommitInfo>.Default())), skip, cancellationToken);
         
+            public async Task<RepositoryUrls> UrlAsync(ProjectIdentifier project, string repository, Func<Partial<RepositoryUrls>, Partial<RepositoryUrls>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<RepositoryUrls>()) : Partial<RepositoryUrls>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<RepositoryUrls>("GET", $"api/http/projects/{project}/repositories/{repository}/url{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
             public async Task DeleteRepositoryAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -4166,7 +4175,7 @@ namespace JetBrains.Space.Client
                     }
                     
                 
-                    public async Task<List<ExternalCheck>> GetExternalChecksForCommitAsync(ProjectIdentifier project, string repository, string revision, Func<Partial<ExternalCheck>, Partial<ExternalCheck>>? partial = null, CancellationToken cancellationToken = default)
+                    public async Task<List<ExternalCheck>> GetExternalChecksForACommitAsync(ProjectIdentifier project, string repository, string revision, Func<Partial<ExternalCheck>, Partial<ExternalCheck>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ExternalCheck>()) : Partial<ExternalCheck>.Default()).ToString());

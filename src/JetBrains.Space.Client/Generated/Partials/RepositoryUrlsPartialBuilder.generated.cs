@@ -27,18 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RepoHeadsSubscriptionFilterPartialBuilder
+namespace JetBrains.Space.Client.RepositoryUrlsPartialBuilder
 {
-    public static class RepoHeadsSubscriptionFilterPartialExtensions
+    public static class RepositoryUrlsPartialExtensions
     {
-        public static Partial<RepoHeadsSubscriptionFilter> WithProject(this Partial<RepoHeadsSubscriptionFilter> it)
-            => it.AddFieldName("project");
+        public static Partial<RepositoryUrls> WithHttpUrl(this Partial<RepositoryUrls> it)
+            => it.AddFieldName("httpUrl");
         
-        public static Partial<RepoHeadsSubscriptionFilter> WithProject(this Partial<RepoHeadsSubscriptionFilter> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+        public static Partial<RepositoryUrls> WithSshUrl(this Partial<RepositoryUrls> it)
+            => it.AddFieldName("sshUrl");
         
-        public static Partial<RepoHeadsSubscriptionFilter> WithRepository(this Partial<RepoHeadsSubscriptionFilter> it)
-            => it.AddFieldName("repository");
+        public static Partial<RepositoryUrls> WithSshHost(this Partial<RepositoryUrls> it)
+            => it.AddFieldName("sshHost");
         
     }
     

@@ -38,8 +38,8 @@ namespace JetBrains.Space.Client
         [EnumMember(Value = "CHECKLIST")]
         CHECKLIST,
         
-        [EnumMember(Value = "BINARY")]
-        BINARY,
+        [EnumMember(Value = "FILE")]
+        FILE,
         
     }
     

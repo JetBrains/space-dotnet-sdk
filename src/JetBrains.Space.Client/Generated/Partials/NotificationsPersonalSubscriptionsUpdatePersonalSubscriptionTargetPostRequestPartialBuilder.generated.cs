@@ -40,6 +40,9 @@ namespace JetBrains.Space.Client.NotificationsPersonalSubscriptionsUpdatePersona
         public static Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> WithTargetCode(this Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> it)
             => it.AddFieldName("targetCode");
         
+        public static Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> WithFeed(this Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> it)
+            => it.AddFieldName("feed");
+        
         public static Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> WithEventCodes(this Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> it)
             => it.AddFieldName("eventCodes");
         

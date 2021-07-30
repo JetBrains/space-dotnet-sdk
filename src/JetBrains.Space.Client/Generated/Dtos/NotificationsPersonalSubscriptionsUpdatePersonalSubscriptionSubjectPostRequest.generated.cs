@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest() { }
         
-        public NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest(ProfileIdentifier profile, string subjectCode, string? feed = null, bool? enabled = null)
+        public NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest(ProfileIdentifier profile, string subjectCode, string feed, bool enabled)
         {
             Profile = profile;
             SubjectCode = subjectCode;
@@ -62,19 +62,21 @@ namespace JetBrains.Space.Client
             set => _subjectCode.SetValue(value);
         }
     
-        private PropertyValue<string?> _feed = new PropertyValue<string?>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(Feed));
+        private PropertyValue<string> _feed = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(Feed));
         
+        [Required]
         [JsonPropertyName("feed")]
-        public string? Feed
+        public string Feed
         {
             get => _feed.GetValue();
             set => _feed.SetValue(value);
         }
     
-        private PropertyValue<bool?> _enabled = new PropertyValue<bool?>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(IsEnabled));
+        private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(IsEnabled));
         
+        [Required]
         [JsonPropertyName("enabled")]
-        public bool? IsEnabled
+        public bool IsEnabled
         {
             get => _enabled.GetValue();
             set => _enabled.SetValue(value);

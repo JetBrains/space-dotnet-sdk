@@ -39,7 +39,7 @@ namespace JetBrains.Space.Client
         }
         
         /// <summary>
-        /// Get the HTTP API model that describes the available HTTP API's
+        /// Get the HTTP API model that describes the available HTTP APIs
         /// </summary>
         public async Task<HAModel> GetHttpApiModelAsync(Func<Partial<HAModel>, Partial<HAModel>>? partial = null, CancellationToken cancellationToken = default)
         {

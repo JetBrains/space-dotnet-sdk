@@ -39,7 +39,7 @@ namespace JetBrains.Space.Client
         }
         
         /// <summary>
-        /// Create a new To-Do item, with an optional due date.
+        /// Create a new To-Do item, with an optional due date
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -148,7 +148,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Delete an existing To-Do item.
+        /// Delete an existing To-Do item
         /// </summary>
         /// <remarks>
         /// Required permissions:

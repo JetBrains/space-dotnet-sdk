@@ -137,7 +137,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Update RSVP / calendar event participation status for a calendar event attached to an article.
+            /// Update RSVP / calendar event participation status for a calendar event attached to an article
             /// </summary>
             public async Task<MeetingRecord> UpdateEventParticipationAsync(string id, EventParticipationStatus newStatus, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -166,7 +166,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Get calendar events attached to an article in a specific time period.
+            /// Get calendar events attached to an article in a specific time period
             /// </summary>
             public async Task<List<MeetingRecord>> GetAllEventsAsync(DateTime dateFrom, DateTime dateTo, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -180,7 +180,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get a calendar event attached to an article.
+            /// Get a calendar event attached to an article
             /// </summary>
             public async Task<MeetingRecord> GetEventAsync(string id, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -236,13 +236,13 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create a meeting.
+            /// Create a meeting
             /// </summary>
             /// <remarks>
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit meeting</term>
+            /// <term>Edit meetings</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -278,7 +278,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View meeting</term>
+            /// <term>View meetings</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -312,7 +312,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View meeting</term>
+            /// <term>View meetings</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -326,7 +326,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View meeting</term>
+            /// <term>View meetings</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -348,7 +348,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View meeting</term>
+            /// <term>View meetings</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -369,7 +369,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View meeting</term>
+            /// <term>View meetings</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -388,7 +388,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View meeting</term>
+            /// <term>View meetings</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -407,7 +407,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View meeting</term>
+            /// <term>View meetings</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -426,7 +426,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View meeting</term>
+            /// <term>View meetings</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -446,7 +446,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit meeting</term>
+            /// <term>Edit meetings</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -481,7 +481,7 @@ namespace JetBrains.Space.Client
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit meeting</term>
+            /// <term>Edit meetings</term>
             /// </item>
             /// </list>
             /// </remarks>

@@ -34,10 +34,11 @@ namespace JetBrains.Space.Client
     {
         public NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest() { }
         
-        public NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest(ProfileIdentifier profile, string targetCode, List<string> eventCodes)
+        public NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest(ProfileIdentifier profile, string targetCode, string feed, List<string> eventCodes)
         {
             Profile = profile;
             TargetCode = targetCode;
+            Feed = feed;
             EventCodes = eventCodes;
         }
         
@@ -61,6 +62,16 @@ namespace JetBrains.Space.Client
             set => _targetCode.SetValue(value);
         }
     
+        private PropertyValue<string> _feed = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(Feed));
+        
+        [Required]
+        [JsonPropertyName("feed")]
+        public string Feed
+        {
+            get => _feed.GetValue();
+            set => _feed.SetValue(value);
+        }
+    
         private PropertyValue<List<string>> _eventCodes = new PropertyValue<List<string>>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(EventCodes), new List<string>());
         
         [Required]
@@ -75,6 +86,7 @@ namespace JetBrains.Space.Client
         {
             _profile.SetAccessPath(path, validateHasBeenSet);
             _targetCode.SetAccessPath(path, validateHasBeenSet);
+            _feed.SetAccessPath(path, validateHasBeenSet);
             _eventCodes.SetAccessPath(path, validateHasBeenSet);
         }
     

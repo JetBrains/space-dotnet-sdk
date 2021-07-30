@@ -327,7 +327,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create a permanent token for the given application that can be used to access the current organisation.
+            /// Create a permanent token for the given application that can be used to access the current organisation
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -414,7 +414,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Delete a personal token used to access the current organisation.
+            /// Delete a personal token used to access the current organisation
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -444,7 +444,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Delete personal token of the given application.
+                /// Delete personal token of the given application
                 /// </summary>
                 public async Task DeleteCurrentPermanentTokenAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
                 {

@@ -27,18 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RepoHeadsSubscriptionFilterPartialBuilder
+namespace JetBrains.Space.Client.DeletePersonalFeedActionPartialBuilder
 {
-    public static class RepoHeadsSubscriptionFilterPartialExtensions
+    public static class DeletePersonalFeedActionPartialExtensions
     {
-        public static Partial<RepoHeadsSubscriptionFilter> WithProject(this Partial<RepoHeadsSubscriptionFilter> it)
-            => it.AddFieldName("project");
+        public static Partial<DeletePersonalFeedAction> WithFeed(this Partial<DeletePersonalFeedAction> it)
+            => it.AddFieldName("feed");
         
-        public static Partial<RepoHeadsSubscriptionFilter> WithProject(this Partial<RepoHeadsSubscriptionFilter> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
-        public static Partial<RepoHeadsSubscriptionFilter> WithRepository(this Partial<RepoHeadsSubscriptionFilter> it)
-            => it.AddFieldName("repository");
+        public static Partial<DeletePersonalFeedAction> WithFeedId(this Partial<DeletePersonalFeedAction> it)
+            => it.AddFieldName("feedId");
         
     }
     

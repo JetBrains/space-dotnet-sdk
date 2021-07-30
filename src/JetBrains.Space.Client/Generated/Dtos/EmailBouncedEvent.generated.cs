@@ -29,43 +29,44 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class RepoHeadsSubscriptionFilter
-         : SubscriptionFilter, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class EmailBouncedEvent
+         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public  string? ClassName => "RepoHeadsSubscriptionFilter";
+        public  string? ClassName => "EmailBouncedEvent";
         
-        public RepoHeadsSubscriptionFilter() { }
+        public EmailBouncedEvent() { }
         
-        public RepoHeadsSubscriptionFilter(string repository, PRProject? project = null)
+        public EmailBouncedEvent(string email, string reason)
         {
-            Project = project;
-            Repository = repository;
+            Email = email;
+            Reason = reason;
         }
         
-        private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(RepoHeadsSubscriptionFilter), nameof(Project));
-        
-        [JsonPropertyName("project")]
-        public PRProject? Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(RepoHeadsSubscriptionFilter), nameof(Repository));
+        private PropertyValue<string> _email = new PropertyValue<string>(nameof(EmailBouncedEvent), nameof(Email));
         
         [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
+        [JsonPropertyName("email")]
+        public string Email
         {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
+            get => _email.GetValue();
+            set => _email.SetValue(value);
+        }
+    
+        private PropertyValue<string> _reason = new PropertyValue<string>(nameof(EmailBouncedEvent), nameof(Reason));
+        
+        [Required]
+        [JsonPropertyName("reason")]
+        public string Reason
+        {
+            get => _reason.GetValue();
+            set => _reason.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
+            _email.SetAccessPath(path, validateHasBeenSet);
+            _reason.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

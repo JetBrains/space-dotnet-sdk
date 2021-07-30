@@ -59,11 +59,11 @@ namespace JetBrains.Space.Client
         public static ProjectCommonSubscriptionFilterIn ProjectCommon(string? project = null)
             => new ProjectCommonSubscriptionFilterIn(project: project);
         
-        public static RepoCommitsSubscriptionFilterIn RepoCommits(List<string> projects, string repository, RepoCommitsSubscriptionFilterSpec spec)
-            => new RepoCommitsSubscriptionFilterIn(projects: projects, repository: repository, spec: spec);
+        public static RepoCommitsSubscriptionFilterIn RepoCommits(string repository, RepoCommitsSubscriptionFilterSpec spec, string? project = null)
+            => new RepoCommitsSubscriptionFilterIn(repository: repository, spec: spec, project: project);
         
-        public static RepoHeadsSubscriptionFilterIn RepoHeads(List<string> projects, string repository)
-            => new RepoHeadsSubscriptionFilterIn(projects: projects, repository: repository);
+        public static RepoHeadsSubscriptionFilterIn RepoHeads(string repository, string? project = null)
+            => new RepoHeadsSubscriptionFilterIn(repository: repository, project: project);
         
     }
     

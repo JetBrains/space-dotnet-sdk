@@ -50,7 +50,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Get all types that support custom fields.
+            /// Get all types that support custom fields
             /// </summary>
             public async Task<List<ExtendedType>> GetAllExtendedTypesAsync(ExtendedTypeScopeType scope = ExtendedTypeScopeType.Org, Func<Partial<ExtendedType>, Partial<ExtendedType>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -76,7 +76,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity ids.
+            /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity IDs.
             /// </summary>
             public async Task<Batch<CustomFieldsRecord>> GetAllValuesAsync(string typeKey, ExtendedTypeScope scope, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<Batch<CustomFieldsRecord>>, Partial<Batch<CustomFieldsRecord>>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -92,7 +92,7 @@ namespace JetBrains.Space.Client
             
             
             /// <summary>
-            /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity ids.
+            /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity IDs.
             /// </summary>
             public IAsyncEnumerable<CustomFieldsRecord> GetAllValuesAsyncEnumerable(string typeKey, ExtendedTypeScope scope, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<CustomFieldsRecord>, Partial<CustomFieldsRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllValuesAsync(typeKey: typeKey, scope: scope, top: top, extendedEntityIds: extendedEntityIds, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CustomFieldsRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CustomFieldsRecord>.Default())), skip, cancellationToken);
@@ -128,7 +128,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get a page of options for custom field of `Select from options` type with `Open-ended` flag set.
+            /// Get a page of options for custom field of `Select from options` type with `Open-ended` flag set
             /// </summary>
             public async Task<Batch<EnumValueData>> GetAllEnumValuesAsync(string typeKey, string customFieldId, ExtendedTypeScope scope, EnumValueOrdering ordering = EnumValueOrdering.NAMEASC, string? skip = null, int? top = 100, string? query = null, bool? countRecords = null, string? addedByProfileId = null, Func<Partial<Batch<EnumValueData>>, Partial<Batch<EnumValueData>>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -147,7 +147,7 @@ namespace JetBrains.Space.Client
             
             
             /// <summary>
-            /// Get a page of options for custom field of `Select from options` type with `Open-ended` flag set.
+            /// Get a page of options for custom field of `Select from options` type with `Open-ended` flag set
             /// </summary>
             public IAsyncEnumerable<EnumValueData> GetAllEnumValuesAsyncEnumerable(string typeKey, string customFieldId, ExtendedTypeScope scope, EnumValueOrdering ordering = EnumValueOrdering.NAMEASC, string? skip = null, int? top = 100, string? query = null, bool? countRecords = null, string? addedByProfileId = null, Func<Partial<EnumValueData>, Partial<EnumValueData>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllEnumValuesAsync(typeKey: typeKey, customFieldId: customFieldId, ordering: ordering, scope: scope, top: top, query: query, countRecords: countRecords, addedByProfileId: addedByProfileId, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<EnumValueData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EnumValueData>.Default())), skip, cancellationToken);
@@ -166,7 +166,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create custom field for a type.
+            /// Create custom field for a type
             /// </summary>
             public async Task<CustomField> CreateFieldAsync(string typeKey, string name, CFType type, bool required, bool @private, CFInputValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null, CFEnumValuesModification? openEnumValuesModification = null, CFParametersInput? cfParameters = null, Func<Partial<CustomField>, Partial<CustomField>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -208,7 +208,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Archive a custom field for a type.
+            /// Archive a custom field for a type
             /// </summary>
             public async Task ArchiveAsync(string typeKey, string id, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
             {
@@ -223,7 +223,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Restore custom field for a type.
+            /// Restore custom field for a type
             /// </summary>
             public async Task RestoreAsync(string typeKey, string id, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
             {
@@ -238,7 +238,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get custom fields for a type.
+            /// Get custom fields for a type
             /// </summary>
             public async Task<List<CustomField>> GetAllFieldsAsync(string typeKey, ExtendedTypeScope scope, bool withArchived = false, Func<Partial<CustomField>, Partial<CustomField>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -277,7 +277,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Remove custom field for a type.
+            /// Remove custom field for a type
             /// </summary>
             public async Task DeleteFieldAsync(string typeKey, string id, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
             {
@@ -331,7 +331,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Get custom field value for a type and entity id.
+            /// Get custom field value for a type and entity ID
             /// </summary>
             public async Task<CustomFieldsRecord> GetValueAsync(string typeKey, string entityId, ExtendedTypeScope scope, Func<Partial<CustomFieldsRecord>, Partial<CustomFieldsRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -344,7 +344,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Update custom field value(s) for a type and entity id.
+            /// Update custom field value(s) for a type and entity ID
             /// </summary>
             public async Task UpdateValueAsync(string entityId, string typeKey, List<CustomFieldInputValue> values, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
             {

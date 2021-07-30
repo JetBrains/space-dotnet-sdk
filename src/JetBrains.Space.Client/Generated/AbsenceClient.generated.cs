@@ -39,7 +39,7 @@ namespace JetBrains.Space.Client
         }
         
         /// <summary>
-        /// Create an absence for a given profile (member).
+        /// Create an absence for a given profile (member)
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -138,7 +138,7 @@ namespace JetBrains.Space.Client
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllAbsencesAsync(viewMode: viewMode, top: top, member: member, members: members, location: location, team: team, since: since, till: till, reason: reason, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AbsenceRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AbsenceRecord>.Default())), skip, cancellationToken);
     
         /// <summary>
-        /// Get absences for a given profile id.
+        /// Get absences for a given profile ID
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -158,7 +158,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Get an absence.
+        /// Get an absence
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -233,7 +233,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Delete approval for a given absence.
+        /// Delete approval for a given absence
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -263,7 +263,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create a new absence reason.
+            /// Create a new absence reason
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -291,7 +291,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get available absence reasons.
+            /// Get available absence reasons
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -312,7 +312,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get an absence reason.
+            /// Get an absence reason
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -332,7 +332,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Update an existing absence reason.
+            /// Update an existing absence reason
             /// </summary>
             /// <remarks>
             /// Required permissions:

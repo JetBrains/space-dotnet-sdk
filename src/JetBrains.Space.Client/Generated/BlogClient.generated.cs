@@ -220,9 +220,6 @@ namespace JetBrains.Space.Client
         }
         
     
-        /// <summary>
-        /// Unpublish Blog post
-        /// </summary>
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">

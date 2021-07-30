@@ -34,12 +34,23 @@ namespace JetBrains.Space.Client
     {
         public PersonalSubscriptionSettings() { }
         
-        public PersonalSubscriptionSettings(List<PersonalSubscriptionSubjectSettings> subjectSettings, List<string> enabledCodes)
+        public PersonalSubscriptionSettings(PrivateFeed feed, List<PersonalSubscriptionSubjectSettings> subjectSettings, List<string> enabledCodes)
         {
+            Feed = feed;
             SubjectSettings = subjectSettings;
             EnabledCodes = enabledCodes;
         }
         
+        private PropertyValue<PrivateFeed> _feed = new PropertyValue<PrivateFeed>(nameof(PersonalSubscriptionSettings), nameof(Feed));
+        
+        [Required]
+        [JsonPropertyName("feed")]
+        public PrivateFeed Feed
+        {
+            get => _feed.GetValue();
+            set => _feed.SetValue(value);
+        }
+    
         private PropertyValue<List<PersonalSubscriptionSubjectSettings>> _subjectSettings = new PropertyValue<List<PersonalSubscriptionSubjectSettings>>(nameof(PersonalSubscriptionSettings), nameof(SubjectSettings), new List<PersonalSubscriptionSubjectSettings>());
         
         [Required]
@@ -62,6 +73,7 @@ namespace JetBrains.Space.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
+            _feed.SetAccessPath(path, validateHasBeenSet);
             _subjectSettings.SetAccessPath(path, validateHasBeenSet);
             _enabledCodes.SetAccessPath(path, validateHasBeenSet);
         }

@@ -50,7 +50,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Get calendar events attached to an article in a specific time period.
+            /// Get calendar events attached to an article in a specific time period
             /// </summary>
             [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (will be removed in a future version)")]
             public async Task<List<MeetingRecord>> GetAllCalendarEventsAsync(DateTime dateFrom, DateTime dateTo, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
@@ -65,7 +65,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get a calendar event attached to an article.
+            /// Get a calendar event attached to an article
             /// </summary>
             [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (will be removed in a future version)")]
             public async Task<MeetingRecord> GetCalendarEventAsync(string id, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
@@ -211,7 +211,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Update RSVP / calendar event participation status for a calendar event attached to an article.
+                /// Update RSVP / calendar event participation status for a calendar event attached to an article
                 /// </summary>
                 [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (will be removed in a future version)")]
                 public async Task<MeetingRecord> UpdateMeetingParticipationAsync(string id, EventParticipationStatus newStatus, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
@@ -414,7 +414,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get a list of invitations.
+            /// Get a list of invitations
             /// </summary>
             public async Task<Batch<Invitation>> GetAllInvitationsAsync(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<Batch<Invitation>>, Partial<Batch<Invitation>>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -429,7 +429,7 @@ namespace JetBrains.Space.Client
             
             
             /// <summary>
-            /// Get a list of invitations.
+            /// Get a list of invitations
             /// </summary>
             public IAsyncEnumerable<Invitation> GetAllInvitationsAsyncEnumerable(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<Invitation>, Partial<Invitation>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInvitationsAsync(withDeleted: withDeleted, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Invitation>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Invitation>.Default())), skip, cancellationToken);
@@ -478,7 +478,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Get all languages.
+            /// Get all languages
             /// </summary>
             public async Task<List<TDLanguage>> GetAllLanguagesAsync(Func<Partial<TDLanguage>, Partial<TDLanguage>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -503,7 +503,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Get all equipment types.
+            /// Get all equipment types
             /// </summary>
             public async Task<List<TDLocationEquipmentType>> GetAllLocationEquipmentTypesAsync(bool withArchived = false, Func<Partial<TDLocationEquipmentType>, Partial<TDLocationEquipmentType>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -541,7 +541,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Mark member location's id position on a map.
+            /// Mark member location on a map
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -568,7 +568,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get members on map for a location id.
+            /// Get members on a map for a location ID
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -592,7 +592,7 @@ namespace JetBrains.Space.Client
             
             
             /// <summary>
-            /// Get members on map for a location id.
+            /// Get members on a map for a location ID
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -606,7 +606,7 @@ namespace JetBrains.Space.Client
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllLocationMapMemberPointsAsync(locationId: locationId, includeUnmarked: includeUnmarked, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberInLocationMap>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberInLocationMap>.Default())), skip, cancellationToken);
         
             /// <summary>
-            /// Update member location's position on a map.
+            /// Update member location on a map
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -631,7 +631,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Delete member location from a map.
+            /// Delete member location from a map
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -664,7 +664,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create a location.
+            /// Create a location
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -698,7 +698,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Restore one or more archived locations.
+            /// Restore one or more archived locations
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -708,7 +708,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<List<TDLocation>> RestoreMultipleAsync(List<string> ids, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<TDLocation>> RestoreMultipleLocationsAsync(List<string> ids, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default()).ToString());
@@ -722,7 +722,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Restore an archived location.
+            /// Restore an archived location
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -765,7 +765,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get a location by id.
+            /// Get a location by ID
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -821,7 +821,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Archive a location.
+            /// Archive a location
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -852,7 +852,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Get map for a location id.
+                /// Get map for a location ID
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -872,7 +872,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Update the map for a location.
+                /// Update the map for a location
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -911,7 +911,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Get all locations with their time zone.
+            /// Get all locations with their time zone
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -944,7 +944,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Add a member location, optionally from/until a given date.
+            /// Add a member location, optionally from/until a given date
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -1013,7 +1013,7 @@ namespace JetBrains.Space.Client
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMemberLocationsAsync(withArchived: withArchived, top: top, profiles: profiles, locations: locations, since: since, till: till, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberLocation>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberLocation>.Default())), skip, cancellationToken);
         
             /// <summary>
-            /// Get a member location by its id.
+            /// Get a member location by its ID
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -1128,7 +1128,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create a team membership.
+            /// Create a team membership
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -1257,7 +1257,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Revoke a team membership to end at a given date/time.
+            /// Revoke a team membership to end at a given date/time
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -1385,7 +1385,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Delete a team membership request.
+                /// Delete a team membership request
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -1456,7 +1456,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create a profile.
+            /// Create a profile
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -1542,7 +1542,7 @@ namespace JetBrains.Space.Client
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProfilesAsync(query: query, reportPastMembers: reportPastMembers, meOnTop: meOnTop, top: top, reportFutureMembers: reportFutureMembers, teamId: teamId, locationId: locationId, roleId: roleId, order: order, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
         
             /// <summary>
-            /// Get profile information by email address.
+            /// Get profile information by email address
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -1583,7 +1583,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Check if a user profile is a member of one or more teams.
+            /// Check if a user profile is a member of one or more teams
             /// </summary>
             public async Task<bool> CheckIfProfileIsTeamMemberAsync(ProfileIdentifier profile, List<string> teamIds, CancellationToken cancellationToken = default)
             {
@@ -1659,7 +1659,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Delete a profile.
+            /// Delete a profile
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -1711,7 +1711,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Get the current authentication sessions for a given profile id.
+                /// Get the current authentication sessions for a given profile ID
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -1763,7 +1763,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Get all OAuth consents for a given profile id.
+                /// Get all OAuth consents for a given profile ID
                 /// </summary>
                 public async Task<List<ESOAuthConsent>> GetAllOauthConsentsAsync(ProfileIdentifier owner, Func<Partial<ESOAuthConsent>, Partial<ESOAuthConsent>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -1786,7 +1786,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Remove a previously approved scope.
+                    /// Remove a previously approved scope
                     /// </summary>
                     public async Task DeleteApprovedScopeAsync(ProfileIdentifier owner, string id, CancellationToken cancellationToken = default)
                     {
@@ -1995,7 +1995,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Get two-factor authentication status for a given profile id. The response indicates whether two-factor authentication is active, not active, or not set up yet.
+                    /// Get two-factor authentication status for a given profile ID. The response indicates whether two-factor authentication is active, not active, or not set up yet.
                     /// </summary>
                     public async Task<TwoFactorAuthenticationStatus> TwofactorAuthenticationStatusAsync(ProfileIdentifier profile, Func<Partial<TwoFactorAuthenticationStatus>, Partial<TwoFactorAuthenticationStatus>>? partial = null, CancellationToken cancellationToken = default)
                     {
@@ -2020,7 +2020,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Set up two-factor authentication using TOTP (Time-based One-time Password) for a given profile id. The response will return a QR code (base64 encoded) that can be scanned with an app to setup two-factor authentication. The code that the app generates has to be confirmed in Space to enable TOTP.
+                    /// Set up two-factor authentication using TOTP (Time-based One-time Password) for a given profile ID. The response will return a QR code (base64 encoded) that can be scanned with an app to setup two-factor authentication. The code that the app generates has to be confirmed in Space to enable TOTP.
                     /// </summary>
                     public async Task<TwoFactorAuthenticationSecret> SetUpTotpTwofactorAuthenticationAsync(ProfileIdentifier profile, Func<Partial<TwoFactorAuthenticationSecret>, Partial<TwoFactorAuthenticationSecret>>? partial = null, CancellationToken cancellationToken = default)
                     {
@@ -2032,7 +2032,7 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Confirm two-factor authentication for a given profile id using a TOTP (Time-based One-time Password) code from an app.
+                    /// Confirm two-factor authentication for a given profile ID using a TOTP (Time-based One-time Password) code from an app.
                     /// </summary>
                     public async Task ConfirmTotpTwofactorAuthenticationSettingsAsync(ProfileIdentifier profile, int code, CancellationToken cancellationToken = default)
                     {
@@ -2047,7 +2047,7 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Enable/disable two-factor authentication settings for a given profile id.
+                    /// Enable/disable two-factor authentication settings for a given profile ID
                     /// </summary>
                     public async Task UpdateTotpTwofactorAuthenticationSettingsAsync(ProfileIdentifier profile, bool enabled, CancellationToken cancellationToken = default)
                     {
@@ -2062,7 +2062,7 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Remove two-factor authentication settings for a given profile id. Previously generated TOTP (Time-based One-time Password) are rendered invalid.
+                    /// Remove two-factor authentication settings for a given profile ID. Previously generated TOTP (Time-based One-time Password) are rendered invalid.
                     /// </summary>
                     public async Task DeleteCurrentTotpTwofactorAuthenticationSettingsAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
                     {
@@ -2150,7 +2150,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Create a new checklist associated with the profile.
+                /// Create a new checklist associated with the profile
                 /// </summary>
                 public async Task<Checklist> CreateChecklistAsync(ProfileIdentifier profile, string name, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -2203,7 +2203,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Get all existing checklists associated with the profile.
+                /// Get all existing checklists associated with the profile
                 /// </summary>
                 public async Task<List<Checklist>> GetAllChecklistsAsync(ProfileIdentifier profile, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -2215,7 +2215,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Update an existing checklist associated with the profile.
+                /// Update an existing checklist associated with the profile
                 /// </summary>
                 public async Task UpdateChecklistAsync(ProfileIdentifier profile, string checklistId, string? name = null, string? description = null, CancellationToken cancellationToken = default)
                 {
@@ -2231,7 +2231,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Delete an existing checklist associated with the profile.
+                /// Delete an existing checklist associated with the profile
                 /// </summary>
                 public async Task DeleteChecklistAsync(ProfileIdentifier profile, string checklistId, CancellationToken cancellationToken = default)
                 {
@@ -2253,7 +2253,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Get all starred checklists associated with the profile.
+                    /// Get all starred checklists associated with the profile
                     /// </summary>
                     public async Task<List<Checklist>> GetAllStarredChecklistsAsync(ProfileIdentifier profile, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                     {
@@ -2278,7 +2278,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Get the content of a checklist associated with the profile.
+                    /// Get the content of a checklist associated with the profile
                     /// </summary>
                     public async Task<List<PlanItemChildren>> GetFullChecklistTreeAsync(ProfileIdentifier profile, string checklistId, Func<Partial<PlanItemChildren>, Partial<PlanItemChildren>>? partial = null, CancellationToken cancellationToken = default)
                     {
@@ -2327,7 +2327,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// List GPG public keys associated with profile
+                /// List GPG public keys associated with a profile
                 /// </summary>
                 public async Task<List<GpgKeyData>> GetAllGpgKeysAsync(ProfileIdentifier profile, Func<Partial<GpgKeyData>, Partial<GpgKeyData>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -2388,7 +2388,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Get team leads for a given profile id.
+                /// Get team leads for a given profile ID
                 /// </summary>
                 [Obsolete("To be removed (since 2020-12-01) (will be removed in a future version)")]
                 public async Task<List<TDMemberProfile>> GetAllLeadsAsync(ProfileIdentifier profile, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
@@ -2423,7 +2423,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Toggle visibility for a given navigation bar item.
+                /// Toggle visibility for a given navigation bar item
                 /// </summary>
                 public async Task UpdateNavBarMenuItemAsync(ProfileIdentifier profile, string item, bool enabled, CancellationToken cancellationToken = default)
                 {
@@ -2452,7 +2452,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Add a project to the navigation bar.
+                /// Add a project to the navigation bar
                 /// </summary>
                 public async Task CreateNavBarProjectAsync(ProfileIdentifier profile, ProjectIdentifier project, CancellationToken cancellationToken = default)
                 {
@@ -2467,7 +2467,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Add a project to the navigation bar.
+                /// Add a project to the navigation bar
                 /// </summary>
                 public async Task<List<PRProject>> GetAllNavBarProjectsAsync(ProfileIdentifier profile, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -2479,7 +2479,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Remove a project from the navigation bar.
+                /// Remove a project from the navigation bar
                 /// </summary>
                 public async Task DeleteNavBarProjectAsync(ProfileIdentifier profile, ProjectIdentifier project, CancellationToken cancellationToken = default)
                 {
@@ -2502,7 +2502,7 @@ namespace JetBrains.Space.Client
                     _connection = connection;
                 }
                 
-                public async Task<GlobalNotificationSettings> GetProfilesSpaceGlobalNotificationSettingsAsync(ProfileIdentifier profile, Func<Partial<GlobalNotificationSettings>, Partial<GlobalNotificationSettings>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<GlobalNotificationSettings> GetSpaceGlobalNotificationSettingsForAProfileAsync(ProfileIdentifier profile, Func<Partial<GlobalNotificationSettings>, Partial<GlobalNotificationSettings>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<GlobalNotificationSettings>()) : Partial<GlobalNotificationSettings>.Default()).ToString());
@@ -2511,7 +2511,7 @@ namespace JetBrains.Space.Client
                 }
                 
             
-                public async Task SetProfilesSpaceGlobalNotificationSettingsAsync(ProfileIdentifier profile, bool? emailNotificationsEnabled = null, string? notificationEmail = null, bool? pushNotificationEnabled = null, int? desktopInactivityTimeout = null, CancellationToken cancellationToken = default)
+                public async Task SetSpaceGlobalNotificationSettingsForAProfileAsync(ProfileIdentifier profile, bool? emailNotificationsEnabled = null, string? notificationEmail = null, bool? pushNotificationEnabled = null, int? desktopInactivityTimeout = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -2595,7 +2595,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Delete a specific personal token used to access the current organisation.
+                /// Delete a specific personal token used to access the current organisation
                 /// </summary>
                 public async Task DeletePermanentTokenAsync(ProfileIdentifier profile, string tokenId, CancellationToken cancellationToken = default)
                 {
@@ -2617,7 +2617,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Delete personal token of the given profile.
+                    /// Delete personal token of the given profile
                     /// </summary>
                     public async Task DeleteCurrentPermanentTokenAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
                     {
@@ -2645,7 +2645,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// This endpoint will return profile information, and Space personalisation data such as projects in the navigation bar, etc.
                 /// </summary>
-                public async Task<SettingsValue> GetProfilesSpacePersonalizationDataAsync(ProfileIdentifier profile, Func<Partial<SettingsValue>, Partial<SettingsValue>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<SettingsValue> GetSpacePersonalizationDataForAProfileAsync(ProfileIdentifier profile, Func<Partial<SettingsValue>, Partial<SettingsValue>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<SettingsValue>()) : Partial<SettingsValue>.Default()).ToString());
@@ -2654,7 +2654,7 @@ namespace JetBrains.Space.Client
                 }
                 
             
-                public async Task SetProfilesSpacePersonalizationDataAsync(ProfileIdentifier profile, DarkTheme? darkTheme = null, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? fontLigaturesEnabled = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null, ProjectIdentifier? defaultProject = null, CancellationToken cancellationToken = default)
+                public async Task SetSpacePersonalizationDataForAProfileAsync(ProfileIdentifier profile, DarkTheme? darkTheme = null, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? fontLigaturesEnabled = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null, ProjectIdentifier? defaultProject = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -2716,7 +2716,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Get spoken language of a profile.
+                /// Get spoken language of a profile
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -2736,7 +2736,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Delete spoken language for a profile.
+                /// Delete spoken language for a profile
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -2836,7 +2836,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Get profile timezone. Returns profile's working hours timezone, location timezone or device timezone, whichever is present first in this list
+                /// Get profile timezone. Returns profile's working hours timezone, location timezone or device timezone, whichever is present first in this list.
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -2869,7 +2869,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Get VCS password for a profile.
+                /// Get VCS password for a profile
                 /// </summary>
                 public async Task<VcsHostingPassword> GetVcsPasswordAsync(ProfileIdentifier profile, Func<Partial<VcsHostingPassword>, Partial<VcsHostingPassword>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -2896,7 +2896,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Delete VCS password for a profile.
+                /// Delete VCS password for a profile
                 /// </summary>
                 public async Task DeleteVcsPasswordAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
                 {
@@ -2922,7 +2922,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create a role.
+            /// Create a role
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -2947,7 +2947,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Restore an archived role.
+            /// Restore an archived role
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -2989,7 +2989,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get a role by id.
+            /// Get a role by ID
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3034,7 +3034,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Archive a role.
+            /// Archive a role
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3108,7 +3108,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Create a new team.
+            /// Create a new team
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3138,7 +3138,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Cancel disbanding a team, and restore its members.
+            /// Cancel disbanding a team, and restore its members
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3157,7 +3157,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Restore an archived team.
+            /// Restore an archived team
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3215,7 +3215,7 @@ namespace JetBrains.Space.Client
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllTeamsAsync(query: query, withArchived: withArchived, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDTeam>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDTeam>.Default())), skip, cancellationToken);
         
             /// <summary>
-            /// Get a team by id.
+            /// Get a team by ID
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3235,7 +3235,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Update a team.
+            /// Update a team
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3265,7 +3265,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Archive a team.
+            /// Archive a team
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3285,7 +3285,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Disband a team.
+            /// Disband a team
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3316,7 +3316,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Get or search direct members of a given team.
+                /// Get or search direct members of a given team
                 /// </summary>
                 public async Task<Batch<TDMemberProfile>> GetAllDirectMembersAsync(string id, string query = "", string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -3331,7 +3331,7 @@ namespace JetBrains.Space.Client
                 
                 
                 /// <summary>
-                /// Get or search direct members of a given team.
+                /// Get or search direct members of a given team
                 /// </summary>
                 public IAsyncEnumerable<TDMemberProfile> GetAllDirectMembersAsyncEnumerable(string id, string query = "", string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllDirectMembersAsync(id: id, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);

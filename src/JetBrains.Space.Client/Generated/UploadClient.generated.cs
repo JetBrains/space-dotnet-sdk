@@ -69,7 +69,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Get meta information for a previously uploaded image.
+            /// Get meta information for a previously uploaded image
             /// </summary>
             public async Task<ImageAttachmentMeta> GetImageAttachmentMetadataAsync(string id, Func<Partial<ImageAttachmentMeta>, Partial<ImageAttachmentMeta>>? partial = null, CancellationToken cancellationToken = default)
             {
