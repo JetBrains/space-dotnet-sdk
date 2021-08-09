@@ -29,18 +29,33 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public interface CFParametersInput
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class ContactCFParameters
+         : CFParameters, CFParametersInput, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static AutonumberCFParameters AutonumberCFParameters(string prefix, string suffix)
-            => new AutonumberCFParameters(prefix: prefix, suffix: suffix);
+        [JsonPropertyName("className")]
+        public  string? ClassName => "ContactCFParameters";
         
-        public static ContactCFParameters ContactCFParameters(TDContactKind? contactKind = null)
-            => new ContactCFParameters(contactKind: contactKind);
+        public ContactCFParameters() { }
         
-        public static DocumentCFParametersInput Document(DocumentCFScopeInput documentScope)
-            => new DocumentCFParametersInput(documentScope: documentScope);
+        public ContactCFParameters(TDContactKind? contactKind = null)
+        {
+            ContactKind = contactKind;
+        }
         
+        private PropertyValue<TDContactKind?> _contactKind = new PropertyValue<TDContactKind?>(nameof(ContactCFParameters), nameof(ContactKind));
+        
+        [JsonPropertyName("contactKind")]
+        public TDContactKind? ContactKind
+        {
+            get => _contactKind.GetValue();
+            set => _contactKind.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _contactKind.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

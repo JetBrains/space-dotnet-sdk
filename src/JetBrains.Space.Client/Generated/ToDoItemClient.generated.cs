@@ -123,7 +123,7 @@ namespace JetBrains.Space.Client
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllTodoItemsAsync(top: top, open: open, from: from, till: till, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TodoItemRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TodoItemRecord>.Default())), skip, cancellationToken);
     
         /// <summary>
-        /// Update an existing To-Do item. Optional parameters will be ignored when not specified, and updated otherwise.
+        /// Update an existing To-Do item. Optional parameters will be ignored when not specified and updated otherwise.
         /// </summary>
         /// <remarks>
         /// Required permissions:

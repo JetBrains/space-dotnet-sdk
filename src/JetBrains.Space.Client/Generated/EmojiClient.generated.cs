@@ -41,7 +41,7 @@ namespace JetBrains.Space.Client
         /// <summary>
         /// Add custom emoji
         /// </summary>
-        public async Task AddAsync(string emoji, string attachmentId, CancellationToken cancellationToken = default)
+        public async Task AddEmojiAsync(string emoji, string attachmentId, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -57,7 +57,7 @@ namespace JetBrains.Space.Client
         /// <summary>
         /// Delete an emoji by name
         /// </summary>
-        public async Task DeleteAsync(string emoji, CancellationToken cancellationToken = default)
+        public async Task DeleteEmojiAsync(string emoji, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -72,7 +72,7 @@ namespace JetBrains.Space.Client
         /// <summary>
         /// Record emojis usage and update frequently used list
         /// </summary>
-        public async Task RecordUsageAsync(List<string> emojis, CancellationToken cancellationToken = default)
+        public async Task RecordEmojisUsageAsync(List<string> emojis, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -87,7 +87,7 @@ namespace JetBrains.Space.Client
         /// <summary>
         /// Check whether a given emoji name exists
         /// </summary>
-        public async Task<bool> ExistsAsync(string emoji, CancellationToken cancellationToken = default)
+        public async Task<bool> CheckIfEmojiExistsAsync(string emoji, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("emoji", emoji);
@@ -99,7 +99,7 @@ namespace JetBrains.Space.Client
         /// <summary>
         /// List frequently used emojis
         /// </summary>
-        public async Task<List<string>> FrequentlyUsedAsync(CancellationToken cancellationToken = default)
+        public async Task<List<string>> GetFrequentlyUsedEmojisAsync(CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -110,7 +110,7 @@ namespace JetBrains.Space.Client
         /// <summary>
         /// Search for emoji
         /// </summary>
-        public async Task<Batch<EmojiSearchMatchData>> SearchAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<EmojiSearchMatchData>>, Partial<Batch<EmojiSearchMatchData>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<EmojiSearchMatchData>> SearchEmojiAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<EmojiSearchMatchData>>, Partial<Batch<EmojiSearchMatchData>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
@@ -125,8 +125,8 @@ namespace JetBrains.Space.Client
         /// <summary>
         /// Search for emoji
         /// </summary>
-        public IAsyncEnumerable<EmojiSearchMatchData> SearchAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<EmojiSearchMatchData>, Partial<EmojiSearchMatchData>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchAsync(query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<EmojiSearchMatchData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EmojiSearchMatchData>.Default())), skip, cancellationToken);
+        public IAsyncEnumerable<EmojiSearchMatchData> SearchEmojiAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<EmojiSearchMatchData>, Partial<EmojiSearchMatchData>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchEmojiAsync(query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<EmojiSearchMatchData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EmojiSearchMatchData>.Default())), skip, cancellationToken);
     
     }
     

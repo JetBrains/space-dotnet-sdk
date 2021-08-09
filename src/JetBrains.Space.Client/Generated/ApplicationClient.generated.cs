@@ -157,7 +157,7 @@ namespace JetBrains.Space.Client
         }
         
     
-        public async Task<Batch<AppMessageDelivery>> LatestMessagesDeliveriesAsync(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<Batch<AppMessageDelivery>>, Partial<Batch<AppMessageDelivery>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<AppMessageDelivery>> LatestMessageDeliveriesAsync(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<Batch<AppMessageDelivery>>, Partial<Batch<AppMessageDelivery>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
@@ -168,8 +168,8 @@ namespace JetBrains.Space.Client
         }
         
         
-        public IAsyncEnumerable<AppMessageDelivery> LatestMessagesDeliveriesAsyncEnumerable(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<AppMessageDelivery>, Partial<AppMessageDelivery>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => LatestMessagesDeliveriesAsync(application: application, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AppMessageDelivery>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AppMessageDelivery>.Default())), skip, cancellationToken);
+        public IAsyncEnumerable<AppMessageDelivery> LatestMessageDeliveriesAsyncEnumerable(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<AppMessageDelivery>, Partial<AppMessageDelivery>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => LatestMessageDeliveriesAsync(application: application, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AppMessageDelivery>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AppMessageDelivery>.Default())), skip, cancellationToken);
     
         /// <remarks>
         /// Required permissions:
@@ -289,7 +289,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task RegenerateAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+            public async Task RegenerateAppSecretAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -353,7 +353,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get permanent tokens used to access the current organisation by the given application.
+            /// Get permanent tokens used to access the current organisation by the given application
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -375,7 +375,7 @@ namespace JetBrains.Space.Client
             
             
             /// <summary>
-            /// Get permanent tokens used to access the current organisation by the given application.
+            /// Get permanent tokens used to access the current organisation by the given application
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -477,7 +477,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task RegenerateAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+            public async Task RegenerateSigningKeyAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -543,7 +543,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<List<ESSshKey>> GetSshKeyAsync(ApplicationIdentifier application, Func<Partial<ESSshKey>, Partial<ESSshKey>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<ESSshKey>> GetSshKeysAsync(ApplicationIdentifier application, Func<Partial<ESSshKey>, Partial<ESSshKey>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESSshKey>()) : Partial<ESSshKey>.Default()).ToString());
@@ -589,7 +589,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task RegenerateAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+            public async Task RegenerateVerificationTokenAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 

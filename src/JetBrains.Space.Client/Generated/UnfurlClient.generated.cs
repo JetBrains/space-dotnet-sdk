@@ -83,7 +83,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Disable link unfurling
+        /// Unblock link unfurling
         /// </summary>
         public async Task UnblockUnfurlAsync(string link, bool wholeHost, CancellationToken cancellationToken = default)
         {
@@ -99,7 +99,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Disable blocking link unfurling for organization
+        /// Unblock link unfurling for organization
         /// </summary>
         public async Task UnblockUnfurlGlobalAsync(string link, bool wholeHost, CancellationToken cancellationToken = default)
         {

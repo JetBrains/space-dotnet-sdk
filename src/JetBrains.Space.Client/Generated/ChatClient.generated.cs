@@ -93,7 +93,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Restore an archived channel, and allow new messages to be added
+            /// Restore an archived channel and allow new messages to be added again
             /// </summary>
             public async Task RestoreArchivedChannelAsync(string channelId, CancellationToken cancellationToken = default)
             {
@@ -133,7 +133,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Archive a channel, and reject new messages being added. It is still possible to view messages from an archived channel. It is possible to restore the channel later.
+            /// Archive a channel and reject new messages being added. It is still possible to view messages from an archived channel. It is possible to restore the channel later.
             /// </summary>
             public async Task ArchiveChannelAsync(string channelId, CancellationToken cancellationToken = default)
             {

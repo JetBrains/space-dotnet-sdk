@@ -194,7 +194,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Re-order custom fields. Pass IDs of the custom fields in the order you wish the custom fields to be.
             /// </summary>
-            public async Task ReorderAsync(string typeKey, List<string> customFieldOrder, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
+            public async Task ReorderFieldsAsync(string typeKey, List<string> customFieldOrder, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -210,7 +210,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Archive a custom field for a type
             /// </summary>
-            public async Task ArchiveAsync(string typeKey, string id, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
+            public async Task ArchiveFieldAsync(string typeKey, string id, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -225,7 +225,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Restore custom field for a type
             /// </summary>
-            public async Task RestoreAsync(string typeKey, string id, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
+            public async Task RestoreFieldAsync(string typeKey, string id, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -252,7 +252,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Update custom field for a type. Optional parameters will be ignored when not specified, and updated otherwise.
+            /// Update custom field for a type. Optional parameters will be ignored when not specified and updated otherwise.
             /// </summary>
             public async Task UpdateFieldAsync(string typeKey, string id, ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFInputValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null, CFParametersInput? cfParameters = null, CancellationToken cancellationToken = default)
             {

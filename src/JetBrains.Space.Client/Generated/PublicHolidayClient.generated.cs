@@ -69,7 +69,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Import holidays in a public holiday calendar, using an attachment (.ics format) as the source
             /// </summary>
-            public async Task<string> ImportAsync(string calendar, string attachmentId, CancellationToken cancellationToken = default)
+            public async Task<string> ImportCalendarAsync(string calendar, string attachmentId, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -144,7 +144,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Add a holiday to a public holiday calendar, and specify if it is a working day or not
+            /// Add a holiday to a public holiday calendar and specify if it is a working day or not
             /// </summary>
             public async Task<PublicHoliday> CreateHolidayAsync(string calendar, string name, DateTime date, bool workingDay, bool? halfDay = false, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -188,7 +188,7 @@ namespace JetBrains.Space.Client
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllHolidaysAsync(top: top, calendar: calendar, location: location, startDate: startDate, endDate: endDate, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PublicHoliday>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PublicHoliday>.Default())), skip, cancellationToken);
         
             /// <summary>
-            /// Update a holiday in a public holiday calendar. Optional parameters will be ignored when not specified, and updated otherwise.
+            /// Update a holiday in a public holiday calendar. Optional parameters will be ignored when not specified and updated otherwise.
             /// </summary>
             public async Task<PublicHoliday> UpdateHolidayAsync(string id, string? calendar = null, string? name = null, DateTime? date = null, bool? workingDay = null, bool? halfDay = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
             {

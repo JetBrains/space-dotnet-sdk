@@ -34,14 +34,24 @@ namespace JetBrains.Space.Client
     {
         public ChannelSpecificDefaults() { }
         
-        public ChannelSpecificDefaults(NotificationFilter filter, bool push, M2EmailNotificationType email, bool? threadsSubscribed = null)
+        public ChannelSpecificDefaults(NotificationFilter filter, bool push, M2EmailNotificationType email, bool? subscribed = null, bool? threadsSubscribed = null)
         {
+            IsSubscribed = subscribed;
             Filter = filter;
             IsPush = push;
             Email = email;
             IsThreadsSubscribed = threadsSubscribed;
         }
         
+        private PropertyValue<bool?> _subscribed = new PropertyValue<bool?>(nameof(ChannelSpecificDefaults), nameof(IsSubscribed));
+        
+        [JsonPropertyName("subscribed")]
+        public bool? IsSubscribed
+        {
+            get => _subscribed.GetValue();
+            set => _subscribed.SetValue(value);
+        }
+    
         private PropertyValue<NotificationFilter> _filter = new PropertyValue<NotificationFilter>(nameof(ChannelSpecificDefaults), nameof(Filter));
         
         [Required]
@@ -83,6 +93,7 @@ namespace JetBrains.Space.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
+            _subscribed.SetAccessPath(path, validateHasBeenSet);
             _filter.SetAccessPath(path, validateHasBeenSet);
             _push.SetAccessPath(path, validateHasBeenSet);
             _email.SetAccessPath(path, validateHasBeenSet);

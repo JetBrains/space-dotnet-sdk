@@ -62,7 +62,7 @@ namespace JetBrains.Space.Client
         }
         
     
-        public async Task<CertificateInfo> InfoAsync(string data, Func<Partial<CertificateInfo>, Partial<CertificateInfo>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<CertificateInfo> GetCertificateInfoAsync(string data, Func<Partial<CertificateInfo>, Partial<CertificateInfo>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("data", data);

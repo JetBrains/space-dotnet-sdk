@@ -38,6 +38,12 @@ namespace JetBrains.Space.Client
         public static BooleanCFValue BooleanCFValue(bool? value = null)
             => new BooleanCFValue(value: value);
         
+        public static ContactCFValue ContactCFValue(string? value = null)
+            => new ContactCFValue(value: value);
+        
+        public static ContactListCFValue ContactListCFValue(List<string> values)
+            => new ContactListCFValue(values: values);
+        
         public static DateCFValue DateCFValue(DateTime? value = null)
             => new DateCFValue(value: value);
         

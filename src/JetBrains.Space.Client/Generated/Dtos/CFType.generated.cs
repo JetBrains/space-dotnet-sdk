@@ -42,6 +42,12 @@ namespace JetBrains.Space.Client
         public static BooleanCFType Boolean()
             => new BooleanCFType();
         
+        public static ContactCFType Contact()
+            => new ContactCFType();
+        
+        public static ContactListCFType ContactList()
+            => new ContactListCFType();
+        
         public static DateCFType Date()
             => new DateCFType();
         

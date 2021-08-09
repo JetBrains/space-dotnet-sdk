@@ -27,19 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.TDContactKindPhoneNumberPartialBuilder
 {
-    public interface CFParametersInput
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class TDContactKindPhoneNumberPartialExtensions
     {
-        public static AutonumberCFParameters AutonumberCFParameters(string prefix, string suffix)
-            => new AutonumberCFParameters(prefix: prefix, suffix: suffix);
-        
-        public static ContactCFParameters ContactCFParameters(TDContactKind? contactKind = null)
-            => new ContactCFParameters(contactKind: contactKind);
-        
-        public static DocumentCFParametersInput Document(DocumentCFScopeInput documentScope)
-            => new DocumentCFParametersInput(documentScope: documentScope);
+        public static Partial<TDContactKindPhoneNumber> WithType(this Partial<TDContactKindPhoneNumber> it)
+            => it.AddFieldName("type");
         
     }
     

@@ -411,6 +411,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
+            [Obsolete("Use 'getProfileParticipantRecords' instead (since 27.07.2021)")]
             public async Task<List<Pair<string, EventParticipationStatus>>> GetProfileParticipationStatusesForMeetingsAsync(string profileId, List<string> events, Func<Partial<Pair<string, EventParticipationStatus>>, Partial<Pair<string, EventParticipationStatus>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -419,6 +420,25 @@ namespace JetBrains.Space.Client
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<string, EventParticipationStatus>>()) : Partial<Pair<string, EventParticipationStatus>>.Default()).ToString());
                 
                 return await _connection.RequestResourceAsync<List<Pair<string, EventParticipationStatus>>>("GET", $"api/http/calendars/meetings/profile-participation{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View meetings</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<List<MeetingRSVP>> GetProfileParticipationStatusRecordsForMeetingsAsync(string profileId, List<string> events, Func<Partial<MeetingRSVP>, Partial<MeetingRSVP>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("profileId", profileId);
+                queryParameters.Append("events", events.Select(it => it));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingRSVP>()) : Partial<MeetingRSVP>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<MeetingRSVP>>("GET", $"api/http/calendars/meetings/profile-participation-records{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         

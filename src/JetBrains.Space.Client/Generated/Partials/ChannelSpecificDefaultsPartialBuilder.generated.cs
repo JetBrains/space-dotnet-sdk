@@ -31,6 +31,9 @@ namespace JetBrains.Space.Client.ChannelSpecificDefaultsPartialBuilder
 {
     public static class ChannelSpecificDefaultsPartialExtensions
     {
+        public static Partial<ChannelSpecificDefaults> WithIsSubscribed(this Partial<ChannelSpecificDefaults> it)
+            => it.AddFieldName("subscribed");
+        
         public static Partial<ChannelSpecificDefaults> WithFilter(this Partial<ChannelSpecificDefaults> it)
             => it.AddFieldName("filter");
         

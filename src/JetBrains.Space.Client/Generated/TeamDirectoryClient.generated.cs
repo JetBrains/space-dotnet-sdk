@@ -435,7 +435,7 @@ namespace JetBrains.Space.Client
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInvitationsAsync(withDeleted: withDeleted, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Invitation>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Invitation>.Default())), skip, cancellationToken);
         
             /// <summary>
-            /// Update an invitation. Optional parameters will be ignored when not specified, and updated otherwise.
+            /// Update an invitation. Optional parameters will be ignored when not specified and updated otherwise.
             /// </summary>
             public async Task UpdateInvitationAsync(string id, string? inviteeEmail = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDTeam? team = null, TDRole? role = null, CancellationToken cancellationToken = default)
             {
@@ -732,7 +732,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDLocation> RestoreAsync(string id, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDLocation> RestoreLocationAsync(string id, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default()).ToString());
@@ -785,7 +785,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Update a location. Optional parameters will be ignored when null, and updated otherwise.
+            /// Update a location. Optional parameters will be ignored when null and updated otherwise.
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -1033,7 +1033,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Update member location. Optional parameters will be ignored when null, and updated otherwise.
+            /// Update member location. Optional parameters will be ignored when null and updated otherwise.
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -1206,7 +1206,7 @@ namespace JetBrains.Space.Client
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMembershipsAsync(directTeams: directTeams, directRoles: directRoles, withArchived: withArchived, top: top, profiles: profiles, teams: teams, roles: roles, since: since, till: till, requiresApproval: requiresApproval, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMembership>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMembership>.Default())), skip, cancellationToken);
         
             /// <summary>
-            /// Update a team membership. Optional parameters will be ignored when null, and updated otherwise.
+            /// Update a team membership. Optional parameters will be ignored when null and updated otherwise.
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -1267,7 +1267,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task RevokeAsync(string membershipId, DateTime? till = null, CancellationToken cancellationToken = default)
+            public async Task RevokeMembershipAsync(string membershipId, DateTime? till = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (till != null) queryParameters.Append("till", till?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
@@ -1428,7 +1428,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task UpdateRequestRevokeAsync(string membershipId, DateTime till, CancellationToken cancellationToken = default)
+                public async Task RequestMembershipRevocationAsync(string membershipId, DateTime till, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -1595,7 +1595,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Update a profile. Optional parameters will be ignored when null, and updated otherwise.
+            /// Update a profile. Optional parameters will be ignored when null and updated otherwise.
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -1645,7 +1645,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDMemberProfile> ReactivateAsync(ProfileIdentifier profile, DateTime? joined = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDMemberProfile> ReactivateUserProfileAsync(ProfileIdentifier profile, DateTime? joined = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
@@ -1689,7 +1689,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDMemberProfile> DeactivateAsync(ProfileIdentifier profile, DateTime at, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDMemberProfile> DeactivateUserProfileAsync(ProfileIdentifier profile, DateTime at, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("at", at.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
@@ -1731,7 +1731,7 @@ namespace JetBrains.Space.Client
                 
             
                 /// <summary>
-                /// Terminate an existing authentication session. Doing so will close the session, and logout.
+                /// Terminate an existing authentication session. Doing so will close the session and log out.
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -1765,7 +1765,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Get all OAuth consents for a given profile ID
                 /// </summary>
-                public async Task<List<ESOAuthConsent>> GetAllOauthConsentsAsync(ProfileIdentifier owner, Func<Partial<ESOAuthConsent>, Partial<ESOAuthConsent>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<List<ESOAuthConsent>> GetOauthConsentsAsync(ProfileIdentifier owner, Func<Partial<ESOAuthConsent>, Partial<ESOAuthConsent>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESOAuthConsent>()) : Partial<ESOAuthConsent>.Default()).ToString());
@@ -2312,7 +2312,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<GpgKeyData> CreateGpgKeyAsync(ProfileIdentifier profile, string key, string comment = "", Func<Partial<GpgKeyData>, Partial<GpgKeyData>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<GpgKeyData> AddPublicGpgKeyAsync(ProfileIdentifier profile, string key, string comment = "", Func<Partial<GpgKeyData>, Partial<GpgKeyData>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<GpgKeyData>()) : Partial<GpgKeyData>.Default()).ToString());
@@ -2329,7 +2329,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// List GPG public keys associated with a profile
                 /// </summary>
-                public async Task<List<GpgKeyData>> GetAllGpgKeysAsync(ProfileIdentifier profile, Func<Partial<GpgKeyData>, Partial<GpgKeyData>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<List<GpgKeyData>> ListPublicGpgKeysAsync(ProfileIdentifier profile, Func<Partial<GpgKeyData>, Partial<GpgKeyData>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<GpgKeyData>()) : Partial<GpgKeyData>.Default()).ToString());
@@ -2346,7 +2346,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task UpdateGpgKeyAsync(ProfileIdentifier profile, string fingerprint, string comment = "", CancellationToken cancellationToken = default)
+                public async Task RevokePublicGpgKeyAsync(ProfileIdentifier profile, string fingerprint, string comment = "", CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -2366,7 +2366,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task DeleteGpgKeyAsync(ProfileIdentifier profile, string fingerprint, CancellationToken cancellationToken = default)
+                public async Task DeletePublicGpgKeyAsync(ProfileIdentifier profile, string fingerprint, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -2643,7 +2643,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// This endpoint will return profile information, and Space personalisation data such as projects in the navigation bar, etc.
+                /// This endpoint will return profile information and Space personalisation data such as projects in the navigation bar, etc.
                 /// </summary>
                 public async Task<SettingsValue> GetSpacePersonalizationDataForAProfileAsync(ProfileIdentifier profile, Func<Partial<SettingsValue>, Partial<SettingsValue>>? partial = null, CancellationToken cancellationToken = default)
                 {
@@ -2778,7 +2778,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task CreateSshKeyAsync(ProfileIdentifier profile, string key, string comment = "", CancellationToken cancellationToken = default)
+                public async Task AddSshKeyAsync(ProfileIdentifier profile, string key, string comment = "", CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -2794,7 +2794,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// List SSH public keys associated with the profile
                 /// </summary>
-                public async Task<List<SshKeyData>> GetAllSshKeysAsync(ProfileIdentifier profile, Func<Partial<SshKeyData>, Partial<SshKeyData>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<List<SshKeyData>> SshKeysAsync(ProfileIdentifier profile, Func<Partial<SshKeyData>, Partial<SshKeyData>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<SshKeyData>()) : Partial<SshKeyData>.Default()).ToString());
@@ -2883,7 +2883,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Set VCS password for a profile. This password can be used to access Space repositories over HTTPS.
                 /// </summary>
-                public async Task UpdateVcsPasswordAsync(ProfileIdentifier profile, string password, CancellationToken cancellationToken = default)
+                public async Task SetVcsPasswordAsync(ProfileIdentifier profile, string password, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -2957,7 +2957,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDRole> RestoreAsync(string id, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDRole> RestoreRoleAsync(string id, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default()).ToString());
@@ -3009,7 +3009,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Update a role. Optional parameters will be ignored when null, and updated otherwise.
+            /// Update a role. Optional parameters will be ignored when null and updated otherwise.
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3066,7 +3066,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Get statistics of total members, and members per location, role, and team. Parameters are applied as 'AND' filters.
+            /// Get statistics of total members, as well as members per location, role, and team. Parameters are applied as 'AND' filters.
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3138,7 +3138,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Cancel disbanding a team, and restore its members
+            /// Cancel disbanding a team and restore its members
             /// </summary>
             /// <remarks>
             /// Required permissions:

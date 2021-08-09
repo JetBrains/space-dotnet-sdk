@@ -76,7 +76,7 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task ReorderAsync(List<string> order, CancellationToken cancellationToken = default)
+        public async Task ReorderAuthenticationModulesAsync(List<string> order, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -153,7 +153,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Update an existing authentication module. Optional parameters will be ignored when not specified, and updated otherwise.
+        /// Update an existing authentication module. Optional parameters will be ignored when not specified and updated otherwise.
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -373,9 +373,9 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Change password for a given authentication module (id) and profile (identifier).
+            /// Change password for a given authentication module (id) and profile (identifier)
             /// </summary>
-            public async Task ChangeAsync(string id, string identifier, string oldPassword, string newPassword, CancellationToken cancellationToken = default)
+            public async Task ChangePasswordAsync(string id, string identifier, string oldPassword, string newPassword, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -389,9 +389,9 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Request a password reset for a given authentication module (id) and profile (identifier).
+            /// Request a password reset for a given authentication module (id) and profile (identifier)
             /// </summary>
-            public async Task ResetAsync(string id, string identifier, CancellationToken cancellationToken = default)
+            public async Task ResetPasswordAsync(string id, string identifier, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 

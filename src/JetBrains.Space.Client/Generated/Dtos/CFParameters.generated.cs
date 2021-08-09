@@ -35,6 +35,9 @@ namespace JetBrains.Space.Client
         public static AutonumberCFParameters Autonumber(string prefix, string suffix)
             => new AutonumberCFParameters(prefix: prefix, suffix: suffix);
         
+        public static ContactCFParameters Contact(TDContactKind? contactKind = null)
+            => new ContactCFParameters(contactKind: contactKind);
+        
         public static DocumentCFParameters Document(DocumentCFScope documentScope)
             => new DocumentCFParameters(documentScope: documentScope);
         

@@ -31,8 +31,8 @@ namespace JetBrains.Space.Client.PackagesSubscriptionFilterInPartialBuilder
 {
     public static class PackagesSubscriptionFilterInPartialExtensions
     {
-        public static Partial<PackagesSubscriptionFilterIn> WithProjects(this Partial<PackagesSubscriptionFilterIn> it)
-            => it.AddFieldName("projects");
+        public static Partial<PackagesSubscriptionFilterIn> WithProject(this Partial<PackagesSubscriptionFilterIn> it)
+            => it.AddFieldName("project");
         
         public static Partial<PackagesSubscriptionFilterIn> WithRepository(this Partial<PackagesSubscriptionFilterIn> it)
             => it.AddFieldName("repository");

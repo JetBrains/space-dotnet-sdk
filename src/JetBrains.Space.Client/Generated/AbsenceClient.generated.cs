@@ -178,7 +178,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Update an existing absence. Optional parameters will be ignored when not specified, and updated otherwise.
+        /// Update an existing absence. Optional parameters will be ignored when not specified and updated otherwise.
         /// </summary>
         /// <remarks>
         /// Required permissions:

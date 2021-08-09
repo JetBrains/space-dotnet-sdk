@@ -37,22 +37,21 @@ namespace JetBrains.Space.Client
         
         public PackagesSubscriptionFilter() { }
         
-        public PackagesSubscriptionFilter(List<PRProject> projects, List<string> namePattern, ProjectPackageRepository? repository = null, string? versionPattern = null)
+        public PackagesSubscriptionFilter(List<string> namePattern, PRProject? project = null, ProjectPackageRepository? repository = null, string? versionPattern = null)
         {
-            Projects = projects;
+            Project = project;
             Repository = repository;
             NamePattern = namePattern;
             VersionPattern = versionPattern;
         }
         
-        private PropertyValue<List<PRProject>> _projects = new PropertyValue<List<PRProject>>(nameof(PackagesSubscriptionFilter), nameof(Projects), new List<PRProject>());
+        private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(PackagesSubscriptionFilter), nameof(Project));
         
-        [Required]
-        [JsonPropertyName("projects")]
-        public List<PRProject> Projects
+        [JsonPropertyName("project")]
+        public PRProject? Project
         {
-            get => _projects.GetValue();
-            set => _projects.SetValue(value);
+            get => _project.GetValue();
+            set => _project.SetValue(value);
         }
     
         private PropertyValue<ProjectPackageRepository?> _repository = new PropertyValue<ProjectPackageRepository?>(nameof(PackagesSubscriptionFilter), nameof(Repository));
@@ -85,7 +84,7 @@ namespace JetBrains.Space.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _projects.SetAccessPath(path, validateHasBeenSet);
+            _project.SetAccessPath(path, validateHasBeenSet);
             _repository.SetAccessPath(path, validateHasBeenSet);
             _namePattern.SetAccessPath(path, validateHasBeenSet);
             _versionPattern.SetAccessPath(path, validateHasBeenSet);

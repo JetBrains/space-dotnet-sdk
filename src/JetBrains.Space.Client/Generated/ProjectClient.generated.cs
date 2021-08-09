@@ -151,7 +151,7 @@ namespace JetBrains.Space.Client
         
     
         /// <summary>
-        /// Update an existing project. Optional parameters will be ignored when not specified, and updated otherwise.
+        /// Update an existing project. Optional parameters will be ignored when not specified and updated otherwise.
         /// </summary>
         public async Task<PRProject> UpdateProjectAsync(ProjectIdentifier project, ProjectKey? key = null, string? name = null, string? description = null, bool? @private = null, List<string>? tags = null, string? icon = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
         {
@@ -205,7 +205,7 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Stop execution by ExecutionId.
+                /// Stop execution by ExecutionId
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -215,7 +215,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task StopAsync(string id, CancellationToken cancellationToken = default)
+                public async Task StopExecutionAsync(string id, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -418,7 +418,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<LaunchResult> StartAsync(ProjectIdentifier project, string jobId, Branch branch, Func<Partial<LaunchResult>, Partial<LaunchResult>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<LaunchResult> StartJobAsync(ProjectIdentifier project, string jobId, Branch branch, Func<Partial<LaunchResult>, Partial<LaunchResult>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<LaunchResult>()) : Partial<LaunchResult>.Default()).ToString());
@@ -2231,7 +2231,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Edit an existing responsibility.
+            /// Edit an existing responsibility
             /// </summary>
             public async Task UpdateResponsibilityAsync(string responsibilityId, string summary, string? notes = null, CancellationToken cancellationToken = default)
             {
@@ -2247,7 +2247,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Delete an existing responsibility.
+            /// Delete an existing responsibility
             /// </summary>
             public async Task DeleteResponsibilityAsync(string responsibilityId, CancellationToken cancellationToken = default)
             {
@@ -3142,7 +3142,7 @@ namespace JetBrains.Space.Client
             }
             
         
-            public async Task<List<TDMemberProfile>> SuggestedReviewersAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<TDMemberProfile>> GetSuggestedReviewersAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
@@ -3151,7 +3151,7 @@ namespace JetBrains.Space.Client
             }
             
         
-            public async Task<List<RevisionInReview>> UnreadRevisionsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<RevisionInReview>, Partial<RevisionInReview>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<RevisionInReview>> GetUnreadRevisionsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<RevisionInReview>, Partial<RevisionInReview>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<RevisionInReview>()) : Partial<RevisionInReview>.Default()).ToString());

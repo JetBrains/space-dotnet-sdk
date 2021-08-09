@@ -242,7 +242,7 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Get personal subscription settings for a member
+            /// Update personal subscription settings for a member
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -268,7 +268,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// Get personal subscription settings for a member
+            /// Update personal subscription settings for a member
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -294,7 +294,7 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
-            /// List all personal subscription events
+            /// List all personal subscription targets
             /// </summary>
             public async Task<List<PersonalSubscriptionTarget>> AllPersonalSubscriptionTargetsAsync(Func<Partial<PersonalSubscriptionTarget>, Partial<PersonalSubscriptionTarget>>? partial = null, CancellationToken cancellationToken = default)
             {
@@ -316,7 +316,7 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<PersonalSubscriptionSettings> PersonalSubscriptionSettingsAsync(ProfileIdentifier profile, string feed, Func<Partial<PersonalSubscriptionSettings>, Partial<PersonalSubscriptionSettings>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<PersonalSubscriptionSettings> GetPersonalSubscriptionSettingsAsync(ProfileIdentifier profile, string feed, Func<Partial<PersonalSubscriptionSettings>, Partial<PersonalSubscriptionSettings>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("profile", profile.ToString());
