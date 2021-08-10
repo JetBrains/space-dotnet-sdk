@@ -96,9 +96,11 @@ JetBrains.Space does not handle retrieving an access token that can be used with
 
 Scope is a mechanism in OAuth 2.0 to limit an application's access to a user's account.
 
-On a `Connection` instance, use the `Scope` property to specify the scope required by an application. By default, JetBrains.Space uses the `**` scope, which requests all available scopes.
+On a `Connection` instance, use the `Scope` property to specify the scope required by an application. 
 
-More [examples of available scopes](https://www.jetbrains.com/help/space/oauth-2-0-authorization.html) are available in the Space documentation.
+> **Warning:** By default, JetBrains.Space uses the `**` scope, which requests all available scopes. It is recommended to limit the scope to just those permissions that are needed by your application.
+
+Examples of [available scopes](https://www.jetbrains.com/help/space/oauth-2-0-authorization.html) are available in the Space documentation.
 
 ### Service Client
 
