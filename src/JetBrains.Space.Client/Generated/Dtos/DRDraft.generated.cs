@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public DRDraft() { }
         
-        public DRDraft(string id, string title, DateTime modified, bool shared, bool published, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBody documentBody, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
+        public DRDraft(string id, string title, DateTime modified, bool shared, bool published, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBody documentBody, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
         {
             Id = id;
             Title = title;
@@ -43,6 +43,8 @@ namespace JetBrains.Space.Client
             ModifiedBy = modifiedBy;
             IsShared = shared;
             IsDeleted = deleted;
+            ArchivedBy = archivedBy;
+            ArchivedAt = archivedAt;
             PublicationDetails2 = publicationDetails2;
             Author = author;
             IsPublished = published;
@@ -123,6 +125,25 @@ namespace JetBrains.Space.Client
         {
             get => _deleted.GetValue();
             set => _deleted.SetValue(value);
+        }
+    
+        private PropertyValue<CPrincipal?> _archivedBy = new PropertyValue<CPrincipal?>(nameof(DRDraft), nameof(ArchivedBy));
+        
+        [JsonPropertyName("archivedBy")]
+        public CPrincipal? ArchivedBy
+        {
+            get => _archivedBy.GetValue();
+            set => _archivedBy.SetValue(value);
+        }
+    
+        private PropertyValue<DateTime?> _archivedAt = new PropertyValue<DateTime?>(nameof(DRDraft), nameof(ArchivedAt));
+        
+        [JsonPropertyName("archivedAt")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? ArchivedAt
+        {
+            get => _archivedAt.GetValue();
+            set => _archivedAt.SetValue(value);
         }
     
         private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DRDraft), nameof(PublicationDetails2));
@@ -240,6 +261,8 @@ namespace JetBrains.Space.Client
             _modifiedBy.SetAccessPath(path, validateHasBeenSet);
             _shared.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);
+            _archivedBy.SetAccessPath(path, validateHasBeenSet);
+            _archivedAt.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
             _published.SetAccessPath(path, validateHasBeenSet);

@@ -100,6 +100,9 @@ namespace JetBrains.Space.Client.PurchasedBillingPlanPartialBuilder
         public static Partial<PurchasedBillingPlan> WithSearchHistory(this Partial<PurchasedBillingPlan> it)
             => it.AddFieldName("searchHistory");
         
+        public static Partial<PurchasedBillingPlan> WithBalance(this Partial<PurchasedBillingPlan> it)
+            => it.AddFieldName("balance");
+        
         public static Partial<PurchasedBillingPlan> WithHardLimitAmount(this Partial<PurchasedBillingPlan> it)
             => it.AddFieldName("hardLimitAmount");
         

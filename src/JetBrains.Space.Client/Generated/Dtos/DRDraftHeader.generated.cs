@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public DRDraftHeader() { }
         
-        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
+        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
         {
             Id = id;
             Title = title;
@@ -45,6 +45,8 @@ namespace JetBrains.Space.Client
             IsShared = shared;
             PublicationDetails2 = publicationDetails2;
             IsDeleted = deleted;
+            ArchivedBy = archivedBy;
+            ArchivedAt = archivedAt;
             Folder = folder;
             FolderRef = folderRef;
             ContainerInfo = containerInfo;
@@ -139,6 +141,25 @@ namespace JetBrains.Space.Client
             set => _deleted.SetValue(value);
         }
     
+        private PropertyValue<CPrincipal?> _archivedBy = new PropertyValue<CPrincipal?>(nameof(DRDraftHeader), nameof(ArchivedBy));
+        
+        [JsonPropertyName("archivedBy")]
+        public CPrincipal? ArchivedBy
+        {
+            get => _archivedBy.GetValue();
+            set => _archivedBy.SetValue(value);
+        }
+    
+        private PropertyValue<DateTime?> _archivedAt = new PropertyValue<DateTime?>(nameof(DRDraftHeader), nameof(ArchivedAt));
+        
+        [JsonPropertyName("archivedAt")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? ArchivedAt
+        {
+            get => _archivedAt.GetValue();
+            set => _archivedAt.SetValue(value);
+        }
+    
         private PropertyValue<DocumentFolderRecord?> _folder = new PropertyValue<DocumentFolderRecord?>(nameof(DRDraftHeader), nameof(Folder));
         
         [JsonPropertyName("folder")]
@@ -188,6 +209,8 @@ namespace JetBrains.Space.Client
             _shared.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);
+            _archivedBy.SetAccessPath(path, validateHasBeenSet);
+            _archivedAt.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
             _folderRef.SetAccessPath(path, validateHasBeenSet);
             _containerInfo.SetAccessPath(path, validateHasBeenSet);

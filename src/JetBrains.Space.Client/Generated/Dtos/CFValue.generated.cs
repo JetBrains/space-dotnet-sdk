@@ -111,6 +111,12 @@ namespace JetBrains.Space.Client
         public static UrlCFValue Url(string? href = null)
             => new UrlCFValue(href: href);
         
+        public static VcsCommitCFValue VcsCommit(CFCommitInfoBase? commit = null)
+            => new VcsCommitCFValue(commit: commit);
+        
+        public static VcsCommitListCFValue VcsCommitList(List<CFCommitInfoBase> commits)
+            => new VcsCommitListCFValue(commits: commits);
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

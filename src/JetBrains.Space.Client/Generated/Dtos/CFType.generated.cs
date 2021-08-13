@@ -111,6 +111,12 @@ namespace JetBrains.Space.Client
         public static UrlCFType Url()
             => new UrlCFType();
         
+        public static VcsCommitCFType VcsCommit()
+            => new VcsCommitCFType();
+        
+        public static VcsCommitListCFType VcsCommitList()
+            => new VcsCommitListCFType();
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

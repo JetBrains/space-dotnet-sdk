@@ -34,34 +34,35 @@ namespace JetBrains.Space.Client
     {
         public BillingReportDay() { }
         
-        public BillingReportDay(DateTime date, int activeUsers, int chargedUsers, double userBalance, long storageTotalUsage, long storageFilesUsage, long storageGitUsage, long storagePackagesUsage, long storageOverdraftB, double storageBalance, long bandwidthTotalUsage, long bandwidthFilesUsage, long bandwidthGitUsage, long bandwidthPackagesUsage, long bandwidthAutomationUsage, long bandwidthOverdraftB, double bandwidthBalance, long ciUsage, long ciOverdraft, double ciBalance, long appUsage, long chatUsage, double totalBalance, long? storageActualLimitB = null, long? bandwidthLeftoversB = null, long? ciLeftovers = null)
+        public BillingReportDay(DateTime date, int activeUsers, int userUsage, double userCost, long storageTotalUsage, long storageFilesUsage, long storageGitUsage, long storagePackagesUsage, double storageCost, long bandwidthTotalUsageDelta, long bandwidthTotalUsage, long bandwidthFilesUsageDelta, long bandwidthFilesUsage, long bandwidthGitUsageDelta, long bandwidthGitUsage, long bandwidthPackagesUsageDelta, long bandwidthPackagesUsage, long bandwidthAutomationUsageDelta, long bandwidthAutomationUsage, double bandwidthCost, long ciUsageDelta, long ciUsage, double ciCost, long appUsage, long chatUsage, double totalCost, long? storageAllocationB = null)
         {
             Date = date;
             ActiveUsers = activeUsers;
-            ChargedUsers = chargedUsers;
-            UserBalance = userBalance;
-            StorageActualLimitB = storageActualLimitB;
+            UserUsage = userUsage;
+            UserCost = userCost;
+            StorageAllocationB = storageAllocationB;
             StorageTotalUsage = storageTotalUsage;
             StorageFilesUsage = storageFilesUsage;
             StorageGitUsage = storageGitUsage;
             StoragePackagesUsage = storagePackagesUsage;
-            StorageOverdraftB = storageOverdraftB;
-            StorageBalance = storageBalance;
-            BandwidthLeftoversB = bandwidthLeftoversB;
+            StorageCost = storageCost;
+            BandwidthTotalUsageDelta = bandwidthTotalUsageDelta;
             BandwidthTotalUsage = bandwidthTotalUsage;
+            BandwidthFilesUsageDelta = bandwidthFilesUsageDelta;
             BandwidthFilesUsage = bandwidthFilesUsage;
+            BandwidthGitUsageDelta = bandwidthGitUsageDelta;
             BandwidthGitUsage = bandwidthGitUsage;
+            BandwidthPackagesUsageDelta = bandwidthPackagesUsageDelta;
             BandwidthPackagesUsage = bandwidthPackagesUsage;
+            BandwidthAutomationUsageDelta = bandwidthAutomationUsageDelta;
             BandwidthAutomationUsage = bandwidthAutomationUsage;
-            BandwidthOverdraftB = bandwidthOverdraftB;
-            BandwidthBalance = bandwidthBalance;
-            CiLeftovers = ciLeftovers;
+            BandwidthCost = bandwidthCost;
+            CiUsageDelta = ciUsageDelta;
             CiUsage = ciUsage;
-            CiOverdraft = ciOverdraft;
-            CiBalance = ciBalance;
+            CiCost = ciCost;
             AppUsage = appUsage;
             ChatUsage = chatUsage;
-            TotalBalance = totalBalance;
+            TotalCost = totalCost;
         }
         
         private PropertyValue<DateTime> _date = new PropertyValue<DateTime>(nameof(BillingReportDay), nameof(Date));
@@ -85,33 +86,33 @@ namespace JetBrains.Space.Client
             set => _activeUsers.SetValue(value);
         }
     
-        private PropertyValue<int> _chargedUsers = new PropertyValue<int>(nameof(BillingReportDay), nameof(ChargedUsers));
+        private PropertyValue<int> _userUsage = new PropertyValue<int>(nameof(BillingReportDay), nameof(UserUsage));
         
         [Required]
-        [JsonPropertyName("chargedUsers")]
-        public int ChargedUsers
+        [JsonPropertyName("userUsage")]
+        public int UserUsage
         {
-            get => _chargedUsers.GetValue();
-            set => _chargedUsers.SetValue(value);
+            get => _userUsage.GetValue();
+            set => _userUsage.SetValue(value);
         }
     
-        private PropertyValue<double> _userBalance = new PropertyValue<double>(nameof(BillingReportDay), nameof(UserBalance));
+        private PropertyValue<double> _userCost = new PropertyValue<double>(nameof(BillingReportDay), nameof(UserCost));
         
         [Required]
-        [JsonPropertyName("userBalance")]
-        public double UserBalance
+        [JsonPropertyName("userCost")]
+        public double UserCost
         {
-            get => _userBalance.GetValue();
-            set => _userBalance.SetValue(value);
+            get => _userCost.GetValue();
+            set => _userCost.SetValue(value);
         }
     
-        private PropertyValue<long?> _storageActualLimitB = new PropertyValue<long?>(nameof(BillingReportDay), nameof(StorageActualLimitB));
+        private PropertyValue<long?> _storageAllocationB = new PropertyValue<long?>(nameof(BillingReportDay), nameof(StorageAllocationB));
         
-        [JsonPropertyName("storageActualLimitB")]
-        public long? StorageActualLimitB
+        [JsonPropertyName("storageAllocationB")]
+        public long? StorageAllocationB
         {
-            get => _storageActualLimitB.GetValue();
-            set => _storageActualLimitB.SetValue(value);
+            get => _storageAllocationB.GetValue();
+            set => _storageAllocationB.SetValue(value);
         }
     
         private PropertyValue<long> _storageTotalUsage = new PropertyValue<long>(nameof(BillingReportDay), nameof(StorageTotalUsage));
@@ -154,33 +155,24 @@ namespace JetBrains.Space.Client
             set => _storagePackagesUsage.SetValue(value);
         }
     
-        private PropertyValue<long> _storageOverdraftB = new PropertyValue<long>(nameof(BillingReportDay), nameof(StorageOverdraftB));
+        private PropertyValue<double> _storageCost = new PropertyValue<double>(nameof(BillingReportDay), nameof(StorageCost));
         
         [Required]
-        [JsonPropertyName("storageOverdraftB")]
-        public long StorageOverdraftB
+        [JsonPropertyName("storageCost")]
+        public double StorageCost
         {
-            get => _storageOverdraftB.GetValue();
-            set => _storageOverdraftB.SetValue(value);
+            get => _storageCost.GetValue();
+            set => _storageCost.SetValue(value);
         }
     
-        private PropertyValue<double> _storageBalance = new PropertyValue<double>(nameof(BillingReportDay), nameof(StorageBalance));
+        private PropertyValue<long> _bandwidthTotalUsageDelta = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthTotalUsageDelta));
         
         [Required]
-        [JsonPropertyName("storageBalance")]
-        public double StorageBalance
+        [JsonPropertyName("bandwidthTotalUsageDelta")]
+        public long BandwidthTotalUsageDelta
         {
-            get => _storageBalance.GetValue();
-            set => _storageBalance.SetValue(value);
-        }
-    
-        private PropertyValue<long?> _bandwidthLeftoversB = new PropertyValue<long?>(nameof(BillingReportDay), nameof(BandwidthLeftoversB));
-        
-        [JsonPropertyName("bandwidthLeftoversB")]
-        public long? BandwidthLeftoversB
-        {
-            get => _bandwidthLeftoversB.GetValue();
-            set => _bandwidthLeftoversB.SetValue(value);
+            get => _bandwidthTotalUsageDelta.GetValue();
+            set => _bandwidthTotalUsageDelta.SetValue(value);
         }
     
         private PropertyValue<long> _bandwidthTotalUsage = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthTotalUsage));
@@ -193,6 +185,16 @@ namespace JetBrains.Space.Client
             set => _bandwidthTotalUsage.SetValue(value);
         }
     
+        private PropertyValue<long> _bandwidthFilesUsageDelta = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthFilesUsageDelta));
+        
+        [Required]
+        [JsonPropertyName("bandwidthFilesUsageDelta")]
+        public long BandwidthFilesUsageDelta
+        {
+            get => _bandwidthFilesUsageDelta.GetValue();
+            set => _bandwidthFilesUsageDelta.SetValue(value);
+        }
+    
         private PropertyValue<long> _bandwidthFilesUsage = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthFilesUsage));
         
         [Required]
@@ -201,6 +203,16 @@ namespace JetBrains.Space.Client
         {
             get => _bandwidthFilesUsage.GetValue();
             set => _bandwidthFilesUsage.SetValue(value);
+        }
+    
+        private PropertyValue<long> _bandwidthGitUsageDelta = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthGitUsageDelta));
+        
+        [Required]
+        [JsonPropertyName("bandwidthGitUsageDelta")]
+        public long BandwidthGitUsageDelta
+        {
+            get => _bandwidthGitUsageDelta.GetValue();
+            set => _bandwidthGitUsageDelta.SetValue(value);
         }
     
         private PropertyValue<long> _bandwidthGitUsage = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthGitUsage));
@@ -213,6 +225,16 @@ namespace JetBrains.Space.Client
             set => _bandwidthGitUsage.SetValue(value);
         }
     
+        private PropertyValue<long> _bandwidthPackagesUsageDelta = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthPackagesUsageDelta));
+        
+        [Required]
+        [JsonPropertyName("bandwidthPackagesUsageDelta")]
+        public long BandwidthPackagesUsageDelta
+        {
+            get => _bandwidthPackagesUsageDelta.GetValue();
+            set => _bandwidthPackagesUsageDelta.SetValue(value);
+        }
+    
         private PropertyValue<long> _bandwidthPackagesUsage = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthPackagesUsage));
         
         [Required]
@@ -221,6 +243,16 @@ namespace JetBrains.Space.Client
         {
             get => _bandwidthPackagesUsage.GetValue();
             set => _bandwidthPackagesUsage.SetValue(value);
+        }
+    
+        private PropertyValue<long> _bandwidthAutomationUsageDelta = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthAutomationUsageDelta));
+        
+        [Required]
+        [JsonPropertyName("bandwidthAutomationUsageDelta")]
+        public long BandwidthAutomationUsageDelta
+        {
+            get => _bandwidthAutomationUsageDelta.GetValue();
+            set => _bandwidthAutomationUsageDelta.SetValue(value);
         }
     
         private PropertyValue<long> _bandwidthAutomationUsage = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthAutomationUsage));
@@ -233,33 +265,24 @@ namespace JetBrains.Space.Client
             set => _bandwidthAutomationUsage.SetValue(value);
         }
     
-        private PropertyValue<long> _bandwidthOverdraftB = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthOverdraftB));
+        private PropertyValue<double> _bandwidthCost = new PropertyValue<double>(nameof(BillingReportDay), nameof(BandwidthCost));
         
         [Required]
-        [JsonPropertyName("bandwidthOverdraftB")]
-        public long BandwidthOverdraftB
+        [JsonPropertyName("bandwidthCost")]
+        public double BandwidthCost
         {
-            get => _bandwidthOverdraftB.GetValue();
-            set => _bandwidthOverdraftB.SetValue(value);
+            get => _bandwidthCost.GetValue();
+            set => _bandwidthCost.SetValue(value);
         }
     
-        private PropertyValue<double> _bandwidthBalance = new PropertyValue<double>(nameof(BillingReportDay), nameof(BandwidthBalance));
+        private PropertyValue<long> _ciUsageDelta = new PropertyValue<long>(nameof(BillingReportDay), nameof(CiUsageDelta));
         
         [Required]
-        [JsonPropertyName("bandwidthBalance")]
-        public double BandwidthBalance
+        [JsonPropertyName("ciUsageDelta")]
+        public long CiUsageDelta
         {
-            get => _bandwidthBalance.GetValue();
-            set => _bandwidthBalance.SetValue(value);
-        }
-    
-        private PropertyValue<long?> _ciLeftovers = new PropertyValue<long?>(nameof(BillingReportDay), nameof(CiLeftovers));
-        
-        [JsonPropertyName("ciLeftovers")]
-        public long? CiLeftovers
-        {
-            get => _ciLeftovers.GetValue();
-            set => _ciLeftovers.SetValue(value);
+            get => _ciUsageDelta.GetValue();
+            set => _ciUsageDelta.SetValue(value);
         }
     
         private PropertyValue<long> _ciUsage = new PropertyValue<long>(nameof(BillingReportDay), nameof(CiUsage));
@@ -272,24 +295,14 @@ namespace JetBrains.Space.Client
             set => _ciUsage.SetValue(value);
         }
     
-        private PropertyValue<long> _ciOverdraft = new PropertyValue<long>(nameof(BillingReportDay), nameof(CiOverdraft));
+        private PropertyValue<double> _ciCost = new PropertyValue<double>(nameof(BillingReportDay), nameof(CiCost));
         
         [Required]
-        [JsonPropertyName("ciOverdraft")]
-        public long CiOverdraft
+        [JsonPropertyName("ciCost")]
+        public double CiCost
         {
-            get => _ciOverdraft.GetValue();
-            set => _ciOverdraft.SetValue(value);
-        }
-    
-        private PropertyValue<double> _ciBalance = new PropertyValue<double>(nameof(BillingReportDay), nameof(CiBalance));
-        
-        [Required]
-        [JsonPropertyName("ciBalance")]
-        public double CiBalance
-        {
-            get => _ciBalance.GetValue();
-            set => _ciBalance.SetValue(value);
+            get => _ciCost.GetValue();
+            set => _ciCost.SetValue(value);
         }
     
         private PropertyValue<long> _appUsage = new PropertyValue<long>(nameof(BillingReportDay), nameof(AppUsage));
@@ -312,44 +325,45 @@ namespace JetBrains.Space.Client
             set => _chatUsage.SetValue(value);
         }
     
-        private PropertyValue<double> _totalBalance = new PropertyValue<double>(nameof(BillingReportDay), nameof(TotalBalance));
+        private PropertyValue<double> _totalCost = new PropertyValue<double>(nameof(BillingReportDay), nameof(TotalCost));
         
         [Required]
-        [JsonPropertyName("totalBalance")]
-        public double TotalBalance
+        [JsonPropertyName("totalCost")]
+        public double TotalCost
         {
-            get => _totalBalance.GetValue();
-            set => _totalBalance.SetValue(value);
+            get => _totalCost.GetValue();
+            set => _totalCost.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _date.SetAccessPath(path, validateHasBeenSet);
             _activeUsers.SetAccessPath(path, validateHasBeenSet);
-            _chargedUsers.SetAccessPath(path, validateHasBeenSet);
-            _userBalance.SetAccessPath(path, validateHasBeenSet);
-            _storageActualLimitB.SetAccessPath(path, validateHasBeenSet);
+            _userUsage.SetAccessPath(path, validateHasBeenSet);
+            _userCost.SetAccessPath(path, validateHasBeenSet);
+            _storageAllocationB.SetAccessPath(path, validateHasBeenSet);
             _storageTotalUsage.SetAccessPath(path, validateHasBeenSet);
             _storageFilesUsage.SetAccessPath(path, validateHasBeenSet);
             _storageGitUsage.SetAccessPath(path, validateHasBeenSet);
             _storagePackagesUsage.SetAccessPath(path, validateHasBeenSet);
-            _storageOverdraftB.SetAccessPath(path, validateHasBeenSet);
-            _storageBalance.SetAccessPath(path, validateHasBeenSet);
-            _bandwidthLeftoversB.SetAccessPath(path, validateHasBeenSet);
+            _storageCost.SetAccessPath(path, validateHasBeenSet);
+            _bandwidthTotalUsageDelta.SetAccessPath(path, validateHasBeenSet);
             _bandwidthTotalUsage.SetAccessPath(path, validateHasBeenSet);
+            _bandwidthFilesUsageDelta.SetAccessPath(path, validateHasBeenSet);
             _bandwidthFilesUsage.SetAccessPath(path, validateHasBeenSet);
+            _bandwidthGitUsageDelta.SetAccessPath(path, validateHasBeenSet);
             _bandwidthGitUsage.SetAccessPath(path, validateHasBeenSet);
+            _bandwidthPackagesUsageDelta.SetAccessPath(path, validateHasBeenSet);
             _bandwidthPackagesUsage.SetAccessPath(path, validateHasBeenSet);
+            _bandwidthAutomationUsageDelta.SetAccessPath(path, validateHasBeenSet);
             _bandwidthAutomationUsage.SetAccessPath(path, validateHasBeenSet);
-            _bandwidthOverdraftB.SetAccessPath(path, validateHasBeenSet);
-            _bandwidthBalance.SetAccessPath(path, validateHasBeenSet);
-            _ciLeftovers.SetAccessPath(path, validateHasBeenSet);
+            _bandwidthCost.SetAccessPath(path, validateHasBeenSet);
+            _ciUsageDelta.SetAccessPath(path, validateHasBeenSet);
             _ciUsage.SetAccessPath(path, validateHasBeenSet);
-            _ciOverdraft.SetAccessPath(path, validateHasBeenSet);
-            _ciBalance.SetAccessPath(path, validateHasBeenSet);
+            _ciCost.SetAccessPath(path, validateHasBeenSet);
             _appUsage.SetAccessPath(path, validateHasBeenSet);
             _chatUsage.SetAccessPath(path, validateHasBeenSet);
-            _totalBalance.SetAccessPath(path, validateHasBeenSet);
+            _totalCost.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

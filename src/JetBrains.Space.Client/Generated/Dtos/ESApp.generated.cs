@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public ESApp() { }
         
-        public ESApp(string id, string clientId, string name, bool clientCredentialsFlowEnabled, bool codeFlowEnabled, bool implicitFlowEnabled, bool hasVerificationToken, bool hasSigningKey, bool hasBearerToken, bool archived, TDMemberProfile? owner = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null)
+        public ESApp(string id, string clientId, string name, bool clientCredentialsFlowEnabled, bool codeFlowEnabled, bool implicitFlowEnabled, bool hasVerificationToken, bool hasSigningKey, bool hasBearerToken, bool archived, TDMemberProfile? owner = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null)
         {
             Id = id;
             Owner = owner;
@@ -53,6 +53,7 @@ namespace JetBrains.Space.Client
             EndpointURI = endpointURI;
             IsHasVerificationToken = hasVerificationToken;
             IsHasSigningKey = hasSigningKey;
+            IsHasPublicKeySignature = hasPublicKeySignature;
             IsEndpointSslVerification = endpointSslVerification;
             BasicAuthUsername = basicAuthUsername;
             IsHasBearerToken = hasBearerToken;
@@ -223,6 +224,15 @@ namespace JetBrains.Space.Client
             set => _hasSigningKey.SetValue(value);
         }
     
+        private PropertyValue<bool?> _hasPublicKeySignature = new PropertyValue<bool?>(nameof(ESApp), nameof(IsHasPublicKeySignature));
+        
+        [JsonPropertyName("hasPublicKeySignature")]
+        public bool? IsHasPublicKeySignature
+        {
+            get => _hasPublicKeySignature.GetValue();
+            set => _hasPublicKeySignature.SetValue(value);
+        }
+    
         private PropertyValue<bool?> _endpointSslVerification = new PropertyValue<bool?>(nameof(ESApp), nameof(IsEndpointSslVerification));
         
         [JsonPropertyName("endpointSslVerification")]
@@ -298,6 +308,7 @@ namespace JetBrains.Space.Client
             _endpointURI.SetAccessPath(path, validateHasBeenSet);
             _hasVerificationToken.SetAccessPath(path, validateHasBeenSet);
             _hasSigningKey.SetAccessPath(path, validateHasBeenSet);
+            _hasPublicKeySignature.SetAccessPath(path, validateHasBeenSet);
             _endpointSslVerification.SetAccessPath(path, validateHasBeenSet);
             _basicAuthUsername.SetAccessPath(path, validateHasBeenSet);
             _hasBearerToken.SetAccessPath(path, validateHasBeenSet);

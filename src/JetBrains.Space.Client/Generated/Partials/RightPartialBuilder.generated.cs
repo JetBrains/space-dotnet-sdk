@@ -31,11 +31,38 @@ namespace JetBrains.Space.Client.RightPartialBuilder
 {
     public static class RightPartialExtensions
     {
-        public static Partial<Right> WithTypeCode(this Partial<Right> it)
-            => it.AddFieldName("typeCode");
+        public static Partial<Right> WithRightCode(this Partial<Right> it)
+            => it.AddFieldName("rightCode");
         
-        public static Partial<Right> WithCode(this Partial<Right> it)
-            => it.AddFieldName("code");
+        public static Partial<Right> WithName(this Partial<Right> it)
+            => it.AddFieldName("name");
+        
+        public static Partial<Right> WithGroup(this Partial<Right> it)
+            => it.AddFieldName("group");
+        
+        public static Partial<Right> WithDescription(this Partial<Right> it)
+            => it.AddFieldName("description");
+        
+        public static Partial<Right> WithIsEditable(this Partial<Right> it)
+            => it.AddFieldName("editable");
+        
+        public static Partial<Right> WithStatus(this Partial<Right> it)
+            => it.AddFieldName("status");
+        
+        public static Partial<Right> WithStatus(this Partial<Right> it, Func<Partial<RightStatus>, Partial<RightStatus>> partialBuilder)
+            => it.AddFieldName("status", partialBuilder(new Partial<RightStatus>(it)));
+        
+        public static Partial<Right> WithModificationAuthor(this Partial<Right> it)
+            => it.AddFieldName("modificationAuthor");
+        
+        public static Partial<Right> WithModificationAuthor(this Partial<Right> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("modificationAuthor", partialBuilder(new Partial<CPrincipal>(it)));
+        
+        public static Partial<Right> WithModificationTimestamp(this Partial<Right> it)
+            => it.AddFieldName("modificationTimestamp");
+        
+        public static Partial<Right> WithDependencies(this Partial<Right> it)
+            => it.AddFieldName("dependencies");
         
     }
     

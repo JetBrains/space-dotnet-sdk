@@ -110,6 +110,9 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsRole Role(TDRole role)
             => new UnfurlDetailsRole(role: role);
         
+        public static UnfurlDetailsShortCommit ShortCommit(PRProject project, string repository, string commitId, string message, bool strikeThrough)
+            => new UnfurlDetailsShortCommit(project: project, repository: repository, commitId: commitId, message: message, strikeThrough: strikeThrough);
+        
         public static UnfurlDetailsSnapshotDiff SnapshotDiff(string snapshotId, string baseSnapshotId)
             => new UnfurlDetailsSnapshotDiff(snapshotId: snapshotId, baseSnapshotId: baseSnapshotId);
         

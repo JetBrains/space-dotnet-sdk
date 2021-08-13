@@ -64,6 +64,9 @@ namespace JetBrains.Space.Client.ApplicationsForApplicationPatchRequestPartialBu
         public static Partial<ApplicationsForApplicationPatchRequest> WithIsHasVerificationToken(this Partial<ApplicationsForApplicationPatchRequest> it)
             => it.AddFieldName("hasVerificationToken");
         
+        public static Partial<ApplicationsForApplicationPatchRequest> WithIsHasPublicKeySignature(this Partial<ApplicationsForApplicationPatchRequest> it)
+            => it.AddFieldName("hasPublicKeySignature");
+        
         public static Partial<ApplicationsForApplicationPatchRequest> WithIsHasSigningKey(this Partial<ApplicationsForApplicationPatchRequest> it)
             => it.AddFieldName("hasSigningKey");
         

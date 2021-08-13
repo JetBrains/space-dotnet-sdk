@@ -1267,7 +1267,7 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Update an existing checklist in a project
                 /// </summary>
-                public async Task UpdateChecklistAsync(ProjectIdentifier project, string checklistId, string? name = null, string? description = null, string? owner = null, string? tag = null, CancellationToken cancellationToken = default)
+                public async Task UpdateChecklistAsync(ProjectIdentifier project, string checklistId, List<string> topics, string? name = null, string? description = null, string? owner = null, string? tag = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -1278,6 +1278,7 @@ namespace JetBrains.Space.Client
                             Description = description,
                             Owner = owner,
                             Tag = tag,
+                            Topics = topics,
                         }, cancellationToken);
                 }
                 

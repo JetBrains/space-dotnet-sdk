@@ -46,7 +46,7 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ESApp> CreateApplicationAsync(string name, bool endpointSslVerification = true, bool hasVerificationToken = false, bool hasSigningKey = true, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ESApp> CreateApplicationAsync(string name, bool endpointSslVerification = true, bool hasVerificationToken = false, bool hasSigningKey = true, bool hasPublicKeySignature = true, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -67,6 +67,7 @@ namespace JetBrains.Space.Client
                     IsEndpointSslVerification = endpointSslVerification,
                     IsHasVerificationToken = hasVerificationToken,
                     IsHasSigningKey = hasSigningKey,
+                    IsHasPublicKeySignature = hasPublicKeySignature,
                     BasicAuthUsername = basicAuthUsername,
                     BasicAuthPassword = basicAuthPassword,
                     BearerAuthToken = bearerAuthToken,
@@ -112,7 +113,7 @@ namespace JetBrains.Space.Client
         /// </list>
         /// </remarks>
         [Obsolete("Use GET applications/paged (since 2021-03-18) (will be removed in a future version)")]
-        public async Task<List<ESApp>> GetAllApplicationsAsync(string query, bool withArchived = false, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<ESApp>> GetAllApplicationsdeprecatedAsync(string query, bool withArchived = false, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("query", query);
@@ -122,6 +123,40 @@ namespace JetBrains.Space.Client
             return await _connection.RequestResourceAsync<List<ESApp>>("GET", $"api/http/applications{queryParameters.ToQueryString()}", cancellationToken);
         }
         
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<Batch<ESApp>> GetAllApplicationsAsync(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, AppsOrdering? ordering = null, Func<Partial<Batch<ESApp>>, Partial<Batch<ESApp>>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            if (name != null) queryParameters.Append("name", name);
+            if (owner != null) queryParameters.Append("owner", owner.Select(it => it.ToString()));
+            if (withArchived != null) queryParameters.Append("withArchived", withArchived?.ToString("l"));
+            queryParameters.Append("ordering", ordering.ToEnumString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESApp>>()) : Partial<Batch<ESApp>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<ESApp>>("GET", $"api/http/applications/paged{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+        
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public IAsyncEnumerable<ESApp> GetAllApplicationsAsyncEnumerable(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, AppsOrdering? ordering = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllApplicationsAsync(top: top, name: name, owner: owner, withArchived: withArchived, ordering: ordering, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApp>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApp>.Default())), skip, cancellationToken);
     
         /// <remarks>
         /// Required permissions:
@@ -171,6 +206,25 @@ namespace JetBrains.Space.Client
         public IAsyncEnumerable<AppMessageDelivery> LatestMessageDeliveriesAsyncEnumerable(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<AppMessageDelivery>, Partial<AppMessageDelivery>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => LatestMessageDeliveriesAsync(application: application, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AppMessageDelivery>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AppMessageDelivery>.Default())), skip, cancellationToken);
     
+        /// <summary>
+        /// Returns list of public keys in JWKS format. If message signature is successfully verified with any of the returned public keys, the message can be considered authentic.
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View application secrets</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<string> PublicKeysAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/public-keys{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
@@ -179,7 +233,7 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, bool endpointSslVerification, bool hasVerificationToken, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, bool endpointSslVerification, bool hasVerificationToken, bool hasPublicKeySignature, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -198,6 +252,7 @@ namespace JetBrains.Space.Client
                     EndpointUri = endpointUri,
                     IsEndpointSslVerification = endpointSslVerification,
                     IsHasVerificationToken = hasVerificationToken,
+                    IsHasPublicKeySignature = hasPublicKeySignature,
                     IsHasSigningKey = hasSigningKey,
                     BasicAuthUsername = basicAuthUsername,
                     BasicAuthPassword = basicAuthPassword,
@@ -223,17 +278,20 @@ namespace JetBrains.Space.Client
         }
         
     
-        public PagedClient Paged => new PagedClient(_connection);
+        public AuthorizationClient Authorizations => new AuthorizationClient(_connection);
         
-        public partial class PagedClient : ISpaceClient
+        public partial class AuthorizationClient : ISpaceClient
         {
             private readonly Connection _connection;
             
-            public PagedClient(Connection connection)
+            public AuthorizationClient(Connection connection)
             {
                 _connection = connection;
             }
             
+            /// <summary>
+            /// List applications authorized in specified context
+            /// </summary>
             /// <remarks>
             /// Required permissions:
             /// <list type="bullet">
@@ -242,21 +300,23 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Batch<ESApp>> GetAllApplicationsAsync(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, AppsOrdering? ordering = null, Func<Partial<Batch<ESApp>>, Partial<Batch<ESApp>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<ESApp>> GetApplicationsAuthorizedInContextAsync(PermissionContextIdentifier contextIdentifier, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                if (skip != null) queryParameters.Append("$skip", skip);
-                if (top != null) queryParameters.Append("$top", top?.ToString());
-                if (name != null) queryParameters.Append("name", name);
-                if (owner != null) queryParameters.Append("owner", owner.Select(it => it.ToString()));
-                if (withArchived != null) queryParameters.Append("withArchived", withArchived?.ToString("l"));
-                queryParameters.Append("ordering", ordering.ToEnumString());
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESApp>>()) : Partial<Batch<ESApp>>.Default()).ToString());
+                queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<ESApp>>("GET", $"api/http/applications/paged{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<List<ESApp>>("GET", $"api/http/applications/authorizations/authorized-applications{queryParameters.ToQueryString()}", cancellationToken);
             }
             
-            
+        
+        }
+    
+        public partial class AuthorizationClient : ISpaceClient
+        {
+            /// <summary>
+            /// List authorized contexts of an application
+            /// </summary>
             /// <remarks>
             /// Required permissions:
             /// <list type="bullet">
@@ -265,8 +325,158 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public IAsyncEnumerable<ESApp> GetAllApplicationsAsyncEnumerable(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, AppsOrdering? ordering = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllApplicationsAsync(top: top, name: name, owner: owner, withArchived: withArchived, ordering: ordering, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApp>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApp>.Default())), skip, cancellationToken);
+            public async Task<List<PermissionContextApi>> GetAllAuthorizedContextsAsync(ApplicationIdentifier application, Func<Partial<PermissionContextApi>, Partial<PermissionContextApi>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<PermissionContextApi>()) : Partial<PermissionContextApi>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<PermissionContextApi>>("GET", $"api/http/applications/{application}/authorizations/authorized-contexts{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            public AuthorizedRightClient AuthorizedRights => new AuthorizedRightClient(_connection);
+            
+            public partial class AuthorizedRightClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public AuthorizedRightClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// List authorized rights of an application in specified context
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View application</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<List<Right>> GetAllAuthorizedRightsAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, Func<Partial<Right>, Partial<Right>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Right>()) : Partial<Right>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<Right>>("GET", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Generic method for editing authorized right status in given context.
+                /// </summary>
+                public async Task UpdateAuthorizedRightAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, List<RightUpdate> updates, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", 
+                        new ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest
+                        { 
+                            ContextIdentifier = contextIdentifier,
+                            Updates = updates,
+                        }, cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Request rights for an application in specified context
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit application</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task RequestRightsAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, List<string> rightCodes, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/authorizations/authorized-rights/request-rights{queryParameters.ToQueryString()}", 
+                        new ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest
+                        { 
+                            ContextIdentifier = contextIdentifier,
+                            RightCodes = rightCodes,
+                        }, cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Remove application authorization in specified context
+                /// </summary>
+                public async Task DeleteAuthorizedRightAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+            public RequiredRightClient RequiredRights => new RequiredRightClient(_connection);
+            
+            public partial class RequiredRightClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public RequiredRightClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// List required rights for an application
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View application</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<List<Right>> GetAllRequiredRightsAsync(ApplicationIdentifier application, Func<Partial<Right>, Partial<Right>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Right>()) : Partial<Right>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<Right>>("GET", $"api/http/applications/{application}/authorizations/required-rights{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Update list of required rights for an application
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit application</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task UpdateRequiredRightAsync(ApplicationIdentifier application, List<string> rightCodesToAdd, List<string> rightCodesToRemove, bool requestRightsInAuthorizedContexts, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/authorizations/required-rights{queryParameters.ToQueryString()}", 
+                        new ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest
+                        { 
+                            RightCodesToAdd = rightCodesToAdd,
+                            RightCodesToRemove = rightCodesToRemove,
+                            IsRequestRightsInAuthorizedContexts = requestRightsInAuthorizedContexts,
+                        }, cancellationToken);
+                }
+                
+            
+            }
         
         }
     

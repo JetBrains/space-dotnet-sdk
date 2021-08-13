@@ -32,20 +32,14 @@ namespace JetBrains.Space.Client
     [JsonConverter(typeof(UrlParameterConverter))]
     public abstract class ProfileIdentifier : IUrlParameter
     {
-        public static ProfileIdentifier Me
-            => new ProfileIdentifierMe();
-        
         public static ProfileIdentifier Id(string id)
             => new ProfileIdentifierId(id);
         
+        public static ProfileIdentifier Me
+            => new ProfileIdentifierMe();
+        
         public static ProfileIdentifier Username(string username)
             => new ProfileIdentifierUsername(username);
-        
-        private class ProfileIdentifierMe : ProfileIdentifier
-        {
-            public override string ToString()
-                => "me";
-        }
         
         private class ProfileIdentifierId : ProfileIdentifier
         {
@@ -56,6 +50,12 @@ namespace JetBrains.Space.Client
             
             public override string ToString()
                 => $"id:{_id}";
+        }
+        
+        private class ProfileIdentifierMe : ProfileIdentifier
+        {
+            public override string ToString()
+                => "me";
         }
         
         private class ProfileIdentifierUsername : ProfileIdentifier

@@ -34,6 +34,9 @@ namespace JetBrains.Space.Client.RepoCommitsSubscriptionFilterSpecPartialBuilder
         public static Partial<RepoCommitsSubscriptionFilterSpec> WithAuthors(this Partial<RepoCommitsSubscriptionFilterSpec> it)
             => it.AddFieldName("authors");
         
+        public static Partial<RepoCommitsSubscriptionFilterSpec> WithCommitters(this Partial<RepoCommitsSubscriptionFilterSpec> it)
+            => it.AddFieldName("committers");
+        
         public static Partial<RepoCommitsSubscriptionFilterSpec> WithBranchSpec(this Partial<RepoCommitsSubscriptionFilterSpec> it)
             => it.AddFieldName("branchSpec");
         

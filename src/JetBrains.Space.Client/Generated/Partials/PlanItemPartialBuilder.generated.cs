@@ -76,6 +76,12 @@ namespace JetBrains.Space.Client.PlanItemPartialBuilder
         public static Partial<PlanItem> WithChildren(this Partial<PlanItem> it, Func<Partial<PlanItem>, Partial<PlanItem>> partialBuilder)
             => it.AddFieldName("children", partialBuilder(new Partial<PlanItem>(it)));
         
+        public static Partial<PlanItem> WithTopics(this Partial<PlanItem> it)
+            => it.AddFieldName("topics");
+        
+        public static Partial<PlanItem> WithTopics(this Partial<PlanItem> it, Func<Partial<Topic>, Partial<Topic>> partialBuilder)
+            => it.AddFieldName("topics", partialBuilder(new Partial<Topic>(it)));
+        
     }
     
 }

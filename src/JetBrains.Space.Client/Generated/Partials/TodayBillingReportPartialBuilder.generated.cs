@@ -40,32 +40,32 @@ namespace JetBrains.Space.Client.TodayBillingReportPartialBuilder
         public static Partial<TodayBillingReport> WithActiveUsers(this Partial<TodayBillingReport> it)
             => it.AddFieldName("activeUsers");
         
-        public static Partial<TodayBillingReport> WithChargedUsers(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("chargedUsers");
+        public static Partial<TodayBillingReport> WithUserUsage(this Partial<TodayBillingReport> it)
+            => it.AddFieldName("userUsage");
         
-        public static Partial<TodayBillingReport> WithUserBalance(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("userBalance");
+        public static Partial<TodayBillingReport> WithUserCost(this Partial<TodayBillingReport> it)
+            => it.AddFieldName("userCost");
         
-        public static Partial<TodayBillingReport> WithStorageActualLimitB(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("storageActualLimitB");
+        public static Partial<TodayBillingReport> WithStorageAllocationB(this Partial<TodayBillingReport> it)
+            => it.AddFieldName("storageAllocationB");
         
         public static Partial<TodayBillingReport> WithStorageTotalUsage(this Partial<TodayBillingReport> it)
             => it.AddFieldName("storageTotalUsage");
         
-        public static Partial<TodayBillingReport> WithStorageBalance(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("storageBalance");
+        public static Partial<TodayBillingReport> WithStorageCost(this Partial<TodayBillingReport> it)
+            => it.AddFieldName("storageCost");
         
         public static Partial<TodayBillingReport> WithBandwidthTotalUsage(this Partial<TodayBillingReport> it)
             => it.AddFieldName("bandwidthTotalUsage");
         
-        public static Partial<TodayBillingReport> WithBandwidthBalance(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("bandwidthBalance");
+        public static Partial<TodayBillingReport> WithBandwidthCost(this Partial<TodayBillingReport> it)
+            => it.AddFieldName("bandwidthCost");
         
         public static Partial<TodayBillingReport> WithCiUsage(this Partial<TodayBillingReport> it)
             => it.AddFieldName("ciUsage");
         
-        public static Partial<TodayBillingReport> WithCiBalance(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("ciBalance");
+        public static Partial<TodayBillingReport> WithCiCost(this Partial<TodayBillingReport> it)
+            => it.AddFieldName("ciCost");
         
         public static Partial<TodayBillingReport> WithAppUsage(this Partial<TodayBillingReport> it)
             => it.AddFieldName("appUsage");
@@ -73,8 +73,8 @@ namespace JetBrains.Space.Client.TodayBillingReportPartialBuilder
         public static Partial<TodayBillingReport> WithChatUsage(this Partial<TodayBillingReport> it)
             => it.AddFieldName("chatUsage");
         
-        public static Partial<TodayBillingReport> WithTotalBalance(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("totalBalance");
+        public static Partial<TodayBillingReport> WithTotalCost(this Partial<TodayBillingReport> it)
+            => it.AddFieldName("totalCost");
         
     }
     

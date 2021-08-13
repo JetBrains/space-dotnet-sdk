@@ -88,6 +88,9 @@ namespace JetBrains.Space.Client.ESAppPartialBuilder
         public static Partial<ESApp> WithIsHasSigningKey(this Partial<ESApp> it)
             => it.AddFieldName("hasSigningKey");
         
+        public static Partial<ESApp> WithIsHasPublicKeySignature(this Partial<ESApp> it)
+            => it.AddFieldName("hasPublicKeySignature");
+        
         public static Partial<ESApp> WithIsEndpointSslVerification(this Partial<ESApp> it)
             => it.AddFieldName("endpointSslVerification");
         

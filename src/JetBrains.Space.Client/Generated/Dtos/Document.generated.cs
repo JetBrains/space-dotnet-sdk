@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public Document() { }
         
-        public Document(string id, bool archived, string containerLinkId, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, bool deleted, bool published, int accessOrdinal, DocumentBody documentBody, TDMemberProfile? author = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null)
+        public Document(string id, bool archived, string containerLinkId, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, bool deleted, bool published, int accessOrdinal, DocumentBody documentBody, TDMemberProfile? author = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null)
         {
             Id = id;
             IsArchived = archived;
@@ -50,6 +50,8 @@ namespace JetBrains.Space.Client
             ContainerInfo = containerInfo;
             BodyType = bodyType;
             IsDeleted = deleted;
+            ArchivedBy = archivedBy;
+            ArchivedAt = archivedAt;
             IsPublished = published;
             AccessOrdinal = accessOrdinal;
             DocumentBody = documentBody;
@@ -192,6 +194,25 @@ namespace JetBrains.Space.Client
             set => _deleted.SetValue(value);
         }
     
+        private PropertyValue<CPrincipal?> _archivedBy = new PropertyValue<CPrincipal?>(nameof(Document), nameof(ArchivedBy));
+        
+        [JsonPropertyName("archivedBy")]
+        public CPrincipal? ArchivedBy
+        {
+            get => _archivedBy.GetValue();
+            set => _archivedBy.SetValue(value);
+        }
+    
+        private PropertyValue<DateTime?> _archivedAt = new PropertyValue<DateTime?>(nameof(Document), nameof(ArchivedAt));
+        
+        [JsonPropertyName("archivedAt")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? ArchivedAt
+        {
+            get => _archivedAt.GetValue();
+            set => _archivedAt.SetValue(value);
+        }
+    
         private PropertyValue<bool> _published = new PropertyValue<bool>(nameof(Document), nameof(IsPublished));
         
         [Required]
@@ -238,6 +259,8 @@ namespace JetBrains.Space.Client
             _containerInfo.SetAccessPath(path, validateHasBeenSet);
             _bodyType.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);
+            _archivedBy.SetAccessPath(path, validateHasBeenSet);
+            _archivedAt.SetAccessPath(path, validateHasBeenSet);
             _published.SetAccessPath(path, validateHasBeenSet);
             _accessOrdinal.SetAccessPath(path, validateHasBeenSet);
             _documentBody.SetAccessPath(path, validateHasBeenSet);

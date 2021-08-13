@@ -37,14 +37,14 @@ namespace JetBrains.Space.Client.BillingReportDayPartialBuilder
         public static Partial<BillingReportDay> WithActiveUsers(this Partial<BillingReportDay> it)
             => it.AddFieldName("activeUsers");
         
-        public static Partial<BillingReportDay> WithChargedUsers(this Partial<BillingReportDay> it)
-            => it.AddFieldName("chargedUsers");
+        public static Partial<BillingReportDay> WithUserUsage(this Partial<BillingReportDay> it)
+            => it.AddFieldName("userUsage");
         
-        public static Partial<BillingReportDay> WithUserBalance(this Partial<BillingReportDay> it)
-            => it.AddFieldName("userBalance");
+        public static Partial<BillingReportDay> WithUserCost(this Partial<BillingReportDay> it)
+            => it.AddFieldName("userCost");
         
-        public static Partial<BillingReportDay> WithStorageActualLimitB(this Partial<BillingReportDay> it)
-            => it.AddFieldName("storageActualLimitB");
+        public static Partial<BillingReportDay> WithStorageAllocationB(this Partial<BillingReportDay> it)
+            => it.AddFieldName("storageAllocationB");
         
         public static Partial<BillingReportDay> WithStorageTotalUsage(this Partial<BillingReportDay> it)
             => it.AddFieldName("storageTotalUsage");
@@ -58,47 +58,50 @@ namespace JetBrains.Space.Client.BillingReportDayPartialBuilder
         public static Partial<BillingReportDay> WithStoragePackagesUsage(this Partial<BillingReportDay> it)
             => it.AddFieldName("storagePackagesUsage");
         
-        public static Partial<BillingReportDay> WithStorageOverdraftB(this Partial<BillingReportDay> it)
-            => it.AddFieldName("storageOverdraftB");
+        public static Partial<BillingReportDay> WithStorageCost(this Partial<BillingReportDay> it)
+            => it.AddFieldName("storageCost");
         
-        public static Partial<BillingReportDay> WithStorageBalance(this Partial<BillingReportDay> it)
-            => it.AddFieldName("storageBalance");
-        
-        public static Partial<BillingReportDay> WithBandwidthLeftoversB(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthLeftoversB");
+        public static Partial<BillingReportDay> WithBandwidthTotalUsageDelta(this Partial<BillingReportDay> it)
+            => it.AddFieldName("bandwidthTotalUsageDelta");
         
         public static Partial<BillingReportDay> WithBandwidthTotalUsage(this Partial<BillingReportDay> it)
             => it.AddFieldName("bandwidthTotalUsage");
         
+        public static Partial<BillingReportDay> WithBandwidthFilesUsageDelta(this Partial<BillingReportDay> it)
+            => it.AddFieldName("bandwidthFilesUsageDelta");
+        
         public static Partial<BillingReportDay> WithBandwidthFilesUsage(this Partial<BillingReportDay> it)
             => it.AddFieldName("bandwidthFilesUsage");
+        
+        public static Partial<BillingReportDay> WithBandwidthGitUsageDelta(this Partial<BillingReportDay> it)
+            => it.AddFieldName("bandwidthGitUsageDelta");
         
         public static Partial<BillingReportDay> WithBandwidthGitUsage(this Partial<BillingReportDay> it)
             => it.AddFieldName("bandwidthGitUsage");
         
+        public static Partial<BillingReportDay> WithBandwidthPackagesUsageDelta(this Partial<BillingReportDay> it)
+            => it.AddFieldName("bandwidthPackagesUsageDelta");
+        
         public static Partial<BillingReportDay> WithBandwidthPackagesUsage(this Partial<BillingReportDay> it)
             => it.AddFieldName("bandwidthPackagesUsage");
+        
+        public static Partial<BillingReportDay> WithBandwidthAutomationUsageDelta(this Partial<BillingReportDay> it)
+            => it.AddFieldName("bandwidthAutomationUsageDelta");
         
         public static Partial<BillingReportDay> WithBandwidthAutomationUsage(this Partial<BillingReportDay> it)
             => it.AddFieldName("bandwidthAutomationUsage");
         
-        public static Partial<BillingReportDay> WithBandwidthOverdraftB(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthOverdraftB");
+        public static Partial<BillingReportDay> WithBandwidthCost(this Partial<BillingReportDay> it)
+            => it.AddFieldName("bandwidthCost");
         
-        public static Partial<BillingReportDay> WithBandwidthBalance(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthBalance");
-        
-        public static Partial<BillingReportDay> WithCiLeftovers(this Partial<BillingReportDay> it)
-            => it.AddFieldName("ciLeftovers");
+        public static Partial<BillingReportDay> WithCiUsageDelta(this Partial<BillingReportDay> it)
+            => it.AddFieldName("ciUsageDelta");
         
         public static Partial<BillingReportDay> WithCiUsage(this Partial<BillingReportDay> it)
             => it.AddFieldName("ciUsage");
         
-        public static Partial<BillingReportDay> WithCiOverdraft(this Partial<BillingReportDay> it)
-            => it.AddFieldName("ciOverdraft");
-        
-        public static Partial<BillingReportDay> WithCiBalance(this Partial<BillingReportDay> it)
-            => it.AddFieldName("ciBalance");
+        public static Partial<BillingReportDay> WithCiCost(this Partial<BillingReportDay> it)
+            => it.AddFieldName("ciCost");
         
         public static Partial<BillingReportDay> WithAppUsage(this Partial<BillingReportDay> it)
             => it.AddFieldName("appUsage");
@@ -106,8 +109,8 @@ namespace JetBrains.Space.Client.BillingReportDayPartialBuilder
         public static Partial<BillingReportDay> WithChatUsage(this Partial<BillingReportDay> it)
             => it.AddFieldName("chatUsage");
         
-        public static Partial<BillingReportDay> WithTotalBalance(this Partial<BillingReportDay> it)
-            => it.AddFieldName("totalBalance");
+        public static Partial<BillingReportDay> WithTotalCost(this Partial<BillingReportDay> it)
+            => it.AddFieldName("totalCost");
         
     }
     

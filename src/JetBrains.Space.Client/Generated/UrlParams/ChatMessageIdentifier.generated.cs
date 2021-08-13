@@ -32,22 +32,11 @@ namespace JetBrains.Space.Client
     [JsonConverter(typeof(UrlParameterConverter))]
     public abstract class ChatMessageIdentifier : IUrlParameter
     {
-        public static ChatMessageIdentifier InternalId(string id)
-            => new ChatMessageIdentifierInternalId(id);
-        
         public static ChatMessageIdentifier ExternalId(string externalId)
             => new ChatMessageIdentifierExternalId(externalId);
         
-        private class ChatMessageIdentifierInternalId : ChatMessageIdentifier
-        {
-            private readonly string _id;
-            
-            public ChatMessageIdentifierInternalId(string id)
-                => _id = id;
-            
-            public override string ToString()
-                => $"id:{_id}";
-        }
+        public static ChatMessageIdentifier InternalId(string id)
+            => new ChatMessageIdentifierInternalId(id);
         
         private class ChatMessageIdentifierExternalId : ChatMessageIdentifier
         {
@@ -58,6 +47,17 @@ namespace JetBrains.Space.Client
             
             public override string ToString()
                 => $"externalId:{_externalId}";
+        }
+        
+        private class ChatMessageIdentifierInternalId : ChatMessageIdentifier
+        {
+            private readonly string _id;
+            
+            public ChatMessageIdentifierInternalId(string id)
+                => _id = id;
+            
+            public override string ToString()
+                => $"id:{_id}";
         }
         
     }

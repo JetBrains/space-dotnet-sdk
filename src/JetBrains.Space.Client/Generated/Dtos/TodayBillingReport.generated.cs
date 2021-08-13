@@ -34,22 +34,22 @@ namespace JetBrains.Space.Client
     {
         public TodayBillingReport() { }
         
-        public TodayBillingReport(PurchasedBillingPlan plan, int activeUsers, int chargedUsers, double userBalance, long storageTotalUsage, double storageBalance, long bandwidthTotalUsage, double bandwidthBalance, long ciUsage, double ciBalance, long appUsage, long chatUsage, double totalBalance, long? storageActualLimitB = null)
+        public TodayBillingReport(PurchasedBillingPlan plan, int activeUsers, int userUsage, double userCost, long storageTotalUsage, double storageCost, long bandwidthTotalUsage, double bandwidthCost, long ciUsage, double ciCost, long appUsage, long chatUsage, double totalCost, long? storageAllocationB = null)
         {
             Plan = plan;
             ActiveUsers = activeUsers;
-            ChargedUsers = chargedUsers;
-            UserBalance = userBalance;
-            StorageActualLimitB = storageActualLimitB;
+            UserUsage = userUsage;
+            UserCost = userCost;
+            StorageAllocationB = storageAllocationB;
             StorageTotalUsage = storageTotalUsage;
-            StorageBalance = storageBalance;
+            StorageCost = storageCost;
             BandwidthTotalUsage = bandwidthTotalUsage;
-            BandwidthBalance = bandwidthBalance;
+            BandwidthCost = bandwidthCost;
             CiUsage = ciUsage;
-            CiBalance = ciBalance;
+            CiCost = ciCost;
             AppUsage = appUsage;
             ChatUsage = chatUsage;
-            TotalBalance = totalBalance;
+            TotalCost = totalCost;
         }
         
         private PropertyValue<PurchasedBillingPlan> _plan = new PropertyValue<PurchasedBillingPlan>(nameof(TodayBillingReport), nameof(Plan));
@@ -72,33 +72,33 @@ namespace JetBrains.Space.Client
             set => _activeUsers.SetValue(value);
         }
     
-        private PropertyValue<int> _chargedUsers = new PropertyValue<int>(nameof(TodayBillingReport), nameof(ChargedUsers));
+        private PropertyValue<int> _userUsage = new PropertyValue<int>(nameof(TodayBillingReport), nameof(UserUsage));
         
         [Required]
-        [JsonPropertyName("chargedUsers")]
-        public int ChargedUsers
+        [JsonPropertyName("userUsage")]
+        public int UserUsage
         {
-            get => _chargedUsers.GetValue();
-            set => _chargedUsers.SetValue(value);
+            get => _userUsage.GetValue();
+            set => _userUsage.SetValue(value);
         }
     
-        private PropertyValue<double> _userBalance = new PropertyValue<double>(nameof(TodayBillingReport), nameof(UserBalance));
+        private PropertyValue<double> _userCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(UserCost));
         
         [Required]
-        [JsonPropertyName("userBalance")]
-        public double UserBalance
+        [JsonPropertyName("userCost")]
+        public double UserCost
         {
-            get => _userBalance.GetValue();
-            set => _userBalance.SetValue(value);
+            get => _userCost.GetValue();
+            set => _userCost.SetValue(value);
         }
     
-        private PropertyValue<long?> _storageActualLimitB = new PropertyValue<long?>(nameof(TodayBillingReport), nameof(StorageActualLimitB));
+        private PropertyValue<long?> _storageAllocationB = new PropertyValue<long?>(nameof(TodayBillingReport), nameof(StorageAllocationB));
         
-        [JsonPropertyName("storageActualLimitB")]
-        public long? StorageActualLimitB
+        [JsonPropertyName("storageAllocationB")]
+        public long? StorageAllocationB
         {
-            get => _storageActualLimitB.GetValue();
-            set => _storageActualLimitB.SetValue(value);
+            get => _storageAllocationB.GetValue();
+            set => _storageAllocationB.SetValue(value);
         }
     
         private PropertyValue<long> _storageTotalUsage = new PropertyValue<long>(nameof(TodayBillingReport), nameof(StorageTotalUsage));
@@ -111,14 +111,14 @@ namespace JetBrains.Space.Client
             set => _storageTotalUsage.SetValue(value);
         }
     
-        private PropertyValue<double> _storageBalance = new PropertyValue<double>(nameof(TodayBillingReport), nameof(StorageBalance));
+        private PropertyValue<double> _storageCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(StorageCost));
         
         [Required]
-        [JsonPropertyName("storageBalance")]
-        public double StorageBalance
+        [JsonPropertyName("storageCost")]
+        public double StorageCost
         {
-            get => _storageBalance.GetValue();
-            set => _storageBalance.SetValue(value);
+            get => _storageCost.GetValue();
+            set => _storageCost.SetValue(value);
         }
     
         private PropertyValue<long> _bandwidthTotalUsage = new PropertyValue<long>(nameof(TodayBillingReport), nameof(BandwidthTotalUsage));
@@ -131,14 +131,14 @@ namespace JetBrains.Space.Client
             set => _bandwidthTotalUsage.SetValue(value);
         }
     
-        private PropertyValue<double> _bandwidthBalance = new PropertyValue<double>(nameof(TodayBillingReport), nameof(BandwidthBalance));
+        private PropertyValue<double> _bandwidthCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(BandwidthCost));
         
         [Required]
-        [JsonPropertyName("bandwidthBalance")]
-        public double BandwidthBalance
+        [JsonPropertyName("bandwidthCost")]
+        public double BandwidthCost
         {
-            get => _bandwidthBalance.GetValue();
-            set => _bandwidthBalance.SetValue(value);
+            get => _bandwidthCost.GetValue();
+            set => _bandwidthCost.SetValue(value);
         }
     
         private PropertyValue<long> _ciUsage = new PropertyValue<long>(nameof(TodayBillingReport), nameof(CiUsage));
@@ -151,14 +151,14 @@ namespace JetBrains.Space.Client
             set => _ciUsage.SetValue(value);
         }
     
-        private PropertyValue<double> _ciBalance = new PropertyValue<double>(nameof(TodayBillingReport), nameof(CiBalance));
+        private PropertyValue<double> _ciCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(CiCost));
         
         [Required]
-        [JsonPropertyName("ciBalance")]
-        public double CiBalance
+        [JsonPropertyName("ciCost")]
+        public double CiCost
         {
-            get => _ciBalance.GetValue();
-            set => _ciBalance.SetValue(value);
+            get => _ciCost.GetValue();
+            set => _ciCost.SetValue(value);
         }
     
         private PropertyValue<long> _appUsage = new PropertyValue<long>(nameof(TodayBillingReport), nameof(AppUsage));
@@ -181,32 +181,32 @@ namespace JetBrains.Space.Client
             set => _chatUsage.SetValue(value);
         }
     
-        private PropertyValue<double> _totalBalance = new PropertyValue<double>(nameof(TodayBillingReport), nameof(TotalBalance));
+        private PropertyValue<double> _totalCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(TotalCost));
         
         [Required]
-        [JsonPropertyName("totalBalance")]
-        public double TotalBalance
+        [JsonPropertyName("totalCost")]
+        public double TotalCost
         {
-            get => _totalBalance.GetValue();
-            set => _totalBalance.SetValue(value);
+            get => _totalCost.GetValue();
+            set => _totalCost.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _plan.SetAccessPath(path, validateHasBeenSet);
             _activeUsers.SetAccessPath(path, validateHasBeenSet);
-            _chargedUsers.SetAccessPath(path, validateHasBeenSet);
-            _userBalance.SetAccessPath(path, validateHasBeenSet);
-            _storageActualLimitB.SetAccessPath(path, validateHasBeenSet);
+            _userUsage.SetAccessPath(path, validateHasBeenSet);
+            _userCost.SetAccessPath(path, validateHasBeenSet);
+            _storageAllocationB.SetAccessPath(path, validateHasBeenSet);
             _storageTotalUsage.SetAccessPath(path, validateHasBeenSet);
-            _storageBalance.SetAccessPath(path, validateHasBeenSet);
+            _storageCost.SetAccessPath(path, validateHasBeenSet);
             _bandwidthTotalUsage.SetAccessPath(path, validateHasBeenSet);
-            _bandwidthBalance.SetAccessPath(path, validateHasBeenSet);
+            _bandwidthCost.SetAccessPath(path, validateHasBeenSet);
             _ciUsage.SetAccessPath(path, validateHasBeenSet);
-            _ciBalance.SetAccessPath(path, validateHasBeenSet);
+            _ciCost.SetAccessPath(path, validateHasBeenSet);
             _appUsage.SetAccessPath(path, validateHasBeenSet);
             _chatUsage.SetAccessPath(path, validateHasBeenSet);
-            _totalBalance.SetAccessPath(path, validateHasBeenSet);
+            _totalCost.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

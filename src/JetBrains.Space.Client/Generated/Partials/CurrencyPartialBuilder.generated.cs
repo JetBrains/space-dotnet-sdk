@@ -40,6 +40,9 @@ namespace JetBrains.Space.Client.CurrencyPartialBuilder
         public static Partial<Currency> WithIsSignAsPrefix(this Partial<Currency> it)
             => it.AddFieldName("signAsPrefix");
         
+        public static Partial<Currency> WithIsHasCents(this Partial<Currency> it)
+            => it.AddFieldName("hasCents");
+        
     }
     
 }

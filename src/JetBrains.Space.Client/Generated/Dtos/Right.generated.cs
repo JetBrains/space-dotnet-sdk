@@ -34,36 +34,119 @@ namespace JetBrains.Space.Client
     {
         public Right() { }
         
-        public Right(string typeCode, string code)
+        public Right(string rightCode, string name, string group, string description, bool editable, RightStatus status, List<string> dependencies, CPrincipal? modificationAuthor = null, DateTime? modificationTimestamp = null)
         {
-            TypeCode = typeCode;
-            Code = code;
+            RightCode = rightCode;
+            Name = name;
+            Group = group;
+            Description = description;
+            IsEditable = editable;
+            Status = status;
+            ModificationAuthor = modificationAuthor;
+            ModificationTimestamp = modificationTimestamp;
+            Dependencies = dependencies;
         }
         
-        private PropertyValue<string> _typeCode = new PropertyValue<string>(nameof(Right), nameof(TypeCode));
+        private PropertyValue<string> _rightCode = new PropertyValue<string>(nameof(Right), nameof(RightCode));
         
         [Required]
-        [JsonPropertyName("typeCode")]
-        public string TypeCode
+        [JsonPropertyName("rightCode")]
+        public string RightCode
         {
-            get => _typeCode.GetValue();
-            set => _typeCode.SetValue(value);
+            get => _rightCode.GetValue();
+            set => _rightCode.SetValue(value);
         }
     
-        private PropertyValue<string> _code = new PropertyValue<string>(nameof(Right), nameof(Code));
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(Right), nameof(Name));
         
         [Required]
-        [JsonPropertyName("code")]
-        public string Code
+        [JsonPropertyName("name")]
+        public string Name
         {
-            get => _code.GetValue();
-            set => _code.SetValue(value);
+            get => _name.GetValue();
+            set => _name.SetValue(value);
+        }
+    
+        private PropertyValue<string> _group = new PropertyValue<string>(nameof(Right), nameof(Group));
+        
+        [Required]
+        [JsonPropertyName("group")]
+        public string Group
+        {
+            get => _group.GetValue();
+            set => _group.SetValue(value);
+        }
+    
+        private PropertyValue<string> _description = new PropertyValue<string>(nameof(Right), nameof(Description));
+        
+        [Required]
+        [JsonPropertyName("description")]
+        public string Description
+        {
+            get => _description.GetValue();
+            set => _description.SetValue(value);
+        }
+    
+        private PropertyValue<bool> _editable = new PropertyValue<bool>(nameof(Right), nameof(IsEditable));
+        
+        [Required]
+        [JsonPropertyName("editable")]
+        public bool IsEditable
+        {
+            get => _editable.GetValue();
+            set => _editable.SetValue(value);
+        }
+    
+        private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(Right), nameof(Status));
+        
+        [Required]
+        [JsonPropertyName("status")]
+        public RightStatus Status
+        {
+            get => _status.GetValue();
+            set => _status.SetValue(value);
+        }
+    
+        private PropertyValue<CPrincipal?> _modificationAuthor = new PropertyValue<CPrincipal?>(nameof(Right), nameof(ModificationAuthor));
+        
+        [JsonPropertyName("modificationAuthor")]
+        public CPrincipal? ModificationAuthor
+        {
+            get => _modificationAuthor.GetValue();
+            set => _modificationAuthor.SetValue(value);
+        }
+    
+        private PropertyValue<DateTime?> _modificationTimestamp = new PropertyValue<DateTime?>(nameof(Right), nameof(ModificationTimestamp));
+        
+        [JsonPropertyName("modificationTimestamp")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? ModificationTimestamp
+        {
+            get => _modificationTimestamp.GetValue();
+            set => _modificationTimestamp.SetValue(value);
+        }
+    
+        private PropertyValue<List<string>> _dependencies = new PropertyValue<List<string>>(nameof(Right), nameof(Dependencies), new List<string>());
+        
+        [Required]
+        [JsonPropertyName("dependencies")]
+        public List<string> Dependencies
+        {
+            get => _dependencies.GetValue();
+            set => _dependencies.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _typeCode.SetAccessPath(path, validateHasBeenSet);
-            _code.SetAccessPath(path, validateHasBeenSet);
+            _rightCode.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _group.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _editable.SetAccessPath(path, validateHasBeenSet);
+            _status.SetAccessPath(path, validateHasBeenSet);
+            _modificationAuthor.SetAccessPath(path, validateHasBeenSet);
+            _modificationTimestamp.SetAccessPath(path, validateHasBeenSet);
+            _dependencies.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

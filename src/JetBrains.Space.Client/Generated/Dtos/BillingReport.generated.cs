@@ -34,10 +34,13 @@ namespace JetBrains.Space.Client
     {
         public BillingReport() { }
         
-        public BillingReport(List<PurchasedBillingPlan> plans, List<BillingReportDay> reportDays, DateTime earliestBillingDate)
+        public BillingReport(List<PurchasedBillingPlan> plans, List<BillingReportDay> reportDays, DateTime serverToday, DateTime earliestBillingDate, long? bandwidthAllocation = null, long? ciAllocation = null)
         {
             Plans = plans;
             ReportDays = reportDays;
+            BandwidthAllocation = bandwidthAllocation;
+            CiAllocation = ciAllocation;
+            ServerToday = serverToday;
             EarliestBillingDate = earliestBillingDate;
         }
         
@@ -61,6 +64,35 @@ namespace JetBrains.Space.Client
             set => _reportDays.SetValue(value);
         }
     
+        private PropertyValue<long?> _bandwidthAllocation = new PropertyValue<long?>(nameof(BillingReport), nameof(BandwidthAllocation));
+        
+        [JsonPropertyName("bandwidthAllocation")]
+        public long? BandwidthAllocation
+        {
+            get => _bandwidthAllocation.GetValue();
+            set => _bandwidthAllocation.SetValue(value);
+        }
+    
+        private PropertyValue<long?> _ciAllocation = new PropertyValue<long?>(nameof(BillingReport), nameof(CiAllocation));
+        
+        [JsonPropertyName("ciAllocation")]
+        public long? CiAllocation
+        {
+            get => _ciAllocation.GetValue();
+            set => _ciAllocation.SetValue(value);
+        }
+    
+        private PropertyValue<DateTime> _serverToday = new PropertyValue<DateTime>(nameof(BillingReport), nameof(ServerToday));
+        
+        [Required]
+        [JsonPropertyName("serverToday")]
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime ServerToday
+        {
+            get => _serverToday.GetValue();
+            set => _serverToday.SetValue(value);
+        }
+    
         private PropertyValue<DateTime> _earliestBillingDate = new PropertyValue<DateTime>(nameof(BillingReport), nameof(EarliestBillingDate));
         
         [Required]
@@ -76,6 +108,9 @@ namespace JetBrains.Space.Client
         {
             _plans.SetAccessPath(path, validateHasBeenSet);
             _reportDays.SetAccessPath(path, validateHasBeenSet);
+            _bandwidthAllocation.SetAccessPath(path, validateHasBeenSet);
+            _ciAllocation.SetAccessPath(path, validateHasBeenSet);
+            _serverToday.SetAccessPath(path, validateHasBeenSet);
             _earliestBillingDate.SetAccessPath(path, validateHasBeenSet);
         }
     

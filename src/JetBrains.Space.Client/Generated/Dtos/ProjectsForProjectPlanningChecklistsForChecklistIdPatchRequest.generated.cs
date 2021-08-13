@@ -34,12 +34,13 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest() { }
         
-        public ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest(string? name = null, string? description = null, string? owner = null, string? tag = null)
+        public ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest(List<string> topics, string? name = null, string? description = null, string? owner = null, string? tag = null)
         {
             Name = (name ?? string.Empty);
             Description = description;
             Owner = owner;
             Tag = tag;
+            Topics = topics;
         }
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Name), string.Empty);
@@ -78,12 +79,22 @@ namespace JetBrains.Space.Client
             set => _tag.SetValue(value);
         }
     
+        private PropertyValue<List<string>> _topics = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Topics), new List<string>());
+        
+        [JsonPropertyName("topics")]
+        public List<string> Topics
+        {
+            get => _topics.GetValue();
+            set => _topics.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
             _owner.SetAccessPath(path, validateHasBeenSet);
             _tag.SetAccessPath(path, validateHasBeenSet);
+            _topics.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

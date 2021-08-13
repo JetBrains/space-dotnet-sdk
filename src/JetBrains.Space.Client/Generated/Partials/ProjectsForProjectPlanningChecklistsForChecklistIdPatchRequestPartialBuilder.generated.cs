@@ -43,6 +43,9 @@ namespace JetBrains.Space.Client.ProjectsForProjectPlanningChecklistsForChecklis
         public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> WithTag(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> it)
             => it.AddFieldName("tag");
         
+        public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> WithTopics(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> it)
+            => it.AddFieldName("topics");
+        
     }
     
 }

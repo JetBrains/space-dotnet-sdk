@@ -67,6 +67,15 @@ namespace JetBrains.Space.Client.DRDraftHeaderPartialBuilder
         public static Partial<DRDraftHeader> WithIsDeleted(this Partial<DRDraftHeader> it)
             => it.AddFieldName("deleted");
         
+        public static Partial<DRDraftHeader> WithArchivedBy(this Partial<DRDraftHeader> it)
+            => it.AddFieldName("archivedBy");
+        
+        public static Partial<DRDraftHeader> WithArchivedBy(this Partial<DRDraftHeader> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("archivedBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
+        public static Partial<DRDraftHeader> WithArchivedAt(this Partial<DRDraftHeader> it)
+            => it.AddFieldName("archivedAt");
+        
         public static Partial<DRDraftHeader> WithFolder(this Partial<DRDraftHeader> it)
             => it.AddFieldName("folder");
         

@@ -34,9 +34,10 @@ namespace JetBrains.Space.Client
     {
         public RepoCommitsSubscriptionFilterSpec() { }
         
-        public RepoCommitsSubscriptionFilterSpec(List<string> authors, List<string> branchSpec, string pathSpec, string messageRegex)
+        public RepoCommitsSubscriptionFilterSpec(List<string> authors, List<string> committers, List<string> branchSpec, string pathSpec, string messageRegex)
         {
             Authors = authors;
+            Committers = committers;
             BranchSpec = branchSpec;
             PathSpec = pathSpec;
             MessageRegex = messageRegex;
@@ -50,6 +51,16 @@ namespace JetBrains.Space.Client
         {
             get => _authors.GetValue();
             set => _authors.SetValue(value);
+        }
+    
+        private PropertyValue<List<string>> _committers = new PropertyValue<List<string>>(nameof(RepoCommitsSubscriptionFilterSpec), nameof(Committers), new List<string>());
+        
+        [Required]
+        [JsonPropertyName("committers")]
+        public List<string> Committers
+        {
+            get => _committers.GetValue();
+            set => _committers.SetValue(value);
         }
     
         private PropertyValue<List<string>> _branchSpec = new PropertyValue<List<string>>(nameof(RepoCommitsSubscriptionFilterSpec), nameof(BranchSpec), new List<string>());
@@ -85,6 +96,7 @@ namespace JetBrains.Space.Client
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _authors.SetAccessPath(path, validateHasBeenSet);
+            _committers.SetAccessPath(path, validateHasBeenSet);
             _branchSpec.SetAccessPath(path, validateHasBeenSet);
             _pathSpec.SetAccessPath(path, validateHasBeenSet);
             _messageRegex.SetAccessPath(path, validateHasBeenSet);

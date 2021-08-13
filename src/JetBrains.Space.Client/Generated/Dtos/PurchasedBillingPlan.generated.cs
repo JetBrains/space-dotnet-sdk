@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public PurchasedBillingPlan() { }
         
-        public PurchasedBillingPlan(string id, string plan, string billingPeriod, DateTime since, DateTime till, Currency currency, double addUserPrice, double addStoragePrice, double addBandwidthPrice, double addCiCreditPrice, int minActiveUsers, int prepaidUsers, int storagePerUser, int storageOverall, int bandwidthPerUser, int bandwidthOverall, int ciCredits, int ciCreditsReserve, int integrations, int searchHistory, double hardLimitAmount, string? jetSalesId = null, double? ciCreditsRateForExternalWorker = null, bool? recurrentPaymentEnabled = null)
+        public PurchasedBillingPlan(string id, string plan, string billingPeriod, DateTime since, DateTime till, Currency currency, double addUserPrice, double addStoragePrice, double addBandwidthPrice, double addCiCreditPrice, int minActiveUsers, int prepaidUsers, int storagePerUser, int storageOverall, int bandwidthPerUser, int bandwidthOverall, int ciCredits, int ciCreditsReserve, int integrations, int searchHistory, double balance, double hardLimitAmount, string? jetSalesId = null, double? ciCreditsRateForExternalWorker = null, bool? recurrentPaymentEnabled = null)
         {
             Id = id;
             JetSalesId = jetSalesId;
@@ -58,6 +58,7 @@ namespace JetBrains.Space.Client
             CiCreditsRateForExternalWorker = ciCreditsRateForExternalWorker;
             Integrations = integrations;
             SearchHistory = searchHistory;
+            Balance = balance;
             HardLimitAmount = hardLimitAmount;
             IsRecurrentPaymentEnabled = recurrentPaymentEnabled;
         }
@@ -282,6 +283,16 @@ namespace JetBrains.Space.Client
             set => _searchHistory.SetValue(value);
         }
     
+        private PropertyValue<double> _balance = new PropertyValue<double>(nameof(PurchasedBillingPlan), nameof(Balance));
+        
+        [Required]
+        [JsonPropertyName("balance")]
+        public double Balance
+        {
+            get => _balance.GetValue();
+            set => _balance.SetValue(value);
+        }
+    
         private PropertyValue<double> _hardLimitAmount = new PropertyValue<double>(nameof(PurchasedBillingPlan), nameof(HardLimitAmount));
         
         [Required]
@@ -325,6 +336,7 @@ namespace JetBrains.Space.Client
             _ciCreditsRateForExternalWorker.SetAccessPath(path, validateHasBeenSet);
             _integrations.SetAccessPath(path, validateHasBeenSet);
             _searchHistory.SetAccessPath(path, validateHasBeenSet);
+            _balance.SetAccessPath(path, validateHasBeenSet);
             _hardLimitAmount.SetAccessPath(path, validateHasBeenSet);
             _recurrentPaymentEnabled.SetAccessPath(path, validateHasBeenSet);
         }

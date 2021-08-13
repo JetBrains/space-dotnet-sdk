@@ -70,6 +70,9 @@ namespace JetBrains.Space.Client.ApplicationsPostRequestPartialBuilder
         public static Partial<ApplicationsPostRequest> WithIsHasSigningKey(this Partial<ApplicationsPostRequest> it)
             => it.AddFieldName("hasSigningKey");
         
+        public static Partial<ApplicationsPostRequest> WithIsHasPublicKeySignature(this Partial<ApplicationsPostRequest> it)
+            => it.AddFieldName("hasPublicKeySignature");
+        
         public static Partial<ApplicationsPostRequest> WithBasicAuthUsername(this Partial<ApplicationsPostRequest> it)
             => it.AddFieldName("basicAuthUsername");
         

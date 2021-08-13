@@ -35,14 +35,14 @@ namespace JetBrains.Space.Client
         public static MessageRecipient Channel(ChatChannel channel)
             => new MessageRecipientChannel(channel);
         
-        public static MessageRecipient Member(ProfileIdentifier member)
-            => new MessageRecipientMember(member);
+        public static MessageRecipient CodeReview(string codeReview)
+            => new MessageRecipientCodeReview(codeReview);
         
         public static MessageRecipient Issue(string issue)
             => new MessageRecipientIssue(issue);
         
-        public static MessageRecipient CodeReview(string codeReview)
-            => new MessageRecipientCodeReview(codeReview);
+        public static MessageRecipient Member(ProfileIdentifier member)
+            => new MessageRecipientMember(member);
         
         private class MessageRecipientChannel : MessageRecipient
         {
@@ -55,15 +55,15 @@ namespace JetBrains.Space.Client
                 => $"channel:{_channel}";
         }
         
-        private class MessageRecipientMember : MessageRecipient
+        private class MessageRecipientCodeReview : MessageRecipient
         {
-            private readonly ProfileIdentifier _member;
+            private readonly string _codeReview;
             
-            public MessageRecipientMember(ProfileIdentifier member)
-                => _member = member;
+            public MessageRecipientCodeReview(string codeReview)
+                => _codeReview = codeReview;
             
             public override string ToString()
-                => $"member:{_member}";
+                => $"codeReview:{_codeReview}";
         }
         
         private class MessageRecipientIssue : MessageRecipient
@@ -77,15 +77,15 @@ namespace JetBrains.Space.Client
                 => $"issue:{_issue}";
         }
         
-        private class MessageRecipientCodeReview : MessageRecipient
+        private class MessageRecipientMember : MessageRecipient
         {
-            private readonly string _codeReview;
+            private readonly ProfileIdentifier _member;
             
-            public MessageRecipientCodeReview(string codeReview)
-                => _codeReview = codeReview;
+            public MessageRecipientMember(ProfileIdentifier member)
+                => _member = member;
             
             public override string ToString()
-                => $"codeReview:{_codeReview}";
+                => $"member:{_member}";
         }
         
     }

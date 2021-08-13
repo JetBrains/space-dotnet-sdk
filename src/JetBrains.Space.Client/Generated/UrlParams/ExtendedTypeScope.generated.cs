@@ -32,17 +32,11 @@ namespace JetBrains.Space.Client
     [JsonConverter(typeof(UrlParameterConverter))]
     public abstract class ExtendedTypeScope : IUrlParameter
     {
-        public static ExtendedTypeScope Org
-            => new ExtendedTypeScopeOrg();
-        
         public static ExtendedTypeScope Container(string containerId)
             => new ExtendedTypeScopeContainer(containerId);
         
-        private class ExtendedTypeScopeOrg : ExtendedTypeScope
-        {
-            public override string ToString()
-                => "org";
-        }
+        public static ExtendedTypeScope Org
+            => new ExtendedTypeScopeOrg();
         
         private class ExtendedTypeScopeContainer : ExtendedTypeScope
         {
@@ -53,6 +47,12 @@ namespace JetBrains.Space.Client
             
             public override string ToString()
                 => $"containerId:{_containerId}";
+        }
+        
+        private class ExtendedTypeScopeOrg : ExtendedTypeScope
+        {
+            public override string ToString()
+                => "org";
         }
         
     }

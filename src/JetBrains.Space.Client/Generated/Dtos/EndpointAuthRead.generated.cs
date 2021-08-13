@@ -42,6 +42,9 @@ namespace JetBrains.Space.Client
         public static EndpointAuthReadBearer Bearer()
             => new EndpointAuthReadBearer();
         
+        public static EndpointAuthReadPublicKeySignature PublicKeySignature()
+            => new EndpointAuthReadPublicKeySignature();
+        
         public static EndpointAuthReadSSLKeystore SSLKeystore(string sslKeystore)
             => new EndpointAuthReadSSLKeystore(sslKeystore: sslKeystore);
         

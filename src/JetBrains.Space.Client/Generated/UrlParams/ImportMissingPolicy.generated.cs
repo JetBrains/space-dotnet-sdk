@@ -32,22 +32,22 @@ namespace JetBrains.Space.Client
     [JsonConverter(typeof(UrlParameterConverter))]
     public abstract class ImportMissingPolicy : IUrlParameter
     {
-        public static ImportMissingPolicy Skip
-            => new ImportMissingPolicySkip();
-        
         public static ImportMissingPolicy ReplaceWithDefault
             => new ImportMissingPolicyReplaceWithDefault();
         
-        private class ImportMissingPolicySkip : ImportMissingPolicy
-        {
-            public override string ToString()
-                => "skip";
-        }
+        public static ImportMissingPolicy Skip
+            => new ImportMissingPolicySkip();
         
         private class ImportMissingPolicyReplaceWithDefault : ImportMissingPolicy
         {
             public override string ToString()
                 => "replace-with-default";
+        }
+        
+        private class ImportMissingPolicySkip : ImportMissingPolicy
+        {
+            public override string ToString()
+                => "skip";
         }
         
     }

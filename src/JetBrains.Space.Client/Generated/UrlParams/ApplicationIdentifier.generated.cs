@@ -32,25 +32,14 @@ namespace JetBrains.Space.Client
     [JsonConverter(typeof(UrlParameterConverter))]
     public abstract class ApplicationIdentifier : IUrlParameter
     {
-        public static ApplicationIdentifier Id(string id)
-            => new ApplicationIdentifierId(id);
-        
         public static ApplicationIdentifier ClientId(string clientId)
             => new ApplicationIdentifierClientId(clientId);
         
+        public static ApplicationIdentifier Id(string id)
+            => new ApplicationIdentifierId(id);
+        
         public static ApplicationIdentifier Me
             => new ApplicationIdentifierMe();
-        
-        private class ApplicationIdentifierId : ApplicationIdentifier
-        {
-            private readonly string _id;
-            
-            public ApplicationIdentifierId(string id)
-                => _id = id;
-            
-            public override string ToString()
-                => $"id:{_id}";
-        }
         
         private class ApplicationIdentifierClientId : ApplicationIdentifier
         {
@@ -61,6 +50,17 @@ namespace JetBrains.Space.Client
             
             public override string ToString()
                 => $"clientId:{_clientId}";
+        }
+        
+        private class ApplicationIdentifierId : ApplicationIdentifier
+        {
+            private readonly string _id;
+            
+            public ApplicationIdentifierId(string id)
+                => _id = id;
+            
+            public override string ToString()
+                => $"id:{_id}";
         }
         
         private class ApplicationIdentifierMe : ApplicationIdentifier

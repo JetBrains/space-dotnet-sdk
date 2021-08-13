@@ -41,6 +41,9 @@ namespace JetBrains.Space.Client
         public static DocumentCFParametersInput Document(DocumentCFScopeInput documentScope)
             => new DocumentCFParametersInput(documentScope: documentScope);
         
+        public static VcsCommitCFParametersInput VcsCommit(VcsCFScopeInput vcsCFScope)
+            => new VcsCommitCFParametersInput(vcsCFScope: vcsCFScope);
+        
     }
     
 }

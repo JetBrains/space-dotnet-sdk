@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public ApplicationsForApplicationPatchRequest() { }
         
-        public ApplicationsForApplicationPatchRequest(bool endpointSslVerification, bool hasVerificationToken, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null)
+        public ApplicationsForApplicationPatchRequest(bool endpointSslVerification, bool hasVerificationToken, bool hasPublicKeySignature, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null)
         {
             Name = name;
             ClientSecret = clientSecret;
@@ -47,6 +47,7 @@ namespace JetBrains.Space.Client
             EndpointUri = endpointUri;
             IsEndpointSslVerification = endpointSslVerification;
             IsHasVerificationToken = hasVerificationToken;
+            IsHasPublicKeySignature = hasPublicKeySignature;
             IsHasSigningKey = hasSigningKey;
             BasicAuthUsername = basicAuthUsername;
             BasicAuthPassword = basicAuthPassword;
@@ -153,6 +154,15 @@ namespace JetBrains.Space.Client
             set => _hasVerificationToken.SetValue(value);
         }
     
+        private PropertyValue<bool> _hasPublicKeySignature = new PropertyValue<bool>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsHasPublicKeySignature));
+        
+        [JsonPropertyName("hasPublicKeySignature")]
+        public bool IsHasPublicKeySignature
+        {
+            get => _hasPublicKeySignature.GetValue();
+            set => _hasPublicKeySignature.SetValue(value);
+        }
+    
         private PropertyValue<bool> _hasSigningKey = new PropertyValue<bool>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsHasSigningKey));
         
         [JsonPropertyName("hasSigningKey")]
@@ -211,6 +221,7 @@ namespace JetBrains.Space.Client
             _endpointUri.SetAccessPath(path, validateHasBeenSet);
             _endpointSslVerification.SetAccessPath(path, validateHasBeenSet);
             _hasVerificationToken.SetAccessPath(path, validateHasBeenSet);
+            _hasPublicKeySignature.SetAccessPath(path, validateHasBeenSet);
             _hasSigningKey.SetAccessPath(path, validateHasBeenSet);
             _basicAuthUsername.SetAccessPath(path, validateHasBeenSet);
             _basicAuthPassword.SetAccessPath(path, validateHasBeenSet);

@@ -91,6 +91,15 @@ namespace JetBrains.Space.Client.DocumentPartialBuilder
         public static Partial<Document> WithIsDeleted(this Partial<Document> it)
             => it.AddFieldName("deleted");
         
+        public static Partial<Document> WithArchivedBy(this Partial<Document> it)
+            => it.AddFieldName("archivedBy");
+        
+        public static Partial<Document> WithArchivedBy(this Partial<Document> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("archivedBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
+        public static Partial<Document> WithArchivedAt(this Partial<Document> it)
+            => it.AddFieldName("archivedAt");
+        
         public static Partial<Document> WithIsPublished(this Partial<Document> it)
             => it.AddFieldName("published");
         

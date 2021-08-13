@@ -34,11 +34,12 @@ namespace JetBrains.Space.Client
     {
         public Currency() { }
         
-        public Currency(string code, bool signAsPrefix, string? sign = null)
+        public Currency(string code, bool signAsPrefix, bool hasCents, string? sign = null)
         {
             Code = code;
             Sign = sign;
             IsSignAsPrefix = signAsPrefix;
+            IsHasCents = hasCents;
         }
         
         private PropertyValue<string> _code = new PropertyValue<string>(nameof(Currency), nameof(Code));
@@ -70,11 +71,22 @@ namespace JetBrains.Space.Client
             set => _signAsPrefix.SetValue(value);
         }
     
+        private PropertyValue<bool> _hasCents = new PropertyValue<bool>(nameof(Currency), nameof(IsHasCents));
+        
+        [Required]
+        [JsonPropertyName("hasCents")]
+        public bool IsHasCents
+        {
+            get => _hasCents.GetValue();
+            set => _hasCents.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _code.SetAccessPath(path, validateHasBeenSet);
             _sign.SetAccessPath(path, validateHasBeenSet);
             _signAsPrefix.SetAccessPath(path, validateHasBeenSet);
+            _hasCents.SetAccessPath(path, validateHasBeenSet);
         }
     
     }
