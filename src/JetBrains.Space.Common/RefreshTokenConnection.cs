@@ -42,10 +42,10 @@ namespace JetBrains.Space.Common
         }
 
         /// <summary>
-        /// A space separated list of rights required to access specific resources in Space. Defaults to "**".
+        /// Gets the list of permissions to request. Defaults to "**".
         /// </summary>
         // ReSharper disable once MemberCanBePrivate.Global
-        public string Scope { get; set; } = "**";
+        public ICollection<string> Scope { get; } = new HashSet<string> { "**" };
 
         /// <inheritdoc />
         protected override async Task EnsureAuthenticatedAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -65,7 +65,7 @@ namespace JetBrains.Space.Common
                     {
                         new KeyValuePair<string?, string?>("grant_type", "refresh_token"),
                         new KeyValuePair<string?, string?>("refresh_token", AuthenticationTokens.RefreshToken),
-                        new KeyValuePair<string?, string?>("scope", Scope)
+                        new KeyValuePair<string?, string?>("scope", string.Join(" ", Scope))
                     })
                 };
 
