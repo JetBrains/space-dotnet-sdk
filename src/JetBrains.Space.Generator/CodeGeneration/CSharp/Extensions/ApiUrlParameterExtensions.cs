@@ -15,7 +15,17 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
         public static string ToCSharpClassName(this ApiUrlParameterOption subject)
             => CSharpIdentifier.ForClassOrNamespace(subject.OptionName);
         
-        public static string ToCSharpClassNameShort(this ApiUrlParameterOption subject)
-            => CSharpIdentifier.ForClassOrNamespace(subject.OptionName.Split('.', StringSplitOptions.RemoveEmptyEntries).Last());
+        public static string ToCSharpFactoryMethodName(this ApiUrlParameterOption subject, ApiUrlParameter parent)
+        {
+            var classNameForParent = CSharpIdentifier.ForClassOrNamespace(parent.Name
+                .Split('.', StringSplitOptions.RemoveEmptyEntries).Last());
+            var classNameForSubject = CSharpIdentifier.ForClassOrNamespace(subject.OptionName
+                .Split('.', StringSplitOptions.RemoveEmptyEntries).Last());
+            
+            var factoryMethodName = CSharpIdentifier.ForClassOrNamespace(
+                classNameForSubject.Replace(classNameForParent, string.Empty));
+
+            return factoryMethodName;
+        }
     }
 }

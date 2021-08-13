@@ -36,7 +36,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             {
                 builder.Append(
                     indent.Wrap(
-                        GenerateUrlParameterOptionFactoryMethod(apiUrlParameterOption, typeNameForUrlParameter)));
+                        GenerateUrlParameterOptionFactoryMethod(apiUrlParameter, apiUrlParameterOption, typeNameForUrlParameter)));
             }
             
             foreach (var apiUrlParameterOption in apiUrlParameter.Options)
@@ -52,14 +52,15 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
         }
 
         private string GenerateUrlParameterOptionFactoryMethod(
-            ApiUrlParameterOption apiUrlParameterOption, 
+            ApiUrlParameter apiUrlParameter,
+            ApiUrlParameterOption apiUrlParameterOption,
             string typeNameForUrlParameter)
         {
             var indent = new Indent();
             var builder = new StringBuilder();
             
             var typeNameForUrlParameterOption = apiUrlParameterOption.ToCSharpClassName();
-            var shortTypeNameForUrlParameterOption = apiUrlParameterOption.ToCSharpClassNameShort();
+            var factoryMethodNameForUrlParameterOption = apiUrlParameterOption.ToCSharpFactoryMethodName(apiUrlParameter);
             
             // Option method deprecation
             if (apiUrlParameterOption.Deprecation != null)
@@ -71,7 +72,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             switch (apiUrlParameterOption)
             {
                 case ApiUrlParameterOption.Const _:
-                    builder.AppendLine($"{indent}public static {typeNameForUrlParameter} {shortTypeNameForUrlParameterOption}");
+                    builder.AppendLine($"{indent}public static {typeNameForUrlParameter} {factoryMethodNameForUrlParameterOption}");
                     indent.Increment();
                     builder.AppendLine($"{indent}=> new {typeNameForUrlParameterOption}();");
                     indent.Decrement();
@@ -81,7 +82,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                     var valueTypeName = varParameter.Parameter.Type.ToCSharpType(_codeGenerationContext);
                     var variableName = varParameter.Parameter.ToCSharpVariableName();
                     
-                    builder.AppendLine($"{indent}public static {typeNameForUrlParameter} {shortTypeNameForUrlParameterOption}({valueTypeName} {variableName})");
+                    builder.AppendLine($"{indent}public static {typeNameForUrlParameter} {factoryMethodNameForUrlParameterOption}({valueTypeName} {variableName})");
                     indent.Increment();
                     builder.AppendLine($"{indent}=> new {typeNameForUrlParameterOption}({variableName});");
                     indent.Decrement();
