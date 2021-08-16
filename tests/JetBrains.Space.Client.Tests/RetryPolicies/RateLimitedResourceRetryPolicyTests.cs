@@ -30,16 +30,16 @@ namespace JetBrains.Space.Client.Tests.RetryPolicies
             Assert.Equal("OK", result);
             Assert.Equal(1, numberOfTries);
         }
-        
+
         [Fact]
         public async Task DoesNotRetryWhenNotRateLimitedException()
         {
             // Arrange, Assert, Act
             var numberOfTries = 0;
-            
+
             var target = new RateLimitedResourceRetryPolicy();
 
-           await Assert.ThrowsAsync<ResourceException>(async () =>
+            await Assert.ThrowsAsync<ResourceException>(async () =>
             {
                 await target.ExecuteAsync<string>(
                     () =>
@@ -52,7 +52,7 @@ namespace JetBrains.Space.Client.Tests.RetryPolicies
 
             Assert.Equal(1, numberOfTries);
         }
-        
+
         [Fact]
         public async Task RetriesWhenRateLimitedException()
         {
