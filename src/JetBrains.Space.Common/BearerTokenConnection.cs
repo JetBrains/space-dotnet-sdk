@@ -200,7 +200,12 @@ namespace JetBrains.Space.Common
             }, cancellationToken);
         }
         
-        private static async Task<ResourceException> BuildException(HttpResponseMessage response)
+        /// <summary>
+        /// Build a <see cref="ResourceException"/> from a <see cref="HttpResponseMessage"/>.
+        /// </summary>
+        /// <param name="response">The <see cref="HttpResponseMessage"/> to build a <see cref="ResourceException"/> from.</param>
+        /// <returns>The <see cref="ResourceException"/>, matching lal characteristics of the <see cref="HttpResponseMessage"/> body.</returns>
+        protected static async Task<ResourceException> BuildException(HttpResponseMessage response)
         {
             // 1. Determine Space error
             SpaceError? spaceError = null;

@@ -70,6 +70,13 @@ namespace JetBrains.Space.Common
                 };
 
                 var spaceTokenResponse = await HttpClient.SendAsync(spaceTokenRequest, cancellationToken);
+                if (!spaceTokenResponse.IsSuccessStatusCode)
+                {
+                    var exception = await BuildException(spaceTokenResponse);
+                    throw exception;
+                }
+                
+                // Parse new access/refresh token
                 using var spaceTokenDocument = await JsonDocument.ParseAsync(await spaceTokenResponse.Content.ReadAsStreamAsync(), cancellationToken: cancellationToken);
                 var spaceToken = spaceTokenDocument.RootElement;
                 
