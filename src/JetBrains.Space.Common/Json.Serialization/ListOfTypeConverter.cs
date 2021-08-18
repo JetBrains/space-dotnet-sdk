@@ -49,7 +49,7 @@ namespace JetBrains.Space.Common.Json.Serialization
         {
             if (reader.TokenType == JsonTokenType.Null) return null;
 
-            if (!(Activator.CreateInstance(typeToConvert) is IList collection)) return null;
+            if (Activator.CreateInstance(typeToConvert) is not IList collection) return null;
 
             if (reader.TokenType != JsonTokenType.StartArray)
             {
@@ -74,7 +74,7 @@ namespace JetBrains.Space.Common.Json.Serialization
                 return;
             }
 
-            if (!(value is IEnumerable<TElement> enumerable)) return;
+            if (value is not IEnumerable<TElement> enumerable) return;
             
             writer.WriteStartArray();
             

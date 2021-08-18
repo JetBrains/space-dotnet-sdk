@@ -15,18 +15,18 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
         public Type? JsonConverter { get; }
         public string? FormatString { get; }
 
-        public static readonly CSharpType Byte = new CSharpType("byte");
-        public static readonly CSharpType Short = new CSharpType("short");
-        public static readonly CSharpType Int = new CSharpType("int");
-        public static readonly CSharpType Long = new CSharpType("long");
-        public static readonly CSharpType Float = new CSharpType("float");
-        public static readonly CSharpType Double = new CSharpType("double");
-        public static readonly CSharpType Bool = new CSharpType("bool", null, "l");
-        public static readonly CSharpType String = new CSharpType("string");
-        public static readonly CSharpType SpaceDate = new CSharpType("DateTime", typeof(SpaceDateConverter), SpaceDateConverter.FormatString);
-        public static readonly CSharpType SpaceTime = new CSharpType("DateTime", typeof(SpaceDateTimeConverter), SpaceDateTimeConverter.FormatString);
-        public static readonly CSharpType Object = new CSharpType("object");
+        public static readonly CSharpType Byte = new("byte");
+        public static readonly CSharpType Short = new("short");
+        public static readonly CSharpType Int = new("int");
+        public static readonly CSharpType Long = new("long");
+        public static readonly CSharpType Float = new("float");
+        public static readonly CSharpType Double = new("double");
+        public static readonly CSharpType Bool = new("bool", null, "l");
+        public static readonly CSharpType String = new("string");
+        public static readonly CSharpType SpaceDate = new("DateTime", typeof(SpaceDateConverter), SpaceDateConverter.FormatString);
+        public static readonly CSharpType SpaceTime = new("DateTime", typeof(SpaceDateTimeConverter), SpaceDateTimeConverter.FormatString);
+        public static readonly CSharpType Object = new("object");
         
-        public static readonly CSharpType CancellationToken = new CSharpType("CancellationToken");
+        public static readonly CSharpType CancellationToken = new("CancellationToken");
     }
 }

@@ -16,7 +16,7 @@ namespace JetBrains.Space.Generator.Model.HttpApi
         public ApiMethod Method { get; set; } = default!;
         
         [JsonPropertyName("parameters")]
-        public List<ApiParameter> Parameters { get; set; } = new List<ApiParameter>();
+        public List<ApiParameter> Parameters { get; set; } = new();
         
         [JsonPropertyName("requestBody")]
         [JsonConverter(typeof(ApiFieldTypeConverter))]

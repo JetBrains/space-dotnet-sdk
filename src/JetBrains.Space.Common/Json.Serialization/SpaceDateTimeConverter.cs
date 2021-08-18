@@ -27,8 +27,9 @@ namespace JetBrains.Space.Common.Json.Serialization
             if (typeToConvert == typeof(DateTime?))
             {
                 return new NullableDateTimeConverter(FormatString);
-            } 
-            else if (typeToConvert == typeof(DateTime))
+            }
+
+            if (typeToConvert == typeof(DateTime))
             {
                 return new NonNullableDateTimeConverter(new NullableDateTimeConverter(FormatString));
             }

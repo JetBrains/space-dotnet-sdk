@@ -39,8 +39,8 @@ namespace JetBrains.Space.Samples.Web.Pages
         private readonly AbsenceClient _absenceClient;
 
         public TDMemberProfile MemberProfile { get; set; } = default!;
-        public List<Meeting> MeetingsToday { get; set; } = new List<Meeting>();
-        public List<AbsenceRecord> Absences { get; set; } = new List<AbsenceRecord>();
+        public List<Meeting> MeetingsToday { get; set; } = new();
+        public List<AbsenceRecord> Absences { get; set; } = new();
         public int IssuesCreatedThisWeek { get; set; }
         public int IssuesResolvedThisWeek { get; set; }
         public int ReviewsCreatedThisWeek { get; set; }

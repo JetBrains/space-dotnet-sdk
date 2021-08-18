@@ -71,7 +71,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             // Option method
             switch (apiUrlParameterOption)
             {
-                case ApiUrlParameterOption.Const _:
+                case ApiUrlParameterOption.Const:
                     builder.AppendLine($"{indent}public static {typeNameForUrlParameter} {factoryMethodNameForUrlParameterOption}");
                     indent.Increment();
                     builder.AppendLine($"{indent}=> new {typeNameForUrlParameterOption}();");

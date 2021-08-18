@@ -34,13 +34,13 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                 builder.AppendLine($"{indent}[JsonConverter(typeof(ClassNameDtoTypeConverter))]");
             }
         
-            var modifierForDto = apiDto.HierarchyRole == HierarchyRole.INTERFACE
-                ? "interface"
-                : apiDto.HierarchyRole == HierarchyRole.ABSTRACT
-                    ? "abstract class"
-                    : apiDto.HierarchyRole == HierarchyRole.FINAL
-                        ? "sealed class"
-                        : "class";
+            var modifierForDto = apiDto.HierarchyRole switch
+            {
+                HierarchyRole.INTERFACE => "interface",
+                HierarchyRole.ABSTRACT => "abstract class",
+                HierarchyRole.FINAL => "sealed class",
+                _ => "class"
+            };
         
             var dtoHierarchy = new List<string>();
             var dtoHierarchyFieldNames = new List<string>();
@@ -221,8 +221,8 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                 // TODO When switching to records (.NET 6 LTS), replace this construct to be immutable.
                 apiField.DefaultValue = apiField.Type switch
                 {
-                    ApiFieldType.Array _ => new ApiDefaultValue.Collection(),
-                    ApiFieldType.Map _ => new ApiDefaultValue.Map(),
+                    ApiFieldType.Array => new ApiDefaultValue.Collection(),
+                    ApiFieldType.Map => new ApiDefaultValue.Map(),
                     _ => apiField.DefaultValue
                 };
             }
@@ -285,7 +285,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             return builder.ToString();
         }
 
-        private string GenerateDtoPropagatePropertyAccessPath(ApiDto apiDto, List<ApiDtoField> apiDtoFields)
+        private static string GenerateDtoPropagatePropertyAccessPath(ApiDto apiDto, List<ApiDtoField> apiDtoFields)
         {
             var indent = new Indent();
             var builder = new StringBuilder();

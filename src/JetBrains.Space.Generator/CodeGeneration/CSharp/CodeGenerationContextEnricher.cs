@@ -24,7 +24,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                 
                 foreach (var apiEndpoint in apiResource.Endpoints)
                 {
-                    if (apiEndpoint.RequestBody != null && apiEndpoint.RequestBody.Kind == ApiFieldType.Object.ObjectKind.REQUEST_BODY)
+                    if (apiEndpoint.RequestBody is { Kind: ApiFieldType.Object.ObjectKind.REQUEST_BODY })
                     {
                         // Endpoint path
                         var endpointPath = (resourcePath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');

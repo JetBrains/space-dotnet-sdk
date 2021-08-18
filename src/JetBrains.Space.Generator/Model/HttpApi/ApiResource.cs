@@ -18,9 +18,9 @@ namespace JetBrains.Space.Generator.Model.HttpApi
         public string DisplayPlural { get; set; } = default!;
         
         [JsonPropertyName("nestedResources")]
-        public List<ApiResource> NestedResources { get; set; } = new List<ApiResource>();
+        public List<ApiResource> NestedResources { get; set; } = new();
         
         [JsonPropertyName("endpoints")]
-        public List<ApiEndpoint> Endpoints { get; set; } = new List<ApiEndpoint>();
+        public List<ApiEndpoint> Endpoints { get; set; } = new();
     }
 }

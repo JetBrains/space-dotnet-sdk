@@ -28,13 +28,13 @@ namespace JetBrains.Space.Generator.Model.HttpApi
         public class Collection : ApiDefaultValue
         {
             [JsonPropertyName("elements")]
-            public List<ApiDefaultValue> Elements { get; set; } = new List<ApiDefaultValue>();
+            public List<ApiDefaultValue> Elements { get; set; } = new();
         }
         
         public class Map : ApiDefaultValue
         {
             [JsonPropertyName("elements")]
-            public Dictionary<string, ApiDefaultValue> Elements { get; set; } = new Dictionary<string, ApiDefaultValue>();
+            public Dictionary<string, ApiDefaultValue> Elements { get; set; } = new();
         }
         
         public class Reference : ApiDefaultValue

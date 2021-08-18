@@ -17,7 +17,7 @@ namespace JetBrains.Space.Generator.Model.HttpApi
         public bool Nullable { get; set; }
 
         [JsonPropertyName("tags")] 
-        public List<string> Tags { get; set; } = new List<string>();
+        public List<string> Tags { get; set; } = new();
 
         public class Primitive : ApiFieldType
         {
@@ -42,7 +42,7 @@ namespace JetBrains.Space.Generator.Model.HttpApi
         public class Object : ApiFieldType
         {
             [JsonPropertyName("fields")]
-            public List<ApiField> Fields { get; set; } = new List<ApiField>();
+            public List<ApiField> Fields { get; set; } = new();
             
             [JsonPropertyName("kind")]
             public ObjectKind Kind { get; set; } = default!;

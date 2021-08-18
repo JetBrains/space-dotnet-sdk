@@ -26,7 +26,7 @@ namespace JetBrains.Space.Common.Json.Serialization.Polymorphism
         // ReSharper disable once MemberCanBePrivate.Global
         protected const string SpaceDotNetClientAssemblyName = "JetBrains.Space.Client";
 
-        private static readonly ConcurrentDictionary<string, Type> TypeMap = new ConcurrentDictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
+        private static readonly ConcurrentDictionary<string, Type> TypeMap = new(StringComparer.OrdinalIgnoreCase);
         
         /// <inheritdoc />
         public override bool CanConvert(Type objectType) 

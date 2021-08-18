@@ -65,8 +65,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             }
         
             // Group nested resources by path
-            var pathToResourceMapper = new PathToResourceMapper();
-            var mapOfPathToResources = pathToResourceMapper.CreateMapOfPathToResources(apiResource);
+            var mapOfPathToResources = PathToResourceMapper.CreateMapOfPathToResources(apiResource);
             foreach (var (_, apiNestedResources) in mapOfPathToResources)
             {
                 var isFirstResource = true;
@@ -113,9 +112,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             var builder = new StringBuilder();
             builder.AppendLine(GenerateMethodForApiEndpoint(apiEndpoint, baseEndpointPath));
             
-            var isResponseBatch = apiEndpoint.ResponseBody is ApiFieldType.Object objectResponse
-                                  && objectResponse.Kind == ApiFieldType.Object.ObjectKind.BATCH;
-        
+            var isResponseBatch = apiEndpoint.ResponseBody is ApiFieldType.Object { Kind: ApiFieldType.Object.ObjectKind.BATCH };
             if (isResponseBatch && apiEndpoint.ResponseBody != null)
             {
                 builder.AppendLine();
@@ -136,7 +133,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             var methodNameForEndpoint = apiEndpoint.ToCSharpMethodName();
             
             var isResponsePrimitiveOrArrayOfPrimitive = apiEndpoint.ResponseBody is ApiFieldType.Primitive 
-                                                        || (apiEndpoint.ResponseBody is ApiFieldType.Array arrayField && arrayField.ElementType is ApiFieldType.Primitive);
+                or ApiFieldType.Array { ElementType: ApiFieldType.Primitive };
             
             if (apiEndpoint.ResponseBody == null)
             {
@@ -426,7 +423,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             return builder.ToString();
         }
 
-        private string GenerateMethodDocumentationForEndpoint(ApiEndpoint apiEndpoint)
+        private static string GenerateMethodDocumentationForEndpoint(ApiEndpoint apiEndpoint)
         {
             var indent = new Indent();
             var builder = new StringBuilder();
@@ -440,7 +437,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             }
 
             // Remarks (required permissions)
-            if (apiEndpoint.Rights != null && apiEndpoint.Rights.Count > 0)
+            if (apiEndpoint.Rights is { Count: > 0 })
             {
                 builder.AppendLine($"{indent}/// <remarks>");
                 builder.AppendLine($"{indent}/// Required permissions:");

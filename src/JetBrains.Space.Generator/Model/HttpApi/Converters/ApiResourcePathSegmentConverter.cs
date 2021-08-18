@@ -12,7 +12,7 @@ namespace JetBrains.Space.Generator.Model.HttpApi.Converters
 {
     public class ApiResourcePathSegmentConverter : JsonConverter<ApiResourcePathSegment>
     {
-        private static readonly Dictionary<string, Type> TypeMap = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase)
+        private static readonly Dictionary<string, Type> TypeMap = new(StringComparer.OrdinalIgnoreCase)
         {
             { "HA_PathSegment.Const", typeof(ApiResourcePathSegment.Const) },
             { "HA_PathSegment.Var", typeof(ApiResourcePathSegment.Var) },

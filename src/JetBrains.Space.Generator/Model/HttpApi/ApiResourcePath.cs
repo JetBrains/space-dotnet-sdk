@@ -6,6 +6,6 @@ namespace JetBrains.Space.Generator.Model.HttpApi
     public class ApiResourcePath
     {
         [JsonPropertyName("segments")]
-        public List<ApiResourcePathSegment> Segments { get; set; } = new List<ApiResourcePathSegment>();
+        public List<ApiResourcePathSegment> Segments { get; set; } = new();
     }
 }

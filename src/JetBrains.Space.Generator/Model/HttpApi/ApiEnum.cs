@@ -15,6 +15,6 @@ namespace JetBrains.Space.Generator.Model.HttpApi
         public string Name { get; set; } = default!;
         
         [JsonPropertyName("values")]
-        public List<string> Values { get; set; } = new List<string>();
+        public List<string> Values { get; set; } = new();
     }
 }

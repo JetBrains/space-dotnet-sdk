@@ -10,8 +10,8 @@ namespace _build
     public class VersionInfoAttribute : ValueInjectionAttributeBase
     {
         public int VersionMajor { get; set; } = 1;
-        public int VersionMinor { get; set; } = 0;
-        public bool IsBeta { get; set; } = false;
+        public int VersionMinor { get; set; }
+        public bool IsBeta { get; set; }
     
         public override object GetValue(MemberInfo member, object instance) =>
             GetFromSpace() ?? GetFromGit() ?? GetFromTime();

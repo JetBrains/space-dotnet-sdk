@@ -52,7 +52,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                 var parameterConditionBuilder = new StringBuilder();
                 
                 // Build condition (is it nullable?)
-                if (apiEndpointParameter.Field.Type.Nullable && !(apiEndpointParameter.Field.Type is ApiFieldType.Enum)) // enums can be param="null", don't generate a null check
+                if (apiEndpointParameter.Field.Type.Nullable && apiEndpointParameter.Field.Type is not ApiFieldType.Enum) // enums can be param="null", don't generate a null check
                 {
                     parameterConditionBuilder.Append($"{csharpVariableName} != null");
                 }
@@ -111,7 +111,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
             }
         }
 
-        private string GenerateParameterTypeConversion(ApiFieldType apiFieldType)
+        private static string GenerateParameterTypeConversion(ApiFieldType apiFieldType)
         {
             switch (apiFieldType)
             {
@@ -139,12 +139,12 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                         : $"?.ToString({formatString})";
                 }
                 
-                case ApiFieldType.UrlParam _:
+                case ApiFieldType.UrlParam:
                     return !apiFieldType.Nullable
                         ? ".ToString()"
                         : "?.ToString()";
                 
-                case ApiFieldType.Enum _:
+                case ApiFieldType.Enum:
                     return ".ToEnumString()";
                 
                 default:

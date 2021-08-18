@@ -178,11 +178,11 @@ namespace JetBrains.Space.Common.Json.Serialization
 						{
 							// Case insensitive search attempted second.
 							var matched = false;
-							foreach (var enumItem in _transformedToRaw)
+							foreach (var (enumKey, enumValue) in _transformedToRaw)
 							{
-								if (string.Equals(enumItem.Key, flagValue, StringComparison.OrdinalIgnoreCase))
+								if (string.Equals(enumKey, flagValue, StringComparison.OrdinalIgnoreCase))
 								{
-									calculatedValue |= enumItem.Value.RawValue;
+									calculatedValue |= enumValue.RawValue;
 									matched = true;
 									break;
 								}
@@ -199,11 +199,11 @@ namespace JetBrains.Space.Common.Json.Serialization
 				}
 
 				// Case insensitive search attempted second.
-				foreach (var enumItem in _transformedToRaw)
+				foreach (var (enumKey, enumValue) in _transformedToRaw)
 				{
-					if (string.Equals(enumItem.Key, enumString, StringComparison.OrdinalIgnoreCase))
+					if (string.Equals(enumKey, enumString, StringComparison.OrdinalIgnoreCase))
 					{
-						return (T)Enum.ToObject(_enumType, enumItem.Value.RawValue);
+						return (T)Enum.ToObject(_enumType, enumValue.RawValue);
 					}
 				}
 
@@ -361,7 +361,7 @@ namespace JetBrains.Space.Common.Json.Serialization
 				TypeCode.UInt64 => (ulong)value,
 				TypeCode.UInt16 => (ushort)value,
 				TypeCode.SByte => (ulong)(sbyte)value,
-				_ => throw new NotSupportedException($"Enum '{value}' of {_enumTypeCode} type is not supported."),
+				_ => throw new NotSupportedException($"Enum '{value}' of {_enumTypeCode} type is not supported.")
 			};
 		}
 	}

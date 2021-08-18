@@ -5,7 +5,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
     public class CSharpDocument
     {
         private readonly string? _namespaceSuffix;
-        private readonly StringBuilder _builder = new StringBuilder();
+        private readonly StringBuilder _builder = new();
 
         public CSharpDocument(string? namespaceSuffix = null)
         {

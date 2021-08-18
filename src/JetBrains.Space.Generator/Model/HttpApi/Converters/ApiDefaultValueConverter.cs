@@ -12,7 +12,7 @@ namespace JetBrains.Space.Generator.Model.HttpApi.Converters
 {
     public class ApiDefaultValueConverter : JsonConverter<ApiDefaultValue>
     {
-        private static readonly Dictionary<string, Type> TypeMap = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase)
+        private static readonly Dictionary<string, Type> TypeMap = new(StringComparer.OrdinalIgnoreCase)
         {
             { "HA_DefaultValue.Const.Primitive", typeof(ApiDefaultValue.Const.Primitive) },
             { "HA_DefaultValue.Const.EnumEntry", typeof(ApiDefaultValue.Const.EnumEntry) },

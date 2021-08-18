@@ -33,7 +33,7 @@ namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
         private readonly ILogger _logger;
         private readonly ISystemClock _clock;
         
-        private static readonly ConcurrentDictionary<string, bool> PendingRefreshTokenRequests = new ConcurrentDictionary<string, bool>();
+        private static readonly ConcurrentDictionary<string, bool> PendingRefreshTokenRequests = new();
 
         /// <summary>
         /// Creates a new <see cref="SpaceTokenManagementCookieEvents"/> instance.
@@ -147,10 +147,8 @@ namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
                 var scheme = await _schemeProvider.GetDefaultChallengeSchemeAsync();
                 return _spaceOptions.Get(scheme?.Name);
             }
-            else
-            {
-                return _spaceOptions.Get(_options.Scheme);
-            }
+
+            return _spaceOptions.Get(_options.Scheme);
         }
     }
 }

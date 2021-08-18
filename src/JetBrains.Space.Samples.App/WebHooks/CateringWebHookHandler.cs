@@ -46,7 +46,7 @@ namespace JetBrains.Space.Samples.App.WebHooks
     [UsedImplicitly]
     public class CateringWebHookHandler : SpaceWebHookHandler
     {
-        private static readonly ConcurrentDictionary<string, CateringSession> Sessions = new ConcurrentDictionary<string, CateringSession>();
+        private static readonly ConcurrentDictionary<string, CateringSession> Sessions = new();
         
         private readonly ChatClient _chatClient;
 
@@ -59,8 +59,8 @@ namespace JetBrains.Space.Samples.App.WebHooks
         {
             return new Commands(new List<CommandDetail>
             {
-                new CommandDetail("new", "Create a new catering request."),
-                new CommandDetail("help", "Get more info about this application.")
+                new("new", "Create a new catering request."),
+                new("help", "Get more info about this application.")
             });
         }
 
@@ -143,8 +143,9 @@ namespace JetBrains.Space.Samples.App.WebHooks
             if (payload.ActionId == ActionId.Skip)
             {
                 return new ApplicationExecutionResult("Catering request has been skipped.");
-            } 
-            else if (cateringSession == null)
+            }
+
+            if (cateringSession == null)
             {
                 cateringSession = new CateringSession();
                 Sessions[payload.UserId] = cateringSession;
@@ -230,7 +231,7 @@ namespace JetBrains.Space.Samples.App.WebHooks
                     cateringSession: cateringSession);
             }
             else if (!string.IsNullOrEmpty(cateringSession.SelectedDrinks) 
-                     && cateringSession.SelectedDrinks.IndexOf("coffee", StringComparison.OrdinalIgnoreCase) >= 0
+                     && cateringSession.SelectedDrinks.Contains("coffee", StringComparison.OrdinalIgnoreCase)
                      && string.IsNullOrEmpty(cateringSession.SelectedDrinkAdditions))
             {
                 await SendOrEditMessageAsync(
@@ -337,10 +338,10 @@ namespace JetBrains.Space.Samples.App.WebHooks
         
         private static class ActionId
         {
-            public static readonly string Food = "catering-food";
-            public static readonly string Drinks = "catering-drinks";
-            public static readonly string DrinkAdditions = "catering-drinkadditions";
-            public static readonly string Skip = "catering-skip";
+            public const string Food = "catering-food";
+            public const string Drinks = "catering-drinks";
+            public const string DrinkAdditions = "catering-drinkadditions";
+            public const string Skip = "catering-skip";
         }
 
         private class CateringSession

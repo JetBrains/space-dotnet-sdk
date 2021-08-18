@@ -17,7 +17,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.AttachmentProxy
     {
         private readonly ILogger<SpaceAttachmentProxyMiddleware> _logger;
 
-        private readonly Dictionary<string, string> _defaultHeaders = new Dictionary<string, string>
+        private readonly Dictionary<string, string> _defaultHeaders = new()
         {
             {"X-Frame-Options", "deny"},
             {"X-XSS-Protection", "1; mode=block"},
@@ -105,7 +105,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.AttachmentProxy
             }
         }
 
-        private void WriteStatusCodeAndHeadersTo(HttpResponse response, HttpStatusCode statusCode, Dictionary<string, string> headers)
+        private static void WriteStatusCodeAndHeadersTo(HttpResponse response, HttpStatusCode statusCode, Dictionary<string, string> headers)
         {
             response.StatusCode = (int)statusCode;
             

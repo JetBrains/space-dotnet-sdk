@@ -3,12 +3,12 @@ using JetBrains.Space.Generator.Model.HttpApi;
 
 namespace JetBrains.Space.Generator.CodeGeneration
 {
-    public class PathToResourceMapper
+    public static class PathToResourceMapper
     {
         private const int MinDepth = 1;
         private const int MaxDepth = 2;
         
-        public Dictionary<string, List<ApiResource>> CreateMapOfPathToResources(ApiResource apiResource)
+        public static Dictionary<string, List<ApiResource>> CreateMapOfPathToResources(ApiResource apiResource)
         {
             var mapOfPathToResources = new Dictionary<string, List<ApiResource>>();
 

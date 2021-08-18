@@ -23,7 +23,7 @@ namespace JetBrains.Space.Common
         // ReSharper disable once StaticMemberInGenericType
         private static readonly string CommonTypesBatchName = typeof(Batch<>).Name;
         
-        private HashSet<string> _fieldNames = new HashSet<string>();
+        private HashSet<string> _fieldNames = new();
 
         /// <summary>
         /// Creates a new <see cref="Partial{T}"/> instance.

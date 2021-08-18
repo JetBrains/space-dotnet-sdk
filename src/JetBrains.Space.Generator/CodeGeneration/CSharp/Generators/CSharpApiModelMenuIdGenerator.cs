@@ -103,8 +103,8 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
         }
 
         [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
-        private Node BuildTree(string prefix, IEnumerable<ApiMenuId> children) =>
-            new Node
+        private static Node BuildTree(string prefix, IEnumerable<ApiMenuId> children) =>
+            new()
             {
                 Prefix = prefix.TrimEnd('.'),
                 Children = children
@@ -118,7 +118,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
         private class Node
         {
             public string Prefix { get; set; } = string.Empty;
-            public List<Node> Children { get; set; } = new List<Node>();
+            public List<Node> Children { get; set; } = new();
             public ApiDto? Context { get; set; }
         }
     }

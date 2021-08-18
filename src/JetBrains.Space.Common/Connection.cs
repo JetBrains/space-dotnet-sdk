@@ -23,7 +23,7 @@ namespace JetBrains.Space.Common
         /// <summary>
         /// JSON serializer options that will be used when (de)serializing options.
         /// </summary>
-        protected static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions();
+        protected static readonly JsonSerializerOptions JsonSerializerOptions = new();
         
         /// <summary>
         /// Initializes static members of the <see cref="Connection" /> class.

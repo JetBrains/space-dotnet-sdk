@@ -12,7 +12,7 @@ namespace JetBrains.Space.Generator.Model.HttpApi.Converters
 {
     public class ApiFieldTypeConverter : JsonConverter<ApiFieldType>
     {
-        private static readonly Dictionary<string, Type> TypeMap = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase)
+        private static readonly Dictionary<string, Type> TypeMap = new(StringComparer.OrdinalIgnoreCase)
         {
             { "HA_Type.Array", typeof(ApiFieldType.Array) },
             { "HA_Type.Dto", typeof(ApiFieldType.Dto) },

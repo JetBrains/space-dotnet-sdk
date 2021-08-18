@@ -12,7 +12,7 @@ namespace JetBrains.Space.Generator.Model.HttpApi.Converters
 {
     public class ApiUrlParameterOptionConverter : JsonConverter<ApiUrlParameterOption>
     {
-        private static readonly Dictionary<string, Type> TypeMap = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase)
+        private static readonly Dictionary<string, Type> TypeMap = new(StringComparer.OrdinalIgnoreCase)
         {
             { "HA_UrlParameterOption.Var", typeof(ApiUrlParameterOption.Var) },
             { "HA_UrlParameterOption.Const", typeof(ApiUrlParameterOption.Const) }

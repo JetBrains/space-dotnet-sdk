@@ -57,8 +57,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                         parameterType += "?";
                     }
                     
-                    if (field.DefaultValue is ApiDefaultValue.Collection ||
-                        field.DefaultValue is ApiDefaultValue.Map)
+                    if (field.DefaultValue is ApiDefaultValue.Collection or ApiDefaultValue.Map)
                     {
                         parameterType += "?";
                     }
@@ -93,8 +92,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                         parameterType += "?";
                     }
                     
-                    if (parameter.Field.DefaultValue is ApiDefaultValue.Collection ||
-                        parameter.Field.DefaultValue is ApiDefaultValue.Map)
+                    if (parameter.Field.DefaultValue is ApiDefaultValue.Collection or ApiDefaultValue.Map)
                     {
                         parameterType += "?";
                     }
@@ -174,6 +172,6 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                     return parameterDefinition;
                 }));
 
-        private int RequiredParametersFirstOrder(MethodParameter it) => string.IsNullOrEmpty(it.DefaultValue) ? 0 : 1;
+        private static int RequiredParametersFirstOrder(MethodParameter it) => string.IsNullOrEmpty(it.DefaultValue) ? 0 : 1;
     }
 }

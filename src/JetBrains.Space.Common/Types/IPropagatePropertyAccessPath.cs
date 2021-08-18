@@ -32,16 +32,21 @@ namespace JetBrains.Space.Common.Types
         public static void SetAccessPathForValue<T>(string path, bool validateHasBeenSet, T value)
         {
             if (value == null) return;
-                  
-            if (value is IPropagatePropertyAccessPath valueWithPropertyAccessValidation)
+
+            switch (value)
             {
-                valueWithPropertyAccessValidation.SetAccessPath(path, validateHasBeenSet);
-            }
-            else if (value is IEnumerable<IPropagatePropertyAccessPath> enumerable)
-            {
-                foreach (var item in enumerable)
+                case IPropagatePropertyAccessPath valueWithPropertyAccessValidation:
+                    valueWithPropertyAccessValidation.SetAccessPath(path, validateHasBeenSet);
+                    break;
+
+                case IEnumerable<IPropagatePropertyAccessPath> enumerable:
                 {
-                    item.SetAccessPath(path, validateHasBeenSet);
+                    foreach (var item in enumerable)
+                    {
+                        item.SetAccessPath(path, validateHasBeenSet);
+                    }
+
+                    break;
                 }
             }
         }

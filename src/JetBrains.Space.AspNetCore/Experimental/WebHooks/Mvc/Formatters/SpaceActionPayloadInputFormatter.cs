@@ -27,7 +27,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Formatters
 
         private readonly IOptionsMonitor<SpaceWebHookOptions> _options;
         private readonly ILogger<SpaceActionPayloadInputFormatter> _logger;
-        private readonly JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
+        private readonly JsonSerializerOptions _jsonSerializerOptions = new()
         {
             MaxDepth = 32,
             PropertyNameCaseInsensitive = true,
@@ -157,7 +157,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Formatters
                 
                 return await InputFormatterResult.FailureAsync();
             }
-            catch (Exception exception) when (exception is FormatException || exception is OverflowException)
+            catch (Exception exception) when (exception is FormatException or OverflowException)
             {
                 context.ModelState.TryAddModelError(string.Empty, exception, context.Metadata);
                 

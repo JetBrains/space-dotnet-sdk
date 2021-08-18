@@ -13,11 +13,11 @@ using JetBrains.Space.Generator.Model.HttpApi;
 
 namespace JetBrains.Space.Generator
 {
-    class Program
+    public class Program
     {
         private const string OutputPath = "../../../../JetBrains.Space.Client/Generated/";
 
-        static async Task<int> Main(string[] args)
+        public static async Task<int> Main(string[] args)
         {
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
@@ -141,7 +141,7 @@ namespace JetBrains.Space.Generator
             if (apiModel == null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"ERROR: HTTP API model information is not available.");
+                Console.WriteLine("ERROR: HTTP API model information is not available.");
                 return -1;
             }
             
@@ -149,7 +149,7 @@ namespace JetBrains.Space.Generator
             if (string.IsNullOrEmpty(version))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"ERROR: Version information is not available.");
+                Console.WriteLine("ERROR: Version information is not available.");
                 return -1;
             }
             

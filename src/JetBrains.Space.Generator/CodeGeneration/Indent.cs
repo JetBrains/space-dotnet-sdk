@@ -42,6 +42,6 @@ namespace JetBrains.Space.Generator.CodeGeneration
             return builder.ToString();
         }
 
-        public override string ToString() => new string(' ', Level * 4);
+        public override string ToString() => new(' ', Level * 4);
     }
 }

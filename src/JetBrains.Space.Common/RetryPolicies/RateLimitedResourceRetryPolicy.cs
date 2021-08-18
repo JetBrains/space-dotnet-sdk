@@ -13,7 +13,7 @@ namespace JetBrains.Space.Common.RetryPolicies
         /// <summary>
         /// Shared <see cref="RateLimitedResourceRetryPolicy"/> instance that can be used by the Space SDK.
         /// </summary>
-        public static readonly RateLimitedResourceRetryPolicy Instance = new RateLimitedResourceRetryPolicy();
+        public static readonly RateLimitedResourceRetryPolicy Instance = new();
         
         /// <inheritdoc />
         public RateLimitedResourceRetryPolicy(

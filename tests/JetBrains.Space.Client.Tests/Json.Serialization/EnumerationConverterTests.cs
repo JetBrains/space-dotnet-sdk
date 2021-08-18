@@ -112,9 +112,9 @@ namespace JetBrains.Space.Client.Tests.Json.Serialization
         {
             private SampleEnumeration(string value) : base(value) { }
             
-            public static readonly SampleEnumeration Value1 = new SampleEnumeration("Value1");
-            public static readonly SampleEnumeration Value2 = new SampleEnumeration("Value2");
-            public static readonly SampleEnumeration Value3 = new SampleEnumeration("Value3");
+            public static readonly SampleEnumeration Value1 = new("Value1");
+            public static readonly SampleEnumeration Value2 = new("Value2");
+            public static readonly SampleEnumeration Value3 = new("Value3");
         }
     }
 }

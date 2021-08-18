@@ -12,7 +12,7 @@ namespace JetBrains.Space.Generator.Model.HttpApi
         public string Name { get; set; } = default!;
         
         [JsonPropertyName("options")]
-        public List<ApiUrlParameterOption> Options { get; set; } = new List<ApiUrlParameterOption>();
+        public List<ApiUrlParameterOption> Options { get; set; } = new();
         
         [JsonPropertyName("deprecation")]
         public ApiDeprecation? Deprecation { get; set; } = default;

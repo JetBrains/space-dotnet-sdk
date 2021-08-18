@@ -25,11 +25,11 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
                     => $"Is{propertyName}",
                 
                 // Resolve CS0542 - Member names cannot be the same as their enclosing type by adding prefix/suffix
-                ApiFieldType.Array _ when string.Equals(propertyName, containingType, StringComparison.OrdinalIgnoreCase)
+                ApiFieldType.Array when string.Equals(propertyName, containingType, StringComparison.OrdinalIgnoreCase)
                     => $"{propertyName}Items",
                 
                 // Resolve CS0542 - Member names cannot be the same as their enclosing type by adding prefix/suffix
-                ApiFieldType.Dto _ when string.Equals(propertyName, containingType, StringComparison.OrdinalIgnoreCase)
+                ApiFieldType.Dto when string.Equals(propertyName, containingType, StringComparison.OrdinalIgnoreCase)
                     => $"{propertyName}Item",
                 
                 _ => propertyName
@@ -55,16 +55,16 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
                     case ApiDefaultValue.Const.Primitive primitive:
                         return primitive.Expression;
                     
-                    case ApiDefaultValue.Const.EnumEntry _:
+                    case ApiDefaultValue.Const.EnumEntry:
                         return subject.ToCSharpDefaultValueForAssignment(context);
 
-                    case ApiDefaultValue.Collection _:
+                    case ApiDefaultValue.Collection:
                         return CSharpExpression.NullLiteral;
 
-                    case ApiDefaultValue.Map _:
+                    case ApiDefaultValue.Map:
                         return CSharpExpression.NullLiteral;
 
-                    case ApiDefaultValue.Reference _:
+                    case ApiDefaultValue.Reference:
                         throw new NotSupportedException(nameof(ApiDefaultValue.Reference) + " is not supported yet.");
                 }
             } 
@@ -101,7 +101,8 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
 
                 return $"{typeNameForEnum}.{identifierForValue}";
             }
-            else if (subject.DefaultValue is ApiDefaultValue.Collection collection)
+
+            if (subject.DefaultValue is ApiDefaultValue.Collection collection)
             {
                 var typeNameForArrayElement = subject.Type.GetArrayElementTypeOrType().ToCSharpType(context);
 
@@ -115,7 +116,8 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
                 
                 return builder.ToString();
             }
-            else if (subject.DefaultValue is ApiDefaultValue.Map map)
+
+            if (subject.DefaultValue is ApiDefaultValue.Map map)
             {
                 var typeNameForMapValue = subject.Type.GetMapValueTypeOrType().ToCSharpType(context);
 
@@ -129,7 +131,8 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
                 
                 return builder.ToString();
             }
-            else if (subject.DefaultValue is ApiDefaultValue.Reference _)
+
+            if (subject.DefaultValue is ApiDefaultValue.Reference)
             {
                 throw new NotSupportedException(nameof(ApiDefaultValue.Reference) + " is not supported yet.");
             }
