@@ -49,6 +49,12 @@ namespace JetBrains.Space.Client.TopicPartialBuilder
         public static Partial<Topic> WithParent(this Partial<Topic> it, Func<Partial<Topic>, Partial<Topic>> partialBuilder)
             => it.AddFieldName("parent", partialBuilder(new Partial<Topic>(it)));
         
+        public static Partial<Topic> WithProject(this Partial<Topic> it)
+            => it.AddFieldName("project");
+        
+        public static Partial<Topic> WithProject(this Partial<Topic> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+        
         public static Partial<Topic> WithResponsible(this Partial<Topic> it)
             => it.AddFieldName("responsible");
         

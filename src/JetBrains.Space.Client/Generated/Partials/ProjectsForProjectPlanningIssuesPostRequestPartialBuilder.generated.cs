@@ -79,6 +79,12 @@ namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesPostRequestPart
         public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithTopics(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
             => it.AddFieldName("topics");
         
+        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithParents(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+            => it.AddFieldName("parents");
+        
+        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithParents(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<IssueIdentifier>, Partial<IssueIdentifier>> partialBuilder)
+            => it.AddFieldName("parents", partialBuilder(new Partial<IssueIdentifier>(it)));
+        
     }
     
 }

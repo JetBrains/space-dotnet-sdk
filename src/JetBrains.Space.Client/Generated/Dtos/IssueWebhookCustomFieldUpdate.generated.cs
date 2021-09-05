@@ -29,32 +29,40 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class DeletedAttachment
-         : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class IssueWebhookCustomFieldUpdate
+         : IPropagatePropertyAccessPath
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "DeletedAttachment";
+        public IssueWebhookCustomFieldUpdate() { }
         
-        public DeletedAttachment() { }
-        
-        public DeletedAttachment(string deletedIdentity)
+        public IssueWebhookCustomFieldUpdate(CustomField customField, Modification<CFValue>? mod = null)
         {
-            DeletedIdentity = deletedIdentity;
+            CustomField = customField;
+            Mod = mod;
         }
         
-        private PropertyValue<string> _deletedIdentity = new PropertyValue<string>(nameof(DeletedAttachment), nameof(DeletedIdentity));
+        private PropertyValue<CustomField> _customField = new PropertyValue<CustomField>(nameof(IssueWebhookCustomFieldUpdate), nameof(CustomField));
         
         [Required]
-        [JsonPropertyName("deletedIdentity")]
-        public string DeletedIdentity
+        [JsonPropertyName("customField")]
+        public CustomField CustomField
         {
-            get => _deletedIdentity.GetValue();
-            set => _deletedIdentity.SetValue(value);
+            get => _customField.GetValue();
+            set => _customField.SetValue(value);
+        }
+    
+        private PropertyValue<Modification<CFValue>?> _mod = new PropertyValue<Modification<CFValue>?>(nameof(IssueWebhookCustomFieldUpdate), nameof(Mod));
+        
+        [JsonPropertyName("mod")]
+        public Modification<CFValue>? Mod
+        {
+            get => _mod.GetValue();
+            set => _mod.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _deletedIdentity.SetAccessPath(path, validateHasBeenSet);
+            _customField.SetAccessPath(path, validateHasBeenSet);
+            _mod.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

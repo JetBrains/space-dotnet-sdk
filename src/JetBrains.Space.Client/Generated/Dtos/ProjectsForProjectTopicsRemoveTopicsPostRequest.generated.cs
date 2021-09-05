@@ -29,12 +29,31 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public interface Attachment
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public class ProjectsForProjectTopicsRemoveTopicsPostRequest
+         : IPropagatePropertyAccessPath
     {
-        public static UnfurlAttachment Unfurl(Unfurl unfurl, string id)
-            => new UnfurlAttachment(unfurl: unfurl, id: id);
+        public ProjectsForProjectTopicsRemoveTopicsPostRequest() { }
         
+        public ProjectsForProjectTopicsRemoveTopicsPostRequest(List<string> ids)
+        {
+            Ids = ids;
+        }
+        
+        private PropertyValue<List<string>> _ids = new PropertyValue<List<string>>(nameof(ProjectsForProjectTopicsRemoveTopicsPostRequest), nameof(Ids), new List<string>());
+        
+        [Required]
+        [JsonPropertyName("ids")]
+        public List<string> Ids
+        {
+            get => _ids.GetValue();
+            set => _ids.SetValue(value);
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _ids.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

@@ -112,6 +112,12 @@ namespace JetBrains.Space.Client.ESAppPartialBuilder
         public static Partial<ESApp> WithMetadata(this Partial<ESApp> it, Func<Partial<ApplicationMetadata>, Partial<ApplicationMetadata>> partialBuilder)
             => it.AddFieldName("metadata", partialBuilder(new Partial<ApplicationMetadata>(it)));
         
+        public static Partial<ESApp> WithSettings(this Partial<ESApp> it)
+            => it.AddFieldName("settings");
+        
+        public static Partial<ESApp> WithSettings(this Partial<ESApp> it, Func<Partial<ESAppSettings>, Partial<ESAppSettings>> partialBuilder)
+            => it.AddFieldName("settings", partialBuilder(new Partial<ESAppSettings>(it)));
+        
     }
     
 }

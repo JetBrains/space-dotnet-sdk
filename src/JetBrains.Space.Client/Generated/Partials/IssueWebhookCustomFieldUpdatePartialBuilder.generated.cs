@@ -27,15 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChatsChannelsForChannelIdMessagesPostRequestPartialBuilder
+namespace JetBrains.Space.Client.IssueWebhookCustomFieldUpdatePartialBuilder
 {
-    public static class ChatsChannelsForChannelIdMessagesPostRequestPartialExtensions
+    public static class IssueWebhookCustomFieldUpdatePartialExtensions
     {
-        public static Partial<ChatsChannelsForChannelIdMessagesPostRequest> WithText(this Partial<ChatsChannelsForChannelIdMessagesPostRequest> it)
-            => it.AddFieldName("text");
+        public static Partial<IssueWebhookCustomFieldUpdate> WithCustomField(this Partial<IssueWebhookCustomFieldUpdate> it)
+            => it.AddFieldName("customField");
         
-        public static Partial<ChatsChannelsForChannelIdMessagesPostRequest> WithTemporaryId(this Partial<ChatsChannelsForChannelIdMessagesPostRequest> it)
-            => it.AddFieldName("temporaryId");
+        public static Partial<IssueWebhookCustomFieldUpdate> WithCustomField(this Partial<IssueWebhookCustomFieldUpdate> it, Func<Partial<CustomField>, Partial<CustomField>> partialBuilder)
+            => it.AddFieldName("customField", partialBuilder(new Partial<CustomField>(it)));
+        
+        public static Partial<IssueWebhookCustomFieldUpdate> WithMod(this Partial<IssueWebhookCustomFieldUpdate> it)
+            => it.AddFieldName("mod");
         
     }
     

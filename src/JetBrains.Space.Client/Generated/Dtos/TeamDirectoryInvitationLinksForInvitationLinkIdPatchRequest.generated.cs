@@ -34,11 +34,13 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest() { }
         
-        public TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest(string? name = null, DateTime? expiresAt = null, int? inviteeLimit = null)
+        public TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest(string? name = null, DateTime? expiresAt = null, int? inviteeLimit = null, string? team = null, string? position = null)
         {
             Name = name;
             ExpiresAt = expiresAt;
             InviteeLimit = inviteeLimit;
+            Team = team;
+            Position = position;
         }
         
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(Name));
@@ -69,11 +71,31 @@ namespace JetBrains.Space.Client
             set => _inviteeLimit.SetValue(value);
         }
     
+        private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(Team));
+        
+        [JsonPropertyName("team")]
+        public string? Team
+        {
+            get => _team.GetValue();
+            set => _team.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _position = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(Position));
+        
+        [JsonPropertyName("position")]
+        public string? Position
+        {
+            get => _position.GetValue();
+            set => _position.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
             _expiresAt.SetAccessPath(path, validateHasBeenSet);
             _inviteeLimit.SetAccessPath(path, validateHasBeenSet);
+            _team.SetAccessPath(path, validateHasBeenSet);
+            _position.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

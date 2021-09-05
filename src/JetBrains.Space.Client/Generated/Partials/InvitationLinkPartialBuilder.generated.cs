@@ -55,6 +55,18 @@ namespace JetBrains.Space.Client.InvitationLinkPartialBuilder
         public static Partial<InvitationLink> WithInviteeUsage(this Partial<InvitationLink> it)
             => it.AddFieldName("inviteeUsage");
         
+        public static Partial<InvitationLink> WithTeam(this Partial<InvitationLink> it)
+            => it.AddFieldName("team");
+        
+        public static Partial<InvitationLink> WithTeam(this Partial<InvitationLink> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+            => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
+        
+        public static Partial<InvitationLink> WithPosition(this Partial<InvitationLink> it)
+            => it.AddFieldName("position");
+        
+        public static Partial<InvitationLink> WithPosition(this Partial<InvitationLink> it, Func<Partial<TDRole>, Partial<TDRole>> partialBuilder)
+            => it.AddFieldName("position", partialBuilder(new Partial<TDRole>(it)));
+        
         public static Partial<InvitationLink> WithIsDeleted(this Partial<InvitationLink> it)
             => it.AddFieldName("deleted");
         

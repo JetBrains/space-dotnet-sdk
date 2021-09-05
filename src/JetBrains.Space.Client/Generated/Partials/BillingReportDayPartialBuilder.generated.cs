@@ -85,11 +85,17 @@ namespace JetBrains.Space.Client.BillingReportDayPartialBuilder
         public static Partial<BillingReportDay> WithBandwidthPackagesUsage(this Partial<BillingReportDay> it)
             => it.AddFieldName("bandwidthPackagesUsage");
         
-        public static Partial<BillingReportDay> WithBandwidthAutomationUsageDelta(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthAutomationUsageDelta");
+        public static Partial<BillingReportDay> WithBandwidthAutomationExternalTrafficUsageDelta(this Partial<BillingReportDay> it)
+            => it.AddFieldName("bandwidthAutomationExternalTrafficUsageDelta");
         
-        public static Partial<BillingReportDay> WithBandwidthAutomationUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthAutomationUsage");
+        public static Partial<BillingReportDay> WithBandwidthAutomationExternalTrafficUsage(this Partial<BillingReportDay> it)
+            => it.AddFieldName("bandwidthAutomationExternalTrafficUsage");
+        
+        public static Partial<BillingReportDay> WithBandwidthAutomationInternalUsageDelta(this Partial<BillingReportDay> it)
+            => it.AddFieldName("bandwidthAutomationInternalUsageDelta");
+        
+        public static Partial<BillingReportDay> WithBandwidthAutomationInternalUsage(this Partial<BillingReportDay> it)
+            => it.AddFieldName("bandwidthAutomationInternalUsage");
         
         public static Partial<BillingReportDay> WithBandwidthCost(this Partial<BillingReportDay> it)
             => it.AddFieldName("bandwidthCost");

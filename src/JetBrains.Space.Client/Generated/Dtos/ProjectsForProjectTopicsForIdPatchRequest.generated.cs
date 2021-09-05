@@ -29,40 +29,39 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class ChatsChannelsForChannelIdMessagesPostRequest
+    public class ProjectsForProjectTopicsForIdPatchRequest
          : IPropagatePropertyAccessPath
     {
-        public ChatsChannelsForChannelIdMessagesPostRequest() { }
+        public ProjectsForProjectTopicsForIdPatchRequest() { }
         
-        public ChatsChannelsForChannelIdMessagesPostRequest(string text, string? temporaryId = null)
+        public ProjectsForProjectTopicsForIdPatchRequest(string? name = null, string? parentTopicId = null)
         {
-            Text = text;
-            TemporaryId = temporaryId;
+            Name = (name ?? string.Empty);
+            ParentTopicId = parentTopicId;
         }
         
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatsChannelsForChannelIdMessagesPostRequest), nameof(Text));
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectTopicsForIdPatchRequest), nameof(Name), string.Empty);
         
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
+        [JsonPropertyName("name")]
+        public string Name
         {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
-        private PropertyValue<string?> _temporaryId = new PropertyValue<string?>(nameof(ChatsChannelsForChannelIdMessagesPostRequest), nameof(TemporaryId));
+        private PropertyValue<string?> _parentTopicId = new PropertyValue<string?>(nameof(ProjectsForProjectTopicsForIdPatchRequest), nameof(ParentTopicId));
         
-        [JsonPropertyName("temporaryId")]
-        public string? TemporaryId
+        [JsonPropertyName("parentTopicId")]
+        public string? ParentTopicId
         {
-            get => _temporaryId.GetValue();
-            set => _temporaryId.SetValue(value);
+            get => _parentTopicId.GetValue();
+            set => _parentTopicId.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _temporaryId.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _parentTopicId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

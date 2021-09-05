@@ -106,8 +106,8 @@ namespace JetBrains.Space.Client.PurchasedBillingPlanPartialBuilder
         public static Partial<PurchasedBillingPlan> WithHardLimitAmount(this Partial<PurchasedBillingPlan> it)
             => it.AddFieldName("hardLimitAmount");
         
-        public static Partial<PurchasedBillingPlan> WithIsRecurrentPaymentEnabled(this Partial<PurchasedBillingPlan> it)
-            => it.AddFieldName("recurrentPaymentEnabled");
+        public static Partial<PurchasedBillingPlan> WithIsHasCardVerifiedAdmin(this Partial<PurchasedBillingPlan> it)
+            => it.AddFieldName("hasCardVerifiedAdmin");
         
     }
     

@@ -29,29 +29,29 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class TodoDeletetaskswithtextPostRequest
+    public class ChatsChannelsForChannelImportPostRequest
          : IPropagatePropertyAccessPath
     {
-        public TodoDeletetaskswithtextPostRequest() { }
+        public ChatsChannelsForChannelImportPostRequest() { }
         
-        public TodoDeletetaskswithtextPostRequest(string text)
+        public ChatsChannelsForChannelImportPostRequest(List<MessageForImport> messages)
         {
-            Text = text;
+            Messages = messages;
         }
         
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoDeletetaskswithtextPostRequest), nameof(Text));
+        private PropertyValue<List<MessageForImport>> _messages = new PropertyValue<List<MessageForImport>>(nameof(ChatsChannelsForChannelImportPostRequest), nameof(Messages), new List<MessageForImport>());
         
         [Required]
-        [JsonPropertyName("text")]
-        public string Text
+        [JsonPropertyName("messages")]
+        public List<MessageForImport> Messages
         {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
+            get => _messages.GetValue();
+            set => _messages.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _text.SetAccessPath(path, validateHasBeenSet);
+            _messages.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

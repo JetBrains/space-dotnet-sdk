@@ -34,12 +34,13 @@ namespace JetBrains.Space.Client
     {
         public Checklist() { }
         
-        public Checklist(string id, bool archived, string name, int totalItemsCount, int doneItemsCount, string? projectId = null, PRProject? project = null, TDMemberProfile? owner = null, PlanItem? root = null, PlanningTag? rootTag = null, string? description = null, DateTime? updatedTime = null)
+        public Checklist(string id, bool archived, string name, int totalItemsCount, int doneItemsCount, string? projectId = null, PRProject? project = null, Issue? issue = null, TDMemberProfile? owner = null, PlanItem? root = null, PlanningTag? rootTag = null, string? description = null, DateTime? updatedTime = null)
         {
             Id = id;
             IsArchived = archived;
             ProjectId = projectId;
             Project = project;
+            Issue = issue;
             Owner = owner;
             Name = name;
             Root = root;
@@ -86,6 +87,15 @@ namespace JetBrains.Space.Client
         {
             get => _project.GetValue();
             set => _project.SetValue(value);
+        }
+    
+        private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(Checklist), nameof(Issue));
+        
+        [JsonPropertyName("issue")]
+        public Issue? Issue
+        {
+            get => _issue.GetValue();
+            set => _issue.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _owner = new PropertyValue<TDMemberProfile?>(nameof(Checklist), nameof(Owner));
@@ -170,6 +180,7 @@ namespace JetBrains.Space.Client
             _archived.SetAccessPath(path, validateHasBeenSet);
             _projectId.SetAccessPath(path, validateHasBeenSet);
             _project.SetAccessPath(path, validateHasBeenSet);
+            _issue.SetAccessPath(path, validateHasBeenSet);
             _owner.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
             _root.SetAccessPath(path, validateHasBeenSet);

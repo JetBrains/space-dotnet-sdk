@@ -58,6 +58,12 @@ namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsCodeDiscussionsPos
         public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithIsPending(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
             => it.AddFieldName("pending");
         
+        public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithReviewId(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
+            => it.AddFieldName("reviewId");
+        
+        public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithReviewId(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it, Func<Partial<ReviewIdentifier>, Partial<ReviewIdentifier>> partialBuilder)
+            => it.AddFieldName("reviewId", partialBuilder(new Partial<ReviewIdentifier>(it)));
+        
     }
     
 }

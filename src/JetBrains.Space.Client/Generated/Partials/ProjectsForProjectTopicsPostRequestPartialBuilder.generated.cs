@@ -27,15 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProfileLinkPreviewPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectTopicsPostRequestPartialBuilder
 {
-    public static class ProfileLinkPreviewPartialExtensions
+    public static class ProjectsForProjectTopicsPostRequestPartialExtensions
     {
-        public static Partial<ProfileLinkPreview> WithProfile(this Partial<ProfileLinkPreview> it)
-            => it.AddFieldName("profile");
+        public static Partial<ProjectsForProjectTopicsPostRequest> WithName(this Partial<ProjectsForProjectTopicsPostRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<ProfileLinkPreview> WithProfile(this Partial<ProfileLinkPreview> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
+        public static Partial<ProjectsForProjectTopicsPostRequest> WithParentTopicId(this Partial<ProjectsForProjectTopicsPostRequest> it)
+            => it.AddFieldName("parentTopicId");
         
     }
     

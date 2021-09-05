@@ -50,8 +50,8 @@ namespace JetBrains.Space.Client
         public static DocumentCustomSubscriptionFilter DocumentCustom(List<KbDocumentItem> documents, PRProject? project = null, List<KBBook>? books = null, List<KbFolderItem>? folders = null)
             => new DocumentCustomSubscriptionFilter(documents: documents, project: project, books: books, folders: folders);
         
-        public static MemberCommonSubscriptionFilter MemberCommon(List<TDTeam> teams, List<TDLocation> locations)
-            => new MemberCommonSubscriptionFilter(teams: teams, locations: locations);
+        public static MemberCommonSubscriptionFilter MemberCommon(List<TDTeam> teams, List<TDLocation> locations, List<TDMemberProfile>? profiles = null)
+            => new MemberCommonSubscriptionFilter(teams: teams, locations: locations, profiles: profiles);
         
         public static PackagesSubscriptionFilter Packages(List<string> namePattern, PRProject? project = null, ProjectPackageRepository? repository = null, string? versionPattern = null)
             => new PackagesSubscriptionFilter(namePattern: namePattern, project: project, repository: repository, versionPattern: versionPattern);

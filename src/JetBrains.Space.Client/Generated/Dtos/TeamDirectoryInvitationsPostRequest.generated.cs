@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryInvitationsPostRequest() { }
         
-        public TeamDirectoryInvitationsPostRequest(string inviteeEmail, string? inviteeFirstName = null, string? inviteeLastName = null, TDTeam? team = null, TDRole? role = null)
+        public TeamDirectoryInvitationsPostRequest(string inviteeEmail, string? inviteeFirstName = null, string? inviteeLastName = null, string? team = null, string? role = null)
         {
             InviteeEmail = inviteeEmail;
             InviteeFirstName = inviteeFirstName;
@@ -71,19 +71,19 @@ namespace JetBrains.Space.Client
             set => _inviteeLastName.SetValue(value);
         }
     
-        private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(TeamDirectoryInvitationsPostRequest), nameof(Team));
+        private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsPostRequest), nameof(Team));
         
         [JsonPropertyName("team")]
-        public TDTeam? Team
+        public string? Team
         {
             get => _team.GetValue();
             set => _team.SetValue(value);
         }
     
-        private PropertyValue<TDRole?> _role = new PropertyValue<TDRole?>(nameof(TeamDirectoryInvitationsPostRequest), nameof(Role));
+        private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsPostRequest), nameof(Role));
         
         [JsonPropertyName("role")]
-        public TDRole? Role
+        public string? Role
         {
             get => _role.GetValue();
             set => _role.SetValue(value);

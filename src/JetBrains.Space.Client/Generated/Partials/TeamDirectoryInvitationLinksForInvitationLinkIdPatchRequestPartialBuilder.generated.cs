@@ -40,6 +40,12 @@ namespace JetBrains.Space.Client.TeamDirectoryInvitationLinksForInvitationLinkId
         public static Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> WithInviteeLimit(this Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> it)
             => it.AddFieldName("inviteeLimit");
         
+        public static Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> WithTeam(this Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> it)
+            => it.AddFieldName("team");
+        
+        public static Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> WithPosition(this Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> it)
+            => it.AddFieldName("position");
+        
     }
     
 }

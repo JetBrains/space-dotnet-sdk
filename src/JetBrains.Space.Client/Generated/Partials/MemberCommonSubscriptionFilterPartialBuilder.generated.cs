@@ -43,6 +43,12 @@ namespace JetBrains.Space.Client.MemberCommonSubscriptionFilterPartialBuilder
         public static Partial<MemberCommonSubscriptionFilter> WithLocations(this Partial<MemberCommonSubscriptionFilter> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
             => it.AddFieldName("locations", partialBuilder(new Partial<TDLocation>(it)));
         
+        public static Partial<MemberCommonSubscriptionFilter> WithProfiles(this Partial<MemberCommonSubscriptionFilter> it)
+            => it.AddFieldName("profiles");
+        
+        public static Partial<MemberCommonSubscriptionFilter> WithProfiles(this Partial<MemberCommonSubscriptionFilter> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+            => it.AddFieldName("profiles", partialBuilder(new Partial<TDMemberProfile>(it)));
+        
     }
     
 }

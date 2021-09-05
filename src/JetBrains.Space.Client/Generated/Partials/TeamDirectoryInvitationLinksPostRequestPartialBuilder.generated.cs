@@ -40,6 +40,12 @@ namespace JetBrains.Space.Client.TeamDirectoryInvitationLinksPostRequestPartialB
         public static Partial<TeamDirectoryInvitationLinksPostRequest> WithInviteeLimit(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
             => it.AddFieldName("inviteeLimit");
         
+        public static Partial<TeamDirectoryInvitationLinksPostRequest> WithTeam(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
+            => it.AddFieldName("team");
+        
+        public static Partial<TeamDirectoryInvitationLinksPostRequest> WithRole(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
+            => it.AddFieldName("role");
+        
     }
     
 }

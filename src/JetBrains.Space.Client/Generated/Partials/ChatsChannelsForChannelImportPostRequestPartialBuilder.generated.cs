@@ -27,12 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TodoDeletetaskswithtextPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ChatsChannelsForChannelImportPostRequestPartialBuilder
 {
-    public static class TodoDeletetaskswithtextPostRequestPartialExtensions
+    public static class ChatsChannelsForChannelImportPostRequestPartialExtensions
     {
-        public static Partial<TodoDeletetaskswithtextPostRequest> WithText(this Partial<TodoDeletetaskswithtextPostRequest> it)
-            => it.AddFieldName("text");
+        public static Partial<ChatsChannelsForChannelImportPostRequest> WithMessages(this Partial<ChatsChannelsForChannelImportPostRequest> it)
+            => it.AddFieldName("messages");
+        
+        public static Partial<ChatsChannelsForChannelImportPostRequest> WithMessages(this Partial<ChatsChannelsForChannelImportPostRequest> it, Func<Partial<MessageForImport>, Partial<MessageForImport>> partialBuilder)
+            => it.AddFieldName("messages", partialBuilder(new Partial<MessageForImport>(it)));
         
     }
     

@@ -29,32 +29,44 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class ProfileLinkPreview
-         : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class UnfurlDetailsIssueTopic
+         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public  string? ClassName => "ProfileLinkPreview";
+        public  string? ClassName => "UnfurlDetailsIssueTopic";
         
-        public ProfileLinkPreview() { }
+        public UnfurlDetailsIssueTopic() { }
         
-        public ProfileLinkPreview(TDMemberProfile profile)
+        public UnfurlDetailsIssueTopic(Topic topic, bool strikeThrough)
         {
-            Profile = profile;
+            Topic = topic;
+            IsStrikeThrough = strikeThrough;
         }
         
-        private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(ProfileLinkPreview), nameof(Profile));
+        private PropertyValue<Topic> _topic = new PropertyValue<Topic>(nameof(UnfurlDetailsIssueTopic), nameof(Topic));
         
         [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfile Profile
+        [JsonPropertyName("topic")]
+        public Topic Topic
         {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
+            get => _topic.GetValue();
+            set => _topic.SetValue(value);
+        }
+    
+        private PropertyValue<bool> _strikeThrough = new PropertyValue<bool>(nameof(UnfurlDetailsIssueTopic), nameof(IsStrikeThrough));
+        
+        [Required]
+        [JsonPropertyName("strikeThrough")]
+        public bool IsStrikeThrough
+        {
+            get => _strikeThrough.GetValue();
+            set => _strikeThrough.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _profile.SetAccessPath(path, validateHasBeenSet);
+            _topic.SetAccessPath(path, validateHasBeenSet);
+            _strikeThrough.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectPlanningIssuesPostRequest() { }
         
-        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null)
+        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null, List<IssueIdentifier>? parents = null)
         {
             Title = title;
             Description = description;
@@ -48,6 +48,7 @@ namespace JetBrains.Space.Client
             FromMessage = fromMessage;
             CustomFields = customFields;
             Topics = topics;
+            Parents = parents;
         }
         
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Title));
@@ -161,6 +162,15 @@ namespace JetBrains.Space.Client
             set => _topics.SetValue(value);
         }
     
+        private PropertyValue<List<IssueIdentifier>?> _parents = new PropertyValue<List<IssueIdentifier>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Parents));
+        
+        [JsonPropertyName("parents")]
+        public List<IssueIdentifier>? Parents
+        {
+            get => _parents.GetValue();
+            set => _parents.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _title.SetAccessPath(path, validateHasBeenSet);
@@ -175,6 +185,7 @@ namespace JetBrains.Space.Client
             _fromMessage.SetAccessPath(path, validateHasBeenSet);
             _customFields.SetAccessPath(path, validateHasBeenSet);
             _topics.SetAccessPath(path, validateHasBeenSet);
+            _parents.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -34,12 +34,13 @@ namespace JetBrains.Space.Client
     {
         public Topic() { }
         
-        public Topic(string id, bool archived, string name, List<TDMemberProfile> responsible, Topic? parent = null)
+        public Topic(string id, bool archived, string name, List<TDMemberProfile> responsible, Topic? parent = null, PRProject? project = null)
         {
             Id = id;
             IsArchived = archived;
             Name = name;
             Parent = parent;
+            Project = project;
             Responsible = responsible;
         }
         
@@ -82,6 +83,15 @@ namespace JetBrains.Space.Client
             set => _parent.SetValue(value);
         }
     
+        private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(Topic), nameof(Project));
+        
+        [JsonPropertyName("project")]
+        public PRProject? Project
+        {
+            get => _project.GetValue();
+            set => _project.SetValue(value);
+        }
+    
         private PropertyValue<List<TDMemberProfile>> _responsible = new PropertyValue<List<TDMemberProfile>>(nameof(Topic), nameof(Responsible), new List<TDMemberProfile>());
         
         [Required]
@@ -98,6 +108,7 @@ namespace JetBrains.Space.Client
             _archived.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
             _parent.SetAccessPath(path, validateHasBeenSet);
+            _project.SetAccessPath(path, validateHasBeenSet);
             _responsible.SetAccessPath(path, validateHasBeenSet);
         }
     

@@ -46,6 +46,12 @@ namespace JetBrains.Space.Client.ChecklistPartialBuilder
         public static Partial<Checklist> WithProject(this Partial<Checklist> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
             => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
         
+        public static Partial<Checklist> WithIssue(this Partial<Checklist> it)
+            => it.AddFieldName("issue");
+        
+        public static Partial<Checklist> WithIssue(this Partial<Checklist> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
+            => it.AddFieldName("issue", partialBuilder(new Partial<Issue>(it)));
+        
         public static Partial<Checklist> WithOwner(this Partial<Checklist> it)
             => it.AddFieldName("owner");
         

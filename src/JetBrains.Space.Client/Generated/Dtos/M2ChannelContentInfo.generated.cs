@@ -77,11 +77,11 @@ namespace JetBrains.Space.Client
         public static M2ChannelContentThread M2ChannelContentThread(ChannelItemRecord record, M2ChannelRecord parent)
             => new M2ChannelContentThread(record: record, parent: parent);
         
-        public static M2ChannelFleetWorkspaceTimelineInfo M2ChannelFleetWorkspaceTimelineInfo(ChannelSpecificDefaults notificationDefaults, string workspaceId, string workspaceName)
-            => new M2ChannelFleetWorkspaceTimelineInfo(notificationDefaults: notificationDefaults, workspaceId: workspaceId, workspaceName: workspaceName);
-        
         public static M2ChannelIssueInfo M2ChannelIssueInfo(Issue issue, ChannelSpecificDefaults notificationDefaults, ProjectKey? projectKey = null)
             => new M2ChannelIssueInfo(issue: issue, notificationDefaults: notificationDefaults, projectKey: projectKey);
+        
+        public static M2ChannelRdWsTimelineInfo M2ChannelRdWsTimelineInfo(ChannelSpecificDefaults notificationDefaults, string workspaceId, string workspaceName)
+            => new M2ChannelRdWsTimelineInfo(notificationDefaults: notificationDefaults, workspaceId: workspaceId, workspaceName: workspaceName);
         
         public static M2PrivateConversationChannelContent M2PrivateConversationChannelContent(string channelId, List<TDMemberProfile> members, string? subject = null, ChannelSpecificDefaults? notificationDefaults = null)
             => new M2PrivateConversationChannelContent(channelId: channelId, members: members, subject: subject, notificationDefaults: notificationDefaults);

@@ -710,8 +710,17 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Update an existing board. Only board owners can perform this operation.
+                /// Update an existing board. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage boards</term>
+                /// <description>Update issue board settings and delete issue boards</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task UpdateBoardAsync(BoardIdentifier board, string? name = null, string? description = null, BoardColumns? columns = null, List<string>? memberOwners = null, List<string>? teamOwners = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -740,8 +749,17 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Create a new sprint in a board. Only board owners can perform this operation.
+                    /// Create a new sprint in a board. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
                     /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Manage boards</term>
+                    /// <description>Update issue board settings and delete issue boards</description>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
                     public async Task<SprintRecord> CreateSprintAsync(BoardIdentifier board, string name, DateTime from, DateTime to, string? description = null, Func<Partial<SprintRecord>, Partial<SprintRecord>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
@@ -760,8 +778,17 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Launch a planned sprint. Only board owners can perform this operation.
+                    /// Launch a planned sprint. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
                     /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Manage boards</term>
+                    /// <description>Update issue board settings and delete issue boards</description>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
                     public async Task LaunchPlannedSprintAsync(SprintIdentifier sprint, bool moveUnresolvedIssuesFromCurrentSprint, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
@@ -775,8 +802,17 @@ namespace JetBrains.Space.Client
                     
                 
                     /// <summary>
-                    /// Update an existing sprint in a board. Only board owners can perform this operation.
+                    /// Update an existing sprint in a board. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
                     /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Manage boards</term>
+                    /// <description>Update issue board settings and delete issue boards</description>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
                     public async Task UpdateSprintAsync(SprintIdentifier sprint, string? name = null, string? description = null, DateTime? from = null, DateTime? to = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
@@ -804,8 +840,17 @@ namespace JetBrains.Space.Client
                         }
                         
                         /// <summary>
-                        /// Archive closed or planned sprint. Only board owners can perform this operation.
+                        /// Archive closed or planned sprint. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
                         /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Manage boards</term>
+                        /// <description>Update issue board settings and delete issue boards</description>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
                         public async Task ArchiveSprintAsync(SprintIdentifier sprint, CancellationToken cancellationToken = default)
                         {
                             var queryParameters = new NameValueCollection();
@@ -1163,8 +1208,17 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Archive an existing board. Only board owners can perform this operation.
+                    /// Archive an existing board. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
                     /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Manage boards</term>
+                    /// <description>Update issue board settings and delete issue boards</description>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
                     public async Task ArchiveBoardAsync(ProjectIdentifier project, BoardIdentifier board, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
@@ -1369,7 +1423,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null, List<IssueIdentifier>? parents = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
@@ -1389,6 +1443,7 @@ namespace JetBrains.Space.Client
                             FromMessage = fromMessage,
                             CustomFields = customFields,
                             Topics = topics,
+                            Parents = parents,
                         }, cancellationToken);
                 }
                 
@@ -1479,7 +1534,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<Issue>> GetAllIssuesAsync(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, DateTime? creationTimeFrom = null, DateTime? creationTimeTo = null, DateTime? dueDateFrom = null, DateTime? dueDateTo = null, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<Issue>> GetAllIssuesAsync(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, DateTime? creationTimeFrom = null, DateTime? creationTimeTo = null, DateTime? dueDateFrom = null, DateTime? dueDateTo = null, List<string>? topics = null, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
@@ -1498,6 +1553,7 @@ namespace JetBrains.Space.Client
                     if (creationTimeTo != null) queryParameters.Append("creationTimeTo", creationTimeTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
                     if (dueDateFrom != null) queryParameters.Append("dueDateFrom", dueDateFrom?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                     if (dueDateTo != null) queryParameters.Append("dueDateTo", dueDateTo?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                    if (topics != null) queryParameters.Append("topics", topics.Select(it => it));
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default()).ToString());
                     
                     return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/{project}/planning/issues{queryParameters.ToQueryString()}", cancellationToken);
@@ -1516,8 +1572,8 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public IAsyncEnumerable<Issue> GetAllIssuesAsyncEnumerable(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, DateTime? creationTimeFrom = null, DateTime? creationTimeTo = null, DateTime? dueDateFrom = null, DateTime? dueDateTo = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, statuses: statuses, sorting: sorting, descending: descending, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, customFields: customFields, importTransaction: importTransaction, creationTimeFrom: creationTimeFrom, creationTimeTo: creationTimeTo, dueDateFrom: dueDateFrom, dueDateTo: dueDateTo, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
+                public IAsyncEnumerable<Issue> GetAllIssuesAsyncEnumerable(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, DateTime? creationTimeFrom = null, DateTime? creationTimeTo = null, DateTime? dueDateFrom = null, DateTime? dueDateTo = null, List<string>? topics = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, statuses: statuses, sorting: sorting, descending: descending, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, customFields: customFields, importTransaction: importTransaction, creationTimeFrom: creationTimeFrom, creationTimeTo: creationTimeTo, dueDateFrom: dueDateFrom, dueDateTo: dueDateTo, topics: topics, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
             
                 /// <summary>
                 /// Find an existing issue by a given number in a project
@@ -1531,9 +1587,10 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Issue> GetIssueByNumberAsync(ProjectIdentifier project, int number, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Issue> GetIssueByNumberAsync(ProjectIdentifier project, int number, bool resolveAlias = false, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
+                    queryParameters.Append("resolveAlias", resolveAlias.ToString("l"));
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
                     
                     return await _connection.RequestResourceAsync<Issue>("GET", $"api/http/projects/{project}/planning/issues/number:{number}{queryParameters.ToQueryString()}", cancellationToken);
@@ -3050,7 +3107,7 @@ namespace JetBrains.Space.Client
                 _connection = connection;
             }
             
-            public async Task<CodeDiscussionRecord> CreateCodeDiscussionAsync(ProjectIdentifier project, string text, string repository, string revision, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<CodeDiscussionRecord> CreateCodeDiscussionAsync(ProjectIdentifier project, string text, string repository, string revision, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null, ReviewIdentifier? reviewId = null, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeDiscussionRecord>()) : Partial<CodeDiscussionRecord>.Default()).ToString());
@@ -3066,6 +3123,7 @@ namespace JetBrains.Space.Client
                         Line = line,
                         OldLine = oldLine,
                         IsPending = pending,
+                        ReviewId = reviewId,
                     }, cancellationToken);
             }
             
@@ -4188,6 +4246,81 @@ namespace JetBrains.Space.Client
                 }
             
             }
+        
+        }
+    
+        public TopicClient Topics => new TopicClient(_connection);
+        
+        public partial class TopicClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public TopicClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Topic> CreateTopicAsync(ProjectIdentifier project, string name, string? parentTopicId = null, Func<Partial<Topic>, Partial<Topic>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Topic>()) : Partial<Topic>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectTopicsPostRequest, Topic>("POST", $"api/http/projects/{project}/topics{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectTopicsPostRequest
+                    { 
+                        Name = name,
+                        ParentTopicId = parentTopicId,
+                    }, cancellationToken);
+            }
+            
+        
+            public async Task RemoveTopicsAsync(ProjectIdentifier project, List<string> ids, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/topics/remove-topics{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectTopicsRemoveTopicsPostRequest
+                    { 
+                        Ids = ids,
+                    }, cancellationToken);
+            }
+            
+        
+            public async Task SetResponsibleAsync(ProjectIdentifier project, string topicId, List<ProfileIdentifier> responsible, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/topics/set-responsible{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectTopicsSetResponsiblePostRequest
+                    { 
+                        TopicId = topicId,
+                        Responsible = responsible,
+                    }, cancellationToken);
+            }
+            
+        
+            public async Task<List<Topic>> GetTopicAsync(ProjectIdentifier project, Func<Partial<Topic>, Partial<Topic>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Topic>()) : Partial<Topic>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<Topic>>("GET", $"api/http/projects/{project}/topics{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            public async Task<Topic> UpdateTopicAsync(ProjectIdentifier project, string id, string? name = null, string? parentTopicId = null, Func<Partial<Topic>, Partial<Topic>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Topic>()) : Partial<Topic>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectTopicsForIdPatchRequest, Topic>("PATCH", $"api/http/projects/{project}/topics/{id}{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectTopicsForIdPatchRequest
+                    { 
+                        Name = (name ?? string.Empty),
+                        ParentTopicId = parentTopicId,
+                    }, cancellationToken);
+            }
+            
         
         }
     

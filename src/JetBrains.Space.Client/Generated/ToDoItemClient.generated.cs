@@ -63,26 +63,6 @@ namespace JetBrains.Space.Client
         }
         
     
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Edit todo</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task DeleteTasksAsync(string text, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            await _connection.RequestResourceAsync("POST", $"api/http/todo/deletetaskswithtext{queryParameters.ToQueryString()}", 
-                new TodoDeletetaskswithtextPostRequest
-                { 
-                    Text = text,
-                }, cancellationToken);
-        }
-        
-    
         /// <summary>
         /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.
         /// </summary>

@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public PurchasedBillingPlan() { }
         
-        public PurchasedBillingPlan(string id, string plan, string billingPeriod, DateTime since, DateTime till, Currency currency, double addUserPrice, double addStoragePrice, double addBandwidthPrice, double addCiCreditPrice, int minActiveUsers, int prepaidUsers, int storagePerUser, int storageOverall, int bandwidthPerUser, int bandwidthOverall, int ciCredits, int ciCreditsReserve, int integrations, int searchHistory, double balance, double hardLimitAmount, string? jetSalesId = null, double? ciCreditsRateForExternalWorker = null, bool? recurrentPaymentEnabled = null)
+        public PurchasedBillingPlan(string id, string plan, string billingPeriod, DateTime since, DateTime till, Currency currency, double addUserPrice, double addStoragePrice, double addBandwidthPrice, double addCiCreditPrice, int minActiveUsers, int prepaidUsers, int storagePerUser, int storageOverall, int bandwidthPerUser, int bandwidthOverall, int ciCredits, int ciCreditsReserve, int integrations, int searchHistory, double balance, double hardLimitAmount, string? jetSalesId = null, double? ciCreditsRateForExternalWorker = null, bool? hasCardVerifiedAdmin = null)
         {
             Id = id;
             JetSalesId = jetSalesId;
@@ -60,7 +60,7 @@ namespace JetBrains.Space.Client
             SearchHistory = searchHistory;
             Balance = balance;
             HardLimitAmount = hardLimitAmount;
-            IsRecurrentPaymentEnabled = recurrentPaymentEnabled;
+            IsHasCardVerifiedAdmin = hasCardVerifiedAdmin;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PurchasedBillingPlan), nameof(Id));
@@ -303,13 +303,13 @@ namespace JetBrains.Space.Client
             set => _hardLimitAmount.SetValue(value);
         }
     
-        private PropertyValue<bool?> _recurrentPaymentEnabled = new PropertyValue<bool?>(nameof(PurchasedBillingPlan), nameof(IsRecurrentPaymentEnabled));
+        private PropertyValue<bool?> _hasCardVerifiedAdmin = new PropertyValue<bool?>(nameof(PurchasedBillingPlan), nameof(IsHasCardVerifiedAdmin));
         
-        [JsonPropertyName("recurrentPaymentEnabled")]
-        public bool? IsRecurrentPaymentEnabled
+        [JsonPropertyName("hasCardVerifiedAdmin")]
+        public bool? IsHasCardVerifiedAdmin
         {
-            get => _recurrentPaymentEnabled.GetValue();
-            set => _recurrentPaymentEnabled.SetValue(value);
+            get => _hasCardVerifiedAdmin.GetValue();
+            set => _hasCardVerifiedAdmin.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
@@ -338,7 +338,7 @@ namespace JetBrains.Space.Client
             _searchHistory.SetAccessPath(path, validateHasBeenSet);
             _balance.SetAccessPath(path, validateHasBeenSet);
             _hardLimitAmount.SetAccessPath(path, validateHasBeenSet);
-            _recurrentPaymentEnabled.SetAccessPath(path, validateHasBeenSet);
+            _hasCardVerifiedAdmin.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

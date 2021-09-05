@@ -43,14 +43,8 @@ namespace JetBrains.Space.Client.TeamDirectoryInvitationsPostRequestPartialBuild
         public static Partial<TeamDirectoryInvitationsPostRequest> WithTeam(this Partial<TeamDirectoryInvitationsPostRequest> it)
             => it.AddFieldName("team");
         
-        public static Partial<TeamDirectoryInvitationsPostRequest> WithTeam(this Partial<TeamDirectoryInvitationsPostRequest> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-            => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
-        
         public static Partial<TeamDirectoryInvitationsPostRequest> WithRole(this Partial<TeamDirectoryInvitationsPostRequest> it)
             => it.AddFieldName("role");
-        
-        public static Partial<TeamDirectoryInvitationsPostRequest> WithRole(this Partial<TeamDirectoryInvitationsPostRequest> it, Func<Partial<TDRole>, Partial<TDRole>> partialBuilder)
-            => it.AddFieldName("role", partialBuilder(new Partial<TDRole>(it)));
         
     }
     

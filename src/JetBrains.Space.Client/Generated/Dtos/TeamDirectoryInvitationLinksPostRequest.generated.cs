@@ -34,11 +34,13 @@ namespace JetBrains.Space.Client
     {
         public TeamDirectoryInvitationLinksPostRequest() { }
         
-        public TeamDirectoryInvitationLinksPostRequest(string name, DateTime expiresAt, int inviteeLimit)
+        public TeamDirectoryInvitationLinksPostRequest(string name, DateTime expiresAt, int inviteeLimit, string? team = null, string? role = null)
         {
             Name = name;
             ExpiresAt = expiresAt;
             InviteeLimit = inviteeLimit;
+            Team = team;
+            Role = role;
         }
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryInvitationLinksPostRequest), nameof(Name));
@@ -72,11 +74,31 @@ namespace JetBrains.Space.Client
             set => _inviteeLimit.SetValue(value);
         }
     
+        private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksPostRequest), nameof(Team));
+        
+        [JsonPropertyName("team")]
+        public string? Team
+        {
+            get => _team.GetValue();
+            set => _team.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksPostRequest), nameof(Role));
+        
+        [JsonPropertyName("role")]
+        public string? Role
+        {
+            get => _role.GetValue();
+            set => _role.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
             _expiresAt.SetAccessPath(path, validateHasBeenSet);
             _inviteeLimit.SetAccessPath(path, validateHasBeenSet);
+            _team.SetAccessPath(path, validateHasBeenSet);
+            _role.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

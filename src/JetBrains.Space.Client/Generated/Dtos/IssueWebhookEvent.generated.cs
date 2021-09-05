@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
         
         public IssueWebhookEvent() { }
         
-        public IssueWebhookEvent(KMetaMod meta, Issue issue, Modification<string>? title = null, Modification<string>? description = null, Modification<TDMemberProfile>? assignee = null, Modification<IssueStatus>? status = null, Modification<DateTime>? dueDate = null, Modification<bool>? deleted = null)
+        public IssueWebhookEvent(KMetaMod meta, Issue issue, Modification<string>? title = null, Modification<string>? description = null, Modification<TDMemberProfile>? assignee = null, Modification<IssueStatus>? status = null, Modification<DateTime>? dueDate = null, Modification<List<PlanningTag>>? tagDelta = null, Modification<List<Topic>>? topicDelta = null, Modification<List<Checklist>>? checklistDelta = null, Modification<List<SprintRecord>>? sprintDelta = null, IssueWebhookCustomFieldUpdate? customFieldUpdate = null, Modification<bool>? deleted = null)
         {
             Meta = meta;
             Issue = issue;
@@ -46,6 +46,11 @@ namespace JetBrains.Space.Client
             Assignee = assignee;
             Status = status;
             DueDate = dueDate;
+            TagDelta = tagDelta;
+            TopicDelta = topicDelta;
+            ChecklistDelta = checklistDelta;
+            SprintDelta = sprintDelta;
+            CustomFieldUpdate = customFieldUpdate;
             Deleted = deleted;
         }
         
@@ -114,6 +119,51 @@ namespace JetBrains.Space.Client
             set => _dueDate.SetValue(value);
         }
     
+        private PropertyValue<Modification<List<PlanningTag>>?> _tagDelta = new PropertyValue<Modification<List<PlanningTag>>?>(nameof(IssueWebhookEvent), nameof(TagDelta));
+        
+        [JsonPropertyName("tagDelta")]
+        public Modification<List<PlanningTag>>? TagDelta
+        {
+            get => _tagDelta.GetValue();
+            set => _tagDelta.SetValue(value);
+        }
+    
+        private PropertyValue<Modification<List<Topic>>?> _topicDelta = new PropertyValue<Modification<List<Topic>>?>(nameof(IssueWebhookEvent), nameof(TopicDelta));
+        
+        [JsonPropertyName("topicDelta")]
+        public Modification<List<Topic>>? TopicDelta
+        {
+            get => _topicDelta.GetValue();
+            set => _topicDelta.SetValue(value);
+        }
+    
+        private PropertyValue<Modification<List<Checklist>>?> _checklistDelta = new PropertyValue<Modification<List<Checklist>>?>(nameof(IssueWebhookEvent), nameof(ChecklistDelta));
+        
+        [JsonPropertyName("checklistDelta")]
+        public Modification<List<Checklist>>? ChecklistDelta
+        {
+            get => _checklistDelta.GetValue();
+            set => _checklistDelta.SetValue(value);
+        }
+    
+        private PropertyValue<Modification<List<SprintRecord>>?> _sprintDelta = new PropertyValue<Modification<List<SprintRecord>>?>(nameof(IssueWebhookEvent), nameof(SprintDelta));
+        
+        [JsonPropertyName("sprintDelta")]
+        public Modification<List<SprintRecord>>? SprintDelta
+        {
+            get => _sprintDelta.GetValue();
+            set => _sprintDelta.SetValue(value);
+        }
+    
+        private PropertyValue<IssueWebhookCustomFieldUpdate?> _customFieldUpdate = new PropertyValue<IssueWebhookCustomFieldUpdate?>(nameof(IssueWebhookEvent), nameof(CustomFieldUpdate));
+        
+        [JsonPropertyName("customFieldUpdate")]
+        public IssueWebhookCustomFieldUpdate? CustomFieldUpdate
+        {
+            get => _customFieldUpdate.GetValue();
+            set => _customFieldUpdate.SetValue(value);
+        }
+    
         private PropertyValue<Modification<bool>?> _deleted = new PropertyValue<Modification<bool>?>(nameof(IssueWebhookEvent), nameof(Deleted));
         
         [JsonPropertyName("deleted")]
@@ -132,6 +182,11 @@ namespace JetBrains.Space.Client
             _assignee.SetAccessPath(path, validateHasBeenSet);
             _status.SetAccessPath(path, validateHasBeenSet);
             _dueDate.SetAccessPath(path, validateHasBeenSet);
+            _tagDelta.SetAccessPath(path, validateHasBeenSet);
+            _topicDelta.SetAccessPath(path, validateHasBeenSet);
+            _checklistDelta.SetAccessPath(path, validateHasBeenSet);
+            _sprintDelta.SetAccessPath(path, validateHasBeenSet);
+            _customFieldUpdate.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);
         }
     

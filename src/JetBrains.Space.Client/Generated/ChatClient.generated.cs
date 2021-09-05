@@ -80,12 +80,12 @@ namespace JetBrains.Space.Client
             }
             
         
-            public async Task<List<string>> ImportMessageHistoryAsync(string channelId, List<MessageForImport> messages, CancellationToken cancellationToken = default)
+            public async Task<List<string>> ImportMessageHistoryAsync(string channel, List<MessageForImport> messages, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                return await _connection.RequestResourceAsync<ChatsChannelsForChannelIdImportPostRequest, List<string>>("POST", $"api/http/chats/channels/{channelId}/import{queryParameters.ToQueryString()}", 
-                    new ChatsChannelsForChannelIdImportPostRequest
+                return await _connection.RequestResourceAsync<ChatsChannelsForChannelImportPostRequest, List<string>>("POST", $"api/http/chats/channels/{channel}/import{queryParameters.ToQueryString()}", 
+                    new ChatsChannelsForChannelImportPostRequest
                     { 
                         Messages = messages,
                     }, cancellationToken);
@@ -95,11 +95,11 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Restore an archived channel and allow new messages to be added again
             /// </summary>
-            public async Task RestoreArchivedChannelAsync(string channelId, CancellationToken cancellationToken = default)
+            public async Task RestoreArchivedChannelAsync(ChannelIdentifier channel, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channelId}/restore-archived{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channel}/restore-archived{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -124,22 +124,22 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Delete a channel. No one will be able to view this channel or its threads. This action cannot be undone.
             /// </summary>
-            public async Task DeleteChannelAsync(string channelId, CancellationToken cancellationToken = default)
+            public async Task DeleteChannelAsync(ChannelIdentifier channel, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
             /// <summary>
             /// Archive a channel and reject new messages being added. It is still possible to view messages from an archived channel. It is possible to restore the channel later.
             /// </summary>
-            public async Task ArchiveChannelAsync(string channelId, CancellationToken cancellationToken = default)
+            public async Task ArchiveChannelAsync(ChannelIdentifier channel, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}/archive{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}/archive{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -157,13 +157,13 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Send a message to a channel. Message text is a string.
                 /// </summary>
-                public async Task<ChannelItemRecord> SendTextMessageAsync(string channelId, string text, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<ChannelItemRecord> SendTextMessageAsync(string channel, string text, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<ChatsChannelsForChannelIdMessagesPostRequest, ChannelItemRecord>("POST", $"api/http/chats/channels/{channelId}/messages{queryParameters.ToQueryString()}", 
-                        new ChatsChannelsForChannelIdMessagesPostRequest
+                    return await _connection.RequestResourceAsync<ChatsChannelsForChannelMessagesPostRequest, ChannelItemRecord>("POST", $"api/http/chats/channels/{channel}/messages{queryParameters.ToQueryString()}", 
+                        new ChatsChannelsForChannelMessagesPostRequest
                         { 
                             Text = text,
                             TemporaryId = temporaryId,
@@ -235,7 +235,7 @@ namespace JetBrains.Space.Client
             }
             
         
-            [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17) (will be removed in a future version)")]
+            [Obsolete("Use POST chats/channels/{channel}/messages (since 2020-01-17) (will be removed in a future version)")]
             public async Task<ChannelItemRecord> SendTextMessageAsync(string channel, string text, bool pending = false, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();

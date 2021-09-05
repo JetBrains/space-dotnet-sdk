@@ -316,7 +316,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Create an organization-wide invitation link
             /// </summary>
-            public async Task<Pair<string, InvitationLink>> CreateInvitationLinkAsync(string name, DateTime expiresAt, int inviteeLimit, Func<Partial<Pair<string, InvitationLink>>, Partial<Pair<string, InvitationLink>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Pair<string, InvitationLink>> CreateInvitationLinkAsync(string name, DateTime expiresAt, int inviteeLimit, string? team = null, string? role = null, Func<Partial<Pair<string, InvitationLink>>, Partial<Pair<string, InvitationLink>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<string, InvitationLink>>()) : Partial<Pair<string, InvitationLink>>.Default()).ToString());
@@ -327,6 +327,8 @@ namespace JetBrains.Space.Client
                         Name = name,
                         ExpiresAt = expiresAt,
                         InviteeLimit = inviteeLimit,
+                        Team = team,
+                        Role = role,
                     }, cancellationToken);
             }
             
@@ -355,7 +357,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Update an organization-wide invitation link
             /// </summary>
-            public async Task UpdateInvitationLinkAsync(string invitationLinkId, string? name = null, DateTime? expiresAt = null, int? inviteeLimit = null, CancellationToken cancellationToken = default)
+            public async Task UpdateInvitationLinkAsync(string invitationLinkId, string? name = null, DateTime? expiresAt = null, int? inviteeLimit = null, string? team = null, string? position = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -365,6 +367,8 @@ namespace JetBrains.Space.Client
                         Name = name,
                         ExpiresAt = expiresAt,
                         InviteeLimit = inviteeLimit,
+                        Team = team,
+                        Position = position,
                     }, cancellationToken);
             }
             
@@ -396,7 +400,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Create an invitation to join the current organisation. Optionally, the team and/or role to join when accepting the invitation can be specified.
             /// </summary>
-            public async Task<Invitation> CreateInvitationAsync(string inviteeEmail, string? inviteeFirstName = null, string? inviteeLastName = null, TDTeam? team = null, TDRole? role = null, Func<Partial<Invitation>, Partial<Invitation>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Invitation> CreateInvitationAsync(string inviteeEmail, string? inviteeFirstName = null, string? inviteeLastName = null, string? team = null, string? role = null, Func<Partial<Invitation>, Partial<Invitation>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Invitation>()) : Partial<Invitation>.Default()).ToString());
@@ -437,7 +441,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Update an invitation. Optional parameters will be ignored when not specified and updated otherwise.
             /// </summary>
-            public async Task UpdateInvitationAsync(string id, string? inviteeEmail = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDTeam? team = null, TDRole? role = null, CancellationToken cancellationToken = default)
+            public async Task UpdateInvitationAsync(string id, string? inviteeEmail = null, string? inviteeFirstName = null, string? inviteeLastName = null, string? team = null, string? role = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 

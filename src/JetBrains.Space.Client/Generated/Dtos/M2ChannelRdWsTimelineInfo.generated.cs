@@ -29,22 +29,22 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class M2ChannelFleetWorkspaceTimelineInfo
+    public sealed class M2ChannelRdWsTimelineInfo
          : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public  string? ClassName => "M2ChannelFleetWorkspaceTimelineInfo";
+        public  string? ClassName => "M2ChannelRdWsTimelineInfo";
         
-        public M2ChannelFleetWorkspaceTimelineInfo() { }
+        public M2ChannelRdWsTimelineInfo() { }
         
-        public M2ChannelFleetWorkspaceTimelineInfo(ChannelSpecificDefaults notificationDefaults, string workspaceId, string workspaceName)
+        public M2ChannelRdWsTimelineInfo(ChannelSpecificDefaults notificationDefaults, string workspaceId, string workspaceName)
         {
             NotificationDefaults = notificationDefaults;
             WorkspaceId = workspaceId;
             WorkspaceName = workspaceName;
         }
         
-        private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelFleetWorkspaceTimelineInfo), nameof(NotificationDefaults));
+        private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelRdWsTimelineInfo), nameof(NotificationDefaults));
         
         [Required]
         [JsonPropertyName("notificationDefaults")]
@@ -54,7 +54,7 @@ namespace JetBrains.Space.Client
             set => _notificationDefaults.SetValue(value);
         }
     
-        private PropertyValue<string> _workspaceId = new PropertyValue<string>(nameof(M2ChannelFleetWorkspaceTimelineInfo), nameof(WorkspaceId));
+        private PropertyValue<string> _workspaceId = new PropertyValue<string>(nameof(M2ChannelRdWsTimelineInfo), nameof(WorkspaceId));
         
         [Required]
         [JsonPropertyName("workspaceId")]
@@ -64,7 +64,7 @@ namespace JetBrains.Space.Client
             set => _workspaceId.SetValue(value);
         }
     
-        private PropertyValue<string> _workspaceName = new PropertyValue<string>(nameof(M2ChannelFleetWorkspaceTimelineInfo), nameof(WorkspaceName));
+        private PropertyValue<string> _workspaceName = new PropertyValue<string>(nameof(M2ChannelRdWsTimelineInfo), nameof(WorkspaceName));
         
         [Required]
         [JsonPropertyName("workspaceName")]

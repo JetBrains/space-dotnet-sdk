@@ -58,6 +58,24 @@ namespace JetBrains.Space.Client.IssueWebhookEventPartialBuilder
         public static Partial<IssueWebhookEvent> WithDueDate(this Partial<IssueWebhookEvent> it)
             => it.AddFieldName("dueDate");
         
+        public static Partial<IssueWebhookEvent> WithTagDelta(this Partial<IssueWebhookEvent> it)
+            => it.AddFieldName("tagDelta");
+        
+        public static Partial<IssueWebhookEvent> WithTopicDelta(this Partial<IssueWebhookEvent> it)
+            => it.AddFieldName("topicDelta");
+        
+        public static Partial<IssueWebhookEvent> WithChecklistDelta(this Partial<IssueWebhookEvent> it)
+            => it.AddFieldName("checklistDelta");
+        
+        public static Partial<IssueWebhookEvent> WithSprintDelta(this Partial<IssueWebhookEvent> it)
+            => it.AddFieldName("sprintDelta");
+        
+        public static Partial<IssueWebhookEvent> WithCustomFieldUpdate(this Partial<IssueWebhookEvent> it)
+            => it.AddFieldName("customFieldUpdate");
+        
+        public static Partial<IssueWebhookEvent> WithCustomFieldUpdate(this Partial<IssueWebhookEvent> it, Func<Partial<IssueWebhookCustomFieldUpdate>, Partial<IssueWebhookCustomFieldUpdate>> partialBuilder)
+            => it.AddFieldName("customFieldUpdate", partialBuilder(new Partial<IssueWebhookCustomFieldUpdate>(it)));
+        
         public static Partial<IssueWebhookEvent> WithDeleted(this Partial<IssueWebhookEvent> it)
             => it.AddFieldName("deleted");
         

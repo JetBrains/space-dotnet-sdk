@@ -29,29 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class ChatsChannelsForChannelIdImportPostRequest
+    public class ProjectsForProjectTopicsSetResponsiblePostRequest
          : IPropagatePropertyAccessPath
     {
-        public ChatsChannelsForChannelIdImportPostRequest() { }
+        public ProjectsForProjectTopicsSetResponsiblePostRequest() { }
         
-        public ChatsChannelsForChannelIdImportPostRequest(List<MessageForImport> messages)
+        public ProjectsForProjectTopicsSetResponsiblePostRequest(string topicId, List<ProfileIdentifier> responsible)
         {
-            Messages = messages;
+            TopicId = topicId;
+            Responsible = responsible;
         }
         
-        private PropertyValue<List<MessageForImport>> _messages = new PropertyValue<List<MessageForImport>>(nameof(ChatsChannelsForChannelIdImportPostRequest), nameof(Messages), new List<MessageForImport>());
+        private PropertyValue<string> _topicId = new PropertyValue<string>(nameof(ProjectsForProjectTopicsSetResponsiblePostRequest), nameof(TopicId));
         
         [Required]
-        [JsonPropertyName("messages")]
-        public List<MessageForImport> Messages
+        [JsonPropertyName("topicId")]
+        public string TopicId
         {
-            get => _messages.GetValue();
-            set => _messages.SetValue(value);
+            get => _topicId.GetValue();
+            set => _topicId.SetValue(value);
+        }
+    
+        private PropertyValue<List<ProfileIdentifier>> _responsible = new PropertyValue<List<ProfileIdentifier>>(nameof(ProjectsForProjectTopicsSetResponsiblePostRequest), nameof(Responsible), new List<ProfileIdentifier>());
+        
+        [Required]
+        [JsonPropertyName("responsible")]
+        public List<ProfileIdentifier> Responsible
+        {
+            get => _responsible.GetValue();
+            set => _responsible.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _messages.SetAccessPath(path, validateHasBeenSet);
+            _topicId.SetAccessPath(path, validateHasBeenSet);
+            _responsible.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

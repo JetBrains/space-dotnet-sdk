@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public BillingReportDay() { }
         
-        public BillingReportDay(DateTime date, int activeUsers, int userUsage, double userCost, long storageTotalUsage, long storageFilesUsage, long storageGitUsage, long storagePackagesUsage, double storageCost, long bandwidthTotalUsageDelta, long bandwidthTotalUsage, long bandwidthFilesUsageDelta, long bandwidthFilesUsage, long bandwidthGitUsageDelta, long bandwidthGitUsage, long bandwidthPackagesUsageDelta, long bandwidthPackagesUsage, long bandwidthAutomationUsageDelta, long bandwidthAutomationUsage, double bandwidthCost, long ciUsageDelta, long ciUsage, double ciCost, long appUsage, long chatUsage, double totalCost, long? storageAllocationB = null)
+        public BillingReportDay(DateTime date, int activeUsers, int userUsage, double userCost, long storageTotalUsage, long storageFilesUsage, long storageGitUsage, long storagePackagesUsage, double storageCost, long bandwidthTotalUsageDelta, long bandwidthTotalUsage, long bandwidthFilesUsageDelta, long bandwidthFilesUsage, long bandwidthGitUsageDelta, long bandwidthGitUsage, long bandwidthPackagesUsageDelta, long bandwidthPackagesUsage, long bandwidthAutomationExternalTrafficUsageDelta, long bandwidthAutomationExternalTrafficUsage, long bandwidthAutomationInternalUsageDelta, long bandwidthAutomationInternalUsage, double bandwidthCost, long ciUsageDelta, long ciUsage, double ciCost, long appUsage, long chatUsage, double totalCost, long? storageAllocationB = null)
         {
             Date = date;
             ActiveUsers = activeUsers;
@@ -54,8 +54,10 @@ namespace JetBrains.Space.Client
             BandwidthGitUsage = bandwidthGitUsage;
             BandwidthPackagesUsageDelta = bandwidthPackagesUsageDelta;
             BandwidthPackagesUsage = bandwidthPackagesUsage;
-            BandwidthAutomationUsageDelta = bandwidthAutomationUsageDelta;
-            BandwidthAutomationUsage = bandwidthAutomationUsage;
+            BandwidthAutomationExternalTrafficUsageDelta = bandwidthAutomationExternalTrafficUsageDelta;
+            BandwidthAutomationExternalTrafficUsage = bandwidthAutomationExternalTrafficUsage;
+            BandwidthAutomationInternalUsageDelta = bandwidthAutomationInternalUsageDelta;
+            BandwidthAutomationInternalUsage = bandwidthAutomationInternalUsage;
             BandwidthCost = bandwidthCost;
             CiUsageDelta = ciUsageDelta;
             CiUsage = ciUsage;
@@ -245,24 +247,44 @@ namespace JetBrains.Space.Client
             set => _bandwidthPackagesUsage.SetValue(value);
         }
     
-        private PropertyValue<long> _bandwidthAutomationUsageDelta = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthAutomationUsageDelta));
+        private PropertyValue<long> _bandwidthAutomationExternalTrafficUsageDelta = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthAutomationExternalTrafficUsageDelta));
         
         [Required]
-        [JsonPropertyName("bandwidthAutomationUsageDelta")]
-        public long BandwidthAutomationUsageDelta
+        [JsonPropertyName("bandwidthAutomationExternalTrafficUsageDelta")]
+        public long BandwidthAutomationExternalTrafficUsageDelta
         {
-            get => _bandwidthAutomationUsageDelta.GetValue();
-            set => _bandwidthAutomationUsageDelta.SetValue(value);
+            get => _bandwidthAutomationExternalTrafficUsageDelta.GetValue();
+            set => _bandwidthAutomationExternalTrafficUsageDelta.SetValue(value);
         }
     
-        private PropertyValue<long> _bandwidthAutomationUsage = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthAutomationUsage));
+        private PropertyValue<long> _bandwidthAutomationExternalTrafficUsage = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthAutomationExternalTrafficUsage));
         
         [Required]
-        [JsonPropertyName("bandwidthAutomationUsage")]
-        public long BandwidthAutomationUsage
+        [JsonPropertyName("bandwidthAutomationExternalTrafficUsage")]
+        public long BandwidthAutomationExternalTrafficUsage
         {
-            get => _bandwidthAutomationUsage.GetValue();
-            set => _bandwidthAutomationUsage.SetValue(value);
+            get => _bandwidthAutomationExternalTrafficUsage.GetValue();
+            set => _bandwidthAutomationExternalTrafficUsage.SetValue(value);
+        }
+    
+        private PropertyValue<long> _bandwidthAutomationInternalUsageDelta = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthAutomationInternalUsageDelta));
+        
+        [Required]
+        [JsonPropertyName("bandwidthAutomationInternalUsageDelta")]
+        public long BandwidthAutomationInternalUsageDelta
+        {
+            get => _bandwidthAutomationInternalUsageDelta.GetValue();
+            set => _bandwidthAutomationInternalUsageDelta.SetValue(value);
+        }
+    
+        private PropertyValue<long> _bandwidthAutomationInternalUsage = new PropertyValue<long>(nameof(BillingReportDay), nameof(BandwidthAutomationInternalUsage));
+        
+        [Required]
+        [JsonPropertyName("bandwidthAutomationInternalUsage")]
+        public long BandwidthAutomationInternalUsage
+        {
+            get => _bandwidthAutomationInternalUsage.GetValue();
+            set => _bandwidthAutomationInternalUsage.SetValue(value);
         }
     
         private PropertyValue<double> _bandwidthCost = new PropertyValue<double>(nameof(BillingReportDay), nameof(BandwidthCost));
@@ -355,8 +377,10 @@ namespace JetBrains.Space.Client
             _bandwidthGitUsage.SetAccessPath(path, validateHasBeenSet);
             _bandwidthPackagesUsageDelta.SetAccessPath(path, validateHasBeenSet);
             _bandwidthPackagesUsage.SetAccessPath(path, validateHasBeenSet);
-            _bandwidthAutomationUsageDelta.SetAccessPath(path, validateHasBeenSet);
-            _bandwidthAutomationUsage.SetAccessPath(path, validateHasBeenSet);
+            _bandwidthAutomationExternalTrafficUsageDelta.SetAccessPath(path, validateHasBeenSet);
+            _bandwidthAutomationExternalTrafficUsage.SetAccessPath(path, validateHasBeenSet);
+            _bandwidthAutomationInternalUsageDelta.SetAccessPath(path, validateHasBeenSet);
+            _bandwidthAutomationInternalUsage.SetAccessPath(path, validateHasBeenSet);
             _bandwidthCost.SetAccessPath(path, validateHasBeenSet);
             _ciUsageDelta.SetAccessPath(path, validateHasBeenSet);
             _ciUsage.SetAccessPath(path, validateHasBeenSet);

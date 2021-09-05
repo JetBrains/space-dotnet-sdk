@@ -27,12 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DeletedAttachmentPartialBuilder
+namespace JetBrains.Space.Client.ChatsChannelsForChannelMessagesPostRequestPartialBuilder
 {
-    public static class DeletedAttachmentPartialExtensions
+    public static class ChatsChannelsForChannelMessagesPostRequestPartialExtensions
     {
-        public static Partial<DeletedAttachment> WithDeletedIdentity(this Partial<DeletedAttachment> it)
-            => it.AddFieldName("deletedIdentity");
+        public static Partial<ChatsChannelsForChannelMessagesPostRequest> WithText(this Partial<ChatsChannelsForChannelMessagesPostRequest> it)
+            => it.AddFieldName("text");
+        
+        public static Partial<ChatsChannelsForChannelMessagesPostRequest> WithTemporaryId(this Partial<ChatsChannelsForChannelMessagesPostRequest> it)
+            => it.AddFieldName("temporaryId");
         
     }
     

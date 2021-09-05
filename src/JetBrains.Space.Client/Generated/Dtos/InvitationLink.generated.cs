@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public InvitationLink() { }
         
-        public InvitationLink(string id, string name, CPrincipal createdBy, DateTime createdAt, int inviteeLimit, int inviteeUsage, bool deleted, DateTime? expiresAt = null)
+        public InvitationLink(string id, string name, CPrincipal createdBy, DateTime createdAt, int inviteeLimit, int inviteeUsage, bool deleted, DateTime? expiresAt = null, TDTeam? team = null, TDRole? position = null)
         {
             Id = id;
             Name = name;
@@ -43,6 +43,8 @@ namespace JetBrains.Space.Client
             ExpiresAt = expiresAt;
             InviteeLimit = inviteeLimit;
             InviteeUsage = inviteeUsage;
+            Team = team;
+            Position = position;
             IsDeleted = deleted;
         }
         
@@ -117,6 +119,24 @@ namespace JetBrains.Space.Client
             set => _inviteeUsage.SetValue(value);
         }
     
+        private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(InvitationLink), nameof(Team));
+        
+        [JsonPropertyName("team")]
+        public TDTeam? Team
+        {
+            get => _team.GetValue();
+            set => _team.SetValue(value);
+        }
+    
+        private PropertyValue<TDRole?> _position = new PropertyValue<TDRole?>(nameof(InvitationLink), nameof(Position));
+        
+        [JsonPropertyName("position")]
+        public TDRole? Position
+        {
+            get => _position.GetValue();
+            set => _position.SetValue(value);
+        }
+    
         private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(InvitationLink), nameof(IsDeleted));
         
         [Required]
@@ -136,6 +156,8 @@ namespace JetBrains.Space.Client
             _expiresAt.SetAccessPath(path, validateHasBeenSet);
             _inviteeLimit.SetAccessPath(path, validateHasBeenSet);
             _inviteeUsage.SetAccessPath(path, validateHasBeenSet);
+            _team.SetAccessPath(path, validateHasBeenSet);
+            _position.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);
         }
     

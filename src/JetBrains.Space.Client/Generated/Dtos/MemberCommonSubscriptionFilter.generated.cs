@@ -37,10 +37,11 @@ namespace JetBrains.Space.Client
         
         public MemberCommonSubscriptionFilter() { }
         
-        public MemberCommonSubscriptionFilter(List<TDTeam> teams, List<TDLocation> locations)
+        public MemberCommonSubscriptionFilter(List<TDTeam> teams, List<TDLocation> locations, List<TDMemberProfile>? profiles = null)
         {
             Teams = teams;
             Locations = locations;
+            Profiles = profiles;
         }
         
         private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(MemberCommonSubscriptionFilter), nameof(Teams), new List<TDTeam>());
@@ -63,10 +64,20 @@ namespace JetBrains.Space.Client
             set => _locations.SetValue(value);
         }
     
+        private PropertyValue<List<TDMemberProfile>?> _profiles = new PropertyValue<List<TDMemberProfile>?>(nameof(MemberCommonSubscriptionFilter), nameof(Profiles));
+        
+        [JsonPropertyName("profiles")]
+        public List<TDMemberProfile>? Profiles
+        {
+            get => _profiles.GetValue();
+            set => _profiles.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _teams.SetAccessPath(path, validateHasBeenSet);
             _locations.SetAccessPath(path, validateHasBeenSet);
+            _profiles.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

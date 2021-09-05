@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest() { }
         
-        public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest(string text, string repository, string revision, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null)
+        public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest(string text, string repository, string revision, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null, ReviewIdentifier? reviewId = null)
         {
             Text = text;
             DiffContext = diffContext;
@@ -44,6 +44,7 @@ namespace JetBrains.Space.Client
             Line = line;
             OldLine = oldLine;
             IsPending = pending;
+            ReviewId = reviewId;
         }
         
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Text));
@@ -121,6 +122,15 @@ namespace JetBrains.Space.Client
             set => _pending.SetValue(value);
         }
     
+        private PropertyValue<ReviewIdentifier?> _reviewId = new PropertyValue<ReviewIdentifier?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(ReviewId));
+        
+        [JsonPropertyName("reviewId")]
+        public ReviewIdentifier? ReviewId
+        {
+            get => _reviewId.GetValue();
+            set => _reviewId.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _text.SetAccessPath(path, validateHasBeenSet);
@@ -131,6 +141,7 @@ namespace JetBrains.Space.Client
             _line.SetAccessPath(path, validateHasBeenSet);
             _oldLine.SetAccessPath(path, validateHasBeenSet);
             _pending.SetAccessPath(path, validateHasBeenSet);
+            _reviewId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

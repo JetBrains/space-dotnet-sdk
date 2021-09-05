@@ -86,6 +86,9 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsIssueTag IssueTag(PlanningTag tag, bool strikeThrough)
             => new UnfurlDetailsIssueTag(tag: tag, strikeThrough: strikeThrough);
         
+        public static UnfurlDetailsIssueTopic IssueTopic(Topic topic, bool strikeThrough)
+            => new UnfurlDetailsIssueTopic(topic: topic, strikeThrough: strikeThrough);
+        
         public static UnfurlDetailsLocation Location(TDLocation location, bool? strikeThrough = null)
             => new UnfurlDetailsLocation(location: location, strikeThrough: strikeThrough);
         
