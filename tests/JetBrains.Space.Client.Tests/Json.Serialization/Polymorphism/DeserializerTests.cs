@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text.Json;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using Xunit;
@@ -35,6 +36,33 @@ namespace JetBrains.Space.Client.Tests.Json.Serialization.Polymorphism
                 
                 Assert.NotNull(messagePayload.Message.Attachments);
                 Assert.NotEmpty(messagePayload.Message.Attachments!);
+            }
+        }
+
+        [Fact] // https://github.com/JetBrains/space-dotnet-sdk/issues/3
+        public void CanDeserializeObjectWithPolymorphClasses_Repro_GH3()
+        {
+            var inputJsonString = "{\"customFields\":{\"Custom Field\":{\"className\":\"EnumListCFValue\",\"values\":[{\"id\":\"abcdefg1\",\"value\":\"Field value 1\"},{\"id\":\"abcdefg2\",\"value\":\"Field value 2\"}]}}}";
+
+            var result = JsonSerializer.Deserialize(inputJsonString, typeof(Issue), CreateSerializerOptions());
+
+            Assert.NotNull(result);
+            Assert.IsType<Issue>(result);
+            if (result is Issue issue)
+            {
+                Assert.NotNull(issue.CustomFields);
+                Assert.Equal("Custom Field", issue.CustomFields.Keys.First());
+
+                var customField = issue.CustomFields.Values.First();
+                
+                Assert.NotNull(customField);
+                Assert.IsType<EnumListCFValue>(customField);
+                if (customField is EnumListCFValue customFieldValue)
+                {
+                    Assert.NotEmpty(customFieldValue.Values);
+                    Assert.Equal("abcdefg1", customFieldValue.Values[0].Id);
+                    Assert.Equal("abcdefg2", customFieldValue.Values[1].Id);
+                }
             }
         }
     }

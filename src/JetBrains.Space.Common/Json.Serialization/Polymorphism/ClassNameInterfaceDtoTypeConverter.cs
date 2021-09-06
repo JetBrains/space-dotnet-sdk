@@ -14,7 +14,7 @@ namespace JetBrains.Space.Common.Json.Serialization.Polymorphism
         /// <summary>
         /// Creates a new <see cref="ListOfClassNameDtoTypeConverter"/> instance.
         /// </summary>
-        public ListOfClassNameDtoTypeConverter() : base(new ClassNameInterfaceDtoTypeConverter())
+        public ListOfClassNameDtoTypeConverter() : base(new ClassNameDtoTypeConverter<IClassNameConvertible>())
         {
         }
     }
