@@ -40,8 +40,8 @@ namespace JetBrains.Space.Client.ApplicationAuthorizationRequestedEventPartialBu
         public static Partial<ApplicationAuthorizationRequestedEvent> WithApplication(this Partial<ApplicationAuthorizationRequestedEvent> it)
             => it.AddFieldName("application");
         
-        public static Partial<ApplicationAuthorizationRequestedEvent> WithApplication(this Partial<ApplicationAuthorizationRequestedEvent> it, Func<Partial<ESService>, Partial<ESService>> partialBuilder)
-            => it.AddFieldName("application", partialBuilder(new Partial<ESService>(it)));
+        public static Partial<ApplicationAuthorizationRequestedEvent> WithApplication(this Partial<ApplicationAuthorizationRequestedEvent> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
+            => it.AddFieldName("application", partialBuilder(new Partial<ESApp>(it)));
         
         public static Partial<ApplicationAuthorizationRequestedEvent> WithScope(this Partial<ApplicationAuthorizationRequestedEvent> it)
             => it.AddFieldName("scope");

@@ -34,23 +34,13 @@ namespace JetBrains.Space.Client
     {
         public ESOAuthConsent() { }
         
-        public ESOAuthConsent(ESApp clientApplication, List<ESApprovedScope> approvedScopes, List<ESRefreshToken> refreshTokens, ESService? clientService = null)
+        public ESOAuthConsent(ESApp clientApplication, List<ESApprovedScope> approvedScopes, List<ESRefreshToken> refreshTokens)
         {
-            ClientService = clientService;
             ClientApplication = clientApplication;
             ApprovedScopes = approvedScopes;
             RefreshTokens = refreshTokens;
         }
         
-        private PropertyValue<ESService?> _clientService = new PropertyValue<ESService?>(nameof(ESOAuthConsent), nameof(ClientService));
-        
-        [JsonPropertyName("clientService")]
-        public ESService? ClientService
-        {
-            get => _clientService.GetValue();
-            set => _clientService.SetValue(value);
-        }
-    
         private PropertyValue<ESApp> _clientApplication = new PropertyValue<ESApp>(nameof(ESOAuthConsent), nameof(ClientApplication));
         
         [Required]
@@ -83,7 +73,6 @@ namespace JetBrains.Space.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _clientService.SetAccessPath(path, validateHasBeenSet);
             _clientApplication.SetAccessPath(path, validateHasBeenSet);
             _approvedScopes.SetAccessPath(path, validateHasBeenSet);
             _refreshTokens.SetAccessPath(path, validateHasBeenSet);

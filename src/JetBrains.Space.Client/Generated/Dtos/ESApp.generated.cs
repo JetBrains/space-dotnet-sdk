@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public ESApp() { }
         
-        public ESApp(string id, string clientId, string name, bool archived, TDMemberProfile? owner = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null, ESAppSettings? settings = null)
+        public ESApp(string id, string clientId, string name, bool archived, List<ApplicationUnfurlDomain> domains, List<ApplicationUnfurlPattern> patterns, TDMemberProfile? owner = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null, ESAppSettings? settings = null)
         {
             Id = id;
             Owner = owner;
@@ -59,7 +59,9 @@ namespace JetBrains.Space.Client
             IsHasBearerToken = hasBearerToken;
             SslKeystoreAuth = sslKeystoreAuth;
             IsArchived = archived;
+            Domains = domains;
             Metadata = metadata;
+            Patterns = patterns;
             Settings = settings;
         }
         
@@ -275,6 +277,16 @@ namespace JetBrains.Space.Client
             set => _archived.SetValue(value);
         }
     
+        private PropertyValue<List<ApplicationUnfurlDomain>> _domains = new PropertyValue<List<ApplicationUnfurlDomain>>(nameof(ESApp), nameof(Domains), new List<ApplicationUnfurlDomain>());
+        
+        [Required]
+        [JsonPropertyName("domains")]
+        public List<ApplicationUnfurlDomain> Domains
+        {
+            get => _domains.GetValue();
+            set => _domains.SetValue(value);
+        }
+    
         private PropertyValue<ApplicationMetadata?> _metadata = new PropertyValue<ApplicationMetadata?>(nameof(ESApp), nameof(Metadata));
         
         [JsonPropertyName("metadata")]
@@ -282,6 +294,16 @@ namespace JetBrains.Space.Client
         {
             get => _metadata.GetValue();
             set => _metadata.SetValue(value);
+        }
+    
+        private PropertyValue<List<ApplicationUnfurlPattern>> _patterns = new PropertyValue<List<ApplicationUnfurlPattern>>(nameof(ESApp), nameof(Patterns), new List<ApplicationUnfurlPattern>());
+        
+        [Required]
+        [JsonPropertyName("patterns")]
+        public List<ApplicationUnfurlPattern> Patterns
+        {
+            get => _patterns.GetValue();
+            set => _patterns.SetValue(value);
         }
     
         private PropertyValue<ESAppSettings?> _settings = new PropertyValue<ESAppSettings?>(nameof(ESApp), nameof(Settings));
@@ -318,7 +340,9 @@ namespace JetBrains.Space.Client
             _hasBearerToken.SetAccessPath(path, validateHasBeenSet);
             _sslKeystoreAuth.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
+            _domains.SetAccessPath(path, validateHasBeenSet);
             _metadata.SetAccessPath(path, validateHasBeenSet);
+            _patterns.SetAccessPath(path, validateHasBeenSet);
             _settings.SetAccessPath(path, validateHasBeenSet);
         }
     

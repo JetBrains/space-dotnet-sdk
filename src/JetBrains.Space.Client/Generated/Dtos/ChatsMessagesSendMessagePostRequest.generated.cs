@@ -34,13 +34,15 @@ namespace JetBrains.Space.Client
     {
         public ChatsMessagesSendMessagePostRequest() { }
         
-        public ChatsMessagesSendMessagePostRequest(MessageRecipient recipient, ChatMessage content, bool? unfurlLinks = null, List<AttachmentIn>? attachments = null, string? externalId = null)
+        public ChatsMessagesSendMessagePostRequest(MessageRecipient recipient, ChatMessage content, bool? unfurlLinks = null, List<AttachmentIn>? attachments = null, string? externalId = null, bool? resolveNames = null, bool? pending = null)
         {
             Recipient = recipient;
             Content = content;
             IsUnfurlLinks = unfurlLinks;
             Attachments = attachments;
             ExternalId = externalId;
+            IsResolveNames = resolveNames;
+            IsPending = pending;
         }
         
         private PropertyValue<MessageRecipient> _recipient = new PropertyValue<MessageRecipient>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Recipient));
@@ -90,6 +92,24 @@ namespace JetBrains.Space.Client
             set => _externalId.SetValue(value);
         }
     
+        private PropertyValue<bool?> _resolveNames = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsResolveNames));
+        
+        [JsonPropertyName("resolveNames")]
+        public bool? IsResolveNames
+        {
+            get => _resolveNames.GetValue();
+            set => _resolveNames.SetValue(value);
+        }
+    
+        private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsPending));
+        
+        [JsonPropertyName("pending")]
+        public bool? IsPending
+        {
+            get => _pending.GetValue();
+            set => _pending.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _recipient.SetAccessPath(path, validateHasBeenSet);
@@ -97,6 +117,8 @@ namespace JetBrains.Space.Client
             _unfurlLinks.SetAccessPath(path, validateHasBeenSet);
             _attachments.SetAccessPath(path, validateHasBeenSet);
             _externalId.SetAccessPath(path, validateHasBeenSet);
+            _resolveNames.SetAccessPath(path, validateHasBeenSet);
+            _pending.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

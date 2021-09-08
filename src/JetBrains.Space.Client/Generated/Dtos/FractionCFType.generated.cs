@@ -29,21 +29,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum OAuthServiceType
+    public sealed class FractionCFType
+         : CFType, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        [EnumMember(Value = "Server")]
-        Server,
+        [JsonPropertyName("className")]
+        public override string? ClassName => "FractionCFType";
         
-        [EnumMember(Value = "WebClient")]
-        WebClient,
+        public FractionCFType() { }
         
-        [EnumMember(Value = "Mobile")]
-        Mobile,
-        
-        [EnumMember(Value = "ServiceAccount")]
-        ServiceAccount,
-        
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

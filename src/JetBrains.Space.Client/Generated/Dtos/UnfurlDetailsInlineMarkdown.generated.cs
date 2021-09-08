@@ -27,16 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingOrganizerApplicationPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class MeetingOrganizerApplicationPartialExtensions
+    public sealed class UnfurlDetailsInlineMarkdown
+         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<MeetingOrganizerApplication> WithApplicationRef(this Partial<MeetingOrganizerApplication> it)
-            => it.AddFieldName("applicationRef");
+        [JsonPropertyName("className")]
+        public  string? ClassName => "UnfurlDetailsInlineMarkdown";
         
-        public static Partial<MeetingOrganizerApplication> WithApplicationRef(this Partial<MeetingOrganizerApplication> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
-            => it.AddFieldName("applicationRef", partialBuilder(new Partial<ESApp>(it)));
+        public UnfurlDetailsInlineMarkdown() { }
         
+        public UnfurlDetailsInlineMarkdown(string markdown)
+        {
+            Markdown = markdown;
+        }
+        
+        private PropertyValue<string> _markdown = new PropertyValue<string>(nameof(UnfurlDetailsInlineMarkdown), nameof(Markdown));
+        
+        [Required]
+        [JsonPropertyName("markdown")]
+        public string Markdown
+        {
+            get => _markdown.GetValue();
+            set => _markdown.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _markdown.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

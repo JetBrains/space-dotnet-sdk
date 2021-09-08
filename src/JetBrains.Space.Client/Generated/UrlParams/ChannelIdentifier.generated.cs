@@ -32,11 +32,17 @@ namespace JetBrains.Space.Client
     [JsonConverter(typeof(UrlParameterConverter))]
     public abstract class ChannelIdentifier : IUrlParameter
     {
-        public static ChannelIdentifier Application(string applicationId)
-            => new ChannelIdentifierApplication(applicationId);
+        public static ChannelIdentifier Application(string application)
+            => new ChannelIdentifierApplication(application);
         
-        public static ChannelIdentifier Article(string articleId)
-            => new ChannelIdentifierArticle(articleId);
+        public static ChannelIdentifier Article(string article)
+            => new ChannelIdentifierArticle(article);
+        
+        public static ChannelIdentifier Channel(ChatChannel channel)
+            => new ChannelIdentifierChannel(channel);
+        
+        public static ChannelIdentifier ContactKey(string contactKey)
+            => new ChannelIdentifierContactKey(contactKey);
         
         public static ChannelIdentifier Id(string id)
             => new ChannelIdentifierId(id);
@@ -44,41 +50,57 @@ namespace JetBrains.Space.Client
         public static ChannelIdentifier Issue(IssueIdentifier issue)
             => new ChannelIdentifierIssue(issue);
         
-        public static ChannelIdentifier Key(string key)
-            => new ChannelIdentifierKey(key);
+        public static ChannelIdentifier Profile(ProfileIdentifier member)
+            => new ChannelIdentifierProfile(member);
         
-        public static ChannelIdentifier Name(string name)
-            => new ChannelIdentifierName(name);
+        public static ChannelIdentifier Review(ReviewIdentifier codeReview)
+            => new ChannelIdentifierReview(codeReview);
         
-        public static ChannelIdentifier Profile(ProfileIdentifier profile)
-            => new ChannelIdentifierProfile(profile);
-        
-        public static ChannelIdentifier Review(ReviewIdentifier review)
-            => new ChannelIdentifierReview(review);
-        
-        public static ChannelIdentifier Thread(string messageId)
-            => new ChannelIdentifierThread(messageId);
+        public static ChannelIdentifier Thread(string message)
+            => new ChannelIdentifierThread(message);
         
         private class ChannelIdentifierApplication : ChannelIdentifier
         {
-            private readonly string _applicationId;
+            private readonly string _application;
             
-            public ChannelIdentifierApplication(string applicationId)
-                => _applicationId = applicationId;
+            public ChannelIdentifierApplication(string application)
+                => _application = application;
             
             public override string ToString()
-                => $"applicationId:{_applicationId}";
+                => $"application:{_application}";
         }
         
         private class ChannelIdentifierArticle : ChannelIdentifier
         {
-            private readonly string _articleId;
+            private readonly string _article;
             
-            public ChannelIdentifierArticle(string articleId)
-                => _articleId = articleId;
+            public ChannelIdentifierArticle(string article)
+                => _article = article;
             
             public override string ToString()
-                => $"articleId:{_articleId}";
+                => $"article:{_article}";
+        }
+        
+        private class ChannelIdentifierChannel : ChannelIdentifier
+        {
+            private readonly ChatChannel _channel;
+            
+            public ChannelIdentifierChannel(ChatChannel channel)
+                => _channel = channel;
+            
+            public override string ToString()
+                => $"channel:{_channel}";
+        }
+        
+        private class ChannelIdentifierContactKey : ChannelIdentifier
+        {
+            private readonly string _contactKey;
+            
+            public ChannelIdentifierContactKey(string contactKey)
+                => _contactKey = contactKey;
+            
+            public override string ToString()
+                => $"contactKey:{_contactKey}";
         }
         
         private class ChannelIdentifierId : ChannelIdentifier
@@ -103,59 +125,37 @@ namespace JetBrains.Space.Client
                 => $"issue:{_issue}";
         }
         
-        private class ChannelIdentifierKey : ChannelIdentifier
-        {
-            private readonly string _key;
-            
-            public ChannelIdentifierKey(string key)
-                => _key = key;
-            
-            public override string ToString()
-                => $"key:{_key}";
-        }
-        
-        private class ChannelIdentifierName : ChannelIdentifier
-        {
-            private readonly string _name;
-            
-            public ChannelIdentifierName(string name)
-                => _name = name;
-            
-            public override string ToString()
-                => $"name:{_name}";
-        }
-        
         private class ChannelIdentifierProfile : ChannelIdentifier
         {
-            private readonly ProfileIdentifier _profile;
+            private readonly ProfileIdentifier _member;
             
-            public ChannelIdentifierProfile(ProfileIdentifier profile)
-                => _profile = profile;
+            public ChannelIdentifierProfile(ProfileIdentifier member)
+                => _member = member;
             
             public override string ToString()
-                => $"profile:{_profile}";
+                => $"member:{_member}";
         }
         
         private class ChannelIdentifierReview : ChannelIdentifier
         {
-            private readonly ReviewIdentifier _review;
+            private readonly ReviewIdentifier _codeReview;
             
-            public ChannelIdentifierReview(ReviewIdentifier review)
-                => _review = review;
+            public ChannelIdentifierReview(ReviewIdentifier codeReview)
+                => _codeReview = codeReview;
             
             public override string ToString()
-                => $"review:{_review}";
+                => $"codeReview:{_codeReview}";
         }
         
         private class ChannelIdentifierThread : ChannelIdentifier
         {
-            private readonly string _messageId;
+            private readonly string _message;
             
-            public ChannelIdentifierThread(string messageId)
-                => _messageId = messageId;
+            public ChannelIdentifierThread(string message)
+                => _message = message;
             
             public override string ToString()
-                => $"messageId:{_messageId}";
+                => $"message:{_message}";
         }
         
     }

@@ -29,21 +29,25 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public interface ClientSideActionContext
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public class ApplicationUnfurlTarget
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static ConfigurePermissionsAction ConfigurePermissionsAction(ESApp app, PermissionContextIdentifier context)
-            => new ConfigurePermissionsAction(app: app, context: context);
+        [JsonPropertyName("className")]
+        public virtual string? ClassName => "ApplicationUnfurlTarget";
         
-        public static DeletePersonalFeedAction DeletePersonalFeedAction(string feed, string? feedId = null)
-            => new DeletePersonalFeedAction(feed: feed, feedId: feedId);
+        public static ApplicationUnfurlTargetDomain Domain(string domain)
+            => new ApplicationUnfurlTargetDomain(domain: domain);
         
-        public static NewMergeRequestFromIssueActionContext NewMergeRequestFromIssueActionContext(ProjectKey projectKey, string repository, string commitId, int issueNumber, ProjectReposRecord projectRepos, CommitLinksContainer issueCommitsRef)
-            => new NewMergeRequestFromIssueActionContext(projectKey: projectKey, repository: repository, commitId: commitId, issueNumber: issueNumber, projectRepos: projectRepos, issueCommitsRef: issueCommitsRef);
+        public static ApplicationUnfurlTargetPattern Pattern(string pattern)
+            => new ApplicationUnfurlTargetPattern(pattern: pattern);
         
-        public static OpenPersonalFeedSettingsAction OpenPersonalFeedSettingsAction(string tab, string feed, string? feedId = null)
-            => new OpenPersonalFeedSettingsAction(tab: tab, feed: feed, feedId: feedId);
+        public ApplicationUnfurlTarget() { }
         
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

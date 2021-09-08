@@ -27,16 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingOrganizerApplicationPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class MeetingOrganizerApplicationPartialExtensions
+    public sealed class FractionCFValue
+         : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<MeetingOrganizerApplication> WithApplicationRef(this Partial<MeetingOrganizerApplication> it)
-            => it.AddFieldName("applicationRef");
+        [JsonPropertyName("className")]
+        public override string? ClassName => "FractionCFValue";
         
-        public static Partial<MeetingOrganizerApplication> WithApplicationRef(this Partial<MeetingOrganizerApplication> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
-            => it.AddFieldName("applicationRef", partialBuilder(new Partial<ESApp>(it)));
+        public FractionCFValue() { }
         
+        public FractionCFValue(Fraction? value = null)
+        {
+            Value = value;
+        }
+        
+        private PropertyValue<Fraction?> _value = new PropertyValue<Fraction?>(nameof(FractionCFValue), nameof(Value));
+        
+        [JsonPropertyName("value")]
+        public Fraction? Value
+        {
+            get => _value.GetValue();
+            set => _value.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _value.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

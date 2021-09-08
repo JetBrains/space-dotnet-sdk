@@ -85,6 +85,21 @@ namespace JetBrains.Space.Client.DocumentFolderPartialBuilder
         public static Partial<DocumentFolder> WithUpdatedBy(this Partial<DocumentFolder> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
             => it.AddFieldName("updatedBy", partialBuilder(new Partial<CPrincipal>(it)));
         
+        public static Partial<DocumentFolder> WithDocuments(this Partial<DocumentFolder> it)
+            => it.AddFieldName("documents");
+        
+        public static Partial<DocumentFolder> WithDocuments(this Partial<DocumentFolder> it, Func<Partial<Document>, Partial<Document>> partialBuilder)
+            => it.AddFieldName("documents", partialBuilder(new Partial<Document>(it)));
+        
+        public static Partial<DocumentFolder> WithSubfolders(this Partial<DocumentFolder> it)
+            => it.AddFieldName("subfolders");
+        
+        public static Partial<DocumentFolder> WithSubfoldersRecursive(this Partial<DocumentFolder> it)
+            => it.AddFieldName("subfolders!");
+        
+        public static Partial<DocumentFolder> WithSubfolders(this Partial<DocumentFolder> it, Func<Partial<DocumentFolder>, Partial<DocumentFolder>> partialBuilder)
+            => it.AddFieldName("subfolders", partialBuilder(new Partial<DocumentFolder>(it)));
+        
     }
     
 }

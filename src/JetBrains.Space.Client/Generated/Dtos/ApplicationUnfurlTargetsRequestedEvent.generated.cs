@@ -29,22 +29,22 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class ApplicationAuthorizationRequestedEvent
+    public sealed class ApplicationUnfurlTargetsRequestedEvent
          : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public  string? ClassName => "ApplicationAuthorizationRequestedEvent";
+        public  string? ClassName => "ApplicationUnfurlTargetsRequestedEvent";
         
-        public ApplicationAuthorizationRequestedEvent() { }
+        public ApplicationUnfurlTargetsRequestedEvent() { }
         
-        public ApplicationAuthorizationRequestedEvent(KMetaMod meta, ESApp application, AuthScope scope)
+        public ApplicationUnfurlTargetsRequestedEvent(KMetaMod meta, ESApp application, ApplicationUnfurlTarget target)
         {
             Meta = meta;
             Application = application;
-            Scope = scope;
+            Target = target;
         }
         
-        private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationAuthorizationRequestedEvent), nameof(Meta));
+        private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Meta));
         
         [Required]
         [JsonPropertyName("meta")]
@@ -54,7 +54,7 @@ namespace JetBrains.Space.Client
             set => _meta.SetValue(value);
         }
     
-        private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationAuthorizationRequestedEvent), nameof(Application));
+        private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Application));
         
         [Required]
         [JsonPropertyName("application")]
@@ -64,21 +64,21 @@ namespace JetBrains.Space.Client
             set => _application.SetValue(value);
         }
     
-        private PropertyValue<AuthScope> _scope = new PropertyValue<AuthScope>(nameof(ApplicationAuthorizationRequestedEvent), nameof(Scope));
+        private PropertyValue<ApplicationUnfurlTarget> _target = new PropertyValue<ApplicationUnfurlTarget>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Target));
         
         [Required]
-        [JsonPropertyName("scope")]
-        public AuthScope Scope
+        [JsonPropertyName("target")]
+        public ApplicationUnfurlTarget Target
         {
-            get => _scope.GetValue();
-            set => _scope.SetValue(value);
+            get => _target.GetValue();
+            set => _target.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _meta.SetAccessPath(path, validateHasBeenSet);
             _application.SetAccessPath(path, validateHasBeenSet);
-            _scope.SetAccessPath(path, validateHasBeenSet);
+            _target.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

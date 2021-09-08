@@ -43,6 +43,9 @@ namespace JetBrains.Space.Client.RightPartialBuilder
         public static Partial<Right> WithDescription(this Partial<Right> it)
             => it.AddFieldName("description");
         
+        public static Partial<Right> WithTargetName(this Partial<Right> it)
+            => it.AddFieldName("targetName");
+        
         public static Partial<Right> WithIsEditable(this Partial<Right> it)
             => it.AddFieldName("editable");
         

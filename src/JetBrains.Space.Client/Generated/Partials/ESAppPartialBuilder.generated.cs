@@ -106,11 +106,23 @@ namespace JetBrains.Space.Client.ESAppPartialBuilder
         public static Partial<ESApp> WithIsArchived(this Partial<ESApp> it)
             => it.AddFieldName("archived");
         
+        public static Partial<ESApp> WithDomains(this Partial<ESApp> it)
+            => it.AddFieldName("domains");
+        
+        public static Partial<ESApp> WithDomains(this Partial<ESApp> it, Func<Partial<ApplicationUnfurlDomain>, Partial<ApplicationUnfurlDomain>> partialBuilder)
+            => it.AddFieldName("domains", partialBuilder(new Partial<ApplicationUnfurlDomain>(it)));
+        
         public static Partial<ESApp> WithMetadata(this Partial<ESApp> it)
             => it.AddFieldName("metadata");
         
         public static Partial<ESApp> WithMetadata(this Partial<ESApp> it, Func<Partial<ApplicationMetadata>, Partial<ApplicationMetadata>> partialBuilder)
             => it.AddFieldName("metadata", partialBuilder(new Partial<ApplicationMetadata>(it)));
+        
+        public static Partial<ESApp> WithPatterns(this Partial<ESApp> it)
+            => it.AddFieldName("patterns");
+        
+        public static Partial<ESApp> WithPatterns(this Partial<ESApp> it, Func<Partial<ApplicationUnfurlPattern>, Partial<ApplicationUnfurlPattern>> partialBuilder)
+            => it.AddFieldName("patterns", partialBuilder(new Partial<ApplicationUnfurlPattern>(it)));
         
         public static Partial<ESApp> WithSettings(this Partial<ESApp> it)
             => it.AddFieldName("settings");

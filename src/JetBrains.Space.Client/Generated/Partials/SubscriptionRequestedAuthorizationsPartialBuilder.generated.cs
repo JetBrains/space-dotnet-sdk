@@ -37,6 +37,15 @@ namespace JetBrains.Space.Client.SubscriptionRequestedAuthorizationsPartialBuild
         public static Partial<SubscriptionRequestedAuthorizations> WithRights(this Partial<SubscriptionRequestedAuthorizations> it, Func<Partial<Right>, Partial<Right>> partialBuilder)
             => it.AddFieldName("rights", partialBuilder(new Partial<Right>(it)));
         
+        public static Partial<SubscriptionRequestedAuthorizations> WithRightCodes(this Partial<SubscriptionRequestedAuthorizations> it)
+            => it.AddFieldName("rightCodes");
+        
+        public static Partial<SubscriptionRequestedAuthorizations> WithPermissionContext(this Partial<SubscriptionRequestedAuthorizations> it)
+            => it.AddFieldName("permissionContext");
+        
+        public static Partial<SubscriptionRequestedAuthorizations> WithPermissionContext(this Partial<SubscriptionRequestedAuthorizations> it, Func<Partial<PermissionContextApi>, Partial<PermissionContextApi>> partialBuilder)
+            => it.AddFieldName("permissionContext", partialBuilder(new Partial<PermissionContextApi>(it)));
+        
         public static Partial<SubscriptionRequestedAuthorizations> WithProjects(this Partial<SubscriptionRequestedAuthorizations> it)
             => it.AddFieldName("projects");
         

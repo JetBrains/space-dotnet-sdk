@@ -80,6 +80,17 @@ namespace JetBrains.Space.Client
             
         
             /// <summary>
+            /// Ensures that all permissions required for this subscription are requested in the corresponding permission role
+            /// </summary>
+            public async Task RequestMissingRightsAsync(string id, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/notifications/channel-subscriptions/{id}/request-missing-rights{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <summary>
             /// List subscriptions for a channel
             /// </summary>
             public async Task<List<Subscription>> GetAllChannelSubscriptionsAsync(ChatChannel channel, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)

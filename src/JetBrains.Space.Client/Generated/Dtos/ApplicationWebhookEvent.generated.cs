@@ -37,13 +37,12 @@ namespace JetBrains.Space.Client
         
         public ApplicationWebhookEvent() { }
         
-        public ApplicationWebhookEvent(KMetaMod meta, ESApp application, bool clientIdChanged, bool clientSecretChanged, bool verificationTokenChanged, bool signingKeyChanged, Modification<string>? name = null, Modification<TDMemberProfile>? owner = null, Modification<string>? redirectURIs = null, Modification<bool>? archived = null, Modification<string>? endpointURI = null)
+        public ApplicationWebhookEvent(KMetaMod meta, ESApp application, bool clientIdChanged, bool clientSecretChanged, bool verificationTokenChanged, bool signingKeyChanged, Modification<string>? name = null, Modification<TDMemberProfile>? owner = null, Modification<bool>? archived = null, Modification<string>? endpointURI = null)
         {
             Meta = meta;
             Application = application;
             Name = name;
             Owner = owner;
-            RedirectURIs = redirectURIs;
             Archived = archived;
             EndpointURI = endpointURI;
             IsClientIdChanged = clientIdChanged;
@@ -88,15 +87,6 @@ namespace JetBrains.Space.Client
         {
             get => _owner.GetValue();
             set => _owner.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<string>?> _redirectURIs = new PropertyValue<Modification<string>?>(nameof(ApplicationWebhookEvent), nameof(RedirectURIs));
-        
-        [JsonPropertyName("redirectURIs")]
-        public Modification<string>? RedirectURIs
-        {
-            get => _redirectURIs.GetValue();
-            set => _redirectURIs.SetValue(value);
         }
     
         private PropertyValue<Modification<bool>?> _archived = new PropertyValue<Modification<bool>?>(nameof(ApplicationWebhookEvent), nameof(Archived));
@@ -163,7 +153,6 @@ namespace JetBrains.Space.Client
             _application.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
             _owner.SetAccessPath(path, validateHasBeenSet);
-            _redirectURIs.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
             _endpointURI.SetAccessPath(path, validateHasBeenSet);
             _clientIdChanged.SetAccessPath(path, validateHasBeenSet);

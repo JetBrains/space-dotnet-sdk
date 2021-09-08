@@ -34,12 +34,13 @@ namespace JetBrains.Space.Client
     {
         public Right() { }
         
-        public Right(string rightCode, string name, string group, string description, bool editable, RightStatus status, List<string> dependencies, CPrincipal? modificationAuthor = null, DateTime? modificationTimestamp = null)
+        public Right(string rightCode, string name, string group, string description, string targetName, bool editable, RightStatus status, List<string> dependencies, CPrincipal? modificationAuthor = null, DateTime? modificationTimestamp = null)
         {
             RightCode = rightCode;
             Name = name;
             Group = group;
             Description = description;
+            TargetName = targetName;
             IsEditable = editable;
             Status = status;
             ModificationAuthor = modificationAuthor;
@@ -85,6 +86,16 @@ namespace JetBrains.Space.Client
         {
             get => _description.GetValue();
             set => _description.SetValue(value);
+        }
+    
+        private PropertyValue<string> _targetName = new PropertyValue<string>(nameof(Right), nameof(TargetName));
+        
+        [Required]
+        [JsonPropertyName("targetName")]
+        public string TargetName
+        {
+            get => _targetName.GetValue();
+            set => _targetName.SetValue(value);
         }
     
         private PropertyValue<bool> _editable = new PropertyValue<bool>(nameof(Right), nameof(IsEditable));
@@ -142,6 +153,7 @@ namespace JetBrains.Space.Client
             _name.SetAccessPath(path, validateHasBeenSet);
             _group.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
+            _targetName.SetAccessPath(path, validateHasBeenSet);
             _editable.SetAccessPath(path, validateHasBeenSet);
             _status.SetAccessPath(path, validateHasBeenSet);
             _modificationAuthor.SetAccessPath(path, validateHasBeenSet);

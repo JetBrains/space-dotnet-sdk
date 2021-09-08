@@ -41,6 +41,14 @@ namespace JetBrains.Space.Client
         /// <summary>
         /// Create a new project
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Create projects</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<PRProject> CreateProjectAsync(ProjectKey key, string name, bool @private = false, List<string>? tags = null, string? description = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();

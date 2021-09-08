@@ -29,31 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class MeetingOrganizerApplication
-         : MeetingOrganizer, IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class Fraction
+         : IPropagatePropertyAccessPath
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "MeetingOrganizer.Application";
+        public Fraction() { }
         
-        public MeetingOrganizerApplication() { }
-        
-        public MeetingOrganizerApplication(ESApp? applicationRef = null)
+        public Fraction(int numerator, int denominator)
         {
-            ApplicationRef = applicationRef;
+            Numerator = numerator;
+            Denominator = denominator;
         }
         
-        private PropertyValue<ESApp?> _applicationRef = new PropertyValue<ESApp?>(nameof(MeetingOrganizerApplication), nameof(ApplicationRef));
+        private PropertyValue<int> _numerator = new PropertyValue<int>(nameof(Fraction), nameof(Numerator));
         
-        [JsonPropertyName("applicationRef")]
-        public ESApp? ApplicationRef
+        [Required]
+        [JsonPropertyName("numerator")]
+        public int Numerator
         {
-            get => _applicationRef.GetValue();
-            set => _applicationRef.SetValue(value);
+            get => _numerator.GetValue();
+            set => _numerator.SetValue(value);
         }
     
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        private PropertyValue<int> _denominator = new PropertyValue<int>(nameof(Fraction), nameof(Denominator));
+        
+        [Required]
+        [JsonPropertyName("denominator")]
+        public int Denominator
         {
-            _applicationRef.SetAccessPath(path, validateHasBeenSet);
+            get => _denominator.GetValue();
+            set => _denominator.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _numerator.SetAccessPath(path, validateHasBeenSet);
+            _denominator.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

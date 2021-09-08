@@ -34,9 +34,11 @@ namespace JetBrains.Space.Client
     {
         public SubscriptionRequestedAuthorizations() { }
         
-        public SubscriptionRequestedAuthorizations(List<Right> rights, List<PRProject> projects)
+        public SubscriptionRequestedAuthorizations(List<Right> rights, List<string> rightCodes, List<PRProject> projects, PermissionContextApi? permissionContext = null)
         {
             Rights = rights;
+            RightCodes = rightCodes;
+            PermissionContext = permissionContext;
             Projects = projects;
         }
         
@@ -48,6 +50,25 @@ namespace JetBrains.Space.Client
         {
             get => _rights.GetValue();
             set => _rights.SetValue(value);
+        }
+    
+        private PropertyValue<List<string>> _rightCodes = new PropertyValue<List<string>>(nameof(SubscriptionRequestedAuthorizations), nameof(RightCodes), new List<string>());
+        
+        [Required]
+        [JsonPropertyName("rightCodes")]
+        public List<string> RightCodes
+        {
+            get => _rightCodes.GetValue();
+            set => _rightCodes.SetValue(value);
+        }
+    
+        private PropertyValue<PermissionContextApi?> _permissionContext = new PropertyValue<PermissionContextApi?>(nameof(SubscriptionRequestedAuthorizations), nameof(PermissionContext));
+        
+        [JsonPropertyName("permissionContext")]
+        public PermissionContextApi? PermissionContext
+        {
+            get => _permissionContext.GetValue();
+            set => _permissionContext.SetValue(value);
         }
     
         private PropertyValue<List<PRProject>> _projects = new PropertyValue<List<PRProject>>(nameof(SubscriptionRequestedAuthorizations), nameof(Projects), new List<PRProject>());
@@ -63,6 +84,8 @@ namespace JetBrains.Space.Client
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _rights.SetAccessPath(path, validateHasBeenSet);
+            _rightCodes.SetAccessPath(path, validateHasBeenSet);
+            _permissionContext.SetAccessPath(path, validateHasBeenSet);
             _projects.SetAccessPath(path, validateHasBeenSet);
         }
     

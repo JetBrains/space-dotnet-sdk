@@ -255,7 +255,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Send a message to a recipient, such as a channel, member, issue, code review, ... Message content can be a string, or a block with one or several sections of information.
             /// </summary>
-            public async Task<ChannelItemRecord> SendMessageAsync(MessageRecipient recipient, ChatMessage content, bool? unfurlLinks = null, List<AttachmentIn>? attachments = null, string? externalId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<ChannelItemRecord> SendMessageAsync(MessageRecipient recipient, ChatMessage content, bool? unfurlLinks = null, List<AttachmentIn>? attachments = null, string? externalId = null, bool? resolveNames = null, bool? pending = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default()).ToString());
@@ -268,6 +268,8 @@ namespace JetBrains.Space.Client
                         IsUnfurlLinks = unfurlLinks,
                         Attachments = attachments,
                         ExternalId = externalId,
+                        IsResolveNames = resolveNames,
+                        IsPending = pending,
                     }, cancellationToken);
             }
             

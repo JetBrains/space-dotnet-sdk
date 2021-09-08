@@ -27,15 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingOrganizerApplicationPartialBuilder
+namespace JetBrains.Space.Client.FractionCFValuePartialBuilder
 {
-    public static class MeetingOrganizerApplicationPartialExtensions
+    public static class FractionCFValuePartialExtensions
     {
-        public static Partial<MeetingOrganizerApplication> WithApplicationRef(this Partial<MeetingOrganizerApplication> it)
-            => it.AddFieldName("applicationRef");
+        public static Partial<FractionCFValue> WithValue(this Partial<FractionCFValue> it)
+            => it.AddFieldName("value");
         
-        public static Partial<MeetingOrganizerApplication> WithApplicationRef(this Partial<MeetingOrganizerApplication> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
-            => it.AddFieldName("applicationRef", partialBuilder(new Partial<ESApp>(it)));
+        public static Partial<FractionCFValue> WithValue(this Partial<FractionCFValue> it, Func<Partial<Fraction>, Partial<Fraction>> partialBuilder)
+            => it.AddFieldName("value", partialBuilder(new Partial<Fraction>(it)));
         
     }
     

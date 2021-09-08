@@ -66,6 +66,9 @@ namespace JetBrains.Space.Client
         public static EnumListCFValue EnumList(List<EnumValueData> values)
             => new EnumListCFValue(values: values);
         
+        public static FractionCFValue Fraction(Fraction? value = null)
+            => new FractionCFValue(value: value);
+        
         public static IntCFValue Int(int? value = null)
             => new IntCFValue(value: value);
         

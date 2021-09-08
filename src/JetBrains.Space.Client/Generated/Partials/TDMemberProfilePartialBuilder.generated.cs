@@ -115,6 +115,12 @@ namespace JetBrains.Space.Client.TDMemberProfilePartialBuilder
         public static Partial<TDMemberProfile> WithFolder(this Partial<TDMemberProfile> it, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>> partialBuilder)
             => it.AddFieldName("folder", partialBuilder(new Partial<DocumentFolderRecord>(it)));
         
+        public static Partial<TDMemberProfile> WithFolderWithChildren(this Partial<TDMemberProfile> it)
+            => it.AddFieldName("folderWithChildren");
+        
+        public static Partial<TDMemberProfile> WithFolderWithChildren(this Partial<TDMemberProfile> it, Func<Partial<DocumentFolderWithChildren>, Partial<DocumentFolderWithChildren>> partialBuilder)
+            => it.AddFieldName("folderWithChildren", partialBuilder(new Partial<DocumentFolderWithChildren>(it)));
+        
         public static Partial<TDMemberProfile> WithGender(this Partial<TDMemberProfile> it)
             => it.AddFieldName("gender");
         
@@ -129,6 +135,12 @@ namespace JetBrains.Space.Client.TDMemberProfilePartialBuilder
         
         public static Partial<TDMemberProfile> WithLinks(this Partial<TDMemberProfile> it)
             => it.AddFieldName("links");
+        
+        public static Partial<TDMemberProfile> WithLocationHistory(this Partial<TDMemberProfile> it)
+            => it.AddFieldName("locationHistory");
+        
+        public static Partial<TDMemberProfile> WithLocationHistory(this Partial<TDMemberProfile> it, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>> partialBuilder)
+            => it.AddFieldName("locationHistory", partialBuilder(new Partial<TDMemberLocation>(it)));
         
         public static Partial<TDMemberProfile> WithLocations(this Partial<TDMemberProfile> it)
             => it.AddFieldName("locations");

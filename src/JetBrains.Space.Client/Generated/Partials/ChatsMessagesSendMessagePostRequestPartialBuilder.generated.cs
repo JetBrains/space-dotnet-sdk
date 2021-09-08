@@ -55,6 +55,12 @@ namespace JetBrains.Space.Client.ChatsMessagesSendMessagePostRequestPartialBuild
         public static Partial<ChatsMessagesSendMessagePostRequest> WithExternalId(this Partial<ChatsMessagesSendMessagePostRequest> it)
             => it.AddFieldName("externalId");
         
+        public static Partial<ChatsMessagesSendMessagePostRequest> WithIsResolveNames(this Partial<ChatsMessagesSendMessagePostRequest> it)
+            => it.AddFieldName("resolveNames");
+        
+        public static Partial<ChatsMessagesSendMessagePostRequest> WithIsPending(this Partial<ChatsMessagesSendMessagePostRequest> it)
+            => it.AddFieldName("pending");
+        
     }
     
 }

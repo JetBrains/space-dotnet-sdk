@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public TDMemberProfile() { }
         
-        public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, DocumentFolderRecord folder, List<PublicHoliday> holidays, List<string> links, List<TDMemberLocation> locations, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, List<Topic> topics, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? external = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, Gender? gender = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, List<TDMembership>? unapprovedMemberships = null)
+        public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, List<PublicHoliday> holidays, List<string> links, List<TDMemberLocation> locationHistory, List<TDMemberLocation> locations, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, List<Topic> topics, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? external = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, DocumentFolderRecord? folder = null, DocumentFolderWithChildren? folderWithChildren = null, Gender? gender = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, List<TDMembership>? unapprovedMemberships = null)
         {
             Id = id;
             Username = username;
@@ -57,9 +57,11 @@ namespace JetBrains.Space.Client
             CustomFields = customFields;
             Emails = emails;
             Folder = folder;
+            FolderWithChildren = folderWithChildren;
             Gender = gender;
             Holidays = holidays;
             Links = links;
+            LocationHistory = locationHistory;
             Locations = locations;
             Managers = managers;
             MembershipHistory = membershipHistory;
@@ -268,14 +270,22 @@ namespace JetBrains.Space.Client
             set => _emails.SetValue(value);
         }
     
-        private PropertyValue<DocumentFolderRecord> _folder = new PropertyValue<DocumentFolderRecord>(nameof(TDMemberProfile), nameof(Folder));
+        private PropertyValue<DocumentFolderRecord?> _folder = new PropertyValue<DocumentFolderRecord?>(nameof(TDMemberProfile), nameof(Folder));
         
-        [Required]
         [JsonPropertyName("folder")]
-        public DocumentFolderRecord Folder
+        public DocumentFolderRecord? Folder
         {
             get => _folder.GetValue();
             set => _folder.SetValue(value);
+        }
+    
+        private PropertyValue<DocumentFolderWithChildren?> _folderWithChildren = new PropertyValue<DocumentFolderWithChildren?>(nameof(TDMemberProfile), nameof(FolderWithChildren));
+        
+        [JsonPropertyName("folderWithChildren")]
+        public DocumentFolderWithChildren? FolderWithChildren
+        {
+            get => _folderWithChildren.GetValue();
+            set => _folderWithChildren.SetValue(value);
         }
     
         private PropertyValue<Gender?> _gender = new PropertyValue<Gender?>(nameof(TDMemberProfile), nameof(Gender));
@@ -305,6 +315,16 @@ namespace JetBrains.Space.Client
         {
             get => _links.GetValue();
             set => _links.SetValue(value);
+        }
+    
+        private PropertyValue<List<TDMemberLocation>> _locationHistory = new PropertyValue<List<TDMemberLocation>>(nameof(TDMemberProfile), nameof(LocationHistory), new List<TDMemberLocation>());
+        
+        [Required]
+        [JsonPropertyName("locationHistory")]
+        public List<TDMemberLocation> LocationHistory
+        {
+            get => _locationHistory.GetValue();
+            set => _locationHistory.SetValue(value);
         }
     
         private PropertyValue<List<TDMemberLocation>> _locations = new PropertyValue<List<TDMemberLocation>>(nameof(TDMemberProfile), nameof(Locations), new List<TDMemberLocation>());
@@ -446,9 +466,11 @@ namespace JetBrains.Space.Client
             _customFields.SetAccessPath(path, validateHasBeenSet);
             _emails.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
+            _folderWithChildren.SetAccessPath(path, validateHasBeenSet);
             _gender.SetAccessPath(path, validateHasBeenSet);
             _holidays.SetAccessPath(path, validateHasBeenSet);
             _links.SetAccessPath(path, validateHasBeenSet);
+            _locationHistory.SetAccessPath(path, validateHasBeenSet);
             _locations.SetAccessPath(path, validateHasBeenSet);
             _managers.SetAccessPath(path, validateHasBeenSet);
             _membershipHistory.SetAccessPath(path, validateHasBeenSet);

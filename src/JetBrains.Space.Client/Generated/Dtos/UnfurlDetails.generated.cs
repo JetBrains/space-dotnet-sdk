@@ -50,6 +50,9 @@ namespace JetBrains.Space.Client
         public static UnfurlDetailsArticle Article(ArticleRecord article, ArticleContentRecord? content = null, ArticleChannelRecord? channel = null, ArticleDetailsRecord? details = null)
             => new UnfurlDetailsArticle(article: article, content: content, channel: channel, details: details);
         
+        public static UnfurlDetailsBlockMarkdown BlockMarkdown(string title, string markdown, string? icon = null)
+            => new UnfurlDetailsBlockMarkdown(title: title, markdown: markdown, icon: icon);
+        
         public static UnfurlDetailsChat Chat(string channel, string title)
             => new UnfurlDetailsChat(channel: channel, title: title);
         
@@ -76,6 +79,9 @@ namespace JetBrains.Space.Client
         
         public static UnfurlDetailsDraft Draft(string draft, string title, bool? strikeThrough = null)
             => new UnfurlDetailsDraft(draft: draft, title: title, strikeThrough: strikeThrough);
+        
+        public static UnfurlDetailsInlineMarkdown InlineMarkdown(string markdown)
+            => new UnfurlDetailsInlineMarkdown(markdown: markdown);
         
         public static UnfurlDetailsIssue Issue(Issue issue, bool? strikeThrough = null, bool? compact = null)
             => new UnfurlDetailsIssue(issue: issue, strikeThrough: strikeThrough, compact: compact);

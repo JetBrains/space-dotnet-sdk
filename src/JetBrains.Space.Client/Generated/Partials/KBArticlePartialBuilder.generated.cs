@@ -61,6 +61,12 @@ namespace JetBrains.Space.Client.KBArticlePartialBuilder
         public static Partial<KBArticle> WithDocument(this Partial<KBArticle> it, Func<Partial<DocumentInContainer>, Partial<DocumentInContainer>> partialBuilder)
             => it.AddFieldName("document", partialBuilder(new Partial<DocumentInContainer>(it)));
         
+        public static Partial<KBArticle> WithDocumentRef(this Partial<KBArticle> it)
+            => it.AddFieldName("documentRef");
+        
+        public static Partial<KBArticle> WithDocumentRef(this Partial<KBArticle> it, Func<Partial<Document>, Partial<Document>> partialBuilder)
+            => it.AddFieldName("documentRef", partialBuilder(new Partial<Document>(it)));
+        
         public static Partial<KBArticle> WithCreated(this Partial<KBArticle> it)
             => it.AddFieldName("created");
         

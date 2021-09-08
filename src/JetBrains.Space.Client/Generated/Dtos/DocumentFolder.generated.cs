@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public DocumentFolder() { }
         
-        public DocumentFolder(string id, bool archived, string containerLinkId, DocumentContainerInfo containerInfo, int subfoldersCount, int documentsCount, string name, string alias, DateTime created, DateTime updated, DocumentFolder? parent = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
+        public DocumentFolder(string id, bool archived, string containerLinkId, DocumentContainerInfo containerInfo, int subfoldersCount, int documentsCount, string name, string alias, DateTime created, DateTime updated, List<Document> documents, List<DocumentFolder> subfolders, DocumentFolder? parent = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
         {
             Id = id;
             IsArchived = archived;
@@ -49,6 +49,8 @@ namespace JetBrains.Space.Client
             CreatedBy = createdBy;
             Updated = updated;
             UpdatedBy = updatedBy;
+            Documents = documents;
+            Subfolders = subfolders;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(DocumentFolder), nameof(Id));
@@ -180,6 +182,26 @@ namespace JetBrains.Space.Client
             set => _updatedBy.SetValue(value);
         }
     
+        private PropertyValue<List<Document>> _documents = new PropertyValue<List<Document>>(nameof(DocumentFolder), nameof(Documents), new List<Document>());
+        
+        [Required]
+        [JsonPropertyName("documents")]
+        public List<Document> Documents
+        {
+            get => _documents.GetValue();
+            set => _documents.SetValue(value);
+        }
+    
+        private PropertyValue<List<DocumentFolder>> _subfolders = new PropertyValue<List<DocumentFolder>>(nameof(DocumentFolder), nameof(Subfolders), new List<DocumentFolder>());
+        
+        [Required]
+        [JsonPropertyName("subfolders")]
+        public List<DocumentFolder> Subfolders
+        {
+            get => _subfolders.GetValue();
+            set => _subfolders.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -195,6 +217,8 @@ namespace JetBrains.Space.Client
             _createdBy.SetAccessPath(path, validateHasBeenSet);
             _updated.SetAccessPath(path, validateHasBeenSet);
             _updatedBy.SetAccessPath(path, validateHasBeenSet);
+            _documents.SetAccessPath(path, validateHasBeenSet);
+            _subfolders.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -49,9 +49,6 @@ namespace JetBrains.Space.Client.ApplicationWebhookEventPartialBuilder
         public static Partial<ApplicationWebhookEvent> WithOwner(this Partial<ApplicationWebhookEvent> it)
             => it.AddFieldName("owner");
         
-        public static Partial<ApplicationWebhookEvent> WithRedirectURIs(this Partial<ApplicationWebhookEvent> it)
-            => it.AddFieldName("redirectURIs");
-        
         public static Partial<ApplicationWebhookEvent> WithArchived(this Partial<ApplicationWebhookEvent> it)
             => it.AddFieldName("archived");
         

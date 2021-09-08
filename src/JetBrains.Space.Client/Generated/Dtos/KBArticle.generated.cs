@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public KBArticle() { }
         
-        public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, string documentId, DocumentInContainer document, DateTime created, DateTime updated, string alias, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
+        public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, string documentId, DateTime created, DateTime updated, string alias, DocumentInContainer? document = null, Document? documentRef = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
         {
             Id = id;
             IsArchived = archived;
@@ -43,6 +43,7 @@ namespace JetBrains.Space.Client
             Folder = folder;
             DocumentId = documentId;
             Document = document;
+            DocumentRef = documentRef;
             Created = created;
             CreatedBy = createdBy;
             Updated = updated;
@@ -110,14 +111,22 @@ namespace JetBrains.Space.Client
             set => _documentId.SetValue(value);
         }
     
-        private PropertyValue<DocumentInContainer> _document = new PropertyValue<DocumentInContainer>(nameof(KBArticle), nameof(Document));
+        private PropertyValue<DocumentInContainer?> _document = new PropertyValue<DocumentInContainer?>(nameof(KBArticle), nameof(Document));
         
-        [Required]
         [JsonPropertyName("document")]
-        public DocumentInContainer Document
+        public DocumentInContainer? Document
         {
             get => _document.GetValue();
             set => _document.SetValue(value);
+        }
+    
+        private PropertyValue<Document?> _documentRef = new PropertyValue<Document?>(nameof(KBArticle), nameof(DocumentRef));
+        
+        [JsonPropertyName("documentRef")]
+        public Document? DocumentRef
+        {
+            get => _documentRef.GetValue();
+            set => _documentRef.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(KBArticle), nameof(Created));
@@ -179,6 +188,7 @@ namespace JetBrains.Space.Client
             _folder.SetAccessPath(path, validateHasBeenSet);
             _documentId.SetAccessPath(path, validateHasBeenSet);
             _document.SetAccessPath(path, validateHasBeenSet);
+            _documentRef.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
             _createdBy.SetAccessPath(path, validateHasBeenSet);
             _updated.SetAccessPath(path, validateHasBeenSet);

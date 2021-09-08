@@ -35,7 +35,7 @@ namespace JetBrains.Space.Client
         public static AbsenceWebhookEvent Absence(KMetaMod meta, AbsenceRecord absence, TDMemberProfile member, Modification<string>? icon = null, Modification<AbsenceReasonRecord>? reason = null, Modification<string>? description = null, Modification<DateTime>? since = null, Modification<DateTime>? till = null, Modification<TDLocation>? location = null, Modification<bool>? available = null)
             => new AbsenceWebhookEvent(meta: meta, absence: absence, member: member, icon: icon, reason: reason, description: description, since: since, till: till, location: location, available: available);
         
-        public static ApplicationAuthorizationRequestedEvent ApplicationAuthorizationRequestedEvent(KMetaMod meta, ESService application, AuthScope scope)
+        public static ApplicationAuthorizationRequestedEvent ApplicationAuthorizationRequestedEvent(KMetaMod meta, ESApp application, AuthScope scope)
             => new ApplicationAuthorizationRequestedEvent(meta: meta, application: application, scope: scope);
         
         public static ApplicationAuthorizedWebhookEvent ApplicationAuthorized(KMetaMod meta, ESApp application, AuthScope scope)
@@ -44,8 +44,11 @@ namespace JetBrains.Space.Client
         public static ApplicationSshKeyWebhookEvent ApplicationSshKey(KMetaMod meta, ESApp application, Modification<string>? fingerprint = null, Modification<string>? comment = null)
             => new ApplicationSshKeyWebhookEvent(meta: meta, application: application, fingerprint: fingerprint, comment: comment);
         
-        public static ApplicationWebhookEvent Application(KMetaMod meta, ESApp application, bool clientIdChanged, bool clientSecretChanged, bool verificationTokenChanged, bool signingKeyChanged, Modification<string>? name = null, Modification<TDMemberProfile>? owner = null, Modification<string>? redirectURIs = null, Modification<bool>? archived = null, Modification<string>? endpointURI = null)
-            => new ApplicationWebhookEvent(meta: meta, application: application, clientIdChanged: clientIdChanged, clientSecretChanged: clientSecretChanged, verificationTokenChanged: verificationTokenChanged, signingKeyChanged: signingKeyChanged, name: name, owner: owner, redirectURIs: redirectURIs, archived: archived, endpointURI: endpointURI);
+        public static ApplicationUnfurlTargetsRequestedEvent ApplicationUnfurlTargetsRequestedEvent(KMetaMod meta, ESApp application, ApplicationUnfurlTarget target)
+            => new ApplicationUnfurlTargetsRequestedEvent(meta: meta, application: application, target: target);
+        
+        public static ApplicationWebhookEvent Application(KMetaMod meta, ESApp application, bool clientIdChanged, bool clientSecretChanged, bool verificationTokenChanged, bool signingKeyChanged, Modification<string>? name = null, Modification<TDMemberProfile>? owner = null, Modification<bool>? archived = null, Modification<string>? endpointURI = null)
+            => new ApplicationWebhookEvent(meta: meta, application: application, clientIdChanged: clientIdChanged, clientSecretChanged: clientSecretChanged, verificationTokenChanged: verificationTokenChanged, signingKeyChanged: signingKeyChanged, name: name, owner: owner, archived: archived, endpointURI: endpointURI);
         
         public static AutomationJobEvent AutomationJobEvent(KMetaMod meta, string executionId, PRProject project, string repositoryName, string jobName, long executionNumber, JobExecutionTrigger trigger, DateTime triggerTime, Modification<JobExecutionStatus>? status = null, Modification<List<FailureConditionType>>? failureReasons = null, Modification<CPrincipal>? stoppedBy = null, Modification<DateTime>? startTime = null, Modification<DateTime>? endTime = null)
             => new AutomationJobEvent(meta: meta, executionId: executionId, project: project, repositoryName: repositoryName, jobName: jobName, executionNumber: executionNumber, trigger: trigger, triggerTime: triggerTime, status: status, failureReasons: failureReasons, stoppedBy: stoppedBy, startTime: startTime, endTime: endTime);

@@ -27,15 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingOrganizerApplicationPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsBlockMarkdownPartialBuilder
 {
-    public static class MeetingOrganizerApplicationPartialExtensions
+    public static class UnfurlDetailsBlockMarkdownPartialExtensions
     {
-        public static Partial<MeetingOrganizerApplication> WithApplicationRef(this Partial<MeetingOrganizerApplication> it)
-            => it.AddFieldName("applicationRef");
+        public static Partial<UnfurlDetailsBlockMarkdown> WithIcon(this Partial<UnfurlDetailsBlockMarkdown> it)
+            => it.AddFieldName("icon");
         
-        public static Partial<MeetingOrganizerApplication> WithApplicationRef(this Partial<MeetingOrganizerApplication> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
-            => it.AddFieldName("applicationRef", partialBuilder(new Partial<ESApp>(it)));
+        public static Partial<UnfurlDetailsBlockMarkdown> WithTitle(this Partial<UnfurlDetailsBlockMarkdown> it)
+            => it.AddFieldName("title");
+        
+        public static Partial<UnfurlDetailsBlockMarkdown> WithMarkdown(this Partial<UnfurlDetailsBlockMarkdown> it)
+            => it.AddFieldName("markdown");
         
     }
     
