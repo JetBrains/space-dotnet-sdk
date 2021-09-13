@@ -29,39 +29,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum AppMessageDeliveryType
+    public sealed class ProfileLinkPreview
+         : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        [EnumMember(Value = "Webhook")]
-        Webhook,
+        [JsonPropertyName("className")]
+        public  string? ClassName => "ProfileLinkPreview";
         
-        [EnumMember(Value = "Message")]
-        Message,
+        public ProfileLinkPreview() { }
         
-        [EnumMember(Value = "ListCommands")]
-        ListCommands,
+        public ProfileLinkPreview(TDMemberProfile profile)
+        {
+            Profile = profile;
+        }
         
-        [EnumMember(Value = "ListMenuExtensions")]
-        ListMenuExtensions,
+        private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(ProfileLinkPreview), nameof(Profile));
         
-        [EnumMember(Value = "DispatchAction")]
-        DispatchAction,
-        
-        [EnumMember(Value = "DispatchMenuAction")]
-        DispatchMenuAction,
-        
-        [EnumMember(Value = "InitPayload")]
-        InitPayload,
-        
-        [EnumMember(Value = "ChangeServerUrlPayload")]
-        ChangeServerUrlPayload,
-        
-        [EnumMember(Value = "ChangeClientSecretPayload")]
-        ChangeClientSecretPayload,
-        
-        [EnumMember(Value = "Unknown")]
-        Unknown,
-        
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberProfile Profile
+        {
+            get => _profile.GetValue();
+            set => _profile.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _profile.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

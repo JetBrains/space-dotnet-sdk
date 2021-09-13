@@ -143,6 +143,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<bool?> _clientCredentialsFlowEnabled = new PropertyValue<bool?>(nameof(ESApp), nameof(IsClientCredentialsFlowEnabled));
         
+        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
         [JsonPropertyName("clientCredentialsFlowEnabled")]
         public bool? IsClientCredentialsFlowEnabled
         {
@@ -152,6 +153,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<bool?> _codeFlowEnabled = new PropertyValue<bool?>(nameof(ESApp), nameof(IsCodeFlowEnabled));
         
+        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
         [JsonPropertyName("codeFlowEnabled")]
         public bool? IsCodeFlowEnabled
         {
@@ -161,6 +163,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<string?> _codeFlowRedirectURIs = new PropertyValue<string?>(nameof(ESApp), nameof(CodeFlowRedirectURIs));
         
+        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
         [JsonPropertyName("codeFlowRedirectURIs")]
         public string? CodeFlowRedirectURIs
         {
@@ -170,6 +173,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ESApp), nameof(IsPkceRequired));
         
+        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
         [JsonPropertyName("pkceRequired")]
         public bool? IsPkceRequired
         {
@@ -179,6 +183,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ESApp), nameof(IsImplicitFlowEnabled));
         
+        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
         [JsonPropertyName("implicitFlowEnabled")]
         public bool? IsImplicitFlowEnabled
         {
@@ -188,6 +193,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<string?> _implicitFlowRedirectURIs = new PropertyValue<string?>(nameof(ESApp), nameof(ImplicitFlowRedirectURIs));
         
+        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
         [JsonPropertyName("implicitFlowRedirectURIs")]
         public string? ImplicitFlowRedirectURIs
         {
@@ -197,6 +203,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<string?> _endpointURI = new PropertyValue<string?>(nameof(ESApp), nameof(EndpointURI));
         
+        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
         [JsonPropertyName("endpointURI")]
         public string? EndpointURI
         {
@@ -206,6 +213,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<bool?> _hasVerificationToken = new PropertyValue<bool?>(nameof(ESApp), nameof(IsHasVerificationToken));
         
+        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
         [JsonPropertyName("hasVerificationToken")]
         public bool? IsHasVerificationToken
         {
@@ -215,6 +223,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<bool?> _hasSigningKey = new PropertyValue<bool?>(nameof(ESApp), nameof(IsHasSigningKey));
         
+        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
         [JsonPropertyName("hasSigningKey")]
         public bool? IsHasSigningKey
         {
@@ -224,6 +233,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<bool?> _hasPublicKeySignature = new PropertyValue<bool?>(nameof(ESApp), nameof(IsHasPublicKeySignature));
         
+        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
         [JsonPropertyName("hasPublicKeySignature")]
         public bool? IsHasPublicKeySignature
         {
@@ -233,6 +243,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<bool?> _endpointSslVerification = new PropertyValue<bool?>(nameof(ESApp), nameof(IsEndpointSslVerification));
         
+        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
         [JsonPropertyName("endpointSslVerification")]
         public bool? IsEndpointSslVerification
         {
@@ -242,6 +253,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<string?> _basicAuthUsername = new PropertyValue<string?>(nameof(ESApp), nameof(BasicAuthUsername));
         
+        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
         [JsonPropertyName("basicAuthUsername")]
         public string? BasicAuthUsername
         {
@@ -251,6 +263,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<bool?> _hasBearerToken = new PropertyValue<bool?>(nameof(ESApp), nameof(IsHasBearerToken));
         
+        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
         [JsonPropertyName("hasBearerToken")]
         public bool? IsHasBearerToken
         {
@@ -260,6 +273,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<string?> _sslKeystoreAuth = new PropertyValue<string?>(nameof(ESApp), nameof(SslKeystoreAuth));
         
+        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
         [JsonPropertyName("sslKeystoreAuth")]
         public string? SslKeystoreAuth
         {

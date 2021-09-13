@@ -29,44 +29,33 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class MenuActionPayload
+    public sealed class ChangeClientSecretPayload
          : ApplicationPayload, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public  string? ClassName => "MenuActionPayload";
+        public  string? ClassName => "ChangeClientSecretPayload";
         
-        public MenuActionPayload() { }
+        public ChangeClientSecretPayload() { }
         
-        public MenuActionPayload(string extensionName, MenuActionContext context, string clientId, string userId, string? verificationToken = null)
+        public ChangeClientSecretPayload(string newClientSecret, string clientId, string? userId = null, string? verificationToken = null)
         {
-            ExtensionName = extensionName;
-            Context = context;
+            NewClientSecret = newClientSecret;
             ClientId = clientId;
             UserId = userId;
             VerificationToken = verificationToken;
         }
         
-        private PropertyValue<string> _extensionName = new PropertyValue<string>(nameof(MenuActionPayload), nameof(ExtensionName));
+        private PropertyValue<string> _newClientSecret = new PropertyValue<string>(nameof(ChangeClientSecretPayload), nameof(NewClientSecret));
         
         [Required]
-        [JsonPropertyName("extensionName")]
-        public string ExtensionName
+        [JsonPropertyName("newClientSecret")]
+        public string NewClientSecret
         {
-            get => _extensionName.GetValue();
-            set => _extensionName.SetValue(value);
+            get => _newClientSecret.GetValue();
+            set => _newClientSecret.SetValue(value);
         }
     
-        private PropertyValue<MenuActionContext> _context = new PropertyValue<MenuActionContext>(nameof(MenuActionPayload), nameof(Context));
-        
-        [Required]
-        [JsonPropertyName("context")]
-        public MenuActionContext Context
-        {
-            get => _context.GetValue();
-            set => _context.SetValue(value);
-        }
-    
-        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(MenuActionPayload), nameof(ClientId));
+        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ChangeClientSecretPayload), nameof(ClientId));
         
         [Required]
         [JsonPropertyName("clientId")]
@@ -76,17 +65,16 @@ namespace JetBrains.Space.Client
             set => _clientId.SetValue(value);
         }
     
-        private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MenuActionPayload), nameof(UserId));
+        private PropertyValue<string?> _userId = new PropertyValue<string?>(nameof(ChangeClientSecretPayload), nameof(UserId));
         
-        [Required]
         [JsonPropertyName("userId")]
-        public string UserId
+        public string? UserId
         {
             get => _userId.GetValue();
             set => _userId.SetValue(value);
         }
     
-        private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(MenuActionPayload), nameof(VerificationToken));
+        private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(ChangeClientSecretPayload), nameof(VerificationToken));
         
         [JsonPropertyName("verificationToken")]
         public string? VerificationToken
@@ -97,8 +85,7 @@ namespace JetBrains.Space.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _extensionName.SetAccessPath(path, validateHasBeenSet);
-            _context.SetAccessPath(path, validateHasBeenSet);
+            _newClientSecret.SetAccessPath(path, validateHasBeenSet);
             _clientId.SetAccessPath(path, validateHasBeenSet);
             _userId.SetAccessPath(path, validateHasBeenSet);
             _verificationToken.SetAccessPath(path, validateHasBeenSet);

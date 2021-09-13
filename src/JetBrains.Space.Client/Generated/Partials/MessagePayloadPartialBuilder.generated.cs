@@ -37,23 +37,14 @@ namespace JetBrains.Space.Client.MessagePayloadPartialBuilder
         public static Partial<MessagePayload> WithMessage(this Partial<MessagePayload> it, Func<Partial<MessageContext>, Partial<MessageContext>> partialBuilder)
             => it.AddFieldName("message", partialBuilder(new Partial<MessageContext>(it)));
         
-        public static Partial<MessagePayload> WithAccessToken(this Partial<MessagePayload> it)
-            => it.AddFieldName("accessToken");
-        
-        public static Partial<MessagePayload> WithVerificationToken(this Partial<MessagePayload> it)
-            => it.AddFieldName("verificationToken");
+        public static Partial<MessagePayload> WithClientId(this Partial<MessagePayload> it)
+            => it.AddFieldName("clientId");
         
         public static Partial<MessagePayload> WithUserId(this Partial<MessagePayload> it)
             => it.AddFieldName("userId");
         
-        public static Partial<MessagePayload> WithServerUrl(this Partial<MessagePayload> it)
-            => it.AddFieldName("serverUrl");
-        
-        public static Partial<MessagePayload> WithClientId(this Partial<MessagePayload> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<MessagePayload> WithOrgId(this Partial<MessagePayload> it)
-            => it.AddFieldName("orgId");
+        public static Partial<MessagePayload> WithVerificationToken(this Partial<MessagePayload> it)
+            => it.AddFieldName("verificationToken");
         
     }
     

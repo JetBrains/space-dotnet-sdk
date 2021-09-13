@@ -27,24 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.WebhookRequestPayloadPartialBuilder
+namespace JetBrains.Space.Client.GitCommitResultPartialBuilder
 {
-    public static class WebhookRequestPayloadPartialExtensions
+    public static class GitCommitResultPartialExtensions
     {
-        public static Partial<WebhookRequestPayload> WithVerificationToken(this Partial<WebhookRequestPayload> it)
-            => it.AddFieldName("verificationToken");
+        public static Partial<GitCommitResult> WithFromHead(this Partial<GitCommitResult> it)
+            => it.AddFieldName("fromHead");
         
-        public static Partial<WebhookRequestPayload> WithClientId(this Partial<WebhookRequestPayload> it)
-            => it.AddFieldName("clientId");
+        public static Partial<GitCommitResult> WithToHead(this Partial<GitCommitResult> it)
+            => it.AddFieldName("toHead");
         
-        public static Partial<WebhookRequestPayload> WithWebhookId(this Partial<WebhookRequestPayload> it)
-            => it.AddFieldName("webhookId");
+        public static Partial<GitCommitResult> WithIsSuccess(this Partial<GitCommitResult> it)
+            => it.AddFieldName("success");
         
-        public static Partial<WebhookRequestPayload> WithPayload(this Partial<WebhookRequestPayload> it)
-            => it.AddFieldName("payload");
+        public static Partial<GitCommitResult> WithMessage(this Partial<GitCommitResult> it)
+            => it.AddFieldName("message");
         
-        public static Partial<WebhookRequestPayload> WithPayload(this Partial<WebhookRequestPayload> it, Func<Partial<WebhookEvent>, Partial<WebhookEvent>> partialBuilder)
-            => it.AddFieldName("payload", partialBuilder(new Partial<WebhookEvent>(it)));
+        public static Partial<GitCommitResult> WithResultCommitId(this Partial<GitCommitResult> it)
+            => it.AddFieldName("resultCommitId");
         
     }
     

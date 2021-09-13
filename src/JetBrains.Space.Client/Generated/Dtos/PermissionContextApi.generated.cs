@@ -32,8 +32,14 @@ namespace JetBrains.Space.Client
     public interface PermissionContextApi
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static ChannelPermissionContext ChannelPermissionContext(M2ChannelRecord channel)
+            => new ChannelPermissionContext(channel: channel);
+        
         public static GlobalPermissionContext GlobalPermissionContext()
             => new GlobalPermissionContext();
+        
+        public static PrivateChannelPermissionContext PrivateChannelPermissionContext(string channelId)
+            => new PrivateChannelPermissionContext(channelId: channelId);
         
         public static PrivateProjectPermissionContext PrivateProjectPermissionContext(string projectId)
             => new PrivateProjectPermissionContext(projectId: projectId);

@@ -29,39 +29,18 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum AppMessageDeliveryType
+    public sealed class GitFileContentDeleted
+         : GitFileContent, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        [EnumMember(Value = "Webhook")]
-        Webhook,
+        [JsonPropertyName("className")]
+        public override string? ClassName => "GitFileContent.Deleted";
         
-        [EnumMember(Value = "Message")]
-        Message,
+        public GitFileContentDeleted() { }
         
-        [EnumMember(Value = "ListCommands")]
-        ListCommands,
-        
-        [EnumMember(Value = "ListMenuExtensions")]
-        ListMenuExtensions,
-        
-        [EnumMember(Value = "DispatchAction")]
-        DispatchAction,
-        
-        [EnumMember(Value = "DispatchMenuAction")]
-        DispatchMenuAction,
-        
-        [EnumMember(Value = "InitPayload")]
-        InitPayload,
-        
-        [EnumMember(Value = "ChangeServerUrlPayload")]
-        ChangeServerUrlPayload,
-        
-        [EnumMember(Value = "ChangeClientSecretPayload")]
-        ChangeClientSecretPayload,
-        
-        [EnumMember(Value = "Unknown")]
-        Unknown,
-        
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

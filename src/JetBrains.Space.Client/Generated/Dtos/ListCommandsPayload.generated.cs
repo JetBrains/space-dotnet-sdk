@@ -37,32 +37,21 @@ namespace JetBrains.Space.Client
         
         public ListCommandsPayload() { }
         
-        public ListCommandsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
+        public ListCommandsPayload(string clientId, string? userId = null, string? verificationToken = null)
         {
-            AccessToken = accessToken;
-            VerificationToken = verificationToken;
-            UserId = userId;
-            ServerUrl = serverUrl;
             ClientId = clientId;
-            OrgId = orgId;
+            UserId = userId;
+            VerificationToken = verificationToken;
         }
         
-        private PropertyValue<string?> _accessToken = new PropertyValue<string?>(nameof(ListCommandsPayload), nameof(AccessToken));
+        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ListCommandsPayload), nameof(ClientId));
         
-        [JsonPropertyName("accessToken")]
-        public string? AccessToken
+        [Required]
+        [JsonPropertyName("clientId")]
+        public string ClientId
         {
-            get => _accessToken.GetValue();
-            set => _accessToken.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(ListCommandsPayload), nameof(VerificationToken));
-        
-        [JsonPropertyName("verificationToken")]
-        public string? VerificationToken
-        {
-            get => _verificationToken.GetValue();
-            set => _verificationToken.SetValue(value);
+            get => _clientId.GetValue();
+            set => _clientId.SetValue(value);
         }
     
         private PropertyValue<string?> _userId = new PropertyValue<string?>(nameof(ListCommandsPayload), nameof(UserId));
@@ -74,41 +63,20 @@ namespace JetBrains.Space.Client
             set => _userId.SetValue(value);
         }
     
-        private PropertyValue<string?> _serverUrl = new PropertyValue<string?>(nameof(ListCommandsPayload), nameof(ServerUrl));
+        private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(ListCommandsPayload), nameof(VerificationToken));
         
-        [JsonPropertyName("serverUrl")]
-        public string? ServerUrl
+        [JsonPropertyName("verificationToken")]
+        public string? VerificationToken
         {
-            get => _serverUrl.GetValue();
-            set => _serverUrl.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _clientId = new PropertyValue<string?>(nameof(ListCommandsPayload), nameof(ClientId));
-        
-        [JsonPropertyName("clientId")]
-        public string? ClientId
-        {
-            get => _clientId.GetValue();
-            set => _clientId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _orgId = new PropertyValue<string?>(nameof(ListCommandsPayload), nameof(OrgId));
-        
-        [JsonPropertyName("orgId")]
-        public string? OrgId
-        {
-            get => _orgId.GetValue();
-            set => _orgId.SetValue(value);
+            get => _verificationToken.GetValue();
+            set => _verificationToken.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _accessToken.SetAccessPath(path, validateHasBeenSet);
-            _verificationToken.SetAccessPath(path, validateHasBeenSet);
-            _userId.SetAccessPath(path, validateHasBeenSet);
-            _serverUrl.SetAccessPath(path, validateHasBeenSet);
             _clientId.SetAccessPath(path, validateHasBeenSet);
-            _orgId.SetAccessPath(path, validateHasBeenSet);
+            _userId.SetAccessPath(path, validateHasBeenSet);
+            _verificationToken.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

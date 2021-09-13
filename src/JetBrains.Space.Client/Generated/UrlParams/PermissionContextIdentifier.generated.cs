@@ -32,11 +32,25 @@ namespace JetBrains.Space.Client
     [JsonConverter(typeof(UrlParameterConverter))]
     public abstract class PermissionContextIdentifier : IUrlParameter
     {
+        public static PermissionContextIdentifier Channel(ChannelIdentifier channel)
+            => new ChannelPermissionContextIdentifier(channel);
+        
         public static PermissionContextIdentifier Global
             => new GlobalPermissionContextIdentifier();
         
         public static PermissionContextIdentifier Project(ProjectIdentifier project)
             => new ProjectPermissionContextIdentifier(project);
+        
+        private class ChannelPermissionContextIdentifier : PermissionContextIdentifier
+        {
+            private readonly ChannelIdentifier _channel;
+            
+            public ChannelPermissionContextIdentifier(ChannelIdentifier channel)
+                => _channel = channel;
+            
+            public override string ToString()
+                => $"channel:{_channel}";
+        }
         
         private class GlobalPermissionContextIdentifier : PermissionContextIdentifier
         {

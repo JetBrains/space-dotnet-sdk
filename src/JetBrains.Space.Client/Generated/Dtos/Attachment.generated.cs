@@ -32,6 +32,12 @@ namespace JetBrains.Space.Client
     public interface Attachment
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static DeletedAttachment Deleted(string deletedIdentity)
+            => new DeletedAttachment(deletedIdentity: deletedIdentity);
+        
+        public static ProfileLinkPreview ProfileLinkPreview(TDMemberProfile profile)
+            => new ProfileLinkPreview(profile: profile);
+        
         public static UnfurlAttachment Unfurl(Unfurl unfurl, string id)
             => new UnfurlAttachment(unfurl: unfurl, id: id);
         

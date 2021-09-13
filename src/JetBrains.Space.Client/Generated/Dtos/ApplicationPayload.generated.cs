@@ -32,26 +32,32 @@ namespace JetBrains.Space.Client
     public interface ApplicationPayload
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static InitPayload InitPayload(string userId, string? clientSecret = null, string? state = null, string? accessToken = null, string? verificationToken = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
-            => new InitPayload(userId: userId, clientSecret: clientSecret, state: state, accessToken: accessToken, verificationToken: verificationToken, serverUrl: serverUrl, clientId: clientId, orgId: orgId);
+        public static ChangeClientSecretPayload ChangeClientSecretPayload(string newClientSecret, string clientId, string? userId = null, string? verificationToken = null)
+            => new ChangeClientSecretPayload(newClientSecret: newClientSecret, clientId: clientId, userId: userId, verificationToken: verificationToken);
         
-        public static ListCommandsPayload ListCommandsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
-            => new ListCommandsPayload(accessToken: accessToken, verificationToken: verificationToken, userId: userId, serverUrl: serverUrl, clientId: clientId, orgId: orgId);
+        public static ChangeServerUrlPayload ChangeServerUrlPayload(string newServerUrl, string clientId, string? userId = null, string? verificationToken = null)
+            => new ChangeServerUrlPayload(newServerUrl: newServerUrl, clientId: clientId, userId: userId, verificationToken: verificationToken);
         
-        public static ListMenuExtensionsPayload ListMenuExtensionsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
-            => new ListMenuExtensionsPayload(accessToken: accessToken, verificationToken: verificationToken, userId: userId, serverUrl: serverUrl, clientId: clientId, orgId: orgId);
+        public static InitPayload InitPayload(string clientSecret, string serverUrl, string clientId, string userId, string? state = null, string? verificationToken = null)
+            => new InitPayload(clientSecret: clientSecret, serverUrl: serverUrl, clientId: clientId, userId: userId, state: state, verificationToken: verificationToken);
         
-        public static MenuActionPayload MenuActionPayload(string extensionName, MenuActionContext context, string userId, string? accessToken = null, string? verificationToken = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
-            => new MenuActionPayload(extensionName: extensionName, context: context, userId: userId, accessToken: accessToken, verificationToken: verificationToken, serverUrl: serverUrl, clientId: clientId, orgId: orgId);
+        public static ListCommandsPayload ListCommandsPayload(string clientId, string? userId = null, string? verificationToken = null)
+            => new ListCommandsPayload(clientId: clientId, userId: userId, verificationToken: verificationToken);
         
-        public static MessageActionPayload MessageActionPayload(string actionId, string actionValue, MessageContext message, string userId, string? accessToken = null, string? verificationToken = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
-            => new MessageActionPayload(actionId: actionId, actionValue: actionValue, message: message, userId: userId, accessToken: accessToken, verificationToken: verificationToken, serverUrl: serverUrl, clientId: clientId, orgId: orgId);
+        public static ListMenuExtensionsPayload ListMenuExtensionsPayload(string clientId, string? userId = null, string? verificationToken = null)
+            => new ListMenuExtensionsPayload(clientId: clientId, userId: userId, verificationToken: verificationToken);
         
-        public static MessagePayload MessagePayload(MessageContext message, string userId, string? accessToken = null, string? verificationToken = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
-            => new MessagePayload(message: message, userId: userId, accessToken: accessToken, verificationToken: verificationToken, serverUrl: serverUrl, clientId: clientId, orgId: orgId);
+        public static MenuActionPayload MenuActionPayload(string extensionName, MenuActionContext context, string clientId, string userId, string? verificationToken = null)
+            => new MenuActionPayload(extensionName: extensionName, context: context, clientId: clientId, userId: userId, verificationToken: verificationToken);
         
-        public static WebhookRequestPayload WebhookRequestPayload(string webhookId, WebhookEvent payload, string? accessToken = null, string? verificationToken = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
-            => new WebhookRequestPayload(webhookId: webhookId, payload: payload, accessToken: accessToken, verificationToken: verificationToken, serverUrl: serverUrl, clientId: clientId, orgId: orgId);
+        public static MessageActionPayload MessageActionPayload(string actionId, string actionValue, MessageContext message, string clientId, string? userId = null, string? verificationToken = null)
+            => new MessageActionPayload(actionId: actionId, actionValue: actionValue, message: message, clientId: clientId, userId: userId, verificationToken: verificationToken);
+        
+        public static MessagePayload MessagePayload(MessageContext message, string clientId, string userId, string? verificationToken = null)
+            => new MessagePayload(message: message, clientId: clientId, userId: userId, verificationToken: verificationToken);
+        
+        public static WebhookRequestPayload WebhookRequestPayload(string clientId, string webhookId, WebhookEvent payload, string? verificationToken = null)
+            => new WebhookRequestPayload(clientId: clientId, webhookId: webhookId, payload: payload, verificationToken: verificationToken);
         
     }
     

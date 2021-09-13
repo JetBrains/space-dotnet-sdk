@@ -31,23 +31,14 @@ namespace JetBrains.Space.Client.ListMenuExtensionsPayloadPartialBuilder
 {
     public static class ListMenuExtensionsPayloadPartialExtensions
     {
-        public static Partial<ListMenuExtensionsPayload> WithAccessToken(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("accessToken");
-        
-        public static Partial<ListMenuExtensionsPayload> WithVerificationToken(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("verificationToken");
+        public static Partial<ListMenuExtensionsPayload> WithClientId(this Partial<ListMenuExtensionsPayload> it)
+            => it.AddFieldName("clientId");
         
         public static Partial<ListMenuExtensionsPayload> WithUserId(this Partial<ListMenuExtensionsPayload> it)
             => it.AddFieldName("userId");
         
-        public static Partial<ListMenuExtensionsPayload> WithServerUrl(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("serverUrl");
-        
-        public static Partial<ListMenuExtensionsPayload> WithClientId(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<ListMenuExtensionsPayload> WithOrgId(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("orgId");
+        public static Partial<ListMenuExtensionsPayload> WithVerificationToken(this Partial<ListMenuExtensionsPayload> it)
+            => it.AddFieldName("verificationToken");
         
     }
     

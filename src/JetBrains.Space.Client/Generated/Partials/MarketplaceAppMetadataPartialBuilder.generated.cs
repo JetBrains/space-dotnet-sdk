@@ -34,6 +34,9 @@ namespace JetBrains.Space.Client.MarketplaceAppMetadataPartialBuilder
         public static Partial<MarketplaceAppMetadata> WithMarketplaceAppId(this Partial<MarketplaceAppMetadata> it)
             => it.AddFieldName("marketplaceAppId");
         
+        public static Partial<MarketplaceAppMetadata> WithLastSentServerUrl(this Partial<MarketplaceAppMetadata> it)
+            => it.AddFieldName("lastSentServerUrl");
+        
     }
     
 }

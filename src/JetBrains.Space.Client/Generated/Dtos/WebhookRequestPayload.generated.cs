@@ -37,26 +37,14 @@ namespace JetBrains.Space.Client
         
         public WebhookRequestPayload() { }
         
-        public WebhookRequestPayload(string webhookId, WebhookEvent payload, string? accessToken = null, string? verificationToken = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
+        public WebhookRequestPayload(string clientId, string webhookId, WebhookEvent payload, string? verificationToken = null)
         {
-            AccessToken = accessToken;
             VerificationToken = verificationToken;
-            ServerUrl = serverUrl;
             ClientId = clientId;
-            OrgId = orgId;
             WebhookId = webhookId;
             Payload = payload;
         }
         
-        private PropertyValue<string?> _accessToken = new PropertyValue<string?>(nameof(WebhookRequestPayload), nameof(AccessToken));
-        
-        [JsonPropertyName("accessToken")]
-        public string? AccessToken
-        {
-            get => _accessToken.GetValue();
-            set => _accessToken.SetValue(value);
-        }
-    
         private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(WebhookRequestPayload), nameof(VerificationToken));
         
         [JsonPropertyName("verificationToken")]
@@ -66,31 +54,14 @@ namespace JetBrains.Space.Client
             set => _verificationToken.SetValue(value);
         }
     
-        private PropertyValue<string?> _serverUrl = new PropertyValue<string?>(nameof(WebhookRequestPayload), nameof(ServerUrl));
+        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(WebhookRequestPayload), nameof(ClientId));
         
-        [JsonPropertyName("serverUrl")]
-        public string? ServerUrl
-        {
-            get => _serverUrl.GetValue();
-            set => _serverUrl.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _clientId = new PropertyValue<string?>(nameof(WebhookRequestPayload), nameof(ClientId));
-        
+        [Required]
         [JsonPropertyName("clientId")]
-        public string? ClientId
+        public string ClientId
         {
             get => _clientId.GetValue();
             set => _clientId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _orgId = new PropertyValue<string?>(nameof(WebhookRequestPayload), nameof(OrgId));
-        
-        [JsonPropertyName("orgId")]
-        public string? OrgId
-        {
-            get => _orgId.GetValue();
-            set => _orgId.SetValue(value);
         }
     
         private PropertyValue<string> _webhookId = new PropertyValue<string>(nameof(WebhookRequestPayload), nameof(WebhookId));
@@ -115,11 +86,8 @@ namespace JetBrains.Space.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _accessToken.SetAccessPath(path, validateHasBeenSet);
             _verificationToken.SetAccessPath(path, validateHasBeenSet);
-            _serverUrl.SetAccessPath(path, validateHasBeenSet);
             _clientId.SetAccessPath(path, validateHasBeenSet);
-            _orgId.SetAccessPath(path, validateHasBeenSet);
             _webhookId.SetAccessPath(path, validateHasBeenSet);
             _payload.SetAccessPath(path, validateHasBeenSet);
         }

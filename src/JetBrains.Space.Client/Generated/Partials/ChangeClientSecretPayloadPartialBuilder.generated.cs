@@ -27,26 +27,20 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MenuActionPayloadPartialBuilder
+namespace JetBrains.Space.Client.ChangeClientSecretPayloadPartialBuilder
 {
-    public static class MenuActionPayloadPartialExtensions
+    public static class ChangeClientSecretPayloadPartialExtensions
     {
-        public static Partial<MenuActionPayload> WithExtensionName(this Partial<MenuActionPayload> it)
-            => it.AddFieldName("extensionName");
+        public static Partial<ChangeClientSecretPayload> WithNewClientSecret(this Partial<ChangeClientSecretPayload> it)
+            => it.AddFieldName("newClientSecret");
         
-        public static Partial<MenuActionPayload> WithContext(this Partial<MenuActionPayload> it)
-            => it.AddFieldName("context");
-        
-        public static Partial<MenuActionPayload> WithContext(this Partial<MenuActionPayload> it, Func<Partial<MenuActionContext>, Partial<MenuActionContext>> partialBuilder)
-            => it.AddFieldName("context", partialBuilder(new Partial<MenuActionContext>(it)));
-        
-        public static Partial<MenuActionPayload> WithClientId(this Partial<MenuActionPayload> it)
+        public static Partial<ChangeClientSecretPayload> WithClientId(this Partial<ChangeClientSecretPayload> it)
             => it.AddFieldName("clientId");
         
-        public static Partial<MenuActionPayload> WithUserId(this Partial<MenuActionPayload> it)
+        public static Partial<ChangeClientSecretPayload> WithUserId(this Partial<ChangeClientSecretPayload> it)
             => it.AddFieldName("userId");
         
-        public static Partial<MenuActionPayload> WithVerificationToken(this Partial<MenuActionPayload> it)
+        public static Partial<ChangeClientSecretPayload> WithVerificationToken(this Partial<ChangeClientSecretPayload> it)
             => it.AddFieldName("verificationToken");
         
     }

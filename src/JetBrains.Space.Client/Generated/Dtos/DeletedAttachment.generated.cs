@@ -29,39 +29,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum AppMessageDeliveryType
+    public sealed class DeletedAttachment
+         : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        [EnumMember(Value = "Webhook")]
-        Webhook,
+        [JsonPropertyName("className")]
+        public  string? ClassName => "DeletedAttachment";
         
-        [EnumMember(Value = "Message")]
-        Message,
+        public DeletedAttachment() { }
         
-        [EnumMember(Value = "ListCommands")]
-        ListCommands,
+        public DeletedAttachment(string deletedIdentity)
+        {
+            DeletedIdentity = deletedIdentity;
+        }
         
-        [EnumMember(Value = "ListMenuExtensions")]
-        ListMenuExtensions,
+        private PropertyValue<string> _deletedIdentity = new PropertyValue<string>(nameof(DeletedAttachment), nameof(DeletedIdentity));
         
-        [EnumMember(Value = "DispatchAction")]
-        DispatchAction,
-        
-        [EnumMember(Value = "DispatchMenuAction")]
-        DispatchMenuAction,
-        
-        [EnumMember(Value = "InitPayload")]
-        InitPayload,
-        
-        [EnumMember(Value = "ChangeServerUrlPayload")]
-        ChangeServerUrlPayload,
-        
-        [EnumMember(Value = "ChangeClientSecretPayload")]
-        ChangeClientSecretPayload,
-        
-        [EnumMember(Value = "Unknown")]
-        Unknown,
-        
+        [Required]
+        [JsonPropertyName("deletedIdentity")]
+        public string DeletedIdentity
+        {
+            get => _deletedIdentity.GetValue();
+            set => _deletedIdentity.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _deletedIdentity.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

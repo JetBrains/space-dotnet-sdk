@@ -34,26 +34,20 @@ namespace JetBrains.Space.Client.InitPayloadPartialBuilder
         public static Partial<InitPayload> WithClientSecret(this Partial<InitPayload> it)
             => it.AddFieldName("clientSecret");
         
-        public static Partial<InitPayload> WithState(this Partial<InitPayload> it)
-            => it.AddFieldName("state");
-        
-        public static Partial<InitPayload> WithAccessToken(this Partial<InitPayload> it)
-            => it.AddFieldName("accessToken");
-        
-        public static Partial<InitPayload> WithVerificationToken(this Partial<InitPayload> it)
-            => it.AddFieldName("verificationToken");
-        
-        public static Partial<InitPayload> WithUserId(this Partial<InitPayload> it)
-            => it.AddFieldName("userId");
-        
         public static Partial<InitPayload> WithServerUrl(this Partial<InitPayload> it)
             => it.AddFieldName("serverUrl");
+        
+        public static Partial<InitPayload> WithState(this Partial<InitPayload> it)
+            => it.AddFieldName("state");
         
         public static Partial<InitPayload> WithClientId(this Partial<InitPayload> it)
             => it.AddFieldName("clientId");
         
-        public static Partial<InitPayload> WithOrgId(this Partial<InitPayload> it)
-            => it.AddFieldName("orgId");
+        public static Partial<InitPayload> WithUserId(this Partial<InitPayload> it)
+            => it.AddFieldName("userId");
+        
+        public static Partial<InitPayload> WithVerificationToken(this Partial<InitPayload> it)
+            => it.AddFieldName("verificationToken");
         
     }
     

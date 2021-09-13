@@ -27,25 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.WebhookRequestPayloadPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class WebhookRequestPayloadPartialExtensions
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public class GitFileContent
+         : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<WebhookRequestPayload> WithVerificationToken(this Partial<WebhookRequestPayload> it)
-            => it.AddFieldName("verificationToken");
+        [JsonPropertyName("className")]
+        public virtual string? ClassName => "GitFileContent";
         
-        public static Partial<WebhookRequestPayload> WithClientId(this Partial<WebhookRequestPayload> it)
-            => it.AddFieldName("clientId");
+        public static GitFileContentBase64 Base64(string value, bool? executable = null)
+            => new GitFileContentBase64(value: value, executable: executable);
         
-        public static Partial<WebhookRequestPayload> WithWebhookId(this Partial<WebhookRequestPayload> it)
-            => it.AddFieldName("webhookId");
+        public static GitFileContentDeleted Deleted()
+            => new GitFileContentDeleted();
         
-        public static Partial<WebhookRequestPayload> WithPayload(this Partial<WebhookRequestPayload> it)
-            => it.AddFieldName("payload");
+        public static GitFileContentText Text(string value, bool? executable = null)
+            => new GitFileContentText(value: value, executable: executable);
         
-        public static Partial<WebhookRequestPayload> WithPayload(this Partial<WebhookRequestPayload> it, Func<Partial<WebhookEvent>, Partial<WebhookEvent>> partialBuilder)
-            => it.AddFieldName("payload", partialBuilder(new Partial<WebhookEvent>(it)));
+        public GitFileContent() { }
         
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

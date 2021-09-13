@@ -43,23 +43,14 @@ namespace JetBrains.Space.Client.MessageActionPayloadPartialBuilder
         public static Partial<MessageActionPayload> WithMessage(this Partial<MessageActionPayload> it, Func<Partial<MessageContext>, Partial<MessageContext>> partialBuilder)
             => it.AddFieldName("message", partialBuilder(new Partial<MessageContext>(it)));
         
-        public static Partial<MessageActionPayload> WithAccessToken(this Partial<MessageActionPayload> it)
-            => it.AddFieldName("accessToken");
-        
-        public static Partial<MessageActionPayload> WithVerificationToken(this Partial<MessageActionPayload> it)
-            => it.AddFieldName("verificationToken");
+        public static Partial<MessageActionPayload> WithClientId(this Partial<MessageActionPayload> it)
+            => it.AddFieldName("clientId");
         
         public static Partial<MessageActionPayload> WithUserId(this Partial<MessageActionPayload> it)
             => it.AddFieldName("userId");
         
-        public static Partial<MessageActionPayload> WithServerUrl(this Partial<MessageActionPayload> it)
-            => it.AddFieldName("serverUrl");
-        
-        public static Partial<MessageActionPayload> WithClientId(this Partial<MessageActionPayload> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<MessageActionPayload> WithOrgId(this Partial<MessageActionPayload> it)
-            => it.AddFieldName("orgId");
+        public static Partial<MessageActionPayload> WithVerificationToken(this Partial<MessageActionPayload> it)
+            => it.AddFieldName("verificationToken");
         
     }
     

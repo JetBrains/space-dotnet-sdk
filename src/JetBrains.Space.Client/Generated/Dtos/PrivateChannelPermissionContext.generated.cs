@@ -29,39 +29,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum AppMessageDeliveryType
+    public sealed class PrivateChannelPermissionContext
+         : PermissionContextApi, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        [EnumMember(Value = "Webhook")]
-        Webhook,
+        [JsonPropertyName("className")]
+        public  string? ClassName => "PrivateChannelPermissionContext";
         
-        [EnumMember(Value = "Message")]
-        Message,
+        public PrivateChannelPermissionContext() { }
         
-        [EnumMember(Value = "ListCommands")]
-        ListCommands,
+        public PrivateChannelPermissionContext(string channelId)
+        {
+            ChannelId = channelId;
+        }
         
-        [EnumMember(Value = "ListMenuExtensions")]
-        ListMenuExtensions,
+        private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(PrivateChannelPermissionContext), nameof(ChannelId));
         
-        [EnumMember(Value = "DispatchAction")]
-        DispatchAction,
-        
-        [EnumMember(Value = "DispatchMenuAction")]
-        DispatchMenuAction,
-        
-        [EnumMember(Value = "InitPayload")]
-        InitPayload,
-        
-        [EnumMember(Value = "ChangeServerUrlPayload")]
-        ChangeServerUrlPayload,
-        
-        [EnumMember(Value = "ChangeClientSecretPayload")]
-        ChangeClientSecretPayload,
-        
-        [EnumMember(Value = "Unknown")]
-        Unknown,
-        
+        [Required]
+        [JsonPropertyName("channelId")]
+        public string ChannelId
+        {
+            get => _channelId.GetValue();
+            set => _channelId.SetValue(value);
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _channelId.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

@@ -29,31 +29,20 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class MarketplaceAppMetadata
+    public sealed class AdHocConnectedAppMetadata
          : ApplicationMetadata, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public  string? ClassName => "MarketplaceAppMetadata";
+        public  string? ClassName => "AdHocConnectedAppMetadata";
         
-        public MarketplaceAppMetadata() { }
+        public AdHocConnectedAppMetadata() { }
         
-        public MarketplaceAppMetadata(string marketplaceAppId, string? lastSentServerUrl = null)
+        public AdHocConnectedAppMetadata(string? lastSentServerUrl = null)
         {
-            MarketplaceAppId = marketplaceAppId;
             LastSentServerUrl = lastSentServerUrl;
         }
         
-        private PropertyValue<string> _marketplaceAppId = new PropertyValue<string>(nameof(MarketplaceAppMetadata), nameof(MarketplaceAppId));
-        
-        [Required]
-        [JsonPropertyName("marketplaceAppId")]
-        public string MarketplaceAppId
-        {
-            get => _marketplaceAppId.GetValue();
-            set => _marketplaceAppId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _lastSentServerUrl = new PropertyValue<string?>(nameof(MarketplaceAppMetadata), nameof(LastSentServerUrl));
+        private PropertyValue<string?> _lastSentServerUrl = new PropertyValue<string?>(nameof(AdHocConnectedAppMetadata), nameof(LastSentServerUrl));
         
         [JsonPropertyName("lastSentServerUrl")]
         public string? LastSentServerUrl
@@ -64,7 +53,6 @@ namespace JetBrains.Space.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _marketplaceAppId.SetAccessPath(path, validateHasBeenSet);
             _lastSentServerUrl.SetAccessPath(path, validateHasBeenSet);
         }
     

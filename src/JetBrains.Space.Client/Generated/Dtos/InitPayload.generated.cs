@@ -37,25 +37,34 @@ namespace JetBrains.Space.Client
         
         public InitPayload() { }
         
-        public InitPayload(string userId, string? clientSecret = null, string? state = null, string? accessToken = null, string? verificationToken = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
+        public InitPayload(string clientSecret, string serverUrl, string clientId, string userId, string? state = null, string? verificationToken = null)
         {
             ClientSecret = clientSecret;
-            State = state;
-            AccessToken = accessToken;
-            VerificationToken = verificationToken;
-            UserId = userId;
             ServerUrl = serverUrl;
+            State = state;
             ClientId = clientId;
-            OrgId = orgId;
+            UserId = userId;
+            VerificationToken = verificationToken;
         }
         
-        private PropertyValue<string?> _clientSecret = new PropertyValue<string?>(nameof(InitPayload), nameof(ClientSecret));
+        private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(InitPayload), nameof(ClientSecret));
         
+        [Required]
         [JsonPropertyName("clientSecret")]
-        public string? ClientSecret
+        public string ClientSecret
         {
             get => _clientSecret.GetValue();
             set => _clientSecret.SetValue(value);
+        }
+    
+        private PropertyValue<string> _serverUrl = new PropertyValue<string>(nameof(InitPayload), nameof(ServerUrl));
+        
+        [Required]
+        [JsonPropertyName("serverUrl")]
+        public string ServerUrl
+        {
+            get => _serverUrl.GetValue();
+            set => _serverUrl.SetValue(value);
         }
     
         private PropertyValue<string?> _state = new PropertyValue<string?>(nameof(InitPayload), nameof(State));
@@ -67,22 +76,14 @@ namespace JetBrains.Space.Client
             set => _state.SetValue(value);
         }
     
-        private PropertyValue<string?> _accessToken = new PropertyValue<string?>(nameof(InitPayload), nameof(AccessToken));
+        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(InitPayload), nameof(ClientId));
         
-        [JsonPropertyName("accessToken")]
-        public string? AccessToken
+        [Required]
+        [JsonPropertyName("clientId")]
+        public string ClientId
         {
-            get => _accessToken.GetValue();
-            set => _accessToken.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(InitPayload), nameof(VerificationToken));
-        
-        [JsonPropertyName("verificationToken")]
-        public string? VerificationToken
-        {
-            get => _verificationToken.GetValue();
-            set => _verificationToken.SetValue(value);
+            get => _clientId.GetValue();
+            set => _clientId.SetValue(value);
         }
     
         private PropertyValue<string> _userId = new PropertyValue<string>(nameof(InitPayload), nameof(UserId));
@@ -95,43 +96,23 @@ namespace JetBrains.Space.Client
             set => _userId.SetValue(value);
         }
     
-        private PropertyValue<string?> _serverUrl = new PropertyValue<string?>(nameof(InitPayload), nameof(ServerUrl));
+        private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(InitPayload), nameof(VerificationToken));
         
-        [JsonPropertyName("serverUrl")]
-        public string? ServerUrl
+        [JsonPropertyName("verificationToken")]
+        public string? VerificationToken
         {
-            get => _serverUrl.GetValue();
-            set => _serverUrl.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _clientId = new PropertyValue<string?>(nameof(InitPayload), nameof(ClientId));
-        
-        [JsonPropertyName("clientId")]
-        public string? ClientId
-        {
-            get => _clientId.GetValue();
-            set => _clientId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _orgId = new PropertyValue<string?>(nameof(InitPayload), nameof(OrgId));
-        
-        [JsonPropertyName("orgId")]
-        public string? OrgId
-        {
-            get => _orgId.GetValue();
-            set => _orgId.SetValue(value);
+            get => _verificationToken.GetValue();
+            set => _verificationToken.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _clientSecret.SetAccessPath(path, validateHasBeenSet);
-            _state.SetAccessPath(path, validateHasBeenSet);
-            _accessToken.SetAccessPath(path, validateHasBeenSet);
-            _verificationToken.SetAccessPath(path, validateHasBeenSet);
-            _userId.SetAccessPath(path, validateHasBeenSet);
             _serverUrl.SetAccessPath(path, validateHasBeenSet);
+            _state.SetAccessPath(path, validateHasBeenSet);
             _clientId.SetAccessPath(path, validateHasBeenSet);
-            _orgId.SetAccessPath(path, validateHasBeenSet);
+            _userId.SetAccessPath(path, validateHasBeenSet);
+            _verificationToken.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

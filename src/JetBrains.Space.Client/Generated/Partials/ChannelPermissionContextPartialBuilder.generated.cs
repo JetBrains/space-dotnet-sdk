@@ -27,40 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.ChannelPermissionContextPartialBuilder
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum AppMessageDeliveryType
+    public static class ChannelPermissionContextPartialExtensions
     {
-        [EnumMember(Value = "Webhook")]
-        Webhook,
+        public static Partial<ChannelPermissionContext> WithChannel(this Partial<ChannelPermissionContext> it)
+            => it.AddFieldName("channel");
         
-        [EnumMember(Value = "Message")]
-        Message,
-        
-        [EnumMember(Value = "ListCommands")]
-        ListCommands,
-        
-        [EnumMember(Value = "ListMenuExtensions")]
-        ListMenuExtensions,
-        
-        [EnumMember(Value = "DispatchAction")]
-        DispatchAction,
-        
-        [EnumMember(Value = "DispatchMenuAction")]
-        DispatchMenuAction,
-        
-        [EnumMember(Value = "InitPayload")]
-        InitPayload,
-        
-        [EnumMember(Value = "ChangeServerUrlPayload")]
-        ChangeServerUrlPayload,
-        
-        [EnumMember(Value = "ChangeClientSecretPayload")]
-        ChangeClientSecretPayload,
-        
-        [EnumMember(Value = "Unknown")]
-        Unknown,
+        public static Partial<ChannelPermissionContext> WithChannel(this Partial<ChannelPermissionContext> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
+            => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
         
     }
     

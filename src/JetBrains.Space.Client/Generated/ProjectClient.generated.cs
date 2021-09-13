@@ -4160,6 +4160,22 @@ namespace JetBrains.Space.Client
             }
             
         
+            public async Task<GitCommitResult> CommitAsync(string project, string repository, string baseCommit, string targetBranch, string commitMessage, List<GitCommitFileRequest> files, Func<Partial<GitCommitResult>, Partial<GitCommitResult>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitCommitResult>()) : Partial<GitCommitResult>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest, GitCommitResult>("POST", $"api/http/projects/{project}/repositories/{repository}/commit{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectRepositoriesForRepositoryCommitPostRequest
+                    { 
+                        BaseCommit = baseCommit,
+                        TargetBranch = targetBranch,
+                        CommitMessage = commitMessage,
+                        Files = files,
+                    }, cancellationToken);
+            }
+            
+        
             public async Task GcAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();

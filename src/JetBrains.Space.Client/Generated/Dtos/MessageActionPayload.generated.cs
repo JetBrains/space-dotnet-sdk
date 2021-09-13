@@ -37,17 +37,14 @@ namespace JetBrains.Space.Client
         
         public MessageActionPayload() { }
         
-        public MessageActionPayload(string actionId, string actionValue, MessageContext message, string userId, string? accessToken = null, string? verificationToken = null, string? serverUrl = null, string? clientId = null, string? orgId = null)
+        public MessageActionPayload(string actionId, string actionValue, MessageContext message, string clientId, string? userId = null, string? verificationToken = null)
         {
             ActionId = actionId;
             ActionValue = actionValue;
             Message = message;
-            AccessToken = accessToken;
-            VerificationToken = verificationToken;
-            UserId = userId;
-            ServerUrl = serverUrl;
             ClientId = clientId;
-            OrgId = orgId;
+            UserId = userId;
+            VerificationToken = verificationToken;
         }
         
         private PropertyValue<string> _actionId = new PropertyValue<string>(nameof(MessageActionPayload), nameof(ActionId));
@@ -80,13 +77,23 @@ namespace JetBrains.Space.Client
             set => _message.SetValue(value);
         }
     
-        private PropertyValue<string?> _accessToken = new PropertyValue<string?>(nameof(MessageActionPayload), nameof(AccessToken));
+        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(MessageActionPayload), nameof(ClientId));
         
-        [JsonPropertyName("accessToken")]
-        public string? AccessToken
+        [Required]
+        [JsonPropertyName("clientId")]
+        public string ClientId
         {
-            get => _accessToken.GetValue();
-            set => _accessToken.SetValue(value);
+            get => _clientId.GetValue();
+            set => _clientId.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _userId = new PropertyValue<string?>(nameof(MessageActionPayload), nameof(UserId));
+        
+        [JsonPropertyName("userId")]
+        public string? UserId
+        {
+            get => _userId.GetValue();
+            set => _userId.SetValue(value);
         }
     
         private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(MessageActionPayload), nameof(VerificationToken));
@@ -98,54 +105,14 @@ namespace JetBrains.Space.Client
             set => _verificationToken.SetValue(value);
         }
     
-        private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MessageActionPayload), nameof(UserId));
-        
-        [Required]
-        [JsonPropertyName("userId")]
-        public string UserId
-        {
-            get => _userId.GetValue();
-            set => _userId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _serverUrl = new PropertyValue<string?>(nameof(MessageActionPayload), nameof(ServerUrl));
-        
-        [JsonPropertyName("serverUrl")]
-        public string? ServerUrl
-        {
-            get => _serverUrl.GetValue();
-            set => _serverUrl.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _clientId = new PropertyValue<string?>(nameof(MessageActionPayload), nameof(ClientId));
-        
-        [JsonPropertyName("clientId")]
-        public string? ClientId
-        {
-            get => _clientId.GetValue();
-            set => _clientId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _orgId = new PropertyValue<string?>(nameof(MessageActionPayload), nameof(OrgId));
-        
-        [JsonPropertyName("orgId")]
-        public string? OrgId
-        {
-            get => _orgId.GetValue();
-            set => _orgId.SetValue(value);
-        }
-    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _actionId.SetAccessPath(path, validateHasBeenSet);
             _actionValue.SetAccessPath(path, validateHasBeenSet);
             _message.SetAccessPath(path, validateHasBeenSet);
-            _accessToken.SetAccessPath(path, validateHasBeenSet);
-            _verificationToken.SetAccessPath(path, validateHasBeenSet);
-            _userId.SetAccessPath(path, validateHasBeenSet);
-            _serverUrl.SetAccessPath(path, validateHasBeenSet);
             _clientId.SetAccessPath(path, validateHasBeenSet);
-            _orgId.SetAccessPath(path, validateHasBeenSet);
+            _userId.SetAccessPath(path, validateHasBeenSet);
+            _verificationToken.SetAccessPath(path, validateHasBeenSet);
         }
     
     }
