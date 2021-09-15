@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using JetBrains.Space.Generator.Model.HttpApi;
 using JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
@@ -79,12 +81,12 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                     break;
                 
                 case ApiUrlParameterOption.Var varParameter:
-                    var valueTypeName = varParameter.Parameter.Type.ToCSharpType(_codeGenerationContext);
-                    var variableName = varParameter.Parameter.ToCSharpVariableName();
+                    var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
+                        .WithParametersForApiFields(varParameter.Parameters);
                     
-                    builder.AppendLine($"{indent}public static {typeNameForUrlParameter} {factoryMethodNameForUrlParameterOption}({valueTypeName} {variableName})");
+                    builder.AppendLine($"{indent}public static {typeNameForUrlParameter} {factoryMethodNameForUrlParameterOption}({methodParametersBuilder.BuildMethodParametersList()})");
                     indent.Increment();
-                    builder.AppendLine($"{indent}=> new {typeNameForUrlParameterOption}({variableName});");
+                    builder.AppendLine($"{indent}=> new {typeNameForUrlParameterOption}({methodParametersBuilder.BuildMethodCallParameters(includePrefix: false)});");
                     indent.Decrement();
                     break;
                 default:
@@ -94,8 +96,6 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             
             return builder.ToString();
         }
-        
-        
 
         private string GenerateUrlParameterOptionClass(
             ApiUrlParameterOption apiUrlParameterOption, 
@@ -128,26 +128,61 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                     break;
                 
                 case ApiUrlParameterOption.Var varParameter:
-                    var valueTypeName = varParameter.Parameter.Type.ToCSharpType(_codeGenerationContext);
-                    var backingFieldName = varParameter.Parameter.ToCSharpBackingFieldName();
-                    var variableName = varParameter.Parameter.ToCSharpVariableName();
-                    var urlParameterFieldName = varParameter.Parameter.Name;
+                    var orderedFields = varParameter.Parameters.OrderBy(it => !it.Type.Nullable ? 0 : 1).ToList();
+
+                    var isCompositeIdentifier = orderedFields.Count > 1;
+                    var toStringInterpolatedFields = new List<string>();
                     
-                    // Backing field
-                    builder.AppendLine($"{indent}private readonly {valueTypeName} {backingFieldName};");
-                    builder.AppendLine($"{indent}");
+                    foreach (var field in orderedFields)
+                    {
+                        var valueTypeName = field.Type.ToCSharpType(_codeGenerationContext);
+                        var backingFieldName = field.ToCSharpBackingFieldName();
+                        var urlParameterFieldName = field.Name;
+                    
+                        // Backing field
+                        builder.AppendLine($"{indent}private readonly {valueTypeName} {backingFieldName};");
+                        builder.AppendLine($"{indent}");
+                        
+                        // ToString() override preparation
+                        toStringInterpolatedFields.Add($"{urlParameterFieldName}:{{{backingFieldName}}}");
+                    }
+
+                    var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
+                        .WithParametersForApiFields(orderedFields);
                     
                     // Constructor
-                    builder.AppendLine($"{indent}public {typeNameForUrlParameterOption}({valueTypeName} {variableName})");
+                    builder.AppendLine($"{indent}public {typeNameForUrlParameterOption}({methodParametersBuilder.BuildMethodParametersList()})");
+                    builder.AppendLine($"{indent}{{");
                     indent.Increment();
-                    builder.AppendLine($"{indent}=> {backingFieldName} = {variableName};");
+
+                    foreach (var field in orderedFields)
+                    {
+                        var backingFieldName = field.ToCSharpBackingFieldName();
+                        var variableName = field.ToCSharpVariableName();
+                    
+                        builder.AppendLine($"{indent}{backingFieldName} = {variableName};");
+                    }
+                    
                     indent.Decrement();
+                    builder.AppendLine($"{indent}}}");
                     builder.AppendLine($"{indent}");
                     
-                    // ToString() override
+                    // ToString() override, e.g.: => $"{{username:{_username},profile:{_profile}}}";
                     builder.AppendLine($"{indent}public override string ToString()");
                     indent.Increment();
-                    builder.AppendLine($"{indent}=> $\"{urlParameterFieldName}:{{{backingFieldName}}}\";");
+                    
+                    builder.Append($"{indent}=> $\"");
+                    if (isCompositeIdentifier)
+                    {
+                        builder.Append("{{");
+                    }
+                    builder.Append($"{string.Join(",", toStringInterpolatedFields)}");
+                    if (isCompositeIdentifier)
+                    {
+                        builder.Append("}}");
+                    }
+                    builder.AppendLine($"\";");
+                    
                     indent.Decrement();
                     
                     break;

@@ -155,19 +155,22 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                     return parameterDefinition;
                 }));
 
-        public string BuildMethodCallParameters() =>
+        public string BuildMethodCallParameters(bool includePrefix = true) =>
             string.Join(", ", _parameters
                 .OrderBy(RequiredParametersFirstOrder)
                 .Select(it =>
                 {
-                    var parameterDefinition = it.Name;
+                    var parameterDefinition = includePrefix 
+                        ? it.Name + ": " 
+                        : string.Empty;
+                    
                     if (!string.IsNullOrEmpty(it.DefaultValue))
                     {
-                        parameterDefinition += ": " + it.DefaultValue;
+                        parameterDefinition += it.DefaultValue;
                     }
                     else
                     {
-                        parameterDefinition += ": " + parameterDefinition;
+                        parameterDefinition += it.Name;
                     }
                     return parameterDefinition;
                 }));

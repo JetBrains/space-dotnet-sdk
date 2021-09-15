@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using JetBrains.Space.Generator.Model.HttpApi.Converters;
 
@@ -17,8 +18,8 @@ namespace JetBrains.Space.Generator.Model.HttpApi
         
         public class Var : ApiUrlParameterOption
         {
-            [JsonPropertyName("parameter")]
-            public ApiField Parameter { get; set; } = default!;
+            [JsonPropertyName("parameters")]
+            public List<ApiField> Parameters { get; set; } = new();
             
             [JsonPropertyName("prefixRequired")]
             public bool PrefixRequired { get; set; } = default!;
