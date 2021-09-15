@@ -46,7 +46,9 @@ namespace JetBrains.Space.Client
             private readonly string _id;
             
             public ReviewIdentifierId(string id)
-                => _id = id;
+            {
+                _id = id;
+            }
             
             public override string ToString()
                 => $"id:{_id}";
@@ -57,7 +59,9 @@ namespace JetBrains.Space.Client
             private readonly string _key;
             
             public ReviewIdentifierKey(string key)
-                => _key = key;
+            {
+                _key = key;
+            }
             
             public override string ToString()
                 => $"key:{_key}";
@@ -68,7 +72,9 @@ namespace JetBrains.Space.Client
             private readonly int _number;
             
             public ReviewIdentifierNumber(int number)
-                => _number = number;
+            {
+                _number = number;
+            }
             
             public override string ToString()
                 => $"number:{_number}";

@@ -49,7 +49,9 @@ namespace JetBrains.Space.Client
             private readonly ChatChannel _channel;
             
             public MessageRecipientChannel(ChatChannel channel)
-                => _channel = channel;
+            {
+                _channel = channel;
+            }
             
             public override string ToString()
                 => $"channel:{_channel}";
@@ -60,7 +62,9 @@ namespace JetBrains.Space.Client
             private readonly string _codeReview;
             
             public MessageRecipientCodeReview(string codeReview)
-                => _codeReview = codeReview;
+            {
+                _codeReview = codeReview;
+            }
             
             public override string ToString()
                 => $"codeReview:{_codeReview}";
@@ -71,7 +75,9 @@ namespace JetBrains.Space.Client
             private readonly string _issue;
             
             public MessageRecipientIssue(string issue)
-                => _issue = issue;
+            {
+                _issue = issue;
+            }
             
             public override string ToString()
                 => $"issue:{_issue}";
@@ -82,7 +88,9 @@ namespace JetBrains.Space.Client
             private readonly ProfileIdentifier _member;
             
             public MessageRecipientMember(ProfileIdentifier member)
-                => _member = member;
+            {
+                _member = member;
+            }
             
             public override string ToString()
                 => $"member:{_member}";

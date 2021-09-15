@@ -46,7 +46,7 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ESApp> CreateApplicationAsync(string name, bool endpointSslVerification = true, bool hasVerificationToken = false, bool hasSigningKey = true, bool hasPublicKeySignature = true, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ESApp> CreateApplicationAsync(string name, bool endpointSslVerification = true, bool hasVerificationToken = false, bool hasSigningKey = true, bool hasPublicKeySignature = true, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -55,6 +55,8 @@ namespace JetBrains.Space.Client
                 new ApplicationsPostRequest
                 { 
                     Name = name,
+                    PictureAttachmentId = pictureAttachmentId,
+                    DefaultExternalPicture = defaultExternalPicture,
                     ClientId = clientId,
                     ClientSecret = clientSecret,
                     IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled,
@@ -233,7 +235,7 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, bool endpointSslVerification, bool hasVerificationToken, bool hasPublicKeySignature, bool hasSigningKey, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, bool endpointSslVerification, bool hasVerificationToken, bool hasPublicKeySignature, bool hasSigningKey, string? name = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -242,6 +244,8 @@ namespace JetBrains.Space.Client
                 new ApplicationsForApplicationPatchRequest
                 { 
                     Name = name,
+                    PictureAttachmentId = pictureAttachmentId,
+                    DefaultExternalPicture = defaultExternalPicture,
                     ClientSecret = clientSecret,
                     IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled,
                     IsCodeFlowEnabled = codeFlowEnabled,

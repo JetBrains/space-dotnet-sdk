@@ -37,6 +37,12 @@ namespace JetBrains.Space.Client.HAUrlParameterOptionVarPartialBuilder
         public static Partial<HAUrlParameterOptionVar> WithParameter(this Partial<HAUrlParameterOptionVar> it, Func<Partial<HAField>, Partial<HAField>> partialBuilder)
             => it.AddFieldName("parameter", partialBuilder(new Partial<HAField>(it)));
         
+        public static Partial<HAUrlParameterOptionVar> WithParameters(this Partial<HAUrlParameterOptionVar> it)
+            => it.AddFieldName("parameters");
+        
+        public static Partial<HAUrlParameterOptionVar> WithParameters(this Partial<HAUrlParameterOptionVar> it, Func<Partial<HAField>, Partial<HAField>> partialBuilder)
+            => it.AddFieldName("parameters", partialBuilder(new Partial<HAField>(it)));
+        
         public static Partial<HAUrlParameterOptionVar> WithIsPrefixRequired(this Partial<HAUrlParameterOptionVar> it)
             => it.AddFieldName("prefixRequired");
         

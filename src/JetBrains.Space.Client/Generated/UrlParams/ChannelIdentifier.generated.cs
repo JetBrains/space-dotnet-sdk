@@ -64,7 +64,9 @@ namespace JetBrains.Space.Client
             private readonly string _application;
             
             public ChannelIdentifierApplication(string application)
-                => _application = application;
+            {
+                _application = application;
+            }
             
             public override string ToString()
                 => $"application:{_application}";
@@ -75,7 +77,9 @@ namespace JetBrains.Space.Client
             private readonly string _article;
             
             public ChannelIdentifierArticle(string article)
-                => _article = article;
+            {
+                _article = article;
+            }
             
             public override string ToString()
                 => $"article:{_article}";
@@ -86,7 +90,9 @@ namespace JetBrains.Space.Client
             private readonly ChatChannel _channel;
             
             public ChannelIdentifierChannel(ChatChannel channel)
-                => _channel = channel;
+            {
+                _channel = channel;
+            }
             
             public override string ToString()
                 => $"channel:{_channel}";
@@ -97,7 +103,9 @@ namespace JetBrains.Space.Client
             private readonly string _contactKey;
             
             public ChannelIdentifierContactKey(string contactKey)
-                => _contactKey = contactKey;
+            {
+                _contactKey = contactKey;
+            }
             
             public override string ToString()
                 => $"contactKey:{_contactKey}";
@@ -108,7 +116,9 @@ namespace JetBrains.Space.Client
             private readonly string _id;
             
             public ChannelIdentifierId(string id)
-                => _id = id;
+            {
+                _id = id;
+            }
             
             public override string ToString()
                 => $"id:{_id}";
@@ -119,7 +129,9 @@ namespace JetBrains.Space.Client
             private readonly IssueIdentifier _issue;
             
             public ChannelIdentifierIssue(IssueIdentifier issue)
-                => _issue = issue;
+            {
+                _issue = issue;
+            }
             
             public override string ToString()
                 => $"issue:{_issue}";
@@ -130,7 +142,9 @@ namespace JetBrains.Space.Client
             private readonly ProfileIdentifier _member;
             
             public ChannelIdentifierProfile(ProfileIdentifier member)
-                => _member = member;
+            {
+                _member = member;
+            }
             
             public override string ToString()
                 => $"member:{_member}";
@@ -141,7 +155,9 @@ namespace JetBrains.Space.Client
             private readonly ReviewIdentifier _codeReview;
             
             public ChannelIdentifierReview(ReviewIdentifier codeReview)
-                => _codeReview = codeReview;
+            {
+                _codeReview = codeReview;
+            }
             
             public override string ToString()
                 => $"codeReview:{_codeReview}";
@@ -152,7 +168,9 @@ namespace JetBrains.Space.Client
             private readonly string _message;
             
             public ChannelIdentifierThread(string message)
-                => _message = message;
+            {
+                _message = message;
+            }
             
             public override string ToString()
                 => $"message:{_message}";

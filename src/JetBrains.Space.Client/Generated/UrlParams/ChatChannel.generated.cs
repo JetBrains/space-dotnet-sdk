@@ -43,7 +43,9 @@ namespace JetBrains.Space.Client
             private readonly string _id;
             
             public ChatChannelFromId(string id)
-                => _id = id;
+            {
+                _id = id;
+            }
             
             public override string ToString()
                 => $"id:{_id}";
@@ -54,7 +56,9 @@ namespace JetBrains.Space.Client
             private readonly string _name;
             
             public ChatChannelFromName(string name)
-                => _name = name;
+            {
+                _name = name;
+            }
             
             public override string ToString()
                 => $"name:{_name}";

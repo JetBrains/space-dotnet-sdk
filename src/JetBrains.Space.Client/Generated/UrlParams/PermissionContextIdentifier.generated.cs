@@ -46,7 +46,9 @@ namespace JetBrains.Space.Client
             private readonly ChannelIdentifier _channel;
             
             public ChannelPermissionContextIdentifier(ChannelIdentifier channel)
-                => _channel = channel;
+            {
+                _channel = channel;
+            }
             
             public override string ToString()
                 => $"channel:{_channel}";
@@ -63,7 +65,9 @@ namespace JetBrains.Space.Client
             private readonly ProjectIdentifier _project;
             
             public ProjectPermissionContextIdentifier(ProjectIdentifier project)
-                => _project = project;
+            {
+                _project = project;
+            }
             
             public override string ToString()
                 => $"project:{_project}";

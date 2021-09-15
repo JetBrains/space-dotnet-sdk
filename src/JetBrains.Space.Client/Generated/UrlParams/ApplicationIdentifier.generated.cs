@@ -46,7 +46,9 @@ namespace JetBrains.Space.Client
             private readonly string _clientId;
             
             public ApplicationIdentifierClientId(string clientId)
-                => _clientId = clientId;
+            {
+                _clientId = clientId;
+            }
             
             public override string ToString()
                 => $"clientId:{_clientId}";
@@ -57,7 +59,9 @@ namespace JetBrains.Space.Client
             private readonly string _id;
             
             public ApplicationIdentifierId(string id)
-                => _id = id;
+            {
+                _id = id;
+            }
             
             public override string ToString()
                 => $"id:{_id}";

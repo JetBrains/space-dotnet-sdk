@@ -34,9 +34,11 @@ namespace JetBrains.Space.Client
     {
         public ApplicationsPostRequest() { }
         
-        public ApplicationsPostRequest(string name, bool endpointSslVerification = true, bool hasVerificationToken = false, bool hasSigningKey = true, bool hasPublicKeySignature = true, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null)
+        public ApplicationsPostRequest(string name, bool endpointSslVerification = true, bool hasVerificationToken = false, bool hasSigningKey = true, bool hasPublicKeySignature = true, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null)
         {
             Name = name;
+            PictureAttachmentId = pictureAttachmentId;
+            DefaultExternalPicture = defaultExternalPicture;
             ClientId = clientId;
             ClientSecret = clientSecret;
             IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled;
@@ -64,6 +66,24 @@ namespace JetBrains.Space.Client
         {
             get => _name.GetValue();
             set => _name.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _pictureAttachmentId = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(PictureAttachmentId));
+        
+        [JsonPropertyName("pictureAttachmentId")]
+        public string? PictureAttachmentId
+        {
+            get => _pictureAttachmentId.GetValue();
+            set => _pictureAttachmentId.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _defaultExternalPicture = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(DefaultExternalPicture));
+        
+        [JsonPropertyName("defaultExternalPicture")]
+        public string? DefaultExternalPicture
+        {
+            get => _defaultExternalPicture.GetValue();
+            set => _defaultExternalPicture.SetValue(value);
         }
     
         private PropertyValue<string?> _clientId = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(ClientId));
@@ -222,6 +242,8 @@ namespace JetBrains.Space.Client
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
+            _pictureAttachmentId.SetAccessPath(path, validateHasBeenSet);
+            _defaultExternalPicture.SetAccessPath(path, validateHasBeenSet);
             _clientId.SetAccessPath(path, validateHasBeenSet);
             _clientSecret.SetAccessPath(path, validateHasBeenSet);
             _clientCredentialsFlowEnabled.SetAccessPath(path, validateHasBeenSet);

@@ -34,6 +34,12 @@ namespace JetBrains.Space.Client.ApplicationsPostRequestPartialBuilder
         public static Partial<ApplicationsPostRequest> WithName(this Partial<ApplicationsPostRequest> it)
             => it.AddFieldName("name");
         
+        public static Partial<ApplicationsPostRequest> WithPictureAttachmentId(this Partial<ApplicationsPostRequest> it)
+            => it.AddFieldName("pictureAttachmentId");
+        
+        public static Partial<ApplicationsPostRequest> WithDefaultExternalPicture(this Partial<ApplicationsPostRequest> it)
+            => it.AddFieldName("defaultExternalPicture");
+        
         public static Partial<ApplicationsPostRequest> WithClientId(this Partial<ApplicationsPostRequest> it)
             => it.AddFieldName("clientId");
         

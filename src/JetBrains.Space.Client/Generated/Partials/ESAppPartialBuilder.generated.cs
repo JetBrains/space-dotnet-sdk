@@ -46,6 +46,12 @@ namespace JetBrains.Space.Client.ESAppPartialBuilder
         public static Partial<ESApp> WithName(this Partial<ESApp> it)
             => it.AddFieldName("name");
         
+        public static Partial<ESApp> WithPicture(this Partial<ESApp> it)
+            => it.AddFieldName("picture");
+        
+        public static Partial<ESApp> WithDefaultExternalPicture(this Partial<ESApp> it)
+            => it.AddFieldName("defaultExternalPicture");
+        
         public static Partial<ESApp> WithCreatedAt(this Partial<ESApp> it)
             => it.AddFieldName("createdAt");
         

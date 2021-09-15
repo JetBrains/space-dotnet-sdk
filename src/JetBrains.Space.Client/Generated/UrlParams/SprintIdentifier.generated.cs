@@ -40,7 +40,9 @@ namespace JetBrains.Space.Client
             private readonly string _id;
             
             public SprintIdentifierId(string id)
-                => _id = id;
+            {
+                _id = id;
+            }
             
             public override string ToString()
                 => $"id:{_id}";

@@ -34,12 +34,14 @@ namespace JetBrains.Space.Client
     {
         public ESApp() { }
         
-        public ESApp(string id, string clientId, string name, bool archived, List<ApplicationUnfurlDomain> domains, List<ApplicationUnfurlPattern> patterns, TDMemberProfile? owner = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null, ESAppSettings? settings = null)
+        public ESApp(string id, string clientId, string name, bool archived, List<ApplicationUnfurlDomain> domains, List<ApplicationUnfurlPattern> patterns, TDMemberProfile? owner = null, string? picture = null, string? defaultExternalPicture = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null, ESAppSettings? settings = null)
         {
             Id = id;
             Owner = owner;
             ClientId = clientId;
             Name = name;
+            Picture = picture;
+            DefaultExternalPicture = defaultExternalPicture;
             CreatedAt = createdAt;
             Kind = kind;
             PresentableName = presentableName;
@@ -102,6 +104,24 @@ namespace JetBrains.Space.Client
         {
             get => _name.GetValue();
             set => _name.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _picture = new PropertyValue<string?>(nameof(ESApp), nameof(Picture));
+        
+        [JsonPropertyName("picture")]
+        public string? Picture
+        {
+            get => _picture.GetValue();
+            set => _picture.SetValue(value);
+        }
+    
+        private PropertyValue<string?> _defaultExternalPicture = new PropertyValue<string?>(nameof(ESApp), nameof(DefaultExternalPicture));
+        
+        [JsonPropertyName("defaultExternalPicture")]
+        public string? DefaultExternalPicture
+        {
+            get => _defaultExternalPicture.GetValue();
+            set => _defaultExternalPicture.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _createdAt = new PropertyValue<DateTime?>(nameof(ESApp), nameof(CreatedAt));
@@ -335,6 +355,8 @@ namespace JetBrains.Space.Client
             _owner.SetAccessPath(path, validateHasBeenSet);
             _clientId.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
+            _picture.SetAccessPath(path, validateHasBeenSet);
+            _defaultExternalPicture.SetAccessPath(path, validateHasBeenSet);
             _createdAt.SetAccessPath(path, validateHasBeenSet);
             _kind.SetAccessPath(path, validateHasBeenSet);
             _presentableName.SetAccessPath(path, validateHasBeenSet);

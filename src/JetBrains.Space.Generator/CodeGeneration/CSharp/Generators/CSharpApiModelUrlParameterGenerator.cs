@@ -167,7 +167,10 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                     builder.AppendLine($"{indent}}}");
                     builder.AppendLine($"{indent}");
                     
-                    // ToString() override, e.g.: => $"{{username:{_username},profile:{_profile}}}";
+                    // ToString() override, e.g.:
+                    //   => $"username:{_username}";
+                    // or
+                    //   => $"{{username:{_username},profile:{_profile}}}"; (composite)
                     builder.AppendLine($"{indent}public override string ToString()");
                     indent.Increment();
                     

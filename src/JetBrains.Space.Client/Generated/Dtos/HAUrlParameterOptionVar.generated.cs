@@ -37,9 +37,10 @@ namespace JetBrains.Space.Client
         
         public HAUrlParameterOptionVar() { }
         
-        public HAUrlParameterOptionVar(HAField parameter, bool prefixRequired, string optionName, HADeprecation? deprecation = null)
+        public HAUrlParameterOptionVar(HAField parameter, List<HAField> parameters, bool prefixRequired, string optionName, HADeprecation? deprecation = null)
         {
             Parameter = parameter;
+            Parameters = parameters;
             IsPrefixRequired = prefixRequired;
             OptionName = optionName;
             Deprecation = deprecation;
@@ -48,11 +49,22 @@ namespace JetBrains.Space.Client
         private PropertyValue<HAField> _parameter = new PropertyValue<HAField>(nameof(HAUrlParameterOptionVar), nameof(Parameter));
         
         [Required]
+        [Obsolete("Use 'parameters' (since 2021-08-17)")]
         [JsonPropertyName("parameter")]
         public HAField Parameter
         {
             get => _parameter.GetValue();
             set => _parameter.SetValue(value);
+        }
+    
+        private PropertyValue<List<HAField>> _parameters = new PropertyValue<List<HAField>>(nameof(HAUrlParameterOptionVar), nameof(Parameters), new List<HAField>());
+        
+        [Required]
+        [JsonPropertyName("parameters")]
+        public List<HAField> Parameters
+        {
+            get => _parameters.GetValue();
+            set => _parameters.SetValue(value);
         }
     
         private PropertyValue<bool> _prefixRequired = new PropertyValue<bool>(nameof(HAUrlParameterOptionVar), nameof(IsPrefixRequired));
@@ -87,6 +99,7 @@ namespace JetBrains.Space.Client
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _parameter.SetAccessPath(path, validateHasBeenSet);
+            _parameters.SetAccessPath(path, validateHasBeenSet);
             _prefixRequired.SetAccessPath(path, validateHasBeenSet);
             _optionName.SetAccessPath(path, validateHasBeenSet);
             _deprecation.SetAccessPath(path, validateHasBeenSet);

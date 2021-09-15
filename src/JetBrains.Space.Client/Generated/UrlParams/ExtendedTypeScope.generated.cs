@@ -43,7 +43,9 @@ namespace JetBrains.Space.Client
             private readonly string _containerId;
             
             public ExtendedTypeScopeContainer(string containerId)
-                => _containerId = containerId;
+            {
+                _containerId = containerId;
+            }
             
             public override string ToString()
                 => $"containerId:{_containerId}";

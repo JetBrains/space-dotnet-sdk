@@ -46,7 +46,9 @@ namespace JetBrains.Space.Client
             private readonly string _id;
             
             public ProfileIdentifierId(string id)
-                => _id = id;
+            {
+                _id = id;
+            }
             
             public override string ToString()
                 => $"id:{_id}";
@@ -63,7 +65,9 @@ namespace JetBrains.Space.Client
             private readonly string _username;
             
             public ProfileIdentifierUsername(string username)
-                => _username = username;
+            {
+                _username = username;
+            }
             
             public override string ToString()
                 => $"username:{_username}";

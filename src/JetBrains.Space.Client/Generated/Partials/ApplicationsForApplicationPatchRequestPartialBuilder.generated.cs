@@ -34,6 +34,12 @@ namespace JetBrains.Space.Client.ApplicationsForApplicationPatchRequestPartialBu
         public static Partial<ApplicationsForApplicationPatchRequest> WithName(this Partial<ApplicationsForApplicationPatchRequest> it)
             => it.AddFieldName("name");
         
+        public static Partial<ApplicationsForApplicationPatchRequest> WithPictureAttachmentId(this Partial<ApplicationsForApplicationPatchRequest> it)
+            => it.AddFieldName("pictureAttachmentId");
+        
+        public static Partial<ApplicationsForApplicationPatchRequest> WithDefaultExternalPicture(this Partial<ApplicationsForApplicationPatchRequest> it)
+            => it.AddFieldName("defaultExternalPicture");
+        
         public static Partial<ApplicationsForApplicationPatchRequest> WithClientSecret(this Partial<ApplicationsForApplicationPatchRequest> it)
             => it.AddFieldName("clientSecret");
         

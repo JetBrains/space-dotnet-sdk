@@ -43,7 +43,9 @@ namespace JetBrains.Space.Client
             private readonly string _id;
             
             public PackageRepositoryIdentifierId(string id)
-                => _id = id;
+            {
+                _id = id;
+            }
             
             public override string ToString()
                 => $"id:{_id}";
@@ -54,7 +56,9 @@ namespace JetBrains.Space.Client
             private readonly string _key;
             
             public PackageRepositoryIdentifierKey(string key)
-                => _key = key;
+            {
+                _key = key;
+            }
             
             public override string ToString()
                 => $"key:{_key}";
