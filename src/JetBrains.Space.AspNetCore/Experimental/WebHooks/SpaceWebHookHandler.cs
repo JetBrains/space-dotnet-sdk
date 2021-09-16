@@ -31,5 +31,17 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks
         /// <inheritdoc/>
         public virtual Task<ApplicationExecutionResult> HandleWebhookRequestAsync(WebhookRequestPayload payload)
             => Task.FromResult(new ApplicationExecutionResult());
+        
+        /// <inheritdoc/>
+        public virtual Task<ApplicationExecutionResult> HandleInitAsync(InitPayload payload)
+            => Task.FromResult(new ApplicationExecutionResult());
+        
+        /// <inheritdoc/>
+        public virtual Task<ApplicationExecutionResult> HandleChangeClientSecretRequestAsync(ChangeClientSecretPayload payload)
+            => Task.FromResult(new ApplicationExecutionResult());
+        
+        /// <inheritdoc/>
+        public virtual  Task<ApplicationExecutionResult> HandleChangeServerUrlAsync(ChangeServerUrlPayload payload)
+            => Task.FromResult(new ApplicationExecutionResult());
     }
 }

@@ -90,6 +90,21 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Controllers
                 case WebhookRequestPayload webhookRequestPayload:
                     var webhookActionResult = await handler.HandleWebhookRequestAsync(webhookRequestPayload);
                     return BuildActionResultFrom(webhookActionResult);
+                
+                // Application initialized in in Space organization?
+                case InitPayload initPayload:
+                    var initActionResult = await handler.HandleInitAsync(initPayload);
+                    return BuildActionResultFrom(initActionResult);
+                    
+                // Client secret updated in Space organization?
+                case ChangeClientSecretPayload changeClientSecretPayload:
+                    var changeClientSecretActionResult = await handler.HandleChangeClientSecretRequestAsync(changeClientSecretPayload);
+                    return BuildActionResultFrom(changeClientSecretActionResult);
+                
+                // Server URL updated in Space organization?
+                case ChangeServerUrlPayload changeServerUrlPayload:
+                    var changeServerUrlActionResult = await handler.HandleChangeServerUrlAsync(changeServerUrlPayload);
+                    return BuildActionResultFrom(changeServerUrlActionResult);
             }
 
             return BadRequest("Payload is not supported.");
