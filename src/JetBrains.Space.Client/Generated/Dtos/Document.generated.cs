@@ -34,26 +34,21 @@ namespace JetBrains.Space.Client
     {
         public Document() { }
         
-        public Document(string id, bool archived, string containerLinkId, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, bool deleted, bool published, int accessOrdinal, DocumentBody documentBody, TDMemberProfile? author = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null)
+        public Document(string id, DocumentContainerInfo containerInfo, string title, DocumentBodyType bodyType, bool archived, DateTime modified, DocumentBody documentBody, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null)
         {
             Id = id;
-            IsArchived = archived;
-            ContainerLinkId = containerLinkId;
+            ContainerInfo = containerInfo;
             Title = title;
-            Author = author;
-            Modified = modified;
-            Created = created;
-            ModifiedBy = modifiedBy;
-            IsShared = shared;
             PublicationDetails2 = publicationDetails2;
             FolderRef = folderRef;
-            ContainerInfo = containerInfo;
             BodyType = bodyType;
-            IsDeleted = deleted;
+            IsArchived = archived;
             ArchivedBy = archivedBy;
             ArchivedAt = archivedAt;
-            IsPublished = published;
-            AccessOrdinal = accessOrdinal;
+            CreatedBy = createdBy;
+            Created = created;
+            ModifiedBy = modifiedBy;
+            Modified = modified;
             DocumentBody = documentBody;
         }
         
@@ -67,24 +62,14 @@ namespace JetBrains.Space.Client
             set => _id.SetValue(value);
         }
     
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Document), nameof(IsArchived));
+        private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(Document), nameof(ContainerInfo));
         
         [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
+        [JsonPropertyName("containerInfo")]
+        public DocumentContainerInfo ContainerInfo
         {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        private PropertyValue<string> _containerLinkId = new PropertyValue<string>(nameof(Document), nameof(ContainerLinkId));
-        
-        [Required]
-        [JsonPropertyName("containerLinkId")]
-        public string ContainerLinkId
-        {
-            get => _containerLinkId.GetValue();
-            set => _containerLinkId.SetValue(value);
+            get => _containerInfo.GetValue();
+            set => _containerInfo.SetValue(value);
         }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(Document), nameof(Title));
@@ -95,55 +80,6 @@ namespace JetBrains.Space.Client
         {
             get => _title.GetValue();
             set => _title.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberProfile?> _author = new PropertyValue<TDMemberProfile?>(nameof(Document), nameof(Author));
-        
-        [JsonPropertyName("author")]
-        public TDMemberProfile? Author
-        {
-            get => _author.GetValue();
-            set => _author.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _modified = new PropertyValue<DateTime>(nameof(Document), nameof(Modified));
-        
-        [Required]
-        [JsonPropertyName("modified")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Modified
-        {
-            get => _modified.GetValue();
-            set => _modified.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _created = new PropertyValue<DateTime?>(nameof(Document), nameof(Created));
-        
-        [JsonPropertyName("created")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? Created
-        {
-            get => _created.GetValue();
-            set => _created.SetValue(value);
-        }
-    
-        private PropertyValue<CPrincipal?> _modifiedBy = new PropertyValue<CPrincipal?>(nameof(Document), nameof(ModifiedBy));
-        
-        [JsonPropertyName("modifiedBy")]
-        public CPrincipal? ModifiedBy
-        {
-            get => _modifiedBy.GetValue();
-            set => _modifiedBy.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _shared = new PropertyValue<bool>(nameof(Document), nameof(IsShared));
-        
-        [Required]
-        [JsonPropertyName("shared")]
-        public bool IsShared
-        {
-            get => _shared.GetValue();
-            set => _shared.SetValue(value);
         }
     
         private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(Document), nameof(PublicationDetails2));
@@ -164,16 +100,6 @@ namespace JetBrains.Space.Client
             set => _folderRef.SetValue(value);
         }
     
-        private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(Document), nameof(ContainerInfo));
-        
-        [Required]
-        [JsonPropertyName("containerInfo")]
-        public DocumentContainerInfo ContainerInfo
-        {
-            get => _containerInfo.GetValue();
-            set => _containerInfo.SetValue(value);
-        }
-    
         private PropertyValue<DocumentBodyType> _bodyType = new PropertyValue<DocumentBodyType>(nameof(Document), nameof(BodyType));
         
         [Required]
@@ -184,14 +110,14 @@ namespace JetBrains.Space.Client
             set => _bodyType.SetValue(value);
         }
     
-        private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(Document), nameof(IsDeleted));
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Document), nameof(IsArchived));
         
         [Required]
-        [JsonPropertyName("deleted")]
-        public bool IsDeleted
+        [JsonPropertyName("archived")]
+        public bool IsArchived
         {
-            get => _deleted.GetValue();
-            set => _deleted.SetValue(value);
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<CPrincipal?> _archivedBy = new PropertyValue<CPrincipal?>(nameof(Document), nameof(ArchivedBy));
@@ -213,24 +139,43 @@ namespace JetBrains.Space.Client
             set => _archivedAt.SetValue(value);
         }
     
-        private PropertyValue<bool> _published = new PropertyValue<bool>(nameof(Document), nameof(IsPublished));
+        private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(Document), nameof(CreatedBy));
         
-        [Required]
-        [JsonPropertyName("published")]
-        public bool IsPublished
+        [JsonPropertyName("createdBy")]
+        public CPrincipal? CreatedBy
         {
-            get => _published.GetValue();
-            set => _published.SetValue(value);
+            get => _createdBy.GetValue();
+            set => _createdBy.SetValue(value);
         }
     
-        private PropertyValue<int> _accessOrdinal = new PropertyValue<int>(nameof(Document), nameof(AccessOrdinal));
+        private PropertyValue<DateTime?> _created = new PropertyValue<DateTime?>(nameof(Document), nameof(Created));
+        
+        [JsonPropertyName("created")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? Created
+        {
+            get => _created.GetValue();
+            set => _created.SetValue(value);
+        }
+    
+        private PropertyValue<CPrincipal?> _modifiedBy = new PropertyValue<CPrincipal?>(nameof(Document), nameof(ModifiedBy));
+        
+        [JsonPropertyName("modifiedBy")]
+        public CPrincipal? ModifiedBy
+        {
+            get => _modifiedBy.GetValue();
+            set => _modifiedBy.SetValue(value);
+        }
+    
+        private PropertyValue<DateTime> _modified = new PropertyValue<DateTime>(nameof(Document), nameof(Modified));
         
         [Required]
-        [JsonPropertyName("accessOrdinal")]
-        public int AccessOrdinal
+        [JsonPropertyName("modified")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Modified
         {
-            get => _accessOrdinal.GetValue();
-            set => _accessOrdinal.SetValue(value);
+            get => _modified.GetValue();
+            set => _modified.SetValue(value);
         }
     
         private PropertyValue<DocumentBody> _documentBody = new PropertyValue<DocumentBody>(nameof(Document), nameof(DocumentBody));
@@ -246,23 +191,18 @@ namespace JetBrains.Space.Client
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-            _containerLinkId.SetAccessPath(path, validateHasBeenSet);
+            _containerInfo.SetAccessPath(path, validateHasBeenSet);
             _title.SetAccessPath(path, validateHasBeenSet);
-            _author.SetAccessPath(path, validateHasBeenSet);
-            _modified.SetAccessPath(path, validateHasBeenSet);
-            _created.SetAccessPath(path, validateHasBeenSet);
-            _modifiedBy.SetAccessPath(path, validateHasBeenSet);
-            _shared.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
             _folderRef.SetAccessPath(path, validateHasBeenSet);
-            _containerInfo.SetAccessPath(path, validateHasBeenSet);
             _bodyType.SetAccessPath(path, validateHasBeenSet);
-            _deleted.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
             _archivedBy.SetAccessPath(path, validateHasBeenSet);
             _archivedAt.SetAccessPath(path, validateHasBeenSet);
-            _published.SetAccessPath(path, validateHasBeenSet);
-            _accessOrdinal.SetAccessPath(path, validateHasBeenSet);
+            _createdBy.SetAccessPath(path, validateHasBeenSet);
+            _created.SetAccessPath(path, validateHasBeenSet);
+            _modifiedBy.SetAccessPath(path, validateHasBeenSet);
+            _modified.SetAccessPath(path, validateHasBeenSet);
             _documentBody.SetAccessPath(path, validateHasBeenSet);
         }
     

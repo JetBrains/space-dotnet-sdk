@@ -56,6 +56,9 @@ namespace JetBrains.Space.Client
         public static IssueMCExtension IssueMCExtension()
             => new IssueMCExtension();
         
+        public static IssueMentionedDetails IssueMentionedDetails(ChannelItemSnapshot message)
+            => new IssueMentionedDetails(message: message);
+        
         public static IssueStatusChangedDetails IssueStatusChangedDetails(IssueStatus oldStatus, IssueStatus newStatus)
             => new IssueStatusChangedDetails(oldStatus: oldStatus, newStatus: newStatus);
         

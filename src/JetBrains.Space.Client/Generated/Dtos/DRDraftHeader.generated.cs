@@ -34,11 +34,12 @@ namespace JetBrains.Space.Client
     {
         public DRDraftHeader() { }
         
-        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
+        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
         {
             Id = id;
             Title = title;
             Author = author;
+            CreatedBy = createdBy;
             Modified = modified;
             Created = created;
             ModifiedBy = modifiedBy;
@@ -81,6 +82,15 @@ namespace JetBrains.Space.Client
         {
             get => _author.GetValue();
             set => _author.SetValue(value);
+        }
+    
+        private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(DRDraftHeader), nameof(CreatedBy));
+        
+        [JsonPropertyName("createdBy")]
+        public CPrincipal? CreatedBy
+        {
+            get => _createdBy.GetValue();
+            set => _createdBy.SetValue(value);
         }
     
         private PropertyValue<DateTime> _modified = new PropertyValue<DateTime>(nameof(DRDraftHeader), nameof(Modified));
@@ -203,6 +213,7 @@ namespace JetBrains.Space.Client
             _id.SetAccessPath(path, validateHasBeenSet);
             _title.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
+            _createdBy.SetAccessPath(path, validateHasBeenSet);
             _modified.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
             _modifiedBy.SetAccessPath(path, validateHasBeenSet);

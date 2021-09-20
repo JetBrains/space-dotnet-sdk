@@ -34,13 +34,14 @@ namespace JetBrains.Space.Client
     {
         public DocumentInContainer() { }
         
-        public DocumentInContainer(string id, bool archived, string containerLinkId, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, bool deleted, bool published, int accessOrdinal, DocumentBody documentBody, TDMemberProfile? author = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null)
+        public DocumentInContainer(string id, bool archived, string containerLinkId, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, bool deleted, int accessOrdinal, DocumentBody documentBody, TDMemberProfile? author = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, bool? published = null)
         {
             Id = id;
             IsArchived = archived;
             ContainerLinkId = containerLinkId;
             Title = title;
             Author = author;
+            CreatedBy = createdBy;
             Modified = modified;
             Created = created;
             ModifiedBy = modifiedBy;
@@ -104,6 +105,15 @@ namespace JetBrains.Space.Client
         {
             get => _author.GetValue();
             set => _author.SetValue(value);
+        }
+    
+        private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(DocumentInContainer), nameof(CreatedBy));
+        
+        [JsonPropertyName("createdBy")]
+        public CPrincipal? CreatedBy
+        {
+            get => _createdBy.GetValue();
+            set => _createdBy.SetValue(value);
         }
     
         private PropertyValue<DateTime> _modified = new PropertyValue<DateTime>(nameof(DocumentInContainer), nameof(Modified));
@@ -213,11 +223,10 @@ namespace JetBrains.Space.Client
             set => _archivedAt.SetValue(value);
         }
     
-        private PropertyValue<bool> _published = new PropertyValue<bool>(nameof(DocumentInContainer), nameof(IsPublished));
+        private PropertyValue<bool?> _published = new PropertyValue<bool?>(nameof(DocumentInContainer), nameof(IsPublished));
         
-        [Required]
         [JsonPropertyName("published")]
-        public bool IsPublished
+        public bool? IsPublished
         {
             get => _published.GetValue();
             set => _published.SetValue(value);
@@ -250,6 +259,7 @@ namespace JetBrains.Space.Client
             _containerLinkId.SetAccessPath(path, validateHasBeenSet);
             _title.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
+            _createdBy.SetAccessPath(path, validateHasBeenSet);
             _modified.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
             _modifiedBy.SetAccessPath(path, validateHasBeenSet);

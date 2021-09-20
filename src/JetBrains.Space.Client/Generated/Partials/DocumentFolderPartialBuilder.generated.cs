@@ -37,9 +37,6 @@ namespace JetBrains.Space.Client.DocumentFolderPartialBuilder
         public static Partial<DocumentFolder> WithIsArchived(this Partial<DocumentFolder> it)
             => it.AddFieldName("archived");
         
-        public static Partial<DocumentFolder> WithContainerLinkId(this Partial<DocumentFolder> it)
-            => it.AddFieldName("containerLinkId");
-        
         public static Partial<DocumentFolder> WithContainerInfo(this Partial<DocumentFolder> it)
             => it.AddFieldName("containerInfo");
         
@@ -55,17 +52,8 @@ namespace JetBrains.Space.Client.DocumentFolderPartialBuilder
         public static Partial<DocumentFolder> WithParent(this Partial<DocumentFolder> it, Func<Partial<DocumentFolder>, Partial<DocumentFolder>> partialBuilder)
             => it.AddFieldName("parent", partialBuilder(new Partial<DocumentFolder>(it)));
         
-        public static Partial<DocumentFolder> WithSubfoldersCount(this Partial<DocumentFolder> it)
-            => it.AddFieldName("subfoldersCount");
-        
-        public static Partial<DocumentFolder> WithDocumentsCount(this Partial<DocumentFolder> it)
-            => it.AddFieldName("documentsCount");
-        
         public static Partial<DocumentFolder> WithName(this Partial<DocumentFolder> it)
             => it.AddFieldName("name");
-        
-        public static Partial<DocumentFolder> WithAlias(this Partial<DocumentFolder> it)
-            => it.AddFieldName("alias");
         
         public static Partial<DocumentFolder> WithCreated(this Partial<DocumentFolder> it)
             => it.AddFieldName("created");

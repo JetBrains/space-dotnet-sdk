@@ -49,6 +49,12 @@ namespace JetBrains.Space.Client.DocumentInContainerPartialBuilder
         public static Partial<DocumentInContainer> WithAuthor(this Partial<DocumentInContainer> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
             => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfile>(it)));
         
+        public static Partial<DocumentInContainer> WithCreatedBy(this Partial<DocumentInContainer> it)
+            => it.AddFieldName("createdBy");
+        
+        public static Partial<DocumentInContainer> WithCreatedBy(this Partial<DocumentInContainer> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
         public static Partial<DocumentInContainer> WithModified(this Partial<DocumentInContainer> it)
             => it.AddFieldName("modified");
         

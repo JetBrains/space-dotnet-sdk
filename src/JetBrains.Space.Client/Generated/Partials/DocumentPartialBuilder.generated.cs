@@ -34,35 +34,14 @@ namespace JetBrains.Space.Client.DocumentPartialBuilder
         public static Partial<Document> WithId(this Partial<Document> it)
             => it.AddFieldName("id");
         
-        public static Partial<Document> WithIsArchived(this Partial<Document> it)
-            => it.AddFieldName("archived");
+        public static Partial<Document> WithContainerInfo(this Partial<Document> it)
+            => it.AddFieldName("containerInfo");
         
-        public static Partial<Document> WithContainerLinkId(this Partial<Document> it)
-            => it.AddFieldName("containerLinkId");
+        public static Partial<Document> WithContainerInfo(this Partial<Document> it, Func<Partial<DocumentContainerInfo>, Partial<DocumentContainerInfo>> partialBuilder)
+            => it.AddFieldName("containerInfo", partialBuilder(new Partial<DocumentContainerInfo>(it)));
         
         public static Partial<Document> WithTitle(this Partial<Document> it)
             => it.AddFieldName("title");
-        
-        public static Partial<Document> WithAuthor(this Partial<Document> it)
-            => it.AddFieldName("author");
-        
-        public static Partial<Document> WithAuthor(this Partial<Document> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<Document> WithModified(this Partial<Document> it)
-            => it.AddFieldName("modified");
-        
-        public static Partial<Document> WithCreated(this Partial<Document> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<Document> WithModifiedBy(this Partial<Document> it)
-            => it.AddFieldName("modifiedBy");
-        
-        public static Partial<Document> WithModifiedBy(this Partial<Document> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("modifiedBy", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<Document> WithIsShared(this Partial<Document> it)
-            => it.AddFieldName("shared");
         
         public static Partial<Document> WithPublicationDetails2(this Partial<Document> it)
             => it.AddFieldName("publicationDetails2");
@@ -76,20 +55,14 @@ namespace JetBrains.Space.Client.DocumentPartialBuilder
         public static Partial<Document> WithFolderRef(this Partial<Document> it, Func<Partial<DocumentFolder>, Partial<DocumentFolder>> partialBuilder)
             => it.AddFieldName("folderRef", partialBuilder(new Partial<DocumentFolder>(it)));
         
-        public static Partial<Document> WithContainerInfo(this Partial<Document> it)
-            => it.AddFieldName("containerInfo");
-        
-        public static Partial<Document> WithContainerInfo(this Partial<Document> it, Func<Partial<DocumentContainerInfo>, Partial<DocumentContainerInfo>> partialBuilder)
-            => it.AddFieldName("containerInfo", partialBuilder(new Partial<DocumentContainerInfo>(it)));
-        
         public static Partial<Document> WithBodyType(this Partial<Document> it)
             => it.AddFieldName("bodyType");
         
         public static Partial<Document> WithBodyType(this Partial<Document> it, Func<Partial<DocumentBodyType>, Partial<DocumentBodyType>> partialBuilder)
             => it.AddFieldName("bodyType", partialBuilder(new Partial<DocumentBodyType>(it)));
         
-        public static Partial<Document> WithIsDeleted(this Partial<Document> it)
-            => it.AddFieldName("deleted");
+        public static Partial<Document> WithIsArchived(this Partial<Document> it)
+            => it.AddFieldName("archived");
         
         public static Partial<Document> WithArchivedBy(this Partial<Document> it)
             => it.AddFieldName("archivedBy");
@@ -100,11 +73,23 @@ namespace JetBrains.Space.Client.DocumentPartialBuilder
         public static Partial<Document> WithArchivedAt(this Partial<Document> it)
             => it.AddFieldName("archivedAt");
         
-        public static Partial<Document> WithIsPublished(this Partial<Document> it)
-            => it.AddFieldName("published");
+        public static Partial<Document> WithCreatedBy(this Partial<Document> it)
+            => it.AddFieldName("createdBy");
         
-        public static Partial<Document> WithAccessOrdinal(this Partial<Document> it)
-            => it.AddFieldName("accessOrdinal");
+        public static Partial<Document> WithCreatedBy(this Partial<Document> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
+        public static Partial<Document> WithCreated(this Partial<Document> it)
+            => it.AddFieldName("created");
+        
+        public static Partial<Document> WithModifiedBy(this Partial<Document> it)
+            => it.AddFieldName("modifiedBy");
+        
+        public static Partial<Document> WithModifiedBy(this Partial<Document> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("modifiedBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
+        public static Partial<Document> WithModified(this Partial<Document> it)
+            => it.AddFieldName("modified");
         
         public static Partial<Document> WithDocumentBody(this Partial<Document> it)
             => it.AddFieldName("documentBody");

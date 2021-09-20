@@ -34,17 +34,13 @@ namespace JetBrains.Space.Client
     {
         public DocumentFolder() { }
         
-        public DocumentFolder(string id, bool archived, string containerLinkId, DocumentContainerInfo containerInfo, int subfoldersCount, int documentsCount, string name, string alias, DateTime created, DateTime updated, List<Document> documents, List<DocumentFolder> subfolders, DocumentFolder? parent = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
+        public DocumentFolder(string id, bool archived, DocumentContainerInfo containerInfo, string name, DateTime created, DateTime updated, List<Document> documents, List<DocumentFolder> subfolders, DocumentFolder? parent = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
         {
             Id = id;
             IsArchived = archived;
-            ContainerLinkId = containerLinkId;
             ContainerInfo = containerInfo;
             Parent = parent;
-            SubfoldersCount = subfoldersCount;
-            DocumentsCount = documentsCount;
             Name = name;
-            Alias = alias;
             Created = created;
             CreatedBy = createdBy;
             Updated = updated;
@@ -73,16 +69,6 @@ namespace JetBrains.Space.Client
             set => _archived.SetValue(value);
         }
     
-        private PropertyValue<string> _containerLinkId = new PropertyValue<string>(nameof(DocumentFolder), nameof(ContainerLinkId));
-        
-        [Required]
-        [JsonPropertyName("containerLinkId")]
-        public string ContainerLinkId
-        {
-            get => _containerLinkId.GetValue();
-            set => _containerLinkId.SetValue(value);
-        }
-    
         private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(DocumentFolder), nameof(ContainerInfo));
         
         [Required]
@@ -102,26 +88,6 @@ namespace JetBrains.Space.Client
             set => _parent.SetValue(value);
         }
     
-        private PropertyValue<int> _subfoldersCount = new PropertyValue<int>(nameof(DocumentFolder), nameof(SubfoldersCount));
-        
-        [Required]
-        [JsonPropertyName("subfoldersCount")]
-        public int SubfoldersCount
-        {
-            get => _subfoldersCount.GetValue();
-            set => _subfoldersCount.SetValue(value);
-        }
-    
-        private PropertyValue<int> _documentsCount = new PropertyValue<int>(nameof(DocumentFolder), nameof(DocumentsCount));
-        
-        [Required]
-        [JsonPropertyName("documentsCount")]
-        public int DocumentsCount
-        {
-            get => _documentsCount.GetValue();
-            set => _documentsCount.SetValue(value);
-        }
-    
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(DocumentFolder), nameof(Name));
         
         [Required]
@@ -130,16 +96,6 @@ namespace JetBrains.Space.Client
         {
             get => _name.GetValue();
             set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _alias = new PropertyValue<string>(nameof(DocumentFolder), nameof(Alias));
-        
-        [Required]
-        [JsonPropertyName("alias")]
-        public string Alias
-        {
-            get => _alias.GetValue();
-            set => _alias.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(DocumentFolder), nameof(Created));
@@ -206,13 +162,9 @@ namespace JetBrains.Space.Client
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
-            _containerLinkId.SetAccessPath(path, validateHasBeenSet);
             _containerInfo.SetAccessPath(path, validateHasBeenSet);
             _parent.SetAccessPath(path, validateHasBeenSet);
-            _subfoldersCount.SetAccessPath(path, validateHasBeenSet);
-            _documentsCount.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
-            _alias.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
             _createdBy.SetAccessPath(path, validateHasBeenSet);
             _updated.SetAccessPath(path, validateHasBeenSet);

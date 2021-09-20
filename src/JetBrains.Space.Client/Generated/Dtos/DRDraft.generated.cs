@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public DRDraft() { }
         
-        public DRDraft(string id, string title, DateTime modified, bool shared, bool published, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBody documentBody, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
+        public DRDraft(string id, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBody documentBody, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, CPrincipal? createdBy = null, bool? published = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
         {
             Id = id;
             Title = title;
@@ -47,6 +47,7 @@ namespace JetBrains.Space.Client
             ArchivedAt = archivedAt;
             PublicationDetails2 = publicationDetails2;
             Author = author;
+            CreatedBy = createdBy;
             IsPublished = published;
             Folder = folder;
             FolderRef = folderRef;
@@ -164,11 +165,19 @@ namespace JetBrains.Space.Client
             set => _author.SetValue(value);
         }
     
-        private PropertyValue<bool> _published = new PropertyValue<bool>(nameof(DRDraft), nameof(IsPublished));
+        private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(DRDraft), nameof(CreatedBy));
         
-        [Required]
+        [JsonPropertyName("createdBy")]
+        public CPrincipal? CreatedBy
+        {
+            get => _createdBy.GetValue();
+            set => _createdBy.SetValue(value);
+        }
+    
+        private PropertyValue<bool?> _published = new PropertyValue<bool?>(nameof(DRDraft), nameof(IsPublished));
+        
         [JsonPropertyName("published")]
-        public bool IsPublished
+        public bool? IsPublished
         {
             get => _published.GetValue();
             set => _published.SetValue(value);
@@ -265,6 +274,7 @@ namespace JetBrains.Space.Client
             _archivedAt.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
+            _createdBy.SetAccessPath(path, validateHasBeenSet);
             _published.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
             _folderRef.SetAccessPath(path, validateHasBeenSet);

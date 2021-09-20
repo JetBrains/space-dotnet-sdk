@@ -76,6 +76,12 @@ namespace JetBrains.Space.Client.DRDraftPartialBuilder
         public static Partial<DRDraft> WithAuthor(this Partial<DRDraft> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
             => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfile>(it)));
         
+        public static Partial<DRDraft> WithCreatedBy(this Partial<DRDraft> it)
+            => it.AddFieldName("createdBy");
+        
+        public static Partial<DRDraft> WithCreatedBy(this Partial<DRDraft> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
         public static Partial<DRDraft> WithIsPublished(this Partial<DRDraft> it)
             => it.AddFieldName("published");
         
