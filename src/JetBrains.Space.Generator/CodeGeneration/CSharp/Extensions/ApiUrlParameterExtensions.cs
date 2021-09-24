@@ -15,7 +15,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
         public static string ToCSharpClassName(this ApiUrlParameterOption subject)
             => CSharpIdentifier.ForClassOrNamespace(subject.OptionName);
         
-        public static string ToCSharpFactoryMethodName(this ApiUrlParameterOption subject, ApiUrlParameter parent)
+        public static string ToCSharpFactoryMethodName(this ApiUrlParameterOption subject, string typeNameForUrlParameterOption, ApiUrlParameter parent)
         {
             var classNameForParent = CSharpIdentifier.ForClassOrNamespace(parent.Name
                 .Split('.', StringSplitOptions.RemoveEmptyEntries).Last());
@@ -25,6 +25,15 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
             var factoryMethodName = CSharpIdentifier.ForClassOrNamespace(
                 classNameForSubject.Replace(classNameForParent, string.Empty));
 
+            if (factoryMethodName == typeNameForUrlParameterOption)
+            {
+                factoryMethodName = factoryMethodName.Replace("Identifier", string.Empty);
+            }
+            if (factoryMethodName == typeNameForUrlParameterOption)
+            {
+                factoryMethodName = $"For{factoryMethodName}";
+            }
+            
             return factoryMethodName;
         }
     }

@@ -32,19 +32,19 @@ namespace JetBrains.Space.Client
     [JsonConverter(typeof(UrlParameterConverter))]
     public abstract class CFEntityTypeIdentifier : IUrlParameter
     {
-        public static CFEntityTypeIdentifier CFAbsenceEntityType
+        public static CFEntityTypeIdentifier ForCFAbsenceEntityType
             => new CFAbsenceEntityType();
         
-        public static CFEntityTypeIdentifier CFIssueTrackerEntityType(IssueTrackerIdentifier issueTracker)
+        public static CFEntityTypeIdentifier ForCFIssueTrackerEntityType(IssueTrackerIdentifier issueTracker)
             => new CFIssueTrackerEntityType(issueTracker);
         
-        public static CFEntityTypeIdentifier CFMembershipEntityType
+        public static CFEntityTypeIdentifier ForCFMembershipEntityType
             => new CFMembershipEntityType();
         
-        public static CFEntityTypeIdentifier CFProfileEntityType
+        public static CFEntityTypeIdentifier ForCFProfileEntityType
             => new CFProfileEntityType();
         
-        public static CFEntityTypeIdentifier CFTeamEntityType
+        public static CFEntityTypeIdentifier ForCFTeamEntityType
             => new CFTeamEntityType();
         
         private class CFAbsenceEntityType : CFEntityTypeIdentifier

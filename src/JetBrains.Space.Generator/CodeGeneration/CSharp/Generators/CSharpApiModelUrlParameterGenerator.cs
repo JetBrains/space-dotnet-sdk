@@ -62,7 +62,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             var builder = new StringBuilder();
             
             var typeNameForUrlParameterOption = apiUrlParameterOption.ToCSharpClassName();
-            var factoryMethodNameForUrlParameterOption = apiUrlParameterOption.ToCSharpFactoryMethodName(apiUrlParameter);
+            var factoryMethodNameForUrlParameterOption = apiUrlParameterOption.ToCSharpFactoryMethodName(typeNameForUrlParameterOption, apiUrlParameter);
             
             // Option method deprecation
             if (apiUrlParameterOption.Deprecation != null)
