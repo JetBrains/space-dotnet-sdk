@@ -76,8 +76,8 @@ namespace JetBrains.Space.Client.CustomFieldsForTypeKeyFieldsForIdPatchRequestPa
         public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithCfParameters(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
             => it.AddFieldName("cfParameters");
         
-        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithCfParameters(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<CFParametersInput>, Partial<CFParametersInput>> partialBuilder)
-            => it.AddFieldName("cfParameters", partialBuilder(new Partial<CFParametersInput>(it)));
+        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithCfParameters(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<CFUpdateParameters>, Partial<CFUpdateParameters>> partialBuilder)
+            => it.AddFieldName("cfParameters", partialBuilder(new Partial<CFUpdateParameters>(it)));
         
         public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
             => it.AddFieldName("scope");

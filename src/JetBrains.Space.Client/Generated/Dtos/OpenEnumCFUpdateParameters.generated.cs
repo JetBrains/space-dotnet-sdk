@@ -29,40 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class ExternalEndpoint
-         : IPropagatePropertyAccessPath
+    public sealed class OpenEnumCFUpdateParameters
+         : CFUpdateParameters, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public ExternalEndpoint() { }
+        [JsonPropertyName("className")]
+        public  string? ClassName => "OpenEnumCFUpdateParameters";
         
-        public ExternalEndpoint(bool sslVerification, string? url = null)
+        public OpenEnumCFUpdateParameters() { }
+        
+        public OpenEnumCFUpdateParameters(List<CFEnumValueModification> modifications)
         {
-            Url = url;
-            IsSslVerification = sslVerification;
+            Modifications = modifications;
         }
         
-        private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(ExternalEndpoint), nameof(Url));
-        
-        [JsonPropertyName("url")]
-        public string? Url
-        {
-            get => _url.GetValue();
-            set => _url.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _sslVerification = new PropertyValue<bool>(nameof(ExternalEndpoint), nameof(IsSslVerification));
+        private PropertyValue<List<CFEnumValueModification>> _modifications = new PropertyValue<List<CFEnumValueModification>>(nameof(OpenEnumCFUpdateParameters), nameof(Modifications), new List<CFEnumValueModification>());
         
         [Required]
-        [JsonPropertyName("sslVerification")]
-        public bool IsSslVerification
+        [JsonPropertyName("modifications")]
+        public List<CFEnumValueModification> Modifications
         {
-            get => _sslVerification.GetValue();
-            set => _sslVerification.SetValue(value);
+            get => _modifications.GetValue();
+            set => _modifications.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _url.SetAccessPath(path, validateHasBeenSet);
-            _sslVerification.SetAccessPath(path, validateHasBeenSet);
+            _modifications.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

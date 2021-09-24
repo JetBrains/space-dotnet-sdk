@@ -50,7 +50,7 @@ namespace JetBrains.Space.Client
         public static MenuActionPayload MenuActionPayload(string extensionName, MenuActionContext context, string clientId, string userId, string? verificationToken = null)
             => new MenuActionPayload(extensionName: extensionName, context: context, clientId: clientId, userId: userId, verificationToken: verificationToken);
         
-        public static MessageActionPayload MessageActionPayload(string actionId, string actionValue, MessageContext message, string clientId, string? userId = null, string? verificationToken = null)
+        public static MessageActionPayload MessageActionPayload(string actionId, string actionValue, MessageContext message, string clientId, string userId, string? verificationToken = null)
             => new MessageActionPayload(actionId: actionId, actionValue: actionValue, message: message, clientId: clientId, userId: userId, verificationToken: verificationToken);
         
         public static MessagePayload MessagePayload(MessageContext message, string clientId, string userId, string? verificationToken = null)

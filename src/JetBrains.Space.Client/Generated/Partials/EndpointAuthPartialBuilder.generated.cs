@@ -31,11 +31,20 @@ namespace JetBrains.Space.Client.EndpointAuthPartialBuilder
 {
     public static class EndpointAuthPartialExtensions
     {
-        public static Partial<EndpointAuth> WithAuth(this Partial<EndpointAuth> it)
-            => it.AddFieldName("auth");
+        public static Partial<EndpointAuth> WithAppLevelAuth(this Partial<EndpointAuth> it)
+            => it.AddFieldName("appLevelAuth");
         
-        public static Partial<EndpointAuth> WithAuth(this Partial<EndpointAuth> it, Func<Partial<EndpointAuthRead>, Partial<EndpointAuthRead>> partialBuilder)
-            => it.AddFieldName("auth", partialBuilder(new Partial<EndpointAuthRead>(it)));
+        public static Partial<EndpointAuth> WithAppLevelAuth(this Partial<EndpointAuth> it, Func<Partial<EndpointAuthRead>, Partial<EndpointAuthRead>> partialBuilder)
+            => it.AddFieldName("appLevelAuth", partialBuilder(new Partial<EndpointAuthRead>(it)));
+        
+        public static Partial<EndpointAuth> WithSslKeystore(this Partial<EndpointAuth> it)
+            => it.AddFieldName("sslKeystore");
+        
+        public static Partial<EndpointAuth> WithSslKeystore(this Partial<EndpointAuth> it, Func<Partial<SSLKeystoreEndpointAuth>, Partial<SSLKeystoreEndpointAuth>> partialBuilder)
+            => it.AddFieldName("sslKeystore", partialBuilder(new Partial<SSLKeystoreEndpointAuth>(it)));
+        
+        public static Partial<EndpointAuth> WithIsVerificationToken(this Partial<EndpointAuth> it)
+            => it.AddFieldName("verificationToken");
         
     }
     

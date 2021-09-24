@@ -29,34 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class EndpointAuthReadSSLKeystore
-         : EndpointAuthRead, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonConverter(typeof(UrlParameterConverter))]
+    public abstract class TeamIdentifier : IUrlParameter
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "EndpointAuthRead.SSLKeystore";
+        public static TeamIdentifier Id(string id)
+            => new TeamIdentifierId(id);
         
-        public EndpointAuthReadSSLKeystore() { }
+        public static TeamIdentifier Name(string name)
+            => new TeamIdentifierName(name);
         
-        public EndpointAuthReadSSLKeystore(string sslKeystore)
+        private class TeamIdentifierId : TeamIdentifier
         {
-            SslKeystore = sslKeystore;
+            private readonly string _id;
+            
+            public TeamIdentifierId(string id)
+            {
+                _id = id;
+            }
+            
+            public override string ToString()
+                => $"id:{_id}";
         }
         
-        private PropertyValue<string> _sslKeystore = new PropertyValue<string>(nameof(EndpointAuthReadSSLKeystore), nameof(SslKeystore));
+        private class TeamIdentifierName : TeamIdentifier
+        {
+            private readonly string _name;
+            
+            public TeamIdentifierName(string name)
+            {
+                _name = name;
+            }
+            
+            public override string ToString()
+                => $"name:{_name}";
+        }
         
-        [Required]
-        [JsonPropertyName("sslKeystore")]
-        public string SslKeystore
-        {
-            get => _sslKeystore.GetValue();
-            set => _sslKeystore.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _sslKeystore.SetAccessPath(path, validateHasBeenSet);
-        }
-    
     }
     
 }

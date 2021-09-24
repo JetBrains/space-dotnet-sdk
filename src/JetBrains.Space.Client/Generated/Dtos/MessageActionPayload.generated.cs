@@ -37,7 +37,7 @@ namespace JetBrains.Space.Client
         
         public MessageActionPayload() { }
         
-        public MessageActionPayload(string actionId, string actionValue, MessageContext message, string clientId, string? userId = null, string? verificationToken = null)
+        public MessageActionPayload(string actionId, string actionValue, MessageContext message, string clientId, string userId, string? verificationToken = null)
         {
             ActionId = actionId;
             ActionValue = actionValue;
@@ -87,10 +87,11 @@ namespace JetBrains.Space.Client
             set => _clientId.SetValue(value);
         }
     
-        private PropertyValue<string?> _userId = new PropertyValue<string?>(nameof(MessageActionPayload), nameof(UserId));
+        private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MessageActionPayload), nameof(UserId));
         
+        [Required]
         [JsonPropertyName("userId")]
-        public string? UserId
+        public string UserId
         {
             get => _userId.GetValue();
             set => _userId.SetValue(value);

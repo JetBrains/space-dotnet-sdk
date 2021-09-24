@@ -45,17 +45,11 @@ namespace JetBrains.Space.Client
         public static EndpointAuthReadPublicKeySignature PublicKeySignature()
             => new EndpointAuthReadPublicKeySignature();
         
-        public static EndpointAuthReadSSLKeystore SSLKeystore(string sslKeystore)
-            => new EndpointAuthReadSSLKeystore(sslKeystore: sslKeystore);
-        
         public static EndpointAuthReadSigningKey SigningKey()
             => new EndpointAuthReadSigningKey();
         
         public static EndpointAuthReadUnknown Unknown()
             => new EndpointAuthReadUnknown();
-        
-        public static EndpointAuthReadVerificationToken VerificationToken()
-            => new EndpointAuthReadVerificationToken();
         
         public EndpointAuthRead() { }
         

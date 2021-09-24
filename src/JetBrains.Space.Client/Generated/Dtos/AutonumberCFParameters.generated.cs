@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client
 {
     public sealed class AutonumberCFParameters
-         : CFParameters, CFParametersInput, IClassNameConvertible, IPropagatePropertyAccessPath
+         : CFCreateParameters, CFParameters, CFUpdateParameters, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public  string? ClassName => "AutonumberCFParameters";

@@ -35,6 +35,9 @@ namespace JetBrains.Space.Client
         public static ChecklistDocumentBody Checklist(Checklist checklist, bool canConvertItemsToIssues)
             => new ChecklistDocumentBody(checklist: checklist, canConvertItemsToIssues: canConvertItemsToIssues);
         
+        public static FileDocumentBody File()
+            => new FileDocumentBody();
+        
         public static InaccessibleDocumentBody Inaccessible(DocumentBodyType docBodyType, string docBodyId)
             => new InaccessibleDocumentBody(docBodyType: docBodyType, docBodyId: docBodyId);
         

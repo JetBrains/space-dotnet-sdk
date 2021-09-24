@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client
 {
     public sealed class ContactCFParameters
-         : CFParameters, CFParametersInput, IClassNameConvertible, IPropagatePropertyAccessPath
+         : CFCreateParameters, CFParameters, CFUpdateParameters, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public  string? ClassName => "ContactCFParameters";

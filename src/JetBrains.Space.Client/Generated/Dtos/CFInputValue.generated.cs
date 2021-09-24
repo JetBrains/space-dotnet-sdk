@@ -56,8 +56,14 @@ namespace JetBrains.Space.Client
         public static DocumentListCFInputValue DocumentList(List<string> documents)
             => new DocumentListCFInputValue(documents: documents);
         
+        public static EnumCFInputValue Enum(CFEnumValueIdentifier? enumValueIdentifier = null)
+            => new EnumCFInputValue(enumValueIdentifier: enumValueIdentifier);
+        
         public static EnumCFValue EnumCFValue(EnumValueData? value = null)
             => new EnumCFValue(value: value);
+        
+        public static EnumListCFInputValue EnumList(List<CFEnumValueIdentifier> enumValueIdentifiers)
+            => new EnumListCFInputValue(enumValueIdentifiers: enumValueIdentifiers);
         
         public static EnumListCFValue EnumListCFValue(List<EnumValueData> values)
             => new EnumListCFValue(values: values);
@@ -80,8 +86,14 @@ namespace JetBrains.Space.Client
         public static LocationCFInputValue Location(string? location = null)
             => new LocationCFInputValue(location: location);
         
+        public static OpenEnumCFInputValue OpenEnum(CFEnumValueIdentifier? enumValueIdentifier = null)
+            => new OpenEnumCFInputValue(enumValueIdentifier: enumValueIdentifier);
+        
         public static OpenEnumCFValue OpenEnumCFValue(EnumValueData? value = null)
             => new OpenEnumCFValue(value: value);
+        
+        public static OpenEnumListCFInputValue OpenEnumList(List<CFEnumValueIdentifier> enumValueIdentifiers)
+            => new OpenEnumListCFInputValue(enumValueIdentifiers: enumValueIdentifiers);
         
         public static OpenEnumListCFValue OpenEnumListCFValue(List<EnumValueData> values)
             => new OpenEnumListCFValue(values: values);

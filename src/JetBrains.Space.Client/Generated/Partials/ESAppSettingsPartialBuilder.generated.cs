@@ -49,29 +49,17 @@ namespace JetBrains.Space.Client.ESAppSettingsPartialBuilder
         public static Partial<ESAppSettings> WithImplicitFlowRedirectURIs(this Partial<ESAppSettings> it)
             => it.AddFieldName("implicitFlowRedirectURIs");
         
-        public static Partial<ESAppSettings> WithEndpointURI(this Partial<ESAppSettings> it)
-            => it.AddFieldName("endpointURI");
+        public static Partial<ESAppSettings> WithEndpoint(this Partial<ESAppSettings> it)
+            => it.AddFieldName("endpoint");
         
-        public static Partial<ESAppSettings> WithIsHasVerificationToken(this Partial<ESAppSettings> it)
-            => it.AddFieldName("hasVerificationToken");
+        public static Partial<ESAppSettings> WithEndpoint(this Partial<ESAppSettings> it, Func<Partial<Endpoint>, Partial<Endpoint>> partialBuilder)
+            => it.AddFieldName("endpoint", partialBuilder(new Partial<Endpoint>(it)));
         
-        public static Partial<ESAppSettings> WithIsHasSigningKey(this Partial<ESAppSettings> it)
-            => it.AddFieldName("hasSigningKey");
+        public static Partial<ESAppSettings> WithEndpointAuth(this Partial<ESAppSettings> it)
+            => it.AddFieldName("endpointAuth");
         
-        public static Partial<ESAppSettings> WithIsHasPublicKeySignature(this Partial<ESAppSettings> it)
-            => it.AddFieldName("hasPublicKeySignature");
-        
-        public static Partial<ESAppSettings> WithIsEndpointSslVerification(this Partial<ESAppSettings> it)
-            => it.AddFieldName("endpointSslVerification");
-        
-        public static Partial<ESAppSettings> WithBasicAuthUsername(this Partial<ESAppSettings> it)
-            => it.AddFieldName("basicAuthUsername");
-        
-        public static Partial<ESAppSettings> WithIsHasBearerToken(this Partial<ESAppSettings> it)
-            => it.AddFieldName("hasBearerToken");
-        
-        public static Partial<ESAppSettings> WithSslKeystoreAuth(this Partial<ESAppSettings> it)
-            => it.AddFieldName("sslKeystoreAuth");
+        public static Partial<ESAppSettings> WithEndpointAuth(this Partial<ESAppSettings> it, Func<Partial<EndpointAuth>, Partial<EndpointAuth>> partialBuilder)
+            => it.AddFieldName("endpointAuth", partialBuilder(new Partial<EndpointAuth>(it)));
         
     }
     

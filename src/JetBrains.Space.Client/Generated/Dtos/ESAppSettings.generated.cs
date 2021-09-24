@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public ESAppSettings() { }
         
-        public ESAppSettings(bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null)
+        public ESAppSettings(Endpoint endpoint, EndpointAuth endpointAuth, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null)
         {
             IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled;
             IsCodeFlowEnabled = codeFlowEnabled;
@@ -42,14 +42,8 @@ namespace JetBrains.Space.Client
             IsPkceRequired = pkceRequired;
             IsImplicitFlowEnabled = implicitFlowEnabled;
             ImplicitFlowRedirectURIs = implicitFlowRedirectURIs;
-            EndpointURI = endpointURI;
-            IsHasVerificationToken = hasVerificationToken;
-            IsHasSigningKey = hasSigningKey;
-            IsHasPublicKeySignature = hasPublicKeySignature;
-            IsEndpointSslVerification = endpointSslVerification;
-            BasicAuthUsername = basicAuthUsername;
-            IsHasBearerToken = hasBearerToken;
-            SslKeystoreAuth = sslKeystoreAuth;
+            Endpoint = endpoint;
+            EndpointAuth = endpointAuth;
         }
         
         private PropertyValue<bool?> _clientCredentialsFlowEnabled = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsClientCredentialsFlowEnabled));
@@ -106,76 +100,24 @@ namespace JetBrains.Space.Client
             set => _implicitFlowRedirectURIs.SetValue(value);
         }
     
-        private PropertyValue<string?> _endpointURI = new PropertyValue<string?>(nameof(ESAppSettings), nameof(EndpointURI));
+        private PropertyValue<Endpoint> _endpoint = new PropertyValue<Endpoint>(nameof(ESAppSettings), nameof(Endpoint));
         
-        [JsonPropertyName("endpointURI")]
-        public string? EndpointURI
+        [Required]
+        [JsonPropertyName("endpoint")]
+        public Endpoint Endpoint
         {
-            get => _endpointURI.GetValue();
-            set => _endpointURI.SetValue(value);
+            get => _endpoint.GetValue();
+            set => _endpoint.SetValue(value);
         }
     
-        private PropertyValue<bool?> _hasVerificationToken = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsHasVerificationToken));
+        private PropertyValue<EndpointAuth> _endpointAuth = new PropertyValue<EndpointAuth>(nameof(ESAppSettings), nameof(EndpointAuth));
         
-        [JsonPropertyName("hasVerificationToken")]
-        public bool? IsHasVerificationToken
+        [Required]
+        [JsonPropertyName("endpointAuth")]
+        public EndpointAuth EndpointAuth
         {
-            get => _hasVerificationToken.GetValue();
-            set => _hasVerificationToken.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _hasSigningKey = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsHasSigningKey));
-        
-        [JsonPropertyName("hasSigningKey")]
-        public bool? IsHasSigningKey
-        {
-            get => _hasSigningKey.GetValue();
-            set => _hasSigningKey.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _hasPublicKeySignature = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsHasPublicKeySignature));
-        
-        [JsonPropertyName("hasPublicKeySignature")]
-        public bool? IsHasPublicKeySignature
-        {
-            get => _hasPublicKeySignature.GetValue();
-            set => _hasPublicKeySignature.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _endpointSslVerification = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsEndpointSslVerification));
-        
-        [JsonPropertyName("endpointSslVerification")]
-        public bool? IsEndpointSslVerification
-        {
-            get => _endpointSslVerification.GetValue();
-            set => _endpointSslVerification.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _basicAuthUsername = new PropertyValue<string?>(nameof(ESAppSettings), nameof(BasicAuthUsername));
-        
-        [JsonPropertyName("basicAuthUsername")]
-        public string? BasicAuthUsername
-        {
-            get => _basicAuthUsername.GetValue();
-            set => _basicAuthUsername.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _hasBearerToken = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsHasBearerToken));
-        
-        [JsonPropertyName("hasBearerToken")]
-        public bool? IsHasBearerToken
-        {
-            get => _hasBearerToken.GetValue();
-            set => _hasBearerToken.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _sslKeystoreAuth = new PropertyValue<string?>(nameof(ESAppSettings), nameof(SslKeystoreAuth));
-        
-        [JsonPropertyName("sslKeystoreAuth")]
-        public string? SslKeystoreAuth
-        {
-            get => _sslKeystoreAuth.GetValue();
-            set => _sslKeystoreAuth.SetValue(value);
+            get => _endpointAuth.GetValue();
+            set => _endpointAuth.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
@@ -186,14 +128,8 @@ namespace JetBrains.Space.Client
             _pkceRequired.SetAccessPath(path, validateHasBeenSet);
             _implicitFlowEnabled.SetAccessPath(path, validateHasBeenSet);
             _implicitFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
-            _endpointURI.SetAccessPath(path, validateHasBeenSet);
-            _hasVerificationToken.SetAccessPath(path, validateHasBeenSet);
-            _hasSigningKey.SetAccessPath(path, validateHasBeenSet);
-            _hasPublicKeySignature.SetAccessPath(path, validateHasBeenSet);
-            _endpointSslVerification.SetAccessPath(path, validateHasBeenSet);
-            _basicAuthUsername.SetAccessPath(path, validateHasBeenSet);
-            _hasBearerToken.SetAccessPath(path, validateHasBeenSet);
-            _sslKeystoreAuth.SetAccessPath(path, validateHasBeenSet);
+            _endpoint.SetAccessPath(path, validateHasBeenSet);
+            _endpointAuth.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

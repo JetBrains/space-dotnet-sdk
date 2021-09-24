@@ -76,6 +76,15 @@ namespace JetBrains.Space.Client.ApplicationsForApplicationPatchRequestPartialBu
         public static Partial<ApplicationsForApplicationPatchRequest> WithIsHasSigningKey(this Partial<ApplicationsForApplicationPatchRequest> it)
             => it.AddFieldName("hasSigningKey");
         
+        public static Partial<ApplicationsForApplicationPatchRequest> WithAppLevelAuth(this Partial<ApplicationsForApplicationPatchRequest> it)
+            => it.AddFieldName("appLevelAuth");
+        
+        public static Partial<ApplicationsForApplicationPatchRequest> WithAppLevelAuth(this Partial<ApplicationsForApplicationPatchRequest> it, Func<Partial<EndpointAppLevelAuthUpdateType>, Partial<EndpointAppLevelAuthUpdateType>> partialBuilder)
+            => it.AddFieldName("appLevelAuth", partialBuilder(new Partial<EndpointAppLevelAuthUpdateType>(it)));
+        
+        public static Partial<ApplicationsForApplicationPatchRequest> WithSslKeystoreAuth(this Partial<ApplicationsForApplicationPatchRequest> it)
+            => it.AddFieldName("sslKeystoreAuth");
+        
         public static Partial<ApplicationsForApplicationPatchRequest> WithBasicAuthUsername(this Partial<ApplicationsForApplicationPatchRequest> it)
             => it.AddFieldName("basicAuthUsername");
         
@@ -84,9 +93,6 @@ namespace JetBrains.Space.Client.ApplicationsForApplicationPatchRequestPartialBu
         
         public static Partial<ApplicationsForApplicationPatchRequest> WithBearerAuthToken(this Partial<ApplicationsForApplicationPatchRequest> it)
             => it.AddFieldName("bearerAuthToken");
-        
-        public static Partial<ApplicationsForApplicationPatchRequest> WithSslKeystoreAuth(this Partial<ApplicationsForApplicationPatchRequest> it)
-            => it.AddFieldName("sslKeystoreAuth");
         
     }
     

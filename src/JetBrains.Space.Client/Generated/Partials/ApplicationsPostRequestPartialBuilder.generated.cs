@@ -70,6 +70,15 @@ namespace JetBrains.Space.Client.ApplicationsPostRequestPartialBuilder
         public static Partial<ApplicationsPostRequest> WithIsEndpointSslVerification(this Partial<ApplicationsPostRequest> it)
             => it.AddFieldName("endpointSslVerification");
         
+        public static Partial<ApplicationsPostRequest> WithAppLevelAuth(this Partial<ApplicationsPostRequest> it)
+            => it.AddFieldName("appLevelAuth");
+        
+        public static Partial<ApplicationsPostRequest> WithAppLevelAuth(this Partial<ApplicationsPostRequest> it, Func<Partial<EndpointAuthCreate>, Partial<EndpointAuthCreate>> partialBuilder)
+            => it.AddFieldName("appLevelAuth", partialBuilder(new Partial<EndpointAuthCreate>(it)));
+        
+        public static Partial<ApplicationsPostRequest> WithSslKeystoreAuth(this Partial<ApplicationsPostRequest> it)
+            => it.AddFieldName("sslKeystoreAuth");
+        
         public static Partial<ApplicationsPostRequest> WithIsHasVerificationToken(this Partial<ApplicationsPostRequest> it)
             => it.AddFieldName("hasVerificationToken");
         
@@ -87,9 +96,6 @@ namespace JetBrains.Space.Client.ApplicationsPostRequestPartialBuilder
         
         public static Partial<ApplicationsPostRequest> WithBearerAuthToken(this Partial<ApplicationsPostRequest> it)
             => it.AddFieldName("bearerAuthToken");
-        
-        public static Partial<ApplicationsPostRequest> WithSslKeystoreAuth(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("sslKeystoreAuth");
         
     }
     

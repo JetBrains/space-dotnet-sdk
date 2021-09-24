@@ -34,24 +34,47 @@ namespace JetBrains.Space.Client
     {
         public EndpointAuth() { }
         
-        public EndpointAuth(List<EndpointAuthRead> auth)
+        public EndpointAuth(EndpointAuthRead appLevelAuth, bool verificationToken, SSLKeystoreEndpointAuth? sslKeystore = null)
         {
-            Auth = auth;
+            AppLevelAuth = appLevelAuth;
+            SslKeystore = sslKeystore;
+            IsVerificationToken = verificationToken;
         }
         
-        private PropertyValue<List<EndpointAuthRead>> _auth = new PropertyValue<List<EndpointAuthRead>>(nameof(EndpointAuth), nameof(Auth), new List<EndpointAuthRead>());
+        private PropertyValue<EndpointAuthRead> _appLevelAuth = new PropertyValue<EndpointAuthRead>(nameof(EndpointAuth), nameof(AppLevelAuth));
         
         [Required]
-        [JsonPropertyName("auth")]
-        public List<EndpointAuthRead> Auth
+        [JsonPropertyName("appLevelAuth")]
+        public EndpointAuthRead AppLevelAuth
         {
-            get => _auth.GetValue();
-            set => _auth.SetValue(value);
+            get => _appLevelAuth.GetValue();
+            set => _appLevelAuth.SetValue(value);
+        }
+    
+        private PropertyValue<SSLKeystoreEndpointAuth?> _sslKeystore = new PropertyValue<SSLKeystoreEndpointAuth?>(nameof(EndpointAuth), nameof(SslKeystore));
+        
+        [JsonPropertyName("sslKeystore")]
+        public SSLKeystoreEndpointAuth? SslKeystore
+        {
+            get => _sslKeystore.GetValue();
+            set => _sslKeystore.SetValue(value);
+        }
+    
+        private PropertyValue<bool> _verificationToken = new PropertyValue<bool>(nameof(EndpointAuth), nameof(IsVerificationToken));
+        
+        [Required]
+        [JsonPropertyName("verificationToken")]
+        public bool IsVerificationToken
+        {
+            get => _verificationToken.GetValue();
+            set => _verificationToken.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _auth.SetAccessPath(path, validateHasBeenSet);
+            _appLevelAuth.SetAccessPath(path, validateHasBeenSet);
+            _sslKeystore.SetAccessPath(path, validateHasBeenSet);
+            _verificationToken.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public WebhookRecord() { }
         
-        public WebhookRecord(string id, bool archived, ESApp app, List<Subscription> subscriptions, string name, bool useAppEndpoint, ExternalEndpoint endpoint, bool useAppEndpointAuth, EndpointAuth endpointAuth, bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? description = null, WebhookDeliveryStatus? status = null)
+        public WebhookRecord(string id, bool archived, ESApp app, List<Subscription> subscriptions, string name, bool useAppEndpoint, Endpoint endpoint, bool useAppEndpointAuth, EndpointAuth endpointAuth, bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? description = null, WebhookDeliveryStatus? status = null)
         {
             Id = id;
             IsArchived = archived;
@@ -121,11 +121,11 @@ namespace JetBrains.Space.Client
             set => _useAppEndpoint.SetValue(value);
         }
     
-        private PropertyValue<ExternalEndpoint> _endpoint = new PropertyValue<ExternalEndpoint>(nameof(WebhookRecord), nameof(Endpoint));
+        private PropertyValue<Endpoint> _endpoint = new PropertyValue<Endpoint>(nameof(WebhookRecord), nameof(Endpoint));
         
         [Required]
         [JsonPropertyName("endpoint")]
-        public ExternalEndpoint Endpoint
+        public Endpoint Endpoint
         {
             get => _endpoint.GetValue();
             set => _endpoint.SetValue(value);

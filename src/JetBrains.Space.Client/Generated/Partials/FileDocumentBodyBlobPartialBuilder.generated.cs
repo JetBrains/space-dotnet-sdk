@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client.FileDocumentBodyBlobPartialBuilder
 {
-    public sealed class EndpointAuthReadVerificationToken
-         : EndpointAuthRead, IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class FileDocumentBodyBlobPartialExtensions
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "EndpointAuthRead.VerificationToken";
+        public static Partial<FileDocumentBodyBlob> WithVersionId(this Partial<FileDocumentBodyBlob> it)
+            => it.AddFieldName("versionId");
         
-        public EndpointAuthReadVerificationToken() { }
+        public static Partial<FileDocumentBodyBlob> WithMediaType(this Partial<FileDocumentBodyBlob> it)
+            => it.AddFieldName("mediaType");
         
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
+        public static Partial<FileDocumentBodyBlob> WithFileSize(this Partial<FileDocumentBodyBlob> it)
+            => it.AddFieldName("fileSize");
+        
     }
     
 }

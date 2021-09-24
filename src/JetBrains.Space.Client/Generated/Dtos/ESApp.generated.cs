@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public ESApp() { }
         
-        public ESApp(string id, string clientId, string name, bool archived, List<ApplicationUnfurlDomain> domains, List<ApplicationUnfurlPattern> patterns, TDMemberProfile? owner = null, string? picture = null, string? defaultExternalPicture = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null, ESAppSettings? settings = null)
+        public ESApp(string id, string clientId, string name, bool archived, List<ApplicationUnfurlDomain> domains, List<ApplicationUnfurlPattern> patterns, ESAppSettings settings, TDMemberProfile? owner = null, string? picture = null, string? defaultExternalPicture = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null)
         {
             Id = id;
             Owner = owner;
@@ -340,10 +340,11 @@ namespace JetBrains.Space.Client
             set => _patterns.SetValue(value);
         }
     
-        private PropertyValue<ESAppSettings?> _settings = new PropertyValue<ESAppSettings?>(nameof(ESApp), nameof(Settings));
+        private PropertyValue<ESAppSettings> _settings = new PropertyValue<ESAppSettings>(nameof(ESApp), nameof(Settings));
         
+        [Required]
         [JsonPropertyName("settings")]
-        public ESAppSettings? Settings
+        public ESAppSettings Settings
         {
             get => _settings.GetValue();
             set => _settings.SetValue(value);

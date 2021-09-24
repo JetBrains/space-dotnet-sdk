@@ -46,7 +46,7 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ESApp> CreateApplicationAsync(string name, bool endpointSslVerification = true, bool hasVerificationToken = false, bool hasSigningKey = true, bool hasPublicKeySignature = true, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ESApp> CreateApplicationAsync(string name, bool endpointSslVerification = true, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -67,13 +67,14 @@ namespace JetBrains.Space.Client
                     ImplicitFlowRedirectURIs = implicitFlowRedirectURIs,
                     EndpointUri = endpointUri,
                     IsEndpointSslVerification = endpointSslVerification,
+                    AppLevelAuth = appLevelAuth,
+                    SslKeystoreAuth = sslKeystoreAuth,
                     IsHasVerificationToken = hasVerificationToken,
                     IsHasSigningKey = hasSigningKey,
                     IsHasPublicKeySignature = hasPublicKeySignature,
                     BasicAuthUsername = basicAuthUsername,
                     BasicAuthPassword = basicAuthPassword,
                     BearerAuthToken = bearerAuthToken,
-                    SslKeystoreAuth = sslKeystoreAuth,
                 }, cancellationToken);
         }
         
@@ -181,6 +182,22 @@ namespace JetBrains.Space.Client
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
+        /// <term>View application secrets</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<string> BearerTokenAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/bearer-token{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
         /// <term>View application</term>
         /// </item>
         /// </list>
@@ -235,7 +252,7 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, bool endpointSslVerification, bool hasVerificationToken, bool hasPublicKeySignature, bool hasSigningKey, string? name = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, bool endpointSslVerification, bool hasVerificationToken, bool hasPublicKeySignature, bool hasSigningKey, EndpointAppLevelAuthUpdateType appLevelAuth, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? name = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -258,10 +275,11 @@ namespace JetBrains.Space.Client
                     IsHasVerificationToken = hasVerificationToken,
                     IsHasPublicKeySignature = hasPublicKeySignature,
                     IsHasSigningKey = hasSigningKey,
-                    BasicAuthUsername = basicAuthUsername,
-                    BasicAuthPassword = basicAuthPassword,
-                    BearerAuthToken = bearerAuthToken,
+                    AppLevelAuth = appLevelAuth,
                     SslKeystoreAuth = sslKeystoreAuth,
+                    BasicAuthUsername = (basicAuthUsername ?? string.Empty),
+                    BasicAuthPassword = (basicAuthPassword ?? string.Empty),
+                    BearerAuthToken = (bearerAuthToken ?? string.Empty),
                 }, cancellationToken);
         }
         

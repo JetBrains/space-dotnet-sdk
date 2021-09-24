@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public ApplicationsForApplicationPatchRequest() { }
         
-        public ApplicationsForApplicationPatchRequest(bool endpointSslVerification, bool hasVerificationToken, bool hasPublicKeySignature, bool hasSigningKey, string? name = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? sslKeystoreAuth = null)
+        public ApplicationsForApplicationPatchRequest(bool endpointSslVerification, bool hasVerificationToken, bool hasPublicKeySignature, bool hasSigningKey, EndpointAppLevelAuthUpdateType appLevelAuth, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? name = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null)
         {
             Name = name;
             PictureAttachmentId = pictureAttachmentId;
@@ -51,10 +51,11 @@ namespace JetBrains.Space.Client
             IsHasVerificationToken = hasVerificationToken;
             IsHasPublicKeySignature = hasPublicKeySignature;
             IsHasSigningKey = hasSigningKey;
-            BasicAuthUsername = basicAuthUsername;
-            BasicAuthPassword = basicAuthPassword;
-            BearerAuthToken = bearerAuthToken;
+            AppLevelAuth = appLevelAuth;
             SslKeystoreAuth = sslKeystoreAuth;
+            BasicAuthUsername = (basicAuthUsername ?? string.Empty);
+            BasicAuthPassword = (basicAuthPassword ?? string.Empty);
+            BearerAuthToken = (bearerAuthToken ?? string.Empty);
         }
         
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(Name));
@@ -167,6 +168,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<bool> _hasVerificationToken = new PropertyValue<bool>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsHasVerificationToken));
         
+        [Obsolete("VerificationToken is an obsolete auth method - use it to turn it off (since 2021-09-02) (will be removed in a future version)")]
         [JsonPropertyName("hasVerificationToken")]
         public bool IsHasVerificationToken
         {
@@ -176,6 +178,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<bool> _hasPublicKeySignature = new PropertyValue<bool>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsHasPublicKeySignature));
         
+        [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
         [JsonPropertyName("hasPublicKeySignature")]
         public bool IsHasPublicKeySignature
         {
@@ -185,6 +188,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<bool> _hasSigningKey = new PropertyValue<bool>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsHasSigningKey));
         
+        [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
         [JsonPropertyName("hasSigningKey")]
         public bool IsHasSigningKey
         {
@@ -192,31 +196,13 @@ namespace JetBrains.Space.Client
             set => _hasSigningKey.SetValue(value);
         }
     
-        private PropertyValue<string?> _basicAuthUsername = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(BasicAuthUsername));
+        private PropertyValue<EndpointAppLevelAuthUpdateType> _appLevelAuth = new PropertyValue<EndpointAppLevelAuthUpdateType>(nameof(ApplicationsForApplicationPatchRequest), nameof(AppLevelAuth));
         
-        [JsonPropertyName("basicAuthUsername")]
-        public string? BasicAuthUsername
+        [JsonPropertyName("appLevelAuth")]
+        public EndpointAppLevelAuthUpdateType AppLevelAuth
         {
-            get => _basicAuthUsername.GetValue();
-            set => _basicAuthUsername.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _basicAuthPassword = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(BasicAuthPassword));
-        
-        [JsonPropertyName("basicAuthPassword")]
-        public string? BasicAuthPassword
-        {
-            get => _basicAuthPassword.GetValue();
-            set => _basicAuthPassword.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _bearerAuthToken = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(BearerAuthToken));
-        
-        [JsonPropertyName("bearerAuthToken")]
-        public string? BearerAuthToken
-        {
-            get => _bearerAuthToken.GetValue();
-            set => _bearerAuthToken.SetValue(value);
+            get => _appLevelAuth.GetValue();
+            set => _appLevelAuth.SetValue(value);
         }
     
         private PropertyValue<string?> _sslKeystoreAuth = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(SslKeystoreAuth));
@@ -226,6 +212,33 @@ namespace JetBrains.Space.Client
         {
             get => _sslKeystoreAuth.GetValue();
             set => _sslKeystoreAuth.SetValue(value);
+        }
+    
+        private PropertyValue<string> _basicAuthUsername = new PropertyValue<string>(nameof(ApplicationsForApplicationPatchRequest), nameof(BasicAuthUsername), string.Empty);
+        
+        [JsonPropertyName("basicAuthUsername")]
+        public string BasicAuthUsername
+        {
+            get => _basicAuthUsername.GetValue();
+            set => _basicAuthUsername.SetValue(value);
+        }
+    
+        private PropertyValue<string> _basicAuthPassword = new PropertyValue<string>(nameof(ApplicationsForApplicationPatchRequest), nameof(BasicAuthPassword), string.Empty);
+        
+        [JsonPropertyName("basicAuthPassword")]
+        public string BasicAuthPassword
+        {
+            get => _basicAuthPassword.GetValue();
+            set => _basicAuthPassword.SetValue(value);
+        }
+    
+        private PropertyValue<string> _bearerAuthToken = new PropertyValue<string>(nameof(ApplicationsForApplicationPatchRequest), nameof(BearerAuthToken), string.Empty);
+        
+        [JsonPropertyName("bearerAuthToken")]
+        public string BearerAuthToken
+        {
+            get => _bearerAuthToken.GetValue();
+            set => _bearerAuthToken.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
@@ -245,10 +258,11 @@ namespace JetBrains.Space.Client
             _hasVerificationToken.SetAccessPath(path, validateHasBeenSet);
             _hasPublicKeySignature.SetAccessPath(path, validateHasBeenSet);
             _hasSigningKey.SetAccessPath(path, validateHasBeenSet);
+            _appLevelAuth.SetAccessPath(path, validateHasBeenSet);
+            _sslKeystoreAuth.SetAccessPath(path, validateHasBeenSet);
             _basicAuthUsername.SetAccessPath(path, validateHasBeenSet);
             _basicAuthPassword.SetAccessPath(path, validateHasBeenSet);
             _bearerAuthToken.SetAccessPath(path, validateHasBeenSet);
-            _sslKeystoreAuth.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

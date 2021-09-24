@@ -61,8 +61,8 @@ namespace JetBrains.Space.Client.WebhookRecordPartialBuilder
         public static Partial<WebhookRecord> WithEndpoint(this Partial<WebhookRecord> it)
             => it.AddFieldName("endpoint");
         
-        public static Partial<WebhookRecord> WithEndpoint(this Partial<WebhookRecord> it, Func<Partial<ExternalEndpoint>, Partial<ExternalEndpoint>> partialBuilder)
-            => it.AddFieldName("endpoint", partialBuilder(new Partial<ExternalEndpoint>(it)));
+        public static Partial<WebhookRecord> WithEndpoint(this Partial<WebhookRecord> it, Func<Partial<Endpoint>, Partial<Endpoint>> partialBuilder)
+            => it.AddFieldName("endpoint", partialBuilder(new Partial<Endpoint>(it)));
         
         public static Partial<WebhookRecord> WithIsUseAppEndpointAuth(this Partial<WebhookRecord> it)
             => it.AddFieldName("useAppEndpointAuth");

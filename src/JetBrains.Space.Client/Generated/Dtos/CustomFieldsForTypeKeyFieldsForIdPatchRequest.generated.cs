@@ -34,7 +34,7 @@ namespace JetBrains.Space.Client
     {
         public CustomFieldsForTypeKeyFieldsForIdPatchRequest() { }
         
-        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFInputValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null, CFParametersInput? cfParameters = null)
+        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFInputValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null, CFUpdateParameters? cfParameters = null)
         {
             Name = name;
             Description = description;
@@ -114,6 +114,7 @@ namespace JetBrains.Space.Client
     
         private PropertyValue<List<EnumValueData>?> _enumValues = new PropertyValue<List<EnumValueData>?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(EnumValues));
         
+        [Obsolete("Use cfParameters instead (since 2020-09-07) (will be removed in a future version)")]
         [JsonPropertyName("enumValues")]
         public List<EnumValueData>? EnumValues
         {
@@ -130,10 +131,10 @@ namespace JetBrains.Space.Client
             set => _openEnumValuesModification.SetValue(value);
         }
     
-        private PropertyValue<CFParametersInput?> _cfParameters = new PropertyValue<CFParametersInput?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(CfParameters));
+        private PropertyValue<CFUpdateParameters?> _cfParameters = new PropertyValue<CFUpdateParameters?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(CfParameters));
         
         [JsonPropertyName("cfParameters")]
-        public CFParametersInput? CfParameters
+        public CFUpdateParameters? CfParameters
         {
             get => _cfParameters.GetValue();
             set => _cfParameters.SetValue(value);
