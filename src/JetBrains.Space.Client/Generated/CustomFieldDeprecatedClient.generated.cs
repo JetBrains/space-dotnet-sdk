@@ -29,11 +29,11 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public partial class CustomField(deprecated)Client : ISpaceClient
+    public partial class CustomFieldDeprecatedClient : ISpaceClient
     {
         private readonly Connection _connection;
         
-        public CustomField(deprecated)Client(Connection connection)
+        public CustomFieldDeprecatedClient(Connection connection)
         {
             _connection = connection;
         }

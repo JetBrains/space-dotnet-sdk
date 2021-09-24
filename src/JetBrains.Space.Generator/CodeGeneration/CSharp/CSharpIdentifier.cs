@@ -49,6 +49,7 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
                     .Replace("]", string.Empty)
                     .Replace("?", string.Empty)
                     .Replace("'s", string.Empty)
+                    .Replace("(deprecated)", "Deprecated")
                     .Split(IdentifierSeparators)
                     .Select(it => it.ToUppercaseFirst()));
 
