@@ -414,7 +414,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The next step is to add configuration details. In `appsettings.json`, add the `"Space"` section, and make sure to include the `EndpointSigningKey` and `EndpointVerificationToken` settings - the values are available when registering our application in Space:
+The next step is to add configuration details. In `appsettings.json`, add the `"Space"` section, and make sure to include the `EndpointSigningKey` setting - the value is available when registering the application in Space and setting **Authentication** to **Signing key**:
 
 ```json             
 {
@@ -423,8 +423,7 @@ The next step is to add configuration details. In `appsettings.json`, add the `"
  "AllowedHosts": "*",
 
  "Space": {
-   "EndpointSigningKey": "{endpoint-signing-key}",
-   "EndpointVerificationToken": "{endpoint-verification-token}"
+   "EndpointSigningKey": "{endpoint-signing-key}"
  }
 }
 ```

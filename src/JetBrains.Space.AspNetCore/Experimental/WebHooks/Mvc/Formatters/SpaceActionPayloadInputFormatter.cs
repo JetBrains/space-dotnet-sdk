@@ -137,7 +137,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Formatters
                         if (payloadVerificationTokenValue != options.EndpointVerificationToken)
                         {
                             throw new InvalidOperationException(
-                                "The webhook verification token does not your configured verification token. Make sure the endpoint verification token is configured correctly in your Space organization, and the current application.");
+                                "The webhook verification token does not match your configured verification token. Make sure the endpoint verification token is configured correctly in your Space organization, and the current application.");
                         }
                     }
                     else

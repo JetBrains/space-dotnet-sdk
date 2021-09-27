@@ -32,6 +32,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks
         /// <summary>
         /// Gets or sets the endpoint verification token. This can be found on your application's endpoint registration in Space.
         /// </summary>
+        [Obsolete("Verification token will be removed in the future.")]
         public string? EndpointVerificationToken { get; set; }
 
         /// <summary>
@@ -41,9 +42,9 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks
         public bool ValidatePayloadSignature { get; set; } = true;
         
         /// <summary>
-        /// Validate payload verification token. Requires endpoint verification token to be set. Enabled by default.
+        /// Validate payload verification token. Requires endpoint verification token to be set. Disabled by default.
         /// </summary>
-        /// <remarks>It is recommended to enable validation.</remarks>
-        public bool ValidatePayloadVerificationToken { get; set; } = true;
+        [Obsolete("Verification token will be removed in the future.")]
+        public bool ValidatePayloadVerificationToken { get; set; } = false;
     }
 }
