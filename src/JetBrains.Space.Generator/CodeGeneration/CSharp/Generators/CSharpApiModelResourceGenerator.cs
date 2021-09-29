@@ -196,7 +196,6 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                 {
                     if (FeatureFlags.DoNotExposeRequestObjects)
                     {
-                        // TODO MAARTEN REFACTOR WITH PROPER NEWLINES
                         builder.Append(", " + ConstructNewRequestObject(indent, apiEndpoint, endpointPath));
                     }
                     else

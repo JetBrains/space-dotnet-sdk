@@ -1,7 +1,6 @@
 using System;
 using JetBrains.Annotations;
 using JetBrains.Space.AspNetCore.Experimental.WebHooks;
-using JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Controllers;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -38,15 +37,14 @@ namespace Microsoft.AspNetCore.Builder
                 throw new InvalidOperationException(
                     $"Unable to resolve the scoped {typeof(TWebHookHandler)} service. Make sure to call {nameof(SpaceAddWebHookExtensions.AddSpaceWebHookHandler)}<{typeof(TWebHookHandler)}>(...) in ConfigureServices(...)");
             }
-            
-            return endpoints.MapControllerRoute("Space_" + typeof(TWebHookHandler).Name, path,
-                defaults: new
-                {
-                    controller = nameof(SpaceWebHookController).Replace("Controller", string.Empty),
-                    action = nameof(SpaceWebHookController.Receive),
-                    handlerType = typeof(TWebHookHandler), // RouteKeyConstants.HandlerType
-                    optionsName = typeof(TWebHookHandler).Name // RouteKeyConstants.OptionsName
-                });
+
+            // Map webhook handler to request
+            return endpoints.MapPost(path, async context =>
+            {
+                var optionsName = typeof(TWebHookHandler).Name;
+                var requestHandler = context.RequestServices.GetRequiredService<SpaceWebHookRequestHandler<TWebHookHandler>>();
+                await requestHandler.HandleAsync(context, optionsName);
+            });
         }
     }
 }

@@ -34,7 +34,8 @@ namespace JetBrains.Space.AspNetCore.Authentication
         /// <param name="logger">A <see cref="ILoggerFactory"/> for the current <see cref="SpaceHandler"/>.</param>
         /// <param name="encoder">A <see cref="UrlEncoder"/> for the current <see cref="SpaceHandler"/>.</param>
         /// <param name="clock">A <see cref="ISystemClock"/> for the current <see cref="SpaceHandler"/>.</param>
-        public SpaceHandler(IOptionsMonitor<SpaceOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock) : base(options, logger, encoder, clock) { }
+        public SpaceHandler(IOptionsMonitor<SpaceOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)
+            : base(options, logger, encoder, clock) { }
 
         /// <inheritdoc />
         protected override async Task<AuthenticationTicket> CreateTicketAsync(

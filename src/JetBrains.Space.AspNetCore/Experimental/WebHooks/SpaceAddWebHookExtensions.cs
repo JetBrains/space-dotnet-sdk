@@ -1,10 +1,8 @@
 using System;
 using JetBrains.Annotations;
 using JetBrains.Space.AspNetCore.Experimental.WebHooks;
-using JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc;
-using JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Controllers;
-using JetBrains.Space.AspNetCore.Experimental.WebHooks.Mvc.Formatters;
-using Microsoft.AspNetCore.Mvc;
+using JetBrains.Space.AspNetCore.Experimental.WebHooks.EndpointAuthentication;
+using JetBrains.Space.AspNetCore.Experimental.WebHooks.Options;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 
@@ -41,20 +39,25 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             // Options
             var optionsName = typeof(TWebHookHandler).Name;
-            services.Configure(optionsName, configureOptions);
-            
-            services.AddOptions<SpaceWebHookOptions>(optionsName)
-                .Validate(o => !o.ValidatePayloadSignature || !string.IsNullOrEmpty(o.EndpointSigningKey), "Space.EndpointSigningKey is required.")
-                .Validate(o => !o.ValidatePayloadVerificationToken || !string.IsNullOrEmpty(o.EndpointVerificationToken), "Space.EndpointVerificationToken is required.");
+            services.Configure(optionsName, configureOptions); 
+            services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<SpaceWebHookOptions>, SpaceSpaceWebHookPostConfigureOptions>());
 
-            // We're leaning on MVC, so need to have a minimal setup of that...
-            services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<MvcOptions>, SpaceWebHookPostMvcConfigureOptions>());
-            services.TryAddSingleton<SpaceActionPayloadInputFormatter>();
-            services.AddControllers();
-            
-            // Add controller + handler
-            services.TryAddTransient<SpaceWebHookController>();
+            services.AddOptions<SpaceWebHookOptions>(optionsName)
+                .Validate(o => o.VerifySigningKey == null || !o.VerifySigningKey.IsEnabled || !string.IsNullOrEmpty(o.VerifySigningKey.EndpointSigningKey), "Space.VerifySigningKey.EndpointSigningKey is required.")
+                .Validate(o => o.VerifyHttpBearerToken == null || !o.VerifyHttpBearerToken.IsEnabled || !string.IsNullOrEmpty(o.VerifyHttpBearerToken.BearerToken), "Space.VerifyHttpBearerToken.BearerToken is required.")
+                .Validate(o => o.VerifyHttpBasicAuthentication == null || !o.VerifyHttpBasicAuthentication.IsEnabled || !string.IsNullOrEmpty(o.VerifyHttpBasicAuthentication.Username), "Space.VerifyHttpBasicAuthentication.Username is required.")
+                .Validate(o => o.VerifyHttpBasicAuthentication == null || !o.VerifyHttpBasicAuthentication.IsEnabled || !string.IsNullOrEmpty(o.VerifyHttpBasicAuthentication.Password), "Space.VerifyHttpBasicAuthentication.Password is required.")
+                .Validate(o => o.VerifyVerificationToken == null || !o.VerifyVerificationToken.IsEnabled || !string.IsNullOrEmpty(o.VerifyVerificationToken.EndpointVerificationToken), "Space.VerifyVerificationToken.EndpointVerificationToken is required.");
+
+            // Add webhook handler types
             services.AddTransient<TWebHookHandler>();
+            services.AddTransient<SpaceWebHookRequestHandler<TWebHookHandler>>();
+            
+            // Add authentication handler types
+            services.TryAddEnumerable(ServiceDescriptor.Transient<ISpaceEndpointAuthenticationHandler, VerifySigningKeyAuthenticationHandler>());
+            services.TryAddEnumerable(ServiceDescriptor.Transient<ISpaceEndpointAuthenticationHandler, VerifyHttpBearerTokenAuthenticationHandler>());
+            services.TryAddEnumerable(ServiceDescriptor.Transient<ISpaceEndpointAuthenticationHandler, VerifyHttpBasicAuthenticationHandler>());
+            services.TryAddEnumerable(ServiceDescriptor.Transient<ISpaceEndpointAuthenticationHandler, VerifyVerificationTokenAuthenticationHandler>());
             
             return services;
         }

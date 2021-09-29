@@ -135,7 +135,7 @@ namespace JetBrains.Space.Common
         /// </summary>
         /// <remarks>This is too greedy for most use cases and should be avoided.</remarks>
         /// <returns>A <see cref="Partial{T}"/> that can be extended.</returns>
-        [Obsolete("This is too greedy for most use cases and should be avoided. The method will be removed in the future.")]
+        [Obsolete("This is too greedy for most use cases and should be avoided. The method will be removed in a future version.")]
         internal static Partial<T> Recursive()
         {
             var partial = new Partial<T>();

@@ -91,14 +91,14 @@ namespace JetBrains.Space.Samples.App.WebHooks
                 }
 
                 await _chatClient.Messages.SendMessageAsync(
-                    recipient: MessageRecipient.Channel(ChatChannel.FromId(payload.Message.ChannelId)),
+                    recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                     content: ChatMessage.Text("You said: " + messageText.Text),
                     unfurlLinks: false);
             }
             else
             {
                 await _chatClient.Messages.SendMessageAsync(
-                    recipient: MessageRecipient.Channel(ChatChannel.FromId(payload.Message.ChannelId)),
+                    recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                     content: ChatMessage.Text("You said many things!"),
                     unfurlLinks: false);
             }

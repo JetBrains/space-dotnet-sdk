@@ -414,7 +414,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The next step is to add configuration details. In `appsettings.json`, add the `"Space"` section, and make sure to include the `EndpointSigningKey` setting - the value is available when registering the application in Space and setting **Authentication** to **Signing key**:
+The next step is to add configuration details. In `appsettings.json`, add the `"Space"` section. Make sure to configure any of the endpoint verification options that are available when registering the application in Space:
 
 ```json             
 {
@@ -423,10 +423,32 @@ The next step is to add configuration details. In `appsettings.json`, add the `"
  "AllowedHosts": "*",
 
  "Space": {
-   "EndpointSigningKey": "{endpoint-signing-key}"
+   "VerifySigningKey": {
+      "IsEnabled": false,
+      "EndpointSigningKey": "{endpoint-signing-key}"
+    },
+    "VerifyHttpBearerToken": {
+      "IsEnabled": false,
+      "BearerToken": "{bearer-token}"
+    },
+    "VerifyHttpBasicAuthentication": {
+      "IsEnabled": false,
+      "Username": "{username}",
+      "Password": "{password}"
+    },
+    "VerifyVerificationToken": {
+      "IsEnabled": false,
+      "EndpointVerificationToken": "{endpoint-verification-token}"
+    }
  }
 }
 ```
+
+The endpoint verification options can be one of:
+* `VerifySigningKey` — when [using a signing key](https://jetbrains.team/help/space/verify-space-in-application.html#verifying-requests-using-a-signing-key)
+* `VerifyHttpBearerToken` — when [using a bearer token](https://www.jetbrains.com/help/space/verify-space-in-application.html#bearer-token)
+* `VerifyHttpBasicAuthentication` — when [using basic authentication](https://www.jetbrains.com/help/space/verify-space-in-application.html#bearer-token)
+* `VerifyVerificationToken` — when [using a verification token (obsolete)](https://www.jetbrains.com/help/space/verify-space-in-application.html#verification-token)
 
 Almost there! We have now registered and configured our Space Application webhook handler, but we still need to expose it on a URL endpoint. In our application's `Startup` class, in the `Configure()` method, we can use the `MapSpaceWebHookHandler<T>()` method:
 
