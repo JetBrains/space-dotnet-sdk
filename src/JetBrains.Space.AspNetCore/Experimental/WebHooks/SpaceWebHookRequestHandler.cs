@@ -53,10 +53,10 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks
             var handler = context.RequestServices.GetRequiredService<TWebHookHandler>();
             
             // Validate and read payload
-            var payload = await ValidateAndReadModelFromRequestAsync(context, optionsName);
-            if (payload == null)
+            var (isValid, payload) = await ValidateAndReadModelFromRequestAsync(context, optionsName);
+            if (!isValid || payload == null)
             {
-                // When payload is null, ValidateAndReadModelFromRequestAsync already has written a status code and response.
+                // When not valid, ValidateAndReadModelFromRequestAsync already has written a status code and response.
                 return;
             }
             
@@ -129,7 +129,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks
             await WriteTextResponse(context.Response, 400, "Payload is not supported.");
         }
 
-        private async Task<ApplicationPayload?> ValidateAndReadModelFromRequestAsync(HttpContext context, string? optionsName)
+        private async Task<(bool, ApplicationPayload?)> ValidateAndReadModelFromRequestAsync(HttpContext context, string? optionsName)
         {
             try 
             {
@@ -149,12 +149,12 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks
                     if (!await endpointAuthenticationHandler.AuthenticateRequestAsync(optionsName, context, inputJsonString, payload))
                     {
                         await WriteTextResponse(context.Response, 401, "The request could not be validated. Check the application log for more information.");
-                        return null;
+                        return (false, null);
                     }
                 }
                 
                 // Good to go!
-                return payload;
+                return (true, payload);
             }
             catch (JsonException jsonException)
             {
@@ -164,14 +164,14 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks
                 _logger.LogError(jsonException, "JSON input formatter threw an exception at path {Path}: {Message}", path, formatterException.Message);
                 
                 await WriteTextResponse(context.Response, 400, "The request payload could not be read. Check the application log for more information.");
-                return null;
+                return (false, null);
             }
             catch (Exception exception) when (exception is FormatException or OverflowException)
             {
                 _logger.LogError(exception, "JSON input formatter threw an exception: {Message}", exception.Message);
                 
                 await WriteTextResponse(context.Response, 400, "The request payload could not be read. Check the application log for more information.");
-                return null;
+                return (false, null);
             }
         }
 
