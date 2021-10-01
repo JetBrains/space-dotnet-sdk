@@ -5,199 +5,198 @@ using System.Text;
 using JetBrains.Space.Generator.Model.HttpApi;
 using JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
 
-namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
+namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators;
+
+public class CSharpApiModelUrlParameterGenerator
 {
-    public class CSharpApiModelUrlParameterGenerator
+    private readonly CodeGenerationContext _codeGenerationContext;
+        
+    public CSharpApiModelUrlParameterGenerator(CodeGenerationContext codeGenerationContext)
     {
-        private readonly CodeGenerationContext _codeGenerationContext;
+        _codeGenerationContext = codeGenerationContext;
+    }
         
-        public CSharpApiModelUrlParameterGenerator(CodeGenerationContext codeGenerationContext)
+    public string GenerateUrlParameterDefinition(ApiUrlParameter apiUrlParameter)
+    {
+        var indent = new Indent();
+        var builder = new StringBuilder();
+            
+        var typeNameForUrlParameter = apiUrlParameter.ToCSharpClassName();
+            
+        if (apiUrlParameter.Deprecation != null)
         {
-            _codeGenerationContext = codeGenerationContext;
-        }
-        
-        public string GenerateUrlParameterDefinition(ApiUrlParameter apiUrlParameter)
-        {
-            var indent = new Indent();
-            var builder = new StringBuilder();
-            
-            var typeNameForUrlParameter = apiUrlParameter.ToCSharpClassName();
-            
-            if (apiUrlParameter.Deprecation != null)
-            {
-                builder.AppendLine(apiUrlParameter.Deprecation.ToCSharpDeprecation());
-            }
-
-            // Parameter type
-            builder.AppendLine($"{indent}[JsonConverter(typeof(UrlParameterConverter))]");
-            builder.AppendLine($"{indent}public abstract class {typeNameForUrlParameter} : IUrlParameter");
-            builder.AppendLine($"{indent}{{");
-            indent.Increment();
-            
-            foreach (var apiUrlParameterOption in apiUrlParameter.Options)
-            {
-                builder.Append(
-                    indent.Wrap(
-                        GenerateUrlParameterOptionFactoryMethod(apiUrlParameter, apiUrlParameterOption, typeNameForUrlParameter)));
-            }
-            
-            foreach (var apiUrlParameterOption in apiUrlParameter.Options)
-            {
-                builder.Append(
-                    indent.Wrap(
-                        GenerateUrlParameterOptionClass(apiUrlParameterOption, typeNameForUrlParameter)));
-            }
-            
-            indent.Decrement();
-            builder.AppendLine($"{indent}}}");
-            return builder.ToString();
+            builder.AppendLine(apiUrlParameter.Deprecation.ToCSharpDeprecation());
         }
 
-        private string GenerateUrlParameterOptionFactoryMethod(
-            ApiUrlParameter apiUrlParameter,
-            ApiUrlParameterOption apiUrlParameterOption,
-            string typeNameForUrlParameter)
+        // Parameter type
+        builder.AppendLine($"{indent}[JsonConverter(typeof(UrlParameterConverter))]");
+        builder.AppendLine($"{indent}public abstract class {typeNameForUrlParameter} : IUrlParameter");
+        builder.AppendLine($"{indent}{{");
+        indent.Increment();
+            
+        foreach (var apiUrlParameterOption in apiUrlParameter.Options)
         {
-            var indent = new Indent();
-            var builder = new StringBuilder();
+            builder.Append(
+                indent.Wrap(
+                    GenerateUrlParameterOptionFactoryMethod(apiUrlParameter, apiUrlParameterOption, typeNameForUrlParameter)));
+        }
             
-            var typeNameForUrlParameterOption = apiUrlParameterOption.ToCSharpClassName();
-            var factoryMethodNameForUrlParameterOption = apiUrlParameterOption.ToCSharpFactoryMethodName(typeNameForUrlParameterOption, apiUrlParameter);
+        foreach (var apiUrlParameterOption in apiUrlParameter.Options)
+        {
+            builder.Append(
+                indent.Wrap(
+                    GenerateUrlParameterOptionClass(apiUrlParameterOption, typeNameForUrlParameter)));
+        }
             
-            // Option method deprecation
-            if (apiUrlParameterOption.Deprecation != null)
-            {
-                builder.AppendLine(apiUrlParameterOption.Deprecation.ToCSharpDeprecation());
-            }
+        indent.Decrement();
+        builder.AppendLine($"{indent}}}");
+        return builder.ToString();
+    }
+
+    private string GenerateUrlParameterOptionFactoryMethod(
+        ApiUrlParameter apiUrlParameter,
+        ApiUrlParameterOption apiUrlParameterOption,
+        string typeNameForUrlParameter)
+    {
+        var indent = new Indent();
+        var builder = new StringBuilder();
             
-            // Option method
-            switch (apiUrlParameterOption)
-            {
-                case ApiUrlParameterOption.Const:
-                    builder.AppendLine($"{indent}public static {typeNameForUrlParameter} {factoryMethodNameForUrlParameterOption}");
-                    indent.Increment();
-                    builder.AppendLine($"{indent}=> new {typeNameForUrlParameterOption}();");
-                    indent.Decrement();
-                    break;
+        var typeNameForUrlParameterOption = apiUrlParameterOption.ToCSharpClassName();
+        var factoryMethodNameForUrlParameterOption = apiUrlParameterOption.ToCSharpFactoryMethodName(typeNameForUrlParameterOption, apiUrlParameter);
+            
+        // Option method deprecation
+        if (apiUrlParameterOption.Deprecation != null)
+        {
+            builder.AppendLine(apiUrlParameterOption.Deprecation.ToCSharpDeprecation());
+        }
+            
+        // Option method
+        switch (apiUrlParameterOption)
+        {
+            case ApiUrlParameterOption.Const:
+                builder.AppendLine($"{indent}public static {typeNameForUrlParameter} {factoryMethodNameForUrlParameterOption}");
+                indent.Increment();
+                builder.AppendLine($"{indent}=> new {typeNameForUrlParameterOption}();");
+                indent.Decrement();
+                break;
                 
-                case ApiUrlParameterOption.Var varParameter:
-                    var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
-                        .WithParametersForApiFields(varParameter.Parameters);
+            case ApiUrlParameterOption.Var varParameter:
+                var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
+                    .WithParametersForApiFields(varParameter.Parameters);
                     
-                    builder.AppendLine($"{indent}public static {typeNameForUrlParameter} {factoryMethodNameForUrlParameterOption}({methodParametersBuilder.BuildMethodParametersList()})");
-                    indent.Increment();
-                    builder.AppendLine($"{indent}=> new {typeNameForUrlParameterOption}({methodParametersBuilder.BuildMethodCallParameters(includePrefix: false)});");
-                    indent.Decrement();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(apiUrlParameterOption));
-            }
-            builder.AppendLine($"{indent}");
-            
-            return builder.ToString();
+                builder.AppendLine($"{indent}public static {typeNameForUrlParameter} {factoryMethodNameForUrlParameterOption}({methodParametersBuilder.BuildMethodParametersList()})");
+                indent.Increment();
+                builder.AppendLine($"{indent}=> new {typeNameForUrlParameterOption}({methodParametersBuilder.BuildMethodCallParameters(includePrefix: false)});");
+                indent.Decrement();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(apiUrlParameterOption));
         }
+        builder.AppendLine($"{indent}");
+            
+        return builder.ToString();
+    }
 
-        private string GenerateUrlParameterOptionClass(
-            ApiUrlParameterOption apiUrlParameterOption, 
-            string typeNameForUrlParameter)
+    private string GenerateUrlParameterOptionClass(
+        ApiUrlParameterOption apiUrlParameterOption, 
+        string typeNameForUrlParameter)
+    {
+        var indent = new Indent();
+        var builder = new StringBuilder();
+            
+        var typeNameForUrlParameterOption = apiUrlParameterOption.ToCSharpClassName();
+            
+        // Option type deprecation
+        if (apiUrlParameterOption.Deprecation != null)
         {
-            var indent = new Indent();
-            var builder = new StringBuilder();
+            builder.AppendLine(apiUrlParameterOption.Deprecation.ToCSharpDeprecation());
+        }
             
-            var typeNameForUrlParameterOption = apiUrlParameterOption.ToCSharpClassName();
+        // Option type
+        builder.AppendLine($"{indent}private class {typeNameForUrlParameterOption} : {typeNameForUrlParameter}");
+        builder.AppendLine($"{indent}{{");
+        indent.Increment();
             
-            // Option type deprecation
-            if (apiUrlParameterOption.Deprecation != null)
-            {
-                builder.AppendLine(apiUrlParameterOption.Deprecation.ToCSharpDeprecation());
-            }
-            
-            // Option type
-            builder.AppendLine($"{indent}private class {typeNameForUrlParameterOption} : {typeNameForUrlParameter}");
-            builder.AppendLine($"{indent}{{");
-            indent.Increment();
-            
-            switch (apiUrlParameterOption)
-            {
-                case ApiUrlParameterOption.Const constParameter:
-                    // ToString() override
-                    builder.AppendLine($"{indent}public override string ToString()");
-                    indent.Increment();
-                    builder.AppendLine($"{indent}=> \"{constParameter.Value.Replace("\"", "\\\"")}\";");
-                    indent.Decrement();
-                    break;
+        switch (apiUrlParameterOption)
+        {
+            case ApiUrlParameterOption.Const constParameter:
+                // ToString() override
+                builder.AppendLine($"{indent}public override string ToString()");
+                indent.Increment();
+                builder.AppendLine($"{indent}=> \"{constParameter.Value.Replace("\"", "\\\"")}\";");
+                indent.Decrement();
+                break;
                 
-                case ApiUrlParameterOption.Var varParameter:
-                    var orderedFields = varParameter.Parameters.OrderBy(it => !it.Type.Nullable ? 0 : 1).ToList();
+            case ApiUrlParameterOption.Var varParameter:
+                var orderedFields = varParameter.Parameters.OrderBy(it => !it.Type.Nullable ? 0 : 1).ToList();
 
-                    var isCompositeIdentifier = orderedFields.Count > 1;
-                    var toStringInterpolatedFields = new List<string>();
+                var isCompositeIdentifier = orderedFields.Count > 1;
+                var toStringInterpolatedFields = new List<string>();
                     
-                    foreach (var field in orderedFields)
-                    {
-                        var valueTypeName = field.Type.ToCSharpType(_codeGenerationContext);
-                        var backingFieldName = field.ToCSharpBackingFieldName();
-                        var urlParameterFieldName = field.Name;
+                foreach (var field in orderedFields)
+                {
+                    var valueTypeName = field.Type.ToCSharpType(_codeGenerationContext);
+                    var backingFieldName = field.ToCSharpBackingFieldName();
+                    var urlParameterFieldName = field.Name;
                     
-                        // Backing field
-                        builder.AppendLine($"{indent}private readonly {valueTypeName} {backingFieldName};");
-                        builder.AppendLine($"{indent}");
-                        
-                        // ToString() override preparation
-                        toStringInterpolatedFields.Add($"{urlParameterFieldName}:{{{backingFieldName}}}");
-                    }
-
-                    var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
-                        .WithParametersForApiFields(orderedFields);
-                    
-                    // Constructor
-                    builder.AppendLine($"{indent}public {typeNameForUrlParameterOption}({methodParametersBuilder.BuildMethodParametersList()})");
-                    builder.AppendLine($"{indent}{{");
-                    indent.Increment();
-
-                    foreach (var field in orderedFields)
-                    {
-                        var backingFieldName = field.ToCSharpBackingFieldName();
-                        var variableName = field.ToCSharpVariableName();
-                    
-                        builder.AppendLine($"{indent}{backingFieldName} = {variableName};");
-                    }
-                    
-                    indent.Decrement();
-                    builder.AppendLine($"{indent}}}");
+                    // Backing field
+                    builder.AppendLine($"{indent}private readonly {valueTypeName} {backingFieldName};");
                     builder.AppendLine($"{indent}");
+                        
+                    // ToString() override preparation
+                    toStringInterpolatedFields.Add($"{urlParameterFieldName}:{{{backingFieldName}}}");
+                }
+
+                var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
+                    .WithParametersForApiFields(orderedFields);
                     
-                    // ToString() override, e.g.:
-                    //   => $"username:{_username}";
-                    // or
-                    //   => $"{{username:{_username},profile:{_profile}}}"; (composite)
-                    builder.AppendLine($"{indent}public override string ToString()");
-                    indent.Increment();
+                // Constructor
+                builder.AppendLine($"{indent}public {typeNameForUrlParameterOption}({methodParametersBuilder.BuildMethodParametersList()})");
+                builder.AppendLine($"{indent}{{");
+                indent.Increment();
+
+                foreach (var field in orderedFields)
+                {
+                    var backingFieldName = field.ToCSharpBackingFieldName();
+                    var variableName = field.ToCSharpVariableName();
                     
-                    builder.Append($"{indent}=> $\"");
-                    if (isCompositeIdentifier)
-                    {
-                        builder.Append("{{");
-                    }
-                    builder.Append($"{string.Join(",", toStringInterpolatedFields)}");
-                    if (isCompositeIdentifier)
-                    {
-                        builder.Append("}}");
-                    }
-                    builder.AppendLine($"\";");
+                    builder.AppendLine($"{indent}{backingFieldName} = {variableName};");
+                }
                     
-                    indent.Decrement();
+                indent.Decrement();
+                builder.AppendLine($"{indent}}}");
+                builder.AppendLine($"{indent}");
                     
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(apiUrlParameterOption));
-            }
-            
-            indent.Decrement();
-            builder.AppendLine($"{indent}}}");
-            builder.AppendLine($"{indent}");
-            
-            return builder.ToString();
+                // ToString() override, e.g.:
+                //   => $"username:{_username}";
+                // or
+                //   => $"{{username:{_username},profile:{_profile}}}"; (composite)
+                builder.AppendLine($"{indent}public override string ToString()");
+                indent.Increment();
+                    
+                builder.Append($"{indent}=> $\"");
+                if (isCompositeIdentifier)
+                {
+                    builder.Append("{{");
+                }
+                builder.Append($"{string.Join(",", toStringInterpolatedFields)}");
+                if (isCompositeIdentifier)
+                {
+                    builder.Append("}}");
+                }
+                builder.AppendLine($"\";");
+                    
+                indent.Decrement();
+                    
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(apiUrlParameterOption));
         }
+            
+        indent.Decrement();
+        builder.AppendLine($"{indent}}}");
+        builder.AppendLine($"{indent}");
+            
+        return builder.ToString();
     }
 }

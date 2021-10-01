@@ -1,7 +1,6 @@
-namespace JetBrains.Space.Generator.CodeGeneration
+namespace JetBrains.Space.Generator.CodeGeneration;
+
+public interface IDocumentWriter
 {
-    public interface IDocumentWriter
-    {
-        void WriteDocument(string relativePath, string content);
-    }
+    void WriteDocument(string relativePath, string content);
 }

@@ -1,23 +1,22 @@
 using System.Text.Json;
 
-namespace JetBrains.Space.Common.Json.Serialization.Polymorphism
+namespace JetBrains.Space.Common.Json.Serialization.Polymorphism;
+
+/// <summary>
+/// Extension methods for <see cref="JsonSerializerOptions"/>.
+/// </summary>
+public static class JsonSerializerOptionsExtensions
 {
     /// <summary>
-    /// Extension methods for <see cref="JsonSerializerOptions"/>.
+    /// Registers Space-specific JSON serializer options.
     /// </summary>
-    public static class JsonSerializerOptionsExtensions
+    /// <param name="options">The <see cref="JsonSerializerOptions"/> to customize.</param>
+    /// <returns>The customized <see cref="JsonSerializerOptions"/>.</returns>
+    public static JsonSerializerOptions AddSpaceJsonTypeConverters(this JsonSerializerOptions options)
     {
-        /// <summary>
-        /// Registers Space-specific JSON serializer options.
-        /// </summary>
-        /// <param name="options">The <see cref="JsonSerializerOptions"/> to customize.</param>
-        /// <returns>The customized <see cref="JsonSerializerOptions"/>.</returns>
-        public static JsonSerializerOptions AddSpaceJsonTypeConverters(this JsonSerializerOptions options)
-        {
-            options.Converters.Add(new ClassNameInterfaceDtoTypeConverter());
-            options.Converters.Add(new ListOfClassNameDtoTypeConverter());
-            options.Converters.Add(new ListOfEnumerationConverter());
-            return options;
-        }
+        options.Converters.Add(new ClassNameInterfaceDtoTypeConverter());
+        options.Converters.Add(new ListOfClassNameDtoTypeConverter());
+        options.Converters.Add(new ListOfEnumerationConverter());
+        return options;
     }
 }

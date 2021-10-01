@@ -5,151 +5,150 @@ using JetBrains.Space.Common;
 using JetBrains.Space.Generator.Model.HttpApi;
 using JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
 
-namespace JetBrains.Space.Generator.CodeGeneration.CSharp
+namespace JetBrains.Space.Generator.CodeGeneration.CSharp;
+
+public class QueryStringParameterConversionGenerator
 {
-    public class QueryStringParameterConversionGenerator
+    private class QueryStringParameterConversion
     {
-        private class QueryStringParameterConversion
+        public string Name { get; }
+        public string ConversionCode { get; }
+        public string? PredicateCode { get; }
+
+        public QueryStringParameterConversion(string name, string conversionCode, string? predicateCode = null)
         {
-            public string Name { get; }
-            public string ConversionCode { get; }
-            public string? PredicateCode { get; }
-
-            public QueryStringParameterConversion(string name, string conversionCode, string? predicateCode = null)
-            {
-                Name = name;
-                ConversionCode = conversionCode;
-                PredicateCode = predicateCode;
-            }
+            Name = name;
+            ConversionCode = conversionCode;
+            PredicateCode = predicateCode;
         }
+    }
 
-        public string TargetNameValueCollectionName { get; }
-        private readonly CodeGenerationContext _context;
-        private readonly List<QueryStringParameterConversion> _conversions;
+    public string TargetNameValueCollectionName { get; }
+    private readonly CodeGenerationContext _context;
+    private readonly List<QueryStringParameterConversion> _conversions;
 
-        public QueryStringParameterConversionGenerator(string targetNameValueCollectionName, CodeGenerationContext context) 
-            : this(targetNameValueCollectionName, context, new List<QueryStringParameterConversion>())
-        {
-        }
+    public QueryStringParameterConversionGenerator(string targetNameValueCollectionName, CodeGenerationContext context) 
+        : this(targetNameValueCollectionName, context, new List<QueryStringParameterConversion>())
+    {
+    }
         
-        private QueryStringParameterConversionGenerator(string targetNameValueCollectionName, CodeGenerationContext context, List<QueryStringParameterConversion> conversions)
-        {
-            TargetNameValueCollectionName = targetNameValueCollectionName;
-            _context = context;
-            _conversions = conversions;
-        }
+    private QueryStringParameterConversionGenerator(string targetNameValueCollectionName, CodeGenerationContext context, List<QueryStringParameterConversion> conversions)
+    {
+        TargetNameValueCollectionName = targetNameValueCollectionName;
+        _context = context;
+        _conversions = conversions;
+    }
 
-        public QueryStringParameterConversionGenerator WithQueryStringParametersForEndpoint(ApiEndpoint apiEndpoint)
+    public QueryStringParameterConversionGenerator WithQueryStringParametersForEndpoint(ApiEndpoint apiEndpoint)
+    {
+        var requestParametersBuilder = new QueryStringParameterConversionGenerator(TargetNameValueCollectionName, _context);
+        var orderedEndpointParameters = apiEndpoint.Parameters.Where(it => !it.Path).ToList();
+        foreach (var apiEndpointParameter in orderedEndpointParameters)
         {
-            var requestParametersBuilder = new QueryStringParameterConversionGenerator(TargetNameValueCollectionName, _context);
-            var orderedEndpointParameters = apiEndpoint.Parameters.Where(it => !it.Path).ToList();
-            foreach (var apiEndpointParameter in orderedEndpointParameters)
+            var parameterName = apiEndpointParameter.Field.Name;
+            var csharpVariableName = apiEndpointParameter.Field.ToCSharpVariableName();
+                
+            var parameterValueBuilder = new StringBuilder();
+            var parameterConditionBuilder = new StringBuilder();
+                
+            // Build condition (is it nullable?)
+            if (apiEndpointParameter.Field.Type.Nullable && apiEndpointParameter.Field.Type is not ApiFieldType.Enum) // enums can be param="null", don't generate a null check
             {
-                var parameterName = apiEndpointParameter.Field.Name;
-                var csharpVariableName = apiEndpointParameter.Field.ToCSharpVariableName();
+                parameterConditionBuilder.Append($"{csharpVariableName} != null");
+            }
                 
-                var parameterValueBuilder = new StringBuilder();
-                var parameterConditionBuilder = new StringBuilder();
+            if (apiEndpointParameter.Field.IsPrimitiveAndRequiresAddedNullability())
+            {
+                parameterConditionBuilder.Append($"{csharpVariableName} != null");
+            }
                 
-                // Build condition (is it nullable?)
-                if (apiEndpointParameter.Field.Type.Nullable && apiEndpointParameter.Field.Type is not ApiFieldType.Enum) // enums can be param="null", don't generate a null check
-                {
-                    parameterConditionBuilder.Append($"{csharpVariableName} != null");
-                }
+            // Build value generator
+            if (apiEndpointParameter.Field.Type.IsCSharpReferenceType())
+            {
+                parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableInstanceOrDefaultValue(_context));
+            }
+            else
+            {
+                parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableName());
+            }
                 
-                if (apiEndpointParameter.Field.IsPrimitiveAndRequiresAddedNullability())
-                {
-                    parameterConditionBuilder.Append($"{csharpVariableName} != null");
-                }
-                
-                // Build value generator
-                if (apiEndpointParameter.Field.Type.IsCSharpReferenceType())
-                {
-                    parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableInstanceOrDefaultValue(_context));
-                }
-                else
-                {
-                    parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableName());
-                }
-                
-                if (apiEndpointParameter.Field.Type is ApiFieldType.Array arrayType)
-                {
-                    // For arrays, append all element values
-                    parameterValueBuilder.Append(".Select(it => it" + GenerateParameterTypeConversion(arrayType.ElementType) + ")");
-                }
-                else
-                {
-                    // For other types, append the value
-                    parameterValueBuilder.Append(GenerateParameterTypeConversion(apiEndpointParameter.Field.Type));
-                }
-
-                requestParametersBuilder = requestParametersBuilder
-                    .WithQueryStringParameter(parameterName, parameterValueBuilder.ToString(), parameterConditionBuilder.ToString());
+            if (apiEndpointParameter.Field.Type is ApiFieldType.Array arrayType)
+            {
+                // For arrays, append all element values
+                parameterValueBuilder.Append(".Select(it => it" + GenerateParameterTypeConversion(arrayType.ElementType) + ")");
+            }
+            else
+            {
+                // For other types, append the value
+                parameterValueBuilder.Append(GenerateParameterTypeConversion(apiEndpointParameter.Field.Type));
             }
 
-            return requestParametersBuilder;
+            requestParametersBuilder = requestParametersBuilder
+                .WithQueryStringParameter(parameterName, parameterValueBuilder.ToString(), parameterConditionBuilder.ToString());
         }
 
-        public QueryStringParameterConversionGenerator WithQueryStringParameter(string name, string conversionCode, string? predicateCode = null)
-        {
-            var futureParameters = new List<QueryStringParameterConversion>(_conversions);
-            futureParameters.Add(new QueryStringParameterConversion(name, conversionCode, predicateCode));
-            return new QueryStringParameterConversionGenerator(TargetNameValueCollectionName, _context, futureParameters);
-        }
+        return requestParametersBuilder;
+    }
 
-        public void WriteTo(StringBuilder builder, Indent indent)
+    public QueryStringParameterConversionGenerator WithQueryStringParameter(string name, string conversionCode, string? predicateCode = null)
+    {
+        var futureParameters = new List<QueryStringParameterConversion>(_conversions);
+        futureParameters.Add(new QueryStringParameterConversion(name, conversionCode, predicateCode));
+        return new QueryStringParameterConversionGenerator(TargetNameValueCollectionName, _context, futureParameters);
+    }
+
+    public void WriteTo(StringBuilder builder, Indent indent)
+    {
+        foreach (var parameter in _conversions)
         {
-            foreach (var parameter in _conversions)
+            builder.Append(indent);
+            if (!string.IsNullOrEmpty(parameter.PredicateCode))
             {
-                builder.Append(indent);
-                if (!string.IsNullOrEmpty(parameter.PredicateCode))
+                builder.Append($"if ({parameter.PredicateCode}) ");
+            }
+                
+            builder.AppendLine($"{TargetNameValueCollectionName}.Append(\"{parameter.Name}\", {parameter.ConversionCode});");
+        }
+    }
+
+    private static string GenerateParameterTypeConversion(ApiFieldType apiFieldType)
+    {
+        switch (apiFieldType)
+        {
+            case ApiFieldType.Primitive primitiveType:
+            {
+                var csharpType = primitiveType.ToCSharpPrimitiveType();
+                if (csharpType == CSharpType.String)
                 {
-                    builder.Append($"if ({parameter.PredicateCode}) ");
+                    return string.Empty;
                 }
                 
-                builder.AppendLine($"{TargetNameValueCollectionName}.Append(\"{parameter.Name}\", {parameter.ConversionCode});");
-            }
-        }
-
-        private static string GenerateParameterTypeConversion(ApiFieldType apiFieldType)
-        {
-            switch (apiFieldType)
-            {
-                case ApiFieldType.Primitive primitiveType:
+                var formatString = "";
+                if (csharpType.FormatString != null)
                 {
-                    var csharpType = primitiveType.ToCSharpPrimitiveType();
-                    if (csharpType == CSharpType.String)
+                    formatString = $"\"{csharpType.FormatString}\"";
+
+                    if (csharpType == CSharpType.SpaceDate || csharpType == CSharpType.SpaceTime)
                     {
-                        return string.Empty;
+                        formatString += ", CultureInfo.InvariantCulture";
                     }
-                
-                    var formatString = "";
-                    if (csharpType.FormatString != null)
-                    {
-                        formatString = $"\"{csharpType.FormatString}\"";
-
-                        if (csharpType == CSharpType.SpaceDate || csharpType == CSharpType.SpaceTime)
-                        {
-                            formatString += ", CultureInfo.InvariantCulture";
-                        }
-                    }
-
-                    return !apiFieldType.Nullable
-                        ? $".ToString({formatString})"
-                        : $"?.ToString({formatString})";
                 }
-                
-                case ApiFieldType.UrlParam:
-                    return !apiFieldType.Nullable
-                        ? ".ToString()"
-                        : "?.ToString()";
-                
-                case ApiFieldType.Enum:
-                    return ".ToEnumString()";
-                
-                default:
-                    throw new ResourceException("Could not generate query string parameter type conversion for field type: " + apiFieldType.ClassName);
+
+                return !apiFieldType.Nullable
+                    ? $".ToString({formatString})"
+                    : $"?.ToString({formatString})";
             }
+                
+            case ApiFieldType.UrlParam:
+                return !apiFieldType.Nullable
+                    ? ".ToString()"
+                    : "?.ToString()";
+                
+            case ApiFieldType.Enum:
+                return ".ToEnumString()";
+                
+            default:
+                throw new ResourceException("Could not generate query string parameter type conversion for field type: " + apiFieldType.ClassName);
         }
     }
 }

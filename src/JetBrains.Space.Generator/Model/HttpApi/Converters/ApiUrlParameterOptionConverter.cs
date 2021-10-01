@@ -8,41 +8,40 @@ using JetBrains.Space.Common.Json.Serialization;
 
 #nullable disable
 
-namespace JetBrains.Space.Generator.Model.HttpApi.Converters
+namespace JetBrains.Space.Generator.Model.HttpApi.Converters;
+
+public class ApiUrlParameterOptionConverter : JsonConverter<ApiUrlParameterOption>
 {
-    public class ApiUrlParameterOptionConverter : JsonConverter<ApiUrlParameterOption>
+    private static readonly Dictionary<string, Type> TypeMap = new(StringComparer.OrdinalIgnoreCase)
     {
-        private static readonly Dictionary<string, Type> TypeMap = new(StringComparer.OrdinalIgnoreCase)
-        {
-            { "HA_UrlParameterOption.Var", typeof(ApiUrlParameterOption.Var) },
-            { "HA_UrlParameterOption.Const", typeof(ApiUrlParameterOption.Const) }
-        };
+        { "HA_UrlParameterOption.Var", typeof(ApiUrlParameterOption.Var) },
+        { "HA_UrlParameterOption.Const", typeof(ApiUrlParameterOption.Const) }
+    };
         
-        public override bool CanConvert(Type objectType) => typeof(ApiUrlParameterOption).IsAssignableFrom(objectType);
+    public override bool CanConvert(Type objectType) => typeof(ApiUrlParameterOption).IsAssignableFrom(objectType);
 
-        [CanBeNull]
-        public override ApiUrlParameterOption Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            if (reader.TokenType == JsonTokenType.Null) return null;
+    [CanBeNull]
+    public override ApiUrlParameterOption Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        if (reader.TokenType == JsonTokenType.Null) return null;
 
-            var readerAtStart = reader;
+        var readerAtStart = reader;
             
-            using var jsonDocument = JsonDocument.ParseValue(ref reader);
-            var jsonObject = jsonDocument.RootElement;
+        using var jsonDocument = JsonDocument.ParseValue(ref reader);
+        var jsonObject = jsonDocument.RootElement;
 
-            var className = jsonObject.GetStringValue("className");
-            if (!string.IsNullOrEmpty(className) && TypeMap.TryGetValue(className, out var targetType))
-            {
-                return JsonSerializer.Deserialize(ref readerAtStart, targetType, options) as ApiUrlParameterOption;
-            }
-            
-            throw new JsonException("No className field was found that maps to a ApiUrlParameterOption subtype.");
-        }
-
-        public override void Write(Utf8JsonWriter writer, ApiUrlParameterOption value, JsonSerializerOptions options)
+        var className = jsonObject.GetStringValue("className");
+        if (!string.IsNullOrEmpty(className) && TypeMap.TryGetValue(className, out var targetType))
         {
-            value.ClassName = TypeMap.First(it => it.Value == value.GetType()).Key;
-            JsonSerializer.Serialize(writer, value, value.GetType(), options);
+            return JsonSerializer.Deserialize(ref readerAtStart, targetType, options) as ApiUrlParameterOption;
         }
+            
+        throw new JsonException("No className field was found that maps to a ApiUrlParameterOption subtype.");
+    }
+
+    public override void Write(Utf8JsonWriter writer, ApiUrlParameterOption value, JsonSerializerOptions options)
+    {
+        value.ClassName = TypeMap.First(it => it.Value == value.GetType()).Key;
+        JsonSerializer.Serialize(writer, value, value.GetType(), options);
     }
 }

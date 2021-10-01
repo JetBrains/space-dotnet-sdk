@@ -2,47 +2,46 @@ using System;
 using System.Linq;
 using JetBrains.Space.Generator.Model.HttpApi;
 
-namespace JetBrains.Space.Generator.CodeGeneration.Extensions
+namespace JetBrains.Space.Generator.CodeGeneration.Extensions;
+
+public static class ApiFieldTypeExtensions
 {
-    public static class ApiFieldTypeExtensions
+    public static ApiFieldType GetArrayElementTypeOrType(this ApiFieldType subject)
     {
-        public static ApiFieldType GetArrayElementTypeOrType(this ApiFieldType subject)
+        if (subject is ApiFieldType.Array arrayFieldType)
         {
-            if (subject is ApiFieldType.Array arrayFieldType)
-            {
-                return arrayFieldType.ElementType;
-            }
-
-            return subject;
+            return arrayFieldType.ElementType;
         }
-        
-        public static ApiFieldType GetMapValueTypeOrType(this ApiFieldType subject)
-        {
-            if (subject is ApiFieldType.Map mapFieldType)
-            {
-                return mapFieldType.ValueType;
-            }
 
-            return subject;
-        }
+        return subject;
+    }
         
-        public static ApiFieldType GetBatchElementTypeOrType(this ApiFieldType subject)
+    public static ApiFieldType GetMapValueTypeOrType(this ApiFieldType subject)
+    {
+        if (subject is ApiFieldType.Map mapFieldType)
         {
-            if (subject is ApiFieldType.Object objectFieldType)
-            {
-                return GetBatchDataType(objectFieldType)?.ElementType ?? objectFieldType;
-            }
+            return mapFieldType.ValueType;
+        }
 
-            return subject.GetArrayElementTypeOrType();
-        }
+        return subject;
+    }
         
-        public static ApiFieldType.Array? GetBatchDataType(this ApiFieldType.Object subject)
+    public static ApiFieldType GetBatchElementTypeOrType(this ApiFieldType subject)
+    {
+        if (subject is ApiFieldType.Object objectFieldType)
         {
-            if (subject.Kind != ApiFieldType.Object.ObjectKind.BATCH) return null;
+            return GetBatchDataType(objectFieldType)?.ElementType ?? objectFieldType;
+        }
+
+        return subject.GetArrayElementTypeOrType();
+    }
+        
+    public static ApiFieldType.Array? GetBatchDataType(this ApiFieldType.Object subject)
+    {
+        if (subject.Kind != ApiFieldType.Object.ObjectKind.BATCH) return null;
             
-            var dataFieldType = subject.Fields.First(it => string.Equals(it.Name, "data", StringComparison.OrdinalIgnoreCase));
-            var dataFieldArrayType = (ApiFieldType.Array)dataFieldType.Type;
-            return dataFieldArrayType;
-        }
+        var dataFieldType = subject.Fields.First(it => string.Equals(it.Name, "data", StringComparison.OrdinalIgnoreCase));
+        var dataFieldArrayType = (ApiFieldType.Array)dataFieldType.Type;
+        return dataFieldArrayType;
     }
 }

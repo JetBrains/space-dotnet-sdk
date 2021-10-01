@@ -1,13 +1,12 @@
 using System.Text.Json.Serialization;
 
-namespace JetBrains.Space.Generator.Model.HttpApi
+namespace JetBrains.Space.Generator.Model.HttpApi;
+
+public class ApiRight
 {
-    public class ApiRight
-    {
-        [JsonPropertyName("title")]
-        public string Title { get; set; } = default!;
+    [JsonPropertyName("title")]
+    public string Title { get; set; } = default!;
         
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-    }
+    [JsonPropertyName("description")]
+    public string? Description { get; set; }
 }

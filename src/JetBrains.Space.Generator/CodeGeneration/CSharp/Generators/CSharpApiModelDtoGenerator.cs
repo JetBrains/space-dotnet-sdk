@@ -5,312 +5,311 @@ using JetBrains.Space.Common.Types;
 using JetBrains.Space.Generator.Model.HttpApi;
 using JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
 
-namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
+namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators;
+
+public class CSharpApiModelDtoGenerator
 {
-    public class CSharpApiModelDtoGenerator
+    private readonly CodeGenerationContext _codeGenerationContext;
+        
+    public CSharpApiModelDtoGenerator(CodeGenerationContext codeGenerationContext)
     {
-        private readonly CodeGenerationContext _codeGenerationContext;
+        _codeGenerationContext = codeGenerationContext;
+    }
         
-        public CSharpApiModelDtoGenerator(CodeGenerationContext codeGenerationContext)
+    public string GenerateDtoDefinition(ApiDto apiDto)
+    {
+        var indent = new Indent();
+        var builder = new StringBuilder();
+            
+        var typeNameForDto = apiDto.ToCSharpClassName();
+            
+        if (apiDto.Deprecation != null)
         {
-            _codeGenerationContext = codeGenerationContext;
+            builder.AppendLine(apiDto.Deprecation.ToCSharpDeprecation());
+        }
+                
+        if (apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.Extends == null && apiDto.Inheritors.Count > 0)
+        {
+            // When extending another DTO, make sure to apply a converter
+            builder.AppendLine($"{indent}[JsonConverter(typeof(ClassNameDtoTypeConverter))]");
         }
         
-        public string GenerateDtoDefinition(ApiDto apiDto)
+        var modifierForDto = apiDto.HierarchyRole switch
         {
-            var indent = new Indent();
-            var builder = new StringBuilder();
-            
-            var typeNameForDto = apiDto.ToCSharpClassName();
-            
-            if (apiDto.Deprecation != null)
-            {
-                builder.AppendLine(apiDto.Deprecation.ToCSharpDeprecation());
-            }
-                
-            if (apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.Extends == null && apiDto.Inheritors.Count > 0)
-            {
-                // When extending another DTO, make sure to apply a converter
-                builder.AppendLine($"{indent}[JsonConverter(typeof(ClassNameDtoTypeConverter))]");
-            }
+            HierarchyRole.INTERFACE => "interface",
+            HierarchyRole.ABSTRACT => "abstract class",
+            HierarchyRole.FINAL => "sealed class",
+            _ => "class"
+        };
         
-            var modifierForDto = apiDto.HierarchyRole switch
-            {
-                HierarchyRole.INTERFACE => "interface",
-                HierarchyRole.ABSTRACT => "abstract class",
-                HierarchyRole.FINAL => "sealed class",
-                _ => "class"
-            };
-        
-            var dtoHierarchy = new List<string>();
-            var dtoHierarchyFieldNames = new List<string>();
-            if (apiDto.Extends != null && _codeGenerationContext.TryGetDto(apiDto.Extends.Id, out var apiDtoExtends))
-            {
-                dtoHierarchy.Add(apiDtoExtends!.ToCSharpClassName());
-                dtoHierarchyFieldNames.AddRange(apiDtoExtends!.Fields.Select(it => it.Field.Name));
-            }
-
-            foreach (var dtoImplements in apiDto.Implements)
-            {
-                if (_codeGenerationContext.TryGetDto(dtoImplements.Id, out var apiDtoImplements))
-                {
-                    dtoHierarchy.Add(apiDtoImplements!.ToCSharpClassName());
-                }
-            }
-            if (dtoHierarchy.Count > 0 || apiDto.Inheritors.Count > 0)
-            {
-                dtoHierarchy.Add(nameof(IClassNameConvertible));
-            }
-            
-            dtoHierarchy.Add(nameof(IPropagatePropertyAccessPath));
-            
-            builder.AppendLine($"{indent}public {modifierForDto} {typeNameForDto}");
-            indent.Increment();
-            builder.AppendLine($"{indent} : " + string.Join(", ", dtoHierarchy));
-            indent.Decrement();
-            
-            builder.AppendLine($"{indent}{{");
-            indent.Increment();
-            
-            // When in a hierarchy with IClassNameConvertible, make sure we can capture the class name.
-            if (dtoHierarchy.Contains(nameof(IClassNameConvertible)) && apiDto.HierarchyRole != HierarchyRole.INTERFACE)
-            {
-                var modifierForClassNameProperty = apiDto.Extends == null
-                    ? apiDto.HierarchyRole != HierarchyRole.FINAL
-                        ? "virtual" // Parent
-                        : ""
-                    : "override";   // Inheritor
-                
-                builder.AppendLine($"{indent}[JsonPropertyName(\"className\")]");
-                builder.AppendLine($"{indent}public {modifierForClassNameProperty} string? ClassName => \"{apiDto.Name}\";");
-                builder.AppendLine($"{indent}");
-            }
-            
-            // Determine list of fields
-            var apiDtoFields = DetermineFieldsToGenerateFor(apiDto);
-            
-            // Generate factories for inheritors
-            foreach (var apiDtoInheritorReference in apiDto.Inheritors)
-            {
-                if (_codeGenerationContext.TryGetDto(apiDtoInheritorReference.Id, out var apiDtoInheritor)
-                    && apiDtoInheritor!.HierarchyRole != HierarchyRole.INTERFACE && apiDtoInheritor.HierarchyRole != HierarchyRole.ABSTRACT)
-                {
-                    var inheritorTypeName = apiDtoInheritor.ToCSharpClassName();
-                    var inheritorFactoryMethodName = apiDtoInheritor.ToCSharpFactoryMethodName(apiDto);
-                    
-                    var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
-                        .WithParametersForApiDtoFields(DetermineFieldsToGenerateFor(apiDtoInheritor));
-                    
-                    builder.AppendLine($"{indent}public static {inheritorTypeName} {inheritorFactoryMethodName}({methodParametersBuilder.BuildMethodParametersList()})");
-                    indent.Increment();
-                    builder.AppendLine($"{indent}=> new {inheritorTypeName}({methodParametersBuilder.WithDefaultValueForAllParameters(null).BuildMethodCallParameters()});");
-                    indent.Decrement();
-                    builder.AppendLine($"{indent}");
-                }
-            }
-            
-            // Generate constructor
-            // ReSharper disable once RedundantLogicalConditionalExpressionOperand
-            if (apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.HierarchyRole != HierarchyRole.ABSTRACT)
-            {
-                var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
-                    .WithParametersForApiDtoFields(apiDtoFields);
-                        
-                // Empty constructor
-                builder.AppendLine($"{indent}public {typeNameForDto}() {{ }}");
-                builder.AppendLine($"{indent}");
-                
-                // Parameterized constructor
-                if (apiDtoFields.Count > 0)
-                {
-                    builder.AppendLine($"{indent}public {typeNameForDto}({methodParametersBuilder.BuildMethodParametersList()})");
-                    builder.AppendLine($"{indent}{{");
-                    indent.Increment();
-                    foreach (var apiDtoField in apiDtoFields)
-                    {
-                        if (apiDtoField.Field.Type.IsCSharpReferenceType())
-                        {
-                            builder.AppendLine($"{indent}{apiDtoField.Field.ToCSharpPropertyName(typeNameForDto)} = {apiDtoField.Field.ToCSharpVariableInstanceOrDefaultValue(_codeGenerationContext)};");
-                        }
-                        else
-                        {
-                            builder.AppendLine($"{indent}{apiDtoField.Field.ToCSharpPropertyName(typeNameForDto)} = {apiDtoField.Field.ToCSharpVariableName()};");
-                        }
-                    }
-                    indent.Decrement();
-                    builder.AppendLine($"{indent}}}");
-                    builder.AppendLine($"{indent}");
-                }
-            }
-            
-            // Generate properties for fields
-            foreach (var apiDtoField in apiDtoFields)
-            {
-                builder.AppendLine(indent.Wrap(GenerateDtoFieldDefinition(typeNameForDto, apiDtoField.Field)));
-            }
-            
-            // Implement IPropagatePropertyAccessPath?
-            if (dtoHierarchy.Contains(nameof(IPropagatePropertyAccessPath)) && apiDto.HierarchyRole != HierarchyRole.INTERFACE)
-            {
-                builder.AppendLine(indent.Wrap(GenerateDtoPropagatePropertyAccessPath(apiDto, apiDtoFields)));
-            }
-        
-            indent.Decrement();
-            builder.AppendLine($"{indent}}}");
-            return builder.ToString();
+        var dtoHierarchy = new List<string>();
+        var dtoHierarchyFieldNames = new List<string>();
+        if (apiDto.Extends != null && _codeGenerationContext.TryGetDto(apiDto.Extends.Id, out var apiDtoExtends))
+        {
+            dtoHierarchy.Add(apiDtoExtends!.ToCSharpClassName());
+            dtoHierarchyFieldNames.AddRange(apiDtoExtends!.Fields.Select(it => it.Field.Name));
         }
 
-        private List<ApiDtoField> DetermineFieldsToGenerateFor(ApiDto apiDto)
+        foreach (var dtoImplements in apiDto.Implements)
         {
-            var dtoHierarchyFieldNames = new List<string>();
-            if (apiDto.Extends != null && _codeGenerationContext.TryGetDto(apiDto.Extends.Id, out var apiDtoExtends))
+            if (_codeGenerationContext.TryGetDto(dtoImplements.Id, out var apiDtoImplements))
             {
-                dtoHierarchyFieldNames.AddRange(apiDtoExtends!.Fields.Select(it => it.Field.Name));
+                dtoHierarchy.Add(apiDtoImplements!.ToCSharpClassName());
             }
-                
-            // For implements, add all referenced types' fields
-            var apiDtoFields = new List<ApiDtoField>();
-            foreach (var dtoReference in apiDto.Implements)
-            {
-                if (_codeGenerationContext.TryGetDto(dtoReference.Id, out var apiDtoImplements))
-                {
-                    apiDtoFields.AddRange(apiDtoImplements!.Fields);
-                }
-            }
-
-            // Add own fields
-            apiDtoFields.AddRange(apiDto.Fields);
-            
-            // Filter out properties that are already present in parent types
-            apiDtoFields = apiDtoFields
-                .Where(it => !dtoHierarchyFieldNames.Contains(it.Field.Name))
-                .ToList();
-
-            return apiDtoFields;
         }
-
-        private string GenerateDtoFieldDefinition(string typeNameForDto, ApiField apiField)
+        if (dtoHierarchy.Count > 0 || apiDto.Inheritors.Count > 0)
         {
-            var indent = new Indent();
-            var builder = new StringBuilder();
-
-            var propertyNameForField = apiField.ToCSharpPropertyName(typeNameForDto);
-            var backingFieldNameForField = apiField.ToCSharpBackingFieldName();
-
-            // Backing field
-            builder.Append($"{indent}private PropertyValue<");
-            builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
-            if (apiField.Type.Nullable)
-            {
-                builder.Append("?");
-            }
-
-            builder.Append("> ");
-            builder.Append($"{backingFieldNameForField} = new PropertyValue<");
-            builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
-            if (apiField.Type.Nullable)
-            {
-                builder.Append("?");
-            }
+            dtoHierarchy.Add(nameof(IClassNameConvertible));
+        }
             
-            // For non-nullable List<> and Dictionary<>, make sure the field is initialized.
-            // We do this by setting a temporary default value for this pass.
-            var overrideDefaultValue = !apiField.Type.Nullable && apiField.DefaultValue == null;
-            if (overrideDefaultValue)
-            {
-                // TODO When switching to records (.NET 6 LTS), replace this construct to be immutable.
-                apiField.DefaultValue = apiField.Type switch
-                {
-                    ApiFieldType.Array => new ApiDefaultValue.Collection(),
-                    ApiFieldType.Map => new ApiDefaultValue.Map(),
-                    _ => apiField.DefaultValue
-                };
-            }
-
-            var initialValueForAssignment = apiField.ToCSharpDefaultValueForAssignment(_codeGenerationContext);
-            if (initialValueForAssignment != null)
-            {
-                builder.AppendLine($">(nameof({typeNameForDto}), nameof({propertyNameForField}), {initialValueForAssignment});");
-            }
-            else
-            {
-                builder.AppendLine($">(nameof({typeNameForDto}), nameof({propertyNameForField}));");
-            }
+        dtoHierarchy.Add(nameof(IPropagatePropertyAccessPath));
+            
+        builder.AppendLine($"{indent}public {modifierForDto} {typeNameForDto}");
+        indent.Increment();
+        builder.AppendLine($"{indent} : " + string.Join(", ", dtoHierarchy));
+        indent.Decrement();
+            
+        builder.AppendLine($"{indent}{{");
+        indent.Increment();
+            
+        // When in a hierarchy with IClassNameConvertible, make sure we can capture the class name.
+        if (dtoHierarchy.Contains(nameof(IClassNameConvertible)) && apiDto.HierarchyRole != HierarchyRole.INTERFACE)
+        {
+            var modifierForClassNameProperty = apiDto.Extends == null
+                ? apiDto.HierarchyRole != HierarchyRole.FINAL
+                    ? "virtual" // Parent
+                    : ""
+                : "override";   // Inheritor
+                
+            builder.AppendLine($"{indent}[JsonPropertyName(\"className\")]");
+            builder.AppendLine($"{indent}public {modifierForClassNameProperty} string? ClassName => \"{apiDto.Name}\";");
             builder.AppendLine($"{indent}");
-
-            // Restore null default value
-            if (overrideDefaultValue)
-            {
-                apiField.DefaultValue = null;
-            }
-
-            // Property
-            if (!apiField.Optional && !apiField.Type.Nullable)
-            {
-                builder.AppendLine($"{indent}[Required]");
-            }
-            if (apiField.Deprecation != null)
-            {
-                builder.AppendLine(apiField.Deprecation.ToCSharpDeprecation());
-            }
-            builder.AppendLine($"{indent}[JsonPropertyName(\"{apiField.Name}\")]");
-
-            if (apiField.Type is ApiFieldType.Primitive apiFieldTypePrimitive)
-            {
-                var csharpType = apiFieldTypePrimitive.ToCSharpPrimitiveType();
-                if (csharpType.JsonConverter != null)
-                {
-                    builder.AppendLine($"{indent}[JsonConverter(typeof({csharpType.JsonConverter.Name}))]");
-                }
-            }
-            
-            builder.Append($"{indent}public ");
-            builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
-            if (apiField.Type.Nullable)
-            {
-                builder.Append("?");
-            }
-            builder.Append(" ");
-            builder.AppendLine($"{indent}{propertyNameForField}");
-            
-            builder.AppendLine($"{indent}{{");
-            indent.Increment();
-            
-            builder.AppendLine($"{indent}get => {backingFieldNameForField}.GetValue();");
-            builder.AppendLine($"{indent}set => {backingFieldNameForField}.SetValue(value);");
-
-            indent.Decrement();
-            builder.AppendLine($"{indent}}}");
-
-            return builder.ToString();
         }
-
-        private static string GenerateDtoPropagatePropertyAccessPath(ApiDto apiDto, List<ApiDtoField> apiDtoFields)
+            
+        // Determine list of fields
+        var apiDtoFields = DetermineFieldsToGenerateFor(apiDto);
+            
+        // Generate factories for inheritors
+        foreach (var apiDtoInheritorReference in apiDto.Inheritors)
         {
-            var indent = new Indent();
-            var builder = new StringBuilder();
-                
-            var modifier = apiDto.Extends != null
-                ? "override" 
-                : apiDto.HierarchyRole != HierarchyRole.FINAL
-                    ? "virtual"
-                    : string.Empty;
-                
-            builder.AppendLine($"{indent}public {modifier} void {nameof(IPropagatePropertyAccessPath.SetAccessPath)}(string path, bool validateHasBeenSet)");
-            builder.AppendLine($"{indent}{{");
-            indent.Increment();
-
-            foreach (var apiDtoField in apiDtoFields)
+            if (_codeGenerationContext.TryGetDto(apiDtoInheritorReference.Id, out var apiDtoInheritor)
+                && apiDtoInheritor!.HierarchyRole != HierarchyRole.INTERFACE && apiDtoInheritor.HierarchyRole != HierarchyRole.ABSTRACT)
             {
-                var backingFieldNameForField = apiDtoField.Field.ToCSharpBackingFieldName();
-
-                builder.AppendLine($"{indent}{backingFieldNameForField}.{nameof(IPropagatePropertyAccessPath.SetAccessPath)}(path, validateHasBeenSet);");
+                var inheritorTypeName = apiDtoInheritor.ToCSharpClassName();
+                var inheritorFactoryMethodName = apiDtoInheritor.ToCSharpFactoryMethodName(apiDto);
+                    
+                var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
+                    .WithParametersForApiDtoFields(DetermineFieldsToGenerateFor(apiDtoInheritor));
+                    
+                builder.AppendLine($"{indent}public static {inheritorTypeName} {inheritorFactoryMethodName}({methodParametersBuilder.BuildMethodParametersList()})");
+                indent.Increment();
+                builder.AppendLine($"{indent}=> new {inheritorTypeName}({methodParametersBuilder.WithDefaultValueForAllParameters(null).BuildMethodCallParameters()});");
+                indent.Decrement();
+                builder.AppendLine($"{indent}");
             }
-
-            indent.Decrement();
-            builder.AppendLine($"{indent}}}");
-
-            return builder.ToString();
         }
+            
+        // Generate constructor
+        // ReSharper disable once RedundantLogicalConditionalExpressionOperand
+        if (apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.HierarchyRole != HierarchyRole.ABSTRACT)
+        {
+            var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
+                .WithParametersForApiDtoFields(apiDtoFields);
+                        
+            // Empty constructor
+            builder.AppendLine($"{indent}public {typeNameForDto}() {{ }}");
+            builder.AppendLine($"{indent}");
+                
+            // Parameterized constructor
+            if (apiDtoFields.Count > 0)
+            {
+                builder.AppendLine($"{indent}public {typeNameForDto}({methodParametersBuilder.BuildMethodParametersList()})");
+                builder.AppendLine($"{indent}{{");
+                indent.Increment();
+                foreach (var apiDtoField in apiDtoFields)
+                {
+                    if (apiDtoField.Field.Type.IsCSharpReferenceType())
+                    {
+                        builder.AppendLine($"{indent}{apiDtoField.Field.ToCSharpPropertyName(typeNameForDto)} = {apiDtoField.Field.ToCSharpVariableInstanceOrDefaultValue(_codeGenerationContext)};");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"{indent}{apiDtoField.Field.ToCSharpPropertyName(typeNameForDto)} = {apiDtoField.Field.ToCSharpVariableName()};");
+                    }
+                }
+                indent.Decrement();
+                builder.AppendLine($"{indent}}}");
+                builder.AppendLine($"{indent}");
+            }
+        }
+            
+        // Generate properties for fields
+        foreach (var apiDtoField in apiDtoFields)
+        {
+            builder.AppendLine(indent.Wrap(GenerateDtoFieldDefinition(typeNameForDto, apiDtoField.Field)));
+        }
+            
+        // Implement IPropagatePropertyAccessPath?
+        if (dtoHierarchy.Contains(nameof(IPropagatePropertyAccessPath)) && apiDto.HierarchyRole != HierarchyRole.INTERFACE)
+        {
+            builder.AppendLine(indent.Wrap(GenerateDtoPropagatePropertyAccessPath(apiDto, apiDtoFields)));
+        }
+        
+        indent.Decrement();
+        builder.AppendLine($"{indent}}}");
+        return builder.ToString();
+    }
+
+    private List<ApiDtoField> DetermineFieldsToGenerateFor(ApiDto apiDto)
+    {
+        var dtoHierarchyFieldNames = new List<string>();
+        if (apiDto.Extends != null && _codeGenerationContext.TryGetDto(apiDto.Extends.Id, out var apiDtoExtends))
+        {
+            dtoHierarchyFieldNames.AddRange(apiDtoExtends!.Fields.Select(it => it.Field.Name));
+        }
+                
+        // For implements, add all referenced types' fields
+        var apiDtoFields = new List<ApiDtoField>();
+        foreach (var dtoReference in apiDto.Implements)
+        {
+            if (_codeGenerationContext.TryGetDto(dtoReference.Id, out var apiDtoImplements))
+            {
+                apiDtoFields.AddRange(apiDtoImplements!.Fields);
+            }
+        }
+
+        // Add own fields
+        apiDtoFields.AddRange(apiDto.Fields);
+            
+        // Filter out properties that are already present in parent types
+        apiDtoFields = apiDtoFields
+            .Where(it => !dtoHierarchyFieldNames.Contains(it.Field.Name))
+            .ToList();
+
+        return apiDtoFields;
+    }
+
+    private string GenerateDtoFieldDefinition(string typeNameForDto, ApiField apiField)
+    {
+        var indent = new Indent();
+        var builder = new StringBuilder();
+
+        var propertyNameForField = apiField.ToCSharpPropertyName(typeNameForDto);
+        var backingFieldNameForField = apiField.ToCSharpBackingFieldName();
+
+        // Backing field
+        builder.Append($"{indent}private PropertyValue<");
+        builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
+        if (apiField.Type.Nullable)
+        {
+            builder.Append("?");
+        }
+
+        builder.Append("> ");
+        builder.Append($"{backingFieldNameForField} = new PropertyValue<");
+        builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
+        if (apiField.Type.Nullable)
+        {
+            builder.Append("?");
+        }
+            
+        // For non-nullable List<> and Dictionary<>, make sure the field is initialized.
+        // We do this by setting a temporary default value for this pass.
+        var overrideDefaultValue = !apiField.Type.Nullable && apiField.DefaultValue == null;
+        if (overrideDefaultValue)
+        {
+            // TODO When switching to records (.NET 6 LTS), replace this construct to be immutable.
+            apiField.DefaultValue = apiField.Type switch
+            {
+                ApiFieldType.Array => new ApiDefaultValue.Collection(),
+                ApiFieldType.Map => new ApiDefaultValue.Map(),
+                _ => apiField.DefaultValue
+            };
+        }
+
+        var initialValueForAssignment = apiField.ToCSharpDefaultValueForAssignment(_codeGenerationContext);
+        if (initialValueForAssignment != null)
+        {
+            builder.AppendLine($">(nameof({typeNameForDto}), nameof({propertyNameForField}), {initialValueForAssignment});");
+        }
+        else
+        {
+            builder.AppendLine($">(nameof({typeNameForDto}), nameof({propertyNameForField}));");
+        }
+        builder.AppendLine($"{indent}");
+
+        // Restore null default value
+        if (overrideDefaultValue)
+        {
+            apiField.DefaultValue = null;
+        }
+
+        // Property
+        if (!apiField.Optional && !apiField.Type.Nullable)
+        {
+            builder.AppendLine($"{indent}[Required]");
+        }
+        if (apiField.Deprecation != null)
+        {
+            builder.AppendLine(apiField.Deprecation.ToCSharpDeprecation());
+        }
+        builder.AppendLine($"{indent}[JsonPropertyName(\"{apiField.Name}\")]");
+
+        if (apiField.Type is ApiFieldType.Primitive apiFieldTypePrimitive)
+        {
+            var csharpType = apiFieldTypePrimitive.ToCSharpPrimitiveType();
+            if (csharpType.JsonConverter != null)
+            {
+                builder.AppendLine($"{indent}[JsonConverter(typeof({csharpType.JsonConverter.Name}))]");
+            }
+        }
+            
+        builder.Append($"{indent}public ");
+        builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
+        if (apiField.Type.Nullable)
+        {
+            builder.Append("?");
+        }
+        builder.Append(" ");
+        builder.AppendLine($"{indent}{propertyNameForField}");
+            
+        builder.AppendLine($"{indent}{{");
+        indent.Increment();
+            
+        builder.AppendLine($"{indent}get => {backingFieldNameForField}.GetValue();");
+        builder.AppendLine($"{indent}set => {backingFieldNameForField}.SetValue(value);");
+
+        indent.Decrement();
+        builder.AppendLine($"{indent}}}");
+
+        return builder.ToString();
+    }
+
+    private static string GenerateDtoPropagatePropertyAccessPath(ApiDto apiDto, List<ApiDtoField> apiDtoFields)
+    {
+        var indent = new Indent();
+        var builder = new StringBuilder();
+                
+        var modifier = apiDto.Extends != null
+            ? "override" 
+            : apiDto.HierarchyRole != HierarchyRole.FINAL
+                ? "virtual"
+                : string.Empty;
+                
+        builder.AppendLine($"{indent}public {modifier} void {nameof(IPropagatePropertyAccessPath.SetAccessPath)}(string path, bool validateHasBeenSet)");
+        builder.AppendLine($"{indent}{{");
+        indent.Increment();
+
+        foreach (var apiDtoField in apiDtoFields)
+        {
+            var backingFieldNameForField = apiDtoField.Field.ToCSharpBackingFieldName();
+
+            builder.AppendLine($"{indent}{backingFieldNameForField}.{nameof(IPropagatePropertyAccessPath.SetAccessPath)}(path, validateHasBeenSet);");
+        }
+
+        indent.Decrement();
+        builder.AppendLine($"{indent}}}");
+
+        return builder.ToString();
     }
 }

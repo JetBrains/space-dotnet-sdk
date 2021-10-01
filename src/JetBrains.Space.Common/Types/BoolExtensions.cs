@@ -1,27 +1,26 @@
 using JetBrains.Annotations;
 
-namespace JetBrains.Space.Common.Types
+namespace JetBrains.Space.Common.Types;
+
+/// <summary>
+/// Extension methods for <see cref="bool"/>.
+/// </summary>
+[PublicAPI]
+public static class BoolExtensions
 {
     /// <summary>
-    /// Extension methods for <see cref="bool"/>.
+    /// Converts the boolean value of this <paramref name="subject"/> to a <see cref="string"/>.
     /// </summary>
-    [PublicAPI]
-    public static class BoolExtensions
+    /// <param name="subject">The <see cref="long"/> input.</param>
+    /// <param name="format">The format string. Currently supported is "l", which returns a lowercase string.</param>
+    /// <returns>A <see cref="string"/> from <paramref name="subject"/>.</returns>
+    public static string ToString(this bool subject, string? format)
     {
-        /// <summary>
-        /// Converts the boolean value of this <paramref name="subject"/> to a <see cref="string"/>.
-        /// </summary>
-        /// <param name="subject">The <see cref="long"/> input.</param>
-        /// <param name="format">The format string. Currently supported is "l", which returns a lowercase string.</param>
-        /// <returns>A <see cref="string"/> from <paramref name="subject"/>.</returns>
-        public static string ToString(this bool subject, string? format)
+        if (!string.IsNullOrEmpty(format) && format == "l")
         {
-            if (!string.IsNullOrEmpty(format) && format == "l")
-            {
-                return subject ? "true" : "false";
-            }
-
-            return subject.ToString();
+            return subject ? "true" : "false";
         }
+
+        return subject.ToString();
     }
 }

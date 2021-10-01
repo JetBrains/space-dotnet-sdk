@@ -1,8 +1,8 @@
-namespace JetBrains.Space.Generator
+namespace JetBrains.Space.Generator;
+
+internal static class Constants
 {
-    internal static class Constants
-    {
-        public const string SpaceLogoAscii = @" `..-----..`        
+    public const string SpaceLogoAscii = @" `..-----..`        
  .....--::///:.     
 `.......-:///+++/.  
 ..---------/++ooos/`
@@ -12,5 +12,4 @@ namespace JetBrains.Space.Generator
  :///////+ooos+-    
  `//////+++/:`      
   `:/::--.    ";
-    }
 }

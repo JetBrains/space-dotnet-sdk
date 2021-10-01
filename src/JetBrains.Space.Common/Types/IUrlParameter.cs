@@ -1,12 +1,11 @@
 using JetBrains.Annotations;
 
-namespace JetBrains.Space.Common.Types
+namespace JetBrains.Space.Common.Types;
+
+/// <summary>
+/// Marker interface for URL parameters.
+/// </summary>
+[PublicAPI]
+public interface IUrlParameter
 {
-    /// <summary>
-    /// Marker interface for URL parameters.
-    /// </summary>
-    [PublicAPI]
-    public interface IUrlParameter
-    {
-    }
 }

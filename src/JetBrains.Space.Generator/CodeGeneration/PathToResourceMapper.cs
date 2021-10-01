@@ -1,50 +1,49 @@
 using System.Collections.Generic;
 using JetBrains.Space.Generator.Model.HttpApi;
 
-namespace JetBrains.Space.Generator.CodeGeneration
+namespace JetBrains.Space.Generator.CodeGeneration;
+
+public static class PathToResourceMapper
 {
-    public static class PathToResourceMapper
-    {
-        private const int MinDepth = 1;
-        private const int MaxDepth = 2;
+    private const int MinDepth = 1;
+    private const int MaxDepth = 2;
         
-        public static Dictionary<string, List<ApiResource>> CreateMapOfPathToResources(ApiResource apiResource)
-        {
-            var mapOfPathToResources = new Dictionary<string, List<ApiResource>>();
+    public static Dictionary<string, List<ApiResource>> CreateMapOfPathToResources(ApiResource apiResource)
+    {
+        var mapOfPathToResources = new Dictionary<string, List<ApiResource>>();
 
-            Build(mapOfPathToResources, apiResource, string.Empty, 0);
+        Build(mapOfPathToResources, apiResource, string.Empty, 0);
             
-            return mapOfPathToResources;
-        }
+        return mapOfPathToResources;
+    }
 
-        private static void Build(
-            Dictionary<string, List<ApiResource>> targetMap, 
-            ApiResource apiResource, 
-            string currentPath, 
-            int currentDepth)
+    private static void Build(
+        Dictionary<string, List<ApiResource>> targetMap, 
+        ApiResource apiResource, 
+        string currentPath, 
+        int currentDepth)
+    {
+        currentPath = (currentPath.Length > 0 ? currentPath + "/" : currentPath) + apiResource.DisplaySingular;
+
+        // Self
+        if (currentDepth >= MinDepth)
         {
-            currentPath = (currentPath.Length > 0 ? currentPath + "/" : currentPath) + apiResource.DisplaySingular;
-
-            // Self
-            if (currentDepth >= MinDepth)
+            if (!targetMap.TryGetValue(currentPath, out var list))
             {
-                if (!targetMap.TryGetValue(currentPath, out var list))
-                {
-                    list = new List<ApiResource>();
-                    targetMap[currentPath] = list;
-                }
-
-                list.Add(apiResource);
+                list = new List<ApiResource>();
+                targetMap[currentPath] = list;
             }
 
-            // Nested resources
-            var newDepth = currentDepth + 1;
-            if (newDepth < MaxDepth)
+            list.Add(apiResource);
+        }
+
+        // Nested resources
+        var newDepth = currentDepth + 1;
+        if (newDepth < MaxDepth)
+        {
+            foreach (var apiNestedResource in apiResource.NestedResources)
             {
-                foreach (var apiNestedResource in apiResource.NestedResources)
-                {
-                    Build(targetMap, apiNestedResource, currentPath, newDepth);
-                }
+                Build(targetMap, apiNestedResource, currentPath, newDepth);
             }
         }
     }

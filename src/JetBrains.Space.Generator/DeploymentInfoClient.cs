@@ -8,66 +8,65 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using JetBrains.Space.Common;
 
-namespace JetBrains.Space.Generator
+namespace JetBrains.Space.Generator;
+
+internal class DeploymentInfoClient
 {
-    internal class DeploymentInfoClient
+    private readonly Uri _serverUrl;
+    private readonly HttpClient _httpClient;
+        
+    public DeploymentInfoClient(string serverUrl, HttpClient? httpClient = null)
     {
-        private readonly Uri _serverUrl;
-        private readonly HttpClient _httpClient;
+        if (string.IsNullOrEmpty(serverUrl)
+            || !Uri.TryCreate(serverUrl.TrimEnd('/') + "/", UriKind.Absolute, out var serverUri))
+        {
+            throw new ArgumentException("The Space organization URL is invalid.", nameof(serverUrl));
+        }
+            
+        _serverUrl = serverUri;
+        _httpClient = httpClient ?? SharedHttpClient.Instance;
+    }
         
-        public DeploymentInfoClient(string serverUrl, HttpClient? httpClient = null)
+    public async Task<DeploymentInfo> GetDeploymentInfoAsync()
+    {
+        var body = await _httpClient.GetStringAsync(_serverUrl + "about");
+
+        var deploymentInfo = new DeploymentInfo();
+
+        if (TryGetMatch(body, @">Version (?<version>\d*)", "version", out var version))
         {
-            if (string.IsNullOrEmpty(serverUrl)
-                || !Uri.TryCreate(serverUrl.TrimEnd('/') + "/", UriKind.Absolute, out var serverUri))
-            {
-                throw new ArgumentException("The Space organization URL is invalid.", nameof(serverUrl));
-            }
-            
-            _serverUrl = serverUri;
-            _httpClient = httpClient ?? SharedHttpClient.Instance;
+            deploymentInfo.Version = version;
         }
-        
-        public async Task<DeploymentInfo> GetDeploymentInfoAsync()
+            
+        if (TryGetMatch(body, @"Built on (?<built>.*)", "built", out var built) 
+            && DateTimeOffset.TryParse(built, CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None, out var buildDate))
         {
-            var body = await _httpClient.GetStringAsync(_serverUrl + "about");
-
-            var deploymentInfo = new DeploymentInfo();
-
-            if (TryGetMatch(body, @">Version (?<version>\d*)", "version", out var version))
-            {
-                deploymentInfo.Version = version;
-            }
+            deploymentInfo.BuildDate = buildDate;
+        }
             
-            if (TryGetMatch(body, @"Built on (?<built>.*)", "built", out var built) 
-                && DateTimeOffset.TryParse(built, CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None, out var buildDate))
-            {
-                deploymentInfo.BuildDate = buildDate;
-            }
+        if (TryGetMatch(body, @"Commit hash: (?<commit>.*)", "commit", out var commit))
+        {
+            deploymentInfo.CommitHash = commit;
+        }
             
-            if (TryGetMatch(body, @"Commit hash: (?<commit>.*)", "commit", out var commit))
-            {
-                deploymentInfo.CommitHash = commit;
-            }
-            
-            if (TryGetMatch(body, @"Branch: (?<branch>.*)<", "branch", out var branch))
-            {
-                deploymentInfo.Branch = branch;
-            }
-
-            return deploymentInfo;
+        if (TryGetMatch(body, @"Branch: (?<branch>.*)<", "branch", out var branch))
+        {
+            deploymentInfo.Branch = branch;
         }
 
-        private static bool TryGetMatch(string input, [RegexPattern]string pattern, string group, out string? value)
-        {
-            var match = Regex.Match(input, pattern, RegexOptions.Multiline);
-            if (match.Success)
-            {
-                value = match.Groups[group].Value;
-                return true;
-            }
+        return deploymentInfo;
+    }
 
-            value = null;
-            return false;
+    private static bool TryGetMatch(string input, [RegexPattern]string pattern, string group, out string? value)
+    {
+        var match = Regex.Match(input, pattern, RegexOptions.Multiline);
+        if (match.Success)
+        {
+            value = match.Groups[group].Value;
+            return true;
         }
+
+        value = null;
+        return false;
     }
 }
