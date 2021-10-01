@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsRole
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsRole
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsRole";
+    
+    public UnfurlDetailsRole() { }
+    
+    public UnfurlDetailsRole(TDRole role)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsRole";
-        
-        public UnfurlDetailsRole() { }
-        
-        public UnfurlDetailsRole(TDRole role)
-        {
-            Role = role;
-        }
-        
-        private PropertyValue<TDRole> _role = new PropertyValue<TDRole>(nameof(UnfurlDetailsRole), nameof(Role));
-        
-        [Required]
-        [JsonPropertyName("role")]
-        public TDRole Role
-        {
-            get => _role.GetValue();
-            set => _role.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _role.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Role = role;
     }
     
+    private PropertyValue<TDRole> _role = new PropertyValue<TDRole>(nameof(UnfurlDetailsRole), nameof(Role));
+    
+    [Required]
+    [JsonPropertyName("role")]
+    public TDRole Role
+    {
+        get => _role.GetValue();
+        set => _role.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _role.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

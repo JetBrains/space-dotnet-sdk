@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectAutomationJobsForJobIdStartPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectAutomationJobsForJobIdStartPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectAutomationJobsForJobIdStartPostRequest() { }
+    
+    public ProjectsForProjectAutomationJobsForJobIdStartPostRequest(Branch branch)
     {
-        public ProjectsForProjectAutomationJobsForJobIdStartPostRequest() { }
-        
-        public ProjectsForProjectAutomationJobsForJobIdStartPostRequest(Branch branch)
-        {
-            Branch = branch;
-        }
-        
-        private PropertyValue<Branch> _branch = new PropertyValue<Branch>(nameof(ProjectsForProjectAutomationJobsForJobIdStartPostRequest), nameof(Branch));
-        
-        [Required]
-        [JsonPropertyName("branch")]
-        public Branch Branch
-        {
-            get => _branch.GetValue();
-            set => _branch.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _branch.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Branch = branch;
     }
     
+    private PropertyValue<Branch> _branch = new PropertyValue<Branch>(nameof(ProjectsForProjectAutomationJobsForJobIdStartPostRequest), nameof(Branch));
+    
+    [Required]
+    [JsonPropertyName("branch")]
+    public Branch Branch
+    {
+        get => _branch.GetValue();
+        set => _branch.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _branch.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

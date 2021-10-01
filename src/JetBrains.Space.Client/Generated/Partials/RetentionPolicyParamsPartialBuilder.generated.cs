@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RetentionPolicyParamsPartialBuilder
+namespace JetBrains.Space.Client.RetentionPolicyParamsPartialBuilder;
+
+public static class RetentionPolicyParamsPartialExtensions
 {
-    public static class RetentionPolicyParamsPartialExtensions
-    {
-        public static Partial<RetentionPolicyParams> WithNumberOfDaysToRetain(this Partial<RetentionPolicyParams> it)
-            => it.AddFieldName("numberOfDaysToRetain");
-        
-        public static Partial<RetentionPolicyParams> WithNumberOfVersionsToRetain(this Partial<RetentionPolicyParams> it)
-            => it.AddFieldName("numberOfVersionsToRetain");
-        
-        public static Partial<RetentionPolicyParams> WithIsRetainDownloadedOnce(this Partial<RetentionPolicyParams> it)
-            => it.AddFieldName("retainDownloadedOnce");
-        
-    }
+    public static Partial<RetentionPolicyParams> WithNumberOfDaysToRetain(this Partial<RetentionPolicyParams> it)
+        => it.AddFieldName("numberOfDaysToRetain");
+    
+    public static Partial<RetentionPolicyParams> WithNumberOfVersionsToRetain(this Partial<RetentionPolicyParams> it)
+        => it.AddFieldName("numberOfVersionsToRetain");
+    
+    public static Partial<RetentionPolicyParams> WithIsRetainDownloadedOnce(this Partial<RetentionPolicyParams> it)
+        => it.AddFieldName("retainDownloadedOnce");
     
 }
+

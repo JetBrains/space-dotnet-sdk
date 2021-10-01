@@ -27,30 +27,29 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class GitFileContent
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class GitFileContent
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "GitFileContent";
+    
+    public static GitFileContentBase64 Base64(string value, bool? executable = null)
+        => new GitFileContentBase64(value: value, executable: executable);
+    
+    public static GitFileContentDeleted Deleted()
+        => new GitFileContentDeleted();
+    
+    public static GitFileContentText Text(string value, bool? executable = null)
+        => new GitFileContentText(value: value, executable: executable);
+    
+    public GitFileContent() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "GitFileContent";
-        
-        public static GitFileContentBase64 Base64(string value, bool? executable = null)
-            => new GitFileContentBase64(value: value, executable: executable);
-        
-        public static GitFileContentDeleted Deleted()
-            => new GitFileContentDeleted();
-        
-        public static GitFileContentText Text(string value, bool? executable = null)
-            => new GitFileContentText(value: value, executable: executable);
-        
-        public GitFileContent() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class SSLKeystoreEndpointAuth
+     : IPropagatePropertyAccessPath
 {
-    public sealed class SSLKeystoreEndpointAuth
-         : IPropagatePropertyAccessPath
+    public SSLKeystoreEndpointAuth() { }
+    
+    public SSLKeystoreEndpointAuth(string sslKeystore)
     {
-        public SSLKeystoreEndpointAuth() { }
-        
-        public SSLKeystoreEndpointAuth(string sslKeystore)
-        {
-            SslKeystore = sslKeystore;
-        }
-        
-        private PropertyValue<string> _sslKeystore = new PropertyValue<string>(nameof(SSLKeystoreEndpointAuth), nameof(SslKeystore));
-        
-        [Required]
-        [JsonPropertyName("sslKeystore")]
-        public string SslKeystore
-        {
-            get => _sslKeystore.GetValue();
-            set => _sslKeystore.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _sslKeystore.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        SslKeystore = sslKeystore;
     }
     
+    private PropertyValue<string> _sslKeystore = new PropertyValue<string>(nameof(SSLKeystoreEndpointAuth), nameof(SslKeystore));
+    
+    [Required]
+    [JsonPropertyName("sslKeystore")]
+    public string SslKeystore
+    {
+        get => _sslKeystore.GetValue();
+        set => _sslKeystore.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _sslKeystore.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

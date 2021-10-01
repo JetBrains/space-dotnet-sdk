@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum InterpolatedLineState
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum InterpolatedLineState
-    {
-        [EnumMember(Value = "Normal")]
-        Normal,
-        
-        [EnumMember(Value = "Deleted")]
-        Deleted,
-        
-        [EnumMember(Value = "Modified")]
-        Modified,
-        
-    }
+    [EnumMember(Value = "Normal")]
+    Normal,
+    
+    [EnumMember(Value = "Deleted")]
+    Deleted,
+    
+    [EnumMember(Value = "Modified")]
+    Modified,
     
 }
+

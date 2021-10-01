@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChannelParticipantPartialBuilder
+namespace JetBrains.Space.Client.ChannelParticipantPartialBuilder;
+
+public static class ChannelParticipantPartialExtensions
 {
-    public static class ChannelParticipantPartialExtensions
-    {
-        public static Partial<ChannelParticipant> WithPrincipal(this Partial<ChannelParticipant> it)
-            => it.AddFieldName("principal");
-        
-        public static Partial<ChannelParticipant> WithPrincipal(this Partial<ChannelParticipant> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<ChannelParticipant> WithMessageCount(this Partial<ChannelParticipant> it)
-            => it.AddFieldName("messageCount");
-        
-        public static Partial<ChannelParticipant> WithPendingMessageCount(this Partial<ChannelParticipant> it)
-            => it.AddFieldName("pendingMessageCount");
-        
-    }
+    public static Partial<ChannelParticipant> WithPrincipal(this Partial<ChannelParticipant> it)
+        => it.AddFieldName("principal");
+    
+    public static Partial<ChannelParticipant> WithPrincipal(this Partial<ChannelParticipant> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<ChannelParticipant> WithMessageCount(this Partial<ChannelParticipant> it)
+        => it.AddFieldName("messageCount");
+    
+    public static Partial<ChannelParticipant> WithPendingMessageCount(this Partial<ChannelParticipant> it)
+        => it.AddFieldName("pendingMessageCount");
     
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TodoItemContentMdTextPartialBuilder
+namespace JetBrains.Space.Client.TodoItemContentMdTextPartialBuilder;
+
+public static class TodoItemContentMdTextPartialExtensions
 {
-    public static class TodoItemContentMdTextPartialExtensions
-    {
-        public static Partial<TodoItemContentMdText> WithText(this Partial<TodoItemContentMdText> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<TodoItemContentMdText> WithMdMarkup(this Partial<TodoItemContentMdText> it)
-            => it.AddFieldName("mdMarkup");
-        
-        public static Partial<TodoItemContentMdText> WithMdMarkup(this Partial<TodoItemContentMdText> it, Func<Partial<MdMarkup>, Partial<MdMarkup>> partialBuilder)
-            => it.AddFieldName("mdMarkup", partialBuilder(new Partial<MdMarkup>(it)));
-        
-    }
+    public static Partial<TodoItemContentMdText> WithText(this Partial<TodoItemContentMdText> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<TodoItemContentMdText> WithMdMarkup(this Partial<TodoItemContentMdText> it)
+        => it.AddFieldName("mdMarkup");
+    
+    public static Partial<TodoItemContentMdText> WithMdMarkup(this Partial<TodoItemContentMdText> it, Func<Partial<MdMarkup>, Partial<MdMarkup>> partialBuilder)
+        => it.AddFieldName("mdMarkup", partialBuilder(new Partial<MdMarkup>(it)));
     
 }
+

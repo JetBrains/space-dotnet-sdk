@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2PackageContentDetailsPartialBuilder
+namespace JetBrains.Space.Client.M2PackageContentDetailsPartialBuilder;
+
+public static class M2PackageContentDetailsPartialExtensions
 {
-    public static class M2PackageContentDetailsPartialExtensions
-    {
-    }
-    
 }
+

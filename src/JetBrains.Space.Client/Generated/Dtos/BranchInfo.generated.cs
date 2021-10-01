@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BranchInfo
+     : IPropagatePropertyAccessPath
 {
-    public sealed class BranchInfo
-         : IPropagatePropertyAccessPath
+    public BranchInfo() { }
+    
+    public BranchInfo(string head, string @ref)
     {
-        public BranchInfo() { }
-        
-        public BranchInfo(string head, string @ref)
-        {
-            Head = head;
-            Ref = @ref;
-        }
-        
-        private PropertyValue<string> _head = new PropertyValue<string>(nameof(BranchInfo), nameof(Head));
-        
-        [Required]
-        [JsonPropertyName("head")]
-        public string Head
-        {
-            get => _head.GetValue();
-            set => _head.SetValue(value);
-        }
-    
-        private PropertyValue<string> _ref = new PropertyValue<string>(nameof(BranchInfo), nameof(Ref));
-        
-        [Required]
-        [JsonPropertyName("ref")]
-        public string Ref
-        {
-            get => _ref.GetValue();
-            set => _ref.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _head.SetAccessPath(path, validateHasBeenSet);
-            _ref.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Head = head;
+        Ref = @ref;
     }
     
+    private PropertyValue<string> _head = new PropertyValue<string>(nameof(BranchInfo), nameof(Head));
+    
+    [Required]
+    [JsonPropertyName("head")]
+    public string Head
+    {
+        get => _head.GetValue();
+        set => _head.SetValue(value);
+    }
+
+    private PropertyValue<string> _ref = new PropertyValue<string>(nameof(BranchInfo), nameof(Ref));
+    
+    [Required]
+    [JsonPropertyName("ref")]
+    public string Ref
+    {
+        get => _ref.GetValue();
+        set => _ref.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _head.SetAccessPath(path, validateHasBeenSet);
+        _ref.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

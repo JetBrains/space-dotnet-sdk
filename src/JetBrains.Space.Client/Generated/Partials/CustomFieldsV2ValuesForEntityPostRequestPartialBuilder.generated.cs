@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomFieldsV2ValuesForEntityPostRequestPartialBuilder
+namespace JetBrains.Space.Client.CustomFieldsV2ValuesForEntityPostRequestPartialBuilder;
+
+public static class CustomFieldsV2ValuesForEntityPostRequestPartialExtensions
 {
-    public static class CustomFieldsV2ValuesForEntityPostRequestPartialExtensions
-    {
-        public static Partial<CustomFieldsV2ValuesForEntityPostRequest> WithCustomFieldValues(this Partial<CustomFieldsV2ValuesForEntityPostRequest> it)
-            => it.AddFieldName("customFieldValues");
-        
-        public static Partial<CustomFieldsV2ValuesForEntityPostRequest> WithCustomFieldValues(this Partial<CustomFieldsV2ValuesForEntityPostRequest> it, Func<Partial<CustomFieldValueUpdate>, Partial<CustomFieldValueUpdate>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueUpdate>(it)));
-        
-    }
+    public static Partial<CustomFieldsV2ValuesForEntityPostRequest> WithCustomFieldValues(this Partial<CustomFieldsV2ValuesForEntityPostRequest> it)
+        => it.AddFieldName("customFieldValues");
+    
+    public static Partial<CustomFieldsV2ValuesForEntityPostRequest> WithCustomFieldValues(this Partial<CustomFieldsV2ValuesForEntityPostRequest> it, Func<Partial<CustomFieldValueUpdate>, Partial<CustomFieldValueUpdate>> partialBuilder)
+        => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueUpdate>(it)));
     
 }
+

@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MenuActionPayloadPartialBuilder
+namespace JetBrains.Space.Client.MenuActionPayloadPartialBuilder;
+
+public static class MenuActionPayloadPartialExtensions
 {
-    public static class MenuActionPayloadPartialExtensions
-    {
-        public static Partial<MenuActionPayload> WithExtensionName(this Partial<MenuActionPayload> it)
-            => it.AddFieldName("extensionName");
-        
-        public static Partial<MenuActionPayload> WithContext(this Partial<MenuActionPayload> it)
-            => it.AddFieldName("context");
-        
-        public static Partial<MenuActionPayload> WithContext(this Partial<MenuActionPayload> it, Func<Partial<MenuActionContext>, Partial<MenuActionContext>> partialBuilder)
-            => it.AddFieldName("context", partialBuilder(new Partial<MenuActionContext>(it)));
-        
-        public static Partial<MenuActionPayload> WithClientId(this Partial<MenuActionPayload> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<MenuActionPayload> WithUserId(this Partial<MenuActionPayload> it)
-            => it.AddFieldName("userId");
-        
-        public static Partial<MenuActionPayload> WithVerificationToken(this Partial<MenuActionPayload> it)
-            => it.AddFieldName("verificationToken");
-        
-    }
+    public static Partial<MenuActionPayload> WithExtensionName(this Partial<MenuActionPayload> it)
+        => it.AddFieldName("extensionName");
+    
+    public static Partial<MenuActionPayload> WithContext(this Partial<MenuActionPayload> it)
+        => it.AddFieldName("context");
+    
+    public static Partial<MenuActionPayload> WithContext(this Partial<MenuActionPayload> it, Func<Partial<MenuActionContext>, Partial<MenuActionContext>> partialBuilder)
+        => it.AddFieldName("context", partialBuilder(new Partial<MenuActionContext>(it)));
+    
+    public static Partial<MenuActionPayload> WithClientId(this Partial<MenuActionPayload> it)
+        => it.AddFieldName("clientId");
+    
+    public static Partial<MenuActionPayload> WithUserId(this Partial<MenuActionPayload> it)
+        => it.AddFieldName("userId");
+    
+    public static Partial<MenuActionPayload> WithVerificationToken(this Partial<MenuActionPayload> it)
+        => it.AddFieldName("verificationToken");
     
 }
+

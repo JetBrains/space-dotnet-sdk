@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2ChannelContentRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class M2ChannelContentRecord
-         : IPropagatePropertyAccessPath
+    public M2ChannelContentRecord() { }
+    
+    public M2ChannelContentRecord(string id, M2ChannelContentInfo? content = null)
     {
-        public M2ChannelContentRecord() { }
-        
-        public M2ChannelContentRecord(string id, M2ChannelContentInfo? content = null)
-        {
-            Id = id;
-            Content = content;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2ChannelContentRecord), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<M2ChannelContentInfo?> _content = new PropertyValue<M2ChannelContentInfo?>(nameof(M2ChannelContentRecord), nameof(Content));
-        
-        [JsonPropertyName("content")]
-        public M2ChannelContentInfo? Content
-        {
-            get => _content.GetValue();
-            set => _content.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _content.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Content = content;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2ChannelContentRecord), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<M2ChannelContentInfo?> _content = new PropertyValue<M2ChannelContentInfo?>(nameof(M2ChannelContentRecord), nameof(Content));
+    
+    [JsonPropertyName("content")]
+    public M2ChannelContentInfo? Content
+    {
+        get => _content.GetValue();
+        set => _content.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _content.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

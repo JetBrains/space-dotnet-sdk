@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsInlineMarkdown
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsInlineMarkdown
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsInlineMarkdown";
+    
+    public UnfurlDetailsInlineMarkdown() { }
+    
+    public UnfurlDetailsInlineMarkdown(string markdown)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsInlineMarkdown";
-        
-        public UnfurlDetailsInlineMarkdown() { }
-        
-        public UnfurlDetailsInlineMarkdown(string markdown)
-        {
-            Markdown = markdown;
-        }
-        
-        private PropertyValue<string> _markdown = new PropertyValue<string>(nameof(UnfurlDetailsInlineMarkdown), nameof(Markdown));
-        
-        [Required]
-        [JsonPropertyName("markdown")]
-        public string Markdown
-        {
-            get => _markdown.GetValue();
-            set => _markdown.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _markdown.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Markdown = markdown;
     }
     
+    private PropertyValue<string> _markdown = new PropertyValue<string>(nameof(UnfurlDetailsInlineMarkdown), nameof(Markdown));
+    
+    [Required]
+    [JsonPropertyName("markdown")]
+    public string Markdown
+    {
+        get => _markdown.GetValue();
+        set => _markdown.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _markdown.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

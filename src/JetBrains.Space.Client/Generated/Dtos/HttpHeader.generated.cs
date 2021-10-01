@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HttpHeader
+     : IPropagatePropertyAccessPath
 {
-    public sealed class HttpHeader
-         : IPropagatePropertyAccessPath
+    public HttpHeader() { }
+    
+    public HttpHeader(string name, bool maskedValue, List<string> values)
     {
-        public HttpHeader() { }
-        
-        public HttpHeader(string name, bool maskedValue, List<string> values)
-        {
-            Name = name;
-            IsMaskedValue = maskedValue;
-            Values = values;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(HttpHeader), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _maskedValue = new PropertyValue<bool>(nameof(HttpHeader), nameof(IsMaskedValue));
-        
-        [Required]
-        [JsonPropertyName("maskedValue")]
-        public bool IsMaskedValue
-        {
-            get => _maskedValue.GetValue();
-            set => _maskedValue.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(HttpHeader), nameof(Values), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("values")]
-        public List<string> Values
-        {
-            get => _values.GetValue();
-            set => _values.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _maskedValue.SetAccessPath(path, validateHasBeenSet);
-            _values.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        IsMaskedValue = maskedValue;
+        Values = values;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HttpHeader), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<bool> _maskedValue = new PropertyValue<bool>(nameof(HttpHeader), nameof(IsMaskedValue));
+    
+    [Required]
+    [JsonPropertyName("maskedValue")]
+    public bool IsMaskedValue
+    {
+        get => _maskedValue.GetValue();
+        set => _maskedValue.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(HttpHeader), nameof(Values), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("values")]
+    public List<string> Values
+    {
+        get => _values.GetValue();
+        set => _values.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _maskedValue.SetAccessPath(path, validateHasBeenSet);
+        _values.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

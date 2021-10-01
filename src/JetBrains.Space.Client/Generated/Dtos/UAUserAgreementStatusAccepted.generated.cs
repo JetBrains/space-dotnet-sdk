@@ -27,61 +27,60 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UAUserAgreementStatusAccepted
+     : UAUserAgreementStatus, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UAUserAgreementStatusAccepted
-         : UAUserAgreementStatus, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "UA_UserAgreementStatus.Accepted";
+    
+    public UAUserAgreementStatusAccepted() { }
+    
+    public UAUserAgreementStatusAccepted(TDMemberProfile profile, UAUserAgreement userAgreement, DateTime accepted)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "UA_UserAgreementStatus.Accepted";
-        
-        public UAUserAgreementStatusAccepted() { }
-        
-        public UAUserAgreementStatusAccepted(TDMemberProfile profile, UAUserAgreement userAgreement, DateTime accepted)
-        {
-            Profile = profile;
-            UserAgreement = userAgreement;
-            Accepted = accepted;
-        }
-        
-        private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(UAUserAgreementStatusAccepted), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfile Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<UAUserAgreement> _userAgreement = new PropertyValue<UAUserAgreement>(nameof(UAUserAgreementStatusAccepted), nameof(UserAgreement));
-        
-        [Required]
-        [JsonPropertyName("userAgreement")]
-        public UAUserAgreement UserAgreement
-        {
-            get => _userAgreement.GetValue();
-            set => _userAgreement.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _accepted = new PropertyValue<DateTime>(nameof(UAUserAgreementStatusAccepted), nameof(Accepted));
-        
-        [Required]
-        [JsonPropertyName("accepted")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Accepted
-        {
-            get => _accepted.GetValue();
-            set => _accepted.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _userAgreement.SetAccessPath(path, validateHasBeenSet);
-            _accepted.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
+        UserAgreement = userAgreement;
+        Accepted = accepted;
     }
     
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(UAUserAgreementStatusAccepted), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public TDMemberProfile Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<UAUserAgreement> _userAgreement = new PropertyValue<UAUserAgreement>(nameof(UAUserAgreementStatusAccepted), nameof(UserAgreement));
+    
+    [Required]
+    [JsonPropertyName("userAgreement")]
+    public UAUserAgreement UserAgreement
+    {
+        get => _userAgreement.GetValue();
+        set => _userAgreement.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _accepted = new PropertyValue<DateTime>(nameof(UAUserAgreementStatusAccepted), nameof(Accepted));
+    
+    [Required]
+    [JsonPropertyName("accepted")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Accepted
+    {
+        get => _accepted.GetValue();
+        set => _accepted.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _userAgreement.SetAccessPath(path, validateHasBeenSet);
+        _accepted.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

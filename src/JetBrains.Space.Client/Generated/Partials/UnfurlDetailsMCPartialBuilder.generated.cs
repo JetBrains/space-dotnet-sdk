@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsMCPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsMCPartialBuilder;
+
+public static class UnfurlDetailsMCPartialExtensions
 {
-    public static class UnfurlDetailsMCPartialExtensions
-    {
-        public static Partial<UnfurlDetailsMC> WithMessage(this Partial<UnfurlDetailsMC> it)
-            => it.AddFieldName("message");
-        
-        public static Partial<UnfurlDetailsMC> WithMessage(this Partial<UnfurlDetailsMC> it, Func<Partial<MCMessage>, Partial<MCMessage>> partialBuilder)
-            => it.AddFieldName("message", partialBuilder(new Partial<MCMessage>(it)));
-        
-        public static Partial<UnfurlDetailsMC> WithInlineUnfurls(this Partial<UnfurlDetailsMC> it)
-            => it.AddFieldName("inlineUnfurls");
-        
-        public static Partial<UnfurlDetailsMC> WithInlineUnfurls(this Partial<UnfurlDetailsMC> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
-            => it.AddFieldName("inlineUnfurls", partialBuilder(new Partial<AttachmentInfo>(it)));
-        
-    }
+    public static Partial<UnfurlDetailsMC> WithMessage(this Partial<UnfurlDetailsMC> it)
+        => it.AddFieldName("message");
+    
+    public static Partial<UnfurlDetailsMC> WithMessage(this Partial<UnfurlDetailsMC> it, Func<Partial<MCMessage>, Partial<MCMessage>> partialBuilder)
+        => it.AddFieldName("message", partialBuilder(new Partial<MCMessage>(it)));
+    
+    public static Partial<UnfurlDetailsMC> WithInlineUnfurls(this Partial<UnfurlDetailsMC> it)
+        => it.AddFieldName("inlineUnfurls");
+    
+    public static Partial<UnfurlDetailsMC> WithInlineUnfurls(this Partial<UnfurlDetailsMC> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
+        => it.AddFieldName("inlineUnfurls", partialBuilder(new Partial<AttachmentInfo>(it)));
     
 }
+

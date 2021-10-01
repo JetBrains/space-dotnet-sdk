@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2MembershipRequestedContentPartialBuilder
+namespace JetBrains.Space.Client.M2MembershipRequestedContentPartialBuilder;
+
+public static class M2MembershipRequestedContentPartialExtensions
 {
-    public static class M2MembershipRequestedContentPartialExtensions
-    {
-        public static Partial<M2MembershipRequestedContent> WithMembership(this Partial<M2MembershipRequestedContent> it)
-            => it.AddFieldName("membership");
-        
-        public static Partial<M2MembershipRequestedContent> WithMembership(this Partial<M2MembershipRequestedContent> it, Func<Partial<TDMembership>, Partial<TDMembership>> partialBuilder)
-            => it.AddFieldName("membership", partialBuilder(new Partial<TDMembership>(it)));
-        
-        public static Partial<M2MembershipRequestedContent> WithIsLeave(this Partial<M2MembershipRequestedContent> it)
-            => it.AddFieldName("leave");
-        
-    }
+    public static Partial<M2MembershipRequestedContent> WithMembership(this Partial<M2MembershipRequestedContent> it)
+        => it.AddFieldName("membership");
+    
+    public static Partial<M2MembershipRequestedContent> WithMembership(this Partial<M2MembershipRequestedContent> it, Func<Partial<TDMembership>, Partial<TDMembership>> partialBuilder)
+        => it.AddFieldName("membership", partialBuilder(new Partial<TDMembership>(it)));
+    
+    public static Partial<M2MembershipRequestedContent> WithIsLeave(this Partial<M2MembershipRequestedContent> it)
+        => it.AddFieldName("leave");
     
 }
+

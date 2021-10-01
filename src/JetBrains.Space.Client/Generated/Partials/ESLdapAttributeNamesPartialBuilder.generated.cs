@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESLdapAttributeNamesPartialBuilder
+namespace JetBrains.Space.Client.ESLdapAttributeNamesPartialBuilder;
+
+public static class ESLdapAttributeNamesPartialExtensions
 {
-    public static class ESLdapAttributeNamesPartialExtensions
-    {
-        public static Partial<ESLdapAttributeNames> WithFullNameAttributeName(this Partial<ESLdapAttributeNames> it)
-            => it.AddFieldName("fullNameAttributeName");
-        
-        public static Partial<ESLdapAttributeNames> WithUsernameAttributeName(this Partial<ESLdapAttributeNames> it)
-            => it.AddFieldName("usernameAttributeName");
-        
-        public static Partial<ESLdapAttributeNames> WithEmailAttributeName(this Partial<ESLdapAttributeNames> it)
-            => it.AddFieldName("emailAttributeName");
-        
-        public static Partial<ESLdapAttributeNames> WithGroupsAttributeName(this Partial<ESLdapAttributeNames> it)
-            => it.AddFieldName("groupsAttributeName");
-        
-    }
+    public static Partial<ESLdapAttributeNames> WithFullNameAttributeName(this Partial<ESLdapAttributeNames> it)
+        => it.AddFieldName("fullNameAttributeName");
+    
+    public static Partial<ESLdapAttributeNames> WithUsernameAttributeName(this Partial<ESLdapAttributeNames> it)
+        => it.AddFieldName("usernameAttributeName");
+    
+    public static Partial<ESLdapAttributeNames> WithEmailAttributeName(this Partial<ESLdapAttributeNames> it)
+        => it.AddFieldName("emailAttributeName");
+    
+    public static Partial<ESLdapAttributeNames> WithGroupsAttributeName(this Partial<ESLdapAttributeNames> it)
+        => it.AddFieldName("groupsAttributeName");
     
 }
+

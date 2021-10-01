@@ -27,59 +27,58 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum SyntaxMarkupType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum SyntaxMarkupType
-    {
-        [EnumMember(Value = "KEYWORD")]
-        KEYWORD,
-        
-        [EnumMember(Value = "COMMENT")]
-        COMMENT,
-        
-        [EnumMember(Value = "NUM_LITERAL")]
-        NUMLITERAL,
-        
-        [EnumMember(Value = "STRING_LITERAL")]
-        STRINGLITERAL,
-        
-        [EnumMember(Value = "DECLARATION")]
-        DECLARATION,
-        
-        [EnumMember(Value = "PARAMETER_ASSIGNMENT")]
-        PARAMETERASSIGNMENT,
-        
-        [EnumMember(Value = "IDENTIFIER")]
-        IDENTIFIER,
-        
-        [EnumMember(Value = "IDENTIFIER_TYPE")]
-        IDENTIFIERTYPE,
-        
-        [EnumMember(Value = "IDENTIFIER_DECLARATION")]
-        IDENTIFIERDECLARATION,
-        
-        [EnumMember(Value = "KEY")]
-        KEY,
-        
-        [EnumMember(Value = "TAG")]
-        TAG,
-        
-        [EnumMember(Value = "ANNOTATION")]
-        ANNOTATION,
-        
-        [EnumMember(Value = "PREPROCESSOR_ANNOTATION")]
-        PREPROCESSORANNOTATION,
-        
-        [EnumMember(Value = "PREPROCESSOR_MESSAGE")]
-        PREPROCESSORMESSAGE,
-        
-        [EnumMember(Value = "HIGHLIGHT")]
-        HIGHLIGHT,
-        
-        [EnumMember(Value = "SKIP")]
-        SKIP,
-        
-    }
+    [EnumMember(Value = "KEYWORD")]
+    KEYWORD,
+    
+    [EnumMember(Value = "COMMENT")]
+    COMMENT,
+    
+    [EnumMember(Value = "NUM_LITERAL")]
+    NUMLITERAL,
+    
+    [EnumMember(Value = "STRING_LITERAL")]
+    STRINGLITERAL,
+    
+    [EnumMember(Value = "DECLARATION")]
+    DECLARATION,
+    
+    [EnumMember(Value = "PARAMETER_ASSIGNMENT")]
+    PARAMETERASSIGNMENT,
+    
+    [EnumMember(Value = "IDENTIFIER")]
+    IDENTIFIER,
+    
+    [EnumMember(Value = "IDENTIFIER_TYPE")]
+    IDENTIFIERTYPE,
+    
+    [EnumMember(Value = "IDENTIFIER_DECLARATION")]
+    IDENTIFIERDECLARATION,
+    
+    [EnumMember(Value = "KEY")]
+    KEY,
+    
+    [EnumMember(Value = "TAG")]
+    TAG,
+    
+    [EnumMember(Value = "ANNOTATION")]
+    ANNOTATION,
+    
+    [EnumMember(Value = "PREPROCESSOR_ANNOTATION")]
+    PREPROCESSORANNOTATION,
+    
+    [EnumMember(Value = "PREPROCESSOR_MESSAGE")]
+    PREPROCESSORMESSAGE,
+    
+    [EnumMember(Value = "HIGHLIGHT")]
+    HIGHLIGHT,
+    
+    [EnumMember(Value = "SKIP")]
+    SKIP,
     
 }
+

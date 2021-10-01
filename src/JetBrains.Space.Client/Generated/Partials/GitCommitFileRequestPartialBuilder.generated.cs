@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitCommitFileRequestPartialBuilder
+namespace JetBrains.Space.Client.GitCommitFileRequestPartialBuilder;
+
+public static class GitCommitFileRequestPartialExtensions
 {
-    public static class GitCommitFileRequestPartialExtensions
-    {
-        public static Partial<GitCommitFileRequest> WithPath(this Partial<GitCommitFileRequest> it)
-            => it.AddFieldName("path");
-        
-        public static Partial<GitCommitFileRequest> WithContent(this Partial<GitCommitFileRequest> it)
-            => it.AddFieldName("content");
-        
-        public static Partial<GitCommitFileRequest> WithContent(this Partial<GitCommitFileRequest> it, Func<Partial<GitFileContent>, Partial<GitFileContent>> partialBuilder)
-            => it.AddFieldName("content", partialBuilder(new Partial<GitFileContent>(it)));
-        
-    }
+    public static Partial<GitCommitFileRequest> WithPath(this Partial<GitCommitFileRequest> it)
+        => it.AddFieldName("path");
+    
+    public static Partial<GitCommitFileRequest> WithContent(this Partial<GitCommitFileRequest> it)
+        => it.AddFieldName("content");
+    
+    public static Partial<GitCommitFileRequest> WithContent(this Partial<GitCommitFileRequest> it, Func<Partial<GitFileContent>, Partial<GitFileContent>> partialBuilder)
+        => it.AddFieldName("content", partialBuilder(new Partial<GitFileContent>(it)));
     
 }
+

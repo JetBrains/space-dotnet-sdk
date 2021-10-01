@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TimeInterval
+     : IPropagatePropertyAccessPath
 {
-    public sealed class TimeInterval
-         : IPropagatePropertyAccessPath
+    public TimeInterval() { }
+    
+    public TimeInterval(TimeOfDay since, TimeOfDay till)
     {
-        public TimeInterval() { }
-        
-        public TimeInterval(TimeOfDay since, TimeOfDay till)
-        {
-            Since = since;
-            Till = till;
-        }
-        
-        private PropertyValue<TimeOfDay> _since = new PropertyValue<TimeOfDay>(nameof(TimeInterval), nameof(Since));
-        
-        [Required]
-        [JsonPropertyName("since")]
-        public TimeOfDay Since
-        {
-            get => _since.GetValue();
-            set => _since.SetValue(value);
-        }
-    
-        private PropertyValue<TimeOfDay> _till = new PropertyValue<TimeOfDay>(nameof(TimeInterval), nameof(Till));
-        
-        [Required]
-        [JsonPropertyName("till")]
-        public TimeOfDay Till
-        {
-            get => _till.GetValue();
-            set => _till.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _since.SetAccessPath(path, validateHasBeenSet);
-            _till.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Since = since;
+        Till = till;
     }
     
+    private PropertyValue<TimeOfDay> _since = new PropertyValue<TimeOfDay>(nameof(TimeInterval), nameof(Since));
+    
+    [Required]
+    [JsonPropertyName("since")]
+    public TimeOfDay Since
+    {
+        get => _since.GetValue();
+        set => _since.SetValue(value);
+    }
+
+    private PropertyValue<TimeOfDay> _till = new PropertyValue<TimeOfDay>(nameof(TimeInterval), nameof(Till));
+    
+    [Required]
+    [JsonPropertyName("till")]
+    public TimeOfDay Till
+    {
+        get => _till.GetValue();
+        set => _till.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _since.SetAccessPath(path, validateHasBeenSet);
+        _till.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

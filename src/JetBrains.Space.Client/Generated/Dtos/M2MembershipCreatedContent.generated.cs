@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2MembershipCreatedContent
+     : M2MembershipContent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2MembershipCreatedContent
-         : M2MembershipContent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "M2MembershipCreatedContent";
+    
+    public M2MembershipCreatedContent() { }
+    
+    public M2MembershipCreatedContent(TDMembership membership)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "M2MembershipCreatedContent";
-        
-        public M2MembershipCreatedContent() { }
-        
-        public M2MembershipCreatedContent(TDMembership membership)
-        {
-            Membership = membership;
-        }
-        
-        private PropertyValue<TDMembership> _membership = new PropertyValue<TDMembership>(nameof(M2MembershipCreatedContent), nameof(Membership));
-        
-        [Required]
-        [JsonPropertyName("membership")]
-        public TDMembership Membership
-        {
-            get => _membership.GetValue();
-            set => _membership.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _membership.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Membership = membership;
     }
     
+    private PropertyValue<TDMembership> _membership = new PropertyValue<TDMembership>(nameof(M2MembershipCreatedContent), nameof(Membership));
+    
+    [Required]
+    [JsonPropertyName("membership")]
+    public TDMembership Membership
+    {
+        get => _membership.GetValue();
+        set => _membership.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _membership.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

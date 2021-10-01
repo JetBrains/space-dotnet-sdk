@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RevisionsInReview
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RevisionsInReview
-         : IPropagatePropertyAccessPath
+    public RevisionsInReview() { }
+    
+    public RevisionsInReview(RepositoryInReview repository, List<GitCommitWithGraph> commits)
     {
-        public RevisionsInReview() { }
-        
-        public RevisionsInReview(RepositoryInReview repository, List<GitCommitWithGraph> commits)
-        {
-            Repository = repository;
-            Commits = commits;
-        }
-        
-        private PropertyValue<RepositoryInReview> _repository = new PropertyValue<RepositoryInReview>(nameof(RevisionsInReview), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public RepositoryInReview Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<List<GitCommitWithGraph>> _commits = new PropertyValue<List<GitCommitWithGraph>>(nameof(RevisionsInReview), nameof(Commits), new List<GitCommitWithGraph>());
-        
-        [Required]
-        [JsonPropertyName("commits")]
-        public List<GitCommitWithGraph> Commits
-        {
-            get => _commits.GetValue();
-            set => _commits.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _commits.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Repository = repository;
+        Commits = commits;
     }
     
+    private PropertyValue<RepositoryInReview> _repository = new PropertyValue<RepositoryInReview>(nameof(RevisionsInReview), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public RepositoryInReview Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<List<GitCommitWithGraph>> _commits = new PropertyValue<List<GitCommitWithGraph>>(nameof(RevisionsInReview), nameof(Commits), new List<GitCommitWithGraph>());
+    
+    [Required]
+    [JsonPropertyName("commits")]
+    public List<GitCommitWithGraph> Commits
+    {
+        get => _commits.GetValue();
+        set => _commits.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _commits.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

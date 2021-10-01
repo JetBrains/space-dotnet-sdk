@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MarketplaceAppMetadataPartialBuilder
+namespace JetBrains.Space.Client.MarketplaceAppMetadataPartialBuilder;
+
+public static class MarketplaceAppMetadataPartialExtensions
 {
-    public static class MarketplaceAppMetadataPartialExtensions
-    {
-        public static Partial<MarketplaceAppMetadata> WithMarketplaceAppId(this Partial<MarketplaceAppMetadata> it)
-            => it.AddFieldName("marketplaceAppId");
-        
-        public static Partial<MarketplaceAppMetadata> WithLastSentServerUrl(this Partial<MarketplaceAppMetadata> it)
-            => it.AddFieldName("lastSentServerUrl");
-        
-    }
+    public static Partial<MarketplaceAppMetadata> WithMarketplaceAppId(this Partial<MarketplaceAppMetadata> it)
+        => it.AddFieldName("marketplaceAppId");
+    
+    public static Partial<MarketplaceAppMetadata> WithLastSentServerUrl(this Partial<MarketplaceAppMetadata> it)
+        => it.AddFieldName("lastSentServerUrl");
     
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RecurrenceRuleFreqMonthlyOnDatePartialBuilder
+namespace JetBrains.Space.Client.RecurrenceRuleFreqMonthlyOnDatePartialBuilder;
+
+public static class RecurrenceRuleFreqMonthlyOnDatePartialExtensions
 {
-    public static class RecurrenceRuleFreqMonthlyOnDatePartialExtensions
-    {
-        public static Partial<RecurrenceRuleFreqMonthlyOnDate> WithDay(this Partial<RecurrenceRuleFreqMonthlyOnDate> it)
-            => it.AddFieldName("day");
-        
-        public static Partial<RecurrenceRuleFreqMonthlyOnDate> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnDate> it)
-            => it.AddFieldName("interval");
-        
-    }
+    public static Partial<RecurrenceRuleFreqMonthlyOnDate> WithDay(this Partial<RecurrenceRuleFreqMonthlyOnDate> it)
+        => it.AddFieldName("day");
+    
+    public static Partial<RecurrenceRuleFreqMonthlyOnDate> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnDate> it)
+        => it.AddFieldName("interval");
     
 }
+

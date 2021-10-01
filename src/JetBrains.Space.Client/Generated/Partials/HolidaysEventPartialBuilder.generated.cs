@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HolidaysEventPartialBuilder
+namespace JetBrains.Space.Client.HolidaysEventPartialBuilder;
+
+public static class HolidaysEventPartialExtensions
 {
-    public static class HolidaysEventPartialExtensions
-    {
-        public static Partial<HolidaysEvent> WithProfile(this Partial<HolidaysEvent> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<HolidaysEvent> WithProfile(this Partial<HolidaysEvent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<HolidaysEvent> WithHolidays(this Partial<HolidaysEvent> it)
-            => it.AddFieldName("holidays");
-        
-        public static Partial<HolidaysEvent> WithHolidays(this Partial<HolidaysEvent> it, Func<Partial<PublicHoliday>, Partial<PublicHoliday>> partialBuilder)
-            => it.AddFieldName("holidays", partialBuilder(new Partial<PublicHoliday>(it)));
-        
-    }
+    public static Partial<HolidaysEvent> WithProfile(this Partial<HolidaysEvent> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<HolidaysEvent> WithProfile(this Partial<HolidaysEvent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<HolidaysEvent> WithHolidays(this Partial<HolidaysEvent> it)
+        => it.AddFieldName("holidays");
+    
+    public static Partial<HolidaysEvent> WithHolidays(this Partial<HolidaysEvent> it, Func<Partial<PublicHoliday>, Partial<PublicHoliday>> partialBuilder)
+        => it.AddFieldName("holidays", partialBuilder(new Partial<PublicHoliday>(it)));
     
 }
+

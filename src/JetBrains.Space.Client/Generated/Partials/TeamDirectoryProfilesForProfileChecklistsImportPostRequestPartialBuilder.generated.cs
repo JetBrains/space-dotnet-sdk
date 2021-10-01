@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileChecklistsImportPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileChecklistsImportPostRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfileChecklistsImportPostRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfileChecklistsImportPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfileChecklistsImportPostRequest> WithName(this Partial<TeamDirectoryProfilesForProfileChecklistsImportPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TeamDirectoryProfilesForProfileChecklistsImportPostRequest> WithTabIndentedLines(this Partial<TeamDirectoryProfilesForProfileChecklistsImportPostRequest> it)
-            => it.AddFieldName("tabIndentedLines");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfileChecklistsImportPostRequest> WithName(this Partial<TeamDirectoryProfilesForProfileChecklistsImportPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TeamDirectoryProfilesForProfileChecklistsImportPostRequest> WithTabIndentedLines(this Partial<TeamDirectoryProfilesForProfileChecklistsImportPostRequest> it)
+        => it.AddFieldName("tabIndentedLines");
     
 }
+

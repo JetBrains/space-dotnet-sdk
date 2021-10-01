@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RightTypePartialBuilder
+namespace JetBrains.Space.Client.RightTypePartialBuilder;
+
+public static class RightTypePartialExtensions
 {
-    public static class RightTypePartialExtensions
-    {
-        public static Partial<RightType> WithTypeCode(this Partial<RightType> it)
-            => it.AddFieldName("typeCode");
-        
-        public static Partial<RightType> WithTitle(this Partial<RightType> it)
-            => it.AddFieldName("title");
-        
-    }
+    public static Partial<RightType> WithTypeCode(this Partial<RightType> it)
+        => it.AddFieldName("typeCode");
+    
+    public static Partial<RightType> WithTitle(this Partial<RightType> it)
+        => it.AddFieldName("title");
     
 }
+

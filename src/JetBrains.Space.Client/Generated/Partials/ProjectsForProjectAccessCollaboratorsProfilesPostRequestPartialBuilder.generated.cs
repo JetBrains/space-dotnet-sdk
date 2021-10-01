@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectAccessCollaboratorsProfilesPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectAccessCollaboratorsProfilesPostRequestPartialBuilder;
+
+public static class ProjectsForProjectAccessCollaboratorsProfilesPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectAccessCollaboratorsProfilesPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectAccessCollaboratorsProfilesPostRequest> WithProfile(this Partial<ProjectsForProjectAccessCollaboratorsProfilesPostRequest> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<ProjectsForProjectAccessCollaboratorsProfilesPostRequest> WithProfile(this Partial<ProjectsForProjectAccessCollaboratorsProfilesPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectAccessCollaboratorsProfilesPostRequest> WithProfile(this Partial<ProjectsForProjectAccessCollaboratorsProfilesPostRequest> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<ProjectsForProjectAccessCollaboratorsProfilesPostRequest> WithProfile(this Partial<ProjectsForProjectAccessCollaboratorsProfilesPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
     
 }
+

@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsMeeting
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsMeeting
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsMeeting";
+    
+    public UnfurlDetailsMeeting() { }
+    
+    public UnfurlDetailsMeeting(Meeting meeting, bool? compact = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsMeeting";
-        
-        public UnfurlDetailsMeeting() { }
-        
-        public UnfurlDetailsMeeting(Meeting meeting, bool? compact = null)
-        {
-            Meeting = meeting;
-            IsCompact = compact;
-        }
-        
-        private PropertyValue<Meeting> _meeting = new PropertyValue<Meeting>(nameof(UnfurlDetailsMeeting), nameof(Meeting));
-        
-        [Required]
-        [JsonPropertyName("meeting")]
-        public Meeting Meeting
-        {
-            get => _meeting.GetValue();
-            set => _meeting.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _compact = new PropertyValue<bool?>(nameof(UnfurlDetailsMeeting), nameof(IsCompact));
-        
-        [JsonPropertyName("compact")]
-        public bool? IsCompact
-        {
-            get => _compact.GetValue();
-            set => _compact.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _meeting.SetAccessPath(path, validateHasBeenSet);
-            _compact.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Meeting = meeting;
+        IsCompact = compact;
     }
     
+    private PropertyValue<Meeting> _meeting = new PropertyValue<Meeting>(nameof(UnfurlDetailsMeeting), nameof(Meeting));
+    
+    [Required]
+    [JsonPropertyName("meeting")]
+    public Meeting Meeting
+    {
+        get => _meeting.GetValue();
+        set => _meeting.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _compact = new PropertyValue<bool?>(nameof(UnfurlDetailsMeeting), nameof(IsCompact));
+    
+    [JsonPropertyName("compact")]
+    public bool? IsCompact
+    {
+        get => _compact.GetValue();
+        set => _compact.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _meeting.SetAccessPath(path, validateHasBeenSet);
+        _compact.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

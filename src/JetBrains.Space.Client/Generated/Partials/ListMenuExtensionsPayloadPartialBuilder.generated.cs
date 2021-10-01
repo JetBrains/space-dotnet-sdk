@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ListMenuExtensionsPayloadPartialBuilder
+namespace JetBrains.Space.Client.ListMenuExtensionsPayloadPartialBuilder;
+
+public static class ListMenuExtensionsPayloadPartialExtensions
 {
-    public static class ListMenuExtensionsPayloadPartialExtensions
-    {
-        public static Partial<ListMenuExtensionsPayload> WithClientId(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<ListMenuExtensionsPayload> WithUserId(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("userId");
-        
-        public static Partial<ListMenuExtensionsPayload> WithVerificationToken(this Partial<ListMenuExtensionsPayload> it)
-            => it.AddFieldName("verificationToken");
-        
-    }
+    public static Partial<ListMenuExtensionsPayload> WithClientId(this Partial<ListMenuExtensionsPayload> it)
+        => it.AddFieldName("clientId");
+    
+    public static Partial<ListMenuExtensionsPayload> WithUserId(this Partial<ListMenuExtensionsPayload> it)
+        => it.AddFieldName("userId");
+    
+    public static Partial<ListMenuExtensionsPayload> WithVerificationToken(this Partial<ListMenuExtensionsPayload> it)
+        => it.AddFieldName("verificationToken");
     
 }
+

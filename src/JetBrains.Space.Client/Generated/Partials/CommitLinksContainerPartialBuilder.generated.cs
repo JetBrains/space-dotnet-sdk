@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CommitLinksContainerPartialBuilder
+namespace JetBrains.Space.Client.CommitLinksContainerPartialBuilder;
+
+public static class CommitLinksContainerPartialExtensions
 {
-    public static class CommitLinksContainerPartialExtensions
-    {
-    }
-    
 }
+

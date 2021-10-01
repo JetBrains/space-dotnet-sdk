@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum FeatureFlagStatus
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum FeatureFlagStatus
-    {
-        [EnumMember(Value = "WIP")]
-        WIP,
-        
-        [EnumMember(Value = "EXPERIMENTAL")]
-        EXPERIMENTAL,
-        
-        [EnumMember(Value = "INTERNAL")]
-        INTERNAL,
-        
-    }
+    [EnumMember(Value = "WIP")]
+    WIP,
+    
+    [EnumMember(Value = "EXPERIMENTAL")]
+    EXPERIMENTAL,
+    
+    [EnumMember(Value = "INTERNAL")]
+    INTERNAL,
     
 }
+

@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class ExtendedTypeScope : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class ExtendedTypeScope : IUrlParameter
+    public static ExtendedTypeScope Container(string containerId)
+        => new ExtendedTypeScopeContainer(containerId);
+    
+    public static ExtendedTypeScope Org
+        => new ExtendedTypeScopeOrg();
+    
+    private class ExtendedTypeScopeContainer : ExtendedTypeScope
     {
-        public static ExtendedTypeScope Container(string containerId)
-            => new ExtendedTypeScopeContainer(containerId);
+        private readonly string _containerId;
         
-        public static ExtendedTypeScope Org
-            => new ExtendedTypeScopeOrg();
-        
-        private class ExtendedTypeScopeContainer : ExtendedTypeScope
+        public ExtendedTypeScopeContainer(string containerId)
         {
-            private readonly string _containerId;
-            
-            public ExtendedTypeScopeContainer(string containerId)
-            {
-                _containerId = containerId;
-            }
-            
-            public override string ToString()
-                => $"containerId:{_containerId}";
+            _containerId = containerId;
         }
         
-        private class ExtendedTypeScopeOrg : ExtendedTypeScope
-        {
-            public override string ToString()
-                => "org";
-        }
-        
+        public override string ToString()
+            => $"containerId:{_containerId}";
+    }
+    
+    private class ExtendedTypeScopeOrg : ExtendedTypeScope
+    {
+        public override string ToString()
+            => "org";
     }
     
 }
+

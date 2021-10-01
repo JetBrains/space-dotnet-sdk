@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TodoItemContentMdText
+     : TodoItemContent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class TodoItemContentMdText
-         : TodoItemContent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "TodoItemContentMdText";
+    
+    public TodoItemContentMdText() { }
+    
+    public TodoItemContentMdText(string text, MdMarkup mdMarkup)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "TodoItemContentMdText";
-        
-        public TodoItemContentMdText() { }
-        
-        public TodoItemContentMdText(string text, MdMarkup mdMarkup)
-        {
-            Text = text;
-            MdMarkup = mdMarkup;
-        }
-        
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoItemContentMdText), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        private PropertyValue<MdMarkup> _mdMarkup = new PropertyValue<MdMarkup>(nameof(TodoItemContentMdText), nameof(MdMarkup));
-        
-        [Required]
-        [JsonPropertyName("mdMarkup")]
-        public MdMarkup MdMarkup
-        {
-            get => _mdMarkup.GetValue();
-            set => _mdMarkup.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _mdMarkup.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Text = text;
+        MdMarkup = mdMarkup;
     }
     
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoItemContentMdText), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    private PropertyValue<MdMarkup> _mdMarkup = new PropertyValue<MdMarkup>(nameof(TodoItemContentMdText), nameof(MdMarkup));
+    
+    [Required]
+    [JsonPropertyName("mdMarkup")]
+    public MdMarkup MdMarkup
+    {
+        get => _mdMarkup.GetValue();
+        set => _mdMarkup.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _text.SetAccessPath(path, validateHasBeenSet);
+        _mdMarkup.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

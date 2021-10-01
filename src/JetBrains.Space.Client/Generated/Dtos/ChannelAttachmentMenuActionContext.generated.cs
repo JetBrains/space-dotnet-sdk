@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ChannelAttachmentMenuActionContext
+     : MenuActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ChannelAttachmentMenuActionContext
-         : MenuActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ChannelAttachmentMenuActionContext";
+    
+    public ChannelAttachmentMenuActionContext() { }
+    
+    public ChannelAttachmentMenuActionContext(string menuId, string channelId)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ChannelAttachmentMenuActionContext";
-        
-        public ChannelAttachmentMenuActionContext() { }
-        
-        public ChannelAttachmentMenuActionContext(string menuId, string channelId)
-        {
-            MenuId = menuId;
-            ChannelId = channelId;
-        }
-        
-        private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(ChannelAttachmentMenuActionContext), nameof(MenuId));
-        
-        [Required]
-        [JsonPropertyName("menuId")]
-        public string MenuId
-        {
-            get => _menuId.GetValue();
-            set => _menuId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(ChannelAttachmentMenuActionContext), nameof(ChannelId));
-        
-        [Required]
-        [JsonPropertyName("channelId")]
-        public string ChannelId
-        {
-            get => _channelId.GetValue();
-            set => _channelId.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _menuId.SetAccessPath(path, validateHasBeenSet);
-            _channelId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        MenuId = menuId;
+        ChannelId = channelId;
     }
     
+    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(ChannelAttachmentMenuActionContext), nameof(MenuId));
+    
+    [Required]
+    [JsonPropertyName("menuId")]
+    public string MenuId
+    {
+        get => _menuId.GetValue();
+        set => _menuId.SetValue(value);
+    }
+
+    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(ChannelAttachmentMenuActionContext), nameof(ChannelId));
+    
+    [Required]
+    [JsonPropertyName("channelId")]
+    public string ChannelId
+    {
+        get => _channelId.GetValue();
+        set => _channelId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _menuId.SetAccessPath(path, validateHasBeenSet);
+        _channelId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

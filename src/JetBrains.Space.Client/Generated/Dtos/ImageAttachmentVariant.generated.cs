@@ -27,68 +27,67 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ImageAttachmentVariant
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ImageAttachmentVariant
-         : IPropagatePropertyAccessPath
+    public ImageAttachmentVariant() { }
+    
+    public ImageAttachmentVariant(string id, int width, int height, string? name = null)
     {
-        public ImageAttachmentVariant() { }
-        
-        public ImageAttachmentVariant(string id, int width, int height, string? name = null)
-        {
-            Id = id;
-            Name = name;
-            Width = width;
-            Height = height;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ImageAttachmentVariant), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ImageAttachmentVariant), nameof(Name));
-        
-        [JsonPropertyName("name")]
-        public string? Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<int> _width = new PropertyValue<int>(nameof(ImageAttachmentVariant), nameof(Width));
-        
-        [Required]
-        [JsonPropertyName("width")]
-        public int Width
-        {
-            get => _width.GetValue();
-            set => _width.SetValue(value);
-        }
-    
-        private PropertyValue<int> _height = new PropertyValue<int>(nameof(ImageAttachmentVariant), nameof(Height));
-        
-        [Required]
-        [JsonPropertyName("height")]
-        public int Height
-        {
-            get => _height.GetValue();
-            set => _height.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _width.SetAccessPath(path, validateHasBeenSet);
-            _height.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Name = name;
+        Width = width;
+        Height = height;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ImageAttachmentVariant), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ImageAttachmentVariant), nameof(Name));
+    
+    [JsonPropertyName("name")]
+    public string? Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<int> _width = new PropertyValue<int>(nameof(ImageAttachmentVariant), nameof(Width));
+    
+    [Required]
+    [JsonPropertyName("width")]
+    public int Width
+    {
+        get => _width.GetValue();
+        set => _width.SetValue(value);
+    }
+
+    private PropertyValue<int> _height = new PropertyValue<int>(nameof(ImageAttachmentVariant), nameof(Height));
+    
+    [Required]
+    [JsonPropertyName("height")]
+    public int Height
+    {
+        get => _height.GetValue();
+        set => _height.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _width.SetAccessPath(path, validateHasBeenSet);
+        _height.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

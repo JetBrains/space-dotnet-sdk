@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CustomFieldValueData
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CustomFieldValueData
-         : IPropagatePropertyAccessPath
+    public CustomFieldValueData() { }
+    
+    public CustomFieldValueData(CustomFieldData customField, CFValue value)
     {
-        public CustomFieldValueData() { }
-        
-        public CustomFieldValueData(CustomFieldData customField, CFValue value)
-        {
-            CustomField = customField;
-            Value = value;
-        }
-        
-        private PropertyValue<CustomFieldData> _customField = new PropertyValue<CustomFieldData>(nameof(CustomFieldValueData), nameof(CustomField));
-        
-        [Required]
-        [JsonPropertyName("customField")]
-        public CustomFieldData CustomField
-        {
-            get => _customField.GetValue();
-            set => _customField.SetValue(value);
-        }
-    
-        private PropertyValue<CFValue> _value = new PropertyValue<CFValue>(nameof(CustomFieldValueData), nameof(Value));
-        
-        [Required]
-        [JsonPropertyName("value")]
-        public CFValue Value
-        {
-            get => _value.GetValue();
-            set => _value.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _customField.SetAccessPath(path, validateHasBeenSet);
-            _value.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        CustomField = customField;
+        Value = value;
     }
     
+    private PropertyValue<CustomFieldData> _customField = new PropertyValue<CustomFieldData>(nameof(CustomFieldValueData), nameof(CustomField));
+    
+    [Required]
+    [JsonPropertyName("customField")]
+    public CustomFieldData CustomField
+    {
+        get => _customField.GetValue();
+        set => _customField.SetValue(value);
+    }
+
+    private PropertyValue<CFValue> _value = new PropertyValue<CFValue>(nameof(CustomFieldValueData), nameof(Value));
+    
+    [Required]
+    [JsonPropertyName("value")]
+    public CFValue Value
+    {
+        get => _value.GetValue();
+        set => _value.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _customField.SetAccessPath(path, validateHasBeenSet);
+        _value.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

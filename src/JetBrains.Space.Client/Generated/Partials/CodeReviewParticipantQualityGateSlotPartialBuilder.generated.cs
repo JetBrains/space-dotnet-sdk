@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewParticipantQualityGateSlotPartialBuilder
+namespace JetBrains.Space.Client.CodeReviewParticipantQualityGateSlotPartialBuilder;
+
+public static class CodeReviewParticipantQualityGateSlotPartialExtensions
 {
-    public static class CodeReviewParticipantQualityGateSlotPartialExtensions
-    {
-        public static Partial<CodeReviewParticipantQualityGateSlot> WithRule(this Partial<CodeReviewParticipantQualityGateSlot> it)
-            => it.AddFieldName("rule");
-        
-        public static Partial<CodeReviewParticipantQualityGateSlot> WithIndex(this Partial<CodeReviewParticipantQualityGateSlot> it)
-            => it.AddFieldName("index");
-        
-    }
+    public static Partial<CodeReviewParticipantQualityGateSlot> WithRule(this Partial<CodeReviewParticipantQualityGateSlot> it)
+        => it.AddFieldName("rule");
+    
+    public static Partial<CodeReviewParticipantQualityGateSlot> WithIndex(this Partial<CodeReviewParticipantQualityGateSlot> it)
+        => it.AddFieldName("index");
     
 }
+

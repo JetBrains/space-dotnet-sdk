@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsSecretsForIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsSecretsForIdPatchRequestPartialBuilder;
+
+public static class ProjectsSecretsForIdPatchRequestPartialExtensions
 {
-    public static class ProjectsSecretsForIdPatchRequestPartialExtensions
-    {
-        public static Partial<ProjectsSecretsForIdPatchRequest> WithValueBase64(this Partial<ProjectsSecretsForIdPatchRequest> it)
-            => it.AddFieldName("valueBase64");
-        
-        public static Partial<ProjectsSecretsForIdPatchRequest> WithPublicKeyId(this Partial<ProjectsSecretsForIdPatchRequest> it)
-            => it.AddFieldName("publicKeyId");
-        
-    }
+    public static Partial<ProjectsSecretsForIdPatchRequest> WithValueBase64(this Partial<ProjectsSecretsForIdPatchRequest> it)
+        => it.AddFieldName("valueBase64");
+    
+    public static Partial<ProjectsSecretsForIdPatchRequest> WithPublicKeyId(this Partial<ProjectsSecretsForIdPatchRequest> it)
+        => it.AddFieldName("publicKeyId");
     
 }
+

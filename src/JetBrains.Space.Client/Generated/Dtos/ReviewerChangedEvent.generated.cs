@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ReviewerChangedEvent
+     : FeedEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ReviewerChangedEvent
-         : FeedEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ReviewerChangedEvent";
+    
+    public ReviewerChangedEvent() { }
+    
+    public ReviewerChangedEvent(TDMemberProfile uid, ReviewerChangedType changeType)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ReviewerChangedEvent";
-        
-        public ReviewerChangedEvent() { }
-        
-        public ReviewerChangedEvent(TDMemberProfile uid, ReviewerChangedType changeType)
-        {
-            Uid = uid;
-            ChangeType = changeType;
-        }
-        
-        private PropertyValue<TDMemberProfile> _uid = new PropertyValue<TDMemberProfile>(nameof(ReviewerChangedEvent), nameof(Uid));
-        
-        [Required]
-        [JsonPropertyName("uid")]
-        public TDMemberProfile Uid
-        {
-            get => _uid.GetValue();
-            set => _uid.SetValue(value);
-        }
-    
-        private PropertyValue<ReviewerChangedType> _changeType = new PropertyValue<ReviewerChangedType>(nameof(ReviewerChangedEvent), nameof(ChangeType));
-        
-        [Required]
-        [JsonPropertyName("changeType")]
-        public ReviewerChangedType ChangeType
-        {
-            get => _changeType.GetValue();
-            set => _changeType.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _uid.SetAccessPath(path, validateHasBeenSet);
-            _changeType.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Uid = uid;
+        ChangeType = changeType;
     }
     
+    private PropertyValue<TDMemberProfile> _uid = new PropertyValue<TDMemberProfile>(nameof(ReviewerChangedEvent), nameof(Uid));
+    
+    [Required]
+    [JsonPropertyName("uid")]
+    public TDMemberProfile Uid
+    {
+        get => _uid.GetValue();
+        set => _uid.SetValue(value);
+    }
+
+    private PropertyValue<ReviewerChangedType> _changeType = new PropertyValue<ReviewerChangedType>(nameof(ReviewerChangedEvent), nameof(ChangeType));
+    
+    [Required]
+    [JsonPropertyName("changeType")]
+    public ReviewerChangedType ChangeType
+    {
+        get => _changeType.GetValue();
+        set => _changeType.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _uid.SetAccessPath(path, validateHasBeenSet);
+        _changeType.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

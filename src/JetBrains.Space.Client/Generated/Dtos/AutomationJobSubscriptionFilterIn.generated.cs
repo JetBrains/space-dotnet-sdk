@@ -27,68 +27,67 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class AutomationJobSubscriptionFilterIn
+     : SubscriptionFilterIn, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class AutomationJobSubscriptionFilterIn
-         : SubscriptionFilterIn, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "AutomationJobSubscriptionFilterIn";
+    
+    public AutomationJobSubscriptionFilterIn() { }
+    
+    public AutomationJobSubscriptionFilterIn(List<string>? projects = null, string? repositoryName = null, List<string>? branchSpec = null, List<string>? jobs = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "AutomationJobSubscriptionFilterIn";
-        
-        public AutomationJobSubscriptionFilterIn() { }
-        
-        public AutomationJobSubscriptionFilterIn(List<string>? projects = null, string? repositoryName = null, List<string>? branchSpec = null, List<string>? jobs = null)
-        {
-            Projects = projects;
-            RepositoryName = repositoryName;
-            BranchSpec = branchSpec;
-            Jobs = jobs;
-        }
-        
-        private PropertyValue<List<string>?> _projects = new PropertyValue<List<string>?>(nameof(AutomationJobSubscriptionFilterIn), nameof(Projects));
-        
-        [JsonPropertyName("projects")]
-        public List<string>? Projects
-        {
-            get => _projects.GetValue();
-            set => _projects.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _repositoryName = new PropertyValue<string?>(nameof(AutomationJobSubscriptionFilterIn), nameof(RepositoryName));
-        
-        [JsonPropertyName("repositoryName")]
-        public string? RepositoryName
-        {
-            get => _repositoryName.GetValue();
-            set => _repositoryName.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _branchSpec = new PropertyValue<List<string>?>(nameof(AutomationJobSubscriptionFilterIn), nameof(BranchSpec));
-        
-        [JsonPropertyName("branchSpec")]
-        public List<string>? BranchSpec
-        {
-            get => _branchSpec.GetValue();
-            set => _branchSpec.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _jobs = new PropertyValue<List<string>?>(nameof(AutomationJobSubscriptionFilterIn), nameof(Jobs));
-        
-        [JsonPropertyName("jobs")]
-        public List<string>? Jobs
-        {
-            get => _jobs.GetValue();
-            set => _jobs.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _projects.SetAccessPath(path, validateHasBeenSet);
-            _repositoryName.SetAccessPath(path, validateHasBeenSet);
-            _branchSpec.SetAccessPath(path, validateHasBeenSet);
-            _jobs.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Projects = projects;
+        RepositoryName = repositoryName;
+        BranchSpec = branchSpec;
+        Jobs = jobs;
     }
     
+    private PropertyValue<List<string>?> _projects = new PropertyValue<List<string>?>(nameof(AutomationJobSubscriptionFilterIn), nameof(Projects));
+    
+    [JsonPropertyName("projects")]
+    public List<string>? Projects
+    {
+        get => _projects.GetValue();
+        set => _projects.SetValue(value);
+    }
+
+    private PropertyValue<string?> _repositoryName = new PropertyValue<string?>(nameof(AutomationJobSubscriptionFilterIn), nameof(RepositoryName));
+    
+    [JsonPropertyName("repositoryName")]
+    public string? RepositoryName
+    {
+        get => _repositoryName.GetValue();
+        set => _repositoryName.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _branchSpec = new PropertyValue<List<string>?>(nameof(AutomationJobSubscriptionFilterIn), nameof(BranchSpec));
+    
+    [JsonPropertyName("branchSpec")]
+    public List<string>? BranchSpec
+    {
+        get => _branchSpec.GetValue();
+        set => _branchSpec.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _jobs = new PropertyValue<List<string>?>(nameof(AutomationJobSubscriptionFilterIn), nameof(Jobs));
+    
+    [JsonPropertyName("jobs")]
+    public List<string>? Jobs
+    {
+        get => _jobs.GetValue();
+        set => _jobs.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _projects.SetAccessPath(path, validateHasBeenSet);
+        _repositoryName.SetAccessPath(path, validateHasBeenSet);
+        _branchSpec.SetAccessPath(path, validateHasBeenSet);
+        _jobs.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

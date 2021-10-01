@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitAuthorInfoPartialBuilder
+namespace JetBrains.Space.Client.GitAuthorInfoPartialBuilder;
+
+public static class GitAuthorInfoPartialExtensions
 {
-    public static class GitAuthorInfoPartialExtensions
-    {
-        public static Partial<GitAuthorInfo> WithName(this Partial<GitAuthorInfo> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<GitAuthorInfo> WithEmail(this Partial<GitAuthorInfo> it)
-            => it.AddFieldName("email");
-        
-    }
+    public static Partial<GitAuthorInfo> WithName(this Partial<GitAuthorInfo> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<GitAuthorInfo> WithEmail(this Partial<GitAuthorInfo> it)
+        => it.AddFieldName("email");
     
 }
+

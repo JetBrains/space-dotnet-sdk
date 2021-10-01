@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class LaunchResultSuccess
+     : LaunchResult, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class LaunchResultSuccess
-         : LaunchResult, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "LaunchResult.Success";
+    
+    public LaunchResultSuccess() { }
+    
+    public LaunchResultSuccess(string executionId)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "LaunchResult.Success";
-        
-        public LaunchResultSuccess() { }
-        
-        public LaunchResultSuccess(string executionId)
-        {
-            ExecutionId = executionId;
-        }
-        
-        private PropertyValue<string> _executionId = new PropertyValue<string>(nameof(LaunchResultSuccess), nameof(ExecutionId));
-        
-        [Required]
-        [JsonPropertyName("executionId")]
-        public string ExecutionId
-        {
-            get => _executionId.GetValue();
-            set => _executionId.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _executionId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ExecutionId = executionId;
     }
     
+    private PropertyValue<string> _executionId = new PropertyValue<string>(nameof(LaunchResultSuccess), nameof(ExecutionId));
+    
+    [Required]
+    [JsonPropertyName("executionId")]
+    public string ExecutionId
+    {
+        get => _executionId.GetValue();
+        set => _executionId.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _executionId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

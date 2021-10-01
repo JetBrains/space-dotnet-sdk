@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESAppSettingsPartialBuilder
+namespace JetBrains.Space.Client.ESAppSettingsPartialBuilder;
+
+public static class ESAppSettingsPartialExtensions
 {
-    public static class ESAppSettingsPartialExtensions
-    {
-        public static Partial<ESAppSettings> WithIsClientCredentialsFlowEnabled(this Partial<ESAppSettings> it)
-            => it.AddFieldName("clientCredentialsFlowEnabled");
-        
-        public static Partial<ESAppSettings> WithIsCodeFlowEnabled(this Partial<ESAppSettings> it)
-            => it.AddFieldName("codeFlowEnabled");
-        
-        public static Partial<ESAppSettings> WithCodeFlowRedirectURIs(this Partial<ESAppSettings> it)
-            => it.AddFieldName("codeFlowRedirectURIs");
-        
-        public static Partial<ESAppSettings> WithIsPkceRequired(this Partial<ESAppSettings> it)
-            => it.AddFieldName("pkceRequired");
-        
-        public static Partial<ESAppSettings> WithIsImplicitFlowEnabled(this Partial<ESAppSettings> it)
-            => it.AddFieldName("implicitFlowEnabled");
-        
-        public static Partial<ESAppSettings> WithImplicitFlowRedirectURIs(this Partial<ESAppSettings> it)
-            => it.AddFieldName("implicitFlowRedirectURIs");
-        
-        public static Partial<ESAppSettings> WithEndpoint(this Partial<ESAppSettings> it)
-            => it.AddFieldName("endpoint");
-        
-        public static Partial<ESAppSettings> WithEndpoint(this Partial<ESAppSettings> it, Func<Partial<Endpoint>, Partial<Endpoint>> partialBuilder)
-            => it.AddFieldName("endpoint", partialBuilder(new Partial<Endpoint>(it)));
-        
-        public static Partial<ESAppSettings> WithEndpointAuth(this Partial<ESAppSettings> it)
-            => it.AddFieldName("endpointAuth");
-        
-        public static Partial<ESAppSettings> WithEndpointAuth(this Partial<ESAppSettings> it, Func<Partial<EndpointAuth>, Partial<EndpointAuth>> partialBuilder)
-            => it.AddFieldName("endpointAuth", partialBuilder(new Partial<EndpointAuth>(it)));
-        
-    }
+    public static Partial<ESAppSettings> WithIsClientCredentialsFlowEnabled(this Partial<ESAppSettings> it)
+        => it.AddFieldName("clientCredentialsFlowEnabled");
+    
+    public static Partial<ESAppSettings> WithIsCodeFlowEnabled(this Partial<ESAppSettings> it)
+        => it.AddFieldName("codeFlowEnabled");
+    
+    public static Partial<ESAppSettings> WithCodeFlowRedirectURIs(this Partial<ESAppSettings> it)
+        => it.AddFieldName("codeFlowRedirectURIs");
+    
+    public static Partial<ESAppSettings> WithIsPkceRequired(this Partial<ESAppSettings> it)
+        => it.AddFieldName("pkceRequired");
+    
+    public static Partial<ESAppSettings> WithIsImplicitFlowEnabled(this Partial<ESAppSettings> it)
+        => it.AddFieldName("implicitFlowEnabled");
+    
+    public static Partial<ESAppSettings> WithImplicitFlowRedirectURIs(this Partial<ESAppSettings> it)
+        => it.AddFieldName("implicitFlowRedirectURIs");
+    
+    public static Partial<ESAppSettings> WithEndpoint(this Partial<ESAppSettings> it)
+        => it.AddFieldName("endpoint");
+    
+    public static Partial<ESAppSettings> WithEndpoint(this Partial<ESAppSettings> it, Func<Partial<Endpoint>, Partial<Endpoint>> partialBuilder)
+        => it.AddFieldName("endpoint", partialBuilder(new Partial<Endpoint>(it)));
+    
+    public static Partial<ESAppSettings> WithEndpointAuth(this Partial<ESAppSettings> it)
+        => it.AddFieldName("endpointAuth");
+    
+    public static Partial<ESAppSettings> WithEndpointAuth(this Partial<ESAppSettings> it, Func<Partial<EndpointAuth>, Partial<EndpointAuth>> partialBuilder)
+        => it.AddFieldName("endpointAuth", partialBuilder(new Partial<EndpointAuth>(it)));
     
 }
+

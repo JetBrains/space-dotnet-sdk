@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueTagsChangedDetailsPartialBuilder
+namespace JetBrains.Space.Client.IssueTagsChangedDetailsPartialBuilder;
+
+public static class IssueTagsChangedDetailsPartialExtensions
 {
-    public static class IssueTagsChangedDetailsPartialExtensions
-    {
-        public static Partial<IssueTagsChangedDetails> WithAddedTags(this Partial<IssueTagsChangedDetails> it)
-            => it.AddFieldName("addedTags");
-        
-        public static Partial<IssueTagsChangedDetails> WithAddedTags(this Partial<IssueTagsChangedDetails> it, Func<Partial<PlanningTag>, Partial<PlanningTag>> partialBuilder)
-            => it.AddFieldName("addedTags", partialBuilder(new Partial<PlanningTag>(it)));
-        
-        public static Partial<IssueTagsChangedDetails> WithRemovedTags(this Partial<IssueTagsChangedDetails> it)
-            => it.AddFieldName("removedTags");
-        
-        public static Partial<IssueTagsChangedDetails> WithRemovedTags(this Partial<IssueTagsChangedDetails> it, Func<Partial<PlanningTag>, Partial<PlanningTag>> partialBuilder)
-            => it.AddFieldName("removedTags", partialBuilder(new Partial<PlanningTag>(it)));
-        
-    }
+    public static Partial<IssueTagsChangedDetails> WithAddedTags(this Partial<IssueTagsChangedDetails> it)
+        => it.AddFieldName("addedTags");
+    
+    public static Partial<IssueTagsChangedDetails> WithAddedTags(this Partial<IssueTagsChangedDetails> it, Func<Partial<PlanningTag>, Partial<PlanningTag>> partialBuilder)
+        => it.AddFieldName("addedTags", partialBuilder(new Partial<PlanningTag>(it)));
+    
+    public static Partial<IssueTagsChangedDetails> WithRemovedTags(this Partial<IssueTagsChangedDetails> it)
+        => it.AddFieldName("removedTags");
+    
+    public static Partial<IssueTagsChangedDetails> WithRemovedTags(this Partial<IssueTagsChangedDetails> it, Func<Partial<PlanningTag>, Partial<PlanningTag>> partialBuilder)
+        => it.AddFieldName("removedTags", partialBuilder(new Partial<PlanningTag>(it)));
     
 }
+

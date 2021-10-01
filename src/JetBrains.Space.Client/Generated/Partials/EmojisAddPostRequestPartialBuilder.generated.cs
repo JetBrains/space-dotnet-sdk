@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EmojisAddPostRequestPartialBuilder
+namespace JetBrains.Space.Client.EmojisAddPostRequestPartialBuilder;
+
+public static class EmojisAddPostRequestPartialExtensions
 {
-    public static class EmojisAddPostRequestPartialExtensions
-    {
-        public static Partial<EmojisAddPostRequest> WithEmoji(this Partial<EmojisAddPostRequest> it)
-            => it.AddFieldName("emoji");
-        
-        public static Partial<EmojisAddPostRequest> WithAttachmentId(this Partial<EmojisAddPostRequest> it)
-            => it.AddFieldName("attachmentId");
-        
-    }
+    public static Partial<EmojisAddPostRequest> WithEmoji(this Partial<EmojisAddPostRequest> it)
+        => it.AddFieldName("emoji");
+    
+    public static Partial<EmojisAddPostRequest> WithAttachmentId(this Partial<EmojisAddPostRequest> it)
+        => it.AddFieldName("attachmentId");
     
 }
+

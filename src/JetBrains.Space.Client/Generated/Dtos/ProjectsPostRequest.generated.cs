@@ -27,78 +27,77 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsPostRequest() { }
+    
+    public ProjectsPostRequest(ProjectKey key, string name, bool @private = false, List<string>? tags = null, string? description = null)
     {
-        public ProjectsPostRequest() { }
-        
-        public ProjectsPostRequest(ProjectKey key, string name, bool @private = false, List<string>? tags = null, string? description = null)
-        {
-            Key = key;
-            Name = name;
-            Description = description;
-            IsPrivate = @private;
-            Tags = (tags ?? new List<string>());
-        }
-        
-        private PropertyValue<ProjectKey> _key = new PropertyValue<ProjectKey>(nameof(ProjectsPostRequest), nameof(Key));
-        
-        [Required]
-        [JsonPropertyName("key")]
-        public ProjectKey Key
-        {
-            get => _key.GetValue();
-            set => _key.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsPostRequest), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPostRequest), nameof(Description));
-        
-        [JsonPropertyName("description")]
-        public string? Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(ProjectsPostRequest), nameof(IsPrivate));
-        
-        [JsonPropertyName("private")]
-        public bool IsPrivate
-        {
-            get => _private.GetValue();
-            set => _private.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ProjectsPostRequest), nameof(Tags), new List<string>());
-        
-        [JsonPropertyName("tags")]
-        public List<string> Tags
-        {
-            get => _tags.GetValue();
-            set => _tags.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _key.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _private.SetAccessPath(path, validateHasBeenSet);
-            _tags.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Key = key;
+        Name = name;
+        Description = description;
+        IsPrivate = @private;
+        Tags = (tags ?? new List<string>());
     }
     
+    private PropertyValue<ProjectKey> _key = new PropertyValue<ProjectKey>(nameof(ProjectsPostRequest), nameof(Key));
+    
+    [Required]
+    [JsonPropertyName("key")]
+    public ProjectKey Key
+    {
+        get => _key.GetValue();
+        set => _key.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsPostRequest), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPostRequest), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(ProjectsPostRequest), nameof(IsPrivate));
+    
+    [JsonPropertyName("private")]
+    public bool IsPrivate
+    {
+        get => _private.GetValue();
+        set => _private.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ProjectsPostRequest), nameof(Tags), new List<string>());
+    
+    [JsonPropertyName("tags")]
+    public List<string> Tags
+    {
+        get => _tags.GetValue();
+        set => _tags.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _key.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _private.SetAccessPath(path, validateHasBeenSet);
+        _tags.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

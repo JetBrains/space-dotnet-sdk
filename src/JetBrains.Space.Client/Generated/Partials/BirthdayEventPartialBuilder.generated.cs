@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BirthdayEventPartialBuilder
+namespace JetBrains.Space.Client.BirthdayEventPartialBuilder;
+
+public static class BirthdayEventPartialExtensions
 {
-    public static class BirthdayEventPartialExtensions
-    {
-        public static Partial<BirthdayEvent> WithProfile(this Partial<BirthdayEvent> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<BirthdayEvent> WithProfile(this Partial<BirthdayEvent> it, Func<Partial<TDMemberWithTeam>, Partial<TDMemberWithTeam>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberWithTeam>(it)));
-        
-        public static Partial<BirthdayEvent> WithBirthday(this Partial<BirthdayEvent> it)
-            => it.AddFieldName("birthday");
-        
-    }
+    public static Partial<BirthdayEvent> WithProfile(this Partial<BirthdayEvent> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<BirthdayEvent> WithProfile(this Partial<BirthdayEvent> it, Func<Partial<TDMemberWithTeam>, Partial<TDMemberWithTeam>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberWithTeam>(it)));
+    
+    public static Partial<BirthdayEvent> WithBirthday(this Partial<BirthdayEvent> it)
+        => it.AddFieldName("birthday");
     
 }
+

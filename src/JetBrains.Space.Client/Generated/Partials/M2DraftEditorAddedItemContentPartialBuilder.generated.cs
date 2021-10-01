@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2DraftEditorAddedItemContentPartialBuilder
+namespace JetBrains.Space.Client.M2DraftEditorAddedItemContentPartialBuilder;
+
+public static class M2DraftEditorAddedItemContentPartialExtensions
 {
-    public static class M2DraftEditorAddedItemContentPartialExtensions
-    {
-        public static Partial<M2DraftEditorAddedItemContent> WithId(this Partial<M2DraftEditorAddedItemContent> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<M2DraftEditorAddedItemContent> WithTitle(this Partial<M2DraftEditorAddedItemContent> it)
-            => it.AddFieldName("title");
-        
-    }
+    public static Partial<M2DraftEditorAddedItemContent> WithId(this Partial<M2DraftEditorAddedItemContent> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<M2DraftEditorAddedItemContent> WithTitle(this Partial<M2DraftEditorAddedItemContent> it)
+        => it.AddFieldName("title");
     
 }
+

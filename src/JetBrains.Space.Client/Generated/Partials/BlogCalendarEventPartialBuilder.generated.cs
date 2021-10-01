@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BlogCalendarEventPartialBuilder
+namespace JetBrains.Space.Client.BlogCalendarEventPartialBuilder;
+
+public static class BlogCalendarEventPartialExtensions
 {
-    public static class BlogCalendarEventPartialExtensions
-    {
-        public static Partial<BlogCalendarEvent> WithStarts(this Partial<BlogCalendarEvent> it)
-            => it.AddFieldName("starts");
-        
-        public static Partial<BlogCalendarEvent> WithEnds(this Partial<BlogCalendarEvent> it)
-            => it.AddFieldName("ends");
-        
-        public static Partial<BlogCalendarEvent> WithTimezone(this Partial<BlogCalendarEvent> it)
-            => it.AddFieldName("timezone");
-        
-        public static Partial<BlogCalendarEvent> WithTimezone(this Partial<BlogCalendarEvent> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
-            => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
-        
-        public static Partial<BlogCalendarEvent> WithRooms(this Partial<BlogCalendarEvent> it)
-            => it.AddFieldName("rooms");
-        
-        public static Partial<BlogCalendarEvent> WithIsAllDay(this Partial<BlogCalendarEvent> it)
-            => it.AddFieldName("allDay");
-        
-    }
+    public static Partial<BlogCalendarEvent> WithStarts(this Partial<BlogCalendarEvent> it)
+        => it.AddFieldName("starts");
+    
+    public static Partial<BlogCalendarEvent> WithEnds(this Partial<BlogCalendarEvent> it)
+        => it.AddFieldName("ends");
+    
+    public static Partial<BlogCalendarEvent> WithTimezone(this Partial<BlogCalendarEvent> it)
+        => it.AddFieldName("timezone");
+    
+    public static Partial<BlogCalendarEvent> WithTimezone(this Partial<BlogCalendarEvent> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
+        => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
+    
+    public static Partial<BlogCalendarEvent> WithRooms(this Partial<BlogCalendarEvent> it)
+        => it.AddFieldName("rooms");
+    
+    public static Partial<BlogCalendarEvent> WithIsAllDay(this Partial<BlogCalendarEvent> it)
+        => it.AddFieldName("allDay");
     
 }
+

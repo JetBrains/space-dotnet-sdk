@@ -27,90 +27,89 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ExternalEntityInfoRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ExternalEntityInfoRecord
-         : IPropagatePropertyAccessPath
+    public ExternalEntityInfoRecord() { }
+    
+    public ExternalEntityInfoRecord(string id, bool archived, ImportTransactionRecord transaction, string? externalId = null, string? externalName = null, string? externalUrl = null)
     {
-        public ExternalEntityInfoRecord() { }
-        
-        public ExternalEntityInfoRecord(string id, bool archived, ImportTransactionRecord transaction, string? externalId = null, string? externalName = null, string? externalUrl = null)
-        {
-            Id = id;
-            IsArchived = archived;
-            ExternalId = externalId;
-            ExternalName = externalName;
-            ExternalUrl = externalUrl;
-            Transaction = transaction;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ExternalEntityInfoRecord), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ExternalEntityInfoRecord), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalId));
-        
-        [JsonPropertyName("externalId")]
-        public string? ExternalId
-        {
-            get => _externalId.GetValue();
-            set => _externalId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _externalName = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalName));
-        
-        [JsonPropertyName("externalName")]
-        public string? ExternalName
-        {
-            get => _externalName.GetValue();
-            set => _externalName.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalUrl));
-        
-        [JsonPropertyName("externalUrl")]
-        public string? ExternalUrl
-        {
-            get => _externalUrl.GetValue();
-            set => _externalUrl.SetValue(value);
-        }
-    
-        private PropertyValue<ImportTransactionRecord> _transaction = new PropertyValue<ImportTransactionRecord>(nameof(ExternalEntityInfoRecord), nameof(Transaction));
-        
-        [Required]
-        [JsonPropertyName("transaction")]
-        public ImportTransactionRecord Transaction
-        {
-            get => _transaction.GetValue();
-            set => _transaction.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-            _externalId.SetAccessPath(path, validateHasBeenSet);
-            _externalName.SetAccessPath(path, validateHasBeenSet);
-            _externalUrl.SetAccessPath(path, validateHasBeenSet);
-            _transaction.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        IsArchived = archived;
+        ExternalId = externalId;
+        ExternalName = externalName;
+        ExternalUrl = externalUrl;
+        Transaction = transaction;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ExternalEntityInfoRecord), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ExternalEntityInfoRecord), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalId));
+    
+    [JsonPropertyName("externalId")]
+    public string? ExternalId
+    {
+        get => _externalId.GetValue();
+        set => _externalId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _externalName = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalName));
+    
+    [JsonPropertyName("externalName")]
+    public string? ExternalName
+    {
+        get => _externalName.GetValue();
+        set => _externalName.SetValue(value);
+    }
+
+    private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalUrl));
+    
+    [JsonPropertyName("externalUrl")]
+    public string? ExternalUrl
+    {
+        get => _externalUrl.GetValue();
+        set => _externalUrl.SetValue(value);
+    }
+
+    private PropertyValue<ImportTransactionRecord> _transaction = new PropertyValue<ImportTransactionRecord>(nameof(ExternalEntityInfoRecord), nameof(Transaction));
+    
+    [Required]
+    [JsonPropertyName("transaction")]
+    public ImportTransactionRecord Transaction
+    {
+        get => _transaction.GetValue();
+        set => _transaction.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _externalId.SetAccessPath(path, validateHasBeenSet);
+        _externalName.SetAccessPath(path, validateHasBeenSet);
+        _externalUrl.SetAccessPath(path, validateHasBeenSet);
+        _transaction.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsDateTime
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsDateTime
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsDateTime";
+    
+    public UnfurlDetailsDateTime() { }
+    
+    public UnfurlDetailsDateTime(long utcMilliseconds, DateTimeViewParams? @params = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsDateTime";
-        
-        public UnfurlDetailsDateTime() { }
-        
-        public UnfurlDetailsDateTime(long utcMilliseconds, DateTimeViewParams? @params = null)
-        {
-            UtcMilliseconds = utcMilliseconds;
-            Params = @params;
-        }
-        
-        private PropertyValue<long> _utcMilliseconds = new PropertyValue<long>(nameof(UnfurlDetailsDateTime), nameof(UtcMilliseconds));
-        
-        [Required]
-        [JsonPropertyName("utcMilliseconds")]
-        public long UtcMilliseconds
-        {
-            get => _utcMilliseconds.GetValue();
-            set => _utcMilliseconds.SetValue(value);
-        }
-    
-        private PropertyValue<DateTimeViewParams?> _params = new PropertyValue<DateTimeViewParams?>(nameof(UnfurlDetailsDateTime), nameof(Params));
-        
-        [JsonPropertyName("params")]
-        public DateTimeViewParams? Params
-        {
-            get => _params.GetValue();
-            set => _params.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _utcMilliseconds.SetAccessPath(path, validateHasBeenSet);
-            _params.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        UtcMilliseconds = utcMilliseconds;
+        Params = @params;
     }
     
+    private PropertyValue<long> _utcMilliseconds = new PropertyValue<long>(nameof(UnfurlDetailsDateTime), nameof(UtcMilliseconds));
+    
+    [Required]
+    [JsonPropertyName("utcMilliseconds")]
+    public long UtcMilliseconds
+    {
+        get => _utcMilliseconds.GetValue();
+        set => _utcMilliseconds.SetValue(value);
+    }
+
+    private PropertyValue<DateTimeViewParams?> _params = new PropertyValue<DateTimeViewParams?>(nameof(UnfurlDetailsDateTime), nameof(Params));
+    
+    [JsonPropertyName("params")]
+    public DateTimeViewParams? Params
+    {
+        get => _params.GetValue();
+        set => _params.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _utcMilliseconds.SetAccessPath(path, validateHasBeenSet);
+        _params.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

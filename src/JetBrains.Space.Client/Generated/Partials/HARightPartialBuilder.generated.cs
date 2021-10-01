@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HARightPartialBuilder
+namespace JetBrains.Space.Client.HARightPartialBuilder;
+
+public static class HARightPartialExtensions
 {
-    public static class HARightPartialExtensions
-    {
-        public static Partial<HARight> WithTitle(this Partial<HARight> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<HARight> WithDescription(this Partial<HARight> it)
-            => it.AddFieldName("description");
-        
-    }
+    public static Partial<HARight> WithTitle(this Partial<HARight> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<HARight> WithDescription(this Partial<HARight> it)
+        => it.AddFieldName("description");
     
 }
+

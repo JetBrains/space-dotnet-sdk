@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EndpointPartialBuilder
+namespace JetBrains.Space.Client.EndpointPartialBuilder;
+
+public static class EndpointPartialExtensions
 {
-    public static class EndpointPartialExtensions
-    {
-        public static Partial<Endpoint> WithUrl(this Partial<Endpoint> it)
-            => it.AddFieldName("url");
-        
-        public static Partial<Endpoint> WithIsSslVerification(this Partial<Endpoint> it)
-            => it.AddFieldName("sslVerification");
-        
-    }
+    public static Partial<Endpoint> WithUrl(this Partial<Endpoint> it)
+        => it.AddFieldName("url");
+    
+    public static Partial<Endpoint> WithIsSslVerification(this Partial<Endpoint> it)
+        => it.AddFieldName("sslVerification");
     
 }
+

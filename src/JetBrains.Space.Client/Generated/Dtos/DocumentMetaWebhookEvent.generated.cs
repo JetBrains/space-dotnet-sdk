@@ -27,70 +27,69 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DocumentMetaWebhookEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class DocumentMetaWebhookEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "DocumentMetaWebhookEvent";
+    
+    public DocumentMetaWebhookEvent() { }
+    
+    public DocumentMetaWebhookEvent(KMetaMod meta, string document, Modification<bool>? deleted = null, Modification<bool>? published = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "DocumentMetaWebhookEvent";
-        
-        public DocumentMetaWebhookEvent() { }
-        
-        public DocumentMetaWebhookEvent(KMetaMod meta, string document, Modification<bool>? deleted = null, Modification<bool>? published = null)
-        {
-            Meta = meta;
-            Document = document;
-            Deleted = deleted;
-            Published = published;
-        }
-        
-        private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(DocumentMetaWebhookEvent), nameof(Meta));
-        
-        [Required]
-        [JsonPropertyName("meta")]
-        public KMetaMod Meta
-        {
-            get => _meta.GetValue();
-            set => _meta.SetValue(value);
-        }
-    
-        private PropertyValue<string> _document = new PropertyValue<string>(nameof(DocumentMetaWebhookEvent), nameof(Document));
-        
-        [Required]
-        [JsonPropertyName("document")]
-        public string Document
-        {
-            get => _document.GetValue();
-            set => _document.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<bool>?> _deleted = new PropertyValue<Modification<bool>?>(nameof(DocumentMetaWebhookEvent), nameof(Deleted));
-        
-        [JsonPropertyName("deleted")]
-        public Modification<bool>? Deleted
-        {
-            get => _deleted.GetValue();
-            set => _deleted.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<bool>?> _published = new PropertyValue<Modification<bool>?>(nameof(DocumentMetaWebhookEvent), nameof(Published));
-        
-        [JsonPropertyName("published")]
-        public Modification<bool>? Published
-        {
-            get => _published.GetValue();
-            set => _published.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _meta.SetAccessPath(path, validateHasBeenSet);
-            _document.SetAccessPath(path, validateHasBeenSet);
-            _deleted.SetAccessPath(path, validateHasBeenSet);
-            _published.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Meta = meta;
+        Document = document;
+        Deleted = deleted;
+        Published = published;
     }
     
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(DocumentMetaWebhookEvent), nameof(Meta));
+    
+    [Required]
+    [JsonPropertyName("meta")]
+    public KMetaMod Meta
+    {
+        get => _meta.GetValue();
+        set => _meta.SetValue(value);
+    }
+
+    private PropertyValue<string> _document = new PropertyValue<string>(nameof(DocumentMetaWebhookEvent), nameof(Document));
+    
+    [Required]
+    [JsonPropertyName("document")]
+    public string Document
+    {
+        get => _document.GetValue();
+        set => _document.SetValue(value);
+    }
+
+    private PropertyValue<Modification<bool>?> _deleted = new PropertyValue<Modification<bool>?>(nameof(DocumentMetaWebhookEvent), nameof(Deleted));
+    
+    [JsonPropertyName("deleted")]
+    public Modification<bool>? Deleted
+    {
+        get => _deleted.GetValue();
+        set => _deleted.SetValue(value);
+    }
+
+    private PropertyValue<Modification<bool>?> _published = new PropertyValue<Modification<bool>?>(nameof(DocumentMetaWebhookEvent), nameof(Published));
+    
+    [JsonPropertyName("published")]
+    public Modification<bool>? Published
+    {
+        get => _published.GetValue();
+        set => _published.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _meta.SetAccessPath(path, validateHasBeenSet);
+        _document.SetAccessPath(path, validateHasBeenSet);
+        _deleted.SetAccessPath(path, validateHasBeenSet);
+        _published.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

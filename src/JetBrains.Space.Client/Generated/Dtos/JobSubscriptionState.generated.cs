@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class JobSubscriptionState
+     : IPropagatePropertyAccessPath
 {
-    public sealed class JobSubscriptionState
-         : IPropagatePropertyAccessPath
+    public JobSubscriptionState() { }
+    
+    public JobSubscriptionState(JobSubscriptionType type, bool containsMyCommit, bool runByMe)
     {
-        public JobSubscriptionState() { }
-        
-        public JobSubscriptionState(JobSubscriptionType type, bool containsMyCommit, bool runByMe)
-        {
-            Type = type;
-            IsContainsMyCommit = containsMyCommit;
-            IsRunByMe = runByMe;
-        }
-        
-        private PropertyValue<JobSubscriptionType> _type = new PropertyValue<JobSubscriptionType>(nameof(JobSubscriptionState), nameof(Type));
-        
-        [Required]
-        [JsonPropertyName("type")]
-        public JobSubscriptionType Type
-        {
-            get => _type.GetValue();
-            set => _type.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _containsMyCommit = new PropertyValue<bool>(nameof(JobSubscriptionState), nameof(IsContainsMyCommit));
-        
-        [Required]
-        [JsonPropertyName("containsMyCommit")]
-        public bool IsContainsMyCommit
-        {
-            get => _containsMyCommit.GetValue();
-            set => _containsMyCommit.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _runByMe = new PropertyValue<bool>(nameof(JobSubscriptionState), nameof(IsRunByMe));
-        
-        [Required]
-        [JsonPropertyName("runByMe")]
-        public bool IsRunByMe
-        {
-            get => _runByMe.GetValue();
-            set => _runByMe.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _type.SetAccessPath(path, validateHasBeenSet);
-            _containsMyCommit.SetAccessPath(path, validateHasBeenSet);
-            _runByMe.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Type = type;
+        IsContainsMyCommit = containsMyCommit;
+        IsRunByMe = runByMe;
     }
     
+    private PropertyValue<JobSubscriptionType> _type = new PropertyValue<JobSubscriptionType>(nameof(JobSubscriptionState), nameof(Type));
+    
+    [Required]
+    [JsonPropertyName("type")]
+    public JobSubscriptionType Type
+    {
+        get => _type.GetValue();
+        set => _type.SetValue(value);
+    }
+
+    private PropertyValue<bool> _containsMyCommit = new PropertyValue<bool>(nameof(JobSubscriptionState), nameof(IsContainsMyCommit));
+    
+    [Required]
+    [JsonPropertyName("containsMyCommit")]
+    public bool IsContainsMyCommit
+    {
+        get => _containsMyCommit.GetValue();
+        set => _containsMyCommit.SetValue(value);
+    }
+
+    private PropertyValue<bool> _runByMe = new PropertyValue<bool>(nameof(JobSubscriptionState), nameof(IsRunByMe));
+    
+    [Required]
+    [JsonPropertyName("runByMe")]
+    public bool IsRunByMe
+    {
+        get => _runByMe.GetValue();
+        set => _runByMe.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _type.SetAccessPath(path, validateHasBeenSet);
+        _containsMyCommit.SetAccessPath(path, validateHasBeenSet);
+        _runByMe.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

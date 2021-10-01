@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NonZeroExitCodePartialBuilder
+namespace JetBrains.Space.Client.NonZeroExitCodePartialBuilder;
+
+public static class NonZeroExitCodePartialExtensions
 {
-    public static class NonZeroExitCodePartialExtensions
-    {
-    }
-    
 }
+

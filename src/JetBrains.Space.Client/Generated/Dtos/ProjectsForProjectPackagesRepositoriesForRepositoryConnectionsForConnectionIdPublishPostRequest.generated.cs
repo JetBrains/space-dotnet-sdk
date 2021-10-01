@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest() { }
+    
+    public ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest(PublishingSource source)
     {
-        public ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest() { }
-        
-        public ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest(PublishingSource source)
-        {
-            Source = source;
-        }
-        
-        private PropertyValue<PublishingSource> _source = new PropertyValue<PublishingSource>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest), nameof(Source));
-        
-        [Required]
-        [JsonPropertyName("source")]
-        public PublishingSource Source
-        {
-            get => _source.GetValue();
-            set => _source.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _source.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Source = source;
     }
     
+    private PropertyValue<PublishingSource> _source = new PropertyValue<PublishingSource>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest), nameof(Source));
+    
+    [Required]
+    [JsonPropertyName("source")]
+    public PublishingSource Source
+    {
+        get => _source.GetValue();
+        set => _source.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _source.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

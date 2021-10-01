@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsCommitSetReviewPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsCommitSetReviewPostRequestPartialBuilder;
+
+public static class ProjectsForProjectCodeReviewsCommitSetReviewPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectCodeReviewsCommitSetReviewPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> WithRepository(this Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> WithRevisions(this Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> it)
-            => it.AddFieldName("revisions");
-        
-        public static Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> WithTitle(this Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> WithAuthorProfileIds(this Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> it)
-            => it.AddFieldName("authorProfileIds");
-        
-    }
+    public static Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> WithRepository(this Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> WithRevisions(this Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> it)
+        => it.AddFieldName("revisions");
+    
+    public static Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> WithTitle(this Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> WithAuthorProfileIds(this Partial<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest> it)
+        => it.AddFieldName("authorProfileIds");
     
 }
+

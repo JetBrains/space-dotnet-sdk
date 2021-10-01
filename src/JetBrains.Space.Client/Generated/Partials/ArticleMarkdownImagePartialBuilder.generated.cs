@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ArticleMarkdownImagePartialBuilder
+namespace JetBrains.Space.Client.ArticleMarkdownImagePartialBuilder;
+
+public static class ArticleMarkdownImagePartialExtensions
 {
-    public static class ArticleMarkdownImagePartialExtensions
-    {
-        public static Partial<ArticleMarkdownImage> WithAlt(this Partial<ArticleMarkdownImage> it)
-            => it.AddFieldName("alt");
-        
-        public static Partial<ArticleMarkdownImage> WithSrc(this Partial<ArticleMarkdownImage> it)
-            => it.AddFieldName("src");
-        
-    }
+    public static Partial<ArticleMarkdownImage> WithAlt(this Partial<ArticleMarkdownImage> it)
+        => it.AddFieldName("alt");
+    
+    public static Partial<ArticleMarkdownImage> WithSrc(this Partial<ArticleMarkdownImage> it)
+        => it.AddFieldName("src");
     
 }
+

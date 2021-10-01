@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlsBlockListEntryPartialBuilder
+namespace JetBrains.Space.Client.UnfurlsBlockListEntryPartialBuilder;
+
+public static class UnfurlsBlockListEntryPartialExtensions
 {
-    public static class UnfurlsBlockListEntryPartialExtensions
-    {
-        public static Partial<UnfurlsBlockListEntry> WithLink(this Partial<UnfurlsBlockListEntry> it)
-            => it.AddFieldName("link");
-        
-        public static Partial<UnfurlsBlockListEntry> WithIsPrefix(this Partial<UnfurlsBlockListEntry> it)
-            => it.AddFieldName("prefix");
-        
-        public static Partial<UnfurlsBlockListEntry> WithIsGlobal(this Partial<UnfurlsBlockListEntry> it)
-            => it.AddFieldName("global");
-        
-    }
+    public static Partial<UnfurlsBlockListEntry> WithLink(this Partial<UnfurlsBlockListEntry> it)
+        => it.AddFieldName("link");
+    
+    public static Partial<UnfurlsBlockListEntry> WithIsPrefix(this Partial<UnfurlsBlockListEntry> it)
+        => it.AddFieldName("prefix");
+    
+    public static Partial<UnfurlsBlockListEntry> WithIsGlobal(this Partial<UnfurlsBlockListEntry> it)
+        => it.AddFieldName("global");
     
 }
+

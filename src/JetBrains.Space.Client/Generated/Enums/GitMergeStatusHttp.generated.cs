@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum GitMergeStatusHttp
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum GitMergeStatusHttp
-    {
-        [EnumMember(Value = "SUCCESSFUL_MERGE")]
-        SUCCESSFULMERGE,
-        
-        [EnumMember(Value = "SUCCESSFUL_FAST_FORWARD")]
-        SUCCESSFULFASTFORWARD,
-        
-        [EnumMember(Value = "ALREADY_MERGED")]
-        ALREADYMERGED,
-        
-    }
+    [EnumMember(Value = "SUCCESSFUL_MERGE")]
+    SUCCESSFULMERGE,
+    
+    [EnumMember(Value = "SUCCESSFUL_FAST_FORWARD")]
+    SUCCESSFULFASTFORWARD,
+    
+    [EnumMember(Value = "ALREADY_MERGED")]
+    ALREADYMERGED,
     
 }
+

@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum RecurrentModification
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum RecurrentModification
-    {
-        [EnumMember(Value = "Me")]
-        Me,
-        
-        [EnumMember(Value = "SinceMe")]
-        SinceMe,
-        
-        [EnumMember(Value = "All")]
-        All,
-        
-    }
+    [EnumMember(Value = "Me")]
+    Me,
+    
+    [EnumMember(Value = "SinceMe")]
+    SinceMe,
+    
+    [EnumMember(Value = "All")]
+    All,
     
 }
+

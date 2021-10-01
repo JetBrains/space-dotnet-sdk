@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContentRecordPartialBuilder
+namespace JetBrains.Space.Client.M2ChannelContentRecordPartialBuilder;
+
+public static class M2ChannelContentRecordPartialExtensions
 {
-    public static class M2ChannelContentRecordPartialExtensions
-    {
-        public static Partial<M2ChannelContentRecord> WithId(this Partial<M2ChannelContentRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<M2ChannelContentRecord> WithContent(this Partial<M2ChannelContentRecord> it)
-            => it.AddFieldName("content");
-        
-        public static Partial<M2ChannelContentRecord> WithContent(this Partial<M2ChannelContentRecord> it, Func<Partial<M2ChannelContentInfo>, Partial<M2ChannelContentInfo>> partialBuilder)
-            => it.AddFieldName("content", partialBuilder(new Partial<M2ChannelContentInfo>(it)));
-        
-    }
+    public static Partial<M2ChannelContentRecord> WithId(this Partial<M2ChannelContentRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<M2ChannelContentRecord> WithContent(this Partial<M2ChannelContentRecord> it)
+        => it.AddFieldName("content");
+    
+    public static Partial<M2ChannelContentRecord> WithContent(this Partial<M2ChannelContentRecord> it, Func<Partial<M2ChannelContentInfo>, Partial<M2ChannelContentInfo>> partialBuilder)
+        => it.AddFieldName("content", partialBuilder(new Partial<M2ChannelContentInfo>(it)));
     
 }
+

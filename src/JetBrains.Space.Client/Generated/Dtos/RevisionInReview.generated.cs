@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RevisionInReview
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RevisionInReview
-         : IPropagatePropertyAccessPath
+    public RevisionInReview() { }
+    
+    public RevisionInReview(string repository, string commit)
     {
-        public RevisionInReview() { }
-        
-        public RevisionInReview(string repository, string commit)
-        {
-            Repository = repository;
-            Commit = commit;
-        }
-        
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(RevisionInReview), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<string> _commit = new PropertyValue<string>(nameof(RevisionInReview), nameof(Commit));
-        
-        [Required]
-        [JsonPropertyName("commit")]
-        public string Commit
-        {
-            get => _commit.GetValue();
-            set => _commit.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _commit.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Repository = repository;
+        Commit = commit;
     }
     
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(RevisionInReview), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public string Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<string> _commit = new PropertyValue<string>(nameof(RevisionInReview), nameof(Commit));
+    
+    [Required]
+    [JsonPropertyName("commit")]
+    public string Commit
+    {
+        get => _commit.GetValue();
+        set => _commit.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _commit.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

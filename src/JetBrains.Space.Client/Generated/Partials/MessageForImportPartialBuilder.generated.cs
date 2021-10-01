@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageForImportPartialBuilder
+namespace JetBrains.Space.Client.MessageForImportPartialBuilder;
+
+public static class MessageForImportPartialExtensions
 {
-    public static class MessageForImportPartialExtensions
-    {
-        public static Partial<MessageForImport> WithAuthorPrincipalId(this Partial<MessageForImport> it)
-            => it.AddFieldName("authorPrincipalId");
-        
-        public static Partial<MessageForImport> WithText(this Partial<MessageForImport> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<MessageForImport> WithCreatedAtUtc(this Partial<MessageForImport> it)
-            => it.AddFieldName("createdAtUtc");
-        
-        public static Partial<MessageForImport> WithAttachments(this Partial<MessageForImport> it)
-            => it.AddFieldName("attachments");
-        
-        public static Partial<MessageForImport> WithAttachments(this Partial<MessageForImport> it, Func<Partial<AttachmentIn>, Partial<AttachmentIn>> partialBuilder)
-            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentIn>(it)));
-        
-    }
+    public static Partial<MessageForImport> WithAuthorPrincipalId(this Partial<MessageForImport> it)
+        => it.AddFieldName("authorPrincipalId");
+    
+    public static Partial<MessageForImport> WithText(this Partial<MessageForImport> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<MessageForImport> WithCreatedAtUtc(this Partial<MessageForImport> it)
+        => it.AddFieldName("createdAtUtc");
+    
+    public static Partial<MessageForImport> WithAttachments(this Partial<MessageForImport> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<MessageForImport> WithAttachments(this Partial<MessageForImport> it, Func<Partial<AttachmentIn>, Partial<AttachmentIn>> partialBuilder)
+        => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentIn>(it)));
     
 }
+

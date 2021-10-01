@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AbsencesAbsenceReasonsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.AbsencesAbsenceReasonsPostRequestPartialBuilder;
+
+public static class AbsencesAbsenceReasonsPostRequestPartialExtensions
 {
-    public static class AbsencesAbsenceReasonsPostRequestPartialExtensions
-    {
-        public static Partial<AbsencesAbsenceReasonsPostRequest> WithName(this Partial<AbsencesAbsenceReasonsPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<AbsencesAbsenceReasonsPostRequest> WithDescription(this Partial<AbsencesAbsenceReasonsPostRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<AbsencesAbsenceReasonsPostRequest> WithIsDefaultAvailability(this Partial<AbsencesAbsenceReasonsPostRequest> it)
-            => it.AddFieldName("defaultAvailability");
-        
-        public static Partial<AbsencesAbsenceReasonsPostRequest> WithIsApprovalRequired(this Partial<AbsencesAbsenceReasonsPostRequest> it)
-            => it.AddFieldName("approvalRequired");
-        
-        public static Partial<AbsencesAbsenceReasonsPostRequest> WithIcon(this Partial<AbsencesAbsenceReasonsPostRequest> it)
-            => it.AddFieldName("icon");
-        
-    }
+    public static Partial<AbsencesAbsenceReasonsPostRequest> WithName(this Partial<AbsencesAbsenceReasonsPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<AbsencesAbsenceReasonsPostRequest> WithDescription(this Partial<AbsencesAbsenceReasonsPostRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<AbsencesAbsenceReasonsPostRequest> WithIsDefaultAvailability(this Partial<AbsencesAbsenceReasonsPostRequest> it)
+        => it.AddFieldName("defaultAvailability");
+    
+    public static Partial<AbsencesAbsenceReasonsPostRequest> WithIsApprovalRequired(this Partial<AbsencesAbsenceReasonsPostRequest> it)
+        => it.AddFieldName("approvalRequired");
+    
+    public static Partial<AbsencesAbsenceReasonsPostRequest> WithIcon(this Partial<AbsencesAbsenceReasonsPostRequest> it)
+        => it.AddFieldName("icon");
     
 }
+

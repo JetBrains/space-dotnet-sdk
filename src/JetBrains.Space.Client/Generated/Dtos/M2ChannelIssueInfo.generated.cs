@@ -27,59 +27,58 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2ChannelIssueInfo
+     : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2ChannelIssueInfo
-         : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2ChannelIssueInfo";
+    
+    public M2ChannelIssueInfo() { }
+    
+    public M2ChannelIssueInfo(Issue issue, ChannelSpecificDefaults notificationDefaults, ProjectKey? projectKey = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2ChannelIssueInfo";
-        
-        public M2ChannelIssueInfo() { }
-        
-        public M2ChannelIssueInfo(Issue issue, ChannelSpecificDefaults notificationDefaults, ProjectKey? projectKey = null)
-        {
-            ProjectKey = projectKey;
-            Issue = issue;
-            NotificationDefaults = notificationDefaults;
-        }
-        
-        private PropertyValue<ProjectKey?> _projectKey = new PropertyValue<ProjectKey?>(nameof(M2ChannelIssueInfo), nameof(ProjectKey));
-        
-        [JsonPropertyName("projectKey")]
-        public ProjectKey? ProjectKey
-        {
-            get => _projectKey.GetValue();
-            set => _projectKey.SetValue(value);
-        }
-    
-        private PropertyValue<Issue> _issue = new PropertyValue<Issue>(nameof(M2ChannelIssueInfo), nameof(Issue));
-        
-        [Required]
-        [JsonPropertyName("issue")]
-        public Issue Issue
-        {
-            get => _issue.GetValue();
-            set => _issue.SetValue(value);
-        }
-    
-        private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelIssueInfo), nameof(NotificationDefaults));
-        
-        [Required]
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaults NotificationDefaults
-        {
-            get => _notificationDefaults.GetValue();
-            set => _notificationDefaults.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _projectKey.SetAccessPath(path, validateHasBeenSet);
-            _issue.SetAccessPath(path, validateHasBeenSet);
-            _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ProjectKey = projectKey;
+        Issue = issue;
+        NotificationDefaults = notificationDefaults;
     }
     
+    private PropertyValue<ProjectKey?> _projectKey = new PropertyValue<ProjectKey?>(nameof(M2ChannelIssueInfo), nameof(ProjectKey));
+    
+    [JsonPropertyName("projectKey")]
+    public ProjectKey? ProjectKey
+    {
+        get => _projectKey.GetValue();
+        set => _projectKey.SetValue(value);
+    }
+
+    private PropertyValue<Issue> _issue = new PropertyValue<Issue>(nameof(M2ChannelIssueInfo), nameof(Issue));
+    
+    [Required]
+    [JsonPropertyName("issue")]
+    public Issue Issue
+    {
+        get => _issue.GetValue();
+        set => _issue.SetValue(value);
+    }
+
+    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelIssueInfo), nameof(NotificationDefaults));
+    
+    [Required]
+    [JsonPropertyName("notificationDefaults")]
+    public ChannelSpecificDefaults NotificationDefaults
+    {
+        get => _notificationDefaults.GetValue();
+        set => _notificationDefaults.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _projectKey.SetAccessPath(path, validateHasBeenSet);
+        _issue.SetAccessPath(path, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

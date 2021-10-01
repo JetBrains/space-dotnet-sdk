@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RevisionAuthorInfo
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RevisionAuthorInfo
-         : IPropagatePropertyAccessPath
+    public RevisionAuthorInfo() { }
+    
+    public RevisionAuthorInfo(RevisionInfo revisionInfo, RevisionAuthor author)
     {
-        public RevisionAuthorInfo() { }
-        
-        public RevisionAuthorInfo(RevisionInfo revisionInfo, RevisionAuthor author)
-        {
-            RevisionInfo = revisionInfo;
-            Author = author;
-        }
-        
-        private PropertyValue<RevisionInfo> _revisionInfo = new PropertyValue<RevisionInfo>(nameof(RevisionAuthorInfo), nameof(RevisionInfo));
-        
-        [Required]
-        [JsonPropertyName("revisionInfo")]
-        public RevisionInfo RevisionInfo
-        {
-            get => _revisionInfo.GetValue();
-            set => _revisionInfo.SetValue(value);
-        }
-    
-        private PropertyValue<RevisionAuthor> _author = new PropertyValue<RevisionAuthor>(nameof(RevisionAuthorInfo), nameof(Author));
-        
-        [Required]
-        [JsonPropertyName("author")]
-        public RevisionAuthor Author
-        {
-            get => _author.GetValue();
-            set => _author.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _revisionInfo.SetAccessPath(path, validateHasBeenSet);
-            _author.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        RevisionInfo = revisionInfo;
+        Author = author;
     }
     
+    private PropertyValue<RevisionInfo> _revisionInfo = new PropertyValue<RevisionInfo>(nameof(RevisionAuthorInfo), nameof(RevisionInfo));
+    
+    [Required]
+    [JsonPropertyName("revisionInfo")]
+    public RevisionInfo RevisionInfo
+    {
+        get => _revisionInfo.GetValue();
+        set => _revisionInfo.SetValue(value);
+    }
+
+    private PropertyValue<RevisionAuthor> _author = new PropertyValue<RevisionAuthor>(nameof(RevisionAuthorInfo), nameof(Author));
+    
+    [Required]
+    [JsonPropertyName("author")]
+    public RevisionAuthor Author
+    {
+        get => _author.GetValue();
+        set => _author.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _revisionInfo.SetAccessPath(path, validateHasBeenSet);
+        _author.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

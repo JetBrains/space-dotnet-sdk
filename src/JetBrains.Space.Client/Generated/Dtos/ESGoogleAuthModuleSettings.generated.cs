@@ -27,72 +27,71 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESGoogleAuthModuleSettings
+     : ESOAuth2AuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ESGoogleAuthModuleSettings
-         : ESOAuth2AuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ES_GoogleAuthModuleSettings";
+    
+    public ESGoogleAuthModuleSettings() { }
+    
+    public ESGoogleAuthModuleSettings(string clientId, string clientSecret, bool registerNewUsers, List<string> domains)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ES_GoogleAuthModuleSettings";
-        
-        public ESGoogleAuthModuleSettings() { }
-        
-        public ESGoogleAuthModuleSettings(string clientId, string clientSecret, bool registerNewUsers, List<string> domains)
-        {
-            ClientId = clientId;
-            ClientSecret = clientSecret;
-            IsRegisterNewUsers = registerNewUsers;
-            Domains = domains;
-        }
-        
-        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESGoogleAuthModuleSettings), nameof(ClientId));
-        
-        [Required]
-        [JsonPropertyName("clientId")]
-        public string ClientId
-        {
-            get => _clientId.GetValue();
-            set => _clientId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESGoogleAuthModuleSettings), nameof(ClientSecret));
-        
-        [Required]
-        [JsonPropertyName("clientSecret")]
-        public string ClientSecret
-        {
-            get => _clientSecret.GetValue();
-            set => _clientSecret.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESGoogleAuthModuleSettings), nameof(IsRegisterNewUsers));
-        
-        [Required]
-        [JsonPropertyName("registerNewUsers")]
-        public bool IsRegisterNewUsers
-        {
-            get => _registerNewUsers.GetValue();
-            set => _registerNewUsers.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ESGoogleAuthModuleSettings), nameof(Domains), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("domains")]
-        public List<string> Domains
-        {
-            get => _domains.GetValue();
-            set => _domains.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _clientId.SetAccessPath(path, validateHasBeenSet);
-            _clientSecret.SetAccessPath(path, validateHasBeenSet);
-            _registerNewUsers.SetAccessPath(path, validateHasBeenSet);
-            _domains.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ClientId = clientId;
+        ClientSecret = clientSecret;
+        IsRegisterNewUsers = registerNewUsers;
+        Domains = domains;
     }
     
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESGoogleAuthModuleSettings), nameof(ClientId));
+    
+    [Required]
+    [JsonPropertyName("clientId")]
+    public string ClientId
+    {
+        get => _clientId.GetValue();
+        set => _clientId.SetValue(value);
+    }
+
+    private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESGoogleAuthModuleSettings), nameof(ClientSecret));
+    
+    [Required]
+    [JsonPropertyName("clientSecret")]
+    public string ClientSecret
+    {
+        get => _clientSecret.GetValue();
+        set => _clientSecret.SetValue(value);
+    }
+
+    private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESGoogleAuthModuleSettings), nameof(IsRegisterNewUsers));
+    
+    [Required]
+    [JsonPropertyName("registerNewUsers")]
+    public bool IsRegisterNewUsers
+    {
+        get => _registerNewUsers.GetValue();
+        set => _registerNewUsers.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ESGoogleAuthModuleSettings), nameof(Domains), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("domains")]
+    public List<string> Domains
+    {
+        get => _domains.GetValue();
+        set => _domains.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _clientId.SetAccessPath(path, validateHasBeenSet);
+        _clientSecret.SetAccessPath(path, validateHasBeenSet);
+        _registerNewUsers.SetAccessPath(path, validateHasBeenSet);
+        _domains.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

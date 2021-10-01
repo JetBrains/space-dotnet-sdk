@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChannelAttachmentMenuActionContextPartialBuilder
+namespace JetBrains.Space.Client.ChannelAttachmentMenuActionContextPartialBuilder;
+
+public static class ChannelAttachmentMenuActionContextPartialExtensions
 {
-    public static class ChannelAttachmentMenuActionContextPartialExtensions
-    {
-        public static Partial<ChannelAttachmentMenuActionContext> WithMenuId(this Partial<ChannelAttachmentMenuActionContext> it)
-            => it.AddFieldName("menuId");
-        
-        public static Partial<ChannelAttachmentMenuActionContext> WithChannelId(this Partial<ChannelAttachmentMenuActionContext> it)
-            => it.AddFieldName("channelId");
-        
-    }
+    public static Partial<ChannelAttachmentMenuActionContext> WithMenuId(this Partial<ChannelAttachmentMenuActionContext> it)
+        => it.AddFieldName("menuId");
+    
+    public static Partial<ChannelAttachmentMenuActionContext> WithChannelId(this Partial<ChannelAttachmentMenuActionContext> it)
+        => it.AddFieldName("channelId");
     
 }
+

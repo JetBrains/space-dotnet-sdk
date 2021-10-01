@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CFValuePartialBuilder
+namespace JetBrains.Space.Client.CFValuePartialBuilder;
+
+public static class CFValuePartialExtensions
 {
-    public static class CFValuePartialExtensions
-    {
-    }
-    
 }
+

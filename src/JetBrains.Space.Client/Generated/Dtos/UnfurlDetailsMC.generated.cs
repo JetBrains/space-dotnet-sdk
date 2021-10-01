@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsMC
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsMC
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsMC";
+    
+    public UnfurlDetailsMC() { }
+    
+    public UnfurlDetailsMC(MCMessage message, List<AttachmentInfo>? inlineUnfurls = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsMC";
-        
-        public UnfurlDetailsMC() { }
-        
-        public UnfurlDetailsMC(MCMessage message, List<AttachmentInfo>? inlineUnfurls = null)
-        {
-            Message = message;
-            InlineUnfurls = inlineUnfurls;
-        }
-        
-        private PropertyValue<MCMessage> _message = new PropertyValue<MCMessage>(nameof(UnfurlDetailsMC), nameof(Message));
-        
-        [Required]
-        [JsonPropertyName("message")]
-        public MCMessage Message
-        {
-            get => _message.GetValue();
-            set => _message.SetValue(value);
-        }
-    
-        private PropertyValue<List<AttachmentInfo>?> _inlineUnfurls = new PropertyValue<List<AttachmentInfo>?>(nameof(UnfurlDetailsMC), nameof(InlineUnfurls));
-        
-        [JsonPropertyName("inlineUnfurls")]
-        public List<AttachmentInfo>? InlineUnfurls
-        {
-            get => _inlineUnfurls.GetValue();
-            set => _inlineUnfurls.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _message.SetAccessPath(path, validateHasBeenSet);
-            _inlineUnfurls.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Message = message;
+        InlineUnfurls = inlineUnfurls;
     }
     
+    private PropertyValue<MCMessage> _message = new PropertyValue<MCMessage>(nameof(UnfurlDetailsMC), nameof(Message));
+    
+    [Required]
+    [JsonPropertyName("message")]
+    public MCMessage Message
+    {
+        get => _message.GetValue();
+        set => _message.SetValue(value);
+    }
+
+    private PropertyValue<List<AttachmentInfo>?> _inlineUnfurls = new PropertyValue<List<AttachmentInfo>?>(nameof(UnfurlDetailsMC), nameof(InlineUnfurls));
+    
+    [JsonPropertyName("inlineUnfurls")]
+    public List<AttachmentInfo>? InlineUnfurls
+    {
+        get => _inlineUnfurls.GetValue();
+        set => _inlineUnfurls.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _message.SetAccessPath(path, validateHasBeenSet);
+        _inlineUnfurls.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

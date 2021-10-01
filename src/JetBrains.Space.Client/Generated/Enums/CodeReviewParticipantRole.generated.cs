@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum CodeReviewParticipantRole
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum CodeReviewParticipantRole
-    {
-        [EnumMember(Value = "Reviewer")]
-        Reviewer,
-        
-        [EnumMember(Value = "Author")]
-        Author,
-        
-        [EnumMember(Value = "Watcher")]
-        Watcher,
-        
-    }
+    [EnumMember(Value = "Reviewer")]
+    Reviewer,
+    
+    [EnumMember(Value = "Author")]
+    Author,
+    
+    [EnumMember(Value = "Watcher")]
+    Watcher,
     
 }
+

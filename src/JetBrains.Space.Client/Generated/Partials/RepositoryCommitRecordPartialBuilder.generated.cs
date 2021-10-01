@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RepositoryCommitRecordPartialBuilder
+namespace JetBrains.Space.Client.RepositoryCommitRecordPartialBuilder;
+
+public static class RepositoryCommitRecordPartialExtensions
 {
-    public static class RepositoryCommitRecordPartialExtensions
-    {
-        public static Partial<RepositoryCommitRecord> WithId(this Partial<RepositoryCommitRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<RepositoryCommitRecord> WithRepositoryId(this Partial<RepositoryCommitRecord> it)
-            => it.AddFieldName("repositoryId");
-        
-        public static Partial<RepositoryCommitRecord> WithRepositoryName(this Partial<RepositoryCommitRecord> it)
-            => it.AddFieldName("repositoryName");
-        
-        public static Partial<RepositoryCommitRecord> WithRevision(this Partial<RepositoryCommitRecord> it)
-            => it.AddFieldName("revision");
-        
-        public static Partial<RepositoryCommitRecord> WithMessage(this Partial<RepositoryCommitRecord> it)
-            => it.AddFieldName("message");
-        
-        public static Partial<RepositoryCommitRecord> WithDate(this Partial<RepositoryCommitRecord> it)
-            => it.AddFieldName("date");
-        
-        public static Partial<RepositoryCommitRecord> WithAuthorName(this Partial<RepositoryCommitRecord> it)
-            => it.AddFieldName("authorName");
-        
-        public static Partial<RepositoryCommitRecord> WithAuthorEmail(this Partial<RepositoryCommitRecord> it)
-            => it.AddFieldName("authorEmail");
-        
-        public static Partial<RepositoryCommitRecord> WithCommitterName(this Partial<RepositoryCommitRecord> it)
-            => it.AddFieldName("committerName");
-        
-        public static Partial<RepositoryCommitRecord> WithCommitterEmail(this Partial<RepositoryCommitRecord> it)
-            => it.AddFieldName("committerEmail");
-        
-        public static Partial<RepositoryCommitRecord> WithAuthorProfile(this Partial<RepositoryCommitRecord> it)
-            => it.AddFieldName("authorProfile");
-        
-        public static Partial<RepositoryCommitRecord> WithAuthorProfile(this Partial<RepositoryCommitRecord> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("authorProfile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<RepositoryCommitRecord> WithId(this Partial<RepositoryCommitRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<RepositoryCommitRecord> WithRepositoryId(this Partial<RepositoryCommitRecord> it)
+        => it.AddFieldName("repositoryId");
+    
+    public static Partial<RepositoryCommitRecord> WithRepositoryName(this Partial<RepositoryCommitRecord> it)
+        => it.AddFieldName("repositoryName");
+    
+    public static Partial<RepositoryCommitRecord> WithRevision(this Partial<RepositoryCommitRecord> it)
+        => it.AddFieldName("revision");
+    
+    public static Partial<RepositoryCommitRecord> WithMessage(this Partial<RepositoryCommitRecord> it)
+        => it.AddFieldName("message");
+    
+    public static Partial<RepositoryCommitRecord> WithDate(this Partial<RepositoryCommitRecord> it)
+        => it.AddFieldName("date");
+    
+    public static Partial<RepositoryCommitRecord> WithAuthorName(this Partial<RepositoryCommitRecord> it)
+        => it.AddFieldName("authorName");
+    
+    public static Partial<RepositoryCommitRecord> WithAuthorEmail(this Partial<RepositoryCommitRecord> it)
+        => it.AddFieldName("authorEmail");
+    
+    public static Partial<RepositoryCommitRecord> WithCommitterName(this Partial<RepositoryCommitRecord> it)
+        => it.AddFieldName("committerName");
+    
+    public static Partial<RepositoryCommitRecord> WithCommitterEmail(this Partial<RepositoryCommitRecord> it)
+        => it.AddFieldName("committerEmail");
+    
+    public static Partial<RepositoryCommitRecord> WithAuthorProfile(this Partial<RepositoryCommitRecord> it)
+        => it.AddFieldName("authorProfile");
+    
+    public static Partial<RepositoryCommitRecord> WithAuthorProfile(this Partial<RepositoryCommitRecord> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("authorProfile", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

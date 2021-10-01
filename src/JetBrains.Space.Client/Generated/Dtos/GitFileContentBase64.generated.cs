@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitFileContentBase64
+     : GitFileContent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class GitFileContentBase64
-         : GitFileContent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "GitFileContent.Base64";
+    
+    public GitFileContentBase64() { }
+    
+    public GitFileContentBase64(string value, bool? executable = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "GitFileContent.Base64";
-        
-        public GitFileContentBase64() { }
-        
-        public GitFileContentBase64(string value, bool? executable = null)
-        {
-            Value = value;
-            IsExecutable = executable;
-        }
-        
-        private PropertyValue<string> _value = new PropertyValue<string>(nameof(GitFileContentBase64), nameof(Value));
-        
-        [Required]
-        [JsonPropertyName("value")]
-        public string Value
-        {
-            get => _value.GetValue();
-            set => _value.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _executable = new PropertyValue<bool?>(nameof(GitFileContentBase64), nameof(IsExecutable));
-        
-        [JsonPropertyName("executable")]
-        public bool? IsExecutable
-        {
-            get => _executable.GetValue();
-            set => _executable.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _value.SetAccessPath(path, validateHasBeenSet);
-            _executable.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Value = value;
+        IsExecutable = executable;
     }
     
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(GitFileContentBase64), nameof(Value));
+    
+    [Required]
+    [JsonPropertyName("value")]
+    public string Value
+    {
+        get => _value.GetValue();
+        set => _value.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _executable = new PropertyValue<bool?>(nameof(GitFileContentBase64), nameof(IsExecutable));
+    
+    [JsonPropertyName("executable")]
+    public bool? IsExecutable
+    {
+        get => _executable.GetValue();
+        set => _executable.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _value.SetAccessPath(path, validateHasBeenSet);
+        _executable.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

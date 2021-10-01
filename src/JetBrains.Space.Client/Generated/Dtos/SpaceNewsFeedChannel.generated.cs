@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class SpaceNewsFeedChannel
+     : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class SpaceNewsFeedChannel
-         : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "SpaceNewsFeedChannel";
+    
+    public SpaceNewsFeedChannel() { }
+    
+    public SpaceNewsFeedChannel(ChannelSpecificDefaults? notificationDefaults = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "SpaceNewsFeedChannel";
-        
-        public SpaceNewsFeedChannel() { }
-        
-        public SpaceNewsFeedChannel(ChannelSpecificDefaults? notificationDefaults = null)
-        {
-            NotificationDefaults = notificationDefaults;
-        }
-        
-        private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(SpaceNewsFeedChannel), nameof(NotificationDefaults));
-        
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaults? NotificationDefaults
-        {
-            get => _notificationDefaults.GetValue();
-            set => _notificationDefaults.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        NotificationDefaults = notificationDefaults;
     }
     
+    private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(SpaceNewsFeedChannel), nameof(NotificationDefaults));
+    
+    [JsonPropertyName("notificationDefaults")]
+    public ChannelSpecificDefaults? NotificationDefaults
+    {
+        get => _notificationDefaults.GetValue();
+        set => _notificationDefaults.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

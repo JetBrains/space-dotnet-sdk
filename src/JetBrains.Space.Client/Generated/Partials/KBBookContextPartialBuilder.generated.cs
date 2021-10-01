@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.KBBookContextPartialBuilder
+namespace JetBrains.Space.Client.KBBookContextPartialBuilder;
+
+public static class KBBookContextPartialExtensions
 {
-    public static class KBBookContextPartialExtensions
-    {
-    }
-    
 }
+

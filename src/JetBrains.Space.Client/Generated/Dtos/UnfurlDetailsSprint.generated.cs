@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsSprint
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsSprint
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsSprint";
+    
+    public UnfurlDetailsSprint() { }
+    
+    public UnfurlDetailsSprint(PRProject project, SprintRecord sprint)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsSprint";
-        
-        public UnfurlDetailsSprint() { }
-        
-        public UnfurlDetailsSprint(PRProject project, SprintRecord sprint)
-        {
-            Project = project;
-            Sprint = sprint;
-        }
-        
-        private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsSprint), nameof(Project));
-        
-        [Required]
-        [JsonPropertyName("project")]
-        public PRProject Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<SprintRecord> _sprint = new PropertyValue<SprintRecord>(nameof(UnfurlDetailsSprint), nameof(Sprint));
-        
-        [Required]
-        [JsonPropertyName("sprint")]
-        public SprintRecord Sprint
-        {
-            get => _sprint.GetValue();
-            set => _sprint.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _sprint.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Project = project;
+        Sprint = sprint;
     }
     
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsSprint), nameof(Project));
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public PRProject Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<SprintRecord> _sprint = new PropertyValue<SprintRecord>(nameof(UnfurlDetailsSprint), nameof(Sprint));
+    
+    [Required]
+    [JsonPropertyName("sprint")]
+    public SprintRecord Sprint
+    {
+        get => _sprint.GetValue();
+        set => _sprint.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _project.SetAccessPath(path, validateHasBeenSet);
+        _sprint.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

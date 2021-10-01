@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ContainerImagePlatformPartialBuilder
+namespace JetBrains.Space.Client.ContainerImagePlatformPartialBuilder;
+
+public static class ContainerImagePlatformPartialExtensions
 {
-    public static class ContainerImagePlatformPartialExtensions
-    {
-        public static Partial<ContainerImagePlatform> WithOs(this Partial<ContainerImagePlatform> it)
-            => it.AddFieldName("os");
-        
-        public static Partial<ContainerImagePlatform> WithOsVersion(this Partial<ContainerImagePlatform> it)
-            => it.AddFieldName("osVersion");
-        
-        public static Partial<ContainerImagePlatform> WithArch(this Partial<ContainerImagePlatform> it)
-            => it.AddFieldName("arch");
-        
-    }
+    public static Partial<ContainerImagePlatform> WithOs(this Partial<ContainerImagePlatform> it)
+        => it.AddFieldName("os");
+    
+    public static Partial<ContainerImagePlatform> WithOsVersion(this Partial<ContainerImagePlatform> it)
+        => it.AddFieldName("osVersion");
+    
+    public static Partial<ContainerImagePlatform> WithArch(this Partial<ContainerImagePlatform> it)
+        => it.AddFieldName("arch");
     
 }
+

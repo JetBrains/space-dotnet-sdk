@@ -27,71 +27,70 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class WebhookRequestPayload
+     : ApplicationPayload, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class WebhookRequestPayload
-         : ApplicationPayload, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "WebhookRequestPayload";
+    
+    public WebhookRequestPayload() { }
+    
+    public WebhookRequestPayload(string clientId, string webhookId, WebhookEvent payload, string? verificationToken = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "WebhookRequestPayload";
-        
-        public WebhookRequestPayload() { }
-        
-        public WebhookRequestPayload(string clientId, string webhookId, WebhookEvent payload, string? verificationToken = null)
-        {
-            VerificationToken = verificationToken;
-            ClientId = clientId;
-            WebhookId = webhookId;
-            Payload = payload;
-        }
-        
-        private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(WebhookRequestPayload), nameof(VerificationToken));
-        
-        [JsonPropertyName("verificationToken")]
-        public string? VerificationToken
-        {
-            get => _verificationToken.GetValue();
-            set => _verificationToken.SetValue(value);
-        }
-    
-        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(WebhookRequestPayload), nameof(ClientId));
-        
-        [Required]
-        [JsonPropertyName("clientId")]
-        public string ClientId
-        {
-            get => _clientId.GetValue();
-            set => _clientId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _webhookId = new PropertyValue<string>(nameof(WebhookRequestPayload), nameof(WebhookId));
-        
-        [Required]
-        [JsonPropertyName("webhookId")]
-        public string WebhookId
-        {
-            get => _webhookId.GetValue();
-            set => _webhookId.SetValue(value);
-        }
-    
-        private PropertyValue<WebhookEvent> _payload = new PropertyValue<WebhookEvent>(nameof(WebhookRequestPayload), nameof(Payload));
-        
-        [Required]
-        [JsonPropertyName("payload")]
-        public WebhookEvent Payload
-        {
-            get => _payload.GetValue();
-            set => _payload.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _verificationToken.SetAccessPath(path, validateHasBeenSet);
-            _clientId.SetAccessPath(path, validateHasBeenSet);
-            _webhookId.SetAccessPath(path, validateHasBeenSet);
-            _payload.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        VerificationToken = verificationToken;
+        ClientId = clientId;
+        WebhookId = webhookId;
+        Payload = payload;
     }
     
+    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(WebhookRequestPayload), nameof(VerificationToken));
+    
+    [JsonPropertyName("verificationToken")]
+    public string? VerificationToken
+    {
+        get => _verificationToken.GetValue();
+        set => _verificationToken.SetValue(value);
+    }
+
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(WebhookRequestPayload), nameof(ClientId));
+    
+    [Required]
+    [JsonPropertyName("clientId")]
+    public string ClientId
+    {
+        get => _clientId.GetValue();
+        set => _clientId.SetValue(value);
+    }
+
+    private PropertyValue<string> _webhookId = new PropertyValue<string>(nameof(WebhookRequestPayload), nameof(WebhookId));
+    
+    [Required]
+    [JsonPropertyName("webhookId")]
+    public string WebhookId
+    {
+        get => _webhookId.GetValue();
+        set => _webhookId.SetValue(value);
+    }
+
+    private PropertyValue<WebhookEvent> _payload = new PropertyValue<WebhookEvent>(nameof(WebhookRequestPayload), nameof(Payload));
+    
+    [Required]
+    [JsonPropertyName("payload")]
+    public WebhookEvent Payload
+    {
+        get => _payload.GetValue();
+        set => _payload.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _verificationToken.SetAccessPath(path, validateHasBeenSet);
+        _clientId.SetAccessPath(path, validateHasBeenSet);
+        _webhookId.SetAccessPath(path, validateHasBeenSet);
+        _payload.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

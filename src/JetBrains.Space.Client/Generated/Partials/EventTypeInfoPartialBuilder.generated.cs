@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EventTypeInfoPartialBuilder
+namespace JetBrains.Space.Client.EventTypeInfoPartialBuilder;
+
+public static class EventTypeInfoPartialExtensions
 {
-    public static class EventTypeInfoPartialExtensions
-    {
-        public static Partial<EventTypeInfo> WithCode(this Partial<EventTypeInfo> it)
-            => it.AddFieldName("code");
-        
-        public static Partial<EventTypeInfo> WithName(this Partial<EventTypeInfo> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<EventTypeInfo> WithDescription(this Partial<EventTypeInfo> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<EventTypeInfo> WithRights(this Partial<EventTypeInfo> it)
-            => it.AddFieldName("rights");
-        
-        public static Partial<EventTypeInfo> WithRights(this Partial<EventTypeInfo> it, Func<Partial<CRight>, Partial<CRight>> partialBuilder)
-            => it.AddFieldName("rights", partialBuilder(new Partial<CRight>(it)));
-        
-        public static Partial<EventTypeInfo> WithFeatureFlag(this Partial<EventTypeInfo> it)
-            => it.AddFieldName("featureFlag");
-        
-        public static Partial<EventTypeInfo> WithSortOrder(this Partial<EventTypeInfo> it)
-            => it.AddFieldName("sortOrder");
-        
-    }
+    public static Partial<EventTypeInfo> WithCode(this Partial<EventTypeInfo> it)
+        => it.AddFieldName("code");
+    
+    public static Partial<EventTypeInfo> WithName(this Partial<EventTypeInfo> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<EventTypeInfo> WithDescription(this Partial<EventTypeInfo> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<EventTypeInfo> WithRights(this Partial<EventTypeInfo> it)
+        => it.AddFieldName("rights");
+    
+    public static Partial<EventTypeInfo> WithRights(this Partial<EventTypeInfo> it, Func<Partial<CRight>, Partial<CRight>> partialBuilder)
+        => it.AddFieldName("rights", partialBuilder(new Partial<CRight>(it)));
+    
+    public static Partial<EventTypeInfo> WithFeatureFlag(this Partial<EventTypeInfo> it)
+        => it.AddFieldName("featureFlag");
+    
+    public static Partial<EventTypeInfo> WithSortOrder(this Partial<EventTypeInfo> it)
+        => it.AddFieldName("sortOrder");
     
 }
+

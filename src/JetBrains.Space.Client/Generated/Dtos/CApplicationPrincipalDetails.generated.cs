@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CApplicationPrincipalDetails
+     : CPrincipalDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class CApplicationPrincipalDetails
-         : CPrincipalDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "CApplicationPrincipalDetails";
+    
+    public CApplicationPrincipalDetails() { }
+    
+    public CApplicationPrincipalDetails(ESApp app)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "CApplicationPrincipalDetails";
-        
-        public CApplicationPrincipalDetails() { }
-        
-        public CApplicationPrincipalDetails(ESApp app)
-        {
-            App = app;
-        }
-        
-        private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(CApplicationPrincipalDetails), nameof(App));
-        
-        [Required]
-        [JsonPropertyName("app")]
-        public ESApp App
-        {
-            get => _app.GetValue();
-            set => _app.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _app.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        App = app;
     }
     
+    private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(CApplicationPrincipalDetails), nameof(App));
+    
+    [Required]
+    [JsonPropertyName("app")]
+    public ESApp App
+    {
+        get => _app.GetValue();
+        set => _app.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _app.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

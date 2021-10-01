@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum GitGraphEdgeType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum GitGraphEdgeType
-    {
-        [EnumMember(Value = "UP")]
-        UP,
-        
-        [EnumMember(Value = "DOWN")]
-        DOWN,
-        
-    }
+    [EnumMember(Value = "UP")]
+    UP,
+    
+    [EnumMember(Value = "DOWN")]
+    DOWN,
     
 }
+

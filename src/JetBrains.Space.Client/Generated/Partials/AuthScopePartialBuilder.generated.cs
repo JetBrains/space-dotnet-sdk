@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AuthScopePartialBuilder
+namespace JetBrains.Space.Client.AuthScopePartialBuilder;
+
+public static class AuthScopePartialExtensions
 {
-    public static class AuthScopePartialExtensions
-    {
-    }
-    
 }
+

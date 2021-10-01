@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PackagesSubscriptionFilterPartialBuilder
+namespace JetBrains.Space.Client.PackagesSubscriptionFilterPartialBuilder;
+
+public static class PackagesSubscriptionFilterPartialExtensions
 {
-    public static class PackagesSubscriptionFilterPartialExtensions
-    {
-        public static Partial<PackagesSubscriptionFilter> WithProject(this Partial<PackagesSubscriptionFilter> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<PackagesSubscriptionFilter> WithProject(this Partial<PackagesSubscriptionFilter> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
-        public static Partial<PackagesSubscriptionFilter> WithRepository(this Partial<PackagesSubscriptionFilter> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<PackagesSubscriptionFilter> WithRepository(this Partial<PackagesSubscriptionFilter> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
-            => it.AddFieldName("repository", partialBuilder(new Partial<ProjectPackageRepository>(it)));
-        
-        public static Partial<PackagesSubscriptionFilter> WithNamePattern(this Partial<PackagesSubscriptionFilter> it)
-            => it.AddFieldName("namePattern");
-        
-        public static Partial<PackagesSubscriptionFilter> WithVersionPattern(this Partial<PackagesSubscriptionFilter> it)
-            => it.AddFieldName("versionPattern");
-        
-    }
+    public static Partial<PackagesSubscriptionFilter> WithProject(this Partial<PackagesSubscriptionFilter> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<PackagesSubscriptionFilter> WithProject(this Partial<PackagesSubscriptionFilter> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+    
+    public static Partial<PackagesSubscriptionFilter> WithRepository(this Partial<PackagesSubscriptionFilter> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<PackagesSubscriptionFilter> WithRepository(this Partial<PackagesSubscriptionFilter> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
+        => it.AddFieldName("repository", partialBuilder(new Partial<ProjectPackageRepository>(it)));
+    
+    public static Partial<PackagesSubscriptionFilter> WithNamePattern(this Partial<PackagesSubscriptionFilter> it)
+        => it.AddFieldName("namePattern");
+    
+    public static Partial<PackagesSubscriptionFilter> WithVersionPattern(this Partial<PackagesSubscriptionFilter> it)
+        => it.AddFieldName("versionPattern");
     
 }
+

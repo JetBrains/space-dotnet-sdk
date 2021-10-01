@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContactObsoletePartialBuilder
+namespace JetBrains.Space.Client.M2ChannelContactObsoletePartialBuilder;
+
+public static class M2ChannelContactObsoletePartialExtensions
 {
-    public static class M2ChannelContactObsoletePartialExtensions
-    {
-        public static Partial<M2ChannelContactObsolete> WithCause(this Partial<M2ChannelContactObsolete> it)
-            => it.AddFieldName("cause");
-        
-        public static Partial<M2ChannelContactObsolete> WithCause(this Partial<M2ChannelContactObsolete> it, Func<Partial<M2ObsoleteCause>, Partial<M2ObsoleteCause>> partialBuilder)
-            => it.AddFieldName("cause", partialBuilder(new Partial<M2ObsoleteCause>(it)));
-        
-    }
+    public static Partial<M2ChannelContactObsolete> WithCause(this Partial<M2ChannelContactObsolete> it)
+        => it.AddFieldName("cause");
+    
+    public static Partial<M2ChannelContactObsolete> WithCause(this Partial<M2ChannelContactObsolete> it, Func<Partial<M2ObsoleteCause>, Partial<M2ObsoleteCause>> partialBuilder)
+        => it.AddFieldName("cause", partialBuilder(new Partial<M2ObsoleteCause>(it)));
     
 }
+

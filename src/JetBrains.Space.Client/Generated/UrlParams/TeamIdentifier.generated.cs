@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class TeamIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class TeamIdentifier : IUrlParameter
+    public static TeamIdentifier Id(string id)
+        => new TeamIdentifierId(id);
+    
+    public static TeamIdentifier Name(string name)
+        => new TeamIdentifierName(name);
+    
+    private class TeamIdentifierId : TeamIdentifier
     {
-        public static TeamIdentifier Id(string id)
-            => new TeamIdentifierId(id);
+        private readonly string _id;
         
-        public static TeamIdentifier Name(string name)
-            => new TeamIdentifierName(name);
-        
-        private class TeamIdentifierId : TeamIdentifier
+        public TeamIdentifierId(string id)
         {
-            private readonly string _id;
-            
-            public TeamIdentifierId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
-        private class TeamIdentifierName : TeamIdentifier
+        public override string ToString()
+            => $"id:{_id}";
+    }
+    
+    private class TeamIdentifierName : TeamIdentifier
+    {
+        private readonly string _name;
+        
+        public TeamIdentifierName(string name)
         {
-            private readonly string _name;
-            
-            public TeamIdentifierName(string name)
-            {
-                _name = name;
-            }
-            
-            public override string ToString()
-                => $"name:{_name}";
+            _name = name;
         }
         
+        public override string ToString()
+            => $"name:{_name}";
     }
     
 }
+

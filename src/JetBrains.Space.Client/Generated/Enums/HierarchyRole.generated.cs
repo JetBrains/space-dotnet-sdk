@@ -27,26 +27,25 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum HierarchyRole
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum HierarchyRole
-    {
-        [EnumMember(Value = "SEALED")]
-        SEALED,
-        
-        [EnumMember(Value = "OPEN")]
-        OPEN,
-        
-        [EnumMember(Value = "FINAL")]
-        FINAL,
-        
-        [EnumMember(Value = "ABSTRACT")]
-        ABSTRACT,
-        
-        [EnumMember(Value = "INTERFACE")]
-        INTERFACE,
-        
-    }
+    [EnumMember(Value = "SEALED")]
+    SEALED,
+    
+    [EnumMember(Value = "OPEN")]
+    OPEN,
+    
+    [EnumMember(Value = "FINAL")]
+    FINAL,
+    
+    [EnumMember(Value = "ABSTRACT")]
+    ABSTRACT,
+    
+    [EnumMember(Value = "INTERFACE")]
+    INTERFACE,
     
 }
+

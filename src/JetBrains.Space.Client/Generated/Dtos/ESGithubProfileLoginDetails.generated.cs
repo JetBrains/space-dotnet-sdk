@@ -27,102 +27,101 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESGithubProfileLoginDetails
+     : ESProfileLoginDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ESGithubProfileLoginDetails
-         : ESProfileLoginDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ES_GithubProfileLoginDetails";
+    
+    public ESGithubProfileLoginDetails() { }
+    
+    public ESGithubProfileLoginDetails(bool emailVerified, string? login = null, string? firstName = null, string? lastName = null, string? email = null, string? avatarUrl = null, List<string>? organizations = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ES_GithubProfileLoginDetails";
-        
-        public ESGithubProfileLoginDetails() { }
-        
-        public ESGithubProfileLoginDetails(bool emailVerified, string? login = null, string? firstName = null, string? lastName = null, string? email = null, string? avatarUrl = null, List<string>? organizations = null)
-        {
-            Login = login;
-            FirstName = firstName;
-            LastName = lastName;
-            Email = email;
-            IsEmailVerified = emailVerified;
-            AvatarUrl = avatarUrl;
-            Organizations = organizations;
-        }
-        
-        private PropertyValue<string?> _login = new PropertyValue<string?>(nameof(ESGithubProfileLoginDetails), nameof(Login));
-        
-        [JsonPropertyName("login")]
-        public string? Login
-        {
-            get => _login.GetValue();
-            set => _login.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _firstName = new PropertyValue<string?>(nameof(ESGithubProfileLoginDetails), nameof(FirstName));
-        
-        [JsonPropertyName("firstName")]
-        public string? FirstName
-        {
-            get => _firstName.GetValue();
-            set => _firstName.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _lastName = new PropertyValue<string?>(nameof(ESGithubProfileLoginDetails), nameof(LastName));
-        
-        [JsonPropertyName("lastName")]
-        public string? LastName
-        {
-            get => _lastName.GetValue();
-            set => _lastName.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _email = new PropertyValue<string?>(nameof(ESGithubProfileLoginDetails), nameof(Email));
-        
-        [JsonPropertyName("email")]
-        public string? Email
-        {
-            get => _email.GetValue();
-            set => _email.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _emailVerified = new PropertyValue<bool>(nameof(ESGithubProfileLoginDetails), nameof(IsEmailVerified));
-        
-        [Required]
-        [JsonPropertyName("emailVerified")]
-        public bool IsEmailVerified
-        {
-            get => _emailVerified.GetValue();
-            set => _emailVerified.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _avatarUrl = new PropertyValue<string?>(nameof(ESGithubProfileLoginDetails), nameof(AvatarUrl));
-        
-        [JsonPropertyName("avatarUrl")]
-        public string? AvatarUrl
-        {
-            get => _avatarUrl.GetValue();
-            set => _avatarUrl.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _organizations = new PropertyValue<List<string>?>(nameof(ESGithubProfileLoginDetails), nameof(Organizations));
-        
-        [JsonPropertyName("organizations")]
-        public List<string>? Organizations
-        {
-            get => _organizations.GetValue();
-            set => _organizations.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _login.SetAccessPath(path, validateHasBeenSet);
-            _firstName.SetAccessPath(path, validateHasBeenSet);
-            _lastName.SetAccessPath(path, validateHasBeenSet);
-            _email.SetAccessPath(path, validateHasBeenSet);
-            _emailVerified.SetAccessPath(path, validateHasBeenSet);
-            _avatarUrl.SetAccessPath(path, validateHasBeenSet);
-            _organizations.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Login = login;
+        FirstName = firstName;
+        LastName = lastName;
+        Email = email;
+        IsEmailVerified = emailVerified;
+        AvatarUrl = avatarUrl;
+        Organizations = organizations;
     }
     
+    private PropertyValue<string?> _login = new PropertyValue<string?>(nameof(ESGithubProfileLoginDetails), nameof(Login));
+    
+    [JsonPropertyName("login")]
+    public string? Login
+    {
+        get => _login.GetValue();
+        set => _login.SetValue(value);
+    }
+
+    private PropertyValue<string?> _firstName = new PropertyValue<string?>(nameof(ESGithubProfileLoginDetails), nameof(FirstName));
+    
+    [JsonPropertyName("firstName")]
+    public string? FirstName
+    {
+        get => _firstName.GetValue();
+        set => _firstName.SetValue(value);
+    }
+
+    private PropertyValue<string?> _lastName = new PropertyValue<string?>(nameof(ESGithubProfileLoginDetails), nameof(LastName));
+    
+    [JsonPropertyName("lastName")]
+    public string? LastName
+    {
+        get => _lastName.GetValue();
+        set => _lastName.SetValue(value);
+    }
+
+    private PropertyValue<string?> _email = new PropertyValue<string?>(nameof(ESGithubProfileLoginDetails), nameof(Email));
+    
+    [JsonPropertyName("email")]
+    public string? Email
+    {
+        get => _email.GetValue();
+        set => _email.SetValue(value);
+    }
+
+    private PropertyValue<bool> _emailVerified = new PropertyValue<bool>(nameof(ESGithubProfileLoginDetails), nameof(IsEmailVerified));
+    
+    [Required]
+    [JsonPropertyName("emailVerified")]
+    public bool IsEmailVerified
+    {
+        get => _emailVerified.GetValue();
+        set => _emailVerified.SetValue(value);
+    }
+
+    private PropertyValue<string?> _avatarUrl = new PropertyValue<string?>(nameof(ESGithubProfileLoginDetails), nameof(AvatarUrl));
+    
+    [JsonPropertyName("avatarUrl")]
+    public string? AvatarUrl
+    {
+        get => _avatarUrl.GetValue();
+        set => _avatarUrl.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _organizations = new PropertyValue<List<string>?>(nameof(ESGithubProfileLoginDetails), nameof(Organizations));
+    
+    [JsonPropertyName("organizations")]
+    public List<string>? Organizations
+    {
+        get => _organizations.GetValue();
+        set => _organizations.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _login.SetAccessPath(path, validateHasBeenSet);
+        _firstName.SetAccessPath(path, validateHasBeenSet);
+        _lastName.SetAccessPath(path, validateHasBeenSet);
+        _email.SetAccessPath(path, validateHasBeenSet);
+        _emailVerified.SetAccessPath(path, validateHasBeenSet);
+        _avatarUrl.SetAccessPath(path, validateHasBeenSet);
+        _organizations.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

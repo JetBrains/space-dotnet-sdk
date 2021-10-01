@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContentTeamPartialBuilder
+namespace JetBrains.Space.Client.M2ChannelContentTeamPartialBuilder;
+
+public static class M2ChannelContentTeamPartialExtensions
 {
-    public static class M2ChannelContentTeamPartialExtensions
-    {
-        public static Partial<M2ChannelContentTeam> WithTeam(this Partial<M2ChannelContentTeam> it)
-            => it.AddFieldName("team");
-        
-        public static Partial<M2ChannelContentTeam> WithTeam(this Partial<M2ChannelContentTeam> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-            => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
-        
-        public static Partial<M2ChannelContentTeam> WithNotificationDefaults(this Partial<M2ChannelContentTeam> it)
-            => it.AddFieldName("notificationDefaults");
-        
-        public static Partial<M2ChannelContentTeam> WithNotificationDefaults(this Partial<M2ChannelContentTeam> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
-        
-    }
+    public static Partial<M2ChannelContentTeam> WithTeam(this Partial<M2ChannelContentTeam> it)
+        => it.AddFieldName("team");
+    
+    public static Partial<M2ChannelContentTeam> WithTeam(this Partial<M2ChannelContentTeam> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+        => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
+    
+    public static Partial<M2ChannelContentTeam> WithNotificationDefaults(this Partial<M2ChannelContentTeam> it)
+        => it.AddFieldName("notificationDefaults");
+    
+    public static Partial<M2ChannelContentTeam> WithNotificationDefaults(this Partial<M2ChannelContentTeam> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
+        => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
     
 }
+

@@ -27,76 +27,75 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest() { }
+    
+    public ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest(List<string> topics, string? name = null, string? description = null, string? owner = null, string? tag = null)
     {
-        public ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest() { }
-        
-        public ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest(List<string> topics, string? name = null, string? description = null, string? owner = null, string? tag = null)
-        {
-            Name = (name ?? string.Empty);
-            Description = description;
-            Owner = owner;
-            Tag = tag;
-            Topics = topics;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Name), string.Empty);
-        
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Description));
-        
-        [JsonPropertyName("description")]
-        public string? Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _owner = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Owner));
-        
-        [JsonPropertyName("owner")]
-        public string? Owner
-        {
-            get => _owner.GetValue();
-            set => _owner.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _tag = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Tag));
-        
-        [JsonPropertyName("tag")]
-        public string? Tag
-        {
-            get => _tag.GetValue();
-            set => _tag.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _topics = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Topics), new List<string>());
-        
-        [JsonPropertyName("topics")]
-        public List<string> Topics
-        {
-            get => _topics.GetValue();
-            set => _topics.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _owner.SetAccessPath(path, validateHasBeenSet);
-            _tag.SetAccessPath(path, validateHasBeenSet);
-            _topics.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = (name ?? string.Empty);
+        Description = description;
+        Owner = owner;
+        Tag = tag;
+        Topics = topics;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Name), string.Empty);
+    
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<string?> _owner = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Owner));
+    
+    [JsonPropertyName("owner")]
+    public string? Owner
+    {
+        get => _owner.GetValue();
+        set => _owner.SetValue(value);
+    }
+
+    private PropertyValue<string?> _tag = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Tag));
+    
+    [JsonPropertyName("tag")]
+    public string? Tag
+    {
+        get => _tag.GetValue();
+        set => _tag.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _topics = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Topics), new List<string>());
+    
+    [JsonPropertyName("topics")]
+    public List<string> Topics
+    {
+        get => _topics.GetValue();
+        set => _topics.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _owner.SetAccessPath(path, validateHasBeenSet);
+        _tag.SetAccessPath(path, validateHasBeenSet);
+        _topics.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

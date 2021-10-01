@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BirthdayEvent
+     : IPropagatePropertyAccessPath
 {
-    public sealed class BirthdayEvent
-         : IPropagatePropertyAccessPath
+    public BirthdayEvent() { }
+    
+    public BirthdayEvent(TDMemberWithTeam profile, DateTime birthday)
     {
-        public BirthdayEvent() { }
-        
-        public BirthdayEvent(TDMemberWithTeam profile, DateTime birthday)
-        {
-            Profile = profile;
-            Birthday = birthday;
-        }
-        
-        private PropertyValue<TDMemberWithTeam> _profile = new PropertyValue<TDMemberWithTeam>(nameof(BirthdayEvent), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberWithTeam Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _birthday = new PropertyValue<DateTime>(nameof(BirthdayEvent), nameof(Birthday));
-        
-        [Required]
-        [JsonPropertyName("birthday")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime Birthday
-        {
-            get => _birthday.GetValue();
-            set => _birthday.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _birthday.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
+        Birthday = birthday;
     }
     
+    private PropertyValue<TDMemberWithTeam> _profile = new PropertyValue<TDMemberWithTeam>(nameof(BirthdayEvent), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public TDMemberWithTeam Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _birthday = new PropertyValue<DateTime>(nameof(BirthdayEvent), nameof(Birthday));
+    
+    [Required]
+    [JsonPropertyName("birthday")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime Birthday
+    {
+        get => _birthday.GetValue();
+        set => _birthday.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _birthday.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

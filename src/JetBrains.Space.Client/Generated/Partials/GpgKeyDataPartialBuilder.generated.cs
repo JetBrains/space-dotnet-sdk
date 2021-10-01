@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GpgKeyDataPartialBuilder
+namespace JetBrains.Space.Client.GpgKeyDataPartialBuilder;
+
+public static class GpgKeyDataPartialExtensions
 {
-    public static class GpgKeyDataPartialExtensions
-    {
-        public static Partial<GpgKeyData> WithFingerprint(this Partial<GpgKeyData> it)
-            => it.AddFieldName("fingerprint");
-        
-        public static Partial<GpgKeyData> WithPublicKey(this Partial<GpgKeyData> it)
-            => it.AddFieldName("publicKey");
-        
-        public static Partial<GpgKeyData> WithUserId(this Partial<GpgKeyData> it)
-            => it.AddFieldName("userId");
-        
-        public static Partial<GpgKeyData> WithIsVerified(this Partial<GpgKeyData> it)
-            => it.AddFieldName("verified");
-        
-        public static Partial<GpgKeyData> WithComment(this Partial<GpgKeyData> it)
-            => it.AddFieldName("comment");
-        
-        public static Partial<GpgKeyData> WithCreated(this Partial<GpgKeyData> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<GpgKeyData> WithAdded(this Partial<GpgKeyData> it)
-            => it.AddFieldName("added");
-        
-        public static Partial<GpgKeyData> WithExpires(this Partial<GpgKeyData> it)
-            => it.AddFieldName("expires");
-        
-        public static Partial<GpgKeyData> WithIsRevoked(this Partial<GpgKeyData> it)
-            => it.AddFieldName("revoked");
-        
-        public static Partial<GpgKeyData> WithRevokeComment(this Partial<GpgKeyData> it)
-            => it.AddFieldName("revokeComment");
-        
-    }
+    public static Partial<GpgKeyData> WithFingerprint(this Partial<GpgKeyData> it)
+        => it.AddFieldName("fingerprint");
+    
+    public static Partial<GpgKeyData> WithPublicKey(this Partial<GpgKeyData> it)
+        => it.AddFieldName("publicKey");
+    
+    public static Partial<GpgKeyData> WithUserId(this Partial<GpgKeyData> it)
+        => it.AddFieldName("userId");
+    
+    public static Partial<GpgKeyData> WithIsVerified(this Partial<GpgKeyData> it)
+        => it.AddFieldName("verified");
+    
+    public static Partial<GpgKeyData> WithComment(this Partial<GpgKeyData> it)
+        => it.AddFieldName("comment");
+    
+    public static Partial<GpgKeyData> WithCreated(this Partial<GpgKeyData> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<GpgKeyData> WithAdded(this Partial<GpgKeyData> it)
+        => it.AddFieldName("added");
+    
+    public static Partial<GpgKeyData> WithExpires(this Partial<GpgKeyData> it)
+        => it.AddFieldName("expires");
+    
+    public static Partial<GpgKeyData> WithIsRevoked(this Partial<GpgKeyData> it)
+        => it.AddFieldName("revoked");
+    
+    public static Partial<GpgKeyData> WithRevokeComment(this Partial<GpgKeyData> it)
+        => it.AddFieldName("revokeComment");
     
 }
+

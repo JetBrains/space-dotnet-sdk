@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RepositoryMenuActionContext
+     : MenuActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class RepositoryMenuActionContext
-         : MenuActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "RepositoryMenuActionContext";
+    
+    public RepositoryMenuActionContext() { }
+    
+    public RepositoryMenuActionContext(string menuId, PRProject project, string repo)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "RepositoryMenuActionContext";
-        
-        public RepositoryMenuActionContext() { }
-        
-        public RepositoryMenuActionContext(string menuId, PRProject project, string repo)
-        {
-            MenuId = menuId;
-            Project = project;
-            Repo = repo;
-        }
-        
-        private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(RepositoryMenuActionContext), nameof(MenuId));
-        
-        [Required]
-        [JsonPropertyName("menuId")]
-        public string MenuId
-        {
-            get => _menuId.GetValue();
-            set => _menuId.SetValue(value);
-        }
-    
-        private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(RepositoryMenuActionContext), nameof(Project));
-        
-        [Required]
-        [JsonPropertyName("project")]
-        public PRProject Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<string> _repo = new PropertyValue<string>(nameof(RepositoryMenuActionContext), nameof(Repo));
-        
-        [Required]
-        [JsonPropertyName("repo")]
-        public string Repo
-        {
-            get => _repo.GetValue();
-            set => _repo.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _menuId.SetAccessPath(path, validateHasBeenSet);
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _repo.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        MenuId = menuId;
+        Project = project;
+        Repo = repo;
     }
     
+    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(RepositoryMenuActionContext), nameof(MenuId));
+    
+    [Required]
+    [JsonPropertyName("menuId")]
+    public string MenuId
+    {
+        get => _menuId.GetValue();
+        set => _menuId.SetValue(value);
+    }
+
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(RepositoryMenuActionContext), nameof(Project));
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public PRProject Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<string> _repo = new PropertyValue<string>(nameof(RepositoryMenuActionContext), nameof(Repo));
+    
+    [Required]
+    [JsonPropertyName("repo")]
+    public string Repo
+    {
+        get => _repo.GetValue();
+        set => _repo.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _menuId.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(path, validateHasBeenSet);
+        _repo.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

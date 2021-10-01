@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AssignedPersonPartialBuilder
+namespace JetBrains.Space.Client.AssignedPersonPartialBuilder;
+
+public static class AssignedPersonPartialExtensions
 {
-    public static class AssignedPersonPartialExtensions
-    {
-        public static Partial<AssignedPerson> WithProfile(this Partial<AssignedPerson> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<AssignedPerson> WithProfile(this Partial<AssignedPerson> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<AssignedPerson> WithRole(this Partial<AssignedPerson> it)
-            => it.AddFieldName("role");
-        
-    }
+    public static Partial<AssignedPerson> WithProfile(this Partial<AssignedPerson> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<AssignedPerson> WithProfile(this Partial<AssignedPerson> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<AssignedPerson> WithRole(this Partial<AssignedPerson> it)
+        => it.AddFieldName("role");
     
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AuthModulesForIdLoginsForIdentifierChangePostRequestPartialBuilder
+namespace JetBrains.Space.Client.AuthModulesForIdLoginsForIdentifierChangePostRequestPartialBuilder;
+
+public static class AuthModulesForIdLoginsForIdentifierChangePostRequestPartialExtensions
 {
-    public static class AuthModulesForIdLoginsForIdentifierChangePostRequestPartialExtensions
-    {
-        public static Partial<AuthModulesForIdLoginsForIdentifierChangePostRequest> WithOldPassword(this Partial<AuthModulesForIdLoginsForIdentifierChangePostRequest> it)
-            => it.AddFieldName("oldPassword");
-        
-        public static Partial<AuthModulesForIdLoginsForIdentifierChangePostRequest> WithNewPassword(this Partial<AuthModulesForIdLoginsForIdentifierChangePostRequest> it)
-            => it.AddFieldName("newPassword");
-        
-    }
+    public static Partial<AuthModulesForIdLoginsForIdentifierChangePostRequest> WithOldPassword(this Partial<AuthModulesForIdLoginsForIdentifierChangePostRequest> it)
+        => it.AddFieldName("oldPassword");
+    
+    public static Partial<AuthModulesForIdLoginsForIdentifierChangePostRequest> WithNewPassword(this Partial<AuthModulesForIdLoginsForIdentifierChangePostRequest> it)
+        => it.AddFieldName("newPassword");
     
 }
+

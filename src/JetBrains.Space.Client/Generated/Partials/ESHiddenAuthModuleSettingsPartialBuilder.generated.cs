@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESHiddenAuthModuleSettingsPartialBuilder
+namespace JetBrains.Space.Client.ESHiddenAuthModuleSettingsPartialBuilder;
+
+public static class ESHiddenAuthModuleSettingsPartialExtensions
 {
-    public static class ESHiddenAuthModuleSettingsPartialExtensions
-    {
-        public static Partial<ESHiddenAuthModuleSettings> WithIsPasswordModule(this Partial<ESHiddenAuthModuleSettings> it)
-            => it.AddFieldName("passwordModule");
-        
-        public static Partial<ESHiddenAuthModuleSettings> WithIsFederatedModule(this Partial<ESHiddenAuthModuleSettings> it)
-            => it.AddFieldName("federatedModule");
-        
-    }
+    public static Partial<ESHiddenAuthModuleSettings> WithIsPasswordModule(this Partial<ESHiddenAuthModuleSettings> it)
+        => it.AddFieldName("passwordModule");
+    
+    public static Partial<ESHiddenAuthModuleSettings> WithIsFederatedModule(this Partial<ESHiddenAuthModuleSettings> it)
+        => it.AddFieldName("federatedModule");
     
 }
+

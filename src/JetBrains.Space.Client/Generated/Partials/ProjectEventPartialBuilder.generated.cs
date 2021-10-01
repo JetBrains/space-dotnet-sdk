@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectEventPartialBuilder
+namespace JetBrains.Space.Client.ProjectEventPartialBuilder;
+
+public static class ProjectEventPartialExtensions
 {
-    public static class ProjectEventPartialExtensions
-    {
-        public static Partial<ProjectEvent> WithMeta(this Partial<ProjectEvent> it)
-            => it.AddFieldName("meta");
-        
-        public static Partial<ProjectEvent> WithMeta(this Partial<ProjectEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-            => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
-        
-        public static Partial<ProjectEvent> WithProject(this Partial<ProjectEvent> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<ProjectEvent> WithProject(this Partial<ProjectEvent> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
-    }
+    public static Partial<ProjectEvent> WithMeta(this Partial<ProjectEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<ProjectEvent> WithMeta(this Partial<ProjectEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<ProjectEvent> WithProject(this Partial<ProjectEvent> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<ProjectEvent> WithProject(this Partial<ProjectEvent> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
     
 }
+

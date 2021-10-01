@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ProfileCFInputValue
+     : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ProfileCFInputValue
-         : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ProfileCFInputValue";
+    
+    public ProfileCFInputValue() { }
+    
+    public ProfileCFInputValue(ProfileIdentifier? profile = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ProfileCFInputValue";
-        
-        public ProfileCFInputValue() { }
-        
-        public ProfileCFInputValue(ProfileIdentifier? profile = null)
-        {
-            Profile = profile;
-        }
-        
-        private PropertyValue<ProfileIdentifier?> _profile = new PropertyValue<ProfileIdentifier?>(nameof(ProfileCFInputValue), nameof(Profile));
-        
-        [JsonPropertyName("profile")]
-        public ProfileIdentifier? Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
     }
     
+    private PropertyValue<ProfileIdentifier?> _profile = new PropertyValue<ProfileIdentifier?>(nameof(ProfileCFInputValue), nameof(Profile));
+    
+    [JsonPropertyName("profile")]
+    public ProfileIdentifier? Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

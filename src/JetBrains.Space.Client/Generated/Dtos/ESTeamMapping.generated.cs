@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESTeamMapping
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ESTeamMapping
-         : IPropagatePropertyAccessPath
+    public ESTeamMapping() { }
+    
+    public ESTeamMapping(string teamId, string externalGroupName)
     {
-        public ESTeamMapping() { }
-        
-        public ESTeamMapping(string teamId, string externalGroupName)
-        {
-            TeamId = teamId;
-            ExternalGroupName = externalGroupName;
-        }
-        
-        private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(ESTeamMapping), nameof(TeamId));
-        
-        [Required]
-        [JsonPropertyName("teamId")]
-        public string TeamId
-        {
-            get => _teamId.GetValue();
-            set => _teamId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _externalGroupName = new PropertyValue<string>(nameof(ESTeamMapping), nameof(ExternalGroupName));
-        
-        [Required]
-        [JsonPropertyName("externalGroupName")]
-        public string ExternalGroupName
-        {
-            get => _externalGroupName.GetValue();
-            set => _externalGroupName.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _teamId.SetAccessPath(path, validateHasBeenSet);
-            _externalGroupName.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        TeamId = teamId;
+        ExternalGroupName = externalGroupName;
     }
     
+    private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(ESTeamMapping), nameof(TeamId));
+    
+    [Required]
+    [JsonPropertyName("teamId")]
+    public string TeamId
+    {
+        get => _teamId.GetValue();
+        set => _teamId.SetValue(value);
+    }
+
+    private PropertyValue<string> _externalGroupName = new PropertyValue<string>(nameof(ESTeamMapping), nameof(ExternalGroupName));
+    
+    [Required]
+    [JsonPropertyName("externalGroupName")]
+    public string ExternalGroupName
+    {
+        get => _externalGroupName.GetValue();
+        set => _externalGroupName.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _teamId.SetAccessPath(path, validateHasBeenSet);
+        _externalGroupName.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

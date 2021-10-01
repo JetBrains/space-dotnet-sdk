@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ContainerPackageTypePartialBuilder
+namespace JetBrains.Space.Client.ContainerPackageTypePartialBuilder;
+
+public static class ContainerPackageTypePartialExtensions
 {
-    public static class ContainerPackageTypePartialExtensions
-    {
-        public static Partial<ContainerPackageType> WithId(this Partial<ContainerPackageType> it)
-            => it.AddFieldName("id");
-        
-    }
+    public static Partial<ContainerPackageType> WithId(this Partial<ContainerPackageType> it)
+        => it.AddFieldName("id");
     
 }
+

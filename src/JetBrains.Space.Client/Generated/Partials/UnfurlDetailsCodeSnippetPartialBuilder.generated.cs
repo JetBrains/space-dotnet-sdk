@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsCodeSnippetPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsCodeSnippetPartialBuilder;
+
+public static class UnfurlDetailsCodeSnippetPartialExtensions
 {
-    public static class UnfurlDetailsCodeSnippetPartialExtensions
-    {
-        public static Partial<UnfurlDetailsCodeSnippet> WithAnchor(this Partial<UnfurlDetailsCodeSnippet> it)
-            => it.AddFieldName("anchor");
-        
-        public static Partial<UnfurlDetailsCodeSnippet> WithAnchor(this Partial<UnfurlDetailsCodeSnippet> it, Func<Partial<CodeSnippetAnchor>, Partial<CodeSnippetAnchor>> partialBuilder)
-            => it.AddFieldName("anchor", partialBuilder(new Partial<CodeSnippetAnchor>(it)));
-        
-        public static Partial<UnfurlDetailsCodeSnippet> WithLines(this Partial<UnfurlDetailsCodeSnippet> it)
-            => it.AddFieldName("lines");
-        
-        public static Partial<UnfurlDetailsCodeSnippet> WithLines(this Partial<UnfurlDetailsCodeSnippet> it, Func<Partial<CodeLine>, Partial<CodeLine>> partialBuilder)
-            => it.AddFieldName("lines", partialBuilder(new Partial<CodeLine>(it)));
-        
-    }
+    public static Partial<UnfurlDetailsCodeSnippet> WithAnchor(this Partial<UnfurlDetailsCodeSnippet> it)
+        => it.AddFieldName("anchor");
+    
+    public static Partial<UnfurlDetailsCodeSnippet> WithAnchor(this Partial<UnfurlDetailsCodeSnippet> it, Func<Partial<CodeSnippetAnchor>, Partial<CodeSnippetAnchor>> partialBuilder)
+        => it.AddFieldName("anchor", partialBuilder(new Partial<CodeSnippetAnchor>(it)));
+    
+    public static Partial<UnfurlDetailsCodeSnippet> WithLines(this Partial<UnfurlDetailsCodeSnippet> it)
+        => it.AddFieldName("lines");
+    
+    public static Partial<UnfurlDetailsCodeSnippet> WithLines(this Partial<UnfurlDetailsCodeSnippet> it, Func<Partial<CodeLine>, Partial<CodeLine>> partialBuilder)
+        => it.AddFieldName("lines", partialBuilder(new Partial<CodeLine>(it)));
     
 }
+

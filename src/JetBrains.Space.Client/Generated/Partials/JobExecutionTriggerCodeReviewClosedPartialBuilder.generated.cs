@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.JobExecutionTriggerCodeReviewClosedPartialBuilder
+namespace JetBrains.Space.Client.JobExecutionTriggerCodeReviewClosedPartialBuilder;
+
+public static class JobExecutionTriggerCodeReviewClosedPartialExtensions
 {
-    public static class JobExecutionTriggerCodeReviewClosedPartialExtensions
-    {
-        public static Partial<JobExecutionTriggerCodeReviewClosed> WithReviewId(this Partial<JobExecutionTriggerCodeReviewClosed> it)
-            => it.AddFieldName("reviewId");
-        
-    }
+    public static Partial<JobExecutionTriggerCodeReviewClosed> WithReviewId(this Partial<JobExecutionTriggerCodeReviewClosed> it)
+        => it.AddFieldName("reviewId");
     
 }
+

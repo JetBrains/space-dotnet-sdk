@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ArticleChannelRecordPartialBuilder
+namespace JetBrains.Space.Client.ArticleChannelRecordPartialBuilder;
+
+public static class ArticleChannelRecordPartialExtensions
 {
-    public static class ArticleChannelRecordPartialExtensions
-    {
-        public static Partial<ArticleChannelRecord> WithId(this Partial<ArticleChannelRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ArticleChannelRecord> WithIsArchived(this Partial<ArticleChannelRecord> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<ArticleChannelRecord> WithChannel(this Partial<ArticleChannelRecord> it)
-            => it.AddFieldName("channel");
-        
-        public static Partial<ArticleChannelRecord> WithChannel(this Partial<ArticleChannelRecord> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
-            => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
-        
-        public static Partial<ArticleChannelRecord> WithChannelContent(this Partial<ArticleChannelRecord> it)
-            => it.AddFieldName("channelContent");
-        
-        public static Partial<ArticleChannelRecord> WithChannelContent(this Partial<ArticleChannelRecord> it, Func<Partial<M2ChannelContentRecord>, Partial<M2ChannelContentRecord>> partialBuilder)
-            => it.AddFieldName("channelContent", partialBuilder(new Partial<M2ChannelContentRecord>(it)));
-        
-        public static Partial<ArticleChannelRecord> WithReactions(this Partial<ArticleChannelRecord> it)
-            => it.AddFieldName("reactions");
-        
-        public static Partial<ArticleChannelRecord> WithReactions(this Partial<ArticleChannelRecord> it, Func<Partial<AllReactionsToItemRecord>, Partial<AllReactionsToItemRecord>> partialBuilder)
-            => it.AddFieldName("reactions", partialBuilder(new Partial<AllReactionsToItemRecord>(it)));
-        
-    }
+    public static Partial<ArticleChannelRecord> WithId(this Partial<ArticleChannelRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ArticleChannelRecord> WithIsArchived(this Partial<ArticleChannelRecord> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<ArticleChannelRecord> WithChannel(this Partial<ArticleChannelRecord> it)
+        => it.AddFieldName("channel");
+    
+    public static Partial<ArticleChannelRecord> WithChannel(this Partial<ArticleChannelRecord> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
+        => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
+    
+    public static Partial<ArticleChannelRecord> WithChannelContent(this Partial<ArticleChannelRecord> it)
+        => it.AddFieldName("channelContent");
+    
+    public static Partial<ArticleChannelRecord> WithChannelContent(this Partial<ArticleChannelRecord> it, Func<Partial<M2ChannelContentRecord>, Partial<M2ChannelContentRecord>> partialBuilder)
+        => it.AddFieldName("channelContent", partialBuilder(new Partial<M2ChannelContentRecord>(it)));
+    
+    public static Partial<ArticleChannelRecord> WithReactions(this Partial<ArticleChannelRecord> it)
+        => it.AddFieldName("reactions");
+    
+    public static Partial<ArticleChannelRecord> WithReactions(this Partial<ArticleChannelRecord> it, Func<Partial<AllReactionsToItemRecord>, Partial<AllReactionsToItemRecord>> partialBuilder)
+        => it.AddFieldName("reactions", partialBuilder(new Partial<AllReactionsToItemRecord>(it)));
     
 }
+

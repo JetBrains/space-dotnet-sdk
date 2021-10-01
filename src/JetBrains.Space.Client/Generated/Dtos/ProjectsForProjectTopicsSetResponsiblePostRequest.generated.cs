@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectTopicsSetResponsiblePostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectTopicsSetResponsiblePostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectTopicsSetResponsiblePostRequest() { }
+    
+    public ProjectsForProjectTopicsSetResponsiblePostRequest(string topicId, List<ProfileIdentifier> responsible)
     {
-        public ProjectsForProjectTopicsSetResponsiblePostRequest() { }
-        
-        public ProjectsForProjectTopicsSetResponsiblePostRequest(string topicId, List<ProfileIdentifier> responsible)
-        {
-            TopicId = topicId;
-            Responsible = responsible;
-        }
-        
-        private PropertyValue<string> _topicId = new PropertyValue<string>(nameof(ProjectsForProjectTopicsSetResponsiblePostRequest), nameof(TopicId));
-        
-        [Required]
-        [JsonPropertyName("topicId")]
-        public string TopicId
-        {
-            get => _topicId.GetValue();
-            set => _topicId.SetValue(value);
-        }
-    
-        private PropertyValue<List<ProfileIdentifier>> _responsible = new PropertyValue<List<ProfileIdentifier>>(nameof(ProjectsForProjectTopicsSetResponsiblePostRequest), nameof(Responsible), new List<ProfileIdentifier>());
-        
-        [Required]
-        [JsonPropertyName("responsible")]
-        public List<ProfileIdentifier> Responsible
-        {
-            get => _responsible.GetValue();
-            set => _responsible.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _topicId.SetAccessPath(path, validateHasBeenSet);
-            _responsible.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        TopicId = topicId;
+        Responsible = responsible;
     }
     
+    private PropertyValue<string> _topicId = new PropertyValue<string>(nameof(ProjectsForProjectTopicsSetResponsiblePostRequest), nameof(TopicId));
+    
+    [Required]
+    [JsonPropertyName("topicId")]
+    public string TopicId
+    {
+        get => _topicId.GetValue();
+        set => _topicId.SetValue(value);
+    }
+
+    private PropertyValue<List<ProfileIdentifier>> _responsible = new PropertyValue<List<ProfileIdentifier>>(nameof(ProjectsForProjectTopicsSetResponsiblePostRequest), nameof(Responsible), new List<ProfileIdentifier>());
+    
+    [Required]
+    [JsonPropertyName("responsible")]
+    public List<ProfileIdentifier> Responsible
+    {
+        get => _responsible.GetValue();
+        set => _responsible.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _topicId.SetAccessPath(path, validateHasBeenSet);
+        _responsible.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

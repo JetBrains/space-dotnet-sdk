@@ -27,176 +27,175 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class AutomationJobEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class AutomationJobEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "AutomationJobEvent";
+    
+    public AutomationJobEvent() { }
+    
+    public AutomationJobEvent(KMetaMod meta, string executionId, PRProject project, string repositoryName, string jobName, long executionNumber, JobExecutionTrigger trigger, DateTime triggerTime, Modification<JobExecutionStatus>? status = null, Modification<List<FailureConditionType>>? failureReasons = null, Modification<CPrincipal>? stoppedBy = null, Modification<DateTime>? startTime = null, Modification<DateTime>? endTime = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "AutomationJobEvent";
-        
-        public AutomationJobEvent() { }
-        
-        public AutomationJobEvent(KMetaMod meta, string executionId, PRProject project, string repositoryName, string jobName, long executionNumber, JobExecutionTrigger trigger, DateTime triggerTime, Modification<JobExecutionStatus>? status = null, Modification<List<FailureConditionType>>? failureReasons = null, Modification<CPrincipal>? stoppedBy = null, Modification<DateTime>? startTime = null, Modification<DateTime>? endTime = null)
-        {
-            Meta = meta;
-            ExecutionId = executionId;
-            Project = project;
-            RepositoryName = repositoryName;
-            JobName = jobName;
-            ExecutionNumber = executionNumber;
-            Trigger = trigger;
-            TriggerTime = triggerTime;
-            Status = status;
-            FailureReasons = failureReasons;
-            StoppedBy = stoppedBy;
-            StartTime = startTime;
-            EndTime = endTime;
-        }
-        
-        private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(AutomationJobEvent), nameof(Meta));
-        
-        [Required]
-        [JsonPropertyName("meta")]
-        public KMetaMod Meta
-        {
-            get => _meta.GetValue();
-            set => _meta.SetValue(value);
-        }
-    
-        private PropertyValue<string> _executionId = new PropertyValue<string>(nameof(AutomationJobEvent), nameof(ExecutionId));
-        
-        [Required]
-        [JsonPropertyName("executionId")]
-        public string ExecutionId
-        {
-            get => _executionId.GetValue();
-            set => _executionId.SetValue(value);
-        }
-    
-        private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(AutomationJobEvent), nameof(Project));
-        
-        [Required]
-        [JsonPropertyName("project")]
-        public PRProject Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(AutomationJobEvent), nameof(RepositoryName));
-        
-        [Required]
-        [JsonPropertyName("repositoryName")]
-        public string RepositoryName
-        {
-            get => _repositoryName.GetValue();
-            set => _repositoryName.SetValue(value);
-        }
-    
-        private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(AutomationJobEvent), nameof(JobName));
-        
-        [Required]
-        [JsonPropertyName("jobName")]
-        public string JobName
-        {
-            get => _jobName.GetValue();
-            set => _jobName.SetValue(value);
-        }
-    
-        private PropertyValue<long> _executionNumber = new PropertyValue<long>(nameof(AutomationJobEvent), nameof(ExecutionNumber));
-        
-        [Required]
-        [JsonPropertyName("executionNumber")]
-        public long ExecutionNumber
-        {
-            get => _executionNumber.GetValue();
-            set => _executionNumber.SetValue(value);
-        }
-    
-        private PropertyValue<JobExecutionTrigger> _trigger = new PropertyValue<JobExecutionTrigger>(nameof(AutomationJobEvent), nameof(Trigger));
-        
-        [Required]
-        [JsonPropertyName("trigger")]
-        public JobExecutionTrigger Trigger
-        {
-            get => _trigger.GetValue();
-            set => _trigger.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _triggerTime = new PropertyValue<DateTime>(nameof(AutomationJobEvent), nameof(TriggerTime));
-        
-        [Required]
-        [JsonPropertyName("triggerTime")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime TriggerTime
-        {
-            get => _triggerTime.GetValue();
-            set => _triggerTime.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<JobExecutionStatus>?> _status = new PropertyValue<Modification<JobExecutionStatus>?>(nameof(AutomationJobEvent), nameof(Status));
-        
-        [JsonPropertyName("status")]
-        public Modification<JobExecutionStatus>? Status
-        {
-            get => _status.GetValue();
-            set => _status.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<List<FailureConditionType>>?> _failureReasons = new PropertyValue<Modification<List<FailureConditionType>>?>(nameof(AutomationJobEvent), nameof(FailureReasons));
-        
-        [JsonPropertyName("failureReasons")]
-        public Modification<List<FailureConditionType>>? FailureReasons
-        {
-            get => _failureReasons.GetValue();
-            set => _failureReasons.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<CPrincipal>?> _stoppedBy = new PropertyValue<Modification<CPrincipal>?>(nameof(AutomationJobEvent), nameof(StoppedBy));
-        
-        [JsonPropertyName("stoppedBy")]
-        public Modification<CPrincipal>? StoppedBy
-        {
-            get => _stoppedBy.GetValue();
-            set => _stoppedBy.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<DateTime>?> _startTime = new PropertyValue<Modification<DateTime>?>(nameof(AutomationJobEvent), nameof(StartTime));
-        
-        [JsonPropertyName("startTime")]
-        public Modification<DateTime>? StartTime
-        {
-            get => _startTime.GetValue();
-            set => _startTime.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<DateTime>?> _endTime = new PropertyValue<Modification<DateTime>?>(nameof(AutomationJobEvent), nameof(EndTime));
-        
-        [JsonPropertyName("endTime")]
-        public Modification<DateTime>? EndTime
-        {
-            get => _endTime.GetValue();
-            set => _endTime.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _meta.SetAccessPath(path, validateHasBeenSet);
-            _executionId.SetAccessPath(path, validateHasBeenSet);
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _repositoryName.SetAccessPath(path, validateHasBeenSet);
-            _jobName.SetAccessPath(path, validateHasBeenSet);
-            _executionNumber.SetAccessPath(path, validateHasBeenSet);
-            _trigger.SetAccessPath(path, validateHasBeenSet);
-            _triggerTime.SetAccessPath(path, validateHasBeenSet);
-            _status.SetAccessPath(path, validateHasBeenSet);
-            _failureReasons.SetAccessPath(path, validateHasBeenSet);
-            _stoppedBy.SetAccessPath(path, validateHasBeenSet);
-            _startTime.SetAccessPath(path, validateHasBeenSet);
-            _endTime.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Meta = meta;
+        ExecutionId = executionId;
+        Project = project;
+        RepositoryName = repositoryName;
+        JobName = jobName;
+        ExecutionNumber = executionNumber;
+        Trigger = trigger;
+        TriggerTime = triggerTime;
+        Status = status;
+        FailureReasons = failureReasons;
+        StoppedBy = stoppedBy;
+        StartTime = startTime;
+        EndTime = endTime;
     }
     
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(AutomationJobEvent), nameof(Meta));
+    
+    [Required]
+    [JsonPropertyName("meta")]
+    public KMetaMod Meta
+    {
+        get => _meta.GetValue();
+        set => _meta.SetValue(value);
+    }
+
+    private PropertyValue<string> _executionId = new PropertyValue<string>(nameof(AutomationJobEvent), nameof(ExecutionId));
+    
+    [Required]
+    [JsonPropertyName("executionId")]
+    public string ExecutionId
+    {
+        get => _executionId.GetValue();
+        set => _executionId.SetValue(value);
+    }
+
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(AutomationJobEvent), nameof(Project));
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public PRProject Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(AutomationJobEvent), nameof(RepositoryName));
+    
+    [Required]
+    [JsonPropertyName("repositoryName")]
+    public string RepositoryName
+    {
+        get => _repositoryName.GetValue();
+        set => _repositoryName.SetValue(value);
+    }
+
+    private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(AutomationJobEvent), nameof(JobName));
+    
+    [Required]
+    [JsonPropertyName("jobName")]
+    public string JobName
+    {
+        get => _jobName.GetValue();
+        set => _jobName.SetValue(value);
+    }
+
+    private PropertyValue<long> _executionNumber = new PropertyValue<long>(nameof(AutomationJobEvent), nameof(ExecutionNumber));
+    
+    [Required]
+    [JsonPropertyName("executionNumber")]
+    public long ExecutionNumber
+    {
+        get => _executionNumber.GetValue();
+        set => _executionNumber.SetValue(value);
+    }
+
+    private PropertyValue<JobExecutionTrigger> _trigger = new PropertyValue<JobExecutionTrigger>(nameof(AutomationJobEvent), nameof(Trigger));
+    
+    [Required]
+    [JsonPropertyName("trigger")]
+    public JobExecutionTrigger Trigger
+    {
+        get => _trigger.GetValue();
+        set => _trigger.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _triggerTime = new PropertyValue<DateTime>(nameof(AutomationJobEvent), nameof(TriggerTime));
+    
+    [Required]
+    [JsonPropertyName("triggerTime")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime TriggerTime
+    {
+        get => _triggerTime.GetValue();
+        set => _triggerTime.SetValue(value);
+    }
+
+    private PropertyValue<Modification<JobExecutionStatus>?> _status = new PropertyValue<Modification<JobExecutionStatus>?>(nameof(AutomationJobEvent), nameof(Status));
+    
+    [JsonPropertyName("status")]
+    public Modification<JobExecutionStatus>? Status
+    {
+        get => _status.GetValue();
+        set => _status.SetValue(value);
+    }
+
+    private PropertyValue<Modification<List<FailureConditionType>>?> _failureReasons = new PropertyValue<Modification<List<FailureConditionType>>?>(nameof(AutomationJobEvent), nameof(FailureReasons));
+    
+    [JsonPropertyName("failureReasons")]
+    public Modification<List<FailureConditionType>>? FailureReasons
+    {
+        get => _failureReasons.GetValue();
+        set => _failureReasons.SetValue(value);
+    }
+
+    private PropertyValue<Modification<CPrincipal>?> _stoppedBy = new PropertyValue<Modification<CPrincipal>?>(nameof(AutomationJobEvent), nameof(StoppedBy));
+    
+    [JsonPropertyName("stoppedBy")]
+    public Modification<CPrincipal>? StoppedBy
+    {
+        get => _stoppedBy.GetValue();
+        set => _stoppedBy.SetValue(value);
+    }
+
+    private PropertyValue<Modification<DateTime>?> _startTime = new PropertyValue<Modification<DateTime>?>(nameof(AutomationJobEvent), nameof(StartTime));
+    
+    [JsonPropertyName("startTime")]
+    public Modification<DateTime>? StartTime
+    {
+        get => _startTime.GetValue();
+        set => _startTime.SetValue(value);
+    }
+
+    private PropertyValue<Modification<DateTime>?> _endTime = new PropertyValue<Modification<DateTime>?>(nameof(AutomationJobEvent), nameof(EndTime));
+    
+    [JsonPropertyName("endTime")]
+    public Modification<DateTime>? EndTime
+    {
+        get => _endTime.GetValue();
+        set => _endTime.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _meta.SetAccessPath(path, validateHasBeenSet);
+        _executionId.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(path, validateHasBeenSet);
+        _repositoryName.SetAccessPath(path, validateHasBeenSet);
+        _jobName.SetAccessPath(path, validateHasBeenSet);
+        _executionNumber.SetAccessPath(path, validateHasBeenSet);
+        _trigger.SetAccessPath(path, validateHasBeenSet);
+        _triggerTime.SetAccessPath(path, validateHasBeenSet);
+        _status.SetAccessPath(path, validateHasBeenSet);
+        _failureReasons.SetAccessPath(path, validateHasBeenSet);
+        _stoppedBy.SetAccessPath(path, validateHasBeenSet);
+        _startTime.SetAccessPath(path, validateHasBeenSet);
+        _endTime.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

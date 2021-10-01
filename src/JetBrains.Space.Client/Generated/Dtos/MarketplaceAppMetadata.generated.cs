@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MarketplaceAppMetadata
+     : ApplicationMetadata, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MarketplaceAppMetadata
-         : ApplicationMetadata, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MarketplaceAppMetadata";
+    
+    public MarketplaceAppMetadata() { }
+    
+    public MarketplaceAppMetadata(string marketplaceAppId, string? lastSentServerUrl = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MarketplaceAppMetadata";
-        
-        public MarketplaceAppMetadata() { }
-        
-        public MarketplaceAppMetadata(string marketplaceAppId, string? lastSentServerUrl = null)
-        {
-            MarketplaceAppId = marketplaceAppId;
-            LastSentServerUrl = lastSentServerUrl;
-        }
-        
-        private PropertyValue<string> _marketplaceAppId = new PropertyValue<string>(nameof(MarketplaceAppMetadata), nameof(MarketplaceAppId));
-        
-        [Required]
-        [JsonPropertyName("marketplaceAppId")]
-        public string MarketplaceAppId
-        {
-            get => _marketplaceAppId.GetValue();
-            set => _marketplaceAppId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _lastSentServerUrl = new PropertyValue<string?>(nameof(MarketplaceAppMetadata), nameof(LastSentServerUrl));
-        
-        [JsonPropertyName("lastSentServerUrl")]
-        public string? LastSentServerUrl
-        {
-            get => _lastSentServerUrl.GetValue();
-            set => _lastSentServerUrl.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _marketplaceAppId.SetAccessPath(path, validateHasBeenSet);
-            _lastSentServerUrl.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        MarketplaceAppId = marketplaceAppId;
+        LastSentServerUrl = lastSentServerUrl;
     }
     
+    private PropertyValue<string> _marketplaceAppId = new PropertyValue<string>(nameof(MarketplaceAppMetadata), nameof(MarketplaceAppId));
+    
+    [Required]
+    [JsonPropertyName("marketplaceAppId")]
+    public string MarketplaceAppId
+    {
+        get => _marketplaceAppId.GetValue();
+        set => _marketplaceAppId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _lastSentServerUrl = new PropertyValue<string?>(nameof(MarketplaceAppMetadata), nameof(LastSentServerUrl));
+    
+    [JsonPropertyName("lastSentServerUrl")]
+    public string? LastSentServerUrl
+    {
+        get => _lastSentServerUrl.GetValue();
+        set => _lastSentServerUrl.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _marketplaceAppId.SetAccessPath(path, validateHasBeenSet);
+        _lastSentServerUrl.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

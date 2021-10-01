@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.KbNoneContextPartialBuilder
+namespace JetBrains.Space.Client.KbNoneContextPartialBuilder;
+
+public static class KbNoneContextPartialExtensions
 {
-    public static class KbNoneContextPartialExtensions
-    {
-    }
-    
 }
+

@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface M2BlogItemContentDetails
+     : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface M2BlogItemContentDetails
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static M2BlogItemContent M2BlogItemContent(ArticleRecord article, ArticleContentRecord articleContent, ArticleDetailsRecord articleDetails, ArticleChannelRecord articleChannel)
-            => new M2BlogItemContent(article: article, articleContent: articleContent, articleDetails: articleDetails, articleChannel: articleChannel);
-        
-        public static M2BlogItemPreview M2BlogItemPreview(ArticleRecord article, ArticlePreviewRecord articlePreview, ArticleDetailsRecord articleDetails, ArticleChannelRecord articleChannel)
-            => new M2BlogItemPreview(article: article, articlePreview: articlePreview, articleDetails: articleDetails, articleChannel: articleChannel);
-        
-    }
+    public static M2BlogItemContent M2BlogItemContent(ArticleRecord article, ArticleContentRecord articleContent, ArticleDetailsRecord articleDetails, ArticleChannelRecord articleChannel)
+        => new M2BlogItemContent(article: article, articleContent: articleContent, articleDetails: articleDetails, articleChannel: articleChannel);
+    
+    public static M2BlogItemPreview M2BlogItemPreview(ArticleRecord article, ArticlePreviewRecord articlePreview, ArticleDetailsRecord articleDetails, ArticleChannelRecord articleChannel)
+        => new M2BlogItemPreview(article: article, articlePreview: articlePreview, articleDetails: articleDetails, articleChannel: articleChannel);
     
 }
+

@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum EventParticipationStatus
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum EventParticipationStatus
-    {
-        [EnumMember(Value = "GOING")]
-        GOING,
-        
-        [EnumMember(Value = "NOT_GOING")]
-        NOTGOING,
-        
-        [EnumMember(Value = "NOT_SURE")]
-        NOTSURE,
-        
-        [EnumMember(Value = "WAITING_FOR_RESPONSE")]
-        WAITINGFORRESPONSE,
-        
-    }
+    [EnumMember(Value = "GOING")]
+    GOING,
+    
+    [EnumMember(Value = "NOT_GOING")]
+    NOTGOING,
+    
+    [EnumMember(Value = "NOT_SURE")]
+    NOTSURE,
+    
+    [EnumMember(Value = "WAITING_FOR_RESPONSE")]
+    WAITINGFORRESPONSE,
     
 }
+

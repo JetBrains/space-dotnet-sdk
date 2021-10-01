@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface SubscriptionFilter
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface SubscriptionFilter
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static AbsenceCommonSubscriptionFilter AbsenceCommon(List<AbsenceReasonRecord> reasons)
-            => new AbsenceCommonSubscriptionFilter(reasons: reasons);
-        
-        public static ApplicationsSubscriptionFilter Applications(ESApp? application = null)
-            => new ApplicationsSubscriptionFilter(application: application);
-        
-        public static AutomationJobSubscriptionFilter AutomationJob(List<PRProject> projects, string? repositoryName = null, List<string>? branchSpec = null, List<string>? jobs = null)
-            => new AutomationJobSubscriptionFilter(projects: projects, repositoryName: repositoryName, branchSpec: branchSpec, jobs: jobs);
-        
-        public static BlogCommonSubscriptionFilter BlogCommon(List<TDTeam> teams, List<TDLocation> locations, List<TDMemberProfile> authors)
-            => new BlogCommonSubscriptionFilter(teams: teams, locations: locations, authors: authors);
-        
-        public static CodeReviewSubscriptionFilter CodeReview(List<TDMemberProfile> authors, List<TDMemberProfile> participants, List<string> branchSpec, List<string> pathSpec, string titleRegex, PRProject? project = null, string? repository = null)
-            => new CodeReviewSubscriptionFilter(authors: authors, participants: participants, branchSpec: branchSpec, pathSpec: pathSpec, titleRegex: titleRegex, project: project, repository: repository);
-        
-        public static DocumentCustomSubscriptionFilter DocumentCustom(List<KbDocumentItem> documents, PRProject? project = null, List<KBBook>? books = null, List<KbFolderItem>? folders = null)
-            => new DocumentCustomSubscriptionFilter(documents: documents, project: project, books: books, folders: folders);
-        
-        public static MemberCommonSubscriptionFilter MemberCommon(List<TDTeam> teams, List<TDLocation> locations, List<TDMemberProfile>? profiles = null)
-            => new MemberCommonSubscriptionFilter(teams: teams, locations: locations, profiles: profiles);
-        
-        public static PackagesSubscriptionFilter Packages(List<string> namePattern, PRProject? project = null, ProjectPackageRepository? repository = null, string? versionPattern = null)
-            => new PackagesSubscriptionFilter(namePattern: namePattern, project: project, repository: repository, versionPattern: versionPattern);
-        
-        public static ProjectCommonSubscriptionFilter ProjectCommon(PRProject? project = null)
-            => new ProjectCommonSubscriptionFilter(project: project);
-        
-        public static RepoCommitsSubscriptionFilter RepoCommits(string repository, RepoCommitsSubscriptionFilterSpec spec, PRProject? project = null)
-            => new RepoCommitsSubscriptionFilter(repository: repository, spec: spec, project: project);
-        
-        public static RepoHeadsSubscriptionFilter RepoHeads(string repository, PRProject? project = null)
-            => new RepoHeadsSubscriptionFilter(repository: repository, project: project);
-        
-    }
+    public static AbsenceCommonSubscriptionFilter AbsenceCommon(List<AbsenceReasonRecord> reasons)
+        => new AbsenceCommonSubscriptionFilter(reasons: reasons);
+    
+    public static ApplicationsSubscriptionFilter Applications(ESApp? application = null)
+        => new ApplicationsSubscriptionFilter(application: application);
+    
+    public static AutomationJobSubscriptionFilter AutomationJob(List<PRProject> projects, string? repositoryName = null, List<string>? branchSpec = null, List<string>? jobs = null)
+        => new AutomationJobSubscriptionFilter(projects: projects, repositoryName: repositoryName, branchSpec: branchSpec, jobs: jobs);
+    
+    public static BlogCommonSubscriptionFilter BlogCommon(List<TDTeam> teams, List<TDLocation> locations, List<TDMemberProfile> authors)
+        => new BlogCommonSubscriptionFilter(teams: teams, locations: locations, authors: authors);
+    
+    public static CodeReviewSubscriptionFilter CodeReview(List<TDMemberProfile> authors, List<TDMemberProfile> participants, List<string> branchSpec, List<string> pathSpec, string titleRegex, PRProject? project = null, string? repository = null)
+        => new CodeReviewSubscriptionFilter(authors: authors, participants: participants, branchSpec: branchSpec, pathSpec: pathSpec, titleRegex: titleRegex, project: project, repository: repository);
+    
+    public static DocumentCustomSubscriptionFilter DocumentCustom(List<KbDocumentItem> documents, PRProject? project = null, List<KBBook>? books = null, List<KbFolderItem>? folders = null)
+        => new DocumentCustomSubscriptionFilter(documents: documents, project: project, books: books, folders: folders);
+    
+    public static MemberCommonSubscriptionFilter MemberCommon(List<TDTeam> teams, List<TDLocation> locations, List<TDMemberProfile>? profiles = null)
+        => new MemberCommonSubscriptionFilter(teams: teams, locations: locations, profiles: profiles);
+    
+    public static PackagesSubscriptionFilter Packages(List<string> namePattern, PRProject? project = null, ProjectPackageRepository? repository = null, string? versionPattern = null)
+        => new PackagesSubscriptionFilter(namePattern: namePattern, project: project, repository: repository, versionPattern: versionPattern);
+    
+    public static ProjectCommonSubscriptionFilter ProjectCommon(PRProject? project = null)
+        => new ProjectCommonSubscriptionFilter(project: project);
+    
+    public static RepoCommitsSubscriptionFilter RepoCommits(string repository, RepoCommitsSubscriptionFilterSpec spec, PRProject? project = null)
+        => new RepoCommitsSubscriptionFilter(repository: repository, spec: spec, project: project);
+    
+    public static RepoHeadsSubscriptionFilter RepoHeads(string repository, PRProject? project = null)
+        => new RepoHeadsSubscriptionFilter(repository: repository, project: project);
     
 }
+

@@ -27,71 +27,70 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MessagePayload
+     : ApplicationPayload, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MessagePayload
-         : ApplicationPayload, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MessagePayload";
+    
+    public MessagePayload() { }
+    
+    public MessagePayload(MessageContext message, string clientId, string userId, string? verificationToken = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MessagePayload";
-        
-        public MessagePayload() { }
-        
-        public MessagePayload(MessageContext message, string clientId, string userId, string? verificationToken = null)
-        {
-            Message = message;
-            ClientId = clientId;
-            UserId = userId;
-            VerificationToken = verificationToken;
-        }
-        
-        private PropertyValue<MessageContext> _message = new PropertyValue<MessageContext>(nameof(MessagePayload), nameof(Message));
-        
-        [Required]
-        [JsonPropertyName("message")]
-        public MessageContext Message
-        {
-            get => _message.GetValue();
-            set => _message.SetValue(value);
-        }
-    
-        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(MessagePayload), nameof(ClientId));
-        
-        [Required]
-        [JsonPropertyName("clientId")]
-        public string ClientId
-        {
-            get => _clientId.GetValue();
-            set => _clientId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MessagePayload), nameof(UserId));
-        
-        [Required]
-        [JsonPropertyName("userId")]
-        public string UserId
-        {
-            get => _userId.GetValue();
-            set => _userId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(MessagePayload), nameof(VerificationToken));
-        
-        [JsonPropertyName("verificationToken")]
-        public string? VerificationToken
-        {
-            get => _verificationToken.GetValue();
-            set => _verificationToken.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _message.SetAccessPath(path, validateHasBeenSet);
-            _clientId.SetAccessPath(path, validateHasBeenSet);
-            _userId.SetAccessPath(path, validateHasBeenSet);
-            _verificationToken.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Message = message;
+        ClientId = clientId;
+        UserId = userId;
+        VerificationToken = verificationToken;
     }
     
+    private PropertyValue<MessageContext> _message = new PropertyValue<MessageContext>(nameof(MessagePayload), nameof(Message));
+    
+    [Required]
+    [JsonPropertyName("message")]
+    public MessageContext Message
+    {
+        get => _message.GetValue();
+        set => _message.SetValue(value);
+    }
+
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(MessagePayload), nameof(ClientId));
+    
+    [Required]
+    [JsonPropertyName("clientId")]
+    public string ClientId
+    {
+        get => _clientId.GetValue();
+        set => _clientId.SetValue(value);
+    }
+
+    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MessagePayload), nameof(UserId));
+    
+    [Required]
+    [JsonPropertyName("userId")]
+    public string UserId
+    {
+        get => _userId.GetValue();
+        set => _userId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(MessagePayload), nameof(VerificationToken));
+    
+    [JsonPropertyName("verificationToken")]
+    public string? VerificationToken
+    {
+        get => _verificationToken.GetValue();
+        set => _verificationToken.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _message.SetAccessPath(path, validateHasBeenSet);
+        _clientId.SetAccessPath(path, validateHasBeenSet);
+        _userId.SetAccessPath(path, validateHasBeenSet);
+        _verificationToken.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsIssueTopicPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsIssueTopicPartialBuilder;
+
+public static class UnfurlDetailsIssueTopicPartialExtensions
 {
-    public static class UnfurlDetailsIssueTopicPartialExtensions
-    {
-        public static Partial<UnfurlDetailsIssueTopic> WithTopic(this Partial<UnfurlDetailsIssueTopic> it)
-            => it.AddFieldName("topic");
-        
-        public static Partial<UnfurlDetailsIssueTopic> WithTopic(this Partial<UnfurlDetailsIssueTopic> it, Func<Partial<Topic>, Partial<Topic>> partialBuilder)
-            => it.AddFieldName("topic", partialBuilder(new Partial<Topic>(it)));
-        
-        public static Partial<UnfurlDetailsIssueTopic> WithIsStrikeThrough(this Partial<UnfurlDetailsIssueTopic> it)
-            => it.AddFieldName("strikeThrough");
-        
-    }
+    public static Partial<UnfurlDetailsIssueTopic> WithTopic(this Partial<UnfurlDetailsIssueTopic> it)
+        => it.AddFieldName("topic");
+    
+    public static Partial<UnfurlDetailsIssueTopic> WithTopic(this Partial<UnfurlDetailsIssueTopic> it, Func<Partial<Topic>, Partial<Topic>> partialBuilder)
+        => it.AddFieldName("topic", partialBuilder(new Partial<Topic>(it)));
+    
+    public static Partial<UnfurlDetailsIssueTopic> WithIsStrikeThrough(this Partial<UnfurlDetailsIssueTopic> it)
+        => it.AddFieldName("strikeThrough");
     
 }
+

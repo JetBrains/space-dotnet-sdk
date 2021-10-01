@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PRPrivateProjectPartialBuilder
+namespace JetBrains.Space.Client.PRPrivateProjectPartialBuilder;
+
+public static class PRPrivateProjectPartialExtensions
 {
-    public static class PRPrivateProjectPartialExtensions
-    {
-        public static Partial<PRPrivateProject> WithKey(this Partial<PRPrivateProject> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<PRPrivateProject> WithKey(this Partial<PRPrivateProject> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
-            => it.AddFieldName("key", partialBuilder(new Partial<ProjectKey>(it)));
-        
-        public static Partial<PRPrivateProject> WithName(this Partial<PRPrivateProject> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<PRPrivateProject> WithIsAccessAllowed(this Partial<PRPrivateProject> it)
-            => it.AddFieldName("accessAllowed");
-        
-        public static Partial<PRPrivateProject> WithAdmins(this Partial<PRPrivateProject> it)
-            => it.AddFieldName("admins");
-        
-        public static Partial<PRPrivateProject> WithAdmins(this Partial<PRPrivateProject> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("admins", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<PRPrivateProject> WithKey(this Partial<PRPrivateProject> it)
+        => it.AddFieldName("key");
+    
+    public static Partial<PRPrivateProject> WithKey(this Partial<PRPrivateProject> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
+        => it.AddFieldName("key", partialBuilder(new Partial<ProjectKey>(it)));
+    
+    public static Partial<PRPrivateProject> WithName(this Partial<PRPrivateProject> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<PRPrivateProject> WithIsAccessAllowed(this Partial<PRPrivateProject> it)
+        => it.AddFieldName("accessAllowed");
+    
+    public static Partial<PRPrivateProject> WithAdmins(this Partial<PRPrivateProject> it)
+        => it.AddFieldName("admins");
+    
+    public static Partial<PRPrivateProject> WithAdmins(this Partial<PRPrivateProject> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("admins", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

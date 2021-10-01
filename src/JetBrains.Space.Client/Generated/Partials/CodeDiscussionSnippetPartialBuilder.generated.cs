@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeDiscussionSnippetPartialBuilder
+namespace JetBrains.Space.Client.CodeDiscussionSnippetPartialBuilder;
+
+public static class CodeDiscussionSnippetPartialExtensions
 {
-    public static class CodeDiscussionSnippetPartialExtensions
-    {
-    }
-    
 }
+

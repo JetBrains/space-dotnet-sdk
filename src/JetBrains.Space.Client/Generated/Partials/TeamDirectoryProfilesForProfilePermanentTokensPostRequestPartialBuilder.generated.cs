@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfilePermanentTokensPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfilePermanentTokensPostRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfilePermanentTokensPostRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfilePermanentTokensPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfilePermanentTokensPostRequest> WithName(this Partial<TeamDirectoryProfilesForProfilePermanentTokensPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TeamDirectoryProfilesForProfilePermanentTokensPostRequest> WithScope(this Partial<TeamDirectoryProfilesForProfilePermanentTokensPostRequest> it)
-            => it.AddFieldName("scope");
-        
-        public static Partial<TeamDirectoryProfilesForProfilePermanentTokensPostRequest> WithExpires(this Partial<TeamDirectoryProfilesForProfilePermanentTokensPostRequest> it)
-            => it.AddFieldName("expires");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfilePermanentTokensPostRequest> WithName(this Partial<TeamDirectoryProfilesForProfilePermanentTokensPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TeamDirectoryProfilesForProfilePermanentTokensPostRequest> WithScope(this Partial<TeamDirectoryProfilesForProfilePermanentTokensPostRequest> it)
+        => it.AddFieldName("scope");
+    
+    public static Partial<TeamDirectoryProfilesForProfilePermanentTokensPostRequest> WithExpires(this Partial<TeamDirectoryProfilesForProfilePermanentTokensPostRequest> it)
+        => it.AddFieldName("expires");
     
 }
+

@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CFEnumValuesModificationPartialBuilder
+namespace JetBrains.Space.Client.CFEnumValuesModificationPartialBuilder;
+
+public static class CFEnumValuesModificationPartialExtensions
 {
-    public static class CFEnumValuesModificationPartialExtensions
-    {
-        public static Partial<CFEnumValuesModification> WithValuesToAdd(this Partial<CFEnumValuesModification> it)
-            => it.AddFieldName("valuesToAdd");
-        
-        public static Partial<CFEnumValuesModification> WithValuesToAdd(this Partial<CFEnumValuesModification> it, Func<Partial<EnumValueData>, Partial<EnumValueData>> partialBuilder)
-            => it.AddFieldName("valuesToAdd", partialBuilder(new Partial<EnumValueData>(it)));
-        
-        public static Partial<CFEnumValuesModification> WithValuesToUpdate(this Partial<CFEnumValuesModification> it)
-            => it.AddFieldName("valuesToUpdate");
-        
-        public static Partial<CFEnumValuesModification> WithValuesToUpdate(this Partial<CFEnumValuesModification> it, Func<Partial<EnumValueData>, Partial<EnumValueData>> partialBuilder)
-            => it.AddFieldName("valuesToUpdate", partialBuilder(new Partial<EnumValueData>(it)));
-        
-        public static Partial<CFEnumValuesModification> WithValuesToDelete(this Partial<CFEnumValuesModification> it)
-            => it.AddFieldName("valuesToDelete");
-        
-    }
+    public static Partial<CFEnumValuesModification> WithValuesToAdd(this Partial<CFEnumValuesModification> it)
+        => it.AddFieldName("valuesToAdd");
+    
+    public static Partial<CFEnumValuesModification> WithValuesToAdd(this Partial<CFEnumValuesModification> it, Func<Partial<EnumValueData>, Partial<EnumValueData>> partialBuilder)
+        => it.AddFieldName("valuesToAdd", partialBuilder(new Partial<EnumValueData>(it)));
+    
+    public static Partial<CFEnumValuesModification> WithValuesToUpdate(this Partial<CFEnumValuesModification> it)
+        => it.AddFieldName("valuesToUpdate");
+    
+    public static Partial<CFEnumValuesModification> WithValuesToUpdate(this Partial<CFEnumValuesModification> it, Func<Partial<EnumValueData>, Partial<EnumValueData>> partialBuilder)
+        => it.AddFieldName("valuesToUpdate", partialBuilder(new Partial<EnumValueData>(it)));
+    
+    public static Partial<CFEnumValuesModification> WithValuesToDelete(this Partial<CFEnumValuesModification> it)
+        => it.AddFieldName("valuesToDelete");
     
 }
+

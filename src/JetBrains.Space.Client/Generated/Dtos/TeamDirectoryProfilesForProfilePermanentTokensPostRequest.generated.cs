@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryProfilesForProfilePermanentTokensPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryProfilesForProfilePermanentTokensPostRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryProfilesForProfilePermanentTokensPostRequest() { }
+    
+    public TeamDirectoryProfilesForProfilePermanentTokensPostRequest(string name, string scope, DateTime? expires = null)
     {
-        public TeamDirectoryProfilesForProfilePermanentTokensPostRequest() { }
-        
-        public TeamDirectoryProfilesForProfilePermanentTokensPostRequest(string name, string scope, DateTime? expires = null)
-        {
-            Name = name;
-            Scope = scope;
-            Expires = expires;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfilePermanentTokensPostRequest), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _scope = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfilePermanentTokensPostRequest), nameof(Scope));
-        
-        [Required]
-        [JsonPropertyName("scope")]
-        public string Scope
-        {
-            get => _scope.GetValue();
-            set => _scope.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfilePermanentTokensPostRequest), nameof(Expires));
-        
-        [JsonPropertyName("expires")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? Expires
-        {
-            get => _expires.GetValue();
-            set => _expires.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _scope.SetAccessPath(path, validateHasBeenSet);
-            _expires.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Scope = scope;
+        Expires = expires;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfilePermanentTokensPostRequest), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfilePermanentTokensPostRequest), nameof(Scope));
+    
+    [Required]
+    [JsonPropertyName("scope")]
+    public string Scope
+    {
+        get => _scope.GetValue();
+        set => _scope.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfilePermanentTokensPostRequest), nameof(Expires));
+    
+    [JsonPropertyName("expires")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? Expires
+    {
+        get => _expires.GetValue();
+        set => _expires.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _scope.SetAccessPath(path, validateHasBeenSet);
+        _expires.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

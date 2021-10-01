@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IssueAssigneeChangedDetails
+     : IssueChangedM2Details, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class IssueAssigneeChangedDetails
-         : IssueChangedM2Details, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "IssueAssigneeChangedDetails";
+    
+    public IssueAssigneeChangedDetails() { }
+    
+    public IssueAssigneeChangedDetails(TDMemberProfile? oldAssignee = null, TDMemberProfile? newAssignee = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "IssueAssigneeChangedDetails";
-        
-        public IssueAssigneeChangedDetails() { }
-        
-        public IssueAssigneeChangedDetails(TDMemberProfile? oldAssignee = null, TDMemberProfile? newAssignee = null)
-        {
-            OldAssignee = oldAssignee;
-            NewAssignee = newAssignee;
-        }
-        
-        private PropertyValue<TDMemberProfile?> _oldAssignee = new PropertyValue<TDMemberProfile?>(nameof(IssueAssigneeChangedDetails), nameof(OldAssignee));
-        
-        [JsonPropertyName("oldAssignee")]
-        public TDMemberProfile? OldAssignee
-        {
-            get => _oldAssignee.GetValue();
-            set => _oldAssignee.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberProfile?> _newAssignee = new PropertyValue<TDMemberProfile?>(nameof(IssueAssigneeChangedDetails), nameof(NewAssignee));
-        
-        [JsonPropertyName("newAssignee")]
-        public TDMemberProfile? NewAssignee
-        {
-            get => _newAssignee.GetValue();
-            set => _newAssignee.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _oldAssignee.SetAccessPath(path, validateHasBeenSet);
-            _newAssignee.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        OldAssignee = oldAssignee;
+        NewAssignee = newAssignee;
     }
     
+    private PropertyValue<TDMemberProfile?> _oldAssignee = new PropertyValue<TDMemberProfile?>(nameof(IssueAssigneeChangedDetails), nameof(OldAssignee));
+    
+    [JsonPropertyName("oldAssignee")]
+    public TDMemberProfile? OldAssignee
+    {
+        get => _oldAssignee.GetValue();
+        set => _oldAssignee.SetValue(value);
+    }
+
+    private PropertyValue<TDMemberProfile?> _newAssignee = new PropertyValue<TDMemberProfile?>(nameof(IssueAssigneeChangedDetails), nameof(NewAssignee));
+    
+    [JsonPropertyName("newAssignee")]
+    public TDMemberProfile? NewAssignee
+    {
+        get => _newAssignee.GetValue();
+        set => _newAssignee.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _oldAssignee.SetAccessPath(path, validateHasBeenSet);
+        _newAssignee.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

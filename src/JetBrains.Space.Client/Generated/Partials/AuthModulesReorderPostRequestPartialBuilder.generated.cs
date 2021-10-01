@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AuthModulesReorderPostRequestPartialBuilder
+namespace JetBrains.Space.Client.AuthModulesReorderPostRequestPartialBuilder;
+
+public static class AuthModulesReorderPostRequestPartialExtensions
 {
-    public static class AuthModulesReorderPostRequestPartialExtensions
-    {
-        public static Partial<AuthModulesReorderPostRequest> WithOrder(this Partial<AuthModulesReorderPostRequest> it)
-            => it.AddFieldName("order");
-        
-    }
+    public static Partial<AuthModulesReorderPostRequest> WithOrder(this Partial<AuthModulesReorderPostRequest> it)
+        => it.AddFieldName("order");
     
 }
+

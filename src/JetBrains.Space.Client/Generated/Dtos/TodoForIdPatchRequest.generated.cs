@@ -27,55 +27,54 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TodoForIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TodoForIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public TodoForIdPatchRequest() { }
+    
+    public TodoForIdPatchRequest(string? text = null, DateTime? dueDate = null, bool? open = null)
     {
-        public TodoForIdPatchRequest() { }
-        
-        public TodoForIdPatchRequest(string? text = null, DateTime? dueDate = null, bool? open = null)
-        {
-            Text = text;
-            DueDate = dueDate;
-            IsOpen = open;
-        }
-        
-        private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(TodoForIdPatchRequest), nameof(Text));
-        
-        [JsonPropertyName("text")]
-        public string? Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoForIdPatchRequest), nameof(DueDate));
-        
-        [JsonPropertyName("dueDate")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? DueDate
-        {
-            get => _dueDate.GetValue();
-            set => _dueDate.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _open = new PropertyValue<bool?>(nameof(TodoForIdPatchRequest), nameof(IsOpen));
-        
-        [JsonPropertyName("open")]
-        public bool? IsOpen
-        {
-            get => _open.GetValue();
-            set => _open.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _dueDate.SetAccessPath(path, validateHasBeenSet);
-            _open.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Text = text;
+        DueDate = dueDate;
+        IsOpen = open;
     }
     
+    private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(TodoForIdPatchRequest), nameof(Text));
+    
+    [JsonPropertyName("text")]
+    public string? Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoForIdPatchRequest), nameof(DueDate));
+    
+    [JsonPropertyName("dueDate")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? DueDate
+    {
+        get => _dueDate.GetValue();
+        set => _dueDate.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _open = new PropertyValue<bool?>(nameof(TodoForIdPatchRequest), nameof(IsOpen));
+    
+    [JsonPropertyName("open")]
+    public bool? IsOpen
+    {
+        get => _open.GetValue();
+        set => _open.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _text.SetAccessPath(path, validateHasBeenSet);
+        _dueDate.SetAccessPath(path, validateHasBeenSet);
+        _open.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

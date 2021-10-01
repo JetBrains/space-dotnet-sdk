@@ -27,52 +27,51 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelRecordPartialBuilder
+namespace JetBrains.Space.Client.M2ChannelRecordPartialBuilder;
+
+public static class M2ChannelRecordPartialExtensions
 {
-    public static class M2ChannelRecordPartialExtensions
-    {
-        public static Partial<M2ChannelRecord> WithId(this Partial<M2ChannelRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<M2ChannelRecord> WithContact(this Partial<M2ChannelRecord> it)
-            => it.AddFieldName("contact");
-        
-        public static Partial<M2ChannelRecord> WithContact(this Partial<M2ChannelRecord> it, Func<Partial<M2ChannelContact>, Partial<M2ChannelContact>> partialBuilder)
-            => it.AddFieldName("contact", partialBuilder(new Partial<M2ChannelContact>(it)));
-        
-        public static Partial<M2ChannelRecord> WithTotalMessages(this Partial<M2ChannelRecord> it)
-            => it.AddFieldName("totalMessages");
-        
-        public static Partial<M2ChannelRecord> WithLastMessage(this Partial<M2ChannelRecord> it)
-            => it.AddFieldName("lastMessage");
-        
-        public static Partial<M2ChannelRecord> WithLastMessage(this Partial<M2ChannelRecord> it, Func<Partial<MessageInfo>, Partial<MessageInfo>> partialBuilder)
-            => it.AddFieldName("lastMessage", partialBuilder(new Partial<MessageInfo>(it)));
-        
-        public static Partial<M2ChannelRecord> WithParticipants(this Partial<M2ChannelRecord> it)
-            => it.AddFieldName("participants");
-        
-        public static Partial<M2ChannelRecord> WithParticipants(this Partial<M2ChannelRecord> it, Func<Partial<ChannelParticipant>, Partial<ChannelParticipant>> partialBuilder)
-            => it.AddFieldName("participants", partialBuilder(new Partial<ChannelParticipant>(it)));
-        
-        public static Partial<M2ChannelRecord> WithIsChannelArchived(this Partial<M2ChannelRecord> it)
-            => it.AddFieldName("channelArchived");
-        
-        public static Partial<M2ChannelRecord> WithIsArchived(this Partial<M2ChannelRecord> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<M2ChannelRecord> WithContent(this Partial<M2ChannelRecord> it)
-            => it.AddFieldName("content");
-        
-        public static Partial<M2ChannelRecord> WithContent(this Partial<M2ChannelRecord> it, Func<Partial<M2ChannelContentInfo>, Partial<M2ChannelContentInfo>> partialBuilder)
-            => it.AddFieldName("content", partialBuilder(new Partial<M2ChannelContentInfo>(it)));
-        
-        public static Partial<M2ChannelRecord> WithPinnedMessages(this Partial<M2ChannelRecord> it)
-            => it.AddFieldName("pinnedMessages");
-        
-        public static Partial<M2ChannelRecord> WithPinnedMessages(this Partial<M2ChannelRecord> it, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>> partialBuilder)
-            => it.AddFieldName("pinnedMessages", partialBuilder(new Partial<ChannelItemRecord>(it)));
-        
-    }
+    public static Partial<M2ChannelRecord> WithId(this Partial<M2ChannelRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<M2ChannelRecord> WithContact(this Partial<M2ChannelRecord> it)
+        => it.AddFieldName("contact");
+    
+    public static Partial<M2ChannelRecord> WithContact(this Partial<M2ChannelRecord> it, Func<Partial<M2ChannelContact>, Partial<M2ChannelContact>> partialBuilder)
+        => it.AddFieldName("contact", partialBuilder(new Partial<M2ChannelContact>(it)));
+    
+    public static Partial<M2ChannelRecord> WithTotalMessages(this Partial<M2ChannelRecord> it)
+        => it.AddFieldName("totalMessages");
+    
+    public static Partial<M2ChannelRecord> WithLastMessage(this Partial<M2ChannelRecord> it)
+        => it.AddFieldName("lastMessage");
+    
+    public static Partial<M2ChannelRecord> WithLastMessage(this Partial<M2ChannelRecord> it, Func<Partial<MessageInfo>, Partial<MessageInfo>> partialBuilder)
+        => it.AddFieldName("lastMessage", partialBuilder(new Partial<MessageInfo>(it)));
+    
+    public static Partial<M2ChannelRecord> WithParticipants(this Partial<M2ChannelRecord> it)
+        => it.AddFieldName("participants");
+    
+    public static Partial<M2ChannelRecord> WithParticipants(this Partial<M2ChannelRecord> it, Func<Partial<ChannelParticipant>, Partial<ChannelParticipant>> partialBuilder)
+        => it.AddFieldName("participants", partialBuilder(new Partial<ChannelParticipant>(it)));
+    
+    public static Partial<M2ChannelRecord> WithIsChannelArchived(this Partial<M2ChannelRecord> it)
+        => it.AddFieldName("channelArchived");
+    
+    public static Partial<M2ChannelRecord> WithIsArchived(this Partial<M2ChannelRecord> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<M2ChannelRecord> WithContent(this Partial<M2ChannelRecord> it)
+        => it.AddFieldName("content");
+    
+    public static Partial<M2ChannelRecord> WithContent(this Partial<M2ChannelRecord> it, Func<Partial<M2ChannelContentInfo>, Partial<M2ChannelContentInfo>> partialBuilder)
+        => it.AddFieldName("content", partialBuilder(new Partial<M2ChannelContentInfo>(it)));
+    
+    public static Partial<M2ChannelRecord> WithPinnedMessages(this Partial<M2ChannelRecord> it)
+        => it.AddFieldName("pinnedMessages");
+    
+    public static Partial<M2ChannelRecord> WithPinnedMessages(this Partial<M2ChannelRecord> it, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>> partialBuilder)
+        => it.AddFieldName("pinnedMessages", partialBuilder(new Partial<ChannelItemRecord>(it)));
     
 }
+

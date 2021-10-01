@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessagePayloadPartialBuilder
+namespace JetBrains.Space.Client.MessagePayloadPartialBuilder;
+
+public static class MessagePayloadPartialExtensions
 {
-    public static class MessagePayloadPartialExtensions
-    {
-        public static Partial<MessagePayload> WithMessage(this Partial<MessagePayload> it)
-            => it.AddFieldName("message");
-        
-        public static Partial<MessagePayload> WithMessage(this Partial<MessagePayload> it, Func<Partial<MessageContext>, Partial<MessageContext>> partialBuilder)
-            => it.AddFieldName("message", partialBuilder(new Partial<MessageContext>(it)));
-        
-        public static Partial<MessagePayload> WithClientId(this Partial<MessagePayload> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<MessagePayload> WithUserId(this Partial<MessagePayload> it)
-            => it.AddFieldName("userId");
-        
-        public static Partial<MessagePayload> WithVerificationToken(this Partial<MessagePayload> it)
-            => it.AddFieldName("verificationToken");
-        
-    }
+    public static Partial<MessagePayload> WithMessage(this Partial<MessagePayload> it)
+        => it.AddFieldName("message");
+    
+    public static Partial<MessagePayload> WithMessage(this Partial<MessagePayload> it, Func<Partial<MessageContext>, Partial<MessageContext>> partialBuilder)
+        => it.AddFieldName("message", partialBuilder(new Partial<MessageContext>(it)));
+    
+    public static Partial<MessagePayload> WithClientId(this Partial<MessagePayload> it)
+        => it.AddFieldName("clientId");
+    
+    public static Partial<MessagePayload> WithUserId(this Partial<MessagePayload> it)
+        => it.AddFieldName("userId");
+    
+    public static Partial<MessagePayload> WithVerificationToken(this Partial<MessagePayload> it)
+        => it.AddFieldName("verificationToken");
     
 }
+

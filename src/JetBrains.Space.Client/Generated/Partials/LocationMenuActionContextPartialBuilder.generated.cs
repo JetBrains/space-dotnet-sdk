@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.LocationMenuActionContextPartialBuilder
+namespace JetBrains.Space.Client.LocationMenuActionContextPartialBuilder;
+
+public static class LocationMenuActionContextPartialExtensions
 {
-    public static class LocationMenuActionContextPartialExtensions
-    {
-        public static Partial<LocationMenuActionContext> WithMenuId(this Partial<LocationMenuActionContext> it)
-            => it.AddFieldName("menuId");
-        
-        public static Partial<LocationMenuActionContext> WithLocation(this Partial<LocationMenuActionContext> it)
-            => it.AddFieldName("location");
-        
-        public static Partial<LocationMenuActionContext> WithLocation(this Partial<LocationMenuActionContext> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
-            => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
-        
-    }
+    public static Partial<LocationMenuActionContext> WithMenuId(this Partial<LocationMenuActionContext> it)
+        => it.AddFieldName("menuId");
+    
+    public static Partial<LocationMenuActionContext> WithLocation(this Partial<LocationMenuActionContext> it)
+        => it.AddFieldName("location");
+    
+    public static Partial<LocationMenuActionContext> WithLocation(this Partial<LocationMenuActionContext> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
+        => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
     
 }
+

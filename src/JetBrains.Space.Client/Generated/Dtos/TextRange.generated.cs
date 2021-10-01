@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TextRange
+     : IPropagatePropertyAccessPath
 {
-    public sealed class TextRange
-         : IPropagatePropertyAccessPath
+    public TextRange() { }
+    
+    public TextRange(int start, int length)
     {
-        public TextRange() { }
-        
-        public TextRange(int start, int length)
-        {
-            Start = start;
-            Length = length;
-        }
-        
-        private PropertyValue<int> _start = new PropertyValue<int>(nameof(TextRange), nameof(Start));
-        
-        [Required]
-        [JsonPropertyName("start")]
-        public int Start
-        {
-            get => _start.GetValue();
-            set => _start.SetValue(value);
-        }
-    
-        private PropertyValue<int> _length = new PropertyValue<int>(nameof(TextRange), nameof(Length));
-        
-        [Required]
-        [JsonPropertyName("length")]
-        public int Length
-        {
-            get => _length.GetValue();
-            set => _length.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _start.SetAccessPath(path, validateHasBeenSet);
-            _length.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Start = start;
+        Length = length;
     }
     
+    private PropertyValue<int> _start = new PropertyValue<int>(nameof(TextRange), nameof(Start));
+    
+    [Required]
+    [JsonPropertyName("start")]
+    public int Start
+    {
+        get => _start.GetValue();
+        set => _start.SetValue(value);
+    }
+
+    private PropertyValue<int> _length = new PropertyValue<int>(nameof(TextRange), nameof(Length));
+    
+    [Required]
+    [JsonPropertyName("length")]
+    public int Length
+    {
+        get => _length.GetValue();
+        set => _length.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _start.SetAccessPath(path, validateHasBeenSet);
+        _length.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

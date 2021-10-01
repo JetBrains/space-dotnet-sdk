@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PublicHolidaysCalendarsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.PublicHolidaysCalendarsPostRequestPartialBuilder;
+
+public static class PublicHolidaysCalendarsPostRequestPartialExtensions
 {
-    public static class PublicHolidaysCalendarsPostRequestPartialExtensions
-    {
-        public static Partial<PublicHolidaysCalendarsPostRequest> WithName(this Partial<PublicHolidaysCalendarsPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<PublicHolidaysCalendarsPostRequest> WithLocation(this Partial<PublicHolidaysCalendarsPostRequest> it)
-            => it.AddFieldName("location");
-        
-    }
+    public static Partial<PublicHolidaysCalendarsPostRequest> WithName(this Partial<PublicHolidaysCalendarsPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<PublicHolidaysCalendarsPostRequest> WithLocation(this Partial<PublicHolidaysCalendarsPostRequest> it)
+        => it.AddFieldName("location");
     
 }
+

@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class SRepoHeadsWebhookEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class SRepoHeadsWebhookEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "SRepoHeadsWebhookEvent";
+    
+    public SRepoHeadsWebhookEvent() { }
+    
+    public SRepoHeadsWebhookEvent(ProjectKey projectKey, string repository, RepoChanges changes)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "SRepoHeadsWebhookEvent";
-        
-        public SRepoHeadsWebhookEvent() { }
-        
-        public SRepoHeadsWebhookEvent(ProjectKey projectKey, string repository, RepoChanges changes)
-        {
-            ProjectKey = projectKey;
-            Repository = repository;
-            Changes = changes;
-        }
-        
-        private PropertyValue<ProjectKey> _projectKey = new PropertyValue<ProjectKey>(nameof(SRepoHeadsWebhookEvent), nameof(ProjectKey));
-        
-        [Required]
-        [JsonPropertyName("projectKey")]
-        public ProjectKey ProjectKey
-        {
-            get => _projectKey.GetValue();
-            set => _projectKey.SetValue(value);
-        }
-    
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(SRepoHeadsWebhookEvent), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<RepoChanges> _changes = new PropertyValue<RepoChanges>(nameof(SRepoHeadsWebhookEvent), nameof(Changes));
-        
-        [Required]
-        [JsonPropertyName("changes")]
-        public RepoChanges Changes
-        {
-            get => _changes.GetValue();
-            set => _changes.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _projectKey.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _changes.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ProjectKey = projectKey;
+        Repository = repository;
+        Changes = changes;
     }
     
+    private PropertyValue<ProjectKey> _projectKey = new PropertyValue<ProjectKey>(nameof(SRepoHeadsWebhookEvent), nameof(ProjectKey));
+    
+    [Required]
+    [JsonPropertyName("projectKey")]
+    public ProjectKey ProjectKey
+    {
+        get => _projectKey.GetValue();
+        set => _projectKey.SetValue(value);
+    }
+
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(SRepoHeadsWebhookEvent), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public string Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<RepoChanges> _changes = new PropertyValue<RepoChanges>(nameof(SRepoHeadsWebhookEvent), nameof(Changes));
+    
+    [Required]
+    [JsonPropertyName("changes")]
+    public RepoChanges Changes
+    {
+        get => _changes.GetValue();
+        set => _changes.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _projectKey.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _changes.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

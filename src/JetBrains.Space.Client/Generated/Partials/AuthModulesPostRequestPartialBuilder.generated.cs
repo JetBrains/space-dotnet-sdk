@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AuthModulesPostRequestPartialBuilder
+namespace JetBrains.Space.Client.AuthModulesPostRequestPartialBuilder;
+
+public static class AuthModulesPostRequestPartialExtensions
 {
-    public static class AuthModulesPostRequestPartialExtensions
-    {
-        public static Partial<AuthModulesPostRequest> WithKey(this Partial<AuthModulesPostRequest> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<AuthModulesPostRequest> WithName(this Partial<AuthModulesPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<AuthModulesPostRequest> WithIsEnabled(this Partial<AuthModulesPostRequest> it)
-            => it.AddFieldName("enabled");
-        
-        public static Partial<AuthModulesPostRequest> WithSettings(this Partial<AuthModulesPostRequest> it)
-            => it.AddFieldName("settings");
-        
-        public static Partial<AuthModulesPostRequest> WithSettings(this Partial<AuthModulesPostRequest> it, Func<Partial<ESAuthModuleSettings>, Partial<ESAuthModuleSettings>> partialBuilder)
-            => it.AddFieldName("settings", partialBuilder(new Partial<ESAuthModuleSettings>(it)));
-        
-    }
+    public static Partial<AuthModulesPostRequest> WithKey(this Partial<AuthModulesPostRequest> it)
+        => it.AddFieldName("key");
+    
+    public static Partial<AuthModulesPostRequest> WithName(this Partial<AuthModulesPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<AuthModulesPostRequest> WithIsEnabled(this Partial<AuthModulesPostRequest> it)
+        => it.AddFieldName("enabled");
+    
+    public static Partial<AuthModulesPostRequest> WithSettings(this Partial<AuthModulesPostRequest> it)
+        => it.AddFieldName("settings");
+    
+    public static Partial<AuthModulesPostRequest> WithSettings(this Partial<AuthModulesPostRequest> it, Func<Partial<ESAuthModuleSettings>, Partial<ESAuthModuleSettings>> partialBuilder)
+        => it.AddFieldName("settings", partialBuilder(new Partial<ESAuthModuleSettings>(it)));
     
 }
+

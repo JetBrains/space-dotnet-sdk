@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class WeekDayTimeInterval
+     : IPropagatePropertyAccessPath
 {
-    public sealed class WeekDayTimeInterval
-         : IPropagatePropertyAccessPath
+    public WeekDayTimeInterval() { }
+    
+    public WeekDayTimeInterval(int day, bool @checked, TimeInterval interval)
     {
-        public WeekDayTimeInterval() { }
-        
-        public WeekDayTimeInterval(int day, bool @checked, TimeInterval interval)
-        {
-            Day = day;
-            IsChecked = @checked;
-            Interval = interval;
-        }
-        
-        private PropertyValue<int> _day = new PropertyValue<int>(nameof(WeekDayTimeInterval), nameof(Day));
-        
-        [Required]
-        [JsonPropertyName("day")]
-        public int Day
-        {
-            get => _day.GetValue();
-            set => _day.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _checked = new PropertyValue<bool>(nameof(WeekDayTimeInterval), nameof(IsChecked));
-        
-        [Required]
-        [JsonPropertyName("checked")]
-        public bool IsChecked
-        {
-            get => _checked.GetValue();
-            set => _checked.SetValue(value);
-        }
-    
-        private PropertyValue<TimeInterval> _interval = new PropertyValue<TimeInterval>(nameof(WeekDayTimeInterval), nameof(Interval));
-        
-        [Required]
-        [JsonPropertyName("interval")]
-        public TimeInterval Interval
-        {
-            get => _interval.GetValue();
-            set => _interval.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _day.SetAccessPath(path, validateHasBeenSet);
-            _checked.SetAccessPath(path, validateHasBeenSet);
-            _interval.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Day = day;
+        IsChecked = @checked;
+        Interval = interval;
     }
     
+    private PropertyValue<int> _day = new PropertyValue<int>(nameof(WeekDayTimeInterval), nameof(Day));
+    
+    [Required]
+    [JsonPropertyName("day")]
+    public int Day
+    {
+        get => _day.GetValue();
+        set => _day.SetValue(value);
+    }
+
+    private PropertyValue<bool> _checked = new PropertyValue<bool>(nameof(WeekDayTimeInterval), nameof(IsChecked));
+    
+    [Required]
+    [JsonPropertyName("checked")]
+    public bool IsChecked
+    {
+        get => _checked.GetValue();
+        set => _checked.SetValue(value);
+    }
+
+    private PropertyValue<TimeInterval> _interval = new PropertyValue<TimeInterval>(nameof(WeekDayTimeInterval), nameof(Interval));
+    
+    [Required]
+    [JsonPropertyName("interval")]
+    public TimeInterval Interval
+    {
+        get => _interval.GetValue();
+        set => _interval.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _day.SetAccessPath(path, validateHasBeenSet);
+        _checked.SetAccessPath(path, validateHasBeenSet);
+        _interval.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

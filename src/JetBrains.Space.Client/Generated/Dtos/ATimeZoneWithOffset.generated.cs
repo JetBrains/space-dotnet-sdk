@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ATimeZoneWithOffset
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ATimeZoneWithOffset
-         : IPropagatePropertyAccessPath
+    public ATimeZoneWithOffset() { }
+    
+    public ATimeZoneWithOffset(string id, int offset)
     {
-        public ATimeZoneWithOffset() { }
-        
-        public ATimeZoneWithOffset(string id, int offset)
-        {
-            Id = id;
-            Offset = offset;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ATimeZoneWithOffset), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<int> _offset = new PropertyValue<int>(nameof(ATimeZoneWithOffset), nameof(Offset));
-        
-        [Required]
-        [JsonPropertyName("offset")]
-        public int Offset
-        {
-            get => _offset.GetValue();
-            set => _offset.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _offset.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Offset = offset;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ATimeZoneWithOffset), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<int> _offset = new PropertyValue<int>(nameof(ATimeZoneWithOffset), nameof(Offset));
+    
+    [Required]
+    [JsonPropertyName("offset")]
+    public int Offset
+    {
+        get => _offset.GetValue();
+        set => _offset.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _offset.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

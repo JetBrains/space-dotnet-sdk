@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CFCommitIdentifierCommitHash
+     : CFCommitIdentifier, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class CFCommitIdentifierCommitHash
-         : CFCommitIdentifier, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "CFCommitIdentifier.CommitHash";
+    
+    public CFCommitIdentifierCommitHash() { }
+    
+    public CFCommitIdentifierCommitHash(string commitHash)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "CFCommitIdentifier.CommitHash";
-        
-        public CFCommitIdentifierCommitHash() { }
-        
-        public CFCommitIdentifierCommitHash(string commitHash)
-        {
-            CommitHash = commitHash;
-        }
-        
-        private PropertyValue<string> _commitHash = new PropertyValue<string>(nameof(CFCommitIdentifierCommitHash), nameof(CommitHash));
-        
-        [Required]
-        [JsonPropertyName("commitHash")]
-        public string CommitHash
-        {
-            get => _commitHash.GetValue();
-            set => _commitHash.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _commitHash.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        CommitHash = commitHash;
     }
     
+    private PropertyValue<string> _commitHash = new PropertyValue<string>(nameof(CFCommitIdentifierCommitHash), nameof(CommitHash));
+    
+    [Required]
+    [JsonPropertyName("commitHash")]
+    public string CommitHash
+    {
+        get => _commitHash.GetValue();
+        set => _commitHash.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _commitHash.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

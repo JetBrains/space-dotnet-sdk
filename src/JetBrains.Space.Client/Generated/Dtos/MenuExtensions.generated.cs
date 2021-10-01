@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MenuExtensions
+     : IPropagatePropertyAccessPath
 {
-    public sealed class MenuExtensions
-         : IPropagatePropertyAccessPath
+    public MenuExtensions() { }
+    
+    public MenuExtensions(List<MenuExtensionDetail> extensions)
     {
-        public MenuExtensions() { }
-        
-        public MenuExtensions(List<MenuExtensionDetail> extensions)
-        {
-            Extensions = extensions;
-        }
-        
-        private PropertyValue<List<MenuExtensionDetail>> _extensions = new PropertyValue<List<MenuExtensionDetail>>(nameof(MenuExtensions), nameof(Extensions), new List<MenuExtensionDetail>());
-        
-        [Required]
-        [JsonPropertyName("extensions")]
-        public List<MenuExtensionDetail> Extensions
-        {
-            get => _extensions.GetValue();
-            set => _extensions.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _extensions.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Extensions = extensions;
     }
     
+    private PropertyValue<List<MenuExtensionDetail>> _extensions = new PropertyValue<List<MenuExtensionDetail>>(nameof(MenuExtensions), nameof(Extensions), new List<MenuExtensionDetail>());
+    
+    [Required]
+    [JsonPropertyName("extensions")]
+    public List<MenuExtensionDetail> Extensions
+    {
+        get => _extensions.GetValue();
+        set => _extensions.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _extensions.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

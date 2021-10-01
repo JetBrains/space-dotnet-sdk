@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HATypeEnum
+     : HAType, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class HATypeEnum
-         : HAType, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "HA_Type.Enum";
+    
+    public HATypeEnum() { }
+    
+    public HATypeEnum(HAEnum @enum, bool nullable, List<string> tags)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "HA_Type.Enum";
-        
-        public HATypeEnum() { }
-        
-        public HATypeEnum(HAEnum @enum, bool nullable, List<string> tags)
-        {
-            Enum = @enum;
-            IsNullable = nullable;
-            Tags = tags;
-        }
-        
-        private PropertyValue<HAEnum> _enum = new PropertyValue<HAEnum>(nameof(HATypeEnum), nameof(Enum));
-        
-        [Required]
-        [JsonPropertyName("enum")]
-        public HAEnum Enum
-        {
-            get => _enum.GetValue();
-            set => _enum.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeEnum), nameof(IsNullable));
-        
-        [Required]
-        [JsonPropertyName("nullable")]
-        public bool IsNullable
-        {
-            get => _nullable.GetValue();
-            set => _nullable.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypeEnum), nameof(Tags), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("tags")]
-        public List<string> Tags
-        {
-            get => _tags.GetValue();
-            set => _tags.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _enum.SetAccessPath(path, validateHasBeenSet);
-            _nullable.SetAccessPath(path, validateHasBeenSet);
-            _tags.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Enum = @enum;
+        IsNullable = nullable;
+        Tags = tags;
     }
     
+    private PropertyValue<HAEnum> _enum = new PropertyValue<HAEnum>(nameof(HATypeEnum), nameof(Enum));
+    
+    [Required]
+    [JsonPropertyName("enum")]
+    public HAEnum Enum
+    {
+        get => _enum.GetValue();
+        set => _enum.SetValue(value);
+    }
+
+    private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeEnum), nameof(IsNullable));
+    
+    [Required]
+    [JsonPropertyName("nullable")]
+    public bool IsNullable
+    {
+        get => _nullable.GetValue();
+        set => _nullable.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypeEnum), nameof(Tags), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("tags")]
+    public List<string> Tags
+    {
+        get => _tags.GetValue();
+        set => _tags.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _enum.SetAccessPath(path, validateHasBeenSet);
+        _nullable.SetAccessPath(path, validateHasBeenSet);
+        _tags.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

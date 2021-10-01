@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsForReviewIdStatePatchRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsForReviewIdStatePatchRequestPartialBuilder;
+
+public static class ProjectsForProjectCodeReviewsForReviewIdStatePatchRequestPartialExtensions
 {
-    public static class ProjectsForProjectCodeReviewsForReviewIdStatePatchRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest> WithState(this Partial<ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest> it)
-            => it.AddFieldName("state");
-        
-        public static Partial<ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest> WithState(this Partial<ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
-            => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest> WithState(this Partial<ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest> it)
+        => it.AddFieldName("state");
+    
+    public static Partial<ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest> WithState(this Partial<ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
+        => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>(it)));
     
 }
+

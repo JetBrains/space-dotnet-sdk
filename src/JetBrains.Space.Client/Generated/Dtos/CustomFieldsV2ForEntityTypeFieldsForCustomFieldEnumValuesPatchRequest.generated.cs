@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest
-         : IPropagatePropertyAccessPath
+    public CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest() { }
+    
+    public CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest(CFEnumValueIdentifier enumValueToUpdate, string newName)
     {
-        public CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest() { }
-        
-        public CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest(CFEnumValueIdentifier enumValueToUpdate, string newName)
-        {
-            EnumValueToUpdate = enumValueToUpdate;
-            NewName = newName;
-        }
-        
-        private PropertyValue<CFEnumValueIdentifier> _enumValueToUpdate = new PropertyValue<CFEnumValueIdentifier>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest), nameof(EnumValueToUpdate));
-        
-        [Required]
-        [JsonPropertyName("enumValueToUpdate")]
-        public CFEnumValueIdentifier EnumValueToUpdate
-        {
-            get => _enumValueToUpdate.GetValue();
-            set => _enumValueToUpdate.SetValue(value);
-        }
-    
-        private PropertyValue<string> _newName = new PropertyValue<string>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest), nameof(NewName));
-        
-        [Required]
-        [JsonPropertyName("newName")]
-        public string NewName
-        {
-            get => _newName.GetValue();
-            set => _newName.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _enumValueToUpdate.SetAccessPath(path, validateHasBeenSet);
-            _newName.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        EnumValueToUpdate = enumValueToUpdate;
+        NewName = newName;
     }
     
+    private PropertyValue<CFEnumValueIdentifier> _enumValueToUpdate = new PropertyValue<CFEnumValueIdentifier>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest), nameof(EnumValueToUpdate));
+    
+    [Required]
+    [JsonPropertyName("enumValueToUpdate")]
+    public CFEnumValueIdentifier EnumValueToUpdate
+    {
+        get => _enumValueToUpdate.GetValue();
+        set => _enumValueToUpdate.SetValue(value);
+    }
+
+    private PropertyValue<string> _newName = new PropertyValue<string>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest), nameof(NewName));
+    
+    [Required]
+    [JsonPropertyName("newName")]
+    public string NewName
+    {
+        get => _newName.GetValue();
+        set => _newName.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _enumValueToUpdate.SetAccessPath(path, validateHasBeenSet);
+        _newName.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,37 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitCommitWithGraphPartialBuilder
+namespace JetBrains.Space.Client.GitCommitWithGraphPartialBuilder;
+
+public static class GitCommitWithGraphPartialExtensions
 {
-    public static class GitCommitWithGraphPartialExtensions
-    {
-        public static Partial<GitCommitWithGraph> WithRepositoryName(this Partial<GitCommitWithGraph> it)
-            => it.AddFieldName("repositoryName");
-        
-        public static Partial<GitCommitWithGraph> WithCommit(this Partial<GitCommitWithGraph> it)
-            => it.AddFieldName("commit");
-        
-        public static Partial<GitCommitWithGraph> WithCommit(this Partial<GitCommitWithGraph> it, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>> partialBuilder)
-            => it.AddFieldName("commit", partialBuilder(new Partial<GitCommitInfo>(it)));
-        
-        public static Partial<GitCommitWithGraph> WithReviews(this Partial<GitCommitWithGraph> it)
-            => it.AddFieldName("reviews");
-        
-        public static Partial<GitCommitWithGraph> WithReviews(this Partial<GitCommitWithGraph> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
-            => it.AddFieldName("reviews", partialBuilder(new Partial<CodeReviewRecord>(it)));
-        
-        public static Partial<GitCommitWithGraph> WithIssueIds(this Partial<GitCommitWithGraph> it)
-            => it.AddFieldName("issueIds");
-        
-        public static Partial<GitCommitWithGraph> WithLayout(this Partial<GitCommitWithGraph> it)
-            => it.AddFieldName("layout");
-        
-        public static Partial<GitCommitWithGraph> WithLayout(this Partial<GitCommitWithGraph> it, Func<Partial<GitGraphLayoutLine>, Partial<GitGraphLayoutLine>> partialBuilder)
-            => it.AddFieldName("layout", partialBuilder(new Partial<GitGraphLayoutLine>(it)));
-        
-        public static Partial<GitCommitWithGraph> WithIsUnreachable(this Partial<GitCommitWithGraph> it)
-            => it.AddFieldName("unreachable");
-        
-    }
+    public static Partial<GitCommitWithGraph> WithRepositoryName(this Partial<GitCommitWithGraph> it)
+        => it.AddFieldName("repositoryName");
+    
+    public static Partial<GitCommitWithGraph> WithCommit(this Partial<GitCommitWithGraph> it)
+        => it.AddFieldName("commit");
+    
+    public static Partial<GitCommitWithGraph> WithCommit(this Partial<GitCommitWithGraph> it, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>> partialBuilder)
+        => it.AddFieldName("commit", partialBuilder(new Partial<GitCommitInfo>(it)));
+    
+    public static Partial<GitCommitWithGraph> WithReviews(this Partial<GitCommitWithGraph> it)
+        => it.AddFieldName("reviews");
+    
+    public static Partial<GitCommitWithGraph> WithReviews(this Partial<GitCommitWithGraph> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
+        => it.AddFieldName("reviews", partialBuilder(new Partial<CodeReviewRecord>(it)));
+    
+    public static Partial<GitCommitWithGraph> WithIssueIds(this Partial<GitCommitWithGraph> it)
+        => it.AddFieldName("issueIds");
+    
+    public static Partial<GitCommitWithGraph> WithLayout(this Partial<GitCommitWithGraph> it)
+        => it.AddFieldName("layout");
+    
+    public static Partial<GitCommitWithGraph> WithLayout(this Partial<GitCommitWithGraph> it, Func<Partial<GitGraphLayoutLine>, Partial<GitGraphLayoutLine>> partialBuilder)
+        => it.AddFieldName("layout", partialBuilder(new Partial<GitGraphLayoutLine>(it)));
+    
+    public static Partial<GitCommitWithGraph> WithIsUnreachable(this Partial<GitCommitWithGraph> it)
+        => it.AddFieldName("unreachable");
     
 }
+

@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HAUrlParameterOptionPartialBuilder
+namespace JetBrains.Space.Client.HAUrlParameterOptionPartialBuilder;
+
+public static class HAUrlParameterOptionPartialExtensions
 {
-    public static class HAUrlParameterOptionPartialExtensions
-    {
-    }
-    
 }
+

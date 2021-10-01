@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class LocationCFInputValue
+     : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class LocationCFInputValue
-         : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "LocationCFInputValue";
+    
+    public LocationCFInputValue() { }
+    
+    public LocationCFInputValue(string? location = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "LocationCFInputValue";
-        
-        public LocationCFInputValue() { }
-        
-        public LocationCFInputValue(string? location = null)
-        {
-            Location = location;
-        }
-        
-        private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(LocationCFInputValue), nameof(Location));
-        
-        [JsonPropertyName("location")]
-        public string? Location
-        {
-            get => _location.GetValue();
-            set => _location.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _location.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Location = location;
     }
     
+    private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(LocationCFInputValue), nameof(Location));
+    
+    [JsonPropertyName("location")]
+    public string? Location
+    {
+        get => _location.GetValue();
+        set => _location.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _location.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

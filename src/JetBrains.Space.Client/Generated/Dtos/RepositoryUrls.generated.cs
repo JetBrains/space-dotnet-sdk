@@ -27,54 +27,53 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RepositoryUrls
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RepositoryUrls
-         : IPropagatePropertyAccessPath
+    public RepositoryUrls() { }
+    
+    public RepositoryUrls(string? httpUrl = null, string? sshUrl = null, string? sshHost = null)
     {
-        public RepositoryUrls() { }
-        
-        public RepositoryUrls(string? httpUrl = null, string? sshUrl = null, string? sshHost = null)
-        {
-            HttpUrl = httpUrl;
-            SshUrl = sshUrl;
-            SshHost = sshHost;
-        }
-        
-        private PropertyValue<string?> _httpUrl = new PropertyValue<string?>(nameof(RepositoryUrls), nameof(HttpUrl));
-        
-        [JsonPropertyName("httpUrl")]
-        public string? HttpUrl
-        {
-            get => _httpUrl.GetValue();
-            set => _httpUrl.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _sshUrl = new PropertyValue<string?>(nameof(RepositoryUrls), nameof(SshUrl));
-        
-        [JsonPropertyName("sshUrl")]
-        public string? SshUrl
-        {
-            get => _sshUrl.GetValue();
-            set => _sshUrl.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _sshHost = new PropertyValue<string?>(nameof(RepositoryUrls), nameof(SshHost));
-        
-        [JsonPropertyName("sshHost")]
-        public string? SshHost
-        {
-            get => _sshHost.GetValue();
-            set => _sshHost.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _httpUrl.SetAccessPath(path, validateHasBeenSet);
-            _sshUrl.SetAccessPath(path, validateHasBeenSet);
-            _sshHost.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        HttpUrl = httpUrl;
+        SshUrl = sshUrl;
+        SshHost = sshHost;
     }
     
+    private PropertyValue<string?> _httpUrl = new PropertyValue<string?>(nameof(RepositoryUrls), nameof(HttpUrl));
+    
+    [JsonPropertyName("httpUrl")]
+    public string? HttpUrl
+    {
+        get => _httpUrl.GetValue();
+        set => _httpUrl.SetValue(value);
+    }
+
+    private PropertyValue<string?> _sshUrl = new PropertyValue<string?>(nameof(RepositoryUrls), nameof(SshUrl));
+    
+    [JsonPropertyName("sshUrl")]
+    public string? SshUrl
+    {
+        get => _sshUrl.GetValue();
+        set => _sshUrl.SetValue(value);
+    }
+
+    private PropertyValue<string?> _sshHost = new PropertyValue<string?>(nameof(RepositoryUrls), nameof(SshHost));
+    
+    [JsonPropertyName("sshHost")]
+    public string? SshHost
+    {
+        get => _sshHost.GetValue();
+        set => _sshHost.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _httpUrl.SetAccessPath(path, validateHasBeenSet);
+        _sshUrl.SetAccessPath(path, validateHasBeenSet);
+        _sshHost.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

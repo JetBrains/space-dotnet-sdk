@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RecurrenceRulePartialBuilder
+namespace JetBrains.Space.Client.RecurrenceRulePartialBuilder;
+
+public static class RecurrenceRulePartialExtensions
 {
-    public static class RecurrenceRulePartialExtensions
-    {
-        public static Partial<RecurrenceRule> WithFreq(this Partial<RecurrenceRule> it)
-            => it.AddFieldName("freq");
-        
-        public static Partial<RecurrenceRule> WithFreq(this Partial<RecurrenceRule> it, Func<Partial<RecurrenceRuleFreq>, Partial<RecurrenceRuleFreq>> partialBuilder)
-            => it.AddFieldName("freq", partialBuilder(new Partial<RecurrenceRuleFreq>(it)));
-        
-        public static Partial<RecurrenceRule> WithEnds(this Partial<RecurrenceRule> it)
-            => it.AddFieldName("ends");
-        
-        public static Partial<RecurrenceRule> WithEnds(this Partial<RecurrenceRule> it, Func<Partial<RecurrenceRuleEnds>, Partial<RecurrenceRuleEnds>> partialBuilder)
-            => it.AddFieldName("ends", partialBuilder(new Partial<RecurrenceRuleEnds>(it)));
-        
-    }
+    public static Partial<RecurrenceRule> WithFreq(this Partial<RecurrenceRule> it)
+        => it.AddFieldName("freq");
+    
+    public static Partial<RecurrenceRule> WithFreq(this Partial<RecurrenceRule> it, Func<Partial<RecurrenceRuleFreq>, Partial<RecurrenceRuleFreq>> partialBuilder)
+        => it.AddFieldName("freq", partialBuilder(new Partial<RecurrenceRuleFreq>(it)));
+    
+    public static Partial<RecurrenceRule> WithEnds(this Partial<RecurrenceRule> it)
+        => it.AddFieldName("ends");
+    
+    public static Partial<RecurrenceRule> WithEnds(this Partial<RecurrenceRule> it, Func<Partial<RecurrenceRuleEnds>, Partial<RecurrenceRuleEnds>> partialBuilder)
+        => it.AddFieldName("ends", partialBuilder(new Partial<RecurrenceRuleEnds>(it)));
     
 }
+

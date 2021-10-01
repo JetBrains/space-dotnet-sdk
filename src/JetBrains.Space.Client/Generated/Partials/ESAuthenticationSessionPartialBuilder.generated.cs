@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESAuthenticationSessionPartialBuilder
+namespace JetBrains.Space.Client.ESAuthenticationSessionPartialBuilder;
+
+public static class ESAuthenticationSessionPartialExtensions
 {
-    public static class ESAuthenticationSessionPartialExtensions
-    {
-        public static Partial<ESAuthenticationSession> WithId(this Partial<ESAuthenticationSession> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ESAuthenticationSession> WithProfile(this Partial<ESAuthenticationSession> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<ESAuthenticationSession> WithProfile(this Partial<ESAuthenticationSession> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<ESAuthenticationSession> WithCreated(this Partial<ESAuthenticationSession> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<ESAuthenticationSession> WithExpires(this Partial<ESAuthenticationSession> it)
-            => it.AddFieldName("expires");
-        
-        public static Partial<ESAuthenticationSession> WithLastAccess(this Partial<ESAuthenticationSession> it)
-            => it.AddFieldName("lastAccess");
-        
-        public static Partial<ESAuthenticationSession> WithLastAccess(this Partial<ESAuthenticationSession> it, Func<Partial<AccessRecord>, Partial<AccessRecord>> partialBuilder)
-            => it.AddFieldName("lastAccess", partialBuilder(new Partial<AccessRecord>(it)));
-        
-        public static Partial<ESAuthenticationSession> WithIsCurrent(this Partial<ESAuthenticationSession> it)
-            => it.AddFieldName("current");
-        
-    }
+    public static Partial<ESAuthenticationSession> WithId(this Partial<ESAuthenticationSession> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ESAuthenticationSession> WithProfile(this Partial<ESAuthenticationSession> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<ESAuthenticationSession> WithProfile(this Partial<ESAuthenticationSession> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<ESAuthenticationSession> WithCreated(this Partial<ESAuthenticationSession> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<ESAuthenticationSession> WithExpires(this Partial<ESAuthenticationSession> it)
+        => it.AddFieldName("expires");
+    
+    public static Partial<ESAuthenticationSession> WithLastAccess(this Partial<ESAuthenticationSession> it)
+        => it.AddFieldName("lastAccess");
+    
+    public static Partial<ESAuthenticationSession> WithLastAccess(this Partial<ESAuthenticationSession> it, Func<Partial<AccessRecord>, Partial<AccessRecord>> partialBuilder)
+        => it.AddFieldName("lastAccess", partialBuilder(new Partial<AccessRecord>(it)));
+    
+    public static Partial<ESAuthenticationSession> WithIsCurrent(this Partial<ESAuthenticationSession> it)
+        => it.AddFieldName("current");
     
 }
+

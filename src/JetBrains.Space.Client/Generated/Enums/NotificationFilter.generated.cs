@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum NotificationFilter
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum NotificationFilter
-    {
-        [EnumMember(Value = "ALL_MESSAGES")]
-        ALLMESSAGES,
-        
-        [EnumMember(Value = "MENTIONS")]
-        MENTIONS,
-        
-        [EnumMember(Value = "NOTHING")]
-        NOTHING,
-        
-        [EnumMember(Value = "MUTE")]
-        MUTE,
-        
-    }
+    [EnumMember(Value = "ALL_MESSAGES")]
+    ALLMESSAGES,
+    
+    [EnumMember(Value = "MENTIONS")]
+    MENTIONS,
+    
+    [EnumMember(Value = "NOTHING")]
+    NOTHING,
+    
+    [EnumMember(Value = "MUTE")]
+    MUTE,
     
 }
+

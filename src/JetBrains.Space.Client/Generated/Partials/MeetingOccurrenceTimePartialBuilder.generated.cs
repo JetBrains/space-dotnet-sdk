@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingOccurrenceTimePartialBuilder
+namespace JetBrains.Space.Client.MeetingOccurrenceTimePartialBuilder;
+
+public static class MeetingOccurrenceTimePartialExtensions
 {
-    public static class MeetingOccurrenceTimePartialExtensions
-    {
-        public static Partial<MeetingOccurrenceTime> WithStart(this Partial<MeetingOccurrenceTime> it)
-            => it.AddFieldName("start");
-        
-        public static Partial<MeetingOccurrenceTime> WithEnd(this Partial<MeetingOccurrenceTime> it)
-            => it.AddFieldName("end");
-        
-    }
+    public static Partial<MeetingOccurrenceTime> WithStart(this Partial<MeetingOccurrenceTime> it)
+        => it.AddFieldName("start");
+    
+    public static Partial<MeetingOccurrenceTime> WithEnd(this Partial<MeetingOccurrenceTime> it)
+        => it.AddFieldName("end");
     
 }
+

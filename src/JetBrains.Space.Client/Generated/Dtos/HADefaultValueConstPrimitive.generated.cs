@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HADefaultValueConstPrimitive
+     : HADefaultValueConst, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class HADefaultValueConstPrimitive
-         : HADefaultValueConst, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "HA_DefaultValue.Const.Primitive";
+    
+    public HADefaultValueConstPrimitive() { }
+    
+    public HADefaultValueConstPrimitive(string expression)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "HA_DefaultValue.Const.Primitive";
-        
-        public HADefaultValueConstPrimitive() { }
-        
-        public HADefaultValueConstPrimitive(string expression)
-        {
-            Expression = expression;
-        }
-        
-        private PropertyValue<string> _expression = new PropertyValue<string>(nameof(HADefaultValueConstPrimitive), nameof(Expression));
-        
-        [Required]
-        [JsonPropertyName("expression")]
-        public string Expression
-        {
-            get => _expression.GetValue();
-            set => _expression.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _expression.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Expression = expression;
     }
     
+    private PropertyValue<string> _expression = new PropertyValue<string>(nameof(HADefaultValueConstPrimitive), nameof(Expression));
+    
+    [Required]
+    [JsonPropertyName("expression")]
+    public string Expression
+    {
+        get => _expression.GetValue();
+        set => _expression.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _expression.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

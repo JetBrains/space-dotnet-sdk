@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MembersAddedItemDetailsPartialBuilder
+namespace JetBrains.Space.Client.MembersAddedItemDetailsPartialBuilder;
+
+public static class MembersAddedItemDetailsPartialExtensions
 {
-    public static class MembersAddedItemDetailsPartialExtensions
-    {
-        public static Partial<MembersAddedItemDetails> WithPrincipals(this Partial<MembersAddedItemDetails> it)
-            => it.AddFieldName("principals");
-        
-        public static Partial<MembersAddedItemDetails> WithPrincipals(this Partial<MembersAddedItemDetails> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("principals", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<MembersAddedItemDetails> WithOthersDisplayNames(this Partial<MembersAddedItemDetails> it)
-            => it.AddFieldName("othersDisplayNames");
-        
-    }
+    public static Partial<MembersAddedItemDetails> WithPrincipals(this Partial<MembersAddedItemDetails> it)
+        => it.AddFieldName("principals");
+    
+    public static Partial<MembersAddedItemDetails> WithPrincipals(this Partial<MembersAddedItemDetails> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("principals", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<MembersAddedItemDetails> WithOthersDisplayNames(this Partial<MembersAddedItemDetails> it)
+        => it.AddFieldName("othersDisplayNames");
     
 }
+

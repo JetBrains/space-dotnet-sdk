@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequestPartialBuilder;
+
+public static class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequestPartialExtensions
 {
-    public static class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequestPartialExtensions
-    {
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest> WithEnumValueToUpdate(this Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest> it)
-            => it.AddFieldName("enumValueToUpdate");
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest> WithEnumValueToUpdate(this Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest> it, Func<Partial<CFEnumValueIdentifier>, Partial<CFEnumValueIdentifier>> partialBuilder)
-            => it.AddFieldName("enumValueToUpdate", partialBuilder(new Partial<CFEnumValueIdentifier>(it)));
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest> WithNewName(this Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest> it)
-            => it.AddFieldName("newName");
-        
-    }
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest> WithEnumValueToUpdate(this Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest> it)
+        => it.AddFieldName("enumValueToUpdate");
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest> WithEnumValueToUpdate(this Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest> it, Func<Partial<CFEnumValueIdentifier>, Partial<CFEnumValueIdentifier>> partialBuilder)
+        => it.AddFieldName("enumValueToUpdate", partialBuilder(new Partial<CFEnumValueIdentifier>(it)));
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest> WithNewName(this Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest> it)
+        => it.AddFieldName("newName");
     
 }
+

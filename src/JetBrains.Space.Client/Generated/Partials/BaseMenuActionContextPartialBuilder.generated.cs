@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BaseMenuActionContextPartialBuilder
+namespace JetBrains.Space.Client.BaseMenuActionContextPartialBuilder;
+
+public static class BaseMenuActionContextPartialExtensions
 {
-    public static class BaseMenuActionContextPartialExtensions
-    {
-        public static Partial<BaseMenuActionContext> WithMenuId(this Partial<BaseMenuActionContext> it)
-            => it.AddFieldName("menuId");
-        
-    }
+    public static Partial<BaseMenuActionContext> WithMenuId(this Partial<BaseMenuActionContext> it)
+        => it.AddFieldName("menuId");
     
 }
+

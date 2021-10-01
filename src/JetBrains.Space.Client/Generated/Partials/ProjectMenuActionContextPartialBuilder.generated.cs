@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectMenuActionContextPartialBuilder
+namespace JetBrains.Space.Client.ProjectMenuActionContextPartialBuilder;
+
+public static class ProjectMenuActionContextPartialExtensions
 {
-    public static class ProjectMenuActionContextPartialExtensions
-    {
-        public static Partial<ProjectMenuActionContext> WithMenuId(this Partial<ProjectMenuActionContext> it)
-            => it.AddFieldName("menuId");
-        
-        public static Partial<ProjectMenuActionContext> WithProject(this Partial<ProjectMenuActionContext> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<ProjectMenuActionContext> WithProject(this Partial<ProjectMenuActionContext> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
-    }
+    public static Partial<ProjectMenuActionContext> WithMenuId(this Partial<ProjectMenuActionContext> it)
+        => it.AddFieldName("menuId");
+    
+    public static Partial<ProjectMenuActionContext> WithProject(this Partial<ProjectMenuActionContext> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<ProjectMenuActionContext> WithProject(this Partial<ProjectMenuActionContext> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
     
 }
+

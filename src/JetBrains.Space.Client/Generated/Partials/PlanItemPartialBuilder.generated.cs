@@ -27,61 +27,60 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PlanItemPartialBuilder
+namespace JetBrains.Space.Client.PlanItemPartialBuilder;
+
+public static class PlanItemPartialExtensions
 {
-    public static class PlanItemPartialExtensions
-    {
-        public static Partial<PlanItem> WithId(this Partial<PlanItem> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<PlanItem> WithChecklistId(this Partial<PlanItem> it)
-            => it.AddFieldName("checklistId");
-        
-        public static Partial<PlanItem> WithTag(this Partial<PlanItem> it)
-            => it.AddFieldName("tag");
-        
-        public static Partial<PlanItem> WithTag(this Partial<PlanItem> it, Func<Partial<PlanningTag>, Partial<PlanningTag>> partialBuilder)
-            => it.AddFieldName("tag", partialBuilder(new Partial<PlanningTag>(it)));
-        
-        public static Partial<PlanItem> WithSimpleText(this Partial<PlanItem> it)
-            => it.AddFieldName("simpleText");
-        
-        public static Partial<PlanItem> WithIsSimpleDone(this Partial<PlanItem> it)
-            => it.AddFieldName("simpleDone");
-        
-        public static Partial<PlanItem> WithIssue(this Partial<PlanItem> it)
-            => it.AddFieldName("issue");
-        
-        public static Partial<PlanItem> WithIssue(this Partial<PlanItem> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
-            => it.AddFieldName("issue", partialBuilder(new Partial<Issue>(it)));
-        
-        public static Partial<PlanItem> WithIssueProblem(this Partial<PlanItem> it)
-            => it.AddFieldName("issueProblem");
-        
-        public static Partial<PlanItem> WithCanEditIssue(this Partial<PlanItem> it)
-            => it.AddFieldName("canEditIssue");
-        
-        public static Partial<PlanItem> WithIsHasChildren(this Partial<PlanItem> it)
-            => it.AddFieldName("hasChildren");
-        
-        public static Partial<PlanItem> WithIsArchived(this Partial<PlanItem> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<PlanItem> WithChildren(this Partial<PlanItem> it)
-            => it.AddFieldName("children");
-        
-        public static Partial<PlanItem> WithChildrenRecursive(this Partial<PlanItem> it)
-            => it.AddFieldName("children!");
-        
-        public static Partial<PlanItem> WithChildren(this Partial<PlanItem> it, Func<Partial<PlanItem>, Partial<PlanItem>> partialBuilder)
-            => it.AddFieldName("children", partialBuilder(new Partial<PlanItem>(it)));
-        
-        public static Partial<PlanItem> WithTopics(this Partial<PlanItem> it)
-            => it.AddFieldName("topics");
-        
-        public static Partial<PlanItem> WithTopics(this Partial<PlanItem> it, Func<Partial<Topic>, Partial<Topic>> partialBuilder)
-            => it.AddFieldName("topics", partialBuilder(new Partial<Topic>(it)));
-        
-    }
+    public static Partial<PlanItem> WithId(this Partial<PlanItem> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<PlanItem> WithChecklistId(this Partial<PlanItem> it)
+        => it.AddFieldName("checklistId");
+    
+    public static Partial<PlanItem> WithTag(this Partial<PlanItem> it)
+        => it.AddFieldName("tag");
+    
+    public static Partial<PlanItem> WithTag(this Partial<PlanItem> it, Func<Partial<PlanningTag>, Partial<PlanningTag>> partialBuilder)
+        => it.AddFieldName("tag", partialBuilder(new Partial<PlanningTag>(it)));
+    
+    public static Partial<PlanItem> WithSimpleText(this Partial<PlanItem> it)
+        => it.AddFieldName("simpleText");
+    
+    public static Partial<PlanItem> WithIsSimpleDone(this Partial<PlanItem> it)
+        => it.AddFieldName("simpleDone");
+    
+    public static Partial<PlanItem> WithIssue(this Partial<PlanItem> it)
+        => it.AddFieldName("issue");
+    
+    public static Partial<PlanItem> WithIssue(this Partial<PlanItem> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
+        => it.AddFieldName("issue", partialBuilder(new Partial<Issue>(it)));
+    
+    public static Partial<PlanItem> WithIssueProblem(this Partial<PlanItem> it)
+        => it.AddFieldName("issueProblem");
+    
+    public static Partial<PlanItem> WithCanEditIssue(this Partial<PlanItem> it)
+        => it.AddFieldName("canEditIssue");
+    
+    public static Partial<PlanItem> WithIsHasChildren(this Partial<PlanItem> it)
+        => it.AddFieldName("hasChildren");
+    
+    public static Partial<PlanItem> WithIsArchived(this Partial<PlanItem> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<PlanItem> WithChildren(this Partial<PlanItem> it)
+        => it.AddFieldName("children");
+    
+    public static Partial<PlanItem> WithChildrenRecursive(this Partial<PlanItem> it)
+        => it.AddFieldName("children!");
+    
+    public static Partial<PlanItem> WithChildren(this Partial<PlanItem> it, Func<Partial<PlanItem>, Partial<PlanItem>> partialBuilder)
+        => it.AddFieldName("children", partialBuilder(new Partial<PlanItem>(it)));
+    
+    public static Partial<PlanItem> WithTopics(this Partial<PlanItem> it)
+        => it.AddFieldName("topics");
+    
+    public static Partial<PlanItem> WithTopics(this Partial<PlanItem> it, Func<Partial<Topic>, Partial<Topic>> partialBuilder)
+        => it.AddFieldName("topics", partialBuilder(new Partial<Topic>(it)));
     
 }
+

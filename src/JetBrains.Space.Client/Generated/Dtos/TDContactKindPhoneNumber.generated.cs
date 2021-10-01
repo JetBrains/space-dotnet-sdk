@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TDContactKindPhoneNumber
+     : TDContactKind, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class TDContactKindPhoneNumber
-         : TDContactKind, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "TD_ContactKind.PhoneNumber";
+    
+    public TDContactKindPhoneNumber() { }
+    
+    public TDContactKindPhoneNumber(string type)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "TD_ContactKind.PhoneNumber";
-        
-        public TDContactKindPhoneNumber() { }
-        
-        public TDContactKindPhoneNumber(string type)
-        {
-            Type = type;
-        }
-        
-        private PropertyValue<string> _type = new PropertyValue<string>(nameof(TDContactKindPhoneNumber), nameof(Type));
-        
-        [Required]
-        [JsonPropertyName("type")]
-        public string Type
-        {
-            get => _type.GetValue();
-            set => _type.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _type.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Type = type;
     }
     
+    private PropertyValue<string> _type = new PropertyValue<string>(nameof(TDContactKindPhoneNumber), nameof(Type));
+    
+    [Required]
+    [JsonPropertyName("type")]
+    public string Type
+    {
+        get => _type.GetValue();
+        set => _type.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _type.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

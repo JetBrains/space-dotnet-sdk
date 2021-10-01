@@ -27,52 +27,51 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class ApplicationIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class ApplicationIdentifier : IUrlParameter
+    public static ApplicationIdentifier ClientId(string clientId)
+        => new ApplicationIdentifierClientId(clientId);
+    
+    public static ApplicationIdentifier Id(string id)
+        => new ApplicationIdentifierId(id);
+    
+    public static ApplicationIdentifier Me
+        => new ApplicationIdentifierMe();
+    
+    private class ApplicationIdentifierClientId : ApplicationIdentifier
     {
-        public static ApplicationIdentifier ClientId(string clientId)
-            => new ApplicationIdentifierClientId(clientId);
+        private readonly string _clientId;
         
-        public static ApplicationIdentifier Id(string id)
-            => new ApplicationIdentifierId(id);
-        
-        public static ApplicationIdentifier Me
-            => new ApplicationIdentifierMe();
-        
-        private class ApplicationIdentifierClientId : ApplicationIdentifier
+        public ApplicationIdentifierClientId(string clientId)
         {
-            private readonly string _clientId;
-            
-            public ApplicationIdentifierClientId(string clientId)
-            {
-                _clientId = clientId;
-            }
-            
-            public override string ToString()
-                => $"clientId:{_clientId}";
+            _clientId = clientId;
         }
         
-        private class ApplicationIdentifierId : ApplicationIdentifier
+        public override string ToString()
+            => $"clientId:{_clientId}";
+    }
+    
+    private class ApplicationIdentifierId : ApplicationIdentifier
+    {
+        private readonly string _id;
+        
+        public ApplicationIdentifierId(string id)
         {
-            private readonly string _id;
-            
-            public ApplicationIdentifierId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
-        private class ApplicationIdentifierMe : ApplicationIdentifier
-        {
-            public override string ToString()
-                => "me";
-        }
-        
+        public override string ToString()
+            => $"id:{_id}";
+    }
+    
+    private class ApplicationIdentifierMe : ApplicationIdentifier
+    {
+        public override string ToString()
+            => "me";
     }
     
 }
+

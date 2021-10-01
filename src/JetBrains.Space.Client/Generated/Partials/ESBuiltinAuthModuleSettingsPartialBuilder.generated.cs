@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESBuiltinAuthModuleSettingsPartialBuilder
+namespace JetBrains.Space.Client.ESBuiltinAuthModuleSettingsPartialBuilder;
+
+public static class ESBuiltinAuthModuleSettingsPartialExtensions
 {
-    public static class ESBuiltinAuthModuleSettingsPartialExtensions
-    {
-        public static Partial<ESBuiltinAuthModuleSettings> WithPasswordStrengthPolicy(this Partial<ESBuiltinAuthModuleSettings> it)
-            => it.AddFieldName("passwordStrengthPolicy");
-        
-        public static Partial<ESBuiltinAuthModuleSettings> WithPasswordStrengthPolicy(this Partial<ESBuiltinAuthModuleSettings> it, Func<Partial<PasswordStrength>, Partial<PasswordStrength>> partialBuilder)
-            => it.AddFieldName("passwordStrengthPolicy", partialBuilder(new Partial<PasswordStrength>(it)));
-        
-        public static Partial<ESBuiltinAuthModuleSettings> WithDomains(this Partial<ESBuiltinAuthModuleSettings> it)
-            => it.AddFieldName("domains");
-        
-    }
+    public static Partial<ESBuiltinAuthModuleSettings> WithPasswordStrengthPolicy(this Partial<ESBuiltinAuthModuleSettings> it)
+        => it.AddFieldName("passwordStrengthPolicy");
+    
+    public static Partial<ESBuiltinAuthModuleSettings> WithPasswordStrengthPolicy(this Partial<ESBuiltinAuthModuleSettings> it, Func<Partial<PasswordStrength>, Partial<PasswordStrength>> partialBuilder)
+        => it.AddFieldName("passwordStrengthPolicy", partialBuilder(new Partial<PasswordStrength>(it)));
+    
+    public static Partial<ESBuiltinAuthModuleSettings> WithDomains(this Partial<ESBuiltinAuthModuleSettings> it)
+        => it.AddFieldName("domains");
     
 }
+

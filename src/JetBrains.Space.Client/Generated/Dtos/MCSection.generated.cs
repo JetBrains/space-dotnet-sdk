@@ -27,58 +27,57 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MCSection
+     : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MCSection
-         : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MCSection";
+    
+    public MCSection() { }
+    
+    public MCSection(List<MCElement> elements, MCText? header = null, MCText? footer = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MCSection";
-        
-        public MCSection() { }
-        
-        public MCSection(List<MCElement> elements, MCText? header = null, MCText? footer = null)
-        {
-            Header = header;
-            Elements = elements;
-            Footer = footer;
-        }
-        
-        private PropertyValue<MCText?> _header = new PropertyValue<MCText?>(nameof(MCSection), nameof(Header));
-        
-        [JsonPropertyName("header")]
-        public MCText? Header
-        {
-            get => _header.GetValue();
-            set => _header.SetValue(value);
-        }
-    
-        private PropertyValue<List<MCElement>> _elements = new PropertyValue<List<MCElement>>(nameof(MCSection), nameof(Elements), new List<MCElement>());
-        
-        [Required]
-        [JsonPropertyName("elements")]
-        public List<MCElement> Elements
-        {
-            get => _elements.GetValue();
-            set => _elements.SetValue(value);
-        }
-    
-        private PropertyValue<MCText?> _footer = new PropertyValue<MCText?>(nameof(MCSection), nameof(Footer));
-        
-        [JsonPropertyName("footer")]
-        public MCText? Footer
-        {
-            get => _footer.GetValue();
-            set => _footer.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _header.SetAccessPath(path, validateHasBeenSet);
-            _elements.SetAccessPath(path, validateHasBeenSet);
-            _footer.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Header = header;
+        Elements = elements;
+        Footer = footer;
     }
     
+    private PropertyValue<MCText?> _header = new PropertyValue<MCText?>(nameof(MCSection), nameof(Header));
+    
+    [JsonPropertyName("header")]
+    public MCText? Header
+    {
+        get => _header.GetValue();
+        set => _header.SetValue(value);
+    }
+
+    private PropertyValue<List<MCElement>> _elements = new PropertyValue<List<MCElement>>(nameof(MCSection), nameof(Elements), new List<MCElement>());
+    
+    [Required]
+    [JsonPropertyName("elements")]
+    public List<MCElement> Elements
+    {
+        get => _elements.GetValue();
+        set => _elements.SetValue(value);
+    }
+
+    private PropertyValue<MCText?> _footer = new PropertyValue<MCText?>(nameof(MCSection), nameof(Footer));
+    
+    [JsonPropertyName("footer")]
+    public MCText? Footer
+    {
+        get => _footer.GetValue();
+        set => _footer.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _header.SetAccessPath(path, validateHasBeenSet);
+        _elements.SetAccessPath(path, validateHasBeenSet);
+        _footer.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

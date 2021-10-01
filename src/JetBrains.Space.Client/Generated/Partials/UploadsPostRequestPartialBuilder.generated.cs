@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UploadsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.UploadsPostRequestPartialBuilder;
+
+public static class UploadsPostRequestPartialExtensions
 {
-    public static class UploadsPostRequestPartialExtensions
-    {
-        public static Partial<UploadsPostRequest> WithStoragePrefix(this Partial<UploadsPostRequest> it)
-            => it.AddFieldName("storagePrefix");
-        
-        public static Partial<UploadsPostRequest> WithMediaType(this Partial<UploadsPostRequest> it)
-            => it.AddFieldName("mediaType");
-        
-    }
+    public static Partial<UploadsPostRequest> WithStoragePrefix(this Partial<UploadsPostRequest> it)
+        => it.AddFieldName("storagePrefix");
+    
+    public static Partial<UploadsPostRequest> WithMediaType(this Partial<UploadsPostRequest> it)
+        => it.AddFieldName("mediaType");
     
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SSLKeystorePartialBuilder
+namespace JetBrains.Space.Client.SSLKeystorePartialBuilder;
+
+public static class SSLKeystorePartialExtensions
 {
-    public static class SSLKeystorePartialExtensions
-    {
-        public static Partial<SSLKeystore> WithName(this Partial<SSLKeystore> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<SSLKeystore> WithCreated(this Partial<SSLKeystore> it)
-            => it.AddFieldName("created");
-        
-    }
+    public static Partial<SSLKeystore> WithName(this Partial<SSLKeystore> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<SSLKeystore> WithCreated(this Partial<SSLKeystore> it)
+        => it.AddFieldName("created");
     
 }
+

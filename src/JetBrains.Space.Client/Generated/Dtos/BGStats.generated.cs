@@ -27,68 +27,67 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BGStats
+     : IPropagatePropertyAccessPath
 {
-    public sealed class BGStats
-         : IPropagatePropertyAccessPath
+    public BGStats() { }
+    
+    public BGStats(int totalBlogs, List<Pair<TDTeam, int>> teams, List<Pair<TDLocation, int>> locations, List<Pair<PRProject, int>>? projects = null)
     {
-        public BGStats() { }
-        
-        public BGStats(int totalBlogs, List<Pair<TDTeam, int>> teams, List<Pair<TDLocation, int>> locations, List<Pair<PRProject, int>>? projects = null)
-        {
-            TotalBlogs = totalBlogs;
-            Teams = teams;
-            Projects = projects;
-            Locations = locations;
-        }
-        
-        private PropertyValue<int> _totalBlogs = new PropertyValue<int>(nameof(BGStats), nameof(TotalBlogs));
-        
-        [Required]
-        [JsonPropertyName("totalBlogs")]
-        public int TotalBlogs
-        {
-            get => _totalBlogs.GetValue();
-            set => _totalBlogs.SetValue(value);
-        }
-    
-        private PropertyValue<List<Pair<TDTeam, int>>> _teams = new PropertyValue<List<Pair<TDTeam, int>>>(nameof(BGStats), nameof(Teams), new List<Pair<TDTeam, int>>());
-        
-        [Required]
-        [JsonPropertyName("teams")]
-        public List<Pair<TDTeam, int>> Teams
-        {
-            get => _teams.GetValue();
-            set => _teams.SetValue(value);
-        }
-    
-        private PropertyValue<List<Pair<PRProject, int>>?> _projects = new PropertyValue<List<Pair<PRProject, int>>?>(nameof(BGStats), nameof(Projects));
-        
-        [JsonPropertyName("projects")]
-        public List<Pair<PRProject, int>>? Projects
-        {
-            get => _projects.GetValue();
-            set => _projects.SetValue(value);
-        }
-    
-        private PropertyValue<List<Pair<TDLocation, int>>> _locations = new PropertyValue<List<Pair<TDLocation, int>>>(nameof(BGStats), nameof(Locations), new List<Pair<TDLocation, int>>());
-        
-        [Required]
-        [JsonPropertyName("locations")]
-        public List<Pair<TDLocation, int>> Locations
-        {
-            get => _locations.GetValue();
-            set => _locations.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _totalBlogs.SetAccessPath(path, validateHasBeenSet);
-            _teams.SetAccessPath(path, validateHasBeenSet);
-            _projects.SetAccessPath(path, validateHasBeenSet);
-            _locations.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        TotalBlogs = totalBlogs;
+        Teams = teams;
+        Projects = projects;
+        Locations = locations;
     }
     
+    private PropertyValue<int> _totalBlogs = new PropertyValue<int>(nameof(BGStats), nameof(TotalBlogs));
+    
+    [Required]
+    [JsonPropertyName("totalBlogs")]
+    public int TotalBlogs
+    {
+        get => _totalBlogs.GetValue();
+        set => _totalBlogs.SetValue(value);
+    }
+
+    private PropertyValue<List<Pair<TDTeam, int>>> _teams = new PropertyValue<List<Pair<TDTeam, int>>>(nameof(BGStats), nameof(Teams), new List<Pair<TDTeam, int>>());
+    
+    [Required]
+    [JsonPropertyName("teams")]
+    public List<Pair<TDTeam, int>> Teams
+    {
+        get => _teams.GetValue();
+        set => _teams.SetValue(value);
+    }
+
+    private PropertyValue<List<Pair<PRProject, int>>?> _projects = new PropertyValue<List<Pair<PRProject, int>>?>(nameof(BGStats), nameof(Projects));
+    
+    [JsonPropertyName("projects")]
+    public List<Pair<PRProject, int>>? Projects
+    {
+        get => _projects.GetValue();
+        set => _projects.SetValue(value);
+    }
+
+    private PropertyValue<List<Pair<TDLocation, int>>> _locations = new PropertyValue<List<Pair<TDLocation, int>>>(nameof(BGStats), nameof(Locations), new List<Pair<TDLocation, int>>());
+    
+    [Required]
+    [JsonPropertyName("locations")]
+    public List<Pair<TDLocation, int>> Locations
+    {
+        get => _locations.GetValue();
+        set => _locations.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _totalBlogs.SetAccessPath(path, validateHasBeenSet);
+        _teams.SetAccessPath(path, validateHasBeenSet);
+        _projects.SetAccessPath(path, validateHasBeenSet);
+        _locations.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

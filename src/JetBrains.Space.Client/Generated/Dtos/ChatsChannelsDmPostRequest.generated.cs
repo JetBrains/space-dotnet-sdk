@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ChatsChannelsDmPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ChatsChannelsDmPostRequest
-         : IPropagatePropertyAccessPath
+    public ChatsChannelsDmPostRequest() { }
+    
+    public ChatsChannelsDmPostRequest(string profile)
     {
-        public ChatsChannelsDmPostRequest() { }
-        
-        public ChatsChannelsDmPostRequest(string profile)
-        {
-            Profile = profile;
-        }
-        
-        private PropertyValue<string> _profile = new PropertyValue<string>(nameof(ChatsChannelsDmPostRequest), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public string Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
     }
     
+    private PropertyValue<string> _profile = new PropertyValue<string>(nameof(ChatsChannelsDmPostRequest), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public string Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

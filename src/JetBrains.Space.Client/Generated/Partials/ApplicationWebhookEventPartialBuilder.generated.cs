@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationWebhookEventPartialBuilder
+namespace JetBrains.Space.Client.ApplicationWebhookEventPartialBuilder;
+
+public static class ApplicationWebhookEventPartialExtensions
 {
-    public static class ApplicationWebhookEventPartialExtensions
-    {
-        public static Partial<ApplicationWebhookEvent> WithMeta(this Partial<ApplicationWebhookEvent> it)
-            => it.AddFieldName("meta");
-        
-        public static Partial<ApplicationWebhookEvent> WithMeta(this Partial<ApplicationWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-            => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
-        
-        public static Partial<ApplicationWebhookEvent> WithApplication(this Partial<ApplicationWebhookEvent> it)
-            => it.AddFieldName("application");
-        
-        public static Partial<ApplicationWebhookEvent> WithApplication(this Partial<ApplicationWebhookEvent> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
-            => it.AddFieldName("application", partialBuilder(new Partial<ESApp>(it)));
-        
-        public static Partial<ApplicationWebhookEvent> WithName(this Partial<ApplicationWebhookEvent> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ApplicationWebhookEvent> WithOwner(this Partial<ApplicationWebhookEvent> it)
-            => it.AddFieldName("owner");
-        
-        public static Partial<ApplicationWebhookEvent> WithArchived(this Partial<ApplicationWebhookEvent> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<ApplicationWebhookEvent> WithEndpointURI(this Partial<ApplicationWebhookEvent> it)
-            => it.AddFieldName("endpointURI");
-        
-        public static Partial<ApplicationWebhookEvent> WithIsClientIdChanged(this Partial<ApplicationWebhookEvent> it)
-            => it.AddFieldName("clientIdChanged");
-        
-        public static Partial<ApplicationWebhookEvent> WithIsClientSecretChanged(this Partial<ApplicationWebhookEvent> it)
-            => it.AddFieldName("clientSecretChanged");
-        
-        public static Partial<ApplicationWebhookEvent> WithIsVerificationTokenChanged(this Partial<ApplicationWebhookEvent> it)
-            => it.AddFieldName("verificationTokenChanged");
-        
-        public static Partial<ApplicationWebhookEvent> WithIsSigningKeyChanged(this Partial<ApplicationWebhookEvent> it)
-            => it.AddFieldName("signingKeyChanged");
-        
-    }
+    public static Partial<ApplicationWebhookEvent> WithMeta(this Partial<ApplicationWebhookEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<ApplicationWebhookEvent> WithMeta(this Partial<ApplicationWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<ApplicationWebhookEvent> WithApplication(this Partial<ApplicationWebhookEvent> it)
+        => it.AddFieldName("application");
+    
+    public static Partial<ApplicationWebhookEvent> WithApplication(this Partial<ApplicationWebhookEvent> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
+        => it.AddFieldName("application", partialBuilder(new Partial<ESApp>(it)));
+    
+    public static Partial<ApplicationWebhookEvent> WithName(this Partial<ApplicationWebhookEvent> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ApplicationWebhookEvent> WithOwner(this Partial<ApplicationWebhookEvent> it)
+        => it.AddFieldName("owner");
+    
+    public static Partial<ApplicationWebhookEvent> WithArchived(this Partial<ApplicationWebhookEvent> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<ApplicationWebhookEvent> WithEndpointURI(this Partial<ApplicationWebhookEvent> it)
+        => it.AddFieldName("endpointURI");
+    
+    public static Partial<ApplicationWebhookEvent> WithIsClientIdChanged(this Partial<ApplicationWebhookEvent> it)
+        => it.AddFieldName("clientIdChanged");
+    
+    public static Partial<ApplicationWebhookEvent> WithIsClientSecretChanged(this Partial<ApplicationWebhookEvent> it)
+        => it.AddFieldName("clientSecretChanged");
+    
+    public static Partial<ApplicationWebhookEvent> WithIsVerificationTokenChanged(this Partial<ApplicationWebhookEvent> it)
+        => it.AddFieldName("verificationTokenChanged");
+    
+    public static Partial<ApplicationWebhookEvent> WithIsSigningKeyChanged(this Partial<ApplicationWebhookEvent> it)
+        => it.AddFieldName("signingKeyChanged");
     
 }
+

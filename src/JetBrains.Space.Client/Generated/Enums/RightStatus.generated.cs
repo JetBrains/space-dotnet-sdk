@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum RightStatus
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum RightStatus
-    {
-        [EnumMember(Value = "NONE")]
-        NONE,
-        
-        [EnumMember(Value = "REQUESTED")]
-        REQUESTED,
-        
-        [EnumMember(Value = "GRANTED")]
-        GRANTED,
-        
-        [EnumMember(Value = "REJECTED")]
-        REJECTED,
-        
-    }
+    [EnumMember(Value = "NONE")]
+    NONE,
+    
+    [EnumMember(Value = "REQUESTED")]
+    REQUESTED,
+    
+    [EnumMember(Value = "GRANTED")]
+    GRANTED,
+    
+    [EnumMember(Value = "REJECTED")]
+    REJECTED,
     
 }
+

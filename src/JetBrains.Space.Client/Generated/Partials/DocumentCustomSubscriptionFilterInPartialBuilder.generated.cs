@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentCustomSubscriptionFilterInPartialBuilder
+namespace JetBrains.Space.Client.DocumentCustomSubscriptionFilterInPartialBuilder;
+
+public static class DocumentCustomSubscriptionFilterInPartialExtensions
 {
-    public static class DocumentCustomSubscriptionFilterInPartialExtensions
-    {
-        public static Partial<DocumentCustomSubscriptionFilterIn> WithProject(this Partial<DocumentCustomSubscriptionFilterIn> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<DocumentCustomSubscriptionFilterIn> WithBooks(this Partial<DocumentCustomSubscriptionFilterIn> it)
-            => it.AddFieldName("books");
-        
-        public static Partial<DocumentCustomSubscriptionFilterIn> WithFolders(this Partial<DocumentCustomSubscriptionFilterIn> it)
-            => it.AddFieldName("folders");
-        
-        public static Partial<DocumentCustomSubscriptionFilterIn> WithDocuments(this Partial<DocumentCustomSubscriptionFilterIn> it)
-            => it.AddFieldName("documents");
-        
-    }
+    public static Partial<DocumentCustomSubscriptionFilterIn> WithProject(this Partial<DocumentCustomSubscriptionFilterIn> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<DocumentCustomSubscriptionFilterIn> WithBooks(this Partial<DocumentCustomSubscriptionFilterIn> it)
+        => it.AddFieldName("books");
+    
+    public static Partial<DocumentCustomSubscriptionFilterIn> WithFolders(this Partial<DocumentCustomSubscriptionFilterIn> it)
+        => it.AddFieldName("folders");
+    
+    public static Partial<DocumentCustomSubscriptionFilterIn> WithDocuments(this Partial<DocumentCustomSubscriptionFilterIn> it)
+        => it.AddFieldName("documents");
     
 }
+

@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum EventConferenceKind
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum EventConferenceKind
-    {
-        [EnumMember(Value = "NONE")]
-        NONE,
-        
-        [EnumMember(Value = "GOOGLE_MEET")]
-        GOOGLEMEET,
-        
-        [EnumMember(Value = "SPACE_TELEKOM")]
-        SPACETELEKOM,
-        
-        [EnumMember(Value = "CUSTOM")]
-        CUSTOM,
-        
-    }
+    [EnumMember(Value = "NONE")]
+    NONE,
+    
+    [EnumMember(Value = "GOOGLE_MEET")]
+    GOOGLEMEET,
+    
+    [EnumMember(Value = "SPACE_TELEKOM")]
+    SPACETELEKOM,
+    
+    [EnumMember(Value = "CUSTOM")]
+    CUSTOM,
     
 }
+

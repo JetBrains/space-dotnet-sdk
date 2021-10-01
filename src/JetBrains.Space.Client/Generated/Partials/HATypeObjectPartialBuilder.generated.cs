@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HATypeObjectPartialBuilder
+namespace JetBrains.Space.Client.HATypeObjectPartialBuilder;
+
+public static class HATypeObjectPartialExtensions
 {
-    public static class HATypeObjectPartialExtensions
-    {
-        public static Partial<HATypeObject> WithFields(this Partial<HATypeObject> it)
-            => it.AddFieldName("fields");
-        
-        public static Partial<HATypeObject> WithFields(this Partial<HATypeObject> it, Func<Partial<HAField>, Partial<HAField>> partialBuilder)
-            => it.AddFieldName("fields", partialBuilder(new Partial<HAField>(it)));
-        
-        public static Partial<HATypeObject> WithKind(this Partial<HATypeObject> it)
-            => it.AddFieldName("kind");
-        
-        public static Partial<HATypeObject> WithKind(this Partial<HATypeObject> it, Func<Partial<HATypeObjectKind>, Partial<HATypeObjectKind>> partialBuilder)
-            => it.AddFieldName("kind", partialBuilder(new Partial<HATypeObjectKind>(it)));
-        
-        public static Partial<HATypeObject> WithIsNullable(this Partial<HATypeObject> it)
-            => it.AddFieldName("nullable");
-        
-        public static Partial<HATypeObject> WithTags(this Partial<HATypeObject> it)
-            => it.AddFieldName("tags");
-        
-    }
+    public static Partial<HATypeObject> WithFields(this Partial<HATypeObject> it)
+        => it.AddFieldName("fields");
+    
+    public static Partial<HATypeObject> WithFields(this Partial<HATypeObject> it, Func<Partial<HAField>, Partial<HAField>> partialBuilder)
+        => it.AddFieldName("fields", partialBuilder(new Partial<HAField>(it)));
+    
+    public static Partial<HATypeObject> WithKind(this Partial<HATypeObject> it)
+        => it.AddFieldName("kind");
+    
+    public static Partial<HATypeObject> WithKind(this Partial<HATypeObject> it, Func<Partial<HATypeObjectKind>, Partial<HATypeObjectKind>> partialBuilder)
+        => it.AddFieldName("kind", partialBuilder(new Partial<HATypeObjectKind>(it)));
+    
+    public static Partial<HATypeObject> WithIsNullable(this Partial<HATypeObject> it)
+        => it.AddFieldName("nullable");
+    
+    public static Partial<HATypeObject> WithTags(this Partial<HATypeObject> it)
+        => it.AddFieldName("tags");
     
 }
+

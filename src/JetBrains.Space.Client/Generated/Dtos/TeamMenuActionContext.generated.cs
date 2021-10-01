@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TeamMenuActionContext
+     : MenuActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class TeamMenuActionContext
-         : MenuActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "TeamMenuActionContext";
+    
+    public TeamMenuActionContext() { }
+    
+    public TeamMenuActionContext(string menuId, TDTeam team)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "TeamMenuActionContext";
-        
-        public TeamMenuActionContext() { }
-        
-        public TeamMenuActionContext(string menuId, TDTeam team)
-        {
-            MenuId = menuId;
-            Team = team;
-        }
-        
-        private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(TeamMenuActionContext), nameof(MenuId));
-        
-        [Required]
-        [JsonPropertyName("menuId")]
-        public string MenuId
-        {
-            get => _menuId.GetValue();
-            set => _menuId.SetValue(value);
-        }
-    
-        private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(TeamMenuActionContext), nameof(Team));
-        
-        [Required]
-        [JsonPropertyName("team")]
-        public TDTeam Team
-        {
-            get => _team.GetValue();
-            set => _team.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _menuId.SetAccessPath(path, validateHasBeenSet);
-            _team.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        MenuId = menuId;
+        Team = team;
     }
     
+    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(TeamMenuActionContext), nameof(MenuId));
+    
+    [Required]
+    [JsonPropertyName("menuId")]
+    public string MenuId
+    {
+        get => _menuId.GetValue();
+        set => _menuId.SetValue(value);
+    }
+
+    private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(TeamMenuActionContext), nameof(Team));
+    
+    [Required]
+    [JsonPropertyName("team")]
+    public TDTeam Team
+    {
+        get => _team.GetValue();
+        set => _team.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _menuId.SetAccessPath(path, validateHasBeenSet);
+        _team.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

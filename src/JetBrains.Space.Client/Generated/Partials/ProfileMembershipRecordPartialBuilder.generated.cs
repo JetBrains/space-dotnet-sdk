@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProfileMembershipRecordPartialBuilder
+namespace JetBrains.Space.Client.ProfileMembershipRecordPartialBuilder;
+
+public static class ProfileMembershipRecordPartialExtensions
 {
-    public static class ProfileMembershipRecordPartialExtensions
-    {
-        public static Partial<ProfileMembershipRecord> WithId(this Partial<ProfileMembershipRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ProfileMembershipRecord> WithMemberships(this Partial<ProfileMembershipRecord> it)
-            => it.AddFieldName("memberships");
-        
-        public static Partial<ProfileMembershipRecord> WithMemberships(this Partial<ProfileMembershipRecord> it, Func<Partial<TDMembership>, Partial<TDMembership>> partialBuilder)
-            => it.AddFieldName("memberships", partialBuilder(new Partial<TDMembership>(it)));
-        
-        public static Partial<ProfileMembershipRecord> WithUnapprovedMemberships(this Partial<ProfileMembershipRecord> it)
-            => it.AddFieldName("unapprovedMemberships");
-        
-        public static Partial<ProfileMembershipRecord> WithUnapprovedMemberships(this Partial<ProfileMembershipRecord> it, Func<Partial<TDMembership>, Partial<TDMembership>> partialBuilder)
-            => it.AddFieldName("unapprovedMemberships", partialBuilder(new Partial<TDMembership>(it)));
-        
-    }
+    public static Partial<ProfileMembershipRecord> WithId(this Partial<ProfileMembershipRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ProfileMembershipRecord> WithMemberships(this Partial<ProfileMembershipRecord> it)
+        => it.AddFieldName("memberships");
+    
+    public static Partial<ProfileMembershipRecord> WithMemberships(this Partial<ProfileMembershipRecord> it, Func<Partial<TDMembership>, Partial<TDMembership>> partialBuilder)
+        => it.AddFieldName("memberships", partialBuilder(new Partial<TDMembership>(it)));
+    
+    public static Partial<ProfileMembershipRecord> WithUnapprovedMemberships(this Partial<ProfileMembershipRecord> it)
+        => it.AddFieldName("unapprovedMemberships");
+    
+    public static Partial<ProfileMembershipRecord> WithUnapprovedMemberships(this Partial<ProfileMembershipRecord> it, Func<Partial<TDMembership>, Partial<TDMembership>> partialBuilder)
+        => it.AddFieldName("unapprovedMemberships", partialBuilder(new Partial<TDMembership>(it)));
     
 }
+

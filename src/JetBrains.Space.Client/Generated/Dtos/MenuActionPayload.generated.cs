@@ -27,83 +27,82 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MenuActionPayload
+     : ApplicationPayload, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MenuActionPayload
-         : ApplicationPayload, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MenuActionPayload";
+    
+    public MenuActionPayload() { }
+    
+    public MenuActionPayload(string extensionName, MenuActionContext context, string clientId, string userId, string? verificationToken = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MenuActionPayload";
-        
-        public MenuActionPayload() { }
-        
-        public MenuActionPayload(string extensionName, MenuActionContext context, string clientId, string userId, string? verificationToken = null)
-        {
-            ExtensionName = extensionName;
-            Context = context;
-            ClientId = clientId;
-            UserId = userId;
-            VerificationToken = verificationToken;
-        }
-        
-        private PropertyValue<string> _extensionName = new PropertyValue<string>(nameof(MenuActionPayload), nameof(ExtensionName));
-        
-        [Required]
-        [JsonPropertyName("extensionName")]
-        public string ExtensionName
-        {
-            get => _extensionName.GetValue();
-            set => _extensionName.SetValue(value);
-        }
-    
-        private PropertyValue<MenuActionContext> _context = new PropertyValue<MenuActionContext>(nameof(MenuActionPayload), nameof(Context));
-        
-        [Required]
-        [JsonPropertyName("context")]
-        public MenuActionContext Context
-        {
-            get => _context.GetValue();
-            set => _context.SetValue(value);
-        }
-    
-        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(MenuActionPayload), nameof(ClientId));
-        
-        [Required]
-        [JsonPropertyName("clientId")]
-        public string ClientId
-        {
-            get => _clientId.GetValue();
-            set => _clientId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MenuActionPayload), nameof(UserId));
-        
-        [Required]
-        [JsonPropertyName("userId")]
-        public string UserId
-        {
-            get => _userId.GetValue();
-            set => _userId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(MenuActionPayload), nameof(VerificationToken));
-        
-        [JsonPropertyName("verificationToken")]
-        public string? VerificationToken
-        {
-            get => _verificationToken.GetValue();
-            set => _verificationToken.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _extensionName.SetAccessPath(path, validateHasBeenSet);
-            _context.SetAccessPath(path, validateHasBeenSet);
-            _clientId.SetAccessPath(path, validateHasBeenSet);
-            _userId.SetAccessPath(path, validateHasBeenSet);
-            _verificationToken.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ExtensionName = extensionName;
+        Context = context;
+        ClientId = clientId;
+        UserId = userId;
+        VerificationToken = verificationToken;
     }
     
+    private PropertyValue<string> _extensionName = new PropertyValue<string>(nameof(MenuActionPayload), nameof(ExtensionName));
+    
+    [Required]
+    [JsonPropertyName("extensionName")]
+    public string ExtensionName
+    {
+        get => _extensionName.GetValue();
+        set => _extensionName.SetValue(value);
+    }
+
+    private PropertyValue<MenuActionContext> _context = new PropertyValue<MenuActionContext>(nameof(MenuActionPayload), nameof(Context));
+    
+    [Required]
+    [JsonPropertyName("context")]
+    public MenuActionContext Context
+    {
+        get => _context.GetValue();
+        set => _context.SetValue(value);
+    }
+
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(MenuActionPayload), nameof(ClientId));
+    
+    [Required]
+    [JsonPropertyName("clientId")]
+    public string ClientId
+    {
+        get => _clientId.GetValue();
+        set => _clientId.SetValue(value);
+    }
+
+    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MenuActionPayload), nameof(UserId));
+    
+    [Required]
+    [JsonPropertyName("userId")]
+    public string UserId
+    {
+        get => _userId.GetValue();
+        set => _userId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(MenuActionPayload), nameof(VerificationToken));
+    
+    [JsonPropertyName("verificationToken")]
+    public string? VerificationToken
+    {
+        get => _verificationToken.GetValue();
+        set => _verificationToken.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _extensionName.SetAccessPath(path, validateHasBeenSet);
+        _context.SetAccessPath(path, validateHasBeenSet);
+        _clientId.SetAccessPath(path, validateHasBeenSet);
+        _userId.SetAccessPath(path, validateHasBeenSet);
+        _verificationToken.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

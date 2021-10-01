@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentCFScopeInputProjectPartialBuilder
+namespace JetBrains.Space.Client.DocumentCFScopeInputProjectPartialBuilder;
+
+public static class DocumentCFScopeInputProjectPartialExtensions
 {
-    public static class DocumentCFScopeInputProjectPartialExtensions
-    {
-        public static Partial<DocumentCFScopeInputProject> WithProjectId(this Partial<DocumentCFScopeInputProject> it)
-            => it.AddFieldName("projectId");
-        
-    }
+    public static Partial<DocumentCFScopeInputProject> WithProjectId(this Partial<DocumentCFScopeInputProject> it)
+        => it.AddFieldName("projectId");
     
 }
+

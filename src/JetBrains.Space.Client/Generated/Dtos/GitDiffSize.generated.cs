@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitDiffSize
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GitDiffSize
-         : IPropagatePropertyAccessPath
+    public GitDiffSize() { }
+    
+    public GitDiffSize(int added, int deleted)
     {
-        public GitDiffSize() { }
-        
-        public GitDiffSize(int added, int deleted)
-        {
-            Added = added;
-            Deleted = deleted;
-        }
-        
-        private PropertyValue<int> _added = new PropertyValue<int>(nameof(GitDiffSize), nameof(Added));
-        
-        [Required]
-        [JsonPropertyName("added")]
-        public int Added
-        {
-            get => _added.GetValue();
-            set => _added.SetValue(value);
-        }
-    
-        private PropertyValue<int> _deleted = new PropertyValue<int>(nameof(GitDiffSize), nameof(Deleted));
-        
-        [Required]
-        [JsonPropertyName("deleted")]
-        public int Deleted
-        {
-            get => _deleted.GetValue();
-            set => _deleted.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _added.SetAccessPath(path, validateHasBeenSet);
-            _deleted.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Added = added;
+        Deleted = deleted;
     }
     
+    private PropertyValue<int> _added = new PropertyValue<int>(nameof(GitDiffSize), nameof(Added));
+    
+    [Required]
+    [JsonPropertyName("added")]
+    public int Added
+    {
+        get => _added.GetValue();
+        set => _added.SetValue(value);
+    }
+
+    private PropertyValue<int> _deleted = new PropertyValue<int>(nameof(GitDiffSize), nameof(Deleted));
+    
+    [Required]
+    [JsonPropertyName("deleted")]
+    public int Deleted
+    {
+        get => _deleted.GetValue();
+        set => _deleted.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _added.SetAccessPath(path, validateHasBeenSet);
+        _deleted.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

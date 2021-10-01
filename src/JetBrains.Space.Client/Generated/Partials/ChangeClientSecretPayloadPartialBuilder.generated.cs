@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChangeClientSecretPayloadPartialBuilder
+namespace JetBrains.Space.Client.ChangeClientSecretPayloadPartialBuilder;
+
+public static class ChangeClientSecretPayloadPartialExtensions
 {
-    public static class ChangeClientSecretPayloadPartialExtensions
-    {
-        public static Partial<ChangeClientSecretPayload> WithNewClientSecret(this Partial<ChangeClientSecretPayload> it)
-            => it.AddFieldName("newClientSecret");
-        
-        public static Partial<ChangeClientSecretPayload> WithClientId(this Partial<ChangeClientSecretPayload> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<ChangeClientSecretPayload> WithUserId(this Partial<ChangeClientSecretPayload> it)
-            => it.AddFieldName("userId");
-        
-        public static Partial<ChangeClientSecretPayload> WithVerificationToken(this Partial<ChangeClientSecretPayload> it)
-            => it.AddFieldName("verificationToken");
-        
-    }
+    public static Partial<ChangeClientSecretPayload> WithNewClientSecret(this Partial<ChangeClientSecretPayload> it)
+        => it.AddFieldName("newClientSecret");
+    
+    public static Partial<ChangeClientSecretPayload> WithClientId(this Partial<ChangeClientSecretPayload> it)
+        => it.AddFieldName("clientId");
+    
+    public static Partial<ChangeClientSecretPayload> WithUserId(this Partial<ChangeClientSecretPayload> it)
+        => it.AddFieldName("userId");
+    
+    public static Partial<ChangeClientSecretPayload> WithVerificationToken(this Partial<ChangeClientSecretPayload> it)
+        => it.AddFieldName("verificationToken");
     
 }
+

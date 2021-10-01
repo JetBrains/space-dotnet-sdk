@@ -27,68 +27,67 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESProfileLogin
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ESProfileLogin
-         : IPropagatePropertyAccessPath
+    public ESProfileLogin() { }
+    
+    public ESProfileLogin(string identifier, ESAuthModule authModule, ESProfileLoginDetails details, AccessRecord? access = null)
     {
-        public ESProfileLogin() { }
-        
-        public ESProfileLogin(string identifier, ESAuthModule authModule, ESProfileLoginDetails details, AccessRecord? access = null)
-        {
-            Identifier = identifier;
-            AuthModule = authModule;
-            Details = details;
-            Access = access;
-        }
-        
-        private PropertyValue<string> _identifier = new PropertyValue<string>(nameof(ESProfileLogin), nameof(Identifier));
-        
-        [Required]
-        [JsonPropertyName("identifier")]
-        public string Identifier
-        {
-            get => _identifier.GetValue();
-            set => _identifier.SetValue(value);
-        }
-    
-        private PropertyValue<ESAuthModule> _authModule = new PropertyValue<ESAuthModule>(nameof(ESProfileLogin), nameof(AuthModule));
-        
-        [Required]
-        [JsonPropertyName("authModule")]
-        public ESAuthModule AuthModule
-        {
-            get => _authModule.GetValue();
-            set => _authModule.SetValue(value);
-        }
-    
-        private PropertyValue<ESProfileLoginDetails> _details = new PropertyValue<ESProfileLoginDetails>(nameof(ESProfileLogin), nameof(Details));
-        
-        [Required]
-        [JsonPropertyName("details")]
-        public ESProfileLoginDetails Details
-        {
-            get => _details.GetValue();
-            set => _details.SetValue(value);
-        }
-    
-        private PropertyValue<AccessRecord?> _access = new PropertyValue<AccessRecord?>(nameof(ESProfileLogin), nameof(Access));
-        
-        [JsonPropertyName("access")]
-        public AccessRecord? Access
-        {
-            get => _access.GetValue();
-            set => _access.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _identifier.SetAccessPath(path, validateHasBeenSet);
-            _authModule.SetAccessPath(path, validateHasBeenSet);
-            _details.SetAccessPath(path, validateHasBeenSet);
-            _access.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Identifier = identifier;
+        AuthModule = authModule;
+        Details = details;
+        Access = access;
     }
     
+    private PropertyValue<string> _identifier = new PropertyValue<string>(nameof(ESProfileLogin), nameof(Identifier));
+    
+    [Required]
+    [JsonPropertyName("identifier")]
+    public string Identifier
+    {
+        get => _identifier.GetValue();
+        set => _identifier.SetValue(value);
+    }
+
+    private PropertyValue<ESAuthModule> _authModule = new PropertyValue<ESAuthModule>(nameof(ESProfileLogin), nameof(AuthModule));
+    
+    [Required]
+    [JsonPropertyName("authModule")]
+    public ESAuthModule AuthModule
+    {
+        get => _authModule.GetValue();
+        set => _authModule.SetValue(value);
+    }
+
+    private PropertyValue<ESProfileLoginDetails> _details = new PropertyValue<ESProfileLoginDetails>(nameof(ESProfileLogin), nameof(Details));
+    
+    [Required]
+    [JsonPropertyName("details")]
+    public ESProfileLoginDetails Details
+    {
+        get => _details.GetValue();
+        set => _details.SetValue(value);
+    }
+
+    private PropertyValue<AccessRecord?> _access = new PropertyValue<AccessRecord?>(nameof(ESProfileLogin), nameof(Access));
+    
+    [JsonPropertyName("access")]
+    public AccessRecord? Access
+    {
+        get => _access.GetValue();
+        set => _access.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _identifier.SetAccessPath(path, validateHasBeenSet);
+        _authModule.SetAccessPath(path, validateHasBeenSet);
+        _details.SetAccessPath(path, validateHasBeenSet);
+        _access.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

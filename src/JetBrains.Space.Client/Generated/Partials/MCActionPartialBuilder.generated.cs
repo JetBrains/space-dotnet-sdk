@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MCActionPartialBuilder
+namespace JetBrains.Space.Client.MCActionPartialBuilder;
+
+public static class MCActionPartialExtensions
 {
-    public static class MCActionPartialExtensions
-    {
-        public static Partial<MCAction> WithId(this Partial<MCAction> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<MCAction> WithValue(this Partial<MCAction> it)
-            => it.AddFieldName("value");
-        
-        public static Partial<MCAction> WithClientSideAction(this Partial<MCAction> it)
-            => it.AddFieldName("clientSideAction");
-        
-        public static Partial<MCAction> WithClientSideAction(this Partial<MCAction> it, Func<Partial<MCClientSideAction>, Partial<MCClientSideAction>> partialBuilder)
-            => it.AddFieldName("clientSideAction", partialBuilder(new Partial<MCClientSideAction>(it)));
-        
-    }
+    public static Partial<MCAction> WithId(this Partial<MCAction> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<MCAction> WithValue(this Partial<MCAction> it)
+        => it.AddFieldName("value");
+    
+    public static Partial<MCAction> WithClientSideAction(this Partial<MCAction> it)
+        => it.AddFieldName("clientSideAction");
+    
+    public static Partial<MCAction> WithClientSideAction(this Partial<MCAction> it, Func<Partial<MCClientSideAction>, Partial<MCClientSideAction>> partialBuilder)
+        => it.AddFieldName("clientSideAction", partialBuilder(new Partial<MCClientSideAction>(it)));
     
 }
+

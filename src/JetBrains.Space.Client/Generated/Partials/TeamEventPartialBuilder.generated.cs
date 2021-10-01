@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamEventPartialBuilder
+namespace JetBrains.Space.Client.TeamEventPartialBuilder;
+
+public static class TeamEventPartialExtensions
 {
-    public static class TeamEventPartialExtensions
-    {
-        public static Partial<TeamEvent> WithMeta(this Partial<TeamEvent> it)
-            => it.AddFieldName("meta");
-        
-        public static Partial<TeamEvent> WithMeta(this Partial<TeamEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-            => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
-        
-        public static Partial<TeamEvent> WithTeam(this Partial<TeamEvent> it)
-            => it.AddFieldName("team");
-        
-        public static Partial<TeamEvent> WithTeam(this Partial<TeamEvent> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-            => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
-        
-    }
+    public static Partial<TeamEvent> WithMeta(this Partial<TeamEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<TeamEvent> WithMeta(this Partial<TeamEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<TeamEvent> WithTeam(this Partial<TeamEvent> it)
+        => it.AddFieldName("team");
+    
+    public static Partial<TeamEvent> WithTeam(this Partial<TeamEvent> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+        => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
     
 }
+

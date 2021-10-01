@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AutomationJobExecutionUnfurlDetailsPartialBuilder
+namespace JetBrains.Space.Client.AutomationJobExecutionUnfurlDetailsPartialBuilder;
+
+public static class AutomationJobExecutionUnfurlDetailsPartialExtensions
 {
-    public static class AutomationJobExecutionUnfurlDetailsPartialExtensions
-    {
-        public static Partial<AutomationJobExecutionUnfurlDetails> WithJobExecutionId(this Partial<AutomationJobExecutionUnfurlDetails> it)
-            => it.AddFieldName("jobExecutionId");
-        
-        public static Partial<AutomationJobExecutionUnfurlDetails> WithProjectRef(this Partial<AutomationJobExecutionUnfurlDetails> it)
-            => it.AddFieldName("projectRef");
-        
-        public static Partial<AutomationJobExecutionUnfurlDetails> WithProjectRef(this Partial<AutomationJobExecutionUnfurlDetails> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("projectRef", partialBuilder(new Partial<PRProject>(it)));
-        
-        public static Partial<AutomationJobExecutionUnfurlDetails> WithRepoName(this Partial<AutomationJobExecutionUnfurlDetails> it)
-            => it.AddFieldName("repoName");
-        
-    }
+    public static Partial<AutomationJobExecutionUnfurlDetails> WithJobExecutionId(this Partial<AutomationJobExecutionUnfurlDetails> it)
+        => it.AddFieldName("jobExecutionId");
+    
+    public static Partial<AutomationJobExecutionUnfurlDetails> WithProjectRef(this Partial<AutomationJobExecutionUnfurlDetails> it)
+        => it.AddFieldName("projectRef");
+    
+    public static Partial<AutomationJobExecutionUnfurlDetails> WithProjectRef(this Partial<AutomationJobExecutionUnfurlDetails> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("projectRef", partialBuilder(new Partial<PRProject>(it)));
+    
+    public static Partial<AutomationJobExecutionUnfurlDetails> WithRepoName(this Partial<AutomationJobExecutionUnfurlDetails> it)
+        => it.AddFieldName("repoName");
     
 }
+

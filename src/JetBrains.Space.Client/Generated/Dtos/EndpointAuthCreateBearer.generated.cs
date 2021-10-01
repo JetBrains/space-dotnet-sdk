@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class EndpointAuthCreateBearer
+     : EndpointAuthCreate, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class EndpointAuthCreateBearer
-         : EndpointAuthCreate, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "EndpointAuthCreate.Bearer";
+    
+    public EndpointAuthCreateBearer() { }
+    
+    public EndpointAuthCreateBearer(string token)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "EndpointAuthCreate.Bearer";
-        
-        public EndpointAuthCreateBearer() { }
-        
-        public EndpointAuthCreateBearer(string token)
-        {
-            Token = token;
-        }
-        
-        private PropertyValue<string> _token = new PropertyValue<string>(nameof(EndpointAuthCreateBearer), nameof(Token));
-        
-        [Required]
-        [JsonPropertyName("token")]
-        public string Token
-        {
-            get => _token.GetValue();
-            set => _token.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _token.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Token = token;
     }
     
+    private PropertyValue<string> _token = new PropertyValue<string>(nameof(EndpointAuthCreateBearer), nameof(Token));
+    
+    [Required]
+    [JsonPropertyName("token")]
+    public string Token
+    {
+        get => _token.GetValue();
+        set => _token.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _token.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

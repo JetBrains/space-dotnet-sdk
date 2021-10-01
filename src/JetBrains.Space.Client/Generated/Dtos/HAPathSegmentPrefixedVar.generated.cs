@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HAPathSegmentPrefixedVar
+     : HAPathSegment, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class HAPathSegmentPrefixedVar
-         : HAPathSegment, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "HA_PathSegment.PrefixedVar";
+    
+    public HAPathSegmentPrefixedVar() { }
+    
+    public HAPathSegmentPrefixedVar(string prefix, string name)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "HA_PathSegment.PrefixedVar";
-        
-        public HAPathSegmentPrefixedVar() { }
-        
-        public HAPathSegmentPrefixedVar(string prefix, string name)
-        {
-            Prefix = prefix;
-            Name = name;
-        }
-        
-        private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVar), nameof(Prefix));
-        
-        [Required]
-        [JsonPropertyName("prefix")]
-        public string Prefix
-        {
-            get => _prefix.GetValue();
-            set => _prefix.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVar), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _prefix.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Prefix = prefix;
+        Name = name;
     }
     
+    private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVar), nameof(Prefix));
+    
+    [Required]
+    [JsonPropertyName("prefix")]
+    public string Prefix
+    {
+        get => _prefix.GetValue();
+        set => _prefix.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVar), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _prefix.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

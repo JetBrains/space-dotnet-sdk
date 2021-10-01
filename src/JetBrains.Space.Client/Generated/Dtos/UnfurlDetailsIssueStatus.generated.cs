@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsIssueStatus
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsIssueStatus
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsIssueStatus";
+    
+    public UnfurlDetailsIssueStatus() { }
+    
+    public UnfurlDetailsIssueStatus(IssueStatus status)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsIssueStatus";
-        
-        public UnfurlDetailsIssueStatus() { }
-        
-        public UnfurlDetailsIssueStatus(IssueStatus status)
-        {
-            Status = status;
-        }
-        
-        private PropertyValue<IssueStatus> _status = new PropertyValue<IssueStatus>(nameof(UnfurlDetailsIssueStatus), nameof(Status));
-        
-        [Required]
-        [JsonPropertyName("status")]
-        public IssueStatus Status
-        {
-            get => _status.GetValue();
-            set => _status.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _status.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Status = status;
     }
     
+    private PropertyValue<IssueStatus> _status = new PropertyValue<IssueStatus>(nameof(UnfurlDetailsIssueStatus), nameof(Status));
+    
+    [Required]
+    [JsonPropertyName("status")]
+    public IssueStatus Status
+    {
+        get => _status.GetValue();
+        set => _status.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _status.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

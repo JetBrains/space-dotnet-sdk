@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class SubscriptionMetadata
+     : ApplicationMetadata, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class SubscriptionMetadata
-         : ApplicationMetadata, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "SubscriptionMetadata";
+    
+    public SubscriptionMetadata() { }
+    
+    public SubscriptionMetadata(M2ChannelRecord channel, string subscription, string subscriptionName)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "SubscriptionMetadata";
-        
-        public SubscriptionMetadata() { }
-        
-        public SubscriptionMetadata(M2ChannelRecord channel, string subscription, string subscriptionName)
-        {
-            Channel = channel;
-            Subscription = subscription;
-            SubscriptionName = subscriptionName;
-        }
-        
-        private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(SubscriptionMetadata), nameof(Channel));
-        
-        [Required]
-        [JsonPropertyName("channel")]
-        public M2ChannelRecord Channel
-        {
-            get => _channel.GetValue();
-            set => _channel.SetValue(value);
-        }
-    
-        private PropertyValue<string> _subscription = new PropertyValue<string>(nameof(SubscriptionMetadata), nameof(Subscription));
-        
-        [Required]
-        [JsonPropertyName("subscription")]
-        public string Subscription
-        {
-            get => _subscription.GetValue();
-            set => _subscription.SetValue(value);
-        }
-    
-        private PropertyValue<string> _subscriptionName = new PropertyValue<string>(nameof(SubscriptionMetadata), nameof(SubscriptionName));
-        
-        [Required]
-        [JsonPropertyName("subscriptionName")]
-        public string SubscriptionName
-        {
-            get => _subscriptionName.GetValue();
-            set => _subscriptionName.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _channel.SetAccessPath(path, validateHasBeenSet);
-            _subscription.SetAccessPath(path, validateHasBeenSet);
-            _subscriptionName.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Channel = channel;
+        Subscription = subscription;
+        SubscriptionName = subscriptionName;
     }
     
+    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(SubscriptionMetadata), nameof(Channel));
+    
+    [Required]
+    [JsonPropertyName("channel")]
+    public M2ChannelRecord Channel
+    {
+        get => _channel.GetValue();
+        set => _channel.SetValue(value);
+    }
+
+    private PropertyValue<string> _subscription = new PropertyValue<string>(nameof(SubscriptionMetadata), nameof(Subscription));
+    
+    [Required]
+    [JsonPropertyName("subscription")]
+    public string Subscription
+    {
+        get => _subscription.GetValue();
+        set => _subscription.SetValue(value);
+    }
+
+    private PropertyValue<string> _subscriptionName = new PropertyValue<string>(nameof(SubscriptionMetadata), nameof(SubscriptionName));
+    
+    [Required]
+    [JsonPropertyName("subscriptionName")]
+    public string SubscriptionName
+    {
+        get => _subscriptionName.GetValue();
+        set => _subscriptionName.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _channel.SetAccessPath(path, validateHasBeenSet);
+        _subscription.SetAccessPath(path, validateHasBeenSet);
+        _subscriptionName.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

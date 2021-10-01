@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AutomationJobSubscriptionFilterInPartialBuilder
+namespace JetBrains.Space.Client.AutomationJobSubscriptionFilterInPartialBuilder;
+
+public static class AutomationJobSubscriptionFilterInPartialExtensions
 {
-    public static class AutomationJobSubscriptionFilterInPartialExtensions
-    {
-        public static Partial<AutomationJobSubscriptionFilterIn> WithProjects(this Partial<AutomationJobSubscriptionFilterIn> it)
-            => it.AddFieldName("projects");
-        
-        public static Partial<AutomationJobSubscriptionFilterIn> WithRepositoryName(this Partial<AutomationJobSubscriptionFilterIn> it)
-            => it.AddFieldName("repositoryName");
-        
-        public static Partial<AutomationJobSubscriptionFilterIn> WithBranchSpec(this Partial<AutomationJobSubscriptionFilterIn> it)
-            => it.AddFieldName("branchSpec");
-        
-        public static Partial<AutomationJobSubscriptionFilterIn> WithJobs(this Partial<AutomationJobSubscriptionFilterIn> it)
-            => it.AddFieldName("jobs");
-        
-    }
+    public static Partial<AutomationJobSubscriptionFilterIn> WithProjects(this Partial<AutomationJobSubscriptionFilterIn> it)
+        => it.AddFieldName("projects");
+    
+    public static Partial<AutomationJobSubscriptionFilterIn> WithRepositoryName(this Partial<AutomationJobSubscriptionFilterIn> it)
+        => it.AddFieldName("repositoryName");
+    
+    public static Partial<AutomationJobSubscriptionFilterIn> WithBranchSpec(this Partial<AutomationJobSubscriptionFilterIn> it)
+        => it.AddFieldName("branchSpec");
+    
+    public static Partial<AutomationJobSubscriptionFilterIn> WithJobs(this Partial<AutomationJobSubscriptionFilterIn> it)
+        => it.AddFieldName("jobs");
     
 }
+

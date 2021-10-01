@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MCClientSideActionPartialBuilder
+namespace JetBrains.Space.Client.MCClientSideActionPartialBuilder;
+
+public static class MCClientSideActionPartialExtensions
 {
-    public static class MCClientSideActionPartialExtensions
-    {
-        public static Partial<MCClientSideAction> WithContext(this Partial<MCClientSideAction> it)
-            => it.AddFieldName("context");
-        
-        public static Partial<MCClientSideAction> WithContext(this Partial<MCClientSideAction> it, Func<Partial<ClientSideActionContext>, Partial<ClientSideActionContext>> partialBuilder)
-            => it.AddFieldName("context", partialBuilder(new Partial<ClientSideActionContext>(it)));
-        
-    }
+    public static Partial<MCClientSideAction> WithContext(this Partial<MCClientSideAction> it)
+        => it.AddFieldName("context");
+    
+    public static Partial<MCClientSideAction> WithContext(this Partial<MCClientSideAction> it, Func<Partial<ClientSideActionContext>, Partial<ClientSideActionContext>> partialBuilder)
+        => it.AddFieldName("context", partialBuilder(new Partial<ClientSideActionContext>(it)));
     
 }
+

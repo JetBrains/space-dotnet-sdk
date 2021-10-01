@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest() { }
+    
+    public ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest(List<RevisionInReview> revisions)
     {
-        public ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest() { }
-        
-        public ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest(List<RevisionInReview> revisions)
-        {
-            Revisions = revisions;
-        }
-        
-        private PropertyValue<List<RevisionInReview>> _revisions = new PropertyValue<List<RevisionInReview>>(nameof(ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest), nameof(Revisions), new List<RevisionInReview>());
-        
-        [Required]
-        [JsonPropertyName("revisions")]
-        public List<RevisionInReview> Revisions
-        {
-            get => _revisions.GetValue();
-            set => _revisions.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _revisions.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Revisions = revisions;
     }
     
+    private PropertyValue<List<RevisionInReview>> _revisions = new PropertyValue<List<RevisionInReview>>(nameof(ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest), nameof(Revisions), new List<RevisionInReview>());
+    
+    [Required]
+    [JsonPropertyName("revisions")]
+    public List<RevisionInReview> Revisions
+    {
+        get => _revisions.GetValue();
+        set => _revisions.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _revisions.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

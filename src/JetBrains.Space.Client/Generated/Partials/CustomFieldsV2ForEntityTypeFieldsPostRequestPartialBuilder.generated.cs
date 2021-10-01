@@ -27,49 +27,48 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomFieldsV2ForEntityTypeFieldsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.CustomFieldsV2ForEntityTypeFieldsPostRequestPartialBuilder;
+
+public static class CustomFieldsV2ForEntityTypeFieldsPostRequestPartialExtensions
 {
-    public static class CustomFieldsV2ForEntityTypeFieldsPostRequestPartialExtensions
-    {
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithName(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithType(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
-            => it.AddFieldName("type");
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithType(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it, Func<Partial<CustomFieldType>, Partial<CustomFieldType>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<CustomFieldType>(it)));
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithIsMultivalued(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
-            => it.AddFieldName("multivalued");
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithParameters(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
-            => it.AddFieldName("parameters");
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithParameters(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it, Func<Partial<CFCreateParameters>, Partial<CFCreateParameters>> partialBuilder)
-            => it.AddFieldName("parameters", partialBuilder(new Partial<CFCreateParameters>(it)));
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithIsRequired(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
-            => it.AddFieldName("required");
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithDefaultValue(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
-            => it.AddFieldName("defaultValue");
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithDefaultValue(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it, Func<Partial<CFInputValue>, Partial<CFInputValue>> partialBuilder)
-            => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFInputValue>(it)));
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithConstraint(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
-            => it.AddFieldName("constraint");
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithConstraint(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it, Func<Partial<CFConstraint>, Partial<CFConstraint>> partialBuilder)
-            => it.AddFieldName("constraint", partialBuilder(new Partial<CFConstraint>(it)));
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithDescription(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithOrder(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
-            => it.AddFieldName("order");
-        
-    }
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithName(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithType(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithType(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it, Func<Partial<CustomFieldType>, Partial<CustomFieldType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<CustomFieldType>(it)));
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithIsMultivalued(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
+        => it.AddFieldName("multivalued");
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithParameters(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
+        => it.AddFieldName("parameters");
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithParameters(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it, Func<Partial<CFCreateParameters>, Partial<CFCreateParameters>> partialBuilder)
+        => it.AddFieldName("parameters", partialBuilder(new Partial<CFCreateParameters>(it)));
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithIsRequired(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
+        => it.AddFieldName("required");
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithDefaultValue(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
+        => it.AddFieldName("defaultValue");
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithDefaultValue(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it, Func<Partial<CFInputValue>, Partial<CFInputValue>> partialBuilder)
+        => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFInputValue>(it)));
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithConstraint(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
+        => it.AddFieldName("constraint");
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithConstraint(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it, Func<Partial<CFConstraint>, Partial<CFConstraint>> partialBuilder)
+        => it.AddFieldName("constraint", partialBuilder(new Partial<CFConstraint>(it)));
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithDescription(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> WithOrder(this Partial<CustomFieldsV2ForEntityTypeFieldsPostRequest> it)
+        => it.AddFieldName("order");
     
 }
+

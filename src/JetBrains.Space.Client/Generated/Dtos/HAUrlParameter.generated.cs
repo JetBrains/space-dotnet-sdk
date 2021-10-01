@@ -27,68 +27,67 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HAUrlParameter
+     : IPropagatePropertyAccessPath
 {
-    public sealed class HAUrlParameter
-         : IPropagatePropertyAccessPath
+    public HAUrlParameter() { }
+    
+    public HAUrlParameter(string id, string name, List<HAUrlParameterOption> options, HADeprecation? deprecation = null)
     {
-        public HAUrlParameter() { }
-        
-        public HAUrlParameter(string id, string name, List<HAUrlParameterOption> options, HADeprecation? deprecation = null)
-        {
-            Id = id;
-            Name = name;
-            Options = options;
-            Deprecation = deprecation;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAUrlParameter), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAUrlParameter), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<List<HAUrlParameterOption>> _options = new PropertyValue<List<HAUrlParameterOption>>(nameof(HAUrlParameter), nameof(Options), new List<HAUrlParameterOption>());
-        
-        [Required]
-        [JsonPropertyName("options")]
-        public List<HAUrlParameterOption> Options
-        {
-            get => _options.GetValue();
-            set => _options.SetValue(value);
-        }
-    
-        private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAUrlParameter), nameof(Deprecation));
-        
-        [JsonPropertyName("deprecation")]
-        public HADeprecation? Deprecation
-        {
-            get => _deprecation.GetValue();
-            set => _deprecation.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _options.SetAccessPath(path, validateHasBeenSet);
-            _deprecation.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Name = name;
+        Options = options;
+        Deprecation = deprecation;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAUrlParameter), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAUrlParameter), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<List<HAUrlParameterOption>> _options = new PropertyValue<List<HAUrlParameterOption>>(nameof(HAUrlParameter), nameof(Options), new List<HAUrlParameterOption>());
+    
+    [Required]
+    [JsonPropertyName("options")]
+    public List<HAUrlParameterOption> Options
+    {
+        get => _options.GetValue();
+        set => _options.SetValue(value);
+    }
+
+    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAUrlParameter), nameof(Deprecation));
+    
+    [JsonPropertyName("deprecation")]
+    public HADeprecation? Deprecation
+    {
+        get => _deprecation.GetValue();
+        set => _deprecation.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _options.SetAccessPath(path, validateHasBeenSet);
+        _deprecation.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

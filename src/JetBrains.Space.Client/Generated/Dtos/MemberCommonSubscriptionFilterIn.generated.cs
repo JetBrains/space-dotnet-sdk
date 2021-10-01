@@ -27,59 +27,58 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MemberCommonSubscriptionFilterIn
+     : SubscriptionFilterIn, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MemberCommonSubscriptionFilterIn
-         : SubscriptionFilterIn, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MemberCommonSubscriptionFilterIn";
+    
+    public MemberCommonSubscriptionFilterIn() { }
+    
+    public MemberCommonSubscriptionFilterIn(List<string> teams, List<string> locations, List<ProfileIdentifier>? profiles = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MemberCommonSubscriptionFilterIn";
-        
-        public MemberCommonSubscriptionFilterIn() { }
-        
-        public MemberCommonSubscriptionFilterIn(List<string> teams, List<string> locations, List<ProfileIdentifier>? profiles = null)
-        {
-            Teams = teams;
-            Locations = locations;
-            Profiles = profiles;
-        }
-        
-        private PropertyValue<List<string>> _teams = new PropertyValue<List<string>>(nameof(MemberCommonSubscriptionFilterIn), nameof(Teams), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("teams")]
-        public List<string> Teams
-        {
-            get => _teams.GetValue();
-            set => _teams.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _locations = new PropertyValue<List<string>>(nameof(MemberCommonSubscriptionFilterIn), nameof(Locations), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("locations")]
-        public List<string> Locations
-        {
-            get => _locations.GetValue();
-            set => _locations.SetValue(value);
-        }
-    
-        private PropertyValue<List<ProfileIdentifier>?> _profiles = new PropertyValue<List<ProfileIdentifier>?>(nameof(MemberCommonSubscriptionFilterIn), nameof(Profiles));
-        
-        [JsonPropertyName("profiles")]
-        public List<ProfileIdentifier>? Profiles
-        {
-            get => _profiles.GetValue();
-            set => _profiles.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _teams.SetAccessPath(path, validateHasBeenSet);
-            _locations.SetAccessPath(path, validateHasBeenSet);
-            _profiles.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Teams = teams;
+        Locations = locations;
+        Profiles = profiles;
     }
     
+    private PropertyValue<List<string>> _teams = new PropertyValue<List<string>>(nameof(MemberCommonSubscriptionFilterIn), nameof(Teams), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("teams")]
+    public List<string> Teams
+    {
+        get => _teams.GetValue();
+        set => _teams.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _locations = new PropertyValue<List<string>>(nameof(MemberCommonSubscriptionFilterIn), nameof(Locations), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("locations")]
+    public List<string> Locations
+    {
+        get => _locations.GetValue();
+        set => _locations.SetValue(value);
+    }
+
+    private PropertyValue<List<ProfileIdentifier>?> _profiles = new PropertyValue<List<ProfileIdentifier>?>(nameof(MemberCommonSubscriptionFilterIn), nameof(Profiles));
+    
+    [JsonPropertyName("profiles")]
+    public List<ProfileIdentifier>? Profiles
+    {
+        get => _profiles.GetValue();
+        set => _profiles.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _teams.SetAccessPath(path, validateHasBeenSet);
+        _locations.SetAccessPath(path, validateHasBeenSet);
+        _profiles.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,64 +27,63 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CalendarsMeetingsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.CalendarsMeetingsPostRequestPartialBuilder;
+
+public static class CalendarsMeetingsPostRequestPartialExtensions
 {
-    public static class CalendarsMeetingsPostRequestPartialExtensions
-    {
-        public static Partial<CalendarsMeetingsPostRequest> WithSummary(this Partial<CalendarsMeetingsPostRequest> it)
-            => it.AddFieldName("summary");
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithDescription(this Partial<CalendarsMeetingsPostRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithOccurrenceRule(this Partial<CalendarsMeetingsPostRequest> it)
-            => it.AddFieldName("occurrenceRule");
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithOccurrenceRule(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<CalendarEventSpec>, Partial<CalendarEventSpec>> partialBuilder)
-            => it.AddFieldName("occurrenceRule", partialBuilder(new Partial<CalendarEventSpec>(it)));
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithLocations(this Partial<CalendarsMeetingsPostRequest> it)
-            => it.AddFieldName("locations");
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithProfiles(this Partial<CalendarsMeetingsPostRequest> it)
-            => it.AddFieldName("profiles");
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithExternalParticipants(this Partial<CalendarsMeetingsPostRequest> it)
-            => it.AddFieldName("externalParticipants");
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithTeams(this Partial<CalendarsMeetingsPostRequest> it)
-            => it.AddFieldName("teams");
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithVisibility(this Partial<CalendarsMeetingsPostRequest> it)
-            => it.AddFieldName("visibility");
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithVisibility(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<MeetingVisibility>, Partial<MeetingVisibility>> partialBuilder)
-            => it.AddFieldName("visibility", partialBuilder(new Partial<MeetingVisibility>(it)));
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithModificationPreference(this Partial<CalendarsMeetingsPostRequest> it)
-            => it.AddFieldName("modificationPreference");
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithModificationPreference(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<MeetingModificationPreference>, Partial<MeetingModificationPreference>> partialBuilder)
-            => it.AddFieldName("modificationPreference", partialBuilder(new Partial<MeetingModificationPreference>(it)));
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithJoiningPreference(this Partial<CalendarsMeetingsPostRequest> it)
-            => it.AddFieldName("joiningPreference");
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithJoiningPreference(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<MeetingJoiningPreference>, Partial<MeetingJoiningPreference>> partialBuilder)
-            => it.AddFieldName("joiningPreference", partialBuilder(new Partial<MeetingJoiningPreference>(it)));
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithIsNotifyOnExport(this Partial<CalendarsMeetingsPostRequest> it)
-            => it.AddFieldName("notifyOnExport");
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithOrganizer(this Partial<CalendarsMeetingsPostRequest> it)
-            => it.AddFieldName("organizer");
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithConferenceData(this Partial<CalendarsMeetingsPostRequest> it)
-            => it.AddFieldName("conferenceData");
-        
-        public static Partial<CalendarsMeetingsPostRequest> WithConferenceData(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<EventConferenceData>, Partial<EventConferenceData>> partialBuilder)
-            => it.AddFieldName("conferenceData", partialBuilder(new Partial<EventConferenceData>(it)));
-        
-    }
+    public static Partial<CalendarsMeetingsPostRequest> WithSummary(this Partial<CalendarsMeetingsPostRequest> it)
+        => it.AddFieldName("summary");
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithDescription(this Partial<CalendarsMeetingsPostRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithOccurrenceRule(this Partial<CalendarsMeetingsPostRequest> it)
+        => it.AddFieldName("occurrenceRule");
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithOccurrenceRule(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<CalendarEventSpec>, Partial<CalendarEventSpec>> partialBuilder)
+        => it.AddFieldName("occurrenceRule", partialBuilder(new Partial<CalendarEventSpec>(it)));
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithLocations(this Partial<CalendarsMeetingsPostRequest> it)
+        => it.AddFieldName("locations");
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithProfiles(this Partial<CalendarsMeetingsPostRequest> it)
+        => it.AddFieldName("profiles");
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithExternalParticipants(this Partial<CalendarsMeetingsPostRequest> it)
+        => it.AddFieldName("externalParticipants");
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithTeams(this Partial<CalendarsMeetingsPostRequest> it)
+        => it.AddFieldName("teams");
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithVisibility(this Partial<CalendarsMeetingsPostRequest> it)
+        => it.AddFieldName("visibility");
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithVisibility(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<MeetingVisibility>, Partial<MeetingVisibility>> partialBuilder)
+        => it.AddFieldName("visibility", partialBuilder(new Partial<MeetingVisibility>(it)));
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithModificationPreference(this Partial<CalendarsMeetingsPostRequest> it)
+        => it.AddFieldName("modificationPreference");
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithModificationPreference(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<MeetingModificationPreference>, Partial<MeetingModificationPreference>> partialBuilder)
+        => it.AddFieldName("modificationPreference", partialBuilder(new Partial<MeetingModificationPreference>(it)));
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithJoiningPreference(this Partial<CalendarsMeetingsPostRequest> it)
+        => it.AddFieldName("joiningPreference");
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithJoiningPreference(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<MeetingJoiningPreference>, Partial<MeetingJoiningPreference>> partialBuilder)
+        => it.AddFieldName("joiningPreference", partialBuilder(new Partial<MeetingJoiningPreference>(it)));
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithIsNotifyOnExport(this Partial<CalendarsMeetingsPostRequest> it)
+        => it.AddFieldName("notifyOnExport");
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithOrganizer(this Partial<CalendarsMeetingsPostRequest> it)
+        => it.AddFieldName("organizer");
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithConferenceData(this Partial<CalendarsMeetingsPostRequest> it)
+        => it.AddFieldName("conferenceData");
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithConferenceData(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<EventConferenceData>, Partial<EventConferenceData>> partialBuilder)
+        => it.AddFieldName("conferenceData", partialBuilder(new Partial<EventConferenceData>(it)));
     
 }
+

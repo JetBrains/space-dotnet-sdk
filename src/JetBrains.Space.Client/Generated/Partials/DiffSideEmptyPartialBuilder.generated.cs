@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DiffSideEmptyPartialBuilder
+namespace JetBrains.Space.Client.DiffSideEmptyPartialBuilder;
+
+public static class DiffSideEmptyPartialExtensions
 {
-    public static class DiffSideEmptyPartialExtensions
-    {
-        public static Partial<DiffSideEmpty> WithRevision(this Partial<DiffSideEmpty> it)
-            => it.AddFieldName("revision");
-        
-    }
+    public static Partial<DiffSideEmpty> WithRevision(this Partial<DiffSideEmpty> it)
+        => it.AddFieldName("revision");
     
 }
+

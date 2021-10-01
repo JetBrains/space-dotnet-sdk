@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryLocationsRestorePostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryLocationsRestorePostRequestPartialBuilder;
+
+public static class TeamDirectoryLocationsRestorePostRequestPartialExtensions
 {
-    public static class TeamDirectoryLocationsRestorePostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryLocationsRestorePostRequest> WithIds(this Partial<TeamDirectoryLocationsRestorePostRequest> it)
-            => it.AddFieldName("ids");
-        
-    }
+    public static Partial<TeamDirectoryLocationsRestorePostRequest> WithIds(this Partial<TeamDirectoryLocationsRestorePostRequest> it)
+        => it.AddFieldName("ids");
     
 }
+

@@ -27,67 +27,66 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentFolderPartialBuilder
+namespace JetBrains.Space.Client.DocumentFolderPartialBuilder;
+
+public static class DocumentFolderPartialExtensions
 {
-    public static class DocumentFolderPartialExtensions
-    {
-        public static Partial<DocumentFolder> WithId(this Partial<DocumentFolder> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<DocumentFolder> WithIsArchived(this Partial<DocumentFolder> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<DocumentFolder> WithContainerInfo(this Partial<DocumentFolder> it)
-            => it.AddFieldName("containerInfo");
-        
-        public static Partial<DocumentFolder> WithContainerInfo(this Partial<DocumentFolder> it, Func<Partial<DocumentContainerInfo>, Partial<DocumentContainerInfo>> partialBuilder)
-            => it.AddFieldName("containerInfo", partialBuilder(new Partial<DocumentContainerInfo>(it)));
-        
-        public static Partial<DocumentFolder> WithParent(this Partial<DocumentFolder> it)
-            => it.AddFieldName("parent");
-        
-        public static Partial<DocumentFolder> WithParentRecursive(this Partial<DocumentFolder> it)
-            => it.AddFieldName("parent!");
-        
-        public static Partial<DocumentFolder> WithParent(this Partial<DocumentFolder> it, Func<Partial<DocumentFolder>, Partial<DocumentFolder>> partialBuilder)
-            => it.AddFieldName("parent", partialBuilder(new Partial<DocumentFolder>(it)));
-        
-        public static Partial<DocumentFolder> WithName(this Partial<DocumentFolder> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<DocumentFolder> WithCreated(this Partial<DocumentFolder> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<DocumentFolder> WithCreatedBy(this Partial<DocumentFolder> it)
-            => it.AddFieldName("createdBy");
-        
-        public static Partial<DocumentFolder> WithCreatedBy(this Partial<DocumentFolder> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<DocumentFolder> WithUpdated(this Partial<DocumentFolder> it)
-            => it.AddFieldName("updated");
-        
-        public static Partial<DocumentFolder> WithUpdatedBy(this Partial<DocumentFolder> it)
-            => it.AddFieldName("updatedBy");
-        
-        public static Partial<DocumentFolder> WithUpdatedBy(this Partial<DocumentFolder> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("updatedBy", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<DocumentFolder> WithDocuments(this Partial<DocumentFolder> it)
-            => it.AddFieldName("documents");
-        
-        public static Partial<DocumentFolder> WithDocuments(this Partial<DocumentFolder> it, Func<Partial<Document>, Partial<Document>> partialBuilder)
-            => it.AddFieldName("documents", partialBuilder(new Partial<Document>(it)));
-        
-        public static Partial<DocumentFolder> WithSubfolders(this Partial<DocumentFolder> it)
-            => it.AddFieldName("subfolders");
-        
-        public static Partial<DocumentFolder> WithSubfoldersRecursive(this Partial<DocumentFolder> it)
-            => it.AddFieldName("subfolders!");
-        
-        public static Partial<DocumentFolder> WithSubfolders(this Partial<DocumentFolder> it, Func<Partial<DocumentFolder>, Partial<DocumentFolder>> partialBuilder)
-            => it.AddFieldName("subfolders", partialBuilder(new Partial<DocumentFolder>(it)));
-        
-    }
+    public static Partial<DocumentFolder> WithId(this Partial<DocumentFolder> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<DocumentFolder> WithIsArchived(this Partial<DocumentFolder> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<DocumentFolder> WithContainerInfo(this Partial<DocumentFolder> it)
+        => it.AddFieldName("containerInfo");
+    
+    public static Partial<DocumentFolder> WithContainerInfo(this Partial<DocumentFolder> it, Func<Partial<DocumentContainerInfo>, Partial<DocumentContainerInfo>> partialBuilder)
+        => it.AddFieldName("containerInfo", partialBuilder(new Partial<DocumentContainerInfo>(it)));
+    
+    public static Partial<DocumentFolder> WithParent(this Partial<DocumentFolder> it)
+        => it.AddFieldName("parent");
+    
+    public static Partial<DocumentFolder> WithParentRecursive(this Partial<DocumentFolder> it)
+        => it.AddFieldName("parent!");
+    
+    public static Partial<DocumentFolder> WithParent(this Partial<DocumentFolder> it, Func<Partial<DocumentFolder>, Partial<DocumentFolder>> partialBuilder)
+        => it.AddFieldName("parent", partialBuilder(new Partial<DocumentFolder>(it)));
+    
+    public static Partial<DocumentFolder> WithName(this Partial<DocumentFolder> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<DocumentFolder> WithCreated(this Partial<DocumentFolder> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<DocumentFolder> WithCreatedBy(this Partial<DocumentFolder> it)
+        => it.AddFieldName("createdBy");
+    
+    public static Partial<DocumentFolder> WithCreatedBy(this Partial<DocumentFolder> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<DocumentFolder> WithUpdated(this Partial<DocumentFolder> it)
+        => it.AddFieldName("updated");
+    
+    public static Partial<DocumentFolder> WithUpdatedBy(this Partial<DocumentFolder> it)
+        => it.AddFieldName("updatedBy");
+    
+    public static Partial<DocumentFolder> WithUpdatedBy(this Partial<DocumentFolder> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("updatedBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<DocumentFolder> WithDocuments(this Partial<DocumentFolder> it)
+        => it.AddFieldName("documents");
+    
+    public static Partial<DocumentFolder> WithDocuments(this Partial<DocumentFolder> it, Func<Partial<Document>, Partial<Document>> partialBuilder)
+        => it.AddFieldName("documents", partialBuilder(new Partial<Document>(it)));
+    
+    public static Partial<DocumentFolder> WithSubfolders(this Partial<DocumentFolder> it)
+        => it.AddFieldName("subfolders");
+    
+    public static Partial<DocumentFolder> WithSubfoldersRecursive(this Partial<DocumentFolder> it)
+        => it.AddFieldName("subfolders!");
+    
+    public static Partial<DocumentFolder> WithSubfolders(this Partial<DocumentFolder> it, Func<Partial<DocumentFolder>, Partial<DocumentFolder>> partialBuilder)
+        => it.AddFieldName("subfolders", partialBuilder(new Partial<DocumentFolder>(it)));
     
 }
+

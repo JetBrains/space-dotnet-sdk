@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RevisionAuthorInfoPartialBuilder
+namespace JetBrains.Space.Client.RevisionAuthorInfoPartialBuilder;
+
+public static class RevisionAuthorInfoPartialExtensions
 {
-    public static class RevisionAuthorInfoPartialExtensions
-    {
-        public static Partial<RevisionAuthorInfo> WithRevisionInfo(this Partial<RevisionAuthorInfo> it)
-            => it.AddFieldName("revisionInfo");
-        
-        public static Partial<RevisionAuthorInfo> WithRevisionInfo(this Partial<RevisionAuthorInfo> it, Func<Partial<RevisionInfo>, Partial<RevisionInfo>> partialBuilder)
-            => it.AddFieldName("revisionInfo", partialBuilder(new Partial<RevisionInfo>(it)));
-        
-        public static Partial<RevisionAuthorInfo> WithAuthor(this Partial<RevisionAuthorInfo> it)
-            => it.AddFieldName("author");
-        
-        public static Partial<RevisionAuthorInfo> WithAuthor(this Partial<RevisionAuthorInfo> it, Func<Partial<RevisionAuthor>, Partial<RevisionAuthor>> partialBuilder)
-            => it.AddFieldName("author", partialBuilder(new Partial<RevisionAuthor>(it)));
-        
-    }
+    public static Partial<RevisionAuthorInfo> WithRevisionInfo(this Partial<RevisionAuthorInfo> it)
+        => it.AddFieldName("revisionInfo");
+    
+    public static Partial<RevisionAuthorInfo> WithRevisionInfo(this Partial<RevisionAuthorInfo> it, Func<Partial<RevisionInfo>, Partial<RevisionInfo>> partialBuilder)
+        => it.AddFieldName("revisionInfo", partialBuilder(new Partial<RevisionInfo>(it)));
+    
+    public static Partial<RevisionAuthorInfo> WithAuthor(this Partial<RevisionAuthorInfo> it)
+        => it.AddFieldName("author");
+    
+    public static Partial<RevisionAuthorInfo> WithAuthor(this Partial<RevisionAuthorInfo> it, Func<Partial<RevisionAuthor>, Partial<RevisionAuthor>> partialBuilder)
+        => it.AddFieldName("author", partialBuilder(new Partial<RevisionAuthor>(it)));
     
 }
+

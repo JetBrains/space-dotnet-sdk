@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PingWebhookEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class PingWebhookEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "PingWebhookEvent";
+    
+    public PingWebhookEvent() { }
+    
+    public PingWebhookEvent(string webhookName)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "PingWebhookEvent";
-        
-        public PingWebhookEvent() { }
-        
-        public PingWebhookEvent(string webhookName)
-        {
-            WebhookName = webhookName;
-        }
-        
-        private PropertyValue<string> _webhookName = new PropertyValue<string>(nameof(PingWebhookEvent), nameof(WebhookName));
-        
-        [Required]
-        [JsonPropertyName("webhookName")]
-        public string WebhookName
-        {
-            get => _webhookName.GetValue();
-            set => _webhookName.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _webhookName.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        WebhookName = webhookName;
     }
     
+    private PropertyValue<string> _webhookName = new PropertyValue<string>(nameof(PingWebhookEvent), nameof(WebhookName));
+    
+    [Required]
+    [JsonPropertyName("webhookName")]
+    public string WebhookName
+    {
+        get => _webhookName.GetValue();
+        set => _webhookName.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _webhookName.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

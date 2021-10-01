@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsTagsTrackAccessPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsTagsTrackAccessPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsTagsTrackAccessPostRequest() { }
+    
+    public ProjectsTagsTrackAccessPostRequest(string tag)
     {
-        public ProjectsTagsTrackAccessPostRequest() { }
-        
-        public ProjectsTagsTrackAccessPostRequest(string tag)
-        {
-            Tag = tag;
-        }
-        
-        private PropertyValue<string> _tag = new PropertyValue<string>(nameof(ProjectsTagsTrackAccessPostRequest), nameof(Tag));
-        
-        [Required]
-        [JsonPropertyName("tag")]
-        public string Tag
-        {
-            get => _tag.GetValue();
-            set => _tag.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _tag.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Tag = tag;
     }
     
+    private PropertyValue<string> _tag = new PropertyValue<string>(nameof(ProjectsTagsTrackAccessPostRequest), nameof(Tag));
+    
+    [Required]
+    [JsonPropertyName("tag")]
+    public string Tag
+    {
+        get => _tag.GetValue();
+        set => _tag.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _tag.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

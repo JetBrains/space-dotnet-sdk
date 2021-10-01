@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RecurrenceRuleFreqPartialBuilder
+namespace JetBrains.Space.Client.RecurrenceRuleFreqPartialBuilder;
+
+public static class RecurrenceRuleFreqPartialExtensions
 {
-    public static class RecurrenceRuleFreqPartialExtensions
-    {
-    }
-    
 }
+

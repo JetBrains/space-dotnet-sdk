@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ReviewBranchTrackEventPartialBuilder
+namespace JetBrains.Space.Client.ReviewBranchTrackEventPartialBuilder;
+
+public static class ReviewBranchTrackEventPartialExtensions
 {
-    public static class ReviewBranchTrackEventPartialExtensions
-    {
-        public static Partial<ReviewBranchTrackEvent> WithRepository(this Partial<ReviewBranchTrackEvent> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<ReviewBranchTrackEvent> WithBranch(this Partial<ReviewBranchTrackEvent> it)
-            => it.AddFieldName("branch");
-        
-        public static Partial<ReviewBranchTrackEvent> WithIsTrack(this Partial<ReviewBranchTrackEvent> it)
-            => it.AddFieldName("track");
-        
-    }
+    public static Partial<ReviewBranchTrackEvent> WithRepository(this Partial<ReviewBranchTrackEvent> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<ReviewBranchTrackEvent> WithBranch(this Partial<ReviewBranchTrackEvent> it)
+        => it.AddFieldName("branch");
+    
+    public static Partial<ReviewBranchTrackEvent> WithIsTrack(this Partial<ReviewBranchTrackEvent> it)
+        => it.AddFieldName("track");
     
 }
+

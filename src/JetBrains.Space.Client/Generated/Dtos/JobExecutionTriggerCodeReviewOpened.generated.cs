@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class JobExecutionTriggerCodeReviewOpened
+     : JobExecutionTrigger, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class JobExecutionTriggerCodeReviewOpened
-         : JobExecutionTrigger, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "JobExecutionTrigger.CodeReviewOpened";
+    
+    public JobExecutionTriggerCodeReviewOpened() { }
+    
+    public JobExecutionTriggerCodeReviewOpened(string reviewId)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "JobExecutionTrigger.CodeReviewOpened";
-        
-        public JobExecutionTriggerCodeReviewOpened() { }
-        
-        public JobExecutionTriggerCodeReviewOpened(string reviewId)
-        {
-            ReviewId = reviewId;
-        }
-        
-        private PropertyValue<string> _reviewId = new PropertyValue<string>(nameof(JobExecutionTriggerCodeReviewOpened), nameof(ReviewId));
-        
-        [Required]
-        [JsonPropertyName("reviewId")]
-        public string ReviewId
-        {
-            get => _reviewId.GetValue();
-            set => _reviewId.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _reviewId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ReviewId = reviewId;
     }
     
+    private PropertyValue<string> _reviewId = new PropertyValue<string>(nameof(JobExecutionTriggerCodeReviewOpened), nameof(ReviewId));
+    
+    [Required]
+    [JsonPropertyName("reviewId")]
+    public string ReviewId
+    {
+        get => _reviewId.GetValue();
+        set => _reviewId.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _reviewId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

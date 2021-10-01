@@ -27,102 +27,101 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CodeSnippetAnchor
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CodeSnippetAnchor
-         : IPropagatePropertyAccessPath
+    public CodeSnippetAnchor() { }
+    
+    public CodeSnippetAnchor(ProjectKey projectKey, string repository, string revision, string filename, int? lineIndex = null, int? lineStart = null, int? lineEnd = null)
     {
-        public CodeSnippetAnchor() { }
-        
-        public CodeSnippetAnchor(ProjectKey projectKey, string repository, string revision, string filename, int? lineIndex = null, int? lineStart = null, int? lineEnd = null)
-        {
-            ProjectKey = projectKey;
-            Repository = repository;
-            Revision = revision;
-            Filename = filename;
-            LineIndex = lineIndex;
-            LineStart = lineStart;
-            LineEnd = lineEnd;
-        }
-        
-        private PropertyValue<ProjectKey> _projectKey = new PropertyValue<ProjectKey>(nameof(CodeSnippetAnchor), nameof(ProjectKey));
-        
-        [Required]
-        [JsonPropertyName("projectKey")]
-        public ProjectKey ProjectKey
-        {
-            get => _projectKey.GetValue();
-            set => _projectKey.SetValue(value);
-        }
-    
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CodeSnippetAnchor), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<string> _revision = new PropertyValue<string>(nameof(CodeSnippetAnchor), nameof(Revision));
-        
-        [Required]
-        [JsonPropertyName("revision")]
-        public string Revision
-        {
-            get => _revision.GetValue();
-            set => _revision.SetValue(value);
-        }
-    
-        private PropertyValue<string> _filename = new PropertyValue<string>(nameof(CodeSnippetAnchor), nameof(Filename));
-        
-        [Required]
-        [JsonPropertyName("filename")]
-        public string Filename
-        {
-            get => _filename.GetValue();
-            set => _filename.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _lineIndex = new PropertyValue<int?>(nameof(CodeSnippetAnchor), nameof(LineIndex));
-        
-        [JsonPropertyName("lineIndex")]
-        public int? LineIndex
-        {
-            get => _lineIndex.GetValue();
-            set => _lineIndex.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _lineStart = new PropertyValue<int?>(nameof(CodeSnippetAnchor), nameof(LineStart));
-        
-        [JsonPropertyName("lineStart")]
-        public int? LineStart
-        {
-            get => _lineStart.GetValue();
-            set => _lineStart.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _lineEnd = new PropertyValue<int?>(nameof(CodeSnippetAnchor), nameof(LineEnd));
-        
-        [JsonPropertyName("lineEnd")]
-        public int? LineEnd
-        {
-            get => _lineEnd.GetValue();
-            set => _lineEnd.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _projectKey.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _revision.SetAccessPath(path, validateHasBeenSet);
-            _filename.SetAccessPath(path, validateHasBeenSet);
-            _lineIndex.SetAccessPath(path, validateHasBeenSet);
-            _lineStart.SetAccessPath(path, validateHasBeenSet);
-            _lineEnd.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ProjectKey = projectKey;
+        Repository = repository;
+        Revision = revision;
+        Filename = filename;
+        LineIndex = lineIndex;
+        LineStart = lineStart;
+        LineEnd = lineEnd;
     }
     
+    private PropertyValue<ProjectKey> _projectKey = new PropertyValue<ProjectKey>(nameof(CodeSnippetAnchor), nameof(ProjectKey));
+    
+    [Required]
+    [JsonPropertyName("projectKey")]
+    public ProjectKey ProjectKey
+    {
+        get => _projectKey.GetValue();
+        set => _projectKey.SetValue(value);
+    }
+
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CodeSnippetAnchor), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public string Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(CodeSnippetAnchor), nameof(Revision));
+    
+    [Required]
+    [JsonPropertyName("revision")]
+    public string Revision
+    {
+        get => _revision.GetValue();
+        set => _revision.SetValue(value);
+    }
+
+    private PropertyValue<string> _filename = new PropertyValue<string>(nameof(CodeSnippetAnchor), nameof(Filename));
+    
+    [Required]
+    [JsonPropertyName("filename")]
+    public string Filename
+    {
+        get => _filename.GetValue();
+        set => _filename.SetValue(value);
+    }
+
+    private PropertyValue<int?> _lineIndex = new PropertyValue<int?>(nameof(CodeSnippetAnchor), nameof(LineIndex));
+    
+    [JsonPropertyName("lineIndex")]
+    public int? LineIndex
+    {
+        get => _lineIndex.GetValue();
+        set => _lineIndex.SetValue(value);
+    }
+
+    private PropertyValue<int?> _lineStart = new PropertyValue<int?>(nameof(CodeSnippetAnchor), nameof(LineStart));
+    
+    [JsonPropertyName("lineStart")]
+    public int? LineStart
+    {
+        get => _lineStart.GetValue();
+        set => _lineStart.SetValue(value);
+    }
+
+    private PropertyValue<int?> _lineEnd = new PropertyValue<int?>(nameof(CodeSnippetAnchor), nameof(LineEnd));
+    
+    [JsonPropertyName("lineEnd")]
+    public int? LineEnd
+    {
+        get => _lineEnd.GetValue();
+        set => _lineEnd.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _projectKey.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _revision.SetAccessPath(path, validateHasBeenSet);
+        _filename.SetAccessPath(path, validateHasBeenSet);
+        _lineIndex.SetAccessPath(path, validateHasBeenSet);
+        _lineStart.SetAccessPath(path, validateHasBeenSet);
+        _lineEnd.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

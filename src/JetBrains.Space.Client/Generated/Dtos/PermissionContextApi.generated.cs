@@ -27,26 +27,25 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface PermissionContextApi
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface PermissionContextApi
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static ChannelPermissionContext ChannelPermissionContext(M2ChannelRecord channel)
-            => new ChannelPermissionContext(channel: channel);
-        
-        public static GlobalPermissionContext GlobalPermissionContext()
-            => new GlobalPermissionContext();
-        
-        public static PrivateChannelPermissionContext PrivateChannelPermissionContext(string channelId)
-            => new PrivateChannelPermissionContext(channelId: channelId);
-        
-        public static PrivateProjectPermissionContext PrivateProjectPermissionContext(string projectId)
-            => new PrivateProjectPermissionContext(projectId: projectId);
-        
-        public static ProjectPermissionContext ProjectPermissionContext(PRProject project)
-            => new ProjectPermissionContext(project: project);
-        
-    }
+    public static ChannelPermissionContext ChannelPermissionContext(M2ChannelRecord channel)
+        => new ChannelPermissionContext(channel: channel);
+    
+    public static GlobalPermissionContext GlobalPermissionContext()
+        => new GlobalPermissionContext();
+    
+    public static PrivateChannelPermissionContext PrivateChannelPermissionContext(string channelId)
+        => new PrivateChannelPermissionContext(channelId: channelId);
+    
+    public static PrivateProjectPermissionContext PrivateProjectPermissionContext(string projectId)
+        => new PrivateProjectPermissionContext(projectId: projectId);
+    
+    public static ProjectPermissionContext ProjectPermissionContext(PRProject project)
+        => new ProjectPermissionContext(project: project);
     
 }
+

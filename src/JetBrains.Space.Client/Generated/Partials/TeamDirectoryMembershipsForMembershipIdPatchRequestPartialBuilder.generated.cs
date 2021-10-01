@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryMembershipsForMembershipIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryMembershipsForMembershipIdPatchRequestPartialBuilder;
+
+public static class TeamDirectoryMembershipsForMembershipIdPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryMembershipsForMembershipIdPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithTeamId(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
-            => it.AddFieldName("teamId");
-        
-        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithRoleId(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
-            => it.AddFieldName("roleId");
-        
-        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithIsLead(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
-            => it.AddFieldName("lead");
-        
-        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithManager(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
-            => it.AddFieldName("manager");
-        
-        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithManager(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("manager", partialBuilder(new Partial<ProfileIdentifier>(it)));
-        
-        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithActiveSince(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
-            => it.AddFieldName("activeSince");
-        
-        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithActiveTill(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
-            => it.AddFieldName("activeTill");
-        
-        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithIsRequiresApproval(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
-            => it.AddFieldName("requiresApproval");
-        
-        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
-            => it.AddFieldName("customFieldValues");
-        
-        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
-        
-    }
+    public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithTeamId(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
+        => it.AddFieldName("teamId");
+    
+    public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithRoleId(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
+        => it.AddFieldName("roleId");
+    
+    public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithIsLead(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
+        => it.AddFieldName("lead");
+    
+    public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithManager(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
+        => it.AddFieldName("manager");
+    
+    public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithManager(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+        => it.AddFieldName("manager", partialBuilder(new Partial<ProfileIdentifier>(it)));
+    
+    public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithActiveSince(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
+        => it.AddFieldName("activeSince");
+    
+    public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithActiveTill(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
+        => it.AddFieldName("activeTill");
+    
+    public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithIsRequiresApproval(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
+        => it.AddFieldName("requiresApproval");
+    
+    public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
+        => it.AddFieldName("customFieldValues");
+    
+    public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+        => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
     
 }
+

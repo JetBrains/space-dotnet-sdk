@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BlogImportPostRequestPartialBuilder
+namespace JetBrains.Space.Client.BlogImportPostRequestPartialBuilder;
+
+public static class BlogImportPostRequestPartialExtensions
 {
-    public static class BlogImportPostRequestPartialExtensions
-    {
-        public static Partial<BlogImportPostRequest> WithMetadata(this Partial<BlogImportPostRequest> it)
-            => it.AddFieldName("metadata");
-        
-        public static Partial<BlogImportPostRequest> WithMetadata(this Partial<BlogImportPostRequest> it, Func<Partial<ImportMetadata>, Partial<ImportMetadata>> partialBuilder)
-            => it.AddFieldName("metadata", partialBuilder(new Partial<ImportMetadata>(it)));
-        
-        public static Partial<BlogImportPostRequest> WithArticles(this Partial<BlogImportPostRequest> it)
-            => it.AddFieldName("articles");
-        
-        public static Partial<BlogImportPostRequest> WithArticles(this Partial<BlogImportPostRequest> it, Func<Partial<ExternalArticle>, Partial<ExternalArticle>> partialBuilder)
-            => it.AddFieldName("articles", partialBuilder(new Partial<ExternalArticle>(it)));
-        
-    }
+    public static Partial<BlogImportPostRequest> WithMetadata(this Partial<BlogImportPostRequest> it)
+        => it.AddFieldName("metadata");
+    
+    public static Partial<BlogImportPostRequest> WithMetadata(this Partial<BlogImportPostRequest> it, Func<Partial<ImportMetadata>, Partial<ImportMetadata>> partialBuilder)
+        => it.AddFieldName("metadata", partialBuilder(new Partial<ImportMetadata>(it)));
+    
+    public static Partial<BlogImportPostRequest> WithArticles(this Partial<BlogImportPostRequest> it)
+        => it.AddFieldName("articles");
+    
+    public static Partial<BlogImportPostRequest> WithArticles(this Partial<BlogImportPostRequest> it, Func<Partial<ExternalArticle>, Partial<ExternalArticle>> partialBuilder)
+        => it.AddFieldName("articles", partialBuilder(new Partial<ExternalArticle>(it)));
     
 }
+

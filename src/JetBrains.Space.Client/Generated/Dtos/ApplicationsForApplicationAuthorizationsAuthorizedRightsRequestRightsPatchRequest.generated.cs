@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest
-         : IPropagatePropertyAccessPath
+    public ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest() { }
+    
+    public ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest(PermissionContextIdentifier contextIdentifier, List<string> rightCodes)
     {
-        public ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest() { }
-        
-        public ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest(PermissionContextIdentifier contextIdentifier, List<string> rightCodes)
-        {
-            ContextIdentifier = contextIdentifier;
-            RightCodes = rightCodes;
-        }
-        
-        private PropertyValue<PermissionContextIdentifier> _contextIdentifier = new PropertyValue<PermissionContextIdentifier>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest), nameof(ContextIdentifier));
-        
-        [Required]
-        [JsonPropertyName("contextIdentifier")]
-        public PermissionContextIdentifier ContextIdentifier
-        {
-            get => _contextIdentifier.GetValue();
-            set => _contextIdentifier.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _rightCodes = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest), nameof(RightCodes), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("rightCodes")]
-        public List<string> RightCodes
-        {
-            get => _rightCodes.GetValue();
-            set => _rightCodes.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _contextIdentifier.SetAccessPath(path, validateHasBeenSet);
-            _rightCodes.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ContextIdentifier = contextIdentifier;
+        RightCodes = rightCodes;
     }
     
+    private PropertyValue<PermissionContextIdentifier> _contextIdentifier = new PropertyValue<PermissionContextIdentifier>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest), nameof(ContextIdentifier));
+    
+    [Required]
+    [JsonPropertyName("contextIdentifier")]
+    public PermissionContextIdentifier ContextIdentifier
+    {
+        get => _contextIdentifier.GetValue();
+        set => _contextIdentifier.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _rightCodes = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest), nameof(RightCodes), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("rightCodes")]
+    public List<string> RightCodes
+    {
+        get => _rightCodes.GetValue();
+        set => _rightCodes.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _contextIdentifier.SetAccessPath(path, validateHasBeenSet);
+        _rightCodes.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

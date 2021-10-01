@@ -27,56 +27,55 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest() { }
+    
+    public TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest(string? location = null, DateTime? since = null, DateTime? till = null)
     {
-        public TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest() { }
-        
-        public TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest(string? location = null, DateTime? since = null, DateTime? till = null)
-        {
-            Location = location;
-            Since = since;
-            Till = till;
-        }
-        
-        private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Location));
-        
-        [JsonPropertyName("location")]
-        public string? Location
-        {
-            get => _location.GetValue();
-            set => _location.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Since));
-        
-        [JsonPropertyName("since")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? Since
-        {
-            get => _since.GetValue();
-            set => _since.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Till));
-        
-        [JsonPropertyName("till")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? Till
-        {
-            get => _till.GetValue();
-            set => _till.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _location.SetAccessPath(path, validateHasBeenSet);
-            _since.SetAccessPath(path, validateHasBeenSet);
-            _till.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Location = location;
+        Since = since;
+        Till = till;
     }
     
+    private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Location));
+    
+    [JsonPropertyName("location")]
+    public string? Location
+    {
+        get => _location.GetValue();
+        set => _location.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Since));
+    
+    [JsonPropertyName("since")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? Since
+    {
+        get => _since.GetValue();
+        set => _since.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Till));
+    
+    [JsonPropertyName("till")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? Till
+    {
+        get => _till.GetValue();
+        set => _till.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _location.SetAccessPath(path, validateHasBeenSet);
+        _since.SetAccessPath(path, validateHasBeenSet);
+        _till.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

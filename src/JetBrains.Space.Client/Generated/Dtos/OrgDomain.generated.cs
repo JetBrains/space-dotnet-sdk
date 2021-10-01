@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class OrgDomain
+     : IPropagatePropertyAccessPath
 {
-    public sealed class OrgDomain
-         : IPropagatePropertyAccessPath
+    public OrgDomain() { }
+    
+    public OrgDomain(string domain, string orgUrl, DateTime? expireAt = null)
     {
-        public OrgDomain() { }
-        
-        public OrgDomain(string domain, string orgUrl, DateTime? expireAt = null)
-        {
-            Domain = domain;
-            ExpireAt = expireAt;
-            OrgUrl = orgUrl;
-        }
-        
-        private PropertyValue<string> _domain = new PropertyValue<string>(nameof(OrgDomain), nameof(Domain));
-        
-        [Required]
-        [JsonPropertyName("domain")]
-        public string Domain
-        {
-            get => _domain.GetValue();
-            set => _domain.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _expireAt = new PropertyValue<DateTime?>(nameof(OrgDomain), nameof(ExpireAt));
-        
-        [JsonPropertyName("expireAt")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? ExpireAt
-        {
-            get => _expireAt.GetValue();
-            set => _expireAt.SetValue(value);
-        }
-    
-        private PropertyValue<string> _orgUrl = new PropertyValue<string>(nameof(OrgDomain), nameof(OrgUrl));
-        
-        [Required]
-        [JsonPropertyName("orgUrl")]
-        public string OrgUrl
-        {
-            get => _orgUrl.GetValue();
-            set => _orgUrl.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _domain.SetAccessPath(path, validateHasBeenSet);
-            _expireAt.SetAccessPath(path, validateHasBeenSet);
-            _orgUrl.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Domain = domain;
+        ExpireAt = expireAt;
+        OrgUrl = orgUrl;
     }
     
+    private PropertyValue<string> _domain = new PropertyValue<string>(nameof(OrgDomain), nameof(Domain));
+    
+    [Required]
+    [JsonPropertyName("domain")]
+    public string Domain
+    {
+        get => _domain.GetValue();
+        set => _domain.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _expireAt = new PropertyValue<DateTime?>(nameof(OrgDomain), nameof(ExpireAt));
+    
+    [JsonPropertyName("expireAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? ExpireAt
+    {
+        get => _expireAt.GetValue();
+        set => _expireAt.SetValue(value);
+    }
+
+    private PropertyValue<string> _orgUrl = new PropertyValue<string>(nameof(OrgDomain), nameof(OrgUrl));
+    
+    [Required]
+    [JsonPropertyName("orgUrl")]
+    public string OrgUrl
+    {
+        get => _orgUrl.GetValue();
+        set => _orgUrl.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _domain.SetAccessPath(path, validateHasBeenSet);
+        _expireAt.SetAccessPath(path, validateHasBeenSet);
+        _orgUrl.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BillingAdminOverdraftsPutRequestPartialBuilder
+namespace JetBrains.Space.Client.BillingAdminOverdraftsPutRequestPartialBuilder;
+
+public static class BillingAdminOverdraftsPutRequestPartialExtensions
 {
-    public static class BillingAdminOverdraftsPutRequestPartialExtensions
-    {
-        public static Partial<BillingAdminOverdraftsPutRequest> WithStorage(this Partial<BillingAdminOverdraftsPutRequest> it)
-            => it.AddFieldName("storage");
-        
-        public static Partial<BillingAdminOverdraftsPutRequest> WithBandwidth(this Partial<BillingAdminOverdraftsPutRequest> it)
-            => it.AddFieldName("bandwidth");
-        
-        public static Partial<BillingAdminOverdraftsPutRequest> WithCiCredits(this Partial<BillingAdminOverdraftsPutRequest> it)
-            => it.AddFieldName("ciCredits");
-        
-    }
+    public static Partial<BillingAdminOverdraftsPutRequest> WithStorage(this Partial<BillingAdminOverdraftsPutRequest> it)
+        => it.AddFieldName("storage");
+    
+    public static Partial<BillingAdminOverdraftsPutRequest> WithBandwidth(this Partial<BillingAdminOverdraftsPutRequest> it)
+        => it.AddFieldName("bandwidth");
+    
+    public static Partial<BillingAdminOverdraftsPutRequest> WithCiCredits(this Partial<BillingAdminOverdraftsPutRequest> it)
+        => it.AddFieldName("ciCredits");
     
 }
+

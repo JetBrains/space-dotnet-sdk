@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IntCFConstraint
+     : CFConstraint, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class IntCFConstraint
-         : CFConstraint, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "IntCFConstraint";
+    
+    public IntCFConstraint() { }
+    
+    public IntCFConstraint(int? min = null, int? max = null, string? message = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "IntCFConstraint";
-        
-        public IntCFConstraint() { }
-        
-        public IntCFConstraint(int? min = null, int? max = null, string? message = null)
-        {
-            Min = min;
-            Max = max;
-            Message = message;
-        }
-        
-        private PropertyValue<int?> _min = new PropertyValue<int?>(nameof(IntCFConstraint), nameof(Min));
-        
-        [JsonPropertyName("min")]
-        public int? Min
-        {
-            get => _min.GetValue();
-            set => _min.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _max = new PropertyValue<int?>(nameof(IntCFConstraint), nameof(Max));
-        
-        [JsonPropertyName("max")]
-        public int? Max
-        {
-            get => _max.GetValue();
-            set => _max.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(IntCFConstraint), nameof(Message));
-        
-        [JsonPropertyName("message")]
-        public string? Message
-        {
-            get => _message.GetValue();
-            set => _message.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _min.SetAccessPath(path, validateHasBeenSet);
-            _max.SetAccessPath(path, validateHasBeenSet);
-            _message.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Min = min;
+        Max = max;
+        Message = message;
     }
     
+    private PropertyValue<int?> _min = new PropertyValue<int?>(nameof(IntCFConstraint), nameof(Min));
+    
+    [JsonPropertyName("min")]
+    public int? Min
+    {
+        get => _min.GetValue();
+        set => _min.SetValue(value);
+    }
+
+    private PropertyValue<int?> _max = new PropertyValue<int?>(nameof(IntCFConstraint), nameof(Max));
+    
+    [JsonPropertyName("max")]
+    public int? Max
+    {
+        get => _max.GetValue();
+        set => _max.SetValue(value);
+    }
+
+    private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(IntCFConstraint), nameof(Message));
+    
+    [JsonPropertyName("message")]
+    public string? Message
+    {
+        get => _message.GetValue();
+        set => _message.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _min.SetAccessPath(path, validateHasBeenSet);
+        _max.SetAccessPath(path, validateHasBeenSet);
+        _message.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

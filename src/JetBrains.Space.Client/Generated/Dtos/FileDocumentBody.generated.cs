@@ -27,27 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class FileDocumentBody
+     : DocumentBody, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class FileDocumentBody
-         : DocumentBody, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "FileDocumentBody";
+    
+    public static FileDocumentBodyBlob Blob(string versionId, string mediaType, long fileSize)
+        => new FileDocumentBodyBlob(versionId: versionId, mediaType: mediaType, fileSize: fileSize);
+    
+    public static FileDocumentBodyUpload Upload(string versionId, bool uploading, string? mediaType = null)
+        => new FileDocumentBodyUpload(versionId: versionId, uploading: uploading, mediaType: mediaType);
+    
+    public FileDocumentBody() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "FileDocumentBody";
-        
-        public static FileDocumentBodyBlob Blob(string versionId, string mediaType, long fileSize)
-            => new FileDocumentBodyBlob(versionId: versionId, mediaType: mediaType, fileSize: fileSize);
-        
-        public static FileDocumentBodyUpload Upload(string versionId, bool uploading, string? mediaType = null)
-            => new FileDocumentBodyUpload(versionId: versionId, uploading: uploading, mediaType: mediaType);
-        
-        public FileDocumentBody() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

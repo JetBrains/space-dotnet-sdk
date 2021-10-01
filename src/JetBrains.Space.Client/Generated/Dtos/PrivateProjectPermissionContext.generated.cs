@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PrivateProjectPermissionContext
+     : PermissionContextApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class PrivateProjectPermissionContext
-         : PermissionContextApi, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "PrivateProjectPermissionContext";
+    
+    public PrivateProjectPermissionContext() { }
+    
+    public PrivateProjectPermissionContext(string projectId)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "PrivateProjectPermissionContext";
-        
-        public PrivateProjectPermissionContext() { }
-        
-        public PrivateProjectPermissionContext(string projectId)
-        {
-            ProjectId = projectId;
-        }
-        
-        private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(PrivateProjectPermissionContext), nameof(ProjectId));
-        
-        [Required]
-        [JsonPropertyName("projectId")]
-        public string ProjectId
-        {
-            get => _projectId.GetValue();
-            set => _projectId.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _projectId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ProjectId = projectId;
     }
     
+    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(PrivateProjectPermissionContext), nameof(ProjectId));
+    
+    [Required]
+    [JsonPropertyName("projectId")]
+    public string ProjectId
+    {
+        get => _projectId.GetValue();
+        set => _projectId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _projectId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

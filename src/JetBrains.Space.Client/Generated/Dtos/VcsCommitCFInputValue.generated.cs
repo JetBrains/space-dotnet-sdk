@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class VcsCommitCFInputValue
+     : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class VcsCommitCFInputValue
-         : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "VcsCommitCFInputValue";
+    
+    public VcsCommitCFInputValue() { }
+    
+    public VcsCommitCFInputValue(CFCommitIdentifier? commit = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "VcsCommitCFInputValue";
-        
-        public VcsCommitCFInputValue() { }
-        
-        public VcsCommitCFInputValue(CFCommitIdentifier? commit = null)
-        {
-            Commit = commit;
-        }
-        
-        private PropertyValue<CFCommitIdentifier?> _commit = new PropertyValue<CFCommitIdentifier?>(nameof(VcsCommitCFInputValue), nameof(Commit));
-        
-        [JsonPropertyName("commit")]
-        public CFCommitIdentifier? Commit
-        {
-            get => _commit.GetValue();
-            set => _commit.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _commit.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Commit = commit;
     }
     
+    private PropertyValue<CFCommitIdentifier?> _commit = new PropertyValue<CFCommitIdentifier?>(nameof(VcsCommitCFInputValue), nameof(Commit));
+    
+    [JsonPropertyName("commit")]
+    public CFCommitIdentifier? Commit
+    {
+        get => _commit.GetValue();
+        set => _commit.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _commit.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

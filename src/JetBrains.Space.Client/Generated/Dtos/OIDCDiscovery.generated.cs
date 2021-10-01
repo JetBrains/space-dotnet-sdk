@@ -27,79 +27,78 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class OIDCDiscovery
+     : IPropagatePropertyAccessPath
 {
-    public sealed class OIDCDiscovery
-         : IPropagatePropertyAccessPath
+    public OIDCDiscovery() { }
+    
+    public OIDCDiscovery(string issuer, string authorizationEndpoint, string jwksUri, string? tokenEndpoint = null, string? userinfoEndpoint = null)
     {
-        public OIDCDiscovery() { }
-        
-        public OIDCDiscovery(string issuer, string authorizationEndpoint, string jwksUri, string? tokenEndpoint = null, string? userinfoEndpoint = null)
-        {
-            Issuer = issuer;
-            AuthorizationEndpoint = authorizationEndpoint;
-            TokenEndpoint = tokenEndpoint;
-            UserinfoEndpoint = userinfoEndpoint;
-            JwksUri = jwksUri;
-        }
-        
-        private PropertyValue<string> _issuer = new PropertyValue<string>(nameof(OIDCDiscovery), nameof(Issuer));
-        
-        [Required]
-        [JsonPropertyName("issuer")]
-        public string Issuer
-        {
-            get => _issuer.GetValue();
-            set => _issuer.SetValue(value);
-        }
-    
-        private PropertyValue<string> _authorizationEndpoint = new PropertyValue<string>(nameof(OIDCDiscovery), nameof(AuthorizationEndpoint));
-        
-        [Required]
-        [JsonPropertyName("authorizationEndpoint")]
-        public string AuthorizationEndpoint
-        {
-            get => _authorizationEndpoint.GetValue();
-            set => _authorizationEndpoint.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _tokenEndpoint = new PropertyValue<string?>(nameof(OIDCDiscovery), nameof(TokenEndpoint));
-        
-        [JsonPropertyName("tokenEndpoint")]
-        public string? TokenEndpoint
-        {
-            get => _tokenEndpoint.GetValue();
-            set => _tokenEndpoint.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _userinfoEndpoint = new PropertyValue<string?>(nameof(OIDCDiscovery), nameof(UserinfoEndpoint));
-        
-        [JsonPropertyName("userinfoEndpoint")]
-        public string? UserinfoEndpoint
-        {
-            get => _userinfoEndpoint.GetValue();
-            set => _userinfoEndpoint.SetValue(value);
-        }
-    
-        private PropertyValue<string> _jwksUri = new PropertyValue<string>(nameof(OIDCDiscovery), nameof(JwksUri));
-        
-        [Required]
-        [JsonPropertyName("jwksUri")]
-        public string JwksUri
-        {
-            get => _jwksUri.GetValue();
-            set => _jwksUri.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _issuer.SetAccessPath(path, validateHasBeenSet);
-            _authorizationEndpoint.SetAccessPath(path, validateHasBeenSet);
-            _tokenEndpoint.SetAccessPath(path, validateHasBeenSet);
-            _userinfoEndpoint.SetAccessPath(path, validateHasBeenSet);
-            _jwksUri.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Issuer = issuer;
+        AuthorizationEndpoint = authorizationEndpoint;
+        TokenEndpoint = tokenEndpoint;
+        UserinfoEndpoint = userinfoEndpoint;
+        JwksUri = jwksUri;
     }
     
+    private PropertyValue<string> _issuer = new PropertyValue<string>(nameof(OIDCDiscovery), nameof(Issuer));
+    
+    [Required]
+    [JsonPropertyName("issuer")]
+    public string Issuer
+    {
+        get => _issuer.GetValue();
+        set => _issuer.SetValue(value);
+    }
+
+    private PropertyValue<string> _authorizationEndpoint = new PropertyValue<string>(nameof(OIDCDiscovery), nameof(AuthorizationEndpoint));
+    
+    [Required]
+    [JsonPropertyName("authorizationEndpoint")]
+    public string AuthorizationEndpoint
+    {
+        get => _authorizationEndpoint.GetValue();
+        set => _authorizationEndpoint.SetValue(value);
+    }
+
+    private PropertyValue<string?> _tokenEndpoint = new PropertyValue<string?>(nameof(OIDCDiscovery), nameof(TokenEndpoint));
+    
+    [JsonPropertyName("tokenEndpoint")]
+    public string? TokenEndpoint
+    {
+        get => _tokenEndpoint.GetValue();
+        set => _tokenEndpoint.SetValue(value);
+    }
+
+    private PropertyValue<string?> _userinfoEndpoint = new PropertyValue<string?>(nameof(OIDCDiscovery), nameof(UserinfoEndpoint));
+    
+    [JsonPropertyName("userinfoEndpoint")]
+    public string? UserinfoEndpoint
+    {
+        get => _userinfoEndpoint.GetValue();
+        set => _userinfoEndpoint.SetValue(value);
+    }
+
+    private PropertyValue<string> _jwksUri = new PropertyValue<string>(nameof(OIDCDiscovery), nameof(JwksUri));
+    
+    [Required]
+    [JsonPropertyName("jwksUri")]
+    public string JwksUri
+    {
+        get => _jwksUri.GetValue();
+        set => _jwksUri.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _issuer.SetAccessPath(path, validateHasBeenSet);
+        _authorizationEndpoint.SetAccessPath(path, validateHasBeenSet);
+        _tokenEndpoint.SetAccessPath(path, validateHasBeenSet);
+        _userinfoEndpoint.SetAccessPath(path, validateHasBeenSet);
+        _jwksUri.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NotificationsPersonalCustomSubscriptionsForIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.NotificationsPersonalCustomSubscriptionsForIdPatchRequestPartialBuilder;
+
+public static class NotificationsPersonalCustomSubscriptionsForIdPatchRequestPartialExtensions
 {
-    public static class NotificationsPersonalCustomSubscriptionsForIdPatchRequestPartialExtensions
-    {
-        public static Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> WithName(this Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> WithIsEnabled(this Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> it)
-            => it.AddFieldName("enabled");
-        
-        public static Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> WithFeed(this Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> it)
-            => it.AddFieldName("feed");
-        
-        public static Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> WithSubscription(this Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> it)
-            => it.AddFieldName("subscription");
-        
-        public static Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> WithSubscription(this Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> it, Func<Partial<CustomGenericSubscriptionIn>, Partial<CustomGenericSubscriptionIn>> partialBuilder)
-            => it.AddFieldName("subscription", partialBuilder(new Partial<CustomGenericSubscriptionIn>(it)));
-        
-    }
+    public static Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> WithName(this Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> WithIsEnabled(this Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> it)
+        => it.AddFieldName("enabled");
+    
+    public static Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> WithFeed(this Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> it)
+        => it.AddFieldName("feed");
+    
+    public static Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> WithSubscription(this Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> it)
+        => it.AddFieldName("subscription");
+    
+    public static Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> WithSubscription(this Partial<NotificationsPersonalCustomSubscriptionsForIdPatchRequest> it, Func<Partial<CustomGenericSubscriptionIn>, Partial<CustomGenericSubscriptionIn>> partialBuilder)
+        => it.AddFieldName("subscription", partialBuilder(new Partial<CustomGenericSubscriptionIn>(it)));
     
 }
+

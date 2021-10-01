@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class EndpointAuthCreate
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class EndpointAuthCreate
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "EndpointAuthCreate";
+    
+    public static EndpointAuthCreateBasic Basic(string username, string password)
+        => new EndpointAuthCreateBasic(username: username, password: password);
+    
+    public static EndpointAuthCreateBearer Bearer(string token)
+        => new EndpointAuthCreateBearer(token: token);
+    
+    public static EndpointAuthCreatePublicKeySignature PublicKeySignature()
+        => new EndpointAuthCreatePublicKeySignature();
+    
+    public static EndpointAuthCreateSigningKey SigningKey()
+        => new EndpointAuthCreateSigningKey();
+    
+    public EndpointAuthCreate() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "EndpointAuthCreate";
-        
-        public static EndpointAuthCreateBasic Basic(string username, string password)
-            => new EndpointAuthCreateBasic(username: username, password: password);
-        
-        public static EndpointAuthCreateBearer Bearer(string token)
-            => new EndpointAuthCreateBearer(token: token);
-        
-        public static EndpointAuthCreatePublicKeySignature PublicKeySignature()
-            => new EndpointAuthCreatePublicKeySignature();
-        
-        public static EndpointAuthCreateSigningKey SigningKey()
-            => new EndpointAuthCreateSigningKey();
-        
-        public EndpointAuthCreate() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

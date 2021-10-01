@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IssueWebhookCustomFieldUpdate
+     : IPropagatePropertyAccessPath
 {
-    public sealed class IssueWebhookCustomFieldUpdate
-         : IPropagatePropertyAccessPath
+    public IssueWebhookCustomFieldUpdate() { }
+    
+    public IssueWebhookCustomFieldUpdate(CustomField customField, Modification<CFValue>? mod = null)
     {
-        public IssueWebhookCustomFieldUpdate() { }
-        
-        public IssueWebhookCustomFieldUpdate(CustomField customField, Modification<CFValue>? mod = null)
-        {
-            CustomField = customField;
-            Mod = mod;
-        }
-        
-        private PropertyValue<CustomField> _customField = new PropertyValue<CustomField>(nameof(IssueWebhookCustomFieldUpdate), nameof(CustomField));
-        
-        [Required]
-        [JsonPropertyName("customField")]
-        public CustomField CustomField
-        {
-            get => _customField.GetValue();
-            set => _customField.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<CFValue>?> _mod = new PropertyValue<Modification<CFValue>?>(nameof(IssueWebhookCustomFieldUpdate), nameof(Mod));
-        
-        [JsonPropertyName("mod")]
-        public Modification<CFValue>? Mod
-        {
-            get => _mod.GetValue();
-            set => _mod.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _customField.SetAccessPath(path, validateHasBeenSet);
-            _mod.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        CustomField = customField;
+        Mod = mod;
     }
     
+    private PropertyValue<CustomField> _customField = new PropertyValue<CustomField>(nameof(IssueWebhookCustomFieldUpdate), nameof(CustomField));
+    
+    [Required]
+    [JsonPropertyName("customField")]
+    public CustomField CustomField
+    {
+        get => _customField.GetValue();
+        set => _customField.SetValue(value);
+    }
+
+    private PropertyValue<Modification<CFValue>?> _mod = new PropertyValue<Modification<CFValue>?>(nameof(IssueWebhookCustomFieldUpdate), nameof(Mod));
+    
+    [JsonPropertyName("mod")]
+    public Modification<CFValue>? Mod
+    {
+        get => _mod.GetValue();
+        set => _mod.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _customField.SetAccessPath(path, validateHasBeenSet);
+        _mod.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

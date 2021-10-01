@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsSecretsInDefaultBundlePostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsSecretsInDefaultBundlePostRequestPartialBuilder;
+
+public static class ProjectsSecretsInDefaultBundlePostRequestPartialExtensions
 {
-    public static class ProjectsSecretsInDefaultBundlePostRequestPartialExtensions
-    {
-        public static Partial<ProjectsSecretsInDefaultBundlePostRequest> WithProjectId(this Partial<ProjectsSecretsInDefaultBundlePostRequest> it)
-            => it.AddFieldName("projectId");
-        
-        public static Partial<ProjectsSecretsInDefaultBundlePostRequest> WithKey(this Partial<ProjectsSecretsInDefaultBundlePostRequest> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<ProjectsSecretsInDefaultBundlePostRequest> WithValueBase64(this Partial<ProjectsSecretsInDefaultBundlePostRequest> it)
-            => it.AddFieldName("valueBase64");
-        
-        public static Partial<ProjectsSecretsInDefaultBundlePostRequest> WithPublicKeyId(this Partial<ProjectsSecretsInDefaultBundlePostRequest> it)
-            => it.AddFieldName("publicKeyId");
-        
-    }
+    public static Partial<ProjectsSecretsInDefaultBundlePostRequest> WithProjectId(this Partial<ProjectsSecretsInDefaultBundlePostRequest> it)
+        => it.AddFieldName("projectId");
+    
+    public static Partial<ProjectsSecretsInDefaultBundlePostRequest> WithKey(this Partial<ProjectsSecretsInDefaultBundlePostRequest> it)
+        => it.AddFieldName("key");
+    
+    public static Partial<ProjectsSecretsInDefaultBundlePostRequest> WithValueBase64(this Partial<ProjectsSecretsInDefaultBundlePostRequest> it)
+        => it.AddFieldName("valueBase64");
+    
+    public static Partial<ProjectsSecretsInDefaultBundlePostRequest> WithPublicKeyId(this Partial<ProjectsSecretsInDefaultBundlePostRequest> it)
+        => it.AddFieldName("publicKeyId");
     
 }
+

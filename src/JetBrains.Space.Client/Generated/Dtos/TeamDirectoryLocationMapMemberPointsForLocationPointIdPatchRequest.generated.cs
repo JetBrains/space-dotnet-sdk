@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest() { }
+    
+    public TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest(int? x = null, int? y = null)
     {
-        public TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest() { }
-        
-        public TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest(int? x = null, int? y = null)
-        {
-            X = x;
-            Y = y;
-        }
-        
-        private PropertyValue<int?> _x = new PropertyValue<int?>(nameof(TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest), nameof(X));
-        
-        [JsonPropertyName("x")]
-        public int? X
-        {
-            get => _x.GetValue();
-            set => _x.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _y = new PropertyValue<int?>(nameof(TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest), nameof(Y));
-        
-        [JsonPropertyName("y")]
-        public int? Y
-        {
-            get => _y.GetValue();
-            set => _y.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _x.SetAccessPath(path, validateHasBeenSet);
-            _y.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        X = x;
+        Y = y;
     }
     
+    private PropertyValue<int?> _x = new PropertyValue<int?>(nameof(TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest), nameof(X));
+    
+    [JsonPropertyName("x")]
+    public int? X
+    {
+        get => _x.GetValue();
+        set => _x.SetValue(value);
+    }
+
+    private PropertyValue<int?> _y = new PropertyValue<int?>(nameof(TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest), nameof(Y));
+    
+    [JsonPropertyName("y")]
+    public int? Y
+    {
+        get => _y.GetValue();
+        set => _y.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _x.SetAccessPath(path, validateHasBeenSet);
+        _y.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

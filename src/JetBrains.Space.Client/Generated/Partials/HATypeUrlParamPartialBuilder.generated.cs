@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HATypeUrlParamPartialBuilder
+namespace JetBrains.Space.Client.HATypeUrlParamPartialBuilder;
+
+public static class HATypeUrlParamPartialExtensions
 {
-    public static class HATypeUrlParamPartialExtensions
-    {
-        public static Partial<HATypeUrlParam> WithUrlParam(this Partial<HATypeUrlParam> it)
-            => it.AddFieldName("urlParam");
-        
-        public static Partial<HATypeUrlParam> WithUrlParam(this Partial<HATypeUrlParam> it, Func<Partial<HAUrlParameter>, Partial<HAUrlParameter>> partialBuilder)
-            => it.AddFieldName("urlParam", partialBuilder(new Partial<HAUrlParameter>(it)));
-        
-        public static Partial<HATypeUrlParam> WithIsNullable(this Partial<HATypeUrlParam> it)
-            => it.AddFieldName("nullable");
-        
-        public static Partial<HATypeUrlParam> WithTags(this Partial<HATypeUrlParam> it)
-            => it.AddFieldName("tags");
-        
-    }
+    public static Partial<HATypeUrlParam> WithUrlParam(this Partial<HATypeUrlParam> it)
+        => it.AddFieldName("urlParam");
+    
+    public static Partial<HATypeUrlParam> WithUrlParam(this Partial<HATypeUrlParam> it, Func<Partial<HAUrlParameter>, Partial<HAUrlParameter>> partialBuilder)
+        => it.AddFieldName("urlParam", partialBuilder(new Partial<HAUrlParameter>(it)));
+    
+    public static Partial<HATypeUrlParam> WithIsNullable(this Partial<HATypeUrlParam> it)
+        => it.AddFieldName("nullable");
+    
+    public static Partial<HATypeUrlParam> WithTags(this Partial<HATypeUrlParam> it)
+        => it.AddFieldName("tags");
     
 }
+

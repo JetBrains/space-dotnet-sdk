@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsIssueTag
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsIssueTag
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsIssueTag";
+    
+    public UnfurlDetailsIssueTag() { }
+    
+    public UnfurlDetailsIssueTag(PlanningTag tag, bool strikeThrough)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsIssueTag";
-        
-        public UnfurlDetailsIssueTag() { }
-        
-        public UnfurlDetailsIssueTag(PlanningTag tag, bool strikeThrough)
-        {
-            Tag = tag;
-            IsStrikeThrough = strikeThrough;
-        }
-        
-        private PropertyValue<PlanningTag> _tag = new PropertyValue<PlanningTag>(nameof(UnfurlDetailsIssueTag), nameof(Tag));
-        
-        [Required]
-        [JsonPropertyName("tag")]
-        public PlanningTag Tag
-        {
-            get => _tag.GetValue();
-            set => _tag.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _strikeThrough = new PropertyValue<bool>(nameof(UnfurlDetailsIssueTag), nameof(IsStrikeThrough));
-        
-        [Required]
-        [JsonPropertyName("strikeThrough")]
-        public bool IsStrikeThrough
-        {
-            get => _strikeThrough.GetValue();
-            set => _strikeThrough.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _tag.SetAccessPath(path, validateHasBeenSet);
-            _strikeThrough.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Tag = tag;
+        IsStrikeThrough = strikeThrough;
     }
     
+    private PropertyValue<PlanningTag> _tag = new PropertyValue<PlanningTag>(nameof(UnfurlDetailsIssueTag), nameof(Tag));
+    
+    [Required]
+    [JsonPropertyName("tag")]
+    public PlanningTag Tag
+    {
+        get => _tag.GetValue();
+        set => _tag.SetValue(value);
+    }
+
+    private PropertyValue<bool> _strikeThrough = new PropertyValue<bool>(nameof(UnfurlDetailsIssueTag), nameof(IsStrikeThrough));
+    
+    [Required]
+    [JsonPropertyName("strikeThrough")]
+    public bool IsStrikeThrough
+    {
+        get => _strikeThrough.GetValue();
+        set => _strikeThrough.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _tag.SetAccessPath(path, validateHasBeenSet);
+        _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

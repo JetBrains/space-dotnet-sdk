@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RevisionAuthor
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RevisionAuthor
-         : IPropagatePropertyAccessPath
+    public RevisionAuthor() { }
+    
+    public RevisionAuthor(string authorName, TDMemberProfile? profile = null)
     {
-        public RevisionAuthor() { }
-        
-        public RevisionAuthor(string authorName, TDMemberProfile? profile = null)
-        {
-            AuthorName = authorName;
-            Profile = profile;
-        }
-        
-        private PropertyValue<string> _authorName = new PropertyValue<string>(nameof(RevisionAuthor), nameof(AuthorName));
-        
-        [Required]
-        [JsonPropertyName("authorName")]
-        public string AuthorName
-        {
-            get => _authorName.GetValue();
-            set => _authorName.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberProfile?> _profile = new PropertyValue<TDMemberProfile?>(nameof(RevisionAuthor), nameof(Profile));
-        
-        [JsonPropertyName("profile")]
-        public TDMemberProfile? Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _authorName.SetAccessPath(path, validateHasBeenSet);
-            _profile.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        AuthorName = authorName;
+        Profile = profile;
     }
     
+    private PropertyValue<string> _authorName = new PropertyValue<string>(nameof(RevisionAuthor), nameof(AuthorName));
+    
+    [Required]
+    [JsonPropertyName("authorName")]
+    public string AuthorName
+    {
+        get => _authorName.GetValue();
+        set => _authorName.SetValue(value);
+    }
+
+    private PropertyValue<TDMemberProfile?> _profile = new PropertyValue<TDMemberProfile?>(nameof(RevisionAuthor), nameof(Profile));
+    
+    [JsonPropertyName("profile")]
+    public TDMemberProfile? Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _authorName.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

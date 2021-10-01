@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EndpointAuthCreatePartialBuilder
+namespace JetBrains.Space.Client.EndpointAuthCreatePartialBuilder;
+
+public static class EndpointAuthCreatePartialExtensions
 {
-    public static class EndpointAuthCreatePartialExtensions
-    {
-    }
-    
 }
+

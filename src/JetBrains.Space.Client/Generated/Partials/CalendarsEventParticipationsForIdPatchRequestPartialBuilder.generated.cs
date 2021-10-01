@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CalendarsEventParticipationsForIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.CalendarsEventParticipationsForIdPatchRequestPartialBuilder;
+
+public static class CalendarsEventParticipationsForIdPatchRequestPartialExtensions
 {
-    public static class CalendarsEventParticipationsForIdPatchRequestPartialExtensions
-    {
-        public static Partial<CalendarsEventParticipationsForIdPatchRequest> WithNewStatus(this Partial<CalendarsEventParticipationsForIdPatchRequest> it)
-            => it.AddFieldName("newStatus");
-        
-        public static Partial<CalendarsEventParticipationsForIdPatchRequest> WithNewStatus(this Partial<CalendarsEventParticipationsForIdPatchRequest> it, Func<Partial<EventParticipationStatus>, Partial<EventParticipationStatus>> partialBuilder)
-            => it.AddFieldName("newStatus", partialBuilder(new Partial<EventParticipationStatus>(it)));
-        
-    }
+    public static Partial<CalendarsEventParticipationsForIdPatchRequest> WithNewStatus(this Partial<CalendarsEventParticipationsForIdPatchRequest> it)
+        => it.AddFieldName("newStatus");
+    
+    public static Partial<CalendarsEventParticipationsForIdPatchRequest> WithNewStatus(this Partial<CalendarsEventParticipationsForIdPatchRequest> it, Func<Partial<EventParticipationStatus>, Partial<EventParticipationStatus>> partialBuilder)
+        => it.AddFieldName("newStatus", partialBuilder(new Partial<EventParticipationStatus>(it)));
     
 }
+

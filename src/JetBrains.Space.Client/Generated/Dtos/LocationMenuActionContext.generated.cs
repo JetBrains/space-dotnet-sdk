@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class LocationMenuActionContext
+     : MenuActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class LocationMenuActionContext
-         : MenuActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "LocationMenuActionContext";
+    
+    public LocationMenuActionContext() { }
+    
+    public LocationMenuActionContext(string menuId, TDLocation location)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "LocationMenuActionContext";
-        
-        public LocationMenuActionContext() { }
-        
-        public LocationMenuActionContext(string menuId, TDLocation location)
-        {
-            MenuId = menuId;
-            Location = location;
-        }
-        
-        private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(LocationMenuActionContext), nameof(MenuId));
-        
-        [Required]
-        [JsonPropertyName("menuId")]
-        public string MenuId
-        {
-            get => _menuId.GetValue();
-            set => _menuId.SetValue(value);
-        }
-    
-        private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(LocationMenuActionContext), nameof(Location));
-        
-        [Required]
-        [JsonPropertyName("location")]
-        public TDLocation Location
-        {
-            get => _location.GetValue();
-            set => _location.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _menuId.SetAccessPath(path, validateHasBeenSet);
-            _location.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        MenuId = menuId;
+        Location = location;
     }
     
+    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(LocationMenuActionContext), nameof(MenuId));
+    
+    [Required]
+    [JsonPropertyName("menuId")]
+    public string MenuId
+    {
+        get => _menuId.GetValue();
+        set => _menuId.SetValue(value);
+    }
+
+    private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(LocationMenuActionContext), nameof(Location));
+    
+    [Required]
+    [JsonPropertyName("location")]
+    public TDLocation Location
+    {
+        get => _location.GetValue();
+        set => _location.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _menuId.SetAccessPath(path, validateHasBeenSet);
+        _location.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

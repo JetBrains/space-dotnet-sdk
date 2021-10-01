@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class NuGetPackageType
+     : PackageType, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class NuGetPackageType
-         : PackageType, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "NuGetPackageType";
+    
+    public NuGetPackageType() { }
+    
+    public NuGetPackageType(string id)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "NuGetPackageType";
-        
-        public NuGetPackageType() { }
-        
-        public NuGetPackageType(string id)
-        {
-            Id = id;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(NuGetPackageType), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(NuGetPackageType), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

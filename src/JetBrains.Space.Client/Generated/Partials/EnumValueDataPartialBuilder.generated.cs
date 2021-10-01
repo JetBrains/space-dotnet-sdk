@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EnumValueDataPartialBuilder
+namespace JetBrains.Space.Client.EnumValueDataPartialBuilder;
+
+public static class EnumValueDataPartialExtensions
 {
-    public static class EnumValueDataPartialExtensions
-    {
-        public static Partial<EnumValueData> WithId(this Partial<EnumValueData> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<EnumValueData> WithValue(this Partial<EnumValueData> it)
-            => it.AddFieldName("value");
-        
-        public static Partial<EnumValueData> WithPrincipal(this Partial<EnumValueData> it)
-            => it.AddFieldName("principal");
-        
-        public static Partial<EnumValueData> WithPrincipal(this Partial<EnumValueData> it, Func<Partial<CPrincipalDetails>, Partial<CPrincipalDetails>> partialBuilder)
-            => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipalDetails>(it)));
-        
-    }
+    public static Partial<EnumValueData> WithId(this Partial<EnumValueData> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<EnumValueData> WithValue(this Partial<EnumValueData> it)
+        => it.AddFieldName("value");
+    
+    public static Partial<EnumValueData> WithPrincipal(this Partial<EnumValueData> it)
+        => it.AddFieldName("principal");
+    
+    public static Partial<EnumValueData> WithPrincipal(this Partial<EnumValueData> it, Func<Partial<CPrincipalDetails>, Partial<CPrincipalDetails>> partialBuilder)
+        => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipalDetails>(it)));
     
 }
+

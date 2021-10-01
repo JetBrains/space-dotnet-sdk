@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class AbsenceCommonSubscriptionFilter
+     : SubscriptionFilter, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class AbsenceCommonSubscriptionFilter
-         : SubscriptionFilter, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "AbsenceCommonSubscriptionFilter";
+    
+    public AbsenceCommonSubscriptionFilter() { }
+    
+    public AbsenceCommonSubscriptionFilter(List<AbsenceReasonRecord> reasons)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "AbsenceCommonSubscriptionFilter";
-        
-        public AbsenceCommonSubscriptionFilter() { }
-        
-        public AbsenceCommonSubscriptionFilter(List<AbsenceReasonRecord> reasons)
-        {
-            Reasons = reasons;
-        }
-        
-        private PropertyValue<List<AbsenceReasonRecord>> _reasons = new PropertyValue<List<AbsenceReasonRecord>>(nameof(AbsenceCommonSubscriptionFilter), nameof(Reasons), new List<AbsenceReasonRecord>());
-        
-        [Required]
-        [JsonPropertyName("reasons")]
-        public List<AbsenceReasonRecord> Reasons
-        {
-            get => _reasons.GetValue();
-            set => _reasons.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _reasons.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Reasons = reasons;
     }
     
+    private PropertyValue<List<AbsenceReasonRecord>> _reasons = new PropertyValue<List<AbsenceReasonRecord>>(nameof(AbsenceCommonSubscriptionFilter), nameof(Reasons), new List<AbsenceReasonRecord>());
+    
+    [Required]
+    [JsonPropertyName("reasons")]
+    public List<AbsenceReasonRecord> Reasons
+    {
+        get => _reasons.GetValue();
+        set => _reasons.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _reasons.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

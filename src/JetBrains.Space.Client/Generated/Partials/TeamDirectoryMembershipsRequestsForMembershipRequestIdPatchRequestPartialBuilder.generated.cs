@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequestPartialBuilder;
+
+public static class TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest> WithIsApproved(this Partial<TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest> it)
-            => it.AddFieldName("approved");
-        
-    }
+    public static Partial<TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest> WithIsApproved(this Partial<TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest> it)
+        => it.AddFieldName("approved");
     
 }
+

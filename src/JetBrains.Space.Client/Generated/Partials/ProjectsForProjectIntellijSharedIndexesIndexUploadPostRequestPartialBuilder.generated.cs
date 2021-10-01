@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequestPartialBuilder;
+
+public static class ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest> WithFileNames(this Partial<ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest> it)
-            => it.AddFieldName("fileNames");
-        
-    }
+    public static Partial<ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest> WithFileNames(this Partial<ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest> it)
+        => it.AddFieldName("fileNames");
     
 }
+

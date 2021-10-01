@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PackageOriginUrlPartialBuilder
+namespace JetBrains.Space.Client.PackageOriginUrlPartialBuilder;
+
+public static class PackageOriginUrlPartialExtensions
 {
-    public static class PackageOriginUrlPartialExtensions
-    {
-        public static Partial<PackageOriginUrl> WithUrl(this Partial<PackageOriginUrl> it)
-            => it.AddFieldName("url");
-        
-    }
+    public static Partial<PackageOriginUrl> WithUrl(this Partial<PackageOriginUrl> it)
+        => it.AddFieldName("url");
     
 }
+

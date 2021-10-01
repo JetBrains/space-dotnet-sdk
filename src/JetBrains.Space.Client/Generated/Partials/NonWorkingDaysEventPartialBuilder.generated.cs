@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NonWorkingDaysEventPartialBuilder
+namespace JetBrains.Space.Client.NonWorkingDaysEventPartialBuilder;
+
+public static class NonWorkingDaysEventPartialExtensions
 {
-    public static class NonWorkingDaysEventPartialExtensions
-    {
-        public static Partial<NonWorkingDaysEvent> WithProfile(this Partial<NonWorkingDaysEvent> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<NonWorkingDaysEvent> WithProfile(this Partial<NonWorkingDaysEvent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<NonWorkingDaysEvent> WithDays(this Partial<NonWorkingDaysEvent> it)
-            => it.AddFieldName("days");
-        
-        public static Partial<NonWorkingDaysEvent> WithDays(this Partial<NonWorkingDaysEvent> it, Func<Partial<NonWorkingDays>, Partial<NonWorkingDays>> partialBuilder)
-            => it.AddFieldName("days", partialBuilder(new Partial<NonWorkingDays>(it)));
-        
-    }
+    public static Partial<NonWorkingDaysEvent> WithProfile(this Partial<NonWorkingDaysEvent> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<NonWorkingDaysEvent> WithProfile(this Partial<NonWorkingDaysEvent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<NonWorkingDaysEvent> WithDays(this Partial<NonWorkingDaysEvent> it)
+        => it.AddFieldName("days");
+    
+    public static Partial<NonWorkingDaysEvent> WithDays(this Partial<NonWorkingDaysEvent> it, Func<Partial<NonWorkingDays>, Partial<NonWorkingDays>> partialBuilder)
+        => it.AddFieldName("days", partialBuilder(new Partial<NonWorkingDays>(it)));
     
 }
+

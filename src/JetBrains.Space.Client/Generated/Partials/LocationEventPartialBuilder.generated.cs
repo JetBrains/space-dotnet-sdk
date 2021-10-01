@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.LocationEventPartialBuilder
+namespace JetBrains.Space.Client.LocationEventPartialBuilder;
+
+public static class LocationEventPartialExtensions
 {
-    public static class LocationEventPartialExtensions
-    {
-        public static Partial<LocationEvent> WithMeta(this Partial<LocationEvent> it)
-            => it.AddFieldName("meta");
-        
-        public static Partial<LocationEvent> WithMeta(this Partial<LocationEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-            => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
-        
-        public static Partial<LocationEvent> WithLocation(this Partial<LocationEvent> it)
-            => it.AddFieldName("location");
-        
-        public static Partial<LocationEvent> WithLocation(this Partial<LocationEvent> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
-            => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
-        
-    }
+    public static Partial<LocationEvent> WithMeta(this Partial<LocationEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<LocationEvent> WithMeta(this Partial<LocationEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<LocationEvent> WithLocation(this Partial<LocationEvent> it)
+        => it.AddFieldName("location");
+    
+    public static Partial<LocationEvent> WithLocation(this Partial<LocationEvent> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
+        => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
     
 }
+

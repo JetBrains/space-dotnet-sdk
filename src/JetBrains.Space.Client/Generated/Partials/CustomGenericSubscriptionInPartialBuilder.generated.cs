@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomGenericSubscriptionInPartialBuilder
+namespace JetBrains.Space.Client.CustomGenericSubscriptionInPartialBuilder;
+
+public static class CustomGenericSubscriptionInPartialExtensions
 {
-    public static class CustomGenericSubscriptionInPartialExtensions
-    {
-        public static Partial<CustomGenericSubscriptionIn> WithSubjectCode(this Partial<CustomGenericSubscriptionIn> it)
-            => it.AddFieldName("subjectCode");
-        
-        public static Partial<CustomGenericSubscriptionIn> WithFilters(this Partial<CustomGenericSubscriptionIn> it)
-            => it.AddFieldName("filters");
-        
-        public static Partial<CustomGenericSubscriptionIn> WithFilters(this Partial<CustomGenericSubscriptionIn> it, Func<Partial<SubscriptionFilterIn>, Partial<SubscriptionFilterIn>> partialBuilder)
-            => it.AddFieldName("filters", partialBuilder(new Partial<SubscriptionFilterIn>(it)));
-        
-        public static Partial<CustomGenericSubscriptionIn> WithEventTypeCodes(this Partial<CustomGenericSubscriptionIn> it)
-            => it.AddFieldName("eventTypeCodes");
-        
-    }
+    public static Partial<CustomGenericSubscriptionIn> WithSubjectCode(this Partial<CustomGenericSubscriptionIn> it)
+        => it.AddFieldName("subjectCode");
+    
+    public static Partial<CustomGenericSubscriptionIn> WithFilters(this Partial<CustomGenericSubscriptionIn> it)
+        => it.AddFieldName("filters");
+    
+    public static Partial<CustomGenericSubscriptionIn> WithFilters(this Partial<CustomGenericSubscriptionIn> it, Func<Partial<SubscriptionFilterIn>, Partial<SubscriptionFilterIn>> partialBuilder)
+        => it.AddFieldName("filters", partialBuilder(new Partial<SubscriptionFilterIn>(it)));
+    
+    public static Partial<CustomGenericSubscriptionIn> WithEventTypeCodes(this Partial<CustomGenericSubscriptionIn> it)
+        => it.AddFieldName("eventTypeCodes");
     
 }
+

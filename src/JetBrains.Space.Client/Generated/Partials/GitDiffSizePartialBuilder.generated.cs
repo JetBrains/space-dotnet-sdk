@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitDiffSizePartialBuilder
+namespace JetBrains.Space.Client.GitDiffSizePartialBuilder;
+
+public static class GitDiffSizePartialExtensions
 {
-    public static class GitDiffSizePartialExtensions
-    {
-        public static Partial<GitDiffSize> WithAdded(this Partial<GitDiffSize> it)
-            => it.AddFieldName("added");
-        
-        public static Partial<GitDiffSize> WithDeleted(this Partial<GitDiffSize> it)
-            => it.AddFieldName("deleted");
-        
-    }
+    public static Partial<GitDiffSize> WithAdded(this Partial<GitDiffSize> it)
+        => it.AddFieldName("added");
+    
+    public static Partial<GitDiffSize> WithDeleted(this Partial<GitDiffSize> it)
+        => it.AddFieldName("deleted");
     
 }
+

@@ -27,155 +27,154 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class ChannelIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class ChannelIdentifier : IUrlParameter
+    public static ChannelIdentifier Application(string application)
+        => new ChannelIdentifierApplication(application);
+    
+    public static ChannelIdentifier Article(string article)
+        => new ChannelIdentifierArticle(article);
+    
+    public static ChannelIdentifier Channel(ChatChannel channel)
+        => new ChannelIdentifierChannel(channel);
+    
+    public static ChannelIdentifier ContactKey(string contactKey)
+        => new ChannelIdentifierContactKey(contactKey);
+    
+    public static ChannelIdentifier Id(string id)
+        => new ChannelIdentifierId(id);
+    
+    public static ChannelIdentifier Issue(IssueIdentifier issue)
+        => new ChannelIdentifierIssue(issue);
+    
+    public static ChannelIdentifier Profile(ProfileIdentifier member)
+        => new ChannelIdentifierProfile(member);
+    
+    public static ChannelIdentifier Review(ReviewIdentifier codeReview)
+        => new ChannelIdentifierReview(codeReview);
+    
+    public static ChannelIdentifier Thread(string message)
+        => new ChannelIdentifierThread(message);
+    
+    private class ChannelIdentifierApplication : ChannelIdentifier
     {
-        public static ChannelIdentifier Application(string application)
-            => new ChannelIdentifierApplication(application);
+        private readonly string _application;
         
-        public static ChannelIdentifier Article(string article)
-            => new ChannelIdentifierArticle(article);
-        
-        public static ChannelIdentifier Channel(ChatChannel channel)
-            => new ChannelIdentifierChannel(channel);
-        
-        public static ChannelIdentifier ContactKey(string contactKey)
-            => new ChannelIdentifierContactKey(contactKey);
-        
-        public static ChannelIdentifier Id(string id)
-            => new ChannelIdentifierId(id);
-        
-        public static ChannelIdentifier Issue(IssueIdentifier issue)
-            => new ChannelIdentifierIssue(issue);
-        
-        public static ChannelIdentifier Profile(ProfileIdentifier member)
-            => new ChannelIdentifierProfile(member);
-        
-        public static ChannelIdentifier Review(ReviewIdentifier codeReview)
-            => new ChannelIdentifierReview(codeReview);
-        
-        public static ChannelIdentifier Thread(string message)
-            => new ChannelIdentifierThread(message);
-        
-        private class ChannelIdentifierApplication : ChannelIdentifier
+        public ChannelIdentifierApplication(string application)
         {
-            private readonly string _application;
-            
-            public ChannelIdentifierApplication(string application)
-            {
-                _application = application;
-            }
-            
-            public override string ToString()
-                => $"application:{_application}";
+            _application = application;
         }
         
-        private class ChannelIdentifierArticle : ChannelIdentifier
+        public override string ToString()
+            => $"application:{_application}";
+    }
+    
+    private class ChannelIdentifierArticle : ChannelIdentifier
+    {
+        private readonly string _article;
+        
+        public ChannelIdentifierArticle(string article)
         {
-            private readonly string _article;
-            
-            public ChannelIdentifierArticle(string article)
-            {
-                _article = article;
-            }
-            
-            public override string ToString()
-                => $"article:{_article}";
+            _article = article;
         }
         
-        private class ChannelIdentifierChannel : ChannelIdentifier
+        public override string ToString()
+            => $"article:{_article}";
+    }
+    
+    private class ChannelIdentifierChannel : ChannelIdentifier
+    {
+        private readonly ChatChannel _channel;
+        
+        public ChannelIdentifierChannel(ChatChannel channel)
         {
-            private readonly ChatChannel _channel;
-            
-            public ChannelIdentifierChannel(ChatChannel channel)
-            {
-                _channel = channel;
-            }
-            
-            public override string ToString()
-                => $"channel:{_channel}";
+            _channel = channel;
         }
         
-        private class ChannelIdentifierContactKey : ChannelIdentifier
+        public override string ToString()
+            => $"channel:{_channel}";
+    }
+    
+    private class ChannelIdentifierContactKey : ChannelIdentifier
+    {
+        private readonly string _contactKey;
+        
+        public ChannelIdentifierContactKey(string contactKey)
         {
-            private readonly string _contactKey;
-            
-            public ChannelIdentifierContactKey(string contactKey)
-            {
-                _contactKey = contactKey;
-            }
-            
-            public override string ToString()
-                => $"contactKey:{_contactKey}";
+            _contactKey = contactKey;
         }
         
-        private class ChannelIdentifierId : ChannelIdentifier
+        public override string ToString()
+            => $"contactKey:{_contactKey}";
+    }
+    
+    private class ChannelIdentifierId : ChannelIdentifier
+    {
+        private readonly string _id;
+        
+        public ChannelIdentifierId(string id)
         {
-            private readonly string _id;
-            
-            public ChannelIdentifierId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
-        private class ChannelIdentifierIssue : ChannelIdentifier
+        public override string ToString()
+            => $"id:{_id}";
+    }
+    
+    private class ChannelIdentifierIssue : ChannelIdentifier
+    {
+        private readonly IssueIdentifier _issue;
+        
+        public ChannelIdentifierIssue(IssueIdentifier issue)
         {
-            private readonly IssueIdentifier _issue;
-            
-            public ChannelIdentifierIssue(IssueIdentifier issue)
-            {
-                _issue = issue;
-            }
-            
-            public override string ToString()
-                => $"issue:{_issue}";
+            _issue = issue;
         }
         
-        private class ChannelIdentifierProfile : ChannelIdentifier
+        public override string ToString()
+            => $"issue:{_issue}";
+    }
+    
+    private class ChannelIdentifierProfile : ChannelIdentifier
+    {
+        private readonly ProfileIdentifier _member;
+        
+        public ChannelIdentifierProfile(ProfileIdentifier member)
         {
-            private readonly ProfileIdentifier _member;
-            
-            public ChannelIdentifierProfile(ProfileIdentifier member)
-            {
-                _member = member;
-            }
-            
-            public override string ToString()
-                => $"member:{_member}";
+            _member = member;
         }
         
-        private class ChannelIdentifierReview : ChannelIdentifier
+        public override string ToString()
+            => $"member:{_member}";
+    }
+    
+    private class ChannelIdentifierReview : ChannelIdentifier
+    {
+        private readonly ReviewIdentifier _codeReview;
+        
+        public ChannelIdentifierReview(ReviewIdentifier codeReview)
         {
-            private readonly ReviewIdentifier _codeReview;
-            
-            public ChannelIdentifierReview(ReviewIdentifier codeReview)
-            {
-                _codeReview = codeReview;
-            }
-            
-            public override string ToString()
-                => $"codeReview:{_codeReview}";
+            _codeReview = codeReview;
         }
         
-        private class ChannelIdentifierThread : ChannelIdentifier
+        public override string ToString()
+            => $"codeReview:{_codeReview}";
+    }
+    
+    private class ChannelIdentifierThread : ChannelIdentifier
+    {
+        private readonly string _message;
+        
+        public ChannelIdentifierThread(string message)
         {
-            private readonly string _message;
-            
-            public ChannelIdentifierThread(string message)
-            {
-                _message = message;
-            }
-            
-            public override string ToString()
-                => $"message:{_message}";
+            _message = message;
         }
         
+        public override string ToString()
+            => $"message:{_message}";
     }
     
 }
+

@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationUnfurlTargetDomainPartialBuilder
+namespace JetBrains.Space.Client.ApplicationUnfurlTargetDomainPartialBuilder;
+
+public static class ApplicationUnfurlTargetDomainPartialExtensions
 {
-    public static class ApplicationUnfurlTargetDomainPartialExtensions
-    {
-        public static Partial<ApplicationUnfurlTargetDomain> WithDomain(this Partial<ApplicationUnfurlTargetDomain> it)
-            => it.AddFieldName("domain");
-        
-    }
+    public static Partial<ApplicationUnfurlTargetDomain> WithDomain(this Partial<ApplicationUnfurlTargetDomain> it)
+        => it.AddFieldName("domain");
     
 }
+

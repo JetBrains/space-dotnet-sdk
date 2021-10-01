@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest> WithItem(this Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest> it)
-            => it.AddFieldName("item");
-        
-        public static Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest> WithIsEnabled(this Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest> it)
-            => it.AddFieldName("enabled");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest> WithItem(this Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest> it)
+        => it.AddFieldName("item");
+    
+    public static Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest> WithIsEnabled(this Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest> it)
+        => it.AddFieldName("enabled");
     
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RevisionsInReviewPartialBuilder
+namespace JetBrains.Space.Client.RevisionsInReviewPartialBuilder;
+
+public static class RevisionsInReviewPartialExtensions
 {
-    public static class RevisionsInReviewPartialExtensions
-    {
-        public static Partial<RevisionsInReview> WithRepository(this Partial<RevisionsInReview> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<RevisionsInReview> WithRepository(this Partial<RevisionsInReview> it, Func<Partial<RepositoryInReview>, Partial<RepositoryInReview>> partialBuilder)
-            => it.AddFieldName("repository", partialBuilder(new Partial<RepositoryInReview>(it)));
-        
-        public static Partial<RevisionsInReview> WithCommits(this Partial<RevisionsInReview> it)
-            => it.AddFieldName("commits");
-        
-        public static Partial<RevisionsInReview> WithCommits(this Partial<RevisionsInReview> it, Func<Partial<GitCommitWithGraph>, Partial<GitCommitWithGraph>> partialBuilder)
-            => it.AddFieldName("commits", partialBuilder(new Partial<GitCommitWithGraph>(it)));
-        
-    }
+    public static Partial<RevisionsInReview> WithRepository(this Partial<RevisionsInReview> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<RevisionsInReview> WithRepository(this Partial<RevisionsInReview> it, Func<Partial<RepositoryInReview>, Partial<RepositoryInReview>> partialBuilder)
+        => it.AddFieldName("repository", partialBuilder(new Partial<RepositoryInReview>(it)));
+    
+    public static Partial<RevisionsInReview> WithCommits(this Partial<RevisionsInReview> it)
+        => it.AddFieldName("commits");
+    
+    public static Partial<RevisionsInReview> WithCommits(this Partial<RevisionsInReview> it, Func<Partial<GitCommitWithGraph>, Partial<GitCommitWithGraph>> partialBuilder)
+        => it.AddFieldName("commits", partialBuilder(new Partial<GitCommitWithGraph>(it)));
     
 }
+

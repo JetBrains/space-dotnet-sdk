@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RecurrenceRuleFreqWeeklyPartialBuilder
+namespace JetBrains.Space.Client.RecurrenceRuleFreqWeeklyPartialBuilder;
+
+public static class RecurrenceRuleFreqWeeklyPartialExtensions
 {
-    public static class RecurrenceRuleFreqWeeklyPartialExtensions
-    {
-        public static Partial<RecurrenceRuleFreqWeekly> WithWeekdays(this Partial<RecurrenceRuleFreqWeekly> it)
-            => it.AddFieldName("weekdays");
-        
-        public static Partial<RecurrenceRuleFreqWeekly> WithWeekdays(this Partial<RecurrenceRuleFreqWeekly> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)
-            => it.AddFieldName("weekdays", partialBuilder(new Partial<Weekday>(it)));
-        
-        public static Partial<RecurrenceRuleFreqWeekly> WithInterval(this Partial<RecurrenceRuleFreqWeekly> it)
-            => it.AddFieldName("interval");
-        
-    }
+    public static Partial<RecurrenceRuleFreqWeekly> WithWeekdays(this Partial<RecurrenceRuleFreqWeekly> it)
+        => it.AddFieldName("weekdays");
+    
+    public static Partial<RecurrenceRuleFreqWeekly> WithWeekdays(this Partial<RecurrenceRuleFreqWeekly> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)
+        => it.AddFieldName("weekdays", partialBuilder(new Partial<Weekday>(it)));
+    
+    public static Partial<RecurrenceRuleFreqWeekly> WithInterval(this Partial<RecurrenceRuleFreqWeekly> it)
+        => it.AddFieldName("interval");
     
 }
+

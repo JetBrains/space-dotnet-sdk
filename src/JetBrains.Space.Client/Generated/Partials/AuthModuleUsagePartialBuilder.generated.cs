@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AuthModuleUsagePartialBuilder
+namespace JetBrains.Space.Client.AuthModuleUsagePartialBuilder;
+
+public static class AuthModuleUsagePartialExtensions
 {
-    public static class AuthModuleUsagePartialExtensions
-    {
-        public static Partial<AuthModuleUsage> WithAuthModule(this Partial<AuthModuleUsage> it)
-            => it.AddFieldName("authModule");
-        
-        public static Partial<AuthModuleUsage> WithAuthModule(this Partial<AuthModuleUsage> it, Func<Partial<ESAuthModule>, Partial<ESAuthModule>> partialBuilder)
-            => it.AddFieldName("authModule", partialBuilder(new Partial<ESAuthModule>(it)));
-        
-        public static Partial<AuthModuleUsage> WithProfiles(this Partial<AuthModuleUsage> it)
-            => it.AddFieldName("profiles");
-        
-    }
+    public static Partial<AuthModuleUsage> WithAuthModule(this Partial<AuthModuleUsage> it)
+        => it.AddFieldName("authModule");
+    
+    public static Partial<AuthModuleUsage> WithAuthModule(this Partial<AuthModuleUsage> it, Func<Partial<ESAuthModule>, Partial<ESAuthModule>> partialBuilder)
+        => it.AddFieldName("authModule", partialBuilder(new Partial<ESAuthModule>(it)));
+    
+    public static Partial<AuthModuleUsage> WithProfiles(this Partial<AuthModuleUsage> it)
+        => it.AddFieldName("profiles");
     
 }
+

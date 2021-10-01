@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BoardTeamOwnersPartialBuilder
+namespace JetBrains.Space.Client.BoardTeamOwnersPartialBuilder;
+
+public static class BoardTeamOwnersPartialExtensions
 {
-    public static class BoardTeamOwnersPartialExtensions
-    {
-        public static Partial<BoardTeamOwners> WithTeams(this Partial<BoardTeamOwners> it)
-            => it.AddFieldName("teams");
-        
-        public static Partial<BoardTeamOwners> WithTeams(this Partial<BoardTeamOwners> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-            => it.AddFieldName("teams", partialBuilder(new Partial<TDTeam>(it)));
-        
-    }
+    public static Partial<BoardTeamOwners> WithTeams(this Partial<BoardTeamOwners> it)
+        => it.AddFieldName("teams");
+    
+    public static Partial<BoardTeamOwners> WithTeams(this Partial<BoardTeamOwners> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+        => it.AddFieldName("teams", partialBuilder(new Partial<TDTeam>(it)));
     
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeDiscussionAddedFeedEventPartialBuilder
+namespace JetBrains.Space.Client.CodeDiscussionAddedFeedEventPartialBuilder;
+
+public static class CodeDiscussionAddedFeedEventPartialExtensions
 {
-    public static class CodeDiscussionAddedFeedEventPartialExtensions
-    {
-        public static Partial<CodeDiscussionAddedFeedEvent> WithCodeDiscussion(this Partial<CodeDiscussionAddedFeedEvent> it)
-            => it.AddFieldName("codeDiscussion");
-        
-        public static Partial<CodeDiscussionAddedFeedEvent> WithCodeDiscussion(this Partial<CodeDiscussionAddedFeedEvent> it, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>> partialBuilder)
-            => it.AddFieldName("codeDiscussion", partialBuilder(new Partial<CodeDiscussionRecord>(it)));
-        
-        public static Partial<CodeDiscussionAddedFeedEvent> WithCodeReview(this Partial<CodeDiscussionAddedFeedEvent> it)
-            => it.AddFieldName("codeReview");
-        
-        public static Partial<CodeDiscussionAddedFeedEvent> WithCodeReview(this Partial<CodeDiscussionAddedFeedEvent> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
-            => it.AddFieldName("codeReview", partialBuilder(new Partial<CodeReviewRecord>(it)));
-        
-    }
+    public static Partial<CodeDiscussionAddedFeedEvent> WithCodeDiscussion(this Partial<CodeDiscussionAddedFeedEvent> it)
+        => it.AddFieldName("codeDiscussion");
+    
+    public static Partial<CodeDiscussionAddedFeedEvent> WithCodeDiscussion(this Partial<CodeDiscussionAddedFeedEvent> it, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>> partialBuilder)
+        => it.AddFieldName("codeDiscussion", partialBuilder(new Partial<CodeDiscussionRecord>(it)));
+    
+    public static Partial<CodeDiscussionAddedFeedEvent> WithCodeReview(this Partial<CodeDiscussionAddedFeedEvent> it)
+        => it.AddFieldName("codeReview");
+    
+    public static Partial<CodeDiscussionAddedFeedEvent> WithCodeReview(this Partial<CodeDiscussionAddedFeedEvent> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
+        => it.AddFieldName("codeReview", partialBuilder(new Partial<CodeReviewRecord>(it)));
     
 }
+

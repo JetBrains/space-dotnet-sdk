@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PackageOriginUrl
+     : PackageOrigin, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class PackageOriginUrl
-         : PackageOrigin, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "PackageOrigin.Url";
+    
+    public PackageOriginUrl() { }
+    
+    public PackageOriginUrl(string url)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "PackageOrigin.Url";
-        
-        public PackageOriginUrl() { }
-        
-        public PackageOriginUrl(string url)
-        {
-            Url = url;
-        }
-        
-        private PropertyValue<string> _url = new PropertyValue<string>(nameof(PackageOriginUrl), nameof(Url));
-        
-        [Required]
-        [JsonPropertyName("url")]
-        public string Url
-        {
-            get => _url.GetValue();
-            set => _url.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _url.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Url = url;
     }
     
+    private PropertyValue<string> _url = new PropertyValue<string>(nameof(PackageOriginUrl), nameof(Url));
+    
+    [Required]
+    [JsonPropertyName("url")]
+    public string Url
+    {
+        get => _url.GetValue();
+        set => _url.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _url.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

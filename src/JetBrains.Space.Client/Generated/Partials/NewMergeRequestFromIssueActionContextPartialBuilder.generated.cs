@@ -27,37 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NewMergeRequestFromIssueActionContextPartialBuilder
+namespace JetBrains.Space.Client.NewMergeRequestFromIssueActionContextPartialBuilder;
+
+public static class NewMergeRequestFromIssueActionContextPartialExtensions
 {
-    public static class NewMergeRequestFromIssueActionContextPartialExtensions
-    {
-        public static Partial<NewMergeRequestFromIssueActionContext> WithProjectKey(this Partial<NewMergeRequestFromIssueActionContext> it)
-            => it.AddFieldName("projectKey");
-        
-        public static Partial<NewMergeRequestFromIssueActionContext> WithProjectKey(this Partial<NewMergeRequestFromIssueActionContext> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
-            => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
-        
-        public static Partial<NewMergeRequestFromIssueActionContext> WithRepository(this Partial<NewMergeRequestFromIssueActionContext> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<NewMergeRequestFromIssueActionContext> WithCommitId(this Partial<NewMergeRequestFromIssueActionContext> it)
-            => it.AddFieldName("commitId");
-        
-        public static Partial<NewMergeRequestFromIssueActionContext> WithIssueNumber(this Partial<NewMergeRequestFromIssueActionContext> it)
-            => it.AddFieldName("issueNumber");
-        
-        public static Partial<NewMergeRequestFromIssueActionContext> WithProjectRepos(this Partial<NewMergeRequestFromIssueActionContext> it)
-            => it.AddFieldName("projectRepos");
-        
-        public static Partial<NewMergeRequestFromIssueActionContext> WithProjectRepos(this Partial<NewMergeRequestFromIssueActionContext> it, Func<Partial<ProjectReposRecord>, Partial<ProjectReposRecord>> partialBuilder)
-            => it.AddFieldName("projectRepos", partialBuilder(new Partial<ProjectReposRecord>(it)));
-        
-        public static Partial<NewMergeRequestFromIssueActionContext> WithIssueCommitsRef(this Partial<NewMergeRequestFromIssueActionContext> it)
-            => it.AddFieldName("issueCommitsRef");
-        
-        public static Partial<NewMergeRequestFromIssueActionContext> WithIssueCommitsRef(this Partial<NewMergeRequestFromIssueActionContext> it, Func<Partial<CommitLinksContainer>, Partial<CommitLinksContainer>> partialBuilder)
-            => it.AddFieldName("issueCommitsRef", partialBuilder(new Partial<CommitLinksContainer>(it)));
-        
-    }
+    public static Partial<NewMergeRequestFromIssueActionContext> WithProjectKey(this Partial<NewMergeRequestFromIssueActionContext> it)
+        => it.AddFieldName("projectKey");
+    
+    public static Partial<NewMergeRequestFromIssueActionContext> WithProjectKey(this Partial<NewMergeRequestFromIssueActionContext> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
+        => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
+    
+    public static Partial<NewMergeRequestFromIssueActionContext> WithRepository(this Partial<NewMergeRequestFromIssueActionContext> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<NewMergeRequestFromIssueActionContext> WithCommitId(this Partial<NewMergeRequestFromIssueActionContext> it)
+        => it.AddFieldName("commitId");
+    
+    public static Partial<NewMergeRequestFromIssueActionContext> WithIssueNumber(this Partial<NewMergeRequestFromIssueActionContext> it)
+        => it.AddFieldName("issueNumber");
+    
+    public static Partial<NewMergeRequestFromIssueActionContext> WithProjectRepos(this Partial<NewMergeRequestFromIssueActionContext> it)
+        => it.AddFieldName("projectRepos");
+    
+    public static Partial<NewMergeRequestFromIssueActionContext> WithProjectRepos(this Partial<NewMergeRequestFromIssueActionContext> it, Func<Partial<ProjectReposRecord>, Partial<ProjectReposRecord>> partialBuilder)
+        => it.AddFieldName("projectRepos", partialBuilder(new Partial<ProjectReposRecord>(it)));
+    
+    public static Partial<NewMergeRequestFromIssueActionContext> WithIssueCommitsRef(this Partial<NewMergeRequestFromIssueActionContext> it)
+        => it.AddFieldName("issueCommitsRef");
+    
+    public static Partial<NewMergeRequestFromIssueActionContext> WithIssueCommitsRef(this Partial<NewMergeRequestFromIssueActionContext> it, Func<Partial<CommitLinksContainer>, Partial<CommitLinksContainer>> partialBuilder)
+        => it.AddFieldName("issueCommitsRef", partialBuilder(new Partial<CommitLinksContainer>(it)));
     
 }
+

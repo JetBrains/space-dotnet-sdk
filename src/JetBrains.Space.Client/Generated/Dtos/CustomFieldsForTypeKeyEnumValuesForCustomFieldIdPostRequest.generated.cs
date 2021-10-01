@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest
-         : IPropagatePropertyAccessPath
+    public CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest() { }
+    
+    public CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest(List<EnumValueData> valuesToAdd, ExtendedTypeScope scope)
     {
-        public CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest() { }
-        
-        public CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest(List<EnumValueData> valuesToAdd, ExtendedTypeScope scope)
-        {
-            ValuesToAdd = valuesToAdd;
-            Scope = scope;
-        }
-        
-        private PropertyValue<List<EnumValueData>> _valuesToAdd = new PropertyValue<List<EnumValueData>>(nameof(CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest), nameof(ValuesToAdd), new List<EnumValueData>());
-        
-        [Required]
-        [JsonPropertyName("valuesToAdd")]
-        public List<EnumValueData> ValuesToAdd
-        {
-            get => _valuesToAdd.GetValue();
-            set => _valuesToAdd.SetValue(value);
-        }
-    
-        private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest), nameof(Scope));
-        
-        [Required]
-        [JsonPropertyName("scope")]
-        public ExtendedTypeScope Scope
-        {
-            get => _scope.GetValue();
-            set => _scope.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _valuesToAdd.SetAccessPath(path, validateHasBeenSet);
-            _scope.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ValuesToAdd = valuesToAdd;
+        Scope = scope;
     }
     
+    private PropertyValue<List<EnumValueData>> _valuesToAdd = new PropertyValue<List<EnumValueData>>(nameof(CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest), nameof(ValuesToAdd), new List<EnumValueData>());
+    
+    [Required]
+    [JsonPropertyName("valuesToAdd")]
+    public List<EnumValueData> ValuesToAdd
+    {
+        get => _valuesToAdd.GetValue();
+        set => _valuesToAdd.SetValue(value);
+    }
+
+    private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest), nameof(Scope));
+    
+    [Required]
+    [JsonPropertyName("scope")]
+    public ExtendedTypeScope Scope
+    {
+        get => _scope.GetValue();
+        set => _scope.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _valuesToAdd.SetAccessPath(path, validateHasBeenSet);
+        _scope.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

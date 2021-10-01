@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.WebhookRequestPayloadPartialBuilder
+namespace JetBrains.Space.Client.WebhookRequestPayloadPartialBuilder;
+
+public static class WebhookRequestPayloadPartialExtensions
 {
-    public static class WebhookRequestPayloadPartialExtensions
-    {
-        public static Partial<WebhookRequestPayload> WithVerificationToken(this Partial<WebhookRequestPayload> it)
-            => it.AddFieldName("verificationToken");
-        
-        public static Partial<WebhookRequestPayload> WithClientId(this Partial<WebhookRequestPayload> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<WebhookRequestPayload> WithWebhookId(this Partial<WebhookRequestPayload> it)
-            => it.AddFieldName("webhookId");
-        
-        public static Partial<WebhookRequestPayload> WithPayload(this Partial<WebhookRequestPayload> it)
-            => it.AddFieldName("payload");
-        
-        public static Partial<WebhookRequestPayload> WithPayload(this Partial<WebhookRequestPayload> it, Func<Partial<WebhookEvent>, Partial<WebhookEvent>> partialBuilder)
-            => it.AddFieldName("payload", partialBuilder(new Partial<WebhookEvent>(it)));
-        
-    }
+    public static Partial<WebhookRequestPayload> WithVerificationToken(this Partial<WebhookRequestPayload> it)
+        => it.AddFieldName("verificationToken");
+    
+    public static Partial<WebhookRequestPayload> WithClientId(this Partial<WebhookRequestPayload> it)
+        => it.AddFieldName("clientId");
+    
+    public static Partial<WebhookRequestPayload> WithWebhookId(this Partial<WebhookRequestPayload> it)
+        => it.AddFieldName("webhookId");
+    
+    public static Partial<WebhookRequestPayload> WithPayload(this Partial<WebhookRequestPayload> it)
+        => it.AddFieldName("payload");
+    
+    public static Partial<WebhookRequestPayload> WithPayload(this Partial<WebhookRequestPayload> it, Func<Partial<WebhookEvent>, Partial<WebhookEvent>> partialBuilder)
+        => it.AddFieldName("payload", partialBuilder(new Partial<WebhookEvent>(it)));
     
 }
+

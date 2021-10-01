@@ -27,27 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class ChatMessage
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class ChatMessage
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "ChatMessage";
+    
+    public static ChatMessageBlock Block(List<MessageSectionElement> sections, MessageStyle? style = null, MessageOutline? outline = null, string? messageData = null)
+        => new ChatMessageBlock(sections: sections, style: style, outline: outline, messageData: messageData);
+    
+    public static ChatMessageText Text(string text)
+        => new ChatMessageText(text: text);
+    
+    public ChatMessage() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "ChatMessage";
-        
-        public static ChatMessageBlock Block(List<MessageSectionElement> sections, MessageStyle? style = null, MessageOutline? outline = null, string? messageData = null)
-            => new ChatMessageBlock(sections: sections, style: style, outline: outline, messageData: messageData);
-        
-        public static ChatMessageText Text(string text)
-            => new ChatMessageText(text: text);
-        
-        public ChatMessage() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

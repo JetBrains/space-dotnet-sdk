@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class EnumCFParameters
+     : CFParameters, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class EnumCFParameters
-         : CFParameters, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "EnumCFParameters";
+    
+    public EnumCFParameters() { }
+    
+    public EnumCFParameters(List<CFEnumValue> values)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "EnumCFParameters";
-        
-        public EnumCFParameters() { }
-        
-        public EnumCFParameters(List<CFEnumValue> values)
-        {
-            Values = values;
-        }
-        
-        private PropertyValue<List<CFEnumValue>> _values = new PropertyValue<List<CFEnumValue>>(nameof(EnumCFParameters), nameof(Values), new List<CFEnumValue>());
-        
-        [Required]
-        [JsonPropertyName("values")]
-        public List<CFEnumValue> Values
-        {
-            get => _values.GetValue();
-            set => _values.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _values.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Values = values;
     }
     
+    private PropertyValue<List<CFEnumValue>> _values = new PropertyValue<List<CFEnumValue>>(nameof(EnumCFParameters), nameof(Values), new List<CFEnumValue>());
+    
+    [Required]
+    [JsonPropertyName("values")]
+    public List<CFEnumValue> Values
+    {
+        get => _values.GetValue();
+        set => _values.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _values.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

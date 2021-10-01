@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PermissionContextApiPartialBuilder
+namespace JetBrains.Space.Client.PermissionContextApiPartialBuilder;
+
+public static class PermissionContextApiPartialExtensions
 {
-    public static class PermissionContextApiPartialExtensions
-    {
-    }
-    
 }
+

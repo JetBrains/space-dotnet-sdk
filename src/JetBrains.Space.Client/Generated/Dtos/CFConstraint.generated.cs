@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public abstract class CFConstraint
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public abstract class CFConstraint
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "CFConstraint";
+    
+    public static DateCFConstraint Date(DateTime? min = null, DateTime? max = null, string? message = null)
+        => new DateCFConstraint(min: min, max: max, message: message);
+    
+    public static DateTimeCFConstraint DateTime(DateTime? min = null, DateTime? max = null, string? message = null)
+        => new DateTimeCFConstraint(min: min, max: max, message: message);
+    
+    public static IntCFConstraint Int(int? min = null, int? max = null, string? message = null)
+        => new IntCFConstraint(min: min, max: max, message: message);
+    
+    public static PercentageCFConstraint Percentage()
+        => new PercentageCFConstraint();
+    
+    public static StringCFConstraint String(int? min = null, int? max = null, string? pattern = null, string? message = null)
+        => new StringCFConstraint(min: min, max: max, pattern: pattern, message: message);
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "CFConstraint";
-        
-        public static DateCFConstraint Date(DateTime? min = null, DateTime? max = null, string? message = null)
-            => new DateCFConstraint(min: min, max: max, message: message);
-        
-        public static DateTimeCFConstraint DateTime(DateTime? min = null, DateTime? max = null, string? message = null)
-            => new DateTimeCFConstraint(min: min, max: max, message: message);
-        
-        public static IntCFConstraint Int(int? min = null, int? max = null, string? message = null)
-            => new IntCFConstraint(min: min, max: max, message: message);
-        
-        public static PercentageCFConstraint Percentage()
-            => new PercentageCFConstraint();
-        
-        public static StringCFConstraint String(int? min = null, int? max = null, string? pattern = null, string? message = null)
-            => new StringCFConstraint(min: min, max: max, pattern: pattern, message: message);
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

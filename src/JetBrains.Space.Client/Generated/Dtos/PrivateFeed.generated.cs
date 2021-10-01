@@ -27,69 +27,68 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PrivateFeed
+     : IPropagatePropertyAccessPath
 {
-    public sealed class PrivateFeed
-         : IPropagatePropertyAccessPath
+    public PrivateFeed() { }
+    
+    public PrivateFeed(string id, string name, string icon, PrivateFeedColor color)
     {
-        public PrivateFeed() { }
-        
-        public PrivateFeed(string id, string name, string icon, PrivateFeedColor color)
-        {
-            Id = id;
-            Name = name;
-            Icon = icon;
-            Color = color;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(PrivateFeed), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(PrivateFeed), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _icon = new PropertyValue<string>(nameof(PrivateFeed), nameof(Icon));
-        
-        [Required]
-        [JsonPropertyName("icon")]
-        public string Icon
-        {
-            get => _icon.GetValue();
-            set => _icon.SetValue(value);
-        }
-    
-        private PropertyValue<PrivateFeedColor> _color = new PropertyValue<PrivateFeedColor>(nameof(PrivateFeed), nameof(Color));
-        
-        [Required]
-        [JsonPropertyName("color")]
-        public PrivateFeedColor Color
-        {
-            get => _color.GetValue();
-            set => _color.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _icon.SetAccessPath(path, validateHasBeenSet);
-            _color.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Name = name;
+        Icon = icon;
+        Color = color;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PrivateFeed), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PrivateFeed), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _icon = new PropertyValue<string>(nameof(PrivateFeed), nameof(Icon));
+    
+    [Required]
+    [JsonPropertyName("icon")]
+    public string Icon
+    {
+        get => _icon.GetValue();
+        set => _icon.SetValue(value);
+    }
+
+    private PropertyValue<PrivateFeedColor> _color = new PropertyValue<PrivateFeedColor>(nameof(PrivateFeed), nameof(Color));
+    
+    [Required]
+    [JsonPropertyName("color")]
+    public PrivateFeedColor Color
+    {
+        get => _color.GetValue();
+        set => _color.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _icon.SetAccessPath(path, validateHasBeenSet);
+        _color.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

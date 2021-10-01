@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DocumentCFParameters
+     : CFParameters, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class DocumentCFParameters
-         : CFParameters, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "DocumentCFParameters";
+    
+    public DocumentCFParameters() { }
+    
+    public DocumentCFParameters(DocumentCFScope documentScope)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "DocumentCFParameters";
-        
-        public DocumentCFParameters() { }
-        
-        public DocumentCFParameters(DocumentCFScope documentScope)
-        {
-            DocumentScope = documentScope;
-        }
-        
-        private PropertyValue<DocumentCFScope> _documentScope = new PropertyValue<DocumentCFScope>(nameof(DocumentCFParameters), nameof(DocumentScope));
-        
-        [Required]
-        [JsonPropertyName("documentScope")]
-        public DocumentCFScope DocumentScope
-        {
-            get => _documentScope.GetValue();
-            set => _documentScope.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _documentScope.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        DocumentScope = documentScope;
     }
     
+    private PropertyValue<DocumentCFScope> _documentScope = new PropertyValue<DocumentCFScope>(nameof(DocumentCFParameters), nameof(DocumentScope));
+    
+    [Required]
+    [JsonPropertyName("documentScope")]
+    public DocumentCFScope DocumentScope
+    {
+        get => _documentScope.GetValue();
+        set => _documentScope.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _documentScope.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

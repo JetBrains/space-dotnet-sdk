@@ -27,80 +27,79 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PersonalSubscriptionTarget
+     : IPropagatePropertyAccessPath
 {
-    public sealed class PersonalSubscriptionTarget
-         : IPropagatePropertyAccessPath
+    public PersonalSubscriptionTarget() { }
+    
+    public PersonalSubscriptionTarget(string subjectCode, string targetCode, string description, List<PersonalSubscriptionEvent> events, string? featureFlag = null)
     {
-        public PersonalSubscriptionTarget() { }
-        
-        public PersonalSubscriptionTarget(string subjectCode, string targetCode, string description, List<PersonalSubscriptionEvent> events, string? featureFlag = null)
-        {
-            SubjectCode = subjectCode;
-            TargetCode = targetCode;
-            Description = description;
-            Events = events;
-            FeatureFlag = featureFlag;
-        }
-        
-        private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(PersonalSubscriptionTarget), nameof(SubjectCode));
-        
-        [Required]
-        [JsonPropertyName("subjectCode")]
-        public string SubjectCode
-        {
-            get => _subjectCode.GetValue();
-            set => _subjectCode.SetValue(value);
-        }
-    
-        private PropertyValue<string> _targetCode = new PropertyValue<string>(nameof(PersonalSubscriptionTarget), nameof(TargetCode));
-        
-        [Required]
-        [JsonPropertyName("targetCode")]
-        public string TargetCode
-        {
-            get => _targetCode.GetValue();
-            set => _targetCode.SetValue(value);
-        }
-    
-        private PropertyValue<string> _description = new PropertyValue<string>(nameof(PersonalSubscriptionTarget), nameof(Description));
-        
-        [Required]
-        [JsonPropertyName("description")]
-        public string Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<List<PersonalSubscriptionEvent>> _events = new PropertyValue<List<PersonalSubscriptionEvent>>(nameof(PersonalSubscriptionTarget), nameof(Events), new List<PersonalSubscriptionEvent>());
-        
-        [Required]
-        [JsonPropertyName("events")]
-        public List<PersonalSubscriptionEvent> Events
-        {
-            get => _events.GetValue();
-            set => _events.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(PersonalSubscriptionTarget), nameof(FeatureFlag));
-        
-        [JsonPropertyName("featureFlag")]
-        public string? FeatureFlag
-        {
-            get => _featureFlag.GetValue();
-            set => _featureFlag.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _subjectCode.SetAccessPath(path, validateHasBeenSet);
-            _targetCode.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _events.SetAccessPath(path, validateHasBeenSet);
-            _featureFlag.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        SubjectCode = subjectCode;
+        TargetCode = targetCode;
+        Description = description;
+        Events = events;
+        FeatureFlag = featureFlag;
     }
     
+    private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(PersonalSubscriptionTarget), nameof(SubjectCode));
+    
+    [Required]
+    [JsonPropertyName("subjectCode")]
+    public string SubjectCode
+    {
+        get => _subjectCode.GetValue();
+        set => _subjectCode.SetValue(value);
+    }
+
+    private PropertyValue<string> _targetCode = new PropertyValue<string>(nameof(PersonalSubscriptionTarget), nameof(TargetCode));
+    
+    [Required]
+    [JsonPropertyName("targetCode")]
+    public string TargetCode
+    {
+        get => _targetCode.GetValue();
+        set => _targetCode.SetValue(value);
+    }
+
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(PersonalSubscriptionTarget), nameof(Description));
+    
+    [Required]
+    [JsonPropertyName("description")]
+    public string Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<List<PersonalSubscriptionEvent>> _events = new PropertyValue<List<PersonalSubscriptionEvent>>(nameof(PersonalSubscriptionTarget), nameof(Events), new List<PersonalSubscriptionEvent>());
+    
+    [Required]
+    [JsonPropertyName("events")]
+    public List<PersonalSubscriptionEvent> Events
+    {
+        get => _events.GetValue();
+        set => _events.SetValue(value);
+    }
+
+    private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(PersonalSubscriptionTarget), nameof(FeatureFlag));
+    
+    [JsonPropertyName("featureFlag")]
+    public string? FeatureFlag
+    {
+        get => _featureFlag.GetValue();
+        set => _featureFlag.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _subjectCode.SetAccessPath(path, validateHasBeenSet);
+        _targetCode.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _events.SetAccessPath(path, validateHasBeenSet);
+        _featureFlag.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

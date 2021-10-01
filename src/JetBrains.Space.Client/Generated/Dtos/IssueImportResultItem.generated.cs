@@ -27,54 +27,53 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IssueImportResultItem
+     : IPropagatePropertyAccessPath
 {
-    public sealed class IssueImportResultItem
-         : IPropagatePropertyAccessPath
+    public IssueImportResultItem() { }
+    
+    public IssueImportResultItem(string? externalId = null, Issue? issue = null, string? error = null)
     {
-        public IssueImportResultItem() { }
-        
-        public IssueImportResultItem(string? externalId = null, Issue? issue = null, string? error = null)
-        {
-            ExternalId = externalId;
-            Issue = issue;
-            Error = error;
-        }
-        
-        private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(IssueImportResultItem), nameof(ExternalId));
-        
-        [JsonPropertyName("externalId")]
-        public string? ExternalId
-        {
-            get => _externalId.GetValue();
-            set => _externalId.SetValue(value);
-        }
-    
-        private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(IssueImportResultItem), nameof(Issue));
-        
-        [JsonPropertyName("issue")]
-        public Issue? Issue
-        {
-            get => _issue.GetValue();
-            set => _issue.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _error = new PropertyValue<string?>(nameof(IssueImportResultItem), nameof(Error));
-        
-        [JsonPropertyName("error")]
-        public string? Error
-        {
-            get => _error.GetValue();
-            set => _error.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _externalId.SetAccessPath(path, validateHasBeenSet);
-            _issue.SetAccessPath(path, validateHasBeenSet);
-            _error.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ExternalId = externalId;
+        Issue = issue;
+        Error = error;
     }
     
+    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(IssueImportResultItem), nameof(ExternalId));
+    
+    [JsonPropertyName("externalId")]
+    public string? ExternalId
+    {
+        get => _externalId.GetValue();
+        set => _externalId.SetValue(value);
+    }
+
+    private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(IssueImportResultItem), nameof(Issue));
+    
+    [JsonPropertyName("issue")]
+    public Issue? Issue
+    {
+        get => _issue.GetValue();
+        set => _issue.SetValue(value);
+    }
+
+    private PropertyValue<string?> _error = new PropertyValue<string?>(nameof(IssueImportResultItem), nameof(Error));
+    
+    [JsonPropertyName("error")]
+    public string? Error
+    {
+        get => _error.GetValue();
+        set => _error.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _externalId.SetAccessPath(path, validateHasBeenSet);
+        _issue.SetAccessPath(path, validateHasBeenSet);
+        _error.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

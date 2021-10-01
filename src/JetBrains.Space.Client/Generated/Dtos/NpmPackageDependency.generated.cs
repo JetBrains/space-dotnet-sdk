@@ -27,56 +27,55 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class NpmPackageDependency
+     : IPropagatePropertyAccessPath
 {
-    public sealed class NpmPackageDependency
-         : IPropagatePropertyAccessPath
+    public NpmPackageDependency() { }
+    
+    public NpmPackageDependency(string name, string version, string? type = null)
     {
-        public NpmPackageDependency() { }
-        
-        public NpmPackageDependency(string name, string version, string? type = null)
-        {
-            Name = name;
-            Version = version;
-            Type = type;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(NpmPackageDependency), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _version = new PropertyValue<string>(nameof(NpmPackageDependency), nameof(Version));
-        
-        [Required]
-        [JsonPropertyName("version")]
-        public string Version
-        {
-            get => _version.GetValue();
-            set => _version.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _type = new PropertyValue<string?>(nameof(NpmPackageDependency), nameof(Type));
-        
-        [JsonPropertyName("type")]
-        public string? Type
-        {
-            get => _type.GetValue();
-            set => _type.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _version.SetAccessPath(path, validateHasBeenSet);
-            _type.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Version = version;
+        Type = type;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(NpmPackageDependency), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _version = new PropertyValue<string>(nameof(NpmPackageDependency), nameof(Version));
+    
+    [Required]
+    [JsonPropertyName("version")]
+    public string Version
+    {
+        get => _version.GetValue();
+        set => _version.SetValue(value);
+    }
+
+    private PropertyValue<string?> _type = new PropertyValue<string?>(nameof(NpmPackageDependency), nameof(Type));
+    
+    [JsonPropertyName("type")]
+    public string? Type
+    {
+        get => _type.GetValue();
+        set => _type.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _version.SetAccessPath(path, validateHasBeenSet);
+        _type.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SamlMetadataResponseErrorPartialBuilder
+namespace JetBrains.Space.Client.SamlMetadataResponseErrorPartialBuilder;
+
+public static class SamlMetadataResponseErrorPartialExtensions
 {
-    public static class SamlMetadataResponseErrorPartialExtensions
-    {
-        public static Partial<SamlMetadataResponseError> WithMessages(this Partial<SamlMetadataResponseError> it)
-            => it.AddFieldName("messages");
-        
-    }
+    public static Partial<SamlMetadataResponseError> WithMessages(this Partial<SamlMetadataResponseError> it)
+        => it.AddFieldName("messages");
     
 }
+

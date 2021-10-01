@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESNpmRegistrySettingsPartialBuilder
+namespace JetBrains.Space.Client.ESNpmRegistrySettingsPartialBuilder;
+
+public static class ESNpmRegistrySettingsPartialExtensions
 {
-    public static class ESNpmRegistrySettingsPartialExtensions
-    {
-        public static Partial<ESNpmRegistrySettings> WithRetentionPolicyParams(this Partial<ESNpmRegistrySettings> it)
-            => it.AddFieldName("retentionPolicyParams");
-        
-        public static Partial<ESNpmRegistrySettings> WithRetentionPolicyParams(this Partial<ESNpmRegistrySettings> it, Func<Partial<RetentionPolicyParams>, Partial<RetentionPolicyParams>> partialBuilder)
-            => it.AddFieldName("retentionPolicyParams", partialBuilder(new Partial<RetentionPolicyParams>(it)));
-        
-        public static Partial<ESNpmRegistrySettings> WithIsImmutablePackageVersions(this Partial<ESNpmRegistrySettings> it)
-            => it.AddFieldName("immutablePackageVersions");
-        
-    }
+    public static Partial<ESNpmRegistrySettings> WithRetentionPolicyParams(this Partial<ESNpmRegistrySettings> it)
+        => it.AddFieldName("retentionPolicyParams");
+    
+    public static Partial<ESNpmRegistrySettings> WithRetentionPolicyParams(this Partial<ESNpmRegistrySettings> it, Func<Partial<RetentionPolicyParams>, Partial<RetentionPolicyParams>> partialBuilder)
+        => it.AddFieldName("retentionPolicyParams", partialBuilder(new Partial<RetentionPolicyParams>(it)));
+    
+    public static Partial<ESNpmRegistrySettings> WithIsImmutablePackageVersions(this Partial<ESNpmRegistrySettings> it)
+        => it.AddFieldName("immutablePackageVersions");
     
 }
+

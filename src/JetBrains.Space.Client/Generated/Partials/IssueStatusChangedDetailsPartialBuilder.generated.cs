@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueStatusChangedDetailsPartialBuilder
+namespace JetBrains.Space.Client.IssueStatusChangedDetailsPartialBuilder;
+
+public static class IssueStatusChangedDetailsPartialExtensions
 {
-    public static class IssueStatusChangedDetailsPartialExtensions
-    {
-        public static Partial<IssueStatusChangedDetails> WithOldStatus(this Partial<IssueStatusChangedDetails> it)
-            => it.AddFieldName("oldStatus");
-        
-        public static Partial<IssueStatusChangedDetails> WithOldStatus(this Partial<IssueStatusChangedDetails> it, Func<Partial<IssueStatus>, Partial<IssueStatus>> partialBuilder)
-            => it.AddFieldName("oldStatus", partialBuilder(new Partial<IssueStatus>(it)));
-        
-        public static Partial<IssueStatusChangedDetails> WithNewStatus(this Partial<IssueStatusChangedDetails> it)
-            => it.AddFieldName("newStatus");
-        
-        public static Partial<IssueStatusChangedDetails> WithNewStatus(this Partial<IssueStatusChangedDetails> it, Func<Partial<IssueStatus>, Partial<IssueStatus>> partialBuilder)
-            => it.AddFieldName("newStatus", partialBuilder(new Partial<IssueStatus>(it)));
-        
-    }
+    public static Partial<IssueStatusChangedDetails> WithOldStatus(this Partial<IssueStatusChangedDetails> it)
+        => it.AddFieldName("oldStatus");
+    
+    public static Partial<IssueStatusChangedDetails> WithOldStatus(this Partial<IssueStatusChangedDetails> it, Func<Partial<IssueStatus>, Partial<IssueStatus>> partialBuilder)
+        => it.AddFieldName("oldStatus", partialBuilder(new Partial<IssueStatus>(it)));
+    
+    public static Partial<IssueStatusChangedDetails> WithNewStatus(this Partial<IssueStatusChangedDetails> it)
+        => it.AddFieldName("newStatus");
+    
+    public static Partial<IssueStatusChangedDetails> WithNewStatus(this Partial<IssueStatusChangedDetails> it, Func<Partial<IssueStatus>, Partial<IssueStatus>> partialBuilder)
+        => it.AddFieldName("newStatus", partialBuilder(new Partial<IssueStatus>(it)));
     
 }
+

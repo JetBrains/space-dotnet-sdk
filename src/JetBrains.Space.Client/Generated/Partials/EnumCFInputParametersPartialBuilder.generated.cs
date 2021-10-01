@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EnumCFInputParametersPartialBuilder
+namespace JetBrains.Space.Client.EnumCFInputParametersPartialBuilder;
+
+public static class EnumCFInputParametersPartialExtensions
 {
-    public static class EnumCFInputParametersPartialExtensions
-    {
-        public static Partial<EnumCFInputParameters> WithValues(this Partial<EnumCFInputParameters> it)
-            => it.AddFieldName("values");
-        
-    }
+    public static Partial<EnumCFInputParameters> WithValues(this Partial<EnumCFInputParameters> it)
+        => it.AddFieldName("values");
     
 }
+

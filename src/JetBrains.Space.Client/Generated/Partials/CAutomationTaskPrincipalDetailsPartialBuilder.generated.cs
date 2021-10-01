@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CAutomationTaskPrincipalDetailsPartialBuilder
+namespace JetBrains.Space.Client.CAutomationTaskPrincipalDetailsPartialBuilder;
+
+public static class CAutomationTaskPrincipalDetailsPartialExtensions
 {
-    public static class CAutomationTaskPrincipalDetailsPartialExtensions
-    {
-        public static Partial<CAutomationTaskPrincipalDetails> WithProject(this Partial<CAutomationTaskPrincipalDetails> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<CAutomationTaskPrincipalDetails> WithProject(this Partial<CAutomationTaskPrincipalDetails> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
-        public static Partial<CAutomationTaskPrincipalDetails> WithName(this Partial<CAutomationTaskPrincipalDetails> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<CAutomationTaskPrincipalDetails> WithId(this Partial<CAutomationTaskPrincipalDetails> it)
-            => it.AddFieldName("id");
-        
-    }
+    public static Partial<CAutomationTaskPrincipalDetails> WithProject(this Partial<CAutomationTaskPrincipalDetails> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<CAutomationTaskPrincipalDetails> WithProject(this Partial<CAutomationTaskPrincipalDetails> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+    
+    public static Partial<CAutomationTaskPrincipalDetails> WithName(this Partial<CAutomationTaskPrincipalDetails> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<CAutomationTaskPrincipalDetails> WithId(this Partial<CAutomationTaskPrincipalDetails> it)
+        => it.AddFieldName("id");
     
 }
+

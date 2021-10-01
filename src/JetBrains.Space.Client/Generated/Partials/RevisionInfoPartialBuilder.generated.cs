@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RevisionInfoPartialBuilder
+namespace JetBrains.Space.Client.RevisionInfoPartialBuilder;
+
+public static class RevisionInfoPartialExtensions
 {
-    public static class RevisionInfoPartialExtensions
-    {
-        public static Partial<RevisionInfo> WithRevision(this Partial<RevisionInfo> it)
-            => it.AddFieldName("revision");
-        
-        public static Partial<RevisionInfo> WithDate(this Partial<RevisionInfo> it)
-            => it.AddFieldName("date");
-        
-        public static Partial<RevisionInfo> WithMessage(this Partial<RevisionInfo> it)
-            => it.AddFieldName("message");
-        
-    }
+    public static Partial<RevisionInfo> WithRevision(this Partial<RevisionInfo> it)
+        => it.AddFieldName("revision");
+    
+    public static Partial<RevisionInfo> WithDate(this Partial<RevisionInfo> it)
+        => it.AddFieldName("date");
+    
+    public static Partial<RevisionInfo> WithMessage(this Partial<RevisionInfo> it)
+        => it.AddFieldName("message");
     
 }
+

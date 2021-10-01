@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum JobExecutionDisplayStatus
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum JobExecutionDisplayStatus
-    {
-        [EnumMember(Value = "Awaiting")]
-        Awaiting,
-        
-        [EnumMember(Value = "Running")]
-        Running,
-        
-        [EnumMember(Value = "Finishing")]
-        Finishing,
-        
-        [EnumMember(Value = "Stopped")]
-        Stopped,
-        
-        [EnumMember(Value = "Succeeded")]
-        Succeeded,
-        
-        [EnumMember(Value = "Failed")]
-        Failed,
-        
-        [EnumMember(Value = "NoSuitableWorkers")]
-        NoSuitableWorkers,
-        
-        [EnumMember(Value = "WaitingForWorkers")]
-        WaitingForWorkers,
-        
-    }
+    [EnumMember(Value = "Awaiting")]
+    Awaiting,
+    
+    [EnumMember(Value = "Running")]
+    Running,
+    
+    [EnumMember(Value = "Finishing")]
+    Finishing,
+    
+    [EnumMember(Value = "Stopped")]
+    Stopped,
+    
+    [EnumMember(Value = "Succeeded")]
+    Succeeded,
+    
+    [EnumMember(Value = "Failed")]
+    Failed,
+    
+    [EnumMember(Value = "NoSuitableWorkers")]
+    NoSuitableWorkers,
+    
+    [EnumMember(Value = "WaitingForWorkers")]
+    WaitingForWorkers,
     
 }
+

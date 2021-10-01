@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocsDraftsForIdEditorsProfilesPostRequestPartialBuilder
+namespace JetBrains.Space.Client.DocsDraftsForIdEditorsProfilesPostRequestPartialBuilder;
+
+public static class DocsDraftsForIdEditorsProfilesPostRequestPartialExtensions
 {
-    public static class DocsDraftsForIdEditorsProfilesPostRequestPartialExtensions
-    {
-        public static Partial<DocsDraftsForIdEditorsProfilesPostRequest> WithEditorId(this Partial<DocsDraftsForIdEditorsProfilesPostRequest> it)
-            => it.AddFieldName("editorId");
-        
-    }
+    public static Partial<DocsDraftsForIdEditorsProfilesPostRequest> WithEditorId(this Partial<DocsDraftsForIdEditorsProfilesPostRequest> it)
+        => it.AddFieldName("editorId");
     
 }
+

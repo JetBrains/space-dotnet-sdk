@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectPlanningIssuesStatusesPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectPlanningIssuesStatusesPatchRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectPlanningIssuesStatusesPatchRequest() { }
+    
+    public ProjectsForProjectPlanningIssuesStatusesPatchRequest(List<IssueStatusData> statuses)
     {
-        public ProjectsForProjectPlanningIssuesStatusesPatchRequest() { }
-        
-        public ProjectsForProjectPlanningIssuesStatusesPatchRequest(List<IssueStatusData> statuses)
-        {
-            Statuses = statuses;
-        }
-        
-        private PropertyValue<List<IssueStatusData>> _statuses = new PropertyValue<List<IssueStatusData>>(nameof(ProjectsForProjectPlanningIssuesStatusesPatchRequest), nameof(Statuses), new List<IssueStatusData>());
-        
-        [Required]
-        [JsonPropertyName("statuses")]
-        public List<IssueStatusData> Statuses
-        {
-            get => _statuses.GetValue();
-            set => _statuses.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _statuses.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Statuses = statuses;
     }
     
+    private PropertyValue<List<IssueStatusData>> _statuses = new PropertyValue<List<IssueStatusData>>(nameof(ProjectsForProjectPlanningIssuesStatusesPatchRequest), nameof(Statuses), new List<IssueStatusData>());
+    
+    [Required]
+    [JsonPropertyName("statuses")]
+    public List<IssueStatusData> Statuses
+    {
+        get => _statuses.GetValue();
+        set => _statuses.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _statuses.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

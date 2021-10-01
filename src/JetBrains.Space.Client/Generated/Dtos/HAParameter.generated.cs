@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HAParameter
+     : IPropagatePropertyAccessPath
 {
-    public sealed class HAParameter
-         : IPropagatePropertyAccessPath
+    public HAParameter() { }
+    
+    public HAParameter(HAField field, bool path)
     {
-        public HAParameter() { }
-        
-        public HAParameter(HAField field, bool path)
-        {
-            Field = field;
-            IsPath = path;
-        }
-        
-        private PropertyValue<HAField> _field = new PropertyValue<HAField>(nameof(HAParameter), nameof(Field));
-        
-        [Required]
-        [JsonPropertyName("field")]
-        public HAField Field
-        {
-            get => _field.GetValue();
-            set => _field.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _path = new PropertyValue<bool>(nameof(HAParameter), nameof(IsPath));
-        
-        [Required]
-        [JsonPropertyName("path")]
-        public bool IsPath
-        {
-            get => _path.GetValue();
-            set => _path.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _field.SetAccessPath(path, validateHasBeenSet);
-            _path.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Field = field;
+        IsPath = path;
     }
     
+    private PropertyValue<HAField> _field = new PropertyValue<HAField>(nameof(HAParameter), nameof(Field));
+    
+    [Required]
+    [JsonPropertyName("field")]
+    public HAField Field
+    {
+        get => _field.GetValue();
+        set => _field.SetValue(value);
+    }
+
+    private PropertyValue<bool> _path = new PropertyValue<bool>(nameof(HAParameter), nameof(IsPath));
+    
+    [Required]
+    [JsonPropertyName("path")]
+    public bool IsPath
+    {
+        get => _path.GetValue();
+        set => _path.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _field.SetAccessPath(path, validateHasBeenSet);
+        _path.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

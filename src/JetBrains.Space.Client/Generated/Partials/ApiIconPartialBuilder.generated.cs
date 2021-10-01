@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApiIconPartialBuilder
+namespace JetBrains.Space.Client.ApiIconPartialBuilder;
+
+public static class ApiIconPartialExtensions
 {
-    public static class ApiIconPartialExtensions
-    {
-        public static Partial<ApiIcon> WithIcon(this Partial<ApiIcon> it)
-            => it.AddFieldName("icon");
-        
-    }
+    public static Partial<ApiIcon> WithIcon(this Partial<ApiIcon> it)
+        => it.AddFieldName("icon");
     
 }
+

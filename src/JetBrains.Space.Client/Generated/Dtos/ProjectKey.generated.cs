@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ProjectKey
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ProjectKey
-         : IPropagatePropertyAccessPath
+    public ProjectKey() { }
+    
+    public ProjectKey(string key)
     {
-        public ProjectKey() { }
-        
-        public ProjectKey(string key)
-        {
-            Key = key;
-        }
-        
-        private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectKey), nameof(Key));
-        
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key
-        {
-            get => _key.GetValue();
-            set => _key.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _key.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Key = key;
     }
     
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectKey), nameof(Key));
+    
+    [Required]
+    [JsonPropertyName("key")]
+    public string Key
+    {
+        get => _key.GetValue();
+        set => _key.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _key.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AbsencesAbsenceReasonsForIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.AbsencesAbsenceReasonsForIdPatchRequestPartialBuilder;
+
+public static class AbsencesAbsenceReasonsForIdPatchRequestPartialExtensions
 {
-    public static class AbsencesAbsenceReasonsForIdPatchRequestPartialExtensions
-    {
-        public static Partial<AbsencesAbsenceReasonsForIdPatchRequest> WithName(this Partial<AbsencesAbsenceReasonsForIdPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<AbsencesAbsenceReasonsForIdPatchRequest> WithDescription(this Partial<AbsencesAbsenceReasonsForIdPatchRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<AbsencesAbsenceReasonsForIdPatchRequest> WithIsDefaultAvailability(this Partial<AbsencesAbsenceReasonsForIdPatchRequest> it)
-            => it.AddFieldName("defaultAvailability");
-        
-        public static Partial<AbsencesAbsenceReasonsForIdPatchRequest> WithIsApprovalRequired(this Partial<AbsencesAbsenceReasonsForIdPatchRequest> it)
-            => it.AddFieldName("approvalRequired");
-        
-        public static Partial<AbsencesAbsenceReasonsForIdPatchRequest> WithIcon(this Partial<AbsencesAbsenceReasonsForIdPatchRequest> it)
-            => it.AddFieldName("icon");
-        
-    }
+    public static Partial<AbsencesAbsenceReasonsForIdPatchRequest> WithName(this Partial<AbsencesAbsenceReasonsForIdPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<AbsencesAbsenceReasonsForIdPatchRequest> WithDescription(this Partial<AbsencesAbsenceReasonsForIdPatchRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<AbsencesAbsenceReasonsForIdPatchRequest> WithIsDefaultAvailability(this Partial<AbsencesAbsenceReasonsForIdPatchRequest> it)
+        => it.AddFieldName("defaultAvailability");
+    
+    public static Partial<AbsencesAbsenceReasonsForIdPatchRequest> WithIsApprovalRequired(this Partial<AbsencesAbsenceReasonsForIdPatchRequest> it)
+        => it.AddFieldName("approvalRequired");
+    
+    public static Partial<AbsencesAbsenceReasonsForIdPatchRequest> WithIcon(this Partial<AbsencesAbsenceReasonsForIdPatchRequest> it)
+        => it.AddFieldName("icon");
     
 }
+

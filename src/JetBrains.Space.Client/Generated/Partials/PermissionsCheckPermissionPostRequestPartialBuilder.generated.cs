@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PermissionsCheckPermissionPostRequestPartialBuilder
+namespace JetBrains.Space.Client.PermissionsCheckPermissionPostRequestPartialBuilder;
+
+public static class PermissionsCheckPermissionPostRequestPartialExtensions
 {
-    public static class PermissionsCheckPermissionPostRequestPartialExtensions
-    {
-        public static Partial<PermissionsCheckPermissionPostRequest> WithPrincipal(this Partial<PermissionsCheckPermissionPostRequest> it)
-            => it.AddFieldName("principal");
-        
-        public static Partial<PermissionsCheckPermissionPostRequest> WithPrincipal(this Partial<PermissionsCheckPermissionPostRequest> it, Func<Partial<PrincipalIn>, Partial<PrincipalIn>> partialBuilder)
-            => it.AddFieldName("principal", partialBuilder(new Partial<PrincipalIn>(it)));
-        
-        public static Partial<PermissionsCheckPermissionPostRequest> WithUniqueRightCode(this Partial<PermissionsCheckPermissionPostRequest> it)
-            => it.AddFieldName("uniqueRightCode");
-        
-        public static Partial<PermissionsCheckPermissionPostRequest> WithTarget(this Partial<PermissionsCheckPermissionPostRequest> it)
-            => it.AddFieldName("target");
-        
-        public static Partial<PermissionsCheckPermissionPostRequest> WithTarget(this Partial<PermissionsCheckPermissionPostRequest> it, Func<Partial<PermissionTarget>, Partial<PermissionTarget>> partialBuilder)
-            => it.AddFieldName("target", partialBuilder(new Partial<PermissionTarget>(it)));
-        
-    }
+    public static Partial<PermissionsCheckPermissionPostRequest> WithPrincipal(this Partial<PermissionsCheckPermissionPostRequest> it)
+        => it.AddFieldName("principal");
+    
+    public static Partial<PermissionsCheckPermissionPostRequest> WithPrincipal(this Partial<PermissionsCheckPermissionPostRequest> it, Func<Partial<PrincipalIn>, Partial<PrincipalIn>> partialBuilder)
+        => it.AddFieldName("principal", partialBuilder(new Partial<PrincipalIn>(it)));
+    
+    public static Partial<PermissionsCheckPermissionPostRequest> WithUniqueRightCode(this Partial<PermissionsCheckPermissionPostRequest> it)
+        => it.AddFieldName("uniqueRightCode");
+    
+    public static Partial<PermissionsCheckPermissionPostRequest> WithTarget(this Partial<PermissionsCheckPermissionPostRequest> it)
+        => it.AddFieldName("target");
+    
+    public static Partial<PermissionsCheckPermissionPostRequest> WithTarget(this Partial<PermissionsCheckPermissionPostRequest> it, Func<Partial<PermissionTarget>, Partial<PermissionTarget>> partialBuilder)
+        => it.AddFieldName("target", partialBuilder(new Partial<PermissionTarget>(it)));
     
 }
+

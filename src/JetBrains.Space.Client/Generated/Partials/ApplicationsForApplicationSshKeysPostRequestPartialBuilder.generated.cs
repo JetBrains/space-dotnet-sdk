@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationsForApplicationSshKeysPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ApplicationsForApplicationSshKeysPostRequestPartialBuilder;
+
+public static class ApplicationsForApplicationSshKeysPostRequestPartialExtensions
 {
-    public static class ApplicationsForApplicationSshKeysPostRequestPartialExtensions
-    {
-        public static Partial<ApplicationsForApplicationSshKeysPostRequest> WithPublicKey(this Partial<ApplicationsForApplicationSshKeysPostRequest> it)
-            => it.AddFieldName("publicKey");
-        
-        public static Partial<ApplicationsForApplicationSshKeysPostRequest> WithComment(this Partial<ApplicationsForApplicationSshKeysPostRequest> it)
-            => it.AddFieldName("comment");
-        
-    }
+    public static Partial<ApplicationsForApplicationSshKeysPostRequest> WithPublicKey(this Partial<ApplicationsForApplicationSshKeysPostRequest> it)
+        => it.AddFieldName("publicKey");
+    
+    public static Partial<ApplicationsForApplicationSshKeysPostRequest> WithComment(this Partial<ApplicationsForApplicationSshKeysPostRequest> it)
+        => it.AddFieldName("comment");
     
 }
+

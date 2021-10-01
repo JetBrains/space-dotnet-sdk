@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequestPartialBuilder;
+
+public static class ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest> WithRole(this Partial<ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest> it)
-            => it.AddFieldName("role");
-        
-        public static Partial<ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest> WithRole(this Partial<ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
-            => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest> WithRole(this Partial<ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest> it)
+        => it.AddFieldName("role");
+    
+    public static Partial<ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest> WithRole(this Partial<ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
+        => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>(it)));
     
 }
+

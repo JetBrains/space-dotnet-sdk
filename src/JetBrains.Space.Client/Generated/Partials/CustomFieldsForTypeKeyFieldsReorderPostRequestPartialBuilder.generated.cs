@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomFieldsForTypeKeyFieldsReorderPostRequestPartialBuilder
+namespace JetBrains.Space.Client.CustomFieldsForTypeKeyFieldsReorderPostRequestPartialBuilder;
+
+public static class CustomFieldsForTypeKeyFieldsReorderPostRequestPartialExtensions
 {
-    public static class CustomFieldsForTypeKeyFieldsReorderPostRequestPartialExtensions
-    {
-        public static Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> WithCustomFieldOrder(this Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> it)
-            => it.AddFieldName("customFieldOrder");
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> it)
-            => it.AddFieldName("scope");
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
-            => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
-        
-    }
+    public static Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> WithCustomFieldOrder(this Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> it)
+        => it.AddFieldName("customFieldOrder");
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> it)
+        => it.AddFieldName("scope");
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
+        => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
     
 }
+

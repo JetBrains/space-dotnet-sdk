@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.OrgDomainPartialBuilder
+namespace JetBrains.Space.Client.OrgDomainPartialBuilder;
+
+public static class OrgDomainPartialExtensions
 {
-    public static class OrgDomainPartialExtensions
-    {
-        public static Partial<OrgDomain> WithDomain(this Partial<OrgDomain> it)
-            => it.AddFieldName("domain");
-        
-        public static Partial<OrgDomain> WithExpireAt(this Partial<OrgDomain> it)
-            => it.AddFieldName("expireAt");
-        
-        public static Partial<OrgDomain> WithOrgUrl(this Partial<OrgDomain> it)
-            => it.AddFieldName("orgUrl");
-        
-    }
+    public static Partial<OrgDomain> WithDomain(this Partial<OrgDomain> it)
+        => it.AddFieldName("domain");
+    
+    public static Partial<OrgDomain> WithExpireAt(this Partial<OrgDomain> it)
+        => it.AddFieldName("expireAt");
+    
+    public static Partial<OrgDomain> WithOrgUrl(this Partial<OrgDomain> it)
+        => it.AddFieldName("orgUrl");
     
 }
+

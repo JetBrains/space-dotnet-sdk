@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest() { }
+    
+    public ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest(bool resolved)
     {
-        public ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest() { }
-        
-        public ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest(bool resolved)
-        {
-            IsResolved = resolved;
-        }
-        
-        private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest), nameof(IsResolved));
-        
-        [Required]
-        [JsonPropertyName("resolved")]
-        public bool IsResolved
-        {
-            get => _resolved.GetValue();
-            set => _resolved.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _resolved.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        IsResolved = resolved;
     }
     
+    private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest), nameof(IsResolved));
+    
+    [Required]
+    [JsonPropertyName("resolved")]
+    public bool IsResolved
+    {
+        get => _resolved.GetValue();
+        set => _resolved.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _resolved.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

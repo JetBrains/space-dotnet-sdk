@@ -27,32 +27,31 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface MenuActionContext
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface MenuActionContext
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static BaseMenuActionContext Base(string menuId)
-            => new BaseMenuActionContext(menuId: menuId);
-        
-        public static ChannelAttachmentMenuActionContext ChannelAttachment(string menuId, string channelId)
-            => new ChannelAttachmentMenuActionContext(menuId: menuId, channelId: channelId);
-        
-        public static ChannelMessageMenuActionContext ChannelMessage(string menuId, string messageId, string? channelId = null)
-            => new ChannelMessageMenuActionContext(menuId: menuId, messageId: messageId, channelId: channelId);
-        
-        public static LocationMenuActionContext Location(string menuId, TDLocation location)
-            => new LocationMenuActionContext(menuId: menuId, location: location);
-        
-        public static ProjectMenuActionContext Project(string menuId, PRProject project)
-            => new ProjectMenuActionContext(menuId: menuId, project: project);
-        
-        public static RepositoryMenuActionContext Repository(string menuId, PRProject project, string repo)
-            => new RepositoryMenuActionContext(menuId: menuId, project: project, repo: repo);
-        
-        public static TeamMenuActionContext Team(string menuId, TDTeam team)
-            => new TeamMenuActionContext(menuId: menuId, team: team);
-        
-    }
+    public static BaseMenuActionContext Base(string menuId)
+        => new BaseMenuActionContext(menuId: menuId);
+    
+    public static ChannelAttachmentMenuActionContext ChannelAttachment(string menuId, string channelId)
+        => new ChannelAttachmentMenuActionContext(menuId: menuId, channelId: channelId);
+    
+    public static ChannelMessageMenuActionContext ChannelMessage(string menuId, string messageId, string? channelId = null)
+        => new ChannelMessageMenuActionContext(menuId: menuId, messageId: messageId, channelId: channelId);
+    
+    public static LocationMenuActionContext Location(string menuId, TDLocation location)
+        => new LocationMenuActionContext(menuId: menuId, location: location);
+    
+    public static ProjectMenuActionContext Project(string menuId, PRProject project)
+        => new ProjectMenuActionContext(menuId: menuId, project: project);
+    
+    public static RepositoryMenuActionContext Repository(string menuId, PRProject project, string repo)
+        => new RepositoryMenuActionContext(menuId: menuId, project: project, repo: repo);
+    
+    public static TeamMenuActionContext Team(string menuId, TDTeam team)
+        => new TeamMenuActionContext(menuId: menuId, team: team);
     
 }
+

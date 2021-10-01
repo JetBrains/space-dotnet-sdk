@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2MaintenanceActionContent
+     : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2MaintenanceActionContent
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2MaintenanceActionContent";
+    
+    public M2MaintenanceActionContent() { }
+    
+    public M2MaintenanceActionContent(string action, bool success, string details)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2MaintenanceActionContent";
-        
-        public M2MaintenanceActionContent() { }
-        
-        public M2MaintenanceActionContent(string action, bool success, string details)
-        {
-            Action = action;
-            IsSuccess = success;
-            Details = details;
-        }
-        
-        private PropertyValue<string> _action = new PropertyValue<string>(nameof(M2MaintenanceActionContent), nameof(Action));
-        
-        [Required]
-        [JsonPropertyName("action")]
-        public string Action
-        {
-            get => _action.GetValue();
-            set => _action.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _success = new PropertyValue<bool>(nameof(M2MaintenanceActionContent), nameof(IsSuccess));
-        
-        [Required]
-        [JsonPropertyName("success")]
-        public bool IsSuccess
-        {
-            get => _success.GetValue();
-            set => _success.SetValue(value);
-        }
-    
-        private PropertyValue<string> _details = new PropertyValue<string>(nameof(M2MaintenanceActionContent), nameof(Details));
-        
-        [Required]
-        [JsonPropertyName("details")]
-        public string Details
-        {
-            get => _details.GetValue();
-            set => _details.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _action.SetAccessPath(path, validateHasBeenSet);
-            _success.SetAccessPath(path, validateHasBeenSet);
-            _details.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Action = action;
+        IsSuccess = success;
+        Details = details;
     }
     
+    private PropertyValue<string> _action = new PropertyValue<string>(nameof(M2MaintenanceActionContent), nameof(Action));
+    
+    [Required]
+    [JsonPropertyName("action")]
+    public string Action
+    {
+        get => _action.GetValue();
+        set => _action.SetValue(value);
+    }
+
+    private PropertyValue<bool> _success = new PropertyValue<bool>(nameof(M2MaintenanceActionContent), nameof(IsSuccess));
+    
+    [Required]
+    [JsonPropertyName("success")]
+    public bool IsSuccess
+    {
+        get => _success.GetValue();
+        set => _success.SetValue(value);
+    }
+
+    private PropertyValue<string> _details = new PropertyValue<string>(nameof(M2MaintenanceActionContent), nameof(Details));
+    
+    [Required]
+    [JsonPropertyName("details")]
+    public string Details
+    {
+        get => _details.GetValue();
+        set => _details.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _action.SetAccessPath(path, validateHasBeenSet);
+        _success.SetAccessPath(path, validateHasBeenSet);
+        _details.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

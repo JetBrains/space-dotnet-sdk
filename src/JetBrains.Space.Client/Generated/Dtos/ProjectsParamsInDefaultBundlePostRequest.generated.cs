@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsParamsInDefaultBundlePostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsParamsInDefaultBundlePostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsParamsInDefaultBundlePostRequest() { }
+    
+    public ProjectsParamsInDefaultBundlePostRequest(string projectId, string key, string value)
     {
-        public ProjectsParamsInDefaultBundlePostRequest() { }
-        
-        public ProjectsParamsInDefaultBundlePostRequest(string projectId, string key, string value)
-        {
-            ProjectId = projectId;
-            Key = key;
-            Value = value;
-        }
-        
-        private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(ProjectsParamsInDefaultBundlePostRequest), nameof(ProjectId));
-        
-        [Required]
-        [JsonPropertyName("projectId")]
-        public string ProjectId
-        {
-            get => _projectId.GetValue();
-            set => _projectId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectsParamsInDefaultBundlePostRequest), nameof(Key));
-        
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key
-        {
-            get => _key.GetValue();
-            set => _key.SetValue(value);
-        }
-    
-        private PropertyValue<string> _value = new PropertyValue<string>(nameof(ProjectsParamsInDefaultBundlePostRequest), nameof(Value));
-        
-        [Required]
-        [JsonPropertyName("value")]
-        public string Value
-        {
-            get => _value.GetValue();
-            set => _value.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _projectId.SetAccessPath(path, validateHasBeenSet);
-            _key.SetAccessPath(path, validateHasBeenSet);
-            _value.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ProjectId = projectId;
+        Key = key;
+        Value = value;
     }
     
+    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(ProjectsParamsInDefaultBundlePostRequest), nameof(ProjectId));
+    
+    [Required]
+    [JsonPropertyName("projectId")]
+    public string ProjectId
+    {
+        get => _projectId.GetValue();
+        set => _projectId.SetValue(value);
+    }
+
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectsParamsInDefaultBundlePostRequest), nameof(Key));
+    
+    [Required]
+    [JsonPropertyName("key")]
+    public string Key
+    {
+        get => _key.GetValue();
+        set => _key.SetValue(value);
+    }
+
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(ProjectsParamsInDefaultBundlePostRequest), nameof(Value));
+    
+    [Required]
+    [JsonPropertyName("value")]
+    public string Value
+    {
+        get => _value.GetValue();
+        set => _value.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _projectId.SetAccessPath(path, validateHasBeenSet);
+        _key.SetAccessPath(path, validateHasBeenSet);
+        _value.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

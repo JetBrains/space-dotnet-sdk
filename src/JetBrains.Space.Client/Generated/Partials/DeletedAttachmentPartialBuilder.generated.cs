@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DeletedAttachmentPartialBuilder
+namespace JetBrains.Space.Client.DeletedAttachmentPartialBuilder;
+
+public static class DeletedAttachmentPartialExtensions
 {
-    public static class DeletedAttachmentPartialExtensions
-    {
-        public static Partial<DeletedAttachment> WithDeletedIdentity(this Partial<DeletedAttachment> it)
-            => it.AddFieldName("deletedIdentity");
-        
-    }
+    public static Partial<DeletedAttachment> WithDeletedIdentity(this Partial<DeletedAttachment> it)
+        => it.AddFieldName("deletedIdentity");
     
 }
+

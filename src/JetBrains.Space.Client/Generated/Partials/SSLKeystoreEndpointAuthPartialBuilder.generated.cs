@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SSLKeystoreEndpointAuthPartialBuilder
+namespace JetBrains.Space.Client.SSLKeystoreEndpointAuthPartialBuilder;
+
+public static class SSLKeystoreEndpointAuthPartialExtensions
 {
-    public static class SSLKeystoreEndpointAuthPartialExtensions
-    {
-        public static Partial<SSLKeystoreEndpointAuth> WithSslKeystore(this Partial<SSLKeystoreEndpointAuth> it)
-            => it.AddFieldName("sslKeystore");
-        
-    }
+    public static Partial<SSLKeystoreEndpointAuth> WithSslKeystore(this Partial<SSLKeystoreEndpointAuth> it)
+        => it.AddFieldName("sslKeystore");
     
 }
+

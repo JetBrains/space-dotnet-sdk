@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESHubAuthModuleSettingsPartialBuilder
+namespace JetBrains.Space.Client.ESHubAuthModuleSettingsPartialBuilder;
+
+public static class ESHubAuthModuleSettingsPartialExtensions
 {
-    public static class ESHubAuthModuleSettingsPartialExtensions
-    {
-        public static Partial<ESHubAuthModuleSettings> WithHubUrl(this Partial<ESHubAuthModuleSettings> it)
-            => it.AddFieldName("hubUrl");
-        
-        public static Partial<ESHubAuthModuleSettings> WithClientId(this Partial<ESHubAuthModuleSettings> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<ESHubAuthModuleSettings> WithClientSecret(this Partial<ESHubAuthModuleSettings> it)
-            => it.AddFieldName("clientSecret");
-        
-        public static Partial<ESHubAuthModuleSettings> WithIsRegisterNewUsers(this Partial<ESHubAuthModuleSettings> it)
-            => it.AddFieldName("registerNewUsers");
-        
-        public static Partial<ESHubAuthModuleSettings> WithOrgAuthProviderName(this Partial<ESHubAuthModuleSettings> it)
-            => it.AddFieldName("orgAuthProviderName");
-        
-        public static Partial<ESHubAuthModuleSettings> WithGroups(this Partial<ESHubAuthModuleSettings> it)
-            => it.AddFieldName("groups");
-        
-    }
+    public static Partial<ESHubAuthModuleSettings> WithHubUrl(this Partial<ESHubAuthModuleSettings> it)
+        => it.AddFieldName("hubUrl");
+    
+    public static Partial<ESHubAuthModuleSettings> WithClientId(this Partial<ESHubAuthModuleSettings> it)
+        => it.AddFieldName("clientId");
+    
+    public static Partial<ESHubAuthModuleSettings> WithClientSecret(this Partial<ESHubAuthModuleSettings> it)
+        => it.AddFieldName("clientSecret");
+    
+    public static Partial<ESHubAuthModuleSettings> WithIsRegisterNewUsers(this Partial<ESHubAuthModuleSettings> it)
+        => it.AddFieldName("registerNewUsers");
+    
+    public static Partial<ESHubAuthModuleSettings> WithOrgAuthProviderName(this Partial<ESHubAuthModuleSettings> it)
+        => it.AddFieldName("orgAuthProviderName");
+    
+    public static Partial<ESHubAuthModuleSettings> WithGroups(this Partial<ESHubAuthModuleSettings> it)
+        => it.AddFieldName("groups");
     
 }
+

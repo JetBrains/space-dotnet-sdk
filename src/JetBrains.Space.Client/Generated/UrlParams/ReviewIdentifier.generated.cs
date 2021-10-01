@@ -27,59 +27,58 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class ReviewIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class ReviewIdentifier : IUrlParameter
+    public static ReviewIdentifier Id(string id)
+        => new ReviewIdentifierId(id);
+    
+    public static ReviewIdentifier Key(string key)
+        => new ReviewIdentifierKey(key);
+    
+    public static ReviewIdentifier Number(int number)
+        => new ReviewIdentifierNumber(number);
+    
+    private class ReviewIdentifierId : ReviewIdentifier
     {
-        public static ReviewIdentifier Id(string id)
-            => new ReviewIdentifierId(id);
+        private readonly string _id;
         
-        public static ReviewIdentifier Key(string key)
-            => new ReviewIdentifierKey(key);
-        
-        public static ReviewIdentifier Number(int number)
-            => new ReviewIdentifierNumber(number);
-        
-        private class ReviewIdentifierId : ReviewIdentifier
+        public ReviewIdentifierId(string id)
         {
-            private readonly string _id;
-            
-            public ReviewIdentifierId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
-        private class ReviewIdentifierKey : ReviewIdentifier
+        public override string ToString()
+            => $"id:{_id}";
+    }
+    
+    private class ReviewIdentifierKey : ReviewIdentifier
+    {
+        private readonly string _key;
+        
+        public ReviewIdentifierKey(string key)
         {
-            private readonly string _key;
-            
-            public ReviewIdentifierKey(string key)
-            {
-                _key = key;
-            }
-            
-            public override string ToString()
-                => $"key:{_key}";
+            _key = key;
         }
         
-        private class ReviewIdentifierNumber : ReviewIdentifier
+        public override string ToString()
+            => $"key:{_key}";
+    }
+    
+    private class ReviewIdentifierNumber : ReviewIdentifier
+    {
+        private readonly int _number;
+        
+        public ReviewIdentifierNumber(int number)
         {
-            private readonly int _number;
-            
-            public ReviewIdentifierNumber(int number)
-            {
-                _number = number;
-            }
-            
-            public override string ToString()
-                => $"number:{_number}";
+            _number = number;
         }
         
+        public override string ToString()
+            => $"number:{_number}";
     }
     
 }
+

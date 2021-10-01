@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BGArticleAlias
+     : IPropagatePropertyAccessPath
 {
-    public sealed class BGArticleAlias
-         : IPropagatePropertyAccessPath
+    public BGArticleAlias() { }
+    
+    public BGArticleAlias(string alias, DateTime created)
     {
-        public BGArticleAlias() { }
-        
-        public BGArticleAlias(string alias, DateTime created)
-        {
-            Alias = alias;
-            Created = created;
-        }
-        
-        private PropertyValue<string> _alias = new PropertyValue<string>(nameof(BGArticleAlias), nameof(Alias));
-        
-        [Required]
-        [JsonPropertyName("alias")]
-        public string Alias
-        {
-            get => _alias.GetValue();
-            set => _alias.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(BGArticleAlias), nameof(Created));
-        
-        [Required]
-        [JsonPropertyName("created")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Created
-        {
-            get => _created.GetValue();
-            set => _created.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _alias.SetAccessPath(path, validateHasBeenSet);
-            _created.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Alias = alias;
+        Created = created;
     }
     
+    private PropertyValue<string> _alias = new PropertyValue<string>(nameof(BGArticleAlias), nameof(Alias));
+    
+    [Required]
+    [JsonPropertyName("alias")]
+    public string Alias
+    {
+        get => _alias.GetValue();
+        set => _alias.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(BGArticleAlias), nameof(Created));
+    
+    [Required]
+    [JsonPropertyName("created")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Created
+    {
+        get => _created.GetValue();
+        set => _created.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _alias.SetAccessPath(path, validateHasBeenSet);
+        _created.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

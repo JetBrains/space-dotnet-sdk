@@ -27,69 +27,68 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class SecretParameterRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class SecretParameterRecord
-         : IPropagatePropertyAccessPath
+    public SecretParameterRecord() { }
+    
+    public SecretParameterRecord(string id, bool archived, string bundleId, string key)
     {
-        public SecretParameterRecord() { }
-        
-        public SecretParameterRecord(string id, bool archived, string bundleId, string key)
-        {
-            Id = id;
-            IsArchived = archived;
-            BundleId = bundleId;
-            Key = key;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(SecretParameterRecord), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(SecretParameterRecord), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        private PropertyValue<string> _bundleId = new PropertyValue<string>(nameof(SecretParameterRecord), nameof(BundleId));
-        
-        [Required]
-        [JsonPropertyName("bundleId")]
-        public string BundleId
-        {
-            get => _bundleId.GetValue();
-            set => _bundleId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _key = new PropertyValue<string>(nameof(SecretParameterRecord), nameof(Key));
-        
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key
-        {
-            get => _key.GetValue();
-            set => _key.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-            _bundleId.SetAccessPath(path, validateHasBeenSet);
-            _key.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        IsArchived = archived;
+        BundleId = bundleId;
+        Key = key;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(SecretParameterRecord), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(SecretParameterRecord), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<string> _bundleId = new PropertyValue<string>(nameof(SecretParameterRecord), nameof(BundleId));
+    
+    [Required]
+    [JsonPropertyName("bundleId")]
+    public string BundleId
+    {
+        get => _bundleId.GetValue();
+        set => _bundleId.SetValue(value);
+    }
+
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(SecretParameterRecord), nameof(Key));
+    
+    [Required]
+    [JsonPropertyName("key")]
+    public string Key
+    {
+        get => _key.GetValue();
+        set => _key.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _bundleId.SetAccessPath(path, validateHasBeenSet);
+        _key.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

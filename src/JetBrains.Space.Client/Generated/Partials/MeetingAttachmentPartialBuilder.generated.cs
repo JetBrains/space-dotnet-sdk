@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingAttachmentPartialBuilder
+namespace JetBrains.Space.Client.MeetingAttachmentPartialBuilder;
+
+public static class MeetingAttachmentPartialExtensions
 {
-    public static class MeetingAttachmentPartialExtensions
-    {
-        public static Partial<MeetingAttachment> WithFileUrl(this Partial<MeetingAttachment> it)
-            => it.AddFieldName("fileUrl");
-        
-        public static Partial<MeetingAttachment> WithTitle(this Partial<MeetingAttachment> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<MeetingAttachment> WithMimeType(this Partial<MeetingAttachment> it)
-            => it.AddFieldName("mimeType");
-        
-        public static Partial<MeetingAttachment> WithFileId(this Partial<MeetingAttachment> it)
-            => it.AddFieldName("fileId");
-        
-        public static Partial<MeetingAttachment> WithSource(this Partial<MeetingAttachment> it)
-            => it.AddFieldName("source");
-        
-    }
+    public static Partial<MeetingAttachment> WithFileUrl(this Partial<MeetingAttachment> it)
+        => it.AddFieldName("fileUrl");
+    
+    public static Partial<MeetingAttachment> WithTitle(this Partial<MeetingAttachment> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<MeetingAttachment> WithMimeType(this Partial<MeetingAttachment> it)
+        => it.AddFieldName("mimeType");
+    
+    public static Partial<MeetingAttachment> WithFileId(this Partial<MeetingAttachment> it)
+        => it.AddFieldName("fileId");
+    
+    public static Partial<MeetingAttachment> WithSource(this Partial<MeetingAttachment> it)
+        => it.AddFieldName("source");
     
 }
+

@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HAPathSegmentVarPartialBuilder
+namespace JetBrains.Space.Client.HAPathSegmentVarPartialBuilder;
+
+public static class HAPathSegmentVarPartialExtensions
 {
-    public static class HAPathSegmentVarPartialExtensions
-    {
-        public static Partial<HAPathSegmentVar> WithName(this Partial<HAPathSegmentVar> it)
-            => it.AddFieldName("name");
-        
-    }
+    public static Partial<HAPathSegmentVar> WithName(this Partial<HAPathSegmentVar> it)
+        => it.AddFieldName("name");
     
 }
+

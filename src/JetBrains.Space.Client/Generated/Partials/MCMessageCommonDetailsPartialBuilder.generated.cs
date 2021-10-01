@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MCMessageCommonDetailsPartialBuilder
+namespace JetBrains.Space.Client.MCMessageCommonDetailsPartialBuilder;
+
+public static class MCMessageCommonDetailsPartialExtensions
 {
-    public static class MCMessageCommonDetailsPartialExtensions
-    {
-    }
-    
 }
+

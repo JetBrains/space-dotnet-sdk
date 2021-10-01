@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SshKeyDataPartialBuilder
+namespace JetBrains.Space.Client.SshKeyDataPartialBuilder;
+
+public static class SshKeyDataPartialExtensions
 {
-    public static class SshKeyDataPartialExtensions
-    {
-        public static Partial<SshKeyData> WithFingerprint(this Partial<SshKeyData> it)
-            => it.AddFieldName("fingerprint");
-        
-        public static Partial<SshKeyData> WithPublicKey(this Partial<SshKeyData> it)
-            => it.AddFieldName("publicKey");
-        
-        public static Partial<SshKeyData> WithComment(this Partial<SshKeyData> it)
-            => it.AddFieldName("comment");
-        
-        public static Partial<SshKeyData> WithLastUsed(this Partial<SshKeyData> it)
-            => it.AddFieldName("lastUsed");
-        
-        public static Partial<SshKeyData> WithLastResource(this Partial<SshKeyData> it)
-            => it.AddFieldName("lastResource");
-        
-    }
+    public static Partial<SshKeyData> WithFingerprint(this Partial<SshKeyData> it)
+        => it.AddFieldName("fingerprint");
+    
+    public static Partial<SshKeyData> WithPublicKey(this Partial<SshKeyData> it)
+        => it.AddFieldName("publicKey");
+    
+    public static Partial<SshKeyData> WithComment(this Partial<SshKeyData> it)
+        => it.AddFieldName("comment");
+    
+    public static Partial<SshKeyData> WithLastUsed(this Partial<SshKeyData> it)
+        => it.AddFieldName("lastUsed");
+    
+    public static Partial<SshKeyData> WithLastResource(this Partial<SshKeyData> it)
+        => it.AddFieldName("lastResource");
     
 }
+

@@ -27,27 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class ApplicationUnfurlTarget
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class ApplicationUnfurlTarget
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "ApplicationUnfurlTarget";
+    
+    public static ApplicationUnfurlTargetDomain Domain(string domain)
+        => new ApplicationUnfurlTargetDomain(domain: domain);
+    
+    public static ApplicationUnfurlTargetPattern Pattern(string pattern)
+        => new ApplicationUnfurlTargetPattern(pattern: pattern);
+    
+    public ApplicationUnfurlTarget() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "ApplicationUnfurlTarget";
-        
-        public static ApplicationUnfurlTargetDomain Domain(string domain)
-            => new ApplicationUnfurlTargetDomain(domain: domain);
-        
-        public static ApplicationUnfurlTargetPattern Pattern(string pattern)
-            => new ApplicationUnfurlTargetPattern(pattern: pattern);
-        
-        public ApplicationUnfurlTarget() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESApprovedScopePartialBuilder
+namespace JetBrains.Space.Client.ESApprovedScopePartialBuilder;
+
+public static class ESApprovedScopePartialExtensions
 {
-    public static class ESApprovedScopePartialExtensions
-    {
-        public static Partial<ESApprovedScope> WithId(this Partial<ESApprovedScope> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ESApprovedScope> WithScope(this Partial<ESApprovedScope> it)
-            => it.AddFieldName("scope");
-        
-        public static Partial<ESApprovedScope> WithIsOfflineAllowed(this Partial<ESApprovedScope> it)
-            => it.AddFieldName("offlineAllowed");
-        
-    }
+    public static Partial<ESApprovedScope> WithId(this Partial<ESApprovedScope> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ESApprovedScope> WithScope(this Partial<ESApprovedScope> it)
+        => it.AddFieldName("scope");
+    
+    public static Partial<ESApprovedScope> WithIsOfflineAllowed(this Partial<ESApprovedScope> it)
+        => it.AddFieldName("offlineAllowed");
     
 }
+

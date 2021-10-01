@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlAttachmentPartialBuilder
+namespace JetBrains.Space.Client.UnfurlAttachmentPartialBuilder;
+
+public static class UnfurlAttachmentPartialExtensions
 {
-    public static class UnfurlAttachmentPartialExtensions
-    {
-        public static Partial<UnfurlAttachment> WithUnfurl(this Partial<UnfurlAttachment> it)
-            => it.AddFieldName("unfurl");
-        
-        public static Partial<UnfurlAttachment> WithUnfurl(this Partial<UnfurlAttachment> it, Func<Partial<Unfurl>, Partial<Unfurl>> partialBuilder)
-            => it.AddFieldName("unfurl", partialBuilder(new Partial<Unfurl>(it)));
-        
-        public static Partial<UnfurlAttachment> WithId(this Partial<UnfurlAttachment> it)
-            => it.AddFieldName("id");
-        
-    }
+    public static Partial<UnfurlAttachment> WithUnfurl(this Partial<UnfurlAttachment> it)
+        => it.AddFieldName("unfurl");
+    
+    public static Partial<UnfurlAttachment> WithUnfurl(this Partial<UnfurlAttachment> it, Func<Partial<Unfurl>, Partial<Unfurl>> partialBuilder)
+        => it.AddFieldName("unfurl", partialBuilder(new Partial<Unfurl>(it)));
+    
+    public static Partial<UnfurlAttachment> WithId(this Partial<UnfurlAttachment> it)
+        => it.AddFieldName("id");
     
 }
+

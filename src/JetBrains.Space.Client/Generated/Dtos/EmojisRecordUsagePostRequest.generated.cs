@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class EmojisRecordUsagePostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class EmojisRecordUsagePostRequest
-         : IPropagatePropertyAccessPath
+    public EmojisRecordUsagePostRequest() { }
+    
+    public EmojisRecordUsagePostRequest(List<string> emojis)
     {
-        public EmojisRecordUsagePostRequest() { }
-        
-        public EmojisRecordUsagePostRequest(List<string> emojis)
-        {
-            Emojis = emojis;
-        }
-        
-        private PropertyValue<List<string>> _emojis = new PropertyValue<List<string>>(nameof(EmojisRecordUsagePostRequest), nameof(Emojis), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("emojis")]
-        public List<string> Emojis
-        {
-            get => _emojis.GetValue();
-            set => _emojis.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _emojis.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Emojis = emojis;
     }
     
+    private PropertyValue<List<string>> _emojis = new PropertyValue<List<string>>(nameof(EmojisRecordUsagePostRequest), nameof(Emojis), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("emojis")]
+    public List<string> Emojis
+    {
+        get => _emojis.GetValue();
+        set => _emojis.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _emojis.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

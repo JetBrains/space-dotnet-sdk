@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NexusStagingProfilePartialBuilder
+namespace JetBrains.Space.Client.NexusStagingProfilePartialBuilder;
+
+public static class NexusStagingProfilePartialExtensions
 {
-    public static class NexusStagingProfilePartialExtensions
-    {
-        public static Partial<NexusStagingProfile> WithId(this Partial<NexusStagingProfile> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<NexusStagingProfile> WithName(this Partial<NexusStagingProfile> it)
-            => it.AddFieldName("name");
-        
-    }
+    public static Partial<NexusStagingProfile> WithId(this Partial<NexusStagingProfile> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<NexusStagingProfile> WithName(this Partial<NexusStagingProfile> it)
+        => it.AddFieldName("name");
     
 }
+

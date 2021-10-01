@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ExternalStatusSucceedItemContentPartialBuilder
+namespace JetBrains.Space.Client.M2ExternalStatusSucceedItemContentPartialBuilder;
+
+public static class M2ExternalStatusSucceedItemContentPartialExtensions
 {
-    public static class M2ExternalStatusSucceedItemContentPartialExtensions
-    {
-        public static Partial<M2ExternalStatusSucceedItemContent> WithProjectId(this Partial<M2ExternalStatusSucceedItemContent> it)
-            => it.AddFieldName("projectId");
-        
-        public static Partial<M2ExternalStatusSucceedItemContent> WithRepository(this Partial<M2ExternalStatusSucceedItemContent> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<M2ExternalStatusSucceedItemContent> WithBranch(this Partial<M2ExternalStatusSucceedItemContent> it)
-            => it.AddFieldName("branch");
-        
-        public static Partial<M2ExternalStatusSucceedItemContent> WithRevisionInfo(this Partial<M2ExternalStatusSucceedItemContent> it)
-            => it.AddFieldName("revisionInfo");
-        
-        public static Partial<M2ExternalStatusSucceedItemContent> WithRevisionInfo(this Partial<M2ExternalStatusSucceedItemContent> it, Func<Partial<RevisionAuthorInfo>, Partial<RevisionAuthorInfo>> partialBuilder)
-            => it.AddFieldName("revisionInfo", partialBuilder(new Partial<RevisionAuthorInfo>(it)));
-        
-        public static Partial<M2ExternalStatusSucceedItemContent> WithChangesInfo(this Partial<M2ExternalStatusSucceedItemContent> it)
-            => it.AddFieldName("changesInfo");
-        
-        public static Partial<M2ExternalStatusSucceedItemContent> WithChangesInfo(this Partial<M2ExternalStatusSucceedItemContent> it, Func<Partial<LastChanges>, Partial<LastChanges>> partialBuilder)
-            => it.AddFieldName("changesInfo", partialBuilder(new Partial<LastChanges>(it)));
-        
-        public static Partial<M2ExternalStatusSucceedItemContent> WithUrl(this Partial<M2ExternalStatusSucceedItemContent> it)
-            => it.AddFieldName("url");
-        
-        public static Partial<M2ExternalStatusSucceedItemContent> WithExternalServiceName(this Partial<M2ExternalStatusSucceedItemContent> it)
-            => it.AddFieldName("externalServiceName");
-        
-        public static Partial<M2ExternalStatusSucceedItemContent> WithTaskName(this Partial<M2ExternalStatusSucceedItemContent> it)
-            => it.AddFieldName("taskName");
-        
-        public static Partial<M2ExternalStatusSucceedItemContent> WithTimestamp(this Partial<M2ExternalStatusSucceedItemContent> it)
-            => it.AddFieldName("timestamp");
-        
-        public static Partial<M2ExternalStatusSucceedItemContent> WithDescription(this Partial<M2ExternalStatusSucceedItemContent> it)
-            => it.AddFieldName("description");
-        
-    }
+    public static Partial<M2ExternalStatusSucceedItemContent> WithProjectId(this Partial<M2ExternalStatusSucceedItemContent> it)
+        => it.AddFieldName("projectId");
+    
+    public static Partial<M2ExternalStatusSucceedItemContent> WithRepository(this Partial<M2ExternalStatusSucceedItemContent> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<M2ExternalStatusSucceedItemContent> WithBranch(this Partial<M2ExternalStatusSucceedItemContent> it)
+        => it.AddFieldName("branch");
+    
+    public static Partial<M2ExternalStatusSucceedItemContent> WithRevisionInfo(this Partial<M2ExternalStatusSucceedItemContent> it)
+        => it.AddFieldName("revisionInfo");
+    
+    public static Partial<M2ExternalStatusSucceedItemContent> WithRevisionInfo(this Partial<M2ExternalStatusSucceedItemContent> it, Func<Partial<RevisionAuthorInfo>, Partial<RevisionAuthorInfo>> partialBuilder)
+        => it.AddFieldName("revisionInfo", partialBuilder(new Partial<RevisionAuthorInfo>(it)));
+    
+    public static Partial<M2ExternalStatusSucceedItemContent> WithChangesInfo(this Partial<M2ExternalStatusSucceedItemContent> it)
+        => it.AddFieldName("changesInfo");
+    
+    public static Partial<M2ExternalStatusSucceedItemContent> WithChangesInfo(this Partial<M2ExternalStatusSucceedItemContent> it, Func<Partial<LastChanges>, Partial<LastChanges>> partialBuilder)
+        => it.AddFieldName("changesInfo", partialBuilder(new Partial<LastChanges>(it)));
+    
+    public static Partial<M2ExternalStatusSucceedItemContent> WithUrl(this Partial<M2ExternalStatusSucceedItemContent> it)
+        => it.AddFieldName("url");
+    
+    public static Partial<M2ExternalStatusSucceedItemContent> WithExternalServiceName(this Partial<M2ExternalStatusSucceedItemContent> it)
+        => it.AddFieldName("externalServiceName");
+    
+    public static Partial<M2ExternalStatusSucceedItemContent> WithTaskName(this Partial<M2ExternalStatusSucceedItemContent> it)
+        => it.AddFieldName("taskName");
+    
+    public static Partial<M2ExternalStatusSucceedItemContent> WithTimestamp(this Partial<M2ExternalStatusSucceedItemContent> it)
+        => it.AddFieldName("timestamp");
+    
+    public static Partial<M2ExternalStatusSucceedItemContent> WithDescription(this Partial<M2ExternalStatusSucceedItemContent> it)
+        => it.AddFieldName("description");
     
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsDateTimePartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsDateTimePartialBuilder;
+
+public static class UnfurlDetailsDateTimePartialExtensions
 {
-    public static class UnfurlDetailsDateTimePartialExtensions
-    {
-        public static Partial<UnfurlDetailsDateTime> WithUtcMilliseconds(this Partial<UnfurlDetailsDateTime> it)
-            => it.AddFieldName("utcMilliseconds");
-        
-        public static Partial<UnfurlDetailsDateTime> WithParams(this Partial<UnfurlDetailsDateTime> it)
-            => it.AddFieldName("params");
-        
-        public static Partial<UnfurlDetailsDateTime> WithParams(this Partial<UnfurlDetailsDateTime> it, Func<Partial<DateTimeViewParams>, Partial<DateTimeViewParams>> partialBuilder)
-            => it.AddFieldName("params", partialBuilder(new Partial<DateTimeViewParams>(it)));
-        
-    }
+    public static Partial<UnfurlDetailsDateTime> WithUtcMilliseconds(this Partial<UnfurlDetailsDateTime> it)
+        => it.AddFieldName("utcMilliseconds");
+    
+    public static Partial<UnfurlDetailsDateTime> WithParams(this Partial<UnfurlDetailsDateTime> it)
+        => it.AddFieldName("params");
+    
+    public static Partial<UnfurlDetailsDateTime> WithParams(this Partial<UnfurlDetailsDateTime> it, Func<Partial<DateTimeViewParams>, Partial<DateTimeViewParams>> partialBuilder)
+        => it.AddFieldName("params", partialBuilder(new Partial<DateTimeViewParams>(it)));
     
 }
+

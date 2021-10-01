@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AutomationJobSubscriptionFilterPartialBuilder
+namespace JetBrains.Space.Client.AutomationJobSubscriptionFilterPartialBuilder;
+
+public static class AutomationJobSubscriptionFilterPartialExtensions
 {
-    public static class AutomationJobSubscriptionFilterPartialExtensions
-    {
-        public static Partial<AutomationJobSubscriptionFilter> WithProjects(this Partial<AutomationJobSubscriptionFilter> it)
-            => it.AddFieldName("projects");
-        
-        public static Partial<AutomationJobSubscriptionFilter> WithProjects(this Partial<AutomationJobSubscriptionFilter> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("projects", partialBuilder(new Partial<PRProject>(it)));
-        
-        public static Partial<AutomationJobSubscriptionFilter> WithRepositoryName(this Partial<AutomationJobSubscriptionFilter> it)
-            => it.AddFieldName("repositoryName");
-        
-        public static Partial<AutomationJobSubscriptionFilter> WithBranchSpec(this Partial<AutomationJobSubscriptionFilter> it)
-            => it.AddFieldName("branchSpec");
-        
-        public static Partial<AutomationJobSubscriptionFilter> WithJobs(this Partial<AutomationJobSubscriptionFilter> it)
-            => it.AddFieldName("jobs");
-        
-    }
+    public static Partial<AutomationJobSubscriptionFilter> WithProjects(this Partial<AutomationJobSubscriptionFilter> it)
+        => it.AddFieldName("projects");
+    
+    public static Partial<AutomationJobSubscriptionFilter> WithProjects(this Partial<AutomationJobSubscriptionFilter> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("projects", partialBuilder(new Partial<PRProject>(it)));
+    
+    public static Partial<AutomationJobSubscriptionFilter> WithRepositoryName(this Partial<AutomationJobSubscriptionFilter> it)
+        => it.AddFieldName("repositoryName");
+    
+    public static Partial<AutomationJobSubscriptionFilter> WithBranchSpec(this Partial<AutomationJobSubscriptionFilter> it)
+        => it.AddFieldName("branchSpec");
+    
+    public static Partial<AutomationJobSubscriptionFilter> WithJobs(this Partial<AutomationJobSubscriptionFilter> it)
+        => it.AddFieldName("jobs");
     
 }
+

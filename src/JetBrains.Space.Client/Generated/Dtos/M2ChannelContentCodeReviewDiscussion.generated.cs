@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2ChannelContentCodeReviewDiscussion
+     : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2ChannelContentCodeReviewDiscussion
-         : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2ChannelContentCodeReviewDiscussion";
+    
+    public M2ChannelContentCodeReviewDiscussion() { }
+    
+    public M2ChannelContentCodeReviewDiscussion(string codeReviewDiscussion, ChannelSpecificDefaults notificationDefaults)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2ChannelContentCodeReviewDiscussion";
-        
-        public M2ChannelContentCodeReviewDiscussion() { }
-        
-        public M2ChannelContentCodeReviewDiscussion(string codeReviewDiscussion, ChannelSpecificDefaults notificationDefaults)
-        {
-            CodeReviewDiscussion = codeReviewDiscussion;
-            NotificationDefaults = notificationDefaults;
-        }
-        
-        private PropertyValue<string> _codeReviewDiscussion = new PropertyValue<string>(nameof(M2ChannelContentCodeReviewDiscussion), nameof(CodeReviewDiscussion));
-        
-        [Required]
-        [JsonPropertyName("codeReviewDiscussion")]
-        public string CodeReviewDiscussion
-        {
-            get => _codeReviewDiscussion.GetValue();
-            set => _codeReviewDiscussion.SetValue(value);
-        }
-    
-        private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentCodeReviewDiscussion), nameof(NotificationDefaults));
-        
-        [Required]
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaults NotificationDefaults
-        {
-            get => _notificationDefaults.GetValue();
-            set => _notificationDefaults.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _codeReviewDiscussion.SetAccessPath(path, validateHasBeenSet);
-            _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        CodeReviewDiscussion = codeReviewDiscussion;
+        NotificationDefaults = notificationDefaults;
     }
     
+    private PropertyValue<string> _codeReviewDiscussion = new PropertyValue<string>(nameof(M2ChannelContentCodeReviewDiscussion), nameof(CodeReviewDiscussion));
+    
+    [Required]
+    [JsonPropertyName("codeReviewDiscussion")]
+    public string CodeReviewDiscussion
+    {
+        get => _codeReviewDiscussion.GetValue();
+        set => _codeReviewDiscussion.SetValue(value);
+    }
+
+    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentCodeReviewDiscussion), nameof(NotificationDefaults));
+    
+    [Required]
+    [JsonPropertyName("notificationDefaults")]
+    public ChannelSpecificDefaults NotificationDefaults
+    {
+        get => _notificationDefaults.GetValue();
+        set => _notificationDefaults.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _codeReviewDiscussion.SetAccessPath(path, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

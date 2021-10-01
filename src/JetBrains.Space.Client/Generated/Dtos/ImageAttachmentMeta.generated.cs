@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ImageAttachmentMeta
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ImageAttachmentMeta
-         : IPropagatePropertyAccessPath
+    public ImageAttachmentMeta() { }
+    
+    public ImageAttachmentMeta(List<ImageAttachmentVariantsMeta> variants)
     {
-        public ImageAttachmentMeta() { }
-        
-        public ImageAttachmentMeta(List<ImageAttachmentVariantsMeta> variants)
-        {
-            Variants = variants;
-        }
-        
-        private PropertyValue<List<ImageAttachmentVariantsMeta>> _variants = new PropertyValue<List<ImageAttachmentVariantsMeta>>(nameof(ImageAttachmentMeta), nameof(Variants), new List<ImageAttachmentVariantsMeta>());
-        
-        [Required]
-        [JsonPropertyName("variants")]
-        public List<ImageAttachmentVariantsMeta> Variants
-        {
-            get => _variants.GetValue();
-            set => _variants.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _variants.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Variants = variants;
     }
     
+    private PropertyValue<List<ImageAttachmentVariantsMeta>> _variants = new PropertyValue<List<ImageAttachmentVariantsMeta>>(nameof(ImageAttachmentMeta), nameof(Variants), new List<ImageAttachmentVariantsMeta>());
+    
+    [Required]
+    [JsonPropertyName("variants")]
+    public List<ImageAttachmentVariantsMeta> Variants
+    {
+        get => _variants.GetValue();
+        set => _variants.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _variants.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

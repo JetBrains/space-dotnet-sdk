@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ProjectPermissionTarget
+     : PermissionTarget, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ProjectPermissionTarget
-         : PermissionTarget, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ProjectPermissionTarget";
+    
+    public ProjectPermissionTarget() { }
+    
+    public ProjectPermissionTarget(ProjectIdentifier project)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ProjectPermissionTarget";
-        
-        public ProjectPermissionTarget() { }
-        
-        public ProjectPermissionTarget(ProjectIdentifier project)
-        {
-            Project = project;
-        }
-        
-        private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(ProjectPermissionTarget), nameof(Project));
-        
-        [Required]
-        [JsonPropertyName("project")]
-        public ProjectIdentifier Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _project.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Project = project;
     }
     
+    private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(ProjectPermissionTarget), nameof(Project));
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public ProjectIdentifier Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _project.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

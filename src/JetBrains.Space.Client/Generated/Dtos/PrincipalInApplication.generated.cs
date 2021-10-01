@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PrincipalInApplication
+     : PrincipalIn, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class PrincipalInApplication
-         : PrincipalIn, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "PrincipalIn.Application";
+    
+    public PrincipalInApplication() { }
+    
+    public PrincipalInApplication(string application)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "PrincipalIn.Application";
-        
-        public PrincipalInApplication() { }
-        
-        public PrincipalInApplication(string application)
-        {
-            Application = application;
-        }
-        
-        private PropertyValue<string> _application = new PropertyValue<string>(nameof(PrincipalInApplication), nameof(Application));
-        
-        [Required]
-        [JsonPropertyName("application")]
-        public string Application
-        {
-            get => _application.GetValue();
-            set => _application.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _application.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Application = application;
     }
     
+    private PropertyValue<string> _application = new PropertyValue<string>(nameof(PrincipalInApplication), nameof(Application));
+    
+    [Required]
+    [JsonPropertyName("application")]
+    public string Application
+    {
+        get => _application.GetValue();
+        set => _application.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _application.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

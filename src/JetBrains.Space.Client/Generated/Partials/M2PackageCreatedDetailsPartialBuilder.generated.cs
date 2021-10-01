@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2PackageCreatedDetailsPartialBuilder
+namespace JetBrains.Space.Client.M2PackageCreatedDetailsPartialBuilder;
+
+public static class M2PackageCreatedDetailsPartialExtensions
 {
-    public static class M2PackageCreatedDetailsPartialExtensions
-    {
-        public static Partial<M2PackageCreatedDetails> WithPkg(this Partial<M2PackageCreatedDetails> it)
-            => it.AddFieldName("pkg");
-        
-        public static Partial<M2PackageCreatedDetails> WithPkg(this Partial<M2PackageCreatedDetails> it, Func<Partial<PackageVersionInfo>, Partial<PackageVersionInfo>> partialBuilder)
-            => it.AddFieldName("pkg", partialBuilder(new Partial<PackageVersionInfo>(it)));
-        
-    }
+    public static Partial<M2PackageCreatedDetails> WithPkg(this Partial<M2PackageCreatedDetails> it)
+        => it.AddFieldName("pkg");
+    
+    public static Partial<M2PackageCreatedDetails> WithPkg(this Partial<M2PackageCreatedDetails> it, Func<Partial<PackageVersionInfo>, Partial<PackageVersionInfo>> partialBuilder)
+        => it.AddFieldName("pkg", partialBuilder(new Partial<PackageVersionInfo>(it)));
     
 }
+

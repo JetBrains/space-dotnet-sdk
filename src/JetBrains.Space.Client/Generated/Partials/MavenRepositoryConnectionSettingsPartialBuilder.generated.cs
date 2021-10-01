@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MavenRepositoryConnectionSettingsPartialBuilder
+namespace JetBrains.Space.Client.MavenRepositoryConnectionSettingsPartialBuilder;
+
+public static class MavenRepositoryConnectionSettingsPartialExtensions
 {
-    public static class MavenRepositoryConnectionSettingsPartialExtensions
-    {
-        public static Partial<MavenRepositoryConnectionSettings> WithNexusStagingProfile(this Partial<MavenRepositoryConnectionSettings> it)
-            => it.AddFieldName("nexusStagingProfile");
-        
-        public static Partial<MavenRepositoryConnectionSettings> WithNexusStagingProfile(this Partial<MavenRepositoryConnectionSettings> it, Func<Partial<NexusStagingProfile>, Partial<NexusStagingProfile>> partialBuilder)
-            => it.AddFieldName("nexusStagingProfile", partialBuilder(new Partial<NexusStagingProfile>(it)));
-        
-    }
+    public static Partial<MavenRepositoryConnectionSettings> WithNexusStagingProfile(this Partial<MavenRepositoryConnectionSettings> it)
+        => it.AddFieldName("nexusStagingProfile");
+    
+    public static Partial<MavenRepositoryConnectionSettings> WithNexusStagingProfile(this Partial<MavenRepositoryConnectionSettings> it, Func<Partial<NexusStagingProfile>, Partial<NexusStagingProfile>> partialBuilder)
+        => it.AddFieldName("nexusStagingProfile", partialBuilder(new Partial<NexusStagingProfile>(it)));
     
 }
+

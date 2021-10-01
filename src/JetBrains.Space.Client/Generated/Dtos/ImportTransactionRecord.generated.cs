@@ -27,82 +27,81 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ImportTransactionRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ImportTransactionRecord
-         : IPropagatePropertyAccessPath
+    public ImportTransactionRecord() { }
+    
+    public ImportTransactionRecord(string id, bool archived, CPrincipal importer, string externalSource, DateTime imported)
     {
-        public ImportTransactionRecord() { }
-        
-        public ImportTransactionRecord(string id, bool archived, CPrincipal importer, string externalSource, DateTime imported)
-        {
-            Id = id;
-            IsArchived = archived;
-            Importer = importer;
-            ExternalSource = externalSource;
-            Imported = imported;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ImportTransactionRecord), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ImportTransactionRecord), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        private PropertyValue<CPrincipal> _importer = new PropertyValue<CPrincipal>(nameof(ImportTransactionRecord), nameof(Importer));
-        
-        [Required]
-        [JsonPropertyName("importer")]
-        public CPrincipal Importer
-        {
-            get => _importer.GetValue();
-            set => _importer.SetValue(value);
-        }
-    
-        private PropertyValue<string> _externalSource = new PropertyValue<string>(nameof(ImportTransactionRecord), nameof(ExternalSource));
-        
-        [Required]
-        [JsonPropertyName("externalSource")]
-        public string ExternalSource
-        {
-            get => _externalSource.GetValue();
-            set => _externalSource.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _imported = new PropertyValue<DateTime>(nameof(ImportTransactionRecord), nameof(Imported));
-        
-        [Required]
-        [JsonPropertyName("imported")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Imported
-        {
-            get => _imported.GetValue();
-            set => _imported.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-            _importer.SetAccessPath(path, validateHasBeenSet);
-            _externalSource.SetAccessPath(path, validateHasBeenSet);
-            _imported.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        IsArchived = archived;
+        Importer = importer;
+        ExternalSource = externalSource;
+        Imported = imported;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ImportTransactionRecord), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ImportTransactionRecord), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<CPrincipal> _importer = new PropertyValue<CPrincipal>(nameof(ImportTransactionRecord), nameof(Importer));
+    
+    [Required]
+    [JsonPropertyName("importer")]
+    public CPrincipal Importer
+    {
+        get => _importer.GetValue();
+        set => _importer.SetValue(value);
+    }
+
+    private PropertyValue<string> _externalSource = new PropertyValue<string>(nameof(ImportTransactionRecord), nameof(ExternalSource));
+    
+    [Required]
+    [JsonPropertyName("externalSource")]
+    public string ExternalSource
+    {
+        get => _externalSource.GetValue();
+        set => _externalSource.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _imported = new PropertyValue<DateTime>(nameof(ImportTransactionRecord), nameof(Imported));
+    
+    [Required]
+    [JsonPropertyName("imported")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Imported
+    {
+        get => _imported.GetValue();
+        set => _imported.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _importer.SetAccessPath(path, validateHasBeenSet);
+        _externalSource.SetAccessPath(path, validateHasBeenSet);
+        _imported.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

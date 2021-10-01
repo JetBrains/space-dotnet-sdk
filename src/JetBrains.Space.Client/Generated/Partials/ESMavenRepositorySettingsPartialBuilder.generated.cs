@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESMavenRepositorySettingsPartialBuilder
+namespace JetBrains.Space.Client.ESMavenRepositorySettingsPartialBuilder;
+
+public static class ESMavenRepositorySettingsPartialExtensions
 {
-    public static class ESMavenRepositorySettingsPartialExtensions
-    {
-        public static Partial<ESMavenRepositorySettings> WithIsEnableSnapshots(this Partial<ESMavenRepositorySettings> it)
-            => it.AddFieldName("enableSnapshots");
-        
-        public static Partial<ESMavenRepositorySettings> WithRetentionPolicyParams(this Partial<ESMavenRepositorySettings> it)
-            => it.AddFieldName("retentionPolicyParams");
-        
-        public static Partial<ESMavenRepositorySettings> WithRetentionPolicyParams(this Partial<ESMavenRepositorySettings> it, Func<Partial<RetentionPolicyParams>, Partial<RetentionPolicyParams>> partialBuilder)
-            => it.AddFieldName("retentionPolicyParams", partialBuilder(new Partial<RetentionPolicyParams>(it)));
-        
-        public static Partial<ESMavenRepositorySettings> WithIsImmutablePackageVersions(this Partial<ESMavenRepositorySettings> it)
-            => it.AddFieldName("immutablePackageVersions");
-        
-    }
+    public static Partial<ESMavenRepositorySettings> WithIsEnableSnapshots(this Partial<ESMavenRepositorySettings> it)
+        => it.AddFieldName("enableSnapshots");
+    
+    public static Partial<ESMavenRepositorySettings> WithRetentionPolicyParams(this Partial<ESMavenRepositorySettings> it)
+        => it.AddFieldName("retentionPolicyParams");
+    
+    public static Partial<ESMavenRepositorySettings> WithRetentionPolicyParams(this Partial<ESMavenRepositorySettings> it, Func<Partial<RetentionPolicyParams>, Partial<RetentionPolicyParams>> partialBuilder)
+        => it.AddFieldName("retentionPolicyParams", partialBuilder(new Partial<RetentionPolicyParams>(it)));
+    
+    public static Partial<ESMavenRepositorySettings> WithIsImmutablePackageVersions(this Partial<ESMavenRepositorySettings> it)
+        => it.AddFieldName("immutablePackageVersions");
     
 }
+

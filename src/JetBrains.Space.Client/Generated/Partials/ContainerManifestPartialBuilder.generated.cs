@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ContainerManifestPartialBuilder
+namespace JetBrains.Space.Client.ContainerManifestPartialBuilder;
+
+public static class ContainerManifestPartialExtensions
 {
-    public static class ContainerManifestPartialExtensions
-    {
-        public static Partial<ContainerManifest> WithName(this Partial<ContainerManifest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ContainerManifest> WithDigest(this Partial<ContainerManifest> it)
-            => it.AddFieldName("digest");
-        
-        public static Partial<ContainerManifest> WithTags(this Partial<ContainerManifest> it)
-            => it.AddFieldName("tags");
-        
-        public static Partial<ContainerManifest> WithCreated(this Partial<ContainerManifest> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<ContainerManifest> WithSchemaVersion(this Partial<ContainerManifest> it)
-            => it.AddFieldName("schemaVersion");
-        
-        public static Partial<ContainerManifest> WithMediaType(this Partial<ContainerManifest> it)
-            => it.AddFieldName("mediaType");
-        
-        public static Partial<ContainerManifest> WithManifestType(this Partial<ContainerManifest> it)
-            => it.AddFieldName("manifestType");
-        
-        public static Partial<ContainerManifest> WithTotalSize(this Partial<ContainerManifest> it)
-            => it.AddFieldName("totalSize");
-        
-        public static Partial<ContainerManifest> WithImage(this Partial<ContainerManifest> it)
-            => it.AddFieldName("image");
-        
-        public static Partial<ContainerManifest> WithImage(this Partial<ContainerManifest> it, Func<Partial<ContainerImage>, Partial<ContainerImage>> partialBuilder)
-            => it.AddFieldName("image", partialBuilder(new Partial<ContainerImage>(it)));
-        
-        public static Partial<ContainerManifest> WithChart(this Partial<ContainerManifest> it)
-            => it.AddFieldName("chart");
-        
-        public static Partial<ContainerManifest> WithChart(this Partial<ContainerManifest> it, Func<Partial<ContainerHelmChart>, Partial<ContainerHelmChart>> partialBuilder)
-            => it.AddFieldName("chart", partialBuilder(new Partial<ContainerHelmChart>(it)));
-        
-    }
+    public static Partial<ContainerManifest> WithName(this Partial<ContainerManifest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ContainerManifest> WithDigest(this Partial<ContainerManifest> it)
+        => it.AddFieldName("digest");
+    
+    public static Partial<ContainerManifest> WithTags(this Partial<ContainerManifest> it)
+        => it.AddFieldName("tags");
+    
+    public static Partial<ContainerManifest> WithCreated(this Partial<ContainerManifest> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<ContainerManifest> WithSchemaVersion(this Partial<ContainerManifest> it)
+        => it.AddFieldName("schemaVersion");
+    
+    public static Partial<ContainerManifest> WithMediaType(this Partial<ContainerManifest> it)
+        => it.AddFieldName("mediaType");
+    
+    public static Partial<ContainerManifest> WithManifestType(this Partial<ContainerManifest> it)
+        => it.AddFieldName("manifestType");
+    
+    public static Partial<ContainerManifest> WithTotalSize(this Partial<ContainerManifest> it)
+        => it.AddFieldName("totalSize");
+    
+    public static Partial<ContainerManifest> WithImage(this Partial<ContainerManifest> it)
+        => it.AddFieldName("image");
+    
+    public static Partial<ContainerManifest> WithImage(this Partial<ContainerManifest> it, Func<Partial<ContainerImage>, Partial<ContainerImage>> partialBuilder)
+        => it.AddFieldName("image", partialBuilder(new Partial<ContainerImage>(it)));
+    
+    public static Partial<ContainerManifest> WithChart(this Partial<ContainerManifest> it)
+        => it.AddFieldName("chart");
+    
+    public static Partial<ContainerManifest> WithChart(this Partial<ContainerManifest> it, Func<Partial<ContainerHelmChart>, Partial<ContainerHelmChart>> partialBuilder)
+        => it.AddFieldName("chart", partialBuilder(new Partial<ContainerHelmChart>(it)));
     
 }
+

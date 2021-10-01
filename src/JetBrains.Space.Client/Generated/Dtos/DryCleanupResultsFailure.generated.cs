@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DryCleanupResultsFailure
+     : DryCleanupResults, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class DryCleanupResultsFailure
-         : DryCleanupResults, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "DryCleanupResults.Failure";
+    
+    public DryCleanupResultsFailure() { }
+    
+    public DryCleanupResultsFailure(string error)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "DryCleanupResults.Failure";
-        
-        public DryCleanupResultsFailure() { }
-        
-        public DryCleanupResultsFailure(string error)
-        {
-            Error = error;
-        }
-        
-        private PropertyValue<string> _error = new PropertyValue<string>(nameof(DryCleanupResultsFailure), nameof(Error));
-        
-        [Required]
-        [JsonPropertyName("error")]
-        public string Error
-        {
-            get => _error.GetValue();
-            set => _error.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _error.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Error = error;
     }
     
+    private PropertyValue<string> _error = new PropertyValue<string>(nameof(DryCleanupResultsFailure), nameof(Error));
+    
+    [Required]
+    [JsonPropertyName("error")]
+    public string Error
+    {
+        get => _error.GetValue();
+        set => _error.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _error.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

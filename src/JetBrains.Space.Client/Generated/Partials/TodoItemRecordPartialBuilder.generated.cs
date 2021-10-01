@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TodoItemRecordPartialBuilder
+namespace JetBrains.Space.Client.TodoItemRecordPartialBuilder;
+
+public static class TodoItemRecordPartialExtensions
 {
-    public static class TodoItemRecordPartialExtensions
-    {
-        public static Partial<TodoItemRecord> WithId(this Partial<TodoItemRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<TodoItemRecord> WithIsArchived(this Partial<TodoItemRecord> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<TodoItemRecord> WithCreated(this Partial<TodoItemRecord> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<TodoItemRecord> WithUpdated(this Partial<TodoItemRecord> it)
-            => it.AddFieldName("updated");
-        
-        public static Partial<TodoItemRecord> WithContent(this Partial<TodoItemRecord> it)
-            => it.AddFieldName("content");
-        
-        public static Partial<TodoItemRecord> WithContent(this Partial<TodoItemRecord> it, Func<Partial<TodoItemContent>, Partial<TodoItemContent>> partialBuilder)
-            => it.AddFieldName("content", partialBuilder(new Partial<TodoItemContent>(it)));
-        
-        public static Partial<TodoItemRecord> WithStatus(this Partial<TodoItemRecord> it)
-            => it.AddFieldName("_status");
-        
-        public static Partial<TodoItemRecord> WithDueDate(this Partial<TodoItemRecord> it)
-            => it.AddFieldName("dueDate");
-        
-    }
+    public static Partial<TodoItemRecord> WithId(this Partial<TodoItemRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<TodoItemRecord> WithIsArchived(this Partial<TodoItemRecord> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<TodoItemRecord> WithCreated(this Partial<TodoItemRecord> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<TodoItemRecord> WithUpdated(this Partial<TodoItemRecord> it)
+        => it.AddFieldName("updated");
+    
+    public static Partial<TodoItemRecord> WithContent(this Partial<TodoItemRecord> it)
+        => it.AddFieldName("content");
+    
+    public static Partial<TodoItemRecord> WithContent(this Partial<TodoItemRecord> it, Func<Partial<TodoItemContent>, Partial<TodoItemContent>> partialBuilder)
+        => it.AddFieldName("content", partialBuilder(new Partial<TodoItemContent>(it)));
+    
+    public static Partial<TodoItemRecord> WithStatus(this Partial<TodoItemRecord> it)
+        => it.AddFieldName("_status");
+    
+    public static Partial<TodoItemRecord> WithDueDate(this Partial<TodoItemRecord> it)
+        => it.AddFieldName("dueDate");
     
 }
+

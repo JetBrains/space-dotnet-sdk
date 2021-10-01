@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GlobalNotificationSettingsPartialBuilder
+namespace JetBrains.Space.Client.GlobalNotificationSettingsPartialBuilder;
+
+public static class GlobalNotificationSettingsPartialExtensions
 {
-    public static class GlobalNotificationSettingsPartialExtensions
-    {
-        public static Partial<GlobalNotificationSettings> WithIsEmailNotificationsEnabled(this Partial<GlobalNotificationSettings> it)
-            => it.AddFieldName("emailNotificationsEnabled");
-        
-        public static Partial<GlobalNotificationSettings> WithNotificationEmail(this Partial<GlobalNotificationSettings> it)
-            => it.AddFieldName("notificationEmail");
-        
-        public static Partial<GlobalNotificationSettings> WithNotificationEmail(this Partial<GlobalNotificationSettings> it, Func<Partial<TDProfileEmail>, Partial<TDProfileEmail>> partialBuilder)
-            => it.AddFieldName("notificationEmail", partialBuilder(new Partial<TDProfileEmail>(it)));
-        
-        public static Partial<GlobalNotificationSettings> WithIsPushNotificationEnabled(this Partial<GlobalNotificationSettings> it)
-            => it.AddFieldName("pushNotificationEnabled");
-        
-        public static Partial<GlobalNotificationSettings> WithDesktopInactivityTimeout(this Partial<GlobalNotificationSettings> it)
-            => it.AddFieldName("desktopInactivityTimeout");
-        
-        public static Partial<GlobalNotificationSettings> WithIsMultiClientEnabled(this Partial<GlobalNotificationSettings> it)
-            => it.AddFieldName("multiClientEnabled");
-        
-    }
+    public static Partial<GlobalNotificationSettings> WithIsEmailNotificationsEnabled(this Partial<GlobalNotificationSettings> it)
+        => it.AddFieldName("emailNotificationsEnabled");
+    
+    public static Partial<GlobalNotificationSettings> WithNotificationEmail(this Partial<GlobalNotificationSettings> it)
+        => it.AddFieldName("notificationEmail");
+    
+    public static Partial<GlobalNotificationSettings> WithNotificationEmail(this Partial<GlobalNotificationSettings> it, Func<Partial<TDProfileEmail>, Partial<TDProfileEmail>> partialBuilder)
+        => it.AddFieldName("notificationEmail", partialBuilder(new Partial<TDProfileEmail>(it)));
+    
+    public static Partial<GlobalNotificationSettings> WithIsPushNotificationEnabled(this Partial<GlobalNotificationSettings> it)
+        => it.AddFieldName("pushNotificationEnabled");
+    
+    public static Partial<GlobalNotificationSettings> WithDesktopInactivityTimeout(this Partial<GlobalNotificationSettings> it)
+        => it.AddFieldName("desktopInactivityTimeout");
+    
+    public static Partial<GlobalNotificationSettings> WithIsMultiClientEnabled(this Partial<GlobalNotificationSettings> it)
+        => it.AddFieldName("multiClientEnabled");
     
 }
+

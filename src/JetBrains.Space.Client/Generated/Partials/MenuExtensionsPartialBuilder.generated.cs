@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MenuExtensionsPartialBuilder
+namespace JetBrains.Space.Client.MenuExtensionsPartialBuilder;
+
+public static class MenuExtensionsPartialExtensions
 {
-    public static class MenuExtensionsPartialExtensions
-    {
-        public static Partial<MenuExtensions> WithExtensions(this Partial<MenuExtensions> it)
-            => it.AddFieldName("extensions");
-        
-        public static Partial<MenuExtensions> WithExtensions(this Partial<MenuExtensions> it, Func<Partial<MenuExtensionDetail>, Partial<MenuExtensionDetail>> partialBuilder)
-            => it.AddFieldName("extensions", partialBuilder(new Partial<MenuExtensionDetail>(it)));
-        
-    }
+    public static Partial<MenuExtensions> WithExtensions(this Partial<MenuExtensions> it)
+        => it.AddFieldName("extensions");
+    
+    public static Partial<MenuExtensions> WithExtensions(this Partial<MenuExtensions> it, Func<Partial<MenuExtensionDetail>, Partial<MenuExtensionDetail>> partialBuilder)
+        => it.AddFieldName("extensions", partialBuilder(new Partial<MenuExtensionDetail>(it)));
     
 }
+

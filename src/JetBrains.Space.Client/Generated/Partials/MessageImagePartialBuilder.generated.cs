@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageImagePartialBuilder
+namespace JetBrains.Space.Client.MessageImagePartialBuilder;
+
+public static class MessageImagePartialExtensions
 {
-    public static class MessageImagePartialExtensions
-    {
-        public static Partial<MessageImage> WithSrc(this Partial<MessageImage> it)
-            => it.AddFieldName("src");
-        
-    }
+    public static Partial<MessageImage> WithSrc(this Partial<MessageImage> it)
+        => it.AddFieldName("src");
     
 }
+

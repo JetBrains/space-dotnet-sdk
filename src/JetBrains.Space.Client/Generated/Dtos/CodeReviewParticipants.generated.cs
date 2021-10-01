@@ -27,83 +27,82 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CodeReviewParticipants
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CodeReviewParticipants
-         : IPropagatePropertyAccessPath
+    public CodeReviewParticipants() { }
+    
+    public CodeReviewParticipants(string id, List<CodeReviewParticipantRecord> reviewers, List<CodeReviewParticipantRecord> authors, List<CodeReviewParticipantRecord> watchers, List<CodeReviewParticipant>? participants = null)
     {
-        public CodeReviewParticipants() { }
-        
-        public CodeReviewParticipants(string id, List<CodeReviewParticipantRecord> reviewers, List<CodeReviewParticipantRecord> authors, List<CodeReviewParticipantRecord> watchers, List<CodeReviewParticipant>? participants = null)
-        {
-            Id = id;
-            Participants = participants;
-            Reviewers = reviewers;
-            Authors = authors;
-            Watchers = watchers;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewParticipants), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<List<CodeReviewParticipant>?> _participants = new PropertyValue<List<CodeReviewParticipant>?>(nameof(CodeReviewParticipants), nameof(Participants));
-        
-        [JsonPropertyName("participants")]
-        public List<CodeReviewParticipant>? Participants
-        {
-            get => _participants.GetValue();
-            set => _participants.SetValue(value);
-        }
-    
-        private PropertyValue<List<CodeReviewParticipantRecord>> _reviewers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Reviewers), new List<CodeReviewParticipantRecord>());
-        
-        [Required]
-        [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
-        [JsonPropertyName("reviewers")]
-        public List<CodeReviewParticipantRecord> Reviewers
-        {
-            get => _reviewers.GetValue();
-            set => _reviewers.SetValue(value);
-        }
-    
-        private PropertyValue<List<CodeReviewParticipantRecord>> _authors = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Authors), new List<CodeReviewParticipantRecord>());
-        
-        [Required]
-        [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
-        [JsonPropertyName("authors")]
-        public List<CodeReviewParticipantRecord> Authors
-        {
-            get => _authors.GetValue();
-            set => _authors.SetValue(value);
-        }
-    
-        private PropertyValue<List<CodeReviewParticipantRecord>> _watchers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Watchers), new List<CodeReviewParticipantRecord>());
-        
-        [Required]
-        [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
-        [JsonPropertyName("watchers")]
-        public List<CodeReviewParticipantRecord> Watchers
-        {
-            get => _watchers.GetValue();
-            set => _watchers.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _participants.SetAccessPath(path, validateHasBeenSet);
-            _reviewers.SetAccessPath(path, validateHasBeenSet);
-            _authors.SetAccessPath(path, validateHasBeenSet);
-            _watchers.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Participants = participants;
+        Reviewers = reviewers;
+        Authors = authors;
+        Watchers = watchers;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewParticipants), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<List<CodeReviewParticipant>?> _participants = new PropertyValue<List<CodeReviewParticipant>?>(nameof(CodeReviewParticipants), nameof(Participants));
+    
+    [JsonPropertyName("participants")]
+    public List<CodeReviewParticipant>? Participants
+    {
+        get => _participants.GetValue();
+        set => _participants.SetValue(value);
+    }
+
+    private PropertyValue<List<CodeReviewParticipantRecord>> _reviewers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Reviewers), new List<CodeReviewParticipantRecord>());
+    
+    [Required]
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
+    [JsonPropertyName("reviewers")]
+    public List<CodeReviewParticipantRecord> Reviewers
+    {
+        get => _reviewers.GetValue();
+        set => _reviewers.SetValue(value);
+    }
+
+    private PropertyValue<List<CodeReviewParticipantRecord>> _authors = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Authors), new List<CodeReviewParticipantRecord>());
+    
+    [Required]
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
+    [JsonPropertyName("authors")]
+    public List<CodeReviewParticipantRecord> Authors
+    {
+        get => _authors.GetValue();
+        set => _authors.SetValue(value);
+    }
+
+    private PropertyValue<List<CodeReviewParticipantRecord>> _watchers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Watchers), new List<CodeReviewParticipantRecord>());
+    
+    [Required]
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
+    [JsonPropertyName("watchers")]
+    public List<CodeReviewParticipantRecord> Watchers
+    {
+        get => _watchers.GetValue();
+        set => _watchers.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _participants.SetAccessPath(path, validateHasBeenSet);
+        _reviewers.SetAccessPath(path, validateHasBeenSet);
+        _authors.SetAccessPath(path, validateHasBeenSet);
+        _watchers.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

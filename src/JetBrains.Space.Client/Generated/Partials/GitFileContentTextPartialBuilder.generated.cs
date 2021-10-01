@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitFileContentTextPartialBuilder
+namespace JetBrains.Space.Client.GitFileContentTextPartialBuilder;
+
+public static class GitFileContentTextPartialExtensions
 {
-    public static class GitFileContentTextPartialExtensions
-    {
-        public static Partial<GitFileContentText> WithValue(this Partial<GitFileContentText> it)
-            => it.AddFieldName("value");
-        
-        public static Partial<GitFileContentText> WithIsExecutable(this Partial<GitFileContentText> it)
-            => it.AddFieldName("executable");
-        
-    }
+    public static Partial<GitFileContentText> WithValue(this Partial<GitFileContentText> it)
+        => it.AddFieldName("value");
+    
+    public static Partial<GitFileContentText> WithIsExecutable(this Partial<GitFileContentText> it)
+        => it.AddFieldName("executable");
     
 }
+

@@ -27,55 +27,54 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TodayBillingReportPartialBuilder
+namespace JetBrains.Space.Client.TodayBillingReportPartialBuilder;
+
+public static class TodayBillingReportPartialExtensions
 {
-    public static class TodayBillingReportPartialExtensions
-    {
-        public static Partial<TodayBillingReport> WithPlan(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("plan");
-        
-        public static Partial<TodayBillingReport> WithPlan(this Partial<TodayBillingReport> it, Func<Partial<PurchasedBillingPlan>, Partial<PurchasedBillingPlan>> partialBuilder)
-            => it.AddFieldName("plan", partialBuilder(new Partial<PurchasedBillingPlan>(it)));
-        
-        public static Partial<TodayBillingReport> WithActiveUsers(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("activeUsers");
-        
-        public static Partial<TodayBillingReport> WithUserUsage(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("userUsage");
-        
-        public static Partial<TodayBillingReport> WithUserCost(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("userCost");
-        
-        public static Partial<TodayBillingReport> WithStorageAllocationB(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("storageAllocationB");
-        
-        public static Partial<TodayBillingReport> WithStorageTotalUsage(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("storageTotalUsage");
-        
-        public static Partial<TodayBillingReport> WithStorageCost(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("storageCost");
-        
-        public static Partial<TodayBillingReport> WithBandwidthTotalUsage(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("bandwidthTotalUsage");
-        
-        public static Partial<TodayBillingReport> WithBandwidthCost(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("bandwidthCost");
-        
-        public static Partial<TodayBillingReport> WithCiUsage(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("ciUsage");
-        
-        public static Partial<TodayBillingReport> WithCiCost(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("ciCost");
-        
-        public static Partial<TodayBillingReport> WithAppUsage(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("appUsage");
-        
-        public static Partial<TodayBillingReport> WithChatUsage(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("chatUsage");
-        
-        public static Partial<TodayBillingReport> WithTotalCost(this Partial<TodayBillingReport> it)
-            => it.AddFieldName("totalCost");
-        
-    }
+    public static Partial<TodayBillingReport> WithPlan(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("plan");
+    
+    public static Partial<TodayBillingReport> WithPlan(this Partial<TodayBillingReport> it, Func<Partial<PurchasedBillingPlan>, Partial<PurchasedBillingPlan>> partialBuilder)
+        => it.AddFieldName("plan", partialBuilder(new Partial<PurchasedBillingPlan>(it)));
+    
+    public static Partial<TodayBillingReport> WithActiveUsers(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("activeUsers");
+    
+    public static Partial<TodayBillingReport> WithUserUsage(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("userUsage");
+    
+    public static Partial<TodayBillingReport> WithUserCost(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("userCost");
+    
+    public static Partial<TodayBillingReport> WithStorageAllocationB(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("storageAllocationB");
+    
+    public static Partial<TodayBillingReport> WithStorageTotalUsage(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("storageTotalUsage");
+    
+    public static Partial<TodayBillingReport> WithStorageCost(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("storageCost");
+    
+    public static Partial<TodayBillingReport> WithBandwidthTotalUsage(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("bandwidthTotalUsage");
+    
+    public static Partial<TodayBillingReport> WithBandwidthCost(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("bandwidthCost");
+    
+    public static Partial<TodayBillingReport> WithCiUsage(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("ciUsage");
+    
+    public static Partial<TodayBillingReport> WithCiCost(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("ciCost");
+    
+    public static Partial<TodayBillingReport> WithAppUsage(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("appUsage");
+    
+    public static Partial<TodayBillingReport> WithChatUsage(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("chatUsage");
+    
+    public static Partial<TodayBillingReport> WithTotalCost(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("totalCost");
     
 }
+

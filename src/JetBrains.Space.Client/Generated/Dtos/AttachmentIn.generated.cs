@@ -27,14 +27,13 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface AttachmentIn
+     : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface AttachmentIn
-         : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static FileAttachment FileAttachment(string id, long sizeBytes, string filename)
-            => new FileAttachment(id: id, sizeBytes: sizeBytes, filename: filename);
-        
-    }
+    public static FileAttachment FileAttachment(string id, long sizeBytes, string filename)
+        => new FileAttachment(id: id, sizeBytes: sizeBytes, filename: filename);
     
 }
+

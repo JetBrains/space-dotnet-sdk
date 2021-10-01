@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.JobSubscriptionStatePartialBuilder
+namespace JetBrains.Space.Client.JobSubscriptionStatePartialBuilder;
+
+public static class JobSubscriptionStatePartialExtensions
 {
-    public static class JobSubscriptionStatePartialExtensions
-    {
-        public static Partial<JobSubscriptionState> WithType(this Partial<JobSubscriptionState> it)
-            => it.AddFieldName("type");
-        
-        public static Partial<JobSubscriptionState> WithType(this Partial<JobSubscriptionState> it, Func<Partial<JobSubscriptionType>, Partial<JobSubscriptionType>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<JobSubscriptionType>(it)));
-        
-        public static Partial<JobSubscriptionState> WithIsContainsMyCommit(this Partial<JobSubscriptionState> it)
-            => it.AddFieldName("containsMyCommit");
-        
-        public static Partial<JobSubscriptionState> WithIsRunByMe(this Partial<JobSubscriptionState> it)
-            => it.AddFieldName("runByMe");
-        
-    }
+    public static Partial<JobSubscriptionState> WithType(this Partial<JobSubscriptionState> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<JobSubscriptionState> WithType(this Partial<JobSubscriptionState> it, Func<Partial<JobSubscriptionType>, Partial<JobSubscriptionType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<JobSubscriptionType>(it)));
+    
+    public static Partial<JobSubscriptionState> WithIsContainsMyCommit(this Partial<JobSubscriptionState> it)
+        => it.AddFieldName("containsMyCommit");
+    
+    public static Partial<JobSubscriptionState> WithIsRunByMe(this Partial<JobSubscriptionState> it)
+        => it.AddFieldName("runByMe");
     
 }
+

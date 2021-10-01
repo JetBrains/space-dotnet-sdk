@@ -27,26 +27,25 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface CFParameters
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface CFParameters
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static AutonumberCFParameters Autonumber(string prefix, string suffix)
-            => new AutonumberCFParameters(prefix: prefix, suffix: suffix);
-        
-        public static ContactCFParameters Contact(TDContactKind? contactKind = null)
-            => new ContactCFParameters(contactKind: contactKind);
-        
-        public static DocumentCFParameters Document(DocumentCFScope documentScope)
-            => new DocumentCFParameters(documentScope: documentScope);
-        
-        public static EnumCFParameters Enum(List<CFEnumValue> values)
-            => new EnumCFParameters(values: values);
-        
-        public static VcsCommitCFParameters VcsCommit(VcsCFScope vcsCFScope)
-            => new VcsCommitCFParameters(vcsCFScope: vcsCFScope);
-        
-    }
+    public static AutonumberCFParameters Autonumber(string prefix, string suffix)
+        => new AutonumberCFParameters(prefix: prefix, suffix: suffix);
+    
+    public static ContactCFParameters Contact(TDContactKind? contactKind = null)
+        => new ContactCFParameters(contactKind: contactKind);
+    
+    public static DocumentCFParameters Document(DocumentCFScope documentScope)
+        => new DocumentCFParameters(documentScope: documentScope);
+    
+    public static EnumCFParameters Enum(List<CFEnumValue> values)
+        => new EnumCFParameters(values: values);
+    
+    public static VcsCommitCFParameters VcsCommit(VcsCFScope vcsCFScope)
+        => new VcsCommitCFParameters(vcsCFScope: vcsCFScope);
     
 }
+

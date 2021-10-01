@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageOutlinePartialBuilder
+namespace JetBrains.Space.Client.MessageOutlinePartialBuilder;
+
+public static class MessageOutlinePartialExtensions
 {
-    public static class MessageOutlinePartialExtensions
-    {
-        public static Partial<MessageOutline> WithIcon(this Partial<MessageOutline> it)
-            => it.AddFieldName("icon");
-        
-        public static Partial<MessageOutline> WithIcon(this Partial<MessageOutline> it, Func<Partial<ApiIcon>, Partial<ApiIcon>> partialBuilder)
-            => it.AddFieldName("icon", partialBuilder(new Partial<ApiIcon>(it)));
-        
-        public static Partial<MessageOutline> WithText(this Partial<MessageOutline> it)
-            => it.AddFieldName("text");
-        
-    }
+    public static Partial<MessageOutline> WithIcon(this Partial<MessageOutline> it)
+        => it.AddFieldName("icon");
+    
+    public static Partial<MessageOutline> WithIcon(this Partial<MessageOutline> it, Func<Partial<ApiIcon>, Partial<ApiIcon>> partialBuilder)
+        => it.AddFieldName("icon", partialBuilder(new Partial<ApiIcon>(it)));
+    
+    public static Partial<MessageOutline> WithText(this Partial<MessageOutline> it)
+        => it.AddFieldName("text");
     
 }
+

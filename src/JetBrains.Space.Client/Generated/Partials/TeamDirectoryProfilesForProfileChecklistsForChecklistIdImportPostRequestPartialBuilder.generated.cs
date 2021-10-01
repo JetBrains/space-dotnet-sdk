@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest> WithTargetParentId(this Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest> it)
-            => it.AddFieldName("targetParentId");
-        
-        public static Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest> WithAfterItemId(this Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest> it)
-            => it.AddFieldName("afterItemId");
-        
-        public static Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest> WithTabIndentedLines(this Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest> it)
-            => it.AddFieldName("tabIndentedLines");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest> WithTargetParentId(this Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest> it)
+        => it.AddFieldName("targetParentId");
+    
+    public static Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest> WithAfterItemId(this Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest> it)
+        => it.AddFieldName("afterItemId");
+    
+    public static Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest> WithTabIndentedLines(this Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest> it)
+        => it.AddFieldName("tabIndentedLines");
     
 }
+

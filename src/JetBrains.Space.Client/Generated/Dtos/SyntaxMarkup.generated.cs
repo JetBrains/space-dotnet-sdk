@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class SyntaxMarkup
+     : IPropagatePropertyAccessPath
 {
-    public sealed class SyntaxMarkup
-         : IPropagatePropertyAccessPath
+    public SyntaxMarkup() { }
+    
+    public SyntaxMarkup(TextRange range, SyntaxMarkupType? type = null)
     {
-        public SyntaxMarkup() { }
-        
-        public SyntaxMarkup(TextRange range, SyntaxMarkupType? type = null)
-        {
-            Type = type;
-            Range = range;
-        }
-        
-        private PropertyValue<SyntaxMarkupType?> _type = new PropertyValue<SyntaxMarkupType?>(nameof(SyntaxMarkup), nameof(Type));
-        
-        [JsonPropertyName("type")]
-        public SyntaxMarkupType? Type
-        {
-            get => _type.GetValue();
-            set => _type.SetValue(value);
-        }
-    
-        private PropertyValue<TextRange> _range = new PropertyValue<TextRange>(nameof(SyntaxMarkup), nameof(Range));
-        
-        [Required]
-        [JsonPropertyName("range")]
-        public TextRange Range
-        {
-            get => _range.GetValue();
-            set => _range.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _type.SetAccessPath(path, validateHasBeenSet);
-            _range.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Type = type;
+        Range = range;
     }
     
+    private PropertyValue<SyntaxMarkupType?> _type = new PropertyValue<SyntaxMarkupType?>(nameof(SyntaxMarkup), nameof(Type));
+    
+    [JsonPropertyName("type")]
+    public SyntaxMarkupType? Type
+    {
+        get => _type.GetValue();
+        set => _type.SetValue(value);
+    }
+
+    private PropertyValue<TextRange> _range = new PropertyValue<TextRange>(nameof(SyntaxMarkup), nameof(Range));
+    
+    [Required]
+    [JsonPropertyName("range")]
+    public TextRange Range
+    {
+        get => _range.GetValue();
+        set => _range.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _type.SetAccessPath(path, validateHasBeenSet);
+        _range.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

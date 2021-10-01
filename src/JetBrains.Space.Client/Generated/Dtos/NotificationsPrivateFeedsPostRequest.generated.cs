@@ -27,69 +27,68 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class NotificationsPrivateFeedsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class NotificationsPrivateFeedsPostRequest
-         : IPropagatePropertyAccessPath
+    public NotificationsPrivateFeedsPostRequest() { }
+    
+    public NotificationsPrivateFeedsPostRequest(ProfileIdentifier profile, string name, string icon, PrivateFeedColor color)
     {
-        public NotificationsPrivateFeedsPostRequest() { }
-        
-        public NotificationsPrivateFeedsPostRequest(ProfileIdentifier profile, string name, string icon, PrivateFeedColor color)
-        {
-            Profile = profile;
-            Name = name;
-            Icon = icon;
-            Color = color;
-        }
-        
-        private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public ProfileIdentifier Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _icon = new PropertyValue<string>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Icon));
-        
-        [Required]
-        [JsonPropertyName("icon")]
-        public string Icon
-        {
-            get => _icon.GetValue();
-            set => _icon.SetValue(value);
-        }
-    
-        private PropertyValue<PrivateFeedColor> _color = new PropertyValue<PrivateFeedColor>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Color));
-        
-        [Required]
-        [JsonPropertyName("color")]
-        public PrivateFeedColor Color
-        {
-            get => _color.GetValue();
-            set => _color.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _icon.SetAccessPath(path, validateHasBeenSet);
-            _color.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
+        Name = name;
+        Icon = icon;
+        Color = color;
     }
     
+    private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public ProfileIdentifier Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _icon = new PropertyValue<string>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Icon));
+    
+    [Required]
+    [JsonPropertyName("icon")]
+    public string Icon
+    {
+        get => _icon.GetValue();
+        set => _icon.SetValue(value);
+    }
+
+    private PropertyValue<PrivateFeedColor> _color = new PropertyValue<PrivateFeedColor>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Color));
+    
+    [Required]
+    [JsonPropertyName("color")]
+    public PrivateFeedColor Color
+    {
+        get => _color.GetValue();
+        set => _color.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _icon.SetAccessPath(path, validateHasBeenSet);
+        _color.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

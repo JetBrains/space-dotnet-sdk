@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ContactCFParametersPartialBuilder
+namespace JetBrains.Space.Client.ContactCFParametersPartialBuilder;
+
+public static class ContactCFParametersPartialExtensions
 {
-    public static class ContactCFParametersPartialExtensions
-    {
-        public static Partial<ContactCFParameters> WithContactKind(this Partial<ContactCFParameters> it)
-            => it.AddFieldName("contactKind");
-        
-        public static Partial<ContactCFParameters> WithContactKind(this Partial<ContactCFParameters> it, Func<Partial<TDContactKind>, Partial<TDContactKind>> partialBuilder)
-            => it.AddFieldName("contactKind", partialBuilder(new Partial<TDContactKind>(it)));
-        
-    }
+    public static Partial<ContactCFParameters> WithContactKind(this Partial<ContactCFParameters> it)
+        => it.AddFieldName("contactKind");
+    
+    public static Partial<ContactCFParameters> WithContactKind(this Partial<ContactCFParameters> it, Func<Partial<TDContactKind>, Partial<TDContactKind>> partialBuilder)
+        => it.AddFieldName("contactKind", partialBuilder(new Partial<TDContactKind>(it)));
     
 }
+

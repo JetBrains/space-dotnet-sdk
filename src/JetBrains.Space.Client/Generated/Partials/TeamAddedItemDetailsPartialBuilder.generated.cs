@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamAddedItemDetailsPartialBuilder
+namespace JetBrains.Space.Client.TeamAddedItemDetailsPartialBuilder;
+
+public static class TeamAddedItemDetailsPartialExtensions
 {
-    public static class TeamAddedItemDetailsPartialExtensions
-    {
-        public static Partial<TeamAddedItemDetails> WithTeam(this Partial<TeamAddedItemDetails> it)
-            => it.AddFieldName("team");
-        
-        public static Partial<TeamAddedItemDetails> WithTeam(this Partial<TeamAddedItemDetails> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-            => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
-        
-    }
+    public static Partial<TeamAddedItemDetails> WithTeam(this Partial<TeamAddedItemDetails> it)
+        => it.AddFieldName("team");
+    
+    public static Partial<TeamAddedItemDetails> WithTeam(this Partial<TeamAddedItemDetails> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+        => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
     
 }
+

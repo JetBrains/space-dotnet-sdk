@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MCTagPartialBuilder
+namespace JetBrains.Space.Client.MCTagPartialBuilder;
+
+public static class MCTagPartialExtensions
 {
-    public static class MCTagPartialExtensions
-    {
-        public static Partial<MCTag> WithText(this Partial<MCTag> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<MCTag> WithStyle(this Partial<MCTag> it)
-            => it.AddFieldName("style");
-        
-    }
+    public static Partial<MCTag> WithText(this Partial<MCTag> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<MCTag> WithStyle(this Partial<MCTag> it)
+        => it.AddFieldName("style");
     
 }
+

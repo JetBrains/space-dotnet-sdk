@@ -27,64 +27,63 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesPostRequestPartialBuilder;
+
+public static class ProjectsForProjectPlanningIssuesPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectPlanningIssuesPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithTitle(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithDescription(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithAssignee(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
-            => it.AddFieldName("assignee");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithAssignee(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("assignee", partialBuilder(new Partial<ProfileIdentifier>(it)));
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithStatus(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
-            => it.AddFieldName("status");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithDueDate(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
-            => it.AddFieldName("dueDate");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithTags(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
-            => it.AddFieldName("tags");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithChecklists(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
-            => it.AddFieldName("checklists");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithSprints(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
-            => it.AddFieldName("sprints");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
-            => it.AddFieldName("attachments");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<AttachmentIn>, Partial<AttachmentIn>> partialBuilder)
-            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentIn>(it)));
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithFromMessage(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
-            => it.AddFieldName("fromMessage");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithFromMessage(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<MessageLink>, Partial<MessageLink>> partialBuilder)
-            => it.AddFieldName("fromMessage", partialBuilder(new Partial<MessageLink>(it)));
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
-            => it.AddFieldName("customFields");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
-            => it.AddFieldName("customFields", partialBuilder(new Partial<CustomFieldInputValue>(it)));
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithTopics(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
-            => it.AddFieldName("topics");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithParents(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
-            => it.AddFieldName("parents");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithParents(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<IssueIdentifier>, Partial<IssueIdentifier>> partialBuilder)
-            => it.AddFieldName("parents", partialBuilder(new Partial<IssueIdentifier>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithTitle(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithDescription(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithAssignee(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+        => it.AddFieldName("assignee");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithAssignee(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+        => it.AddFieldName("assignee", partialBuilder(new Partial<ProfileIdentifier>(it)));
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithStatus(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+        => it.AddFieldName("status");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithDueDate(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+        => it.AddFieldName("dueDate");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithTags(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+        => it.AddFieldName("tags");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithChecklists(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+        => it.AddFieldName("checklists");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithSprints(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+        => it.AddFieldName("sprints");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<AttachmentIn>, Partial<AttachmentIn>> partialBuilder)
+        => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentIn>(it)));
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithFromMessage(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+        => it.AddFieldName("fromMessage");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithFromMessage(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<MessageLink>, Partial<MessageLink>> partialBuilder)
+        => it.AddFieldName("fromMessage", partialBuilder(new Partial<MessageLink>(it)));
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+        => it.AddFieldName("customFields");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+        => it.AddFieldName("customFields", partialBuilder(new Partial<CustomFieldInputValue>(it)));
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithTopics(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+        => it.AddFieldName("topics");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithParents(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+        => it.AddFieldName("parents");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithParents(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<IssueIdentifier>, Partial<IssueIdentifier>> partialBuilder)
+        => it.AddFieldName("parents", partialBuilder(new Partial<IssueIdentifier>(it)));
     
 }
+

@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum MeetingOrigin
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum MeetingOrigin
-    {
-        [EnumMember(Value = "User")]
-        User,
-        
-        [EnumMember(Value = "GoogleCalendar")]
-        GoogleCalendar,
-        
-    }
+    [EnumMember(Value = "User")]
+    User,
+    
+    [EnumMember(Value = "GoogleCalendar")]
+    GoogleCalendar,
     
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2AbsenceItemDeletedContentPartialBuilder
+namespace JetBrains.Space.Client.M2AbsenceItemDeletedContentPartialBuilder;
+
+public static class M2AbsenceItemDeletedContentPartialExtensions
 {
-    public static class M2AbsenceItemDeletedContentPartialExtensions
-    {
-        public static Partial<M2AbsenceItemDeletedContent> WithAbsence(this Partial<M2AbsenceItemDeletedContent> it)
-            => it.AddFieldName("absence");
-        
-        public static Partial<M2AbsenceItemDeletedContent> WithAbsence(this Partial<M2AbsenceItemDeletedContent> it, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>> partialBuilder)
-            => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecord>(it)));
-        
-        public static Partial<M2AbsenceItemDeletedContent> WithBy(this Partial<M2AbsenceItemDeletedContent> it)
-            => it.AddFieldName("by");
-        
-        public static Partial<M2AbsenceItemDeletedContent> WithBy(this Partial<M2AbsenceItemDeletedContent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<M2AbsenceItemDeletedContent> WithAbsence(this Partial<M2AbsenceItemDeletedContent> it)
+        => it.AddFieldName("absence");
+    
+    public static Partial<M2AbsenceItemDeletedContent> WithAbsence(this Partial<M2AbsenceItemDeletedContent> it, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>> partialBuilder)
+        => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecord>(it)));
+    
+    public static Partial<M2AbsenceItemDeletedContent> WithBy(this Partial<M2AbsenceItemDeletedContent> it)
+        => it.AddFieldName("by");
+    
+    public static Partial<M2AbsenceItemDeletedContent> WithBy(this Partial<M2AbsenceItemDeletedContent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

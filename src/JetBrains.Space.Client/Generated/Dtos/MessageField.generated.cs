@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MessageField
+     : MessageFieldElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MessageField
-         : MessageFieldElement, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MessageField";
+    
+    public MessageField() { }
+    
+    public MessageField(string first, string second)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MessageField";
-        
-        public MessageField() { }
-        
-        public MessageField(string first, string second)
-        {
-            First = first;
-            Second = second;
-        }
-        
-        private PropertyValue<string> _first = new PropertyValue<string>(nameof(MessageField), nameof(First));
-        
-        [Required]
-        [JsonPropertyName("first")]
-        public string First
-        {
-            get => _first.GetValue();
-            set => _first.SetValue(value);
-        }
-    
-        private PropertyValue<string> _second = new PropertyValue<string>(nameof(MessageField), nameof(Second));
-        
-        [Required]
-        [JsonPropertyName("second")]
-        public string Second
-        {
-            get => _second.GetValue();
-            set => _second.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _first.SetAccessPath(path, validateHasBeenSet);
-            _second.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        First = first;
+        Second = second;
     }
     
+    private PropertyValue<string> _first = new PropertyValue<string>(nameof(MessageField), nameof(First));
+    
+    [Required]
+    [JsonPropertyName("first")]
+    public string First
+    {
+        get => _first.GetValue();
+        set => _first.SetValue(value);
+    }
+
+    private PropertyValue<string> _second = new PropertyValue<string>(nameof(MessageField), nameof(Second));
+    
+    [Required]
+    [JsonPropertyName("second")]
+    public string Second
+    {
+        get => _second.GetValue();
+        set => _second.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _first.SetAccessPath(path, validateHasBeenSet);
+        _second.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

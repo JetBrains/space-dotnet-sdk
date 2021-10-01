@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class Fraction
+     : IPropagatePropertyAccessPath
 {
-    public sealed class Fraction
-         : IPropagatePropertyAccessPath
+    public Fraction() { }
+    
+    public Fraction(int numerator, int denominator)
     {
-        public Fraction() { }
-        
-        public Fraction(int numerator, int denominator)
-        {
-            Numerator = numerator;
-            Denominator = denominator;
-        }
-        
-        private PropertyValue<int> _numerator = new PropertyValue<int>(nameof(Fraction), nameof(Numerator));
-        
-        [Required]
-        [JsonPropertyName("numerator")]
-        public int Numerator
-        {
-            get => _numerator.GetValue();
-            set => _numerator.SetValue(value);
-        }
-    
-        private PropertyValue<int> _denominator = new PropertyValue<int>(nameof(Fraction), nameof(Denominator));
-        
-        [Required]
-        [JsonPropertyName("denominator")]
-        public int Denominator
-        {
-            get => _denominator.GetValue();
-            set => _denominator.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _numerator.SetAccessPath(path, validateHasBeenSet);
-            _denominator.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Numerator = numerator;
+        Denominator = denominator;
     }
     
+    private PropertyValue<int> _numerator = new PropertyValue<int>(nameof(Fraction), nameof(Numerator));
+    
+    [Required]
+    [JsonPropertyName("numerator")]
+    public int Numerator
+    {
+        get => _numerator.GetValue();
+        set => _numerator.SetValue(value);
+    }
+
+    private PropertyValue<int> _denominator = new PropertyValue<int>(nameof(Fraction), nameof(Denominator));
+    
+    [Required]
+    [JsonPropertyName("denominator")]
+    public int Denominator
+    {
+        get => _denominator.GetValue();
+        set => _denominator.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _numerator.SetAccessPath(path, validateHasBeenSet);
+        _denominator.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,26 +27,25 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class HADefaultValueConst
+     : HADefaultValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public class HADefaultValueConst
-         : HADefaultValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "HA_DefaultValue.Const";
+    
+    public static HADefaultValueConstEnumEntry EnumEntry(string entryName)
+        => new HADefaultValueConstEnumEntry(entryName: entryName);
+    
+    public static HADefaultValueConstPrimitive Primitive(string expression)
+        => new HADefaultValueConstPrimitive(expression: expression);
+    
+    public HADefaultValueConst() { }
+    
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "HA_DefaultValue.Const";
-        
-        public static HADefaultValueConstEnumEntry EnumEntry(string entryName)
-            => new HADefaultValueConstEnumEntry(entryName: entryName);
-        
-        public static HADefaultValueConstPrimitive Primitive(string expression)
-            => new HADefaultValueConstPrimitive(expression: expression);
-        
-        public HADefaultValueConst() { }
-        
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

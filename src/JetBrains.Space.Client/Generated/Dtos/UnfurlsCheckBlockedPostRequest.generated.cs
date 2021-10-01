@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class UnfurlsCheckBlockedPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class UnfurlsCheckBlockedPostRequest
-         : IPropagatePropertyAccessPath
+    public UnfurlsCheckBlockedPostRequest() { }
+    
+    public UnfurlsCheckBlockedPostRequest(string link)
     {
-        public UnfurlsCheckBlockedPostRequest() { }
-        
-        public UnfurlsCheckBlockedPostRequest(string link)
-        {
-            Link = link;
-        }
-        
-        private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlsCheckBlockedPostRequest), nameof(Link));
-        
-        [Required]
-        [JsonPropertyName("link")]
-        public string Link
-        {
-            get => _link.GetValue();
-            set => _link.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _link.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Link = link;
     }
     
+    private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlsCheckBlockedPostRequest), nameof(Link));
+    
+    [Required]
+    [JsonPropertyName("link")]
+    public string Link
+    {
+        get => _link.GetValue();
+        set => _link.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _link.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

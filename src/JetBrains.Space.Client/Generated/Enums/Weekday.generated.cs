@@ -27,32 +27,31 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum Weekday
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum Weekday
-    {
-        [EnumMember(Value = "SUNDAY")]
-        SUNDAY,
-        
-        [EnumMember(Value = "MONDAY")]
-        MONDAY,
-        
-        [EnumMember(Value = "TUESDAY")]
-        TUESDAY,
-        
-        [EnumMember(Value = "WEDNESDAY")]
-        WEDNESDAY,
-        
-        [EnumMember(Value = "THURSDAY")]
-        THURSDAY,
-        
-        [EnumMember(Value = "FRIDAY")]
-        FRIDAY,
-        
-        [EnumMember(Value = "SATURDAY")]
-        SATURDAY,
-        
-    }
+    [EnumMember(Value = "SUNDAY")]
+    SUNDAY,
+    
+    [EnumMember(Value = "MONDAY")]
+    MONDAY,
+    
+    [EnumMember(Value = "TUESDAY")]
+    TUESDAY,
+    
+    [EnumMember(Value = "WEDNESDAY")]
+    WEDNESDAY,
+    
+    [EnumMember(Value = "THURSDAY")]
+    THURSDAY,
+    
+    [EnumMember(Value = "FRIDAY")]
+    FRIDAY,
+    
+    [EnumMember(Value = "SATURDAY")]
+    SATURDAY,
     
 }
+

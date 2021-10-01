@@ -27,103 +27,102 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public abstract class CFType
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public abstract class CFType
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "CFType";
+    
+    public static AutonumberCFType Autonumber()
+        => new AutonumberCFType();
+    
+    public static BooleanCFType Boolean()
+        => new BooleanCFType();
+    
+    public static ContactCFType Contact()
+        => new ContactCFType();
+    
+    public static ContactListCFType ContactList()
+        => new ContactListCFType();
+    
+    public static DateCFType Date()
+        => new DateCFType();
+    
+    public static DateTimeCFType DateTime()
+        => new DateTimeCFType();
+    
+    public static DocumentCFType Document()
+        => new DocumentCFType();
+    
+    public static DocumentListCFType DocumentList()
+        => new DocumentListCFType();
+    
+    public static EnumCFType Enum(List<EnumValueData> values)
+        => new EnumCFType(values: values);
+    
+    public static EnumListCFType EnumList(List<EnumValueData> values)
+        => new EnumListCFType(values: values);
+    
+    public static FractionCFType Fraction()
+        => new FractionCFType();
+    
+    public static IntCFType Int()
+        => new IntCFType();
+    
+    public static IntListCFType IntList()
+        => new IntListCFType();
+    
+    public static IssueCFType Issue()
+        => new IssueCFType();
+    
+    public static IssueListCFType IssueList()
+        => new IssueListCFType();
+    
+    public static LocationCFType Location()
+        => new LocationCFType();
+    
+    public static OpenEnumCFType OpenEnum()
+        => new OpenEnumCFType();
+    
+    public static OpenEnumListCFType OpenEnumList()
+        => new OpenEnumListCFType();
+    
+    public static PercentageCFType Percentage()
+        => new PercentageCFType();
+    
+    public static ProfileCFType Profile()
+        => new ProfileCFType();
+    
+    public static ProfileListCFType ProfileList()
+        => new ProfileListCFType();
+    
+    public static ProjectCFType Project()
+        => new ProjectCFType();
+    
+    public static StringCFType String()
+        => new StringCFType();
+    
+    public static StringListCFType StringList()
+        => new StringListCFType();
+    
+    public static TeamCFType Team()
+        => new TeamCFType();
+    
+    public static UrlCFType Url()
+        => new UrlCFType();
+    
+    public static VcsCommitCFType VcsCommit()
+        => new VcsCommitCFType();
+    
+    public static VcsCommitListCFType VcsCommitList()
+        => new VcsCommitListCFType();
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "CFType";
-        
-        public static AutonumberCFType Autonumber()
-            => new AutonumberCFType();
-        
-        public static BooleanCFType Boolean()
-            => new BooleanCFType();
-        
-        public static ContactCFType Contact()
-            => new ContactCFType();
-        
-        public static ContactListCFType ContactList()
-            => new ContactListCFType();
-        
-        public static DateCFType Date()
-            => new DateCFType();
-        
-        public static DateTimeCFType DateTime()
-            => new DateTimeCFType();
-        
-        public static DocumentCFType Document()
-            => new DocumentCFType();
-        
-        public static DocumentListCFType DocumentList()
-            => new DocumentListCFType();
-        
-        public static EnumCFType Enum(List<EnumValueData> values)
-            => new EnumCFType(values: values);
-        
-        public static EnumListCFType EnumList(List<EnumValueData> values)
-            => new EnumListCFType(values: values);
-        
-        public static FractionCFType Fraction()
-            => new FractionCFType();
-        
-        public static IntCFType Int()
-            => new IntCFType();
-        
-        public static IntListCFType IntList()
-            => new IntListCFType();
-        
-        public static IssueCFType Issue()
-            => new IssueCFType();
-        
-        public static IssueListCFType IssueList()
-            => new IssueListCFType();
-        
-        public static LocationCFType Location()
-            => new LocationCFType();
-        
-        public static OpenEnumCFType OpenEnum()
-            => new OpenEnumCFType();
-        
-        public static OpenEnumListCFType OpenEnumList()
-            => new OpenEnumListCFType();
-        
-        public static PercentageCFType Percentage()
-            => new PercentageCFType();
-        
-        public static ProfileCFType Profile()
-            => new ProfileCFType();
-        
-        public static ProfileListCFType ProfileList()
-            => new ProfileListCFType();
-        
-        public static ProjectCFType Project()
-            => new ProjectCFType();
-        
-        public static StringCFType String()
-            => new StringCFType();
-        
-        public static StringListCFType StringList()
-            => new StringListCFType();
-        
-        public static TeamCFType Team()
-            => new TeamCFType();
-        
-        public static UrlCFType Url()
-            => new UrlCFType();
-        
-        public static VcsCommitCFType VcsCommit()
-            => new VcsCommitCFType();
-        
-        public static VcsCommitListCFType VcsCommitList()
-            => new VcsCommitListCFType();
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

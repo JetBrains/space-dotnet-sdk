@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RecurrenceRuleFreqMonthlyOnLastWeekdayPartialBuilder
+namespace JetBrains.Space.Client.RecurrenceRuleFreqMonthlyOnLastWeekdayPartialBuilder;
+
+public static class RecurrenceRuleFreqMonthlyOnLastWeekdayPartialExtensions
 {
-    public static class RecurrenceRuleFreqMonthlyOnLastWeekdayPartialExtensions
-    {
-        public static Partial<RecurrenceRuleFreqMonthlyOnLastWeekday> WithWeekday(this Partial<RecurrenceRuleFreqMonthlyOnLastWeekday> it)
-            => it.AddFieldName("weekday");
-        
-        public static Partial<RecurrenceRuleFreqMonthlyOnLastWeekday> WithWeekday(this Partial<RecurrenceRuleFreqMonthlyOnLastWeekday> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)
-            => it.AddFieldName("weekday", partialBuilder(new Partial<Weekday>(it)));
-        
-        public static Partial<RecurrenceRuleFreqMonthlyOnLastWeekday> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnLastWeekday> it)
-            => it.AddFieldName("interval");
-        
-    }
+    public static Partial<RecurrenceRuleFreqMonthlyOnLastWeekday> WithWeekday(this Partial<RecurrenceRuleFreqMonthlyOnLastWeekday> it)
+        => it.AddFieldName("weekday");
+    
+    public static Partial<RecurrenceRuleFreqMonthlyOnLastWeekday> WithWeekday(this Partial<RecurrenceRuleFreqMonthlyOnLastWeekday> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)
+        => it.AddFieldName("weekday", partialBuilder(new Partial<Weekday>(it)));
+    
+    public static Partial<RecurrenceRuleFreqMonthlyOnLastWeekday> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnLastWeekday> it)
+        => it.AddFieldName("interval");
     
 }
+

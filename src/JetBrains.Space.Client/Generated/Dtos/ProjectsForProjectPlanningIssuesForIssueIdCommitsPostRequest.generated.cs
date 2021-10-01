@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest() { }
+    
+    public ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest(string repository, List<string> commitIds)
     {
-        public ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest() { }
-        
-        public ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest(string repository, List<string> commitIds)
-        {
-            Repository = repository;
-            CommitIds = commitIds;
-        }
-        
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _commitIds = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest), nameof(CommitIds), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("commitIds")]
-        public List<string> CommitIds
-        {
-            get => _commitIds.GetValue();
-            set => _commitIds.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _commitIds.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Repository = repository;
+        CommitIds = commitIds;
     }
     
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public string Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _commitIds = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest), nameof(CommitIds), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("commitIds")]
+    public List<string> CommitIds
+    {
+        get => _commitIds.GetValue();
+        set => _commitIds.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _commitIds.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

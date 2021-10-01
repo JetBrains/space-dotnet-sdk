@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface FeedEvent
+     : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface FeedEvent
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static CodeDiscussionAddedFeedEvent CodeDiscussionAdded(CodeDiscussionRecord codeDiscussion, CodeReviewRecord codeReview)
-            => new CodeDiscussionAddedFeedEvent(codeDiscussion: codeDiscussion, codeReview: codeReview);
-        
-        public static CodeReviewDiscussionAddedFeedEvent CodeReviewDiscussionAdded(CodeReviewDiscussionRecord discussion)
-            => new CodeReviewDiscussionAddedFeedEvent(discussion: discussion);
-        
-        public static MergeRequestBranchDeletedEvent MergeRequestBranchDeletedEvent(string repository, string branch, MergeRequestBranchType branchType)
-            => new MergeRequestBranchDeletedEvent(repository: repository, branch: branch, branchType: branchType);
-        
-        public static MergeRequestBranchRestoredEvent MergeRequestBranchRestoredEvent(string repository, string branch, MergeRequestBranchType branchType)
-            => new MergeRequestBranchRestoredEvent(repository: repository, branch: branch, branchType: branchType);
-        
-        public static MergeRequestMergedEvent MergeRequestMergedEvent(string repository, string sourceBranch, string targetBranch)
-            => new MergeRequestMergedEvent(repository: repository, sourceBranch: sourceBranch, targetBranch: targetBranch);
-        
-        public static ReviewBranchTrackEvent ReviewBranchTrackEvent(string repository, string branch, bool track)
-            => new ReviewBranchTrackEvent(repository: repository, branch: branch, track: track);
-        
-        public static ReviewCompletionStateChangedEvent ReviewCompletionStateChangedEvent(ReviewerState state)
-            => new ReviewCompletionStateChangedEvent(state: state);
-        
-        public static ReviewRevisionsChangedEvent ReviewRevisionsChangedEvent(List<RepositoryCommitRecord> commits, ReviewRevisionsChangedType changeType, string? projectKey = null, CodeReviewRecord? review = null)
-            => new ReviewRevisionsChangedEvent(commits: commits, changeType: changeType, projectKey: projectKey, review: review);
-        
-        public static ReviewStateChangedEvent ReviewStateChangedEvent(CodeReviewState state, CodeReviewRecord? review = null)
-            => new ReviewStateChangedEvent(state: state, review: review);
-        
-        public static ReviewTitleChangedEvent ReviewTitleChangedEvent(string oldTitle, string newTitle)
-            => new ReviewTitleChangedEvent(oldTitle: oldTitle, newTitle: newTitle);
-        
-        public static ReviewerChangedEvent ReviewerChangedEvent(TDMemberProfile uid, ReviewerChangedType changeType)
-            => new ReviewerChangedEvent(uid: uid, changeType: changeType);
-        
-    }
+    public static CodeDiscussionAddedFeedEvent CodeDiscussionAdded(CodeDiscussionRecord codeDiscussion, CodeReviewRecord codeReview)
+        => new CodeDiscussionAddedFeedEvent(codeDiscussion: codeDiscussion, codeReview: codeReview);
+    
+    public static CodeReviewDiscussionAddedFeedEvent CodeReviewDiscussionAdded(CodeReviewDiscussionRecord discussion)
+        => new CodeReviewDiscussionAddedFeedEvent(discussion: discussion);
+    
+    public static MergeRequestBranchDeletedEvent MergeRequestBranchDeletedEvent(string repository, string branch, MergeRequestBranchType branchType)
+        => new MergeRequestBranchDeletedEvent(repository: repository, branch: branch, branchType: branchType);
+    
+    public static MergeRequestBranchRestoredEvent MergeRequestBranchRestoredEvent(string repository, string branch, MergeRequestBranchType branchType)
+        => new MergeRequestBranchRestoredEvent(repository: repository, branch: branch, branchType: branchType);
+    
+    public static MergeRequestMergedEvent MergeRequestMergedEvent(string repository, string sourceBranch, string targetBranch)
+        => new MergeRequestMergedEvent(repository: repository, sourceBranch: sourceBranch, targetBranch: targetBranch);
+    
+    public static ReviewBranchTrackEvent ReviewBranchTrackEvent(string repository, string branch, bool track)
+        => new ReviewBranchTrackEvent(repository: repository, branch: branch, track: track);
+    
+    public static ReviewCompletionStateChangedEvent ReviewCompletionStateChangedEvent(ReviewerState state)
+        => new ReviewCompletionStateChangedEvent(state: state);
+    
+    public static ReviewRevisionsChangedEvent ReviewRevisionsChangedEvent(List<RepositoryCommitRecord> commits, ReviewRevisionsChangedType changeType, string? projectKey = null, CodeReviewRecord? review = null)
+        => new ReviewRevisionsChangedEvent(commits: commits, changeType: changeType, projectKey: projectKey, review: review);
+    
+    public static ReviewStateChangedEvent ReviewStateChangedEvent(CodeReviewState state, CodeReviewRecord? review = null)
+        => new ReviewStateChangedEvent(state: state, review: review);
+    
+    public static ReviewTitleChangedEvent ReviewTitleChangedEvent(string oldTitle, string newTitle)
+        => new ReviewTitleChangedEvent(oldTitle: oldTitle, newTitle: newTitle);
+    
+    public static ReviewerChangedEvent ReviewerChangedEvent(TDMemberProfile uid, ReviewerChangedType changeType)
+        => new ReviewerChangedEvent(uid: uid, changeType: changeType);
     
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HATypeRefPartialBuilder
+namespace JetBrains.Space.Client.HATypeRefPartialBuilder;
+
+public static class HATypeRefPartialExtensions
 {
-    public static class HATypeRefPartialExtensions
-    {
-        public static Partial<HATypeRef> WithDto(this Partial<HATypeRef> it)
-            => it.AddFieldName("dto");
-        
-        public static Partial<HATypeRef> WithDto(this Partial<HATypeRef> it, Func<Partial<HADto>, Partial<HADto>> partialBuilder)
-            => it.AddFieldName("dto", partialBuilder(new Partial<HADto>(it)));
-        
-        public static Partial<HATypeRef> WithIsNullable(this Partial<HATypeRef> it)
-            => it.AddFieldName("nullable");
-        
-        public static Partial<HATypeRef> WithTags(this Partial<HATypeRef> it)
-            => it.AddFieldName("tags");
-        
-    }
+    public static Partial<HATypeRef> WithDto(this Partial<HATypeRef> it)
+        => it.AddFieldName("dto");
+    
+    public static Partial<HATypeRef> WithDto(this Partial<HATypeRef> it, Func<Partial<HADto>, Partial<HADto>> partialBuilder)
+        => it.AddFieldName("dto", partialBuilder(new Partial<HADto>(it)));
+    
+    public static Partial<HATypeRef> WithIsNullable(this Partial<HATypeRef> it)
+        => it.AddFieldName("nullable");
+    
+    public static Partial<HATypeRef> WithTags(this Partial<HATypeRef> it)
+        => it.AddFieldName("tags");
     
 }
+

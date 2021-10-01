@@ -27,55 +27,54 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TDProfileLanguage
+     : IPropagatePropertyAccessPath
 {
-    public sealed class TDProfileLanguage
-         : IPropagatePropertyAccessPath
+    public TDProfileLanguage() { }
+    
+    public TDProfileLanguage(TDLanguage language, TDProfileName? name = null, string? languageCode = null)
     {
-        public TDProfileLanguage() { }
-        
-        public TDProfileLanguage(TDLanguage language, TDProfileName? name = null, string? languageCode = null)
-        {
-            Name = name;
-            Language = language;
-            LanguageCode = languageCode;
-        }
-        
-        private PropertyValue<TDProfileName?> _name = new PropertyValue<TDProfileName?>(nameof(TDProfileLanguage), nameof(Name));
-        
-        [JsonPropertyName("name")]
-        public TDProfileName? Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<TDLanguage> _language = new PropertyValue<TDLanguage>(nameof(TDProfileLanguage), nameof(Language));
-        
-        [Required]
-        [JsonPropertyName("language")]
-        public TDLanguage Language
-        {
-            get => _language.GetValue();
-            set => _language.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _languageCode = new PropertyValue<string?>(nameof(TDProfileLanguage), nameof(LanguageCode));
-        
-        [JsonPropertyName("languageCode")]
-        public string? LanguageCode
-        {
-            get => _languageCode.GetValue();
-            set => _languageCode.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _language.SetAccessPath(path, validateHasBeenSet);
-            _languageCode.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Language = language;
+        LanguageCode = languageCode;
     }
     
+    private PropertyValue<TDProfileName?> _name = new PropertyValue<TDProfileName?>(nameof(TDProfileLanguage), nameof(Name));
+    
+    [JsonPropertyName("name")]
+    public TDProfileName? Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<TDLanguage> _language = new PropertyValue<TDLanguage>(nameof(TDProfileLanguage), nameof(Language));
+    
+    [Required]
+    [JsonPropertyName("language")]
+    public TDLanguage Language
+    {
+        get => _language.GetValue();
+        set => _language.SetValue(value);
+    }
+
+    private PropertyValue<string?> _languageCode = new PropertyValue<string?>(nameof(TDProfileLanguage), nameof(LanguageCode));
+    
+    [JsonPropertyName("languageCode")]
+    public string? LanguageCode
+    {
+        get => _languageCode.GetValue();
+        set => _languageCode.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _language.SetAccessPath(path, validateHasBeenSet);
+        _languageCode.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

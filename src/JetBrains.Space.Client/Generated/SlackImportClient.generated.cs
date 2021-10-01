@@ -27,50 +27,49 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public partial class SlackImportClient : ISpaceClient
 {
-    public partial class SlackImportClient : ISpaceClient
+    private readonly Connection _connection;
+    
+    public SlackImportClient(Connection connection)
     {
-        private readonly Connection _connection;
-        
-        public SlackImportClient(Connection connection)
-        {
-            _connection = connection;
-        }
-        
-        public async Task ResetAccessTokenAsync(CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            await _connection.RequestResourceAsync("POST", $"api/http/slack-import/reset-token{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
-        public async Task SetAccessTokenAsync(string token, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            await _connection.RequestResourceAsync("POST", $"api/http/slack-import/set-token{queryParameters.ToQueryString()}", 
-                new SlackImportSetTokenPostRequest
-                { 
-                    Token = token,
-                }, cancellationToken);
-        }
-        
-    
-        /// <summary>
-        /// Redirect URI for Space Slack App authentication method
-        /// </summary>
-        public async Task SlackOauthRedirectEndpointAsync(string code, string? state = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("code", code);
-            if (state != null) queryParameters.Append("state", state);
-            
-            await _connection.RequestResourceAsync("GET", $"api/http/slack-import/oauth{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
+        _connection = connection;
     }
     
+    public async Task ResetAccessTokenAsync(CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        await _connection.RequestResourceAsync("POST", $"api/http/slack-import/reset-token{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
+    public async Task SetAccessTokenAsync(string token, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        await _connection.RequestResourceAsync("POST", $"api/http/slack-import/set-token{queryParameters.ToQueryString()}", 
+            new SlackImportSetTokenPostRequest
+            { 
+                Token = token,
+            }, cancellationToken);
+    }
+    
+
+    /// <summary>
+    /// Redirect URI for Space Slack App authentication method
+    /// </summary>
+    public async Task SlackOauthRedirectEndpointAsync(string code, string? state = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("code", code);
+        if (state != null) queryParameters.Append("state", state);
+        
+        await _connection.RequestResourceAsync("GET", $"api/http/slack-import/oauth{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
 }
+

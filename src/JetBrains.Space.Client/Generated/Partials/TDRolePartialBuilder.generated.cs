@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDRolePartialBuilder
+namespace JetBrains.Space.Client.TDRolePartialBuilder;
+
+public static class TDRolePartialExtensions
 {
-    public static class TDRolePartialExtensions
-    {
-        public static Partial<TDRole> WithId(this Partial<TDRole> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<TDRole> WithName(this Partial<TDRole> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TDRole> WithParent(this Partial<TDRole> it)
-            => it.AddFieldName("parent");
-        
-        public static Partial<TDRole> WithParentRecursive(this Partial<TDRole> it)
-            => it.AddFieldName("parent!");
-        
-        public static Partial<TDRole> WithParent(this Partial<TDRole> it, Func<Partial<TDRole>, Partial<TDRole>> partialBuilder)
-            => it.AddFieldName("parent", partialBuilder(new Partial<TDRole>(it)));
-        
-        public static Partial<TDRole> WithIsArchived(this Partial<TDRole> it)
-            => it.AddFieldName("archived");
-        
-    }
+    public static Partial<TDRole> WithId(this Partial<TDRole> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<TDRole> WithName(this Partial<TDRole> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TDRole> WithParent(this Partial<TDRole> it)
+        => it.AddFieldName("parent");
+    
+    public static Partial<TDRole> WithParentRecursive(this Partial<TDRole> it)
+        => it.AddFieldName("parent!");
+    
+    public static Partial<TDRole> WithParent(this Partial<TDRole> it, Func<Partial<TDRole>, Partial<TDRole>> partialBuilder)
+        => it.AddFieldName("parent", partialBuilder(new Partial<TDRole>(it)));
+    
+    public static Partial<TDRole> WithIsArchived(this Partial<TDRole> it)
+        => it.AddFieldName("archived");
     
 }
+

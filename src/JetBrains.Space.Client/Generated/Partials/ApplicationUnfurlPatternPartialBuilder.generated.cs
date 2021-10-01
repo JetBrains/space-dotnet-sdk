@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationUnfurlPatternPartialBuilder
+namespace JetBrains.Space.Client.ApplicationUnfurlPatternPartialBuilder;
+
+public static class ApplicationUnfurlPatternPartialExtensions
 {
-    public static class ApplicationUnfurlPatternPartialExtensions
-    {
-        public static Partial<ApplicationUnfurlPattern> WithPattern(this Partial<ApplicationUnfurlPattern> it)
-            => it.AddFieldName("pattern");
-        
-        public static Partial<ApplicationUnfurlPattern> WithLinkReplacement(this Partial<ApplicationUnfurlPattern> it)
-            => it.AddFieldName("linkReplacement");
-        
-        public static Partial<ApplicationUnfurlPattern> WithStatus(this Partial<ApplicationUnfurlPattern> it)
-            => it.AddFieldName("status");
-        
-        public static Partial<ApplicationUnfurlPattern> WithStatus(this Partial<ApplicationUnfurlPattern> it, Func<Partial<RightStatus>, Partial<RightStatus>> partialBuilder)
-            => it.AddFieldName("status", partialBuilder(new Partial<RightStatus>(it)));
-        
-        public static Partial<ApplicationUnfurlPattern> WithModificationAuthor(this Partial<ApplicationUnfurlPattern> it)
-            => it.AddFieldName("modificationAuthor");
-        
-        public static Partial<ApplicationUnfurlPattern> WithModificationAuthor(this Partial<ApplicationUnfurlPattern> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("modificationAuthor", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<ApplicationUnfurlPattern> WithModificationTimestamp(this Partial<ApplicationUnfurlPattern> it)
-            => it.AddFieldName("modificationTimestamp");
-        
-    }
+    public static Partial<ApplicationUnfurlPattern> WithPattern(this Partial<ApplicationUnfurlPattern> it)
+        => it.AddFieldName("pattern");
+    
+    public static Partial<ApplicationUnfurlPattern> WithLinkReplacement(this Partial<ApplicationUnfurlPattern> it)
+        => it.AddFieldName("linkReplacement");
+    
+    public static Partial<ApplicationUnfurlPattern> WithStatus(this Partial<ApplicationUnfurlPattern> it)
+        => it.AddFieldName("status");
+    
+    public static Partial<ApplicationUnfurlPattern> WithStatus(this Partial<ApplicationUnfurlPattern> it, Func<Partial<RightStatus>, Partial<RightStatus>> partialBuilder)
+        => it.AddFieldName("status", partialBuilder(new Partial<RightStatus>(it)));
+    
+    public static Partial<ApplicationUnfurlPattern> WithModificationAuthor(this Partial<ApplicationUnfurlPattern> it)
+        => it.AddFieldName("modificationAuthor");
+    
+    public static Partial<ApplicationUnfurlPattern> WithModificationAuthor(this Partial<ApplicationUnfurlPattern> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("modificationAuthor", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<ApplicationUnfurlPattern> WithModificationTimestamp(this Partial<ApplicationUnfurlPattern> it)
+        => it.AddFieldName("modificationTimestamp");
     
 }
+

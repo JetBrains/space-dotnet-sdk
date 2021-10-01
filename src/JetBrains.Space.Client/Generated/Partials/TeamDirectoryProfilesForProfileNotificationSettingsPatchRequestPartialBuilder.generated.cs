@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileNotificationSettingsPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileNotificationSettingsPatchRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfileNotificationSettingsPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfileNotificationSettingsPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> WithIsEmailNotificationsEnabled(this Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> it)
-            => it.AddFieldName("emailNotificationsEnabled");
-        
-        public static Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> WithNotificationEmail(this Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> it)
-            => it.AddFieldName("notificationEmail");
-        
-        public static Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> WithIsPushNotificationEnabled(this Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> it)
-            => it.AddFieldName("pushNotificationEnabled");
-        
-        public static Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> WithDesktopInactivityTimeout(this Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> it)
-            => it.AddFieldName("desktopInactivityTimeout");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> WithIsEmailNotificationsEnabled(this Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> it)
+        => it.AddFieldName("emailNotificationsEnabled");
+    
+    public static Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> WithNotificationEmail(this Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> it)
+        => it.AddFieldName("notificationEmail");
+    
+    public static Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> WithIsPushNotificationEnabled(this Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> it)
+        => it.AddFieldName("pushNotificationEnabled");
+    
+    public static Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> WithDesktopInactivityTimeout(this Partial<TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest> it)
+        => it.AddFieldName("desktopInactivityTimeout");
     
 }
+

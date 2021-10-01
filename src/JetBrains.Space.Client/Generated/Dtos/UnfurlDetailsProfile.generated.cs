@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsProfile
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsProfile
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsProfile";
+    
+    public UnfurlDetailsProfile() { }
+    
+    public UnfurlDetailsProfile(TDMemberProfile profile, bool? strikeThrough = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsProfile";
-        
-        public UnfurlDetailsProfile() { }
-        
-        public UnfurlDetailsProfile(TDMemberProfile profile, bool? strikeThrough = null)
-        {
-            Profile = profile;
-            IsStrikeThrough = strikeThrough;
-        }
-        
-        private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(UnfurlDetailsProfile), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfile Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsProfile), nameof(IsStrikeThrough));
-        
-        [JsonPropertyName("strikeThrough")]
-        public bool? IsStrikeThrough
-        {
-            get => _strikeThrough.GetValue();
-            set => _strikeThrough.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _strikeThrough.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
+        IsStrikeThrough = strikeThrough;
     }
     
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(UnfurlDetailsProfile), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public TDMemberProfile Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsProfile), nameof(IsStrikeThrough));
+    
+    [JsonPropertyName("strikeThrough")]
+    public bool? IsStrikeThrough
+    {
+        get => _strikeThrough.GetValue();
+        set => _strikeThrough.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

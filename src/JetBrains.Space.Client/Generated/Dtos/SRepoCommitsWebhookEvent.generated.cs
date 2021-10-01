@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class SRepoCommitsWebhookEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class SRepoCommitsWebhookEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "SRepoCommitsWebhookEvent";
+    
+    public SRepoCommitsWebhookEvent() { }
+    
+    public SRepoCommitsWebhookEvent(ProjectKey projectKey, string repository, GitCommitInfoWithChanges commit)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "SRepoCommitsWebhookEvent";
-        
-        public SRepoCommitsWebhookEvent() { }
-        
-        public SRepoCommitsWebhookEvent(ProjectKey projectKey, string repository, GitCommitInfoWithChanges commit)
-        {
-            ProjectKey = projectKey;
-            Repository = repository;
-            Commit = commit;
-        }
-        
-        private PropertyValue<ProjectKey> _projectKey = new PropertyValue<ProjectKey>(nameof(SRepoCommitsWebhookEvent), nameof(ProjectKey));
-        
-        [Required]
-        [JsonPropertyName("projectKey")]
-        public ProjectKey ProjectKey
-        {
-            get => _projectKey.GetValue();
-            set => _projectKey.SetValue(value);
-        }
-    
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(SRepoCommitsWebhookEvent), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<GitCommitInfoWithChanges> _commit = new PropertyValue<GitCommitInfoWithChanges>(nameof(SRepoCommitsWebhookEvent), nameof(Commit));
-        
-        [Required]
-        [JsonPropertyName("commit")]
-        public GitCommitInfoWithChanges Commit
-        {
-            get => _commit.GetValue();
-            set => _commit.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _projectKey.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _commit.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ProjectKey = projectKey;
+        Repository = repository;
+        Commit = commit;
     }
     
+    private PropertyValue<ProjectKey> _projectKey = new PropertyValue<ProjectKey>(nameof(SRepoCommitsWebhookEvent), nameof(ProjectKey));
+    
+    [Required]
+    [JsonPropertyName("projectKey")]
+    public ProjectKey ProjectKey
+    {
+        get => _projectKey.GetValue();
+        set => _projectKey.SetValue(value);
+    }
+
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(SRepoCommitsWebhookEvent), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public string Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<GitCommitInfoWithChanges> _commit = new PropertyValue<GitCommitInfoWithChanges>(nameof(SRepoCommitsWebhookEvent), nameof(Commit));
+    
+    [Required]
+    [JsonPropertyName("commit")]
+    public GitCommitInfoWithChanges Commit
+    {
+        get => _commit.GetValue();
+        set => _commit.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _projectKey.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _commit.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

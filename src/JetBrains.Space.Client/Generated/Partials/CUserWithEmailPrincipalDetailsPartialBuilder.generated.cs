@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CUserWithEmailPrincipalDetailsPartialBuilder
+namespace JetBrains.Space.Client.CUserWithEmailPrincipalDetailsPartialBuilder;
+
+public static class CUserWithEmailPrincipalDetailsPartialExtensions
 {
-    public static class CUserWithEmailPrincipalDetailsPartialExtensions
-    {
-        public static Partial<CUserWithEmailPrincipalDetails> WithName(this Partial<CUserWithEmailPrincipalDetails> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<CUserWithEmailPrincipalDetails> WithEmail(this Partial<CUserWithEmailPrincipalDetails> it)
-            => it.AddFieldName("email");
-        
-    }
+    public static Partial<CUserWithEmailPrincipalDetails> WithName(this Partial<CUserWithEmailPrincipalDetails> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<CUserWithEmailPrincipalDetails> WithEmail(this Partial<CUserWithEmailPrincipalDetails> it)
+        => it.AddFieldName("email");
     
 }
+

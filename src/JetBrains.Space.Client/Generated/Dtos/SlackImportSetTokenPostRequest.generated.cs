@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class SlackImportSetTokenPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class SlackImportSetTokenPostRequest
-         : IPropagatePropertyAccessPath
+    public SlackImportSetTokenPostRequest() { }
+    
+    public SlackImportSetTokenPostRequest(string token)
     {
-        public SlackImportSetTokenPostRequest() { }
-        
-        public SlackImportSetTokenPostRequest(string token)
-        {
-            Token = token;
-        }
-        
-        private PropertyValue<string> _token = new PropertyValue<string>(nameof(SlackImportSetTokenPostRequest), nameof(Token));
-        
-        [Required]
-        [JsonPropertyName("token")]
-        public string Token
-        {
-            get => _token.GetValue();
-            set => _token.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _token.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Token = token;
     }
     
+    private PropertyValue<string> _token = new PropertyValue<string>(nameof(SlackImportSetTokenPostRequest), nameof(Token));
+    
+    [Required]
+    [JsonPropertyName("token")]
+    public string Token
+    {
+        get => _token.GetValue();
+        set => _token.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _token.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

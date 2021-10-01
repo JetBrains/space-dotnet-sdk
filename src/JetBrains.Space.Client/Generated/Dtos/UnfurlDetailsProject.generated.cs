@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsProject
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsProject
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsProject";
+    
+    public UnfurlDetailsProject() { }
+    
+    public UnfurlDetailsProject(PRProject project, bool? strikeThrough = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsProject";
-        
-        public UnfurlDetailsProject() { }
-        
-        public UnfurlDetailsProject(PRProject project, bool? strikeThrough = null)
-        {
-            Project = project;
-            IsStrikeThrough = strikeThrough;
-        }
-        
-        private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsProject), nameof(Project));
-        
-        [Required]
-        [JsonPropertyName("project")]
-        public PRProject Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsProject), nameof(IsStrikeThrough));
-        
-        [JsonPropertyName("strikeThrough")]
-        public bool? IsStrikeThrough
-        {
-            get => _strikeThrough.GetValue();
-            set => _strikeThrough.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _strikeThrough.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Project = project;
+        IsStrikeThrough = strikeThrough;
     }
     
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsProject), nameof(Project));
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public PRProject Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsProject), nameof(IsStrikeThrough));
+    
+    [JsonPropertyName("strikeThrough")]
+    public bool? IsStrikeThrough
+    {
+        get => _strikeThrough.GetValue();
+        set => _strikeThrough.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _project.SetAccessPath(path, validateHasBeenSet);
+        _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

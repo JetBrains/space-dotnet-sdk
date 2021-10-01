@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PackagesExecutionResultFailurePartialBuilder
+namespace JetBrains.Space.Client.PackagesExecutionResultFailurePartialBuilder;
+
+public static class PackagesExecutionResultFailurePartialExtensions
 {
-    public static class PackagesExecutionResultFailurePartialExtensions
-    {
-        public static Partial<PackagesExecutionResultFailure> WithError(this Partial<PackagesExecutionResultFailure> it)
-            => it.AddFieldName("error");
-        
-    }
+    public static Partial<PackagesExecutionResultFailure> WithError(this Partial<PackagesExecutionResultFailure> it)
+        => it.AddFieldName("error");
     
 }
+

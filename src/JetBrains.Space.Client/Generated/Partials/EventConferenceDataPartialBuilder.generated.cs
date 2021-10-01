@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EventConferenceDataPartialBuilder
+namespace JetBrains.Space.Client.EventConferenceDataPartialBuilder;
+
+public static class EventConferenceDataPartialExtensions
 {
-    public static class EventConferenceDataPartialExtensions
-    {
-        public static Partial<EventConferenceData> WithKind(this Partial<EventConferenceData> it)
-            => it.AddFieldName("kind");
-        
-        public static Partial<EventConferenceData> WithKind(this Partial<EventConferenceData> it, Func<Partial<EventConferenceKind>, Partial<EventConferenceKind>> partialBuilder)
-            => it.AddFieldName("kind", partialBuilder(new Partial<EventConferenceKind>(it)));
-        
-        public static Partial<EventConferenceData> WithUrl(this Partial<EventConferenceData> it)
-            => it.AddFieldName("url");
-        
-    }
+    public static Partial<EventConferenceData> WithKind(this Partial<EventConferenceData> it)
+        => it.AddFieldName("kind");
+    
+    public static Partial<EventConferenceData> WithKind(this Partial<EventConferenceData> it, Func<Partial<EventConferenceKind>, Partial<EventConferenceKind>> partialBuilder)
+        => it.AddFieldName("kind", partialBuilder(new Partial<EventConferenceKind>(it)));
+    
+    public static Partial<EventConferenceData> WithUrl(this Partial<EventConferenceData> it)
+        => it.AddFieldName("url");
     
 }
+

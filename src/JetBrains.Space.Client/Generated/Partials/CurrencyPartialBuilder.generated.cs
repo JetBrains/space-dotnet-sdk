@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CurrencyPartialBuilder
+namespace JetBrains.Space.Client.CurrencyPartialBuilder;
+
+public static class CurrencyPartialExtensions
 {
-    public static class CurrencyPartialExtensions
-    {
-        public static Partial<Currency> WithCode(this Partial<Currency> it)
-            => it.AddFieldName("code");
-        
-        public static Partial<Currency> WithSign(this Partial<Currency> it)
-            => it.AddFieldName("sign");
-        
-        public static Partial<Currency> WithIsSignAsPrefix(this Partial<Currency> it)
-            => it.AddFieldName("signAsPrefix");
-        
-        public static Partial<Currency> WithIsHasCents(this Partial<Currency> it)
-            => it.AddFieldName("hasCents");
-        
-    }
+    public static Partial<Currency> WithCode(this Partial<Currency> it)
+        => it.AddFieldName("code");
+    
+    public static Partial<Currency> WithSign(this Partial<Currency> it)
+        => it.AddFieldName("sign");
+    
+    public static Partial<Currency> WithIsSignAsPrefix(this Partial<Currency> it)
+        => it.AddFieldName("signAsPrefix");
+    
+    public static Partial<Currency> WithIsHasCents(this Partial<Currency> it)
+        => it.AddFieldName("hasCents");
     
 }
+

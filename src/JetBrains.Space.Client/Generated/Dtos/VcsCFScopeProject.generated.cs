@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class VcsCFScopeProject
+     : VcsCFScope, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class VcsCFScopeProject
-         : VcsCFScope, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "VcsCFScope.Project";
+    
+    public VcsCFScopeProject() { }
+    
+    public VcsCFScopeProject(PRProject project)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "VcsCFScope.Project";
-        
-        public VcsCFScopeProject() { }
-        
-        public VcsCFScopeProject(PRProject project)
-        {
-            Project = project;
-        }
-        
-        private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(VcsCFScopeProject), nameof(Project));
-        
-        [Required]
-        [JsonPropertyName("project")]
-        public PRProject Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _project.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Project = project;
     }
     
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(VcsCFScopeProject), nameof(Project));
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public PRProject Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _project.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

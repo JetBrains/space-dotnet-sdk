@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsProfilePartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsProfilePartialBuilder;
+
+public static class UnfurlDetailsProfilePartialExtensions
 {
-    public static class UnfurlDetailsProfilePartialExtensions
-    {
-        public static Partial<UnfurlDetailsProfile> WithProfile(this Partial<UnfurlDetailsProfile> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<UnfurlDetailsProfile> WithProfile(this Partial<UnfurlDetailsProfile> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<UnfurlDetailsProfile> WithIsStrikeThrough(this Partial<UnfurlDetailsProfile> it)
-            => it.AddFieldName("strikeThrough");
-        
-    }
+    public static Partial<UnfurlDetailsProfile> WithProfile(this Partial<UnfurlDetailsProfile> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<UnfurlDetailsProfile> WithProfile(this Partial<UnfurlDetailsProfile> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<UnfurlDetailsProfile> WithIsStrikeThrough(this Partial<UnfurlDetailsProfile> it)
+        => it.AddFieldName("strikeThrough");
     
 }
+

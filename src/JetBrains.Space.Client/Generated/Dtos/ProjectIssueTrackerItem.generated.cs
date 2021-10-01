@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ProjectIssueTrackerItem
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ProjectIssueTrackerItem
-         : IPropagatePropertyAccessPath
+    public ProjectIssueTrackerItem() { }
+    
+    public ProjectIssueTrackerItem(string key, IssueTracker tracker)
     {
-        public ProjectIssueTrackerItem() { }
-        
-        public ProjectIssueTrackerItem(string key, IssueTracker tracker)
-        {
-            Key = key;
-            Tracker = tracker;
-        }
-        
-        private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectIssueTrackerItem), nameof(Key));
-        
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key
-        {
-            get => _key.GetValue();
-            set => _key.SetValue(value);
-        }
-    
-        private PropertyValue<IssueTracker> _tracker = new PropertyValue<IssueTracker>(nameof(ProjectIssueTrackerItem), nameof(Tracker));
-        
-        [Required]
-        [JsonPropertyName("tracker")]
-        public IssueTracker Tracker
-        {
-            get => _tracker.GetValue();
-            set => _tracker.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _key.SetAccessPath(path, validateHasBeenSet);
-            _tracker.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Key = key;
+        Tracker = tracker;
     }
     
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectIssueTrackerItem), nameof(Key));
+    
+    [Required]
+    [JsonPropertyName("key")]
+    public string Key
+    {
+        get => _key.GetValue();
+        set => _key.SetValue(value);
+    }
+
+    private PropertyValue<IssueTracker> _tracker = new PropertyValue<IssueTracker>(nameof(ProjectIssueTrackerItem), nameof(Tracker));
+    
+    [Required]
+    [JsonPropertyName("tracker")]
+    public IssueTracker Tracker
+    {
+        get => _tracker.GetValue();
+        set => _tracker.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _key.SetAccessPath(path, validateHasBeenSet);
+        _tracker.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

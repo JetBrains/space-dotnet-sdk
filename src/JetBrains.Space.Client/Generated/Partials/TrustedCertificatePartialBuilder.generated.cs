@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TrustedCertificatePartialBuilder
+namespace JetBrains.Space.Client.TrustedCertificatePartialBuilder;
+
+public static class TrustedCertificatePartialExtensions
 {
-    public static class TrustedCertificatePartialExtensions
-    {
-        public static Partial<TrustedCertificate> WithId(this Partial<TrustedCertificate> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<TrustedCertificate> WithAlias(this Partial<TrustedCertificate> it)
-            => it.AddFieldName("alias");
-        
-        public static Partial<TrustedCertificate> WithData(this Partial<TrustedCertificate> it)
-            => it.AddFieldName("data");
-        
-        public static Partial<TrustedCertificate> WithInfo(this Partial<TrustedCertificate> it)
-            => it.AddFieldName("info");
-        
-        public static Partial<TrustedCertificate> WithInfo(this Partial<TrustedCertificate> it, Func<Partial<CertificateInfo>, Partial<CertificateInfo>> partialBuilder)
-            => it.AddFieldName("info", partialBuilder(new Partial<CertificateInfo>(it)));
-        
-        public static Partial<TrustedCertificate> WithIsArchived(this Partial<TrustedCertificate> it)
-            => it.AddFieldName("archived");
-        
-    }
+    public static Partial<TrustedCertificate> WithId(this Partial<TrustedCertificate> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<TrustedCertificate> WithAlias(this Partial<TrustedCertificate> it)
+        => it.AddFieldName("alias");
+    
+    public static Partial<TrustedCertificate> WithData(this Partial<TrustedCertificate> it)
+        => it.AddFieldName("data");
+    
+    public static Partial<TrustedCertificate> WithInfo(this Partial<TrustedCertificate> it)
+        => it.AddFieldName("info");
+    
+    public static Partial<TrustedCertificate> WithInfo(this Partial<TrustedCertificate> it, Func<Partial<CertificateInfo>, Partial<CertificateInfo>> partialBuilder)
+        => it.AddFieldName("info", partialBuilder(new Partial<CertificateInfo>(it)));
+    
+    public static Partial<TrustedCertificate> WithIsArchived(this Partial<TrustedCertificate> it)
+        => it.AddFieldName("archived");
     
 }
+

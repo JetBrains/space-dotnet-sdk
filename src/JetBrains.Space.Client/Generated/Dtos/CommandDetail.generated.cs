@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CommandDetail
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CommandDetail
-         : IPropagatePropertyAccessPath
+    public CommandDetail() { }
+    
+    public CommandDetail(string name, string description)
     {
-        public CommandDetail() { }
-        
-        public CommandDetail(string name, string description)
-        {
-            Name = name;
-            Description = description;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(CommandDetail), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _description = new PropertyValue<string>(nameof(CommandDetail), nameof(Description));
-        
-        [Required]
-        [JsonPropertyName("description")]
-        public string Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Description = description;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(CommandDetail), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(CommandDetail), nameof(Description));
+    
+    [Required]
+    [JsonPropertyName("description")]
+    public string Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

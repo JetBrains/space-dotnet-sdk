@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryLocationsForIdMapPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryLocationsForIdMapPatchRequestPartialBuilder;
+
+public static class TeamDirectoryLocationsForIdMapPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryLocationsForIdMapPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryLocationsForIdMapPatchRequest> WithMapPictureId(this Partial<TeamDirectoryLocationsForIdMapPatchRequest> it)
-            => it.AddFieldName("mapPictureId");
-        
-    }
+    public static Partial<TeamDirectoryLocationsForIdMapPatchRequest> WithMapPictureId(this Partial<TeamDirectoryLocationsForIdMapPatchRequest> it)
+        => it.AddFieldName("mapPictureId");
     
 }
+

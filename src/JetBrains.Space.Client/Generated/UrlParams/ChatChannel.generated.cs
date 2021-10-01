@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class ChatChannel : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class ChatChannel : IUrlParameter
+    public static ChatChannel FromId(string id)
+        => new ChatChannelFromId(id);
+    
+    public static ChatChannel FromName(string name)
+        => new ChatChannelFromName(name);
+    
+    private class ChatChannelFromId : ChatChannel
     {
-        public static ChatChannel FromId(string id)
-            => new ChatChannelFromId(id);
+        private readonly string _id;
         
-        public static ChatChannel FromName(string name)
-            => new ChatChannelFromName(name);
-        
-        private class ChatChannelFromId : ChatChannel
+        public ChatChannelFromId(string id)
         {
-            private readonly string _id;
-            
-            public ChatChannelFromId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
-        private class ChatChannelFromName : ChatChannel
+        public override string ToString()
+            => $"id:{_id}";
+    }
+    
+    private class ChatChannelFromName : ChatChannel
+    {
+        private readonly string _name;
+        
+        public ChatChannelFromName(string name)
         {
-            private readonly string _name;
-            
-            public ChatChannelFromName(string name)
-            {
-                _name = name;
-            }
-            
-            public override string ToString()
-                => $"name:{_name}";
+            _name = name;
         }
         
+        public override string ToString()
+            => $"name:{_name}";
     }
     
 }
+

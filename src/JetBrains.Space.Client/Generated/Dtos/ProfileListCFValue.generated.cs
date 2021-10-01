@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ProfileListCFValue
+     : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ProfileListCFValue
-         : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ProfileListCFValue";
+    
+    public ProfileListCFValue() { }
+    
+    public ProfileListCFValue(List<TDMemberProfile> profiles)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ProfileListCFValue";
-        
-        public ProfileListCFValue() { }
-        
-        public ProfileListCFValue(List<TDMemberProfile> profiles)
-        {
-            Profiles = profiles;
-        }
-        
-        private PropertyValue<List<TDMemberProfile>> _profiles = new PropertyValue<List<TDMemberProfile>>(nameof(ProfileListCFValue), nameof(Profiles), new List<TDMemberProfile>());
-        
-        [Required]
-        [JsonPropertyName("profiles")]
-        public List<TDMemberProfile> Profiles
-        {
-            get => _profiles.GetValue();
-            set => _profiles.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profiles.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profiles = profiles;
     }
     
+    private PropertyValue<List<TDMemberProfile>> _profiles = new PropertyValue<List<TDMemberProfile>>(nameof(ProfileListCFValue), nameof(Profiles), new List<TDMemberProfile>());
+    
+    [Required]
+    [JsonPropertyName("profiles")]
+    public List<TDMemberProfile> Profiles
+    {
+        get => _profiles.GetValue();
+        set => _profiles.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profiles.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

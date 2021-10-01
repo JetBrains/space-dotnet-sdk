@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ConfigurePermissionsAction
+     : ClientSideActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ConfigurePermissionsAction
-         : ClientSideActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ConfigurePermissionsAction";
+    
+    public ConfigurePermissionsAction() { }
+    
+    public ConfigurePermissionsAction(ESApp app, PermissionContextIdentifier context)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ConfigurePermissionsAction";
-        
-        public ConfigurePermissionsAction() { }
-        
-        public ConfigurePermissionsAction(ESApp app, PermissionContextIdentifier context)
-        {
-            App = app;
-            Context = context;
-        }
-        
-        private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(ConfigurePermissionsAction), nameof(App));
-        
-        [Required]
-        [JsonPropertyName("app")]
-        public ESApp App
-        {
-            get => _app.GetValue();
-            set => _app.SetValue(value);
-        }
-    
-        private PropertyValue<PermissionContextIdentifier> _context = new PropertyValue<PermissionContextIdentifier>(nameof(ConfigurePermissionsAction), nameof(Context));
-        
-        [Required]
-        [JsonPropertyName("context")]
-        public PermissionContextIdentifier Context
-        {
-            get => _context.GetValue();
-            set => _context.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _app.SetAccessPath(path, validateHasBeenSet);
-            _context.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        App = app;
+        Context = context;
     }
     
+    private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(ConfigurePermissionsAction), nameof(App));
+    
+    [Required]
+    [JsonPropertyName("app")]
+    public ESApp App
+    {
+        get => _app.GetValue();
+        set => _app.SetValue(value);
+    }
+
+    private PropertyValue<PermissionContextIdentifier> _context = new PropertyValue<PermissionContextIdentifier>(nameof(ConfigurePermissionsAction), nameof(Context));
+    
+    [Required]
+    [JsonPropertyName("context")]
+    public PermissionContextIdentifier Context
+    {
+        get => _context.GetValue();
+        set => _context.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _app.SetAccessPath(path, validateHasBeenSet);
+        _context.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

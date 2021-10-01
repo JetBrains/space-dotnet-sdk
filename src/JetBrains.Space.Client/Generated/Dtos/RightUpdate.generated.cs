@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RightUpdate
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RightUpdate
-         : IPropagatePropertyAccessPath
+    public RightUpdate() { }
+    
+    public RightUpdate(string rightCode, RightStatus status)
     {
-        public RightUpdate() { }
-        
-        public RightUpdate(string rightCode, RightStatus status)
-        {
-            RightCode = rightCode;
-            Status = status;
-        }
-        
-        private PropertyValue<string> _rightCode = new PropertyValue<string>(nameof(RightUpdate), nameof(RightCode));
-        
-        [Required]
-        [JsonPropertyName("rightCode")]
-        public string RightCode
-        {
-            get => _rightCode.GetValue();
-            set => _rightCode.SetValue(value);
-        }
-    
-        private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(RightUpdate), nameof(Status));
-        
-        [Required]
-        [JsonPropertyName("status")]
-        public RightStatus Status
-        {
-            get => _status.GetValue();
-            set => _status.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _rightCode.SetAccessPath(path, validateHasBeenSet);
-            _status.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        RightCode = rightCode;
+        Status = status;
     }
     
+    private PropertyValue<string> _rightCode = new PropertyValue<string>(nameof(RightUpdate), nameof(RightCode));
+    
+    [Required]
+    [JsonPropertyName("rightCode")]
+    public string RightCode
+    {
+        get => _rightCode.GetValue();
+        set => _rightCode.SetValue(value);
+    }
+
+    private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(RightUpdate), nameof(Status));
+    
+    [Required]
+    [JsonPropertyName("status")]
+    public RightStatus Status
+    {
+        get => _status.GetValue();
+        set => _status.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _rightCode.SetAccessPath(path, validateHasBeenSet);
+        _status.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

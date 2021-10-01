@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UrlCFValuePartialBuilder
+namespace JetBrains.Space.Client.UrlCFValuePartialBuilder;
+
+public static class UrlCFValuePartialExtensions
 {
-    public static class UrlCFValuePartialExtensions
-    {
-        public static Partial<UrlCFValue> WithHref(this Partial<UrlCFValue> it)
-            => it.AddFieldName("href");
-        
-    }
+    public static Partial<UrlCFValue> WithHref(this Partial<UrlCFValue> it)
+        => it.AddFieldName("href");
     
 }
+

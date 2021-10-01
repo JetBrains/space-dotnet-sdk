@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChatsMessagesEditTextMessagePostRequestPartialBuilder
+namespace JetBrains.Space.Client.ChatsMessagesEditTextMessagePostRequestPartialBuilder;
+
+public static class ChatsMessagesEditTextMessagePostRequestPartialExtensions
 {
-    public static class ChatsMessagesEditTextMessagePostRequestPartialExtensions
-    {
-        public static Partial<ChatsMessagesEditTextMessagePostRequest> WithChannelId(this Partial<ChatsMessagesEditTextMessagePostRequest> it)
-            => it.AddFieldName("channelId");
-        
-        public static Partial<ChatsMessagesEditTextMessagePostRequest> WithText(this Partial<ChatsMessagesEditTextMessagePostRequest> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<ChatsMessagesEditTextMessagePostRequest> WithMessageId(this Partial<ChatsMessagesEditTextMessagePostRequest> it)
-            => it.AddFieldName("messageId");
-        
-    }
+    public static Partial<ChatsMessagesEditTextMessagePostRequest> WithChannelId(this Partial<ChatsMessagesEditTextMessagePostRequest> it)
+        => it.AddFieldName("channelId");
+    
+    public static Partial<ChatsMessagesEditTextMessagePostRequest> WithText(this Partial<ChatsMessagesEditTextMessagePostRequest> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<ChatsMessagesEditTextMessagePostRequest> WithMessageId(this Partial<ChatsMessagesEditTextMessagePostRequest> it)
+        => it.AddFieldName("messageId");
     
 }
+

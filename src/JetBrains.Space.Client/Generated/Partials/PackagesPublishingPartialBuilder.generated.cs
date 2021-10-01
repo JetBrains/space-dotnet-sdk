@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PackagesPublishingPartialBuilder
+namespace JetBrains.Space.Client.PackagesPublishingPartialBuilder;
+
+public static class PackagesPublishingPartialExtensions
 {
-    public static class PackagesPublishingPartialExtensions
-    {
-        public static Partial<PackagesPublishing> WithPublishingId(this Partial<PackagesPublishing> it)
-            => it.AddFieldName("publishingId");
-        
-        public static Partial<PackagesPublishing> WithCreated(this Partial<PackagesPublishing> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<PackagesPublishing> WithStarted(this Partial<PackagesPublishing> it)
-            => it.AddFieldName("started");
-        
-        public static Partial<PackagesPublishing> WithCompleted(this Partial<PackagesPublishing> it)
-            => it.AddFieldName("completed");
-        
-        public static Partial<PackagesPublishing> WithIsSuccessful(this Partial<PackagesPublishing> it)
-            => it.AddFieldName("successful");
-        
-        public static Partial<PackagesPublishing> WithError(this Partial<PackagesPublishing> it)
-            => it.AddFieldName("error");
-        
-        public static Partial<PackagesPublishing> WithPrincipal(this Partial<PackagesPublishing> it)
-            => it.AddFieldName("principal");
-        
-        public static Partial<PackagesPublishing> WithPrincipal(this Partial<PackagesPublishing> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipal>(it)));
-        
-    }
+    public static Partial<PackagesPublishing> WithPublishingId(this Partial<PackagesPublishing> it)
+        => it.AddFieldName("publishingId");
+    
+    public static Partial<PackagesPublishing> WithCreated(this Partial<PackagesPublishing> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<PackagesPublishing> WithStarted(this Partial<PackagesPublishing> it)
+        => it.AddFieldName("started");
+    
+    public static Partial<PackagesPublishing> WithCompleted(this Partial<PackagesPublishing> it)
+        => it.AddFieldName("completed");
+    
+    public static Partial<PackagesPublishing> WithIsSuccessful(this Partial<PackagesPublishing> it)
+        => it.AddFieldName("successful");
+    
+    public static Partial<PackagesPublishing> WithError(this Partial<PackagesPublishing> it)
+        => it.AddFieldName("error");
+    
+    public static Partial<PackagesPublishing> WithPrincipal(this Partial<PackagesPublishing> it)
+        => it.AddFieldName("principal");
+    
+    public static Partial<PackagesPublishing> WithPrincipal(this Partial<PackagesPublishing> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipal>(it)));
     
 }
+

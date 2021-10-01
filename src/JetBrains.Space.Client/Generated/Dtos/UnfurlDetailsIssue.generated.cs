@@ -27,58 +27,57 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsIssue
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsIssue
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsIssue";
+    
+    public UnfurlDetailsIssue() { }
+    
+    public UnfurlDetailsIssue(Issue issue, bool? strikeThrough = null, bool? compact = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsIssue";
-        
-        public UnfurlDetailsIssue() { }
-        
-        public UnfurlDetailsIssue(Issue issue, bool? strikeThrough = null, bool? compact = null)
-        {
-            Issue = issue;
-            IsStrikeThrough = strikeThrough;
-            IsCompact = compact;
-        }
-        
-        private PropertyValue<Issue> _issue = new PropertyValue<Issue>(nameof(UnfurlDetailsIssue), nameof(Issue));
-        
-        [Required]
-        [JsonPropertyName("issue")]
-        public Issue Issue
-        {
-            get => _issue.GetValue();
-            set => _issue.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsIssue), nameof(IsStrikeThrough));
-        
-        [JsonPropertyName("strikeThrough")]
-        public bool? IsStrikeThrough
-        {
-            get => _strikeThrough.GetValue();
-            set => _strikeThrough.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _compact = new PropertyValue<bool?>(nameof(UnfurlDetailsIssue), nameof(IsCompact));
-        
-        [JsonPropertyName("compact")]
-        public bool? IsCompact
-        {
-            get => _compact.GetValue();
-            set => _compact.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _issue.SetAccessPath(path, validateHasBeenSet);
-            _strikeThrough.SetAccessPath(path, validateHasBeenSet);
-            _compact.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Issue = issue;
+        IsStrikeThrough = strikeThrough;
+        IsCompact = compact;
     }
     
+    private PropertyValue<Issue> _issue = new PropertyValue<Issue>(nameof(UnfurlDetailsIssue), nameof(Issue));
+    
+    [Required]
+    [JsonPropertyName("issue")]
+    public Issue Issue
+    {
+        get => _issue.GetValue();
+        set => _issue.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsIssue), nameof(IsStrikeThrough));
+    
+    [JsonPropertyName("strikeThrough")]
+    public bool? IsStrikeThrough
+    {
+        get => _strikeThrough.GetValue();
+        set => _strikeThrough.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _compact = new PropertyValue<bool?>(nameof(UnfurlDetailsIssue), nameof(IsCompact));
+    
+    [JsonPropertyName("compact")]
+    public bool? IsCompact
+    {
+        get => _compact.GetValue();
+        set => _compact.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _issue.SetAccessPath(path, validateHasBeenSet);
+        _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+        _compact.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

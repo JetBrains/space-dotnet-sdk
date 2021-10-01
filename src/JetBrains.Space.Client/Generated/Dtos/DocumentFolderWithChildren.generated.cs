@@ -27,93 +27,92 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DocumentFolderWithChildren
+     : IPropagatePropertyAccessPath
 {
-    public sealed class DocumentFolderWithChildren
-         : IPropagatePropertyAccessPath
+    public DocumentFolderWithChildren() { }
+    
+    public DocumentFolderWithChildren(string id, bool archived, string containerLinkId, DocumentContainerInfo containerInfo, List<DocumentFolderWithChildren> subfolders, List<Document> documents)
     {
-        public DocumentFolderWithChildren() { }
-        
-        public DocumentFolderWithChildren(string id, bool archived, string containerLinkId, DocumentContainerInfo containerInfo, List<DocumentFolderWithChildren> subfolders, List<Document> documents)
-        {
-            Id = id;
-            IsArchived = archived;
-            ContainerLinkId = containerLinkId;
-            ContainerInfo = containerInfo;
-            Subfolders = subfolders;
-            Documents = documents;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(DocumentFolderWithChildren), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(DocumentFolderWithChildren), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        private PropertyValue<string> _containerLinkId = new PropertyValue<string>(nameof(DocumentFolderWithChildren), nameof(ContainerLinkId));
-        
-        [Required]
-        [JsonPropertyName("containerLinkId")]
-        public string ContainerLinkId
-        {
-            get => _containerLinkId.GetValue();
-            set => _containerLinkId.SetValue(value);
-        }
-    
-        private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(DocumentFolderWithChildren), nameof(ContainerInfo));
-        
-        [Required]
-        [JsonPropertyName("containerInfo")]
-        public DocumentContainerInfo ContainerInfo
-        {
-            get => _containerInfo.GetValue();
-            set => _containerInfo.SetValue(value);
-        }
-    
-        private PropertyValue<List<DocumentFolderWithChildren>> _subfolders = new PropertyValue<List<DocumentFolderWithChildren>>(nameof(DocumentFolderWithChildren), nameof(Subfolders), new List<DocumentFolderWithChildren>());
-        
-        [Required]
-        [JsonPropertyName("subfolders")]
-        public List<DocumentFolderWithChildren> Subfolders
-        {
-            get => _subfolders.GetValue();
-            set => _subfolders.SetValue(value);
-        }
-    
-        private PropertyValue<List<Document>> _documents = new PropertyValue<List<Document>>(nameof(DocumentFolderWithChildren), nameof(Documents), new List<Document>());
-        
-        [Required]
-        [JsonPropertyName("documents")]
-        public List<Document> Documents
-        {
-            get => _documents.GetValue();
-            set => _documents.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-            _containerLinkId.SetAccessPath(path, validateHasBeenSet);
-            _containerInfo.SetAccessPath(path, validateHasBeenSet);
-            _subfolders.SetAccessPath(path, validateHasBeenSet);
-            _documents.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        IsArchived = archived;
+        ContainerLinkId = containerLinkId;
+        ContainerInfo = containerInfo;
+        Subfolders = subfolders;
+        Documents = documents;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(DocumentFolderWithChildren), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(DocumentFolderWithChildren), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<string> _containerLinkId = new PropertyValue<string>(nameof(DocumentFolderWithChildren), nameof(ContainerLinkId));
+    
+    [Required]
+    [JsonPropertyName("containerLinkId")]
+    public string ContainerLinkId
+    {
+        get => _containerLinkId.GetValue();
+        set => _containerLinkId.SetValue(value);
+    }
+
+    private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(DocumentFolderWithChildren), nameof(ContainerInfo));
+    
+    [Required]
+    [JsonPropertyName("containerInfo")]
+    public DocumentContainerInfo ContainerInfo
+    {
+        get => _containerInfo.GetValue();
+        set => _containerInfo.SetValue(value);
+    }
+
+    private PropertyValue<List<DocumentFolderWithChildren>> _subfolders = new PropertyValue<List<DocumentFolderWithChildren>>(nameof(DocumentFolderWithChildren), nameof(Subfolders), new List<DocumentFolderWithChildren>());
+    
+    [Required]
+    [JsonPropertyName("subfolders")]
+    public List<DocumentFolderWithChildren> Subfolders
+    {
+        get => _subfolders.GetValue();
+        set => _subfolders.SetValue(value);
+    }
+
+    private PropertyValue<List<Document>> _documents = new PropertyValue<List<Document>>(nameof(DocumentFolderWithChildren), nameof(Documents), new List<Document>());
+    
+    [Required]
+    [JsonPropertyName("documents")]
+    public List<Document> Documents
+    {
+        get => _documents.GetValue();
+        set => _documents.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _containerLinkId.SetAccessPath(path, validateHasBeenSet);
+        _containerInfo.SetAccessPath(path, validateHasBeenSet);
+        _subfolders.SetAccessPath(path, validateHasBeenSet);
+        _documents.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

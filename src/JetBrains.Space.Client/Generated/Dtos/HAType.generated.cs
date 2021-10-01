@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class HAType
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class HAType
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "HA_Type";
+    
+    public static HATypeArray Array(HAType elementType, bool nullable, List<string> tags)
+        => new HATypeArray(elementType: elementType, nullable: nullable, tags: tags);
+    
+    public static HATypeDto Dto(HADto dto, bool nullable, List<string> tags)
+        => new HATypeDto(dto: dto, nullable: nullable, tags: tags);
+    
+    public static HATypeEnum Enum(HAEnum @enum, bool nullable, List<string> tags)
+        => new HATypeEnum(@enum: @enum, nullable: nullable, tags: tags);
+    
+    public static HATypeMap Map(HAType valueType, bool nullable, List<string> tags)
+        => new HATypeMap(valueType: valueType, nullable: nullable, tags: tags);
+    
+    public static HATypeObject Object(List<HAField> fields, HATypeObjectKind kind, bool nullable, List<string> tags)
+        => new HATypeObject(fields: fields, kind: kind, nullable: nullable, tags: tags);
+    
+    public static HATypePrimitive Primitive(HAPrimitive primitive, bool nullable, List<string> tags)
+        => new HATypePrimitive(primitive: primitive, nullable: nullable, tags: tags);
+    
+    public static HATypeRef Ref(HADto dto, bool nullable, List<string> tags)
+        => new HATypeRef(dto: dto, nullable: nullable, tags: tags);
+    
+    public static HATypeUrlParam UrlParam(HAUrlParameter urlParam, bool nullable, List<string> tags)
+        => new HATypeUrlParam(urlParam: urlParam, nullable: nullable, tags: tags);
+    
+    public HAType() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "HA_Type";
-        
-        public static HATypeArray Array(HAType elementType, bool nullable, List<string> tags)
-            => new HATypeArray(elementType: elementType, nullable: nullable, tags: tags);
-        
-        public static HATypeDto Dto(HADto dto, bool nullable, List<string> tags)
-            => new HATypeDto(dto: dto, nullable: nullable, tags: tags);
-        
-        public static HATypeEnum Enum(HAEnum @enum, bool nullable, List<string> tags)
-            => new HATypeEnum(@enum: @enum, nullable: nullable, tags: tags);
-        
-        public static HATypeMap Map(HAType valueType, bool nullable, List<string> tags)
-            => new HATypeMap(valueType: valueType, nullable: nullable, tags: tags);
-        
-        public static HATypeObject Object(List<HAField> fields, HATypeObjectKind kind, bool nullable, List<string> tags)
-            => new HATypeObject(fields: fields, kind: kind, nullable: nullable, tags: tags);
-        
-        public static HATypePrimitive Primitive(HAPrimitive primitive, bool nullable, List<string> tags)
-            => new HATypePrimitive(primitive: primitive, nullable: nullable, tags: tags);
-        
-        public static HATypeRef Ref(HADto dto, bool nullable, List<string> tags)
-            => new HATypeRef(dto: dto, nullable: nullable, tags: tags);
-        
-        public static HATypeUrlParam UrlParam(HAUrlParameter urlParam, bool nullable, List<string> tags)
-            => new HATypeUrlParam(urlParam: urlParam, nullable: nullable, tags: tags);
-        
-        public HAType() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

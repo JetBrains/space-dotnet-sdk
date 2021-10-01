@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MCDividerPartialBuilder
+namespace JetBrains.Space.Client.MCDividerPartialBuilder;
+
+public static class MCDividerPartialExtensions
 {
-    public static class MCDividerPartialExtensions
-    {
-    }
-    
 }
+

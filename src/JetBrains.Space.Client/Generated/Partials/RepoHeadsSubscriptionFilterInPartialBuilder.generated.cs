@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RepoHeadsSubscriptionFilterInPartialBuilder
+namespace JetBrains.Space.Client.RepoHeadsSubscriptionFilterInPartialBuilder;
+
+public static class RepoHeadsSubscriptionFilterInPartialExtensions
 {
-    public static class RepoHeadsSubscriptionFilterInPartialExtensions
-    {
-        public static Partial<RepoHeadsSubscriptionFilterIn> WithProject(this Partial<RepoHeadsSubscriptionFilterIn> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<RepoHeadsSubscriptionFilterIn> WithRepository(this Partial<RepoHeadsSubscriptionFilterIn> it)
-            => it.AddFieldName("repository");
-        
-    }
+    public static Partial<RepoHeadsSubscriptionFilterIn> WithProject(this Partial<RepoHeadsSubscriptionFilterIn> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<RepoHeadsSubscriptionFilterIn> WithRepository(this Partial<RepoHeadsSubscriptionFilterIn> it)
+        => it.AddFieldName("repository");
     
 }
+

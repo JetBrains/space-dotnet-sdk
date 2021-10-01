@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class MeetingOrganizer
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class MeetingOrganizer
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "MeetingOrganizer";
+    
+    public static MeetingOrganizerApplication Application(ESApp? applicationRef = null)
+        => new MeetingOrganizerApplication(applicationRef: applicationRef);
+    
+    public static MeetingOrganizerExternalUser ExternalUser(string email)
+        => new MeetingOrganizerExternalUser(email: email);
+    
+    public static MeetingOrganizerHiddenUser HiddenUser()
+        => new MeetingOrganizerHiddenUser();
+    
+    public static MeetingOrganizerUser User(TDMemberProfile profileRef)
+        => new MeetingOrganizerUser(profileRef: profileRef);
+    
+    public MeetingOrganizer() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "MeetingOrganizer";
-        
-        public static MeetingOrganizerApplication Application(ESApp? applicationRef = null)
-            => new MeetingOrganizerApplication(applicationRef: applicationRef);
-        
-        public static MeetingOrganizerExternalUser ExternalUser(string email)
-            => new MeetingOrganizerExternalUser(email: email);
-        
-        public static MeetingOrganizerHiddenUser HiddenUser()
-            => new MeetingOrganizerHiddenUser();
-        
-        public static MeetingOrganizerUser User(TDMemberProfile profileRef)
-            => new MeetingOrganizerUser(profileRef: profileRef);
-        
-        public MeetingOrganizer() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

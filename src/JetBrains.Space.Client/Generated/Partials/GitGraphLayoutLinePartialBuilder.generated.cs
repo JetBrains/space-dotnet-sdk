@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitGraphLayoutLinePartialBuilder
+namespace JetBrains.Space.Client.GitGraphLayoutLinePartialBuilder;
+
+public static class GitGraphLayoutLinePartialExtensions
 {
-    public static class GitGraphLayoutLinePartialExtensions
-    {
-        public static Partial<GitGraphLayoutLine> WithNodes(this Partial<GitGraphLayoutLine> it)
-            => it.AddFieldName("nodes");
-        
-        public static Partial<GitGraphLayoutLine> WithNodes(this Partial<GitGraphLayoutLine> it, Func<Partial<GitGraphLayoutNode>, Partial<GitGraphLayoutNode>> partialBuilder)
-            => it.AddFieldName("nodes", partialBuilder(new Partial<GitGraphLayoutNode>(it)));
-        
-        public static Partial<GitGraphLayoutLine> WithEdges(this Partial<GitGraphLayoutLine> it)
-            => it.AddFieldName("edges");
-        
-        public static Partial<GitGraphLayoutLine> WithEdges(this Partial<GitGraphLayoutLine> it, Func<Partial<GitGraphLayoutEdge>, Partial<GitGraphLayoutEdge>> partialBuilder)
-            => it.AddFieldName("edges", partialBuilder(new Partial<GitGraphLayoutEdge>(it)));
-        
-    }
+    public static Partial<GitGraphLayoutLine> WithNodes(this Partial<GitGraphLayoutLine> it)
+        => it.AddFieldName("nodes");
+    
+    public static Partial<GitGraphLayoutLine> WithNodes(this Partial<GitGraphLayoutLine> it, Func<Partial<GitGraphLayoutNode>, Partial<GitGraphLayoutNode>> partialBuilder)
+        => it.AddFieldName("nodes", partialBuilder(new Partial<GitGraphLayoutNode>(it)));
+    
+    public static Partial<GitGraphLayoutLine> WithEdges(this Partial<GitGraphLayoutLine> it)
+        => it.AddFieldName("edges");
+    
+    public static Partial<GitGraphLayoutLine> WithEdges(this Partial<GitGraphLayoutLine> it, Func<Partial<GitGraphLayoutEdge>, Partial<GitGraphLayoutEdge>> partialBuilder)
+        => it.AddFieldName("edges", partialBuilder(new Partial<GitGraphLayoutEdge>(it)));
     
 }
+

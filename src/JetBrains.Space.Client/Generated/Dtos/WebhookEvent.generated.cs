@@ -27,89 +27,88 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface WebhookEvent
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface WebhookEvent
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static AbsenceWebhookEvent Absence(KMetaMod meta, AbsenceRecord absence, TDMemberProfile member, Modification<string>? icon = null, Modification<AbsenceReasonRecord>? reason = null, Modification<string>? description = null, Modification<DateTime>? since = null, Modification<DateTime>? till = null, Modification<TDLocation>? location = null, Modification<bool>? available = null)
-            => new AbsenceWebhookEvent(meta: meta, absence: absence, member: member, icon: icon, reason: reason, description: description, since: since, till: till, location: location, available: available);
-        
-        public static ApplicationAuthorizationRequestedEvent ApplicationAuthorizationRequestedEvent(KMetaMod meta, ESApp application, AuthScope scope)
-            => new ApplicationAuthorizationRequestedEvent(meta: meta, application: application, scope: scope);
-        
-        public static ApplicationAuthorizedWebhookEvent ApplicationAuthorized(KMetaMod meta, ESApp application, AuthScope scope)
-            => new ApplicationAuthorizedWebhookEvent(meta: meta, application: application, scope: scope);
-        
-        public static ApplicationSshKeyWebhookEvent ApplicationSshKey(KMetaMod meta, ESApp application, Modification<string>? fingerprint = null, Modification<string>? comment = null)
-            => new ApplicationSshKeyWebhookEvent(meta: meta, application: application, fingerprint: fingerprint, comment: comment);
-        
-        public static ApplicationUnfurlTargetsRequestedEvent ApplicationUnfurlTargetsRequestedEvent(KMetaMod meta, ESApp application, ApplicationUnfurlTarget target)
-            => new ApplicationUnfurlTargetsRequestedEvent(meta: meta, application: application, target: target);
-        
-        public static ApplicationWebhookEvent Application(KMetaMod meta, ESApp application, bool clientIdChanged, bool clientSecretChanged, bool verificationTokenChanged, bool signingKeyChanged, Modification<string>? name = null, Modification<TDMemberProfile>? owner = null, Modification<bool>? archived = null, Modification<string>? endpointURI = null)
-            => new ApplicationWebhookEvent(meta: meta, application: application, clientIdChanged: clientIdChanged, clientSecretChanged: clientSecretChanged, verificationTokenChanged: verificationTokenChanged, signingKeyChanged: signingKeyChanged, name: name, owner: owner, archived: archived, endpointURI: endpointURI);
-        
-        public static AutomationJobEvent AutomationJobEvent(KMetaMod meta, string executionId, PRProject project, string repositoryName, string jobName, long executionNumber, JobExecutionTrigger trigger, DateTime triggerTime, Modification<JobExecutionStatus>? status = null, Modification<List<FailureConditionType>>? failureReasons = null, Modification<CPrincipal>? stoppedBy = null, Modification<DateTime>? startTime = null, Modification<DateTime>? endTime = null)
-            => new AutomationJobEvent(meta: meta, executionId: executionId, project: project, repositoryName: repositoryName, jobName: jobName, executionNumber: executionNumber, trigger: trigger, triggerTime: triggerTime, status: status, failureReasons: failureReasons, stoppedBy: stoppedBy, startTime: startTime, endTime: endTime);
-        
-        public static BlogWebhookEvent Blog(KMetaMod meta, ArticleRecord article, bool textChanged, string? action = null, Modification<TDMemberProfile>? author = null, Modification<DateTime>? created = null, Modification<string>? title = null, Modification<bool>? unpublished = null, Modification<List<TDMemberProfile>>? teams = null, Modification<List<TDMemberProfile>>? locations = null, Modification<long>? externalEntityInfo = null)
-            => new BlogWebhookEvent(meta: meta, article: article, textChanged: textChanged, action: action, author: author, created: created, title: title, unpublished: unpublished, teams: teams, locations: locations, externalEntityInfo: externalEntityInfo);
-        
-        public static ChannelEvent ChannelEvent(KMetaMod meta, M2ChannelRecord channel, Modification<string>? name = null, Modification<string>? description = null, Modification<string>? icon = null, bool? restored = null, bool? archived = null)
-            => new ChannelEvent(meta: meta, channel: channel, name: name, description: description, icon: icon, restored: restored, archived: archived);
-        
-        public static CodeReviewWebhookEvent CodeReview(ProjectKey projectKey, string repository, string reviewId, string title, bool isMergeRequest)
-            => new CodeReviewWebhookEvent(projectKey: projectKey, repository: repository, reviewId: reviewId, title: title, isMergeRequest: isMergeRequest);
-        
-        public static DocumentEditorsChangedEvent DocumentEditorsChangedEvent(KMetaMod meta, string document)
-            => new DocumentEditorsChangedEvent(meta: meta, document: document);
-        
-        public static DocumentMetaWebhookEvent DocumentMeta(KMetaMod meta, string document, Modification<bool>? deleted = null, Modification<bool>? published = null)
-            => new DocumentMetaWebhookEvent(meta: meta, document: document, deleted: deleted, published: published);
-        
-        public static DocumentWebhookEvent Document(KMetaMod meta, string document, List<CPrincipal> changeAuthors, DateTime version, DateTime @base)
-            => new DocumentWebhookEvent(meta: meta, document: document, changeAuthors: changeAuthors, version: version, @base: @base);
-        
-        public static EmailBouncedEvent EmailBouncedEvent(string email, string reason)
-            => new EmailBouncedEvent(email: email, reason: reason);
-        
-        public static FeatureFlagWebhookEvent FeatureFlag(KMetaMod meta, string name, int? issueNumber = null, Modification<bool>? enabledForAll = null, Modification<bool>? selfManageable = null, List<TDTeam>? addedTeams = null, List<TDTeam>? addedProfiles = null, List<TDMemberProfile>? removedTeams = null, List<TDMemberProfile>? removedProfiles = null)
-            => new FeatureFlagWebhookEvent(meta: meta, name: name, issueNumber: issueNumber, enabledForAll: enabledForAll, selfManageable: selfManageable, addedTeams: addedTeams, addedProfiles: addedProfiles, removedTeams: removedTeams, removedProfiles: removedProfiles);
-        
-        public static IssueWebhookEvent Issue(KMetaMod meta, Issue issue, Modification<string>? title = null, Modification<string>? description = null, Modification<TDMemberProfile>? assignee = null, Modification<IssueStatus>? status = null, Modification<DateTime>? dueDate = null, Modification<List<PlanningTag>>? tagDelta = null, Modification<List<Topic>>? topicDelta = null, Modification<List<Checklist>>? checklistDelta = null, Modification<List<SprintRecord>>? sprintDelta = null, IssueWebhookCustomFieldUpdate? customFieldUpdate = null, Modification<bool>? deleted = null)
-            => new IssueWebhookEvent(meta: meta, issue: issue, title: title, description: description, assignee: assignee, status: status, dueDate: dueDate, tagDelta: tagDelta, topicDelta: topicDelta, checklistDelta: checklistDelta, sprintDelta: sprintDelta, customFieldUpdate: customFieldUpdate, deleted: deleted);
-        
-        public static LocationEvent LocationEvent(KMetaMod meta, TDLocation location)
-            => new LocationEvent(meta: meta, location: location);
-        
-        public static MeetingWebhookEvent Meeting(KMetaMod meta, MeetingRecord meeting)
-            => new MeetingWebhookEvent(meta: meta, meeting: meeting);
-        
-        public static PingWebhookEvent Ping(string webhookName)
-            => new PingWebhookEvent(webhookName: webhookName);
-        
-        public static ProfileOrganizationEvent ProfileOrganizationEvent(KMetaMod meta, TDMemberProfile member, bool? joinedOrganization = null, bool? leftOrganization = null)
-            => new ProfileOrganizationEvent(meta: meta, member: member, joinedOrganization: joinedOrganization, leftOrganization: leftOrganization);
-        
-        public static ProjectEvent ProjectEvent(KMetaMod meta, PRProject project)
-            => new ProjectEvent(meta: meta, project: project);
-        
-        public static SPackageRepositoryWebhookEvent SPackageRepository(ProjectKey projectKey, string repository, PackageType repositoryType, PackageRepositoryEventAction action, PackageVersionRef packageInfo)
-            => new SPackageRepositoryWebhookEvent(projectKey: projectKey, repository: repository, repositoryType: repositoryType, action: action, packageInfo: packageInfo);
-        
-        public static SRepoCommitsWebhookEvent SRepoCommits(ProjectKey projectKey, string repository, GitCommitInfoWithChanges commit)
-            => new SRepoCommitsWebhookEvent(projectKey: projectKey, repository: repository, commit: commit);
-        
-        public static SRepoHeadsWebhookEvent SRepoHeads(ProjectKey projectKey, string repository, RepoChanges changes)
-            => new SRepoHeadsWebhookEvent(projectKey: projectKey, repository: repository, changes: changes);
-        
-        public static TeamEvent TeamEvent(KMetaMod meta, TDTeam team)
-            => new TeamEvent(meta: meta, team: team);
-        
-        public static TeamMembershipEvent TeamMembershipEvent(KMetaMod meta, TDMembership membership, Modification<TDTeam>? team = null, Modification<TDRole>? role = null, Modification<bool>? lead = null, Modification<TDMemberProfile>? manager = null, Modification<DateTime>? since = null, Modification<DateTime>? till = null, Modification<bool>? deleted = null, Modification<TDMemberProfile>? approvedBy = null)
-            => new TeamMembershipEvent(meta: meta, membership: membership, team: team, role: role, lead: lead, manager: manager, since: since, till: till, deleted: deleted, approvedBy: approvedBy);
-        
-    }
+    public static AbsenceWebhookEvent Absence(KMetaMod meta, AbsenceRecord absence, TDMemberProfile member, Modification<string>? icon = null, Modification<AbsenceReasonRecord>? reason = null, Modification<string>? description = null, Modification<DateTime>? since = null, Modification<DateTime>? till = null, Modification<TDLocation>? location = null, Modification<bool>? available = null)
+        => new AbsenceWebhookEvent(meta: meta, absence: absence, member: member, icon: icon, reason: reason, description: description, since: since, till: till, location: location, available: available);
+    
+    public static ApplicationAuthorizationRequestedEvent ApplicationAuthorizationRequestedEvent(KMetaMod meta, ESApp application, AuthScope scope)
+        => new ApplicationAuthorizationRequestedEvent(meta: meta, application: application, scope: scope);
+    
+    public static ApplicationAuthorizedWebhookEvent ApplicationAuthorized(KMetaMod meta, ESApp application, AuthScope scope)
+        => new ApplicationAuthorizedWebhookEvent(meta: meta, application: application, scope: scope);
+    
+    public static ApplicationSshKeyWebhookEvent ApplicationSshKey(KMetaMod meta, ESApp application, Modification<string>? fingerprint = null, Modification<string>? comment = null)
+        => new ApplicationSshKeyWebhookEvent(meta: meta, application: application, fingerprint: fingerprint, comment: comment);
+    
+    public static ApplicationUnfurlTargetsRequestedEvent ApplicationUnfurlTargetsRequestedEvent(KMetaMod meta, ESApp application, ApplicationUnfurlTarget target)
+        => new ApplicationUnfurlTargetsRequestedEvent(meta: meta, application: application, target: target);
+    
+    public static ApplicationWebhookEvent Application(KMetaMod meta, ESApp application, bool clientIdChanged, bool clientSecretChanged, bool verificationTokenChanged, bool signingKeyChanged, Modification<string>? name = null, Modification<TDMemberProfile>? owner = null, Modification<bool>? archived = null, Modification<string>? endpointURI = null)
+        => new ApplicationWebhookEvent(meta: meta, application: application, clientIdChanged: clientIdChanged, clientSecretChanged: clientSecretChanged, verificationTokenChanged: verificationTokenChanged, signingKeyChanged: signingKeyChanged, name: name, owner: owner, archived: archived, endpointURI: endpointURI);
+    
+    public static AutomationJobEvent AutomationJobEvent(KMetaMod meta, string executionId, PRProject project, string repositoryName, string jobName, long executionNumber, JobExecutionTrigger trigger, DateTime triggerTime, Modification<JobExecutionStatus>? status = null, Modification<List<FailureConditionType>>? failureReasons = null, Modification<CPrincipal>? stoppedBy = null, Modification<DateTime>? startTime = null, Modification<DateTime>? endTime = null)
+        => new AutomationJobEvent(meta: meta, executionId: executionId, project: project, repositoryName: repositoryName, jobName: jobName, executionNumber: executionNumber, trigger: trigger, triggerTime: triggerTime, status: status, failureReasons: failureReasons, stoppedBy: stoppedBy, startTime: startTime, endTime: endTime);
+    
+    public static BlogWebhookEvent Blog(KMetaMod meta, ArticleRecord article, bool textChanged, string? action = null, Modification<TDMemberProfile>? author = null, Modification<DateTime>? created = null, Modification<string>? title = null, Modification<bool>? unpublished = null, Modification<List<TDMemberProfile>>? teams = null, Modification<List<TDMemberProfile>>? locations = null, Modification<long>? externalEntityInfo = null)
+        => new BlogWebhookEvent(meta: meta, article: article, textChanged: textChanged, action: action, author: author, created: created, title: title, unpublished: unpublished, teams: teams, locations: locations, externalEntityInfo: externalEntityInfo);
+    
+    public static ChannelEvent ChannelEvent(KMetaMod meta, M2ChannelRecord channel, Modification<string>? name = null, Modification<string>? description = null, Modification<string>? icon = null, bool? restored = null, bool? archived = null)
+        => new ChannelEvent(meta: meta, channel: channel, name: name, description: description, icon: icon, restored: restored, archived: archived);
+    
+    public static CodeReviewWebhookEvent CodeReview(ProjectKey projectKey, string repository, string reviewId, string title, bool isMergeRequest)
+        => new CodeReviewWebhookEvent(projectKey: projectKey, repository: repository, reviewId: reviewId, title: title, isMergeRequest: isMergeRequest);
+    
+    public static DocumentEditorsChangedEvent DocumentEditorsChangedEvent(KMetaMod meta, string document)
+        => new DocumentEditorsChangedEvent(meta: meta, document: document);
+    
+    public static DocumentMetaWebhookEvent DocumentMeta(KMetaMod meta, string document, Modification<bool>? deleted = null, Modification<bool>? published = null)
+        => new DocumentMetaWebhookEvent(meta: meta, document: document, deleted: deleted, published: published);
+    
+    public static DocumentWebhookEvent Document(KMetaMod meta, string document, List<CPrincipal> changeAuthors, DateTime version, DateTime @base)
+        => new DocumentWebhookEvent(meta: meta, document: document, changeAuthors: changeAuthors, version: version, @base: @base);
+    
+    public static EmailBouncedEvent EmailBouncedEvent(string email, string reason)
+        => new EmailBouncedEvent(email: email, reason: reason);
+    
+    public static FeatureFlagWebhookEvent FeatureFlag(KMetaMod meta, string name, int? issueNumber = null, Modification<bool>? enabledForAll = null, Modification<bool>? selfManageable = null, List<TDTeam>? addedTeams = null, List<TDTeam>? addedProfiles = null, List<TDMemberProfile>? removedTeams = null, List<TDMemberProfile>? removedProfiles = null)
+        => new FeatureFlagWebhookEvent(meta: meta, name: name, issueNumber: issueNumber, enabledForAll: enabledForAll, selfManageable: selfManageable, addedTeams: addedTeams, addedProfiles: addedProfiles, removedTeams: removedTeams, removedProfiles: removedProfiles);
+    
+    public static IssueWebhookEvent Issue(KMetaMod meta, Issue issue, Modification<string>? title = null, Modification<string>? description = null, Modification<TDMemberProfile>? assignee = null, Modification<IssueStatus>? status = null, Modification<DateTime>? dueDate = null, Modification<List<PlanningTag>>? tagDelta = null, Modification<List<Topic>>? topicDelta = null, Modification<List<Checklist>>? checklistDelta = null, Modification<List<SprintRecord>>? sprintDelta = null, IssueWebhookCustomFieldUpdate? customFieldUpdate = null, Modification<bool>? deleted = null)
+        => new IssueWebhookEvent(meta: meta, issue: issue, title: title, description: description, assignee: assignee, status: status, dueDate: dueDate, tagDelta: tagDelta, topicDelta: topicDelta, checklistDelta: checklistDelta, sprintDelta: sprintDelta, customFieldUpdate: customFieldUpdate, deleted: deleted);
+    
+    public static LocationEvent LocationEvent(KMetaMod meta, TDLocation location)
+        => new LocationEvent(meta: meta, location: location);
+    
+    public static MeetingWebhookEvent Meeting(KMetaMod meta, MeetingRecord meeting)
+        => new MeetingWebhookEvent(meta: meta, meeting: meeting);
+    
+    public static PingWebhookEvent Ping(string webhookName)
+        => new PingWebhookEvent(webhookName: webhookName);
+    
+    public static ProfileOrganizationEvent ProfileOrganizationEvent(KMetaMod meta, TDMemberProfile member, bool? joinedOrganization = null, bool? leftOrganization = null)
+        => new ProfileOrganizationEvent(meta: meta, member: member, joinedOrganization: joinedOrganization, leftOrganization: leftOrganization);
+    
+    public static ProjectEvent ProjectEvent(KMetaMod meta, PRProject project)
+        => new ProjectEvent(meta: meta, project: project);
+    
+    public static SPackageRepositoryWebhookEvent SPackageRepository(ProjectKey projectKey, string repository, PackageType repositoryType, PackageRepositoryEventAction action, PackageVersionRef packageInfo)
+        => new SPackageRepositoryWebhookEvent(projectKey: projectKey, repository: repository, repositoryType: repositoryType, action: action, packageInfo: packageInfo);
+    
+    public static SRepoCommitsWebhookEvent SRepoCommits(ProjectKey projectKey, string repository, GitCommitInfoWithChanges commit)
+        => new SRepoCommitsWebhookEvent(projectKey: projectKey, repository: repository, commit: commit);
+    
+    public static SRepoHeadsWebhookEvent SRepoHeads(ProjectKey projectKey, string repository, RepoChanges changes)
+        => new SRepoHeadsWebhookEvent(projectKey: projectKey, repository: repository, changes: changes);
+    
+    public static TeamEvent TeamEvent(KMetaMod meta, TDTeam team)
+        => new TeamEvent(meta: meta, team: team);
+    
+    public static TeamMembershipEvent TeamMembershipEvent(KMetaMod meta, TDMembership membership, Modification<TDTeam>? team = null, Modification<TDRole>? role = null, Modification<bool>? lead = null, Modification<TDMemberProfile>? manager = null, Modification<DateTime>? since = null, Modification<DateTime>? till = null, Modification<bool>? deleted = null, Modification<TDMemberProfile>? approvedBy = null)
+        => new TeamMembershipEvent(meta: meta, membership: membership, team: team, role: role, lead: lead, manager: manager, since: since, till: till, deleted: deleted, approvedBy: approvedBy);
     
 }
+

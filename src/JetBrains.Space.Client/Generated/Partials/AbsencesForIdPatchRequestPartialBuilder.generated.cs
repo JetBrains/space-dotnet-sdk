@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AbsencesForIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.AbsencesForIdPatchRequestPartialBuilder;
+
+public static class AbsencesForIdPatchRequestPartialExtensions
 {
-    public static class AbsencesForIdPatchRequestPartialExtensions
-    {
-        public static Partial<AbsencesForIdPatchRequest> WithMember(this Partial<AbsencesForIdPatchRequest> it)
-            => it.AddFieldName("member");
-        
-        public static Partial<AbsencesForIdPatchRequest> WithReason(this Partial<AbsencesForIdPatchRequest> it)
-            => it.AddFieldName("reason");
-        
-        public static Partial<AbsencesForIdPatchRequest> WithDescription(this Partial<AbsencesForIdPatchRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<AbsencesForIdPatchRequest> WithLocation(this Partial<AbsencesForIdPatchRequest> it)
-            => it.AddFieldName("location");
-        
-        public static Partial<AbsencesForIdPatchRequest> WithSince(this Partial<AbsencesForIdPatchRequest> it)
-            => it.AddFieldName("since");
-        
-        public static Partial<AbsencesForIdPatchRequest> WithTill(this Partial<AbsencesForIdPatchRequest> it)
-            => it.AddFieldName("till");
-        
-        public static Partial<AbsencesForIdPatchRequest> WithIsAvailable(this Partial<AbsencesForIdPatchRequest> it)
-            => it.AddFieldName("available");
-        
-        public static Partial<AbsencesForIdPatchRequest> WithIcon(this Partial<AbsencesForIdPatchRequest> it)
-            => it.AddFieldName("icon");
-        
-        public static Partial<AbsencesForIdPatchRequest> WithCustomFieldValues(this Partial<AbsencesForIdPatchRequest> it)
-            => it.AddFieldName("customFieldValues");
-        
-        public static Partial<AbsencesForIdPatchRequest> WithCustomFieldValues(this Partial<AbsencesForIdPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
-        
-    }
+    public static Partial<AbsencesForIdPatchRequest> WithMember(this Partial<AbsencesForIdPatchRequest> it)
+        => it.AddFieldName("member");
+    
+    public static Partial<AbsencesForIdPatchRequest> WithReason(this Partial<AbsencesForIdPatchRequest> it)
+        => it.AddFieldName("reason");
+    
+    public static Partial<AbsencesForIdPatchRequest> WithDescription(this Partial<AbsencesForIdPatchRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<AbsencesForIdPatchRequest> WithLocation(this Partial<AbsencesForIdPatchRequest> it)
+        => it.AddFieldName("location");
+    
+    public static Partial<AbsencesForIdPatchRequest> WithSince(this Partial<AbsencesForIdPatchRequest> it)
+        => it.AddFieldName("since");
+    
+    public static Partial<AbsencesForIdPatchRequest> WithTill(this Partial<AbsencesForIdPatchRequest> it)
+        => it.AddFieldName("till");
+    
+    public static Partial<AbsencesForIdPatchRequest> WithIsAvailable(this Partial<AbsencesForIdPatchRequest> it)
+        => it.AddFieldName("available");
+    
+    public static Partial<AbsencesForIdPatchRequest> WithIcon(this Partial<AbsencesForIdPatchRequest> it)
+        => it.AddFieldName("icon");
+    
+    public static Partial<AbsencesForIdPatchRequest> WithCustomFieldValues(this Partial<AbsencesForIdPatchRequest> it)
+        => it.AddFieldName("customFieldValues");
+    
+    public static Partial<AbsencesForIdPatchRequest> WithCustomFieldValues(this Partial<AbsencesForIdPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+        => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
     
 }
+

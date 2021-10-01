@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageActionPayloadPartialBuilder
+namespace JetBrains.Space.Client.MessageActionPayloadPartialBuilder;
+
+public static class MessageActionPayloadPartialExtensions
 {
-    public static class MessageActionPayloadPartialExtensions
-    {
-        public static Partial<MessageActionPayload> WithActionId(this Partial<MessageActionPayload> it)
-            => it.AddFieldName("actionId");
-        
-        public static Partial<MessageActionPayload> WithActionValue(this Partial<MessageActionPayload> it)
-            => it.AddFieldName("actionValue");
-        
-        public static Partial<MessageActionPayload> WithMessage(this Partial<MessageActionPayload> it)
-            => it.AddFieldName("message");
-        
-        public static Partial<MessageActionPayload> WithMessage(this Partial<MessageActionPayload> it, Func<Partial<MessageContext>, Partial<MessageContext>> partialBuilder)
-            => it.AddFieldName("message", partialBuilder(new Partial<MessageContext>(it)));
-        
-        public static Partial<MessageActionPayload> WithClientId(this Partial<MessageActionPayload> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<MessageActionPayload> WithUserId(this Partial<MessageActionPayload> it)
-            => it.AddFieldName("userId");
-        
-        public static Partial<MessageActionPayload> WithVerificationToken(this Partial<MessageActionPayload> it)
-            => it.AddFieldName("verificationToken");
-        
-    }
+    public static Partial<MessageActionPayload> WithActionId(this Partial<MessageActionPayload> it)
+        => it.AddFieldName("actionId");
+    
+    public static Partial<MessageActionPayload> WithActionValue(this Partial<MessageActionPayload> it)
+        => it.AddFieldName("actionValue");
+    
+    public static Partial<MessageActionPayload> WithMessage(this Partial<MessageActionPayload> it)
+        => it.AddFieldName("message");
+    
+    public static Partial<MessageActionPayload> WithMessage(this Partial<MessageActionPayload> it, Func<Partial<MessageContext>, Partial<MessageContext>> partialBuilder)
+        => it.AddFieldName("message", partialBuilder(new Partial<MessageContext>(it)));
+    
+    public static Partial<MessageActionPayload> WithClientId(this Partial<MessageActionPayload> it)
+        => it.AddFieldName("clientId");
+    
+    public static Partial<MessageActionPayload> WithUserId(this Partial<MessageActionPayload> it)
+        => it.AddFieldName("userId");
+    
+    public static Partial<MessageActionPayload> WithVerificationToken(this Partial<MessageActionPayload> it)
+        => it.AddFieldName("verificationToken");
     
 }
+

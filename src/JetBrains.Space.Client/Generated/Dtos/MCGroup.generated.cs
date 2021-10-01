@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MCGroup
+     : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MCGroup
-         : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MCGroup";
+    
+    public MCGroup() { }
+    
+    public MCGroup(List<MCElement> elements)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MCGroup";
-        
-        public MCGroup() { }
-        
-        public MCGroup(List<MCElement> elements)
-        {
-            Elements = elements;
-        }
-        
-        private PropertyValue<List<MCElement>> _elements = new PropertyValue<List<MCElement>>(nameof(MCGroup), nameof(Elements), new List<MCElement>());
-        
-        [Required]
-        [JsonPropertyName("elements")]
-        public List<MCElement> Elements
-        {
-            get => _elements.GetValue();
-            set => _elements.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _elements.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Elements = elements;
     }
     
+    private PropertyValue<List<MCElement>> _elements = new PropertyValue<List<MCElement>>(nameof(MCGroup), nameof(Elements), new List<MCElement>());
+    
+    [Required]
+    [JsonPropertyName("elements")]
+    public List<MCElement> Elements
+    {
+        get => _elements.GetValue();
+        set => _elements.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _elements.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

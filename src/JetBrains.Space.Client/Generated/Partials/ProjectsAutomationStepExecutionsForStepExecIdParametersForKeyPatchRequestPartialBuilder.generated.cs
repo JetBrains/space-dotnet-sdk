@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequestPartialBuilder;
+
+public static class ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequestPartialExtensions
 {
-    public static class ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequestPartialExtensions
-    {
-        public static Partial<ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequest> WithValue(this Partial<ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequest> it)
-            => it.AddFieldName("value");
-        
-    }
+    public static Partial<ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequest> WithValue(this Partial<ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequest> it)
+        => it.AddFieldName("value");
     
 }
+

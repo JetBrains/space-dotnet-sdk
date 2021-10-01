@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PRTagPartialBuilder
+namespace JetBrains.Space.Client.PRTagPartialBuilder;
+
+public static class PRTagPartialExtensions
 {
-    public static class PRTagPartialExtensions
-    {
-        public static Partial<PRTag> WithName(this Partial<PRTag> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<PRTag> WithProjectCount(this Partial<PRTag> it)
-            => it.AddFieldName("projectCount");
-        
-    }
+    public static Partial<PRTag> WithName(this Partial<PRTag> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<PRTag> WithProjectCount(this Partial<PRTag> it)
+        => it.AddFieldName("projectCount");
     
 }
+

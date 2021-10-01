@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class EndpointAuthReadBasic
+     : EndpointAuthRead, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class EndpointAuthReadBasic
-         : EndpointAuthRead, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "EndpointAuthRead.Basic";
+    
+    public EndpointAuthReadBasic() { }
+    
+    public EndpointAuthReadBasic(string username)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "EndpointAuthRead.Basic";
-        
-        public EndpointAuthReadBasic() { }
-        
-        public EndpointAuthReadBasic(string username)
-        {
-            Username = username;
-        }
-        
-        private PropertyValue<string> _username = new PropertyValue<string>(nameof(EndpointAuthReadBasic), nameof(Username));
-        
-        [Required]
-        [JsonPropertyName("username")]
-        public string Username
-        {
-            get => _username.GetValue();
-            set => _username.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _username.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Username = username;
     }
     
+    private PropertyValue<string> _username = new PropertyValue<string>(nameof(EndpointAuthReadBasic), nameof(Username));
+    
+    [Required]
+    [JsonPropertyName("username")]
+    public string Username
+    {
+        get => _username.GetValue();
+        set => _username.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _username.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CUserPrincipalDetails
+     : CPrincipalDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class CUserPrincipalDetails
-         : CPrincipalDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "CUserPrincipalDetails";
+    
+    public CUserPrincipalDetails() { }
+    
+    public CUserPrincipalDetails(TDMemberProfile user)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "CUserPrincipalDetails";
-        
-        public CUserPrincipalDetails() { }
-        
-        public CUserPrincipalDetails(TDMemberProfile user)
-        {
-            User = user;
-        }
-        
-        private PropertyValue<TDMemberProfile> _user = new PropertyValue<TDMemberProfile>(nameof(CUserPrincipalDetails), nameof(User));
-        
-        [Required]
-        [JsonPropertyName("user")]
-        public TDMemberProfile User
-        {
-            get => _user.GetValue();
-            set => _user.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _user.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        User = user;
     }
     
+    private PropertyValue<TDMemberProfile> _user = new PropertyValue<TDMemberProfile>(nameof(CUserPrincipalDetails), nameof(User));
+    
+    [Required]
+    [JsonPropertyName("user")]
+    public TDMemberProfile User
+    {
+        get => _user.GetValue();
+        set => _user.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _user.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

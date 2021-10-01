@@ -27,76 +27,75 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ApplicationsPostRequestPartialBuilder;
+
+public static class ApplicationsPostRequestPartialExtensions
 {
-    public static class ApplicationsPostRequestPartialExtensions
-    {
-        public static Partial<ApplicationsPostRequest> WithName(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ApplicationsPostRequest> WithPictureAttachmentId(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("pictureAttachmentId");
-        
-        public static Partial<ApplicationsPostRequest> WithDefaultExternalPicture(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("defaultExternalPicture");
-        
-        public static Partial<ApplicationsPostRequest> WithClientId(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<ApplicationsPostRequest> WithClientSecret(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("clientSecret");
-        
-        public static Partial<ApplicationsPostRequest> WithIsClientCredentialsFlowEnabled(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("clientCredentialsFlowEnabled");
-        
-        public static Partial<ApplicationsPostRequest> WithIsCodeFlowEnabled(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("codeFlowEnabled");
-        
-        public static Partial<ApplicationsPostRequest> WithCodeFlowRedirectURIs(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("codeFlowRedirectURIs");
-        
-        public static Partial<ApplicationsPostRequest> WithIsPkceRequired(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("pkceRequired");
-        
-        public static Partial<ApplicationsPostRequest> WithIsImplicitFlowEnabled(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("implicitFlowEnabled");
-        
-        public static Partial<ApplicationsPostRequest> WithImplicitFlowRedirectURIs(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("implicitFlowRedirectURIs");
-        
-        public static Partial<ApplicationsPostRequest> WithEndpointUri(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("endpointUri");
-        
-        public static Partial<ApplicationsPostRequest> WithIsEndpointSslVerification(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("endpointSslVerification");
-        
-        public static Partial<ApplicationsPostRequest> WithAppLevelAuth(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("appLevelAuth");
-        
-        public static Partial<ApplicationsPostRequest> WithAppLevelAuth(this Partial<ApplicationsPostRequest> it, Func<Partial<EndpointAuthCreate>, Partial<EndpointAuthCreate>> partialBuilder)
-            => it.AddFieldName("appLevelAuth", partialBuilder(new Partial<EndpointAuthCreate>(it)));
-        
-        public static Partial<ApplicationsPostRequest> WithSslKeystoreAuth(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("sslKeystoreAuth");
-        
-        public static Partial<ApplicationsPostRequest> WithIsHasVerificationToken(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("hasVerificationToken");
-        
-        public static Partial<ApplicationsPostRequest> WithIsHasSigningKey(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("hasSigningKey");
-        
-        public static Partial<ApplicationsPostRequest> WithIsHasPublicKeySignature(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("hasPublicKeySignature");
-        
-        public static Partial<ApplicationsPostRequest> WithBasicAuthUsername(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("basicAuthUsername");
-        
-        public static Partial<ApplicationsPostRequest> WithBasicAuthPassword(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("basicAuthPassword");
-        
-        public static Partial<ApplicationsPostRequest> WithBearerAuthToken(this Partial<ApplicationsPostRequest> it)
-            => it.AddFieldName("bearerAuthToken");
-        
-    }
+    public static Partial<ApplicationsPostRequest> WithName(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ApplicationsPostRequest> WithPictureAttachmentId(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("pictureAttachmentId");
+    
+    public static Partial<ApplicationsPostRequest> WithDefaultExternalPicture(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("defaultExternalPicture");
+    
+    public static Partial<ApplicationsPostRequest> WithClientId(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("clientId");
+    
+    public static Partial<ApplicationsPostRequest> WithClientSecret(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("clientSecret");
+    
+    public static Partial<ApplicationsPostRequest> WithIsClientCredentialsFlowEnabled(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("clientCredentialsFlowEnabled");
+    
+    public static Partial<ApplicationsPostRequest> WithIsCodeFlowEnabled(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("codeFlowEnabled");
+    
+    public static Partial<ApplicationsPostRequest> WithCodeFlowRedirectURIs(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("codeFlowRedirectURIs");
+    
+    public static Partial<ApplicationsPostRequest> WithIsPkceRequired(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("pkceRequired");
+    
+    public static Partial<ApplicationsPostRequest> WithIsImplicitFlowEnabled(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("implicitFlowEnabled");
+    
+    public static Partial<ApplicationsPostRequest> WithImplicitFlowRedirectURIs(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("implicitFlowRedirectURIs");
+    
+    public static Partial<ApplicationsPostRequest> WithEndpointUri(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("endpointUri");
+    
+    public static Partial<ApplicationsPostRequest> WithIsEndpointSslVerification(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("endpointSslVerification");
+    
+    public static Partial<ApplicationsPostRequest> WithAppLevelAuth(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("appLevelAuth");
+    
+    public static Partial<ApplicationsPostRequest> WithAppLevelAuth(this Partial<ApplicationsPostRequest> it, Func<Partial<EndpointAuthCreate>, Partial<EndpointAuthCreate>> partialBuilder)
+        => it.AddFieldName("appLevelAuth", partialBuilder(new Partial<EndpointAuthCreate>(it)));
+    
+    public static Partial<ApplicationsPostRequest> WithSslKeystoreAuth(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("sslKeystoreAuth");
+    
+    public static Partial<ApplicationsPostRequest> WithIsHasVerificationToken(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("hasVerificationToken");
+    
+    public static Partial<ApplicationsPostRequest> WithIsHasSigningKey(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("hasSigningKey");
+    
+    public static Partial<ApplicationsPostRequest> WithIsHasPublicKeySignature(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("hasPublicKeySignature");
+    
+    public static Partial<ApplicationsPostRequest> WithBasicAuthUsername(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("basicAuthUsername");
+    
+    public static Partial<ApplicationsPostRequest> WithBasicAuthPassword(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("basicAuthPassword");
+    
+    public static Partial<ApplicationsPostRequest> WithBearerAuthToken(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("bearerAuthToken");
     
 }
+

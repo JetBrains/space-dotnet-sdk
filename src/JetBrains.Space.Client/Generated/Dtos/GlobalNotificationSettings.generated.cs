@@ -27,79 +27,78 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GlobalNotificationSettings
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GlobalNotificationSettings
-         : IPropagatePropertyAccessPath
+    public GlobalNotificationSettings() { }
+    
+    public GlobalNotificationSettings(bool emailNotificationsEnabled, bool pushNotificationEnabled, bool multiClientEnabled, TDProfileEmail? notificationEmail = null, int? desktopInactivityTimeout = null)
     {
-        public GlobalNotificationSettings() { }
-        
-        public GlobalNotificationSettings(bool emailNotificationsEnabled, bool pushNotificationEnabled, bool multiClientEnabled, TDProfileEmail? notificationEmail = null, int? desktopInactivityTimeout = null)
-        {
-            IsEmailNotificationsEnabled = emailNotificationsEnabled;
-            NotificationEmail = notificationEmail;
-            IsPushNotificationEnabled = pushNotificationEnabled;
-            DesktopInactivityTimeout = desktopInactivityTimeout;
-            IsMultiClientEnabled = multiClientEnabled;
-        }
-        
-        private PropertyValue<bool> _emailNotificationsEnabled = new PropertyValue<bool>(nameof(GlobalNotificationSettings), nameof(IsEmailNotificationsEnabled));
-        
-        [Required]
-        [JsonPropertyName("emailNotificationsEnabled")]
-        public bool IsEmailNotificationsEnabled
-        {
-            get => _emailNotificationsEnabled.GetValue();
-            set => _emailNotificationsEnabled.SetValue(value);
-        }
-    
-        private PropertyValue<TDProfileEmail?> _notificationEmail = new PropertyValue<TDProfileEmail?>(nameof(GlobalNotificationSettings), nameof(NotificationEmail));
-        
-        [JsonPropertyName("notificationEmail")]
-        public TDProfileEmail? NotificationEmail
-        {
-            get => _notificationEmail.GetValue();
-            set => _notificationEmail.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _pushNotificationEnabled = new PropertyValue<bool>(nameof(GlobalNotificationSettings), nameof(IsPushNotificationEnabled));
-        
-        [Required]
-        [JsonPropertyName("pushNotificationEnabled")]
-        public bool IsPushNotificationEnabled
-        {
-            get => _pushNotificationEnabled.GetValue();
-            set => _pushNotificationEnabled.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _desktopInactivityTimeout = new PropertyValue<int?>(nameof(GlobalNotificationSettings), nameof(DesktopInactivityTimeout));
-        
-        [JsonPropertyName("desktopInactivityTimeout")]
-        public int? DesktopInactivityTimeout
-        {
-            get => _desktopInactivityTimeout.GetValue();
-            set => _desktopInactivityTimeout.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _multiClientEnabled = new PropertyValue<bool>(nameof(GlobalNotificationSettings), nameof(IsMultiClientEnabled));
-        
-        [Required]
-        [JsonPropertyName("multiClientEnabled")]
-        public bool IsMultiClientEnabled
-        {
-            get => _multiClientEnabled.GetValue();
-            set => _multiClientEnabled.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _emailNotificationsEnabled.SetAccessPath(path, validateHasBeenSet);
-            _notificationEmail.SetAccessPath(path, validateHasBeenSet);
-            _pushNotificationEnabled.SetAccessPath(path, validateHasBeenSet);
-            _desktopInactivityTimeout.SetAccessPath(path, validateHasBeenSet);
-            _multiClientEnabled.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        IsEmailNotificationsEnabled = emailNotificationsEnabled;
+        NotificationEmail = notificationEmail;
+        IsPushNotificationEnabled = pushNotificationEnabled;
+        DesktopInactivityTimeout = desktopInactivityTimeout;
+        IsMultiClientEnabled = multiClientEnabled;
     }
     
+    private PropertyValue<bool> _emailNotificationsEnabled = new PropertyValue<bool>(nameof(GlobalNotificationSettings), nameof(IsEmailNotificationsEnabled));
+    
+    [Required]
+    [JsonPropertyName("emailNotificationsEnabled")]
+    public bool IsEmailNotificationsEnabled
+    {
+        get => _emailNotificationsEnabled.GetValue();
+        set => _emailNotificationsEnabled.SetValue(value);
+    }
+
+    private PropertyValue<TDProfileEmail?> _notificationEmail = new PropertyValue<TDProfileEmail?>(nameof(GlobalNotificationSettings), nameof(NotificationEmail));
+    
+    [JsonPropertyName("notificationEmail")]
+    public TDProfileEmail? NotificationEmail
+    {
+        get => _notificationEmail.GetValue();
+        set => _notificationEmail.SetValue(value);
+    }
+
+    private PropertyValue<bool> _pushNotificationEnabled = new PropertyValue<bool>(nameof(GlobalNotificationSettings), nameof(IsPushNotificationEnabled));
+    
+    [Required]
+    [JsonPropertyName("pushNotificationEnabled")]
+    public bool IsPushNotificationEnabled
+    {
+        get => _pushNotificationEnabled.GetValue();
+        set => _pushNotificationEnabled.SetValue(value);
+    }
+
+    private PropertyValue<int?> _desktopInactivityTimeout = new PropertyValue<int?>(nameof(GlobalNotificationSettings), nameof(DesktopInactivityTimeout));
+    
+    [JsonPropertyName("desktopInactivityTimeout")]
+    public int? DesktopInactivityTimeout
+    {
+        get => _desktopInactivityTimeout.GetValue();
+        set => _desktopInactivityTimeout.SetValue(value);
+    }
+
+    private PropertyValue<bool> _multiClientEnabled = new PropertyValue<bool>(nameof(GlobalNotificationSettings), nameof(IsMultiClientEnabled));
+    
+    [Required]
+    [JsonPropertyName("multiClientEnabled")]
+    public bool IsMultiClientEnabled
+    {
+        get => _multiClientEnabled.GetValue();
+        set => _multiClientEnabled.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _emailNotificationsEnabled.SetAccessPath(path, validateHasBeenSet);
+        _notificationEmail.SetAccessPath(path, validateHasBeenSet);
+        _pushNotificationEnabled.SetAccessPath(path, validateHasBeenSet);
+        _desktopInactivityTimeout.SetAccessPath(path, validateHasBeenSet);
+        _multiClientEnabled.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,91 +27,90 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MessageInfo
+     : IPropagatePropertyAccessPath
 {
-    public sealed class MessageInfo
-         : IPropagatePropertyAccessPath
+    public MessageInfo() { }
+    
+    public MessageInfo(string id, string text, long time, CPrincipal author, string? attachments = null, bool? inThirdPerson = null)
     {
-        public MessageInfo() { }
-        
-        public MessageInfo(string id, string text, long time, CPrincipal author, string? attachments = null, bool? inThirdPerson = null)
-        {
-            Id = id;
-            Text = text;
-            Time = time;
-            Author = author;
-            Attachments = attachments;
-            IsInThirdPerson = inThirdPerson;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(MessageInfo), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageInfo), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        private PropertyValue<long> _time = new PropertyValue<long>(nameof(MessageInfo), nameof(Time));
-        
-        [Required]
-        [JsonPropertyName("time")]
-        public long Time
-        {
-            get => _time.GetValue();
-            set => _time.SetValue(value);
-        }
-    
-        private PropertyValue<CPrincipal> _author = new PropertyValue<CPrincipal>(nameof(MessageInfo), nameof(Author));
-        
-        [Required]
-        [JsonPropertyName("author")]
-        public CPrincipal Author
-        {
-            get => _author.GetValue();
-            set => _author.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _attachments = new PropertyValue<string?>(nameof(MessageInfo), nameof(Attachments));
-        
-        [JsonPropertyName("attachments")]
-        public string? Attachments
-        {
-            get => _attachments.GetValue();
-            set => _attachments.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _inThirdPerson = new PropertyValue<bool?>(nameof(MessageInfo), nameof(IsInThirdPerson));
-        
-        [JsonPropertyName("inThirdPerson")]
-        public bool? IsInThirdPerson
-        {
-            get => _inThirdPerson.GetValue();
-            set => _inThirdPerson.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _time.SetAccessPath(path, validateHasBeenSet);
-            _author.SetAccessPath(path, validateHasBeenSet);
-            _attachments.SetAccessPath(path, validateHasBeenSet);
-            _inThirdPerson.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Text = text;
+        Time = time;
+        Author = author;
+        Attachments = attachments;
+        IsInThirdPerson = inThirdPerson;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(MessageInfo), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageInfo), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    private PropertyValue<long> _time = new PropertyValue<long>(nameof(MessageInfo), nameof(Time));
+    
+    [Required]
+    [JsonPropertyName("time")]
+    public long Time
+    {
+        get => _time.GetValue();
+        set => _time.SetValue(value);
+    }
+
+    private PropertyValue<CPrincipal> _author = new PropertyValue<CPrincipal>(nameof(MessageInfo), nameof(Author));
+    
+    [Required]
+    [JsonPropertyName("author")]
+    public CPrincipal Author
+    {
+        get => _author.GetValue();
+        set => _author.SetValue(value);
+    }
+
+    private PropertyValue<string?> _attachments = new PropertyValue<string?>(nameof(MessageInfo), nameof(Attachments));
+    
+    [JsonPropertyName("attachments")]
+    public string? Attachments
+    {
+        get => _attachments.GetValue();
+        set => _attachments.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _inThirdPerson = new PropertyValue<bool?>(nameof(MessageInfo), nameof(IsInThirdPerson));
+    
+    [JsonPropertyName("inThirdPerson")]
+    public bool? IsInThirdPerson
+    {
+        get => _inThirdPerson.GetValue();
+        set => _inThirdPerson.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(path, validateHasBeenSet);
+        _time.SetAccessPath(path, validateHasBeenSet);
+        _author.SetAccessPath(path, validateHasBeenSet);
+        _attachments.SetAccessPath(path, validateHasBeenSet);
+        _inThirdPerson.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

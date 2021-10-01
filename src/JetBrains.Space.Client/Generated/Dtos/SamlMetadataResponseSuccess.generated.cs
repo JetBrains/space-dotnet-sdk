@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class SamlMetadataResponseSuccess
+     : SamlMetadataResponse, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class SamlMetadataResponseSuccess
-         : SamlMetadataResponse, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "SamlMetadataResponse.Success";
+    
+    public SamlMetadataResponseSuccess() { }
+    
+    public SamlMetadataResponseSuccess(string metadata)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "SamlMetadataResponse.Success";
-        
-        public SamlMetadataResponseSuccess() { }
-        
-        public SamlMetadataResponseSuccess(string metadata)
-        {
-            Metadata = metadata;
-        }
-        
-        private PropertyValue<string> _metadata = new PropertyValue<string>(nameof(SamlMetadataResponseSuccess), nameof(Metadata));
-        
-        [Required]
-        [JsonPropertyName("metadata")]
-        public string Metadata
-        {
-            get => _metadata.GetValue();
-            set => _metadata.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _metadata.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Metadata = metadata;
     }
     
+    private PropertyValue<string> _metadata = new PropertyValue<string>(nameof(SamlMetadataResponseSuccess), nameof(Metadata));
+    
+    [Required]
+    [JsonPropertyName("metadata")]
+    public string Metadata
+    {
+        get => _metadata.GetValue();
+        set => _metadata.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _metadata.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

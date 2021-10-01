@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ATimeZoneWithOffsetPartialBuilder
+namespace JetBrains.Space.Client.ATimeZoneWithOffsetPartialBuilder;
+
+public static class ATimeZoneWithOffsetPartialExtensions
 {
-    public static class ATimeZoneWithOffsetPartialExtensions
-    {
-        public static Partial<ATimeZoneWithOffset> WithId(this Partial<ATimeZoneWithOffset> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ATimeZoneWithOffset> WithOffset(this Partial<ATimeZoneWithOffset> it)
-            => it.AddFieldName("offset");
-        
-    }
+    public static Partial<ATimeZoneWithOffset> WithId(this Partial<ATimeZoneWithOffset> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ATimeZoneWithOffset> WithOffset(this Partial<ATimeZoneWithOffset> it)
+        => it.AddFieldName("offset");
     
 }
+

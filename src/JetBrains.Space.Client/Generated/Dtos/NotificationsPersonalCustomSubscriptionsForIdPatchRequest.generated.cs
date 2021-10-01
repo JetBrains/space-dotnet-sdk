@@ -27,65 +27,64 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class NotificationsPersonalCustomSubscriptionsForIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class NotificationsPersonalCustomSubscriptionsForIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public NotificationsPersonalCustomSubscriptionsForIdPatchRequest() { }
+    
+    public NotificationsPersonalCustomSubscriptionsForIdPatchRequest(string? name = null, bool? enabled = null, string? feed = null, CustomGenericSubscriptionIn? subscription = null)
     {
-        public NotificationsPersonalCustomSubscriptionsForIdPatchRequest() { }
-        
-        public NotificationsPersonalCustomSubscriptionsForIdPatchRequest(string? name = null, bool? enabled = null, string? feed = null, CustomGenericSubscriptionIn? subscription = null)
-        {
-            Name = name;
-            IsEnabled = enabled;
-            Feed = feed;
-            Subscription = subscription;
-        }
-        
-        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(NotificationsPersonalCustomSubscriptionsForIdPatchRequest), nameof(Name));
-        
-        [JsonPropertyName("name")]
-        public string? Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _enabled = new PropertyValue<bool?>(nameof(NotificationsPersonalCustomSubscriptionsForIdPatchRequest), nameof(IsEnabled));
-        
-        [JsonPropertyName("enabled")]
-        public bool? IsEnabled
-        {
-            get => _enabled.GetValue();
-            set => _enabled.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _feed = new PropertyValue<string?>(nameof(NotificationsPersonalCustomSubscriptionsForIdPatchRequest), nameof(Feed));
-        
-        [JsonPropertyName("feed")]
-        public string? Feed
-        {
-            get => _feed.GetValue();
-            set => _feed.SetValue(value);
-        }
-    
-        private PropertyValue<CustomGenericSubscriptionIn?> _subscription = new PropertyValue<CustomGenericSubscriptionIn?>(nameof(NotificationsPersonalCustomSubscriptionsForIdPatchRequest), nameof(Subscription));
-        
-        [JsonPropertyName("subscription")]
-        public CustomGenericSubscriptionIn? Subscription
-        {
-            get => _subscription.GetValue();
-            set => _subscription.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _enabled.SetAccessPath(path, validateHasBeenSet);
-            _feed.SetAccessPath(path, validateHasBeenSet);
-            _subscription.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        IsEnabled = enabled;
+        Feed = feed;
+        Subscription = subscription;
     }
     
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(NotificationsPersonalCustomSubscriptionsForIdPatchRequest), nameof(Name));
+    
+    [JsonPropertyName("name")]
+    public string? Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _enabled = new PropertyValue<bool?>(nameof(NotificationsPersonalCustomSubscriptionsForIdPatchRequest), nameof(IsEnabled));
+    
+    [JsonPropertyName("enabled")]
+    public bool? IsEnabled
+    {
+        get => _enabled.GetValue();
+        set => _enabled.SetValue(value);
+    }
+
+    private PropertyValue<string?> _feed = new PropertyValue<string?>(nameof(NotificationsPersonalCustomSubscriptionsForIdPatchRequest), nameof(Feed));
+    
+    [JsonPropertyName("feed")]
+    public string? Feed
+    {
+        get => _feed.GetValue();
+        set => _feed.SetValue(value);
+    }
+
+    private PropertyValue<CustomGenericSubscriptionIn?> _subscription = new PropertyValue<CustomGenericSubscriptionIn?>(nameof(NotificationsPersonalCustomSubscriptionsForIdPatchRequest), nameof(Subscription));
+    
+    [JsonPropertyName("subscription")]
+    public CustomGenericSubscriptionIn? Subscription
+    {
+        get => _subscription.GetValue();
+        set => _subscription.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _enabled.SetAccessPath(path, validateHasBeenSet);
+        _feed.SetAccessPath(path, validateHasBeenSet);
+        _subscription.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

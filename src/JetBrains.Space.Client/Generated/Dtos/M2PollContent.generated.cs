@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2PollContent
+     : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2PollContent
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2PollContent";
+    
+    public M2PollContent() { }
+    
+    public M2PollContent(PollRecord poll)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2PollContent";
-        
-        public M2PollContent() { }
-        
-        public M2PollContent(PollRecord poll)
-        {
-            Poll = poll;
-        }
-        
-        private PropertyValue<PollRecord> _poll = new PropertyValue<PollRecord>(nameof(M2PollContent), nameof(Poll));
-        
-        [Required]
-        [JsonPropertyName("poll")]
-        public PollRecord Poll
-        {
-            get => _poll.GetValue();
-            set => _poll.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _poll.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Poll = poll;
     }
     
+    private PropertyValue<PollRecord> _poll = new PropertyValue<PollRecord>(nameof(M2PollContent), nameof(Poll));
+    
+    [Required]
+    [JsonPropertyName("poll")]
+    public PollRecord Poll
+    {
+        get => _poll.GetValue();
+        set => _poll.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _poll.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

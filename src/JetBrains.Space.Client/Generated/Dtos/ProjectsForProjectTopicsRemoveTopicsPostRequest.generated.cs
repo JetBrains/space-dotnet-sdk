@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectTopicsRemoveTopicsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectTopicsRemoveTopicsPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectTopicsRemoveTopicsPostRequest() { }
+    
+    public ProjectsForProjectTopicsRemoveTopicsPostRequest(List<string> ids)
     {
-        public ProjectsForProjectTopicsRemoveTopicsPostRequest() { }
-        
-        public ProjectsForProjectTopicsRemoveTopicsPostRequest(List<string> ids)
-        {
-            Ids = ids;
-        }
-        
-        private PropertyValue<List<string>> _ids = new PropertyValue<List<string>>(nameof(ProjectsForProjectTopicsRemoveTopicsPostRequest), nameof(Ids), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("ids")]
-        public List<string> Ids
-        {
-            get => _ids.GetValue();
-            set => _ids.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _ids.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Ids = ids;
     }
     
+    private PropertyValue<List<string>> _ids = new PropertyValue<List<string>>(nameof(ProjectsForProjectTopicsRemoveTopicsPostRequest), nameof(Ids), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("ids")]
+    public List<string> Ids
+    {
+        get => _ids.GetValue();
+        set => _ids.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _ids.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

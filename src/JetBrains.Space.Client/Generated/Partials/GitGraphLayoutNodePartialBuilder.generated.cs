@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitGraphLayoutNodePartialBuilder
+namespace JetBrains.Space.Client.GitGraphLayoutNodePartialBuilder;
+
+public static class GitGraphLayoutNodePartialExtensions
 {
-    public static class GitGraphLayoutNodePartialExtensions
-    {
-        public static Partial<GitGraphLayoutNode> WithPos(this Partial<GitGraphLayoutNode> it)
-            => it.AddFieldName("pos");
-        
-        public static Partial<GitGraphLayoutNode> WithColor(this Partial<GitGraphLayoutNode> it)
-            => it.AddFieldName("color");
-        
-    }
+    public static Partial<GitGraphLayoutNode> WithPos(this Partial<GitGraphLayoutNode> it)
+        => it.AddFieldName("pos");
+    
+    public static Partial<GitGraphLayoutNode> WithColor(this Partial<GitGraphLayoutNode> it)
+        => it.AddFieldName("color");
     
 }
+

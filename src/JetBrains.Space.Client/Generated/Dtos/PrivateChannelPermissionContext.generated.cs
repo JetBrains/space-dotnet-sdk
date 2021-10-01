@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PrivateChannelPermissionContext
+     : PermissionContextApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class PrivateChannelPermissionContext
-         : PermissionContextApi, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "PrivateChannelPermissionContext";
+    
+    public PrivateChannelPermissionContext() { }
+    
+    public PrivateChannelPermissionContext(string channelId)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "PrivateChannelPermissionContext";
-        
-        public PrivateChannelPermissionContext() { }
-        
-        public PrivateChannelPermissionContext(string channelId)
-        {
-            ChannelId = channelId;
-        }
-        
-        private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(PrivateChannelPermissionContext), nameof(ChannelId));
-        
-        [Required]
-        [JsonPropertyName("channelId")]
-        public string ChannelId
-        {
-            get => _channelId.GetValue();
-            set => _channelId.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _channelId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ChannelId = channelId;
     }
     
+    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(PrivateChannelPermissionContext), nameof(ChannelId));
+    
+    [Required]
+    [JsonPropertyName("channelId")]
+    public string ChannelId
+    {
+        get => _channelId.GetValue();
+        set => _channelId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _channelId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

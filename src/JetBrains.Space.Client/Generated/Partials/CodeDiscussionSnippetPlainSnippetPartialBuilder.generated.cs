@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeDiscussionSnippetPlainSnippetPartialBuilder
+namespace JetBrains.Space.Client.CodeDiscussionSnippetPlainSnippetPartialBuilder;
+
+public static class CodeDiscussionSnippetPlainSnippetPartialExtensions
 {
-    public static class CodeDiscussionSnippetPlainSnippetPartialExtensions
-    {
-        public static Partial<CodeDiscussionSnippetPlainSnippet> WithLines(this Partial<CodeDiscussionSnippetPlainSnippet> it)
-            => it.AddFieldName("lines");
-        
-        public static Partial<CodeDiscussionSnippetPlainSnippet> WithLines(this Partial<CodeDiscussionSnippetPlainSnippet> it, Func<Partial<CodeLine>, Partial<CodeLine>> partialBuilder)
-            => it.AddFieldName("lines", partialBuilder(new Partial<CodeLine>(it)));
-        
-    }
+    public static Partial<CodeDiscussionSnippetPlainSnippet> WithLines(this Partial<CodeDiscussionSnippetPlainSnippet> it)
+        => it.AddFieldName("lines");
+    
+    public static Partial<CodeDiscussionSnippetPlainSnippet> WithLines(this Partial<CodeDiscussionSnippetPlainSnippet> it, Func<Partial<CodeLine>, Partial<CodeLine>> partialBuilder)
+        => it.AddFieldName("lines", partialBuilder(new Partial<CodeLine>(it)));
     
 }
+

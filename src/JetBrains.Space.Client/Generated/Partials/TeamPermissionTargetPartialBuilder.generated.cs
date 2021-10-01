@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamPermissionTargetPartialBuilder
+namespace JetBrains.Space.Client.TeamPermissionTargetPartialBuilder;
+
+public static class TeamPermissionTargetPartialExtensions
 {
-    public static class TeamPermissionTargetPartialExtensions
-    {
-        public static Partial<TeamPermissionTarget> WithTeam(this Partial<TeamPermissionTarget> it)
-            => it.AddFieldName("team");
-        
-    }
+    public static Partial<TeamPermissionTarget> WithTeam(this Partial<TeamPermissionTarget> it)
+        => it.AddFieldName("team");
     
 }
+

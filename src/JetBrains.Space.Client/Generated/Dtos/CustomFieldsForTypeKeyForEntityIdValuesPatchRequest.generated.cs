@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class CustomFieldsForTypeKeyForEntityIdValuesPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class CustomFieldsForTypeKeyForEntityIdValuesPatchRequest
-         : IPropagatePropertyAccessPath
+    public CustomFieldsForTypeKeyForEntityIdValuesPatchRequest() { }
+    
+    public CustomFieldsForTypeKeyForEntityIdValuesPatchRequest(List<CustomFieldInputValue> values, ExtendedTypeScope scope)
     {
-        public CustomFieldsForTypeKeyForEntityIdValuesPatchRequest() { }
-        
-        public CustomFieldsForTypeKeyForEntityIdValuesPatchRequest(List<CustomFieldInputValue> values, ExtendedTypeScope scope)
-        {
-            Values = values;
-            Scope = scope;
-        }
-        
-        private PropertyValue<List<CustomFieldInputValue>> _values = new PropertyValue<List<CustomFieldInputValue>>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Values), new List<CustomFieldInputValue>());
-        
-        [Required]
-        [JsonPropertyName("values")]
-        public List<CustomFieldInputValue> Values
-        {
-            get => _values.GetValue();
-            set => _values.SetValue(value);
-        }
-    
-        private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Scope));
-        
-        [Required]
-        [JsonPropertyName("scope")]
-        public ExtendedTypeScope Scope
-        {
-            get => _scope.GetValue();
-            set => _scope.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _values.SetAccessPath(path, validateHasBeenSet);
-            _scope.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Values = values;
+        Scope = scope;
     }
     
+    private PropertyValue<List<CustomFieldInputValue>> _values = new PropertyValue<List<CustomFieldInputValue>>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Values), new List<CustomFieldInputValue>());
+    
+    [Required]
+    [JsonPropertyName("values")]
+    public List<CustomFieldInputValue> Values
+    {
+        get => _values.GetValue();
+        set => _values.SetValue(value);
+    }
+
+    private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Scope));
+    
+    [Required]
+    [JsonPropertyName("scope")]
+    public ExtendedTypeScope Scope
+    {
+        get => _scope.GetValue();
+        set => _scope.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _values.SetAccessPath(path, validateHasBeenSet);
+        _scope.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

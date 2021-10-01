@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class StickerContentDetails
+     : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class StickerContentDetails
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "StickerContentDetails";
+    
+    public StickerContentDetails() { }
+    
+    public StickerContentDetails(Sticker sticker, StickerPackInfo? pack = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "StickerContentDetails";
-        
-        public StickerContentDetails() { }
-        
-        public StickerContentDetails(Sticker sticker, StickerPackInfo? pack = null)
-        {
-            Sticker = sticker;
-            Pack = pack;
-        }
-        
-        private PropertyValue<Sticker> _sticker = new PropertyValue<Sticker>(nameof(StickerContentDetails), nameof(Sticker));
-        
-        [Required]
-        [JsonPropertyName("sticker")]
-        public Sticker Sticker
-        {
-            get => _sticker.GetValue();
-            set => _sticker.SetValue(value);
-        }
-    
-        private PropertyValue<StickerPackInfo?> _pack = new PropertyValue<StickerPackInfo?>(nameof(StickerContentDetails), nameof(Pack));
-        
-        [JsonPropertyName("pack")]
-        public StickerPackInfo? Pack
-        {
-            get => _pack.GetValue();
-            set => _pack.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _sticker.SetAccessPath(path, validateHasBeenSet);
-            _pack.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Sticker = sticker;
+        Pack = pack;
     }
     
+    private PropertyValue<Sticker> _sticker = new PropertyValue<Sticker>(nameof(StickerContentDetails), nameof(Sticker));
+    
+    [Required]
+    [JsonPropertyName("sticker")]
+    public Sticker Sticker
+    {
+        get => _sticker.GetValue();
+        set => _sticker.SetValue(value);
+    }
+
+    private PropertyValue<StickerPackInfo?> _pack = new PropertyValue<StickerPackInfo?>(nameof(StickerContentDetails), nameof(Pack));
+    
+    [JsonPropertyName("pack")]
+    public StickerPackInfo? Pack
+    {
+        get => _pack.GetValue();
+        set => _pack.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _sticker.SetAccessPath(path, validateHasBeenSet);
+        _pack.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

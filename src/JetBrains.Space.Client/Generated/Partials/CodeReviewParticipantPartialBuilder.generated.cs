@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewParticipantPartialBuilder
+namespace JetBrains.Space.Client.CodeReviewParticipantPartialBuilder;
+
+public static class CodeReviewParticipantPartialExtensions
 {
-    public static class CodeReviewParticipantPartialExtensions
-    {
-        public static Partial<CodeReviewParticipant> WithUser(this Partial<CodeReviewParticipant> it)
-            => it.AddFieldName("user");
-        
-        public static Partial<CodeReviewParticipant> WithUser(this Partial<CodeReviewParticipant> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("user", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<CodeReviewParticipant> WithRole(this Partial<CodeReviewParticipant> it)
-            => it.AddFieldName("role");
-        
-        public static Partial<CodeReviewParticipant> WithRole(this Partial<CodeReviewParticipant> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
-            => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>(it)));
-        
-        public static Partial<CodeReviewParticipant> WithState(this Partial<CodeReviewParticipant> it)
-            => it.AddFieldName("state");
-        
-        public static Partial<CodeReviewParticipant> WithState(this Partial<CodeReviewParticipant> it, Func<Partial<ReviewerState>, Partial<ReviewerState>> partialBuilder)
-            => it.AddFieldName("state", partialBuilder(new Partial<ReviewerState>(it)));
-        
-        public static Partial<CodeReviewParticipant> WithIsTheirTurn(this Partial<CodeReviewParticipant> it)
-            => it.AddFieldName("theirTurn");
-        
-        public static Partial<CodeReviewParticipant> WithQualityGateSlots(this Partial<CodeReviewParticipant> it)
-            => it.AddFieldName("qualityGateSlots");
-        
-        public static Partial<CodeReviewParticipant> WithQualityGateSlots(this Partial<CodeReviewParticipant> it, Func<Partial<CodeReviewParticipantQualityGateSlot>, Partial<CodeReviewParticipantQualityGateSlot>> partialBuilder)
-            => it.AddFieldName("qualityGateSlots", partialBuilder(new Partial<CodeReviewParticipantQualityGateSlot>(it)));
-        
-        public static Partial<CodeReviewParticipant> WithCodeOwnerSlots(this Partial<CodeReviewParticipant> it)
-            => it.AddFieldName("codeOwnerSlots");
-        
-        public static Partial<CodeReviewParticipant> WithCodeOwnerSlots(this Partial<CodeReviewParticipant> it, Func<Partial<CodeReviewParticipantCodeOwnerSlot>, Partial<CodeReviewParticipantCodeOwnerSlot>> partialBuilder)
-            => it.AddFieldName("codeOwnerSlots", partialBuilder(new Partial<CodeReviewParticipantCodeOwnerSlot>(it)));
-        
-        public static Partial<CodeReviewParticipant> WithAddedAt(this Partial<CodeReviewParticipant> it)
-            => it.AddFieldName("addedAt");
-        
-    }
+    public static Partial<CodeReviewParticipant> WithUser(this Partial<CodeReviewParticipant> it)
+        => it.AddFieldName("user");
+    
+    public static Partial<CodeReviewParticipant> WithUser(this Partial<CodeReviewParticipant> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("user", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<CodeReviewParticipant> WithRole(this Partial<CodeReviewParticipant> it)
+        => it.AddFieldName("role");
+    
+    public static Partial<CodeReviewParticipant> WithRole(this Partial<CodeReviewParticipant> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
+        => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>(it)));
+    
+    public static Partial<CodeReviewParticipant> WithState(this Partial<CodeReviewParticipant> it)
+        => it.AddFieldName("state");
+    
+    public static Partial<CodeReviewParticipant> WithState(this Partial<CodeReviewParticipant> it, Func<Partial<ReviewerState>, Partial<ReviewerState>> partialBuilder)
+        => it.AddFieldName("state", partialBuilder(new Partial<ReviewerState>(it)));
+    
+    public static Partial<CodeReviewParticipant> WithIsTheirTurn(this Partial<CodeReviewParticipant> it)
+        => it.AddFieldName("theirTurn");
+    
+    public static Partial<CodeReviewParticipant> WithQualityGateSlots(this Partial<CodeReviewParticipant> it)
+        => it.AddFieldName("qualityGateSlots");
+    
+    public static Partial<CodeReviewParticipant> WithQualityGateSlots(this Partial<CodeReviewParticipant> it, Func<Partial<CodeReviewParticipantQualityGateSlot>, Partial<CodeReviewParticipantQualityGateSlot>> partialBuilder)
+        => it.AddFieldName("qualityGateSlots", partialBuilder(new Partial<CodeReviewParticipantQualityGateSlot>(it)));
+    
+    public static Partial<CodeReviewParticipant> WithCodeOwnerSlots(this Partial<CodeReviewParticipant> it)
+        => it.AddFieldName("codeOwnerSlots");
+    
+    public static Partial<CodeReviewParticipant> WithCodeOwnerSlots(this Partial<CodeReviewParticipant> it, Func<Partial<CodeReviewParticipantCodeOwnerSlot>, Partial<CodeReviewParticipantCodeOwnerSlot>> partialBuilder)
+        => it.AddFieldName("codeOwnerSlots", partialBuilder(new Partial<CodeReviewParticipantCodeOwnerSlot>(it)));
+    
+    public static Partial<CodeReviewParticipant> WithAddedAt(this Partial<CodeReviewParticipant> it)
+        => it.AddFieldName("addedAt");
     
 }
+

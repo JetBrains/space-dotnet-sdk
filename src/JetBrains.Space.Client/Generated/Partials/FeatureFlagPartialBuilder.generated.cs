@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FeatureFlagPartialBuilder
+namespace JetBrains.Space.Client.FeatureFlagPartialBuilder;
+
+public static class FeatureFlagPartialExtensions
 {
-    public static class FeatureFlagPartialExtensions
-    {
-        public static Partial<FeatureFlag> WithName(this Partial<FeatureFlag> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<FeatureFlag> WithDescription(this Partial<FeatureFlag> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<FeatureFlag> WithStatus(this Partial<FeatureFlag> it)
-            => it.AddFieldName("status");
-        
-        public static Partial<FeatureFlag> WithStatus(this Partial<FeatureFlag> it, Func<Partial<FeatureFlagStatus>, Partial<FeatureFlagStatus>> partialBuilder)
-            => it.AddFieldName("status", partialBuilder(new Partial<FeatureFlagStatus>(it)));
-        
-        public static Partial<FeatureFlag> WithOwner(this Partial<FeatureFlag> it)
-            => it.AddFieldName("owner");
-        
-        public static Partial<FeatureFlag> WithSince(this Partial<FeatureFlag> it)
-            => it.AddFieldName("since");
-        
-        public static Partial<FeatureFlag> WithSince(this Partial<FeatureFlag> it, Func<Partial<FeatureFlagDate>, Partial<FeatureFlagDate>> partialBuilder)
-            => it.AddFieldName("since", partialBuilder(new Partial<FeatureFlagDate>(it)));
-        
-        public static Partial<FeatureFlag> WithIssueNumber(this Partial<FeatureFlag> it)
-            => it.AddFieldName("issueNumber");
-        
-    }
+    public static Partial<FeatureFlag> WithName(this Partial<FeatureFlag> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<FeatureFlag> WithDescription(this Partial<FeatureFlag> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<FeatureFlag> WithStatus(this Partial<FeatureFlag> it)
+        => it.AddFieldName("status");
+    
+    public static Partial<FeatureFlag> WithStatus(this Partial<FeatureFlag> it, Func<Partial<FeatureFlagStatus>, Partial<FeatureFlagStatus>> partialBuilder)
+        => it.AddFieldName("status", partialBuilder(new Partial<FeatureFlagStatus>(it)));
+    
+    public static Partial<FeatureFlag> WithOwner(this Partial<FeatureFlag> it)
+        => it.AddFieldName("owner");
+    
+    public static Partial<FeatureFlag> WithSince(this Partial<FeatureFlag> it)
+        => it.AddFieldName("since");
+    
+    public static Partial<FeatureFlag> WithSince(this Partial<FeatureFlag> it, Func<Partial<FeatureFlagDate>, Partial<FeatureFlagDate>> partialBuilder)
+        => it.AddFieldName("since", partialBuilder(new Partial<FeatureFlagDate>(it)));
+    
+    public static Partial<FeatureFlag> WithIssueNumber(this Partial<FeatureFlag> it)
+        => it.AddFieldName("issueNumber");
     
 }
+

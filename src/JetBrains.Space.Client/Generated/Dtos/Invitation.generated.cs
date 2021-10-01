@@ -27,159 +27,158 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class Invitation
+     : IPropagatePropertyAccessPath
 {
-    public sealed class Invitation
-         : IPropagatePropertyAccessPath
+    public Invitation() { }
+    
+    public Invitation(string id, DateTime expiresAt, string inviteeEmail, bool inviteeEmailBlocked, CPrincipal inviter, string? inviteeEmailBlockedReason = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDMemberProfile? invitee = null, TDTeam? team = null, TDRole? role = null, bool? revoked = null)
     {
-        public Invitation() { }
-        
-        public Invitation(string id, DateTime expiresAt, string inviteeEmail, bool inviteeEmailBlocked, CPrincipal inviter, string? inviteeEmailBlockedReason = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDMemberProfile? invitee = null, TDTeam? team = null, TDRole? role = null, bool? revoked = null)
-        {
-            Id = id;
-            ExpiresAt = expiresAt;
-            InviteeEmail = inviteeEmail;
-            IsInviteeEmailBlocked = inviteeEmailBlocked;
-            InviteeEmailBlockedReason = inviteeEmailBlockedReason;
-            InviteeFirstName = inviteeFirstName;
-            InviteeLastName = inviteeLastName;
-            Invitee = invitee;
-            Inviter = inviter;
-            Team = team;
-            Role = role;
-            IsRevoked = revoked;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(Invitation), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _expiresAt = new PropertyValue<DateTime>(nameof(Invitation), nameof(ExpiresAt));
-        
-        [Required]
-        [JsonPropertyName("expiresAt")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime ExpiresAt
-        {
-            get => _expiresAt.GetValue();
-            set => _expiresAt.SetValue(value);
-        }
-    
-        private PropertyValue<string> _inviteeEmail = new PropertyValue<string>(nameof(Invitation), nameof(InviteeEmail));
-        
-        [Required]
-        [JsonPropertyName("inviteeEmail")]
-        public string InviteeEmail
-        {
-            get => _inviteeEmail.GetValue();
-            set => _inviteeEmail.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _inviteeEmailBlocked = new PropertyValue<bool>(nameof(Invitation), nameof(IsInviteeEmailBlocked));
-        
-        [Required]
-        [JsonPropertyName("inviteeEmailBlocked")]
-        public bool IsInviteeEmailBlocked
-        {
-            get => _inviteeEmailBlocked.GetValue();
-            set => _inviteeEmailBlocked.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _inviteeEmailBlockedReason = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeEmailBlockedReason));
-        
-        [JsonPropertyName("inviteeEmailBlockedReason")]
-        public string? InviteeEmailBlockedReason
-        {
-            get => _inviteeEmailBlockedReason.GetValue();
-            set => _inviteeEmailBlockedReason.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _inviteeFirstName = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeFirstName));
-        
-        [JsonPropertyName("inviteeFirstName")]
-        public string? InviteeFirstName
-        {
-            get => _inviteeFirstName.GetValue();
-            set => _inviteeFirstName.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _inviteeLastName = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeLastName));
-        
-        [JsonPropertyName("inviteeLastName")]
-        public string? InviteeLastName
-        {
-            get => _inviteeLastName.GetValue();
-            set => _inviteeLastName.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberProfile?> _invitee = new PropertyValue<TDMemberProfile?>(nameof(Invitation), nameof(Invitee));
-        
-        [JsonPropertyName("invitee")]
-        public TDMemberProfile? Invitee
-        {
-            get => _invitee.GetValue();
-            set => _invitee.SetValue(value);
-        }
-    
-        private PropertyValue<CPrincipal> _inviter = new PropertyValue<CPrincipal>(nameof(Invitation), nameof(Inviter));
-        
-        [Required]
-        [JsonPropertyName("inviter")]
-        public CPrincipal Inviter
-        {
-            get => _inviter.GetValue();
-            set => _inviter.SetValue(value);
-        }
-    
-        private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(Invitation), nameof(Team));
-        
-        [JsonPropertyName("team")]
-        public TDTeam? Team
-        {
-            get => _team.GetValue();
-            set => _team.SetValue(value);
-        }
-    
-        private PropertyValue<TDRole?> _role = new PropertyValue<TDRole?>(nameof(Invitation), nameof(Role));
-        
-        [JsonPropertyName("role")]
-        public TDRole? Role
-        {
-            get => _role.GetValue();
-            set => _role.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _revoked = new PropertyValue<bool?>(nameof(Invitation), nameof(IsRevoked));
-        
-        [JsonPropertyName("revoked")]
-        public bool? IsRevoked
-        {
-            get => _revoked.GetValue();
-            set => _revoked.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _expiresAt.SetAccessPath(path, validateHasBeenSet);
-            _inviteeEmail.SetAccessPath(path, validateHasBeenSet);
-            _inviteeEmailBlocked.SetAccessPath(path, validateHasBeenSet);
-            _inviteeEmailBlockedReason.SetAccessPath(path, validateHasBeenSet);
-            _inviteeFirstName.SetAccessPath(path, validateHasBeenSet);
-            _inviteeLastName.SetAccessPath(path, validateHasBeenSet);
-            _invitee.SetAccessPath(path, validateHasBeenSet);
-            _inviter.SetAccessPath(path, validateHasBeenSet);
-            _team.SetAccessPath(path, validateHasBeenSet);
-            _role.SetAccessPath(path, validateHasBeenSet);
-            _revoked.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        ExpiresAt = expiresAt;
+        InviteeEmail = inviteeEmail;
+        IsInviteeEmailBlocked = inviteeEmailBlocked;
+        InviteeEmailBlockedReason = inviteeEmailBlockedReason;
+        InviteeFirstName = inviteeFirstName;
+        InviteeLastName = inviteeLastName;
+        Invitee = invitee;
+        Inviter = inviter;
+        Team = team;
+        Role = role;
+        IsRevoked = revoked;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Invitation), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _expiresAt = new PropertyValue<DateTime>(nameof(Invitation), nameof(ExpiresAt));
+    
+    [Required]
+    [JsonPropertyName("expiresAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime ExpiresAt
+    {
+        get => _expiresAt.GetValue();
+        set => _expiresAt.SetValue(value);
+    }
+
+    private PropertyValue<string> _inviteeEmail = new PropertyValue<string>(nameof(Invitation), nameof(InviteeEmail));
+    
+    [Required]
+    [JsonPropertyName("inviteeEmail")]
+    public string InviteeEmail
+    {
+        get => _inviteeEmail.GetValue();
+        set => _inviteeEmail.SetValue(value);
+    }
+
+    private PropertyValue<bool> _inviteeEmailBlocked = new PropertyValue<bool>(nameof(Invitation), nameof(IsInviteeEmailBlocked));
+    
+    [Required]
+    [JsonPropertyName("inviteeEmailBlocked")]
+    public bool IsInviteeEmailBlocked
+    {
+        get => _inviteeEmailBlocked.GetValue();
+        set => _inviteeEmailBlocked.SetValue(value);
+    }
+
+    private PropertyValue<string?> _inviteeEmailBlockedReason = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeEmailBlockedReason));
+    
+    [JsonPropertyName("inviteeEmailBlockedReason")]
+    public string? InviteeEmailBlockedReason
+    {
+        get => _inviteeEmailBlockedReason.GetValue();
+        set => _inviteeEmailBlockedReason.SetValue(value);
+    }
+
+    private PropertyValue<string?> _inviteeFirstName = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeFirstName));
+    
+    [JsonPropertyName("inviteeFirstName")]
+    public string? InviteeFirstName
+    {
+        get => _inviteeFirstName.GetValue();
+        set => _inviteeFirstName.SetValue(value);
+    }
+
+    private PropertyValue<string?> _inviteeLastName = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeLastName));
+    
+    [JsonPropertyName("inviteeLastName")]
+    public string? InviteeLastName
+    {
+        get => _inviteeLastName.GetValue();
+        set => _inviteeLastName.SetValue(value);
+    }
+
+    private PropertyValue<TDMemberProfile?> _invitee = new PropertyValue<TDMemberProfile?>(nameof(Invitation), nameof(Invitee));
+    
+    [JsonPropertyName("invitee")]
+    public TDMemberProfile? Invitee
+    {
+        get => _invitee.GetValue();
+        set => _invitee.SetValue(value);
+    }
+
+    private PropertyValue<CPrincipal> _inviter = new PropertyValue<CPrincipal>(nameof(Invitation), nameof(Inviter));
+    
+    [Required]
+    [JsonPropertyName("inviter")]
+    public CPrincipal Inviter
+    {
+        get => _inviter.GetValue();
+        set => _inviter.SetValue(value);
+    }
+
+    private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(Invitation), nameof(Team));
+    
+    [JsonPropertyName("team")]
+    public TDTeam? Team
+    {
+        get => _team.GetValue();
+        set => _team.SetValue(value);
+    }
+
+    private PropertyValue<TDRole?> _role = new PropertyValue<TDRole?>(nameof(Invitation), nameof(Role));
+    
+    [JsonPropertyName("role")]
+    public TDRole? Role
+    {
+        get => _role.GetValue();
+        set => _role.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _revoked = new PropertyValue<bool?>(nameof(Invitation), nameof(IsRevoked));
+    
+    [JsonPropertyName("revoked")]
+    public bool? IsRevoked
+    {
+        get => _revoked.GetValue();
+        set => _revoked.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _expiresAt.SetAccessPath(path, validateHasBeenSet);
+        _inviteeEmail.SetAccessPath(path, validateHasBeenSet);
+        _inviteeEmailBlocked.SetAccessPath(path, validateHasBeenSet);
+        _inviteeEmailBlockedReason.SetAccessPath(path, validateHasBeenSet);
+        _inviteeFirstName.SetAccessPath(path, validateHasBeenSet);
+        _inviteeLastName.SetAccessPath(path, validateHasBeenSet);
+        _invitee.SetAccessPath(path, validateHasBeenSet);
+        _inviter.SetAccessPath(path, validateHasBeenSet);
+        _team.SetAccessPath(path, validateHasBeenSet);
+        _role.SetAccessPath(path, validateHasBeenSet);
+        _revoked.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

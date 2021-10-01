@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDMergedEventPartialBuilder
+namespace JetBrains.Space.Client.TDMergedEventPartialBuilder;
+
+public static class TDMergedEventPartialExtensions
 {
-    public static class TDMergedEventPartialExtensions
-    {
-        public static Partial<TDMergedEvent> WithEvents(this Partial<TDMergedEvent> it)
-            => it.AddFieldName("events");
-        
-        public static Partial<TDMergedEvent> WithEvents(this Partial<TDMergedEvent> it, Func<Partial<Pair<TDMembership, int>>, Partial<Pair<TDMembership, int>>> partialBuilder)
-            => it.AddFieldName("events", partialBuilder(new Partial<Pair<TDMembership, int>>(it)));
-        
-        public static Partial<TDMergedEvent> WithProfile(this Partial<TDMergedEvent> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<TDMergedEvent> WithProfile(this Partial<TDMergedEvent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<TDMergedEvent> WithEvents(this Partial<TDMergedEvent> it)
+        => it.AddFieldName("events");
+    
+    public static Partial<TDMergedEvent> WithEvents(this Partial<TDMergedEvent> it, Func<Partial<Pair<TDMembership, int>>, Partial<Pair<TDMembership, int>>> partialBuilder)
+        => it.AddFieldName("events", partialBuilder(new Partial<Pair<TDMembership, int>>(it)));
+    
+    public static Partial<TDMergedEvent> WithProfile(this Partial<TDMergedEvent> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<TDMergedEvent> WithProfile(this Partial<TDMergedEvent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

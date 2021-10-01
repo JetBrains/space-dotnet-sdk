@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsChatPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsChatPartialBuilder;
+
+public static class UnfurlDetailsChatPartialExtensions
 {
-    public static class UnfurlDetailsChatPartialExtensions
-    {
-        public static Partial<UnfurlDetailsChat> WithChannel(this Partial<UnfurlDetailsChat> it)
-            => it.AddFieldName("channel");
-        
-        public static Partial<UnfurlDetailsChat> WithTitle(this Partial<UnfurlDetailsChat> it)
-            => it.AddFieldName("title");
-        
-    }
+    public static Partial<UnfurlDetailsChat> WithChannel(this Partial<UnfurlDetailsChat> it)
+        => it.AddFieldName("channel");
+    
+    public static Partial<UnfurlDetailsChat> WithTitle(this Partial<UnfurlDetailsChat> it)
+        => it.AddFieldName("title");
     
 }
+

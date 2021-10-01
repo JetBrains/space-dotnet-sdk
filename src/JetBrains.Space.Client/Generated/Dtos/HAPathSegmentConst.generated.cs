@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HAPathSegmentConst
+     : HAPathSegment, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class HAPathSegmentConst
-         : HAPathSegment, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "HA_PathSegment.Const";
+    
+    public HAPathSegmentConst() { }
+    
+    public HAPathSegmentConst(string value)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "HA_PathSegment.Const";
-        
-        public HAPathSegmentConst() { }
-        
-        public HAPathSegmentConst(string value)
-        {
-            Value = value;
-        }
-        
-        private PropertyValue<string> _value = new PropertyValue<string>(nameof(HAPathSegmentConst), nameof(Value));
-        
-        [Required]
-        [JsonPropertyName("value")]
-        public string Value
-        {
-            get => _value.GetValue();
-            set => _value.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _value.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Value = value;
     }
     
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(HAPathSegmentConst), nameof(Value));
+    
+    [Required]
+    [JsonPropertyName("value")]
+    public string Value
+    {
+        get => _value.GetValue();
+        set => _value.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _value.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

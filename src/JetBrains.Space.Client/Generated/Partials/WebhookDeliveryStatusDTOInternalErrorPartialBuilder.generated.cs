@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.WebhookDeliveryStatusDTOInternalErrorPartialBuilder
+namespace JetBrains.Space.Client.WebhookDeliveryStatusDTOInternalErrorPartialBuilder;
+
+public static class WebhookDeliveryStatusDTOInternalErrorPartialExtensions
 {
-    public static class WebhookDeliveryStatusDTOInternalErrorPartialExtensions
-    {
-        public static Partial<WebhookDeliveryStatusDTOInternalError> WithDeliveryId(this Partial<WebhookDeliveryStatusDTOInternalError> it)
-            => it.AddFieldName("deliveryId");
-        
-        public static Partial<WebhookDeliveryStatusDTOInternalError> WithSentTime(this Partial<WebhookDeliveryStatusDTOInternalError> it)
-            => it.AddFieldName("sentTime");
-        
-    }
+    public static Partial<WebhookDeliveryStatusDTOInternalError> WithDeliveryId(this Partial<WebhookDeliveryStatusDTOInternalError> it)
+        => it.AddFieldName("deliveryId");
+    
+    public static Partial<WebhookDeliveryStatusDTOInternalError> WithSentTime(this Partial<WebhookDeliveryStatusDTOInternalError> it)
+        => it.AddFieldName("sentTime");
     
 }
+

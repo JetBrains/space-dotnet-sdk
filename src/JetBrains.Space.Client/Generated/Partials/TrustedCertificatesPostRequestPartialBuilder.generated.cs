@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TrustedCertificatesPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TrustedCertificatesPostRequestPartialBuilder;
+
+public static class TrustedCertificatesPostRequestPartialExtensions
 {
-    public static class TrustedCertificatesPostRequestPartialExtensions
-    {
-        public static Partial<TrustedCertificatesPostRequest> WithAlias(this Partial<TrustedCertificatesPostRequest> it)
-            => it.AddFieldName("alias");
-        
-        public static Partial<TrustedCertificatesPostRequest> WithData(this Partial<TrustedCertificatesPostRequest> it)
-            => it.AddFieldName("data");
-        
-        public static Partial<TrustedCertificatesPostRequest> WithIsArchived(this Partial<TrustedCertificatesPostRequest> it)
-            => it.AddFieldName("archived");
-        
-    }
+    public static Partial<TrustedCertificatesPostRequest> WithAlias(this Partial<TrustedCertificatesPostRequest> it)
+        => it.AddFieldName("alias");
+    
+    public static Partial<TrustedCertificatesPostRequest> WithData(this Partial<TrustedCertificatesPostRequest> it)
+        => it.AddFieldName("data");
+    
+    public static Partial<TrustedCertificatesPostRequest> WithIsArchived(this Partial<TrustedCertificatesPostRequest> it)
+        => it.AddFieldName("archived");
     
 }
+

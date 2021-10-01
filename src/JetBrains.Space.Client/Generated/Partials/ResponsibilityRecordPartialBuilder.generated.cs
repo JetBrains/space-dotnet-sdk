@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ResponsibilityRecordPartialBuilder
+namespace JetBrains.Space.Client.ResponsibilityRecordPartialBuilder;
+
+public static class ResponsibilityRecordPartialExtensions
 {
-    public static class ResponsibilityRecordPartialExtensions
-    {
-        public static Partial<ResponsibilityRecord> WithResponsibilityId(this Partial<ResponsibilityRecord> it)
-            => it.AddFieldName("responsibilityId");
-        
-        public static Partial<ResponsibilityRecord> WithSummary(this Partial<ResponsibilityRecord> it)
-            => it.AddFieldName("summary");
-        
-        public static Partial<ResponsibilityRecord> WithNotes(this Partial<ResponsibilityRecord> it)
-            => it.AddFieldName("notes");
-        
-        public static Partial<ResponsibilityRecord> WithAssignedPeople(this Partial<ResponsibilityRecord> it)
-            => it.AddFieldName("assignedPeople");
-        
-        public static Partial<ResponsibilityRecord> WithAssignedPeople(this Partial<ResponsibilityRecord> it, Func<Partial<AssignedPerson>, Partial<AssignedPerson>> partialBuilder)
-            => it.AddFieldName("assignedPeople", partialBuilder(new Partial<AssignedPerson>(it)));
-        
-    }
+    public static Partial<ResponsibilityRecord> WithResponsibilityId(this Partial<ResponsibilityRecord> it)
+        => it.AddFieldName("responsibilityId");
+    
+    public static Partial<ResponsibilityRecord> WithSummary(this Partial<ResponsibilityRecord> it)
+        => it.AddFieldName("summary");
+    
+    public static Partial<ResponsibilityRecord> WithNotes(this Partial<ResponsibilityRecord> it)
+        => it.AddFieldName("notes");
+    
+    public static Partial<ResponsibilityRecord> WithAssignedPeople(this Partial<ResponsibilityRecord> it)
+        => it.AddFieldName("assignedPeople");
+    
+    public static Partial<ResponsibilityRecord> WithAssignedPeople(this Partial<ResponsibilityRecord> it, Func<Partial<AssignedPerson>, Partial<AssignedPerson>> partialBuilder)
+        => it.AddFieldName("assignedPeople", partialBuilder(new Partial<AssignedPerson>(it)));
     
 }
+

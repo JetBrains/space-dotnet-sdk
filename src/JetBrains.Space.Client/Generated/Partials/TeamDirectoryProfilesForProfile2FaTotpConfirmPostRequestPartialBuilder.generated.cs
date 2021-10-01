@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest> WithCode(this Partial<TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest> it)
-            => it.AddFieldName("code");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest> WithCode(this Partial<TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest> it)
+        => it.AddFieldName("code");
     
 }
+

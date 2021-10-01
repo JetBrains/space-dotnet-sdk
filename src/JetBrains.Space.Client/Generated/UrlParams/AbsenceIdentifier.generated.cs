@@ -27,27 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class AbsenceIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class AbsenceIdentifier : IUrlParameter
+    public static AbsenceIdentifier Id(string id)
+        => new AbsenceIdentifierId(id);
+    
+    private class AbsenceIdentifierId : AbsenceIdentifier
     {
-        public static AbsenceIdentifier Id(string id)
-            => new AbsenceIdentifierId(id);
+        private readonly string _id;
         
-        private class AbsenceIdentifierId : AbsenceIdentifier
+        public AbsenceIdentifierId(string id)
         {
-            private readonly string _id;
-            
-            public AbsenceIdentifierId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
+        public override string ToString()
+            => $"id:{_id}";
     }
     
 }
+

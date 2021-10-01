@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BaseMenuActionContext
+     : MenuActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class BaseMenuActionContext
-         : MenuActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "BaseMenuActionContext";
+    
+    public BaseMenuActionContext() { }
+    
+    public BaseMenuActionContext(string menuId)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "BaseMenuActionContext";
-        
-        public BaseMenuActionContext() { }
-        
-        public BaseMenuActionContext(string menuId)
-        {
-            MenuId = menuId;
-        }
-        
-        private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(BaseMenuActionContext), nameof(MenuId));
-        
-        [Required]
-        [JsonPropertyName("menuId")]
-        public string MenuId
-        {
-            get => _menuId.GetValue();
-            set => _menuId.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _menuId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        MenuId = menuId;
     }
     
+    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(BaseMenuActionContext), nameof(MenuId));
+    
+    [Required]
+    [JsonPropertyName("menuId")]
+    public string MenuId
+    {
+        get => _menuId.GetValue();
+        set => _menuId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _menuId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

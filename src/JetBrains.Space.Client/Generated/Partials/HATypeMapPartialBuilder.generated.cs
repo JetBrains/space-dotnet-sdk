@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HATypeMapPartialBuilder
+namespace JetBrains.Space.Client.HATypeMapPartialBuilder;
+
+public static class HATypeMapPartialExtensions
 {
-    public static class HATypeMapPartialExtensions
-    {
-        public static Partial<HATypeMap> WithValueType(this Partial<HATypeMap> it)
-            => it.AddFieldName("valueType");
-        
-        public static Partial<HATypeMap> WithValueType(this Partial<HATypeMap> it, Func<Partial<HAType>, Partial<HAType>> partialBuilder)
-            => it.AddFieldName("valueType", partialBuilder(new Partial<HAType>(it)));
-        
-        public static Partial<HATypeMap> WithIsNullable(this Partial<HATypeMap> it)
-            => it.AddFieldName("nullable");
-        
-        public static Partial<HATypeMap> WithTags(this Partial<HATypeMap> it)
-            => it.AddFieldName("tags");
-        
-    }
+    public static Partial<HATypeMap> WithValueType(this Partial<HATypeMap> it)
+        => it.AddFieldName("valueType");
+    
+    public static Partial<HATypeMap> WithValueType(this Partial<HATypeMap> it, Func<Partial<HAType>, Partial<HAType>> partialBuilder)
+        => it.AddFieldName("valueType", partialBuilder(new Partial<HAType>(it)));
+    
+    public static Partial<HATypeMap> WithIsNullable(this Partial<HATypeMap> it)
+        => it.AddFieldName("nullable");
+    
+    public static Partial<HATypeMap> WithTags(this Partial<HATypeMap> it)
+        => it.AddFieldName("tags");
     
 }
+

@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitCommitSignatureVerifiedPartialBuilder
+namespace JetBrains.Space.Client.GitCommitSignatureVerifiedPartialBuilder;
+
+public static class GitCommitSignatureVerifiedPartialExtensions
 {
-    public static class GitCommitSignatureVerifiedPartialExtensions
-    {
-        public static Partial<GitCommitSignatureVerified> WithDescription(this Partial<GitCommitSignatureVerified> it)
-            => it.AddFieldName("description");
-        
-    }
+    public static Partial<GitCommitSignatureVerified> WithDescription(this Partial<GitCommitSignatureVerified> it)
+        => it.AddFieldName("description");
     
 }
+

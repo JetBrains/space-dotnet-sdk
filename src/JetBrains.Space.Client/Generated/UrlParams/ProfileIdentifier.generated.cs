@@ -27,52 +27,51 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class ProfileIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class ProfileIdentifier : IUrlParameter
+    public static ProfileIdentifier Id(string id)
+        => new ProfileIdentifierId(id);
+    
+    public static ProfileIdentifier Me
+        => new ProfileIdentifierMe();
+    
+    public static ProfileIdentifier Username(string username)
+        => new ProfileIdentifierUsername(username);
+    
+    private class ProfileIdentifierId : ProfileIdentifier
     {
-        public static ProfileIdentifier Id(string id)
-            => new ProfileIdentifierId(id);
+        private readonly string _id;
         
-        public static ProfileIdentifier Me
-            => new ProfileIdentifierMe();
-        
-        public static ProfileIdentifier Username(string username)
-            => new ProfileIdentifierUsername(username);
-        
-        private class ProfileIdentifierId : ProfileIdentifier
+        public ProfileIdentifierId(string id)
         {
-            private readonly string _id;
-            
-            public ProfileIdentifierId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
-        private class ProfileIdentifierMe : ProfileIdentifier
+        public override string ToString()
+            => $"id:{_id}";
+    }
+    
+    private class ProfileIdentifierMe : ProfileIdentifier
+    {
+        public override string ToString()
+            => "me";
+    }
+    
+    private class ProfileIdentifierUsername : ProfileIdentifier
+    {
+        private readonly string _username;
+        
+        public ProfileIdentifierUsername(string username)
         {
-            public override string ToString()
-                => "me";
+            _username = username;
         }
         
-        private class ProfileIdentifierUsername : ProfileIdentifier
-        {
-            private readonly string _username;
-            
-            public ProfileIdentifierUsername(string username)
-            {
-                _username = username;
-            }
-            
-            public override string ToString()
-                => $"username:{_username}";
-        }
-        
+        public override string ToString()
+            => $"username:{_username}";
     }
     
 }
+

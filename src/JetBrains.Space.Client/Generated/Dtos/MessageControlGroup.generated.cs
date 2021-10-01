@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MessageControlGroup
+     : MessageElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MessageControlGroup
-         : MessageElement, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MessageControlGroup";
+    
+    public MessageControlGroup() { }
+    
+    public MessageControlGroup(List<MessageControlElement> elements)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MessageControlGroup";
-        
-        public MessageControlGroup() { }
-        
-        public MessageControlGroup(List<MessageControlElement> elements)
-        {
-            Elements = elements;
-        }
-        
-        private PropertyValue<List<MessageControlElement>> _elements = new PropertyValue<List<MessageControlElement>>(nameof(MessageControlGroup), nameof(Elements), new List<MessageControlElement>());
-        
-        [Required]
-        [JsonPropertyName("elements")]
-        public List<MessageControlElement> Elements
-        {
-            get => _elements.GetValue();
-            set => _elements.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _elements.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Elements = elements;
     }
     
+    private PropertyValue<List<MessageControlElement>> _elements = new PropertyValue<List<MessageControlElement>>(nameof(MessageControlGroup), nameof(Elements), new List<MessageControlElement>());
+    
+    [Required]
+    [JsonPropertyName("elements")]
+    public List<MessageControlElement> Elements
+    {
+        get => _elements.GetValue();
+        set => _elements.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _elements.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

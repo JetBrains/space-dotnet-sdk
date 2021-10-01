@@ -27,27 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class SamlMetadataResponse
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class SamlMetadataResponse
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "SamlMetadataResponse";
+    
+    public static SamlMetadataResponseError Error(List<string> messages)
+        => new SamlMetadataResponseError(messages: messages);
+    
+    public static SamlMetadataResponseSuccess Success(string metadata)
+        => new SamlMetadataResponseSuccess(metadata: metadata);
+    
+    public SamlMetadataResponse() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "SamlMetadataResponse";
-        
-        public static SamlMetadataResponseError Error(List<string> messages)
-            => new SamlMetadataResponseError(messages: messages);
-        
-        public static SamlMetadataResponseSuccess Success(string metadata)
-            => new SamlMetadataResponseSuccess(metadata: metadata);
-        
-        public SamlMetadataResponse() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

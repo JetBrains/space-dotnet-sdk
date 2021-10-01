@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileNavBarProjectsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileNavBarProjectsPostRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfileNavBarProjectsPostRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfileNavBarProjectsPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfileNavBarProjectsPostRequest> WithProject(this Partial<TeamDirectoryProfilesForProfileNavBarProjectsPostRequest> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<TeamDirectoryProfilesForProfileNavBarProjectsPostRequest> WithProject(this Partial<TeamDirectoryProfilesForProfileNavBarProjectsPostRequest> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<ProjectIdentifier>(it)));
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfileNavBarProjectsPostRequest> WithProject(this Partial<TeamDirectoryProfilesForProfileNavBarProjectsPostRequest> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<TeamDirectoryProfilesForProfileNavBarProjectsPostRequest> WithProject(this Partial<TeamDirectoryProfilesForProfileNavBarProjectsPostRequest> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<ProjectIdentifier>(it)));
     
 }
+

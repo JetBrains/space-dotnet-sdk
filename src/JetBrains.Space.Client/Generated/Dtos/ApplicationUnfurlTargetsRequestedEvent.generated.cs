@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ApplicationUnfurlTargetsRequestedEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ApplicationUnfurlTargetsRequestedEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ApplicationUnfurlTargetsRequestedEvent";
+    
+    public ApplicationUnfurlTargetsRequestedEvent() { }
+    
+    public ApplicationUnfurlTargetsRequestedEvent(KMetaMod meta, ESApp application, ApplicationUnfurlTarget target)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ApplicationUnfurlTargetsRequestedEvent";
-        
-        public ApplicationUnfurlTargetsRequestedEvent() { }
-        
-        public ApplicationUnfurlTargetsRequestedEvent(KMetaMod meta, ESApp application, ApplicationUnfurlTarget target)
-        {
-            Meta = meta;
-            Application = application;
-            Target = target;
-        }
-        
-        private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Meta));
-        
-        [Required]
-        [JsonPropertyName("meta")]
-        public KMetaMod Meta
-        {
-            get => _meta.GetValue();
-            set => _meta.SetValue(value);
-        }
-    
-        private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Application));
-        
-        [Required]
-        [JsonPropertyName("application")]
-        public ESApp Application
-        {
-            get => _application.GetValue();
-            set => _application.SetValue(value);
-        }
-    
-        private PropertyValue<ApplicationUnfurlTarget> _target = new PropertyValue<ApplicationUnfurlTarget>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Target));
-        
-        [Required]
-        [JsonPropertyName("target")]
-        public ApplicationUnfurlTarget Target
-        {
-            get => _target.GetValue();
-            set => _target.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _meta.SetAccessPath(path, validateHasBeenSet);
-            _application.SetAccessPath(path, validateHasBeenSet);
-            _target.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Meta = meta;
+        Application = application;
+        Target = target;
     }
     
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Meta));
+    
+    [Required]
+    [JsonPropertyName("meta")]
+    public KMetaMod Meta
+    {
+        get => _meta.GetValue();
+        set => _meta.SetValue(value);
+    }
+
+    private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Application));
+    
+    [Required]
+    [JsonPropertyName("application")]
+    public ESApp Application
+    {
+        get => _application.GetValue();
+        set => _application.SetValue(value);
+    }
+
+    private PropertyValue<ApplicationUnfurlTarget> _target = new PropertyValue<ApplicationUnfurlTarget>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Target));
+    
+    [Required]
+    [JsonPropertyName("target")]
+    public ApplicationUnfurlTarget Target
+    {
+        get => _target.GetValue();
+        set => _target.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _meta.SetAccessPath(path, validateHasBeenSet);
+        _application.SetAccessPath(path, validateHasBeenSet);
+        _target.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

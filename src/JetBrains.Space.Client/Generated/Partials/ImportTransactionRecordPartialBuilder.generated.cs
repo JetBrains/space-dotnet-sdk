@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ImportTransactionRecordPartialBuilder
+namespace JetBrains.Space.Client.ImportTransactionRecordPartialBuilder;
+
+public static class ImportTransactionRecordPartialExtensions
 {
-    public static class ImportTransactionRecordPartialExtensions
-    {
-        public static Partial<ImportTransactionRecord> WithId(this Partial<ImportTransactionRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ImportTransactionRecord> WithIsArchived(this Partial<ImportTransactionRecord> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<ImportTransactionRecord> WithImporter(this Partial<ImportTransactionRecord> it)
-            => it.AddFieldName("importer");
-        
-        public static Partial<ImportTransactionRecord> WithImporter(this Partial<ImportTransactionRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("importer", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<ImportTransactionRecord> WithExternalSource(this Partial<ImportTransactionRecord> it)
-            => it.AddFieldName("externalSource");
-        
-        public static Partial<ImportTransactionRecord> WithImported(this Partial<ImportTransactionRecord> it)
-            => it.AddFieldName("imported");
-        
-    }
+    public static Partial<ImportTransactionRecord> WithId(this Partial<ImportTransactionRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ImportTransactionRecord> WithIsArchived(this Partial<ImportTransactionRecord> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<ImportTransactionRecord> WithImporter(this Partial<ImportTransactionRecord> it)
+        => it.AddFieldName("importer");
+    
+    public static Partial<ImportTransactionRecord> WithImporter(this Partial<ImportTransactionRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("importer", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<ImportTransactionRecord> WithExternalSource(this Partial<ImportTransactionRecord> it)
+        => it.AddFieldName("externalSource");
+    
+    public static Partial<ImportTransactionRecord> WithImported(this Partial<ImportTransactionRecord> it)
+        => it.AddFieldName("imported");
     
 }
+

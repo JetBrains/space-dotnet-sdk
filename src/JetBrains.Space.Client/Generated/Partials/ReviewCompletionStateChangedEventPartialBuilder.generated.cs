@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ReviewCompletionStateChangedEventPartialBuilder
+namespace JetBrains.Space.Client.ReviewCompletionStateChangedEventPartialBuilder;
+
+public static class ReviewCompletionStateChangedEventPartialExtensions
 {
-    public static class ReviewCompletionStateChangedEventPartialExtensions
-    {
-        public static Partial<ReviewCompletionStateChangedEvent> WithState(this Partial<ReviewCompletionStateChangedEvent> it)
-            => it.AddFieldName("state");
-        
-        public static Partial<ReviewCompletionStateChangedEvent> WithState(this Partial<ReviewCompletionStateChangedEvent> it, Func<Partial<ReviewerState>, Partial<ReviewerState>> partialBuilder)
-            => it.AddFieldName("state", partialBuilder(new Partial<ReviewerState>(it)));
-        
-    }
+    public static Partial<ReviewCompletionStateChangedEvent> WithState(this Partial<ReviewCompletionStateChangedEvent> it)
+        => it.AddFieldName("state");
+    
+    public static Partial<ReviewCompletionStateChangedEvent> WithState(this Partial<ReviewCompletionStateChangedEvent> it, Func<Partial<ReviewerState>, Partial<ReviewerState>> partialBuilder)
+        => it.AddFieldName("state", partialBuilder(new Partial<ReviewerState>(it)));
     
 }
+

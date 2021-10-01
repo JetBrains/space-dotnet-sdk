@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface PermissionTarget
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface PermissionTarget
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static GlobalPermissionTarget Global()
-            => new GlobalPermissionTarget();
-        
-        public static ProfilePermissionTarget Profile(ProfileIdentifier profile)
-            => new ProfilePermissionTarget(profile: profile);
-        
-        public static ProjectPermissionTarget Project(ProjectIdentifier project)
-            => new ProjectPermissionTarget(project: project);
-        
-        public static TeamPermissionTarget Team(string team)
-            => new TeamPermissionTarget(team: team);
-        
-    }
+    public static GlobalPermissionTarget Global()
+        => new GlobalPermissionTarget();
+    
+    public static ProfilePermissionTarget Profile(ProfileIdentifier profile)
+        => new ProfilePermissionTarget(profile: profile);
+    
+    public static ProjectPermissionTarget Project(ProjectIdentifier project)
+        => new ProjectPermissionTarget(project: project);
+    
+    public static TeamPermissionTarget Team(string team)
+        => new TeamPermissionTarget(team: team);
     
 }
+

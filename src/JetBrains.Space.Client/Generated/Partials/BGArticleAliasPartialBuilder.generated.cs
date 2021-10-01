@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BGArticleAliasPartialBuilder
+namespace JetBrains.Space.Client.BGArticleAliasPartialBuilder;
+
+public static class BGArticleAliasPartialExtensions
 {
-    public static class BGArticleAliasPartialExtensions
-    {
-        public static Partial<BGArticleAlias> WithAlias(this Partial<BGArticleAlias> it)
-            => it.AddFieldName("alias");
-        
-        public static Partial<BGArticleAlias> WithCreated(this Partial<BGArticleAlias> it)
-            => it.AddFieldName("created");
-        
-    }
+    public static Partial<BGArticleAlias> WithAlias(this Partial<BGArticleAlias> it)
+        => it.AddFieldName("alias");
+    
+    public static Partial<BGArticleAlias> WithCreated(this Partial<BGArticleAlias> it)
+        => it.AddFieldName("created");
     
 }
+

@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class EnumCFValue
+     : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class EnumCFValue
-         : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "EnumCFValue";
+    
+    public EnumCFValue() { }
+    
+    public EnumCFValue(EnumValueData? value = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "EnumCFValue";
-        
-        public EnumCFValue() { }
-        
-        public EnumCFValue(EnumValueData? value = null)
-        {
-            Value = value;
-        }
-        
-        private PropertyValue<EnumValueData?> _value = new PropertyValue<EnumValueData?>(nameof(EnumCFValue), nameof(Value));
-        
-        [JsonPropertyName("value")]
-        public EnumValueData? Value
-        {
-            get => _value.GetValue();
-            set => _value.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _value.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Value = value;
     }
     
+    private PropertyValue<EnumValueData?> _value = new PropertyValue<EnumValueData?>(nameof(EnumCFValue), nameof(Value));
+    
+    [JsonPropertyName("value")]
+    public EnumValueData? Value
+    {
+        get => _value.GetValue();
+        set => _value.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _value.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

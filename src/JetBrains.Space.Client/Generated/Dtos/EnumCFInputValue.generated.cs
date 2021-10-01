@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class EnumCFInputValue
+     : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class EnumCFInputValue
-         : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "EnumCFInputValue";
+    
+    public EnumCFInputValue() { }
+    
+    public EnumCFInputValue(CFEnumValueIdentifier? enumValueIdentifier = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "EnumCFInputValue";
-        
-        public EnumCFInputValue() { }
-        
-        public EnumCFInputValue(CFEnumValueIdentifier? enumValueIdentifier = null)
-        {
-            EnumValueIdentifier = enumValueIdentifier;
-        }
-        
-        private PropertyValue<CFEnumValueIdentifier?> _enumValueIdentifier = new PropertyValue<CFEnumValueIdentifier?>(nameof(EnumCFInputValue), nameof(EnumValueIdentifier));
-        
-        [JsonPropertyName("enumValueIdentifier")]
-        public CFEnumValueIdentifier? EnumValueIdentifier
-        {
-            get => _enumValueIdentifier.GetValue();
-            set => _enumValueIdentifier.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _enumValueIdentifier.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        EnumValueIdentifier = enumValueIdentifier;
     }
     
+    private PropertyValue<CFEnumValueIdentifier?> _enumValueIdentifier = new PropertyValue<CFEnumValueIdentifier?>(nameof(EnumCFInputValue), nameof(EnumValueIdentifier));
+    
+    [JsonPropertyName("enumValueIdentifier")]
+    public CFEnumValueIdentifier? EnumValueIdentifier
+    {
+        get => _enumValueIdentifier.GetValue();
+        set => _enumValueIdentifier.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _enumValueIdentifier.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

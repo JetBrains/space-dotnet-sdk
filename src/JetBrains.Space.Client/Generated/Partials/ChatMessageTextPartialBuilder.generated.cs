@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChatMessageTextPartialBuilder
+namespace JetBrains.Space.Client.ChatMessageTextPartialBuilder;
+
+public static class ChatMessageTextPartialExtensions
 {
-    public static class ChatMessageTextPartialExtensions
-    {
-        public static Partial<ChatMessageText> WithText(this Partial<ChatMessageText> it)
-            => it.AddFieldName("text");
-        
-    }
+    public static Partial<ChatMessageText> WithText(this Partial<ChatMessageText> it)
+        => it.AddFieldName("text");
     
 }
+

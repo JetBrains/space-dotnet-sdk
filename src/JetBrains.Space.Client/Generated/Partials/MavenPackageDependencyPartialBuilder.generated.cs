@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MavenPackageDependencyPartialBuilder
+namespace JetBrains.Space.Client.MavenPackageDependencyPartialBuilder;
+
+public static class MavenPackageDependencyPartialExtensions
 {
-    public static class MavenPackageDependencyPartialExtensions
-    {
-        public static Partial<MavenPackageDependency> WithScope(this Partial<MavenPackageDependency> it)
-            => it.AddFieldName("scope");
-        
-        public static Partial<MavenPackageDependency> WithGroup(this Partial<MavenPackageDependency> it)
-            => it.AddFieldName("group");
-        
-        public static Partial<MavenPackageDependency> WithArtifact(this Partial<MavenPackageDependency> it)
-            => it.AddFieldName("artifact");
-        
-        public static Partial<MavenPackageDependency> WithVersion(this Partial<MavenPackageDependency> it)
-            => it.AddFieldName("version");
-        
-    }
+    public static Partial<MavenPackageDependency> WithScope(this Partial<MavenPackageDependency> it)
+        => it.AddFieldName("scope");
+    
+    public static Partial<MavenPackageDependency> WithGroup(this Partial<MavenPackageDependency> it)
+        => it.AddFieldName("group");
+    
+    public static Partial<MavenPackageDependency> WithArtifact(this Partial<MavenPackageDependency> it)
+        => it.AddFieldName("artifact");
+    
+    public static Partial<MavenPackageDependency> WithVersion(this Partial<MavenPackageDependency> it)
+        => it.AddFieldName("version");
     
 }
+

@@ -27,52 +27,51 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class PermissionContextIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class PermissionContextIdentifier : IUrlParameter
+    public static PermissionContextIdentifier Channel(ChannelIdentifier channel)
+        => new ChannelPermissionContextIdentifier(channel);
+    
+    public static PermissionContextIdentifier Global
+        => new GlobalPermissionContextIdentifier();
+    
+    public static PermissionContextIdentifier Project(ProjectIdentifier project)
+        => new ProjectPermissionContextIdentifier(project);
+    
+    private class ChannelPermissionContextIdentifier : PermissionContextIdentifier
     {
-        public static PermissionContextIdentifier Channel(ChannelIdentifier channel)
-            => new ChannelPermissionContextIdentifier(channel);
+        private readonly ChannelIdentifier _channel;
         
-        public static PermissionContextIdentifier Global
-            => new GlobalPermissionContextIdentifier();
-        
-        public static PermissionContextIdentifier Project(ProjectIdentifier project)
-            => new ProjectPermissionContextIdentifier(project);
-        
-        private class ChannelPermissionContextIdentifier : PermissionContextIdentifier
+        public ChannelPermissionContextIdentifier(ChannelIdentifier channel)
         {
-            private readonly ChannelIdentifier _channel;
-            
-            public ChannelPermissionContextIdentifier(ChannelIdentifier channel)
-            {
-                _channel = channel;
-            }
-            
-            public override string ToString()
-                => $"channel:{_channel}";
+            _channel = channel;
         }
         
-        private class GlobalPermissionContextIdentifier : PermissionContextIdentifier
+        public override string ToString()
+            => $"channel:{_channel}";
+    }
+    
+    private class GlobalPermissionContextIdentifier : PermissionContextIdentifier
+    {
+        public override string ToString()
+            => "global";
+    }
+    
+    private class ProjectPermissionContextIdentifier : PermissionContextIdentifier
+    {
+        private readonly ProjectIdentifier _project;
+        
+        public ProjectPermissionContextIdentifier(ProjectIdentifier project)
         {
-            public override string ToString()
-                => "global";
+            _project = project;
         }
         
-        private class ProjectPermissionContextIdentifier : PermissionContextIdentifier
-        {
-            private readonly ProjectIdentifier _project;
-            
-            public ProjectPermissionContextIdentifier(ProjectIdentifier project)
-            {
-                _project = project;
-            }
-            
-            public override string ToString()
-                => $"project:{_project}";
-        }
-        
+        public override string ToString()
+            => $"project:{_project}";
     }
     
 }
+

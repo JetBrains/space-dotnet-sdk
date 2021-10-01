@@ -27,167 +27,166 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectPlanningIssuesPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectPlanningIssuesPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectPlanningIssuesPostRequest() { }
+    
+    public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null, List<IssueIdentifier>? parents = null)
     {
-        public ProjectsForProjectPlanningIssuesPostRequest() { }
-        
-        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null, List<IssueIdentifier>? parents = null)
-        {
-            Title = title;
-            Description = description;
-            Assignee = assignee;
-            Status = status;
-            DueDate = dueDate;
-            Tags = (tags ?? new List<string>());
-            Checklists = (checklists ?? new List<string>());
-            Sprints = (sprints ?? new List<string>());
-            Attachments = (attachments ?? new List<AttachmentIn>());
-            FromMessage = fromMessage;
-            CustomFields = customFields;
-            Topics = topics;
-            Parents = parents;
-        }
-        
-        private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Title));
-        
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title
-        {
-            get => _title.GetValue();
-            set => _title.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Description));
-        
-        [JsonPropertyName("description")]
-        public string? Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<ProfileIdentifier?> _assignee = new PropertyValue<ProfileIdentifier?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Assignee));
-        
-        [JsonPropertyName("assignee")]
-        public ProfileIdentifier? Assignee
-        {
-            get => _assignee.GetValue();
-            set => _assignee.SetValue(value);
-        }
-    
-        private PropertyValue<string> _status = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Status));
-        
-        [Required]
-        [JsonPropertyName("status")]
-        public string Status
-        {
-            get => _status.GetValue();
-            set => _status.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(DueDate));
-        
-        [JsonPropertyName("dueDate")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? DueDate
-        {
-            get => _dueDate.GetValue();
-            set => _dueDate.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Tags), new List<string>());
-        
-        [JsonPropertyName("tags")]
-        public List<string> Tags
-        {
-            get => _tags.GetValue();
-            set => _tags.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _checklists = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Checklists), new List<string>());
-        
-        [JsonPropertyName("checklists")]
-        public List<string> Checklists
-        {
-            get => _checklists.GetValue();
-            set => _checklists.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _sprints = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Sprints), new List<string>());
-        
-        [JsonPropertyName("sprints")]
-        public List<string> Sprints
-        {
-            get => _sprints.GetValue();
-            set => _sprints.SetValue(value);
-        }
-    
-        private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Attachments), new List<AttachmentIn>());
-        
-        [JsonPropertyName("attachments")]
-        public List<AttachmentIn>? Attachments
-        {
-            get => _attachments.GetValue();
-            set => _attachments.SetValue(value);
-        }
-    
-        private PropertyValue<MessageLink?> _fromMessage = new PropertyValue<MessageLink?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(FromMessage));
-        
-        [JsonPropertyName("fromMessage")]
-        public MessageLink? FromMessage
-        {
-            get => _fromMessage.GetValue();
-            set => _fromMessage.SetValue(value);
-        }
-    
-        private PropertyValue<List<CustomFieldInputValue>?> _customFields = new PropertyValue<List<CustomFieldInputValue>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(CustomFields));
-        
-        [JsonPropertyName("customFields")]
-        public List<CustomFieldInputValue>? CustomFields
-        {
-            get => _customFields.GetValue();
-            set => _customFields.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _topics = new PropertyValue<List<string>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Topics));
-        
-        [JsonPropertyName("topics")]
-        public List<string>? Topics
-        {
-            get => _topics.GetValue();
-            set => _topics.SetValue(value);
-        }
-    
-        private PropertyValue<List<IssueIdentifier>?> _parents = new PropertyValue<List<IssueIdentifier>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Parents));
-        
-        [JsonPropertyName("parents")]
-        public List<IssueIdentifier>? Parents
-        {
-            get => _parents.GetValue();
-            set => _parents.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _title.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _assignee.SetAccessPath(path, validateHasBeenSet);
-            _status.SetAccessPath(path, validateHasBeenSet);
-            _dueDate.SetAccessPath(path, validateHasBeenSet);
-            _tags.SetAccessPath(path, validateHasBeenSet);
-            _checklists.SetAccessPath(path, validateHasBeenSet);
-            _sprints.SetAccessPath(path, validateHasBeenSet);
-            _attachments.SetAccessPath(path, validateHasBeenSet);
-            _fromMessage.SetAccessPath(path, validateHasBeenSet);
-            _customFields.SetAccessPath(path, validateHasBeenSet);
-            _topics.SetAccessPath(path, validateHasBeenSet);
-            _parents.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Title = title;
+        Description = description;
+        Assignee = assignee;
+        Status = status;
+        DueDate = dueDate;
+        Tags = (tags ?? new List<string>());
+        Checklists = (checklists ?? new List<string>());
+        Sprints = (sprints ?? new List<string>());
+        Attachments = (attachments ?? new List<AttachmentIn>());
+        FromMessage = fromMessage;
+        CustomFields = customFields;
+        Topics = topics;
+        Parents = parents;
     }
     
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Title));
+    
+    [Required]
+    [JsonPropertyName("title")]
+    public string Title
+    {
+        get => _title.GetValue();
+        set => _title.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<ProfileIdentifier?> _assignee = new PropertyValue<ProfileIdentifier?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Assignee));
+    
+    [JsonPropertyName("assignee")]
+    public ProfileIdentifier? Assignee
+    {
+        get => _assignee.GetValue();
+        set => _assignee.SetValue(value);
+    }
+
+    private PropertyValue<string> _status = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Status));
+    
+    [Required]
+    [JsonPropertyName("status")]
+    public string Status
+    {
+        get => _status.GetValue();
+        set => _status.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(DueDate));
+    
+    [JsonPropertyName("dueDate")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? DueDate
+    {
+        get => _dueDate.GetValue();
+        set => _dueDate.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Tags), new List<string>());
+    
+    [JsonPropertyName("tags")]
+    public List<string> Tags
+    {
+        get => _tags.GetValue();
+        set => _tags.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _checklists = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Checklists), new List<string>());
+    
+    [JsonPropertyName("checklists")]
+    public List<string> Checklists
+    {
+        get => _checklists.GetValue();
+        set => _checklists.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _sprints = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Sprints), new List<string>());
+    
+    [JsonPropertyName("sprints")]
+    public List<string> Sprints
+    {
+        get => _sprints.GetValue();
+        set => _sprints.SetValue(value);
+    }
+
+    private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Attachments), new List<AttachmentIn>());
+    
+    [JsonPropertyName("attachments")]
+    public List<AttachmentIn>? Attachments
+    {
+        get => _attachments.GetValue();
+        set => _attachments.SetValue(value);
+    }
+
+    private PropertyValue<MessageLink?> _fromMessage = new PropertyValue<MessageLink?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(FromMessage));
+    
+    [JsonPropertyName("fromMessage")]
+    public MessageLink? FromMessage
+    {
+        get => _fromMessage.GetValue();
+        set => _fromMessage.SetValue(value);
+    }
+
+    private PropertyValue<List<CustomFieldInputValue>?> _customFields = new PropertyValue<List<CustomFieldInputValue>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(CustomFields));
+    
+    [JsonPropertyName("customFields")]
+    public List<CustomFieldInputValue>? CustomFields
+    {
+        get => _customFields.GetValue();
+        set => _customFields.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _topics = new PropertyValue<List<string>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Topics));
+    
+    [JsonPropertyName("topics")]
+    public List<string>? Topics
+    {
+        get => _topics.GetValue();
+        set => _topics.SetValue(value);
+    }
+
+    private PropertyValue<List<IssueIdentifier>?> _parents = new PropertyValue<List<IssueIdentifier>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Parents));
+    
+    [JsonPropertyName("parents")]
+    public List<IssueIdentifier>? Parents
+    {
+        get => _parents.GetValue();
+        set => _parents.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _title.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _assignee.SetAccessPath(path, validateHasBeenSet);
+        _status.SetAccessPath(path, validateHasBeenSet);
+        _dueDate.SetAccessPath(path, validateHasBeenSet);
+        _tags.SetAccessPath(path, validateHasBeenSet);
+        _checklists.SetAccessPath(path, validateHasBeenSet);
+        _sprints.SetAccessPath(path, validateHasBeenSet);
+        _attachments.SetAccessPath(path, validateHasBeenSet);
+        _fromMessage.SetAccessPath(path, validateHasBeenSet);
+        _customFields.SetAccessPath(path, validateHasBeenSet);
+        _topics.SetAccessPath(path, validateHasBeenSet);
+        _parents.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

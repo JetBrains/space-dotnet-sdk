@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsParamsInDefaultBundlePostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsParamsInDefaultBundlePostRequestPartialBuilder;
+
+public static class ProjectsParamsInDefaultBundlePostRequestPartialExtensions
 {
-    public static class ProjectsParamsInDefaultBundlePostRequestPartialExtensions
-    {
-        public static Partial<ProjectsParamsInDefaultBundlePostRequest> WithProjectId(this Partial<ProjectsParamsInDefaultBundlePostRequest> it)
-            => it.AddFieldName("projectId");
-        
-        public static Partial<ProjectsParamsInDefaultBundlePostRequest> WithKey(this Partial<ProjectsParamsInDefaultBundlePostRequest> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<ProjectsParamsInDefaultBundlePostRequest> WithValue(this Partial<ProjectsParamsInDefaultBundlePostRequest> it)
-            => it.AddFieldName("value");
-        
-    }
+    public static Partial<ProjectsParamsInDefaultBundlePostRequest> WithProjectId(this Partial<ProjectsParamsInDefaultBundlePostRequest> it)
+        => it.AddFieldName("projectId");
+    
+    public static Partial<ProjectsParamsInDefaultBundlePostRequest> WithKey(this Partial<ProjectsParamsInDefaultBundlePostRequest> it)
+        => it.AddFieldName("key");
+    
+    public static Partial<ProjectsParamsInDefaultBundlePostRequest> WithValue(this Partial<ProjectsParamsInDefaultBundlePostRequest> it)
+        => it.AddFieldName("value");
     
 }
+

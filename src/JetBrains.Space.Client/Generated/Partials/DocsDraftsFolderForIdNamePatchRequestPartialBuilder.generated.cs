@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocsDraftsFolderForIdNamePatchRequestPartialBuilder
+namespace JetBrains.Space.Client.DocsDraftsFolderForIdNamePatchRequestPartialBuilder;
+
+public static class DocsDraftsFolderForIdNamePatchRequestPartialExtensions
 {
-    public static class DocsDraftsFolderForIdNamePatchRequestPartialExtensions
-    {
-        public static Partial<DocsDraftsFolderForIdNamePatchRequest> WithName(this Partial<DocsDraftsFolderForIdNamePatchRequest> it)
-            => it.AddFieldName("name");
-        
-    }
+    public static Partial<DocsDraftsFolderForIdNamePatchRequest> WithName(this Partial<DocsDraftsFolderForIdNamePatchRequest> it)
+        => it.AddFieldName("name");
     
 }
+

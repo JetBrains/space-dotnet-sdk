@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueStatusPartialBuilder
+namespace JetBrains.Space.Client.IssueStatusPartialBuilder;
+
+public static class IssueStatusPartialExtensions
 {
-    public static class IssueStatusPartialExtensions
-    {
-        public static Partial<IssueStatus> WithId(this Partial<IssueStatus> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<IssueStatus> WithIsArchived(this Partial<IssueStatus> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<IssueStatus> WithName(this Partial<IssueStatus> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<IssueStatus> WithIsResolved(this Partial<IssueStatus> it)
-            => it.AddFieldName("resolved");
-        
-        public static Partial<IssueStatus> WithColor(this Partial<IssueStatus> it)
-            => it.AddFieldName("color");
-        
-    }
+    public static Partial<IssueStatus> WithId(this Partial<IssueStatus> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<IssueStatus> WithIsArchived(this Partial<IssueStatus> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<IssueStatus> WithName(this Partial<IssueStatus> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<IssueStatus> WithIsResolved(this Partial<IssueStatus> it)
+        => it.AddFieldName("resolved");
+    
+    public static Partial<IssueStatus> WithColor(this Partial<IssueStatus> it)
+        => it.AddFieldName("color");
     
 }
+

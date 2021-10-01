@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2ChannelContactObsolete
+     : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2ChannelContactObsolete
-         : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2ChannelContactObsolete";
+    
+    public M2ChannelContactObsolete() { }
+    
+    public M2ChannelContactObsolete(M2ObsoleteCause? cause = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2ChannelContactObsolete";
-        
-        public M2ChannelContactObsolete() { }
-        
-        public M2ChannelContactObsolete(M2ObsoleteCause? cause = null)
-        {
-            Cause = cause;
-        }
-        
-        private PropertyValue<M2ObsoleteCause?> _cause = new PropertyValue<M2ObsoleteCause?>(nameof(M2ChannelContactObsolete), nameof(Cause));
-        
-        [JsonPropertyName("cause")]
-        public M2ObsoleteCause? Cause
-        {
-            get => _cause.GetValue();
-            set => _cause.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _cause.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Cause = cause;
     }
     
+    private PropertyValue<M2ObsoleteCause?> _cause = new PropertyValue<M2ObsoleteCause?>(nameof(M2ChannelContactObsolete), nameof(Cause));
+    
+    [JsonPropertyName("cause")]
+    public M2ObsoleteCause? Cause
+    {
+        get => _cause.GetValue();
+        set => _cause.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _cause.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

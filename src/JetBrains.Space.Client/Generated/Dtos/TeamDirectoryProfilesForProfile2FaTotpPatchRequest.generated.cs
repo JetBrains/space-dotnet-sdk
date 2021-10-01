@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryProfilesForProfile2FaTotpPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryProfilesForProfile2FaTotpPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryProfilesForProfile2FaTotpPatchRequest() { }
+    
+    public TeamDirectoryProfilesForProfile2FaTotpPatchRequest(bool enabled)
     {
-        public TeamDirectoryProfilesForProfile2FaTotpPatchRequest() { }
-        
-        public TeamDirectoryProfilesForProfile2FaTotpPatchRequest(bool enabled)
-        {
-            IsEnabled = enabled;
-        }
-        
-        private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(TeamDirectoryProfilesForProfile2FaTotpPatchRequest), nameof(IsEnabled));
-        
-        [Required]
-        [JsonPropertyName("enabled")]
-        public bool IsEnabled
-        {
-            get => _enabled.GetValue();
-            set => _enabled.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _enabled.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        IsEnabled = enabled;
     }
     
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(TeamDirectoryProfilesForProfile2FaTotpPatchRequest), nameof(IsEnabled));
+    
+    [Required]
+    [JsonPropertyName("enabled")]
+    public bool IsEnabled
+    {
+        get => _enabled.GetValue();
+        set => _enabled.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _enabled.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

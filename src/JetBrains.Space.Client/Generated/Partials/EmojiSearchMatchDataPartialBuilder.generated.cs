@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EmojiSearchMatchDataPartialBuilder
+namespace JetBrains.Space.Client.EmojiSearchMatchDataPartialBuilder;
+
+public static class EmojiSearchMatchDataPartialExtensions
 {
-    public static class EmojiSearchMatchDataPartialExtensions
-    {
-        public static Partial<EmojiSearchMatchData> WithEmoji(this Partial<EmojiSearchMatchData> it)
-            => it.AddFieldName("emoji");
-        
-        public static Partial<EmojiSearchMatchData> WithMatched(this Partial<EmojiSearchMatchData> it)
-            => it.AddFieldName("matched");
-        
-        public static Partial<EmojiSearchMatchData> WithMatchType(this Partial<EmojiSearchMatchData> it)
-            => it.AddFieldName("matchType");
-        
-        public static Partial<EmojiSearchMatchData> WithMatchType(this Partial<EmojiSearchMatchData> it, Func<Partial<EmojiSearchMatchType>, Partial<EmojiSearchMatchType>> partialBuilder)
-            => it.AddFieldName("matchType", partialBuilder(new Partial<EmojiSearchMatchType>(it)));
-        
-    }
+    public static Partial<EmojiSearchMatchData> WithEmoji(this Partial<EmojiSearchMatchData> it)
+        => it.AddFieldName("emoji");
+    
+    public static Partial<EmojiSearchMatchData> WithMatched(this Partial<EmojiSearchMatchData> it)
+        => it.AddFieldName("matched");
+    
+    public static Partial<EmojiSearchMatchData> WithMatchType(this Partial<EmojiSearchMatchData> it)
+        => it.AddFieldName("matchType");
+    
+    public static Partial<EmojiSearchMatchData> WithMatchType(this Partial<EmojiSearchMatchData> it, Func<Partial<EmojiSearchMatchType>, Partial<EmojiSearchMatchType>> partialBuilder)
+        => it.AddFieldName("matchType", partialBuilder(new Partial<EmojiSearchMatchType>(it)));
     
 }
+

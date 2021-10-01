@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsIssuePartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsIssuePartialBuilder;
+
+public static class UnfurlDetailsIssuePartialExtensions
 {
-    public static class UnfurlDetailsIssuePartialExtensions
-    {
-        public static Partial<UnfurlDetailsIssue> WithIssue(this Partial<UnfurlDetailsIssue> it)
-            => it.AddFieldName("issue");
-        
-        public static Partial<UnfurlDetailsIssue> WithIssue(this Partial<UnfurlDetailsIssue> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
-            => it.AddFieldName("issue", partialBuilder(new Partial<Issue>(it)));
-        
-        public static Partial<UnfurlDetailsIssue> WithIsStrikeThrough(this Partial<UnfurlDetailsIssue> it)
-            => it.AddFieldName("strikeThrough");
-        
-        public static Partial<UnfurlDetailsIssue> WithIsCompact(this Partial<UnfurlDetailsIssue> it)
-            => it.AddFieldName("compact");
-        
-    }
+    public static Partial<UnfurlDetailsIssue> WithIssue(this Partial<UnfurlDetailsIssue> it)
+        => it.AddFieldName("issue");
+    
+    public static Partial<UnfurlDetailsIssue> WithIssue(this Partial<UnfurlDetailsIssue> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
+        => it.AddFieldName("issue", partialBuilder(new Partial<Issue>(it)));
+    
+    public static Partial<UnfurlDetailsIssue> WithIsStrikeThrough(this Partial<UnfurlDetailsIssue> it)
+        => it.AddFieldName("strikeThrough");
+    
+    public static Partial<UnfurlDetailsIssue> WithIsCompact(this Partial<UnfurlDetailsIssue> it)
+        => it.AddFieldName("compact");
     
 }
+

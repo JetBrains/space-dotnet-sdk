@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueStatusWithUsagesPartialBuilder
+namespace JetBrains.Space.Client.IssueStatusWithUsagesPartialBuilder;
+
+public static class IssueStatusWithUsagesPartialExtensions
 {
-    public static class IssueStatusWithUsagesPartialExtensions
-    {
-        public static Partial<IssueStatusWithUsages> WithStatus(this Partial<IssueStatusWithUsages> it)
-            => it.AddFieldName("status");
-        
-        public static Partial<IssueStatusWithUsages> WithStatus(this Partial<IssueStatusWithUsages> it, Func<Partial<IssueStatus>, Partial<IssueStatus>> partialBuilder)
-            => it.AddFieldName("status", partialBuilder(new Partial<IssueStatus>(it)));
-        
-        public static Partial<IssueStatusWithUsages> WithUsages(this Partial<IssueStatusWithUsages> it)
-            => it.AddFieldName("usages");
-        
-    }
+    public static Partial<IssueStatusWithUsages> WithStatus(this Partial<IssueStatusWithUsages> it)
+        => it.AddFieldName("status");
+    
+    public static Partial<IssueStatusWithUsages> WithStatus(this Partial<IssueStatusWithUsages> it, Func<Partial<IssueStatus>, Partial<IssueStatus>> partialBuilder)
+        => it.AddFieldName("status", partialBuilder(new Partial<IssueStatus>(it)));
+    
+    public static Partial<IssueStatusWithUsages> WithUsages(this Partial<IssueStatusWithUsages> it)
+        => it.AddFieldName("usages");
     
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChatsMessagesDeleteMessagePostRequestPartialBuilder
+namespace JetBrains.Space.Client.ChatsMessagesDeleteMessagePostRequestPartialBuilder;
+
+public static class ChatsMessagesDeleteMessagePostRequestPartialExtensions
 {
-    public static class ChatsMessagesDeleteMessagePostRequestPartialExtensions
-    {
-        public static Partial<ChatsMessagesDeleteMessagePostRequest> WithChannel(this Partial<ChatsMessagesDeleteMessagePostRequest> it)
-            => it.AddFieldName("channel");
-        
-        public static Partial<ChatsMessagesDeleteMessagePostRequest> WithId(this Partial<ChatsMessagesDeleteMessagePostRequest> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ChatsMessagesDeleteMessagePostRequest> WithId(this Partial<ChatsMessagesDeleteMessagePostRequest> it, Func<Partial<ChatMessageIdentifier>, Partial<ChatMessageIdentifier>> partialBuilder)
-            => it.AddFieldName("id", partialBuilder(new Partial<ChatMessageIdentifier>(it)));
-        
-    }
+    public static Partial<ChatsMessagesDeleteMessagePostRequest> WithChannel(this Partial<ChatsMessagesDeleteMessagePostRequest> it)
+        => it.AddFieldName("channel");
+    
+    public static Partial<ChatsMessagesDeleteMessagePostRequest> WithId(this Partial<ChatsMessagesDeleteMessagePostRequest> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ChatsMessagesDeleteMessagePostRequest> WithId(this Partial<ChatsMessagesDeleteMessagePostRequest> it, Func<Partial<ChatMessageIdentifier>, Partial<ChatMessageIdentifier>> partialBuilder)
+        => it.AddFieldName("id", partialBuilder(new Partial<ChatMessageIdentifier>(it)));
     
 }
+

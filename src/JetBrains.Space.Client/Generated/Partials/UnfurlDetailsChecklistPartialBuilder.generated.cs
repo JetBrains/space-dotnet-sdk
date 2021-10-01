@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsChecklistPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsChecklistPartialBuilder;
+
+public static class UnfurlDetailsChecklistPartialExtensions
 {
-    public static class UnfurlDetailsChecklistPartialExtensions
-    {
-        public static Partial<UnfurlDetailsChecklist> WithChecklist(this Partial<UnfurlDetailsChecklist> it)
-            => it.AddFieldName("checklist");
-        
-        public static Partial<UnfurlDetailsChecklist> WithChecklist(this Partial<UnfurlDetailsChecklist> it, Func<Partial<Checklist>, Partial<Checklist>> partialBuilder)
-            => it.AddFieldName("checklist", partialBuilder(new Partial<Checklist>(it)));
-        
-    }
+    public static Partial<UnfurlDetailsChecklist> WithChecklist(this Partial<UnfurlDetailsChecklist> it)
+        => it.AddFieldName("checklist");
+    
+    public static Partial<UnfurlDetailsChecklist> WithChecklist(this Partial<UnfurlDetailsChecklist> it, Func<Partial<Checklist>, Partial<Checklist>> partialBuilder)
+        => it.AddFieldName("checklist", partialBuilder(new Partial<Checklist>(it)));
     
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequestPartialBuilder;
+
+public static class ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequest> WithRetentionPolicyParams(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequest> it)
-            => it.AddFieldName("retentionPolicyParams");
-        
-        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequest> WithRetentionPolicyParams(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequest> it, Func<Partial<RetentionPolicyParams>, Partial<RetentionPolicyParams>> partialBuilder)
-            => it.AddFieldName("retentionPolicyParams", partialBuilder(new Partial<RetentionPolicyParams>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequest> WithRetentionPolicyParams(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequest> it)
+        => it.AddFieldName("retentionPolicyParams");
+    
+    public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequest> WithRetentionPolicyParams(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequest> it, Func<Partial<RetentionPolicyParams>, Partial<RetentionPolicyParams>> partialBuilder)
+        => it.AddFieldName("retentionPolicyParams", partialBuilder(new Partial<RetentionPolicyParams>(it)));
     
 }
+

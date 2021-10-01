@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.QRCodePartialBuilder
+namespace JetBrains.Space.Client.QRCodePartialBuilder;
+
+public static class QRCodePartialExtensions
 {
-    public static class QRCodePartialExtensions
-    {
-        public static Partial<QRCode> WithWidth(this Partial<QRCode> it)
-            => it.AddFieldName("width");
-        
-        public static Partial<QRCode> WithBase64Bitmap(this Partial<QRCode> it)
-            => it.AddFieldName("base64Bitmap");
-        
-    }
+    public static Partial<QRCode> WithWidth(this Partial<QRCode> it)
+        => it.AddFieldName("width");
+    
+    public static Partial<QRCode> WithBase64Bitmap(this Partial<QRCode> it)
+        => it.AddFieldName("base64Bitmap");
     
 }
+

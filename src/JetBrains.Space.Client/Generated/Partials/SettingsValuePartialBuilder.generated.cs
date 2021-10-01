@@ -27,52 +27,51 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SettingsValuePartialBuilder
+namespace JetBrains.Space.Client.SettingsValuePartialBuilder;
+
+public static class SettingsValuePartialExtensions
 {
-    public static class SettingsValuePartialExtensions
-    {
-        public static Partial<SettingsValue> WithIsEmailNotificationsEnabled(this Partial<SettingsValue> it)
-            => it.AddFieldName("emailNotificationsEnabled");
-        
-        public static Partial<SettingsValue> WithFirstDayOfWeek(this Partial<SettingsValue> it)
-            => it.AddFieldName("firstDayOfWeek");
-        
-        public static Partial<SettingsValue> WithFirstDayOfWeek(this Partial<SettingsValue> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)
-            => it.AddFieldName("firstDayOfWeek", partialBuilder(new Partial<Weekday>(it)));
-        
-        public static Partial<SettingsValue> WithDarkTheme(this Partial<SettingsValue> it)
-            => it.AddFieldName("darkTheme");
-        
-        public static Partial<SettingsValue> WithDarkTheme(this Partial<SettingsValue> it, Func<Partial<DarkTheme>, Partial<DarkTheme>> partialBuilder)
-            => it.AddFieldName("darkTheme", partialBuilder(new Partial<DarkTheme>(it)));
-        
-        public static Partial<SettingsValue> WithThemeName(this Partial<SettingsValue> it)
-            => it.AddFieldName("themeName");
-        
-        public static Partial<SettingsValue> WithCalendarView(this Partial<SettingsValue> it)
-            => it.AddFieldName("calendarView");
-        
-        public static Partial<SettingsValue> WithNotificationEmail(this Partial<SettingsValue> it)
-            => it.AddFieldName("notificationEmail");
-        
-        public static Partial<SettingsValue> WithNotificationEmail(this Partial<SettingsValue> it, Func<Partial<TDProfileEmail>, Partial<TDProfileEmail>> partialBuilder)
-            => it.AddFieldName("notificationEmail", partialBuilder(new Partial<TDProfileEmail>(it)));
-        
-        public static Partial<SettingsValue> WithDraftType(this Partial<SettingsValue> it)
-            => it.AddFieldName("draftType");
-        
-        public static Partial<SettingsValue> WithDraftType(this Partial<SettingsValue> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
-            => it.AddFieldName("draftType", partialBuilder(new Partial<DraftDocumentType>(it)));
-        
-        public static Partial<SettingsValue> WithIsTodoFilters(this Partial<SettingsValue> it)
-            => it.AddFieldName("todoFilters");
-        
-        public static Partial<SettingsValue> WithDefaultProject(this Partial<SettingsValue> it)
-            => it.AddFieldName("defaultProject");
-        
-        public static Partial<SettingsValue> WithDefaultProject(this Partial<SettingsValue> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("defaultProject", partialBuilder(new Partial<PRProject>(it)));
-        
-    }
+    public static Partial<SettingsValue> WithIsEmailNotificationsEnabled(this Partial<SettingsValue> it)
+        => it.AddFieldName("emailNotificationsEnabled");
+    
+    public static Partial<SettingsValue> WithFirstDayOfWeek(this Partial<SettingsValue> it)
+        => it.AddFieldName("firstDayOfWeek");
+    
+    public static Partial<SettingsValue> WithFirstDayOfWeek(this Partial<SettingsValue> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)
+        => it.AddFieldName("firstDayOfWeek", partialBuilder(new Partial<Weekday>(it)));
+    
+    public static Partial<SettingsValue> WithDarkTheme(this Partial<SettingsValue> it)
+        => it.AddFieldName("darkTheme");
+    
+    public static Partial<SettingsValue> WithDarkTheme(this Partial<SettingsValue> it, Func<Partial<DarkTheme>, Partial<DarkTheme>> partialBuilder)
+        => it.AddFieldName("darkTheme", partialBuilder(new Partial<DarkTheme>(it)));
+    
+    public static Partial<SettingsValue> WithThemeName(this Partial<SettingsValue> it)
+        => it.AddFieldName("themeName");
+    
+    public static Partial<SettingsValue> WithCalendarView(this Partial<SettingsValue> it)
+        => it.AddFieldName("calendarView");
+    
+    public static Partial<SettingsValue> WithNotificationEmail(this Partial<SettingsValue> it)
+        => it.AddFieldName("notificationEmail");
+    
+    public static Partial<SettingsValue> WithNotificationEmail(this Partial<SettingsValue> it, Func<Partial<TDProfileEmail>, Partial<TDProfileEmail>> partialBuilder)
+        => it.AddFieldName("notificationEmail", partialBuilder(new Partial<TDProfileEmail>(it)));
+    
+    public static Partial<SettingsValue> WithDraftType(this Partial<SettingsValue> it)
+        => it.AddFieldName("draftType");
+    
+    public static Partial<SettingsValue> WithDraftType(this Partial<SettingsValue> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
+        => it.AddFieldName("draftType", partialBuilder(new Partial<DraftDocumentType>(it)));
+    
+    public static Partial<SettingsValue> WithIsTodoFilters(this Partial<SettingsValue> it)
+        => it.AddFieldName("todoFilters");
+    
+    public static Partial<SettingsValue> WithDefaultProject(this Partial<SettingsValue> it)
+        => it.AddFieldName("defaultProject");
+    
+    public static Partial<SettingsValue> WithDefaultProject(this Partial<SettingsValue> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("defaultProject", partialBuilder(new Partial<PRProject>(it)));
     
 }
+

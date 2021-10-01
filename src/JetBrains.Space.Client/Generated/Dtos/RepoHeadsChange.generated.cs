@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RepoHeadsChange
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RepoHeadsChange
-         : IPropagatePropertyAccessPath
+    public RepoHeadsChange() { }
+    
+    public RepoHeadsChange(string name, string oldId, string newId)
     {
-        public RepoHeadsChange() { }
-        
-        public RepoHeadsChange(string name, string oldId, string newId)
-        {
-            Name = name;
-            OldId = oldId;
-            NewId = newId;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(RepoHeadsChange), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _oldId = new PropertyValue<string>(nameof(RepoHeadsChange), nameof(OldId));
-        
-        [Required]
-        [JsonPropertyName("oldId")]
-        public string OldId
-        {
-            get => _oldId.GetValue();
-            set => _oldId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _newId = new PropertyValue<string>(nameof(RepoHeadsChange), nameof(NewId));
-        
-        [Required]
-        [JsonPropertyName("newId")]
-        public string NewId
-        {
-            get => _newId.GetValue();
-            set => _newId.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _oldId.SetAccessPath(path, validateHasBeenSet);
-            _newId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        OldId = oldId;
+        NewId = newId;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(RepoHeadsChange), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _oldId = new PropertyValue<string>(nameof(RepoHeadsChange), nameof(OldId));
+    
+    [Required]
+    [JsonPropertyName("oldId")]
+    public string OldId
+    {
+        get => _oldId.GetValue();
+        set => _oldId.SetValue(value);
+    }
+
+    private PropertyValue<string> _newId = new PropertyValue<string>(nameof(RepoHeadsChange), nameof(NewId));
+    
+    [Required]
+    [JsonPropertyName("newId")]
+    public string NewId
+    {
+        get => _newId.GetValue();
+        set => _newId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _oldId.SetAccessPath(path, validateHasBeenSet);
+        _newId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

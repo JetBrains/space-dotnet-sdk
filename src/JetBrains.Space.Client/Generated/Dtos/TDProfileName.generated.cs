@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TDProfileName
+     : IPropagatePropertyAccessPath
 {
-    public sealed class TDProfileName
-         : IPropagatePropertyAccessPath
+    public TDProfileName() { }
+    
+    public TDProfileName(string firstName, string lastName)
     {
-        public TDProfileName() { }
-        
-        public TDProfileName(string firstName, string lastName)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-        }
-        
-        private PropertyValue<string> _firstName = new PropertyValue<string>(nameof(TDProfileName), nameof(FirstName));
-        
-        [Required]
-        [JsonPropertyName("firstName")]
-        public string FirstName
-        {
-            get => _firstName.GetValue();
-            set => _firstName.SetValue(value);
-        }
-    
-        private PropertyValue<string> _lastName = new PropertyValue<string>(nameof(TDProfileName), nameof(LastName));
-        
-        [Required]
-        [JsonPropertyName("lastName")]
-        public string LastName
-        {
-            get => _lastName.GetValue();
-            set => _lastName.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _firstName.SetAccessPath(path, validateHasBeenSet);
-            _lastName.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        FirstName = firstName;
+        LastName = lastName;
     }
     
+    private PropertyValue<string> _firstName = new PropertyValue<string>(nameof(TDProfileName), nameof(FirstName));
+    
+    [Required]
+    [JsonPropertyName("firstName")]
+    public string FirstName
+    {
+        get => _firstName.GetValue();
+        set => _firstName.SetValue(value);
+    }
+
+    private PropertyValue<string> _lastName = new PropertyValue<string>(nameof(TDProfileName), nameof(LastName));
+    
+    [Required]
+    [JsonPropertyName("lastName")]
+    public string LastName
+    {
+        get => _lastName.GetValue();
+        set => _lastName.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _firstName.SetAccessPath(path, validateHasBeenSet);
+        _lastName.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

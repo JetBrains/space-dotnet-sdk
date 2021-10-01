@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class NuGetDependency
+     : IPropagatePropertyAccessPath
 {
-    public sealed class NuGetDependency
-         : IPropagatePropertyAccessPath
+    public NuGetDependency() { }
+    
+    public NuGetDependency(string id, string range)
     {
-        public NuGetDependency() { }
-        
-        public NuGetDependency(string id, string range)
-        {
-            Id = id;
-            Range = range;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(NuGetDependency), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<string> _range = new PropertyValue<string>(nameof(NuGetDependency), nameof(Range));
-        
-        [Required]
-        [JsonPropertyName("range")]
-        public string Range
-        {
-            get => _range.GetValue();
-            set => _range.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _range.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Range = range;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(NuGetDependency), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string> _range = new PropertyValue<string>(nameof(NuGetDependency), nameof(Range));
+    
+    [Required]
+    [JsonPropertyName("range")]
+    public string Range
+    {
+        get => _range.GetValue();
+        set => _range.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _range.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentCFValuePartialBuilder
+namespace JetBrains.Space.Client.DocumentCFValuePartialBuilder;
+
+public static class DocumentCFValuePartialExtensions
 {
-    public static class DocumentCFValuePartialExtensions
-    {
-        public static Partial<DocumentCFValue> WithDocument(this Partial<DocumentCFValue> it)
-            => it.AddFieldName("document");
-        
-        public static Partial<DocumentCFValue> WithDocument(this Partial<DocumentCFValue> it, Func<Partial<Document>, Partial<Document>> partialBuilder)
-            => it.AddFieldName("document", partialBuilder(new Partial<Document>(it)));
-        
-    }
+    public static Partial<DocumentCFValue> WithDocument(this Partial<DocumentCFValue> it)
+        => it.AddFieldName("document");
+    
+    public static Partial<DocumentCFValue> WithDocument(this Partial<DocumentCFValue> it, Func<Partial<Document>, Partial<Document>> partialBuilder)
+        => it.AddFieldName("document", partialBuilder(new Partial<Document>(it)));
     
 }
+

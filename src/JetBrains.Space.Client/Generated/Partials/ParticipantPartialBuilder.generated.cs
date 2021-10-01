@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ParticipantPartialBuilder
+namespace JetBrains.Space.Client.ParticipantPartialBuilder;
+
+public static class ParticipantPartialExtensions
 {
-    public static class ParticipantPartialExtensions
-    {
-        public static Partial<Participant> WithUser(this Partial<Participant> it)
-            => it.AddFieldName("user");
-        
-        public static Partial<Participant> WithUser(this Partial<Participant> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("user", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<Participant> WithStatus(this Partial<Participant> it)
-            => it.AddFieldName("status");
-        
-        public static Partial<Participant> WithStatus(this Partial<Participant> it, Func<Partial<EventParticipationStatus>, Partial<EventParticipationStatus>> partialBuilder)
-            => it.AddFieldName("status", partialBuilder(new Partial<EventParticipationStatus>(it)));
-        
-    }
+    public static Partial<Participant> WithUser(this Partial<Participant> it)
+        => it.AddFieldName("user");
+    
+    public static Partial<Participant> WithUser(this Partial<Participant> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("user", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<Participant> WithStatus(this Partial<Participant> it)
+        => it.AddFieldName("status");
+    
+    public static Partial<Participant> WithStatus(this Partial<Participant> it, Func<Partial<EventParticipationStatus>, Partial<EventParticipationStatus>> partialBuilder)
+        => it.AddFieldName("status", partialBuilder(new Partial<EventParticipationStatus>(it)));
     
 }
+

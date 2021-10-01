@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomFieldInputValuePartialBuilder
+namespace JetBrains.Space.Client.CustomFieldInputValuePartialBuilder;
+
+public static class CustomFieldInputValuePartialExtensions
 {
-    public static class CustomFieldInputValuePartialExtensions
-    {
-        public static Partial<CustomFieldInputValue> WithFieldId(this Partial<CustomFieldInputValue> it)
-            => it.AddFieldName("fieldId");
-        
-        public static Partial<CustomFieldInputValue> WithValue(this Partial<CustomFieldInputValue> it)
-            => it.AddFieldName("value");
-        
-        public static Partial<CustomFieldInputValue> WithValue(this Partial<CustomFieldInputValue> it, Func<Partial<CFInputValue>, Partial<CFInputValue>> partialBuilder)
-            => it.AddFieldName("value", partialBuilder(new Partial<CFInputValue>(it)));
-        
-    }
+    public static Partial<CustomFieldInputValue> WithFieldId(this Partial<CustomFieldInputValue> it)
+        => it.AddFieldName("fieldId");
+    
+    public static Partial<CustomFieldInputValue> WithValue(this Partial<CustomFieldInputValue> it)
+        => it.AddFieldName("value");
+    
+    public static Partial<CustomFieldInputValue> WithValue(this Partial<CustomFieldInputValue> it, Func<Partial<CFInputValue>, Partial<CFInputValue>> partialBuilder)
+        => it.AddFieldName("value", partialBuilder(new Partial<CFInputValue>(it)));
     
 }
+

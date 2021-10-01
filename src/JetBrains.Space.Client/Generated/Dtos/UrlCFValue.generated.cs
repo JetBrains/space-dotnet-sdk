@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UrlCFValue
+     : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UrlCFValue
-         : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "UrlCFValue";
+    
+    public UrlCFValue() { }
+    
+    public UrlCFValue(string? href = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "UrlCFValue";
-        
-        public UrlCFValue() { }
-        
-        public UrlCFValue(string? href = null)
-        {
-            Href = href;
-        }
-        
-        private PropertyValue<string?> _href = new PropertyValue<string?>(nameof(UrlCFValue), nameof(Href));
-        
-        [JsonPropertyName("href")]
-        public string? Href
-        {
-            get => _href.GetValue();
-            set => _href.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _href.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Href = href;
     }
     
+    private PropertyValue<string?> _href = new PropertyValue<string?>(nameof(UrlCFValue), nameof(Href));
+    
+    [JsonPropertyName("href")]
+    public string? Href
+    {
+        get => _href.GetValue();
+        set => _href.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _href.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

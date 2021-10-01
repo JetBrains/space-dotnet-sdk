@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IssueChecklistsChangedDetails
+     : IssueChangedM2Details, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class IssueChecklistsChangedDetails
-         : IssueChangedM2Details, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "IssueChecklistsChangedDetails";
+    
+    public IssueChecklistsChangedDetails() { }
+    
+    public IssueChecklistsChangedDetails(List<Checklist>? addedChecklists = null, List<Checklist>? removedChecklists = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "IssueChecklistsChangedDetails";
-        
-        public IssueChecklistsChangedDetails() { }
-        
-        public IssueChecklistsChangedDetails(List<Checklist>? addedChecklists = null, List<Checklist>? removedChecklists = null)
-        {
-            AddedChecklists = addedChecklists;
-            RemovedChecklists = removedChecklists;
-        }
-        
-        private PropertyValue<List<Checklist>?> _addedChecklists = new PropertyValue<List<Checklist>?>(nameof(IssueChecklistsChangedDetails), nameof(AddedChecklists));
-        
-        [JsonPropertyName("addedChecklists")]
-        public List<Checklist>? AddedChecklists
-        {
-            get => _addedChecklists.GetValue();
-            set => _addedChecklists.SetValue(value);
-        }
-    
-        private PropertyValue<List<Checklist>?> _removedChecklists = new PropertyValue<List<Checklist>?>(nameof(IssueChecklistsChangedDetails), nameof(RemovedChecklists));
-        
-        [JsonPropertyName("removedChecklists")]
-        public List<Checklist>? RemovedChecklists
-        {
-            get => _removedChecklists.GetValue();
-            set => _removedChecklists.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _addedChecklists.SetAccessPath(path, validateHasBeenSet);
-            _removedChecklists.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        AddedChecklists = addedChecklists;
+        RemovedChecklists = removedChecklists;
     }
     
+    private PropertyValue<List<Checklist>?> _addedChecklists = new PropertyValue<List<Checklist>?>(nameof(IssueChecklistsChangedDetails), nameof(AddedChecklists));
+    
+    [JsonPropertyName("addedChecklists")]
+    public List<Checklist>? AddedChecklists
+    {
+        get => _addedChecklists.GetValue();
+        set => _addedChecklists.SetValue(value);
+    }
+
+    private PropertyValue<List<Checklist>?> _removedChecklists = new PropertyValue<List<Checklist>?>(nameof(IssueChecklistsChangedDetails), nameof(RemovedChecklists));
+    
+    [JsonPropertyName("removedChecklists")]
+    public List<Checklist>? RemovedChecklists
+    {
+        get => _removedChecklists.GetValue();
+        set => _removedChecklists.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _addedChecklists.SetAccessPath(path, validateHasBeenSet);
+        _removedChecklists.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

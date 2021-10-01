@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class CustomFieldsForTypeKeyFieldsForIdArchivePostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class CustomFieldsForTypeKeyFieldsForIdArchivePostRequest
-         : IPropagatePropertyAccessPath
+    public CustomFieldsForTypeKeyFieldsForIdArchivePostRequest() { }
+    
+    public CustomFieldsForTypeKeyFieldsForIdArchivePostRequest(ExtendedTypeScope scope)
     {
-        public CustomFieldsForTypeKeyFieldsForIdArchivePostRequest() { }
-        
-        public CustomFieldsForTypeKeyFieldsForIdArchivePostRequest(ExtendedTypeScope scope)
-        {
-            Scope = scope;
-        }
-        
-        private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyFieldsForIdArchivePostRequest), nameof(Scope));
-        
-        [Required]
-        [JsonPropertyName("scope")]
-        public ExtendedTypeScope Scope
-        {
-            get => _scope.GetValue();
-            set => _scope.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _scope.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Scope = scope;
     }
     
+    private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyFieldsForIdArchivePostRequest), nameof(Scope));
+    
+    [Required]
+    [JsonPropertyName("scope")]
+    public ExtendedTypeScope Scope
+    {
+        get => _scope.GetValue();
+        set => _scope.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _scope.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,67 +27,66 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ChatsMessagesSendPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ChatsMessagesSendPostRequest
-         : IPropagatePropertyAccessPath
+    public ChatsMessagesSendPostRequest() { }
+    
+    public ChatsMessagesSendPostRequest(string channel, string text, bool pending = false, string? temporaryId = null)
     {
-        public ChatsMessagesSendPostRequest() { }
-        
-        public ChatsMessagesSendPostRequest(string channel, string text, bool pending = false, string? temporaryId = null)
-        {
-            Channel = channel;
-            Text = text;
-            IsPending = pending;
-            TemporaryId = temporaryId;
-        }
-        
-        private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesSendPostRequest), nameof(Channel));
-        
-        [Required]
-        [JsonPropertyName("channel")]
-        public string Channel
-        {
-            get => _channel.GetValue();
-            set => _channel.SetValue(value);
-        }
-    
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatsMessagesSendPostRequest), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ChatsMessagesSendPostRequest), nameof(IsPending));
-        
-        [JsonPropertyName("pending")]
-        public bool IsPending
-        {
-            get => _pending.GetValue();
-            set => _pending.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _temporaryId = new PropertyValue<string?>(nameof(ChatsMessagesSendPostRequest), nameof(TemporaryId));
-        
-        [JsonPropertyName("temporaryId")]
-        public string? TemporaryId
-        {
-            get => _temporaryId.GetValue();
-            set => _temporaryId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _channel.SetAccessPath(path, validateHasBeenSet);
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _pending.SetAccessPath(path, validateHasBeenSet);
-            _temporaryId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Channel = channel;
+        Text = text;
+        IsPending = pending;
+        TemporaryId = temporaryId;
     }
     
+    private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesSendPostRequest), nameof(Channel));
+    
+    [Required]
+    [JsonPropertyName("channel")]
+    public string Channel
+    {
+        get => _channel.GetValue();
+        set => _channel.SetValue(value);
+    }
+
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatsMessagesSendPostRequest), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ChatsMessagesSendPostRequest), nameof(IsPending));
+    
+    [JsonPropertyName("pending")]
+    public bool IsPending
+    {
+        get => _pending.GetValue();
+        set => _pending.SetValue(value);
+    }
+
+    private PropertyValue<string?> _temporaryId = new PropertyValue<string?>(nameof(ChatsMessagesSendPostRequest), nameof(TemporaryId));
+    
+    [JsonPropertyName("temporaryId")]
+    public string? TemporaryId
+    {
+        get => _temporaryId.GetValue();
+        set => _temporaryId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _channel.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(path, validateHasBeenSet);
+        _pending.SetAccessPath(path, validateHasBeenSet);
+        _temporaryId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

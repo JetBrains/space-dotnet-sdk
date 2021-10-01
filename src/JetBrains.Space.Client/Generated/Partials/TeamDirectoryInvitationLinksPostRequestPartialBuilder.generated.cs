@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryInvitationLinksPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryInvitationLinksPostRequestPartialBuilder;
+
+public static class TeamDirectoryInvitationLinksPostRequestPartialExtensions
 {
-    public static class TeamDirectoryInvitationLinksPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryInvitationLinksPostRequest> WithName(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TeamDirectoryInvitationLinksPostRequest> WithExpiresAt(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
-            => it.AddFieldName("expiresAt");
-        
-        public static Partial<TeamDirectoryInvitationLinksPostRequest> WithInviteeLimit(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
-            => it.AddFieldName("inviteeLimit");
-        
-        public static Partial<TeamDirectoryInvitationLinksPostRequest> WithTeam(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
-            => it.AddFieldName("team");
-        
-        public static Partial<TeamDirectoryInvitationLinksPostRequest> WithRole(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
-            => it.AddFieldName("role");
-        
-    }
+    public static Partial<TeamDirectoryInvitationLinksPostRequest> WithName(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TeamDirectoryInvitationLinksPostRequest> WithExpiresAt(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
+        => it.AddFieldName("expiresAt");
+    
+    public static Partial<TeamDirectoryInvitationLinksPostRequest> WithInviteeLimit(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
+        => it.AddFieldName("inviteeLimit");
+    
+    public static Partial<TeamDirectoryInvitationLinksPostRequest> WithTeam(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
+        => it.AddFieldName("team");
+    
+    public static Partial<TeamDirectoryInvitationLinksPostRequest> WithRole(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
+        => it.AddFieldName("role");
     
 }
+

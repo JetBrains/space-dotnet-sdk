@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UAVersion
+     : IPropagatePropertyAccessPath
 {
-    public sealed class UAVersion
-         : IPropagatePropertyAccessPath
+    public UAVersion() { }
+    
+    public UAVersion(int major, int minor)
     {
-        public UAVersion() { }
-        
-        public UAVersion(int major, int minor)
-        {
-            Major = major;
-            Minor = minor;
-        }
-        
-        private PropertyValue<int> _major = new PropertyValue<int>(nameof(UAVersion), nameof(Major));
-        
-        [Required]
-        [JsonPropertyName("major")]
-        public int Major
-        {
-            get => _major.GetValue();
-            set => _major.SetValue(value);
-        }
-    
-        private PropertyValue<int> _minor = new PropertyValue<int>(nameof(UAVersion), nameof(Minor));
-        
-        [Required]
-        [JsonPropertyName("minor")]
-        public int Minor
-        {
-            get => _minor.GetValue();
-            set => _minor.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _major.SetAccessPath(path, validateHasBeenSet);
-            _minor.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Major = major;
+        Minor = minor;
     }
     
+    private PropertyValue<int> _major = new PropertyValue<int>(nameof(UAVersion), nameof(Major));
+    
+    [Required]
+    [JsonPropertyName("major")]
+    public int Major
+    {
+        get => _major.GetValue();
+        set => _major.SetValue(value);
+    }
+
+    private PropertyValue<int> _minor = new PropertyValue<int>(nameof(UAVersion), nameof(Minor));
+    
+    [Required]
+    [JsonPropertyName("minor")]
+    public int Minor
+    {
+        get => _minor.GetValue();
+        set => _minor.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _major.SetAccessPath(path, validateHasBeenSet);
+        _minor.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

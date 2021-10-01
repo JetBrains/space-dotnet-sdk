@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ReviewerParam
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ReviewerParam
-         : IPropagatePropertyAccessPath
+    public ReviewerParam() { }
+    
+    public ReviewerParam(string profileId, CodeReviewParticipantSlotBase? qualityGateSlot = null)
     {
-        public ReviewerParam() { }
-        
-        public ReviewerParam(string profileId, CodeReviewParticipantSlotBase? qualityGateSlot = null)
-        {
-            ProfileId = profileId;
-            QualityGateSlot = qualityGateSlot;
-        }
-        
-        private PropertyValue<string> _profileId = new PropertyValue<string>(nameof(ReviewerParam), nameof(ProfileId));
-        
-        [Required]
-        [JsonPropertyName("profileId")]
-        public string ProfileId
-        {
-            get => _profileId.GetValue();
-            set => _profileId.SetValue(value);
-        }
-    
-        private PropertyValue<CodeReviewParticipantSlotBase?> _qualityGateSlot = new PropertyValue<CodeReviewParticipantSlotBase?>(nameof(ReviewerParam), nameof(QualityGateSlot));
-        
-        [JsonPropertyName("qualityGateSlot")]
-        public CodeReviewParticipantSlotBase? QualityGateSlot
-        {
-            get => _qualityGateSlot.GetValue();
-            set => _qualityGateSlot.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profileId.SetAccessPath(path, validateHasBeenSet);
-            _qualityGateSlot.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ProfileId = profileId;
+        QualityGateSlot = qualityGateSlot;
     }
     
+    private PropertyValue<string> _profileId = new PropertyValue<string>(nameof(ReviewerParam), nameof(ProfileId));
+    
+    [Required]
+    [JsonPropertyName("profileId")]
+    public string ProfileId
+    {
+        get => _profileId.GetValue();
+        set => _profileId.SetValue(value);
+    }
+
+    private PropertyValue<CodeReviewParticipantSlotBase?> _qualityGateSlot = new PropertyValue<CodeReviewParticipantSlotBase?>(nameof(ReviewerParam), nameof(QualityGateSlot));
+    
+    [JsonPropertyName("qualityGateSlot")]
+    public CodeReviewParticipantSlotBase? QualityGateSlot
+    {
+        get => _qualityGateSlot.GetValue();
+        set => _qualityGateSlot.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profileId.SetAccessPath(path, validateHasBeenSet);
+        _qualityGateSlot.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,37 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChannelEventPartialBuilder
+namespace JetBrains.Space.Client.ChannelEventPartialBuilder;
+
+public static class ChannelEventPartialExtensions
 {
-    public static class ChannelEventPartialExtensions
-    {
-        public static Partial<ChannelEvent> WithMeta(this Partial<ChannelEvent> it)
-            => it.AddFieldName("meta");
-        
-        public static Partial<ChannelEvent> WithMeta(this Partial<ChannelEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-            => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
-        
-        public static Partial<ChannelEvent> WithChannel(this Partial<ChannelEvent> it)
-            => it.AddFieldName("channel");
-        
-        public static Partial<ChannelEvent> WithChannel(this Partial<ChannelEvent> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
-            => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
-        
-        public static Partial<ChannelEvent> WithName(this Partial<ChannelEvent> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ChannelEvent> WithDescription(this Partial<ChannelEvent> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<ChannelEvent> WithIcon(this Partial<ChannelEvent> it)
-            => it.AddFieldName("icon");
-        
-        public static Partial<ChannelEvent> WithIsRestored(this Partial<ChannelEvent> it)
-            => it.AddFieldName("restored");
-        
-        public static Partial<ChannelEvent> WithIsArchived(this Partial<ChannelEvent> it)
-            => it.AddFieldName("archived");
-        
-    }
+    public static Partial<ChannelEvent> WithMeta(this Partial<ChannelEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<ChannelEvent> WithMeta(this Partial<ChannelEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<ChannelEvent> WithChannel(this Partial<ChannelEvent> it)
+        => it.AddFieldName("channel");
+    
+    public static Partial<ChannelEvent> WithChannel(this Partial<ChannelEvent> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
+        => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
+    
+    public static Partial<ChannelEvent> WithName(this Partial<ChannelEvent> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ChannelEvent> WithDescription(this Partial<ChannelEvent> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<ChannelEvent> WithIcon(this Partial<ChannelEvent> it)
+        => it.AddFieldName("icon");
+    
+    public static Partial<ChannelEvent> WithIsRestored(this Partial<ChannelEvent> it)
+        => it.AddFieldName("restored");
+    
+    public static Partial<ChannelEvent> WithIsArchived(this Partial<ChannelEvent> it)
+        => it.AddFieldName("archived");
     
 }
+

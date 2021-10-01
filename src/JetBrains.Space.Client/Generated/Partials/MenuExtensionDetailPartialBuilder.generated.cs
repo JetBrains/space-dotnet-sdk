@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MenuExtensionDetailPartialBuilder
+namespace JetBrains.Space.Client.MenuExtensionDetailPartialBuilder;
+
+public static class MenuExtensionDetailPartialExtensions
 {
-    public static class MenuExtensionDetailPartialExtensions
-    {
-        public static Partial<MenuExtensionDetail> WithMenuId(this Partial<MenuExtensionDetail> it)
-            => it.AddFieldName("menuId");
-        
-        public static Partial<MenuExtensionDetail> WithName(this Partial<MenuExtensionDetail> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<MenuExtensionDetail> WithDescription(this Partial<MenuExtensionDetail> it)
-            => it.AddFieldName("description");
-        
-    }
+    public static Partial<MenuExtensionDetail> WithMenuId(this Partial<MenuExtensionDetail> it)
+        => it.AddFieldName("menuId");
+    
+    public static Partial<MenuExtensionDetail> WithName(this Partial<MenuExtensionDetail> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<MenuExtensionDetail> WithDescription(this Partial<MenuExtensionDetail> it)
+        => it.AddFieldName("description");
     
 }
+

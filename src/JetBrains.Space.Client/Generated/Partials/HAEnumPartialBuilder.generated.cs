@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HAEnumPartialBuilder
+namespace JetBrains.Space.Client.HAEnumPartialBuilder;
+
+public static class HAEnumPartialExtensions
 {
-    public static class HAEnumPartialExtensions
-    {
-        public static Partial<HAEnum> WithId(this Partial<HAEnum> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<HAEnum> WithName(this Partial<HAEnum> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<HAEnum> WithValues(this Partial<HAEnum> it)
-            => it.AddFieldName("values");
-        
-        public static Partial<HAEnum> WithDeprecation(this Partial<HAEnum> it)
-            => it.AddFieldName("deprecation");
-        
-        public static Partial<HAEnum> WithDeprecation(this Partial<HAEnum> it, Func<Partial<HADeprecation>, Partial<HADeprecation>> partialBuilder)
-            => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecation>(it)));
-        
-    }
+    public static Partial<HAEnum> WithId(this Partial<HAEnum> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<HAEnum> WithName(this Partial<HAEnum> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<HAEnum> WithValues(this Partial<HAEnum> it)
+        => it.AddFieldName("values");
+    
+    public static Partial<HAEnum> WithDeprecation(this Partial<HAEnum> it)
+        => it.AddFieldName("deprecation");
+    
+    public static Partial<HAEnum> WithDeprecation(this Partial<HAEnum> it, Func<Partial<HADeprecation>, Partial<HADeprecation>> partialBuilder)
+        => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecation>(it)));
     
 }
+

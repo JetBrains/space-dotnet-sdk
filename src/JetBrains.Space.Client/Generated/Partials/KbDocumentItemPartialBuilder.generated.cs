@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.KbDocumentItemPartialBuilder
+namespace JetBrains.Space.Client.KbDocumentItemPartialBuilder;
+
+public static class KbDocumentItemPartialExtensions
 {
-    public static class KbDocumentItemPartialExtensions
-    {
-        public static Partial<KbDocumentItem> WithBook(this Partial<KbDocumentItem> it)
-            => it.AddFieldName("book");
-        
-        public static Partial<KbDocumentItem> WithBook(this Partial<KbDocumentItem> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
-            => it.AddFieldName("book", partialBuilder(new Partial<KBBook>(it)));
-        
-        public static Partial<KbDocumentItem> WithArticleId(this Partial<KbDocumentItem> it)
-            => it.AddFieldName("articleId");
-        
-        public static Partial<KbDocumentItem> WithId(this Partial<KbDocumentItem> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<KbDocumentItem> WithName(this Partial<KbDocumentItem> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<KbDocumentItem> WithPath(this Partial<KbDocumentItem> it)
-            => it.AddFieldName("path");
-        
-        public static Partial<KbDocumentItem> WithContainerLinkId(this Partial<KbDocumentItem> it)
-            => it.AddFieldName("containerLinkId");
-        
-    }
+    public static Partial<KbDocumentItem> WithBook(this Partial<KbDocumentItem> it)
+        => it.AddFieldName("book");
+    
+    public static Partial<KbDocumentItem> WithBook(this Partial<KbDocumentItem> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
+        => it.AddFieldName("book", partialBuilder(new Partial<KBBook>(it)));
+    
+    public static Partial<KbDocumentItem> WithArticleId(this Partial<KbDocumentItem> it)
+        => it.AddFieldName("articleId");
+    
+    public static Partial<KbDocumentItem> WithId(this Partial<KbDocumentItem> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<KbDocumentItem> WithName(this Partial<KbDocumentItem> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<KbDocumentItem> WithPath(this Partial<KbDocumentItem> it)
+        => it.AddFieldName("path");
+    
+    public static Partial<KbDocumentItem> WithContainerLinkId(this Partial<KbDocumentItem> it)
+        => it.AddFieldName("containerLinkId");
     
 }
+

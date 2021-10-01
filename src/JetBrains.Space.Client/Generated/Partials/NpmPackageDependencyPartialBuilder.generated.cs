@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NpmPackageDependencyPartialBuilder
+namespace JetBrains.Space.Client.NpmPackageDependencyPartialBuilder;
+
+public static class NpmPackageDependencyPartialExtensions
 {
-    public static class NpmPackageDependencyPartialExtensions
-    {
-        public static Partial<NpmPackageDependency> WithName(this Partial<NpmPackageDependency> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<NpmPackageDependency> WithVersion(this Partial<NpmPackageDependency> it)
-            => it.AddFieldName("version");
-        
-        public static Partial<NpmPackageDependency> WithType(this Partial<NpmPackageDependency> it)
-            => it.AddFieldName("type");
-        
-    }
+    public static Partial<NpmPackageDependency> WithName(this Partial<NpmPackageDependency> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<NpmPackageDependency> WithVersion(this Partial<NpmPackageDependency> it)
+        => it.AddFieldName("version");
+    
+    public static Partial<NpmPackageDependency> WithType(this Partial<NpmPackageDependency> it)
+        => it.AddFieldName("type");
     
 }
+

@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationsRefreshMenuPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ApplicationsRefreshMenuPostRequestPartialBuilder;
+
+public static class ApplicationsRefreshMenuPostRequestPartialExtensions
 {
-    public static class ApplicationsRefreshMenuPostRequestPartialExtensions
-    {
-        public static Partial<ApplicationsRefreshMenuPostRequest> WithAppId(this Partial<ApplicationsRefreshMenuPostRequest> it)
-            => it.AddFieldName("appId");
-        
-    }
+    public static Partial<ApplicationsRefreshMenuPostRequest> WithAppId(this Partial<ApplicationsRefreshMenuPostRequest> it)
+        => it.AddFieldName("appId");
     
 }
+

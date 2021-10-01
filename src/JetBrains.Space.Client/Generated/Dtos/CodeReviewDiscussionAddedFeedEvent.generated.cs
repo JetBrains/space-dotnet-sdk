@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CodeReviewDiscussionAddedFeedEvent
+     : FeedEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class CodeReviewDiscussionAddedFeedEvent
-         : FeedEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "CodeReviewDiscussionAddedFeedEvent";
+    
+    public CodeReviewDiscussionAddedFeedEvent() { }
+    
+    public CodeReviewDiscussionAddedFeedEvent(CodeReviewDiscussionRecord discussion)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "CodeReviewDiscussionAddedFeedEvent";
-        
-        public CodeReviewDiscussionAddedFeedEvent() { }
-        
-        public CodeReviewDiscussionAddedFeedEvent(CodeReviewDiscussionRecord discussion)
-        {
-            Discussion = discussion;
-        }
-        
-        private PropertyValue<CodeReviewDiscussionRecord> _discussion = new PropertyValue<CodeReviewDiscussionRecord>(nameof(CodeReviewDiscussionAddedFeedEvent), nameof(Discussion));
-        
-        [Required]
-        [JsonPropertyName("discussion")]
-        public CodeReviewDiscussionRecord Discussion
-        {
-            get => _discussion.GetValue();
-            set => _discussion.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _discussion.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Discussion = discussion;
     }
     
+    private PropertyValue<CodeReviewDiscussionRecord> _discussion = new PropertyValue<CodeReviewDiscussionRecord>(nameof(CodeReviewDiscussionAddedFeedEvent), nameof(Discussion));
+    
+    [Required]
+    [JsonPropertyName("discussion")]
+    public CodeReviewDiscussionRecord Discussion
+    {
+        get => _discussion.GetValue();
+        set => _discussion.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _discussion.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

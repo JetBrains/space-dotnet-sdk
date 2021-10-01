@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageLinkPartialBuilder
+namespace JetBrains.Space.Client.MessageLinkPartialBuilder;
+
+public static class MessageLinkPartialExtensions
 {
-    public static class MessageLinkPartialExtensions
-    {
-        public static Partial<MessageLink> WithChannelKey(this Partial<MessageLink> it)
-            => it.AddFieldName("channelKey");
-        
-        public static Partial<MessageLink> WithChannelId(this Partial<MessageLink> it)
-            => it.AddFieldName("channelId");
-        
-        public static Partial<MessageLink> WithMessageId(this Partial<MessageLink> it)
-            => it.AddFieldName("messageId");
-        
-    }
+    public static Partial<MessageLink> WithChannelKey(this Partial<MessageLink> it)
+        => it.AddFieldName("channelKey");
+    
+    public static Partial<MessageLink> WithChannelId(this Partial<MessageLink> it)
+        => it.AddFieldName("channelId");
+    
+    public static Partial<MessageLink> WithMessageId(this Partial<MessageLink> it)
+        => it.AddFieldName("messageId");
     
 }
+

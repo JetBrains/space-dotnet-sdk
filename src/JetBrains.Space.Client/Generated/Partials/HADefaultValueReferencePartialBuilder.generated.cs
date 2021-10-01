@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HADefaultValueReferencePartialBuilder
+namespace JetBrains.Space.Client.HADefaultValueReferencePartialBuilder;
+
+public static class HADefaultValueReferencePartialExtensions
 {
-    public static class HADefaultValueReferencePartialExtensions
-    {
-        public static Partial<HADefaultValueReference> WithParamName(this Partial<HADefaultValueReference> it)
-            => it.AddFieldName("paramName");
-        
-    }
+    public static Partial<HADefaultValueReference> WithParamName(this Partial<HADefaultValueReference> it)
+        => it.AddFieldName("paramName");
     
 }
+

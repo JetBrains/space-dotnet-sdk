@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum IssuesSorting
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum IssuesSorting
-    {
-        [EnumMember(Value = "UPDATED")]
-        UPDATED,
-        
-        [EnumMember(Value = "CREATED")]
-        CREATED,
-        
-        [EnumMember(Value = "TITLE")]
-        TITLE,
-        
-        [EnumMember(Value = "DUE")]
-        DUE,
-        
-    }
+    [EnumMember(Value = "UPDATED")]
+    UPDATED,
+    
+    [EnumMember(Value = "CREATED")]
+    CREATED,
+    
+    [EnumMember(Value = "TITLE")]
+    TITLE,
+    
+    [EnumMember(Value = "DUE")]
+    DUE,
     
 }
+

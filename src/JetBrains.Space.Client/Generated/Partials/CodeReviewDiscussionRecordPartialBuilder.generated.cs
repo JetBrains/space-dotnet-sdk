@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewDiscussionRecordPartialBuilder
+namespace JetBrains.Space.Client.CodeReviewDiscussionRecordPartialBuilder;
+
+public static class CodeReviewDiscussionRecordPartialExtensions
 {
-    public static class CodeReviewDiscussionRecordPartialExtensions
-    {
-        public static Partial<CodeReviewDiscussionRecord> WithId(this Partial<CodeReviewDiscussionRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<CodeReviewDiscussionRecord> WithReview(this Partial<CodeReviewDiscussionRecord> it)
-            => it.AddFieldName("review");
-        
-        public static Partial<CodeReviewDiscussionRecord> WithReview(this Partial<CodeReviewDiscussionRecord> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
-            => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecord>(it)));
-        
-        public static Partial<CodeReviewDiscussionRecord> WithCreated(this Partial<CodeReviewDiscussionRecord> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<CodeReviewDiscussionRecord> WithChannel(this Partial<CodeReviewDiscussionRecord> it)
-            => it.AddFieldName("channel");
-        
-        public static Partial<CodeReviewDiscussionRecord> WithChannel(this Partial<CodeReviewDiscussionRecord> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
-            => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
-        
-        public static Partial<CodeReviewDiscussionRecord> WithIsResolved(this Partial<CodeReviewDiscussionRecord> it)
-            => it.AddFieldName("resolved");
-        
-        public static Partial<CodeReviewDiscussionRecord> WithIsArchived(this Partial<CodeReviewDiscussionRecord> it)
-            => it.AddFieldName("archived");
-        
-    }
+    public static Partial<CodeReviewDiscussionRecord> WithId(this Partial<CodeReviewDiscussionRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<CodeReviewDiscussionRecord> WithReview(this Partial<CodeReviewDiscussionRecord> it)
+        => it.AddFieldName("review");
+    
+    public static Partial<CodeReviewDiscussionRecord> WithReview(this Partial<CodeReviewDiscussionRecord> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
+        => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecord>(it)));
+    
+    public static Partial<CodeReviewDiscussionRecord> WithCreated(this Partial<CodeReviewDiscussionRecord> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<CodeReviewDiscussionRecord> WithChannel(this Partial<CodeReviewDiscussionRecord> it)
+        => it.AddFieldName("channel");
+    
+    public static Partial<CodeReviewDiscussionRecord> WithChannel(this Partial<CodeReviewDiscussionRecord> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
+        => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
+    
+    public static Partial<CodeReviewDiscussionRecord> WithIsResolved(this Partial<CodeReviewDiscussionRecord> it)
+        => it.AddFieldName("resolved");
+    
+    public static Partial<CodeReviewDiscussionRecord> WithIsArchived(this Partial<CodeReviewDiscussionRecord> it)
+        => it.AddFieldName("archived");
     
 }
+

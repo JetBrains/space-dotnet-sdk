@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2DraftEditorTeamAddedItemContentPartialBuilder
+namespace JetBrains.Space.Client.M2DraftEditorTeamAddedItemContentPartialBuilder;
+
+public static class M2DraftEditorTeamAddedItemContentPartialExtensions
 {
-    public static class M2DraftEditorTeamAddedItemContentPartialExtensions
-    {
-        public static Partial<M2DraftEditorTeamAddedItemContent> WithId(this Partial<M2DraftEditorTeamAddedItemContent> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<M2DraftEditorTeamAddedItemContent> WithTeam(this Partial<M2DraftEditorTeamAddedItemContent> it)
-            => it.AddFieldName("team");
-        
-        public static Partial<M2DraftEditorTeamAddedItemContent> WithTeam(this Partial<M2DraftEditorTeamAddedItemContent> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-            => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
-        
-        public static Partial<M2DraftEditorTeamAddedItemContent> WithTitle(this Partial<M2DraftEditorTeamAddedItemContent> it)
-            => it.AddFieldName("title");
-        
-    }
+    public static Partial<M2DraftEditorTeamAddedItemContent> WithId(this Partial<M2DraftEditorTeamAddedItemContent> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<M2DraftEditorTeamAddedItemContent> WithTeam(this Partial<M2DraftEditorTeamAddedItemContent> it)
+        => it.AddFieldName("team");
+    
+    public static Partial<M2DraftEditorTeamAddedItemContent> WithTeam(this Partial<M2DraftEditorTeamAddedItemContent> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+        => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
+    
+    public static Partial<M2DraftEditorTeamAddedItemContent> WithTitle(this Partial<M2DraftEditorTeamAddedItemContent> it)
+        => it.AddFieldName("title");
     
 }
+

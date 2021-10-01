@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class OrganizationPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class OrganizationPatchRequest
-         : IPropagatePropertyAccessPath
+    public OrganizationPatchRequest() { }
+    
+    public OrganizationPatchRequest(OrganizationForUpdate orgData)
     {
-        public OrganizationPatchRequest() { }
-        
-        public OrganizationPatchRequest(OrganizationForUpdate orgData)
-        {
-            OrgData = orgData;
-        }
-        
-        private PropertyValue<OrganizationForUpdate> _orgData = new PropertyValue<OrganizationForUpdate>(nameof(OrganizationPatchRequest), nameof(OrgData));
-        
-        [Required]
-        [JsonPropertyName("orgData")]
-        public OrganizationForUpdate OrgData
-        {
-            get => _orgData.GetValue();
-            set => _orgData.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _orgData.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        OrgData = orgData;
     }
     
+    private PropertyValue<OrganizationForUpdate> _orgData = new PropertyValue<OrganizationForUpdate>(nameof(OrganizationPatchRequest), nameof(OrgData));
+    
+    [Required]
+    [JsonPropertyName("orgData")]
+    public OrganizationForUpdate OrgData
+    {
+        get => _orgData.GetValue();
+        set => _orgData.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _orgData.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AuthModulesForIdSamlMetadataPostRequestPartialBuilder
+namespace JetBrains.Space.Client.AuthModulesForIdSamlMetadataPostRequestPartialBuilder;
+
+public static class AuthModulesForIdSamlMetadataPostRequestPartialExtensions
 {
-    public static class AuthModulesForIdSamlMetadataPostRequestPartialExtensions
-    {
-        public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithIdpUrl(this Partial<AuthModulesForIdSamlMetadataPostRequest> it)
-            => it.AddFieldName("idpUrl");
-        
-        public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithIdpEntityId(this Partial<AuthModulesForIdSamlMetadataPostRequest> it)
-            => it.AddFieldName("idpEntityId");
-        
-        public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithIdpCertificateSHA256(this Partial<AuthModulesForIdSamlMetadataPostRequest> it)
-            => it.AddFieldName("idpCertificateSHA256");
-        
-        public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithSpEntityId(this Partial<AuthModulesForIdSamlMetadataPostRequest> it)
-            => it.AddFieldName("spEntityId");
-        
-        public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithSslKeystore(this Partial<AuthModulesForIdSamlMetadataPostRequest> it)
-            => it.AddFieldName("sslKeystore");
-        
-        public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithSslKeystore(this Partial<AuthModulesForIdSamlMetadataPostRequest> it, Func<Partial<SSLKeystore>, Partial<SSLKeystore>> partialBuilder)
-            => it.AddFieldName("sslKeystore", partialBuilder(new Partial<SSLKeystore>(it)));
-        
-        public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithContactProfileId(this Partial<AuthModulesForIdSamlMetadataPostRequest> it)
-            => it.AddFieldName("contactProfileId");
-        
-    }
+    public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithIdpUrl(this Partial<AuthModulesForIdSamlMetadataPostRequest> it)
+        => it.AddFieldName("idpUrl");
+    
+    public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithIdpEntityId(this Partial<AuthModulesForIdSamlMetadataPostRequest> it)
+        => it.AddFieldName("idpEntityId");
+    
+    public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithIdpCertificateSHA256(this Partial<AuthModulesForIdSamlMetadataPostRequest> it)
+        => it.AddFieldName("idpCertificateSHA256");
+    
+    public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithSpEntityId(this Partial<AuthModulesForIdSamlMetadataPostRequest> it)
+        => it.AddFieldName("spEntityId");
+    
+    public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithSslKeystore(this Partial<AuthModulesForIdSamlMetadataPostRequest> it)
+        => it.AddFieldName("sslKeystore");
+    
+    public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithSslKeystore(this Partial<AuthModulesForIdSamlMetadataPostRequest> it, Func<Partial<SSLKeystore>, Partial<SSLKeystore>> partialBuilder)
+        => it.AddFieldName("sslKeystore", partialBuilder(new Partial<SSLKeystore>(it)));
+    
+    public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithContactProfileId(this Partial<AuthModulesForIdSamlMetadataPostRequest> it)
+        => it.AddFieldName("contactProfileId");
     
 }
+

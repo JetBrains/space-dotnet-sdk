@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class Commands
+     : IPropagatePropertyAccessPath
 {
-    public sealed class Commands
-         : IPropagatePropertyAccessPath
+    public Commands() { }
+    
+    public Commands(List<CommandDetail> commands)
     {
-        public Commands() { }
-        
-        public Commands(List<CommandDetail> commands)
-        {
-            CommandsItems = commands;
-        }
-        
-        private PropertyValue<List<CommandDetail>> _commands = new PropertyValue<List<CommandDetail>>(nameof(Commands), nameof(CommandsItems), new List<CommandDetail>());
-        
-        [Required]
-        [JsonPropertyName("commands")]
-        public List<CommandDetail> CommandsItems
-        {
-            get => _commands.GetValue();
-            set => _commands.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _commands.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        CommandsItems = commands;
     }
     
+    private PropertyValue<List<CommandDetail>> _commands = new PropertyValue<List<CommandDetail>>(nameof(Commands), nameof(CommandsItems), new List<CommandDetail>());
+    
+    [Required]
+    [JsonPropertyName("commands")]
+    public List<CommandDetail> CommandsItems
+    {
+        get => _commands.GetValue();
+        set => _commands.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _commands.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

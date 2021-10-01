@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class AdministrationUserAgreementPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class AdministrationUserAgreementPatchRequest
-         : IPropagatePropertyAccessPath
+    public AdministrationUserAgreementPatchRequest() { }
+    
+    public AdministrationUserAgreementPatchRequest(string newContent, bool invalidate)
     {
-        public AdministrationUserAgreementPatchRequest() { }
-        
-        public AdministrationUserAgreementPatchRequest(string newContent, bool invalidate)
-        {
-            NewContent = newContent;
-            IsInvalidate = invalidate;
-        }
-        
-        private PropertyValue<string> _newContent = new PropertyValue<string>(nameof(AdministrationUserAgreementPatchRequest), nameof(NewContent));
-        
-        [Required]
-        [JsonPropertyName("newContent")]
-        public string NewContent
-        {
-            get => _newContent.GetValue();
-            set => _newContent.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _invalidate = new PropertyValue<bool>(nameof(AdministrationUserAgreementPatchRequest), nameof(IsInvalidate));
-        
-        [Required]
-        [JsonPropertyName("invalidate")]
-        public bool IsInvalidate
-        {
-            get => _invalidate.GetValue();
-            set => _invalidate.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _newContent.SetAccessPath(path, validateHasBeenSet);
-            _invalidate.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        NewContent = newContent;
+        IsInvalidate = invalidate;
     }
     
+    private PropertyValue<string> _newContent = new PropertyValue<string>(nameof(AdministrationUserAgreementPatchRequest), nameof(NewContent));
+    
+    [Required]
+    [JsonPropertyName("newContent")]
+    public string NewContent
+    {
+        get => _newContent.GetValue();
+        set => _newContent.SetValue(value);
+    }
+
+    private PropertyValue<bool> _invalidate = new PropertyValue<bool>(nameof(AdministrationUserAgreementPatchRequest), nameof(IsInvalidate));
+    
+    [Required]
+    [JsonPropertyName("invalidate")]
+    public bool IsInvalidate
+    {
+        get => _invalidate.GetValue();
+        set => _invalidate.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _newContent.SetAccessPath(path, validateHasBeenSet);
+        _invalidate.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

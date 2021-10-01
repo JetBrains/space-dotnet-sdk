@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RecurrenceRuleFreqMonthlyOnDate
+     : RecurrenceRuleFreq, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class RecurrenceRuleFreqMonthlyOnDate
-         : RecurrenceRuleFreq, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "RecurrenceRuleFreq.MonthlyOnDate";
+    
+    public RecurrenceRuleFreqMonthlyOnDate() { }
+    
+    public RecurrenceRuleFreqMonthlyOnDate(int day, int interval)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "RecurrenceRuleFreq.MonthlyOnDate";
-        
-        public RecurrenceRuleFreqMonthlyOnDate() { }
-        
-        public RecurrenceRuleFreqMonthlyOnDate(int day, int interval)
-        {
-            Day = day;
-            Interval = interval;
-        }
-        
-        private PropertyValue<int> _day = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnDate), nameof(Day));
-        
-        [Required]
-        [JsonPropertyName("day")]
-        public int Day
-        {
-            get => _day.GetValue();
-            set => _day.SetValue(value);
-        }
-    
-        private PropertyValue<int> _interval = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnDate), nameof(Interval));
-        
-        [Required]
-        [JsonPropertyName("interval")]
-        public int Interval
-        {
-            get => _interval.GetValue();
-            set => _interval.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _day.SetAccessPath(path, validateHasBeenSet);
-            _interval.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Day = day;
+        Interval = interval;
     }
     
+    private PropertyValue<int> _day = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnDate), nameof(Day));
+    
+    [Required]
+    [JsonPropertyName("day")]
+    public int Day
+    {
+        get => _day.GetValue();
+        set => _day.SetValue(value);
+    }
+
+    private PropertyValue<int> _interval = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnDate), nameof(Interval));
+    
+    [Required]
+    [JsonPropertyName("interval")]
+    public int Interval
+    {
+        get => _interval.GetValue();
+        set => _interval.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _day.SetAccessPath(path, validateHasBeenSet);
+        _interval.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

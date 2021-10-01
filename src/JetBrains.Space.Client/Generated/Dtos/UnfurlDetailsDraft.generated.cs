@@ -27,59 +27,58 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsDraft
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsDraft
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsDraft";
+    
+    public UnfurlDetailsDraft() { }
+    
+    public UnfurlDetailsDraft(string draft, string title, bool? strikeThrough = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsDraft";
-        
-        public UnfurlDetailsDraft() { }
-        
-        public UnfurlDetailsDraft(string draft, string title, bool? strikeThrough = null)
-        {
-            Draft = draft;
-            Title = title;
-            IsStrikeThrough = strikeThrough;
-        }
-        
-        private PropertyValue<string> _draft = new PropertyValue<string>(nameof(UnfurlDetailsDraft), nameof(Draft));
-        
-        [Required]
-        [JsonPropertyName("draft")]
-        public string Draft
-        {
-            get => _draft.GetValue();
-            set => _draft.SetValue(value);
-        }
-    
-        private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsDraft), nameof(Title));
-        
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title
-        {
-            get => _title.GetValue();
-            set => _title.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsDraft), nameof(IsStrikeThrough));
-        
-        [JsonPropertyName("strikeThrough")]
-        public bool? IsStrikeThrough
-        {
-            get => _strikeThrough.GetValue();
-            set => _strikeThrough.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _draft.SetAccessPath(path, validateHasBeenSet);
-            _title.SetAccessPath(path, validateHasBeenSet);
-            _strikeThrough.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Draft = draft;
+        Title = title;
+        IsStrikeThrough = strikeThrough;
     }
     
+    private PropertyValue<string> _draft = new PropertyValue<string>(nameof(UnfurlDetailsDraft), nameof(Draft));
+    
+    [Required]
+    [JsonPropertyName("draft")]
+    public string Draft
+    {
+        get => _draft.GetValue();
+        set => _draft.SetValue(value);
+    }
+
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsDraft), nameof(Title));
+    
+    [Required]
+    [JsonPropertyName("title")]
+    public string Title
+    {
+        get => _title.GetValue();
+        set => _title.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsDraft), nameof(IsStrikeThrough));
+    
+    [JsonPropertyName("strikeThrough")]
+    public bool? IsStrikeThrough
+    {
+        get => _strikeThrough.GetValue();
+        set => _strikeThrough.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _draft.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(path, validateHasBeenSet);
+        _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

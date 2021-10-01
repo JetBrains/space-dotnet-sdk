@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EmojisDeletePostRequestPartialBuilder
+namespace JetBrains.Space.Client.EmojisDeletePostRequestPartialBuilder;
+
+public static class EmojisDeletePostRequestPartialExtensions
 {
-    public static class EmojisDeletePostRequestPartialExtensions
-    {
-        public static Partial<EmojisDeletePostRequest> WithEmoji(this Partial<EmojisDeletePostRequest> it)
-            => it.AddFieldName("emoji");
-        
-    }
+    public static Partial<EmojisDeletePostRequest> WithEmoji(this Partial<EmojisDeletePostRequest> it)
+        => it.AddFieldName("emoji");
     
 }
+

@@ -27,26 +27,25 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum UnfurlDateTimeStyle
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum UnfurlDateTimeStyle
-    {
-        [EnumMember(Value = "REGULAR")]
-        REGULAR,
-        
-        [EnumMember(Value = "SECONDARY")]
-        SECONDARY,
-        
-        [EnumMember(Value = "STRIKETHROUGH")]
-        STRIKETHROUGH,
-        
-        [EnumMember(Value = "BOLD")]
-        BOLD,
-        
-        [EnumMember(Value = "CODE")]
-        CODE,
-        
-    }
+    [EnumMember(Value = "REGULAR")]
+    REGULAR,
+    
+    [EnumMember(Value = "SECONDARY")]
+    SECONDARY,
+    
+    [EnumMember(Value = "STRIKETHROUGH")]
+    STRIKETHROUGH,
+    
+    [EnumMember(Value = "BOLD")]
+    BOLD,
+    
+    [EnumMember(Value = "CODE")]
+    CODE,
     
 }
+

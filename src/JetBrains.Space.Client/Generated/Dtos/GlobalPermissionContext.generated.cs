@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GlobalPermissionContext
+     : PermissionContextApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class GlobalPermissionContext
-         : PermissionContextApi, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "GlobalPermissionContext";
+    
+    public GlobalPermissionContext() { }
+    
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "GlobalPermissionContext";
-        
-        public GlobalPermissionContext() { }
-        
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class OpenEnumCFUpdateParameters
+     : CFUpdateParameters, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class OpenEnumCFUpdateParameters
-         : CFUpdateParameters, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "OpenEnumCFUpdateParameters";
+    
+    public OpenEnumCFUpdateParameters() { }
+    
+    public OpenEnumCFUpdateParameters(List<CFEnumValueModification> modifications)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "OpenEnumCFUpdateParameters";
-        
-        public OpenEnumCFUpdateParameters() { }
-        
-        public OpenEnumCFUpdateParameters(List<CFEnumValueModification> modifications)
-        {
-            Modifications = modifications;
-        }
-        
-        private PropertyValue<List<CFEnumValueModification>> _modifications = new PropertyValue<List<CFEnumValueModification>>(nameof(OpenEnumCFUpdateParameters), nameof(Modifications), new List<CFEnumValueModification>());
-        
-        [Required]
-        [JsonPropertyName("modifications")]
-        public List<CFEnumValueModification> Modifications
-        {
-            get => _modifications.GetValue();
-            set => _modifications.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _modifications.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Modifications = modifications;
     }
     
+    private PropertyValue<List<CFEnumValueModification>> _modifications = new PropertyValue<List<CFEnumValueModification>>(nameof(OpenEnumCFUpdateParameters), nameof(Modifications), new List<CFEnumValueModification>());
+    
+    [Required]
+    [JsonPropertyName("modifications")]
+    public List<CFEnumValueModification> Modifications
+    {
+        get => _modifications.GetValue();
+        set => _modifications.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _modifications.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

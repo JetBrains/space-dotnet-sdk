@@ -27,59 +27,58 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MCText
+     : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MCText
-         : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MCText";
+    
+    public MCText() { }
+    
+    public MCText(string content, bool markdown, MCElement? accessory = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MCText";
-        
-        public MCText() { }
-        
-        public MCText(string content, bool markdown, MCElement? accessory = null)
-        {
-            Content = content;
-            IsMarkdown = markdown;
-            Accessory = accessory;
-        }
-        
-        private PropertyValue<string> _content = new PropertyValue<string>(nameof(MCText), nameof(Content));
-        
-        [Required]
-        [JsonPropertyName("content")]
-        public string Content
-        {
-            get => _content.GetValue();
-            set => _content.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _markdown = new PropertyValue<bool>(nameof(MCText), nameof(IsMarkdown));
-        
-        [Required]
-        [JsonPropertyName("markdown")]
-        public bool IsMarkdown
-        {
-            get => _markdown.GetValue();
-            set => _markdown.SetValue(value);
-        }
-    
-        private PropertyValue<MCElement?> _accessory = new PropertyValue<MCElement?>(nameof(MCText), nameof(Accessory));
-        
-        [JsonPropertyName("accessory")]
-        public MCElement? Accessory
-        {
-            get => _accessory.GetValue();
-            set => _accessory.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _content.SetAccessPath(path, validateHasBeenSet);
-            _markdown.SetAccessPath(path, validateHasBeenSet);
-            _accessory.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Content = content;
+        IsMarkdown = markdown;
+        Accessory = accessory;
     }
     
+    private PropertyValue<string> _content = new PropertyValue<string>(nameof(MCText), nameof(Content));
+    
+    [Required]
+    [JsonPropertyName("content")]
+    public string Content
+    {
+        get => _content.GetValue();
+        set => _content.SetValue(value);
+    }
+
+    private PropertyValue<bool> _markdown = new PropertyValue<bool>(nameof(MCText), nameof(IsMarkdown));
+    
+    [Required]
+    [JsonPropertyName("markdown")]
+    public bool IsMarkdown
+    {
+        get => _markdown.GetValue();
+        set => _markdown.SetValue(value);
+    }
+
+    private PropertyValue<MCElement?> _accessory = new PropertyValue<MCElement?>(nameof(MCText), nameof(Accessory));
+    
+    [JsonPropertyName("accessory")]
+    public MCElement? Accessory
+    {
+        get => _accessory.GetValue();
+        set => _accessory.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _content.SetAccessPath(path, validateHasBeenSet);
+        _markdown.SetAccessPath(path, validateHasBeenSet);
+        _accessory.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

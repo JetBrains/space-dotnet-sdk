@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HADefaultValueReference
+     : HADefaultValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class HADefaultValueReference
-         : HADefaultValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "HA_DefaultValue.Reference";
+    
+    public HADefaultValueReference() { }
+    
+    public HADefaultValueReference(string paramName)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "HA_DefaultValue.Reference";
-        
-        public HADefaultValueReference() { }
-        
-        public HADefaultValueReference(string paramName)
-        {
-            ParamName = paramName;
-        }
-        
-        private PropertyValue<string> _paramName = new PropertyValue<string>(nameof(HADefaultValueReference), nameof(ParamName));
-        
-        [Required]
-        [JsonPropertyName("paramName")]
-        public string ParamName
-        {
-            get => _paramName.GetValue();
-            set => _paramName.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _paramName.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ParamName = paramName;
     }
     
+    private PropertyValue<string> _paramName = new PropertyValue<string>(nameof(HADefaultValueReference), nameof(ParamName));
+    
+    [Required]
+    [JsonPropertyName("paramName")]
+    public string ParamName
+    {
+        get => _paramName.GetValue();
+        set => _paramName.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _paramName.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

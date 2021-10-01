@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentWebhookEventPartialBuilder
+namespace JetBrains.Space.Client.DocumentWebhookEventPartialBuilder;
+
+public static class DocumentWebhookEventPartialExtensions
 {
-    public static class DocumentWebhookEventPartialExtensions
-    {
-        public static Partial<DocumentWebhookEvent> WithMeta(this Partial<DocumentWebhookEvent> it)
-            => it.AddFieldName("meta");
-        
-        public static Partial<DocumentWebhookEvent> WithMeta(this Partial<DocumentWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-            => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
-        
-        public static Partial<DocumentWebhookEvent> WithDocument(this Partial<DocumentWebhookEvent> it)
-            => it.AddFieldName("document");
-        
-        public static Partial<DocumentWebhookEvent> WithChangeAuthors(this Partial<DocumentWebhookEvent> it)
-            => it.AddFieldName("changeAuthors");
-        
-        public static Partial<DocumentWebhookEvent> WithChangeAuthors(this Partial<DocumentWebhookEvent> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("changeAuthors", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<DocumentWebhookEvent> WithVersion(this Partial<DocumentWebhookEvent> it)
-            => it.AddFieldName("version");
-        
-        public static Partial<DocumentWebhookEvent> WithBase(this Partial<DocumentWebhookEvent> it)
-            => it.AddFieldName("base");
-        
-    }
+    public static Partial<DocumentWebhookEvent> WithMeta(this Partial<DocumentWebhookEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<DocumentWebhookEvent> WithMeta(this Partial<DocumentWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<DocumentWebhookEvent> WithDocument(this Partial<DocumentWebhookEvent> it)
+        => it.AddFieldName("document");
+    
+    public static Partial<DocumentWebhookEvent> WithChangeAuthors(this Partial<DocumentWebhookEvent> it)
+        => it.AddFieldName("changeAuthors");
+    
+    public static Partial<DocumentWebhookEvent> WithChangeAuthors(this Partial<DocumentWebhookEvent> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("changeAuthors", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<DocumentWebhookEvent> WithVersion(this Partial<DocumentWebhookEvent> it)
+        => it.AddFieldName("version");
+    
+    public static Partial<DocumentWebhookEvent> WithBase(this Partial<DocumentWebhookEvent> it)
+        => it.AddFieldName("base");
     
 }
+

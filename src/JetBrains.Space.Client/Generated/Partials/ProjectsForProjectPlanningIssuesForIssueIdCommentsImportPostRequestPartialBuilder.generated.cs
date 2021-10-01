@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequestPartialBuilder;
+
+public static class ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest> WithComments(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest> it)
-            => it.AddFieldName("comments");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest> WithComments(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest> it, Func<Partial<MessageForImport>, Partial<MessageForImport>> partialBuilder)
-            => it.AddFieldName("comments", partialBuilder(new Partial<MessageForImport>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest> WithComments(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest> it)
+        => it.AddFieldName("comments");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest> WithComments(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest> it, Func<Partial<MessageForImport>, Partial<MessageForImport>> partialBuilder)
+        => it.AddFieldName("comments", partialBuilder(new Partial<MessageForImport>(it)));
     
 }
+

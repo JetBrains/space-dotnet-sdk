@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest() { }
+    
+    public ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest(bool pin, string? comment = null)
     {
-        public ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest() { }
-        
-        public ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest(bool pin, string? comment = null)
-        {
-            IsPin = pin;
-            Comment = comment;
-        }
-        
-        private PropertyValue<bool> _pin = new PropertyValue<bool>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest), nameof(IsPin));
-        
-        [Required]
-        [JsonPropertyName("pin")]
-        public bool IsPin
-        {
-            get => _pin.GetValue();
-            set => _pin.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _comment = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest), nameof(Comment));
-        
-        [JsonPropertyName("comment")]
-        public string? Comment
-        {
-            get => _comment.GetValue();
-            set => _comment.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _pin.SetAccessPath(path, validateHasBeenSet);
-            _comment.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        IsPin = pin;
+        Comment = comment;
     }
     
+    private PropertyValue<bool> _pin = new PropertyValue<bool>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest), nameof(IsPin));
+    
+    [Required]
+    [JsonPropertyName("pin")]
+    public bool IsPin
+    {
+        get => _pin.GetValue();
+        set => _pin.SetValue(value);
+    }
+
+    private PropertyValue<string?> _comment = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest), nameof(Comment));
+    
+    [JsonPropertyName("comment")]
+    public string? Comment
+    {
+        get => _comment.GetValue();
+        set => _comment.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _pin.SetAccessPath(path, validateHasBeenSet);
+        _comment.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

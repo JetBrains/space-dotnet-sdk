@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class CalendarsEventParticipationsForIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class CalendarsEventParticipationsForIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public CalendarsEventParticipationsForIdPatchRequest() { }
+    
+    public CalendarsEventParticipationsForIdPatchRequest(EventParticipationStatus newStatus)
     {
-        public CalendarsEventParticipationsForIdPatchRequest() { }
-        
-        public CalendarsEventParticipationsForIdPatchRequest(EventParticipationStatus newStatus)
-        {
-            NewStatus = newStatus;
-        }
-        
-        private PropertyValue<EventParticipationStatus> _newStatus = new PropertyValue<EventParticipationStatus>(nameof(CalendarsEventParticipationsForIdPatchRequest), nameof(NewStatus));
-        
-        [Required]
-        [JsonPropertyName("newStatus")]
-        public EventParticipationStatus NewStatus
-        {
-            get => _newStatus.GetValue();
-            set => _newStatus.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _newStatus.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        NewStatus = newStatus;
     }
     
+    private PropertyValue<EventParticipationStatus> _newStatus = new PropertyValue<EventParticipationStatus>(nameof(CalendarsEventParticipationsForIdPatchRequest), nameof(NewStatus));
+    
+    [Required]
+    [JsonPropertyName("newStatus")]
+    public EventParticipationStatus NewStatus
+    {
+        get => _newStatus.GetValue();
+        set => _newStatus.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _newStatus.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

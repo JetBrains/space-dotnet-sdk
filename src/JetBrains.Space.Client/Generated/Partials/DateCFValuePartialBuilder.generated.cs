@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DateCFValuePartialBuilder
+namespace JetBrains.Space.Client.DateCFValuePartialBuilder;
+
+public static class DateCFValuePartialExtensions
 {
-    public static class DateCFValuePartialExtensions
-    {
-        public static Partial<DateCFValue> WithValue(this Partial<DateCFValue> it)
-            => it.AddFieldName("value");
-        
-    }
+    public static Partial<DateCFValue> WithValue(this Partial<DateCFValue> it)
+        => it.AddFieldName("value");
     
 }
+

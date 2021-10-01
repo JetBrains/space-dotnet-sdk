@@ -27,37 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CertainReactionToItemRecordPartialBuilder
+namespace JetBrains.Space.Client.CertainReactionToItemRecordPartialBuilder;
+
+public static class CertainReactionToItemRecordPartialExtensions
 {
-    public static class CertainReactionToItemRecordPartialExtensions
-    {
-        public static Partial<CertainReactionToItemRecord> WithId(this Partial<CertainReactionToItemRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<CertainReactionToItemRecord> WithItemId(this Partial<CertainReactionToItemRecord> it)
-            => it.AddFieldName("itemId");
-        
-        public static Partial<CertainReactionToItemRecord> WithReaction(this Partial<CertainReactionToItemRecord> it)
-            => it.AddFieldName("reaction");
-        
-        public static Partial<CertainReactionToItemRecord> WithReaction(this Partial<CertainReactionToItemRecord> it, Func<Partial<ReactionTypeRecord>, Partial<ReactionTypeRecord>> partialBuilder)
-            => it.AddFieldName("reaction", partialBuilder(new Partial<ReactionTypeRecord>(it)));
-        
-        public static Partial<CertainReactionToItemRecord> WithCount(this Partial<CertainReactionToItemRecord> it)
-            => it.AddFieldName("count");
-        
-        public static Partial<CertainReactionToItemRecord> WithIsMeReacted(this Partial<CertainReactionToItemRecord> it)
-            => it.AddFieldName("meReacted");
-        
-        public static Partial<CertainReactionToItemRecord> WithPrincipals(this Partial<CertainReactionToItemRecord> it)
-            => it.AddFieldName("principals");
-        
-        public static Partial<CertainReactionToItemRecord> WithPrincipals(this Partial<CertainReactionToItemRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("principals", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<CertainReactionToItemRecord> WithOrder(this Partial<CertainReactionToItemRecord> it)
-            => it.AddFieldName("order");
-        
-    }
+    public static Partial<CertainReactionToItemRecord> WithId(this Partial<CertainReactionToItemRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<CertainReactionToItemRecord> WithItemId(this Partial<CertainReactionToItemRecord> it)
+        => it.AddFieldName("itemId");
+    
+    public static Partial<CertainReactionToItemRecord> WithReaction(this Partial<CertainReactionToItemRecord> it)
+        => it.AddFieldName("reaction");
+    
+    public static Partial<CertainReactionToItemRecord> WithReaction(this Partial<CertainReactionToItemRecord> it, Func<Partial<ReactionTypeRecord>, Partial<ReactionTypeRecord>> partialBuilder)
+        => it.AddFieldName("reaction", partialBuilder(new Partial<ReactionTypeRecord>(it)));
+    
+    public static Partial<CertainReactionToItemRecord> WithCount(this Partial<CertainReactionToItemRecord> it)
+        => it.AddFieldName("count");
+    
+    public static Partial<CertainReactionToItemRecord> WithIsMeReacted(this Partial<CertainReactionToItemRecord> it)
+        => it.AddFieldName("meReacted");
+    
+    public static Partial<CertainReactionToItemRecord> WithPrincipals(this Partial<CertainReactionToItemRecord> it)
+        => it.AddFieldName("principals");
+    
+    public static Partial<CertainReactionToItemRecord> WithPrincipals(this Partial<CertainReactionToItemRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("principals", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<CertainReactionToItemRecord> WithOrder(this Partial<CertainReactionToItemRecord> it)
+        => it.AddFieldName("order");
     
 }
+

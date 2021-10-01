@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitGraphLayoutNode
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GitGraphLayoutNode
-         : IPropagatePropertyAccessPath
+    public GitGraphLayoutNode() { }
+    
+    public GitGraphLayoutNode(int pos, int color)
     {
-        public GitGraphLayoutNode() { }
-        
-        public GitGraphLayoutNode(int pos, int color)
-        {
-            Pos = pos;
-            Color = color;
-        }
-        
-        private PropertyValue<int> _pos = new PropertyValue<int>(nameof(GitGraphLayoutNode), nameof(Pos));
-        
-        [Required]
-        [JsonPropertyName("pos")]
-        public int Pos
-        {
-            get => _pos.GetValue();
-            set => _pos.SetValue(value);
-        }
-    
-        private PropertyValue<int> _color = new PropertyValue<int>(nameof(GitGraphLayoutNode), nameof(Color));
-        
-        [Required]
-        [JsonPropertyName("color")]
-        public int Color
-        {
-            get => _color.GetValue();
-            set => _color.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _pos.SetAccessPath(path, validateHasBeenSet);
-            _color.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Pos = pos;
+        Color = color;
     }
     
+    private PropertyValue<int> _pos = new PropertyValue<int>(nameof(GitGraphLayoutNode), nameof(Pos));
+    
+    [Required]
+    [JsonPropertyName("pos")]
+    public int Pos
+    {
+        get => _pos.GetValue();
+        set => _pos.SetValue(value);
+    }
+
+    private PropertyValue<int> _color = new PropertyValue<int>(nameof(GitGraphLayoutNode), nameof(Color));
+    
+    [Required]
+    [JsonPropertyName("color")]
+    public int Color
+    {
+        get => _color.GetValue();
+        set => _color.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _pos.SetAccessPath(path, validateHasBeenSet);
+        _color.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

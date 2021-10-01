@@ -27,93 +27,92 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BoardRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class BoardRecord
-         : IPropagatePropertyAccessPath
+    public BoardRecord() { }
+    
+    public BoardRecord(string id, bool archived, string name, BoardInfo info, DateTime? from = null, DateTime? to = null)
     {
-        public BoardRecord() { }
-        
-        public BoardRecord(string id, bool archived, string name, BoardInfo info, DateTime? from = null, DateTime? to = null)
-        {
-            Id = id;
-            IsArchived = archived;
-            Name = name;
-            From = from;
-            Info = info;
-            To = to;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(BoardRecord), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(BoardRecord), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(BoardRecord), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _from = new PropertyValue<DateTime?>(nameof(BoardRecord), nameof(From));
-        
-        [JsonPropertyName("from")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? From
-        {
-            get => _from.GetValue();
-            set => _from.SetValue(value);
-        }
-    
-        private PropertyValue<BoardInfo> _info = new PropertyValue<BoardInfo>(nameof(BoardRecord), nameof(Info));
-        
-        [Required]
-        [JsonPropertyName("info")]
-        public BoardInfo Info
-        {
-            get => _info.GetValue();
-            set => _info.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _to = new PropertyValue<DateTime?>(nameof(BoardRecord), nameof(To));
-        
-        [JsonPropertyName("to")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? To
-        {
-            get => _to.GetValue();
-            set => _to.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _from.SetAccessPath(path, validateHasBeenSet);
-            _info.SetAccessPath(path, validateHasBeenSet);
-            _to.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        IsArchived = archived;
+        Name = name;
+        From = from;
+        Info = info;
+        To = to;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(BoardRecord), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(BoardRecord), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(BoardRecord), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _from = new PropertyValue<DateTime?>(nameof(BoardRecord), nameof(From));
+    
+    [JsonPropertyName("from")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? From
+    {
+        get => _from.GetValue();
+        set => _from.SetValue(value);
+    }
+
+    private PropertyValue<BoardInfo> _info = new PropertyValue<BoardInfo>(nameof(BoardRecord), nameof(Info));
+    
+    [Required]
+    [JsonPropertyName("info")]
+    public BoardInfo Info
+    {
+        get => _info.GetValue();
+        set => _info.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _to = new PropertyValue<DateTime?>(nameof(BoardRecord), nameof(To));
+    
+    [JsonPropertyName("to")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? To
+    {
+        get => _to.GetValue();
+        set => _to.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _from.SetAccessPath(path, validateHasBeenSet);
+        _info.SetAccessPath(path, validateHasBeenSet);
+        _to.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

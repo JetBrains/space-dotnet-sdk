@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ProfileAbsencesRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ProfileAbsencesRecord
-         : IPropagatePropertyAccessPath
+    public ProfileAbsencesRecord() { }
+    
+    public ProfileAbsencesRecord(string id, List<AbsenceRecord> absences)
     {
-        public ProfileAbsencesRecord() { }
-        
-        public ProfileAbsencesRecord(string id, List<AbsenceRecord> absences)
-        {
-            Id = id;
-            Absences = absences;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProfileAbsencesRecord), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<List<AbsenceRecord>> _absences = new PropertyValue<List<AbsenceRecord>>(nameof(ProfileAbsencesRecord), nameof(Absences), new List<AbsenceRecord>());
-        
-        [Required]
-        [JsonPropertyName("absences")]
-        public List<AbsenceRecord> Absences
-        {
-            get => _absences.GetValue();
-            set => _absences.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _absences.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Absences = absences;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProfileAbsencesRecord), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<List<AbsenceRecord>> _absences = new PropertyValue<List<AbsenceRecord>>(nameof(ProfileAbsencesRecord), nameof(Absences), new List<AbsenceRecord>());
+    
+    [Required]
+    [JsonPropertyName("absences")]
+    public List<AbsenceRecord> Absences
+    {
+        get => _absences.GetValue();
+        set => _absences.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _absences.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

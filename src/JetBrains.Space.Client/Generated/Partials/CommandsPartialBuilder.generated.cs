@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CommandsPartialBuilder
+namespace JetBrains.Space.Client.CommandsPartialBuilder;
+
+public static class CommandsPartialExtensions
 {
-    public static class CommandsPartialExtensions
-    {
-        public static Partial<Commands> WithCommandsItems(this Partial<Commands> it)
-            => it.AddFieldName("commands");
-        
-        public static Partial<Commands> WithCommandsItems(this Partial<Commands> it, Func<Partial<CommandDetail>, Partial<CommandDetail>> partialBuilder)
-            => it.AddFieldName("commands", partialBuilder(new Partial<CommandDetail>(it)));
-        
-    }
+    public static Partial<Commands> WithCommandsItems(this Partial<Commands> it)
+        => it.AddFieldName("commands");
+    
+    public static Partial<Commands> WithCommandsItems(this Partial<Commands> it, Func<Partial<CommandDetail>, Partial<CommandDetail>> partialBuilder)
+        => it.AddFieldName("commands", partialBuilder(new Partial<CommandDetail>(it)));
     
 }
+

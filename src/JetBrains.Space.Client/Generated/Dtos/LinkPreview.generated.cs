@@ -27,11 +27,10 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface LinkPreview
+     : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface LinkPreview
-         : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-    }
-    
 }
+

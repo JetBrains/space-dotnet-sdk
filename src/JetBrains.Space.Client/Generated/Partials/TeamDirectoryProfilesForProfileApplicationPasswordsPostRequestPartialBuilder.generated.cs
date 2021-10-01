@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileApplicationPasswordsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileApplicationPasswordsPostRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfileApplicationPasswordsPostRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfileApplicationPasswordsPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest> WithName(this Partial<TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest> WithScope(this Partial<TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest> it)
-            => it.AddFieldName("scope");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest> WithName(this Partial<TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest> WithScope(this Partial<TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest> it)
+        => it.AddFieldName("scope");
     
 }
+

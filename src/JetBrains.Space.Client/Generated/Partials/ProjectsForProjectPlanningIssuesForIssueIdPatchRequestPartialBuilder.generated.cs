@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesForIssueIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesForIssueIdPatchRequestPartialBuilder;
+
+public static class ProjectsForProjectPlanningIssuesForIssueIdPatchRequestPartialExtensions
 {
-    public static class ProjectsForProjectPlanningIssuesForIssueIdPatchRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithTitle(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithDescription(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithAssignee(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
-            => it.AddFieldName("assignee");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithStatus(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
-            => it.AddFieldName("status");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithDueDate(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
-            => it.AddFieldName("dueDate");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
-            => it.AddFieldName("customFields");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
-            => it.AddFieldName("customFields", partialBuilder(new Partial<CustomFieldInputValue>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithTitle(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithDescription(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithAssignee(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
+        => it.AddFieldName("assignee");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithStatus(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
+        => it.AddFieldName("status");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithDueDate(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
+        => it.AddFieldName("dueDate");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
+        => it.AddFieldName("customFields");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+        => it.AddFieldName("customFields", partialBuilder(new Partial<CustomFieldInputValue>(it)));
     
 }
+

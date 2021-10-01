@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentListCFInputValuePartialBuilder
+namespace JetBrains.Space.Client.DocumentListCFInputValuePartialBuilder;
+
+public static class DocumentListCFInputValuePartialExtensions
 {
-    public static class DocumentListCFInputValuePartialExtensions
-    {
-        public static Partial<DocumentListCFInputValue> WithDocuments(this Partial<DocumentListCFInputValue> it)
-            => it.AddFieldName("documents");
-        
-    }
+    public static Partial<DocumentListCFInputValue> WithDocuments(this Partial<DocumentListCFInputValue> it)
+        => it.AddFieldName("documents");
     
 }
+

@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryLocationsForIdMapPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryLocationsForIdMapPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryLocationsForIdMapPatchRequest() { }
+    
+    public TeamDirectoryLocationsForIdMapPatchRequest(string mapPictureId)
     {
-        public TeamDirectoryLocationsForIdMapPatchRequest() { }
-        
-        public TeamDirectoryLocationsForIdMapPatchRequest(string mapPictureId)
-        {
-            MapPictureId = mapPictureId;
-        }
-        
-        private PropertyValue<string> _mapPictureId = new PropertyValue<string>(nameof(TeamDirectoryLocationsForIdMapPatchRequest), nameof(MapPictureId));
-        
-        [Required]
-        [JsonPropertyName("mapPictureId")]
-        public string MapPictureId
-        {
-            get => _mapPictureId.GetValue();
-            set => _mapPictureId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _mapPictureId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        MapPictureId = mapPictureId;
     }
     
+    private PropertyValue<string> _mapPictureId = new PropertyValue<string>(nameof(TeamDirectoryLocationsForIdMapPatchRequest), nameof(MapPictureId));
+    
+    [Required]
+    [JsonPropertyName("mapPictureId")]
+    public string MapPictureId
+    {
+        get => _mapPictureId.GetValue();
+        set => _mapPictureId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _mapPictureId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

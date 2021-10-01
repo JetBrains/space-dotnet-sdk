@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CFEnumValuePartialBuilder
+namespace JetBrains.Space.Client.CFEnumValuePartialBuilder;
+
+public static class CFEnumValuePartialExtensions
 {
-    public static class CFEnumValuePartialExtensions
-    {
-        public static Partial<CFEnumValue> WithId(this Partial<CFEnumValue> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<CFEnumValue> WithValue(this Partial<CFEnumValue> it)
-            => it.AddFieldName("value");
-        
-        public static Partial<CFEnumValue> WithPrincipal(this Partial<CFEnumValue> it)
-            => it.AddFieldName("principal");
-        
-        public static Partial<CFEnumValue> WithPrincipal(this Partial<CFEnumValue> it, Func<Partial<CPrincipalDetails>, Partial<CPrincipalDetails>> partialBuilder)
-            => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipalDetails>(it)));
-        
-    }
+    public static Partial<CFEnumValue> WithId(this Partial<CFEnumValue> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<CFEnumValue> WithValue(this Partial<CFEnumValue> it)
+        => it.AddFieldName("value");
+    
+    public static Partial<CFEnumValue> WithPrincipal(this Partial<CFEnumValue> it)
+        => it.AddFieldName("principal");
+    
+    public static Partial<CFEnumValue> WithPrincipal(this Partial<CFEnumValue> it, Func<Partial<CPrincipalDetails>, Partial<CPrincipalDetails>> partialBuilder)
+        => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipalDetails>(it)));
     
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESGoogleAuthModuleSettingsPartialBuilder
+namespace JetBrains.Space.Client.ESGoogleAuthModuleSettingsPartialBuilder;
+
+public static class ESGoogleAuthModuleSettingsPartialExtensions
 {
-    public static class ESGoogleAuthModuleSettingsPartialExtensions
-    {
-        public static Partial<ESGoogleAuthModuleSettings> WithClientId(this Partial<ESGoogleAuthModuleSettings> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<ESGoogleAuthModuleSettings> WithClientSecret(this Partial<ESGoogleAuthModuleSettings> it)
-            => it.AddFieldName("clientSecret");
-        
-        public static Partial<ESGoogleAuthModuleSettings> WithIsRegisterNewUsers(this Partial<ESGoogleAuthModuleSettings> it)
-            => it.AddFieldName("registerNewUsers");
-        
-        public static Partial<ESGoogleAuthModuleSettings> WithDomains(this Partial<ESGoogleAuthModuleSettings> it)
-            => it.AddFieldName("domains");
-        
-    }
+    public static Partial<ESGoogleAuthModuleSettings> WithClientId(this Partial<ESGoogleAuthModuleSettings> it)
+        => it.AddFieldName("clientId");
+    
+    public static Partial<ESGoogleAuthModuleSettings> WithClientSecret(this Partial<ESGoogleAuthModuleSettings> it)
+        => it.AddFieldName("clientSecret");
+    
+    public static Partial<ESGoogleAuthModuleSettings> WithIsRegisterNewUsers(this Partial<ESGoogleAuthModuleSettings> it)
+        => it.AddFieldName("registerNewUsers");
+    
+    public static Partial<ESGoogleAuthModuleSettings> WithDomains(this Partial<ESGoogleAuthModuleSettings> it)
+        => it.AddFieldName("domains");
     
 }
+

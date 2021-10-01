@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class Overdrafts
+     : IPropagatePropertyAccessPath
 {
-    public sealed class Overdrafts
-         : IPropagatePropertyAccessPath
+    public Overdrafts() { }
+    
+    public Overdrafts(int storage, int bandwidth, int ciCredits)
     {
-        public Overdrafts() { }
-        
-        public Overdrafts(int storage, int bandwidth, int ciCredits)
-        {
-            Storage = storage;
-            Bandwidth = bandwidth;
-            CiCredits = ciCredits;
-        }
-        
-        private PropertyValue<int> _storage = new PropertyValue<int>(nameof(Overdrafts), nameof(Storage));
-        
-        [Required]
-        [JsonPropertyName("storage")]
-        public int Storage
-        {
-            get => _storage.GetValue();
-            set => _storage.SetValue(value);
-        }
-    
-        private PropertyValue<int> _bandwidth = new PropertyValue<int>(nameof(Overdrafts), nameof(Bandwidth));
-        
-        [Required]
-        [JsonPropertyName("bandwidth")]
-        public int Bandwidth
-        {
-            get => _bandwidth.GetValue();
-            set => _bandwidth.SetValue(value);
-        }
-    
-        private PropertyValue<int> _ciCredits = new PropertyValue<int>(nameof(Overdrafts), nameof(CiCredits));
-        
-        [Required]
-        [JsonPropertyName("ciCredits")]
-        public int CiCredits
-        {
-            get => _ciCredits.GetValue();
-            set => _ciCredits.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _storage.SetAccessPath(path, validateHasBeenSet);
-            _bandwidth.SetAccessPath(path, validateHasBeenSet);
-            _ciCredits.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Storage = storage;
+        Bandwidth = bandwidth;
+        CiCredits = ciCredits;
     }
     
+    private PropertyValue<int> _storage = new PropertyValue<int>(nameof(Overdrafts), nameof(Storage));
+    
+    [Required]
+    [JsonPropertyName("storage")]
+    public int Storage
+    {
+        get => _storage.GetValue();
+        set => _storage.SetValue(value);
+    }
+
+    private PropertyValue<int> _bandwidth = new PropertyValue<int>(nameof(Overdrafts), nameof(Bandwidth));
+    
+    [Required]
+    [JsonPropertyName("bandwidth")]
+    public int Bandwidth
+    {
+        get => _bandwidth.GetValue();
+        set => _bandwidth.SetValue(value);
+    }
+
+    private PropertyValue<int> _ciCredits = new PropertyValue<int>(nameof(Overdrafts), nameof(CiCredits));
+    
+    [Required]
+    [JsonPropertyName("ciCredits")]
+    public int CiCredits
+    {
+        get => _ciCredits.GetValue();
+        set => _ciCredits.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _storage.SetAccessPath(path, validateHasBeenSet);
+        _bandwidth.SetAccessPath(path, validateHasBeenSet);
+        _ciCredits.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

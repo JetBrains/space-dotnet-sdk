@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MdMarkupPartialBuilder
+namespace JetBrains.Space.Client.MdMarkupPartialBuilder;
+
+public static class MdMarkupPartialExtensions
 {
-    public static class MdMarkupPartialExtensions
-    {
-        public static Partial<MdMarkup> WithUnfurl(this Partial<MdMarkup> it)
-            => it.AddFieldName("unfurl");
-        
-        public static Partial<MdMarkup> WithUnfurl(this Partial<MdMarkup> it, Func<Partial<Unfurl>, Partial<Unfurl>> partialBuilder)
-            => it.AddFieldName("unfurl", partialBuilder(new Partial<Unfurl>(it)));
-        
-    }
+    public static Partial<MdMarkup> WithUnfurl(this Partial<MdMarkup> it)
+        => it.AddFieldName("unfurl");
+    
+    public static Partial<MdMarkup> WithUnfurl(this Partial<MdMarkup> it, Func<Partial<Unfurl>, Partial<Unfurl>> partialBuilder)
+        => it.AddFieldName("unfurl", partialBuilder(new Partial<Unfurl>(it)));
     
 }
+

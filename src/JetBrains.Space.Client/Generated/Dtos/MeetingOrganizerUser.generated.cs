@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MeetingOrganizerUser
+     : MeetingOrganizer, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MeetingOrganizerUser
-         : MeetingOrganizer, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "MeetingOrganizer.User";
+    
+    public MeetingOrganizerUser() { }
+    
+    public MeetingOrganizerUser(TDMemberProfile profileRef)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "MeetingOrganizer.User";
-        
-        public MeetingOrganizerUser() { }
-        
-        public MeetingOrganizerUser(TDMemberProfile profileRef)
-        {
-            ProfileRef = profileRef;
-        }
-        
-        private PropertyValue<TDMemberProfile> _profileRef = new PropertyValue<TDMemberProfile>(nameof(MeetingOrganizerUser), nameof(ProfileRef));
-        
-        [Required]
-        [JsonPropertyName("profileRef")]
-        public TDMemberProfile ProfileRef
-        {
-            get => _profileRef.GetValue();
-            set => _profileRef.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profileRef.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ProfileRef = profileRef;
     }
     
+    private PropertyValue<TDMemberProfile> _profileRef = new PropertyValue<TDMemberProfile>(nameof(MeetingOrganizerUser), nameof(ProfileRef));
+    
+    [Required]
+    [JsonPropertyName("profileRef")]
+    public TDMemberProfile ProfileRef
+    {
+        get => _profileRef.GetValue();
+        set => _profileRef.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profileRef.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

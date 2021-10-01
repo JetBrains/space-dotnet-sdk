@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SpaceNewsFeedChannelPartialBuilder
+namespace JetBrains.Space.Client.SpaceNewsFeedChannelPartialBuilder;
+
+public static class SpaceNewsFeedChannelPartialExtensions
 {
-    public static class SpaceNewsFeedChannelPartialExtensions
-    {
-        public static Partial<SpaceNewsFeedChannel> WithNotificationDefaults(this Partial<SpaceNewsFeedChannel> it)
-            => it.AddFieldName("notificationDefaults");
-        
-        public static Partial<SpaceNewsFeedChannel> WithNotificationDefaults(this Partial<SpaceNewsFeedChannel> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
-        
-    }
+    public static Partial<SpaceNewsFeedChannel> WithNotificationDefaults(this Partial<SpaceNewsFeedChannel> it)
+        => it.AddFieldName("notificationDefaults");
+    
+    public static Partial<SpaceNewsFeedChannel> WithNotificationDefaults(this Partial<SpaceNewsFeedChannel> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
+        => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
     
 }
+

@@ -27,68 +27,67 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class SubjectResponsibilitiesTable
+     : IPropagatePropertyAccessPath
 {
-    public sealed class SubjectResponsibilitiesTable
-         : IPropagatePropertyAccessPath
+    public SubjectResponsibilitiesTable() { }
+    
+    public SubjectResponsibilitiesTable(string subjectId, List<string> reusedInProjects, List<ResponsibilityRecord> responsibilityRecords, string? name = null)
     {
-        public SubjectResponsibilitiesTable() { }
-        
-        public SubjectResponsibilitiesTable(string subjectId, List<string> reusedInProjects, List<ResponsibilityRecord> responsibilityRecords, string? name = null)
-        {
-            SubjectId = subjectId;
-            Name = name;
-            ReusedInProjects = reusedInProjects;
-            ResponsibilityRecords = responsibilityRecords;
-        }
-        
-        private PropertyValue<string> _subjectId = new PropertyValue<string>(nameof(SubjectResponsibilitiesTable), nameof(SubjectId));
-        
-        [Required]
-        [JsonPropertyName("subjectId")]
-        public string SubjectId
-        {
-            get => _subjectId.GetValue();
-            set => _subjectId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(SubjectResponsibilitiesTable), nameof(Name));
-        
-        [JsonPropertyName("name")]
-        public string? Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _reusedInProjects = new PropertyValue<List<string>>(nameof(SubjectResponsibilitiesTable), nameof(ReusedInProjects), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("reusedInProjects")]
-        public List<string> ReusedInProjects
-        {
-            get => _reusedInProjects.GetValue();
-            set => _reusedInProjects.SetValue(value);
-        }
-    
-        private PropertyValue<List<ResponsibilityRecord>> _responsibilityRecords = new PropertyValue<List<ResponsibilityRecord>>(nameof(SubjectResponsibilitiesTable), nameof(ResponsibilityRecords), new List<ResponsibilityRecord>());
-        
-        [Required]
-        [JsonPropertyName("responsibilityRecords")]
-        public List<ResponsibilityRecord> ResponsibilityRecords
-        {
-            get => _responsibilityRecords.GetValue();
-            set => _responsibilityRecords.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _subjectId.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _reusedInProjects.SetAccessPath(path, validateHasBeenSet);
-            _responsibilityRecords.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        SubjectId = subjectId;
+        Name = name;
+        ReusedInProjects = reusedInProjects;
+        ResponsibilityRecords = responsibilityRecords;
     }
     
+    private PropertyValue<string> _subjectId = new PropertyValue<string>(nameof(SubjectResponsibilitiesTable), nameof(SubjectId));
+    
+    [Required]
+    [JsonPropertyName("subjectId")]
+    public string SubjectId
+    {
+        get => _subjectId.GetValue();
+        set => _subjectId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(SubjectResponsibilitiesTable), nameof(Name));
+    
+    [JsonPropertyName("name")]
+    public string? Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _reusedInProjects = new PropertyValue<List<string>>(nameof(SubjectResponsibilitiesTable), nameof(ReusedInProjects), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("reusedInProjects")]
+    public List<string> ReusedInProjects
+    {
+        get => _reusedInProjects.GetValue();
+        set => _reusedInProjects.SetValue(value);
+    }
+
+    private PropertyValue<List<ResponsibilityRecord>> _responsibilityRecords = new PropertyValue<List<ResponsibilityRecord>>(nameof(SubjectResponsibilitiesTable), nameof(ResponsibilityRecords), new List<ResponsibilityRecord>());
+    
+    [Required]
+    [JsonPropertyName("responsibilityRecords")]
+    public List<ResponsibilityRecord> ResponsibilityRecords
+    {
+        get => _responsibilityRecords.GetValue();
+        set => _responsibilityRecords.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _subjectId.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _reusedInProjects.SetAccessPath(path, validateHasBeenSet);
+        _responsibilityRecords.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

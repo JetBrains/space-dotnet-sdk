@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.JobExecutionTriggerGitBranchDeletedPartialBuilder
+namespace JetBrains.Space.Client.JobExecutionTriggerGitBranchDeletedPartialBuilder;
+
+public static class JobExecutionTriggerGitBranchDeletedPartialExtensions
 {
-    public static class JobExecutionTriggerGitBranchDeletedPartialExtensions
-    {
-        public static Partial<JobExecutionTriggerGitBranchDeleted> WithBranches(this Partial<JobExecutionTriggerGitBranchDeleted> it)
-            => it.AddFieldName("branches");
-        
-    }
+    public static Partial<JobExecutionTriggerGitBranchDeleted> WithBranches(this Partial<JobExecutionTriggerGitBranchDeleted> it)
+        => it.AddFieldName("branches");
     
 }
+

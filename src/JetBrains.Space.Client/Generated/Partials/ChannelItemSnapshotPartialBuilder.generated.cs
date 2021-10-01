@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChannelItemSnapshotPartialBuilder
+namespace JetBrains.Space.Client.ChannelItemSnapshotPartialBuilder;
+
+public static class ChannelItemSnapshotPartialExtensions
 {
-    public static class ChannelItemSnapshotPartialExtensions
-    {
-        public static Partial<ChannelItemSnapshot> WithId(this Partial<ChannelItemSnapshot> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ChannelItemSnapshot> WithChannelId(this Partial<ChannelItemSnapshot> it)
-            => it.AddFieldName("channelId");
-        
-        public static Partial<ChannelItemSnapshot> WithText(this Partial<ChannelItemSnapshot> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<ChannelItemSnapshot> WithDetails(this Partial<ChannelItemSnapshot> it)
-            => it.AddFieldName("details");
-        
-        public static Partial<ChannelItemSnapshot> WithDetails(this Partial<ChannelItemSnapshot> it, Func<Partial<M2ItemContentDetails>, Partial<M2ItemContentDetails>> partialBuilder)
-            => it.AddFieldName("details", partialBuilder(new Partial<M2ItemContentDetails>(it)));
-        
-        public static Partial<ChannelItemSnapshot> WithAuthor(this Partial<ChannelItemSnapshot> it)
-            => it.AddFieldName("author");
-        
-        public static Partial<ChannelItemSnapshot> WithAuthor(this Partial<ChannelItemSnapshot> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("author", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<ChannelItemSnapshot> WithCreated(this Partial<ChannelItemSnapshot> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<ChannelItemSnapshot> WithTime(this Partial<ChannelItemSnapshot> it)
-            => it.AddFieldName("time");
-        
-        public static Partial<ChannelItemSnapshot> WithAttachments(this Partial<ChannelItemSnapshot> it)
-            => it.AddFieldName("attachments");
-        
-        public static Partial<ChannelItemSnapshot> WithAttachments(this Partial<ChannelItemSnapshot> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
-            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
-        
-    }
+    public static Partial<ChannelItemSnapshot> WithId(this Partial<ChannelItemSnapshot> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ChannelItemSnapshot> WithChannelId(this Partial<ChannelItemSnapshot> it)
+        => it.AddFieldName("channelId");
+    
+    public static Partial<ChannelItemSnapshot> WithText(this Partial<ChannelItemSnapshot> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<ChannelItemSnapshot> WithDetails(this Partial<ChannelItemSnapshot> it)
+        => it.AddFieldName("details");
+    
+    public static Partial<ChannelItemSnapshot> WithDetails(this Partial<ChannelItemSnapshot> it, Func<Partial<M2ItemContentDetails>, Partial<M2ItemContentDetails>> partialBuilder)
+        => it.AddFieldName("details", partialBuilder(new Partial<M2ItemContentDetails>(it)));
+    
+    public static Partial<ChannelItemSnapshot> WithAuthor(this Partial<ChannelItemSnapshot> it)
+        => it.AddFieldName("author");
+    
+    public static Partial<ChannelItemSnapshot> WithAuthor(this Partial<ChannelItemSnapshot> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("author", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<ChannelItemSnapshot> WithCreated(this Partial<ChannelItemSnapshot> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<ChannelItemSnapshot> WithTime(this Partial<ChannelItemSnapshot> it)
+        => it.AddFieldName("time");
+    
+    public static Partial<ChannelItemSnapshot> WithAttachments(this Partial<ChannelItemSnapshot> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<ChannelItemSnapshot> WithAttachments(this Partial<ChannelItemSnapshot> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
+        => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
     
 }
+

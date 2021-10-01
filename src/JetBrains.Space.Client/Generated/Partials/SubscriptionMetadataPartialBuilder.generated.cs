@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SubscriptionMetadataPartialBuilder
+namespace JetBrains.Space.Client.SubscriptionMetadataPartialBuilder;
+
+public static class SubscriptionMetadataPartialExtensions
 {
-    public static class SubscriptionMetadataPartialExtensions
-    {
-        public static Partial<SubscriptionMetadata> WithChannel(this Partial<SubscriptionMetadata> it)
-            => it.AddFieldName("channel");
-        
-        public static Partial<SubscriptionMetadata> WithChannel(this Partial<SubscriptionMetadata> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
-            => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
-        
-        public static Partial<SubscriptionMetadata> WithSubscription(this Partial<SubscriptionMetadata> it)
-            => it.AddFieldName("subscription");
-        
-        public static Partial<SubscriptionMetadata> WithSubscriptionName(this Partial<SubscriptionMetadata> it)
-            => it.AddFieldName("subscriptionName");
-        
-    }
+    public static Partial<SubscriptionMetadata> WithChannel(this Partial<SubscriptionMetadata> it)
+        => it.AddFieldName("channel");
+    
+    public static Partial<SubscriptionMetadata> WithChannel(this Partial<SubscriptionMetadata> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
+        => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
+    
+    public static Partial<SubscriptionMetadata> WithSubscription(this Partial<SubscriptionMetadata> it)
+        => it.AddFieldName("subscription");
+    
+    public static Partial<SubscriptionMetadata> WithSubscriptionName(this Partial<SubscriptionMetadata> it)
+        => it.AddFieldName("subscriptionName");
     
 }
+

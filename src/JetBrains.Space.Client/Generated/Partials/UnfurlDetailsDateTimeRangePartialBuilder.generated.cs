@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsDateTimeRangePartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsDateTimeRangePartialBuilder;
+
+public static class UnfurlDetailsDateTimeRangePartialExtensions
 {
-    public static class UnfurlDetailsDateTimeRangePartialExtensions
-    {
-        public static Partial<UnfurlDetailsDateTimeRange> WithSince(this Partial<UnfurlDetailsDateTimeRange> it)
-            => it.AddFieldName("since");
-        
-        public static Partial<UnfurlDetailsDateTimeRange> WithTill(this Partial<UnfurlDetailsDateTimeRange> it)
-            => it.AddFieldName("till");
-        
-        public static Partial<UnfurlDetailsDateTimeRange> WithParams(this Partial<UnfurlDetailsDateTimeRange> it)
-            => it.AddFieldName("params");
-        
-        public static Partial<UnfurlDetailsDateTimeRange> WithParams(this Partial<UnfurlDetailsDateTimeRange> it, Func<Partial<DateTimeViewParams>, Partial<DateTimeViewParams>> partialBuilder)
-            => it.AddFieldName("params", partialBuilder(new Partial<DateTimeViewParams>(it)));
-        
-    }
+    public static Partial<UnfurlDetailsDateTimeRange> WithSince(this Partial<UnfurlDetailsDateTimeRange> it)
+        => it.AddFieldName("since");
+    
+    public static Partial<UnfurlDetailsDateTimeRange> WithTill(this Partial<UnfurlDetailsDateTimeRange> it)
+        => it.AddFieldName("till");
+    
+    public static Partial<UnfurlDetailsDateTimeRange> WithParams(this Partial<UnfurlDetailsDateTimeRange> it)
+        => it.AddFieldName("params");
+    
+    public static Partial<UnfurlDetailsDateTimeRange> WithParams(this Partial<UnfurlDetailsDateTimeRange> it, Func<Partial<DateTimeViewParams>, Partial<DateTimeViewParams>> partialBuilder)
+        => it.AddFieldName("params", partialBuilder(new Partial<DateTimeViewParams>(it)));
     
 }
+

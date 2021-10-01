@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectRepositoriesForRepositoryPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectRepositoriesForRepositoryPostRequestPartialBuilder;
+
+public static class ProjectsForProjectRepositoriesForRepositoryPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectRepositoriesForRepositoryPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> WithDescription(this Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> WithDefaultBranch(this Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> it)
-            => it.AddFieldName("defaultBranch");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> WithIsInitialize(this Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> it)
-            => it.AddFieldName("initialize");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> WithIsDefaultSetup(this Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> it)
-            => it.AddFieldName("defaultSetup");
-        
-    }
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> WithDescription(this Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> WithDefaultBranch(this Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> it)
+        => it.AddFieldName("defaultBranch");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> WithIsInitialize(this Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> it)
+        => it.AddFieldName("initialize");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> WithIsDefaultSetup(this Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> it)
+        => it.AddFieldName("defaultSetup");
     
 }
+

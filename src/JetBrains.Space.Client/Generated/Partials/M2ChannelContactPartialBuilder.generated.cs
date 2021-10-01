@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContactPartialBuilder
+namespace JetBrains.Space.Client.M2ChannelContactPartialBuilder;
+
+public static class M2ChannelContactPartialExtensions
 {
-    public static class M2ChannelContactPartialExtensions
-    {
-        public static Partial<M2ChannelContact> WithDefaultName(this Partial<M2ChannelContact> it)
-            => it.AddFieldName("defaultName");
-        
-        public static Partial<M2ChannelContact> WithKey(this Partial<M2ChannelContact> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<M2ChannelContact> WithExt(this Partial<M2ChannelContact> it)
-            => it.AddFieldName("ext");
-        
-        public static Partial<M2ChannelContact> WithExt(this Partial<M2ChannelContact> it, Func<Partial<M2ChannelContactInfo>, Partial<M2ChannelContactInfo>> partialBuilder)
-            => it.AddFieldName("ext", partialBuilder(new Partial<M2ChannelContactInfo>(it)));
-        
-    }
+    public static Partial<M2ChannelContact> WithDefaultName(this Partial<M2ChannelContact> it)
+        => it.AddFieldName("defaultName");
+    
+    public static Partial<M2ChannelContact> WithKey(this Partial<M2ChannelContact> it)
+        => it.AddFieldName("key");
+    
+    public static Partial<M2ChannelContact> WithExt(this Partial<M2ChannelContact> it)
+        => it.AddFieldName("ext");
+    
+    public static Partial<M2ChannelContact> WithExt(this Partial<M2ChannelContact> it, Func<Partial<M2ChannelContactInfo>, Partial<M2ChannelContactInfo>> partialBuilder)
+        => it.AddFieldName("ext", partialBuilder(new Partial<M2ChannelContactInfo>(it)));
     
 }
+

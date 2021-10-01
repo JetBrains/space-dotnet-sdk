@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IntelliJSharedIndexUploadUrl
+     : IPropagatePropertyAccessPath
 {
-    public sealed class IntelliJSharedIndexUploadUrl
-         : IPropagatePropertyAccessPath
+    public IntelliJSharedIndexUploadUrl() { }
+    
+    public IntelliJSharedIndexUploadUrl(string url, string method)
     {
-        public IntelliJSharedIndexUploadUrl() { }
-        
-        public IntelliJSharedIndexUploadUrl(string url, string method)
-        {
-            Url = url;
-            Method = method;
-        }
-        
-        private PropertyValue<string> _url = new PropertyValue<string>(nameof(IntelliJSharedIndexUploadUrl), nameof(Url));
-        
-        [Required]
-        [JsonPropertyName("url")]
-        public string Url
-        {
-            get => _url.GetValue();
-            set => _url.SetValue(value);
-        }
-    
-        private PropertyValue<string> _method = new PropertyValue<string>(nameof(IntelliJSharedIndexUploadUrl), nameof(Method));
-        
-        [Required]
-        [JsonPropertyName("method")]
-        public string Method
-        {
-            get => _method.GetValue();
-            set => _method.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _url.SetAccessPath(path, validateHasBeenSet);
-            _method.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Url = url;
+        Method = method;
     }
     
+    private PropertyValue<string> _url = new PropertyValue<string>(nameof(IntelliJSharedIndexUploadUrl), nameof(Url));
+    
+    [Required]
+    [JsonPropertyName("url")]
+    public string Url
+    {
+        get => _url.GetValue();
+        set => _url.SetValue(value);
+    }
+
+    private PropertyValue<string> _method = new PropertyValue<string>(nameof(IntelliJSharedIndexUploadUrl), nameof(Method));
+    
+    [Required]
+    [JsonPropertyName("method")]
+    public string Method
+    {
+        get => _method.GetValue();
+        set => _method.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _url.SetAccessPath(path, validateHasBeenSet);
+        _method.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

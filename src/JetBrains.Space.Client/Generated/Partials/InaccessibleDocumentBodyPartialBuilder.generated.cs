@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.InaccessibleDocumentBodyPartialBuilder
+namespace JetBrains.Space.Client.InaccessibleDocumentBodyPartialBuilder;
+
+public static class InaccessibleDocumentBodyPartialExtensions
 {
-    public static class InaccessibleDocumentBodyPartialExtensions
-    {
-        public static Partial<InaccessibleDocumentBody> WithDocBodyType(this Partial<InaccessibleDocumentBody> it)
-            => it.AddFieldName("docBodyType");
-        
-        public static Partial<InaccessibleDocumentBody> WithDocBodyType(this Partial<InaccessibleDocumentBody> it, Func<Partial<DocumentBodyType>, Partial<DocumentBodyType>> partialBuilder)
-            => it.AddFieldName("docBodyType", partialBuilder(new Partial<DocumentBodyType>(it)));
-        
-        public static Partial<InaccessibleDocumentBody> WithDocBodyId(this Partial<InaccessibleDocumentBody> it)
-            => it.AddFieldName("docBodyId");
-        
-    }
+    public static Partial<InaccessibleDocumentBody> WithDocBodyType(this Partial<InaccessibleDocumentBody> it)
+        => it.AddFieldName("docBodyType");
+    
+    public static Partial<InaccessibleDocumentBody> WithDocBodyType(this Partial<InaccessibleDocumentBody> it, Func<Partial<DocumentBodyType>, Partial<DocumentBodyType>> partialBuilder)
+        => it.AddFieldName("docBodyType", partialBuilder(new Partial<DocumentBodyType>(it)));
+    
+    public static Partial<InaccessibleDocumentBody> WithDocBodyId(this Partial<InaccessibleDocumentBody> it)
+        => it.AddFieldName("docBodyId");
     
 }
+

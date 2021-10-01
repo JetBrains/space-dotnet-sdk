@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESAuthModulePartialBuilder
+namespace JetBrains.Space.Client.ESAuthModulePartialBuilder;
+
+public static class ESAuthModulePartialExtensions
 {
-    public static class ESAuthModulePartialExtensions
-    {
-        public static Partial<ESAuthModule> WithId(this Partial<ESAuthModule> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ESAuthModule> WithKey(this Partial<ESAuthModule> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<ESAuthModule> WithName(this Partial<ESAuthModule> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ESAuthModule> WithOrdinal(this Partial<ESAuthModule> it)
-            => it.AddFieldName("ordinal");
-        
-        public static Partial<ESAuthModule> WithIsEnabled(this Partial<ESAuthModule> it)
-            => it.AddFieldName("enabled");
-        
-        public static Partial<ESAuthModule> WithIconDataURI(this Partial<ESAuthModule> it)
-            => it.AddFieldName("iconDataURI");
-        
-        public static Partial<ESAuthModule> WithSettings(this Partial<ESAuthModule> it)
-            => it.AddFieldName("settings");
-        
-        public static Partial<ESAuthModule> WithSettings(this Partial<ESAuthModule> it, Func<Partial<ESAuthModuleSettings>, Partial<ESAuthModuleSettings>> partialBuilder)
-            => it.AddFieldName("settings", partialBuilder(new Partial<ESAuthModuleSettings>(it)));
-        
-    }
+    public static Partial<ESAuthModule> WithId(this Partial<ESAuthModule> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ESAuthModule> WithKey(this Partial<ESAuthModule> it)
+        => it.AddFieldName("key");
+    
+    public static Partial<ESAuthModule> WithName(this Partial<ESAuthModule> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ESAuthModule> WithOrdinal(this Partial<ESAuthModule> it)
+        => it.AddFieldName("ordinal");
+    
+    public static Partial<ESAuthModule> WithIsEnabled(this Partial<ESAuthModule> it)
+        => it.AddFieldName("enabled");
+    
+    public static Partial<ESAuthModule> WithIconDataURI(this Partial<ESAuthModule> it)
+        => it.AddFieldName("iconDataURI");
+    
+    public static Partial<ESAuthModule> WithSettings(this Partial<ESAuthModule> it)
+        => it.AddFieldName("settings");
+    
+    public static Partial<ESAuthModule> WithSettings(this Partial<ESAuthModule> it, Func<Partial<ESAuthModuleSettings>, Partial<ESAuthModuleSettings>> partialBuilder)
+        => it.AddFieldName("settings", partialBuilder(new Partial<ESAuthModuleSettings>(it)));
     
 }
+

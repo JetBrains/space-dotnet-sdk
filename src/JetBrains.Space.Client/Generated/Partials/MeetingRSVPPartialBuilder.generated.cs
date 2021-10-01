@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingRSVPPartialBuilder
+namespace JetBrains.Space.Client.MeetingRSVPPartialBuilder;
+
+public static class MeetingRSVPPartialExtensions
 {
-    public static class MeetingRSVPPartialExtensions
-    {
-        public static Partial<MeetingRSVP> WithId(this Partial<MeetingRSVP> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<MeetingRSVP> WithIsArchived(this Partial<MeetingRSVP> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<MeetingRSVP> WithMember(this Partial<MeetingRSVP> it)
-            => it.AddFieldName("member");
-        
-        public static Partial<MeetingRSVP> WithMember(this Partial<MeetingRSVP> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("member", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<MeetingRSVP> WithMeeting(this Partial<MeetingRSVP> it)
-            => it.AddFieldName("meeting");
-        
-        public static Partial<MeetingRSVP> WithMeeting(this Partial<MeetingRSVP> it, Func<Partial<Meeting>, Partial<Meeting>> partialBuilder)
-            => it.AddFieldName("meeting", partialBuilder(new Partial<Meeting>(it)));
-        
-        public static Partial<MeetingRSVP> WithStatus(this Partial<MeetingRSVP> it)
-            => it.AddFieldName("status");
-        
-        public static Partial<MeetingRSVP> WithStatus(this Partial<MeetingRSVP> it, Func<Partial<EventParticipationStatus>, Partial<EventParticipationStatus>> partialBuilder)
-            => it.AddFieldName("status", partialBuilder(new Partial<EventParticipationStatus>(it)));
-        
-    }
+    public static Partial<MeetingRSVP> WithId(this Partial<MeetingRSVP> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<MeetingRSVP> WithIsArchived(this Partial<MeetingRSVP> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<MeetingRSVP> WithMember(this Partial<MeetingRSVP> it)
+        => it.AddFieldName("member");
+    
+    public static Partial<MeetingRSVP> WithMember(this Partial<MeetingRSVP> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("member", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<MeetingRSVP> WithMeeting(this Partial<MeetingRSVP> it)
+        => it.AddFieldName("meeting");
+    
+    public static Partial<MeetingRSVP> WithMeeting(this Partial<MeetingRSVP> it, Func<Partial<Meeting>, Partial<Meeting>> partialBuilder)
+        => it.AddFieldName("meeting", partialBuilder(new Partial<Meeting>(it)));
+    
+    public static Partial<MeetingRSVP> WithStatus(this Partial<MeetingRSVP> it)
+        => it.AddFieldName("status");
+    
+    public static Partial<MeetingRSVP> WithStatus(this Partial<MeetingRSVP> it, Func<Partial<EventParticipationStatus>, Partial<EventParticipationStatus>> partialBuilder)
+        => it.AddFieldName("status", partialBuilder(new Partial<EventParticipationStatus>(it)));
     
 }
+

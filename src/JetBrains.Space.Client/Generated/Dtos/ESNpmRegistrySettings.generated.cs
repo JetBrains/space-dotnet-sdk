@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESNpmRegistrySettings
+     : ESPackageRepositorySettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ESNpmRegistrySettings
-         : ESPackageRepositorySettings, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ES_NpmRegistrySettings";
+    
+    public ESNpmRegistrySettings() { }
+    
+    public ESNpmRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ES_NpmRegistrySettings";
-        
-        public ESNpmRegistrySettings() { }
-        
-        public ESNpmRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-        {
-            RetentionPolicyParams = retentionPolicyParams;
-            IsImmutablePackageVersions = immutablePackageVersions;
-        }
-        
-        private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESNpmRegistrySettings), nameof(RetentionPolicyParams));
-        
-        [JsonPropertyName("retentionPolicyParams")]
-        public RetentionPolicyParams? RetentionPolicyParams
-        {
-            get => _retentionPolicyParams.GetValue();
-            set => _retentionPolicyParams.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _immutablePackageVersions = new PropertyValue<bool?>(nameof(ESNpmRegistrySettings), nameof(IsImmutablePackageVersions));
-        
-        [JsonPropertyName("immutablePackageVersions")]
-        public bool? IsImmutablePackageVersions
-        {
-            get => _immutablePackageVersions.GetValue();
-            set => _immutablePackageVersions.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _retentionPolicyParams.SetAccessPath(path, validateHasBeenSet);
-            _immutablePackageVersions.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        RetentionPolicyParams = retentionPolicyParams;
+        IsImmutablePackageVersions = immutablePackageVersions;
     }
     
+    private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESNpmRegistrySettings), nameof(RetentionPolicyParams));
+    
+    [JsonPropertyName("retentionPolicyParams")]
+    public RetentionPolicyParams? RetentionPolicyParams
+    {
+        get => _retentionPolicyParams.GetValue();
+        set => _retentionPolicyParams.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _immutablePackageVersions = new PropertyValue<bool?>(nameof(ESNpmRegistrySettings), nameof(IsImmutablePackageVersions));
+    
+    [JsonPropertyName("immutablePackageVersions")]
+    public bool? IsImmutablePackageVersions
+    {
+        get => _immutablePackageVersions.GetValue();
+        set => _immutablePackageVersions.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _retentionPolicyParams.SetAccessPath(path, validateHasBeenSet);
+        _immutablePackageVersions.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

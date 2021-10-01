@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MCTag
+     : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MCTag
-         : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MCTag";
+    
+    public MCTag() { }
+    
+    public MCTag(string text, string style)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MCTag";
-        
-        public MCTag() { }
-        
-        public MCTag(string text, string style)
-        {
-            Text = text;
-            Style = style;
-        }
-        
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(MCTag), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCTag), nameof(Style));
-        
-        [Required]
-        [JsonPropertyName("style")]
-        public string Style
-        {
-            get => _style.GetValue();
-            set => _style.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _style.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Text = text;
+        Style = style;
     }
     
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MCTag), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCTag), nameof(Style));
+    
+    [Required]
+    [JsonPropertyName("style")]
+    public string Style
+    {
+        get => _style.GetValue();
+        set => _style.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _text.SetAccessPath(path, validateHasBeenSet);
+        _style.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

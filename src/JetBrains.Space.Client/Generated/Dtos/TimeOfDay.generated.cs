@@ -27,56 +27,55 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TimeOfDay
+     : IPropagatePropertyAccessPath
 {
-    public sealed class TimeOfDay
-         : IPropagatePropertyAccessPath
+    public TimeOfDay() { }
+    
+    public TimeOfDay(int hours, int minutes, int? seconds = null)
     {
-        public TimeOfDay() { }
-        
-        public TimeOfDay(int hours, int minutes, int? seconds = null)
-        {
-            Hours = hours;
-            Minutes = minutes;
-            Seconds = seconds;
-        }
-        
-        private PropertyValue<int> _hours = new PropertyValue<int>(nameof(TimeOfDay), nameof(Hours));
-        
-        [Required]
-        [JsonPropertyName("hours")]
-        public int Hours
-        {
-            get => _hours.GetValue();
-            set => _hours.SetValue(value);
-        }
-    
-        private PropertyValue<int> _minutes = new PropertyValue<int>(nameof(TimeOfDay), nameof(Minutes));
-        
-        [Required]
-        [JsonPropertyName("minutes")]
-        public int Minutes
-        {
-            get => _minutes.GetValue();
-            set => _minutes.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _seconds = new PropertyValue<int?>(nameof(TimeOfDay), nameof(Seconds));
-        
-        [JsonPropertyName("seconds")]
-        public int? Seconds
-        {
-            get => _seconds.GetValue();
-            set => _seconds.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _hours.SetAccessPath(path, validateHasBeenSet);
-            _minutes.SetAccessPath(path, validateHasBeenSet);
-            _seconds.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Hours = hours;
+        Minutes = minutes;
+        Seconds = seconds;
     }
     
+    private PropertyValue<int> _hours = new PropertyValue<int>(nameof(TimeOfDay), nameof(Hours));
+    
+    [Required]
+    [JsonPropertyName("hours")]
+    public int Hours
+    {
+        get => _hours.GetValue();
+        set => _hours.SetValue(value);
+    }
+
+    private PropertyValue<int> _minutes = new PropertyValue<int>(nameof(TimeOfDay), nameof(Minutes));
+    
+    [Required]
+    [JsonPropertyName("minutes")]
+    public int Minutes
+    {
+        get => _minutes.GetValue();
+        set => _minutes.SetValue(value);
+    }
+
+    private PropertyValue<int?> _seconds = new PropertyValue<int?>(nameof(TimeOfDay), nameof(Seconds));
+    
+    [JsonPropertyName("seconds")]
+    public int? Seconds
+    {
+        get => _seconds.GetValue();
+        set => _seconds.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _hours.SetAccessPath(path, validateHasBeenSet);
+        _minutes.SetAccessPath(path, validateHasBeenSet);
+        _seconds.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

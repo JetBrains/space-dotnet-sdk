@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TwoFactorAuthenticationSecretPartialBuilder
+namespace JetBrains.Space.Client.TwoFactorAuthenticationSecretPartialBuilder;
+
+public static class TwoFactorAuthenticationSecretPartialExtensions
 {
-    public static class TwoFactorAuthenticationSecretPartialExtensions
-    {
-        public static Partial<TwoFactorAuthenticationSecret> WithSecretKey(this Partial<TwoFactorAuthenticationSecret> it)
-            => it.AddFieldName("secretKey");
-        
-        public static Partial<TwoFactorAuthenticationSecret> WithQrCode(this Partial<TwoFactorAuthenticationSecret> it)
-            => it.AddFieldName("qrCode");
-        
-        public static Partial<TwoFactorAuthenticationSecret> WithQrCode(this Partial<TwoFactorAuthenticationSecret> it, Func<Partial<QRCode>, Partial<QRCode>> partialBuilder)
-            => it.AddFieldName("qrCode", partialBuilder(new Partial<QRCode>(it)));
-        
-        public static Partial<TwoFactorAuthenticationSecret> WithScratchCodes(this Partial<TwoFactorAuthenticationSecret> it)
-            => it.AddFieldName("scratchCodes");
-        
-    }
+    public static Partial<TwoFactorAuthenticationSecret> WithSecretKey(this Partial<TwoFactorAuthenticationSecret> it)
+        => it.AddFieldName("secretKey");
+    
+    public static Partial<TwoFactorAuthenticationSecret> WithQrCode(this Partial<TwoFactorAuthenticationSecret> it)
+        => it.AddFieldName("qrCode");
+    
+    public static Partial<TwoFactorAuthenticationSecret> WithQrCode(this Partial<TwoFactorAuthenticationSecret> it, Func<Partial<QRCode>, Partial<QRCode>> partialBuilder)
+        => it.AddFieldName("qrCode", partialBuilder(new Partial<QRCode>(it)));
+    
+    public static Partial<TwoFactorAuthenticationSecret> WithScratchCodes(this Partial<TwoFactorAuthenticationSecret> it)
+        => it.AddFieldName("scratchCodes");
     
 }
+

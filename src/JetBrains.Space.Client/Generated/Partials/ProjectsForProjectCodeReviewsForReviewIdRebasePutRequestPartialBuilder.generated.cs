@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsForReviewIdRebasePutRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsForReviewIdRebasePutRequestPartialBuilder;
+
+public static class ProjectsForProjectCodeReviewsForReviewIdRebasePutRequestPartialExtensions
 {
-    public static class ProjectsForProjectCodeReviewsForReviewIdRebasePutRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> WithIsDeleteSourceBranch(this Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> it)
-            => it.AddFieldName("deleteSourceBranch");
-        
-        public static Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> WithRebaseMode(this Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> it)
-            => it.AddFieldName("rebaseMode");
-        
-        public static Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> WithRebaseMode(this Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> it, Func<Partial<GitRebaseMode>, Partial<GitRebaseMode>> partialBuilder)
-            => it.AddFieldName("rebaseMode", partialBuilder(new Partial<GitRebaseMode>(it)));
-        
-        public static Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> WithIsSquash(this Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> it)
-            => it.AddFieldName("squash");
-        
-        public static Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> WithSquashedCommitMessage(this Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> it)
-            => it.AddFieldName("squashedCommitMessage");
-        
-    }
+    public static Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> WithIsDeleteSourceBranch(this Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> it)
+        => it.AddFieldName("deleteSourceBranch");
+    
+    public static Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> WithRebaseMode(this Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> it)
+        => it.AddFieldName("rebaseMode");
+    
+    public static Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> WithRebaseMode(this Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> it, Func<Partial<GitRebaseMode>, Partial<GitRebaseMode>> partialBuilder)
+        => it.AddFieldName("rebaseMode", partialBuilder(new Partial<GitRebaseMode>(it)));
+    
+    public static Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> WithIsSquash(this Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> it)
+        => it.AddFieldName("squash");
+    
+    public static Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> WithSquashedCommitMessage(this Partial<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest> it)
+        => it.AddFieldName("squashedCommitMessage");
     
 }
+

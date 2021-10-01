@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESBuiltinProfileLoginDetails
+     : ESProfileLoginDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ESBuiltinProfileLoginDetails
-         : ESProfileLoginDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ES_BuiltinProfileLoginDetails";
+    
+    public ESBuiltinProfileLoginDetails() { }
+    
+    public ESBuiltinProfileLoginDetails(string? passwordChangeRequest = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ES_BuiltinProfileLoginDetails";
-        
-        public ESBuiltinProfileLoginDetails() { }
-        
-        public ESBuiltinProfileLoginDetails(string? passwordChangeRequest = null)
-        {
-            PasswordChangeRequest = passwordChangeRequest;
-        }
-        
-        private PropertyValue<string?> _passwordChangeRequest = new PropertyValue<string?>(nameof(ESBuiltinProfileLoginDetails), nameof(PasswordChangeRequest));
-        
-        [JsonPropertyName("passwordChangeRequest")]
-        public string? PasswordChangeRequest
-        {
-            get => _passwordChangeRequest.GetValue();
-            set => _passwordChangeRequest.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _passwordChangeRequest.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        PasswordChangeRequest = passwordChangeRequest;
     }
     
+    private PropertyValue<string?> _passwordChangeRequest = new PropertyValue<string?>(nameof(ESBuiltinProfileLoginDetails), nameof(PasswordChangeRequest));
+    
+    [JsonPropertyName("passwordChangeRequest")]
+    public string? PasswordChangeRequest
+    {
+        get => _passwordChangeRequest.GetValue();
+        set => _passwordChangeRequest.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _passwordChangeRequest.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

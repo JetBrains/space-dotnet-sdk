@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest() { }
+    
+    public ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest(List<string> fileNames)
     {
-        public ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest() { }
-        
-        public ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest(List<string> fileNames)
-        {
-            FileNames = fileNames;
-        }
-        
-        private PropertyValue<List<string>> _fileNames = new PropertyValue<List<string>>(nameof(ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest), nameof(FileNames), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("fileNames")]
-        public List<string> FileNames
-        {
-            get => _fileNames.GetValue();
-            set => _fileNames.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _fileNames.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        FileNames = fileNames;
     }
     
+    private PropertyValue<List<string>> _fileNames = new PropertyValue<List<string>>(nameof(ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest), nameof(FileNames), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("fileNames")]
+    public List<string> FileNames
+    {
+        get => _fileNames.GetValue();
+        set => _fileNames.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _fileNames.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDLocationMapPartialBuilder
+namespace JetBrains.Space.Client.TDLocationMapPartialBuilder;
+
+public static class TDLocationMapPartialExtensions
 {
-    public static class TDLocationMapPartialExtensions
-    {
-        public static Partial<TDLocationMap> WithId(this Partial<TDLocationMap> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<TDLocationMap> WithPicture(this Partial<TDLocationMap> it)
-            => it.AddFieldName("picture");
-        
-        public static Partial<TDLocationMap> WithCreated(this Partial<TDLocationMap> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<TDLocationMap> WithWidth(this Partial<TDLocationMap> it)
-            => it.AddFieldName("width");
-        
-        public static Partial<TDLocationMap> WithHeight(this Partial<TDLocationMap> it)
-            => it.AddFieldName("height");
-        
-    }
+    public static Partial<TDLocationMap> WithId(this Partial<TDLocationMap> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<TDLocationMap> WithPicture(this Partial<TDLocationMap> it)
+        => it.AddFieldName("picture");
+    
+    public static Partial<TDLocationMap> WithCreated(this Partial<TDLocationMap> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<TDLocationMap> WithWidth(this Partial<TDLocationMap> it)
+        => it.AddFieldName("width");
+    
+    public static Partial<TDLocationMap> WithHeight(this Partial<TDLocationMap> it)
+        => it.AddFieldName("height");
     
 }
+

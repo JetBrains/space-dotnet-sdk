@@ -27,37 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectTeamMemberRecordPartialBuilder
+namespace JetBrains.Space.Client.ProjectTeamMemberRecordPartialBuilder;
+
+public static class ProjectTeamMemberRecordPartialExtensions
 {
-    public static class ProjectTeamMemberRecordPartialExtensions
-    {
-        public static Partial<ProjectTeamMemberRecord> WithId(this Partial<ProjectTeamMemberRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ProjectTeamMemberRecord> WithProject(this Partial<ProjectTeamMemberRecord> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<ProjectTeamMemberRecord> WithProject(this Partial<ProjectTeamMemberRecord> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
-        public static Partial<ProjectTeamMemberRecord> WithProfile(this Partial<ProjectTeamMemberRecord> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<ProjectTeamMemberRecord> WithProfile(this Partial<ProjectTeamMemberRecord> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<ProjectTeamMemberRecord> WithPosition(this Partial<ProjectTeamMemberRecord> it)
-            => it.AddFieldName("position");
-        
-        public static Partial<ProjectTeamMemberRecord> WithPosition(this Partial<ProjectTeamMemberRecord> it, Func<Partial<TDRole>, Partial<TDRole>> partialBuilder)
-            => it.AddFieldName("position", partialBuilder(new Partial<TDRole>(it)));
-        
-        public static Partial<ProjectTeamMemberRecord> WithSince(this Partial<ProjectTeamMemberRecord> it)
-            => it.AddFieldName("since");
-        
-        public static Partial<ProjectTeamMemberRecord> WithIsArchived(this Partial<ProjectTeamMemberRecord> it)
-            => it.AddFieldName("archived");
-        
-    }
+    public static Partial<ProjectTeamMemberRecord> WithId(this Partial<ProjectTeamMemberRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ProjectTeamMemberRecord> WithProject(this Partial<ProjectTeamMemberRecord> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<ProjectTeamMemberRecord> WithProject(this Partial<ProjectTeamMemberRecord> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+    
+    public static Partial<ProjectTeamMemberRecord> WithProfile(this Partial<ProjectTeamMemberRecord> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<ProjectTeamMemberRecord> WithProfile(this Partial<ProjectTeamMemberRecord> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<ProjectTeamMemberRecord> WithPosition(this Partial<ProjectTeamMemberRecord> it)
+        => it.AddFieldName("position");
+    
+    public static Partial<ProjectTeamMemberRecord> WithPosition(this Partial<ProjectTeamMemberRecord> it, Func<Partial<TDRole>, Partial<TDRole>> partialBuilder)
+        => it.AddFieldName("position", partialBuilder(new Partial<TDRole>(it)));
+    
+    public static Partial<ProjectTeamMemberRecord> WithSince(this Partial<ProjectTeamMemberRecord> it)
+        => it.AddFieldName("since");
+    
+    public static Partial<ProjectTeamMemberRecord> WithIsArchived(this Partial<ProjectTeamMemberRecord> it)
+        => it.AddFieldName("archived");
     
 }
+

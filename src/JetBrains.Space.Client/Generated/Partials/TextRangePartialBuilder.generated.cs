@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TextRangePartialBuilder
+namespace JetBrains.Space.Client.TextRangePartialBuilder;
+
+public static class TextRangePartialExtensions
 {
-    public static class TextRangePartialExtensions
-    {
-        public static Partial<TextRange> WithStart(this Partial<TextRange> it)
-            => it.AddFieldName("start");
-        
-        public static Partial<TextRange> WithLength(this Partial<TextRange> it)
-            => it.AddFieldName("length");
-        
-    }
+    public static Partial<TextRange> WithStart(this Partial<TextRange> it)
+        => it.AddFieldName("start");
+    
+    public static Partial<TextRange> WithLength(this Partial<TextRange> it)
+        => it.AddFieldName("length");
     
 }
+

@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IntelliJSharedIndexNamedUploadUrl
+     : IPropagatePropertyAccessPath
 {
-    public sealed class IntelliJSharedIndexNamedUploadUrl
-         : IPropagatePropertyAccessPath
+    public IntelliJSharedIndexNamedUploadUrl() { }
+    
+    public IntelliJSharedIndexNamedUploadUrl(string name, IntelliJSharedIndexUploadUrl url)
     {
-        public IntelliJSharedIndexNamedUploadUrl() { }
-        
-        public IntelliJSharedIndexNamedUploadUrl(string name, IntelliJSharedIndexUploadUrl url)
-        {
-            Name = name;
-            Url = url;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(IntelliJSharedIndexNamedUploadUrl), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<IntelliJSharedIndexUploadUrl> _url = new PropertyValue<IntelliJSharedIndexUploadUrl>(nameof(IntelliJSharedIndexNamedUploadUrl), nameof(Url));
-        
-        [Required]
-        [JsonPropertyName("url")]
-        public IntelliJSharedIndexUploadUrl Url
-        {
-            get => _url.GetValue();
-            set => _url.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _url.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Url = url;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(IntelliJSharedIndexNamedUploadUrl), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<IntelliJSharedIndexUploadUrl> _url = new PropertyValue<IntelliJSharedIndexUploadUrl>(nameof(IntelliJSharedIndexNamedUploadUrl), nameof(Url));
+    
+    [Required]
+    [JsonPropertyName("url")]
+    public IntelliJSharedIndexUploadUrl Url
+    {
+        get => _url.GetValue();
+        set => _url.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _url.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

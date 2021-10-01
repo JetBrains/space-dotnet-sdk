@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.KbFolderItemPartialBuilder
+namespace JetBrains.Space.Client.KbFolderItemPartialBuilder;
+
+public static class KbFolderItemPartialExtensions
 {
-    public static class KbFolderItemPartialExtensions
-    {
-        public static Partial<KbFolderItem> WithBook(this Partial<KbFolderItem> it)
-            => it.AddFieldName("book");
-        
-        public static Partial<KbFolderItem> WithBook(this Partial<KbFolderItem> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
-            => it.AddFieldName("book", partialBuilder(new Partial<KBBook>(it)));
-        
-        public static Partial<KbFolderItem> WithId(this Partial<KbFolderItem> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<KbFolderItem> WithName(this Partial<KbFolderItem> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<KbFolderItem> WithPath(this Partial<KbFolderItem> it)
-            => it.AddFieldName("path");
-        
-    }
+    public static Partial<KbFolderItem> WithBook(this Partial<KbFolderItem> it)
+        => it.AddFieldName("book");
+    
+    public static Partial<KbFolderItem> WithBook(this Partial<KbFolderItem> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
+        => it.AddFieldName("book", partialBuilder(new Partial<KBBook>(it)));
+    
+    public static Partial<KbFolderItem> WithId(this Partial<KbFolderItem> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<KbFolderItem> WithName(this Partial<KbFolderItem> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<KbFolderItem> WithPath(this Partial<KbFolderItem> it)
+        => it.AddFieldName("path");
     
 }
+

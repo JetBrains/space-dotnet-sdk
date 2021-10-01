@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FullRightWithoutTypePartialBuilder
+namespace JetBrains.Space.Client.FullRightWithoutTypePartialBuilder;
+
+public static class FullRightWithoutTypePartialExtensions
 {
-    public static class FullRightWithoutTypePartialExtensions
-    {
-        public static Partial<FullRightWithoutType> WithCode(this Partial<FullRightWithoutType> it)
-            => it.AddFieldName("code");
-        
-        public static Partial<FullRightWithoutType> WithTitle(this Partial<FullRightWithoutType> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<FullRightWithoutType> WithDescription(this Partial<FullRightWithoutType> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<FullRightWithoutType> WithIsGrantedForUsers(this Partial<FullRightWithoutType> it)
-            => it.AddFieldName("grantedForUsers");
-        
-        public static Partial<FullRightWithoutType> WithFeatureFlag(this Partial<FullRightWithoutType> it)
-            => it.AddFieldName("featureFlag");
-        
-        public static Partial<FullRightWithoutType> WithFeatureFlag(this Partial<FullRightWithoutType> it, Func<Partial<FeatureFlag>, Partial<FeatureFlag>> partialBuilder)
-            => it.AddFieldName("featureFlag", partialBuilder(new Partial<FeatureFlag>(it)));
-        
-    }
+    public static Partial<FullRightWithoutType> WithCode(this Partial<FullRightWithoutType> it)
+        => it.AddFieldName("code");
+    
+    public static Partial<FullRightWithoutType> WithTitle(this Partial<FullRightWithoutType> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<FullRightWithoutType> WithDescription(this Partial<FullRightWithoutType> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<FullRightWithoutType> WithIsGrantedForUsers(this Partial<FullRightWithoutType> it)
+        => it.AddFieldName("grantedForUsers");
+    
+    public static Partial<FullRightWithoutType> WithFeatureFlag(this Partial<FullRightWithoutType> it)
+        => it.AddFieldName("featureFlag");
+    
+    public static Partial<FullRightWithoutType> WithFeatureFlag(this Partial<FullRightWithoutType> it, Func<Partial<FeatureFlag>, Partial<FeatureFlag>> partialBuilder)
+        => it.AddFieldName("featureFlag", partialBuilder(new Partial<FeatureFlag>(it)));
     
 }
+

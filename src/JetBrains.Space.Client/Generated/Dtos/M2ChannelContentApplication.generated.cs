@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2ChannelContentApplication
+     : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2ChannelContentApplication
-         : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2ChannelContentApplication";
+    
+    public M2ChannelContentApplication() { }
+    
+    public M2ChannelContentApplication(ESApp app, ChannelSpecificDefaults notificationDefaults)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2ChannelContentApplication";
-        
-        public M2ChannelContentApplication() { }
-        
-        public M2ChannelContentApplication(ESApp app, ChannelSpecificDefaults notificationDefaults)
-        {
-            App = app;
-            NotificationDefaults = notificationDefaults;
-        }
-        
-        private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(M2ChannelContentApplication), nameof(App));
-        
-        [Required]
-        [JsonPropertyName("app")]
-        public ESApp App
-        {
-            get => _app.GetValue();
-            set => _app.SetValue(value);
-        }
-    
-        private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentApplication), nameof(NotificationDefaults));
-        
-        [Required]
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaults NotificationDefaults
-        {
-            get => _notificationDefaults.GetValue();
-            set => _notificationDefaults.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _app.SetAccessPath(path, validateHasBeenSet);
-            _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        App = app;
+        NotificationDefaults = notificationDefaults;
     }
     
+    private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(M2ChannelContentApplication), nameof(App));
+    
+    [Required]
+    [JsonPropertyName("app")]
+    public ESApp App
+    {
+        get => _app.GetValue();
+        set => _app.SetValue(value);
+    }
+
+    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentApplication), nameof(NotificationDefaults));
+    
+    [Required]
+    [JsonPropertyName("notificationDefaults")]
+    public ChannelSpecificDefaults NotificationDefaults
+    {
+        get => _notificationDefaults.GetValue();
+        set => _notificationDefaults.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _app.SetAccessPath(path, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

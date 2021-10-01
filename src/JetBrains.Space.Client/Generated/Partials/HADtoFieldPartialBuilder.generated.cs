@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HADtoFieldPartialBuilder
+namespace JetBrains.Space.Client.HADtoFieldPartialBuilder;
+
+public static class HADtoFieldPartialExtensions
 {
-    public static class HADtoFieldPartialExtensions
-    {
-        public static Partial<HADtoField> WithField(this Partial<HADtoField> it)
-            => it.AddFieldName("field");
-        
-        public static Partial<HADtoField> WithField(this Partial<HADtoField> it, Func<Partial<HAField>, Partial<HAField>> partialBuilder)
-            => it.AddFieldName("field", partialBuilder(new Partial<HAField>(it)));
-        
-        public static Partial<HADtoField> WithIsExtension(this Partial<HADtoField> it)
-            => it.AddFieldName("extension");
-        
-    }
+    public static Partial<HADtoField> WithField(this Partial<HADtoField> it)
+        => it.AddFieldName("field");
+    
+    public static Partial<HADtoField> WithField(this Partial<HADtoField> it, Func<Partial<HAField>, Partial<HAField>> partialBuilder)
+        => it.AddFieldName("field", partialBuilder(new Partial<HAField>(it)));
+    
+    public static Partial<HADtoField> WithIsExtension(this Partial<HADtoField> it)
+        => it.AddFieldName("extension");
     
 }
+

@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDContactKindMessengerPartialBuilder
+namespace JetBrains.Space.Client.TDContactKindMessengerPartialBuilder;
+
+public static class TDContactKindMessengerPartialExtensions
 {
-    public static class TDContactKindMessengerPartialExtensions
-    {
-        public static Partial<TDContactKindMessenger> WithMessenger(this Partial<TDContactKindMessenger> it)
-            => it.AddFieldName("messenger");
-        
-    }
+    public static Partial<TDContactKindMessenger> WithMessenger(this Partial<TDContactKindMessenger> it)
+        => it.AddFieldName("messenger");
     
 }
+

@@ -27,109 +27,108 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ContainerImageConfig
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ContainerImageConfig
-         : IPropagatePropertyAccessPath
+    public ContainerImageConfig() { }
+    
+    public ContainerImageConfig(string? userName = null, List<string>? ports = null, List<string>? volumes = null, List<string>? env = null, string? workingDir = null, string? entryPoint = null, string? cmd = null, List<string>? labels = null)
     {
-        public ContainerImageConfig() { }
-        
-        public ContainerImageConfig(string? userName = null, List<string>? ports = null, List<string>? volumes = null, List<string>? env = null, string? workingDir = null, string? entryPoint = null, string? cmd = null, List<string>? labels = null)
-        {
-            UserName = userName;
-            Ports = ports;
-            Volumes = volumes;
-            Env = env;
-            WorkingDir = workingDir;
-            EntryPoint = entryPoint;
-            Cmd = cmd;
-            Labels = labels;
-        }
-        
-        private PropertyValue<string?> _userName = new PropertyValue<string?>(nameof(ContainerImageConfig), nameof(UserName));
-        
-        [JsonPropertyName("userName")]
-        public string? UserName
-        {
-            get => _userName.GetValue();
-            set => _userName.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _ports = new PropertyValue<List<string>?>(nameof(ContainerImageConfig), nameof(Ports));
-        
-        [JsonPropertyName("ports")]
-        public List<string>? Ports
-        {
-            get => _ports.GetValue();
-            set => _ports.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _volumes = new PropertyValue<List<string>?>(nameof(ContainerImageConfig), nameof(Volumes));
-        
-        [JsonPropertyName("volumes")]
-        public List<string>? Volumes
-        {
-            get => _volumes.GetValue();
-            set => _volumes.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _env = new PropertyValue<List<string>?>(nameof(ContainerImageConfig), nameof(Env));
-        
-        [JsonPropertyName("env")]
-        public List<string>? Env
-        {
-            get => _env.GetValue();
-            set => _env.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _workingDir = new PropertyValue<string?>(nameof(ContainerImageConfig), nameof(WorkingDir));
-        
-        [JsonPropertyName("workingDir")]
-        public string? WorkingDir
-        {
-            get => _workingDir.GetValue();
-            set => _workingDir.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _entryPoint = new PropertyValue<string?>(nameof(ContainerImageConfig), nameof(EntryPoint));
-        
-        [JsonPropertyName("entryPoint")]
-        public string? EntryPoint
-        {
-            get => _entryPoint.GetValue();
-            set => _entryPoint.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _cmd = new PropertyValue<string?>(nameof(ContainerImageConfig), nameof(Cmd));
-        
-        [JsonPropertyName("cmd")]
-        public string? Cmd
-        {
-            get => _cmd.GetValue();
-            set => _cmd.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _labels = new PropertyValue<List<string>?>(nameof(ContainerImageConfig), nameof(Labels));
-        
-        [JsonPropertyName("labels")]
-        public List<string>? Labels
-        {
-            get => _labels.GetValue();
-            set => _labels.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _userName.SetAccessPath(path, validateHasBeenSet);
-            _ports.SetAccessPath(path, validateHasBeenSet);
-            _volumes.SetAccessPath(path, validateHasBeenSet);
-            _env.SetAccessPath(path, validateHasBeenSet);
-            _workingDir.SetAccessPath(path, validateHasBeenSet);
-            _entryPoint.SetAccessPath(path, validateHasBeenSet);
-            _cmd.SetAccessPath(path, validateHasBeenSet);
-            _labels.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        UserName = userName;
+        Ports = ports;
+        Volumes = volumes;
+        Env = env;
+        WorkingDir = workingDir;
+        EntryPoint = entryPoint;
+        Cmd = cmd;
+        Labels = labels;
     }
     
+    private PropertyValue<string?> _userName = new PropertyValue<string?>(nameof(ContainerImageConfig), nameof(UserName));
+    
+    [JsonPropertyName("userName")]
+    public string? UserName
+    {
+        get => _userName.GetValue();
+        set => _userName.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _ports = new PropertyValue<List<string>?>(nameof(ContainerImageConfig), nameof(Ports));
+    
+    [JsonPropertyName("ports")]
+    public List<string>? Ports
+    {
+        get => _ports.GetValue();
+        set => _ports.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _volumes = new PropertyValue<List<string>?>(nameof(ContainerImageConfig), nameof(Volumes));
+    
+    [JsonPropertyName("volumes")]
+    public List<string>? Volumes
+    {
+        get => _volumes.GetValue();
+        set => _volumes.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _env = new PropertyValue<List<string>?>(nameof(ContainerImageConfig), nameof(Env));
+    
+    [JsonPropertyName("env")]
+    public List<string>? Env
+    {
+        get => _env.GetValue();
+        set => _env.SetValue(value);
+    }
+
+    private PropertyValue<string?> _workingDir = new PropertyValue<string?>(nameof(ContainerImageConfig), nameof(WorkingDir));
+    
+    [JsonPropertyName("workingDir")]
+    public string? WorkingDir
+    {
+        get => _workingDir.GetValue();
+        set => _workingDir.SetValue(value);
+    }
+
+    private PropertyValue<string?> _entryPoint = new PropertyValue<string?>(nameof(ContainerImageConfig), nameof(EntryPoint));
+    
+    [JsonPropertyName("entryPoint")]
+    public string? EntryPoint
+    {
+        get => _entryPoint.GetValue();
+        set => _entryPoint.SetValue(value);
+    }
+
+    private PropertyValue<string?> _cmd = new PropertyValue<string?>(nameof(ContainerImageConfig), nameof(Cmd));
+    
+    [JsonPropertyName("cmd")]
+    public string? Cmd
+    {
+        get => _cmd.GetValue();
+        set => _cmd.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _labels = new PropertyValue<List<string>?>(nameof(ContainerImageConfig), nameof(Labels));
+    
+    [JsonPropertyName("labels")]
+    public List<string>? Labels
+    {
+        get => _labels.GetValue();
+        set => _labels.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _userName.SetAccessPath(path, validateHasBeenSet);
+        _ports.SetAccessPath(path, validateHasBeenSet);
+        _volumes.SetAccessPath(path, validateHasBeenSet);
+        _env.SetAccessPath(path, validateHasBeenSet);
+        _workingDir.SetAccessPath(path, validateHasBeenSet);
+        _entryPoint.SetAccessPath(path, validateHasBeenSet);
+        _cmd.SetAccessPath(path, validateHasBeenSet);
+        _labels.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

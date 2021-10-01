@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HAPathPartialBuilder
+namespace JetBrains.Space.Client.HAPathPartialBuilder;
+
+public static class HAPathPartialExtensions
 {
-    public static class HAPathPartialExtensions
-    {
-        public static Partial<HAPath> WithSegments(this Partial<HAPath> it)
-            => it.AddFieldName("segments");
-        
-        public static Partial<HAPath> WithSegments(this Partial<HAPath> it, Func<Partial<HAPathSegment>, Partial<HAPathSegment>> partialBuilder)
-            => it.AddFieldName("segments", partialBuilder(new Partial<HAPathSegment>(it)));
-        
-    }
+    public static Partial<HAPath> WithSegments(this Partial<HAPath> it)
+        => it.AddFieldName("segments");
+    
+    public static Partial<HAPath> WithSegments(this Partial<HAPath> it, Func<Partial<HAPathSegment>, Partial<HAPathSegment>> partialBuilder)
+        => it.AddFieldName("segments", partialBuilder(new Partial<HAPathSegment>(it)));
     
 }
+

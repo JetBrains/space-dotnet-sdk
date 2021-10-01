@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EmailBouncedEventPartialBuilder
+namespace JetBrains.Space.Client.EmailBouncedEventPartialBuilder;
+
+public static class EmailBouncedEventPartialExtensions
 {
-    public static class EmailBouncedEventPartialExtensions
-    {
-        public static Partial<EmailBouncedEvent> WithEmail(this Partial<EmailBouncedEvent> it)
-            => it.AddFieldName("email");
-        
-        public static Partial<EmailBouncedEvent> WithReason(this Partial<EmailBouncedEvent> it)
-            => it.AddFieldName("reason");
-        
-    }
+    public static Partial<EmailBouncedEvent> WithEmail(this Partial<EmailBouncedEvent> it)
+        => it.AddFieldName("email");
+    
+    public static Partial<EmailBouncedEvent> WithReason(this Partial<EmailBouncedEvent> it)
+        => it.AddFieldName("reason");
     
 }
+

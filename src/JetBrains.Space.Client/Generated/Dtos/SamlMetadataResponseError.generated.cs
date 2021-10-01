@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class SamlMetadataResponseError
+     : SamlMetadataResponse, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class SamlMetadataResponseError
-         : SamlMetadataResponse, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "SamlMetadataResponse.Error";
+    
+    public SamlMetadataResponseError() { }
+    
+    public SamlMetadataResponseError(List<string> messages)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "SamlMetadataResponse.Error";
-        
-        public SamlMetadataResponseError() { }
-        
-        public SamlMetadataResponseError(List<string> messages)
-        {
-            Messages = messages;
-        }
-        
-        private PropertyValue<List<string>> _messages = new PropertyValue<List<string>>(nameof(SamlMetadataResponseError), nameof(Messages), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("messages")]
-        public List<string> Messages
-        {
-            get => _messages.GetValue();
-            set => _messages.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _messages.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Messages = messages;
     }
     
+    private PropertyValue<List<string>> _messages = new PropertyValue<List<string>>(nameof(SamlMetadataResponseError), nameof(Messages), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("messages")]
+    public List<string> Messages
+    {
+        get => _messages.GetValue();
+        set => _messages.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _messages.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

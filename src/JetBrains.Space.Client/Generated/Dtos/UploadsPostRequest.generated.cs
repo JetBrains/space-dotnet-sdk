@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class UploadsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class UploadsPostRequest
-         : IPropagatePropertyAccessPath
+    public UploadsPostRequest() { }
+    
+    public UploadsPostRequest(string storagePrefix, string? mediaType = null)
     {
-        public UploadsPostRequest() { }
-        
-        public UploadsPostRequest(string storagePrefix, string? mediaType = null)
-        {
-            StoragePrefix = storagePrefix;
-            MediaType = mediaType;
-        }
-        
-        private PropertyValue<string> _storagePrefix = new PropertyValue<string>(nameof(UploadsPostRequest), nameof(StoragePrefix));
-        
-        [Required]
-        [JsonPropertyName("storagePrefix")]
-        public string StoragePrefix
-        {
-            get => _storagePrefix.GetValue();
-            set => _storagePrefix.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _mediaType = new PropertyValue<string?>(nameof(UploadsPostRequest), nameof(MediaType));
-        
-        [JsonPropertyName("mediaType")]
-        public string? MediaType
-        {
-            get => _mediaType.GetValue();
-            set => _mediaType.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _storagePrefix.SetAccessPath(path, validateHasBeenSet);
-            _mediaType.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        StoragePrefix = storagePrefix;
+        MediaType = mediaType;
     }
     
+    private PropertyValue<string> _storagePrefix = new PropertyValue<string>(nameof(UploadsPostRequest), nameof(StoragePrefix));
+    
+    [Required]
+    [JsonPropertyName("storagePrefix")]
+    public string StoragePrefix
+    {
+        get => _storagePrefix.GetValue();
+        set => _storagePrefix.SetValue(value);
+    }
+
+    private PropertyValue<string?> _mediaType = new PropertyValue<string?>(nameof(UploadsPostRequest), nameof(MediaType));
+    
+    [JsonPropertyName("mediaType")]
+    public string? MediaType
+    {
+        get => _mediaType.GetValue();
+        set => _mediaType.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _storagePrefix.SetAccessPath(path, validateHasBeenSet);
+        _mediaType.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

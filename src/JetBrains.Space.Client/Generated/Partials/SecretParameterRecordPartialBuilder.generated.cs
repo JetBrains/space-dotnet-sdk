@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SecretParameterRecordPartialBuilder
+namespace JetBrains.Space.Client.SecretParameterRecordPartialBuilder;
+
+public static class SecretParameterRecordPartialExtensions
 {
-    public static class SecretParameterRecordPartialExtensions
-    {
-        public static Partial<SecretParameterRecord> WithId(this Partial<SecretParameterRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<SecretParameterRecord> WithIsArchived(this Partial<SecretParameterRecord> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<SecretParameterRecord> WithBundleId(this Partial<SecretParameterRecord> it)
-            => it.AddFieldName("bundleId");
-        
-        public static Partial<SecretParameterRecord> WithKey(this Partial<SecretParameterRecord> it)
-            => it.AddFieldName("key");
-        
-    }
+    public static Partial<SecretParameterRecord> WithId(this Partial<SecretParameterRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<SecretParameterRecord> WithIsArchived(this Partial<SecretParameterRecord> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<SecretParameterRecord> WithBundleId(this Partial<SecretParameterRecord> it)
+        => it.AddFieldName("bundleId");
+    
+    public static Partial<SecretParameterRecord> WithKey(this Partial<SecretParameterRecord> it)
+        => it.AddFieldName("key");
     
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MembershipEventPartialBuilder
+namespace JetBrains.Space.Client.MembershipEventPartialBuilder;
+
+public static class MembershipEventPartialExtensions
 {
-    public static class MembershipEventPartialExtensions
-    {
-        public static Partial<MembershipEvent> WithProfile(this Partial<MembershipEvent> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<MembershipEvent> WithProfile(this Partial<MembershipEvent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<MembershipEvent> WithMembership(this Partial<MembershipEvent> it)
-            => it.AddFieldName("membership");
-        
-        public static Partial<MembershipEvent> WithMembership(this Partial<MembershipEvent> it, Func<Partial<TDMembership>, Partial<TDMembership>> partialBuilder)
-            => it.AddFieldName("membership", partialBuilder(new Partial<TDMembership>(it)));
-        
-    }
+    public static Partial<MembershipEvent> WithProfile(this Partial<MembershipEvent> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<MembershipEvent> WithProfile(this Partial<MembershipEvent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<MembershipEvent> WithMembership(this Partial<MembershipEvent> it)
+        => it.AddFieldName("membership");
+    
+    public static Partial<MembershipEvent> WithMembership(this Partial<MembershipEvent> it, Func<Partial<TDMembership>, Partial<TDMembership>> partialBuilder)
+        => it.AddFieldName("membership", partialBuilder(new Partial<TDMembership>(it)));
     
 }
+

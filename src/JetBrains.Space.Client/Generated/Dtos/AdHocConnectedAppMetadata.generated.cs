@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class AdHocConnectedAppMetadata
+     : ApplicationMetadata, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class AdHocConnectedAppMetadata
-         : ApplicationMetadata, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "AdHocConnectedAppMetadata";
+    
+    public AdHocConnectedAppMetadata() { }
+    
+    public AdHocConnectedAppMetadata(string? lastSentServerUrl = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "AdHocConnectedAppMetadata";
-        
-        public AdHocConnectedAppMetadata() { }
-        
-        public AdHocConnectedAppMetadata(string? lastSentServerUrl = null)
-        {
-            LastSentServerUrl = lastSentServerUrl;
-        }
-        
-        private PropertyValue<string?> _lastSentServerUrl = new PropertyValue<string?>(nameof(AdHocConnectedAppMetadata), nameof(LastSentServerUrl));
-        
-        [JsonPropertyName("lastSentServerUrl")]
-        public string? LastSentServerUrl
-        {
-            get => _lastSentServerUrl.GetValue();
-            set => _lastSentServerUrl.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _lastSentServerUrl.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        LastSentServerUrl = lastSentServerUrl;
     }
     
+    private PropertyValue<string?> _lastSentServerUrl = new PropertyValue<string?>(nameof(AdHocConnectedAppMetadata), nameof(LastSentServerUrl));
+    
+    [JsonPropertyName("lastSentServerUrl")]
+    public string? LastSentServerUrl
+    {
+        get => _lastSentServerUrl.GetValue();
+        set => _lastSentServerUrl.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _lastSentServerUrl.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

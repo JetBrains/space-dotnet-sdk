@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ProjectMenuActionContext
+     : MenuActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ProjectMenuActionContext
-         : MenuActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ProjectMenuActionContext";
+    
+    public ProjectMenuActionContext() { }
+    
+    public ProjectMenuActionContext(string menuId, PRProject project)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ProjectMenuActionContext";
-        
-        public ProjectMenuActionContext() { }
-        
-        public ProjectMenuActionContext(string menuId, PRProject project)
-        {
-            MenuId = menuId;
-            Project = project;
-        }
-        
-        private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(ProjectMenuActionContext), nameof(MenuId));
-        
-        [Required]
-        [JsonPropertyName("menuId")]
-        public string MenuId
-        {
-            get => _menuId.GetValue();
-            set => _menuId.SetValue(value);
-        }
-    
-        private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(ProjectMenuActionContext), nameof(Project));
-        
-        [Required]
-        [JsonPropertyName("project")]
-        public PRProject Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _menuId.SetAccessPath(path, validateHasBeenSet);
-            _project.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        MenuId = menuId;
+        Project = project;
     }
     
+    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(ProjectMenuActionContext), nameof(MenuId));
+    
+    [Required]
+    [JsonPropertyName("menuId")]
+    public string MenuId
+    {
+        get => _menuId.GetValue();
+        set => _menuId.SetValue(value);
+    }
+
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(ProjectMenuActionContext), nameof(Project));
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public PRProject Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _menuId.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

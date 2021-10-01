@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface MessageElement
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface MessageElement
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static MessageControlGroup MessageControlGroup(List<MessageControlElement> elements)
-            => new MessageControlGroup(elements: elements);
-        
-        public static MessageDivider MessageDivider()
-            => new MessageDivider();
-        
-        public static MessageFields MessageFields(List<MessageFieldElement> fields)
-            => new MessageFields(fields: fields);
-        
-        public static MessageText MessageText(string content, MessageAccessoryElement? accessory = null)
-            => new MessageText(content: content, accessory: accessory);
-        
-    }
+    public static MessageControlGroup MessageControlGroup(List<MessageControlElement> elements)
+        => new MessageControlGroup(elements: elements);
+    
+    public static MessageDivider MessageDivider()
+        => new MessageDivider();
+    
+    public static MessageFields MessageFields(List<MessageFieldElement> fields)
+        => new MessageFields(fields: fields);
+    
+    public static MessageText MessageText(string content, MessageAccessoryElement? accessory = null)
+        => new MessageText(content: content, accessory: accessory);
     
 }
+

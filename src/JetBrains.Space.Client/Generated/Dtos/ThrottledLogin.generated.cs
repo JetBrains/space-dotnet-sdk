@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ThrottledLogin
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ThrottledLogin
-         : IPropagatePropertyAccessPath
+    public ThrottledLogin() { }
+    
+    public ThrottledLogin(string login, DateTime throttledUntil)
     {
-        public ThrottledLogin() { }
-        
-        public ThrottledLogin(string login, DateTime throttledUntil)
-        {
-            Login = login;
-            ThrottledUntil = throttledUntil;
-        }
-        
-        private PropertyValue<string> _login = new PropertyValue<string>(nameof(ThrottledLogin), nameof(Login));
-        
-        [Required]
-        [JsonPropertyName("login")]
-        public string Login
-        {
-            get => _login.GetValue();
-            set => _login.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _throttledUntil = new PropertyValue<DateTime>(nameof(ThrottledLogin), nameof(ThrottledUntil));
-        
-        [Required]
-        [JsonPropertyName("throttledUntil")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime ThrottledUntil
-        {
-            get => _throttledUntil.GetValue();
-            set => _throttledUntil.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _login.SetAccessPath(path, validateHasBeenSet);
-            _throttledUntil.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Login = login;
+        ThrottledUntil = throttledUntil;
     }
     
+    private PropertyValue<string> _login = new PropertyValue<string>(nameof(ThrottledLogin), nameof(Login));
+    
+    [Required]
+    [JsonPropertyName("login")]
+    public string Login
+    {
+        get => _login.GetValue();
+        set => _login.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _throttledUntil = new PropertyValue<DateTime>(nameof(ThrottledLogin), nameof(ThrottledUntil));
+    
+    [Required]
+    [JsonPropertyName("throttledUntil")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime ThrottledUntil
+    {
+        get => _throttledUntil.GetValue();
+        set => _throttledUntil.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _login.SetAccessPath(path, validateHasBeenSet);
+        _throttledUntil.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

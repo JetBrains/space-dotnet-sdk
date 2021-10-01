@@ -27,64 +27,63 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomFieldsForTypeKeyFieldsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.CustomFieldsForTypeKeyFieldsPostRequestPartialBuilder;
+
+public static class CustomFieldsForTypeKeyFieldsPostRequestPartialExtensions
 {
-    public static class CustomFieldsForTypeKeyFieldsPostRequestPartialExtensions
-    {
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithName(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithDescription(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithType(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
-            => it.AddFieldName("type");
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithType(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFType>, Partial<CFType>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<CFType>(it)));
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithConstraint(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
-            => it.AddFieldName("constraint");
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithConstraint(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFConstraint>, Partial<CFConstraint>> partialBuilder)
-            => it.AddFieldName("constraint", partialBuilder(new Partial<CFConstraint>(it)));
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithIsRequired(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
-            => it.AddFieldName("required");
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithIsPrivate(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
-            => it.AddFieldName("private");
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithAccess(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
-            => it.AddFieldName("access");
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithAccess(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<AccessType>, Partial<AccessType>> partialBuilder)
-            => it.AddFieldName("access", partialBuilder(new Partial<AccessType>(it)));
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
-            => it.AddFieldName("defaultValue");
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFInputValue>, Partial<CFInputValue>> partialBuilder)
-            => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFInputValue>(it)));
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithOpenEnumValuesModification(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
-            => it.AddFieldName("openEnumValuesModification");
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithOpenEnumValuesModification(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFEnumValuesModification>, Partial<CFEnumValuesModification>> partialBuilder)
-            => it.AddFieldName("openEnumValuesModification", partialBuilder(new Partial<CFEnumValuesModification>(it)));
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithCfParameters(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
-            => it.AddFieldName("cfParameters");
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithCfParameters(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFCreateParameters>, Partial<CFCreateParameters>> partialBuilder)
-            => it.AddFieldName("cfParameters", partialBuilder(new Partial<CFCreateParameters>(it)));
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
-            => it.AddFieldName("scope");
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
-            => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
-        
-    }
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithName(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithDescription(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithType(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithType(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFType>, Partial<CFType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<CFType>(it)));
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithConstraint(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+        => it.AddFieldName("constraint");
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithConstraint(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFConstraint>, Partial<CFConstraint>> partialBuilder)
+        => it.AddFieldName("constraint", partialBuilder(new Partial<CFConstraint>(it)));
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithIsRequired(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+        => it.AddFieldName("required");
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithIsPrivate(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+        => it.AddFieldName("private");
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithAccess(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+        => it.AddFieldName("access");
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithAccess(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<AccessType>, Partial<AccessType>> partialBuilder)
+        => it.AddFieldName("access", partialBuilder(new Partial<AccessType>(it)));
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+        => it.AddFieldName("defaultValue");
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFInputValue>, Partial<CFInputValue>> partialBuilder)
+        => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFInputValue>(it)));
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithOpenEnumValuesModification(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+        => it.AddFieldName("openEnumValuesModification");
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithOpenEnumValuesModification(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFEnumValuesModification>, Partial<CFEnumValuesModification>> partialBuilder)
+        => it.AddFieldName("openEnumValuesModification", partialBuilder(new Partial<CFEnumValuesModification>(it)));
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithCfParameters(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+        => it.AddFieldName("cfParameters");
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithCfParameters(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFCreateParameters>, Partial<CFCreateParameters>> partialBuilder)
+        => it.AddFieldName("cfParameters", partialBuilder(new Partial<CFCreateParameters>(it)));
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+        => it.AddFieldName("scope");
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
+        => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
     
 }
+

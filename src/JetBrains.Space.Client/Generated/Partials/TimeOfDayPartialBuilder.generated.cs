@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TimeOfDayPartialBuilder
+namespace JetBrains.Space.Client.TimeOfDayPartialBuilder;
+
+public static class TimeOfDayPartialExtensions
 {
-    public static class TimeOfDayPartialExtensions
-    {
-        public static Partial<TimeOfDay> WithHours(this Partial<TimeOfDay> it)
-            => it.AddFieldName("hours");
-        
-        public static Partial<TimeOfDay> WithMinutes(this Partial<TimeOfDay> it)
-            => it.AddFieldName("minutes");
-        
-        public static Partial<TimeOfDay> WithSeconds(this Partial<TimeOfDay> it)
-            => it.AddFieldName("seconds");
-        
-    }
+    public static Partial<TimeOfDay> WithHours(this Partial<TimeOfDay> it)
+        => it.AddFieldName("hours");
+    
+    public static Partial<TimeOfDay> WithMinutes(this Partial<TimeOfDay> it)
+        => it.AddFieldName("minutes");
+    
+    public static Partial<TimeOfDay> WithSeconds(this Partial<TimeOfDay> it)
+        => it.AddFieldName("seconds");
     
 }
+

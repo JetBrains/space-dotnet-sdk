@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DocumentCFParametersInput
+     : CFCreateParameters, CFUpdateParameters, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class DocumentCFParametersInput
-         : CFCreateParameters, CFUpdateParameters, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "DocumentCFParametersInput";
+    
+    public DocumentCFParametersInput() { }
+    
+    public DocumentCFParametersInput(DocumentCFScopeInput documentScope)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "DocumentCFParametersInput";
-        
-        public DocumentCFParametersInput() { }
-        
-        public DocumentCFParametersInput(DocumentCFScopeInput documentScope)
-        {
-            DocumentScope = documentScope;
-        }
-        
-        private PropertyValue<DocumentCFScopeInput> _documentScope = new PropertyValue<DocumentCFScopeInput>(nameof(DocumentCFParametersInput), nameof(DocumentScope));
-        
-        [Required]
-        [JsonPropertyName("documentScope")]
-        public DocumentCFScopeInput DocumentScope
-        {
-            get => _documentScope.GetValue();
-            set => _documentScope.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _documentScope.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        DocumentScope = documentScope;
     }
     
+    private PropertyValue<DocumentCFScopeInput> _documentScope = new PropertyValue<DocumentCFScopeInput>(nameof(DocumentCFParametersInput), nameof(DocumentScope));
+    
+    [Required]
+    [JsonPropertyName("documentScope")]
+    public DocumentCFScopeInput DocumentScope
+    {
+        get => _documentScope.GetValue();
+        set => _documentScope.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _documentScope.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TeamEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class TeamEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "TeamEvent";
+    
+    public TeamEvent() { }
+    
+    public TeamEvent(KMetaMod meta, TDTeam team)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "TeamEvent";
-        
-        public TeamEvent() { }
-        
-        public TeamEvent(KMetaMod meta, TDTeam team)
-        {
-            Meta = meta;
-            Team = team;
-        }
-        
-        private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(TeamEvent), nameof(Meta));
-        
-        [Required]
-        [JsonPropertyName("meta")]
-        public KMetaMod Meta
-        {
-            get => _meta.GetValue();
-            set => _meta.SetValue(value);
-        }
-    
-        private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(TeamEvent), nameof(Team));
-        
-        [Required]
-        [JsonPropertyName("team")]
-        public TDTeam Team
-        {
-            get => _team.GetValue();
-            set => _team.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _meta.SetAccessPath(path, validateHasBeenSet);
-            _team.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Meta = meta;
+        Team = team;
     }
     
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(TeamEvent), nameof(Meta));
+    
+    [Required]
+    [JsonPropertyName("meta")]
+    public KMetaMod Meta
+    {
+        get => _meta.GetValue();
+        set => _meta.SetValue(value);
+    }
+
+    private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(TeamEvent), nameof(Team));
+    
+    [Required]
+    [JsonPropertyName("team")]
+    public TDTeam Team
+    {
+        get => _team.GetValue();
+        set => _team.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _meta.SetAccessPath(path, validateHasBeenSet);
+        _team.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

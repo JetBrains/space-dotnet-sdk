@@ -27,59 +27,58 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HAUrlParameterOptionConst
+     : HAUrlParameterOption, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class HAUrlParameterOptionConst
-         : HAUrlParameterOption, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "HA_UrlParameterOption.Const";
+    
+    public HAUrlParameterOptionConst() { }
+    
+    public HAUrlParameterOptionConst(string value, string optionName, HADeprecation? deprecation = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "HA_UrlParameterOption.Const";
-        
-        public HAUrlParameterOptionConst() { }
-        
-        public HAUrlParameterOptionConst(string value, string optionName, HADeprecation? deprecation = null)
-        {
-            Value = value;
-            OptionName = optionName;
-            Deprecation = deprecation;
-        }
-        
-        private PropertyValue<string> _value = new PropertyValue<string>(nameof(HAUrlParameterOptionConst), nameof(Value));
-        
-        [Required]
-        [JsonPropertyName("value")]
-        public string Value
-        {
-            get => _value.GetValue();
-            set => _value.SetValue(value);
-        }
-    
-        private PropertyValue<string> _optionName = new PropertyValue<string>(nameof(HAUrlParameterOptionConst), nameof(OptionName));
-        
-        [Required]
-        [JsonPropertyName("optionName")]
-        public string OptionName
-        {
-            get => _optionName.GetValue();
-            set => _optionName.SetValue(value);
-        }
-    
-        private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAUrlParameterOptionConst), nameof(Deprecation));
-        
-        [JsonPropertyName("deprecation")]
-        public HADeprecation? Deprecation
-        {
-            get => _deprecation.GetValue();
-            set => _deprecation.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _value.SetAccessPath(path, validateHasBeenSet);
-            _optionName.SetAccessPath(path, validateHasBeenSet);
-            _deprecation.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Value = value;
+        OptionName = optionName;
+        Deprecation = deprecation;
     }
     
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(HAUrlParameterOptionConst), nameof(Value));
+    
+    [Required]
+    [JsonPropertyName("value")]
+    public string Value
+    {
+        get => _value.GetValue();
+        set => _value.SetValue(value);
+    }
+
+    private PropertyValue<string> _optionName = new PropertyValue<string>(nameof(HAUrlParameterOptionConst), nameof(OptionName));
+    
+    [Required]
+    [JsonPropertyName("optionName")]
+    public string OptionName
+    {
+        get => _optionName.GetValue();
+        set => _optionName.SetValue(value);
+    }
+
+    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAUrlParameterOptionConst), nameof(Deprecation));
+    
+    [JsonPropertyName("deprecation")]
+    public HADeprecation? Deprecation
+    {
+        get => _deprecation.GetValue();
+        set => _deprecation.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _value.SetAccessPath(path, validateHasBeenSet);
+        _optionName.SetAccessPath(path, validateHasBeenSet);
+        _deprecation.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

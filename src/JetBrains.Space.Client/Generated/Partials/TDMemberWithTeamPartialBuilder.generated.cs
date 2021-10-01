@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDMemberWithTeamPartialBuilder
+namespace JetBrains.Space.Client.TDMemberWithTeamPartialBuilder;
+
+public static class TDMemberWithTeamPartialExtensions
 {
-    public static class TDMemberWithTeamPartialExtensions
-    {
-        public static Partial<TDMemberWithTeam> WithProfile(this Partial<TDMemberWithTeam> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<TDMemberWithTeam> WithProfile(this Partial<TDMemberWithTeam> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<TDMemberWithTeam> WithTeams(this Partial<TDMemberWithTeam> it)
-            => it.AddFieldName("teams");
-        
-        public static Partial<TDMemberWithTeam> WithTeams(this Partial<TDMemberWithTeam> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-            => it.AddFieldName("teams", partialBuilder(new Partial<TDTeam>(it)));
-        
-    }
+    public static Partial<TDMemberWithTeam> WithProfile(this Partial<TDMemberWithTeam> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<TDMemberWithTeam> WithProfile(this Partial<TDMemberWithTeam> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<TDMemberWithTeam> WithTeams(this Partial<TDMemberWithTeam> it)
+        => it.AddFieldName("teams");
+    
+    public static Partial<TDMemberWithTeam> WithTeams(this Partial<TDMemberWithTeam> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+        => it.AddFieldName("teams", partialBuilder(new Partial<TDTeam>(it)));
     
 }
+

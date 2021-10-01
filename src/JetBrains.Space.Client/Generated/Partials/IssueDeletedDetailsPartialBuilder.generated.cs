@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueDeletedDetailsPartialBuilder
+namespace JetBrains.Space.Client.IssueDeletedDetailsPartialBuilder;
+
+public static class IssueDeletedDetailsPartialExtensions
 {
-    public static class IssueDeletedDetailsPartialExtensions
-    {
-    }
-    
 }
+

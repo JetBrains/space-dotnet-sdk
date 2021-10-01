@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CodeDiscussionSnippetInlineDiffSnippet
+     : CodeDiscussionSnippet, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class CodeDiscussionSnippetInlineDiffSnippet
-         : CodeDiscussionSnippet, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "CodeDiscussionSnippet.InlineDiffSnippet";
+    
+    public CodeDiscussionSnippetInlineDiffSnippet() { }
+    
+    public CodeDiscussionSnippetInlineDiffSnippet(List<InlineDiffLine> lines)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "CodeDiscussionSnippet.InlineDiffSnippet";
-        
-        public CodeDiscussionSnippetInlineDiffSnippet() { }
-        
-        public CodeDiscussionSnippetInlineDiffSnippet(List<InlineDiffLine> lines)
-        {
-            Lines = lines;
-        }
-        
-        private PropertyValue<List<InlineDiffLine>> _lines = new PropertyValue<List<InlineDiffLine>>(nameof(CodeDiscussionSnippetInlineDiffSnippet), nameof(Lines), new List<InlineDiffLine>());
-        
-        [Required]
-        [JsonPropertyName("lines")]
-        public List<InlineDiffLine> Lines
-        {
-            get => _lines.GetValue();
-            set => _lines.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _lines.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Lines = lines;
     }
     
+    private PropertyValue<List<InlineDiffLine>> _lines = new PropertyValue<List<InlineDiffLine>>(nameof(CodeDiscussionSnippetInlineDiffSnippet), nameof(Lines), new List<InlineDiffLine>());
+    
+    [Required]
+    [JsonPropertyName("lines")]
+    public List<InlineDiffLine> Lines
+    {
+        get => _lines.GetValue();
+        set => _lines.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _lines.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

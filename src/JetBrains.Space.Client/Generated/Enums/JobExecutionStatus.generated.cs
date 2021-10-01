@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum JobExecutionStatus
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum JobExecutionStatus
-    {
-        [EnumMember(Value = "Started")]
-        Started,
-        
-        [EnumMember(Value = "Succeeded")]
-        Succeeded,
-        
-        [EnumMember(Value = "Failed")]
-        Failed,
-        
-        [EnumMember(Value = "Terminated")]
-        Terminated,
-        
-    }
+    [EnumMember(Value = "Started")]
+    Started,
+    
+    [EnumMember(Value = "Succeeded")]
+    Succeeded,
+    
+    [EnumMember(Value = "Failed")]
+    Failed,
+    
+    [EnumMember(Value = "Terminated")]
+    Terminated,
     
 }
+

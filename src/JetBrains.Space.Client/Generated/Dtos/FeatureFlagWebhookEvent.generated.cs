@@ -27,125 +27,124 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class FeatureFlagWebhookEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class FeatureFlagWebhookEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "FeatureFlagWebhookEvent";
+    
+    public FeatureFlagWebhookEvent() { }
+    
+    public FeatureFlagWebhookEvent(KMetaMod meta, string name, int? issueNumber = null, Modification<bool>? enabledForAll = null, Modification<bool>? selfManageable = null, List<TDTeam>? addedTeams = null, List<TDTeam>? addedProfiles = null, List<TDMemberProfile>? removedTeams = null, List<TDMemberProfile>? removedProfiles = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "FeatureFlagWebhookEvent";
-        
-        public FeatureFlagWebhookEvent() { }
-        
-        public FeatureFlagWebhookEvent(KMetaMod meta, string name, int? issueNumber = null, Modification<bool>? enabledForAll = null, Modification<bool>? selfManageable = null, List<TDTeam>? addedTeams = null, List<TDTeam>? addedProfiles = null, List<TDMemberProfile>? removedTeams = null, List<TDMemberProfile>? removedProfiles = null)
-        {
-            Meta = meta;
-            Name = name;
-            IssueNumber = issueNumber;
-            EnabledForAll = enabledForAll;
-            SelfManageable = selfManageable;
-            AddedTeams = addedTeams;
-            AddedProfiles = addedProfiles;
-            RemovedTeams = removedTeams;
-            RemovedProfiles = removedProfiles;
-        }
-        
-        private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(FeatureFlagWebhookEvent), nameof(Meta));
-        
-        [Required]
-        [JsonPropertyName("meta")]
-        public KMetaMod Meta
-        {
-            get => _meta.GetValue();
-            set => _meta.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(FeatureFlagWebhookEvent), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _issueNumber = new PropertyValue<int?>(nameof(FeatureFlagWebhookEvent), nameof(IssueNumber));
-        
-        [JsonPropertyName("issueNumber")]
-        public int? IssueNumber
-        {
-            get => _issueNumber.GetValue();
-            set => _issueNumber.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<bool>?> _enabledForAll = new PropertyValue<Modification<bool>?>(nameof(FeatureFlagWebhookEvent), nameof(EnabledForAll));
-        
-        [JsonPropertyName("enabledForAll")]
-        public Modification<bool>? EnabledForAll
-        {
-            get => _enabledForAll.GetValue();
-            set => _enabledForAll.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<bool>?> _selfManageable = new PropertyValue<Modification<bool>?>(nameof(FeatureFlagWebhookEvent), nameof(SelfManageable));
-        
-        [JsonPropertyName("selfManageable")]
-        public Modification<bool>? SelfManageable
-        {
-            get => _selfManageable.GetValue();
-            set => _selfManageable.SetValue(value);
-        }
-    
-        private PropertyValue<List<TDTeam>?> _addedTeams = new PropertyValue<List<TDTeam>?>(nameof(FeatureFlagWebhookEvent), nameof(AddedTeams));
-        
-        [JsonPropertyName("addedTeams")]
-        public List<TDTeam>? AddedTeams
-        {
-            get => _addedTeams.GetValue();
-            set => _addedTeams.SetValue(value);
-        }
-    
-        private PropertyValue<List<TDTeam>?> _addedProfiles = new PropertyValue<List<TDTeam>?>(nameof(FeatureFlagWebhookEvent), nameof(AddedProfiles));
-        
-        [JsonPropertyName("addedProfiles")]
-        public List<TDTeam>? AddedProfiles
-        {
-            get => _addedProfiles.GetValue();
-            set => _addedProfiles.SetValue(value);
-        }
-    
-        private PropertyValue<List<TDMemberProfile>?> _removedTeams = new PropertyValue<List<TDMemberProfile>?>(nameof(FeatureFlagWebhookEvent), nameof(RemovedTeams));
-        
-        [JsonPropertyName("removedTeams")]
-        public List<TDMemberProfile>? RemovedTeams
-        {
-            get => _removedTeams.GetValue();
-            set => _removedTeams.SetValue(value);
-        }
-    
-        private PropertyValue<List<TDMemberProfile>?> _removedProfiles = new PropertyValue<List<TDMemberProfile>?>(nameof(FeatureFlagWebhookEvent), nameof(RemovedProfiles));
-        
-        [JsonPropertyName("removedProfiles")]
-        public List<TDMemberProfile>? RemovedProfiles
-        {
-            get => _removedProfiles.GetValue();
-            set => _removedProfiles.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _meta.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _issueNumber.SetAccessPath(path, validateHasBeenSet);
-            _enabledForAll.SetAccessPath(path, validateHasBeenSet);
-            _selfManageable.SetAccessPath(path, validateHasBeenSet);
-            _addedTeams.SetAccessPath(path, validateHasBeenSet);
-            _addedProfiles.SetAccessPath(path, validateHasBeenSet);
-            _removedTeams.SetAccessPath(path, validateHasBeenSet);
-            _removedProfiles.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Meta = meta;
+        Name = name;
+        IssueNumber = issueNumber;
+        EnabledForAll = enabledForAll;
+        SelfManageable = selfManageable;
+        AddedTeams = addedTeams;
+        AddedProfiles = addedProfiles;
+        RemovedTeams = removedTeams;
+        RemovedProfiles = removedProfiles;
     }
     
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(FeatureFlagWebhookEvent), nameof(Meta));
+    
+    [Required]
+    [JsonPropertyName("meta")]
+    public KMetaMod Meta
+    {
+        get => _meta.GetValue();
+        set => _meta.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(FeatureFlagWebhookEvent), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<int?> _issueNumber = new PropertyValue<int?>(nameof(FeatureFlagWebhookEvent), nameof(IssueNumber));
+    
+    [JsonPropertyName("issueNumber")]
+    public int? IssueNumber
+    {
+        get => _issueNumber.GetValue();
+        set => _issueNumber.SetValue(value);
+    }
+
+    private PropertyValue<Modification<bool>?> _enabledForAll = new PropertyValue<Modification<bool>?>(nameof(FeatureFlagWebhookEvent), nameof(EnabledForAll));
+    
+    [JsonPropertyName("enabledForAll")]
+    public Modification<bool>? EnabledForAll
+    {
+        get => _enabledForAll.GetValue();
+        set => _enabledForAll.SetValue(value);
+    }
+
+    private PropertyValue<Modification<bool>?> _selfManageable = new PropertyValue<Modification<bool>?>(nameof(FeatureFlagWebhookEvent), nameof(SelfManageable));
+    
+    [JsonPropertyName("selfManageable")]
+    public Modification<bool>? SelfManageable
+    {
+        get => _selfManageable.GetValue();
+        set => _selfManageable.SetValue(value);
+    }
+
+    private PropertyValue<List<TDTeam>?> _addedTeams = new PropertyValue<List<TDTeam>?>(nameof(FeatureFlagWebhookEvent), nameof(AddedTeams));
+    
+    [JsonPropertyName("addedTeams")]
+    public List<TDTeam>? AddedTeams
+    {
+        get => _addedTeams.GetValue();
+        set => _addedTeams.SetValue(value);
+    }
+
+    private PropertyValue<List<TDTeam>?> _addedProfiles = new PropertyValue<List<TDTeam>?>(nameof(FeatureFlagWebhookEvent), nameof(AddedProfiles));
+    
+    [JsonPropertyName("addedProfiles")]
+    public List<TDTeam>? AddedProfiles
+    {
+        get => _addedProfiles.GetValue();
+        set => _addedProfiles.SetValue(value);
+    }
+
+    private PropertyValue<List<TDMemberProfile>?> _removedTeams = new PropertyValue<List<TDMemberProfile>?>(nameof(FeatureFlagWebhookEvent), nameof(RemovedTeams));
+    
+    [JsonPropertyName("removedTeams")]
+    public List<TDMemberProfile>? RemovedTeams
+    {
+        get => _removedTeams.GetValue();
+        set => _removedTeams.SetValue(value);
+    }
+
+    private PropertyValue<List<TDMemberProfile>?> _removedProfiles = new PropertyValue<List<TDMemberProfile>?>(nameof(FeatureFlagWebhookEvent), nameof(RemovedProfiles));
+    
+    [JsonPropertyName("removedProfiles")]
+    public List<TDMemberProfile>? RemovedProfiles
+    {
+        get => _removedProfiles.GetValue();
+        set => _removedProfiles.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _meta.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _issueNumber.SetAccessPath(path, validateHasBeenSet);
+        _enabledForAll.SetAccessPath(path, validateHasBeenSet);
+        _selfManageable.SetAccessPath(path, validateHasBeenSet);
+        _addedTeams.SetAccessPath(path, validateHasBeenSet);
+        _addedProfiles.SetAccessPath(path, validateHasBeenSet);
+        _removedTeams.SetAccessPath(path, validateHasBeenSet);
+        _removedProfiles.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum MeetingModificationPreference
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum MeetingModificationPreference
-    {
-        [EnumMember(Value = "ORGANIZER")]
-        ORGANIZER,
-        
-        [EnumMember(Value = "PARTICIPANTS")]
-        PARTICIPANTS,
-        
-        [EnumMember(Value = "EVERYONE")]
-        EVERYONE,
-        
-    }
+    [EnumMember(Value = "ORGANIZER")]
+    ORGANIZER,
+    
+    [EnumMember(Value = "PARTICIPANTS")]
+    PARTICIPANTS,
+    
+    [EnumMember(Value = "EVERYONE")]
+    EVERYONE,
     
 }
+

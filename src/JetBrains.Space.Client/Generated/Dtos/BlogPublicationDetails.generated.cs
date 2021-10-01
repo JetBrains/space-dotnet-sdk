@@ -27,90 +27,89 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BlogPublicationDetails
+     : PublicationDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class BlogPublicationDetails
-         : PublicationDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "BlogPublicationDetails";
+    
+    public BlogPublicationDetails() { }
+    
+    public BlogPublicationDetails(TDTeam? teamId = null, List<TDTeam>? teams = null, TDLocation? locationId = null, List<TDLocation>? locations = null, CalendarEvent? @event = null, ArticleRecord? article = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "BlogPublicationDetails";
-        
-        public BlogPublicationDetails() { }
-        
-        public BlogPublicationDetails(TDTeam? teamId = null, List<TDTeam>? teams = null, TDLocation? locationId = null, List<TDLocation>? locations = null, CalendarEvent? @event = null, ArticleRecord? article = null)
-        {
-            TeamId = teamId;
-            Teams = teams;
-            LocationId = locationId;
-            Locations = locations;
-            Event = @event;
-            Article = article;
-        }
-        
-        private PropertyValue<TDTeam?> _teamId = new PropertyValue<TDTeam?>(nameof(BlogPublicationDetails), nameof(TeamId));
-        
-        [JsonPropertyName("teamId")]
-        public TDTeam? TeamId
-        {
-            get => _teamId.GetValue();
-            set => _teamId.SetValue(value);
-        }
-    
-        private PropertyValue<List<TDTeam>?> _teams = new PropertyValue<List<TDTeam>?>(nameof(BlogPublicationDetails), nameof(Teams));
-        
-        [JsonPropertyName("teams")]
-        public List<TDTeam>? Teams
-        {
-            get => _teams.GetValue();
-            set => _teams.SetValue(value);
-        }
-    
-        private PropertyValue<TDLocation?> _locationId = new PropertyValue<TDLocation?>(nameof(BlogPublicationDetails), nameof(LocationId));
-        
-        [JsonPropertyName("locationId")]
-        public TDLocation? LocationId
-        {
-            get => _locationId.GetValue();
-            set => _locationId.SetValue(value);
-        }
-    
-        private PropertyValue<List<TDLocation>?> _locations = new PropertyValue<List<TDLocation>?>(nameof(BlogPublicationDetails), nameof(Locations));
-        
-        [JsonPropertyName("locations")]
-        public List<TDLocation>? Locations
-        {
-            get => _locations.GetValue();
-            set => _locations.SetValue(value);
-        }
-    
-        private PropertyValue<CalendarEvent?> _event = new PropertyValue<CalendarEvent?>(nameof(BlogPublicationDetails), nameof(Event));
-        
-        [JsonPropertyName("event")]
-        public CalendarEvent? Event
-        {
-            get => _event.GetValue();
-            set => _event.SetValue(value);
-        }
-    
-        private PropertyValue<ArticleRecord?> _article = new PropertyValue<ArticleRecord?>(nameof(BlogPublicationDetails), nameof(Article));
-        
-        [JsonPropertyName("article")]
-        public ArticleRecord? Article
-        {
-            get => _article.GetValue();
-            set => _article.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _teamId.SetAccessPath(path, validateHasBeenSet);
-            _teams.SetAccessPath(path, validateHasBeenSet);
-            _locationId.SetAccessPath(path, validateHasBeenSet);
-            _locations.SetAccessPath(path, validateHasBeenSet);
-            _event.SetAccessPath(path, validateHasBeenSet);
-            _article.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        TeamId = teamId;
+        Teams = teams;
+        LocationId = locationId;
+        Locations = locations;
+        Event = @event;
+        Article = article;
     }
     
+    private PropertyValue<TDTeam?> _teamId = new PropertyValue<TDTeam?>(nameof(BlogPublicationDetails), nameof(TeamId));
+    
+    [JsonPropertyName("teamId")]
+    public TDTeam? TeamId
+    {
+        get => _teamId.GetValue();
+        set => _teamId.SetValue(value);
+    }
+
+    private PropertyValue<List<TDTeam>?> _teams = new PropertyValue<List<TDTeam>?>(nameof(BlogPublicationDetails), nameof(Teams));
+    
+    [JsonPropertyName("teams")]
+    public List<TDTeam>? Teams
+    {
+        get => _teams.GetValue();
+        set => _teams.SetValue(value);
+    }
+
+    private PropertyValue<TDLocation?> _locationId = new PropertyValue<TDLocation?>(nameof(BlogPublicationDetails), nameof(LocationId));
+    
+    [JsonPropertyName("locationId")]
+    public TDLocation? LocationId
+    {
+        get => _locationId.GetValue();
+        set => _locationId.SetValue(value);
+    }
+
+    private PropertyValue<List<TDLocation>?> _locations = new PropertyValue<List<TDLocation>?>(nameof(BlogPublicationDetails), nameof(Locations));
+    
+    [JsonPropertyName("locations")]
+    public List<TDLocation>? Locations
+    {
+        get => _locations.GetValue();
+        set => _locations.SetValue(value);
+    }
+
+    private PropertyValue<CalendarEvent?> _event = new PropertyValue<CalendarEvent?>(nameof(BlogPublicationDetails), nameof(Event));
+    
+    [JsonPropertyName("event")]
+    public CalendarEvent? Event
+    {
+        get => _event.GetValue();
+        set => _event.SetValue(value);
+    }
+
+    private PropertyValue<ArticleRecord?> _article = new PropertyValue<ArticleRecord?>(nameof(BlogPublicationDetails), nameof(Article));
+    
+    [JsonPropertyName("article")]
+    public ArticleRecord? Article
+    {
+        get => _article.GetValue();
+        set => _article.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _teamId.SetAccessPath(path, validateHasBeenSet);
+        _teams.SetAccessPath(path, validateHasBeenSet);
+        _locationId.SetAccessPath(path, validateHasBeenSet);
+        _locations.SetAccessPath(path, validateHasBeenSet);
+        _event.SetAccessPath(path, validateHasBeenSet);
+        _article.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

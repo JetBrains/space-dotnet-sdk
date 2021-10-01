@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IntelliJSharedIndexUploadUrls
+     : IPropagatePropertyAccessPath
 {
-    public sealed class IntelliJSharedIndexUploadUrls
-         : IPropagatePropertyAccessPath
+    public IntelliJSharedIndexUploadUrls() { }
+    
+    public IntelliJSharedIndexUploadUrls(List<IntelliJSharedIndexNamedUploadUrl> urls)
     {
-        public IntelliJSharedIndexUploadUrls() { }
-        
-        public IntelliJSharedIndexUploadUrls(List<IntelliJSharedIndexNamedUploadUrl> urls)
-        {
-            Urls = urls;
-        }
-        
-        private PropertyValue<List<IntelliJSharedIndexNamedUploadUrl>> _urls = new PropertyValue<List<IntelliJSharedIndexNamedUploadUrl>>(nameof(IntelliJSharedIndexUploadUrls), nameof(Urls), new List<IntelliJSharedIndexNamedUploadUrl>());
-        
-        [Required]
-        [JsonPropertyName("urls")]
-        public List<IntelliJSharedIndexNamedUploadUrl> Urls
-        {
-            get => _urls.GetValue();
-            set => _urls.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _urls.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Urls = urls;
     }
     
+    private PropertyValue<List<IntelliJSharedIndexNamedUploadUrl>> _urls = new PropertyValue<List<IntelliJSharedIndexNamedUploadUrl>>(nameof(IntelliJSharedIndexUploadUrls), nameof(Urls), new List<IntelliJSharedIndexNamedUploadUrl>());
+    
+    [Required]
+    [JsonPropertyName("urls")]
+    public List<IntelliJSharedIndexNamedUploadUrl> Urls
+    {
+        get => _urls.GetValue();
+        set => _urls.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _urls.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

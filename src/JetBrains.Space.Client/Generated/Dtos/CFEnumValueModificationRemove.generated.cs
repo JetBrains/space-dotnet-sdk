@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CFEnumValueModificationRemove
+     : CFEnumValueModification, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class CFEnumValueModificationRemove
-         : CFEnumValueModification, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "CFEnumValueModification.Remove";
+    
+    public CFEnumValueModificationRemove() { }
+    
+    public CFEnumValueModificationRemove(CFEnumValueIdentifier valueIdentifier)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "CFEnumValueModification.Remove";
-        
-        public CFEnumValueModificationRemove() { }
-        
-        public CFEnumValueModificationRemove(CFEnumValueIdentifier valueIdentifier)
-        {
-            ValueIdentifier = valueIdentifier;
-        }
-        
-        private PropertyValue<CFEnumValueIdentifier> _valueIdentifier = new PropertyValue<CFEnumValueIdentifier>(nameof(CFEnumValueModificationRemove), nameof(ValueIdentifier));
-        
-        [Required]
-        [JsonPropertyName("valueIdentifier")]
-        public CFEnumValueIdentifier ValueIdentifier
-        {
-            get => _valueIdentifier.GetValue();
-            set => _valueIdentifier.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _valueIdentifier.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ValueIdentifier = valueIdentifier;
     }
     
+    private PropertyValue<CFEnumValueIdentifier> _valueIdentifier = new PropertyValue<CFEnumValueIdentifier>(nameof(CFEnumValueModificationRemove), nameof(ValueIdentifier));
+    
+    [Required]
+    [JsonPropertyName("valueIdentifier")]
+    public CFEnumValueIdentifier ValueIdentifier
+    {
+        get => _valueIdentifier.GetValue();
+        set => _valueIdentifier.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _valueIdentifier.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

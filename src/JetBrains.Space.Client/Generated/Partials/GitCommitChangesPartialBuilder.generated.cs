@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitCommitChangesPartialBuilder
+namespace JetBrains.Space.Client.GitCommitChangesPartialBuilder;
+
+public static class GitCommitChangesPartialExtensions
 {
-    public static class GitCommitChangesPartialExtensions
-    {
-        public static Partial<GitCommitChanges> WithChanges(this Partial<GitCommitChanges> it)
-            => it.AddFieldName("changes");
-        
-        public static Partial<GitCommitChanges> WithChanges(this Partial<GitCommitChanges> it, Func<Partial<GitCommitChange>, Partial<GitCommitChange>> partialBuilder)
-            => it.AddFieldName("changes", partialBuilder(new Partial<GitCommitChange>(it)));
-        
-        public static Partial<GitCommitChanges> WithIsOverflow(this Partial<GitCommitChanges> it)
-            => it.AddFieldName("overflow");
-        
-    }
+    public static Partial<GitCommitChanges> WithChanges(this Partial<GitCommitChanges> it)
+        => it.AddFieldName("changes");
+    
+    public static Partial<GitCommitChanges> WithChanges(this Partial<GitCommitChanges> it, Func<Partial<GitCommitChange>, Partial<GitCommitChange>> partialBuilder)
+        => it.AddFieldName("changes", partialBuilder(new Partial<GitCommitChange>(it)));
+    
+    public static Partial<GitCommitChanges> WithIsOverflow(this Partial<GitCommitChanges> it)
+        => it.AddFieldName("overflow");
     
 }
+

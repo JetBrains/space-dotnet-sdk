@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AbsenceReasonRecordPartialBuilder
+namespace JetBrains.Space.Client.AbsenceReasonRecordPartialBuilder;
+
+public static class AbsenceReasonRecordPartialExtensions
 {
-    public static class AbsenceReasonRecordPartialExtensions
-    {
-        public static Partial<AbsenceReasonRecord> WithId(this Partial<AbsenceReasonRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<AbsenceReasonRecord> WithIsArchived(this Partial<AbsenceReasonRecord> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<AbsenceReasonRecord> WithName(this Partial<AbsenceReasonRecord> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<AbsenceReasonRecord> WithDescription(this Partial<AbsenceReasonRecord> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<AbsenceReasonRecord> WithIsDefaultAvailability(this Partial<AbsenceReasonRecord> it)
-            => it.AddFieldName("defaultAvailability");
-        
-        public static Partial<AbsenceReasonRecord> WithIsApprovalRequired(this Partial<AbsenceReasonRecord> it)
-            => it.AddFieldName("approvalRequired");
-        
-        public static Partial<AbsenceReasonRecord> WithIcon(this Partial<AbsenceReasonRecord> it)
-            => it.AddFieldName("icon");
-        
-    }
+    public static Partial<AbsenceReasonRecord> WithId(this Partial<AbsenceReasonRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<AbsenceReasonRecord> WithIsArchived(this Partial<AbsenceReasonRecord> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<AbsenceReasonRecord> WithName(this Partial<AbsenceReasonRecord> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<AbsenceReasonRecord> WithDescription(this Partial<AbsenceReasonRecord> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<AbsenceReasonRecord> WithIsDefaultAvailability(this Partial<AbsenceReasonRecord> it)
+        => it.AddFieldName("defaultAvailability");
+    
+    public static Partial<AbsenceReasonRecord> WithIsApprovalRequired(this Partial<AbsenceReasonRecord> it)
+        => it.AddFieldName("approvalRequired");
+    
+    public static Partial<AbsenceReasonRecord> WithIcon(this Partial<AbsenceReasonRecord> it)
+        => it.AddFieldName("icon");
     
 }
+

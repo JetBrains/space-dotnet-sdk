@@ -27,58 +27,57 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESContainerRegistrySettings
+     : ESPackageRepositorySettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ESContainerRegistrySettings
-         : ESPackageRepositorySettings, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ES_ContainerRegistrySettings";
+    
+    public ESContainerRegistrySettings() { }
+    
+    public ESContainerRegistrySettings(bool immutableTags, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ES_ContainerRegistrySettings";
-        
-        public ESContainerRegistrySettings() { }
-        
-        public ESContainerRegistrySettings(bool immutableTags, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-        {
-            IsImmutableTags = immutableTags;
-            RetentionPolicyParams = retentionPolicyParams;
-            IsImmutablePackageVersions = immutablePackageVersions;
-        }
-        
-        private PropertyValue<bool> _immutableTags = new PropertyValue<bool>(nameof(ESContainerRegistrySettings), nameof(IsImmutableTags));
-        
-        [Required]
-        [JsonPropertyName("immutableTags")]
-        public bool IsImmutableTags
-        {
-            get => _immutableTags.GetValue();
-            set => _immutableTags.SetValue(value);
-        }
-    
-        private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESContainerRegistrySettings), nameof(RetentionPolicyParams));
-        
-        [JsonPropertyName("retentionPolicyParams")]
-        public RetentionPolicyParams? RetentionPolicyParams
-        {
-            get => _retentionPolicyParams.GetValue();
-            set => _retentionPolicyParams.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _immutablePackageVersions = new PropertyValue<bool?>(nameof(ESContainerRegistrySettings), nameof(IsImmutablePackageVersions));
-        
-        [JsonPropertyName("immutablePackageVersions")]
-        public bool? IsImmutablePackageVersions
-        {
-            get => _immutablePackageVersions.GetValue();
-            set => _immutablePackageVersions.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _immutableTags.SetAccessPath(path, validateHasBeenSet);
-            _retentionPolicyParams.SetAccessPath(path, validateHasBeenSet);
-            _immutablePackageVersions.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        IsImmutableTags = immutableTags;
+        RetentionPolicyParams = retentionPolicyParams;
+        IsImmutablePackageVersions = immutablePackageVersions;
     }
     
+    private PropertyValue<bool> _immutableTags = new PropertyValue<bool>(nameof(ESContainerRegistrySettings), nameof(IsImmutableTags));
+    
+    [Required]
+    [JsonPropertyName("immutableTags")]
+    public bool IsImmutableTags
+    {
+        get => _immutableTags.GetValue();
+        set => _immutableTags.SetValue(value);
+    }
+
+    private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESContainerRegistrySettings), nameof(RetentionPolicyParams));
+    
+    [JsonPropertyName("retentionPolicyParams")]
+    public RetentionPolicyParams? RetentionPolicyParams
+    {
+        get => _retentionPolicyParams.GetValue();
+        set => _retentionPolicyParams.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _immutablePackageVersions = new PropertyValue<bool?>(nameof(ESContainerRegistrySettings), nameof(IsImmutablePackageVersions));
+    
+    [JsonPropertyName("immutablePackageVersions")]
+    public bool? IsImmutablePackageVersions
+    {
+        get => _immutablePackageVersions.GetValue();
+        set => _immutablePackageVersions.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _immutableTags.SetAccessPath(path, validateHasBeenSet);
+        _retentionPolicyParams.SetAccessPath(path, validateHasBeenSet);
+        _immutablePackageVersions.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

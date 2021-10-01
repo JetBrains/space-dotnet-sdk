@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MavenPackageTypePartialBuilder
+namespace JetBrains.Space.Client.MavenPackageTypePartialBuilder;
+
+public static class MavenPackageTypePartialExtensions
 {
-    public static class MavenPackageTypePartialExtensions
-    {
-        public static Partial<MavenPackageType> WithId(this Partial<MavenPackageType> it)
-            => it.AddFieldName("id");
-        
-    }
+    public static Partial<MavenPackageType> WithId(this Partial<MavenPackageType> it)
+        => it.AddFieldName("id");
     
 }
+

@@ -27,106 +27,105 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CodeReviewSubscriptionFilterIn
+     : SubscriptionFilterIn, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class CodeReviewSubscriptionFilterIn
-         : SubscriptionFilterIn, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "CodeReviewSubscriptionFilterIn";
+    
+    public CodeReviewSubscriptionFilterIn() { }
+    
+    public CodeReviewSubscriptionFilterIn(List<string> authors, List<string> participants, List<string> branchSpec, List<string> pathSpec, string titleRegex, string? project = null, string? repository = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "CodeReviewSubscriptionFilterIn";
-        
-        public CodeReviewSubscriptionFilterIn() { }
-        
-        public CodeReviewSubscriptionFilterIn(List<string> authors, List<string> participants, List<string> branchSpec, List<string> pathSpec, string titleRegex, string? project = null, string? repository = null)
-        {
-            Project = project;
-            Repository = repository;
-            Authors = authors;
-            Participants = participants;
-            BranchSpec = branchSpec;
-            PathSpec = pathSpec;
-            TitleRegex = titleRegex;
-        }
-        
-        private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(CodeReviewSubscriptionFilterIn), nameof(Project));
-        
-        [JsonPropertyName("project")]
-        public string? Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _repository = new PropertyValue<string?>(nameof(CodeReviewSubscriptionFilterIn), nameof(Repository));
-        
-        [JsonPropertyName("repository")]
-        public string? Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _authors = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(Authors), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("authors")]
-        public List<string> Authors
-        {
-            get => _authors.GetValue();
-            set => _authors.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _participants = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(Participants), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("participants")]
-        public List<string> Participants
-        {
-            get => _participants.GetValue();
-            set => _participants.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _branchSpec = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(BranchSpec), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("branchSpec")]
-        public List<string> BranchSpec
-        {
-            get => _branchSpec.GetValue();
-            set => _branchSpec.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _pathSpec = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(PathSpec), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("pathSpec")]
-        public List<string> PathSpec
-        {
-            get => _pathSpec.GetValue();
-            set => _pathSpec.SetValue(value);
-        }
-    
-        private PropertyValue<string> _titleRegex = new PropertyValue<string>(nameof(CodeReviewSubscriptionFilterIn), nameof(TitleRegex));
-        
-        [Required]
-        [JsonPropertyName("titleRegex")]
-        public string TitleRegex
-        {
-            get => _titleRegex.GetValue();
-            set => _titleRegex.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _authors.SetAccessPath(path, validateHasBeenSet);
-            _participants.SetAccessPath(path, validateHasBeenSet);
-            _branchSpec.SetAccessPath(path, validateHasBeenSet);
-            _pathSpec.SetAccessPath(path, validateHasBeenSet);
-            _titleRegex.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Project = project;
+        Repository = repository;
+        Authors = authors;
+        Participants = participants;
+        BranchSpec = branchSpec;
+        PathSpec = pathSpec;
+        TitleRegex = titleRegex;
     }
     
+    private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(CodeReviewSubscriptionFilterIn), nameof(Project));
+    
+    [JsonPropertyName("project")]
+    public string? Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<string?> _repository = new PropertyValue<string?>(nameof(CodeReviewSubscriptionFilterIn), nameof(Repository));
+    
+    [JsonPropertyName("repository")]
+    public string? Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _authors = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(Authors), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("authors")]
+    public List<string> Authors
+    {
+        get => _authors.GetValue();
+        set => _authors.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _participants = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(Participants), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("participants")]
+    public List<string> Participants
+    {
+        get => _participants.GetValue();
+        set => _participants.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _branchSpec = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(BranchSpec), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("branchSpec")]
+    public List<string> BranchSpec
+    {
+        get => _branchSpec.GetValue();
+        set => _branchSpec.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _pathSpec = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(PathSpec), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("pathSpec")]
+    public List<string> PathSpec
+    {
+        get => _pathSpec.GetValue();
+        set => _pathSpec.SetValue(value);
+    }
+
+    private PropertyValue<string> _titleRegex = new PropertyValue<string>(nameof(CodeReviewSubscriptionFilterIn), nameof(TitleRegex));
+    
+    [Required]
+    [JsonPropertyName("titleRegex")]
+    public string TitleRegex
+    {
+        get => _titleRegex.GetValue();
+        set => _titleRegex.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _project.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _authors.SetAccessPath(path, validateHasBeenSet);
+        _participants.SetAccessPath(path, validateHasBeenSet);
+        _branchSpec.SetAccessPath(path, validateHasBeenSet);
+        _pathSpec.SetAccessPath(path, validateHasBeenSet);
+        _titleRegex.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,37 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TextDocumentPartialBuilder
+namespace JetBrains.Space.Client.TextDocumentPartialBuilder;
+
+public static class TextDocumentPartialExtensions
 {
-    public static class TextDocumentPartialExtensions
-    {
-        public static Partial<TextDocument> WithId(this Partial<TextDocument> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<TextDocument> WithResetCounter(this Partial<TextDocument> it)
-            => it.AddFieldName("resetCounter");
-        
-        public static Partial<TextDocument> WithVersion(this Partial<TextDocument> it)
-            => it.AddFieldName("version");
-        
-        public static Partial<TextDocument> WithType(this Partial<TextDocument> it)
-            => it.AddFieldName("type");
-        
-        public static Partial<TextDocument> WithType(this Partial<TextDocument> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>(it)));
-        
-        public static Partial<TextDocument> WithText(this Partial<TextDocument> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<TextDocument> WithModel(this Partial<TextDocument> it)
-            => it.AddFieldName("model");
-        
-        public static Partial<TextDocument> WithAttachments(this Partial<TextDocument> it)
-            => it.AddFieldName("attachments");
-        
-        public static Partial<TextDocument> WithAttachments(this Partial<TextDocument> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
-            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
-        
-    }
+    public static Partial<TextDocument> WithId(this Partial<TextDocument> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<TextDocument> WithResetCounter(this Partial<TextDocument> it)
+        => it.AddFieldName("resetCounter");
+    
+    public static Partial<TextDocument> WithVersion(this Partial<TextDocument> it)
+        => it.AddFieldName("version");
+    
+    public static Partial<TextDocument> WithType(this Partial<TextDocument> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<TextDocument> WithType(this Partial<TextDocument> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>(it)));
+    
+    public static Partial<TextDocument> WithText(this Partial<TextDocument> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<TextDocument> WithModel(this Partial<TextDocument> it)
+        => it.AddFieldName("model");
+    
+    public static Partial<TextDocument> WithAttachments(this Partial<TextDocument> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<TextDocument> WithAttachments(this Partial<TextDocument> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
+        => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
     
 }
+

@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2DraftEditorAddedItemContent
+     : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2DraftEditorAddedItemContent
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2DraftEditorAddedItemContent";
+    
+    public M2DraftEditorAddedItemContent() { }
+    
+    public M2DraftEditorAddedItemContent(string id, string title)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2DraftEditorAddedItemContent";
-        
-        public M2DraftEditorAddedItemContent() { }
-        
-        public M2DraftEditorAddedItemContent(string id, string title)
-        {
-            Id = id;
-            Title = title;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2DraftEditorAddedItemContent), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<string> _title = new PropertyValue<string>(nameof(M2DraftEditorAddedItemContent), nameof(Title));
-        
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title
-        {
-            get => _title.GetValue();
-            set => _title.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _title.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Title = title;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2DraftEditorAddedItemContent), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(M2DraftEditorAddedItemContent), nameof(Title));
+    
+    [Required]
+    [JsonPropertyName("title")]
+    public string Title
+    {
+        get => _title.GetValue();
+        set => _title.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

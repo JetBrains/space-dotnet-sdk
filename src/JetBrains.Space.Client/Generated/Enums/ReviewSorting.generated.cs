@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum ReviewSorting
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ReviewSorting
-    {
-        [EnumMember(Value = "CreatedAtAsc")]
-        CreatedAtAsc,
-        
-        [EnumMember(Value = "CreatedAtDesc")]
-        CreatedAtDesc,
-        
-        [EnumMember(Value = "LastUpdatedAsc")]
-        LastUpdatedAsc,
-        
-        [EnumMember(Value = "LastUpdatedDesc")]
-        LastUpdatedDesc,
-        
-    }
+    [EnumMember(Value = "CreatedAtAsc")]
+    CreatedAtAsc,
+    
+    [EnumMember(Value = "CreatedAtDesc")]
+    CreatedAtDesc,
+    
+    [EnumMember(Value = "LastUpdatedAsc")]
+    LastUpdatedAsc,
+    
+    [EnumMember(Value = "LastUpdatedDesc")]
+    LastUpdatedDesc,
     
 }
+

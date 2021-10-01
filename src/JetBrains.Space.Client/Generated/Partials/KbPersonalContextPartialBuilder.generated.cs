@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.KbPersonalContextPartialBuilder
+namespace JetBrains.Space.Client.KbPersonalContextPartialBuilder;
+
+public static class KbPersonalContextPartialExtensions
 {
-    public static class KbPersonalContextPartialExtensions
-    {
-        public static Partial<KbPersonalContext> WithOwner(this Partial<KbPersonalContext> it)
-            => it.AddFieldName("owner");
-        
-        public static Partial<KbPersonalContext> WithOwner(this Partial<KbPersonalContext> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("owner", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<KbPersonalContext> WithOwner(this Partial<KbPersonalContext> it)
+        => it.AddFieldName("owner");
+    
+    public static Partial<KbPersonalContext> WithOwner(this Partial<KbPersonalContext> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("owner", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

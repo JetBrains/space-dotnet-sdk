@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum SprintState
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum SprintState
-    {
-        [EnumMember(Value = "CLOSED")]
-        CLOSED,
-        
-        [EnumMember(Value = "CURRENT")]
-        CURRENT,
-        
-        [EnumMember(Value = "PLANNED")]
-        PLANNED,
-        
-    }
+    [EnumMember(Value = "CLOSED")]
+    CLOSED,
+    
+    [EnumMember(Value = "CURRENT")]
+    CURRENT,
+    
+    [EnumMember(Value = "PLANNED")]
+    PLANNED,
     
 }
+

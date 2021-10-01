@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsSnapshotDiff
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsSnapshotDiff
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsSnapshotDiff";
+    
+    public UnfurlDetailsSnapshotDiff() { }
+    
+    public UnfurlDetailsSnapshotDiff(string snapshotId, string baseSnapshotId)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsSnapshotDiff";
-        
-        public UnfurlDetailsSnapshotDiff() { }
-        
-        public UnfurlDetailsSnapshotDiff(string snapshotId, string baseSnapshotId)
-        {
-            SnapshotId = snapshotId;
-            BaseSnapshotId = baseSnapshotId;
-        }
-        
-        private PropertyValue<string> _snapshotId = new PropertyValue<string>(nameof(UnfurlDetailsSnapshotDiff), nameof(SnapshotId));
-        
-        [Required]
-        [JsonPropertyName("snapshotId")]
-        public string SnapshotId
-        {
-            get => _snapshotId.GetValue();
-            set => _snapshotId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _baseSnapshotId = new PropertyValue<string>(nameof(UnfurlDetailsSnapshotDiff), nameof(BaseSnapshotId));
-        
-        [Required]
-        [JsonPropertyName("baseSnapshotId")]
-        public string BaseSnapshotId
-        {
-            get => _baseSnapshotId.GetValue();
-            set => _baseSnapshotId.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _snapshotId.SetAccessPath(path, validateHasBeenSet);
-            _baseSnapshotId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        SnapshotId = snapshotId;
+        BaseSnapshotId = baseSnapshotId;
     }
     
+    private PropertyValue<string> _snapshotId = new PropertyValue<string>(nameof(UnfurlDetailsSnapshotDiff), nameof(SnapshotId));
+    
+    [Required]
+    [JsonPropertyName("snapshotId")]
+    public string SnapshotId
+    {
+        get => _snapshotId.GetValue();
+        set => _snapshotId.SetValue(value);
+    }
+
+    private PropertyValue<string> _baseSnapshotId = new PropertyValue<string>(nameof(UnfurlDetailsSnapshotDiff), nameof(BaseSnapshotId));
+    
+    [Required]
+    [JsonPropertyName("baseSnapshotId")]
+    public string BaseSnapshotId
+    {
+        get => _baseSnapshotId.GetValue();
+        set => _baseSnapshotId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _snapshotId.SetAccessPath(path, validateHasBeenSet);
+        _baseSnapshotId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

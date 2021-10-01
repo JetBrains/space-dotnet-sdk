@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.WebhookDeliveryStatusDTOSuccessfulPartialBuilder
+namespace JetBrains.Space.Client.WebhookDeliveryStatusDTOSuccessfulPartialBuilder;
+
+public static class WebhookDeliveryStatusDTOSuccessfulPartialExtensions
 {
-    public static class WebhookDeliveryStatusDTOSuccessfulPartialExtensions
-    {
-        public static Partial<WebhookDeliveryStatusDTOSuccessful> WithDeliveryId(this Partial<WebhookDeliveryStatusDTOSuccessful> it)
-            => it.AddFieldName("deliveryId");
-        
-        public static Partial<WebhookDeliveryStatusDTOSuccessful> WithResponseCode(this Partial<WebhookDeliveryStatusDTOSuccessful> it)
-            => it.AddFieldName("responseCode");
-        
-        public static Partial<WebhookDeliveryStatusDTOSuccessful> WithSentTime(this Partial<WebhookDeliveryStatusDTOSuccessful> it)
-            => it.AddFieldName("sentTime");
-        
-    }
+    public static Partial<WebhookDeliveryStatusDTOSuccessful> WithDeliveryId(this Partial<WebhookDeliveryStatusDTOSuccessful> it)
+        => it.AddFieldName("deliveryId");
+    
+    public static Partial<WebhookDeliveryStatusDTOSuccessful> WithResponseCode(this Partial<WebhookDeliveryStatusDTOSuccessful> it)
+        => it.AddFieldName("responseCode");
+    
+    public static Partial<WebhookDeliveryStatusDTOSuccessful> WithSentTime(this Partial<WebhookDeliveryStatusDTOSuccessful> it)
+        => it.AddFieldName("sentTime");
     
 }
+

@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum PackagesSortColumn
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum PackagesSortColumn
-    {
-        [EnumMember(Value = "Downloads")]
-        Downloads,
-        
-        [EnumMember(Value = "LastAccessed")]
-        LastAccessed,
-        
-        [EnumMember(Value = "Created")]
-        Created,
-        
-        [EnumMember(Value = "Size")]
-        Size,
-        
-    }
+    [EnumMember(Value = "Downloads")]
+    Downloads,
+    
+    [EnumMember(Value = "LastAccessed")]
+    LastAccessed,
+    
+    [EnumMember(Value = "Created")]
+    Created,
+    
+    [EnumMember(Value = "Size")]
+    Size,
     
 }
+

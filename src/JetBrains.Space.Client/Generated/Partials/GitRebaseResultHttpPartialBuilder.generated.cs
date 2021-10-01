@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitRebaseResultHttpPartialBuilder
+namespace JetBrains.Space.Client.GitRebaseResultHttpPartialBuilder;
+
+public static class GitRebaseResultHttpPartialExtensions
 {
-    public static class GitRebaseResultHttpPartialExtensions
-    {
-        public static Partial<GitRebaseResultHttp> WithResultCommitIds(this Partial<GitRebaseResultHttp> it)
-            => it.AddFieldName("resultCommitIds");
-        
-    }
+    public static Partial<GitRebaseResultHttp> WithResultCommitIds(this Partial<GitRebaseResultHttp> it)
+        => it.AddFieldName("resultCommitIds");
     
 }
+

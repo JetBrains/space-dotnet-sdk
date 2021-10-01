@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryProfilesForProfileNavBarProjectsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryProfilesForProfileNavBarProjectsPostRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryProfilesForProfileNavBarProjectsPostRequest() { }
+    
+    public TeamDirectoryProfilesForProfileNavBarProjectsPostRequest(ProjectIdentifier project)
     {
-        public TeamDirectoryProfilesForProfileNavBarProjectsPostRequest() { }
-        
-        public TeamDirectoryProfilesForProfileNavBarProjectsPostRequest(ProjectIdentifier project)
-        {
-            Project = project;
-        }
-        
-        private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(TeamDirectoryProfilesForProfileNavBarProjectsPostRequest), nameof(Project));
-        
-        [Required]
-        [JsonPropertyName("project")]
-        public ProjectIdentifier Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _project.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Project = project;
     }
     
+    private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(TeamDirectoryProfilesForProfileNavBarProjectsPostRequest), nameof(Project));
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public ProjectIdentifier Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _project.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsTagsTrackAccessPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsTagsTrackAccessPostRequestPartialBuilder;
+
+public static class ProjectsTagsTrackAccessPostRequestPartialExtensions
 {
-    public static class ProjectsTagsTrackAccessPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsTagsTrackAccessPostRequest> WithTag(this Partial<ProjectsTagsTrackAccessPostRequest> it)
-            => it.AddFieldName("tag");
-        
-    }
+    public static Partial<ProjectsTagsTrackAccessPostRequest> WithTag(this Partial<ProjectsTagsTrackAccessPostRequest> it)
+        => it.AddFieldName("tag");
     
 }
+

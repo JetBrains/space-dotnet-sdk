@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelRdWsTimelineInfoPartialBuilder
+namespace JetBrains.Space.Client.M2ChannelRdWsTimelineInfoPartialBuilder;
+
+public static class M2ChannelRdWsTimelineInfoPartialExtensions
 {
-    public static class M2ChannelRdWsTimelineInfoPartialExtensions
-    {
-        public static Partial<M2ChannelRdWsTimelineInfo> WithNotificationDefaults(this Partial<M2ChannelRdWsTimelineInfo> it)
-            => it.AddFieldName("notificationDefaults");
-        
-        public static Partial<M2ChannelRdWsTimelineInfo> WithNotificationDefaults(this Partial<M2ChannelRdWsTimelineInfo> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
-        
-        public static Partial<M2ChannelRdWsTimelineInfo> WithWorkspaceId(this Partial<M2ChannelRdWsTimelineInfo> it)
-            => it.AddFieldName("workspaceId");
-        
-        public static Partial<M2ChannelRdWsTimelineInfo> WithWorkspaceName(this Partial<M2ChannelRdWsTimelineInfo> it)
-            => it.AddFieldName("workspaceName");
-        
-    }
+    public static Partial<M2ChannelRdWsTimelineInfo> WithNotificationDefaults(this Partial<M2ChannelRdWsTimelineInfo> it)
+        => it.AddFieldName("notificationDefaults");
+    
+    public static Partial<M2ChannelRdWsTimelineInfo> WithNotificationDefaults(this Partial<M2ChannelRdWsTimelineInfo> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
+        => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
+    
+    public static Partial<M2ChannelRdWsTimelineInfo> WithWorkspaceId(this Partial<M2ChannelRdWsTimelineInfo> it)
+        => it.AddFieldName("workspaceId");
+    
+    public static Partial<M2ChannelRdWsTimelineInfo> WithWorkspaceName(this Partial<M2ChannelRdWsTimelineInfo> it)
+        => it.AddFieldName("workspaceName");
     
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CPrincipalPartialBuilder
+namespace JetBrains.Space.Client.CPrincipalPartialBuilder;
+
+public static class CPrincipalPartialExtensions
 {
-    public static class CPrincipalPartialExtensions
-    {
-        public static Partial<CPrincipal> WithName(this Partial<CPrincipal> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<CPrincipal> WithDetails(this Partial<CPrincipal> it)
-            => it.AddFieldName("details");
-        
-        public static Partial<CPrincipal> WithDetails(this Partial<CPrincipal> it, Func<Partial<CPrincipalDetails>, Partial<CPrincipalDetails>> partialBuilder)
-            => it.AddFieldName("details", partialBuilder(new Partial<CPrincipalDetails>(it)));
-        
-    }
+    public static Partial<CPrincipal> WithName(this Partial<CPrincipal> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<CPrincipal> WithDetails(this Partial<CPrincipal> it)
+        => it.AddFieldName("details");
+    
+    public static Partial<CPrincipal> WithDetails(this Partial<CPrincipal> it, Func<Partial<CPrincipalDetails>, Partial<CPrincipalDetails>> partialBuilder)
+        => it.AddFieldName("details", partialBuilder(new Partial<CPrincipalDetails>(it)));
     
 }
+

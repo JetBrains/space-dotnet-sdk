@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IssueListCFInputValue
+     : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class IssueListCFInputValue
-         : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "IssueListCFInputValue";
+    
+    public IssueListCFInputValue() { }
+    
+    public IssueListCFInputValue(List<IssueIdentifier> issues)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "IssueListCFInputValue";
-        
-        public IssueListCFInputValue() { }
-        
-        public IssueListCFInputValue(List<IssueIdentifier> issues)
-        {
-            Issues = issues;
-        }
-        
-        private PropertyValue<List<IssueIdentifier>> _issues = new PropertyValue<List<IssueIdentifier>>(nameof(IssueListCFInputValue), nameof(Issues), new List<IssueIdentifier>());
-        
-        [Required]
-        [JsonPropertyName("issues")]
-        public List<IssueIdentifier> Issues
-        {
-            get => _issues.GetValue();
-            set => _issues.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _issues.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Issues = issues;
     }
     
+    private PropertyValue<List<IssueIdentifier>> _issues = new PropertyValue<List<IssueIdentifier>>(nameof(IssueListCFInputValue), nameof(Issues), new List<IssueIdentifier>());
+    
+    [Required]
+    [JsonPropertyName("issues")]
+    public List<IssueIdentifier> Issues
+    {
+        get => _issues.GetValue();
+        set => _issues.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _issues.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

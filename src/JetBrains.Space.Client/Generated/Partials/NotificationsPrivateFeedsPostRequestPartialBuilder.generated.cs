@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NotificationsPrivateFeedsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.NotificationsPrivateFeedsPostRequestPartialBuilder;
+
+public static class NotificationsPrivateFeedsPostRequestPartialExtensions
 {
-    public static class NotificationsPrivateFeedsPostRequestPartialExtensions
-    {
-        public static Partial<NotificationsPrivateFeedsPostRequest> WithProfile(this Partial<NotificationsPrivateFeedsPostRequest> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<NotificationsPrivateFeedsPostRequest> WithProfile(this Partial<NotificationsPrivateFeedsPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
-        
-        public static Partial<NotificationsPrivateFeedsPostRequest> WithName(this Partial<NotificationsPrivateFeedsPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<NotificationsPrivateFeedsPostRequest> WithIcon(this Partial<NotificationsPrivateFeedsPostRequest> it)
-            => it.AddFieldName("icon");
-        
-        public static Partial<NotificationsPrivateFeedsPostRequest> WithColor(this Partial<NotificationsPrivateFeedsPostRequest> it)
-            => it.AddFieldName("color");
-        
-        public static Partial<NotificationsPrivateFeedsPostRequest> WithColor(this Partial<NotificationsPrivateFeedsPostRequest> it, Func<Partial<PrivateFeedColor>, Partial<PrivateFeedColor>> partialBuilder)
-            => it.AddFieldName("color", partialBuilder(new Partial<PrivateFeedColor>(it)));
-        
-    }
+    public static Partial<NotificationsPrivateFeedsPostRequest> WithProfile(this Partial<NotificationsPrivateFeedsPostRequest> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<NotificationsPrivateFeedsPostRequest> WithProfile(this Partial<NotificationsPrivateFeedsPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
+    
+    public static Partial<NotificationsPrivateFeedsPostRequest> WithName(this Partial<NotificationsPrivateFeedsPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<NotificationsPrivateFeedsPostRequest> WithIcon(this Partial<NotificationsPrivateFeedsPostRequest> it)
+        => it.AddFieldName("icon");
+    
+    public static Partial<NotificationsPrivateFeedsPostRequest> WithColor(this Partial<NotificationsPrivateFeedsPostRequest> it)
+        => it.AddFieldName("color");
+    
+    public static Partial<NotificationsPrivateFeedsPostRequest> WithColor(this Partial<NotificationsPrivateFeedsPostRequest> it, Func<Partial<PrivateFeedColor>, Partial<PrivateFeedColor>> partialBuilder)
+        => it.AddFieldName("color", partialBuilder(new Partial<PrivateFeedColor>(it)));
     
 }
+

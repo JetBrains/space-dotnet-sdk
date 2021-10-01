@@ -27,27 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class TeamMembershipIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class TeamMembershipIdentifier : IUrlParameter
+    public static TeamMembershipIdentifier Id(string id)
+        => new TeamMembershipIdentifierId(id);
+    
+    private class TeamMembershipIdentifierId : TeamMembershipIdentifier
     {
-        public static TeamMembershipIdentifier Id(string id)
-            => new TeamMembershipIdentifierId(id);
+        private readonly string _id;
         
-        private class TeamMembershipIdentifierId : TeamMembershipIdentifier
+        public TeamMembershipIdentifierId(string id)
         {
-            private readonly string _id;
-            
-            public TeamMembershipIdentifierId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
+        public override string ToString()
+            => $"id:{_id}";
     }
     
 }
+

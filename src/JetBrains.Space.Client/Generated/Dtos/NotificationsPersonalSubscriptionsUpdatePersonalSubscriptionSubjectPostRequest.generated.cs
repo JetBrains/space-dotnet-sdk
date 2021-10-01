@@ -27,69 +27,68 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest
-         : IPropagatePropertyAccessPath
+    public NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest() { }
+    
+    public NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest(ProfileIdentifier profile, string subjectCode, string feed, bool enabled)
     {
-        public NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest() { }
-        
-        public NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest(ProfileIdentifier profile, string subjectCode, string feed, bool enabled)
-        {
-            Profile = profile;
-            SubjectCode = subjectCode;
-            Feed = feed;
-            IsEnabled = enabled;
-        }
-        
-        private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public ProfileIdentifier Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(SubjectCode));
-        
-        [Required]
-        [JsonPropertyName("subjectCode")]
-        public string SubjectCode
-        {
-            get => _subjectCode.GetValue();
-            set => _subjectCode.SetValue(value);
-        }
-    
-        private PropertyValue<string> _feed = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(Feed));
-        
-        [Required]
-        [JsonPropertyName("feed")]
-        public string Feed
-        {
-            get => _feed.GetValue();
-            set => _feed.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(IsEnabled));
-        
-        [Required]
-        [JsonPropertyName("enabled")]
-        public bool IsEnabled
-        {
-            get => _enabled.GetValue();
-            set => _enabled.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _subjectCode.SetAccessPath(path, validateHasBeenSet);
-            _feed.SetAccessPath(path, validateHasBeenSet);
-            _enabled.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
+        SubjectCode = subjectCode;
+        Feed = feed;
+        IsEnabled = enabled;
     }
     
+    private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public ProfileIdentifier Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(SubjectCode));
+    
+    [Required]
+    [JsonPropertyName("subjectCode")]
+    public string SubjectCode
+    {
+        get => _subjectCode.GetValue();
+        set => _subjectCode.SetValue(value);
+    }
+
+    private PropertyValue<string> _feed = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(Feed));
+    
+    [Required]
+    [JsonPropertyName("feed")]
+    public string Feed
+    {
+        get => _feed.GetValue();
+        set => _feed.SetValue(value);
+    }
+
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(IsEnabled));
+    
+    [Required]
+    [JsonPropertyName("enabled")]
+    public bool IsEnabled
+    {
+        get => _enabled.GetValue();
+        set => _enabled.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _subjectCode.SetAccessPath(path, validateHasBeenSet);
+        _feed.SetAccessPath(path, validateHasBeenSet);
+        _enabled.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

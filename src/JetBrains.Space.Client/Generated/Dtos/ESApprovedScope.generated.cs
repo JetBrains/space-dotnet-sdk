@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESApprovedScope
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ESApprovedScope
-         : IPropagatePropertyAccessPath
+    public ESApprovedScope() { }
+    
+    public ESApprovedScope(string id, string scope, bool offlineAllowed)
     {
-        public ESApprovedScope() { }
-        
-        public ESApprovedScope(string id, string scope, bool offlineAllowed)
-        {
-            Id = id;
-            Scope = scope;
-            IsOfflineAllowed = offlineAllowed;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApprovedScope), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApprovedScope), nameof(Scope));
-        
-        [Required]
-        [JsonPropertyName("scope")]
-        public string Scope
-        {
-            get => _scope.GetValue();
-            set => _scope.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _offlineAllowed = new PropertyValue<bool>(nameof(ESApprovedScope), nameof(IsOfflineAllowed));
-        
-        [Required]
-        [JsonPropertyName("offlineAllowed")]
-        public bool IsOfflineAllowed
-        {
-            get => _offlineAllowed.GetValue();
-            set => _offlineAllowed.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _scope.SetAccessPath(path, validateHasBeenSet);
-            _offlineAllowed.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Scope = scope;
+        IsOfflineAllowed = offlineAllowed;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApprovedScope), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApprovedScope), nameof(Scope));
+    
+    [Required]
+    [JsonPropertyName("scope")]
+    public string Scope
+    {
+        get => _scope.GetValue();
+        set => _scope.SetValue(value);
+    }
+
+    private PropertyValue<bool> _offlineAllowed = new PropertyValue<bool>(nameof(ESApprovedScope), nameof(IsOfflineAllowed));
+    
+    [Required]
+    [JsonPropertyName("offlineAllowed")]
+    public bool IsOfflineAllowed
+    {
+        get => _offlineAllowed.GetValue();
+        set => _offlineAllowed.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _scope.SetAccessPath(path, validateHasBeenSet);
+        _offlineAllowed.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

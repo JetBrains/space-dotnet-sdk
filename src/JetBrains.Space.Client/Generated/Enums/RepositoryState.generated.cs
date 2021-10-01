@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum RepositoryState
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum RepositoryState
-    {
-        [EnumMember(Value = "READY")]
-        READY,
-        
-        [EnumMember(Value = "IN_PROGRESS")]
-        INPROGRESS,
-        
-        [EnumMember(Value = "ERROR")]
-        ERROR,
-        
-    }
+    [EnumMember(Value = "READY")]
+    READY,
+    
+    [EnumMember(Value = "IN_PROGRESS")]
+    INPROGRESS,
+    
+    [EnumMember(Value = "ERROR")]
+    ERROR,
     
 }
+

@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.OrganizationDomainsPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.OrganizationDomainsPatchRequestPartialBuilder;
+
+public static class OrganizationDomainsPatchRequestPartialExtensions
 {
-    public static class OrganizationDomainsPatchRequestPartialExtensions
-    {
-        public static Partial<OrganizationDomainsPatchRequest> WithDomain(this Partial<OrganizationDomainsPatchRequest> it)
-            => it.AddFieldName("domain");
-        
-    }
+    public static Partial<OrganizationDomainsPatchRequest> WithDomain(this Partial<OrganizationDomainsPatchRequest> it)
+        => it.AddFieldName("domain");
     
 }
+

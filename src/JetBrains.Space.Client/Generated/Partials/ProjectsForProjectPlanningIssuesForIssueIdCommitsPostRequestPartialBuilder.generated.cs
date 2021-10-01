@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequestPartialBuilder;
+
+public static class ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest> WithRepository(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest> WithCommitIds(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest> it)
-            => it.AddFieldName("commitIds");
-        
-    }
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest> WithRepository(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest> WithCommitIds(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest> it)
+        => it.AddFieldName("commitIds");
     
 }
+

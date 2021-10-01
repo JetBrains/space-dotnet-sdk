@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FeedEventPartialBuilder
+namespace JetBrains.Space.Client.FeedEventPartialBuilder;
+
+public static class FeedEventPartialExtensions
 {
-    public static class FeedEventPartialExtensions
-    {
-    }
-    
 }
+

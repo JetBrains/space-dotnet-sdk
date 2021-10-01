@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum DraftDocumentType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum DraftDocumentType
-    {
-        [EnumMember(Value = "WYSIWYG")]
-        WYSIWYG,
-        
-        [EnumMember(Value = "MARKDOWN")]
-        MARKDOWN,
-        
-    }
+    [EnumMember(Value = "WYSIWYG")]
+    WYSIWYG,
+    
+    [EnumMember(Value = "MARKDOWN")]
+    MARKDOWN,
     
 }
+

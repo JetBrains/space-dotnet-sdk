@@ -27,94 +27,93 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESAuthenticationSession
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ESAuthenticationSession
-         : IPropagatePropertyAccessPath
+    public ESAuthenticationSession() { }
+    
+    public ESAuthenticationSession(string id, TDMemberProfile profile, DateTime created, DateTime expires, bool current, AccessRecord? lastAccess = null)
     {
-        public ESAuthenticationSession() { }
-        
-        public ESAuthenticationSession(string id, TDMemberProfile profile, DateTime created, DateTime expires, bool current, AccessRecord? lastAccess = null)
-        {
-            Id = id;
-            Profile = profile;
-            Created = created;
-            Expires = expires;
-            LastAccess = lastAccess;
-            IsCurrent = current;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESAuthenticationSession), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(ESAuthenticationSession), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfile Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESAuthenticationSession), nameof(Created));
-        
-        [Required]
-        [JsonPropertyName("created")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Created
-        {
-            get => _created.GetValue();
-            set => _created.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _expires = new PropertyValue<DateTime>(nameof(ESAuthenticationSession), nameof(Expires));
-        
-        [Required]
-        [JsonPropertyName("expires")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Expires
-        {
-            get => _expires.GetValue();
-            set => _expires.SetValue(value);
-        }
-    
-        private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESAuthenticationSession), nameof(LastAccess));
-        
-        [JsonPropertyName("lastAccess")]
-        public AccessRecord? LastAccess
-        {
-            get => _lastAccess.GetValue();
-            set => _lastAccess.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _current = new PropertyValue<bool>(nameof(ESAuthenticationSession), nameof(IsCurrent));
-        
-        [Required]
-        [JsonPropertyName("current")]
-        public bool IsCurrent
-        {
-            get => _current.GetValue();
-            set => _current.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _created.SetAccessPath(path, validateHasBeenSet);
-            _expires.SetAccessPath(path, validateHasBeenSet);
-            _lastAccess.SetAccessPath(path, validateHasBeenSet);
-            _current.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Profile = profile;
+        Created = created;
+        Expires = expires;
+        LastAccess = lastAccess;
+        IsCurrent = current;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESAuthenticationSession), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(ESAuthenticationSession), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public TDMemberProfile Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESAuthenticationSession), nameof(Created));
+    
+    [Required]
+    [JsonPropertyName("created")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Created
+    {
+        get => _created.GetValue();
+        set => _created.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _expires = new PropertyValue<DateTime>(nameof(ESAuthenticationSession), nameof(Expires));
+    
+    [Required]
+    [JsonPropertyName("expires")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Expires
+    {
+        get => _expires.GetValue();
+        set => _expires.SetValue(value);
+    }
+
+    private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESAuthenticationSession), nameof(LastAccess));
+    
+    [JsonPropertyName("lastAccess")]
+    public AccessRecord? LastAccess
+    {
+        get => _lastAccess.GetValue();
+        set => _lastAccess.SetValue(value);
+    }
+
+    private PropertyValue<bool> _current = new PropertyValue<bool>(nameof(ESAuthenticationSession), nameof(IsCurrent));
+    
+    [Required]
+    [JsonPropertyName("current")]
+    public bool IsCurrent
+    {
+        get => _current.GetValue();
+        set => _current.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _created.SetAccessPath(path, validateHasBeenSet);
+        _expires.SetAccessPath(path, validateHasBeenSet);
+        _lastAccess.SetAccessPath(path, validateHasBeenSet);
+        _current.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

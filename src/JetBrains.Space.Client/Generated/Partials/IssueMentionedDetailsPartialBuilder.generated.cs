@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueMentionedDetailsPartialBuilder
+namespace JetBrains.Space.Client.IssueMentionedDetailsPartialBuilder;
+
+public static class IssueMentionedDetailsPartialExtensions
 {
-    public static class IssueMentionedDetailsPartialExtensions
-    {
-        public static Partial<IssueMentionedDetails> WithMessage(this Partial<IssueMentionedDetails> it)
-            => it.AddFieldName("message");
-        
-        public static Partial<IssueMentionedDetails> WithMessage(this Partial<IssueMentionedDetails> it, Func<Partial<ChannelItemSnapshot>, Partial<ChannelItemSnapshot>> partialBuilder)
-            => it.AddFieldName("message", partialBuilder(new Partial<ChannelItemSnapshot>(it)));
-        
-    }
+    public static Partial<IssueMentionedDetails> WithMessage(this Partial<IssueMentionedDetails> it)
+        => it.AddFieldName("message");
+    
+    public static Partial<IssueMentionedDetails> WithMessage(this Partial<IssueMentionedDetails> it, Func<Partial<ChannelItemSnapshot>, Partial<ChannelItemSnapshot>> partialBuilder)
+        => it.AddFieldName("message", partialBuilder(new Partial<ChannelItemSnapshot>(it)));
     
 }
+

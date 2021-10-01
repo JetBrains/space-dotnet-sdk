@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ChatsChannelsForChannelImportPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ChatsChannelsForChannelImportPostRequest
-         : IPropagatePropertyAccessPath
+    public ChatsChannelsForChannelImportPostRequest() { }
+    
+    public ChatsChannelsForChannelImportPostRequest(List<MessageForImport> messages)
     {
-        public ChatsChannelsForChannelImportPostRequest() { }
-        
-        public ChatsChannelsForChannelImportPostRequest(List<MessageForImport> messages)
-        {
-            Messages = messages;
-        }
-        
-        private PropertyValue<List<MessageForImport>> _messages = new PropertyValue<List<MessageForImport>>(nameof(ChatsChannelsForChannelImportPostRequest), nameof(Messages), new List<MessageForImport>());
-        
-        [Required]
-        [JsonPropertyName("messages")]
-        public List<MessageForImport> Messages
-        {
-            get => _messages.GetValue();
-            set => _messages.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _messages.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Messages = messages;
     }
     
+    private PropertyValue<List<MessageForImport>> _messages = new PropertyValue<List<MessageForImport>>(nameof(ChatsChannelsForChannelImportPostRequest), nameof(Messages), new List<MessageForImport>());
+    
+    [Required]
+    [JsonPropertyName("messages")]
+    public List<MessageForImport> Messages
+    {
+        get => _messages.GetValue();
+        set => _messages.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _messages.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

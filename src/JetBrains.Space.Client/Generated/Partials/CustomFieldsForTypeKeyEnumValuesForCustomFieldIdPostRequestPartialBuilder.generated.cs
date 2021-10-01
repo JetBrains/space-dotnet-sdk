@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequestPartialBuilder
+namespace JetBrains.Space.Client.CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequestPartialBuilder;
+
+public static class CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequestPartialExtensions
 {
-    public static class CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequestPartialExtensions
-    {
-        public static Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> WithValuesToAdd(this Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> it)
-            => it.AddFieldName("valuesToAdd");
-        
-        public static Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> WithValuesToAdd(this Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> it, Func<Partial<EnumValueData>, Partial<EnumValueData>> partialBuilder)
-            => it.AddFieldName("valuesToAdd", partialBuilder(new Partial<EnumValueData>(it)));
-        
-        public static Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> it)
-            => it.AddFieldName("scope");
-        
-        public static Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
-            => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
-        
-    }
+    public static Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> WithValuesToAdd(this Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> it)
+        => it.AddFieldName("valuesToAdd");
+    
+    public static Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> WithValuesToAdd(this Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> it, Func<Partial<EnumValueData>, Partial<EnumValueData>> partialBuilder)
+        => it.AddFieldName("valuesToAdd", partialBuilder(new Partial<EnumValueData>(it)));
+    
+    public static Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> it)
+        => it.AddFieldName("scope");
+    
+    public static Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
+        => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
     
 }
+

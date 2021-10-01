@@ -27,71 +27,70 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MessageButton
+     : MessageControlElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MessageButton
-         : MessageControlElement, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MessageButton";
+    
+    public MessageButton() { }
+    
+    public MessageButton(string text, MessageButtonStyle style, MessageAction action, bool? disabled = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MessageButton";
-        
-        public MessageButton() { }
-        
-        public MessageButton(string text, MessageButtonStyle style, MessageAction action, bool? disabled = null)
-        {
-            Text = text;
-            Style = style;
-            Action = action;
-            IsDisabled = disabled;
-        }
-        
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageButton), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        private PropertyValue<MessageButtonStyle> _style = new PropertyValue<MessageButtonStyle>(nameof(MessageButton), nameof(Style));
-        
-        [Required]
-        [JsonPropertyName("style")]
-        public MessageButtonStyle Style
-        {
-            get => _style.GetValue();
-            set => _style.SetValue(value);
-        }
-    
-        private PropertyValue<MessageAction> _action = new PropertyValue<MessageAction>(nameof(MessageButton), nameof(Action));
-        
-        [Required]
-        [JsonPropertyName("action")]
-        public MessageAction Action
-        {
-            get => _action.GetValue();
-            set => _action.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _disabled = new PropertyValue<bool?>(nameof(MessageButton), nameof(IsDisabled));
-        
-        [JsonPropertyName("disabled")]
-        public bool? IsDisabled
-        {
-            get => _disabled.GetValue();
-            set => _disabled.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _style.SetAccessPath(path, validateHasBeenSet);
-            _action.SetAccessPath(path, validateHasBeenSet);
-            _disabled.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Text = text;
+        Style = style;
+        Action = action;
+        IsDisabled = disabled;
     }
     
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageButton), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    private PropertyValue<MessageButtonStyle> _style = new PropertyValue<MessageButtonStyle>(nameof(MessageButton), nameof(Style));
+    
+    [Required]
+    [JsonPropertyName("style")]
+    public MessageButtonStyle Style
+    {
+        get => _style.GetValue();
+        set => _style.SetValue(value);
+    }
+
+    private PropertyValue<MessageAction> _action = new PropertyValue<MessageAction>(nameof(MessageButton), nameof(Action));
+    
+    [Required]
+    [JsonPropertyName("action")]
+    public MessageAction Action
+    {
+        get => _action.GetValue();
+        set => _action.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _disabled = new PropertyValue<bool?>(nameof(MessageButton), nameof(IsDisabled));
+    
+    [JsonPropertyName("disabled")]
+    public bool? IsDisabled
+    {
+        get => _disabled.GetValue();
+        set => _disabled.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _text.SetAccessPath(path, validateHasBeenSet);
+        _style.SetAccessPath(path, validateHasBeenSet);
+        _action.SetAccessPath(path, validateHasBeenSet);
+        _disabled.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

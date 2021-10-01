@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ATimeZonePartialBuilder
+namespace JetBrains.Space.Client.ATimeZonePartialBuilder;
+
+public static class ATimeZonePartialExtensions
 {
-    public static class ATimeZonePartialExtensions
-    {
-        public static Partial<ATimeZone> WithId(this Partial<ATimeZone> it)
-            => it.AddFieldName("id");
-        
-    }
+    public static Partial<ATimeZone> WithId(this Partial<ATimeZone> it)
+        => it.AddFieldName("id");
     
 }
+

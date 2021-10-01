@@ -27,14 +27,13 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface MessageFieldElement
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface MessageFieldElement
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static MessageField MessageField(string first, string second)
-            => new MessageField(first: first, second: second);
-        
-    }
+    public static MessageField MessageField(string first, string second)
+        => new MessageField(first: first, second: second);
     
 }
+

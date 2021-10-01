@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileGpgKeysPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileGpgKeysPostRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfileGpgKeysPostRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfileGpgKeysPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfileGpgKeysPostRequest> WithKey(this Partial<TeamDirectoryProfilesForProfileGpgKeysPostRequest> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<TeamDirectoryProfilesForProfileGpgKeysPostRequest> WithComment(this Partial<TeamDirectoryProfilesForProfileGpgKeysPostRequest> it)
-            => it.AddFieldName("comment");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfileGpgKeysPostRequest> WithKey(this Partial<TeamDirectoryProfilesForProfileGpgKeysPostRequest> it)
+        => it.AddFieldName("key");
+    
+    public static Partial<TeamDirectoryProfilesForProfileGpgKeysPostRequest> WithComment(this Partial<TeamDirectoryProfilesForProfileGpgKeysPostRequest> it)
+        => it.AddFieldName("comment");
     
 }
+

@@ -27,67 +27,66 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class WorkingDaysSpec
+     : IPropagatePropertyAccessPath
 {
-    public sealed class WorkingDaysSpec
-         : IPropagatePropertyAccessPath
+    public WorkingDaysSpec() { }
+    
+    public WorkingDaysSpec(List<Workday> days, List<WeekDayTimeInterval>? workingHours = null, List<WeekDayTimeInterval>? notificationHours = null, ATimeZone? timezone = null)
     {
-        public WorkingDaysSpec() { }
-        
-        public WorkingDaysSpec(List<Workday> days, List<WeekDayTimeInterval>? workingHours = null, List<WeekDayTimeInterval>? notificationHours = null, ATimeZone? timezone = null)
-        {
-            Days = days;
-            WorkingHours = workingHours;
-            NotificationHours = notificationHours;
-            Timezone = timezone;
-        }
-        
-        private PropertyValue<List<Workday>> _days = new PropertyValue<List<Workday>>(nameof(WorkingDaysSpec), nameof(Days), new List<Workday>());
-        
-        [Required]
-        [Obsolete("Use workingHours and notificationHours instead (since 2020-11-10)")]
-        [JsonPropertyName("days")]
-        public List<Workday> Days
-        {
-            get => _days.GetValue();
-            set => _days.SetValue(value);
-        }
-    
-        private PropertyValue<List<WeekDayTimeInterval>?> _workingHours = new PropertyValue<List<WeekDayTimeInterval>?>(nameof(WorkingDaysSpec), nameof(WorkingHours));
-        
-        [JsonPropertyName("workingHours")]
-        public List<WeekDayTimeInterval>? WorkingHours
-        {
-            get => _workingHours.GetValue();
-            set => _workingHours.SetValue(value);
-        }
-    
-        private PropertyValue<List<WeekDayTimeInterval>?> _notificationHours = new PropertyValue<List<WeekDayTimeInterval>?>(nameof(WorkingDaysSpec), nameof(NotificationHours));
-        
-        [JsonPropertyName("notificationHours")]
-        public List<WeekDayTimeInterval>? NotificationHours
-        {
-            get => _notificationHours.GetValue();
-            set => _notificationHours.SetValue(value);
-        }
-    
-        private PropertyValue<ATimeZone?> _timezone = new PropertyValue<ATimeZone?>(nameof(WorkingDaysSpec), nameof(Timezone));
-        
-        [JsonPropertyName("timezone")]
-        public ATimeZone? Timezone
-        {
-            get => _timezone.GetValue();
-            set => _timezone.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _days.SetAccessPath(path, validateHasBeenSet);
-            _workingHours.SetAccessPath(path, validateHasBeenSet);
-            _notificationHours.SetAccessPath(path, validateHasBeenSet);
-            _timezone.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Days = days;
+        WorkingHours = workingHours;
+        NotificationHours = notificationHours;
+        Timezone = timezone;
     }
     
+    private PropertyValue<List<Workday>> _days = new PropertyValue<List<Workday>>(nameof(WorkingDaysSpec), nameof(Days), new List<Workday>());
+    
+    [Required]
+    [Obsolete("Use workingHours and notificationHours instead (since 2020-11-10)")]
+    [JsonPropertyName("days")]
+    public List<Workday> Days
+    {
+        get => _days.GetValue();
+        set => _days.SetValue(value);
+    }
+
+    private PropertyValue<List<WeekDayTimeInterval>?> _workingHours = new PropertyValue<List<WeekDayTimeInterval>?>(nameof(WorkingDaysSpec), nameof(WorkingHours));
+    
+    [JsonPropertyName("workingHours")]
+    public List<WeekDayTimeInterval>? WorkingHours
+    {
+        get => _workingHours.GetValue();
+        set => _workingHours.SetValue(value);
+    }
+
+    private PropertyValue<List<WeekDayTimeInterval>?> _notificationHours = new PropertyValue<List<WeekDayTimeInterval>?>(nameof(WorkingDaysSpec), nameof(NotificationHours));
+    
+    [JsonPropertyName("notificationHours")]
+    public List<WeekDayTimeInterval>? NotificationHours
+    {
+        get => _notificationHours.GetValue();
+        set => _notificationHours.SetValue(value);
+    }
+
+    private PropertyValue<ATimeZone?> _timezone = new PropertyValue<ATimeZone?>(nameof(WorkingDaysSpec), nameof(Timezone));
+    
+    [JsonPropertyName("timezone")]
+    public ATimeZone? Timezone
+    {
+        get => _timezone.GetValue();
+        set => _timezone.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _days.SetAccessPath(path, validateHasBeenSet);
+        _workingHours.SetAccessPath(path, validateHasBeenSet);
+        _notificationHours.SetAccessPath(path, validateHasBeenSet);
+        _timezone.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

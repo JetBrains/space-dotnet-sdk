@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest() { }
+    
+    public ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest(CodeReviewState state)
     {
-        public ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest() { }
-        
-        public ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest(CodeReviewState state)
-        {
-            State = state;
-        }
-        
-        private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest), nameof(State));
-        
-        [Required]
-        [JsonPropertyName("state")]
-        public CodeReviewState State
-        {
-            get => _state.GetValue();
-            set => _state.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _state.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        State = state;
     }
     
+    private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest), nameof(State));
+    
+    [Required]
+    [JsonPropertyName("state")]
+    public CodeReviewState State
+    {
+        get => _state.GetValue();
+        set => _state.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _state.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CAutomationTaskPrincipalDetails
+     : CPrincipalDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class CAutomationTaskPrincipalDetails
-         : CPrincipalDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "CAutomationTaskPrincipalDetails";
+    
+    public CAutomationTaskPrincipalDetails() { }
+    
+    public CAutomationTaskPrincipalDetails(PRProject project, string name, string id)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "CAutomationTaskPrincipalDetails";
-        
-        public CAutomationTaskPrincipalDetails() { }
-        
-        public CAutomationTaskPrincipalDetails(PRProject project, string name, string id)
-        {
-            Project = project;
-            Name = name;
-            Id = id;
-        }
-        
-        private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(CAutomationTaskPrincipalDetails), nameof(Project));
-        
-        [Required]
-        [JsonPropertyName("project")]
-        public PRProject Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(CAutomationTaskPrincipalDetails), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CAutomationTaskPrincipalDetails), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _id.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Project = project;
+        Name = name;
+        Id = id;
     }
     
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(CAutomationTaskPrincipalDetails), nameof(Project));
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public PRProject Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(CAutomationTaskPrincipalDetails), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CAutomationTaskPrincipalDetails), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _project.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

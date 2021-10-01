@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface MessageAccessoryElement
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface MessageAccessoryElement
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static MessageIcon MessageIcon(ApiIcon icon, MessageStyle style)
-            => new MessageIcon(icon: icon, style: style);
-        
-        public static MessageImage MessageImage(string src)
-            => new MessageImage(src: src);
-        
-        public static MessageTag MessageTag(string text, MessageStyle style)
-            => new MessageTag(text: text, style: style);
-        
-    }
+    public static MessageIcon MessageIcon(ApiIcon icon, MessageStyle style)
+        => new MessageIcon(icon: icon, style: style);
+    
+    public static MessageImage MessageImage(string src)
+        => new MessageImage(src: src);
+    
+    public static MessageTag MessageTag(string text, MessageStyle style)
+        => new MessageTag(text: text, style: style);
     
 }
+

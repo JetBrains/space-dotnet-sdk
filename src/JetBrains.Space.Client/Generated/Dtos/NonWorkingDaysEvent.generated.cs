@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class NonWorkingDaysEvent
+     : IPropagatePropertyAccessPath
 {
-    public sealed class NonWorkingDaysEvent
-         : IPropagatePropertyAccessPath
+    public NonWorkingDaysEvent() { }
+    
+    public NonWorkingDaysEvent(TDMemberProfile profile, List<NonWorkingDays> days)
     {
-        public NonWorkingDaysEvent() { }
-        
-        public NonWorkingDaysEvent(TDMemberProfile profile, List<NonWorkingDays> days)
-        {
-            Profile = profile;
-            Days = days;
-        }
-        
-        private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(NonWorkingDaysEvent), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfile Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<List<NonWorkingDays>> _days = new PropertyValue<List<NonWorkingDays>>(nameof(NonWorkingDaysEvent), nameof(Days), new List<NonWorkingDays>());
-        
-        [Required]
-        [JsonPropertyName("days")]
-        public List<NonWorkingDays> Days
-        {
-            get => _days.GetValue();
-            set => _days.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _days.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
+        Days = days;
     }
     
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(NonWorkingDaysEvent), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public TDMemberProfile Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<List<NonWorkingDays>> _days = new PropertyValue<List<NonWorkingDays>>(nameof(NonWorkingDaysEvent), nameof(Days), new List<NonWorkingDays>());
+    
+    [Required]
+    [JsonPropertyName("days")]
+    public List<NonWorkingDays> Days
+    {
+        get => _days.GetValue();
+        set => _days.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _days.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

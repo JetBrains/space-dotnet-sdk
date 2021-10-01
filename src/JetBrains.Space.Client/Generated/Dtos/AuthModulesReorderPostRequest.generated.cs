@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class AuthModulesReorderPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class AuthModulesReorderPostRequest
-         : IPropagatePropertyAccessPath
+    public AuthModulesReorderPostRequest() { }
+    
+    public AuthModulesReorderPostRequest(List<string> order)
     {
-        public AuthModulesReorderPostRequest() { }
-        
-        public AuthModulesReorderPostRequest(List<string> order)
-        {
-            Order = order;
-        }
-        
-        private PropertyValue<List<string>> _order = new PropertyValue<List<string>>(nameof(AuthModulesReorderPostRequest), nameof(Order), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("order")]
-        public List<string> Order
-        {
-            get => _order.GetValue();
-            set => _order.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _order.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Order = order;
     }
     
+    private PropertyValue<List<string>> _order = new PropertyValue<List<string>>(nameof(AuthModulesReorderPostRequest), nameof(Order), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("order")]
+    public List<string> Order
+    {
+        get => _order.GetValue();
+        set => _order.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _order.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

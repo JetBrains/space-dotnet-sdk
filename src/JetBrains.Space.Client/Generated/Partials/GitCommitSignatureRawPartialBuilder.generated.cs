@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitCommitSignatureRawPartialBuilder
+namespace JetBrains.Space.Client.GitCommitSignatureRawPartialBuilder;
+
+public static class GitCommitSignatureRawPartialExtensions
 {
-    public static class GitCommitSignatureRawPartialExtensions
-    {
-        public static Partial<GitCommitSignatureRaw> WithSignature(this Partial<GitCommitSignatureRaw> it)
-            => it.AddFieldName("signature");
-        
-        public static Partial<GitCommitSignatureRaw> WithSignedDataB64(this Partial<GitCommitSignatureRaw> it)
-            => it.AddFieldName("signedDataB64");
-        
-    }
+    public static Partial<GitCommitSignatureRaw> WithSignature(this Partial<GitCommitSignatureRaw> it)
+        => it.AddFieldName("signature");
+    
+    public static Partial<GitCommitSignatureRaw> WithSignedDataB64(this Partial<GitCommitSignatureRaw> it)
+        => it.AddFieldName("signedDataB64");
     
 }
+

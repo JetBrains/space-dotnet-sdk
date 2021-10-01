@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CustomGenericSubscriptionIn
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CustomGenericSubscriptionIn
-         : IPropagatePropertyAccessPath
+    public CustomGenericSubscriptionIn() { }
+    
+    public CustomGenericSubscriptionIn(string subjectCode, List<SubscriptionFilterIn> filters, List<string> eventTypeCodes)
     {
-        public CustomGenericSubscriptionIn() { }
-        
-        public CustomGenericSubscriptionIn(string subjectCode, List<SubscriptionFilterIn> filters, List<string> eventTypeCodes)
-        {
-            SubjectCode = subjectCode;
-            Filters = filters;
-            EventTypeCodes = eventTypeCodes;
-        }
-        
-        private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(CustomGenericSubscriptionIn), nameof(SubjectCode));
-        
-        [Required]
-        [JsonPropertyName("subjectCode")]
-        public string SubjectCode
-        {
-            get => _subjectCode.GetValue();
-            set => _subjectCode.SetValue(value);
-        }
-    
-        private PropertyValue<List<SubscriptionFilterIn>> _filters = new PropertyValue<List<SubscriptionFilterIn>>(nameof(CustomGenericSubscriptionIn), nameof(Filters), new List<SubscriptionFilterIn>());
-        
-        [Required]
-        [JsonPropertyName("filters")]
-        public List<SubscriptionFilterIn> Filters
-        {
-            get => _filters.GetValue();
-            set => _filters.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _eventTypeCodes = new PropertyValue<List<string>>(nameof(CustomGenericSubscriptionIn), nameof(EventTypeCodes), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("eventTypeCodes")]
-        public List<string> EventTypeCodes
-        {
-            get => _eventTypeCodes.GetValue();
-            set => _eventTypeCodes.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _subjectCode.SetAccessPath(path, validateHasBeenSet);
-            _filters.SetAccessPath(path, validateHasBeenSet);
-            _eventTypeCodes.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        SubjectCode = subjectCode;
+        Filters = filters;
+        EventTypeCodes = eventTypeCodes;
     }
     
+    private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(CustomGenericSubscriptionIn), nameof(SubjectCode));
+    
+    [Required]
+    [JsonPropertyName("subjectCode")]
+    public string SubjectCode
+    {
+        get => _subjectCode.GetValue();
+        set => _subjectCode.SetValue(value);
+    }
+
+    private PropertyValue<List<SubscriptionFilterIn>> _filters = new PropertyValue<List<SubscriptionFilterIn>>(nameof(CustomGenericSubscriptionIn), nameof(Filters), new List<SubscriptionFilterIn>());
+    
+    [Required]
+    [JsonPropertyName("filters")]
+    public List<SubscriptionFilterIn> Filters
+    {
+        get => _filters.GetValue();
+        set => _filters.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _eventTypeCodes = new PropertyValue<List<string>>(nameof(CustomGenericSubscriptionIn), nameof(EventTypeCodes), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("eventTypeCodes")]
+    public List<string> EventTypeCodes
+    {
+        get => _eventTypeCodes.GetValue();
+        set => _eventTypeCodes.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _subjectCode.SetAccessPath(path, validateHasBeenSet);
+        _filters.SetAccessPath(path, validateHasBeenSet);
+        _eventTypeCodes.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

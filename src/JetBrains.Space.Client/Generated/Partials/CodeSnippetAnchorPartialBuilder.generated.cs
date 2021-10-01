@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeSnippetAnchorPartialBuilder
+namespace JetBrains.Space.Client.CodeSnippetAnchorPartialBuilder;
+
+public static class CodeSnippetAnchorPartialExtensions
 {
-    public static class CodeSnippetAnchorPartialExtensions
-    {
-        public static Partial<CodeSnippetAnchor> WithProjectKey(this Partial<CodeSnippetAnchor> it)
-            => it.AddFieldName("projectKey");
-        
-        public static Partial<CodeSnippetAnchor> WithProjectKey(this Partial<CodeSnippetAnchor> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
-            => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
-        
-        public static Partial<CodeSnippetAnchor> WithRepository(this Partial<CodeSnippetAnchor> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<CodeSnippetAnchor> WithRevision(this Partial<CodeSnippetAnchor> it)
-            => it.AddFieldName("revision");
-        
-        public static Partial<CodeSnippetAnchor> WithFilename(this Partial<CodeSnippetAnchor> it)
-            => it.AddFieldName("filename");
-        
-        public static Partial<CodeSnippetAnchor> WithLineIndex(this Partial<CodeSnippetAnchor> it)
-            => it.AddFieldName("lineIndex");
-        
-        public static Partial<CodeSnippetAnchor> WithLineStart(this Partial<CodeSnippetAnchor> it)
-            => it.AddFieldName("lineStart");
-        
-        public static Partial<CodeSnippetAnchor> WithLineEnd(this Partial<CodeSnippetAnchor> it)
-            => it.AddFieldName("lineEnd");
-        
-    }
+    public static Partial<CodeSnippetAnchor> WithProjectKey(this Partial<CodeSnippetAnchor> it)
+        => it.AddFieldName("projectKey");
+    
+    public static Partial<CodeSnippetAnchor> WithProjectKey(this Partial<CodeSnippetAnchor> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
+        => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
+    
+    public static Partial<CodeSnippetAnchor> WithRepository(this Partial<CodeSnippetAnchor> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<CodeSnippetAnchor> WithRevision(this Partial<CodeSnippetAnchor> it)
+        => it.AddFieldName("revision");
+    
+    public static Partial<CodeSnippetAnchor> WithFilename(this Partial<CodeSnippetAnchor> it)
+        => it.AddFieldName("filename");
+    
+    public static Partial<CodeSnippetAnchor> WithLineIndex(this Partial<CodeSnippetAnchor> it)
+        => it.AddFieldName("lineIndex");
+    
+    public static Partial<CodeSnippetAnchor> WithLineStart(this Partial<CodeSnippetAnchor> it)
+        => it.AddFieldName("lineStart");
+    
+    public static Partial<CodeSnippetAnchor> WithLineEnd(this Partial<CodeSnippetAnchor> it)
+        => it.AddFieldName("lineEnd");
     
 }
+

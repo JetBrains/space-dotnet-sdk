@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PrivateChannelPermissionContextPartialBuilder
+namespace JetBrains.Space.Client.PrivateChannelPermissionContextPartialBuilder;
+
+public static class PrivateChannelPermissionContextPartialExtensions
 {
-    public static class PrivateChannelPermissionContextPartialExtensions
-    {
-        public static Partial<PrivateChannelPermissionContext> WithChannelId(this Partial<PrivateChannelPermissionContext> it)
-            => it.AddFieldName("channelId");
-        
-    }
+    public static Partial<PrivateChannelPermissionContext> WithChannelId(this Partial<PrivateChannelPermissionContext> it)
+        => it.AddFieldName("channelId");
     
 }
+

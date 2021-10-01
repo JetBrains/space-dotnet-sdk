@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IntelliJSharedIndexNamedUploadUrlPartialBuilder
+namespace JetBrains.Space.Client.IntelliJSharedIndexNamedUploadUrlPartialBuilder;
+
+public static class IntelliJSharedIndexNamedUploadUrlPartialExtensions
 {
-    public static class IntelliJSharedIndexNamedUploadUrlPartialExtensions
-    {
-        public static Partial<IntelliJSharedIndexNamedUploadUrl> WithName(this Partial<IntelliJSharedIndexNamedUploadUrl> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<IntelliJSharedIndexNamedUploadUrl> WithUrl(this Partial<IntelliJSharedIndexNamedUploadUrl> it)
-            => it.AddFieldName("url");
-        
-        public static Partial<IntelliJSharedIndexNamedUploadUrl> WithUrl(this Partial<IntelliJSharedIndexNamedUploadUrl> it, Func<Partial<IntelliJSharedIndexUploadUrl>, Partial<IntelliJSharedIndexUploadUrl>> partialBuilder)
-            => it.AddFieldName("url", partialBuilder(new Partial<IntelliJSharedIndexUploadUrl>(it)));
-        
-    }
+    public static Partial<IntelliJSharedIndexNamedUploadUrl> WithName(this Partial<IntelliJSharedIndexNamedUploadUrl> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<IntelliJSharedIndexNamedUploadUrl> WithUrl(this Partial<IntelliJSharedIndexNamedUploadUrl> it)
+        => it.AddFieldName("url");
+    
+    public static Partial<IntelliJSharedIndexNamedUploadUrl> WithUrl(this Partial<IntelliJSharedIndexNamedUploadUrl> it, Func<Partial<IntelliJSharedIndexUploadUrl>, Partial<IntelliJSharedIndexUploadUrl>> partialBuilder)
+        => it.AddFieldName("url", partialBuilder(new Partial<IntelliJSharedIndexUploadUrl>(it)));
     
 }
+

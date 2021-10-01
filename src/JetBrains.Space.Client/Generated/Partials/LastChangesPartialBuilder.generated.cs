@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.LastChangesPartialBuilder
+namespace JetBrains.Space.Client.LastChangesPartialBuilder;
+
+public static class LastChangesPartialExtensions
 {
-    public static class LastChangesPartialExtensions
-    {
-        public static Partial<LastChanges> WithLastChangesItems(this Partial<LastChanges> it)
-            => it.AddFieldName("lastChanges");
-        
-        public static Partial<LastChanges> WithLastChangesItems(this Partial<LastChanges> it, Func<Partial<RevisionInfo>, Partial<RevisionInfo>> partialBuilder)
-            => it.AddFieldName("lastChanges", partialBuilder(new Partial<RevisionInfo>(it)));
-        
-        public static Partial<LastChanges> WithTotalChanges(this Partial<LastChanges> it)
-            => it.AddFieldName("totalChanges");
-        
-    }
+    public static Partial<LastChanges> WithLastChangesItems(this Partial<LastChanges> it)
+        => it.AddFieldName("lastChanges");
+    
+    public static Partial<LastChanges> WithLastChangesItems(this Partial<LastChanges> it, Func<Partial<RevisionInfo>, Partial<RevisionInfo>> partialBuilder)
+        => it.AddFieldName("lastChanges", partialBuilder(new Partial<RevisionInfo>(it)));
+    
+    public static Partial<LastChanges> WithTotalChanges(this Partial<LastChanges> it)
+        => it.AddFieldName("totalChanges");
     
 }
+

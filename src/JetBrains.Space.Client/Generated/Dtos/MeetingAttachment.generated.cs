@@ -27,76 +27,75 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MeetingAttachment
+     : IPropagatePropertyAccessPath
 {
-    public sealed class MeetingAttachment
-         : IPropagatePropertyAccessPath
+    public MeetingAttachment() { }
+    
+    public MeetingAttachment(string? fileUrl = null, string? title = null, string? mimeType = null, string? fileId = null, string? source = null)
     {
-        public MeetingAttachment() { }
-        
-        public MeetingAttachment(string? fileUrl = null, string? title = null, string? mimeType = null, string? fileId = null, string? source = null)
-        {
-            FileUrl = fileUrl;
-            Title = title;
-            MimeType = mimeType;
-            FileId = fileId;
-            Source = source;
-        }
-        
-        private PropertyValue<string?> _fileUrl = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(FileUrl));
-        
-        [JsonPropertyName("fileUrl")]
-        public string? FileUrl
-        {
-            get => _fileUrl.GetValue();
-            set => _fileUrl.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(Title));
-        
-        [JsonPropertyName("title")]
-        public string? Title
-        {
-            get => _title.GetValue();
-            set => _title.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _mimeType = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(MimeType));
-        
-        [JsonPropertyName("mimeType")]
-        public string? MimeType
-        {
-            get => _mimeType.GetValue();
-            set => _mimeType.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _fileId = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(FileId));
-        
-        [JsonPropertyName("fileId")]
-        public string? FileId
-        {
-            get => _fileId.GetValue();
-            set => _fileId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _source = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(Source));
-        
-        [JsonPropertyName("source")]
-        public string? Source
-        {
-            get => _source.GetValue();
-            set => _source.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _fileUrl.SetAccessPath(path, validateHasBeenSet);
-            _title.SetAccessPath(path, validateHasBeenSet);
-            _mimeType.SetAccessPath(path, validateHasBeenSet);
-            _fileId.SetAccessPath(path, validateHasBeenSet);
-            _source.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        FileUrl = fileUrl;
+        Title = title;
+        MimeType = mimeType;
+        FileId = fileId;
+        Source = source;
     }
     
+    private PropertyValue<string?> _fileUrl = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(FileUrl));
+    
+    [JsonPropertyName("fileUrl")]
+    public string? FileUrl
+    {
+        get => _fileUrl.GetValue();
+        set => _fileUrl.SetValue(value);
+    }
+
+    private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(Title));
+    
+    [JsonPropertyName("title")]
+    public string? Title
+    {
+        get => _title.GetValue();
+        set => _title.SetValue(value);
+    }
+
+    private PropertyValue<string?> _mimeType = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(MimeType));
+    
+    [JsonPropertyName("mimeType")]
+    public string? MimeType
+    {
+        get => _mimeType.GetValue();
+        set => _mimeType.SetValue(value);
+    }
+
+    private PropertyValue<string?> _fileId = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(FileId));
+    
+    [JsonPropertyName("fileId")]
+    public string? FileId
+    {
+        get => _fileId.GetValue();
+        set => _fileId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _source = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(Source));
+    
+    [JsonPropertyName("source")]
+    public string? Source
+    {
+        get => _source.GetValue();
+        set => _source.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _fileUrl.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(path, validateHasBeenSet);
+        _mimeType.SetAccessPath(path, validateHasBeenSet);
+        _fileId.SetAccessPath(path, validateHasBeenSet);
+        _source.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.KotlinPlatformPartialBuilder
+namespace JetBrains.Space.Client.KotlinPlatformPartialBuilder;
+
+public static class KotlinPlatformPartialExtensions
 {
-    public static class KotlinPlatformPartialExtensions
-    {
-        public static Partial<KotlinPlatform> WithName(this Partial<KotlinPlatform> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<KotlinPlatform> WithTargets(this Partial<KotlinPlatform> it)
-            => it.AddFieldName("targets");
-        
-    }
+    public static Partial<KotlinPlatform> WithName(this Partial<KotlinPlatform> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<KotlinPlatform> WithTargets(this Partial<KotlinPlatform> it)
+        => it.AddFieldName("targets");
     
 }
+

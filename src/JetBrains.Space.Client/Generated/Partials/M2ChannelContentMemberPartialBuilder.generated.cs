@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContentMemberPartialBuilder
+namespace JetBrains.Space.Client.M2ChannelContentMemberPartialBuilder;
+
+public static class M2ChannelContentMemberPartialExtensions
 {
-    public static class M2ChannelContentMemberPartialExtensions
-    {
-        public static Partial<M2ChannelContentMember> WithMember(this Partial<M2ChannelContentMember> it)
-            => it.AddFieldName("member");
-        
-        public static Partial<M2ChannelContentMember> WithMember(this Partial<M2ChannelContentMember> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("member", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<M2ChannelContentMember> WithNotificationDefaults(this Partial<M2ChannelContentMember> it)
-            => it.AddFieldName("notificationDefaults");
-        
-        public static Partial<M2ChannelContentMember> WithNotificationDefaults(this Partial<M2ChannelContentMember> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
-        
-        public static Partial<M2ChannelContentMember> WithMemberAbsences(this Partial<M2ChannelContentMember> it)
-            => it.AddFieldName("memberAbsences");
-        
-        public static Partial<M2ChannelContentMember> WithMemberAbsences(this Partial<M2ChannelContentMember> it, Func<Partial<ProfileAbsencesRecord>, Partial<ProfileAbsencesRecord>> partialBuilder)
-            => it.AddFieldName("memberAbsences", partialBuilder(new Partial<ProfileAbsencesRecord>(it)));
-        
-        public static Partial<M2ChannelContentMember> WithMemberTeams(this Partial<M2ChannelContentMember> it)
-            => it.AddFieldName("memberTeams");
-        
-        public static Partial<M2ChannelContentMember> WithMemberTeams(this Partial<M2ChannelContentMember> it, Func<Partial<ProfileMembershipRecord>, Partial<ProfileMembershipRecord>> partialBuilder)
-            => it.AddFieldName("memberTeams", partialBuilder(new Partial<ProfileMembershipRecord>(it)));
-        
-    }
+    public static Partial<M2ChannelContentMember> WithMember(this Partial<M2ChannelContentMember> it)
+        => it.AddFieldName("member");
+    
+    public static Partial<M2ChannelContentMember> WithMember(this Partial<M2ChannelContentMember> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("member", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<M2ChannelContentMember> WithNotificationDefaults(this Partial<M2ChannelContentMember> it)
+        => it.AddFieldName("notificationDefaults");
+    
+    public static Partial<M2ChannelContentMember> WithNotificationDefaults(this Partial<M2ChannelContentMember> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
+        => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
+    
+    public static Partial<M2ChannelContentMember> WithMemberAbsences(this Partial<M2ChannelContentMember> it)
+        => it.AddFieldName("memberAbsences");
+    
+    public static Partial<M2ChannelContentMember> WithMemberAbsences(this Partial<M2ChannelContentMember> it, Func<Partial<ProfileAbsencesRecord>, Partial<ProfileAbsencesRecord>> partialBuilder)
+        => it.AddFieldName("memberAbsences", partialBuilder(new Partial<ProfileAbsencesRecord>(it)));
+    
+    public static Partial<M2ChannelContentMember> WithMemberTeams(this Partial<M2ChannelContentMember> it)
+        => it.AddFieldName("memberTeams");
+    
+    public static Partial<M2ChannelContentMember> WithMemberTeams(this Partial<M2ChannelContentMember> it, Func<Partial<ProfileMembershipRecord>, Partial<ProfileMembershipRecord>> partialBuilder)
+        => it.AddFieldName("memberTeams", partialBuilder(new Partial<ProfileMembershipRecord>(it)));
     
 }
+

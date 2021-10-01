@@ -27,27 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class CFCommitIdentifier
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class CFCommitIdentifier
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "CFCommitIdentifier";
+    
+    public static CFCommitIdentifierCommitHash CommitHash(string commitHash)
+        => new CFCommitIdentifierCommitHash(commitHash: commitHash);
+    
+    public static CFCommitIdentifierFull Full(ProjectIdentifier project, string repository, string commitHash)
+        => new CFCommitIdentifierFull(project: project, repository: repository, commitHash: commitHash);
+    
+    public CFCommitIdentifier() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "CFCommitIdentifier";
-        
-        public static CFCommitIdentifierCommitHash CommitHash(string commitHash)
-            => new CFCommitIdentifierCommitHash(commitHash: commitHash);
-        
-        public static CFCommitIdentifierFull Full(ProjectIdentifier project, string repository, string commitHash)
-            => new CFCommitIdentifierFull(project: project, repository: repository, commitHash: commitHash);
-        
-        public CFCommitIdentifier() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

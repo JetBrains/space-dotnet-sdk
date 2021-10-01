@@ -27,70 +27,69 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ProfileOrganizationEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ProfileOrganizationEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ProfileOrganizationEvent";
+    
+    public ProfileOrganizationEvent() { }
+    
+    public ProfileOrganizationEvent(KMetaMod meta, TDMemberProfile member, bool? joinedOrganization = null, bool? leftOrganization = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ProfileOrganizationEvent";
-        
-        public ProfileOrganizationEvent() { }
-        
-        public ProfileOrganizationEvent(KMetaMod meta, TDMemberProfile member, bool? joinedOrganization = null, bool? leftOrganization = null)
-        {
-            Meta = meta;
-            Member = member;
-            IsJoinedOrganization = joinedOrganization;
-            IsLeftOrganization = leftOrganization;
-        }
-        
-        private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ProfileOrganizationEvent), nameof(Meta));
-        
-        [Required]
-        [JsonPropertyName("meta")]
-        public KMetaMod Meta
-        {
-            get => _meta.GetValue();
-            set => _meta.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(ProfileOrganizationEvent), nameof(Member));
-        
-        [Required]
-        [JsonPropertyName("member")]
-        public TDMemberProfile Member
-        {
-            get => _member.GetValue();
-            set => _member.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _joinedOrganization = new PropertyValue<bool?>(nameof(ProfileOrganizationEvent), nameof(IsJoinedOrganization));
-        
-        [JsonPropertyName("joinedOrganization")]
-        public bool? IsJoinedOrganization
-        {
-            get => _joinedOrganization.GetValue();
-            set => _joinedOrganization.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _leftOrganization = new PropertyValue<bool?>(nameof(ProfileOrganizationEvent), nameof(IsLeftOrganization));
-        
-        [JsonPropertyName("leftOrganization")]
-        public bool? IsLeftOrganization
-        {
-            get => _leftOrganization.GetValue();
-            set => _leftOrganization.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _meta.SetAccessPath(path, validateHasBeenSet);
-            _member.SetAccessPath(path, validateHasBeenSet);
-            _joinedOrganization.SetAccessPath(path, validateHasBeenSet);
-            _leftOrganization.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Meta = meta;
+        Member = member;
+        IsJoinedOrganization = joinedOrganization;
+        IsLeftOrganization = leftOrganization;
     }
     
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ProfileOrganizationEvent), nameof(Meta));
+    
+    [Required]
+    [JsonPropertyName("meta")]
+    public KMetaMod Meta
+    {
+        get => _meta.GetValue();
+        set => _meta.SetValue(value);
+    }
+
+    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(ProfileOrganizationEvent), nameof(Member));
+    
+    [Required]
+    [JsonPropertyName("member")]
+    public TDMemberProfile Member
+    {
+        get => _member.GetValue();
+        set => _member.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _joinedOrganization = new PropertyValue<bool?>(nameof(ProfileOrganizationEvent), nameof(IsJoinedOrganization));
+    
+    [JsonPropertyName("joinedOrganization")]
+    public bool? IsJoinedOrganization
+    {
+        get => _joinedOrganization.GetValue();
+        set => _joinedOrganization.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _leftOrganization = new PropertyValue<bool?>(nameof(ProfileOrganizationEvent), nameof(IsLeftOrganization));
+    
+    [JsonPropertyName("leftOrganization")]
+    public bool? IsLeftOrganization
+    {
+        get => _leftOrganization.GetValue();
+        set => _leftOrganization.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _meta.SetAccessPath(path, validateHasBeenSet);
+        _member.SetAccessPath(path, validateHasBeenSet);
+        _joinedOrganization.SetAccessPath(path, validateHasBeenSet);
+        _leftOrganization.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

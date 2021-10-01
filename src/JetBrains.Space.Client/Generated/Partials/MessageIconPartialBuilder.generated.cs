@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageIconPartialBuilder
+namespace JetBrains.Space.Client.MessageIconPartialBuilder;
+
+public static class MessageIconPartialExtensions
 {
-    public static class MessageIconPartialExtensions
-    {
-        public static Partial<MessageIcon> WithIcon(this Partial<MessageIcon> it)
-            => it.AddFieldName("icon");
-        
-        public static Partial<MessageIcon> WithIcon(this Partial<MessageIcon> it, Func<Partial<ApiIcon>, Partial<ApiIcon>> partialBuilder)
-            => it.AddFieldName("icon", partialBuilder(new Partial<ApiIcon>(it)));
-        
-        public static Partial<MessageIcon> WithStyle(this Partial<MessageIcon> it)
-            => it.AddFieldName("style");
-        
-        public static Partial<MessageIcon> WithStyle(this Partial<MessageIcon> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
-            => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
-        
-    }
+    public static Partial<MessageIcon> WithIcon(this Partial<MessageIcon> it)
+        => it.AddFieldName("icon");
+    
+    public static Partial<MessageIcon> WithIcon(this Partial<MessageIcon> it, Func<Partial<ApiIcon>, Partial<ApiIcon>> partialBuilder)
+        => it.AddFieldName("icon", partialBuilder(new Partial<ApiIcon>(it)));
+    
+    public static Partial<MessageIcon> WithStyle(this Partial<MessageIcon> it)
+        => it.AddFieldName("style");
+    
+    public static Partial<MessageIcon> WithStyle(this Partial<MessageIcon> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
+        => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
     
 }
+

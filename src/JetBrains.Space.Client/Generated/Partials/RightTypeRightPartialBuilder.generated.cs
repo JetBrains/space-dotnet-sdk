@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RightTypeRightPartialBuilder
+namespace JetBrains.Space.Client.RightTypeRightPartialBuilder;
+
+public static class RightTypeRightPartialExtensions
 {
-    public static class RightTypeRightPartialExtensions
-    {
-        public static Partial<RightTypeRight> WithRightType(this Partial<RightTypeRight> it)
-            => it.AddFieldName("rightType");
-        
-        public static Partial<RightTypeRight> WithRightType(this Partial<RightTypeRight> it, Func<Partial<RightType>, Partial<RightType>> partialBuilder)
-            => it.AddFieldName("rightType", partialBuilder(new Partial<RightType>(it)));
-        
-        public static Partial<RightTypeRight> WithRights(this Partial<RightTypeRight> it)
-            => it.AddFieldName("rights");
-        
-        public static Partial<RightTypeRight> WithRights(this Partial<RightTypeRight> it, Func<Partial<FullRightWithoutType>, Partial<FullRightWithoutType>> partialBuilder)
-            => it.AddFieldName("rights", partialBuilder(new Partial<FullRightWithoutType>(it)));
-        
-    }
+    public static Partial<RightTypeRight> WithRightType(this Partial<RightTypeRight> it)
+        => it.AddFieldName("rightType");
+    
+    public static Partial<RightTypeRight> WithRightType(this Partial<RightTypeRight> it, Func<Partial<RightType>, Partial<RightType>> partialBuilder)
+        => it.AddFieldName("rightType", partialBuilder(new Partial<RightType>(it)));
+    
+    public static Partial<RightTypeRight> WithRights(this Partial<RightTypeRight> it)
+        => it.AddFieldName("rights");
+    
+    public static Partial<RightTypeRight> WithRights(this Partial<RightTypeRight> it, Func<Partial<FullRightWithoutType>, Partial<FullRightWithoutType>> partialBuilder)
+        => it.AddFieldName("rights", partialBuilder(new Partial<FullRightWithoutType>(it)));
     
 }
+

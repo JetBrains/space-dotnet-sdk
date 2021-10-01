@@ -27,71 +27,70 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PackageRepositoryConnectionSpace
+     : PackageRepositoryConnection, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class PackageRepositoryConnectionSpace
-         : PackageRepositoryConnection, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "PackageRepositoryConnection.Space";
+    
+    public PackageRepositoryConnectionSpace() { }
+    
+    public PackageRepositoryConnectionSpace(string id, bool enableCaching, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "PackageRepositoryConnection.Space";
-        
-        public PackageRepositoryConnectionSpace() { }
-        
-        public PackageRepositoryConnectionSpace(string id, bool enableCaching, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
-        {
-            Id = id;
-            IsEnableCaching = enableCaching;
-            PackageNameFilters = packageNameFilters;
-            Repository = repository;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(PackageRepositoryConnectionSpace), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _enableCaching = new PropertyValue<bool>(nameof(PackageRepositoryConnectionSpace), nameof(IsEnableCaching));
-        
-        [Required]
-        [JsonPropertyName("enableCaching")]
-        public bool IsEnableCaching
-        {
-            get => _enableCaching.GetValue();
-            set => _enableCaching.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _packageNameFilters = new PropertyValue<List<string>?>(nameof(PackageRepositoryConnectionSpace), nameof(PackageNameFilters));
-        
-        [JsonPropertyName("packageNameFilters")]
-        public List<string>? PackageNameFilters
-        {
-            get => _packageNameFilters.GetValue();
-            set => _packageNameFilters.SetValue(value);
-        }
-    
-        private PropertyValue<ProjectPackageRepository> _repository = new PropertyValue<ProjectPackageRepository>(nameof(PackageRepositoryConnectionSpace), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public ProjectPackageRepository Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _enableCaching.SetAccessPath(path, validateHasBeenSet);
-            _packageNameFilters.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        IsEnableCaching = enableCaching;
+        PackageNameFilters = packageNameFilters;
+        Repository = repository;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PackageRepositoryConnectionSpace), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<bool> _enableCaching = new PropertyValue<bool>(nameof(PackageRepositoryConnectionSpace), nameof(IsEnableCaching));
+    
+    [Required]
+    [JsonPropertyName("enableCaching")]
+    public bool IsEnableCaching
+    {
+        get => _enableCaching.GetValue();
+        set => _enableCaching.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _packageNameFilters = new PropertyValue<List<string>?>(nameof(PackageRepositoryConnectionSpace), nameof(PackageNameFilters));
+    
+    [JsonPropertyName("packageNameFilters")]
+    public List<string>? PackageNameFilters
+    {
+        get => _packageNameFilters.GetValue();
+        set => _packageNameFilters.SetValue(value);
+    }
+
+    private PropertyValue<ProjectPackageRepository> _repository = new PropertyValue<ProjectPackageRepository>(nameof(PackageRepositoryConnectionSpace), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public ProjectPackageRepository Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _enableCaching.SetAccessPath(path, validateHasBeenSet);
+        _packageNameFilters.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

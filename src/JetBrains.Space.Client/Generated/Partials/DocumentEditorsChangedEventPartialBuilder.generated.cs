@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentEditorsChangedEventPartialBuilder
+namespace JetBrains.Space.Client.DocumentEditorsChangedEventPartialBuilder;
+
+public static class DocumentEditorsChangedEventPartialExtensions
 {
-    public static class DocumentEditorsChangedEventPartialExtensions
-    {
-        public static Partial<DocumentEditorsChangedEvent> WithMeta(this Partial<DocumentEditorsChangedEvent> it)
-            => it.AddFieldName("meta");
-        
-        public static Partial<DocumentEditorsChangedEvent> WithMeta(this Partial<DocumentEditorsChangedEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-            => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
-        
-        public static Partial<DocumentEditorsChangedEvent> WithDocument(this Partial<DocumentEditorsChangedEvent> it)
-            => it.AddFieldName("document");
-        
-    }
+    public static Partial<DocumentEditorsChangedEvent> WithMeta(this Partial<DocumentEditorsChangedEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<DocumentEditorsChangedEvent> WithMeta(this Partial<DocumentEditorsChangedEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<DocumentEditorsChangedEvent> WithDocument(this Partial<DocumentEditorsChangedEvent> it)
+        => it.AddFieldName("document");
     
 }
+

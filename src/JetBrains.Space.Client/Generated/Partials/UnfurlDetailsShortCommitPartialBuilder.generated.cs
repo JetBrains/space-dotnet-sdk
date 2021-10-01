@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsShortCommitPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsShortCommitPartialBuilder;
+
+public static class UnfurlDetailsShortCommitPartialExtensions
 {
-    public static class UnfurlDetailsShortCommitPartialExtensions
-    {
-        public static Partial<UnfurlDetailsShortCommit> WithProject(this Partial<UnfurlDetailsShortCommit> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<UnfurlDetailsShortCommit> WithProject(this Partial<UnfurlDetailsShortCommit> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
-        public static Partial<UnfurlDetailsShortCommit> WithRepository(this Partial<UnfurlDetailsShortCommit> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<UnfurlDetailsShortCommit> WithCommitId(this Partial<UnfurlDetailsShortCommit> it)
-            => it.AddFieldName("commitId");
-        
-        public static Partial<UnfurlDetailsShortCommit> WithMessage(this Partial<UnfurlDetailsShortCommit> it)
-            => it.AddFieldName("message");
-        
-        public static Partial<UnfurlDetailsShortCommit> WithIsStrikeThrough(this Partial<UnfurlDetailsShortCommit> it)
-            => it.AddFieldName("strikeThrough");
-        
-    }
+    public static Partial<UnfurlDetailsShortCommit> WithProject(this Partial<UnfurlDetailsShortCommit> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<UnfurlDetailsShortCommit> WithProject(this Partial<UnfurlDetailsShortCommit> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+    
+    public static Partial<UnfurlDetailsShortCommit> WithRepository(this Partial<UnfurlDetailsShortCommit> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<UnfurlDetailsShortCommit> WithCommitId(this Partial<UnfurlDetailsShortCommit> it)
+        => it.AddFieldName("commitId");
+    
+    public static Partial<UnfurlDetailsShortCommit> WithMessage(this Partial<UnfurlDetailsShortCommit> it)
+        => it.AddFieldName("message");
+    
+    public static Partial<UnfurlDetailsShortCommit> WithIsStrikeThrough(this Partial<UnfurlDetailsShortCommit> it)
+        => it.AddFieldName("strikeThrough");
     
 }
+

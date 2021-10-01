@@ -27,69 +27,68 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TDWorkingDays
+     : IPropagatePropertyAccessPath
 {
-    public sealed class TDWorkingDays
-         : IPropagatePropertyAccessPath
+    public TDWorkingDays() { }
+    
+    public TDWorkingDays(string id, WorkingDaysSpec workingDaysSpec, DateTime? dateStart = null, DateTime? dateEnd = null)
     {
-        public TDWorkingDays() { }
-        
-        public TDWorkingDays(string id, WorkingDaysSpec workingDaysSpec, DateTime? dateStart = null, DateTime? dateEnd = null)
-        {
-            Id = id;
-            DateStart = dateStart;
-            DateEnd = dateEnd;
-            WorkingDaysSpec = workingDaysSpec;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDWorkingDays), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _dateStart = new PropertyValue<DateTime?>(nameof(TDWorkingDays), nameof(DateStart));
-        
-        [JsonPropertyName("dateStart")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? DateStart
-        {
-            get => _dateStart.GetValue();
-            set => _dateStart.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _dateEnd = new PropertyValue<DateTime?>(nameof(TDWorkingDays), nameof(DateEnd));
-        
-        [JsonPropertyName("dateEnd")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? DateEnd
-        {
-            get => _dateEnd.GetValue();
-            set => _dateEnd.SetValue(value);
-        }
-    
-        private PropertyValue<WorkingDaysSpec> _workingDaysSpec = new PropertyValue<WorkingDaysSpec>(nameof(TDWorkingDays), nameof(WorkingDaysSpec));
-        
-        [Required]
-        [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpec WorkingDaysSpec
-        {
-            get => _workingDaysSpec.GetValue();
-            set => _workingDaysSpec.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _dateStart.SetAccessPath(path, validateHasBeenSet);
-            _dateEnd.SetAccessPath(path, validateHasBeenSet);
-            _workingDaysSpec.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        DateStart = dateStart;
+        DateEnd = dateEnd;
+        WorkingDaysSpec = workingDaysSpec;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDWorkingDays), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _dateStart = new PropertyValue<DateTime?>(nameof(TDWorkingDays), nameof(DateStart));
+    
+    [JsonPropertyName("dateStart")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? DateStart
+    {
+        get => _dateStart.GetValue();
+        set => _dateStart.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _dateEnd = new PropertyValue<DateTime?>(nameof(TDWorkingDays), nameof(DateEnd));
+    
+    [JsonPropertyName("dateEnd")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? DateEnd
+    {
+        get => _dateEnd.GetValue();
+        set => _dateEnd.SetValue(value);
+    }
+
+    private PropertyValue<WorkingDaysSpec> _workingDaysSpec = new PropertyValue<WorkingDaysSpec>(nameof(TDWorkingDays), nameof(WorkingDaysSpec));
+    
+    [Required]
+    [JsonPropertyName("workingDaysSpec")]
+    public WorkingDaysSpec WorkingDaysSpec
+    {
+        get => _workingDaysSpec.GetValue();
+        set => _workingDaysSpec.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _dateStart.SetAccessPath(path, validateHasBeenSet);
+        _dateEnd.SetAccessPath(path, validateHasBeenSet);
+        _workingDaysSpec.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

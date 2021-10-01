@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitCommitInfoWithChanges
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GitCommitInfoWithChanges
-         : IPropagatePropertyAccessPath
+    public GitCommitInfoWithChanges() { }
+    
+    public GitCommitInfoWithChanges(GitCommitInfo commit, GitCommitChanges changes)
     {
-        public GitCommitInfoWithChanges() { }
-        
-        public GitCommitInfoWithChanges(GitCommitInfo commit, GitCommitChanges changes)
-        {
-            Commit = commit;
-            Changes = changes;
-        }
-        
-        private PropertyValue<GitCommitInfo> _commit = new PropertyValue<GitCommitInfo>(nameof(GitCommitInfoWithChanges), nameof(Commit));
-        
-        [Required]
-        [JsonPropertyName("commit")]
-        public GitCommitInfo Commit
-        {
-            get => _commit.GetValue();
-            set => _commit.SetValue(value);
-        }
-    
-        private PropertyValue<GitCommitChanges> _changes = new PropertyValue<GitCommitChanges>(nameof(GitCommitInfoWithChanges), nameof(Changes));
-        
-        [Required]
-        [JsonPropertyName("changes")]
-        public GitCommitChanges Changes
-        {
-            get => _changes.GetValue();
-            set => _changes.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _commit.SetAccessPath(path, validateHasBeenSet);
-            _changes.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Commit = commit;
+        Changes = changes;
     }
     
+    private PropertyValue<GitCommitInfo> _commit = new PropertyValue<GitCommitInfo>(nameof(GitCommitInfoWithChanges), nameof(Commit));
+    
+    [Required]
+    [JsonPropertyName("commit")]
+    public GitCommitInfo Commit
+    {
+        get => _commit.GetValue();
+        set => _commit.SetValue(value);
+    }
+
+    private PropertyValue<GitCommitChanges> _changes = new PropertyValue<GitCommitChanges>(nameof(GitCommitInfoWithChanges), nameof(Changes));
+    
+    [Required]
+    [JsonPropertyName("changes")]
+    public GitCommitChanges Changes
+    {
+        get => _changes.GetValue();
+        set => _changes.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _commit.SetAccessPath(path, validateHasBeenSet);
+        _changes.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

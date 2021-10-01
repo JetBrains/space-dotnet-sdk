@@ -27,59 +27,58 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RepoCommitsSubscriptionFilter
+     : SubscriptionFilter, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class RepoCommitsSubscriptionFilter
-         : SubscriptionFilter, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "RepoCommitsSubscriptionFilter";
+    
+    public RepoCommitsSubscriptionFilter() { }
+    
+    public RepoCommitsSubscriptionFilter(string repository, RepoCommitsSubscriptionFilterSpec spec, PRProject? project = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "RepoCommitsSubscriptionFilter";
-        
-        public RepoCommitsSubscriptionFilter() { }
-        
-        public RepoCommitsSubscriptionFilter(string repository, RepoCommitsSubscriptionFilterSpec spec, PRProject? project = null)
-        {
-            Project = project;
-            Repository = repository;
-            Spec = spec;
-        }
-        
-        private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(RepoCommitsSubscriptionFilter), nameof(Project));
-        
-        [JsonPropertyName("project")]
-        public PRProject? Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(RepoCommitsSubscriptionFilter), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<RepoCommitsSubscriptionFilterSpec> _spec = new PropertyValue<RepoCommitsSubscriptionFilterSpec>(nameof(RepoCommitsSubscriptionFilter), nameof(Spec));
-        
-        [Required]
-        [JsonPropertyName("spec")]
-        public RepoCommitsSubscriptionFilterSpec Spec
-        {
-            get => _spec.GetValue();
-            set => _spec.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _spec.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Project = project;
+        Repository = repository;
+        Spec = spec;
     }
     
+    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(RepoCommitsSubscriptionFilter), nameof(Project));
+    
+    [JsonPropertyName("project")]
+    public PRProject? Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(RepoCommitsSubscriptionFilter), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public string Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<RepoCommitsSubscriptionFilterSpec> _spec = new PropertyValue<RepoCommitsSubscriptionFilterSpec>(nameof(RepoCommitsSubscriptionFilter), nameof(Spec));
+    
+    [Required]
+    [JsonPropertyName("spec")]
+    public RepoCommitsSubscriptionFilterSpec Spec
+    {
+        get => _spec.GetValue();
+        set => _spec.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _project.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _spec.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

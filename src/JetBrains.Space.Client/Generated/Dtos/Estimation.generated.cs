@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class Estimation
+     : IPropagatePropertyAccessPath
 {
-    public sealed class Estimation
-         : IPropagatePropertyAccessPath
+    public Estimation() { }
+    
+    public Estimation(DateTime start, long predictedDuration)
     {
-        public Estimation() { }
-        
-        public Estimation(DateTime start, long predictedDuration)
-        {
-            Start = start;
-            PredictedDuration = predictedDuration;
-        }
-        
-        private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(Estimation), nameof(Start));
-        
-        [Required]
-        [JsonPropertyName("start")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Start
-        {
-            get => _start.GetValue();
-            set => _start.SetValue(value);
-        }
-    
-        private PropertyValue<long> _predictedDuration = new PropertyValue<long>(nameof(Estimation), nameof(PredictedDuration));
-        
-        [Required]
-        [JsonPropertyName("predictedDuration")]
-        public long PredictedDuration
-        {
-            get => _predictedDuration.GetValue();
-            set => _predictedDuration.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _start.SetAccessPath(path, validateHasBeenSet);
-            _predictedDuration.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Start = start;
+        PredictedDuration = predictedDuration;
     }
     
+    private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(Estimation), nameof(Start));
+    
+    [Required]
+    [JsonPropertyName("start")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Start
+    {
+        get => _start.GetValue();
+        set => _start.SetValue(value);
+    }
+
+    private PropertyValue<long> _predictedDuration = new PropertyValue<long>(nameof(Estimation), nameof(PredictedDuration));
+    
+    [Required]
+    [JsonPropertyName("predictedDuration")]
+    public long PredictedDuration
+    {
+        get => _predictedDuration.GetValue();
+        set => _predictedDuration.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _start.SetAccessPath(path, validateHasBeenSet);
+        _predictedDuration.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

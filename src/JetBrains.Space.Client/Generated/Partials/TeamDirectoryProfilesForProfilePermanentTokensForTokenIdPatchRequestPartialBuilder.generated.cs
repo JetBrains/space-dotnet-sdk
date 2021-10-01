@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> WithName(this Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> WithScope(this Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> it)
-            => it.AddFieldName("scope");
-        
-        public static Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> WithExpires(this Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> it)
-            => it.AddFieldName("expires");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> WithName(this Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> WithScope(this Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> it)
+        => it.AddFieldName("scope");
+    
+    public static Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> WithExpires(this Partial<TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest> it)
+        => it.AddFieldName("expires");
     
 }
+

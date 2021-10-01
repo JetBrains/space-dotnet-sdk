@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationUnfurlTargetPatternPartialBuilder
+namespace JetBrains.Space.Client.ApplicationUnfurlTargetPatternPartialBuilder;
+
+public static class ApplicationUnfurlTargetPatternPartialExtensions
 {
-    public static class ApplicationUnfurlTargetPatternPartialExtensions
-    {
-        public static Partial<ApplicationUnfurlTargetPattern> WithPattern(this Partial<ApplicationUnfurlTargetPattern> it)
-            => it.AddFieldName("pattern");
-        
-    }
+    public static Partial<ApplicationUnfurlTargetPattern> WithPattern(this Partial<ApplicationUnfurlTargetPattern> it)
+        => it.AddFieldName("pattern");
     
 }
+

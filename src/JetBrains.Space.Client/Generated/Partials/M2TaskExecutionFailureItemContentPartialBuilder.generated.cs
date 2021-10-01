@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2TaskExecutionFailureItemContentPartialBuilder
+namespace JetBrains.Space.Client.M2TaskExecutionFailureItemContentPartialBuilder;
+
+public static class M2TaskExecutionFailureItemContentPartialExtensions
 {
-    public static class M2TaskExecutionFailureItemContentPartialExtensions
-    {
-        public static Partial<M2TaskExecutionFailureItemContent> WithTaskExecutionId(this Partial<M2TaskExecutionFailureItemContent> it)
-            => it.AddFieldName("taskExecutionId");
-        
-        public static Partial<M2TaskExecutionFailureItemContent> WithTaskExecutionName(this Partial<M2TaskExecutionFailureItemContent> it)
-            => it.AddFieldName("taskExecutionName");
-        
-        public static Partial<M2TaskExecutionFailureItemContent> WithRepoName(this Partial<M2TaskExecutionFailureItemContent> it)
-            => it.AddFieldName("repoName");
-        
-        public static Partial<M2TaskExecutionFailureItemContent> WithBranchName(this Partial<M2TaskExecutionFailureItemContent> it)
-            => it.AddFieldName("branchName");
-        
-        public static Partial<M2TaskExecutionFailureItemContent> WithCommit(this Partial<M2TaskExecutionFailureItemContent> it)
-            => it.AddFieldName("commit");
-        
-        public static Partial<M2TaskExecutionFailureItemContent> WithShortCommitMessage(this Partial<M2TaskExecutionFailureItemContent> it)
-            => it.AddFieldName("shortCommitMessage");
-        
-        public static Partial<M2TaskExecutionFailureItemContent> WithProject(this Partial<M2TaskExecutionFailureItemContent> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<M2TaskExecutionFailureItemContent> WithProject(this Partial<M2TaskExecutionFailureItemContent> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<ProjectKey>(it)));
-        
-        public static Partial<M2TaskExecutionFailureItemContent> WithFinishDateTime(this Partial<M2TaskExecutionFailureItemContent> it)
-            => it.AddFieldName("finishDateTime");
-        
-        public static Partial<M2TaskExecutionFailureItemContent> WithTriggerInfo(this Partial<M2TaskExecutionFailureItemContent> it)
-            => it.AddFieldName("triggerInfo");
-        
-        public static Partial<M2TaskExecutionFailureItemContent> WithDetails(this Partial<M2TaskExecutionFailureItemContent> it)
-            => it.AddFieldName("details");
-        
-    }
+    public static Partial<M2TaskExecutionFailureItemContent> WithTaskExecutionId(this Partial<M2TaskExecutionFailureItemContent> it)
+        => it.AddFieldName("taskExecutionId");
+    
+    public static Partial<M2TaskExecutionFailureItemContent> WithTaskExecutionName(this Partial<M2TaskExecutionFailureItemContent> it)
+        => it.AddFieldName("taskExecutionName");
+    
+    public static Partial<M2TaskExecutionFailureItemContent> WithRepoName(this Partial<M2TaskExecutionFailureItemContent> it)
+        => it.AddFieldName("repoName");
+    
+    public static Partial<M2TaskExecutionFailureItemContent> WithBranchName(this Partial<M2TaskExecutionFailureItemContent> it)
+        => it.AddFieldName("branchName");
+    
+    public static Partial<M2TaskExecutionFailureItemContent> WithCommit(this Partial<M2TaskExecutionFailureItemContent> it)
+        => it.AddFieldName("commit");
+    
+    public static Partial<M2TaskExecutionFailureItemContent> WithShortCommitMessage(this Partial<M2TaskExecutionFailureItemContent> it)
+        => it.AddFieldName("shortCommitMessage");
+    
+    public static Partial<M2TaskExecutionFailureItemContent> WithProject(this Partial<M2TaskExecutionFailureItemContent> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<M2TaskExecutionFailureItemContent> WithProject(this Partial<M2TaskExecutionFailureItemContent> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<ProjectKey>(it)));
+    
+    public static Partial<M2TaskExecutionFailureItemContent> WithFinishDateTime(this Partial<M2TaskExecutionFailureItemContent> it)
+        => it.AddFieldName("finishDateTime");
+    
+    public static Partial<M2TaskExecutionFailureItemContent> WithTriggerInfo(this Partial<M2TaskExecutionFailureItemContent> it)
+        => it.AddFieldName("triggerInfo");
+    
+    public static Partial<M2TaskExecutionFailureItemContent> WithDetails(this Partial<M2TaskExecutionFailureItemContent> it)
+        => it.AddFieldName("details");
     
 }
+

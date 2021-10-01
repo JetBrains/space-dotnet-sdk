@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewParticipantRecordPartialBuilder
+namespace JetBrains.Space.Client.CodeReviewParticipantRecordPartialBuilder;
+
+public static class CodeReviewParticipantRecordPartialExtensions
 {
-    public static class CodeReviewParticipantRecordPartialExtensions
-    {
-        public static Partial<CodeReviewParticipantRecord> WithId(this Partial<CodeReviewParticipantRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<CodeReviewParticipantRecord> WithProjectId(this Partial<CodeReviewParticipantRecord> it)
-            => it.AddFieldName("projectId");
-        
-        public static Partial<CodeReviewParticipantRecord> WithRole(this Partial<CodeReviewParticipantRecord> it)
-            => it.AddFieldName("role");
-        
-        public static Partial<CodeReviewParticipantRecord> WithRole(this Partial<CodeReviewParticipantRecord> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
-            => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>(it)));
-        
-        public static Partial<CodeReviewParticipantRecord> WithProfile(this Partial<CodeReviewParticipantRecord> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<CodeReviewParticipantRecord> WithProfile(this Partial<CodeReviewParticipantRecord> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<CodeReviewParticipantRecord> WithReviewerState(this Partial<CodeReviewParticipantRecord> it)
-            => it.AddFieldName("reviewerState");
-        
-        public static Partial<CodeReviewParticipantRecord> WithReviewerState(this Partial<CodeReviewParticipantRecord> it, Func<Partial<ReviewerState>, Partial<ReviewerState>> partialBuilder)
-            => it.AddFieldName("reviewerState", partialBuilder(new Partial<ReviewerState>(it)));
-        
-        public static Partial<CodeReviewParticipantRecord> WithIsTheirTurn(this Partial<CodeReviewParticipantRecord> it)
-            => it.AddFieldName("theirTurn");
-        
-        public static Partial<CodeReviewParticipantRecord> WithIsArchived(this Partial<CodeReviewParticipantRecord> it)
-            => it.AddFieldName("archived");
-        
-    }
+    public static Partial<CodeReviewParticipantRecord> WithId(this Partial<CodeReviewParticipantRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<CodeReviewParticipantRecord> WithProjectId(this Partial<CodeReviewParticipantRecord> it)
+        => it.AddFieldName("projectId");
+    
+    public static Partial<CodeReviewParticipantRecord> WithRole(this Partial<CodeReviewParticipantRecord> it)
+        => it.AddFieldName("role");
+    
+    public static Partial<CodeReviewParticipantRecord> WithRole(this Partial<CodeReviewParticipantRecord> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
+        => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>(it)));
+    
+    public static Partial<CodeReviewParticipantRecord> WithProfile(this Partial<CodeReviewParticipantRecord> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<CodeReviewParticipantRecord> WithProfile(this Partial<CodeReviewParticipantRecord> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<CodeReviewParticipantRecord> WithReviewerState(this Partial<CodeReviewParticipantRecord> it)
+        => it.AddFieldName("reviewerState");
+    
+    public static Partial<CodeReviewParticipantRecord> WithReviewerState(this Partial<CodeReviewParticipantRecord> it, Func<Partial<ReviewerState>, Partial<ReviewerState>> partialBuilder)
+        => it.AddFieldName("reviewerState", partialBuilder(new Partial<ReviewerState>(it)));
+    
+    public static Partial<CodeReviewParticipantRecord> WithIsTheirTurn(this Partial<CodeReviewParticipantRecord> it)
+        => it.AddFieldName("theirTurn");
+    
+    public static Partial<CodeReviewParticipantRecord> WithIsArchived(this Partial<CodeReviewParticipantRecord> it)
+        => it.AddFieldName("archived");
     
 }
+

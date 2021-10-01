@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HAUrlParameterOptionVarPartialBuilder
+namespace JetBrains.Space.Client.HAUrlParameterOptionVarPartialBuilder;
+
+public static class HAUrlParameterOptionVarPartialExtensions
 {
-    public static class HAUrlParameterOptionVarPartialExtensions
-    {
-        public static Partial<HAUrlParameterOptionVar> WithParameter(this Partial<HAUrlParameterOptionVar> it)
-            => it.AddFieldName("parameter");
-        
-        public static Partial<HAUrlParameterOptionVar> WithParameter(this Partial<HAUrlParameterOptionVar> it, Func<Partial<HAField>, Partial<HAField>> partialBuilder)
-            => it.AddFieldName("parameter", partialBuilder(new Partial<HAField>(it)));
-        
-        public static Partial<HAUrlParameterOptionVar> WithParameters(this Partial<HAUrlParameterOptionVar> it)
-            => it.AddFieldName("parameters");
-        
-        public static Partial<HAUrlParameterOptionVar> WithParameters(this Partial<HAUrlParameterOptionVar> it, Func<Partial<HAField>, Partial<HAField>> partialBuilder)
-            => it.AddFieldName("parameters", partialBuilder(new Partial<HAField>(it)));
-        
-        public static Partial<HAUrlParameterOptionVar> WithIsPrefixRequired(this Partial<HAUrlParameterOptionVar> it)
-            => it.AddFieldName("prefixRequired");
-        
-        public static Partial<HAUrlParameterOptionVar> WithOptionName(this Partial<HAUrlParameterOptionVar> it)
-            => it.AddFieldName("optionName");
-        
-        public static Partial<HAUrlParameterOptionVar> WithDeprecation(this Partial<HAUrlParameterOptionVar> it)
-            => it.AddFieldName("deprecation");
-        
-        public static Partial<HAUrlParameterOptionVar> WithDeprecation(this Partial<HAUrlParameterOptionVar> it, Func<Partial<HADeprecation>, Partial<HADeprecation>> partialBuilder)
-            => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecation>(it)));
-        
-    }
+    public static Partial<HAUrlParameterOptionVar> WithParameter(this Partial<HAUrlParameterOptionVar> it)
+        => it.AddFieldName("parameter");
+    
+    public static Partial<HAUrlParameterOptionVar> WithParameter(this Partial<HAUrlParameterOptionVar> it, Func<Partial<HAField>, Partial<HAField>> partialBuilder)
+        => it.AddFieldName("parameter", partialBuilder(new Partial<HAField>(it)));
+    
+    public static Partial<HAUrlParameterOptionVar> WithParameters(this Partial<HAUrlParameterOptionVar> it)
+        => it.AddFieldName("parameters");
+    
+    public static Partial<HAUrlParameterOptionVar> WithParameters(this Partial<HAUrlParameterOptionVar> it, Func<Partial<HAField>, Partial<HAField>> partialBuilder)
+        => it.AddFieldName("parameters", partialBuilder(new Partial<HAField>(it)));
+    
+    public static Partial<HAUrlParameterOptionVar> WithIsPrefixRequired(this Partial<HAUrlParameterOptionVar> it)
+        => it.AddFieldName("prefixRequired");
+    
+    public static Partial<HAUrlParameterOptionVar> WithOptionName(this Partial<HAUrlParameterOptionVar> it)
+        => it.AddFieldName("optionName");
+    
+    public static Partial<HAUrlParameterOptionVar> WithDeprecation(this Partial<HAUrlParameterOptionVar> it)
+        => it.AddFieldName("deprecation");
+    
+    public static Partial<HAUrlParameterOptionVar> WithDeprecation(this Partial<HAUrlParameterOptionVar> it, Func<Partial<HADeprecation>, Partial<HADeprecation>> partialBuilder)
+        => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecation>(it)));
     
 }
+

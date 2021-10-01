@@ -27,69 +27,68 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CodeReviewWithCount
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CodeReviewWithCount
-         : IPropagatePropertyAccessPath
+    public CodeReviewWithCount() { }
+    
+    public CodeReviewWithCount(CodeReviewRecord review, int messagesCount, List<GitCommitterProfile> authors, CodeReviewParticipants participants)
     {
-        public CodeReviewWithCount() { }
-        
-        public CodeReviewWithCount(CodeReviewRecord review, int messagesCount, List<GitCommitterProfile> authors, CodeReviewParticipants participants)
-        {
-            Review = review;
-            MessagesCount = messagesCount;
-            Authors = authors;
-            Participants = participants;
-        }
-        
-        private PropertyValue<CodeReviewRecord> _review = new PropertyValue<CodeReviewRecord>(nameof(CodeReviewWithCount), nameof(Review));
-        
-        [Required]
-        [JsonPropertyName("review")]
-        public CodeReviewRecord Review
-        {
-            get => _review.GetValue();
-            set => _review.SetValue(value);
-        }
-    
-        private PropertyValue<int> _messagesCount = new PropertyValue<int>(nameof(CodeReviewWithCount), nameof(MessagesCount));
-        
-        [Required]
-        [JsonPropertyName("messagesCount")]
-        public int MessagesCount
-        {
-            get => _messagesCount.GetValue();
-            set => _messagesCount.SetValue(value);
-        }
-    
-        private PropertyValue<List<GitCommitterProfile>> _authors = new PropertyValue<List<GitCommitterProfile>>(nameof(CodeReviewWithCount), nameof(Authors), new List<GitCommitterProfile>());
-        
-        [Required]
-        [JsonPropertyName("authors")]
-        public List<GitCommitterProfile> Authors
-        {
-            get => _authors.GetValue();
-            set => _authors.SetValue(value);
-        }
-    
-        private PropertyValue<CodeReviewParticipants> _participants = new PropertyValue<CodeReviewParticipants>(nameof(CodeReviewWithCount), nameof(Participants));
-        
-        [Required]
-        [JsonPropertyName("participants")]
-        public CodeReviewParticipants Participants
-        {
-            get => _participants.GetValue();
-            set => _participants.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _review.SetAccessPath(path, validateHasBeenSet);
-            _messagesCount.SetAccessPath(path, validateHasBeenSet);
-            _authors.SetAccessPath(path, validateHasBeenSet);
-            _participants.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Review = review;
+        MessagesCount = messagesCount;
+        Authors = authors;
+        Participants = participants;
     }
     
+    private PropertyValue<CodeReviewRecord> _review = new PropertyValue<CodeReviewRecord>(nameof(CodeReviewWithCount), nameof(Review));
+    
+    [Required]
+    [JsonPropertyName("review")]
+    public CodeReviewRecord Review
+    {
+        get => _review.GetValue();
+        set => _review.SetValue(value);
+    }
+
+    private PropertyValue<int> _messagesCount = new PropertyValue<int>(nameof(CodeReviewWithCount), nameof(MessagesCount));
+    
+    [Required]
+    [JsonPropertyName("messagesCount")]
+    public int MessagesCount
+    {
+        get => _messagesCount.GetValue();
+        set => _messagesCount.SetValue(value);
+    }
+
+    private PropertyValue<List<GitCommitterProfile>> _authors = new PropertyValue<List<GitCommitterProfile>>(nameof(CodeReviewWithCount), nameof(Authors), new List<GitCommitterProfile>());
+    
+    [Required]
+    [JsonPropertyName("authors")]
+    public List<GitCommitterProfile> Authors
+    {
+        get => _authors.GetValue();
+        set => _authors.SetValue(value);
+    }
+
+    private PropertyValue<CodeReviewParticipants> _participants = new PropertyValue<CodeReviewParticipants>(nameof(CodeReviewWithCount), nameof(Participants));
+    
+    [Required]
+    [JsonPropertyName("participants")]
+    public CodeReviewParticipants Participants
+    {
+        get => _participants.GetValue();
+        set => _participants.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _review.SetAccessPath(path, validateHasBeenSet);
+        _messagesCount.SetAccessPath(path, validateHasBeenSet);
+        _authors.SetAccessPath(path, validateHasBeenSet);
+        _participants.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

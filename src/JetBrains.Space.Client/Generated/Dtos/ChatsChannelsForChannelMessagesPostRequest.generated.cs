@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ChatsChannelsForChannelMessagesPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ChatsChannelsForChannelMessagesPostRequest
-         : IPropagatePropertyAccessPath
+    public ChatsChannelsForChannelMessagesPostRequest() { }
+    
+    public ChatsChannelsForChannelMessagesPostRequest(string text, string? temporaryId = null)
     {
-        public ChatsChannelsForChannelMessagesPostRequest() { }
-        
-        public ChatsChannelsForChannelMessagesPostRequest(string text, string? temporaryId = null)
-        {
-            Text = text;
-            TemporaryId = temporaryId;
-        }
-        
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatsChannelsForChannelMessagesPostRequest), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _temporaryId = new PropertyValue<string?>(nameof(ChatsChannelsForChannelMessagesPostRequest), nameof(TemporaryId));
-        
-        [JsonPropertyName("temporaryId")]
-        public string? TemporaryId
-        {
-            get => _temporaryId.GetValue();
-            set => _temporaryId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _temporaryId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Text = text;
+        TemporaryId = temporaryId;
     }
     
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatsChannelsForChannelMessagesPostRequest), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    private PropertyValue<string?> _temporaryId = new PropertyValue<string?>(nameof(ChatsChannelsForChannelMessagesPostRequest), nameof(TemporaryId));
+    
+    [JsonPropertyName("temporaryId")]
+    public string? TemporaryId
+    {
+        get => _temporaryId.GetValue();
+        set => _temporaryId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _text.SetAccessPath(path, validateHasBeenSet);
+        _temporaryId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

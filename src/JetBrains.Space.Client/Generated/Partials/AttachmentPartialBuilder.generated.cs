@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AttachmentPartialBuilder
+namespace JetBrains.Space.Client.AttachmentPartialBuilder;
+
+public static class AttachmentPartialExtensions
 {
-    public static class AttachmentPartialExtensions
-    {
-    }
-    
 }
+

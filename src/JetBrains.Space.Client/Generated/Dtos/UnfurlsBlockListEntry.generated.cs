@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlsBlockListEntry
+     : IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlsBlockListEntry
-         : IPropagatePropertyAccessPath
+    public UnfurlsBlockListEntry() { }
+    
+    public UnfurlsBlockListEntry(string link, bool prefix, bool global)
     {
-        public UnfurlsBlockListEntry() { }
-        
-        public UnfurlsBlockListEntry(string link, bool prefix, bool global)
-        {
-            Link = link;
-            IsPrefix = prefix;
-            IsGlobal = global;
-        }
-        
-        private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlsBlockListEntry), nameof(Link));
-        
-        [Required]
-        [JsonPropertyName("link")]
-        public string Link
-        {
-            get => _link.GetValue();
-            set => _link.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _prefix = new PropertyValue<bool>(nameof(UnfurlsBlockListEntry), nameof(IsPrefix));
-        
-        [Required]
-        [JsonPropertyName("prefix")]
-        public bool IsPrefix
-        {
-            get => _prefix.GetValue();
-            set => _prefix.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _global = new PropertyValue<bool>(nameof(UnfurlsBlockListEntry), nameof(IsGlobal));
-        
-        [Required]
-        [JsonPropertyName("global")]
-        public bool IsGlobal
-        {
-            get => _global.GetValue();
-            set => _global.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _link.SetAccessPath(path, validateHasBeenSet);
-            _prefix.SetAccessPath(path, validateHasBeenSet);
-            _global.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Link = link;
+        IsPrefix = prefix;
+        IsGlobal = global;
     }
     
+    private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlsBlockListEntry), nameof(Link));
+    
+    [Required]
+    [JsonPropertyName("link")]
+    public string Link
+    {
+        get => _link.GetValue();
+        set => _link.SetValue(value);
+    }
+
+    private PropertyValue<bool> _prefix = new PropertyValue<bool>(nameof(UnfurlsBlockListEntry), nameof(IsPrefix));
+    
+    [Required]
+    [JsonPropertyName("prefix")]
+    public bool IsPrefix
+    {
+        get => _prefix.GetValue();
+        set => _prefix.SetValue(value);
+    }
+
+    private PropertyValue<bool> _global = new PropertyValue<bool>(nameof(UnfurlsBlockListEntry), nameof(IsGlobal));
+    
+    [Required]
+    [JsonPropertyName("global")]
+    public bool IsGlobal
+    {
+        get => _global.GetValue();
+        set => _global.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _link.SetAccessPath(path, validateHasBeenSet);
+        _prefix.SetAccessPath(path, validateHasBeenSet);
+        _global.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

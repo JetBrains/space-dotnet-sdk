@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsLocation
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsLocation
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsLocation";
+    
+    public UnfurlDetailsLocation() { }
+    
+    public UnfurlDetailsLocation(TDLocation location, bool? strikeThrough = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsLocation";
-        
-        public UnfurlDetailsLocation() { }
-        
-        public UnfurlDetailsLocation(TDLocation location, bool? strikeThrough = null)
-        {
-            Location = location;
-            IsStrikeThrough = strikeThrough;
-        }
-        
-        private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(UnfurlDetailsLocation), nameof(Location));
-        
-        [Required]
-        [JsonPropertyName("location")]
-        public TDLocation Location
-        {
-            get => _location.GetValue();
-            set => _location.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsLocation), nameof(IsStrikeThrough));
-        
-        [JsonPropertyName("strikeThrough")]
-        public bool? IsStrikeThrough
-        {
-            get => _strikeThrough.GetValue();
-            set => _strikeThrough.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _location.SetAccessPath(path, validateHasBeenSet);
-            _strikeThrough.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Location = location;
+        IsStrikeThrough = strikeThrough;
     }
     
+    private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(UnfurlDetailsLocation), nameof(Location));
+    
+    [Required]
+    [JsonPropertyName("location")]
+    public TDLocation Location
+    {
+        get => _location.GetValue();
+        set => _location.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsLocation), nameof(IsStrikeThrough));
+    
+    [JsonPropertyName("strikeThrough")]
+    public bool? IsStrikeThrough
+    {
+        get => _strikeThrough.GetValue();
+        set => _strikeThrough.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _location.SetAccessPath(path, validateHasBeenSet);
+        _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

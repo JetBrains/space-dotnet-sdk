@@ -27,56 +27,55 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BoardInfo
+     : IPropagatePropertyAccessPath
 {
-    public sealed class BoardInfo
-         : IPropagatePropertyAccessPath
+    public BoardInfo() { }
+    
+    public BoardInfo(BoardOwners owners, BoardColumns columns, string? description = null)
     {
-        public BoardInfo() { }
-        
-        public BoardInfo(BoardOwners owners, BoardColumns columns, string? description = null)
-        {
-            Owners = owners;
-            Columns = columns;
-            Description = description;
-        }
-        
-        private PropertyValue<BoardOwners> _owners = new PropertyValue<BoardOwners>(nameof(BoardInfo), nameof(Owners));
-        
-        [Required]
-        [JsonPropertyName("owners")]
-        public BoardOwners Owners
-        {
-            get => _owners.GetValue();
-            set => _owners.SetValue(value);
-        }
-    
-        private PropertyValue<BoardColumns> _columns = new PropertyValue<BoardColumns>(nameof(BoardInfo), nameof(Columns));
-        
-        [Required]
-        [JsonPropertyName("columns")]
-        public BoardColumns Columns
-        {
-            get => _columns.GetValue();
-            set => _columns.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(BoardInfo), nameof(Description));
-        
-        [JsonPropertyName("description")]
-        public string? Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _owners.SetAccessPath(path, validateHasBeenSet);
-            _columns.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Owners = owners;
+        Columns = columns;
+        Description = description;
     }
     
+    private PropertyValue<BoardOwners> _owners = new PropertyValue<BoardOwners>(nameof(BoardInfo), nameof(Owners));
+    
+    [Required]
+    [JsonPropertyName("owners")]
+    public BoardOwners Owners
+    {
+        get => _owners.GetValue();
+        set => _owners.SetValue(value);
+    }
+
+    private PropertyValue<BoardColumns> _columns = new PropertyValue<BoardColumns>(nameof(BoardInfo), nameof(Columns));
+    
+    [Required]
+    [JsonPropertyName("columns")]
+    public BoardColumns Columns
+    {
+        get => _columns.GetValue();
+        set => _columns.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(BoardInfo), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _owners.SetAccessPath(path, validateHasBeenSet);
+        _columns.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

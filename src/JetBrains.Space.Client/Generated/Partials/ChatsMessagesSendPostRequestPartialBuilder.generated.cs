@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChatsMessagesSendPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ChatsMessagesSendPostRequestPartialBuilder;
+
+public static class ChatsMessagesSendPostRequestPartialExtensions
 {
-    public static class ChatsMessagesSendPostRequestPartialExtensions
-    {
-        public static Partial<ChatsMessagesSendPostRequest> WithChannel(this Partial<ChatsMessagesSendPostRequest> it)
-            => it.AddFieldName("channel");
-        
-        public static Partial<ChatsMessagesSendPostRequest> WithText(this Partial<ChatsMessagesSendPostRequest> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<ChatsMessagesSendPostRequest> WithIsPending(this Partial<ChatsMessagesSendPostRequest> it)
-            => it.AddFieldName("pending");
-        
-        public static Partial<ChatsMessagesSendPostRequest> WithTemporaryId(this Partial<ChatsMessagesSendPostRequest> it)
-            => it.AddFieldName("temporaryId");
-        
-    }
+    public static Partial<ChatsMessagesSendPostRequest> WithChannel(this Partial<ChatsMessagesSendPostRequest> it)
+        => it.AddFieldName("channel");
+    
+    public static Partial<ChatsMessagesSendPostRequest> WithText(this Partial<ChatsMessagesSendPostRequest> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<ChatsMessagesSendPostRequest> WithIsPending(this Partial<ChatsMessagesSendPostRequest> it)
+        => it.AddFieldName("pending");
+    
+    public static Partial<ChatsMessagesSendPostRequest> WithTemporaryId(this Partial<ChatsMessagesSendPostRequest> it)
+        => it.AddFieldName("temporaryId");
     
 }
+

@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CustomFieldsRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CustomFieldsRecord
-         : IPropagatePropertyAccessPath
+    public CustomFieldsRecord() { }
+    
+    public CustomFieldsRecord(string id, List<CustomFieldValue> values)
     {
-        public CustomFieldsRecord() { }
-        
-        public CustomFieldsRecord(string id, List<CustomFieldValue> values)
-        {
-            Id = id;
-            Values = values;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CustomFieldsRecord), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<List<CustomFieldValue>> _values = new PropertyValue<List<CustomFieldValue>>(nameof(CustomFieldsRecord), nameof(Values), new List<CustomFieldValue>());
-        
-        [Required]
-        [JsonPropertyName("values")]
-        public List<CustomFieldValue> Values
-        {
-            get => _values.GetValue();
-            set => _values.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _values.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Values = values;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CustomFieldsRecord), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<List<CustomFieldValue>> _values = new PropertyValue<List<CustomFieldValue>>(nameof(CustomFieldsRecord), nameof(Values), new List<CustomFieldValue>());
+    
+    [Required]
+    [JsonPropertyName("values")]
+    public List<CustomFieldValue> Values
+    {
+        get => _values.GetValue();
+        set => _values.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _values.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

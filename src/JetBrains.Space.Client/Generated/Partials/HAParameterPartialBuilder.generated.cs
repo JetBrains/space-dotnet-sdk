@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HAParameterPartialBuilder
+namespace JetBrains.Space.Client.HAParameterPartialBuilder;
+
+public static class HAParameterPartialExtensions
 {
-    public static class HAParameterPartialExtensions
-    {
-        public static Partial<HAParameter> WithField(this Partial<HAParameter> it)
-            => it.AddFieldName("field");
-        
-        public static Partial<HAParameter> WithField(this Partial<HAParameter> it, Func<Partial<HAField>, Partial<HAField>> partialBuilder)
-            => it.AddFieldName("field", partialBuilder(new Partial<HAField>(it)));
-        
-        public static Partial<HAParameter> WithIsPath(this Partial<HAParameter> it)
-            => it.AddFieldName("path");
-        
-    }
+    public static Partial<HAParameter> WithField(this Partial<HAParameter> it)
+        => it.AddFieldName("field");
+    
+    public static Partial<HAParameter> WithField(this Partial<HAParameter> it, Func<Partial<HAField>, Partial<HAField>> partialBuilder)
+        => it.AddFieldName("field", partialBuilder(new Partial<HAField>(it)));
+    
+    public static Partial<HAParameter> WithIsPath(this Partial<HAParameter> it)
+        => it.AddFieldName("path");
     
 }
+

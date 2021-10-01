@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RecurrenceRuleEndsTotalCount
+     : RecurrenceRuleEnds, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class RecurrenceRuleEndsTotalCount
-         : RecurrenceRuleEnds, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "RecurrenceRuleEnds.TotalCount";
+    
+    public RecurrenceRuleEndsTotalCount() { }
+    
+    public RecurrenceRuleEndsTotalCount(int count)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "RecurrenceRuleEnds.TotalCount";
-        
-        public RecurrenceRuleEndsTotalCount() { }
-        
-        public RecurrenceRuleEndsTotalCount(int count)
-        {
-            Count = count;
-        }
-        
-        private PropertyValue<int> _count = new PropertyValue<int>(nameof(RecurrenceRuleEndsTotalCount), nameof(Count));
-        
-        [Required]
-        [JsonPropertyName("count")]
-        public int Count
-        {
-            get => _count.GetValue();
-            set => _count.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _count.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Count = count;
     }
     
+    private PropertyValue<int> _count = new PropertyValue<int>(nameof(RecurrenceRuleEndsTotalCount), nameof(Count));
+    
+    [Required]
+    [JsonPropertyName("count")]
+    public int Count
+    {
+        get => _count.GetValue();
+        set => _count.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _count.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

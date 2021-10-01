@@ -27,59 +27,58 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class FileDocumentBodyUpload
+     : FileDocumentBody, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class FileDocumentBodyUpload
-         : FileDocumentBody, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "FileDocumentBody.Upload";
+    
+    public FileDocumentBodyUpload() { }
+    
+    public FileDocumentBodyUpload(string versionId, bool uploading, string? mediaType = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "FileDocumentBody.Upload";
-        
-        public FileDocumentBodyUpload() { }
-        
-        public FileDocumentBodyUpload(string versionId, bool uploading, string? mediaType = null)
-        {
-            VersionId = versionId;
-            MediaType = mediaType;
-            IsUploading = uploading;
-        }
-        
-        private PropertyValue<string> _versionId = new PropertyValue<string>(nameof(FileDocumentBodyUpload), nameof(VersionId));
-        
-        [Required]
-        [JsonPropertyName("versionId")]
-        public string VersionId
-        {
-            get => _versionId.GetValue();
-            set => _versionId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _mediaType = new PropertyValue<string?>(nameof(FileDocumentBodyUpload), nameof(MediaType));
-        
-        [JsonPropertyName("mediaType")]
-        public string? MediaType
-        {
-            get => _mediaType.GetValue();
-            set => _mediaType.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _uploading = new PropertyValue<bool>(nameof(FileDocumentBodyUpload), nameof(IsUploading));
-        
-        [Required]
-        [JsonPropertyName("uploading")]
-        public bool IsUploading
-        {
-            get => _uploading.GetValue();
-            set => _uploading.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _versionId.SetAccessPath(path, validateHasBeenSet);
-            _mediaType.SetAccessPath(path, validateHasBeenSet);
-            _uploading.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        VersionId = versionId;
+        MediaType = mediaType;
+        IsUploading = uploading;
     }
     
+    private PropertyValue<string> _versionId = new PropertyValue<string>(nameof(FileDocumentBodyUpload), nameof(VersionId));
+    
+    [Required]
+    [JsonPropertyName("versionId")]
+    public string VersionId
+    {
+        get => _versionId.GetValue();
+        set => _versionId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _mediaType = new PropertyValue<string?>(nameof(FileDocumentBodyUpload), nameof(MediaType));
+    
+    [JsonPropertyName("mediaType")]
+    public string? MediaType
+    {
+        get => _mediaType.GetValue();
+        set => _mediaType.SetValue(value);
+    }
+
+    private PropertyValue<bool> _uploading = new PropertyValue<bool>(nameof(FileDocumentBodyUpload), nameof(IsUploading));
+    
+    [Required]
+    [JsonPropertyName("uploading")]
+    public bool IsUploading
+    {
+        get => _uploading.GetValue();
+        set => _uploading.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _versionId.SetAccessPath(path, validateHasBeenSet);
+        _mediaType.SetAccessPath(path, validateHasBeenSet);
+        _uploading.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CodeReviewDiscussionCounter
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CodeReviewDiscussionCounter
-         : IPropagatePropertyAccessPath
+    public CodeReviewDiscussionCounter() { }
+    
+    public CodeReviewDiscussionCounter(string id, Counter discussionCounter)
     {
-        public CodeReviewDiscussionCounter() { }
-        
-        public CodeReviewDiscussionCounter(string id, Counter discussionCounter)
-        {
-            Id = id;
-            DiscussionCounter = discussionCounter;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewDiscussionCounter), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<Counter> _discussionCounter = new PropertyValue<Counter>(nameof(CodeReviewDiscussionCounter), nameof(DiscussionCounter));
-        
-        [Required]
-        [JsonPropertyName("discussionCounter")]
-        public Counter DiscussionCounter
-        {
-            get => _discussionCounter.GetValue();
-            set => _discussionCounter.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _discussionCounter.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        DiscussionCounter = discussionCounter;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewDiscussionCounter), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<Counter> _discussionCounter = new PropertyValue<Counter>(nameof(CodeReviewDiscussionCounter), nameof(DiscussionCounter));
+    
+    [Required]
+    [JsonPropertyName("discussionCounter")]
+    public Counter DiscussionCounter
+    {
+        get => _discussionCounter.GetValue();
+        set => _discussionCounter.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _discussionCounter.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

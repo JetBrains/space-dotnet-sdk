@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsPlanningBoardsSprintsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsPlanningBoardsSprintsPostRequestPartialBuilder;
+
+public static class ProjectsPlanningBoardsSprintsPostRequestPartialExtensions
 {
-    public static class ProjectsPlanningBoardsSprintsPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithBoard(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it)
-            => it.AddFieldName("board");
-        
-        public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithBoard(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it, Func<Partial<BoardIdentifier>, Partial<BoardIdentifier>> partialBuilder)
-            => it.AddFieldName("board", partialBuilder(new Partial<BoardIdentifier>(it)));
-        
-        public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithName(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithDescription(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithFrom(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it)
-            => it.AddFieldName("from");
-        
-        public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithTo(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it)
-            => it.AddFieldName("to");
-        
-    }
+    public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithBoard(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it)
+        => it.AddFieldName("board");
+    
+    public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithBoard(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it, Func<Partial<BoardIdentifier>, Partial<BoardIdentifier>> partialBuilder)
+        => it.AddFieldName("board", partialBuilder(new Partial<BoardIdentifier>(it)));
+    
+    public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithName(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithDescription(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithFrom(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it)
+        => it.AddFieldName("from");
+    
+    public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithTo(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it)
+        => it.AddFieldName("to");
     
 }
+

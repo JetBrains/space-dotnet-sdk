@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESPackageRepositorySettingsPartialBuilder
+namespace JetBrains.Space.Client.ESPackageRepositorySettingsPartialBuilder;
+
+public static class ESPackageRepositorySettingsPartialExtensions
 {
-    public static class ESPackageRepositorySettingsPartialExtensions
-    {
-    }
-    
 }
+

@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ApiIcon
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ApiIcon
-         : IPropagatePropertyAccessPath
+    public ApiIcon() { }
+    
+    public ApiIcon(string icon)
     {
-        public ApiIcon() { }
-        
-        public ApiIcon(string icon)
-        {
-            Icon = icon;
-        }
-        
-        private PropertyValue<string> _icon = new PropertyValue<string>(nameof(ApiIcon), nameof(Icon));
-        
-        [Required]
-        [JsonPropertyName("icon")]
-        public string Icon
-        {
-            get => _icon.GetValue();
-            set => _icon.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _icon.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Icon = icon;
     }
     
+    private PropertyValue<string> _icon = new PropertyValue<string>(nameof(ApiIcon), nameof(Icon));
+    
+    [Required]
+    [JsonPropertyName("icon")]
+    public string Icon
+    {
+        get => _icon.GetValue();
+        set => _icon.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _icon.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

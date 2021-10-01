@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface KBBookContext
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface KBBookContext
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static KbNoneContext KbNoneContext()
-            => new KbNoneContext();
-        
-        public static KbPersonalContext KbPersonalContext(TDMemberProfile owner)
-            => new KbPersonalContext(owner: owner);
-        
-        public static KbProjectContext KbProjectContext(PRProject project)
-            => new KbProjectContext(project: project);
-        
-    }
+    public static KbNoneContext KbNoneContext()
+        => new KbNoneContext();
+    
+    public static KbPersonalContext KbPersonalContext(TDMemberProfile owner)
+        => new KbPersonalContext(owner: owner);
+    
+    public static KbProjectContext KbProjectContext(PRProject project)
+        => new KbProjectContext(project: project);
     
 }
+

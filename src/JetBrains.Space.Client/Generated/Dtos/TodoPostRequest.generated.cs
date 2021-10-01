@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TodoPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TodoPostRequest
-         : IPropagatePropertyAccessPath
+    public TodoPostRequest() { }
+    
+    public TodoPostRequest(string text, DateTime? dueDate = null)
     {
-        public TodoPostRequest() { }
-        
-        public TodoPostRequest(string text, DateTime? dueDate = null)
-        {
-            Text = text;
-            DueDate = dueDate;
-        }
-        
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoPostRequest), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoPostRequest), nameof(DueDate));
-        
-        [JsonPropertyName("dueDate")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? DueDate
-        {
-            get => _dueDate.GetValue();
-            set => _dueDate.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _dueDate.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Text = text;
+        DueDate = dueDate;
     }
     
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoPostRequest), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoPostRequest), nameof(DueDate));
+    
+    [JsonPropertyName("dueDate")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? DueDate
+    {
+        get => _dueDate.GetValue();
+        set => _dueDate.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _text.SetAccessPath(path, validateHasBeenSet);
+        _dueDate.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

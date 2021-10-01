@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.StickerContentDetailsPartialBuilder
+namespace JetBrains.Space.Client.StickerContentDetailsPartialBuilder;
+
+public static class StickerContentDetailsPartialExtensions
 {
-    public static class StickerContentDetailsPartialExtensions
-    {
-        public static Partial<StickerContentDetails> WithSticker(this Partial<StickerContentDetails> it)
-            => it.AddFieldName("sticker");
-        
-        public static Partial<StickerContentDetails> WithSticker(this Partial<StickerContentDetails> it, Func<Partial<Sticker>, Partial<Sticker>> partialBuilder)
-            => it.AddFieldName("sticker", partialBuilder(new Partial<Sticker>(it)));
-        
-        public static Partial<StickerContentDetails> WithPack(this Partial<StickerContentDetails> it)
-            => it.AddFieldName("pack");
-        
-        public static Partial<StickerContentDetails> WithPack(this Partial<StickerContentDetails> it, Func<Partial<StickerPackInfo>, Partial<StickerPackInfo>> partialBuilder)
-            => it.AddFieldName("pack", partialBuilder(new Partial<StickerPackInfo>(it)));
-        
-    }
+    public static Partial<StickerContentDetails> WithSticker(this Partial<StickerContentDetails> it)
+        => it.AddFieldName("sticker");
+    
+    public static Partial<StickerContentDetails> WithSticker(this Partial<StickerContentDetails> it, Func<Partial<Sticker>, Partial<Sticker>> partialBuilder)
+        => it.AddFieldName("sticker", partialBuilder(new Partial<Sticker>(it)));
+    
+    public static Partial<StickerContentDetails> WithPack(this Partial<StickerContentDetails> it)
+        => it.AddFieldName("pack");
+    
+    public static Partial<StickerContentDetails> WithPack(this Partial<StickerContentDetails> it, Func<Partial<StickerPackInfo>, Partial<StickerPackInfo>> partialBuilder)
+        => it.AddFieldName("pack", partialBuilder(new Partial<StickerPackInfo>(it)));
     
 }
+

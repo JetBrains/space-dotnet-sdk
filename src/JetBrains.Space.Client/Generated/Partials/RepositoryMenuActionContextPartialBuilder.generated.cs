@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RepositoryMenuActionContextPartialBuilder
+namespace JetBrains.Space.Client.RepositoryMenuActionContextPartialBuilder;
+
+public static class RepositoryMenuActionContextPartialExtensions
 {
-    public static class RepositoryMenuActionContextPartialExtensions
-    {
-        public static Partial<RepositoryMenuActionContext> WithMenuId(this Partial<RepositoryMenuActionContext> it)
-            => it.AddFieldName("menuId");
-        
-        public static Partial<RepositoryMenuActionContext> WithProject(this Partial<RepositoryMenuActionContext> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<RepositoryMenuActionContext> WithProject(this Partial<RepositoryMenuActionContext> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
-        public static Partial<RepositoryMenuActionContext> WithRepo(this Partial<RepositoryMenuActionContext> it)
-            => it.AddFieldName("repo");
-        
-    }
+    public static Partial<RepositoryMenuActionContext> WithMenuId(this Partial<RepositoryMenuActionContext> it)
+        => it.AddFieldName("menuId");
+    
+    public static Partial<RepositoryMenuActionContext> WithProject(this Partial<RepositoryMenuActionContext> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<RepositoryMenuActionContext> WithProject(this Partial<RepositoryMenuActionContext> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+    
+    public static Partial<RepositoryMenuActionContext> WithRepo(this Partial<RepositoryMenuActionContext> it)
+        => it.AddFieldName("repo");
     
 }
+

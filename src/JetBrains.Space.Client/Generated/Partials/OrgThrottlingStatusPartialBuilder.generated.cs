@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.OrgThrottlingStatusPartialBuilder
+namespace JetBrains.Space.Client.OrgThrottlingStatusPartialBuilder;
+
+public static class OrgThrottlingStatusPartialExtensions
 {
-    public static class OrgThrottlingStatusPartialExtensions
-    {
-        public static Partial<OrgThrottlingStatus> WithThrottledUntil(this Partial<OrgThrottlingStatus> it)
-            => it.AddFieldName("throttledUntil");
-        
-    }
+    public static Partial<OrgThrottlingStatus> WithThrottledUntil(this Partial<OrgThrottlingStatus> it)
+        => it.AddFieldName("throttledUntil");
     
 }
+

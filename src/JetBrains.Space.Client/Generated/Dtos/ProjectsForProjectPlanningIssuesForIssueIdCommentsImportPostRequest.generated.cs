@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest() { }
+    
+    public ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest(List<MessageForImport> comments)
     {
-        public ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest() { }
-        
-        public ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest(List<MessageForImport> comments)
-        {
-            Comments = comments;
-        }
-        
-        private PropertyValue<List<MessageForImport>> _comments = new PropertyValue<List<MessageForImport>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest), nameof(Comments), new List<MessageForImport>());
-        
-        [Required]
-        [JsonPropertyName("comments")]
-        public List<MessageForImport> Comments
-        {
-            get => _comments.GetValue();
-            set => _comments.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _comments.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Comments = comments;
     }
     
+    private PropertyValue<List<MessageForImport>> _comments = new PropertyValue<List<MessageForImport>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest), nameof(Comments), new List<MessageForImport>());
+    
+    [Required]
+    [JsonPropertyName("comments")]
+    public List<MessageForImport> Comments
+    {
+        get => _comments.GetValue();
+        set => _comments.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _comments.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

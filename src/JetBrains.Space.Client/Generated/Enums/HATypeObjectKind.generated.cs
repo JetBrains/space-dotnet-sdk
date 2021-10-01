@@ -27,26 +27,25 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum HATypeObjectKind
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum HATypeObjectKind
-    {
-        [EnumMember(Value = "PAIR")]
-        PAIR,
-        
-        [EnumMember(Value = "TRIPLE")]
-        TRIPLE,
-        
-        [EnumMember(Value = "BATCH")]
-        BATCH,
-        
-        [EnumMember(Value = "MOD")]
-        MOD,
-        
-        [EnumMember(Value = "REQUEST_BODY")]
-        REQUESTBODY,
-        
-    }
+    [EnumMember(Value = "PAIR")]
+    PAIR,
+    
+    [EnumMember(Value = "TRIPLE")]
+    TRIPLE,
+    
+    [EnumMember(Value = "BATCH")]
+    BATCH,
+    
+    [EnumMember(Value = "MOD")]
+    MOD,
+    
+    [EnumMember(Value = "REQUEST_BODY")]
+    REQUESTBODY,
     
 }
+

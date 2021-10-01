@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class FeatureFlagDate
+     : IPropagatePropertyAccessPath
 {
-    public sealed class FeatureFlagDate
-         : IPropagatePropertyAccessPath
+    public FeatureFlagDate() { }
+    
+    public FeatureFlagDate(int year, int month, int day)
     {
-        public FeatureFlagDate() { }
-        
-        public FeatureFlagDate(int year, int month, int day)
-        {
-            Year = year;
-            Month = month;
-            Day = day;
-        }
-        
-        private PropertyValue<int> _year = new PropertyValue<int>(nameof(FeatureFlagDate), nameof(Year));
-        
-        [Required]
-        [JsonPropertyName("year")]
-        public int Year
-        {
-            get => _year.GetValue();
-            set => _year.SetValue(value);
-        }
-    
-        private PropertyValue<int> _month = new PropertyValue<int>(nameof(FeatureFlagDate), nameof(Month));
-        
-        [Required]
-        [JsonPropertyName("month")]
-        public int Month
-        {
-            get => _month.GetValue();
-            set => _month.SetValue(value);
-        }
-    
-        private PropertyValue<int> _day = new PropertyValue<int>(nameof(FeatureFlagDate), nameof(Day));
-        
-        [Required]
-        [JsonPropertyName("day")]
-        public int Day
-        {
-            get => _day.GetValue();
-            set => _day.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _year.SetAccessPath(path, validateHasBeenSet);
-            _month.SetAccessPath(path, validateHasBeenSet);
-            _day.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Year = year;
+        Month = month;
+        Day = day;
     }
     
+    private PropertyValue<int> _year = new PropertyValue<int>(nameof(FeatureFlagDate), nameof(Year));
+    
+    [Required]
+    [JsonPropertyName("year")]
+    public int Year
+    {
+        get => _year.GetValue();
+        set => _year.SetValue(value);
+    }
+
+    private PropertyValue<int> _month = new PropertyValue<int>(nameof(FeatureFlagDate), nameof(Month));
+    
+    [Required]
+    [JsonPropertyName("month")]
+    public int Month
+    {
+        get => _month.GetValue();
+        set => _month.SetValue(value);
+    }
+
+    private PropertyValue<int> _day = new PropertyValue<int>(nameof(FeatureFlagDate), nameof(Day));
+    
+    [Required]
+    [JsonPropertyName("day")]
+    public int Day
+    {
+        get => _day.GetValue();
+        set => _day.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _year.SetAccessPath(path, validateHasBeenSet);
+        _month.SetAccessPath(path, validateHasBeenSet);
+        _day.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

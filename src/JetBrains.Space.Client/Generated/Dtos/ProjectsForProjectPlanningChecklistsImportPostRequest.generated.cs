@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectPlanningChecklistsImportPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectPlanningChecklistsImportPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectPlanningChecklistsImportPostRequest() { }
+    
+    public ProjectsForProjectPlanningChecklistsImportPostRequest(string name, string tabIndentedLines)
     {
-        public ProjectsForProjectPlanningChecklistsImportPostRequest() { }
-        
-        public ProjectsForProjectPlanningChecklistsImportPostRequest(string name, string tabIndentedLines)
-        {
-            Name = name;
-            TabIndentedLines = tabIndentedLines;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsImportPostRequest), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _tabIndentedLines = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsImportPostRequest), nameof(TabIndentedLines));
-        
-        [Required]
-        [JsonPropertyName("tabIndentedLines")]
-        public string TabIndentedLines
-        {
-            get => _tabIndentedLines.GetValue();
-            set => _tabIndentedLines.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _tabIndentedLines.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        TabIndentedLines = tabIndentedLines;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsImportPostRequest), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _tabIndentedLines = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsImportPostRequest), nameof(TabIndentedLines));
+    
+    [Required]
+    [JsonPropertyName("tabIndentedLines")]
+    public string TabIndentedLines
+    {
+        get => _tabIndentedLines.GetValue();
+        set => _tabIndentedLines.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _tabIndentedLines.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

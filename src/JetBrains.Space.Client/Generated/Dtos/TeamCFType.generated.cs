@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TeamCFType
+     : CFType, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class TeamCFType
-         : CFType, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "TeamCFType";
+    
+    public TeamCFType() { }
+    
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "TeamCFType";
-        
-        public TeamCFType() { }
-        
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

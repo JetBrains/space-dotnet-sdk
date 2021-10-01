@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequestPartialBuilder;
+
+public static class ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequestPartialExtensions
 {
-    public static class ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequestPartialExtensions
-    {
-        public static Partial<ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest> WithRightCodesToAdd(this Partial<ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest> it)
-            => it.AddFieldName("rightCodesToAdd");
-        
-        public static Partial<ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest> WithRightCodesToRemove(this Partial<ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest> it)
-            => it.AddFieldName("rightCodesToRemove");
-        
-        public static Partial<ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest> WithIsRequestRightsInAuthorizedContexts(this Partial<ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest> it)
-            => it.AddFieldName("requestRightsInAuthorizedContexts");
-        
-    }
+    public static Partial<ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest> WithRightCodesToAdd(this Partial<ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest> it)
+        => it.AddFieldName("rightCodesToAdd");
+    
+    public static Partial<ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest> WithRightCodesToRemove(this Partial<ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest> it)
+        => it.AddFieldName("rightCodesToRemove");
+    
+    public static Partial<ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest> WithIsRequestRightsInAuthorizedContexts(this Partial<ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest> it)
+        => it.AddFieldName("requestRightsInAuthorizedContexts");
     
 }
+

@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitGraphLayoutEdgePartialBuilder
+namespace JetBrains.Space.Client.GitGraphLayoutEdgePartialBuilder;
+
+public static class GitGraphLayoutEdgePartialExtensions
 {
-    public static class GitGraphLayoutEdgePartialExtensions
-    {
-        public static Partial<GitGraphLayoutEdge> WithFrom(this Partial<GitGraphLayoutEdge> it)
-            => it.AddFieldName("from");
-        
-        public static Partial<GitGraphLayoutEdge> WithTo(this Partial<GitGraphLayoutEdge> it)
-            => it.AddFieldName("to");
-        
-        public static Partial<GitGraphLayoutEdge> WithType(this Partial<GitGraphLayoutEdge> it)
-            => it.AddFieldName("type");
-        
-        public static Partial<GitGraphLayoutEdge> WithType(this Partial<GitGraphLayoutEdge> it, Func<Partial<GitGraphEdgeType>, Partial<GitGraphEdgeType>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<GitGraphEdgeType>(it)));
-        
-        public static Partial<GitGraphLayoutEdge> WithStyle(this Partial<GitGraphLayoutEdge> it)
-            => it.AddFieldName("style");
-        
-        public static Partial<GitGraphLayoutEdge> WithStyle(this Partial<GitGraphLayoutEdge> it, Func<Partial<GitGraphEdgeLineStyle>, Partial<GitGraphEdgeLineStyle>> partialBuilder)
-            => it.AddFieldName("style", partialBuilder(new Partial<GitGraphEdgeLineStyle>(it)));
-        
-        public static Partial<GitGraphLayoutEdge> WithIsHasArrow(this Partial<GitGraphLayoutEdge> it)
-            => it.AddFieldName("hasArrow");
-        
-        public static Partial<GitGraphLayoutEdge> WithColor(this Partial<GitGraphLayoutEdge> it)
-            => it.AddFieldName("color");
-        
-    }
+    public static Partial<GitGraphLayoutEdge> WithFrom(this Partial<GitGraphLayoutEdge> it)
+        => it.AddFieldName("from");
+    
+    public static Partial<GitGraphLayoutEdge> WithTo(this Partial<GitGraphLayoutEdge> it)
+        => it.AddFieldName("to");
+    
+    public static Partial<GitGraphLayoutEdge> WithType(this Partial<GitGraphLayoutEdge> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<GitGraphLayoutEdge> WithType(this Partial<GitGraphLayoutEdge> it, Func<Partial<GitGraphEdgeType>, Partial<GitGraphEdgeType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<GitGraphEdgeType>(it)));
+    
+    public static Partial<GitGraphLayoutEdge> WithStyle(this Partial<GitGraphLayoutEdge> it)
+        => it.AddFieldName("style");
+    
+    public static Partial<GitGraphLayoutEdge> WithStyle(this Partial<GitGraphLayoutEdge> it, Func<Partial<GitGraphEdgeLineStyle>, Partial<GitGraphEdgeLineStyle>> partialBuilder)
+        => it.AddFieldName("style", partialBuilder(new Partial<GitGraphEdgeLineStyle>(it)));
+    
+    public static Partial<GitGraphLayoutEdge> WithIsHasArrow(this Partial<GitGraphLayoutEdge> it)
+        => it.AddFieldName("hasArrow");
+    
+    public static Partial<GitGraphLayoutEdge> WithColor(this Partial<GitGraphLayoutEdge> it)
+        => it.AddFieldName("color");
     
 }
+

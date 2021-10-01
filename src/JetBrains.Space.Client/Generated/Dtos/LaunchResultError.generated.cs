@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class LaunchResultError
+     : LaunchResult, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class LaunchResultError
-         : LaunchResult, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "LaunchResult.Error";
+    
+    public LaunchResultError() { }
+    
+    public LaunchResultError(string message)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "LaunchResult.Error";
-        
-        public LaunchResultError() { }
-        
-        public LaunchResultError(string message)
-        {
-            Message = message;
-        }
-        
-        private PropertyValue<string> _message = new PropertyValue<string>(nameof(LaunchResultError), nameof(Message));
-        
-        [Required]
-        [JsonPropertyName("message")]
-        public string Message
-        {
-            get => _message.GetValue();
-            set => _message.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _message.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Message = message;
     }
     
+    private PropertyValue<string> _message = new PropertyValue<string>(nameof(LaunchResultError), nameof(Message));
+    
+    [Required]
+    [JsonPropertyName("message")]
+    public string Message
+    {
+        get => _message.GetValue();
+        set => _message.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _message.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

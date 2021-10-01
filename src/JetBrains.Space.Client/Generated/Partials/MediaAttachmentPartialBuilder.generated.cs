@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MediaAttachmentPartialBuilder
+namespace JetBrains.Space.Client.MediaAttachmentPartialBuilder;
+
+public static class MediaAttachmentPartialExtensions
 {
-    public static class MediaAttachmentPartialExtensions
-    {
-    }
-    
 }
+

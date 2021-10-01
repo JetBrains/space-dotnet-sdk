@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueDueDateChangedDetailsPartialBuilder
+namespace JetBrains.Space.Client.IssueDueDateChangedDetailsPartialBuilder;
+
+public static class IssueDueDateChangedDetailsPartialExtensions
 {
-    public static class IssueDueDateChangedDetailsPartialExtensions
-    {
-        public static Partial<IssueDueDateChangedDetails> WithOldDueDate(this Partial<IssueDueDateChangedDetails> it)
-            => it.AddFieldName("oldDueDate");
-        
-        public static Partial<IssueDueDateChangedDetails> WithNewDueDate(this Partial<IssueDueDateChangedDetails> it)
-            => it.AddFieldName("newDueDate");
-        
-    }
+    public static Partial<IssueDueDateChangedDetails> WithOldDueDate(this Partial<IssueDueDateChangedDetails> it)
+        => it.AddFieldName("oldDueDate");
+    
+    public static Partial<IssueDueDateChangedDetails> WithNewDueDate(this Partial<IssueDueDateChangedDetails> it)
+        => it.AddFieldName("newDueDate");
     
 }
+

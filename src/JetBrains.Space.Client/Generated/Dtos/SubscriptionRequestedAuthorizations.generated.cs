@@ -27,68 +27,67 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class SubscriptionRequestedAuthorizations
+     : IPropagatePropertyAccessPath
 {
-    public sealed class SubscriptionRequestedAuthorizations
-         : IPropagatePropertyAccessPath
+    public SubscriptionRequestedAuthorizations() { }
+    
+    public SubscriptionRequestedAuthorizations(List<Right> rights, List<string> rightCodes, List<PRProject> projects, PermissionContextApi? permissionContext = null)
     {
-        public SubscriptionRequestedAuthorizations() { }
-        
-        public SubscriptionRequestedAuthorizations(List<Right> rights, List<string> rightCodes, List<PRProject> projects, PermissionContextApi? permissionContext = null)
-        {
-            Rights = rights;
-            RightCodes = rightCodes;
-            PermissionContext = permissionContext;
-            Projects = projects;
-        }
-        
-        private PropertyValue<List<Right>> _rights = new PropertyValue<List<Right>>(nameof(SubscriptionRequestedAuthorizations), nameof(Rights), new List<Right>());
-        
-        [Required]
-        [JsonPropertyName("rights")]
-        public List<Right> Rights
-        {
-            get => _rights.GetValue();
-            set => _rights.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _rightCodes = new PropertyValue<List<string>>(nameof(SubscriptionRequestedAuthorizations), nameof(RightCodes), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("rightCodes")]
-        public List<string> RightCodes
-        {
-            get => _rightCodes.GetValue();
-            set => _rightCodes.SetValue(value);
-        }
-    
-        private PropertyValue<PermissionContextApi?> _permissionContext = new PropertyValue<PermissionContextApi?>(nameof(SubscriptionRequestedAuthorizations), nameof(PermissionContext));
-        
-        [JsonPropertyName("permissionContext")]
-        public PermissionContextApi? PermissionContext
-        {
-            get => _permissionContext.GetValue();
-            set => _permissionContext.SetValue(value);
-        }
-    
-        private PropertyValue<List<PRProject>> _projects = new PropertyValue<List<PRProject>>(nameof(SubscriptionRequestedAuthorizations), nameof(Projects), new List<PRProject>());
-        
-        [Required]
-        [JsonPropertyName("projects")]
-        public List<PRProject> Projects
-        {
-            get => _projects.GetValue();
-            set => _projects.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _rights.SetAccessPath(path, validateHasBeenSet);
-            _rightCodes.SetAccessPath(path, validateHasBeenSet);
-            _permissionContext.SetAccessPath(path, validateHasBeenSet);
-            _projects.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Rights = rights;
+        RightCodes = rightCodes;
+        PermissionContext = permissionContext;
+        Projects = projects;
     }
     
+    private PropertyValue<List<Right>> _rights = new PropertyValue<List<Right>>(nameof(SubscriptionRequestedAuthorizations), nameof(Rights), new List<Right>());
+    
+    [Required]
+    [JsonPropertyName("rights")]
+    public List<Right> Rights
+    {
+        get => _rights.GetValue();
+        set => _rights.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _rightCodes = new PropertyValue<List<string>>(nameof(SubscriptionRequestedAuthorizations), nameof(RightCodes), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("rightCodes")]
+    public List<string> RightCodes
+    {
+        get => _rightCodes.GetValue();
+        set => _rightCodes.SetValue(value);
+    }
+
+    private PropertyValue<PermissionContextApi?> _permissionContext = new PropertyValue<PermissionContextApi?>(nameof(SubscriptionRequestedAuthorizations), nameof(PermissionContext));
+    
+    [JsonPropertyName("permissionContext")]
+    public PermissionContextApi? PermissionContext
+    {
+        get => _permissionContext.GetValue();
+        set => _permissionContext.SetValue(value);
+    }
+
+    private PropertyValue<List<PRProject>> _projects = new PropertyValue<List<PRProject>>(nameof(SubscriptionRequestedAuthorizations), nameof(Projects), new List<PRProject>());
+    
+    [Required]
+    [JsonPropertyName("projects")]
+    public List<PRProject> Projects
+    {
+        get => _projects.GetValue();
+        set => _projects.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _rights.SetAccessPath(path, validateHasBeenSet);
+        _rightCodes.SetAccessPath(path, validateHasBeenSet);
+        _permissionContext.SetAccessPath(path, validateHasBeenSet);
+        _projects.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

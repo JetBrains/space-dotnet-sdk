@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest
-         : IPropagatePropertyAccessPath
+    public CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest() { }
+    
+    public CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest(string enumValueToAdd)
     {
-        public CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest() { }
-        
-        public CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest(string enumValueToAdd)
-        {
-            EnumValueToAdd = enumValueToAdd;
-        }
-        
-        private PropertyValue<string> _enumValueToAdd = new PropertyValue<string>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest), nameof(EnumValueToAdd));
-        
-        [Required]
-        [JsonPropertyName("enumValueToAdd")]
-        public string EnumValueToAdd
-        {
-            get => _enumValueToAdd.GetValue();
-            set => _enumValueToAdd.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _enumValueToAdd.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        EnumValueToAdd = enumValueToAdd;
     }
     
+    private PropertyValue<string> _enumValueToAdd = new PropertyValue<string>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest), nameof(EnumValueToAdd));
+    
+    [Required]
+    [JsonPropertyName("enumValueToAdd")]
+    public string EnumValueToAdd
+    {
+        get => _enumValueToAdd.GetValue();
+        set => _enumValueToAdd.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _enumValueToAdd.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

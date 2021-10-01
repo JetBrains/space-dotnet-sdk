@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum PackageRepositoryMode
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum PackageRepositoryMode
-    {
-        [EnumMember(Value = "HOSTING")]
-        HOSTING,
-        
-        [EnumMember(Value = "PROXY")]
-        PROXY,
-        
-    }
+    [EnumMember(Value = "HOSTING")]
+    HOSTING,
+    
+    [EnumMember(Value = "PROXY")]
+    PROXY,
     
 }
+

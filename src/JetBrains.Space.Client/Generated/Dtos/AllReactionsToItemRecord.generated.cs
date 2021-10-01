@@ -27,56 +27,55 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class AllReactionsToItemRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class AllReactionsToItemRecord
-         : IPropagatePropertyAccessPath
+    public AllReactionsToItemRecord() { }
+    
+    public AllReactionsToItemRecord(string id, List<CertainReactionToItemRecord> reactions, List<EmojiReactionRecord>? emojiReactions = null)
     {
-        public AllReactionsToItemRecord() { }
-        
-        public AllReactionsToItemRecord(string id, List<CertainReactionToItemRecord> reactions, List<EmojiReactionRecord>? emojiReactions = null)
-        {
-            Id = id;
-            Reactions = reactions;
-            EmojiReactions = emojiReactions;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(AllReactionsToItemRecord), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<List<CertainReactionToItemRecord>> _reactions = new PropertyValue<List<CertainReactionToItemRecord>>(nameof(AllReactionsToItemRecord), nameof(Reactions), new List<CertainReactionToItemRecord>());
-        
-        [Required]
-        [JsonPropertyName("reactions")]
-        public List<CertainReactionToItemRecord> Reactions
-        {
-            get => _reactions.GetValue();
-            set => _reactions.SetValue(value);
-        }
-    
-        private PropertyValue<List<EmojiReactionRecord>?> _emojiReactions = new PropertyValue<List<EmojiReactionRecord>?>(nameof(AllReactionsToItemRecord), nameof(EmojiReactions));
-        
-        [JsonPropertyName("emojiReactions")]
-        public List<EmojiReactionRecord>? EmojiReactions
-        {
-            get => _emojiReactions.GetValue();
-            set => _emojiReactions.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _reactions.SetAccessPath(path, validateHasBeenSet);
-            _emojiReactions.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Reactions = reactions;
+        EmojiReactions = emojiReactions;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(AllReactionsToItemRecord), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<List<CertainReactionToItemRecord>> _reactions = new PropertyValue<List<CertainReactionToItemRecord>>(nameof(AllReactionsToItemRecord), nameof(Reactions), new List<CertainReactionToItemRecord>());
+    
+    [Required]
+    [JsonPropertyName("reactions")]
+    public List<CertainReactionToItemRecord> Reactions
+    {
+        get => _reactions.GetValue();
+        set => _reactions.SetValue(value);
+    }
+
+    private PropertyValue<List<EmojiReactionRecord>?> _emojiReactions = new PropertyValue<List<EmojiReactionRecord>?>(nameof(AllReactionsToItemRecord), nameof(EmojiReactions));
+    
+    [JsonPropertyName("emojiReactions")]
+    public List<EmojiReactionRecord>? EmojiReactions
+    {
+        get => _emojiReactions.GetValue();
+        set => _emojiReactions.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _reactions.SetAccessPath(path, validateHasBeenSet);
+        _emojiReactions.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

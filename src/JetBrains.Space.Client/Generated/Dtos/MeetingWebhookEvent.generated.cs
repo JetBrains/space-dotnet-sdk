@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MeetingWebhookEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MeetingWebhookEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MeetingWebhookEvent";
+    
+    public MeetingWebhookEvent() { }
+    
+    public MeetingWebhookEvent(KMetaMod meta, MeetingRecord meeting)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MeetingWebhookEvent";
-        
-        public MeetingWebhookEvent() { }
-        
-        public MeetingWebhookEvent(KMetaMod meta, MeetingRecord meeting)
-        {
-            Meta = meta;
-            Meeting = meeting;
-        }
-        
-        private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(MeetingWebhookEvent), nameof(Meta));
-        
-        [Required]
-        [JsonPropertyName("meta")]
-        public KMetaMod Meta
-        {
-            get => _meta.GetValue();
-            set => _meta.SetValue(value);
-        }
-    
-        private PropertyValue<MeetingRecord> _meeting = new PropertyValue<MeetingRecord>(nameof(MeetingWebhookEvent), nameof(Meeting));
-        
-        [Required]
-        [JsonPropertyName("meeting")]
-        public MeetingRecord Meeting
-        {
-            get => _meeting.GetValue();
-            set => _meeting.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _meta.SetAccessPath(path, validateHasBeenSet);
-            _meeting.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Meta = meta;
+        Meeting = meeting;
     }
     
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(MeetingWebhookEvent), nameof(Meta));
+    
+    [Required]
+    [JsonPropertyName("meta")]
+    public KMetaMod Meta
+    {
+        get => _meta.GetValue();
+        set => _meta.SetValue(value);
+    }
+
+    private PropertyValue<MeetingRecord> _meeting = new PropertyValue<MeetingRecord>(nameof(MeetingWebhookEvent), nameof(Meeting));
+    
+    [Required]
+    [JsonPropertyName("meeting")]
+    public MeetingRecord Meeting
+    {
+        get => _meeting.GetValue();
+        set => _meeting.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _meta.SetAccessPath(path, validateHasBeenSet);
+        _meeting.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

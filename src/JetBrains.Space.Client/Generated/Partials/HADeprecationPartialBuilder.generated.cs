@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HADeprecationPartialBuilder
+namespace JetBrains.Space.Client.HADeprecationPartialBuilder;
+
+public static class HADeprecationPartialExtensions
 {
-    public static class HADeprecationPartialExtensions
-    {
-        public static Partial<HADeprecation> WithMessage(this Partial<HADeprecation> it)
-            => it.AddFieldName("message");
-        
-        public static Partial<HADeprecation> WithSince(this Partial<HADeprecation> it)
-            => it.AddFieldName("since");
-        
-        public static Partial<HADeprecation> WithIsForRemoval(this Partial<HADeprecation> it)
-            => it.AddFieldName("forRemoval");
-        
-    }
+    public static Partial<HADeprecation> WithMessage(this Partial<HADeprecation> it)
+        => it.AddFieldName("message");
+    
+    public static Partial<HADeprecation> WithSince(this Partial<HADeprecation> it)
+        => it.AddFieldName("since");
+    
+    public static Partial<HADeprecation> WithIsForRemoval(this Partial<HADeprecation> it)
+        => it.AddFieldName("forRemoval");
     
 }
+

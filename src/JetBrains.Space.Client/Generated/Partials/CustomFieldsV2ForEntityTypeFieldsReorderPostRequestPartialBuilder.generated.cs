@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomFieldsV2ForEntityTypeFieldsReorderPostRequestPartialBuilder
+namespace JetBrains.Space.Client.CustomFieldsV2ForEntityTypeFieldsReorderPostRequestPartialBuilder;
+
+public static class CustomFieldsV2ForEntityTypeFieldsReorderPostRequestPartialExtensions
 {
-    public static class CustomFieldsV2ForEntityTypeFieldsReorderPostRequestPartialExtensions
-    {
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsReorderPostRequest> WithCustomFields(this Partial<CustomFieldsV2ForEntityTypeFieldsReorderPostRequest> it)
-            => it.AddFieldName("customFields");
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsReorderPostRequest> WithCustomFields(this Partial<CustomFieldsV2ForEntityTypeFieldsReorderPostRequest> it, Func<Partial<CFIdentifier>, Partial<CFIdentifier>> partialBuilder)
-            => it.AddFieldName("customFields", partialBuilder(new Partial<CFIdentifier>(it)));
-        
-    }
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsReorderPostRequest> WithCustomFields(this Partial<CustomFieldsV2ForEntityTypeFieldsReorderPostRequest> it)
+        => it.AddFieldName("customFields");
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsReorderPostRequest> WithCustomFields(this Partial<CustomFieldsV2ForEntityTypeFieldsReorderPostRequest> it, Func<Partial<CFIdentifier>, Partial<CFIdentifier>> partialBuilder)
+        => it.AddFieldName("customFields", partialBuilder(new Partial<CFIdentifier>(it)));
     
 }
+

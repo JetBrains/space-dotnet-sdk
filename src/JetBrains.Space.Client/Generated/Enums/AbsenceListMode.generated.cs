@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum AbsenceListMode
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum AbsenceListMode
-    {
-        [EnumMember(Value = "All")]
-        All,
-        
-        [EnumMember(Value = "WithAccessibleReasonUnapproved")]
-        WithAccessibleReasonUnapproved,
-        
-        [EnumMember(Value = "WithAccessibleReasonAll")]
-        WithAccessibleReasonAll,
-        
-    }
+    [EnumMember(Value = "All")]
+    All,
+    
+    [EnumMember(Value = "WithAccessibleReasonUnapproved")]
+    WithAccessibleReasonUnapproved,
+    
+    [EnumMember(Value = "WithAccessibleReasonAll")]
+    WithAccessibleReasonAll,
     
 }
+

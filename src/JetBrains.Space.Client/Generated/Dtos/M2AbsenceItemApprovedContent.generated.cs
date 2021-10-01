@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2AbsenceItemApprovedContent
+     : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2AbsenceItemApprovedContent
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2AbsenceItemApprovedContent";
+    
+    public M2AbsenceItemApprovedContent() { }
+    
+    public M2AbsenceItemApprovedContent(AbsenceRecord absence, TDMemberProfile by, bool approve)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2AbsenceItemApprovedContent";
-        
-        public M2AbsenceItemApprovedContent() { }
-        
-        public M2AbsenceItemApprovedContent(AbsenceRecord absence, TDMemberProfile by, bool approve)
-        {
-            Absence = absence;
-            By = by;
-            IsApprove = approve;
-        }
-        
-        private PropertyValue<AbsenceRecord> _absence = new PropertyValue<AbsenceRecord>(nameof(M2AbsenceItemApprovedContent), nameof(Absence));
-        
-        [Required]
-        [JsonPropertyName("absence")]
-        public AbsenceRecord Absence
-        {
-            get => _absence.GetValue();
-            set => _absence.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberProfile> _by = new PropertyValue<TDMemberProfile>(nameof(M2AbsenceItemApprovedContent), nameof(By));
-        
-        [Required]
-        [JsonPropertyName("by")]
-        public TDMemberProfile By
-        {
-            get => _by.GetValue();
-            set => _by.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(M2AbsenceItemApprovedContent), nameof(IsApprove));
-        
-        [Required]
-        [JsonPropertyName("approve")]
-        public bool IsApprove
-        {
-            get => _approve.GetValue();
-            set => _approve.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _absence.SetAccessPath(path, validateHasBeenSet);
-            _by.SetAccessPath(path, validateHasBeenSet);
-            _approve.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Absence = absence;
+        By = by;
+        IsApprove = approve;
     }
     
+    private PropertyValue<AbsenceRecord> _absence = new PropertyValue<AbsenceRecord>(nameof(M2AbsenceItemApprovedContent), nameof(Absence));
+    
+    [Required]
+    [JsonPropertyName("absence")]
+    public AbsenceRecord Absence
+    {
+        get => _absence.GetValue();
+        set => _absence.SetValue(value);
+    }
+
+    private PropertyValue<TDMemberProfile> _by = new PropertyValue<TDMemberProfile>(nameof(M2AbsenceItemApprovedContent), nameof(By));
+    
+    [Required]
+    [JsonPropertyName("by")]
+    public TDMemberProfile By
+    {
+        get => _by.GetValue();
+        set => _by.SetValue(value);
+    }
+
+    private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(M2AbsenceItemApprovedContent), nameof(IsApprove));
+    
+    [Required]
+    [JsonPropertyName("approve")]
+    public bool IsApprove
+    {
+        get => _approve.GetValue();
+        set => _approve.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _absence.SetAccessPath(path, validateHasBeenSet);
+        _by.SetAccessPath(path, validateHasBeenSet);
+        _approve.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

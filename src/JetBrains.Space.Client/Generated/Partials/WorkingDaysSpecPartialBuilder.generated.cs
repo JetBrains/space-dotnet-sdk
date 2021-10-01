@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.WorkingDaysSpecPartialBuilder
+namespace JetBrains.Space.Client.WorkingDaysSpecPartialBuilder;
+
+public static class WorkingDaysSpecPartialExtensions
 {
-    public static class WorkingDaysSpecPartialExtensions
-    {
-        public static Partial<WorkingDaysSpec> WithDays(this Partial<WorkingDaysSpec> it)
-            => it.AddFieldName("days");
-        
-        public static Partial<WorkingDaysSpec> WithDays(this Partial<WorkingDaysSpec> it, Func<Partial<Workday>, Partial<Workday>> partialBuilder)
-            => it.AddFieldName("days", partialBuilder(new Partial<Workday>(it)));
-        
-        public static Partial<WorkingDaysSpec> WithWorkingHours(this Partial<WorkingDaysSpec> it)
-            => it.AddFieldName("workingHours");
-        
-        public static Partial<WorkingDaysSpec> WithWorkingHours(this Partial<WorkingDaysSpec> it, Func<Partial<WeekDayTimeInterval>, Partial<WeekDayTimeInterval>> partialBuilder)
-            => it.AddFieldName("workingHours", partialBuilder(new Partial<WeekDayTimeInterval>(it)));
-        
-        public static Partial<WorkingDaysSpec> WithNotificationHours(this Partial<WorkingDaysSpec> it)
-            => it.AddFieldName("notificationHours");
-        
-        public static Partial<WorkingDaysSpec> WithNotificationHours(this Partial<WorkingDaysSpec> it, Func<Partial<WeekDayTimeInterval>, Partial<WeekDayTimeInterval>> partialBuilder)
-            => it.AddFieldName("notificationHours", partialBuilder(new Partial<WeekDayTimeInterval>(it)));
-        
-        public static Partial<WorkingDaysSpec> WithTimezone(this Partial<WorkingDaysSpec> it)
-            => it.AddFieldName("timezone");
-        
-        public static Partial<WorkingDaysSpec> WithTimezone(this Partial<WorkingDaysSpec> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
-            => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
-        
-    }
+    public static Partial<WorkingDaysSpec> WithDays(this Partial<WorkingDaysSpec> it)
+        => it.AddFieldName("days");
+    
+    public static Partial<WorkingDaysSpec> WithDays(this Partial<WorkingDaysSpec> it, Func<Partial<Workday>, Partial<Workday>> partialBuilder)
+        => it.AddFieldName("days", partialBuilder(new Partial<Workday>(it)));
+    
+    public static Partial<WorkingDaysSpec> WithWorkingHours(this Partial<WorkingDaysSpec> it)
+        => it.AddFieldName("workingHours");
+    
+    public static Partial<WorkingDaysSpec> WithWorkingHours(this Partial<WorkingDaysSpec> it, Func<Partial<WeekDayTimeInterval>, Partial<WeekDayTimeInterval>> partialBuilder)
+        => it.AddFieldName("workingHours", partialBuilder(new Partial<WeekDayTimeInterval>(it)));
+    
+    public static Partial<WorkingDaysSpec> WithNotificationHours(this Partial<WorkingDaysSpec> it)
+        => it.AddFieldName("notificationHours");
+    
+    public static Partial<WorkingDaysSpec> WithNotificationHours(this Partial<WorkingDaysSpec> it, Func<Partial<WeekDayTimeInterval>, Partial<WeekDayTimeInterval>> partialBuilder)
+        => it.AddFieldName("notificationHours", partialBuilder(new Partial<WeekDayTimeInterval>(it)));
+    
+    public static Partial<WorkingDaysSpec> WithTimezone(this Partial<WorkingDaysSpec> it)
+        => it.AddFieldName("timezone");
+    
+    public static Partial<WorkingDaysSpec> WithTimezone(this Partial<WorkingDaysSpec> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
+        => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
     
 }
+

@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewSubscriptionFilterPartialBuilder
+namespace JetBrains.Space.Client.CodeReviewSubscriptionFilterPartialBuilder;
+
+public static class CodeReviewSubscriptionFilterPartialExtensions
 {
-    public static class CodeReviewSubscriptionFilterPartialExtensions
-    {
-        public static Partial<CodeReviewSubscriptionFilter> WithProject(this Partial<CodeReviewSubscriptionFilter> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<CodeReviewSubscriptionFilter> WithProject(this Partial<CodeReviewSubscriptionFilter> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
-        public static Partial<CodeReviewSubscriptionFilter> WithRepository(this Partial<CodeReviewSubscriptionFilter> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<CodeReviewSubscriptionFilter> WithAuthors(this Partial<CodeReviewSubscriptionFilter> it)
-            => it.AddFieldName("authors");
-        
-        public static Partial<CodeReviewSubscriptionFilter> WithAuthors(this Partial<CodeReviewSubscriptionFilter> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("authors", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<CodeReviewSubscriptionFilter> WithParticipants(this Partial<CodeReviewSubscriptionFilter> it)
-            => it.AddFieldName("participants");
-        
-        public static Partial<CodeReviewSubscriptionFilter> WithParticipants(this Partial<CodeReviewSubscriptionFilter> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("participants", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<CodeReviewSubscriptionFilter> WithBranchSpec(this Partial<CodeReviewSubscriptionFilter> it)
-            => it.AddFieldName("branchSpec");
-        
-        public static Partial<CodeReviewSubscriptionFilter> WithPathSpec(this Partial<CodeReviewSubscriptionFilter> it)
-            => it.AddFieldName("pathSpec");
-        
-        public static Partial<CodeReviewSubscriptionFilter> WithTitleRegex(this Partial<CodeReviewSubscriptionFilter> it)
-            => it.AddFieldName("titleRegex");
-        
-    }
+    public static Partial<CodeReviewSubscriptionFilter> WithProject(this Partial<CodeReviewSubscriptionFilter> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<CodeReviewSubscriptionFilter> WithProject(this Partial<CodeReviewSubscriptionFilter> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+    
+    public static Partial<CodeReviewSubscriptionFilter> WithRepository(this Partial<CodeReviewSubscriptionFilter> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<CodeReviewSubscriptionFilter> WithAuthors(this Partial<CodeReviewSubscriptionFilter> it)
+        => it.AddFieldName("authors");
+    
+    public static Partial<CodeReviewSubscriptionFilter> WithAuthors(this Partial<CodeReviewSubscriptionFilter> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("authors", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<CodeReviewSubscriptionFilter> WithParticipants(this Partial<CodeReviewSubscriptionFilter> it)
+        => it.AddFieldName("participants");
+    
+    public static Partial<CodeReviewSubscriptionFilter> WithParticipants(this Partial<CodeReviewSubscriptionFilter> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("participants", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<CodeReviewSubscriptionFilter> WithBranchSpec(this Partial<CodeReviewSubscriptionFilter> it)
+        => it.AddFieldName("branchSpec");
+    
+    public static Partial<CodeReviewSubscriptionFilter> WithPathSpec(this Partial<CodeReviewSubscriptionFilter> it)
+        => it.AddFieldName("pathSpec");
+    
+    public static Partial<CodeReviewSubscriptionFilter> WithTitleRegex(this Partial<CodeReviewSubscriptionFilter> it)
+        => it.AddFieldName("titleRegex");
     
 }
+

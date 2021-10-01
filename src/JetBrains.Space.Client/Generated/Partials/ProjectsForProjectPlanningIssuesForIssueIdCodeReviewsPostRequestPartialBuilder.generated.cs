@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequestPartialBuilder;
+
+public static class ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest> WithCodeReviewIds(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest> it)
-            => it.AddFieldName("codeReviewIds");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest> WithCodeReviewIds(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest> it, Func<Partial<ReviewIdentifier>, Partial<ReviewIdentifier>> partialBuilder)
-            => it.AddFieldName("codeReviewIds", partialBuilder(new Partial<ReviewIdentifier>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest> WithCodeReviewIds(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest> it)
+        => it.AddFieldName("codeReviewIds");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest> WithCodeReviewIds(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest> it, Func<Partial<ReviewIdentifier>, Partial<ReviewIdentifier>> partialBuilder)
+        => it.AddFieldName("codeReviewIds", partialBuilder(new Partial<ReviewIdentifier>(it)));
     
 }
+

@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewWithCountPartialBuilder
+namespace JetBrains.Space.Client.CodeReviewWithCountPartialBuilder;
+
+public static class CodeReviewWithCountPartialExtensions
 {
-    public static class CodeReviewWithCountPartialExtensions
-    {
-        public static Partial<CodeReviewWithCount> WithReview(this Partial<CodeReviewWithCount> it)
-            => it.AddFieldName("review");
-        
-        public static Partial<CodeReviewWithCount> WithReview(this Partial<CodeReviewWithCount> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
-            => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecord>(it)));
-        
-        public static Partial<CodeReviewWithCount> WithMessagesCount(this Partial<CodeReviewWithCount> it)
-            => it.AddFieldName("messagesCount");
-        
-        public static Partial<CodeReviewWithCount> WithAuthors(this Partial<CodeReviewWithCount> it)
-            => it.AddFieldName("authors");
-        
-        public static Partial<CodeReviewWithCount> WithAuthors(this Partial<CodeReviewWithCount> it, Func<Partial<GitCommitterProfile>, Partial<GitCommitterProfile>> partialBuilder)
-            => it.AddFieldName("authors", partialBuilder(new Partial<GitCommitterProfile>(it)));
-        
-        public static Partial<CodeReviewWithCount> WithParticipants(this Partial<CodeReviewWithCount> it)
-            => it.AddFieldName("participants");
-        
-        public static Partial<CodeReviewWithCount> WithParticipants(this Partial<CodeReviewWithCount> it, Func<Partial<CodeReviewParticipants>, Partial<CodeReviewParticipants>> partialBuilder)
-            => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipants>(it)));
-        
-    }
+    public static Partial<CodeReviewWithCount> WithReview(this Partial<CodeReviewWithCount> it)
+        => it.AddFieldName("review");
+    
+    public static Partial<CodeReviewWithCount> WithReview(this Partial<CodeReviewWithCount> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
+        => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecord>(it)));
+    
+    public static Partial<CodeReviewWithCount> WithMessagesCount(this Partial<CodeReviewWithCount> it)
+        => it.AddFieldName("messagesCount");
+    
+    public static Partial<CodeReviewWithCount> WithAuthors(this Partial<CodeReviewWithCount> it)
+        => it.AddFieldName("authors");
+    
+    public static Partial<CodeReviewWithCount> WithAuthors(this Partial<CodeReviewWithCount> it, Func<Partial<GitCommitterProfile>, Partial<GitCommitterProfile>> partialBuilder)
+        => it.AddFieldName("authors", partialBuilder(new Partial<GitCommitterProfile>(it)));
+    
+    public static Partial<CodeReviewWithCount> WithParticipants(this Partial<CodeReviewWithCount> it)
+        => it.AddFieldName("participants");
+    
+    public static Partial<CodeReviewWithCount> WithParticipants(this Partial<CodeReviewWithCount> it, Func<Partial<CodeReviewParticipants>, Partial<CodeReviewParticipants>> partialBuilder)
+        => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipants>(it)));
     
 }
+

@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ApplicationAuthorizedWebhookEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ApplicationAuthorizedWebhookEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ApplicationAuthorizedWebhookEvent";
+    
+    public ApplicationAuthorizedWebhookEvent() { }
+    
+    public ApplicationAuthorizedWebhookEvent(KMetaMod meta, ESApp application, AuthScope scope)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ApplicationAuthorizedWebhookEvent";
-        
-        public ApplicationAuthorizedWebhookEvent() { }
-        
-        public ApplicationAuthorizedWebhookEvent(KMetaMod meta, ESApp application, AuthScope scope)
-        {
-            Meta = meta;
-            Application = application;
-            Scope = scope;
-        }
-        
-        private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationAuthorizedWebhookEvent), nameof(Meta));
-        
-        [Required]
-        [JsonPropertyName("meta")]
-        public KMetaMod Meta
-        {
-            get => _meta.GetValue();
-            set => _meta.SetValue(value);
-        }
-    
-        private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationAuthorizedWebhookEvent), nameof(Application));
-        
-        [Required]
-        [JsonPropertyName("application")]
-        public ESApp Application
-        {
-            get => _application.GetValue();
-            set => _application.SetValue(value);
-        }
-    
-        private PropertyValue<AuthScope> _scope = new PropertyValue<AuthScope>(nameof(ApplicationAuthorizedWebhookEvent), nameof(Scope));
-        
-        [Required]
-        [JsonPropertyName("scope")]
-        public AuthScope Scope
-        {
-            get => _scope.GetValue();
-            set => _scope.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _meta.SetAccessPath(path, validateHasBeenSet);
-            _application.SetAccessPath(path, validateHasBeenSet);
-            _scope.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Meta = meta;
+        Application = application;
+        Scope = scope;
     }
     
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationAuthorizedWebhookEvent), nameof(Meta));
+    
+    [Required]
+    [JsonPropertyName("meta")]
+    public KMetaMod Meta
+    {
+        get => _meta.GetValue();
+        set => _meta.SetValue(value);
+    }
+
+    private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationAuthorizedWebhookEvent), nameof(Application));
+    
+    [Required]
+    [JsonPropertyName("application")]
+    public ESApp Application
+    {
+        get => _application.GetValue();
+        set => _application.SetValue(value);
+    }
+
+    private PropertyValue<AuthScope> _scope = new PropertyValue<AuthScope>(nameof(ApplicationAuthorizedWebhookEvent), nameof(Scope));
+    
+    [Required]
+    [JsonPropertyName("scope")]
+    public AuthScope Scope
+    {
+        get => _scope.GetValue();
+        set => _scope.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _meta.SetAccessPath(path, validateHasBeenSet);
+        _application.SetAccessPath(path, validateHasBeenSet);
+        _scope.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

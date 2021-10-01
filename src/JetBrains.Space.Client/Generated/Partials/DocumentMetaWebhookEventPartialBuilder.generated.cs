@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentMetaWebhookEventPartialBuilder
+namespace JetBrains.Space.Client.DocumentMetaWebhookEventPartialBuilder;
+
+public static class DocumentMetaWebhookEventPartialExtensions
 {
-    public static class DocumentMetaWebhookEventPartialExtensions
-    {
-        public static Partial<DocumentMetaWebhookEvent> WithMeta(this Partial<DocumentMetaWebhookEvent> it)
-            => it.AddFieldName("meta");
-        
-        public static Partial<DocumentMetaWebhookEvent> WithMeta(this Partial<DocumentMetaWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-            => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
-        
-        public static Partial<DocumentMetaWebhookEvent> WithDocument(this Partial<DocumentMetaWebhookEvent> it)
-            => it.AddFieldName("document");
-        
-        public static Partial<DocumentMetaWebhookEvent> WithDeleted(this Partial<DocumentMetaWebhookEvent> it)
-            => it.AddFieldName("deleted");
-        
-        public static Partial<DocumentMetaWebhookEvent> WithPublished(this Partial<DocumentMetaWebhookEvent> it)
-            => it.AddFieldName("published");
-        
-    }
+    public static Partial<DocumentMetaWebhookEvent> WithMeta(this Partial<DocumentMetaWebhookEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<DocumentMetaWebhookEvent> WithMeta(this Partial<DocumentMetaWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<DocumentMetaWebhookEvent> WithDocument(this Partial<DocumentMetaWebhookEvent> it)
+        => it.AddFieldName("document");
+    
+    public static Partial<DocumentMetaWebhookEvent> WithDeleted(this Partial<DocumentMetaWebhookEvent> it)
+        => it.AddFieldName("deleted");
+    
+    public static Partial<DocumentMetaWebhookEvent> WithPublished(this Partial<DocumentMetaWebhookEvent> it)
+        => it.AddFieldName("published");
     
 }
+

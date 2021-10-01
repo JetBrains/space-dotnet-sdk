@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class EmailBouncedEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class EmailBouncedEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "EmailBouncedEvent";
+    
+    public EmailBouncedEvent() { }
+    
+    public EmailBouncedEvent(string email, string reason)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "EmailBouncedEvent";
-        
-        public EmailBouncedEvent() { }
-        
-        public EmailBouncedEvent(string email, string reason)
-        {
-            Email = email;
-            Reason = reason;
-        }
-        
-        private PropertyValue<string> _email = new PropertyValue<string>(nameof(EmailBouncedEvent), nameof(Email));
-        
-        [Required]
-        [JsonPropertyName("email")]
-        public string Email
-        {
-            get => _email.GetValue();
-            set => _email.SetValue(value);
-        }
-    
-        private PropertyValue<string> _reason = new PropertyValue<string>(nameof(EmailBouncedEvent), nameof(Reason));
-        
-        [Required]
-        [JsonPropertyName("reason")]
-        public string Reason
-        {
-            get => _reason.GetValue();
-            set => _reason.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _email.SetAccessPath(path, validateHasBeenSet);
-            _reason.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Email = email;
+        Reason = reason;
     }
     
+    private PropertyValue<string> _email = new PropertyValue<string>(nameof(EmailBouncedEvent), nameof(Email));
+    
+    [Required]
+    [JsonPropertyName("email")]
+    public string Email
+    {
+        get => _email.GetValue();
+        set => _email.SetValue(value);
+    }
+
+    private PropertyValue<string> _reason = new PropertyValue<string>(nameof(EmailBouncedEvent), nameof(Reason));
+    
+    [Required]
+    [JsonPropertyName("reason")]
+    public string Reason
+    {
+        get => _reason.GetValue();
+        set => _reason.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _email.SetAccessPath(path, validateHasBeenSet);
+        _reason.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

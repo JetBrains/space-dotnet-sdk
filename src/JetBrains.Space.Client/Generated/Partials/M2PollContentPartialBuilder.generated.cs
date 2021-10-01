@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2PollContentPartialBuilder
+namespace JetBrains.Space.Client.M2PollContentPartialBuilder;
+
+public static class M2PollContentPartialExtensions
 {
-    public static class M2PollContentPartialExtensions
-    {
-        public static Partial<M2PollContent> WithPoll(this Partial<M2PollContent> it)
-            => it.AddFieldName("poll");
-        
-        public static Partial<M2PollContent> WithPoll(this Partial<M2PollContent> it, Func<Partial<PollRecord>, Partial<PollRecord>> partialBuilder)
-            => it.AddFieldName("poll", partialBuilder(new Partial<PollRecord>(it)));
-        
-    }
+    public static Partial<M2PollContent> WithPoll(this Partial<M2PollContent> it)
+        => it.AddFieldName("poll");
+    
+    public static Partial<M2PollContent> WithPoll(this Partial<M2PollContent> it, Func<Partial<PollRecord>, Partial<PollRecord>> partialBuilder)
+        => it.AddFieldName("poll", partialBuilder(new Partial<PollRecord>(it)));
     
 }
+

@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DocumentEditorsChangedEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class DocumentEditorsChangedEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "DocumentEditorsChangedEvent";
+    
+    public DocumentEditorsChangedEvent() { }
+    
+    public DocumentEditorsChangedEvent(KMetaMod meta, string document)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "DocumentEditorsChangedEvent";
-        
-        public DocumentEditorsChangedEvent() { }
-        
-        public DocumentEditorsChangedEvent(KMetaMod meta, string document)
-        {
-            Meta = meta;
-            Document = document;
-        }
-        
-        private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(DocumentEditorsChangedEvent), nameof(Meta));
-        
-        [Required]
-        [JsonPropertyName("meta")]
-        public KMetaMod Meta
-        {
-            get => _meta.GetValue();
-            set => _meta.SetValue(value);
-        }
-    
-        private PropertyValue<string> _document = new PropertyValue<string>(nameof(DocumentEditorsChangedEvent), nameof(Document));
-        
-        [Required]
-        [JsonPropertyName("document")]
-        public string Document
-        {
-            get => _document.GetValue();
-            set => _document.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _meta.SetAccessPath(path, validateHasBeenSet);
-            _document.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Meta = meta;
+        Document = document;
     }
     
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(DocumentEditorsChangedEvent), nameof(Meta));
+    
+    [Required]
+    [JsonPropertyName("meta")]
+    public KMetaMod Meta
+    {
+        get => _meta.GetValue();
+        set => _meta.SetValue(value);
+    }
+
+    private PropertyValue<string> _document = new PropertyValue<string>(nameof(DocumentEditorsChangedEvent), nameof(Document));
+    
+    [Required]
+    [JsonPropertyName("document")]
+    public string Document
+    {
+        get => _document.GetValue();
+        set => _document.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _meta.SetAccessPath(path, validateHasBeenSet);
+        _document.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

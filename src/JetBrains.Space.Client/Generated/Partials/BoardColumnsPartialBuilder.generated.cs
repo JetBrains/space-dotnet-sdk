@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BoardColumnsPartialBuilder
+namespace JetBrains.Space.Client.BoardColumnsPartialBuilder;
+
+public static class BoardColumnsPartialExtensions
 {
-    public static class BoardColumnsPartialExtensions
-    {
-        public static Partial<BoardColumns> WithColumns(this Partial<BoardColumns> it)
-            => it.AddFieldName("columns");
-        
-        public static Partial<BoardColumns> WithColumns(this Partial<BoardColumns> it, Func<Partial<BoardColumn>, Partial<BoardColumn>> partialBuilder)
-            => it.AddFieldName("columns", partialBuilder(new Partial<BoardColumn>(it)));
-        
-    }
+    public static Partial<BoardColumns> WithColumns(this Partial<BoardColumns> it)
+        => it.AddFieldName("columns");
+    
+    public static Partial<BoardColumns> WithColumns(this Partial<BoardColumns> it, Func<Partial<BoardColumn>, Partial<BoardColumn>> partialBuilder)
+        => it.AddFieldName("columns", partialBuilder(new Partial<BoardColumn>(it)));
     
 }
+

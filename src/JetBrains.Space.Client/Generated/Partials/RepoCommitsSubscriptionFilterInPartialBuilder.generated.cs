@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RepoCommitsSubscriptionFilterInPartialBuilder
+namespace JetBrains.Space.Client.RepoCommitsSubscriptionFilterInPartialBuilder;
+
+public static class RepoCommitsSubscriptionFilterInPartialExtensions
 {
-    public static class RepoCommitsSubscriptionFilterInPartialExtensions
-    {
-        public static Partial<RepoCommitsSubscriptionFilterIn> WithProject(this Partial<RepoCommitsSubscriptionFilterIn> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<RepoCommitsSubscriptionFilterIn> WithRepository(this Partial<RepoCommitsSubscriptionFilterIn> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<RepoCommitsSubscriptionFilterIn> WithSpec(this Partial<RepoCommitsSubscriptionFilterIn> it)
-            => it.AddFieldName("spec");
-        
-        public static Partial<RepoCommitsSubscriptionFilterIn> WithSpec(this Partial<RepoCommitsSubscriptionFilterIn> it, Func<Partial<RepoCommitsSubscriptionFilterSpec>, Partial<RepoCommitsSubscriptionFilterSpec>> partialBuilder)
-            => it.AddFieldName("spec", partialBuilder(new Partial<RepoCommitsSubscriptionFilterSpec>(it)));
-        
-    }
+    public static Partial<RepoCommitsSubscriptionFilterIn> WithProject(this Partial<RepoCommitsSubscriptionFilterIn> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<RepoCommitsSubscriptionFilterIn> WithRepository(this Partial<RepoCommitsSubscriptionFilterIn> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<RepoCommitsSubscriptionFilterIn> WithSpec(this Partial<RepoCommitsSubscriptionFilterIn> it)
+        => it.AddFieldName("spec");
+    
+    public static Partial<RepoCommitsSubscriptionFilterIn> WithSpec(this Partial<RepoCommitsSubscriptionFilterIn> it, Func<Partial<RepoCommitsSubscriptionFilterSpec>, Partial<RepoCommitsSubscriptionFilterSpec>> partialBuilder)
+        => it.AddFieldName("spec", partialBuilder(new Partial<RepoCommitsSubscriptionFilterSpec>(it)));
     
 }
+

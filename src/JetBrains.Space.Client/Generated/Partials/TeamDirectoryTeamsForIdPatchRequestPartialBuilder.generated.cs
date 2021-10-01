@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryTeamsForIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryTeamsForIdPatchRequestPartialBuilder;
+
+public static class TeamDirectoryTeamsForIdPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryTeamsForIdPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithName(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithDescription(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithEmails(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
-            => it.AddFieldName("emails");
-        
-        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithParentId(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
-            => it.AddFieldName("parentId");
-        
-        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithDefaultManager(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
-            => it.AddFieldName("defaultManager");
-        
-        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
-            => it.AddFieldName("customFieldValues");
-        
-        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryTeamsForIdPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
-        
-        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithExternalId(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
-            => it.AddFieldName("externalId");
-        
-    }
+    public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithName(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithDescription(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithEmails(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
+        => it.AddFieldName("emails");
+    
+    public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithParentId(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
+        => it.AddFieldName("parentId");
+    
+    public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithDefaultManager(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
+        => it.AddFieldName("defaultManager");
+    
+    public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
+        => it.AddFieldName("customFieldValues");
+    
+    public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryTeamsForIdPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+        => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
+    
+    public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithExternalId(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
+        => it.AddFieldName("externalId");
     
 }
+

@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AbsencesPostRequestPartialBuilder
+namespace JetBrains.Space.Client.AbsencesPostRequestPartialBuilder;
+
+public static class AbsencesPostRequestPartialExtensions
 {
-    public static class AbsencesPostRequestPartialExtensions
-    {
-        public static Partial<AbsencesPostRequest> WithMember(this Partial<AbsencesPostRequest> it)
-            => it.AddFieldName("member");
-        
-        public static Partial<AbsencesPostRequest> WithReason(this Partial<AbsencesPostRequest> it)
-            => it.AddFieldName("reason");
-        
-        public static Partial<AbsencesPostRequest> WithDescription(this Partial<AbsencesPostRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<AbsencesPostRequest> WithLocation(this Partial<AbsencesPostRequest> it)
-            => it.AddFieldName("location");
-        
-        public static Partial<AbsencesPostRequest> WithSince(this Partial<AbsencesPostRequest> it)
-            => it.AddFieldName("since");
-        
-        public static Partial<AbsencesPostRequest> WithTill(this Partial<AbsencesPostRequest> it)
-            => it.AddFieldName("till");
-        
-        public static Partial<AbsencesPostRequest> WithIsAvailable(this Partial<AbsencesPostRequest> it)
-            => it.AddFieldName("available");
-        
-        public static Partial<AbsencesPostRequest> WithIcon(this Partial<AbsencesPostRequest> it)
-            => it.AddFieldName("icon");
-        
-        public static Partial<AbsencesPostRequest> WithCustomFieldValues(this Partial<AbsencesPostRequest> it)
-            => it.AddFieldName("customFieldValues");
-        
-        public static Partial<AbsencesPostRequest> WithCustomFieldValues(this Partial<AbsencesPostRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
-        
-    }
+    public static Partial<AbsencesPostRequest> WithMember(this Partial<AbsencesPostRequest> it)
+        => it.AddFieldName("member");
+    
+    public static Partial<AbsencesPostRequest> WithReason(this Partial<AbsencesPostRequest> it)
+        => it.AddFieldName("reason");
+    
+    public static Partial<AbsencesPostRequest> WithDescription(this Partial<AbsencesPostRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<AbsencesPostRequest> WithLocation(this Partial<AbsencesPostRequest> it)
+        => it.AddFieldName("location");
+    
+    public static Partial<AbsencesPostRequest> WithSince(this Partial<AbsencesPostRequest> it)
+        => it.AddFieldName("since");
+    
+    public static Partial<AbsencesPostRequest> WithTill(this Partial<AbsencesPostRequest> it)
+        => it.AddFieldName("till");
+    
+    public static Partial<AbsencesPostRequest> WithIsAvailable(this Partial<AbsencesPostRequest> it)
+        => it.AddFieldName("available");
+    
+    public static Partial<AbsencesPostRequest> WithIcon(this Partial<AbsencesPostRequest> it)
+        => it.AddFieldName("icon");
+    
+    public static Partial<AbsencesPostRequest> WithCustomFieldValues(this Partial<AbsencesPostRequest> it)
+        => it.AddFieldName("customFieldValues");
+    
+    public static Partial<AbsencesPostRequest> WithCustomFieldValues(this Partial<AbsencesPostRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+        => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
     
 }
+

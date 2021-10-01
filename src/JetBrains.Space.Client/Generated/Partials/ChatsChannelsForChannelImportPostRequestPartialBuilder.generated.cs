@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChatsChannelsForChannelImportPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ChatsChannelsForChannelImportPostRequestPartialBuilder;
+
+public static class ChatsChannelsForChannelImportPostRequestPartialExtensions
 {
-    public static class ChatsChannelsForChannelImportPostRequestPartialExtensions
-    {
-        public static Partial<ChatsChannelsForChannelImportPostRequest> WithMessages(this Partial<ChatsChannelsForChannelImportPostRequest> it)
-            => it.AddFieldName("messages");
-        
-        public static Partial<ChatsChannelsForChannelImportPostRequest> WithMessages(this Partial<ChatsChannelsForChannelImportPostRequest> it, Func<Partial<MessageForImport>, Partial<MessageForImport>> partialBuilder)
-            => it.AddFieldName("messages", partialBuilder(new Partial<MessageForImport>(it)));
-        
-    }
+    public static Partial<ChatsChannelsForChannelImportPostRequest> WithMessages(this Partial<ChatsChannelsForChannelImportPostRequest> it)
+        => it.AddFieldName("messages");
+    
+    public static Partial<ChatsChannelsForChannelImportPostRequest> WithMessages(this Partial<ChatsChannelsForChannelImportPostRequest> it, Func<Partial<MessageForImport>, Partial<MessageForImport>> partialBuilder)
+        => it.AddFieldName("messages", partialBuilder(new Partial<MessageForImport>(it)));
     
 }
+

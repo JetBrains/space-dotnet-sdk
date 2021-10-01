@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequestPartialBuilder;
+
+public static class ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest> WithIsResolved(this Partial<ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest> it)
-            => it.AddFieldName("resolved");
-        
-    }
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest> WithIsResolved(this Partial<ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest> it)
+        => it.AddFieldName("resolved");
     
 }
+

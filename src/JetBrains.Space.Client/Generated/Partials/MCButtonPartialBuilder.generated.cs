@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MCButtonPartialBuilder
+namespace JetBrains.Space.Client.MCButtonPartialBuilder;
+
+public static class MCButtonPartialExtensions
 {
-    public static class MCButtonPartialExtensions
-    {
-        public static Partial<MCButton> WithText(this Partial<MCButton> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<MCButton> WithStyle(this Partial<MCButton> it)
-            => it.AddFieldName("style");
-        
-        public static Partial<MCButton> WithAction(this Partial<MCButton> it)
-            => it.AddFieldName("action");
-        
-        public static Partial<MCButton> WithAction(this Partial<MCButton> it, Func<Partial<MCAction>, Partial<MCAction>> partialBuilder)
-            => it.AddFieldName("action", partialBuilder(new Partial<MCAction>(it)));
-        
-        public static Partial<MCButton> WithIsDisabled(this Partial<MCButton> it)
-            => it.AddFieldName("disabled");
-        
-    }
+    public static Partial<MCButton> WithText(this Partial<MCButton> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<MCButton> WithStyle(this Partial<MCButton> it)
+        => it.AddFieldName("style");
+    
+    public static Partial<MCButton> WithAction(this Partial<MCButton> it)
+        => it.AddFieldName("action");
+    
+    public static Partial<MCButton> WithAction(this Partial<MCButton> it, Func<Partial<MCAction>, Partial<MCAction>> partialBuilder)
+        => it.AddFieldName("action", partialBuilder(new Partial<MCAction>(it)));
+    
+    public static Partial<MCButton> WithIsDisabled(this Partial<MCButton> it)
+        => it.AddFieldName("disabled");
     
 }
+

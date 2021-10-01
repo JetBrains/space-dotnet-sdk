@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.StickerVariantPartialBuilder
+namespace JetBrains.Space.Client.StickerVariantPartialBuilder;
+
+public static class StickerVariantPartialExtensions
 {
-    public static class StickerVariantPartialExtensions
-    {
-        public static Partial<StickerVariant> WithId(this Partial<StickerVariant> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<StickerVariant> WithName(this Partial<StickerVariant> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<StickerVariant> WithWidth(this Partial<StickerVariant> it)
-            => it.AddFieldName("width");
-        
-        public static Partial<StickerVariant> WithHeight(this Partial<StickerVariant> it)
-            => it.AddFieldName("height");
-        
-    }
+    public static Partial<StickerVariant> WithId(this Partial<StickerVariant> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<StickerVariant> WithName(this Partial<StickerVariant> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<StickerVariant> WithWidth(this Partial<StickerVariant> it)
+        => it.AddFieldName("width");
+    
+    public static Partial<StickerVariant> WithHeight(this Partial<StickerVariant> it)
+        => it.AddFieldName("height");
     
 }
+

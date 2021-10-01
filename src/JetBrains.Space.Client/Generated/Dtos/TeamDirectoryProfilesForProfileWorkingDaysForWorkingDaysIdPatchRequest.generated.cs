@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest() { }
+    
+    public TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest(WorkingDaysSpec workingDaysSpec, DateTime? dateStart = null, DateTime? dateEnd = null)
     {
-        public TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest() { }
-        
-        public TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest(WorkingDaysSpec workingDaysSpec, DateTime? dateStart = null, DateTime? dateEnd = null)
-        {
-            DateStart = dateStart;
-            DateEnd = dateEnd;
-            WorkingDaysSpec = workingDaysSpec;
-        }
-        
-        private PropertyValue<DateTime?> _dateStart = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest), nameof(DateStart));
-        
-        [JsonPropertyName("dateStart")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? DateStart
-        {
-            get => _dateStart.GetValue();
-            set => _dateStart.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _dateEnd = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest), nameof(DateEnd));
-        
-        [JsonPropertyName("dateEnd")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? DateEnd
-        {
-            get => _dateEnd.GetValue();
-            set => _dateEnd.SetValue(value);
-        }
-    
-        private PropertyValue<WorkingDaysSpec> _workingDaysSpec = new PropertyValue<WorkingDaysSpec>(nameof(TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest), nameof(WorkingDaysSpec));
-        
-        [Required]
-        [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpec WorkingDaysSpec
-        {
-            get => _workingDaysSpec.GetValue();
-            set => _workingDaysSpec.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _dateStart.SetAccessPath(path, validateHasBeenSet);
-            _dateEnd.SetAccessPath(path, validateHasBeenSet);
-            _workingDaysSpec.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        DateStart = dateStart;
+        DateEnd = dateEnd;
+        WorkingDaysSpec = workingDaysSpec;
     }
     
+    private PropertyValue<DateTime?> _dateStart = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest), nameof(DateStart));
+    
+    [JsonPropertyName("dateStart")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? DateStart
+    {
+        get => _dateStart.GetValue();
+        set => _dateStart.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _dateEnd = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest), nameof(DateEnd));
+    
+    [JsonPropertyName("dateEnd")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? DateEnd
+    {
+        get => _dateEnd.GetValue();
+        set => _dateEnd.SetValue(value);
+    }
+
+    private PropertyValue<WorkingDaysSpec> _workingDaysSpec = new PropertyValue<WorkingDaysSpec>(nameof(TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest), nameof(WorkingDaysSpec));
+    
+    [Required]
+    [JsonPropertyName("workingDaysSpec")]
+    public WorkingDaysSpec WorkingDaysSpec
+    {
+        get => _workingDaysSpec.GetValue();
+        set => _workingDaysSpec.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _dateStart.SetAccessPath(path, validateHasBeenSet);
+        _dateEnd.SetAccessPath(path, validateHasBeenSet);
+        _workingDaysSpec.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

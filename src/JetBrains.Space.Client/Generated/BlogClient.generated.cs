@@ -27,215 +27,214 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public partial class BlogClient : ISpaceClient
 {
-    public partial class BlogClient : ISpaceClient
+    private readonly Connection _connection;
+    
+    public BlogClient(Connection connection)
     {
-        private readonly Connection _connection;
-        
-        public BlogClient(Connection connection)
-        {
-            _connection = connection;
-        }
-        
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Publish articles</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<ArticleRecord> PublishBlogPostAsync(string title, string content, List<string>? locations = null, List<string>? teams = null, BlogCalendarEvent? @event = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<BlogPostRequest, ArticleRecord>("POST", $"api/http/blog{queryParameters.ToQueryString()}", 
-                new BlogPostRequest
-                { 
-                    Title = title,
-                    Content = content,
-                    Locations = locations,
-                    Teams = teams,
-                    Event = @event,
-                }, cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Import articles</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<List<ArticleImportResult>> ImportBlogPostsAsync(ImportMetadata metadata, List<ExternalArticle> articles, Func<Partial<ArticleImportResult>, Partial<ArticleImportResult>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleImportResult>()) : Partial<ArticleImportResult>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<BlogImportPostRequest, List<ArticleImportResult>>("POST", $"api/http/blog/import{queryParameters.ToQueryString()}", 
-                new BlogImportPostRequest
-                { 
-                    Metadata = metadata,
-                    Articles = articles,
-                }, cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View articles</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<Batch<ArticleRecord>> GetAllBlogPostsAsync(string? skip = null, int? top = 100, string? term = null, DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<Batch<ArticleRecord>>, Partial<Batch<ArticleRecord>>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            if (skip != null) queryParameters.Append("$skip", skip);
-            if (top != null) queryParameters.Append("$top", top?.ToString());
-            if (term != null) queryParameters.Append("term", term);
-            if (dateFrom != null) queryParameters.Append("dateFrom", dateFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
-            if (dateTo != null) queryParameters.Append("dateTo", dateTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
-            if (authorId != null) queryParameters.Append("authorId", authorId);
-            if (teamId != null) queryParameters.Append("teamId", teamId);
-            if (locationId != null) queryParameters.Append("locationId", locationId);
-            if (forProfile != null) queryParameters.Append("forProfile", forProfile);
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ArticleRecord>>()) : Partial<Batch<ArticleRecord>>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<Batch<ArticleRecord>>("GET", $"api/http/blog{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-        
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View articles</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public IAsyncEnumerable<ArticleRecord> GetAllBlogPostsAsyncEnumerable(string? skip = null, int? top = 100, string? term = null, DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllBlogPostsAsync(top: top, term: term, dateFrom: dateFrom, dateTo: dateTo, authorId: authorId, teamId: teamId, locationId: locationId, forProfile: forProfile, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ArticleRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ArticleRecord>.Default())), skip, cancellationToken);
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View articles</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<BGStats> GetStatsAsync(DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, Func<Partial<BGStats>, Partial<BGStats>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            if (dateFrom != null) queryParameters.Append("dateFrom", dateFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
-            if (dateTo != null) queryParameters.Append("dateTo", dateTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
-            if (authorId != null) queryParameters.Append("authorId", authorId);
-            if (teamId != null) queryParameters.Append("teamId", teamId);
-            if (locationId != null) queryParameters.Append("locationId", locationId);
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<BGStats>()) : Partial<BGStats>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<BGStats>("GET", $"api/http/blog/stats{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View articles</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<ArticleRecord> GetBlogPostByAliasAsync(string alias, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/alias:{alias}{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View articles</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<ArticleRecord> GetBlogPostByExternalIdAsync(string id, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/external-id:{id}{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View articles</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<ArticleRecord> GetBlogPostAsync(string id, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/{id}{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Publish articles</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<ArticleRecord> UpdateBlogPostAsync(string id, string? title = null, string? content = null, List<string>? locations = null, List<string>? teams = null, BlogCalendarEvent? @event = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<BlogForIdPatchRequest, ArticleRecord>("PATCH", $"api/http/blog/{id}{queryParameters.ToQueryString()}", 
-                new BlogForIdPatchRequest
-                { 
-                    Title = title,
-                    Content = content,
-                    Locations = locations,
-                    Teams = teams,
-                    Event = @event,
-                }, cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Unpublish articles</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task UnpublishArticleAsync(string id, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            await _connection.RequestResourceAsync("DELETE", $"api/http/blog/{id}{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
+        _connection = connection;
     }
     
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Publish articles</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<ArticleRecord> PublishBlogPostAsync(string title, string content, List<string>? locations = null, List<string>? teams = null, BlogCalendarEvent? @event = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<BlogPostRequest, ArticleRecord>("POST", $"api/http/blog{queryParameters.ToQueryString()}", 
+            new BlogPostRequest
+            { 
+                Title = title,
+                Content = content,
+                Locations = locations,
+                Teams = teams,
+                Event = @event,
+            }, cancellationToken);
+    }
+    
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Import articles</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<List<ArticleImportResult>> ImportBlogPostsAsync(ImportMetadata metadata, List<ExternalArticle> articles, Func<Partial<ArticleImportResult>, Partial<ArticleImportResult>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleImportResult>()) : Partial<ArticleImportResult>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<BlogImportPostRequest, List<ArticleImportResult>>("POST", $"api/http/blog/import{queryParameters.ToQueryString()}", 
+            new BlogImportPostRequest
+            { 
+                Metadata = metadata,
+                Articles = articles,
+            }, cancellationToken);
+    }
+    
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View articles</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<Batch<ArticleRecord>> GetAllBlogPostsAsync(string? skip = null, int? top = 100, string? term = null, DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<Batch<ArticleRecord>>, Partial<Batch<ArticleRecord>>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        if (skip != null) queryParameters.Append("$skip", skip);
+        if (top != null) queryParameters.Append("$top", top?.ToString());
+        if (term != null) queryParameters.Append("term", term);
+        if (dateFrom != null) queryParameters.Append("dateFrom", dateFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+        if (dateTo != null) queryParameters.Append("dateTo", dateTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+        if (authorId != null) queryParameters.Append("authorId", authorId);
+        if (teamId != null) queryParameters.Append("teamId", teamId);
+        if (locationId != null) queryParameters.Append("locationId", locationId);
+        if (forProfile != null) queryParameters.Append("forProfile", forProfile);
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ArticleRecord>>()) : Partial<Batch<ArticleRecord>>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<Batch<ArticleRecord>>("GET", $"api/http/blog{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+    
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View articles</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public IAsyncEnumerable<ArticleRecord> GetAllBlogPostsAsyncEnumerable(string? skip = null, int? top = 100, string? term = null, DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllBlogPostsAsync(top: top, term: term, dateFrom: dateFrom, dateTo: dateTo, authorId: authorId, teamId: teamId, locationId: locationId, forProfile: forProfile, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ArticleRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ArticleRecord>.Default())), skip, cancellationToken);
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View articles</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<BGStats> GetStatsAsync(DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, Func<Partial<BGStats>, Partial<BGStats>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        if (dateFrom != null) queryParameters.Append("dateFrom", dateFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+        if (dateTo != null) queryParameters.Append("dateTo", dateTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+        if (authorId != null) queryParameters.Append("authorId", authorId);
+        if (teamId != null) queryParameters.Append("teamId", teamId);
+        if (locationId != null) queryParameters.Append("locationId", locationId);
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<BGStats>()) : Partial<BGStats>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<BGStats>("GET", $"api/http/blog/stats{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View articles</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<ArticleRecord> GetBlogPostByAliasAsync(string alias, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/alias:{alias}{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View articles</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<ArticleRecord> GetBlogPostByExternalIdAsync(string id, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/external-id:{id}{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View articles</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<ArticleRecord> GetBlogPostAsync(string id, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/{id}{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Publish articles</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<ArticleRecord> UpdateBlogPostAsync(string id, string? title = null, string? content = null, List<string>? locations = null, List<string>? teams = null, BlogCalendarEvent? @event = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<BlogForIdPatchRequest, ArticleRecord>("PATCH", $"api/http/blog/{id}{queryParameters.ToQueryString()}", 
+            new BlogForIdPatchRequest
+            { 
+                Title = title,
+                Content = content,
+                Locations = locations,
+                Teams = teams,
+                Event = @event,
+            }, cancellationToken);
+    }
+    
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Unpublish articles</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task UnpublishArticleAsync(string id, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        await _connection.RequestResourceAsync("DELETE", $"api/http/blog/{id}{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
 }
+

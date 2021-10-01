@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DiffContext
+     : IPropagatePropertyAccessPath
 {
-    public sealed class DiffContext
-         : IPropagatePropertyAccessPath
+    public DiffContext() { }
+    
+    public DiffContext(DiffSide right, DiffSide? left = null)
     {
-        public DiffContext() { }
-        
-        public DiffContext(DiffSide right, DiffSide? left = null)
-        {
-            Left = left;
-            Right = right;
-        }
-        
-        private PropertyValue<DiffSide?> _left = new PropertyValue<DiffSide?>(nameof(DiffContext), nameof(Left));
-        
-        [JsonPropertyName("left")]
-        public DiffSide? Left
-        {
-            get => _left.GetValue();
-            set => _left.SetValue(value);
-        }
-    
-        private PropertyValue<DiffSide> _right = new PropertyValue<DiffSide>(nameof(DiffContext), nameof(Right));
-        
-        [Required]
-        [JsonPropertyName("right")]
-        public DiffSide Right
-        {
-            get => _right.GetValue();
-            set => _right.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _left.SetAccessPath(path, validateHasBeenSet);
-            _right.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Left = left;
+        Right = right;
     }
     
+    private PropertyValue<DiffSide?> _left = new PropertyValue<DiffSide?>(nameof(DiffContext), nameof(Left));
+    
+    [JsonPropertyName("left")]
+    public DiffSide? Left
+    {
+        get => _left.GetValue();
+        set => _left.SetValue(value);
+    }
+
+    private PropertyValue<DiffSide> _right = new PropertyValue<DiffSide>(nameof(DiffContext), nameof(Right));
+    
+    [Required]
+    [JsonPropertyName("right")]
+    public DiffSide Right
+    {
+        get => _right.GetValue();
+        set => _right.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _left.SetAccessPath(path, validateHasBeenSet);
+        _right.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

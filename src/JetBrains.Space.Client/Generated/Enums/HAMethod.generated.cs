@@ -27,41 +27,40 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum HAMethod
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum HAMethod
-    {
-        [EnumMember(Value = "REST_CREATE")]
-        RESTCREATE,
-        
-        [EnumMember(Value = "REST_QUERY")]
-        RESTQUERY,
-        
-        [EnumMember(Value = "REST_GET")]
-        RESTGET,
-        
-        [EnumMember(Value = "REST_UPDATE")]
-        RESTUPDATE,
-        
-        [EnumMember(Value = "REST_DELETE")]
-        RESTDELETE,
-        
-        [EnumMember(Value = "HTTP_GET")]
-        HTTPGET,
-        
-        [EnumMember(Value = "HTTP_POST")]
-        HTTPPOST,
-        
-        [EnumMember(Value = "HTTP_PATCH")]
-        HTTPPATCH,
-        
-        [EnumMember(Value = "HTTP_PUT")]
-        HTTPPUT,
-        
-        [EnumMember(Value = "HTTP_DELETE")]
-        HTTPDELETE,
-        
-    }
+    [EnumMember(Value = "REST_CREATE")]
+    RESTCREATE,
+    
+    [EnumMember(Value = "REST_QUERY")]
+    RESTQUERY,
+    
+    [EnumMember(Value = "REST_GET")]
+    RESTGET,
+    
+    [EnumMember(Value = "REST_UPDATE")]
+    RESTUPDATE,
+    
+    [EnumMember(Value = "REST_DELETE")]
+    RESTDELETE,
+    
+    [EnumMember(Value = "HTTP_GET")]
+    HTTPGET,
+    
+    [EnumMember(Value = "HTTP_POST")]
+    HTTPPOST,
+    
+    [EnumMember(Value = "HTTP_PATCH")]
+    HTTPPATCH,
+    
+    [EnumMember(Value = "HTTP_PUT")]
+    HTTPPUT,
+    
+    [EnumMember(Value = "HTTP_DELETE")]
+    HTTPDELETE,
     
 }
+

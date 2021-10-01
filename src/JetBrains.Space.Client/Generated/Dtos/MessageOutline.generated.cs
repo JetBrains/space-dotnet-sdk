@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MessageOutline
+     : IPropagatePropertyAccessPath
 {
-    public sealed class MessageOutline
-         : IPropagatePropertyAccessPath
+    public MessageOutline() { }
+    
+    public MessageOutline(string text, ApiIcon? icon = null)
     {
-        public MessageOutline() { }
-        
-        public MessageOutline(string text, ApiIcon? icon = null)
-        {
-            Icon = icon;
-            Text = text;
-        }
-        
-        private PropertyValue<ApiIcon?> _icon = new PropertyValue<ApiIcon?>(nameof(MessageOutline), nameof(Icon));
-        
-        [JsonPropertyName("icon")]
-        public ApiIcon? Icon
-        {
-            get => _icon.GetValue();
-            set => _icon.SetValue(value);
-        }
-    
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageOutline), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _icon.SetAccessPath(path, validateHasBeenSet);
-            _text.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Icon = icon;
+        Text = text;
     }
     
+    private PropertyValue<ApiIcon?> _icon = new PropertyValue<ApiIcon?>(nameof(MessageOutline), nameof(Icon));
+    
+    [JsonPropertyName("icon")]
+    public ApiIcon? Icon
+    {
+        get => _icon.GetValue();
+        set => _icon.SetValue(value);
+    }
+
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageOutline), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _icon.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

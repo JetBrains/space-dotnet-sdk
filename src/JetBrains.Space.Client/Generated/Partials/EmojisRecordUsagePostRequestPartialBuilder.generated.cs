@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EmojisRecordUsagePostRequestPartialBuilder
+namespace JetBrains.Space.Client.EmojisRecordUsagePostRequestPartialBuilder;
+
+public static class EmojisRecordUsagePostRequestPartialExtensions
 {
-    public static class EmojisRecordUsagePostRequestPartialExtensions
-    {
-        public static Partial<EmojisRecordUsagePostRequest> WithEmojis(this Partial<EmojisRecordUsagePostRequest> it)
-            => it.AddFieldName("emojis");
-        
-    }
+    public static Partial<EmojisRecordUsagePostRequest> WithEmojis(this Partial<EmojisRecordUsagePostRequest> it)
+        => it.AddFieldName("emojis");
     
 }
+

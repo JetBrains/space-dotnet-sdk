@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class ChatMessageIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class ChatMessageIdentifier : IUrlParameter
+    public static ChatMessageIdentifier ExternalId(string externalId)
+        => new ChatMessageIdentifierExternalId(externalId);
+    
+    public static ChatMessageIdentifier InternalId(string id)
+        => new ChatMessageIdentifierInternalId(id);
+    
+    private class ChatMessageIdentifierExternalId : ChatMessageIdentifier
     {
-        public static ChatMessageIdentifier ExternalId(string externalId)
-            => new ChatMessageIdentifierExternalId(externalId);
+        private readonly string _externalId;
         
-        public static ChatMessageIdentifier InternalId(string id)
-            => new ChatMessageIdentifierInternalId(id);
-        
-        private class ChatMessageIdentifierExternalId : ChatMessageIdentifier
+        public ChatMessageIdentifierExternalId(string externalId)
         {
-            private readonly string _externalId;
-            
-            public ChatMessageIdentifierExternalId(string externalId)
-            {
-                _externalId = externalId;
-            }
-            
-            public override string ToString()
-                => $"externalId:{_externalId}";
+            _externalId = externalId;
         }
         
-        private class ChatMessageIdentifierInternalId : ChatMessageIdentifier
+        public override string ToString()
+            => $"externalId:{_externalId}";
+    }
+    
+    private class ChatMessageIdentifierInternalId : ChatMessageIdentifier
+    {
+        private readonly string _id;
+        
+        public ChatMessageIdentifierInternalId(string id)
         {
-            private readonly string _id;
-            
-            public ChatMessageIdentifierInternalId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
+        public override string ToString()
+            => $"id:{_id}";
     }
     
 }
+

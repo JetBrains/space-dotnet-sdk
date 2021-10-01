@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChecklistDocumentBodyPartialBuilder
+namespace JetBrains.Space.Client.ChecklistDocumentBodyPartialBuilder;
+
+public static class ChecklistDocumentBodyPartialExtensions
 {
-    public static class ChecklistDocumentBodyPartialExtensions
-    {
-        public static Partial<ChecklistDocumentBody> WithChecklist(this Partial<ChecklistDocumentBody> it)
-            => it.AddFieldName("checklist");
-        
-        public static Partial<ChecklistDocumentBody> WithChecklist(this Partial<ChecklistDocumentBody> it, Func<Partial<Checklist>, Partial<Checklist>> partialBuilder)
-            => it.AddFieldName("checklist", partialBuilder(new Partial<Checklist>(it)));
-        
-        public static Partial<ChecklistDocumentBody> WithCanConvertItemsToIssues(this Partial<ChecklistDocumentBody> it)
-            => it.AddFieldName("canConvertItemsToIssues");
-        
-    }
+    public static Partial<ChecklistDocumentBody> WithChecklist(this Partial<ChecklistDocumentBody> it)
+        => it.AddFieldName("checklist");
+    
+    public static Partial<ChecklistDocumentBody> WithChecklist(this Partial<ChecklistDocumentBody> it, Func<Partial<Checklist>, Partial<Checklist>> partialBuilder)
+        => it.AddFieldName("checklist", partialBuilder(new Partial<Checklist>(it)));
+    
+    public static Partial<ChecklistDocumentBody> WithCanConvertItemsToIssues(this Partial<ChecklistDocumentBody> it)
+        => it.AddFieldName("canConvertItemsToIssues");
     
 }
+

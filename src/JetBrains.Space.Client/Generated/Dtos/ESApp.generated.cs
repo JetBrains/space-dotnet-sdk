@@ -27,362 +27,361 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESApp
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ESApp
-         : IPropagatePropertyAccessPath
+    public ESApp() { }
+    
+    public ESApp(string id, string clientId, string name, bool archived, List<ApplicationUnfurlDomain> domains, List<ApplicationUnfurlPattern> patterns, ESAppSettings settings, TDMemberProfile? owner = null, string? picture = null, string? defaultExternalPicture = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null)
     {
-        public ESApp() { }
-        
-        public ESApp(string id, string clientId, string name, bool archived, List<ApplicationUnfurlDomain> domains, List<ApplicationUnfurlPattern> patterns, ESAppSettings settings, TDMemberProfile? owner = null, string? picture = null, string? defaultExternalPicture = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null)
-        {
-            Id = id;
-            Owner = owner;
-            ClientId = clientId;
-            Name = name;
-            Picture = picture;
-            DefaultExternalPicture = defaultExternalPicture;
-            CreatedAt = createdAt;
-            Kind = kind;
-            PresentableName = presentableName;
-            ApplicationType = applicationType;
-            IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled;
-            IsCodeFlowEnabled = codeFlowEnabled;
-            CodeFlowRedirectURIs = codeFlowRedirectURIs;
-            IsPkceRequired = pkceRequired;
-            IsImplicitFlowEnabled = implicitFlowEnabled;
-            ImplicitFlowRedirectURIs = implicitFlowRedirectURIs;
-            EndpointURI = endpointURI;
-            IsHasVerificationToken = hasVerificationToken;
-            IsHasSigningKey = hasSigningKey;
-            IsHasPublicKeySignature = hasPublicKeySignature;
-            IsEndpointSslVerification = endpointSslVerification;
-            BasicAuthUsername = basicAuthUsername;
-            IsHasBearerToken = hasBearerToken;
-            SslKeystoreAuth = sslKeystoreAuth;
-            IsArchived = archived;
-            Domains = domains;
-            Metadata = metadata;
-            Patterns = patterns;
-            Settings = settings;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApp), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberProfile?> _owner = new PropertyValue<TDMemberProfile?>(nameof(ESApp), nameof(Owner));
-        
-        [JsonPropertyName("owner")]
-        public TDMemberProfile? Owner
-        {
-            get => _owner.GetValue();
-            set => _owner.SetValue(value);
-        }
-    
-        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESApp), nameof(ClientId));
-        
-        [Required]
-        [JsonPropertyName("clientId")]
-        public string ClientId
-        {
-            get => _clientId.GetValue();
-            set => _clientId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESApp), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _picture = new PropertyValue<string?>(nameof(ESApp), nameof(Picture));
-        
-        [JsonPropertyName("picture")]
-        public string? Picture
-        {
-            get => _picture.GetValue();
-            set => _picture.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _defaultExternalPicture = new PropertyValue<string?>(nameof(ESApp), nameof(DefaultExternalPicture));
-        
-        [JsonPropertyName("defaultExternalPicture")]
-        public string? DefaultExternalPicture
-        {
-            get => _defaultExternalPicture.GetValue();
-            set => _defaultExternalPicture.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _createdAt = new PropertyValue<DateTime?>(nameof(ESApp), nameof(CreatedAt));
-        
-        [JsonPropertyName("createdAt")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? CreatedAt
-        {
-            get => _createdAt.GetValue();
-            set => _createdAt.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _kind = new PropertyValue<string?>(nameof(ESApp), nameof(Kind));
-        
-        [JsonPropertyName("kind")]
-        public string? Kind
-        {
-            get => _kind.GetValue();
-            set => _kind.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _presentableName = new PropertyValue<string?>(nameof(ESApp), nameof(PresentableName));
-        
-        [JsonPropertyName("presentableName")]
-        public string? PresentableName
-        {
-            get => _presentableName.GetValue();
-            set => _presentableName.SetValue(value);
-        }
-    
-        private PropertyValue<ApplicationType?> _applicationType = new PropertyValue<ApplicationType?>(nameof(ESApp), nameof(ApplicationType));
-        
-        [JsonPropertyName("applicationType")]
-        public ApplicationType? ApplicationType
-        {
-            get => _applicationType.GetValue();
-            set => _applicationType.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _clientCredentialsFlowEnabled = new PropertyValue<bool?>(nameof(ESApp), nameof(IsClientCredentialsFlowEnabled));
-        
-        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
-        [JsonPropertyName("clientCredentialsFlowEnabled")]
-        public bool? IsClientCredentialsFlowEnabled
-        {
-            get => _clientCredentialsFlowEnabled.GetValue();
-            set => _clientCredentialsFlowEnabled.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _codeFlowEnabled = new PropertyValue<bool?>(nameof(ESApp), nameof(IsCodeFlowEnabled));
-        
-        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
-        [JsonPropertyName("codeFlowEnabled")]
-        public bool? IsCodeFlowEnabled
-        {
-            get => _codeFlowEnabled.GetValue();
-            set => _codeFlowEnabled.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _codeFlowRedirectURIs = new PropertyValue<string?>(nameof(ESApp), nameof(CodeFlowRedirectURIs));
-        
-        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
-        [JsonPropertyName("codeFlowRedirectURIs")]
-        public string? CodeFlowRedirectURIs
-        {
-            get => _codeFlowRedirectURIs.GetValue();
-            set => _codeFlowRedirectURIs.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ESApp), nameof(IsPkceRequired));
-        
-        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
-        [JsonPropertyName("pkceRequired")]
-        public bool? IsPkceRequired
-        {
-            get => _pkceRequired.GetValue();
-            set => _pkceRequired.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ESApp), nameof(IsImplicitFlowEnabled));
-        
-        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
-        [JsonPropertyName("implicitFlowEnabled")]
-        public bool? IsImplicitFlowEnabled
-        {
-            get => _implicitFlowEnabled.GetValue();
-            set => _implicitFlowEnabled.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _implicitFlowRedirectURIs = new PropertyValue<string?>(nameof(ESApp), nameof(ImplicitFlowRedirectURIs));
-        
-        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
-        [JsonPropertyName("implicitFlowRedirectURIs")]
-        public string? ImplicitFlowRedirectURIs
-        {
-            get => _implicitFlowRedirectURIs.GetValue();
-            set => _implicitFlowRedirectURIs.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _endpointURI = new PropertyValue<string?>(nameof(ESApp), nameof(EndpointURI));
-        
-        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
-        [JsonPropertyName("endpointURI")]
-        public string? EndpointURI
-        {
-            get => _endpointURI.GetValue();
-            set => _endpointURI.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _hasVerificationToken = new PropertyValue<bool?>(nameof(ESApp), nameof(IsHasVerificationToken));
-        
-        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
-        [JsonPropertyName("hasVerificationToken")]
-        public bool? IsHasVerificationToken
-        {
-            get => _hasVerificationToken.GetValue();
-            set => _hasVerificationToken.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _hasSigningKey = new PropertyValue<bool?>(nameof(ESApp), nameof(IsHasSigningKey));
-        
-        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
-        [JsonPropertyName("hasSigningKey")]
-        public bool? IsHasSigningKey
-        {
-            get => _hasSigningKey.GetValue();
-            set => _hasSigningKey.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _hasPublicKeySignature = new PropertyValue<bool?>(nameof(ESApp), nameof(IsHasPublicKeySignature));
-        
-        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
-        [JsonPropertyName("hasPublicKeySignature")]
-        public bool? IsHasPublicKeySignature
-        {
-            get => _hasPublicKeySignature.GetValue();
-            set => _hasPublicKeySignature.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _endpointSslVerification = new PropertyValue<bool?>(nameof(ESApp), nameof(IsEndpointSslVerification));
-        
-        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
-        [JsonPropertyName("endpointSslVerification")]
-        public bool? IsEndpointSslVerification
-        {
-            get => _endpointSslVerification.GetValue();
-            set => _endpointSslVerification.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _basicAuthUsername = new PropertyValue<string?>(nameof(ESApp), nameof(BasicAuthUsername));
-        
-        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
-        [JsonPropertyName("basicAuthUsername")]
-        public string? BasicAuthUsername
-        {
-            get => _basicAuthUsername.GetValue();
-            set => _basicAuthUsername.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _hasBearerToken = new PropertyValue<bool?>(nameof(ESApp), nameof(IsHasBearerToken));
-        
-        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
-        [JsonPropertyName("hasBearerToken")]
-        public bool? IsHasBearerToken
-        {
-            get => _hasBearerToken.GetValue();
-            set => _hasBearerToken.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _sslKeystoreAuth = new PropertyValue<string?>(nameof(ESApp), nameof(SslKeystoreAuth));
-        
-        [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
-        [JsonPropertyName("sslKeystoreAuth")]
-        public string? SslKeystoreAuth
-        {
-            get => _sslKeystoreAuth.GetValue();
-            set => _sslKeystoreAuth.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ESApp), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        private PropertyValue<List<ApplicationUnfurlDomain>> _domains = new PropertyValue<List<ApplicationUnfurlDomain>>(nameof(ESApp), nameof(Domains), new List<ApplicationUnfurlDomain>());
-        
-        [Required]
-        [JsonPropertyName("domains")]
-        public List<ApplicationUnfurlDomain> Domains
-        {
-            get => _domains.GetValue();
-            set => _domains.SetValue(value);
-        }
-    
-        private PropertyValue<ApplicationMetadata?> _metadata = new PropertyValue<ApplicationMetadata?>(nameof(ESApp), nameof(Metadata));
-        
-        [JsonPropertyName("metadata")]
-        public ApplicationMetadata? Metadata
-        {
-            get => _metadata.GetValue();
-            set => _metadata.SetValue(value);
-        }
-    
-        private PropertyValue<List<ApplicationUnfurlPattern>> _patterns = new PropertyValue<List<ApplicationUnfurlPattern>>(nameof(ESApp), nameof(Patterns), new List<ApplicationUnfurlPattern>());
-        
-        [Required]
-        [JsonPropertyName("patterns")]
-        public List<ApplicationUnfurlPattern> Patterns
-        {
-            get => _patterns.GetValue();
-            set => _patterns.SetValue(value);
-        }
-    
-        private PropertyValue<ESAppSettings> _settings = new PropertyValue<ESAppSettings>(nameof(ESApp), nameof(Settings));
-        
-        [Required]
-        [JsonPropertyName("settings")]
-        public ESAppSettings Settings
-        {
-            get => _settings.GetValue();
-            set => _settings.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _owner.SetAccessPath(path, validateHasBeenSet);
-            _clientId.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _picture.SetAccessPath(path, validateHasBeenSet);
-            _defaultExternalPicture.SetAccessPath(path, validateHasBeenSet);
-            _createdAt.SetAccessPath(path, validateHasBeenSet);
-            _kind.SetAccessPath(path, validateHasBeenSet);
-            _presentableName.SetAccessPath(path, validateHasBeenSet);
-            _applicationType.SetAccessPath(path, validateHasBeenSet);
-            _clientCredentialsFlowEnabled.SetAccessPath(path, validateHasBeenSet);
-            _codeFlowEnabled.SetAccessPath(path, validateHasBeenSet);
-            _codeFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
-            _pkceRequired.SetAccessPath(path, validateHasBeenSet);
-            _implicitFlowEnabled.SetAccessPath(path, validateHasBeenSet);
-            _implicitFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
-            _endpointURI.SetAccessPath(path, validateHasBeenSet);
-            _hasVerificationToken.SetAccessPath(path, validateHasBeenSet);
-            _hasSigningKey.SetAccessPath(path, validateHasBeenSet);
-            _hasPublicKeySignature.SetAccessPath(path, validateHasBeenSet);
-            _endpointSslVerification.SetAccessPath(path, validateHasBeenSet);
-            _basicAuthUsername.SetAccessPath(path, validateHasBeenSet);
-            _hasBearerToken.SetAccessPath(path, validateHasBeenSet);
-            _sslKeystoreAuth.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-            _domains.SetAccessPath(path, validateHasBeenSet);
-            _metadata.SetAccessPath(path, validateHasBeenSet);
-            _patterns.SetAccessPath(path, validateHasBeenSet);
-            _settings.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Owner = owner;
+        ClientId = clientId;
+        Name = name;
+        Picture = picture;
+        DefaultExternalPicture = defaultExternalPicture;
+        CreatedAt = createdAt;
+        Kind = kind;
+        PresentableName = presentableName;
+        ApplicationType = applicationType;
+        IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled;
+        IsCodeFlowEnabled = codeFlowEnabled;
+        CodeFlowRedirectURIs = codeFlowRedirectURIs;
+        IsPkceRequired = pkceRequired;
+        IsImplicitFlowEnabled = implicitFlowEnabled;
+        ImplicitFlowRedirectURIs = implicitFlowRedirectURIs;
+        EndpointURI = endpointURI;
+        IsHasVerificationToken = hasVerificationToken;
+        IsHasSigningKey = hasSigningKey;
+        IsHasPublicKeySignature = hasPublicKeySignature;
+        IsEndpointSslVerification = endpointSslVerification;
+        BasicAuthUsername = basicAuthUsername;
+        IsHasBearerToken = hasBearerToken;
+        SslKeystoreAuth = sslKeystoreAuth;
+        IsArchived = archived;
+        Domains = domains;
+        Metadata = metadata;
+        Patterns = patterns;
+        Settings = settings;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApp), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<TDMemberProfile?> _owner = new PropertyValue<TDMemberProfile?>(nameof(ESApp), nameof(Owner));
+    
+    [JsonPropertyName("owner")]
+    public TDMemberProfile? Owner
+    {
+        get => _owner.GetValue();
+        set => _owner.SetValue(value);
+    }
+
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESApp), nameof(ClientId));
+    
+    [Required]
+    [JsonPropertyName("clientId")]
+    public string ClientId
+    {
+        get => _clientId.GetValue();
+        set => _clientId.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESApp), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _picture = new PropertyValue<string?>(nameof(ESApp), nameof(Picture));
+    
+    [JsonPropertyName("picture")]
+    public string? Picture
+    {
+        get => _picture.GetValue();
+        set => _picture.SetValue(value);
+    }
+
+    private PropertyValue<string?> _defaultExternalPicture = new PropertyValue<string?>(nameof(ESApp), nameof(DefaultExternalPicture));
+    
+    [JsonPropertyName("defaultExternalPicture")]
+    public string? DefaultExternalPicture
+    {
+        get => _defaultExternalPicture.GetValue();
+        set => _defaultExternalPicture.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _createdAt = new PropertyValue<DateTime?>(nameof(ESApp), nameof(CreatedAt));
+    
+    [JsonPropertyName("createdAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? CreatedAt
+    {
+        get => _createdAt.GetValue();
+        set => _createdAt.SetValue(value);
+    }
+
+    private PropertyValue<string?> _kind = new PropertyValue<string?>(nameof(ESApp), nameof(Kind));
+    
+    [JsonPropertyName("kind")]
+    public string? Kind
+    {
+        get => _kind.GetValue();
+        set => _kind.SetValue(value);
+    }
+
+    private PropertyValue<string?> _presentableName = new PropertyValue<string?>(nameof(ESApp), nameof(PresentableName));
+    
+    [JsonPropertyName("presentableName")]
+    public string? PresentableName
+    {
+        get => _presentableName.GetValue();
+        set => _presentableName.SetValue(value);
+    }
+
+    private PropertyValue<ApplicationType?> _applicationType = new PropertyValue<ApplicationType?>(nameof(ESApp), nameof(ApplicationType));
+    
+    [JsonPropertyName("applicationType")]
+    public ApplicationType? ApplicationType
+    {
+        get => _applicationType.GetValue();
+        set => _applicationType.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _clientCredentialsFlowEnabled = new PropertyValue<bool?>(nameof(ESApp), nameof(IsClientCredentialsFlowEnabled));
+    
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
+    [JsonPropertyName("clientCredentialsFlowEnabled")]
+    public bool? IsClientCredentialsFlowEnabled
+    {
+        get => _clientCredentialsFlowEnabled.GetValue();
+        set => _clientCredentialsFlowEnabled.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _codeFlowEnabled = new PropertyValue<bool?>(nameof(ESApp), nameof(IsCodeFlowEnabled));
+    
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
+    [JsonPropertyName("codeFlowEnabled")]
+    public bool? IsCodeFlowEnabled
+    {
+        get => _codeFlowEnabled.GetValue();
+        set => _codeFlowEnabled.SetValue(value);
+    }
+
+    private PropertyValue<string?> _codeFlowRedirectURIs = new PropertyValue<string?>(nameof(ESApp), nameof(CodeFlowRedirectURIs));
+    
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
+    [JsonPropertyName("codeFlowRedirectURIs")]
+    public string? CodeFlowRedirectURIs
+    {
+        get => _codeFlowRedirectURIs.GetValue();
+        set => _codeFlowRedirectURIs.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ESApp), nameof(IsPkceRequired));
+    
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
+    [JsonPropertyName("pkceRequired")]
+    public bool? IsPkceRequired
+    {
+        get => _pkceRequired.GetValue();
+        set => _pkceRequired.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ESApp), nameof(IsImplicitFlowEnabled));
+    
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
+    [JsonPropertyName("implicitFlowEnabled")]
+    public bool? IsImplicitFlowEnabled
+    {
+        get => _implicitFlowEnabled.GetValue();
+        set => _implicitFlowEnabled.SetValue(value);
+    }
+
+    private PropertyValue<string?> _implicitFlowRedirectURIs = new PropertyValue<string?>(nameof(ESApp), nameof(ImplicitFlowRedirectURIs));
+    
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
+    [JsonPropertyName("implicitFlowRedirectURIs")]
+    public string? ImplicitFlowRedirectURIs
+    {
+        get => _implicitFlowRedirectURIs.GetValue();
+        set => _implicitFlowRedirectURIs.SetValue(value);
+    }
+
+    private PropertyValue<string?> _endpointURI = new PropertyValue<string?>(nameof(ESApp), nameof(EndpointURI));
+    
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
+    [JsonPropertyName("endpointURI")]
+    public string? EndpointURI
+    {
+        get => _endpointURI.GetValue();
+        set => _endpointURI.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _hasVerificationToken = new PropertyValue<bool?>(nameof(ESApp), nameof(IsHasVerificationToken));
+    
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
+    [JsonPropertyName("hasVerificationToken")]
+    public bool? IsHasVerificationToken
+    {
+        get => _hasVerificationToken.GetValue();
+        set => _hasVerificationToken.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _hasSigningKey = new PropertyValue<bool?>(nameof(ESApp), nameof(IsHasSigningKey));
+    
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
+    [JsonPropertyName("hasSigningKey")]
+    public bool? IsHasSigningKey
+    {
+        get => _hasSigningKey.GetValue();
+        set => _hasSigningKey.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _hasPublicKeySignature = new PropertyValue<bool?>(nameof(ESApp), nameof(IsHasPublicKeySignature));
+    
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
+    [JsonPropertyName("hasPublicKeySignature")]
+    public bool? IsHasPublicKeySignature
+    {
+        get => _hasPublicKeySignature.GetValue();
+        set => _hasPublicKeySignature.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _endpointSslVerification = new PropertyValue<bool?>(nameof(ESApp), nameof(IsEndpointSslVerification));
+    
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
+    [JsonPropertyName("endpointSslVerification")]
+    public bool? IsEndpointSslVerification
+    {
+        get => _endpointSslVerification.GetValue();
+        set => _endpointSslVerification.SetValue(value);
+    }
+
+    private PropertyValue<string?> _basicAuthUsername = new PropertyValue<string?>(nameof(ESApp), nameof(BasicAuthUsername));
+    
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
+    [JsonPropertyName("basicAuthUsername")]
+    public string? BasicAuthUsername
+    {
+        get => _basicAuthUsername.GetValue();
+        set => _basicAuthUsername.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _hasBearerToken = new PropertyValue<bool?>(nameof(ESApp), nameof(IsHasBearerToken));
+    
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
+    [JsonPropertyName("hasBearerToken")]
+    public bool? IsHasBearerToken
+    {
+        get => _hasBearerToken.GetValue();
+        set => _hasBearerToken.SetValue(value);
+    }
+
+    private PropertyValue<string?> _sslKeystoreAuth = new PropertyValue<string?>(nameof(ESApp), nameof(SslKeystoreAuth));
+    
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
+    [JsonPropertyName("sslKeystoreAuth")]
+    public string? SslKeystoreAuth
+    {
+        get => _sslKeystoreAuth.GetValue();
+        set => _sslKeystoreAuth.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ESApp), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<List<ApplicationUnfurlDomain>> _domains = new PropertyValue<List<ApplicationUnfurlDomain>>(nameof(ESApp), nameof(Domains), new List<ApplicationUnfurlDomain>());
+    
+    [Required]
+    [JsonPropertyName("domains")]
+    public List<ApplicationUnfurlDomain> Domains
+    {
+        get => _domains.GetValue();
+        set => _domains.SetValue(value);
+    }
+
+    private PropertyValue<ApplicationMetadata?> _metadata = new PropertyValue<ApplicationMetadata?>(nameof(ESApp), nameof(Metadata));
+    
+    [JsonPropertyName("metadata")]
+    public ApplicationMetadata? Metadata
+    {
+        get => _metadata.GetValue();
+        set => _metadata.SetValue(value);
+    }
+
+    private PropertyValue<List<ApplicationUnfurlPattern>> _patterns = new PropertyValue<List<ApplicationUnfurlPattern>>(nameof(ESApp), nameof(Patterns), new List<ApplicationUnfurlPattern>());
+    
+    [Required]
+    [JsonPropertyName("patterns")]
+    public List<ApplicationUnfurlPattern> Patterns
+    {
+        get => _patterns.GetValue();
+        set => _patterns.SetValue(value);
+    }
+
+    private PropertyValue<ESAppSettings> _settings = new PropertyValue<ESAppSettings>(nameof(ESApp), nameof(Settings));
+    
+    [Required]
+    [JsonPropertyName("settings")]
+    public ESAppSettings Settings
+    {
+        get => _settings.GetValue();
+        set => _settings.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _owner.SetAccessPath(path, validateHasBeenSet);
+        _clientId.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _picture.SetAccessPath(path, validateHasBeenSet);
+        _defaultExternalPicture.SetAccessPath(path, validateHasBeenSet);
+        _createdAt.SetAccessPath(path, validateHasBeenSet);
+        _kind.SetAccessPath(path, validateHasBeenSet);
+        _presentableName.SetAccessPath(path, validateHasBeenSet);
+        _applicationType.SetAccessPath(path, validateHasBeenSet);
+        _clientCredentialsFlowEnabled.SetAccessPath(path, validateHasBeenSet);
+        _codeFlowEnabled.SetAccessPath(path, validateHasBeenSet);
+        _codeFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
+        _pkceRequired.SetAccessPath(path, validateHasBeenSet);
+        _implicitFlowEnabled.SetAccessPath(path, validateHasBeenSet);
+        _implicitFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
+        _endpointURI.SetAccessPath(path, validateHasBeenSet);
+        _hasVerificationToken.SetAccessPath(path, validateHasBeenSet);
+        _hasSigningKey.SetAccessPath(path, validateHasBeenSet);
+        _hasPublicKeySignature.SetAccessPath(path, validateHasBeenSet);
+        _endpointSslVerification.SetAccessPath(path, validateHasBeenSet);
+        _basicAuthUsername.SetAccessPath(path, validateHasBeenSet);
+        _hasBearerToken.SetAccessPath(path, validateHasBeenSet);
+        _sslKeystoreAuth.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _domains.SetAccessPath(path, validateHasBeenSet);
+        _metadata.SetAccessPath(path, validateHasBeenSet);
+        _patterns.SetAccessPath(path, validateHasBeenSet);
+        _settings.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

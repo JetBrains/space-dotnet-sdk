@@ -27,263 +27,262 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public partial class CustomFieldClient : ISpaceClient
 {
-    public partial class CustomFieldClient : ISpaceClient
+    private readonly Connection _connection;
+    
+    public CustomFieldClient(Connection connection)
+    {
+        _connection = connection;
+    }
+    
+    public ValueClient Values => new ValueClient(_connection);
+    
+    public partial class ValueClient : ISpaceClient
     {
         private readonly Connection _connection;
         
-        public CustomFieldClient(Connection connection)
+        public ValueClient(Connection connection)
         {
             _connection = connection;
         }
         
-        public ValueClient Values => new ValueClient(_connection);
-        
-        public partial class ValueClient : ISpaceClient
+        public async Task SetValuesForEntityAsync(CFEntityIdentifier entity, List<CustomFieldValueUpdate> customFieldValues, CancellationToken cancellationToken = default)
         {
-            private readonly Connection _connection;
+            var queryParameters = new NameValueCollection();
             
-            public ValueClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            public async Task SetValuesForEntityAsync(CFEntityIdentifier entity, List<CustomFieldValueUpdate> customFieldValues, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/values/{entity}{queryParameters.ToQueryString()}", 
-                    new CustomFieldsV2ValuesForEntityPostRequest
-                    { 
-                        CustomFieldValues = customFieldValues,
-                    }, cancellationToken);
-            }
-            
-        
-            public async Task SetSingleValueAsync(CFEntityIdentifier entity, CFIdentifier customField, CFInputValue newValue, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/values/{entity}/{customField}{queryParameters.ToQueryString()}", 
-                    new CustomFieldsV2ValuesForEntityForCustomFieldPostRequest
-                    { 
-                        NewValue = newValue,
-                    }, cancellationToken);
-            }
-            
-        
-            public async Task<List<CustomFieldValueData>> GetAllValuesForEntityAsync(CFEntityIdentifier entity, Func<Partial<CustomFieldValueData>, Partial<CustomFieldValueData>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldValueData>()) : Partial<CustomFieldValueData>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<List<CustomFieldValueData>>("GET", $"api/http/custom-fields-v2/values/{entity}{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            public async Task<CustomFieldValueData> GetSingleValueAsync(CFEntityIdentifier entity, CFIdentifier customField, Func<Partial<CustomFieldValueData>, Partial<CustomFieldValueData>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldValueData>()) : Partial<CustomFieldValueData>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<CustomFieldValueData>("GET", $"api/http/custom-fields-v2/values/{entity}/{customField}{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
+            await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/values/{entity}{queryParameters.ToQueryString()}", 
+                new CustomFieldsV2ValuesForEntityPostRequest
+                { 
+                    CustomFieldValues = customFieldValues,
+                }, cancellationToken);
         }
-    
-        public FieldClient Fields => new FieldClient(_connection);
         
-        public partial class FieldClient : ISpaceClient
+    
+        public async Task SetSingleValueAsync(CFEntityIdentifier entity, CFIdentifier customField, CFInputValue newValue, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/values/{entity}/{customField}{queryParameters.ToQueryString()}", 
+                new CustomFieldsV2ValuesForEntityForCustomFieldPostRequest
+                { 
+                    NewValue = newValue,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task<List<CustomFieldValueData>> GetAllValuesForEntityAsync(CFEntityIdentifier entity, Func<Partial<CustomFieldValueData>, Partial<CustomFieldValueData>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldValueData>()) : Partial<CustomFieldValueData>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<CustomFieldValueData>>("GET", $"api/http/custom-fields-v2/values/{entity}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public async Task<CustomFieldValueData> GetSingleValueAsync(CFEntityIdentifier entity, CFIdentifier customField, Func<Partial<CustomFieldValueData>, Partial<CustomFieldValueData>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldValueData>()) : Partial<CustomFieldValueData>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<CustomFieldValueData>("GET", $"api/http/custom-fields-v2/values/{entity}/{customField}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+    }
+
+    public FieldClient Fields => new FieldClient(_connection);
+    
+    public partial class FieldClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public FieldClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        public async Task<CustomFieldData> CreateCustomFieldAsync(CFEntityTypeIdentifier entityType, string name, CustomFieldType type, bool multivalued = false, bool required = false, CFCreateParameters? parameters = null, CFInputValue? defaultValue = null, CFConstraint? constraint = null, string? description = null, int? order = null, Func<Partial<CustomFieldData>, Partial<CustomFieldData>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldData>()) : Partial<CustomFieldData>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<CustomFieldsV2ForEntityTypeFieldsPostRequest, CustomFieldData>("POST", $"api/http/custom-fields-v2/{entityType}/fields{queryParameters.ToQueryString()}", 
+                new CustomFieldsV2ForEntityTypeFieldsPostRequest
+                { 
+                    Name = name,
+                    Type = type,
+                    IsMultivalued = multivalued,
+                    Parameters = parameters,
+                    IsRequired = required,
+                    DefaultValue = defaultValue,
+                    Constraint = constraint,
+                    Description = description,
+                    Order = order,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Re-order custom fields. Pass identifiers of the custom fields in the order you wish the custom fields to be.
+        /// </summary>
+        public async Task ReorderCustomFieldsAsync(CFEntityTypeIdentifier entityType, List<CFIdentifier> customFields, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/reorder{queryParameters.ToQueryString()}", 
+                new CustomFieldsV2ForEntityTypeFieldsReorderPostRequest
+                { 
+                    CustomFields = customFields,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task ArchiveCustomFieldAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/archive{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public async Task RestoreCustomFieldAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/restore{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Get all configured custom fields for an entity type
+        /// </summary>
+        public async Task<List<CustomFieldData>> GetCustomFieldsAsync(CFEntityTypeIdentifier entityType, bool withArchived = false, Func<Partial<CustomFieldData>, Partial<CustomFieldData>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("withArchived", withArchived.ToString("l"));
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldData>()) : Partial<CustomFieldData>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<CustomFieldData>>("GET", $"api/http/custom-fields-v2/{entityType}/fields{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Get configured custom field
+        /// </summary>
+        public async Task<CustomFieldData> GetSingleCustomFieldAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, Func<Partial<CustomFieldData>, Partial<CustomFieldData>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldData>()) : Partial<CustomFieldData>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<CustomFieldData>("GET", $"api/http/custom-fields-v2/{entityType}/fields/{customField}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public async Task UpdateCustomFieldAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, string? name = null, CFUpdateParameters? parameters = null, bool? required = null, CFInputValue? defaultValue = null, CFConstraint? constraint = null, string? description = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields-v2/{entityType}/fields/{customField}{queryParameters.ToQueryString()}", 
+                new CustomFieldsV2ForEntityTypeFieldsForCustomFieldPatchRequest
+                { 
+                    Name = name,
+                    Parameters = parameters,
+                    IsRequired = required,
+                    DefaultValue = defaultValue,
+                    Constraint = constraint,
+                    Description = description,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task DeleteCustomFieldAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields-v2/{entityType}/fields/{customField}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public EnumValueClient EnumValues => new EnumValueClient(_connection);
+        
+        public partial class EnumValueClient : ISpaceClient
         {
             private readonly Connection _connection;
             
-            public FieldClient(Connection connection)
+            public EnumValueClient(Connection connection)
             {
                 _connection = connection;
             }
             
-            public async Task<CustomFieldData> CreateCustomFieldAsync(CFEntityTypeIdentifier entityType, string name, CustomFieldType type, bool multivalued = false, bool required = false, CFCreateParameters? parameters = null, CFInputValue? defaultValue = null, CFConstraint? constraint = null, string? description = null, int? order = null, Func<Partial<CustomFieldData>, Partial<CustomFieldData>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<CFEnumValue> CreateEnumValueAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, string enumValueToAdd, Func<Partial<CFEnumValue>, Partial<CFEnumValue>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldData>()) : Partial<CustomFieldData>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CFEnumValue>()) : Partial<CFEnumValue>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<CustomFieldsV2ForEntityTypeFieldsPostRequest, CustomFieldData>("POST", $"api/http/custom-fields-v2/{entityType}/fields{queryParameters.ToQueryString()}", 
-                    new CustomFieldsV2ForEntityTypeFieldsPostRequest
+                return await _connection.RequestResourceAsync<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest, CFEnumValue>("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/enum-values{queryParameters.ToQueryString()}", 
+                    new CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest
                     { 
-                        Name = name,
-                        Type = type,
-                        IsMultivalued = multivalued,
-                        Parameters = parameters,
-                        IsRequired = required,
-                        DefaultValue = defaultValue,
-                        Constraint = constraint,
-                        Description = description,
-                        Order = order,
+                        EnumValueToAdd = enumValueToAdd,
                     }, cancellationToken);
             }
             
         
-            /// <summary>
-            /// Re-order custom fields. Pass identifiers of the custom fields in the order you wish the custom fields to be.
-            /// </summary>
-            public async Task ReorderCustomFieldsAsync(CFEntityTypeIdentifier entityType, List<CFIdentifier> customFields, CancellationToken cancellationToken = default)
+            public async Task BulkUpdateEnumValuesAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, List<CFEnumValueModification> enumValueModifications, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/reorder{queryParameters.ToQueryString()}", 
-                    new CustomFieldsV2ForEntityTypeFieldsReorderPostRequest
+                await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/enum-values/bulk-update{queryParameters.ToQueryString()}", 
+                    new CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest
                     { 
-                        CustomFields = customFields,
+                        EnumValueModifications = enumValueModifications,
                     }, cancellationToken);
             }
             
         
-            public async Task ArchiveCustomFieldAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, CancellationToken cancellationToken = default)
+            public async Task<Batch<CFEnumValue>> GetEnumValuesAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, string? query = null, EnumValueOrdering? ordering = EnumValueOrdering.NAMEASC, string? addedByProfileId = null, string? skip = null, int? top = 100, Func<Partial<Batch<CFEnumValue>>, Partial<Batch<CFEnumValue>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
+                if (query != null) queryParameters.Append("query", query);
+                queryParameters.Append("ordering", ordering.ToEnumString());
+                if (addedByProfileId != null) queryParameters.Append("addedByProfileId", addedByProfileId);
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CFEnumValue>>()) : Partial<Batch<CFEnumValue>>.Default()).ToString());
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/archive{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<CFEnumValue>>("GET", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/enum-values{queryParameters.ToQueryString()}", cancellationToken);
             }
             
-        
-            public async Task RestoreCustomFieldAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/restore{queryParameters.ToQueryString()}", cancellationToken);
-            }
             
+            public IAsyncEnumerable<CFEnumValue> GetEnumValuesAsyncEnumerable(CFEntityTypeIdentifier entityType, CFIdentifier customField, string? query = null, EnumValueOrdering? ordering = EnumValueOrdering.NAMEASC, string? addedByProfileId = null, string? skip = null, int? top = 100, Func<Partial<CFEnumValue>, Partial<CFEnumValue>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetEnumValuesAsync(entityType: entityType, customField: customField, query: query, ordering: ordering, addedByProfileId: addedByProfileId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CFEnumValue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CFEnumValue>.Default())), skip, cancellationToken);
         
-            /// <summary>
-            /// Get all configured custom fields for an entity type
-            /// </summary>
-            public async Task<List<CustomFieldData>> GetCustomFieldsAsync(CFEntityTypeIdentifier entityType, bool withArchived = false, Func<Partial<CustomFieldData>, Partial<CustomFieldData>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("withArchived", withArchived.ToString("l"));
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldData>()) : Partial<CustomFieldData>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<List<CustomFieldData>>("GET", $"api/http/custom-fields-v2/{entityType}/fields{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            /// <summary>
-            /// Get configured custom field
-            /// </summary>
-            public async Task<CustomFieldData> GetSingleCustomFieldAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, Func<Partial<CustomFieldData>, Partial<CustomFieldData>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldData>()) : Partial<CustomFieldData>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<CustomFieldData>("GET", $"api/http/custom-fields-v2/{entityType}/fields/{customField}{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            public async Task UpdateCustomFieldAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, string? name = null, CFUpdateParameters? parameters = null, bool? required = null, CFInputValue? defaultValue = null, CFConstraint? constraint = null, string? description = null, CancellationToken cancellationToken = default)
+            public async Task UpdateEnumValueAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, CFEnumValueIdentifier enumValueToUpdate, string newName, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields-v2/{entityType}/fields/{customField}{queryParameters.ToQueryString()}", 
-                    new CustomFieldsV2ForEntityTypeFieldsForCustomFieldPatchRequest
+                await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/enum-values{queryParameters.ToQueryString()}", 
+                    new CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest
                     { 
-                        Name = name,
-                        Parameters = parameters,
-                        IsRequired = required,
-                        DefaultValue = defaultValue,
-                        Constraint = constraint,
-                        Description = description,
+                        EnumValueToUpdate = enumValueToUpdate,
+                        NewName = newName,
                     }, cancellationToken);
             }
             
         
-            public async Task DeleteCustomFieldAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, CancellationToken cancellationToken = default)
+            public async Task DeleteEnumValueAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, CFEnumValueIdentifier enumValueToRemove, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields-v2/{entityType}/fields/{customField}{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/enum-values/{enumValueToRemove}{queryParameters.ToQueryString()}", cancellationToken);
             }
             
-        
-            public EnumValueClient EnumValues => new EnumValueClient(_connection);
-            
-            public partial class EnumValueClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public EnumValueClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public async Task<CFEnumValue> CreateEnumValueAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, string enumValueToAdd, Func<Partial<CFEnumValue>, Partial<CFEnumValue>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<CFEnumValue>()) : Partial<CFEnumValue>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest, CFEnumValue>("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/enum-values{queryParameters.ToQueryString()}", 
-                        new CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest
-                        { 
-                            EnumValueToAdd = enumValueToAdd,
-                        }, cancellationToken);
-                }
-                
-            
-                public async Task BulkUpdateEnumValuesAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, List<CFEnumValueModification> enumValueModifications, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/enum-values/bulk-update{queryParameters.ToQueryString()}", 
-                        new CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest
-                        { 
-                            EnumValueModifications = enumValueModifications,
-                        }, cancellationToken);
-                }
-                
-            
-                public async Task<Batch<CFEnumValue>> GetEnumValuesAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, string? query = null, EnumValueOrdering? ordering = EnumValueOrdering.NAMEASC, string? addedByProfileId = null, string? skip = null, int? top = 100, Func<Partial<Batch<CFEnumValue>>, Partial<Batch<CFEnumValue>>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    if (query != null) queryParameters.Append("query", query);
-                    queryParameters.Append("ordering", ordering.ToEnumString());
-                    if (addedByProfileId != null) queryParameters.Append("addedByProfileId", addedByProfileId);
-                    if (skip != null) queryParameters.Append("$skip", skip);
-                    if (top != null) queryParameters.Append("$top", top?.ToString());
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CFEnumValue>>()) : Partial<Batch<CFEnumValue>>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Batch<CFEnumValue>>("GET", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/enum-values{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-                
-                public IAsyncEnumerable<CFEnumValue> GetEnumValuesAsyncEnumerable(CFEntityTypeIdentifier entityType, CFIdentifier customField, string? query = null, EnumValueOrdering? ordering = EnumValueOrdering.NAMEASC, string? addedByProfileId = null, string? skip = null, int? top = 100, Func<Partial<CFEnumValue>, Partial<CFEnumValue>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetEnumValuesAsync(entityType: entityType, customField: customField, query: query, ordering: ordering, addedByProfileId: addedByProfileId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CFEnumValue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CFEnumValue>.Default())), skip, cancellationToken);
-            
-                public async Task UpdateEnumValueAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, CFEnumValueIdentifier enumValueToUpdate, string newName, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/enum-values{queryParameters.ToQueryString()}", 
-                        new CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest
-                        { 
-                            EnumValueToUpdate = enumValueToUpdate,
-                            NewName = newName,
-                        }, cancellationToken);
-                }
-                
-            
-                public async Task DeleteEnumValueAsync(CFEntityTypeIdentifier entityType, CFIdentifier customField, CFEnumValueIdentifier enumValueToRemove, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/enum-values/{enumValueToRemove}{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-            }
         
         }
     
     }
-    
+
 }
+

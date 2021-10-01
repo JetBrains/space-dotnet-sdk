@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectPackageRepositoryPartialBuilder
+namespace JetBrains.Space.Client.ProjectPackageRepositoryPartialBuilder;
+
+public static class ProjectPackageRepositoryPartialExtensions
 {
-    public static class ProjectPackageRepositoryPartialExtensions
-    {
-        public static Partial<ProjectPackageRepository> WithId(this Partial<ProjectPackageRepository> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ProjectPackageRepository> WithProject(this Partial<ProjectPackageRepository> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<ProjectPackageRepository> WithProject(this Partial<ProjectPackageRepository> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
-        public static Partial<ProjectPackageRepository> WithName(this Partial<ProjectPackageRepository> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ProjectPackageRepository> WithDescription(this Partial<ProjectPackageRepository> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<ProjectPackageRepository> WithRepository(this Partial<ProjectPackageRepository> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<ProjectPackageRepository> WithRepository(this Partial<ProjectPackageRepository> it, Func<Partial<PackageRepository>, Partial<PackageRepository>> partialBuilder)
-            => it.AddFieldName("repository", partialBuilder(new Partial<PackageRepository>(it)));
-        
-        public static Partial<ProjectPackageRepository> WithIsArchived(this Partial<ProjectPackageRepository> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<ProjectPackageRepository> WithConnections(this Partial<ProjectPackageRepository> it)
-            => it.AddFieldName("connections");
-        
-        public static Partial<ProjectPackageRepository> WithConnections(this Partial<ProjectPackageRepository> it, Func<Partial<PackageRepositoryConnection>, Partial<PackageRepositoryConnection>> partialBuilder)
-            => it.AddFieldName("connections", partialBuilder(new Partial<PackageRepositoryConnection>(it)));
-        
-    }
+    public static Partial<ProjectPackageRepository> WithId(this Partial<ProjectPackageRepository> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ProjectPackageRepository> WithProject(this Partial<ProjectPackageRepository> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<ProjectPackageRepository> WithProject(this Partial<ProjectPackageRepository> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+    
+    public static Partial<ProjectPackageRepository> WithName(this Partial<ProjectPackageRepository> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ProjectPackageRepository> WithDescription(this Partial<ProjectPackageRepository> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<ProjectPackageRepository> WithRepository(this Partial<ProjectPackageRepository> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<ProjectPackageRepository> WithRepository(this Partial<ProjectPackageRepository> it, Func<Partial<PackageRepository>, Partial<PackageRepository>> partialBuilder)
+        => it.AddFieldName("repository", partialBuilder(new Partial<PackageRepository>(it)));
+    
+    public static Partial<ProjectPackageRepository> WithIsArchived(this Partial<ProjectPackageRepository> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<ProjectPackageRepository> WithConnections(this Partial<ProjectPackageRepository> it)
+        => it.AddFieldName("connections");
+    
+    public static Partial<ProjectPackageRepository> WithConnections(this Partial<ProjectPackageRepository> it, Func<Partial<PackageRepositoryConnection>, Partial<PackageRepositoryConnection>> partialBuilder)
+        => it.AddFieldName("connections", partialBuilder(new Partial<PackageRepositoryConnection>(it)));
     
 }
+

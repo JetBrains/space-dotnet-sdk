@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageTagPartialBuilder
+namespace JetBrains.Space.Client.MessageTagPartialBuilder;
+
+public static class MessageTagPartialExtensions
 {
-    public static class MessageTagPartialExtensions
-    {
-        public static Partial<MessageTag> WithText(this Partial<MessageTag> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<MessageTag> WithStyle(this Partial<MessageTag> it)
-            => it.AddFieldName("style");
-        
-        public static Partial<MessageTag> WithStyle(this Partial<MessageTag> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
-            => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
-        
-    }
+    public static Partial<MessageTag> WithText(this Partial<MessageTag> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<MessageTag> WithStyle(this Partial<MessageTag> it)
+        => it.AddFieldName("style");
+    
+    public static Partial<MessageTag> WithStyle(this Partial<MessageTag> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
+        => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
     
 }
+

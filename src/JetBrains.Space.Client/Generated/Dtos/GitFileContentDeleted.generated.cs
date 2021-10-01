@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitFileContentDeleted
+     : GitFileContent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class GitFileContentDeleted
-         : GitFileContent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "GitFileContent.Deleted";
+    
+    public GitFileContentDeleted() { }
+    
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "GitFileContent.Deleted";
-        
-        public GitFileContentDeleted() { }
-        
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

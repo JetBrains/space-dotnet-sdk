@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CFEnumValuesModification
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CFEnumValuesModification
-         : IPropagatePropertyAccessPath
+    public CFEnumValuesModification() { }
+    
+    public CFEnumValuesModification(List<EnumValueData> valuesToAdd, List<EnumValueData> valuesToUpdate, List<string> valuesToDelete)
     {
-        public CFEnumValuesModification() { }
-        
-        public CFEnumValuesModification(List<EnumValueData> valuesToAdd, List<EnumValueData> valuesToUpdate, List<string> valuesToDelete)
-        {
-            ValuesToAdd = valuesToAdd;
-            ValuesToUpdate = valuesToUpdate;
-            ValuesToDelete = valuesToDelete;
-        }
-        
-        private PropertyValue<List<EnumValueData>> _valuesToAdd = new PropertyValue<List<EnumValueData>>(nameof(CFEnumValuesModification), nameof(ValuesToAdd), new List<EnumValueData>());
-        
-        [Required]
-        [JsonPropertyName("valuesToAdd")]
-        public List<EnumValueData> ValuesToAdd
-        {
-            get => _valuesToAdd.GetValue();
-            set => _valuesToAdd.SetValue(value);
-        }
-    
-        private PropertyValue<List<EnumValueData>> _valuesToUpdate = new PropertyValue<List<EnumValueData>>(nameof(CFEnumValuesModification), nameof(ValuesToUpdate), new List<EnumValueData>());
-        
-        [Required]
-        [JsonPropertyName("valuesToUpdate")]
-        public List<EnumValueData> ValuesToUpdate
-        {
-            get => _valuesToUpdate.GetValue();
-            set => _valuesToUpdate.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _valuesToDelete = new PropertyValue<List<string>>(nameof(CFEnumValuesModification), nameof(ValuesToDelete), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("valuesToDelete")]
-        public List<string> ValuesToDelete
-        {
-            get => _valuesToDelete.GetValue();
-            set => _valuesToDelete.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _valuesToAdd.SetAccessPath(path, validateHasBeenSet);
-            _valuesToUpdate.SetAccessPath(path, validateHasBeenSet);
-            _valuesToDelete.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ValuesToAdd = valuesToAdd;
+        ValuesToUpdate = valuesToUpdate;
+        ValuesToDelete = valuesToDelete;
     }
     
+    private PropertyValue<List<EnumValueData>> _valuesToAdd = new PropertyValue<List<EnumValueData>>(nameof(CFEnumValuesModification), nameof(ValuesToAdd), new List<EnumValueData>());
+    
+    [Required]
+    [JsonPropertyName("valuesToAdd")]
+    public List<EnumValueData> ValuesToAdd
+    {
+        get => _valuesToAdd.GetValue();
+        set => _valuesToAdd.SetValue(value);
+    }
+
+    private PropertyValue<List<EnumValueData>> _valuesToUpdate = new PropertyValue<List<EnumValueData>>(nameof(CFEnumValuesModification), nameof(ValuesToUpdate), new List<EnumValueData>());
+    
+    [Required]
+    [JsonPropertyName("valuesToUpdate")]
+    public List<EnumValueData> ValuesToUpdate
+    {
+        get => _valuesToUpdate.GetValue();
+        set => _valuesToUpdate.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _valuesToDelete = new PropertyValue<List<string>>(nameof(CFEnumValuesModification), nameof(ValuesToDelete), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("valuesToDelete")]
+    public List<string> ValuesToDelete
+    {
+        get => _valuesToDelete.GetValue();
+        set => _valuesToDelete.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _valuesToAdd.SetAccessPath(path, validateHasBeenSet);
+        _valuesToUpdate.SetAccessPath(path, validateHasBeenSet);
+        _valuesToDelete.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

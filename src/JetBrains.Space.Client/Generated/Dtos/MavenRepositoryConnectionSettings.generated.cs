@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MavenRepositoryConnectionSettings
+     : PackageRepositoryConnectionSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MavenRepositoryConnectionSettings
-         : PackageRepositoryConnectionSettings, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "MavenRepositoryConnectionSettings";
+    
+    public MavenRepositoryConnectionSettings() { }
+    
+    public MavenRepositoryConnectionSettings(NexusStagingProfile? nexusStagingProfile = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "MavenRepositoryConnectionSettings";
-        
-        public MavenRepositoryConnectionSettings() { }
-        
-        public MavenRepositoryConnectionSettings(NexusStagingProfile? nexusStagingProfile = null)
-        {
-            NexusStagingProfile = nexusStagingProfile;
-        }
-        
-        private PropertyValue<NexusStagingProfile?> _nexusStagingProfile = new PropertyValue<NexusStagingProfile?>(nameof(MavenRepositoryConnectionSettings), nameof(NexusStagingProfile));
-        
-        [JsonPropertyName("nexusStagingProfile")]
-        public NexusStagingProfile? NexusStagingProfile
-        {
-            get => _nexusStagingProfile.GetValue();
-            set => _nexusStagingProfile.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _nexusStagingProfile.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        NexusStagingProfile = nexusStagingProfile;
     }
     
+    private PropertyValue<NexusStagingProfile?> _nexusStagingProfile = new PropertyValue<NexusStagingProfile?>(nameof(MavenRepositoryConnectionSettings), nameof(NexusStagingProfile));
+    
+    [JsonPropertyName("nexusStagingProfile")]
+    public NexusStagingProfile? NexusStagingProfile
+    {
+        get => _nexusStagingProfile.GetValue();
+        set => _nexusStagingProfile.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _nexusStagingProfile.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

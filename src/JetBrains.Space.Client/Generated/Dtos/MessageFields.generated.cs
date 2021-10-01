@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MessageFields
+     : MessageElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MessageFields
-         : MessageElement, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MessageFields";
+    
+    public MessageFields() { }
+    
+    public MessageFields(List<MessageFieldElement> fields)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MessageFields";
-        
-        public MessageFields() { }
-        
-        public MessageFields(List<MessageFieldElement> fields)
-        {
-            Fields = fields;
-        }
-        
-        private PropertyValue<List<MessageFieldElement>> _fields = new PropertyValue<List<MessageFieldElement>>(nameof(MessageFields), nameof(Fields), new List<MessageFieldElement>());
-        
-        [Required]
-        [JsonPropertyName("fields")]
-        public List<MessageFieldElement> Fields
-        {
-            get => _fields.GetValue();
-            set => _fields.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _fields.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Fields = fields;
     }
     
+    private PropertyValue<List<MessageFieldElement>> _fields = new PropertyValue<List<MessageFieldElement>>(nameof(MessageFields), nameof(Fields), new List<MessageFieldElement>());
+    
+    [Required]
+    [JsonPropertyName("fields")]
+    public List<MessageFieldElement> Fields
+    {
+        get => _fields.GetValue();
+        set => _fields.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _fields.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

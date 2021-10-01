@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RecurrenceRuleEndsTotalCountPartialBuilder
+namespace JetBrains.Space.Client.RecurrenceRuleEndsTotalCountPartialBuilder;
+
+public static class RecurrenceRuleEndsTotalCountPartialExtensions
 {
-    public static class RecurrenceRuleEndsTotalCountPartialExtensions
-    {
-        public static Partial<RecurrenceRuleEndsTotalCount> WithCount(this Partial<RecurrenceRuleEndsTotalCount> it)
-            => it.AddFieldName("count");
-        
-    }
+    public static Partial<RecurrenceRuleEndsTotalCount> WithCount(this Partial<RecurrenceRuleEndsTotalCount> it)
+        => it.AddFieldName("count");
     
 }
+

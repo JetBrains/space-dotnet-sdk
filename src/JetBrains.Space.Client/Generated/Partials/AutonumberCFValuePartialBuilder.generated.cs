@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AutonumberCFValuePartialBuilder
+namespace JetBrains.Space.Client.AutonumberCFValuePartialBuilder;
+
+public static class AutonumberCFValuePartialExtensions
 {
-    public static class AutonumberCFValuePartialExtensions
-    {
-        public static Partial<AutonumberCFValue> WithValue(this Partial<AutonumberCFValue> it)
-            => it.AddFieldName("value");
-        
-    }
+    public static Partial<AutonumberCFValue> WithValue(this Partial<AutonumberCFValue> it)
+        => it.AddFieldName("value");
     
 }
+

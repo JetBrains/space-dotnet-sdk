@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ImportMetadata
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ImportMetadata
-         : IPropagatePropertyAccessPath
+    public ImportMetadata() { }
+    
+    public ImportMetadata(string importSource)
     {
-        public ImportMetadata() { }
-        
-        public ImportMetadata(string importSource)
-        {
-            ImportSource = importSource;
-        }
-        
-        private PropertyValue<string> _importSource = new PropertyValue<string>(nameof(ImportMetadata), nameof(ImportSource));
-        
-        [Required]
-        [JsonPropertyName("importSource")]
-        public string ImportSource
-        {
-            get => _importSource.GetValue();
-            set => _importSource.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _importSource.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ImportSource = importSource;
     }
     
+    private PropertyValue<string> _importSource = new PropertyValue<string>(nameof(ImportMetadata), nameof(ImportSource));
+    
+    [Required]
+    [JsonPropertyName("importSource")]
+    public string ImportSource
+    {
+        get => _importSource.GetValue();
+        set => _importSource.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _importSource.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsCodeDiscussionsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsCodeDiscussionsPostRequestPartialBuilder;
+
+public static class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithText(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithDiffContext(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
-            => it.AddFieldName("diffContext");
-        
-        public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithDiffContext(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it, Func<Partial<DiffContext>, Partial<DiffContext>> partialBuilder)
-            => it.AddFieldName("diffContext", partialBuilder(new Partial<DiffContext>(it)));
-        
-        public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithRepository(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithRevision(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
-            => it.AddFieldName("revision");
-        
-        public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithFilename(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
-            => it.AddFieldName("filename");
-        
-        public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithLine(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
-            => it.AddFieldName("line");
-        
-        public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithOldLine(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
-            => it.AddFieldName("oldLine");
-        
-        public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithIsPending(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
-            => it.AddFieldName("pending");
-        
-        public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithReviewId(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
-            => it.AddFieldName("reviewId");
-        
-        public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithReviewId(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it, Func<Partial<ReviewIdentifier>, Partial<ReviewIdentifier>> partialBuilder)
-            => it.AddFieldName("reviewId", partialBuilder(new Partial<ReviewIdentifier>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithText(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithDiffContext(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
+        => it.AddFieldName("diffContext");
+    
+    public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithDiffContext(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it, Func<Partial<DiffContext>, Partial<DiffContext>> partialBuilder)
+        => it.AddFieldName("diffContext", partialBuilder(new Partial<DiffContext>(it)));
+    
+    public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithRepository(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithRevision(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
+        => it.AddFieldName("revision");
+    
+    public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithFilename(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
+        => it.AddFieldName("filename");
+    
+    public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithLine(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
+        => it.AddFieldName("line");
+    
+    public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithOldLine(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
+        => it.AddFieldName("oldLine");
+    
+    public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithIsPending(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
+        => it.AddFieldName("pending");
+    
+    public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithReviewId(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it)
+        => it.AddFieldName("reviewId");
+    
+    public static Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> WithReviewId(this Partial<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest> it, Func<Partial<ReviewIdentifier>, Partial<ReviewIdentifier>> partialBuilder)
+        => it.AddFieldName("reviewId", partialBuilder(new Partial<ReviewIdentifier>(it)));
     
 }
+

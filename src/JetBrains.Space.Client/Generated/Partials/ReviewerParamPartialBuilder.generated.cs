@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ReviewerParamPartialBuilder
+namespace JetBrains.Space.Client.ReviewerParamPartialBuilder;
+
+public static class ReviewerParamPartialExtensions
 {
-    public static class ReviewerParamPartialExtensions
-    {
-        public static Partial<ReviewerParam> WithProfileId(this Partial<ReviewerParam> it)
-            => it.AddFieldName("profileId");
-        
-        public static Partial<ReviewerParam> WithQualityGateSlot(this Partial<ReviewerParam> it)
-            => it.AddFieldName("qualityGateSlot");
-        
-        public static Partial<ReviewerParam> WithQualityGateSlot(this Partial<ReviewerParam> it, Func<Partial<CodeReviewParticipantSlotBase>, Partial<CodeReviewParticipantSlotBase>> partialBuilder)
-            => it.AddFieldName("qualityGateSlot", partialBuilder(new Partial<CodeReviewParticipantSlotBase>(it)));
-        
-    }
+    public static Partial<ReviewerParam> WithProfileId(this Partial<ReviewerParam> it)
+        => it.AddFieldName("profileId");
+    
+    public static Partial<ReviewerParam> WithQualityGateSlot(this Partial<ReviewerParam> it)
+        => it.AddFieldName("qualityGateSlot");
+    
+    public static Partial<ReviewerParam> WithQualityGateSlot(this Partial<ReviewerParam> it, Func<Partial<CodeReviewParticipantSlotBase>, Partial<CodeReviewParticipantSlotBase>> partialBuilder)
+        => it.AddFieldName("qualityGateSlot", partialBuilder(new Partial<CodeReviewParticipantSlotBase>(it)));
     
 }
+

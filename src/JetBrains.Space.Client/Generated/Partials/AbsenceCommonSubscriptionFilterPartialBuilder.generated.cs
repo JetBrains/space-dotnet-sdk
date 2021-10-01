@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AbsenceCommonSubscriptionFilterPartialBuilder
+namespace JetBrains.Space.Client.AbsenceCommonSubscriptionFilterPartialBuilder;
+
+public static class AbsenceCommonSubscriptionFilterPartialExtensions
 {
-    public static class AbsenceCommonSubscriptionFilterPartialExtensions
-    {
-        public static Partial<AbsenceCommonSubscriptionFilter> WithReasons(this Partial<AbsenceCommonSubscriptionFilter> it)
-            => it.AddFieldName("reasons");
-        
-        public static Partial<AbsenceCommonSubscriptionFilter> WithReasons(this Partial<AbsenceCommonSubscriptionFilter> it, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>> partialBuilder)
-            => it.AddFieldName("reasons", partialBuilder(new Partial<AbsenceReasonRecord>(it)));
-        
-    }
+    public static Partial<AbsenceCommonSubscriptionFilter> WithReasons(this Partial<AbsenceCommonSubscriptionFilter> it)
+        => it.AddFieldName("reasons");
+    
+    public static Partial<AbsenceCommonSubscriptionFilter> WithReasons(this Partial<AbsenceCommonSubscriptionFilter> it, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>> partialBuilder)
+        => it.AddFieldName("reasons", partialBuilder(new Partial<AbsenceReasonRecord>(it)));
     
 }
+

@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryProfilesForProfileChecklistsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryProfilesForProfileChecklistsPostRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryProfilesForProfileChecklistsPostRequest() { }
+    
+    public TeamDirectoryProfilesForProfileChecklistsPostRequest(string name)
     {
-        public TeamDirectoryProfilesForProfileChecklistsPostRequest() { }
-        
-        public TeamDirectoryProfilesForProfileChecklistsPostRequest(string name)
-        {
-            Name = name;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileChecklistsPostRequest), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileChecklistsPostRequest), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

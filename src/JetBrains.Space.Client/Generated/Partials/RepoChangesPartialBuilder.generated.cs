@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RepoChangesPartialBuilder
+namespace JetBrains.Space.Client.RepoChangesPartialBuilder;
+
+public static class RepoChangesPartialExtensions
 {
-    public static class RepoChangesPartialExtensions
-    {
-        public static Partial<RepoChanges> WithHeads(this Partial<RepoChanges> it)
-            => it.AddFieldName("heads");
-        
-        public static Partial<RepoChanges> WithHeads(this Partial<RepoChanges> it, Func<Partial<RepoHeadsChange>, Partial<RepoHeadsChange>> partialBuilder)
-            => it.AddFieldName("heads", partialBuilder(new Partial<RepoHeadsChange>(it)));
-        
-        public static Partial<RepoChanges> WithCommits(this Partial<RepoChanges> it)
-            => it.AddFieldName("commits");
-        
-        public static Partial<RepoChanges> WithCommits(this Partial<RepoChanges> it, Func<Partial<GitCommitInfoWithChanges>, Partial<GitCommitInfoWithChanges>> partialBuilder)
-            => it.AddFieldName("commits", partialBuilder(new Partial<GitCommitInfoWithChanges>(it)));
-        
-        public static Partial<RepoChanges> WithTotalNewCommits(this Partial<RepoChanges> it)
-            => it.AddFieldName("totalNewCommits");
-        
-    }
+    public static Partial<RepoChanges> WithHeads(this Partial<RepoChanges> it)
+        => it.AddFieldName("heads");
+    
+    public static Partial<RepoChanges> WithHeads(this Partial<RepoChanges> it, Func<Partial<RepoHeadsChange>, Partial<RepoHeadsChange>> partialBuilder)
+        => it.AddFieldName("heads", partialBuilder(new Partial<RepoHeadsChange>(it)));
+    
+    public static Partial<RepoChanges> WithCommits(this Partial<RepoChanges> it)
+        => it.AddFieldName("commits");
+    
+    public static Partial<RepoChanges> WithCommits(this Partial<RepoChanges> it, Func<Partial<GitCommitInfoWithChanges>, Partial<GitCommitInfoWithChanges>> partialBuilder)
+        => it.AddFieldName("commits", partialBuilder(new Partial<GitCommitInfoWithChanges>(it)));
+    
+    public static Partial<RepoChanges> WithTotalNewCommits(this Partial<RepoChanges> it)
+        => it.AddFieldName("totalNewCommits");
     
 }
+

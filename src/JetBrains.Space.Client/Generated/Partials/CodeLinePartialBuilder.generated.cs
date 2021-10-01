@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeLinePartialBuilder
+namespace JetBrains.Space.Client.CodeLinePartialBuilder;
+
+public static class CodeLinePartialExtensions
 {
-    public static class CodeLinePartialExtensions
-    {
-        public static Partial<CodeLine> WithText(this Partial<CodeLine> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<CodeLine> WithIndex(this Partial<CodeLine> it)
-            => it.AddFieldName("index");
-        
-        public static Partial<CodeLine> WithOffset(this Partial<CodeLine> it)
-            => it.AddFieldName("offset");
-        
-        public static Partial<CodeLine> WithSyntax(this Partial<CodeLine> it)
-            => it.AddFieldName("syntax");
-        
-        public static Partial<CodeLine> WithSyntax(this Partial<CodeLine> it, Func<Partial<SyntaxMarkup>, Partial<SyntaxMarkup>> partialBuilder)
-            => it.AddFieldName("syntax", partialBuilder(new Partial<SyntaxMarkup>(it)));
-        
-    }
+    public static Partial<CodeLine> WithText(this Partial<CodeLine> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<CodeLine> WithIndex(this Partial<CodeLine> it)
+        => it.AddFieldName("index");
+    
+    public static Partial<CodeLine> WithOffset(this Partial<CodeLine> it)
+        => it.AddFieldName("offset");
+    
+    public static Partial<CodeLine> WithSyntax(this Partial<CodeLine> it)
+        => it.AddFieldName("syntax");
+    
+    public static Partial<CodeLine> WithSyntax(this Partial<CodeLine> it, Func<Partial<SyntaxMarkup>, Partial<SyntaxMarkup>> partialBuilder)
+        => it.AddFieldName("syntax", partialBuilder(new Partial<SyntaxMarkup>(it)));
     
 }
+

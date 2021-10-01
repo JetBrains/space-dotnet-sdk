@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsSnapshotDiffPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsSnapshotDiffPartialBuilder;
+
+public static class UnfurlDetailsSnapshotDiffPartialExtensions
 {
-    public static class UnfurlDetailsSnapshotDiffPartialExtensions
-    {
-        public static Partial<UnfurlDetailsSnapshotDiff> WithSnapshotId(this Partial<UnfurlDetailsSnapshotDiff> it)
-            => it.AddFieldName("snapshotId");
-        
-        public static Partial<UnfurlDetailsSnapshotDiff> WithBaseSnapshotId(this Partial<UnfurlDetailsSnapshotDiff> it)
-            => it.AddFieldName("baseSnapshotId");
-        
-    }
+    public static Partial<UnfurlDetailsSnapshotDiff> WithSnapshotId(this Partial<UnfurlDetailsSnapshotDiff> it)
+        => it.AddFieldName("snapshotId");
+    
+    public static Partial<UnfurlDetailsSnapshotDiff> WithBaseSnapshotId(this Partial<UnfurlDetailsSnapshotDiff> it)
+        => it.AddFieldName("baseSnapshotId");
     
 }
+

@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class FileAttachment
+     : AttachmentIn, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class FileAttachment
-         : AttachmentIn, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "FileAttachment";
+    
+    public FileAttachment() { }
+    
+    public FileAttachment(string id, long sizeBytes, string filename)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "FileAttachment";
-        
-        public FileAttachment() { }
-        
-        public FileAttachment(string id, long sizeBytes, string filename)
-        {
-            Id = id;
-            SizeBytes = sizeBytes;
-            Filename = filename;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(FileAttachment), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<long> _sizeBytes = new PropertyValue<long>(nameof(FileAttachment), nameof(SizeBytes));
-        
-        [Required]
-        [JsonPropertyName("sizeBytes")]
-        public long SizeBytes
-        {
-            get => _sizeBytes.GetValue();
-            set => _sizeBytes.SetValue(value);
-        }
-    
-        private PropertyValue<string> _filename = new PropertyValue<string>(nameof(FileAttachment), nameof(Filename));
-        
-        [Required]
-        [JsonPropertyName("filename")]
-        public string Filename
-        {
-            get => _filename.GetValue();
-            set => _filename.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _sizeBytes.SetAccessPath(path, validateHasBeenSet);
-            _filename.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        SizeBytes = sizeBytes;
+        Filename = filename;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(FileAttachment), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<long> _sizeBytes = new PropertyValue<long>(nameof(FileAttachment), nameof(SizeBytes));
+    
+    [Required]
+    [JsonPropertyName("sizeBytes")]
+    public long SizeBytes
+    {
+        get => _sizeBytes.GetValue();
+        set => _sizeBytes.SetValue(value);
+    }
+
+    private PropertyValue<string> _filename = new PropertyValue<string>(nameof(FileAttachment), nameof(Filename));
+    
+    [Required]
+    [JsonPropertyName("filename")]
+    public string Filename
+    {
+        get => _filename.GetValue();
+        set => _filename.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _sizeBytes.SetAccessPath(path, validateHasBeenSet);
+        _filename.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

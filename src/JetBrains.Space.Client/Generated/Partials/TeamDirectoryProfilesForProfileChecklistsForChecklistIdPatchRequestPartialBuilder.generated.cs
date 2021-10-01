@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest> WithName(this Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest> WithDescription(this Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest> it)
-            => it.AddFieldName("description");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest> WithName(this Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest> WithDescription(this Partial<TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest> it)
+        => it.AddFieldName("description");
     
 }
+

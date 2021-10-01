@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDLocationEquipmentTypeRecordPartialBuilder
+namespace JetBrains.Space.Client.TDLocationEquipmentTypeRecordPartialBuilder;
+
+public static class TDLocationEquipmentTypeRecordPartialExtensions
 {
-    public static class TDLocationEquipmentTypeRecordPartialExtensions
-    {
-        public static Partial<TDLocationEquipmentTypeRecord> WithId(this Partial<TDLocationEquipmentTypeRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<TDLocationEquipmentTypeRecord> WithName(this Partial<TDLocationEquipmentTypeRecord> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TDLocationEquipmentTypeRecord> WithIsArchived(this Partial<TDLocationEquipmentTypeRecord> it)
-            => it.AddFieldName("archived");
-        
-    }
+    public static Partial<TDLocationEquipmentTypeRecord> WithId(this Partial<TDLocationEquipmentTypeRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<TDLocationEquipmentTypeRecord> WithName(this Partial<TDLocationEquipmentTypeRecord> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TDLocationEquipmentTypeRecord> WithIsArchived(this Partial<TDLocationEquipmentTypeRecord> it)
+        => it.AddFieldName("archived");
     
 }
+

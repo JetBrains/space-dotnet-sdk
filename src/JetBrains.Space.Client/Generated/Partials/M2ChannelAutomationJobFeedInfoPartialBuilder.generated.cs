@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelAutomationJobFeedInfoPartialBuilder
+namespace JetBrains.Space.Client.M2ChannelAutomationJobFeedInfoPartialBuilder;
+
+public static class M2ChannelAutomationJobFeedInfoPartialExtensions
 {
-    public static class M2ChannelAutomationJobFeedInfoPartialExtensions
-    {
-        public static Partial<M2ChannelAutomationJobFeedInfo> WithJobSubscription(this Partial<M2ChannelAutomationJobFeedInfo> it)
-            => it.AddFieldName("jobSubscription");
-        
-        public static Partial<M2ChannelAutomationJobFeedInfo> WithJobSubscription(this Partial<M2ChannelAutomationJobFeedInfo> it, Func<Partial<JobSubscription>, Partial<JobSubscription>> partialBuilder)
-            => it.AddFieldName("jobSubscription", partialBuilder(new Partial<JobSubscription>(it)));
-        
-        public static Partial<M2ChannelAutomationJobFeedInfo> WithJobName(this Partial<M2ChannelAutomationJobFeedInfo> it)
-            => it.AddFieldName("jobName");
-        
-        public static Partial<M2ChannelAutomationJobFeedInfo> WithRepoName(this Partial<M2ChannelAutomationJobFeedInfo> it)
-            => it.AddFieldName("repoName");
-        
-        public static Partial<M2ChannelAutomationJobFeedInfo> WithNotificationDefaults(this Partial<M2ChannelAutomationJobFeedInfo> it)
-            => it.AddFieldName("notificationDefaults");
-        
-        public static Partial<M2ChannelAutomationJobFeedInfo> WithNotificationDefaults(this Partial<M2ChannelAutomationJobFeedInfo> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
-        
-    }
+    public static Partial<M2ChannelAutomationJobFeedInfo> WithJobSubscription(this Partial<M2ChannelAutomationJobFeedInfo> it)
+        => it.AddFieldName("jobSubscription");
+    
+    public static Partial<M2ChannelAutomationJobFeedInfo> WithJobSubscription(this Partial<M2ChannelAutomationJobFeedInfo> it, Func<Partial<JobSubscription>, Partial<JobSubscription>> partialBuilder)
+        => it.AddFieldName("jobSubscription", partialBuilder(new Partial<JobSubscription>(it)));
+    
+    public static Partial<M2ChannelAutomationJobFeedInfo> WithJobName(this Partial<M2ChannelAutomationJobFeedInfo> it)
+        => it.AddFieldName("jobName");
+    
+    public static Partial<M2ChannelAutomationJobFeedInfo> WithRepoName(this Partial<M2ChannelAutomationJobFeedInfo> it)
+        => it.AddFieldName("repoName");
+    
+    public static Partial<M2ChannelAutomationJobFeedInfo> WithNotificationDefaults(this Partial<M2ChannelAutomationJobFeedInfo> it)
+        => it.AddFieldName("notificationDefaults");
+    
+    public static Partial<M2ChannelAutomationJobFeedInfo> WithNotificationDefaults(this Partial<M2ChannelAutomationJobFeedInfo> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
+        => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
     
 }
+

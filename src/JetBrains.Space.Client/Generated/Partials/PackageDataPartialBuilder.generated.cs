@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PackageDataPartialBuilder
+namespace JetBrains.Space.Client.PackageDataPartialBuilder;
+
+public static class PackageDataPartialExtensions
 {
-    public static class PackageDataPartialExtensions
-    {
-        public static Partial<PackageData> WithType(this Partial<PackageData> it)
-            => it.AddFieldName("type");
-        
-        public static Partial<PackageData> WithType(this Partial<PackageData> it, Func<Partial<PackageType>, Partial<PackageType>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<PackageType>(it)));
-        
-        public static Partial<PackageData> WithRepository(this Partial<PackageData> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<PackageData> WithName(this Partial<PackageData> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<PackageData> WithVersions(this Partial<PackageData> it)
-            => it.AddFieldName("versions");
-        
-        public static Partial<PackageData> WithUpdated(this Partial<PackageData> it)
-            => it.AddFieldName("updated");
-        
-        public static Partial<PackageData> WithLastVersion(this Partial<PackageData> it)
-            => it.AddFieldName("lastVersion");
-        
-    }
+    public static Partial<PackageData> WithType(this Partial<PackageData> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<PackageData> WithType(this Partial<PackageData> it, Func<Partial<PackageType>, Partial<PackageType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<PackageType>(it)));
+    
+    public static Partial<PackageData> WithRepository(this Partial<PackageData> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<PackageData> WithName(this Partial<PackageData> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<PackageData> WithVersions(this Partial<PackageData> it)
+        => it.AddFieldName("versions");
+    
+    public static Partial<PackageData> WithUpdated(this Partial<PackageData> it)
+        => it.AddFieldName("updated");
+    
+    public static Partial<PackageData> WithLastVersion(this Partial<PackageData> it)
+        => it.AddFieldName("lastVersion");
     
 }
+

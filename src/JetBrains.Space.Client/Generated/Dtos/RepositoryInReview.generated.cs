@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RepositoryInReview
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RepositoryInReview
-         : IPropagatePropertyAccessPath
+    public RepositoryInReview() { }
+    
+    public RepositoryInReview(string name, bool deleted)
     {
-        public RepositoryInReview() { }
-        
-        public RepositoryInReview(string name, bool deleted)
-        {
-            Name = name;
-            IsDeleted = deleted;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(RepositoryInReview), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(RepositoryInReview), nameof(IsDeleted));
-        
-        [Required]
-        [JsonPropertyName("deleted")]
-        public bool IsDeleted
-        {
-            get => _deleted.GetValue();
-            set => _deleted.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _deleted.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        IsDeleted = deleted;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(RepositoryInReview), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(RepositoryInReview), nameof(IsDeleted));
+    
+    [Required]
+    [JsonPropertyName("deleted")]
+    public bool IsDeleted
+    {
+        get => _deleted.GetValue();
+        set => _deleted.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _deleted.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

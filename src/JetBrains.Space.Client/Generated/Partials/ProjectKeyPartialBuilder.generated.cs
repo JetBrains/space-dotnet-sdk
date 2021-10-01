@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectKeyPartialBuilder
+namespace JetBrains.Space.Client.ProjectKeyPartialBuilder;
+
+public static class ProjectKeyPartialExtensions
 {
-    public static class ProjectKeyPartialExtensions
-    {
-        public static Partial<ProjectKey> WithKey(this Partial<ProjectKey> it)
-            => it.AddFieldName("key");
-        
-    }
+    public static Partial<ProjectKey> WithKey(this Partial<ProjectKey> it)
+        => it.AddFieldName("key");
     
 }
+

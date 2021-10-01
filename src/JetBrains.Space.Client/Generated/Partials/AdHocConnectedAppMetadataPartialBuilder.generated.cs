@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AdHocConnectedAppMetadataPartialBuilder
+namespace JetBrains.Space.Client.AdHocConnectedAppMetadataPartialBuilder;
+
+public static class AdHocConnectedAppMetadataPartialExtensions
 {
-    public static class AdHocConnectedAppMetadataPartialExtensions
-    {
-        public static Partial<AdHocConnectedAppMetadata> WithLastSentServerUrl(this Partial<AdHocConnectedAppMetadata> it)
-            => it.AddFieldName("lastSentServerUrl");
-        
-    }
+    public static Partial<AdHocConnectedAppMetadata> WithLastSentServerUrl(this Partial<AdHocConnectedAppMetadata> it)
+        => it.AddFieldName("lastSentServerUrl");
     
 }
+

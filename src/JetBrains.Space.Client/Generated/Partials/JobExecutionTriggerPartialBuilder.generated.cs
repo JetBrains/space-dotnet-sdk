@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.JobExecutionTriggerPartialBuilder
+namespace JetBrains.Space.Client.JobExecutionTriggerPartialBuilder;
+
+public static class JobExecutionTriggerPartialExtensions
 {
-    public static class JobExecutionTriggerPartialExtensions
-    {
-    }
-    
 }
+

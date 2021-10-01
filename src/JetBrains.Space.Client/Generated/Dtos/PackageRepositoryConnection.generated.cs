@@ -27,27 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class PackageRepositoryConnection
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class PackageRepositoryConnection
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "PackageRepositoryConnection";
+    
+    public static PackageRepositoryConnectionRemote Remote(string id, bool enableCaching, bool enablePublishing, string url, PackageRepositoryCredentials credentials, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
+        => new PackageRepositoryConnectionRemote(id: id, enableCaching: enableCaching, enablePublishing: enablePublishing, url: url, credentials: credentials, packageNameFilters: packageNameFilters, secretId: secretId, secretValue: secretValue, settings: settings);
+    
+    public static PackageRepositoryConnectionSpace Space(string id, bool enableCaching, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
+        => new PackageRepositoryConnectionSpace(id: id, enableCaching: enableCaching, repository: repository, packageNameFilters: packageNameFilters);
+    
+    public PackageRepositoryConnection() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "PackageRepositoryConnection";
-        
-        public static PackageRepositoryConnectionRemote Remote(string id, bool enableCaching, bool enablePublishing, string url, PackageRepositoryCredentials credentials, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
-            => new PackageRepositoryConnectionRemote(id: id, enableCaching: enableCaching, enablePublishing: enablePublishing, url: url, credentials: credentials, packageNameFilters: packageNameFilters, secretId: secretId, secretValue: secretValue, settings: settings);
-        
-        public static PackageRepositoryConnectionSpace Space(string id, bool enableCaching, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
-            => new PackageRepositoryConnectionSpace(id: id, enableCaching: enableCaching, repository: repository, packageNameFilters: packageNameFilters);
-        
-        public PackageRepositoryConnection() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

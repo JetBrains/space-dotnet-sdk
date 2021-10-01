@@ -27,59 +27,58 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsBlockMarkdown
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsBlockMarkdown
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsBlockMarkdown";
+    
+    public UnfurlDetailsBlockMarkdown() { }
+    
+    public UnfurlDetailsBlockMarkdown(string title, string markdown, string? icon = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsBlockMarkdown";
-        
-        public UnfurlDetailsBlockMarkdown() { }
-        
-        public UnfurlDetailsBlockMarkdown(string title, string markdown, string? icon = null)
-        {
-            Icon = icon;
-            Title = title;
-            Markdown = markdown;
-        }
-        
-        private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(UnfurlDetailsBlockMarkdown), nameof(Icon));
-        
-        [JsonPropertyName("icon")]
-        public string? Icon
-        {
-            get => _icon.GetValue();
-            set => _icon.SetValue(value);
-        }
-    
-        private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsBlockMarkdown), nameof(Title));
-        
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title
-        {
-            get => _title.GetValue();
-            set => _title.SetValue(value);
-        }
-    
-        private PropertyValue<string> _markdown = new PropertyValue<string>(nameof(UnfurlDetailsBlockMarkdown), nameof(Markdown));
-        
-        [Required]
-        [JsonPropertyName("markdown")]
-        public string Markdown
-        {
-            get => _markdown.GetValue();
-            set => _markdown.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _icon.SetAccessPath(path, validateHasBeenSet);
-            _title.SetAccessPath(path, validateHasBeenSet);
-            _markdown.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Icon = icon;
+        Title = title;
+        Markdown = markdown;
     }
     
+    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(UnfurlDetailsBlockMarkdown), nameof(Icon));
+    
+    [JsonPropertyName("icon")]
+    public string? Icon
+    {
+        get => _icon.GetValue();
+        set => _icon.SetValue(value);
+    }
+
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsBlockMarkdown), nameof(Title));
+    
+    [Required]
+    [JsonPropertyName("title")]
+    public string Title
+    {
+        get => _title.GetValue();
+        set => _title.SetValue(value);
+    }
+
+    private PropertyValue<string> _markdown = new PropertyValue<string>(nameof(UnfurlDetailsBlockMarkdown), nameof(Markdown));
+    
+    [Required]
+    [JsonPropertyName("markdown")]
+    public string Markdown
+    {
+        get => _markdown.GetValue();
+        set => _markdown.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _icon.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(path, validateHasBeenSet);
+        _markdown.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

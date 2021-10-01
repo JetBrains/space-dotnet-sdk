@@ -27,13 +27,488 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public partial class ApplicationClient : ISpaceClient
 {
-    public partial class ApplicationClient : ISpaceClient
+    private readonly Connection _connection;
+    
+    public ApplicationClient(Connection connection)
+    {
+        _connection = connection;
+    }
+    
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Create application</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<ESApp> CreateApplicationAsync(string name, bool endpointSslVerification = true, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<ApplicationsPostRequest, ESApp>("POST", $"api/http/applications{queryParameters.ToQueryString()}", 
+            new ApplicationsPostRequest
+            { 
+                Name = name,
+                PictureAttachmentId = pictureAttachmentId,
+                DefaultExternalPicture = defaultExternalPicture,
+                ClientId = clientId,
+                ClientSecret = clientSecret,
+                IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled,
+                IsCodeFlowEnabled = codeFlowEnabled,
+                CodeFlowRedirectURIs = codeFlowRedirectURIs,
+                IsPkceRequired = pkceRequired,
+                IsImplicitFlowEnabled = implicitFlowEnabled,
+                ImplicitFlowRedirectURIs = implicitFlowRedirectURIs,
+                EndpointUri = endpointUri,
+                IsEndpointSslVerification = endpointSslVerification,
+                AppLevelAuth = appLevelAuth,
+                SslKeystoreAuth = sslKeystoreAuth,
+                IsHasVerificationToken = hasVerificationToken,
+                IsHasSigningKey = hasSigningKey,
+                IsHasPublicKeySignature = hasPublicKeySignature,
+                BasicAuthUsername = basicAuthUsername,
+                BasicAuthPassword = basicAuthPassword,
+                BearerAuthToken = bearerAuthToken,
+            }, cancellationToken);
+    }
+    
+
+    public async Task RefreshMenuAsync(string? appId = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        await _connection.RequestResourceAsync("POST", $"api/http/applications/refresh-menu{queryParameters.ToQueryString()}", 
+            new ApplicationsRefreshMenuPostRequest
+            { 
+                AppId = appId,
+            }, cancellationToken);
+    }
+    
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Edit application</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task RestoreApplicationAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/restore{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View application</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    [Obsolete("Use GET applications/paged (since 2021-03-18) (will be removed in a future version)")]
+    public async Task<List<ESApp>> GetAllApplicationsdeprecatedAsync(string query, bool withArchived = false, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("query", query);
+        queryParameters.Append("withArchived", withArchived.ToString("l"));
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<List<ESApp>>("GET", $"api/http/applications{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View application</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<Batch<ESApp>> GetAllApplicationsAsync(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, AppsOrdering? ordering = null, Func<Partial<Batch<ESApp>>, Partial<Batch<ESApp>>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        if (skip != null) queryParameters.Append("$skip", skip);
+        if (top != null) queryParameters.Append("$top", top?.ToString());
+        if (name != null) queryParameters.Append("name", name);
+        if (owner != null) queryParameters.Append("owner", owner.Select(it => it.ToString()));
+        if (withArchived != null) queryParameters.Append("withArchived", withArchived?.ToString("l"));
+        queryParameters.Append("ordering", ordering.ToEnumString());
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESApp>>()) : Partial<Batch<ESApp>>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<Batch<ESApp>>("GET", $"api/http/applications/paged{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+    
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View application</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public IAsyncEnumerable<ESApp> GetAllApplicationsAsyncEnumerable(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, AppsOrdering? ordering = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllApplicationsAsync(top: top, name: name, owner: owner, withArchived: withArchived, ordering: ordering, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApp>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApp>.Default())), skip, cancellationToken);
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View application</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<ESApp> GetApplicationAsync(ApplicationIdentifier application, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<ESApp>("GET", $"api/http/applications/{application}{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View application secrets</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<string> BearerTokenAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/bearer-token{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View application</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<AccessRecord> GetLastClientCredentialsAccessInfoAsync(ApplicationIdentifier application, Func<Partial<AccessRecord>, Partial<AccessRecord>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<AccessRecord>()) : Partial<AccessRecord>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<AccessRecord>("GET", $"api/http/applications/{application}/last-client-credentials-access{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
+    public async Task<Batch<AppMessageDelivery>> LatestMessageDeliveriesAsync(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<Batch<AppMessageDelivery>>, Partial<Batch<AppMessageDelivery>>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        if (skip != null) queryParameters.Append("$skip", skip);
+        if (top != null) queryParameters.Append("$top", top?.ToString());
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AppMessageDelivery>>()) : Partial<Batch<AppMessageDelivery>>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<Batch<AppMessageDelivery>>("GET", $"api/http/applications/{application}/latest-messages-deliveries{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+    
+    public IAsyncEnumerable<AppMessageDelivery> LatestMessageDeliveriesAsyncEnumerable(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<AppMessageDelivery>, Partial<AppMessageDelivery>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => LatestMessageDeliveriesAsync(application: application, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AppMessageDelivery>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AppMessageDelivery>.Default())), skip, cancellationToken);
+
+    /// <summary>
+    /// Returns list of public keys in JWKS format. If message signature is successfully verified with any of the returned public keys, the message can be considered authentic.
+    /// </summary>
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View application secrets</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<string> PublicKeysAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/public-keys{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Edit application</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, bool endpointSslVerification, bool hasVerificationToken, bool hasPublicKeySignature, bool hasSigningKey, EndpointAppLevelAuthUpdateType appLevelAuth, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? name = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<ApplicationsForApplicationPatchRequest, ESApp>("PATCH", $"api/http/applications/{application}{queryParameters.ToQueryString()}", 
+            new ApplicationsForApplicationPatchRequest
+            { 
+                Name = name,
+                PictureAttachmentId = pictureAttachmentId,
+                DefaultExternalPicture = defaultExternalPicture,
+                ClientSecret = clientSecret,
+                IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled,
+                IsCodeFlowEnabled = codeFlowEnabled,
+                CodeFlowRedirectURIs = codeFlowRedirectURIs,
+                IsPkceRequired = pkceRequired,
+                IsImplicitFlowEnabled = implicitFlowEnabled,
+                ImplicitFlowRedirectURIs = implicitFlowRedirectURIs,
+                EndpointUri = endpointUri,
+                IsEndpointSslVerification = endpointSslVerification,
+                IsHasVerificationToken = hasVerificationToken,
+                IsHasPublicKeySignature = hasPublicKeySignature,
+                IsHasSigningKey = hasSigningKey,
+                AppLevelAuth = appLevelAuth,
+                SslKeystoreAuth = sslKeystoreAuth,
+                BasicAuthUsername = (basicAuthUsername ?? string.Empty),
+                BasicAuthPassword = (basicAuthPassword ?? string.Empty),
+                BearerAuthToken = (bearerAuthToken ?? string.Empty),
+            }, cancellationToken);
+    }
+    
+
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Delete application</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task DeleteApplicationAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
+    public AuthorizationClient Authorizations => new AuthorizationClient(_connection);
+    
+    public partial class AuthorizationClient : ISpaceClient
     {
         private readonly Connection _connection;
         
-        public ApplicationClient(Connection connection)
+        public AuthorizationClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// List applications authorized in specified context
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<List<ESApp>> GetApplicationsAuthorizedInContextAsync(PermissionContextIdentifier contextIdentifier, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<ESApp>>("GET", $"api/http/applications/authorizations/authorized-applications{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+    }
+
+    public partial class AuthorizationClient : ISpaceClient
+    {
+        /// <summary>
+        /// List authorized contexts of an application
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<List<PermissionContextApi>> GetAllAuthorizedContextsAsync(ApplicationIdentifier application, Func<Partial<PermissionContextApi>, Partial<PermissionContextApi>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PermissionContextApi>()) : Partial<PermissionContextApi>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<PermissionContextApi>>("GET", $"api/http/applications/{application}/authorizations/authorized-contexts{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public AuthorizedRightClient AuthorizedRights => new AuthorizedRightClient(_connection);
+        
+        public partial class AuthorizedRightClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public AuthorizedRightClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// List authorized rights of an application in specified context
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View application</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<List<Right>> GetAllAuthorizedRightsAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, Func<Partial<Right>, Partial<Right>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Right>()) : Partial<Right>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<Right>>("GET", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Generic method for editing authorized right status in given context.
+            /// </summary>
+            public async Task UpdateAuthorizedRightAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, List<RightUpdate> updates, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", 
+                    new ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest
+                    { 
+                        ContextIdentifier = contextIdentifier,
+                        Updates = updates,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Request rights for an application in specified context
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit application</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task RequestRightsAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, List<string> rightCodes, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/authorizations/authorized-rights/request-rights{queryParameters.ToQueryString()}", 
+                    new ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest
+                    { 
+                        ContextIdentifier = contextIdentifier,
+                        RightCodes = rightCodes,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Remove application authorization in specified context
+            /// </summary>
+            public async Task DeleteAuthorizedRightAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
+        public RequiredRightClient RequiredRights => new RequiredRightClient(_connection);
+        
+        public partial class RequiredRightClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public RequiredRightClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// List required rights for an application
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View application</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<List<Right>> GetAllRequiredRightsAsync(ApplicationIdentifier application, Func<Partial<Right>, Partial<Right>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Right>()) : Partial<Right>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<Right>>("GET", $"api/http/applications/{application}/authorizations/required-rights{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Update list of required rights for an application
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit application</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task UpdateRequiredRightAsync(ApplicationIdentifier application, List<string> rightCodesToAdd, List<string> rightCodesToRemove, bool requestRightsInAuthorizedContexts, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/authorizations/required-rights{queryParameters.ToQueryString()}", 
+                    new ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest
+                    { 
+                        RightCodesToAdd = rightCodesToAdd,
+                        RightCodesToRemove = rightCodesToRemove,
+                        IsRequestRightsInAuthorizedContexts = requestRightsInAuthorizedContexts,
+                    }, cancellationToken);
+            }
+            
+        
+        }
+    
+    }
+
+    public ClientSecretClient ClientSecret => new ClientSecretClient(_connection);
+    
+    public partial class ClientSecretClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public ClientSecretClient(Connection connection)
         {
             _connection = connection;
         }
@@ -42,139 +517,15 @@ namespace JetBrains.Space.Client
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Create application</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<ESApp> CreateApplicationAsync(string name, bool endpointSslVerification = true, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ApplicationsPostRequest, ESApp>("POST", $"api/http/applications{queryParameters.ToQueryString()}", 
-                new ApplicationsPostRequest
-                { 
-                    Name = name,
-                    PictureAttachmentId = pictureAttachmentId,
-                    DefaultExternalPicture = defaultExternalPicture,
-                    ClientId = clientId,
-                    ClientSecret = clientSecret,
-                    IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled,
-                    IsCodeFlowEnabled = codeFlowEnabled,
-                    CodeFlowRedirectURIs = codeFlowRedirectURIs,
-                    IsPkceRequired = pkceRequired,
-                    IsImplicitFlowEnabled = implicitFlowEnabled,
-                    ImplicitFlowRedirectURIs = implicitFlowRedirectURIs,
-                    EndpointUri = endpointUri,
-                    IsEndpointSslVerification = endpointSslVerification,
-                    AppLevelAuth = appLevelAuth,
-                    SslKeystoreAuth = sslKeystoreAuth,
-                    IsHasVerificationToken = hasVerificationToken,
-                    IsHasSigningKey = hasSigningKey,
-                    IsHasPublicKeySignature = hasPublicKeySignature,
-                    BasicAuthUsername = basicAuthUsername,
-                    BasicAuthPassword = basicAuthPassword,
-                    BearerAuthToken = bearerAuthToken,
-                }, cancellationToken);
-        }
-        
-    
-        public async Task RefreshMenuAsync(string? appId = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            await _connection.RequestResourceAsync("POST", $"api/http/applications/refresh-menu{queryParameters.ToQueryString()}", 
-                new ApplicationsRefreshMenuPostRequest
-                { 
-                    AppId = appId,
-                }, cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
         /// <term>Edit application</term>
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task RestoreApplicationAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+        public async Task RegenerateAppSecretAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/restore{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View application</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        [Obsolete("Use GET applications/paged (since 2021-03-18) (will be removed in a future version)")]
-        public async Task<List<ESApp>> GetAllApplicationsdeprecatedAsync(string query, bool withArchived = false, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("query", query);
-            queryParameters.Append("withArchived", withArchived.ToString("l"));
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<List<ESApp>>("GET", $"api/http/applications{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View application</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<Batch<ESApp>> GetAllApplicationsAsync(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, AppsOrdering? ordering = null, Func<Partial<Batch<ESApp>>, Partial<Batch<ESApp>>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            if (skip != null) queryParameters.Append("$skip", skip);
-            if (top != null) queryParameters.Append("$top", top?.ToString());
-            if (name != null) queryParameters.Append("name", name);
-            if (owner != null) queryParameters.Append("owner", owner.Select(it => it.ToString()));
-            if (withArchived != null) queryParameters.Append("withArchived", withArchived?.ToString("l"));
-            queryParameters.Append("ordering", ordering.ToEnumString());
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESApp>>()) : Partial<Batch<ESApp>>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<Batch<ESApp>>("GET", $"api/http/applications/paged{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-        
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View application</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public IAsyncEnumerable<ESApp> GetAllApplicationsAsyncEnumerable(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, AppsOrdering? ordering = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllApplicationsAsync(top: top, name: name, owner: owner, withArchived: withArchived, ordering: ordering, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApp>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApp>.Default())), skip, cancellationToken);
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View application</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<ESApp> GetApplicationAsync(ApplicationIdentifier application, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ESApp>("GET", $"api/http/applications/{application}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/client-secret/regenerate{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     
@@ -186,47 +537,55 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<string> BearerTokenAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+        public async Task<string> GetClientSecretAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/bearer-token{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/client-secret{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     
+    }
+
+    public PermanentTokenClient PermanentTokens => new PermanentTokenClient(_connection);
+    
+    public partial class PermanentTokenClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public PermanentTokenClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Create a permanent token for the given application that can be used to access the current organisation
+        /// </summary>
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>View application</term>
+        /// <term>Edit application</term>
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<AccessRecord> GetLastClientCredentialsAccessInfoAsync(ApplicationIdentifier application, Func<Partial<AccessRecord>, Partial<AccessRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Pair<ESApplicationPermanentToken, string>> CreatePermanentTokenAsync(ApplicationIdentifier application, string name, string scope, DateTime? expires = null, Func<Partial<Pair<ESApplicationPermanentToken, string>>, Partial<Pair<ESApplicationPermanentToken, string>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<AccessRecord>()) : Partial<AccessRecord>.Default()).ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<ESApplicationPermanentToken, string>>()) : Partial<Pair<ESApplicationPermanentToken, string>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<AccessRecord>("GET", $"api/http/applications/{application}/last-client-credentials-access{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<ApplicationsForApplicationPermanentTokensPostRequest, Pair<ESApplicationPermanentToken, string>>("POST", $"api/http/applications/{application}/permanent-tokens{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationPermanentTokensPostRequest
+                { 
+                    Name = name,
+                    Scope = scope,
+                    Expires = expires,
+                }, cancellationToken);
         }
         
-    
-        public async Task<Batch<AppMessageDelivery>> LatestMessageDeliveriesAsync(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<Batch<AppMessageDelivery>>, Partial<Batch<AppMessageDelivery>>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            if (skip != null) queryParameters.Append("$skip", skip);
-            if (top != null) queryParameters.Append("$top", top?.ToString());
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AppMessageDelivery>>()) : Partial<Batch<AppMessageDelivery>>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<Batch<AppMessageDelivery>>("GET", $"api/http/applications/{application}/latest-messages-deliveries{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-        
-        public IAsyncEnumerable<AppMessageDelivery> LatestMessageDeliveriesAsyncEnumerable(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<AppMessageDelivery>, Partial<AppMessageDelivery>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => LatestMessageDeliveriesAsync(application: application, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AppMessageDelivery>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AppMessageDelivery>.Default())), skip, cancellationToken);
     
         /// <summary>
-        /// Returns list of public keys in JWKS format. If message signature is successfully verified with any of the returned public keys, the message can be considered authentic.
+        /// Get permanent tokens used to access the current organisation by the given application
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -236,11 +595,192 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<string> PublicKeysAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+        public async Task<Batch<ESApplicationPermanentToken>> GetAllPermanentTokensAsync(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<Batch<ESApplicationPermanentToken>>, Partial<Batch<ESApplicationPermanentToken>>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESApplicationPermanentToken>>()) : Partial<Batch<ESApplicationPermanentToken>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<ESApplicationPermanentToken>>("GET", $"api/http/applications/{application}/permanent-tokens{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+        
+        /// <summary>
+        /// Get permanent tokens used to access the current organisation by the given application
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View application secrets</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public IAsyncEnumerable<ESApplicationPermanentToken> GetAllPermanentTokensAsyncEnumerable(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<ESApplicationPermanentToken>, Partial<ESApplicationPermanentToken>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPermanentTokensAsync(application: application, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApplicationPermanentToken>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApplicationPermanentToken>.Default())), skip, cancellationToken);
+    
+        /// <summary>
+        /// Update an existing personal token used to access the current organisation. The permanent token's name and/or scope can be updated.
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task UpdatePermanentTokenAsync(ApplicationIdentifier application, string tokenId, string? name = null, string? scope = null, DateTime? expires = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/public-keys{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/permanent-tokens/{tokenId}{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest
+                { 
+                    Name = name,
+                    Scope = scope,
+                    Expires = expires,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Delete a personal token used to access the current organisation
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task DeletePermanentTokenAsync(ApplicationIdentifier application, string tokenId, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/permanent-tokens/{tokenId}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public CurrentClient Current => new CurrentClient(_connection);
+        
+        public partial class CurrentClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public CurrentClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Delete personal token of the given application
+            /// </summary>
+            public async Task DeleteCurrentPermanentTokenAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/permanent-tokens/current{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
+    }
+
+    public SigningKeyClient SigningKey => new SigningKeyClient(_connection);
+    
+    public partial class SigningKeyClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public SigningKeyClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task RegenerateSigningKeyAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/signing-key/regenerate{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View application secrets</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<string> GetSigningKeyAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/signing-key{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+    }
+
+    public SshKeyClient SshKeys => new SshKeyClient(_connection);
+    
+    public partial class SshKeyClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public SshKeyClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task AddSshKeyAsync(ApplicationIdentifier application, string publicKey, string comment, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/ssh-keys{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationSshKeysPostRequest
+                { 
+                    PublicKey = publicKey,
+                    Comment = comment,
+                }, cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<List<ESSshKey>> GetSshKeysAsync(ApplicationIdentifier application, Func<Partial<ESSshKey>, Partial<ESSshKey>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESSshKey>()) : Partial<ESSshKey>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<ESSshKey>>("GET", $"api/http/applications/{application}/ssh-keys{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     
@@ -252,35 +792,40 @@ namespace JetBrains.Space.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, bool endpointSslVerification, bool hasVerificationToken, bool hasPublicKeySignature, bool hasSigningKey, EndpointAppLevelAuthUpdateType appLevelAuth, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? name = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task DeleteSshKeyAsync(ApplicationIdentifier application, string fingerprint, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<ApplicationsForApplicationPatchRequest, ESApp>("PATCH", $"api/http/applications/{application}{queryParameters.ToQueryString()}", 
-                new ApplicationsForApplicationPatchRequest
-                { 
-                    Name = name,
-                    PictureAttachmentId = pictureAttachmentId,
-                    DefaultExternalPicture = defaultExternalPicture,
-                    ClientSecret = clientSecret,
-                    IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled,
-                    IsCodeFlowEnabled = codeFlowEnabled,
-                    CodeFlowRedirectURIs = codeFlowRedirectURIs,
-                    IsPkceRequired = pkceRequired,
-                    IsImplicitFlowEnabled = implicitFlowEnabled,
-                    ImplicitFlowRedirectURIs = implicitFlowRedirectURIs,
-                    EndpointUri = endpointUri,
-                    IsEndpointSslVerification = endpointSslVerification,
-                    IsHasVerificationToken = hasVerificationToken,
-                    IsHasPublicKeySignature = hasPublicKeySignature,
-                    IsHasSigningKey = hasSigningKey,
-                    AppLevelAuth = appLevelAuth,
-                    SslKeystoreAuth = sslKeystoreAuth,
-                    BasicAuthUsername = (basicAuthUsername ?? string.Empty),
-                    BasicAuthPassword = (basicAuthPassword ?? string.Empty),
-                    BearerAuthToken = (bearerAuthToken ?? string.Empty),
-                }, cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/ssh-keys/{fingerprint}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+    }
+
+    public VerificationTokenClient VerificationToken => new VerificationTokenClient(_connection);
+    
+    public partial class VerificationTokenClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public VerificationTokenClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task RegenerateVerificationTokenAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/verification-token/regenerate{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     
@@ -288,565 +833,19 @@ namespace JetBrains.Space.Client
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Delete application</term>
+        /// <term>View application secrets</term>
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task DeleteApplicationAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
+        public async Task<string> GetVerificationTokenAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/verification-token{queryParameters.ToQueryString()}", cancellationToken);
         }
         
-    
-        public AuthorizationClient Authorizations => new AuthorizationClient(_connection);
-        
-        public partial class AuthorizationClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public AuthorizationClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            /// <summary>
-            /// List applications authorized in specified context
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View application</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<List<ESApp>> GetApplicationsAuthorizedInContextAsync(PermissionContextIdentifier contextIdentifier, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<List<ESApp>>("GET", $"api/http/applications/authorizations/authorized-applications{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-        }
-    
-        public partial class AuthorizationClient : ISpaceClient
-        {
-            /// <summary>
-            /// List authorized contexts of an application
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View application</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<List<PermissionContextApi>> GetAllAuthorizedContextsAsync(ApplicationIdentifier application, Func<Partial<PermissionContextApi>, Partial<PermissionContextApi>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<PermissionContextApi>()) : Partial<PermissionContextApi>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<List<PermissionContextApi>>("GET", $"api/http/applications/{application}/authorizations/authorized-contexts{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            public AuthorizedRightClient AuthorizedRights => new AuthorizedRightClient(_connection);
-            
-            public partial class AuthorizedRightClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public AuthorizedRightClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// List authorized rights of an application in specified context
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View application</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<List<Right>> GetAllAuthorizedRightsAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, Func<Partial<Right>, Partial<Right>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Right>()) : Partial<Right>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<List<Right>>("GET", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Generic method for editing authorized right status in given context.
-                /// </summary>
-                public async Task UpdateAuthorizedRightAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, List<RightUpdate> updates, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", 
-                        new ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest
-                        { 
-                            ContextIdentifier = contextIdentifier,
-                            Updates = updates,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Request rights for an application in specified context
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Edit application</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task RequestRightsAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, List<string> rightCodes, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/authorizations/authorized-rights/request-rights{queryParameters.ToQueryString()}", 
-                        new ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest
-                        { 
-                            ContextIdentifier = contextIdentifier,
-                            RightCodes = rightCodes,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Remove application authorization in specified context
-                /// </summary>
-                public async Task DeleteAuthorizedRightAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
-                    
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-            }
-        
-            public RequiredRightClient RequiredRights => new RequiredRightClient(_connection);
-            
-            public partial class RequiredRightClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public RequiredRightClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// List required rights for an application
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View application</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<List<Right>> GetAllRequiredRightsAsync(ApplicationIdentifier application, Func<Partial<Right>, Partial<Right>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Right>()) : Partial<Right>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<List<Right>>("GET", $"api/http/applications/{application}/authorizations/required-rights{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Update list of required rights for an application
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Edit application</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task UpdateRequiredRightAsync(ApplicationIdentifier application, List<string> rightCodesToAdd, List<string> rightCodesToRemove, bool requestRightsInAuthorizedContexts, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/authorizations/required-rights{queryParameters.ToQueryString()}", 
-                        new ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest
-                        { 
-                            RightCodesToAdd = rightCodesToAdd,
-                            RightCodesToRemove = rightCodesToRemove,
-                            IsRequestRightsInAuthorizedContexts = requestRightsInAuthorizedContexts,
-                        }, cancellationToken);
-                }
-                
-            
-            }
-        
-        }
-    
-        public ClientSecretClient ClientSecret => new ClientSecretClient(_connection);
-        
-        public partial class ClientSecretClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public ClientSecretClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Edit application</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task RegenerateAppSecretAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/client-secret/regenerate{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View application secrets</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<string> GetClientSecretAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/client-secret{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-        }
-    
-        public PermanentTokenClient PermanentTokens => new PermanentTokenClient(_connection);
-        
-        public partial class PermanentTokenClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public PermanentTokenClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            /// <summary>
-            /// Create a permanent token for the given application that can be used to access the current organisation
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Edit application</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<Pair<ESApplicationPermanentToken, string>> CreatePermanentTokenAsync(ApplicationIdentifier application, string name, string scope, DateTime? expires = null, Func<Partial<Pair<ESApplicationPermanentToken, string>>, Partial<Pair<ESApplicationPermanentToken, string>>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<ESApplicationPermanentToken, string>>()) : Partial<Pair<ESApplicationPermanentToken, string>>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<ApplicationsForApplicationPermanentTokensPostRequest, Pair<ESApplicationPermanentToken, string>>("POST", $"api/http/applications/{application}/permanent-tokens{queryParameters.ToQueryString()}", 
-                    new ApplicationsForApplicationPermanentTokensPostRequest
-                    { 
-                        Name = name,
-                        Scope = scope,
-                        Expires = expires,
-                    }, cancellationToken);
-            }
-            
-        
-            /// <summary>
-            /// Get permanent tokens used to access the current organisation by the given application
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View application secrets</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<Batch<ESApplicationPermanentToken>> GetAllPermanentTokensAsync(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<Batch<ESApplicationPermanentToken>>, Partial<Batch<ESApplicationPermanentToken>>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                if (skip != null) queryParameters.Append("$skip", skip);
-                if (top != null) queryParameters.Append("$top", top?.ToString());
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESApplicationPermanentToken>>()) : Partial<Batch<ESApplicationPermanentToken>>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<Batch<ESApplicationPermanentToken>>("GET", $"api/http/applications/{application}/permanent-tokens{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-            
-            /// <summary>
-            /// Get permanent tokens used to access the current organisation by the given application
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View application secrets</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public IAsyncEnumerable<ESApplicationPermanentToken> GetAllPermanentTokensAsyncEnumerable(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<ESApplicationPermanentToken>, Partial<ESApplicationPermanentToken>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPermanentTokensAsync(application: application, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApplicationPermanentToken>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApplicationPermanentToken>.Default())), skip, cancellationToken);
-        
-            /// <summary>
-            /// Update an existing personal token used to access the current organisation. The permanent token's name and/or scope can be updated.
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Edit application</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task UpdatePermanentTokenAsync(ApplicationIdentifier application, string tokenId, string? name = null, string? scope = null, DateTime? expires = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/permanent-tokens/{tokenId}{queryParameters.ToQueryString()}", 
-                    new ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest
-                    { 
-                        Name = name,
-                        Scope = scope,
-                        Expires = expires,
-                    }, cancellationToken);
-            }
-            
-        
-            /// <summary>
-            /// Delete a personal token used to access the current organisation
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Edit application</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task DeletePermanentTokenAsync(ApplicationIdentifier application, string tokenId, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/permanent-tokens/{tokenId}{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            public CurrentClient Current => new CurrentClient(_connection);
-            
-            public partial class CurrentClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public CurrentClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Delete personal token of the given application
-                /// </summary>
-                public async Task DeleteCurrentPermanentTokenAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/permanent-tokens/current{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-            }
-        
-        }
-    
-        public SigningKeyClient SigningKey => new SigningKeyClient(_connection);
-        
-        public partial class SigningKeyClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public SigningKeyClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Edit application</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task RegenerateSigningKeyAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/signing-key/regenerate{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View application secrets</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<string> GetSigningKeyAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/signing-key{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-        }
-    
-        public SshKeyClient SshKeys => new SshKeyClient(_connection);
-        
-        public partial class SshKeyClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public SshKeyClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Edit application</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task AddSshKeyAsync(ApplicationIdentifier application, string publicKey, string comment, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/ssh-keys{queryParameters.ToQueryString()}", 
-                    new ApplicationsForApplicationSshKeysPostRequest
-                    { 
-                        PublicKey = publicKey,
-                        Comment = comment,
-                    }, cancellationToken);
-            }
-            
-        
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View application</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<List<ESSshKey>> GetSshKeysAsync(ApplicationIdentifier application, Func<Partial<ESSshKey>, Partial<ESSshKey>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESSshKey>()) : Partial<ESSshKey>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<List<ESSshKey>>("GET", $"api/http/applications/{application}/ssh-keys{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Edit application</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task DeleteSshKeyAsync(ApplicationIdentifier application, string fingerprint, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/ssh-keys/{fingerprint}{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-        }
-    
-        public VerificationTokenClient VerificationToken => new VerificationTokenClient(_connection);
-        
-        public partial class VerificationTokenClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public VerificationTokenClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Edit application</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task RegenerateVerificationTokenAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/verification-token/regenerate{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View application secrets</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<string> GetVerificationTokenAsync(ApplicationIdentifier application, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/verification-token{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-        }
     
     }
-    
+
 }
+

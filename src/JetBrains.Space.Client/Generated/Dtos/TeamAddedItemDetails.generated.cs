@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TeamAddedItemDetails
+     : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class TeamAddedItemDetails
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "TeamAddedItemDetails";
+    
+    public TeamAddedItemDetails() { }
+    
+    public TeamAddedItemDetails(TDTeam team)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "TeamAddedItemDetails";
-        
-        public TeamAddedItemDetails() { }
-        
-        public TeamAddedItemDetails(TDTeam team)
-        {
-            Team = team;
-        }
-        
-        private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(TeamAddedItemDetails), nameof(Team));
-        
-        [Required]
-        [JsonPropertyName("team")]
-        public TDTeam Team
-        {
-            get => _team.GetValue();
-            set => _team.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _team.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Team = team;
     }
     
+    private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(TeamAddedItemDetails), nameof(Team));
+    
+    [Required]
+    [JsonPropertyName("team")]
+    public TDTeam Team
+    {
+        get => _team.GetValue();
+        set => _team.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _team.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

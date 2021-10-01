@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectTopicsForIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectTopicsForIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectTopicsForIdPatchRequest() { }
+    
+    public ProjectsForProjectTopicsForIdPatchRequest(string? name = null, string? parentTopicId = null)
     {
-        public ProjectsForProjectTopicsForIdPatchRequest() { }
-        
-        public ProjectsForProjectTopicsForIdPatchRequest(string? name = null, string? parentTopicId = null)
-        {
-            Name = (name ?? string.Empty);
-            ParentTopicId = parentTopicId;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectTopicsForIdPatchRequest), nameof(Name), string.Empty);
-        
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _parentTopicId = new PropertyValue<string?>(nameof(ProjectsForProjectTopicsForIdPatchRequest), nameof(ParentTopicId));
-        
-        [JsonPropertyName("parentTopicId")]
-        public string? ParentTopicId
-        {
-            get => _parentTopicId.GetValue();
-            set => _parentTopicId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _parentTopicId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = (name ?? string.Empty);
+        ParentTopicId = parentTopicId;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectTopicsForIdPatchRequest), nameof(Name), string.Empty);
+    
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _parentTopicId = new PropertyValue<string?>(nameof(ProjectsForProjectTopicsForIdPatchRequest), nameof(ParentTopicId));
+    
+    [JsonPropertyName("parentTopicId")]
+    public string? ParentTopicId
+    {
+        get => _parentTopicId.GetValue();
+        set => _parentTopicId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _parentTopicId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

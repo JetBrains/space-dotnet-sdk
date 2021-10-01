@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomFieldValuePartialBuilder
+namespace JetBrains.Space.Client.CustomFieldValuePartialBuilder;
+
+public static class CustomFieldValuePartialExtensions
 {
-    public static class CustomFieldValuePartialExtensions
-    {
-        public static Partial<CustomFieldValue> WithField(this Partial<CustomFieldValue> it)
-            => it.AddFieldName("field");
-        
-        public static Partial<CustomFieldValue> WithField(this Partial<CustomFieldValue> it, Func<Partial<CustomField>, Partial<CustomField>> partialBuilder)
-            => it.AddFieldName("field", partialBuilder(new Partial<CustomField>(it)));
-        
-        public static Partial<CustomFieldValue> WithValue(this Partial<CustomFieldValue> it)
-            => it.AddFieldName("value");
-        
-        public static Partial<CustomFieldValue> WithValue(this Partial<CustomFieldValue> it, Func<Partial<CFValue>, Partial<CFValue>> partialBuilder)
-            => it.AddFieldName("value", partialBuilder(new Partial<CFValue>(it)));
-        
-    }
+    public static Partial<CustomFieldValue> WithField(this Partial<CustomFieldValue> it)
+        => it.AddFieldName("field");
+    
+    public static Partial<CustomFieldValue> WithField(this Partial<CustomFieldValue> it, Func<Partial<CustomField>, Partial<CustomField>> partialBuilder)
+        => it.AddFieldName("field", partialBuilder(new Partial<CustomField>(it)));
+    
+    public static Partial<CustomFieldValue> WithValue(this Partial<CustomFieldValue> it)
+        => it.AddFieldName("value");
+    
+    public static Partial<CustomFieldValue> WithValue(this Partial<CustomFieldValue> it, Func<Partial<CFValue>, Partial<CFValue>> partialBuilder)
+        => it.AddFieldName("value", partialBuilder(new Partial<CFValue>(it)));
     
 }
+

@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HADefaultValueCollection
+     : HADefaultValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class HADefaultValueCollection
-         : HADefaultValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "HA_DefaultValue.Collection";
+    
+    public HADefaultValueCollection() { }
+    
+    public HADefaultValueCollection(List<HADefaultValue> elements)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "HA_DefaultValue.Collection";
-        
-        public HADefaultValueCollection() { }
-        
-        public HADefaultValueCollection(List<HADefaultValue> elements)
-        {
-            Elements = elements;
-        }
-        
-        private PropertyValue<List<HADefaultValue>> _elements = new PropertyValue<List<HADefaultValue>>(nameof(HADefaultValueCollection), nameof(Elements), new List<HADefaultValue>());
-        
-        [Required]
-        [JsonPropertyName("elements")]
-        public List<HADefaultValue> Elements
-        {
-            get => _elements.GetValue();
-            set => _elements.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _elements.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Elements = elements;
     }
     
+    private PropertyValue<List<HADefaultValue>> _elements = new PropertyValue<List<HADefaultValue>>(nameof(HADefaultValueCollection), nameof(Elements), new List<HADefaultValue>());
+    
+    [Required]
+    [JsonPropertyName("elements")]
+    public List<HADefaultValue> Elements
+    {
+        get => _elements.GetValue();
+        set => _elements.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _elements.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

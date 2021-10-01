@@ -27,29 +27,28 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class ImportMissingPolicy : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class ImportMissingPolicy : IUrlParameter
+    public static ImportMissingPolicy ReplaceWithDefault
+        => new ImportMissingPolicyReplaceWithDefault();
+    
+    public static ImportMissingPolicy Skip
+        => new ImportMissingPolicySkip();
+    
+    private class ImportMissingPolicyReplaceWithDefault : ImportMissingPolicy
     {
-        public static ImportMissingPolicy ReplaceWithDefault
-            => new ImportMissingPolicyReplaceWithDefault();
-        
-        public static ImportMissingPolicy Skip
-            => new ImportMissingPolicySkip();
-        
-        private class ImportMissingPolicyReplaceWithDefault : ImportMissingPolicy
-        {
-            public override string ToString()
-                => "replace-with-default";
-        }
-        
-        private class ImportMissingPolicySkip : ImportMissingPolicy
-        {
-            public override string ToString()
-                => "skip";
-        }
-        
+        public override string ToString()
+            => "replace-with-default";
+    }
+    
+    private class ImportMissingPolicySkip : ImportMissingPolicy
+    {
+        public override string ToString()
+            => "skip";
     }
     
 }
+

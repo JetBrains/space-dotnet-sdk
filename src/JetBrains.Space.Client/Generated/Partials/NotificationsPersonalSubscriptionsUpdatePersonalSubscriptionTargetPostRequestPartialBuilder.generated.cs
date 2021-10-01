@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequestPartialBuilder
+namespace JetBrains.Space.Client.NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequestPartialBuilder;
+
+public static class NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequestPartialExtensions
 {
-    public static class NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequestPartialExtensions
-    {
-        public static Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> WithProfile(this Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> WithProfile(this Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
-        
-        public static Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> WithTargetCode(this Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> it)
-            => it.AddFieldName("targetCode");
-        
-        public static Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> WithFeed(this Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> it)
-            => it.AddFieldName("feed");
-        
-        public static Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> WithEventCodes(this Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> it)
-            => it.AddFieldName("eventCodes");
-        
-    }
+    public static Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> WithProfile(this Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> WithProfile(this Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
+    
+    public static Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> WithTargetCode(this Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> it)
+        => it.AddFieldName("targetCode");
+    
+    public static Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> WithFeed(this Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> it)
+        => it.AddFieldName("feed");
+    
+    public static Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> WithEventCodes(this Partial<NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest> it)
+        => it.AddFieldName("eventCodes");
     
 }
+

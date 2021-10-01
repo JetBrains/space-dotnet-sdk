@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueAssigneeChangedDetailsPartialBuilder
+namespace JetBrains.Space.Client.IssueAssigneeChangedDetailsPartialBuilder;
+
+public static class IssueAssigneeChangedDetailsPartialExtensions
 {
-    public static class IssueAssigneeChangedDetailsPartialExtensions
-    {
-        public static Partial<IssueAssigneeChangedDetails> WithOldAssignee(this Partial<IssueAssigneeChangedDetails> it)
-            => it.AddFieldName("oldAssignee");
-        
-        public static Partial<IssueAssigneeChangedDetails> WithOldAssignee(this Partial<IssueAssigneeChangedDetails> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("oldAssignee", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<IssueAssigneeChangedDetails> WithNewAssignee(this Partial<IssueAssigneeChangedDetails> it)
-            => it.AddFieldName("newAssignee");
-        
-        public static Partial<IssueAssigneeChangedDetails> WithNewAssignee(this Partial<IssueAssigneeChangedDetails> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("newAssignee", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<IssueAssigneeChangedDetails> WithOldAssignee(this Partial<IssueAssigneeChangedDetails> it)
+        => it.AddFieldName("oldAssignee");
+    
+    public static Partial<IssueAssigneeChangedDetails> WithOldAssignee(this Partial<IssueAssigneeChangedDetails> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("oldAssignee", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<IssueAssigneeChangedDetails> WithNewAssignee(this Partial<IssueAssigneeChangedDetails> it)
+        => it.AddFieldName("newAssignee");
+    
+    public static Partial<IssueAssigneeChangedDetails> WithNewAssignee(this Partial<IssueAssigneeChangedDetails> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("newAssignee", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BoardColumn
+     : IPropagatePropertyAccessPath
 {
-    public sealed class BoardColumn
-         : IPropagatePropertyAccessPath
+    public BoardColumn() { }
+    
+    public BoardColumn(string name, List<IssueStatus> statuses)
     {
-        public BoardColumn() { }
-        
-        public BoardColumn(string name, List<IssueStatus> statuses)
-        {
-            Name = name;
-            Statuses = statuses;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(BoardColumn), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<List<IssueStatus>> _statuses = new PropertyValue<List<IssueStatus>>(nameof(BoardColumn), nameof(Statuses), new List<IssueStatus>());
-        
-        [Required]
-        [JsonPropertyName("statuses")]
-        public List<IssueStatus> Statuses
-        {
-            get => _statuses.GetValue();
-            set => _statuses.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _statuses.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Statuses = statuses;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(BoardColumn), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<List<IssueStatus>> _statuses = new PropertyValue<List<IssueStatus>>(nameof(BoardColumn), nameof(Statuses), new List<IssueStatus>());
+    
+    [Required]
+    [JsonPropertyName("statuses")]
+    public List<IssueStatus> Statuses
+    {
+        get => _statuses.GetValue();
+        set => _statuses.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _statuses.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

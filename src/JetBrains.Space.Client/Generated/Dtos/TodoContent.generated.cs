@@ -27,103 +27,102 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TodoContent
+     : TodoItemContent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class TodoContent
-         : TodoItemContent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "TodoContent";
+    
+    public TodoContent() { }
+    
+    public TodoContent(string originalText, string text, string? link = null, TodoItemContentKind? kind = null, CPrincipal? principal = null, long? time = null, string? extId = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "TodoContent";
-        
-        public TodoContent() { }
-        
-        public TodoContent(string originalText, string text, string? link = null, TodoItemContentKind? kind = null, CPrincipal? principal = null, long? time = null, string? extId = null)
-        {
-            OriginalText = originalText;
-            Link = link;
-            Kind = kind;
-            Principal = principal;
-            Time = time;
-            Text = text;
-            ExtId = extId;
-        }
-        
-        private PropertyValue<string> _originalText = new PropertyValue<string>(nameof(TodoContent), nameof(OriginalText));
-        
-        [Required]
-        [JsonPropertyName("originalText")]
-        public string OriginalText
-        {
-            get => _originalText.GetValue();
-            set => _originalText.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _link = new PropertyValue<string?>(nameof(TodoContent), nameof(Link));
-        
-        [JsonPropertyName("link")]
-        public string? Link
-        {
-            get => _link.GetValue();
-            set => _link.SetValue(value);
-        }
-    
-        private PropertyValue<TodoItemContentKind?> _kind = new PropertyValue<TodoItemContentKind?>(nameof(TodoContent), nameof(Kind));
-        
-        [JsonPropertyName("kind")]
-        public TodoItemContentKind? Kind
-        {
-            get => _kind.GetValue();
-            set => _kind.SetValue(value);
-        }
-    
-        private PropertyValue<CPrincipal?> _principal = new PropertyValue<CPrincipal?>(nameof(TodoContent), nameof(Principal));
-        
-        [JsonPropertyName("principal")]
-        public CPrincipal? Principal
-        {
-            get => _principal.GetValue();
-            set => _principal.SetValue(value);
-        }
-    
-        private PropertyValue<long?> _time = new PropertyValue<long?>(nameof(TodoContent), nameof(Time));
-        
-        [JsonPropertyName("time")]
-        public long? Time
-        {
-            get => _time.GetValue();
-            set => _time.SetValue(value);
-        }
-    
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoContent), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _extId = new PropertyValue<string?>(nameof(TodoContent), nameof(ExtId));
-        
-        [JsonPropertyName("extId")]
-        public string? ExtId
-        {
-            get => _extId.GetValue();
-            set => _extId.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _originalText.SetAccessPath(path, validateHasBeenSet);
-            _link.SetAccessPath(path, validateHasBeenSet);
-            _kind.SetAccessPath(path, validateHasBeenSet);
-            _principal.SetAccessPath(path, validateHasBeenSet);
-            _time.SetAccessPath(path, validateHasBeenSet);
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _extId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        OriginalText = originalText;
+        Link = link;
+        Kind = kind;
+        Principal = principal;
+        Time = time;
+        Text = text;
+        ExtId = extId;
     }
     
+    private PropertyValue<string> _originalText = new PropertyValue<string>(nameof(TodoContent), nameof(OriginalText));
+    
+    [Required]
+    [JsonPropertyName("originalText")]
+    public string OriginalText
+    {
+        get => _originalText.GetValue();
+        set => _originalText.SetValue(value);
+    }
+
+    private PropertyValue<string?> _link = new PropertyValue<string?>(nameof(TodoContent), nameof(Link));
+    
+    [JsonPropertyName("link")]
+    public string? Link
+    {
+        get => _link.GetValue();
+        set => _link.SetValue(value);
+    }
+
+    private PropertyValue<TodoItemContentKind?> _kind = new PropertyValue<TodoItemContentKind?>(nameof(TodoContent), nameof(Kind));
+    
+    [JsonPropertyName("kind")]
+    public TodoItemContentKind? Kind
+    {
+        get => _kind.GetValue();
+        set => _kind.SetValue(value);
+    }
+
+    private PropertyValue<CPrincipal?> _principal = new PropertyValue<CPrincipal?>(nameof(TodoContent), nameof(Principal));
+    
+    [JsonPropertyName("principal")]
+    public CPrincipal? Principal
+    {
+        get => _principal.GetValue();
+        set => _principal.SetValue(value);
+    }
+
+    private PropertyValue<long?> _time = new PropertyValue<long?>(nameof(TodoContent), nameof(Time));
+    
+    [JsonPropertyName("time")]
+    public long? Time
+    {
+        get => _time.GetValue();
+        set => _time.SetValue(value);
+    }
+
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoContent), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    private PropertyValue<string?> _extId = new PropertyValue<string?>(nameof(TodoContent), nameof(ExtId));
+    
+    [JsonPropertyName("extId")]
+    public string? ExtId
+    {
+        get => _extId.GetValue();
+        set => _extId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _originalText.SetAccessPath(path, validateHasBeenSet);
+        _link.SetAccessPath(path, validateHasBeenSet);
+        _kind.SetAccessPath(path, validateHasBeenSet);
+        _principal.SetAccessPath(path, validateHasBeenSet);
+        _time.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(path, validateHasBeenSet);
+        _extId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

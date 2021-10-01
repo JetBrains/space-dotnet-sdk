@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class ProjectIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class ProjectIdentifier : IUrlParameter
+    public static ProjectIdentifier Id(string id)
+        => new ProjectIdentifierId(id);
+    
+    public static ProjectIdentifier Key(string key)
+        => new ProjectIdentifierKey(key);
+    
+    private class ProjectIdentifierId : ProjectIdentifier
     {
-        public static ProjectIdentifier Id(string id)
-            => new ProjectIdentifierId(id);
+        private readonly string _id;
         
-        public static ProjectIdentifier Key(string key)
-            => new ProjectIdentifierKey(key);
-        
-        private class ProjectIdentifierId : ProjectIdentifier
+        public ProjectIdentifierId(string id)
         {
-            private readonly string _id;
-            
-            public ProjectIdentifierId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
-        private class ProjectIdentifierKey : ProjectIdentifier
+        public override string ToString()
+            => $"id:{_id}";
+    }
+    
+    private class ProjectIdentifierKey : ProjectIdentifier
+    {
+        private readonly string _key;
+        
+        public ProjectIdentifierKey(string key)
         {
-            private readonly string _key;
-            
-            public ProjectIdentifierKey(string key)
-            {
-                _key = key;
-            }
-            
-            public override string ToString()
-                => $"key:{_key}";
+            _key = key;
         }
         
+        public override string ToString()
+            => $"key:{_key}";
     }
     
 }
+

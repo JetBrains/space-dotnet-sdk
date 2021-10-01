@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ReviewerChangedEventPartialBuilder
+namespace JetBrains.Space.Client.ReviewerChangedEventPartialBuilder;
+
+public static class ReviewerChangedEventPartialExtensions
 {
-    public static class ReviewerChangedEventPartialExtensions
-    {
-        public static Partial<ReviewerChangedEvent> WithUid(this Partial<ReviewerChangedEvent> it)
-            => it.AddFieldName("uid");
-        
-        public static Partial<ReviewerChangedEvent> WithUid(this Partial<ReviewerChangedEvent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("uid", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<ReviewerChangedEvent> WithChangeType(this Partial<ReviewerChangedEvent> it)
-            => it.AddFieldName("changeType");
-        
-        public static Partial<ReviewerChangedEvent> WithChangeType(this Partial<ReviewerChangedEvent> it, Func<Partial<ReviewerChangedType>, Partial<ReviewerChangedType>> partialBuilder)
-            => it.AddFieldName("changeType", partialBuilder(new Partial<ReviewerChangedType>(it)));
-        
-    }
+    public static Partial<ReviewerChangedEvent> WithUid(this Partial<ReviewerChangedEvent> it)
+        => it.AddFieldName("uid");
+    
+    public static Partial<ReviewerChangedEvent> WithUid(this Partial<ReviewerChangedEvent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("uid", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<ReviewerChangedEvent> WithChangeType(this Partial<ReviewerChangedEvent> it)
+        => it.AddFieldName("changeType");
+    
+    public static Partial<ReviewerChangedEvent> WithChangeType(this Partial<ReviewerChangedEvent> it, Func<Partial<ReviewerChangedType>, Partial<ReviewerChangedType>> partialBuilder)
+        => it.AddFieldName("changeType", partialBuilder(new Partial<ReviewerChangedType>(it)));
     
 }
+

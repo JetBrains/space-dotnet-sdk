@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum ProjectTeamType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ProjectTeamType
-    {
-        [EnumMember(Value = "LEGACY")]
-        LEGACY,
-        
-        [EnumMember(Value = "MEMBERS")]
-        MEMBERS,
-        
-        [EnumMember(Value = "ATTACHED")]
-        ATTACHED,
-        
-    }
+    [EnumMember(Value = "LEGACY")]
+    LEGACY,
+    
+    [EnumMember(Value = "MEMBERS")]
+    MEMBERS,
+    
+    [EnumMember(Value = "ATTACHED")]
+    ATTACHED,
     
 }
+

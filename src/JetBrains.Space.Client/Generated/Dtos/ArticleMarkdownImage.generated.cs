@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ArticleMarkdownImage
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ArticleMarkdownImage
-         : IPropagatePropertyAccessPath
+    public ArticleMarkdownImage() { }
+    
+    public ArticleMarkdownImage(string alt, string src)
     {
-        public ArticleMarkdownImage() { }
-        
-        public ArticleMarkdownImage(string alt, string src)
-        {
-            Alt = alt;
-            Src = src;
-        }
-        
-        private PropertyValue<string> _alt = new PropertyValue<string>(nameof(ArticleMarkdownImage), nameof(Alt));
-        
-        [Required]
-        [JsonPropertyName("alt")]
-        public string Alt
-        {
-            get => _alt.GetValue();
-            set => _alt.SetValue(value);
-        }
-    
-        private PropertyValue<string> _src = new PropertyValue<string>(nameof(ArticleMarkdownImage), nameof(Src));
-        
-        [Required]
-        [JsonPropertyName("src")]
-        public string Src
-        {
-            get => _src.GetValue();
-            set => _src.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _alt.SetAccessPath(path, validateHasBeenSet);
-            _src.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Alt = alt;
+        Src = src;
     }
     
+    private PropertyValue<string> _alt = new PropertyValue<string>(nameof(ArticleMarkdownImage), nameof(Alt));
+    
+    [Required]
+    [JsonPropertyName("alt")]
+    public string Alt
+    {
+        get => _alt.GetValue();
+        set => _alt.SetValue(value);
+    }
+
+    private PropertyValue<string> _src = new PropertyValue<string>(nameof(ArticleMarkdownImage), nameof(Src));
+    
+    [Required]
+    [JsonPropertyName("src")]
+    public string Src
+    {
+        get => _src.GetValue();
+        set => _src.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _alt.SetAccessPath(path, validateHasBeenSet);
+        _src.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

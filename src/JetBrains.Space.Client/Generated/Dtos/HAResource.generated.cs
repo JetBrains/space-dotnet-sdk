@@ -27,104 +27,103 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HAResource
+     : IPropagatePropertyAccessPath
 {
-    public sealed class HAResource
-         : IPropagatePropertyAccessPath
+    public HAResource() { }
+    
+    public HAResource(string id, HAPath path, string displaySingular, string displayPlural, List<HAEndpoint> endpoints, List<HAResource> nestedResources, HAResource? parentResource = null)
     {
-        public HAResource() { }
-        
-        public HAResource(string id, HAPath path, string displaySingular, string displayPlural, List<HAEndpoint> endpoints, List<HAResource> nestedResources, HAResource? parentResource = null)
-        {
-            Id = id;
-            Path = path;
-            DisplaySingular = displaySingular;
-            DisplayPlural = displayPlural;
-            ParentResource = parentResource;
-            Endpoints = endpoints;
-            NestedResources = nestedResources;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAResource), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<HAPath> _path = new PropertyValue<HAPath>(nameof(HAResource), nameof(Path));
-        
-        [Required]
-        [JsonPropertyName("path")]
-        public HAPath Path
-        {
-            get => _path.GetValue();
-            set => _path.SetValue(value);
-        }
-    
-        private PropertyValue<string> _displaySingular = new PropertyValue<string>(nameof(HAResource), nameof(DisplaySingular));
-        
-        [Required]
-        [JsonPropertyName("displaySingular")]
-        public string DisplaySingular
-        {
-            get => _displaySingular.GetValue();
-            set => _displaySingular.SetValue(value);
-        }
-    
-        private PropertyValue<string> _displayPlural = new PropertyValue<string>(nameof(HAResource), nameof(DisplayPlural));
-        
-        [Required]
-        [JsonPropertyName("displayPlural")]
-        public string DisplayPlural
-        {
-            get => _displayPlural.GetValue();
-            set => _displayPlural.SetValue(value);
-        }
-    
-        private PropertyValue<HAResource?> _parentResource = new PropertyValue<HAResource?>(nameof(HAResource), nameof(ParentResource));
-        
-        [JsonPropertyName("parentResource")]
-        public HAResource? ParentResource
-        {
-            get => _parentResource.GetValue();
-            set => _parentResource.SetValue(value);
-        }
-    
-        private PropertyValue<List<HAEndpoint>> _endpoints = new PropertyValue<List<HAEndpoint>>(nameof(HAResource), nameof(Endpoints), new List<HAEndpoint>());
-        
-        [Required]
-        [JsonPropertyName("endpoints")]
-        public List<HAEndpoint> Endpoints
-        {
-            get => _endpoints.GetValue();
-            set => _endpoints.SetValue(value);
-        }
-    
-        private PropertyValue<List<HAResource>> _nestedResources = new PropertyValue<List<HAResource>>(nameof(HAResource), nameof(NestedResources), new List<HAResource>());
-        
-        [Required]
-        [JsonPropertyName("nestedResources")]
-        public List<HAResource> NestedResources
-        {
-            get => _nestedResources.GetValue();
-            set => _nestedResources.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _path.SetAccessPath(path, validateHasBeenSet);
-            _displaySingular.SetAccessPath(path, validateHasBeenSet);
-            _displayPlural.SetAccessPath(path, validateHasBeenSet);
-            _parentResource.SetAccessPath(path, validateHasBeenSet);
-            _endpoints.SetAccessPath(path, validateHasBeenSet);
-            _nestedResources.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Path = path;
+        DisplaySingular = displaySingular;
+        DisplayPlural = displayPlural;
+        ParentResource = parentResource;
+        Endpoints = endpoints;
+        NestedResources = nestedResources;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAResource), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<HAPath> _path = new PropertyValue<HAPath>(nameof(HAResource), nameof(Path));
+    
+    [Required]
+    [JsonPropertyName("path")]
+    public HAPath Path
+    {
+        get => _path.GetValue();
+        set => _path.SetValue(value);
+    }
+
+    private PropertyValue<string> _displaySingular = new PropertyValue<string>(nameof(HAResource), nameof(DisplaySingular));
+    
+    [Required]
+    [JsonPropertyName("displaySingular")]
+    public string DisplaySingular
+    {
+        get => _displaySingular.GetValue();
+        set => _displaySingular.SetValue(value);
+    }
+
+    private PropertyValue<string> _displayPlural = new PropertyValue<string>(nameof(HAResource), nameof(DisplayPlural));
+    
+    [Required]
+    [JsonPropertyName("displayPlural")]
+    public string DisplayPlural
+    {
+        get => _displayPlural.GetValue();
+        set => _displayPlural.SetValue(value);
+    }
+
+    private PropertyValue<HAResource?> _parentResource = new PropertyValue<HAResource?>(nameof(HAResource), nameof(ParentResource));
+    
+    [JsonPropertyName("parentResource")]
+    public HAResource? ParentResource
+    {
+        get => _parentResource.GetValue();
+        set => _parentResource.SetValue(value);
+    }
+
+    private PropertyValue<List<HAEndpoint>> _endpoints = new PropertyValue<List<HAEndpoint>>(nameof(HAResource), nameof(Endpoints), new List<HAEndpoint>());
+    
+    [Required]
+    [JsonPropertyName("endpoints")]
+    public List<HAEndpoint> Endpoints
+    {
+        get => _endpoints.GetValue();
+        set => _endpoints.SetValue(value);
+    }
+
+    private PropertyValue<List<HAResource>> _nestedResources = new PropertyValue<List<HAResource>>(nameof(HAResource), nameof(NestedResources), new List<HAResource>());
+    
+    [Required]
+    [JsonPropertyName("nestedResources")]
+    public List<HAResource> NestedResources
+    {
+        get => _nestedResources.GetValue();
+        set => _nestedResources.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _path.SetAccessPath(path, validateHasBeenSet);
+        _displaySingular.SetAccessPath(path, validateHasBeenSet);
+        _displayPlural.SetAccessPath(path, validateHasBeenSet);
+        _parentResource.SetAccessPath(path, validateHasBeenSet);
+        _endpoints.SetAccessPath(path, validateHasBeenSet);
+        _nestedResources.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

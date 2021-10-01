@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FileDocumentBodyPartialBuilder
+namespace JetBrains.Space.Client.FileDocumentBodyPartialBuilder;
+
+public static class FileDocumentBodyPartialExtensions
 {
-    public static class FileDocumentBodyPartialExtensions
-    {
-    }
-    
 }
+

@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ImportMetadataPartialBuilder
+namespace JetBrains.Space.Client.ImportMetadataPartialBuilder;
+
+public static class ImportMetadataPartialExtensions
 {
-    public static class ImportMetadataPartialExtensions
-    {
-        public static Partial<ImportMetadata> WithImportSource(this Partial<ImportMetadata> it)
-            => it.AddFieldName("importSource");
-        
-    }
+    public static Partial<ImportMetadata> WithImportSource(this Partial<ImportMetadata> it)
+        => it.AddFieldName("importSource");
     
 }
+

@@ -27,32 +27,31 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest() { }
+    
+    public TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest(string comment = "")
     {
-        public TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest() { }
-        
-        public TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest(string comment = "")
-        {
-            Comment = comment;
-        }
-        
-        private PropertyValue<string> _comment = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest), nameof(Comment));
-        
-        [JsonPropertyName("comment")]
-        public string Comment
-        {
-            get => _comment.GetValue();
-            set => _comment.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _comment.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Comment = comment;
     }
     
+    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest), nameof(Comment));
+    
+    [JsonPropertyName("comment")]
+    public string Comment
+    {
+        get => _comment.GetValue();
+        set => _comment.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _comment.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

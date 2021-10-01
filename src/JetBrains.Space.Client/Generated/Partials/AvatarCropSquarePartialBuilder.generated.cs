@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AvatarCropSquarePartialBuilder
+namespace JetBrains.Space.Client.AvatarCropSquarePartialBuilder;
+
+public static class AvatarCropSquarePartialExtensions
 {
-    public static class AvatarCropSquarePartialExtensions
-    {
-        public static Partial<AvatarCropSquare> WithX(this Partial<AvatarCropSquare> it)
-            => it.AddFieldName("x");
-        
-        public static Partial<AvatarCropSquare> WithY(this Partial<AvatarCropSquare> it)
-            => it.AddFieldName("y");
-        
-        public static Partial<AvatarCropSquare> WithLength(this Partial<AvatarCropSquare> it)
-            => it.AddFieldName("length");
-        
-    }
+    public static Partial<AvatarCropSquare> WithX(this Partial<AvatarCropSquare> it)
+        => it.AddFieldName("x");
+    
+    public static Partial<AvatarCropSquare> WithY(this Partial<AvatarCropSquare> it)
+        => it.AddFieldName("y");
+    
+    public static Partial<AvatarCropSquare> WithLength(this Partial<AvatarCropSquare> it)
+        => it.AddFieldName("length");
     
 }
+

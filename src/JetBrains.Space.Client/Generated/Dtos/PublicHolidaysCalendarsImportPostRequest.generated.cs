@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class PublicHolidaysCalendarsImportPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class PublicHolidaysCalendarsImportPostRequest
-         : IPropagatePropertyAccessPath
+    public PublicHolidaysCalendarsImportPostRequest() { }
+    
+    public PublicHolidaysCalendarsImportPostRequest(string calendar, string attachmentId)
     {
-        public PublicHolidaysCalendarsImportPostRequest() { }
-        
-        public PublicHolidaysCalendarsImportPostRequest(string calendar, string attachmentId)
-        {
-            Calendar = calendar;
-            AttachmentId = attachmentId;
-        }
-        
-        private PropertyValue<string> _calendar = new PropertyValue<string>(nameof(PublicHolidaysCalendarsImportPostRequest), nameof(Calendar));
-        
-        [Required]
-        [JsonPropertyName("calendar")]
-        public string Calendar
-        {
-            get => _calendar.GetValue();
-            set => _calendar.SetValue(value);
-        }
-    
-        private PropertyValue<string> _attachmentId = new PropertyValue<string>(nameof(PublicHolidaysCalendarsImportPostRequest), nameof(AttachmentId));
-        
-        [Required]
-        [JsonPropertyName("attachmentId")]
-        public string AttachmentId
-        {
-            get => _attachmentId.GetValue();
-            set => _attachmentId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _calendar.SetAccessPath(path, validateHasBeenSet);
-            _attachmentId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Calendar = calendar;
+        AttachmentId = attachmentId;
     }
     
+    private PropertyValue<string> _calendar = new PropertyValue<string>(nameof(PublicHolidaysCalendarsImportPostRequest), nameof(Calendar));
+    
+    [Required]
+    [JsonPropertyName("calendar")]
+    public string Calendar
+    {
+        get => _calendar.GetValue();
+        set => _calendar.SetValue(value);
+    }
+
+    private PropertyValue<string> _attachmentId = new PropertyValue<string>(nameof(PublicHolidaysCalendarsImportPostRequest), nameof(AttachmentId));
+    
+    [Required]
+    [JsonPropertyName("attachmentId")]
+    public string AttachmentId
+    {
+        get => _attachmentId.GetValue();
+        set => _attachmentId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _calendar.SetAccessPath(path, validateHasBeenSet);
+        _attachmentId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PersonalSubscriptionSettings
+     : IPropagatePropertyAccessPath
 {
-    public sealed class PersonalSubscriptionSettings
-         : IPropagatePropertyAccessPath
+    public PersonalSubscriptionSettings() { }
+    
+    public PersonalSubscriptionSettings(PrivateFeed feed, List<PersonalSubscriptionSubjectSettings> subjectSettings, List<string> enabledCodes)
     {
-        public PersonalSubscriptionSettings() { }
-        
-        public PersonalSubscriptionSettings(PrivateFeed feed, List<PersonalSubscriptionSubjectSettings> subjectSettings, List<string> enabledCodes)
-        {
-            Feed = feed;
-            SubjectSettings = subjectSettings;
-            EnabledCodes = enabledCodes;
-        }
-        
-        private PropertyValue<PrivateFeed> _feed = new PropertyValue<PrivateFeed>(nameof(PersonalSubscriptionSettings), nameof(Feed));
-        
-        [Required]
-        [JsonPropertyName("feed")]
-        public PrivateFeed Feed
-        {
-            get => _feed.GetValue();
-            set => _feed.SetValue(value);
-        }
-    
-        private PropertyValue<List<PersonalSubscriptionSubjectSettings>> _subjectSettings = new PropertyValue<List<PersonalSubscriptionSubjectSettings>>(nameof(PersonalSubscriptionSettings), nameof(SubjectSettings), new List<PersonalSubscriptionSubjectSettings>());
-        
-        [Required]
-        [JsonPropertyName("subjectSettings")]
-        public List<PersonalSubscriptionSubjectSettings> SubjectSettings
-        {
-            get => _subjectSettings.GetValue();
-            set => _subjectSettings.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _enabledCodes = new PropertyValue<List<string>>(nameof(PersonalSubscriptionSettings), nameof(EnabledCodes), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("enabledCodes")]
-        public List<string> EnabledCodes
-        {
-            get => _enabledCodes.GetValue();
-            set => _enabledCodes.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _feed.SetAccessPath(path, validateHasBeenSet);
-            _subjectSettings.SetAccessPath(path, validateHasBeenSet);
-            _enabledCodes.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Feed = feed;
+        SubjectSettings = subjectSettings;
+        EnabledCodes = enabledCodes;
     }
     
+    private PropertyValue<PrivateFeed> _feed = new PropertyValue<PrivateFeed>(nameof(PersonalSubscriptionSettings), nameof(Feed));
+    
+    [Required]
+    [JsonPropertyName("feed")]
+    public PrivateFeed Feed
+    {
+        get => _feed.GetValue();
+        set => _feed.SetValue(value);
+    }
+
+    private PropertyValue<List<PersonalSubscriptionSubjectSettings>> _subjectSettings = new PropertyValue<List<PersonalSubscriptionSubjectSettings>>(nameof(PersonalSubscriptionSettings), nameof(SubjectSettings), new List<PersonalSubscriptionSubjectSettings>());
+    
+    [Required]
+    [JsonPropertyName("subjectSettings")]
+    public List<PersonalSubscriptionSubjectSettings> SubjectSettings
+    {
+        get => _subjectSettings.GetValue();
+        set => _subjectSettings.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _enabledCodes = new PropertyValue<List<string>>(nameof(PersonalSubscriptionSettings), nameof(EnabledCodes), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("enabledCodes")]
+    public List<string> EnabledCodes
+    {
+        get => _enabledCodes.GetValue();
+        set => _enabledCodes.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _feed.SetAccessPath(path, validateHasBeenSet);
+        _subjectSettings.SetAccessPath(path, validateHasBeenSet);
+        _enabledCodes.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

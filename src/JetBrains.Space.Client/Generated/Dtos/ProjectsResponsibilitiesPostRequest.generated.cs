@@ -27,56 +27,55 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsResponsibilitiesPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsResponsibilitiesPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsResponsibilitiesPostRequest() { }
+    
+    public ProjectsResponsibilitiesPostRequest(string subjectId, string summary, string? notes = null)
     {
-        public ProjectsResponsibilitiesPostRequest() { }
-        
-        public ProjectsResponsibilitiesPostRequest(string subjectId, string summary, string? notes = null)
-        {
-            SubjectId = subjectId;
-            Summary = summary;
-            Notes = notes;
-        }
-        
-        private PropertyValue<string> _subjectId = new PropertyValue<string>(nameof(ProjectsResponsibilitiesPostRequest), nameof(SubjectId));
-        
-        [Required]
-        [JsonPropertyName("subjectId")]
-        public string SubjectId
-        {
-            get => _subjectId.GetValue();
-            set => _subjectId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ProjectsResponsibilitiesPostRequest), nameof(Summary));
-        
-        [Required]
-        [JsonPropertyName("summary")]
-        public string Summary
-        {
-            get => _summary.GetValue();
-            set => _summary.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(ProjectsResponsibilitiesPostRequest), nameof(Notes));
-        
-        [JsonPropertyName("notes")]
-        public string? Notes
-        {
-            get => _notes.GetValue();
-            set => _notes.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _subjectId.SetAccessPath(path, validateHasBeenSet);
-            _summary.SetAccessPath(path, validateHasBeenSet);
-            _notes.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        SubjectId = subjectId;
+        Summary = summary;
+        Notes = notes;
     }
     
+    private PropertyValue<string> _subjectId = new PropertyValue<string>(nameof(ProjectsResponsibilitiesPostRequest), nameof(SubjectId));
+    
+    [Required]
+    [JsonPropertyName("subjectId")]
+    public string SubjectId
+    {
+        get => _subjectId.GetValue();
+        set => _subjectId.SetValue(value);
+    }
+
+    private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ProjectsResponsibilitiesPostRequest), nameof(Summary));
+    
+    [Required]
+    [JsonPropertyName("summary")]
+    public string Summary
+    {
+        get => _summary.GetValue();
+        set => _summary.SetValue(value);
+    }
+
+    private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(ProjectsResponsibilitiesPostRequest), nameof(Notes));
+    
+    [JsonPropertyName("notes")]
+    public string? Notes
+    {
+        get => _notes.GetValue();
+        set => _notes.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _subjectId.SetAccessPath(path, validateHasBeenSet);
+        _summary.SetAccessPath(path, validateHasBeenSet);
+        _notes.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

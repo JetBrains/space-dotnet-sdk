@@ -27,32 +27,31 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ApplicationsRefreshMenuPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ApplicationsRefreshMenuPostRequest
-         : IPropagatePropertyAccessPath
+    public ApplicationsRefreshMenuPostRequest() { }
+    
+    public ApplicationsRefreshMenuPostRequest(string? appId = null)
     {
-        public ApplicationsRefreshMenuPostRequest() { }
-        
-        public ApplicationsRefreshMenuPostRequest(string? appId = null)
-        {
-            AppId = appId;
-        }
-        
-        private PropertyValue<string?> _appId = new PropertyValue<string?>(nameof(ApplicationsRefreshMenuPostRequest), nameof(AppId));
-        
-        [JsonPropertyName("appId")]
-        public string? AppId
-        {
-            get => _appId.GetValue();
-            set => _appId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _appId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        AppId = appId;
     }
     
+    private PropertyValue<string?> _appId = new PropertyValue<string?>(nameof(ApplicationsRefreshMenuPostRequest), nameof(AppId));
+    
+    [JsonPropertyName("appId")]
+    public string? AppId
+    {
+        get => _appId.GetValue();
+        set => _appId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _appId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

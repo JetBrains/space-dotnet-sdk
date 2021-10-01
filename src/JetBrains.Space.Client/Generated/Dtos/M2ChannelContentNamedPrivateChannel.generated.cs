@@ -27,81 +27,80 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2ChannelContentNamedPrivateChannel
+     : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2ChannelContentNamedPrivateChannel
-         : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2ChannelContentNamedPrivateChannel";
+    
+    public M2ChannelContentNamedPrivateChannel() { }
+    
+    public M2ChannelContentNamedPrivateChannel(string name, bool canHaveThreads, ChannelSpecificDefaults? notificationDefaults = null, PrivateFeedColor? color = null, string? icon = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2ChannelContentNamedPrivateChannel";
-        
-        public M2ChannelContentNamedPrivateChannel() { }
-        
-        public M2ChannelContentNamedPrivateChannel(string name, bool canHaveThreads, ChannelSpecificDefaults? notificationDefaults = null, PrivateFeedColor? color = null, string? icon = null)
-        {
-            Name = name;
-            NotificationDefaults = notificationDefaults;
-            CanHaveThreads = canHaveThreads;
-            Color = color;
-            Icon = icon;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(NotificationDefaults));
-        
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaults? NotificationDefaults
-        {
-            get => _notificationDefaults.GetValue();
-            set => _notificationDefaults.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _canHaveThreads = new PropertyValue<bool>(nameof(M2ChannelContentNamedPrivateChannel), nameof(CanHaveThreads));
-        
-        [Required]
-        [JsonPropertyName("canHaveThreads")]
-        public bool CanHaveThreads
-        {
-            get => _canHaveThreads.GetValue();
-            set => _canHaveThreads.SetValue(value);
-        }
-    
-        private PropertyValue<PrivateFeedColor?> _color = new PropertyValue<PrivateFeedColor?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Color));
-        
-        [JsonPropertyName("color")]
-        public PrivateFeedColor? Color
-        {
-            get => _color.GetValue();
-            set => _color.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Icon));
-        
-        [JsonPropertyName("icon")]
-        public string? Icon
-        {
-            get => _icon.GetValue();
-            set => _icon.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-            _canHaveThreads.SetAccessPath(path, validateHasBeenSet);
-            _color.SetAccessPath(path, validateHasBeenSet);
-            _icon.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        NotificationDefaults = notificationDefaults;
+        CanHaveThreads = canHaveThreads;
+        Color = color;
+        Icon = icon;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(NotificationDefaults));
+    
+    [JsonPropertyName("notificationDefaults")]
+    public ChannelSpecificDefaults? NotificationDefaults
+    {
+        get => _notificationDefaults.GetValue();
+        set => _notificationDefaults.SetValue(value);
+    }
+
+    private PropertyValue<bool> _canHaveThreads = new PropertyValue<bool>(nameof(M2ChannelContentNamedPrivateChannel), nameof(CanHaveThreads));
+    
+    [Required]
+    [JsonPropertyName("canHaveThreads")]
+    public bool CanHaveThreads
+    {
+        get => _canHaveThreads.GetValue();
+        set => _canHaveThreads.SetValue(value);
+    }
+
+    private PropertyValue<PrivateFeedColor?> _color = new PropertyValue<PrivateFeedColor?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Color));
+    
+    [JsonPropertyName("color")]
+    public PrivateFeedColor? Color
+    {
+        get => _color.GetValue();
+        set => _color.SetValue(value);
+    }
+
+    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Icon));
+    
+    [JsonPropertyName("icon")]
+    public string? Icon
+    {
+        get => _icon.GetValue();
+        set => _icon.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+        _canHaveThreads.SetAccessPath(path, validateHasBeenSet);
+        _color.SetAccessPath(path, validateHasBeenSet);
+        _icon.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

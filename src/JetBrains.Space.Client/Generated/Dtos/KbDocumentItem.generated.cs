@@ -27,92 +27,91 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class KbDocumentItem
+     : IPropagatePropertyAccessPath
 {
-    public sealed class KbDocumentItem
-         : IPropagatePropertyAccessPath
+    public KbDocumentItem() { }
+    
+    public KbDocumentItem(KBBook book, string articleId, string id, string name, List<string> path, string? containerLinkId = null)
     {
-        public KbDocumentItem() { }
-        
-        public KbDocumentItem(KBBook book, string articleId, string id, string name, List<string> path, string? containerLinkId = null)
-        {
-            Book = book;
-            ArticleId = articleId;
-            Id = id;
-            Name = name;
-            Path = path;
-            ContainerLinkId = containerLinkId;
-        }
-        
-        private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(KbDocumentItem), nameof(Book));
-        
-        [Required]
-        [JsonPropertyName("book")]
-        public KBBook Book
-        {
-            get => _book.GetValue();
-            set => _book.SetValue(value);
-        }
-    
-        private PropertyValue<string> _articleId = new PropertyValue<string>(nameof(KbDocumentItem), nameof(ArticleId));
-        
-        [Required]
-        [JsonPropertyName("articleId")]
-        public string ArticleId
-        {
-            get => _articleId.GetValue();
-            set => _articleId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(KbDocumentItem), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(KbDocumentItem), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _path = new PropertyValue<List<string>>(nameof(KbDocumentItem), nameof(Path), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("path")]
-        public List<string> Path
-        {
-            get => _path.GetValue();
-            set => _path.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _containerLinkId = new PropertyValue<string?>(nameof(KbDocumentItem), nameof(ContainerLinkId));
-        
-        [JsonPropertyName("containerLinkId")]
-        public string? ContainerLinkId
-        {
-            get => _containerLinkId.GetValue();
-            set => _containerLinkId.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _book.SetAccessPath(path, validateHasBeenSet);
-            _articleId.SetAccessPath(path, validateHasBeenSet);
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _path.SetAccessPath(path, validateHasBeenSet);
-            _containerLinkId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Book = book;
+        ArticleId = articleId;
+        Id = id;
+        Name = name;
+        Path = path;
+        ContainerLinkId = containerLinkId;
     }
     
+    private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(KbDocumentItem), nameof(Book));
+    
+    [Required]
+    [JsonPropertyName("book")]
+    public KBBook Book
+    {
+        get => _book.GetValue();
+        set => _book.SetValue(value);
+    }
+
+    private PropertyValue<string> _articleId = new PropertyValue<string>(nameof(KbDocumentItem), nameof(ArticleId));
+    
+    [Required]
+    [JsonPropertyName("articleId")]
+    public string ArticleId
+    {
+        get => _articleId.GetValue();
+        set => _articleId.SetValue(value);
+    }
+
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(KbDocumentItem), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(KbDocumentItem), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _path = new PropertyValue<List<string>>(nameof(KbDocumentItem), nameof(Path), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("path")]
+    public List<string> Path
+    {
+        get => _path.GetValue();
+        set => _path.SetValue(value);
+    }
+
+    private PropertyValue<string?> _containerLinkId = new PropertyValue<string?>(nameof(KbDocumentItem), nameof(ContainerLinkId));
+    
+    [JsonPropertyName("containerLinkId")]
+    public string? ContainerLinkId
+    {
+        get => _containerLinkId.GetValue();
+        set => _containerLinkId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _book.SetAccessPath(path, validateHasBeenSet);
+        _articleId.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _path.SetAccessPath(path, validateHasBeenSet);
+        _containerLinkId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

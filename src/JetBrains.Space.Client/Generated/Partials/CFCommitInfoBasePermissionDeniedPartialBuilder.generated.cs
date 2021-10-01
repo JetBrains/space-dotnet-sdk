@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CFCommitInfoBasePermissionDeniedPartialBuilder
+namespace JetBrains.Space.Client.CFCommitInfoBasePermissionDeniedPartialBuilder;
+
+public static class CFCommitInfoBasePermissionDeniedPartialExtensions
 {
-    public static class CFCommitInfoBasePermissionDeniedPartialExtensions
-    {
-        public static Partial<CFCommitInfoBasePermissionDenied> WithCommitHash(this Partial<CFCommitInfoBasePermissionDenied> it)
-            => it.AddFieldName("commitHash");
-        
-    }
+    public static Partial<CFCommitInfoBasePermissionDenied> WithCommitHash(this Partial<CFCommitInfoBasePermissionDenied> it)
+        => it.AddFieldName("commitHash");
     
 }
+

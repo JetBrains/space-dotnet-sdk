@@ -27,56 +27,55 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CFEnumValue
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CFEnumValue
-         : IPropagatePropertyAccessPath
+    public CFEnumValue() { }
+    
+    public CFEnumValue(string id, string value, CPrincipalDetails? principal = null)
     {
-        public CFEnumValue() { }
-        
-        public CFEnumValue(string id, string value, CPrincipalDetails? principal = null)
-        {
-            Id = id;
-            Value = value;
-            Principal = principal;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CFEnumValue), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<string> _value = new PropertyValue<string>(nameof(CFEnumValue), nameof(Value));
-        
-        [Required]
-        [JsonPropertyName("value")]
-        public string Value
-        {
-            get => _value.GetValue();
-            set => _value.SetValue(value);
-        }
-    
-        private PropertyValue<CPrincipalDetails?> _principal = new PropertyValue<CPrincipalDetails?>(nameof(CFEnumValue), nameof(Principal));
-        
-        [JsonPropertyName("principal")]
-        public CPrincipalDetails? Principal
-        {
-            get => _principal.GetValue();
-            set => _principal.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _value.SetAccessPath(path, validateHasBeenSet);
-            _principal.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Value = value;
+        Principal = principal;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CFEnumValue), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(CFEnumValue), nameof(Value));
+    
+    [Required]
+    [JsonPropertyName("value")]
+    public string Value
+    {
+        get => _value.GetValue();
+        set => _value.SetValue(value);
+    }
+
+    private PropertyValue<CPrincipalDetails?> _principal = new PropertyValue<CPrincipalDetails?>(nameof(CFEnumValue), nameof(Principal));
+    
+    [JsonPropertyName("principal")]
+    public CPrincipalDetails? Principal
+    {
+        get => _principal.GetValue();
+        set => _principal.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _value.SetAccessPath(path, validateHasBeenSet);
+        _principal.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

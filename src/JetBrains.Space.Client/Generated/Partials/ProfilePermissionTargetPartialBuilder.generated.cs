@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProfilePermissionTargetPartialBuilder
+namespace JetBrains.Space.Client.ProfilePermissionTargetPartialBuilder;
+
+public static class ProfilePermissionTargetPartialExtensions
 {
-    public static class ProfilePermissionTargetPartialExtensions
-    {
-        public static Partial<ProfilePermissionTarget> WithProfile(this Partial<ProfilePermissionTarget> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<ProfilePermissionTarget> WithProfile(this Partial<ProfilePermissionTarget> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
-        
-    }
+    public static Partial<ProfilePermissionTarget> WithProfile(this Partial<ProfilePermissionTarget> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<ProfilePermissionTarget> WithProfile(this Partial<ProfilePermissionTarget> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
     
 }
+

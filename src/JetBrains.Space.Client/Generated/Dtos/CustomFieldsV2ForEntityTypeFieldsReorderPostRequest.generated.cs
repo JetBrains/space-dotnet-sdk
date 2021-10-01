@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class CustomFieldsV2ForEntityTypeFieldsReorderPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class CustomFieldsV2ForEntityTypeFieldsReorderPostRequest
-         : IPropagatePropertyAccessPath
+    public CustomFieldsV2ForEntityTypeFieldsReorderPostRequest() { }
+    
+    public CustomFieldsV2ForEntityTypeFieldsReorderPostRequest(List<CFIdentifier> customFields)
     {
-        public CustomFieldsV2ForEntityTypeFieldsReorderPostRequest() { }
-        
-        public CustomFieldsV2ForEntityTypeFieldsReorderPostRequest(List<CFIdentifier> customFields)
-        {
-            CustomFields = customFields;
-        }
-        
-        private PropertyValue<List<CFIdentifier>> _customFields = new PropertyValue<List<CFIdentifier>>(nameof(CustomFieldsV2ForEntityTypeFieldsReorderPostRequest), nameof(CustomFields), new List<CFIdentifier>());
-        
-        [Required]
-        [JsonPropertyName("customFields")]
-        public List<CFIdentifier> CustomFields
-        {
-            get => _customFields.GetValue();
-            set => _customFields.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _customFields.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        CustomFields = customFields;
     }
     
+    private PropertyValue<List<CFIdentifier>> _customFields = new PropertyValue<List<CFIdentifier>>(nameof(CustomFieldsV2ForEntityTypeFieldsReorderPostRequest), nameof(CustomFields), new List<CFIdentifier>());
+    
+    [Required]
+    [JsonPropertyName("customFields")]
+    public List<CFIdentifier> CustomFields
+    {
+        get => _customFields.GetValue();
+        set => _customFields.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _customFields.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

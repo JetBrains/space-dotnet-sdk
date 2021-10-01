@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class KbPersonalContext
+     : KBBookContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class KbPersonalContext
-         : KBBookContext, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "KbPersonalContext";
+    
+    public KbPersonalContext() { }
+    
+    public KbPersonalContext(TDMemberProfile owner)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "KbPersonalContext";
-        
-        public KbPersonalContext() { }
-        
-        public KbPersonalContext(TDMemberProfile owner)
-        {
-            Owner = owner;
-        }
-        
-        private PropertyValue<TDMemberProfile> _owner = new PropertyValue<TDMemberProfile>(nameof(KbPersonalContext), nameof(Owner));
-        
-        [Required]
-        [JsonPropertyName("owner")]
-        public TDMemberProfile Owner
-        {
-            get => _owner.GetValue();
-            set => _owner.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _owner.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Owner = owner;
     }
     
+    private PropertyValue<TDMemberProfile> _owner = new PropertyValue<TDMemberProfile>(nameof(KbPersonalContext), nameof(Owner));
+    
+    [Required]
+    [JsonPropertyName("owner")]
+    public TDMemberProfile Owner
+    {
+        get => _owner.GetValue();
+        set => _owner.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _owner.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

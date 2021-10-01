@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DateCFConstraintPartialBuilder
+namespace JetBrains.Space.Client.DateCFConstraintPartialBuilder;
+
+public static class DateCFConstraintPartialExtensions
 {
-    public static class DateCFConstraintPartialExtensions
-    {
-        public static Partial<DateCFConstraint> WithMin(this Partial<DateCFConstraint> it)
-            => it.AddFieldName("min");
-        
-        public static Partial<DateCFConstraint> WithMax(this Partial<DateCFConstraint> it)
-            => it.AddFieldName("max");
-        
-        public static Partial<DateCFConstraint> WithMessage(this Partial<DateCFConstraint> it)
-            => it.AddFieldName("message");
-        
-    }
+    public static Partial<DateCFConstraint> WithMin(this Partial<DateCFConstraint> it)
+        => it.AddFieldName("min");
+    
+    public static Partial<DateCFConstraint> WithMax(this Partial<DateCFConstraint> it)
+        => it.AddFieldName("max");
+    
+    public static Partial<DateCFConstraint> WithMessage(this Partial<DateCFConstraint> it)
+        => it.AddFieldName("message");
     
 }
+

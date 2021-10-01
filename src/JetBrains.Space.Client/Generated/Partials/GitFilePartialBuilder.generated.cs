@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitFilePartialBuilder
+namespace JetBrains.Space.Client.GitFilePartialBuilder;
+
+public static class GitFilePartialExtensions
 {
-    public static class GitFilePartialExtensions
-    {
-        public static Partial<GitFile> WithCommit(this Partial<GitFile> it)
-            => it.AddFieldName("commit");
-        
-        public static Partial<GitFile> WithPath(this Partial<GitFile> it)
-            => it.AddFieldName("path");
-        
-        public static Partial<GitFile> WithBlob(this Partial<GitFile> it)
-            => it.AddFieldName("blob");
-        
-        public static Partial<GitFile> WithType(this Partial<GitFile> it)
-            => it.AddFieldName("type");
-        
-        public static Partial<GitFile> WithType(this Partial<GitFile> it, Func<Partial<GitEntryType>, Partial<GitEntryType>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<GitEntryType>(it)));
-        
-    }
+    public static Partial<GitFile> WithCommit(this Partial<GitFile> it)
+        => it.AddFieldName("commit");
+    
+    public static Partial<GitFile> WithPath(this Partial<GitFile> it)
+        => it.AddFieldName("path");
+    
+    public static Partial<GitFile> WithBlob(this Partial<GitFile> it)
+        => it.AddFieldName("blob");
+    
+    public static Partial<GitFile> WithType(this Partial<GitFile> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<GitFile> WithType(this Partial<GitFile> it, Func<Partial<GitEntryType>, Partial<GitEntryType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<GitEntryType>(it)));
     
 }
+

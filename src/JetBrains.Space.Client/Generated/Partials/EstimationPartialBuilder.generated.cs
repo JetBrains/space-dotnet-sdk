@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EstimationPartialBuilder
+namespace JetBrains.Space.Client.EstimationPartialBuilder;
+
+public static class EstimationPartialExtensions
 {
-    public static class EstimationPartialExtensions
-    {
-        public static Partial<Estimation> WithStart(this Partial<Estimation> it)
-            => it.AddFieldName("start");
-        
-        public static Partial<Estimation> WithPredictedDuration(this Partial<Estimation> it)
-            => it.AddFieldName("predictedDuration");
-        
-    }
+    public static Partial<Estimation> WithStart(this Partial<Estimation> it)
+        => it.AddFieldName("start");
+    
+    public static Partial<Estimation> WithPredictedDuration(this Partial<Estimation> it)
+        => it.AddFieldName("predictedDuration");
     
 }
+

@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitGraphLayoutLine
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GitGraphLayoutLine
-         : IPropagatePropertyAccessPath
+    public GitGraphLayoutLine() { }
+    
+    public GitGraphLayoutLine(List<GitGraphLayoutNode> nodes, List<GitGraphLayoutEdge> edges)
     {
-        public GitGraphLayoutLine() { }
-        
-        public GitGraphLayoutLine(List<GitGraphLayoutNode> nodes, List<GitGraphLayoutEdge> edges)
-        {
-            Nodes = nodes;
-            Edges = edges;
-        }
-        
-        private PropertyValue<List<GitGraphLayoutNode>> _nodes = new PropertyValue<List<GitGraphLayoutNode>>(nameof(GitGraphLayoutLine), nameof(Nodes), new List<GitGraphLayoutNode>());
-        
-        [Required]
-        [JsonPropertyName("nodes")]
-        public List<GitGraphLayoutNode> Nodes
-        {
-            get => _nodes.GetValue();
-            set => _nodes.SetValue(value);
-        }
-    
-        private PropertyValue<List<GitGraphLayoutEdge>> _edges = new PropertyValue<List<GitGraphLayoutEdge>>(nameof(GitGraphLayoutLine), nameof(Edges), new List<GitGraphLayoutEdge>());
-        
-        [Required]
-        [JsonPropertyName("edges")]
-        public List<GitGraphLayoutEdge> Edges
-        {
-            get => _edges.GetValue();
-            set => _edges.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _nodes.SetAccessPath(path, validateHasBeenSet);
-            _edges.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Nodes = nodes;
+        Edges = edges;
     }
     
+    private PropertyValue<List<GitGraphLayoutNode>> _nodes = new PropertyValue<List<GitGraphLayoutNode>>(nameof(GitGraphLayoutLine), nameof(Nodes), new List<GitGraphLayoutNode>());
+    
+    [Required]
+    [JsonPropertyName("nodes")]
+    public List<GitGraphLayoutNode> Nodes
+    {
+        get => _nodes.GetValue();
+        set => _nodes.SetValue(value);
+    }
+
+    private PropertyValue<List<GitGraphLayoutEdge>> _edges = new PropertyValue<List<GitGraphLayoutEdge>>(nameof(GitGraphLayoutLine), nameof(Edges), new List<GitGraphLayoutEdge>());
+    
+    [Required]
+    [JsonPropertyName("edges")]
+    public List<GitGraphLayoutEdge> Edges
+    {
+        get => _edges.GetValue();
+        set => _edges.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _nodes.SetAccessPath(path, validateHasBeenSet);
+        _edges.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

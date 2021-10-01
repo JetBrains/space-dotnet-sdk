@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class InaccessibleDocumentBody
+     : DocumentBody, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class InaccessibleDocumentBody
-         : DocumentBody, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "InaccessibleDocumentBody";
+    
+    public InaccessibleDocumentBody() { }
+    
+    public InaccessibleDocumentBody(DocumentBodyType docBodyType, string docBodyId)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "InaccessibleDocumentBody";
-        
-        public InaccessibleDocumentBody() { }
-        
-        public InaccessibleDocumentBody(DocumentBodyType docBodyType, string docBodyId)
-        {
-            DocBodyType = docBodyType;
-            DocBodyId = docBodyId;
-        }
-        
-        private PropertyValue<DocumentBodyType> _docBodyType = new PropertyValue<DocumentBodyType>(nameof(InaccessibleDocumentBody), nameof(DocBodyType));
-        
-        [Required]
-        [JsonPropertyName("docBodyType")]
-        public DocumentBodyType DocBodyType
-        {
-            get => _docBodyType.GetValue();
-            set => _docBodyType.SetValue(value);
-        }
-    
-        private PropertyValue<string> _docBodyId = new PropertyValue<string>(nameof(InaccessibleDocumentBody), nameof(DocBodyId));
-        
-        [Required]
-        [JsonPropertyName("docBodyId")]
-        public string DocBodyId
-        {
-            get => _docBodyId.GetValue();
-            set => _docBodyId.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _docBodyType.SetAccessPath(path, validateHasBeenSet);
-            _docBodyId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        DocBodyType = docBodyType;
+        DocBodyId = docBodyId;
     }
     
+    private PropertyValue<DocumentBodyType> _docBodyType = new PropertyValue<DocumentBodyType>(nameof(InaccessibleDocumentBody), nameof(DocBodyType));
+    
+    [Required]
+    [JsonPropertyName("docBodyType")]
+    public DocumentBodyType DocBodyType
+    {
+        get => _docBodyType.GetValue();
+        set => _docBodyType.SetValue(value);
+    }
+
+    private PropertyValue<string> _docBodyId = new PropertyValue<string>(nameof(InaccessibleDocumentBody), nameof(DocBodyId));
+    
+    [Required]
+    [JsonPropertyName("docBodyId")]
+    public string DocBodyId
+    {
+        get => _docBodyId.GetValue();
+        set => _docBodyId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _docBodyType.SetAccessPath(path, validateHasBeenSet);
+        _docBodyId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

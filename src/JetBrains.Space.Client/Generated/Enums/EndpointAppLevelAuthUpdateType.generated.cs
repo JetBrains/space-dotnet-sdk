@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum EndpointAppLevelAuthUpdateType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum EndpointAppLevelAuthUpdateType
-    {
-        [EnumMember(Value = "PublicKeySignature")]
-        PublicKeySignature,
-        
-        [EnumMember(Value = "SigningKey")]
-        SigningKey,
-        
-        [EnumMember(Value = "Bearer")]
-        Bearer,
-        
-        [EnumMember(Value = "Basic")]
-        Basic,
-        
-    }
+    [EnumMember(Value = "PublicKeySignature")]
+    PublicKeySignature,
+    
+    [EnumMember(Value = "SigningKey")]
+    SigningKey,
+    
+    [EnumMember(Value = "Bearer")]
+    Bearer,
+    
+    [EnumMember(Value = "Basic")]
+    Basic,
     
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsPackageDetailsPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsPackageDetailsPartialBuilder;
+
+public static class UnfurlDetailsPackageDetailsPartialExtensions
 {
-    public static class UnfurlDetailsPackageDetailsPartialExtensions
-    {
-        public static Partial<UnfurlDetailsPackageDetails> WithRepoRef(this Partial<UnfurlDetailsPackageDetails> it)
-            => it.AddFieldName("repoRef");
-        
-        public static Partial<UnfurlDetailsPackageDetails> WithRepoRef(this Partial<UnfurlDetailsPackageDetails> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
-            => it.AddFieldName("repoRef", partialBuilder(new Partial<ProjectPackageRepository>(it)));
-        
-        public static Partial<UnfurlDetailsPackageDetails> WithPackageName(this Partial<UnfurlDetailsPackageDetails> it)
-            => it.AddFieldName("packageName");
-        
-        public static Partial<UnfurlDetailsPackageDetails> WithVersion(this Partial<UnfurlDetailsPackageDetails> it)
-            => it.AddFieldName("version");
-        
-    }
+    public static Partial<UnfurlDetailsPackageDetails> WithRepoRef(this Partial<UnfurlDetailsPackageDetails> it)
+        => it.AddFieldName("repoRef");
+    
+    public static Partial<UnfurlDetailsPackageDetails> WithRepoRef(this Partial<UnfurlDetailsPackageDetails> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
+        => it.AddFieldName("repoRef", partialBuilder(new Partial<ProjectPackageRepository>(it)));
+    
+    public static Partial<UnfurlDetailsPackageDetails> WithPackageName(this Partial<UnfurlDetailsPackageDetails> it)
+        => it.AddFieldName("packageName");
+    
+    public static Partial<UnfurlDetailsPackageDetails> WithVersion(this Partial<UnfurlDetailsPackageDetails> it)
+        => it.AddFieldName("version");
     
 }
+

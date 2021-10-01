@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IssueListCFValue
+     : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class IssueListCFValue
-         : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "IssueListCFValue";
+    
+    public IssueListCFValue() { }
+    
+    public IssueListCFValue(List<Issue> issues)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "IssueListCFValue";
-        
-        public IssueListCFValue() { }
-        
-        public IssueListCFValue(List<Issue> issues)
-        {
-            Issues = issues;
-        }
-        
-        private PropertyValue<List<Issue>> _issues = new PropertyValue<List<Issue>>(nameof(IssueListCFValue), nameof(Issues), new List<Issue>());
-        
-        [Required]
-        [JsonPropertyName("issues")]
-        public List<Issue> Issues
-        {
-            get => _issues.GetValue();
-            set => _issues.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _issues.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Issues = issues;
     }
     
+    private PropertyValue<List<Issue>> _issues = new PropertyValue<List<Issue>>(nameof(IssueListCFValue), nameof(Issues), new List<Issue>());
+    
+    [Required]
+    [JsonPropertyName("issues")]
+    public List<Issue> Issues
+    {
+        get => _issues.GetValue();
+        set => _issues.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _issues.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

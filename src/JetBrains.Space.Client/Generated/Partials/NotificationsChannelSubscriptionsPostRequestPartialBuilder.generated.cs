@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NotificationsChannelSubscriptionsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.NotificationsChannelSubscriptionsPostRequestPartialBuilder;
+
+public static class NotificationsChannelSubscriptionsPostRequestPartialExtensions
 {
-    public static class NotificationsChannelSubscriptionsPostRequestPartialExtensions
-    {
-        public static Partial<NotificationsChannelSubscriptionsPostRequest> WithChannel(this Partial<NotificationsChannelSubscriptionsPostRequest> it)
-            => it.AddFieldName("channel");
-        
-        public static Partial<NotificationsChannelSubscriptionsPostRequest> WithChannel(this Partial<NotificationsChannelSubscriptionsPostRequest> it, Func<Partial<ChatChannel>, Partial<ChatChannel>> partialBuilder)
-            => it.AddFieldName("channel", partialBuilder(new Partial<ChatChannel>(it)));
-        
-        public static Partial<NotificationsChannelSubscriptionsPostRequest> WithName(this Partial<NotificationsChannelSubscriptionsPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<NotificationsChannelSubscriptionsPostRequest> WithSubscription(this Partial<NotificationsChannelSubscriptionsPostRequest> it)
-            => it.AddFieldName("subscription");
-        
-        public static Partial<NotificationsChannelSubscriptionsPostRequest> WithSubscription(this Partial<NotificationsChannelSubscriptionsPostRequest> it, Func<Partial<CustomGenericSubscriptionIn>, Partial<CustomGenericSubscriptionIn>> partialBuilder)
-            => it.AddFieldName("subscription", partialBuilder(new Partial<CustomGenericSubscriptionIn>(it)));
-        
-    }
+    public static Partial<NotificationsChannelSubscriptionsPostRequest> WithChannel(this Partial<NotificationsChannelSubscriptionsPostRequest> it)
+        => it.AddFieldName("channel");
+    
+    public static Partial<NotificationsChannelSubscriptionsPostRequest> WithChannel(this Partial<NotificationsChannelSubscriptionsPostRequest> it, Func<Partial<ChatChannel>, Partial<ChatChannel>> partialBuilder)
+        => it.AddFieldName("channel", partialBuilder(new Partial<ChatChannel>(it)));
+    
+    public static Partial<NotificationsChannelSubscriptionsPostRequest> WithName(this Partial<NotificationsChannelSubscriptionsPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<NotificationsChannelSubscriptionsPostRequest> WithSubscription(this Partial<NotificationsChannelSubscriptionsPostRequest> it)
+        => it.AddFieldName("subscription");
+    
+    public static Partial<NotificationsChannelSubscriptionsPostRequest> WithSubscription(this Partial<NotificationsChannelSubscriptionsPostRequest> it, Func<Partial<CustomGenericSubscriptionIn>, Partial<CustomGenericSubscriptionIn>> partialBuilder)
+        => it.AddFieldName("subscription", partialBuilder(new Partial<CustomGenericSubscriptionIn>(it)));
     
 }
+

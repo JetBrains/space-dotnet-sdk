@@ -27,69 +27,68 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class NotificationsPersonalCustomSubscriptionsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class NotificationsPersonalCustomSubscriptionsPostRequest
-         : IPropagatePropertyAccessPath
+    public NotificationsPersonalCustomSubscriptionsPostRequest() { }
+    
+    public NotificationsPersonalCustomSubscriptionsPostRequest(ProfileIdentifier profile, string name, string feed, CustomGenericSubscriptionIn subscription)
     {
-        public NotificationsPersonalCustomSubscriptionsPostRequest() { }
-        
-        public NotificationsPersonalCustomSubscriptionsPostRequest(ProfileIdentifier profile, string name, string feed, CustomGenericSubscriptionIn subscription)
-        {
-            Profile = profile;
-            Name = name;
-            Feed = feed;
-            Subscription = subscription;
-        }
-        
-        private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public ProfileIdentifier Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _feed = new PropertyValue<string>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Feed));
-        
-        [Required]
-        [JsonPropertyName("feed")]
-        public string Feed
-        {
-            get => _feed.GetValue();
-            set => _feed.SetValue(value);
-        }
-    
-        private PropertyValue<CustomGenericSubscriptionIn> _subscription = new PropertyValue<CustomGenericSubscriptionIn>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Subscription));
-        
-        [Required]
-        [JsonPropertyName("subscription")]
-        public CustomGenericSubscriptionIn Subscription
-        {
-            get => _subscription.GetValue();
-            set => _subscription.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _feed.SetAccessPath(path, validateHasBeenSet);
-            _subscription.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
+        Name = name;
+        Feed = feed;
+        Subscription = subscription;
     }
     
+    private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public ProfileIdentifier Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _feed = new PropertyValue<string>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Feed));
+    
+    [Required]
+    [JsonPropertyName("feed")]
+    public string Feed
+    {
+        get => _feed.GetValue();
+        set => _feed.SetValue(value);
+    }
+
+    private PropertyValue<CustomGenericSubscriptionIn> _subscription = new PropertyValue<CustomGenericSubscriptionIn>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Subscription));
+    
+    [Required]
+    [JsonPropertyName("subscription")]
+    public CustomGenericSubscriptionIn Subscription
+    {
+        get => _subscription.GetValue();
+        set => _subscription.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _feed.SetAccessPath(path, validateHasBeenSet);
+        _subscription.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

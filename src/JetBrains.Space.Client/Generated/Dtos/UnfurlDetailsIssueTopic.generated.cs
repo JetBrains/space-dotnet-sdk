@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsIssueTopic
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsIssueTopic
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsIssueTopic";
+    
+    public UnfurlDetailsIssueTopic() { }
+    
+    public UnfurlDetailsIssueTopic(Topic topic, bool strikeThrough)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsIssueTopic";
-        
-        public UnfurlDetailsIssueTopic() { }
-        
-        public UnfurlDetailsIssueTopic(Topic topic, bool strikeThrough)
-        {
-            Topic = topic;
-            IsStrikeThrough = strikeThrough;
-        }
-        
-        private PropertyValue<Topic> _topic = new PropertyValue<Topic>(nameof(UnfurlDetailsIssueTopic), nameof(Topic));
-        
-        [Required]
-        [JsonPropertyName("topic")]
-        public Topic Topic
-        {
-            get => _topic.GetValue();
-            set => _topic.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _strikeThrough = new PropertyValue<bool>(nameof(UnfurlDetailsIssueTopic), nameof(IsStrikeThrough));
-        
-        [Required]
-        [JsonPropertyName("strikeThrough")]
-        public bool IsStrikeThrough
-        {
-            get => _strikeThrough.GetValue();
-            set => _strikeThrough.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _topic.SetAccessPath(path, validateHasBeenSet);
-            _strikeThrough.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Topic = topic;
+        IsStrikeThrough = strikeThrough;
     }
     
+    private PropertyValue<Topic> _topic = new PropertyValue<Topic>(nameof(UnfurlDetailsIssueTopic), nameof(Topic));
+    
+    [Required]
+    [JsonPropertyName("topic")]
+    public Topic Topic
+    {
+        get => _topic.GetValue();
+        set => _topic.SetValue(value);
+    }
+
+    private PropertyValue<bool> _strikeThrough = new PropertyValue<bool>(nameof(UnfurlDetailsIssueTopic), nameof(IsStrikeThrough));
+    
+    [Required]
+    [JsonPropertyName("strikeThrough")]
+    public bool IsStrikeThrough
+    {
+        get => _strikeThrough.GetValue();
+        set => _strikeThrough.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _topic.SetAccessPath(path, validateHasBeenSet);
+        _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

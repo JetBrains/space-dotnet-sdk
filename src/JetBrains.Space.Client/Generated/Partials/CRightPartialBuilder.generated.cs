@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CRightPartialBuilder
+namespace JetBrains.Space.Client.CRightPartialBuilder;
+
+public static class CRightPartialExtensions
 {
-    public static class CRightPartialExtensions
-    {
-        public static Partial<CRight> WithTypeCode(this Partial<CRight> it)
-            => it.AddFieldName("typeCode");
-        
-        public static Partial<CRight> WithCode(this Partial<CRight> it)
-            => it.AddFieldName("code");
-        
-        public static Partial<CRight> WithTitle(this Partial<CRight> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<CRight> WithDescription(this Partial<CRight> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<CRight> WithFeatureFlag(this Partial<CRight> it)
-            => it.AddFieldName("featureFlag");
-        
-        public static Partial<CRight> WithFeatureFlag(this Partial<CRight> it, Func<Partial<FeatureFlag>, Partial<FeatureFlag>> partialBuilder)
-            => it.AddFieldName("featureFlag", partialBuilder(new Partial<FeatureFlag>(it)));
-        
-    }
+    public static Partial<CRight> WithTypeCode(this Partial<CRight> it)
+        => it.AddFieldName("typeCode");
+    
+    public static Partial<CRight> WithCode(this Partial<CRight> it)
+        => it.AddFieldName("code");
+    
+    public static Partial<CRight> WithTitle(this Partial<CRight> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<CRight> WithDescription(this Partial<CRight> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<CRight> WithFeatureFlag(this Partial<CRight> it)
+        => it.AddFieldName("featureFlag");
+    
+    public static Partial<CRight> WithFeatureFlag(this Partial<CRight> it, Func<Partial<FeatureFlag>, Partial<FeatureFlag>> partialBuilder)
+        => it.AddFieldName("featureFlag", partialBuilder(new Partial<FeatureFlag>(it)));
     
 }
+

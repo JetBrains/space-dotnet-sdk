@@ -27,104 +27,103 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ProjectPackageRepository
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ProjectPackageRepository
-         : IPropagatePropertyAccessPath
+    public ProjectPackageRepository() { }
+    
+    public ProjectPackageRepository(string id, PRProject project, string name, PackageRepository repository, bool archived, List<PackageRepositoryConnection> connections, string? description = null)
     {
-        public ProjectPackageRepository() { }
-        
-        public ProjectPackageRepository(string id, PRProject project, string name, PackageRepository repository, bool archived, List<PackageRepositoryConnection> connections, string? description = null)
-        {
-            Id = id;
-            Project = project;
-            Name = name;
-            Description = description;
-            Repository = repository;
-            IsArchived = archived;
-            Connections = connections;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectPackageRepository), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(ProjectPackageRepository), nameof(Project));
-        
-        [Required]
-        [JsonPropertyName("project")]
-        public PRProject Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectPackageRepository), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectPackageRepository), nameof(Description));
-        
-        [JsonPropertyName("description")]
-        public string? Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<PackageRepository> _repository = new PropertyValue<PackageRepository>(nameof(ProjectPackageRepository), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public PackageRepository Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ProjectPackageRepository), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        private PropertyValue<List<PackageRepositoryConnection>> _connections = new PropertyValue<List<PackageRepositoryConnection>>(nameof(ProjectPackageRepository), nameof(Connections), new List<PackageRepositoryConnection>());
-        
-        [Required]
-        [JsonPropertyName("connections")]
-        public List<PackageRepositoryConnection> Connections
-        {
-            get => _connections.GetValue();
-            set => _connections.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-            _connections.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Project = project;
+        Name = name;
+        Description = description;
+        Repository = repository;
+        IsArchived = archived;
+        Connections = connections;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectPackageRepository), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(ProjectPackageRepository), nameof(Project));
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public PRProject Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectPackageRepository), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectPackageRepository), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<PackageRepository> _repository = new PropertyValue<PackageRepository>(nameof(ProjectPackageRepository), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public PackageRepository Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ProjectPackageRepository), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<List<PackageRepositoryConnection>> _connections = new PropertyValue<List<PackageRepositoryConnection>>(nameof(ProjectPackageRepository), nameof(Connections), new List<PackageRepositoryConnection>());
+    
+    [Required]
+    [JsonPropertyName("connections")]
+    public List<PackageRepositoryConnection> Connections
+    {
+        get => _connections.GetValue();
+        set => _connections.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _connections.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

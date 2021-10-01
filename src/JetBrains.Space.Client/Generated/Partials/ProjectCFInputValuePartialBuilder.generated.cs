@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectCFInputValuePartialBuilder
+namespace JetBrains.Space.Client.ProjectCFInputValuePartialBuilder;
+
+public static class ProjectCFInputValuePartialExtensions
 {
-    public static class ProjectCFInputValuePartialExtensions
-    {
-        public static Partial<ProjectCFInputValue> WithProject(this Partial<ProjectCFInputValue> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<ProjectCFInputValue> WithProject(this Partial<ProjectCFInputValue> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<ProjectIdentifier>(it)));
-        
-    }
+    public static Partial<ProjectCFInputValue> WithProject(this Partial<ProjectCFInputValue> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<ProjectCFInputValue> WithProject(this Partial<ProjectCFInputValue> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<ProjectIdentifier>(it)));
     
 }
+

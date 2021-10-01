@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum DocumentBodyType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum DocumentBodyType
-    {
-        [EnumMember(Value = "TEXT")]
-        TEXT,
-        
-        [EnumMember(Value = "CHECKLIST")]
-        CHECKLIST,
-        
-        [EnumMember(Value = "FILE")]
-        FILE,
-        
-    }
+    [EnumMember(Value = "TEXT")]
+    TEXT,
+    
+    [EnumMember(Value = "CHECKLIST")]
+    CHECKLIST,
+    
+    [EnumMember(Value = "FILE")]
+    FILE,
     
 }
+

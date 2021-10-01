@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PersonalDocumentContainerInfo
+     : DocumentContainerInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class PersonalDocumentContainerInfo
-         : DocumentContainerInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "PersonalDocumentContainerInfo";
+    
+    public PersonalDocumentContainerInfo() { }
+    
+    public PersonalDocumentContainerInfo(TDMemberProfile owner, DocumentFolderRecord? folder = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "PersonalDocumentContainerInfo";
-        
-        public PersonalDocumentContainerInfo() { }
-        
-        public PersonalDocumentContainerInfo(TDMemberProfile owner, DocumentFolderRecord? folder = null)
-        {
-            Owner = owner;
-            Folder = folder;
-        }
-        
-        private PropertyValue<TDMemberProfile> _owner = new PropertyValue<TDMemberProfile>(nameof(PersonalDocumentContainerInfo), nameof(Owner));
-        
-        [Required]
-        [JsonPropertyName("owner")]
-        public TDMemberProfile Owner
-        {
-            get => _owner.GetValue();
-            set => _owner.SetValue(value);
-        }
-    
-        private PropertyValue<DocumentFolderRecord?> _folder = new PropertyValue<DocumentFolderRecord?>(nameof(PersonalDocumentContainerInfo), nameof(Folder));
-        
-        [JsonPropertyName("folder")]
-        public DocumentFolderRecord? Folder
-        {
-            get => _folder.GetValue();
-            set => _folder.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _owner.SetAccessPath(path, validateHasBeenSet);
-            _folder.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Owner = owner;
+        Folder = folder;
     }
     
+    private PropertyValue<TDMemberProfile> _owner = new PropertyValue<TDMemberProfile>(nameof(PersonalDocumentContainerInfo), nameof(Owner));
+    
+    [Required]
+    [JsonPropertyName("owner")]
+    public TDMemberProfile Owner
+    {
+        get => _owner.GetValue();
+        set => _owner.SetValue(value);
+    }
+
+    private PropertyValue<DocumentFolderRecord?> _folder = new PropertyValue<DocumentFolderRecord?>(nameof(PersonalDocumentContainerInfo), nameof(Folder));
+    
+    [JsonPropertyName("folder")]
+    public DocumentFolderRecord? Folder
+    {
+        get => _folder.GetValue();
+        set => _folder.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _owner.SetAccessPath(path, validateHasBeenSet);
+        _folder.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

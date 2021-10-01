@@ -27,37 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsCodeReviewPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsCodeReviewPartialBuilder;
+
+public static class UnfurlDetailsCodeReviewPartialExtensions
 {
-    public static class UnfurlDetailsCodeReviewPartialExtensions
-    {
-        public static Partial<UnfurlDetailsCodeReview> WithReview(this Partial<UnfurlDetailsCodeReview> it)
-            => it.AddFieldName("review");
-        
-        public static Partial<UnfurlDetailsCodeReview> WithReview(this Partial<UnfurlDetailsCodeReview> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
-            => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecord>(it)));
-        
-        public static Partial<UnfurlDetailsCodeReview> WithIsWithIcon(this Partial<UnfurlDetailsCodeReview> it)
-            => it.AddFieldName("withIcon");
-        
-        public static Partial<UnfurlDetailsCodeReview> WithIsWithBranchPair(this Partial<UnfurlDetailsCodeReview> it)
-            => it.AddFieldName("withBranchPair");
-        
-        public static Partial<UnfurlDetailsCodeReview> WithDefaultBranchInRepo(this Partial<UnfurlDetailsCodeReview> it)
-            => it.AddFieldName("defaultBranchInRepo");
-        
-        public static Partial<UnfurlDetailsCodeReview> WithIsHideIfCannotResolve(this Partial<UnfurlDetailsCodeReview> it)
-            => it.AddFieldName("hideIfCannotResolve");
-        
-        public static Partial<UnfurlDetailsCodeReview> WithReviewState(this Partial<UnfurlDetailsCodeReview> it)
-            => it.AddFieldName("reviewState");
-        
-        public static Partial<UnfurlDetailsCodeReview> WithReviewState(this Partial<UnfurlDetailsCodeReview> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
-            => it.AddFieldName("reviewState", partialBuilder(new Partial<CodeReviewState>(it)));
-        
-        public static Partial<UnfurlDetailsCodeReview> WithIsMerged(this Partial<UnfurlDetailsCodeReview> it)
-            => it.AddFieldName("isMerged");
-        
-    }
+    public static Partial<UnfurlDetailsCodeReview> WithReview(this Partial<UnfurlDetailsCodeReview> it)
+        => it.AddFieldName("review");
+    
+    public static Partial<UnfurlDetailsCodeReview> WithReview(this Partial<UnfurlDetailsCodeReview> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
+        => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecord>(it)));
+    
+    public static Partial<UnfurlDetailsCodeReview> WithIsWithIcon(this Partial<UnfurlDetailsCodeReview> it)
+        => it.AddFieldName("withIcon");
+    
+    public static Partial<UnfurlDetailsCodeReview> WithIsWithBranchPair(this Partial<UnfurlDetailsCodeReview> it)
+        => it.AddFieldName("withBranchPair");
+    
+    public static Partial<UnfurlDetailsCodeReview> WithDefaultBranchInRepo(this Partial<UnfurlDetailsCodeReview> it)
+        => it.AddFieldName("defaultBranchInRepo");
+    
+    public static Partial<UnfurlDetailsCodeReview> WithIsHideIfCannotResolve(this Partial<UnfurlDetailsCodeReview> it)
+        => it.AddFieldName("hideIfCannotResolve");
+    
+    public static Partial<UnfurlDetailsCodeReview> WithReviewState(this Partial<UnfurlDetailsCodeReview> it)
+        => it.AddFieldName("reviewState");
+    
+    public static Partial<UnfurlDetailsCodeReview> WithReviewState(this Partial<UnfurlDetailsCodeReview> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
+        => it.AddFieldName("reviewState", partialBuilder(new Partial<CodeReviewState>(it)));
+    
+    public static Partial<UnfurlDetailsCodeReview> WithIsMerged(this Partial<UnfurlDetailsCodeReview> it)
+        => it.AddFieldName("isMerged");
     
 }
+

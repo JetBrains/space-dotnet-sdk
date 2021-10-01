@@ -27,26 +27,25 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum GitEntryType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum GitEntryType
-    {
-        [EnumMember(Value = "EXE_FILE")]
-        EXEFILE,
-        
-        [EnumMember(Value = "FILE")]
-        FILE,
-        
-        [EnumMember(Value = "DIR")]
-        DIR,
-        
-        [EnumMember(Value = "GIT_LINK")]
-        GITLINK,
-        
-        [EnumMember(Value = "SYM_LINK")]
-        SYMLINK,
-        
-    }
+    [EnumMember(Value = "EXE_FILE")]
+    EXEFILE,
+    
+    [EnumMember(Value = "FILE")]
+    FILE,
+    
+    [EnumMember(Value = "DIR")]
+    DIR,
+    
+    [EnumMember(Value = "GIT_LINK")]
+    GITLINK,
+    
+    [EnumMember(Value = "SYM_LINK")]
+    SYMLINK,
     
 }
+

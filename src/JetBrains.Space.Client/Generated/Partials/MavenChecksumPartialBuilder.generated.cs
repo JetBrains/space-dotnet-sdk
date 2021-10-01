@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MavenChecksumPartialBuilder
+namespace JetBrains.Space.Client.MavenChecksumPartialBuilder;
+
+public static class MavenChecksumPartialExtensions
 {
-    public static class MavenChecksumPartialExtensions
-    {
-        public static Partial<MavenChecksum> WithAlgorithm(this Partial<MavenChecksum> it)
-            => it.AddFieldName("algorithm");
-        
-        public static Partial<MavenChecksum> WithValue(this Partial<MavenChecksum> it)
-            => it.AddFieldName("value");
-        
-    }
+    public static Partial<MavenChecksum> WithAlgorithm(this Partial<MavenChecksum> it)
+        => it.AddFieldName("algorithm");
+    
+    public static Partial<MavenChecksum> WithValue(this Partial<MavenChecksum> it)
+        => it.AddFieldName("value");
     
 }
+

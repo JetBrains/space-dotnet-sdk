@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class CustomFieldsV2ValuesForEntityForCustomFieldPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class CustomFieldsV2ValuesForEntityForCustomFieldPostRequest
-         : IPropagatePropertyAccessPath
+    public CustomFieldsV2ValuesForEntityForCustomFieldPostRequest() { }
+    
+    public CustomFieldsV2ValuesForEntityForCustomFieldPostRequest(CFInputValue newValue)
     {
-        public CustomFieldsV2ValuesForEntityForCustomFieldPostRequest() { }
-        
-        public CustomFieldsV2ValuesForEntityForCustomFieldPostRequest(CFInputValue newValue)
-        {
-            NewValue = newValue;
-        }
-        
-        private PropertyValue<CFInputValue> _newValue = new PropertyValue<CFInputValue>(nameof(CustomFieldsV2ValuesForEntityForCustomFieldPostRequest), nameof(NewValue));
-        
-        [Required]
-        [JsonPropertyName("newValue")]
-        public CFInputValue NewValue
-        {
-            get => _newValue.GetValue();
-            set => _newValue.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _newValue.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        NewValue = newValue;
     }
     
+    private PropertyValue<CFInputValue> _newValue = new PropertyValue<CFInputValue>(nameof(CustomFieldsV2ValuesForEntityForCustomFieldPostRequest), nameof(NewValue));
+    
+    [Required]
+    [JsonPropertyName("newValue")]
+    public CFInputValue NewValue
+    {
+        get => _newValue.GetValue();
+        set => _newValue.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _newValue.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

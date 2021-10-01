@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueWebhookCustomFieldUpdatePartialBuilder
+namespace JetBrains.Space.Client.IssueWebhookCustomFieldUpdatePartialBuilder;
+
+public static class IssueWebhookCustomFieldUpdatePartialExtensions
 {
-    public static class IssueWebhookCustomFieldUpdatePartialExtensions
-    {
-        public static Partial<IssueWebhookCustomFieldUpdate> WithCustomField(this Partial<IssueWebhookCustomFieldUpdate> it)
-            => it.AddFieldName("customField");
-        
-        public static Partial<IssueWebhookCustomFieldUpdate> WithCustomField(this Partial<IssueWebhookCustomFieldUpdate> it, Func<Partial<CustomField>, Partial<CustomField>> partialBuilder)
-            => it.AddFieldName("customField", partialBuilder(new Partial<CustomField>(it)));
-        
-        public static Partial<IssueWebhookCustomFieldUpdate> WithMod(this Partial<IssueWebhookCustomFieldUpdate> it)
-            => it.AddFieldName("mod");
-        
-    }
+    public static Partial<IssueWebhookCustomFieldUpdate> WithCustomField(this Partial<IssueWebhookCustomFieldUpdate> it)
+        => it.AddFieldName("customField");
+    
+    public static Partial<IssueWebhookCustomFieldUpdate> WithCustomField(this Partial<IssueWebhookCustomFieldUpdate> it, Func<Partial<CustomField>, Partial<CustomField>> partialBuilder)
+        => it.AddFieldName("customField", partialBuilder(new Partial<CustomField>(it)));
+    
+    public static Partial<IssueWebhookCustomFieldUpdate> WithMod(this Partial<IssueWebhookCustomFieldUpdate> it)
+        => it.AddFieldName("mod");
     
 }
+

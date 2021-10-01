@@ -27,65 +27,64 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest() { }
+    
+    public TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest(bool? emailNotificationsEnabled = null, string? notificationEmail = null, bool? pushNotificationEnabled = null, int? desktopInactivityTimeout = null)
     {
-        public TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest() { }
-        
-        public TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest(bool? emailNotificationsEnabled = null, string? notificationEmail = null, bool? pushNotificationEnabled = null, int? desktopInactivityTimeout = null)
-        {
-            IsEmailNotificationsEnabled = emailNotificationsEnabled;
-            NotificationEmail = notificationEmail;
-            IsPushNotificationEnabled = pushNotificationEnabled;
-            DesktopInactivityTimeout = desktopInactivityTimeout;
-        }
-        
-        private PropertyValue<bool?> _emailNotificationsEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest), nameof(IsEmailNotificationsEnabled));
-        
-        [JsonPropertyName("emailNotificationsEnabled")]
-        public bool? IsEmailNotificationsEnabled
-        {
-            get => _emailNotificationsEnabled.GetValue();
-            set => _emailNotificationsEnabled.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _notificationEmail = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest), nameof(NotificationEmail));
-        
-        [JsonPropertyName("notificationEmail")]
-        public string? NotificationEmail
-        {
-            get => _notificationEmail.GetValue();
-            set => _notificationEmail.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _pushNotificationEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest), nameof(IsPushNotificationEnabled));
-        
-        [JsonPropertyName("pushNotificationEnabled")]
-        public bool? IsPushNotificationEnabled
-        {
-            get => _pushNotificationEnabled.GetValue();
-            set => _pushNotificationEnabled.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _desktopInactivityTimeout = new PropertyValue<int?>(nameof(TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest), nameof(DesktopInactivityTimeout));
-        
-        [JsonPropertyName("desktopInactivityTimeout")]
-        public int? DesktopInactivityTimeout
-        {
-            get => _desktopInactivityTimeout.GetValue();
-            set => _desktopInactivityTimeout.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _emailNotificationsEnabled.SetAccessPath(path, validateHasBeenSet);
-            _notificationEmail.SetAccessPath(path, validateHasBeenSet);
-            _pushNotificationEnabled.SetAccessPath(path, validateHasBeenSet);
-            _desktopInactivityTimeout.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        IsEmailNotificationsEnabled = emailNotificationsEnabled;
+        NotificationEmail = notificationEmail;
+        IsPushNotificationEnabled = pushNotificationEnabled;
+        DesktopInactivityTimeout = desktopInactivityTimeout;
     }
     
+    private PropertyValue<bool?> _emailNotificationsEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest), nameof(IsEmailNotificationsEnabled));
+    
+    [JsonPropertyName("emailNotificationsEnabled")]
+    public bool? IsEmailNotificationsEnabled
+    {
+        get => _emailNotificationsEnabled.GetValue();
+        set => _emailNotificationsEnabled.SetValue(value);
+    }
+
+    private PropertyValue<string?> _notificationEmail = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest), nameof(NotificationEmail));
+    
+    [JsonPropertyName("notificationEmail")]
+    public string? NotificationEmail
+    {
+        get => _notificationEmail.GetValue();
+        set => _notificationEmail.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _pushNotificationEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest), nameof(IsPushNotificationEnabled));
+    
+    [JsonPropertyName("pushNotificationEnabled")]
+    public bool? IsPushNotificationEnabled
+    {
+        get => _pushNotificationEnabled.GetValue();
+        set => _pushNotificationEnabled.SetValue(value);
+    }
+
+    private PropertyValue<int?> _desktopInactivityTimeout = new PropertyValue<int?>(nameof(TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest), nameof(DesktopInactivityTimeout));
+    
+    [JsonPropertyName("desktopInactivityTimeout")]
+    public int? DesktopInactivityTimeout
+    {
+        get => _desktopInactivityTimeout.GetValue();
+        set => _desktopInactivityTimeout.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _emailNotificationsEnabled.SetAccessPath(path, validateHasBeenSet);
+        _notificationEmail.SetAccessPath(path, validateHasBeenSet);
+        _pushNotificationEnabled.SetAccessPath(path, validateHasBeenSet);
+        _desktopInactivityTimeout.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

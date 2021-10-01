@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChannelSpecificDefaultsPartialBuilder
+namespace JetBrains.Space.Client.ChannelSpecificDefaultsPartialBuilder;
+
+public static class ChannelSpecificDefaultsPartialExtensions
 {
-    public static class ChannelSpecificDefaultsPartialExtensions
-    {
-        public static Partial<ChannelSpecificDefaults> WithIsSubscribed(this Partial<ChannelSpecificDefaults> it)
-            => it.AddFieldName("subscribed");
-        
-        public static Partial<ChannelSpecificDefaults> WithFilter(this Partial<ChannelSpecificDefaults> it)
-            => it.AddFieldName("filter");
-        
-        public static Partial<ChannelSpecificDefaults> WithFilter(this Partial<ChannelSpecificDefaults> it, Func<Partial<NotificationFilter>, Partial<NotificationFilter>> partialBuilder)
-            => it.AddFieldName("filter", partialBuilder(new Partial<NotificationFilter>(it)));
-        
-        public static Partial<ChannelSpecificDefaults> WithIsPush(this Partial<ChannelSpecificDefaults> it)
-            => it.AddFieldName("push");
-        
-        public static Partial<ChannelSpecificDefaults> WithEmail(this Partial<ChannelSpecificDefaults> it)
-            => it.AddFieldName("email");
-        
-        public static Partial<ChannelSpecificDefaults> WithEmail(this Partial<ChannelSpecificDefaults> it, Func<Partial<M2EmailNotificationType>, Partial<M2EmailNotificationType>> partialBuilder)
-            => it.AddFieldName("email", partialBuilder(new Partial<M2EmailNotificationType>(it)));
-        
-        public static Partial<ChannelSpecificDefaults> WithIsThreadsSubscribed(this Partial<ChannelSpecificDefaults> it)
-            => it.AddFieldName("threadsSubscribed");
-        
-    }
+    public static Partial<ChannelSpecificDefaults> WithIsSubscribed(this Partial<ChannelSpecificDefaults> it)
+        => it.AddFieldName("subscribed");
+    
+    public static Partial<ChannelSpecificDefaults> WithFilter(this Partial<ChannelSpecificDefaults> it)
+        => it.AddFieldName("filter");
+    
+    public static Partial<ChannelSpecificDefaults> WithFilter(this Partial<ChannelSpecificDefaults> it, Func<Partial<NotificationFilter>, Partial<NotificationFilter>> partialBuilder)
+        => it.AddFieldName("filter", partialBuilder(new Partial<NotificationFilter>(it)));
+    
+    public static Partial<ChannelSpecificDefaults> WithIsPush(this Partial<ChannelSpecificDefaults> it)
+        => it.AddFieldName("push");
+    
+    public static Partial<ChannelSpecificDefaults> WithEmail(this Partial<ChannelSpecificDefaults> it)
+        => it.AddFieldName("email");
+    
+    public static Partial<ChannelSpecificDefaults> WithEmail(this Partial<ChannelSpecificDefaults> it, Func<Partial<M2EmailNotificationType>, Partial<M2EmailNotificationType>> partialBuilder)
+        => it.AddFieldName("email", partialBuilder(new Partial<M2EmailNotificationType>(it)));
+    
+    public static Partial<ChannelSpecificDefaults> WithIsThreadsSubscribed(this Partial<ChannelSpecificDefaults> it)
+        => it.AddFieldName("threadsSubscribed");
     
 }
+

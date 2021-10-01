@@ -27,93 +27,92 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitGraphLayoutEdge
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GitGraphLayoutEdge
-         : IPropagatePropertyAccessPath
+    public GitGraphLayoutEdge() { }
+    
+    public GitGraphLayoutEdge(int from, int to, GitGraphEdgeType type, GitGraphEdgeLineStyle style, bool hasArrow, int color)
     {
-        public GitGraphLayoutEdge() { }
-        
-        public GitGraphLayoutEdge(int from, int to, GitGraphEdgeType type, GitGraphEdgeLineStyle style, bool hasArrow, int color)
-        {
-            From = from;
-            To = to;
-            Type = type;
-            Style = style;
-            IsHasArrow = hasArrow;
-            Color = color;
-        }
-        
-        private PropertyValue<int> _from = new PropertyValue<int>(nameof(GitGraphLayoutEdge), nameof(From));
-        
-        [Required]
-        [JsonPropertyName("from")]
-        public int From
-        {
-            get => _from.GetValue();
-            set => _from.SetValue(value);
-        }
-    
-        private PropertyValue<int> _to = new PropertyValue<int>(nameof(GitGraphLayoutEdge), nameof(To));
-        
-        [Required]
-        [JsonPropertyName("to")]
-        public int To
-        {
-            get => _to.GetValue();
-            set => _to.SetValue(value);
-        }
-    
-        private PropertyValue<GitGraphEdgeType> _type = new PropertyValue<GitGraphEdgeType>(nameof(GitGraphLayoutEdge), nameof(Type));
-        
-        [Required]
-        [JsonPropertyName("type")]
-        public GitGraphEdgeType Type
-        {
-            get => _type.GetValue();
-            set => _type.SetValue(value);
-        }
-    
-        private PropertyValue<GitGraphEdgeLineStyle> _style = new PropertyValue<GitGraphEdgeLineStyle>(nameof(GitGraphLayoutEdge), nameof(Style));
-        
-        [Required]
-        [JsonPropertyName("style")]
-        public GitGraphEdgeLineStyle Style
-        {
-            get => _style.GetValue();
-            set => _style.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _hasArrow = new PropertyValue<bool>(nameof(GitGraphLayoutEdge), nameof(IsHasArrow));
-        
-        [Required]
-        [JsonPropertyName("hasArrow")]
-        public bool IsHasArrow
-        {
-            get => _hasArrow.GetValue();
-            set => _hasArrow.SetValue(value);
-        }
-    
-        private PropertyValue<int> _color = new PropertyValue<int>(nameof(GitGraphLayoutEdge), nameof(Color));
-        
-        [Required]
-        [JsonPropertyName("color")]
-        public int Color
-        {
-            get => _color.GetValue();
-            set => _color.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _from.SetAccessPath(path, validateHasBeenSet);
-            _to.SetAccessPath(path, validateHasBeenSet);
-            _type.SetAccessPath(path, validateHasBeenSet);
-            _style.SetAccessPath(path, validateHasBeenSet);
-            _hasArrow.SetAccessPath(path, validateHasBeenSet);
-            _color.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        From = from;
+        To = to;
+        Type = type;
+        Style = style;
+        IsHasArrow = hasArrow;
+        Color = color;
     }
     
+    private PropertyValue<int> _from = new PropertyValue<int>(nameof(GitGraphLayoutEdge), nameof(From));
+    
+    [Required]
+    [JsonPropertyName("from")]
+    public int From
+    {
+        get => _from.GetValue();
+        set => _from.SetValue(value);
+    }
+
+    private PropertyValue<int> _to = new PropertyValue<int>(nameof(GitGraphLayoutEdge), nameof(To));
+    
+    [Required]
+    [JsonPropertyName("to")]
+    public int To
+    {
+        get => _to.GetValue();
+        set => _to.SetValue(value);
+    }
+
+    private PropertyValue<GitGraphEdgeType> _type = new PropertyValue<GitGraphEdgeType>(nameof(GitGraphLayoutEdge), nameof(Type));
+    
+    [Required]
+    [JsonPropertyName("type")]
+    public GitGraphEdgeType Type
+    {
+        get => _type.GetValue();
+        set => _type.SetValue(value);
+    }
+
+    private PropertyValue<GitGraphEdgeLineStyle> _style = new PropertyValue<GitGraphEdgeLineStyle>(nameof(GitGraphLayoutEdge), nameof(Style));
+    
+    [Required]
+    [JsonPropertyName("style")]
+    public GitGraphEdgeLineStyle Style
+    {
+        get => _style.GetValue();
+        set => _style.SetValue(value);
+    }
+
+    private PropertyValue<bool> _hasArrow = new PropertyValue<bool>(nameof(GitGraphLayoutEdge), nameof(IsHasArrow));
+    
+    [Required]
+    [JsonPropertyName("hasArrow")]
+    public bool IsHasArrow
+    {
+        get => _hasArrow.GetValue();
+        set => _hasArrow.SetValue(value);
+    }
+
+    private PropertyValue<int> _color = new PropertyValue<int>(nameof(GitGraphLayoutEdge), nameof(Color));
+    
+    [Required]
+    [JsonPropertyName("color")]
+    public int Color
+    {
+        get => _color.GetValue();
+        set => _color.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _from.SetAccessPath(path, validateHasBeenSet);
+        _to.SetAccessPath(path, validateHasBeenSet);
+        _type.SetAccessPath(path, validateHasBeenSet);
+        _style.SetAccessPath(path, validateHasBeenSet);
+        _hasArrow.SetAccessPath(path, validateHasBeenSet);
+        _color.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

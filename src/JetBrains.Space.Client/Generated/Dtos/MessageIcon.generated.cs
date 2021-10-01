@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MessageIcon
+     : MessageAccessoryElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MessageIcon
-         : MessageAccessoryElement, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MessageIcon";
+    
+    public MessageIcon() { }
+    
+    public MessageIcon(ApiIcon icon, MessageStyle style)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MessageIcon";
-        
-        public MessageIcon() { }
-        
-        public MessageIcon(ApiIcon icon, MessageStyle style)
-        {
-            Icon = icon;
-            Style = style;
-        }
-        
-        private PropertyValue<ApiIcon> _icon = new PropertyValue<ApiIcon>(nameof(MessageIcon), nameof(Icon));
-        
-        [Required]
-        [JsonPropertyName("icon")]
-        public ApiIcon Icon
-        {
-            get => _icon.GetValue();
-            set => _icon.SetValue(value);
-        }
-    
-        private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(MessageIcon), nameof(Style));
-        
-        [Required]
-        [JsonPropertyName("style")]
-        public MessageStyle Style
-        {
-            get => _style.GetValue();
-            set => _style.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _icon.SetAccessPath(path, validateHasBeenSet);
-            _style.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Icon = icon;
+        Style = style;
     }
     
+    private PropertyValue<ApiIcon> _icon = new PropertyValue<ApiIcon>(nameof(MessageIcon), nameof(Icon));
+    
+    [Required]
+    [JsonPropertyName("icon")]
+    public ApiIcon Icon
+    {
+        get => _icon.GetValue();
+        set => _icon.SetValue(value);
+    }
+
+    private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(MessageIcon), nameof(Style));
+    
+    [Required]
+    [JsonPropertyName("style")]
+    public MessageStyle Style
+    {
+        get => _style.GetValue();
+        set => _style.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _icon.SetAccessPath(path, validateHasBeenSet);
+        _style.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

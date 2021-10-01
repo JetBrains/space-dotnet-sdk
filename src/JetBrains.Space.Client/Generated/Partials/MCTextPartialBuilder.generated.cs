@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MCTextPartialBuilder
+namespace JetBrains.Space.Client.MCTextPartialBuilder;
+
+public static class MCTextPartialExtensions
 {
-    public static class MCTextPartialExtensions
-    {
-        public static Partial<MCText> WithContent(this Partial<MCText> it)
-            => it.AddFieldName("content");
-        
-        public static Partial<MCText> WithIsMarkdown(this Partial<MCText> it)
-            => it.AddFieldName("markdown");
-        
-        public static Partial<MCText> WithAccessory(this Partial<MCText> it)
-            => it.AddFieldName("accessory");
-        
-        public static Partial<MCText> WithAccessory(this Partial<MCText> it, Func<Partial<MCElement>, Partial<MCElement>> partialBuilder)
-            => it.AddFieldName("accessory", partialBuilder(new Partial<MCElement>(it)));
-        
-    }
+    public static Partial<MCText> WithContent(this Partial<MCText> it)
+        => it.AddFieldName("content");
+    
+    public static Partial<MCText> WithIsMarkdown(this Partial<MCText> it)
+        => it.AddFieldName("markdown");
+    
+    public static Partial<MCText> WithAccessory(this Partial<MCText> it)
+        => it.AddFieldName("accessory");
+    
+    public static Partial<MCText> WithAccessory(this Partial<MCText> it, Func<Partial<MCElement>, Partial<MCElement>> partialBuilder)
+        => it.AddFieldName("accessory", partialBuilder(new Partial<MCElement>(it)));
     
 }
+

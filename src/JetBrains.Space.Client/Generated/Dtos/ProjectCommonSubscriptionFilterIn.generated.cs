@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ProjectCommonSubscriptionFilterIn
+     : SubscriptionFilterIn, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ProjectCommonSubscriptionFilterIn
-         : SubscriptionFilterIn, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ProjectCommonSubscriptionFilterIn";
+    
+    public ProjectCommonSubscriptionFilterIn() { }
+    
+    public ProjectCommonSubscriptionFilterIn(string? project = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ProjectCommonSubscriptionFilterIn";
-        
-        public ProjectCommonSubscriptionFilterIn() { }
-        
-        public ProjectCommonSubscriptionFilterIn(string? project = null)
-        {
-            Project = project;
-        }
-        
-        private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(ProjectCommonSubscriptionFilterIn), nameof(Project));
-        
-        [JsonPropertyName("project")]
-        public string? Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _project.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Project = project;
     }
     
+    private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(ProjectCommonSubscriptionFilterIn), nameof(Project));
+    
+    [JsonPropertyName("project")]
+    public string? Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _project.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

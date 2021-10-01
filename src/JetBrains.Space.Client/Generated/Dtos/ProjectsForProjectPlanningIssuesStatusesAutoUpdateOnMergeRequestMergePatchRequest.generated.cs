@@ -27,32 +27,31 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest() { }
+    
+    public ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest(string? statusId = null)
     {
-        public ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest() { }
-        
-        public ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest(string? statusId = null)
-        {
-            StatusId = statusId;
-        }
-        
-        private PropertyValue<string?> _statusId = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest), nameof(StatusId));
-        
-        [JsonPropertyName("statusId")]
-        public string? StatusId
-        {
-            get => _statusId.GetValue();
-            set => _statusId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _statusId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        StatusId = statusId;
     }
     
+    private PropertyValue<string?> _statusId = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest), nameof(StatusId));
+    
+    [JsonPropertyName("statusId")]
+    public string? StatusId
+    {
+        get => _statusId.GetValue();
+        set => _statusId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _statusId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

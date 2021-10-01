@@ -27,32 +27,31 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MCClientSideAction
+     : IPropagatePropertyAccessPath
 {
-    public sealed class MCClientSideAction
-         : IPropagatePropertyAccessPath
+    public MCClientSideAction() { }
+    
+    public MCClientSideAction(ClientSideActionContext? context = null)
     {
-        public MCClientSideAction() { }
-        
-        public MCClientSideAction(ClientSideActionContext? context = null)
-        {
-            Context = context;
-        }
-        
-        private PropertyValue<ClientSideActionContext?> _context = new PropertyValue<ClientSideActionContext?>(nameof(MCClientSideAction), nameof(Context));
-        
-        [JsonPropertyName("context")]
-        public ClientSideActionContext? Context
-        {
-            get => _context.GetValue();
-            set => _context.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _context.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Context = context;
     }
     
+    private PropertyValue<ClientSideActionContext?> _context = new PropertyValue<ClientSideActionContext?>(nameof(MCClientSideAction), nameof(Context));
+    
+    [JsonPropertyName("context")]
+    public ClientSideActionContext? Context
+    {
+        get => _context.GetValue();
+        set => _context.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _context.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum JobSubscriptionType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum JobSubscriptionType
-    {
-        [EnumMember(Value = "ALL_FINISHED")]
-        ALLFINISHED,
-        
-        [EnumMember(Value = "FAILED")]
-        FAILED,
-        
-    }
+    [EnumMember(Value = "ALL_FINISHED")]
+    ALLFINISHED,
+    
+    [EnumMember(Value = "FAILED")]
+    FAILED,
     
 }
+

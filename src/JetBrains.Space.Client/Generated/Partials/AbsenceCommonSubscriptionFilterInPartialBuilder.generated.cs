@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AbsenceCommonSubscriptionFilterInPartialBuilder
+namespace JetBrains.Space.Client.AbsenceCommonSubscriptionFilterInPartialBuilder;
+
+public static class AbsenceCommonSubscriptionFilterInPartialExtensions
 {
-    public static class AbsenceCommonSubscriptionFilterInPartialExtensions
-    {
-        public static Partial<AbsenceCommonSubscriptionFilterIn> WithReasons(this Partial<AbsenceCommonSubscriptionFilterIn> it)
-            => it.AddFieldName("reasons");
-        
-    }
+    public static Partial<AbsenceCommonSubscriptionFilterIn> WithReasons(this Partial<AbsenceCommonSubscriptionFilterIn> it)
+        => it.AddFieldName("reasons");
     
 }
+

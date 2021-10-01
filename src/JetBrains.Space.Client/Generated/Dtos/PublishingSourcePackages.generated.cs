@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PublishingSourcePackages
+     : PublishingSource, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class PublishingSourcePackages
-         : PublishingSource, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "PublishingSource.Packages";
+    
+    public PublishingSourcePackages() { }
+    
+    public PublishingSourcePackages(List<PackageVersionRef> items)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "PublishingSource.Packages";
-        
-        public PublishingSourcePackages() { }
-        
-        public PublishingSourcePackages(List<PackageVersionRef> items)
-        {
-            Items = items;
-        }
-        
-        private PropertyValue<List<PackageVersionRef>> _items = new PropertyValue<List<PackageVersionRef>>(nameof(PublishingSourcePackages), nameof(Items), new List<PackageVersionRef>());
-        
-        [Required]
-        [JsonPropertyName("items")]
-        public List<PackageVersionRef> Items
-        {
-            get => _items.GetValue();
-            set => _items.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _items.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Items = items;
     }
     
+    private PropertyValue<List<PackageVersionRef>> _items = new PropertyValue<List<PackageVersionRef>>(nameof(PublishingSourcePackages), nameof(Items), new List<PackageVersionRef>());
+    
+    [Required]
+    [JsonPropertyName("items")]
+    public List<PackageVersionRef> Items
+    {
+        get => _items.GetValue();
+        set => _items.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _items.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

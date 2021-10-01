@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectRepositoriesForRepositoryCommitPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectRepositoriesForRepositoryCommitPostRequestPartialBuilder;
+
+public static class ProjectsForProjectRepositoriesForRepositoryCommitPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectRepositoriesForRepositoryCommitPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> WithBaseCommit(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> it)
-            => it.AddFieldName("baseCommit");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> WithTargetBranch(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> it)
-            => it.AddFieldName("targetBranch");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> WithCommitMessage(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> it)
-            => it.AddFieldName("commitMessage");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> WithFiles(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> it)
-            => it.AddFieldName("files");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> WithFiles(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> it, Func<Partial<GitCommitFileRequest>, Partial<GitCommitFileRequest>> partialBuilder)
-            => it.AddFieldName("files", partialBuilder(new Partial<GitCommitFileRequest>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> WithBaseCommit(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> it)
+        => it.AddFieldName("baseCommit");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> WithTargetBranch(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> it)
+        => it.AddFieldName("targetBranch");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> WithCommitMessage(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> it)
+        => it.AddFieldName("commitMessage");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> WithFiles(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> it)
+        => it.AddFieldName("files");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> WithFiles(this Partial<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest> it, Func<Partial<GitCommitFileRequest>, Partial<GitCommitFileRequest>> partialBuilder)
+        => it.AddFieldName("files", partialBuilder(new Partial<GitCommitFileRequest>(it)));
     
 }
+

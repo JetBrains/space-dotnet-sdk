@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectAccessCollaboratorsTeamsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectAccessCollaboratorsTeamsPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectAccessCollaboratorsTeamsPostRequest() { }
+    
+    public ProjectsForProjectAccessCollaboratorsTeamsPostRequest(string teamId)
     {
-        public ProjectsForProjectAccessCollaboratorsTeamsPostRequest() { }
-        
-        public ProjectsForProjectAccessCollaboratorsTeamsPostRequest(string teamId)
-        {
-            TeamId = teamId;
-        }
-        
-        private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(ProjectsForProjectAccessCollaboratorsTeamsPostRequest), nameof(TeamId));
-        
-        [Required]
-        [JsonPropertyName("teamId")]
-        public string TeamId
-        {
-            get => _teamId.GetValue();
-            set => _teamId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _teamId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        TeamId = teamId;
     }
     
+    private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(ProjectsForProjectAccessCollaboratorsTeamsPostRequest), nameof(TeamId));
+    
+    [Required]
+    [JsonPropertyName("teamId")]
+    public string TeamId
+    {
+        get => _teamId.GetValue();
+        set => _teamId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _teamId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

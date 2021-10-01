@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GlobalScopePartialBuilder
+namespace JetBrains.Space.Client.GlobalScopePartialBuilder;
+
+public static class GlobalScopePartialExtensions
 {
-    public static class GlobalScopePartialExtensions
-    {
-    }
-    
 }
+

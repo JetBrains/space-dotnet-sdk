@@ -27,104 +27,103 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CertainReactionToItemRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CertainReactionToItemRecord
-         : IPropagatePropertyAccessPath
+    public CertainReactionToItemRecord() { }
+    
+    public CertainReactionToItemRecord(string id, string itemId, ReactionTypeRecord reaction, int count, bool meReacted, List<CPrincipal> principals, long? order = null)
     {
-        public CertainReactionToItemRecord() { }
-        
-        public CertainReactionToItemRecord(string id, string itemId, ReactionTypeRecord reaction, int count, bool meReacted, List<CPrincipal> principals, long? order = null)
-        {
-            Id = id;
-            ItemId = itemId;
-            Reaction = reaction;
-            Count = count;
-            IsMeReacted = meReacted;
-            Principals = principals;
-            Order = order;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CertainReactionToItemRecord), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<string> _itemId = new PropertyValue<string>(nameof(CertainReactionToItemRecord), nameof(ItemId));
-        
-        [Required]
-        [JsonPropertyName("itemId")]
-        public string ItemId
-        {
-            get => _itemId.GetValue();
-            set => _itemId.SetValue(value);
-        }
-    
-        private PropertyValue<ReactionTypeRecord> _reaction = new PropertyValue<ReactionTypeRecord>(nameof(CertainReactionToItemRecord), nameof(Reaction));
-        
-        [Required]
-        [JsonPropertyName("reaction")]
-        public ReactionTypeRecord Reaction
-        {
-            get => _reaction.GetValue();
-            set => _reaction.SetValue(value);
-        }
-    
-        private PropertyValue<int> _count = new PropertyValue<int>(nameof(CertainReactionToItemRecord), nameof(Count));
-        
-        [Required]
-        [JsonPropertyName("count")]
-        public int Count
-        {
-            get => _count.GetValue();
-            set => _count.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _meReacted = new PropertyValue<bool>(nameof(CertainReactionToItemRecord), nameof(IsMeReacted));
-        
-        [Required]
-        [JsonPropertyName("meReacted")]
-        public bool IsMeReacted
-        {
-            get => _meReacted.GetValue();
-            set => _meReacted.SetValue(value);
-        }
-    
-        private PropertyValue<List<CPrincipal>> _principals = new PropertyValue<List<CPrincipal>>(nameof(CertainReactionToItemRecord), nameof(Principals), new List<CPrincipal>());
-        
-        [Required]
-        [JsonPropertyName("principals")]
-        public List<CPrincipal> Principals
-        {
-            get => _principals.GetValue();
-            set => _principals.SetValue(value);
-        }
-    
-        private PropertyValue<long?> _order = new PropertyValue<long?>(nameof(CertainReactionToItemRecord), nameof(Order));
-        
-        [JsonPropertyName("order")]
-        public long? Order
-        {
-            get => _order.GetValue();
-            set => _order.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _itemId.SetAccessPath(path, validateHasBeenSet);
-            _reaction.SetAccessPath(path, validateHasBeenSet);
-            _count.SetAccessPath(path, validateHasBeenSet);
-            _meReacted.SetAccessPath(path, validateHasBeenSet);
-            _principals.SetAccessPath(path, validateHasBeenSet);
-            _order.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        ItemId = itemId;
+        Reaction = reaction;
+        Count = count;
+        IsMeReacted = meReacted;
+        Principals = principals;
+        Order = order;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CertainReactionToItemRecord), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string> _itemId = new PropertyValue<string>(nameof(CertainReactionToItemRecord), nameof(ItemId));
+    
+    [Required]
+    [JsonPropertyName("itemId")]
+    public string ItemId
+    {
+        get => _itemId.GetValue();
+        set => _itemId.SetValue(value);
+    }
+
+    private PropertyValue<ReactionTypeRecord> _reaction = new PropertyValue<ReactionTypeRecord>(nameof(CertainReactionToItemRecord), nameof(Reaction));
+    
+    [Required]
+    [JsonPropertyName("reaction")]
+    public ReactionTypeRecord Reaction
+    {
+        get => _reaction.GetValue();
+        set => _reaction.SetValue(value);
+    }
+
+    private PropertyValue<int> _count = new PropertyValue<int>(nameof(CertainReactionToItemRecord), nameof(Count));
+    
+    [Required]
+    [JsonPropertyName("count")]
+    public int Count
+    {
+        get => _count.GetValue();
+        set => _count.SetValue(value);
+    }
+
+    private PropertyValue<bool> _meReacted = new PropertyValue<bool>(nameof(CertainReactionToItemRecord), nameof(IsMeReacted));
+    
+    [Required]
+    [JsonPropertyName("meReacted")]
+    public bool IsMeReacted
+    {
+        get => _meReacted.GetValue();
+        set => _meReacted.SetValue(value);
+    }
+
+    private PropertyValue<List<CPrincipal>> _principals = new PropertyValue<List<CPrincipal>>(nameof(CertainReactionToItemRecord), nameof(Principals), new List<CPrincipal>());
+    
+    [Required]
+    [JsonPropertyName("principals")]
+    public List<CPrincipal> Principals
+    {
+        get => _principals.GetValue();
+        set => _principals.SetValue(value);
+    }
+
+    private PropertyValue<long?> _order = new PropertyValue<long?>(nameof(CertainReactionToItemRecord), nameof(Order));
+    
+    [JsonPropertyName("order")]
+    public long? Order
+    {
+        get => _order.GetValue();
+        set => _order.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _itemId.SetAccessPath(path, validateHasBeenSet);
+        _reaction.SetAccessPath(path, validateHasBeenSet);
+        _count.SetAccessPath(path, validateHasBeenSet);
+        _meReacted.SetAccessPath(path, validateHasBeenSet);
+        _principals.SetAccessPath(path, validateHasBeenSet);
+        _order.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

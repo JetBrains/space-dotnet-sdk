@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PercentageCFConstraintPartialBuilder
+namespace JetBrains.Space.Client.PercentageCFConstraintPartialBuilder;
+
+public static class PercentageCFConstraintPartialExtensions
 {
-    public static class PercentageCFConstraintPartialExtensions
-    {
-    }
-    
 }
+

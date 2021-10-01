@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitFileContentPartialBuilder
+namespace JetBrains.Space.Client.GitFileContentPartialBuilder;
+
+public static class GitFileContentPartialExtensions
 {
-    public static class GitFileContentPartialExtensions
-    {
-    }
-    
 }
+

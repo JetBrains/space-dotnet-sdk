@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NavBarMenuItemPartialBuilder
+namespace JetBrains.Space.Client.NavBarMenuItemPartialBuilder;
+
+public static class NavBarMenuItemPartialExtensions
 {
-    public static class NavBarMenuItemPartialExtensions
-    {
-        public static Partial<NavBarMenuItem> WithItem(this Partial<NavBarMenuItem> it)
-            => it.AddFieldName("item");
-        
-        public static Partial<NavBarMenuItem> WithIsEnabled(this Partial<NavBarMenuItem> it)
-            => it.AddFieldName("enabled");
-        
-    }
+    public static Partial<NavBarMenuItem> WithItem(this Partial<NavBarMenuItem> it)
+        => it.AddFieldName("item");
+    
+    public static Partial<NavBarMenuItem> WithIsEnabled(this Partial<NavBarMenuItem> it)
+        => it.AddFieldName("enabled");
     
 }
+

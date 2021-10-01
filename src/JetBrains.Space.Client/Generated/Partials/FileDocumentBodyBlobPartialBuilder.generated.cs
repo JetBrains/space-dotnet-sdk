@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FileDocumentBodyBlobPartialBuilder
+namespace JetBrains.Space.Client.FileDocumentBodyBlobPartialBuilder;
+
+public static class FileDocumentBodyBlobPartialExtensions
 {
-    public static class FileDocumentBodyBlobPartialExtensions
-    {
-        public static Partial<FileDocumentBodyBlob> WithVersionId(this Partial<FileDocumentBodyBlob> it)
-            => it.AddFieldName("versionId");
-        
-        public static Partial<FileDocumentBodyBlob> WithMediaType(this Partial<FileDocumentBodyBlob> it)
-            => it.AddFieldName("mediaType");
-        
-        public static Partial<FileDocumentBodyBlob> WithFileSize(this Partial<FileDocumentBodyBlob> it)
-            => it.AddFieldName("fileSize");
-        
-    }
+    public static Partial<FileDocumentBodyBlob> WithVersionId(this Partial<FileDocumentBodyBlob> it)
+        => it.AddFieldName("versionId");
+    
+    public static Partial<FileDocumentBodyBlob> WithMediaType(this Partial<FileDocumentBodyBlob> it)
+        => it.AddFieldName("mediaType");
+    
+    public static Partial<FileDocumentBodyBlob> WithFileSize(this Partial<FileDocumentBodyBlob> it)
+        => it.AddFieldName("fileSize");
     
 }
+

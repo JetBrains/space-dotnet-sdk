@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RepositoryUrlsPartialBuilder
+namespace JetBrains.Space.Client.RepositoryUrlsPartialBuilder;
+
+public static class RepositoryUrlsPartialExtensions
 {
-    public static class RepositoryUrlsPartialExtensions
-    {
-        public static Partial<RepositoryUrls> WithHttpUrl(this Partial<RepositoryUrls> it)
-            => it.AddFieldName("httpUrl");
-        
-        public static Partial<RepositoryUrls> WithSshUrl(this Partial<RepositoryUrls> it)
-            => it.AddFieldName("sshUrl");
-        
-        public static Partial<RepositoryUrls> WithSshHost(this Partial<RepositoryUrls> it)
-            => it.AddFieldName("sshHost");
-        
-    }
+    public static Partial<RepositoryUrls> WithHttpUrl(this Partial<RepositoryUrls> it)
+        => it.AddFieldName("httpUrl");
+    
+    public static Partial<RepositoryUrls> WithSshUrl(this Partial<RepositoryUrls> it)
+        => it.AddFieldName("sshUrl");
+    
+    public static Partial<RepositoryUrls> WithSshHost(this Partial<RepositoryUrls> it)
+        => it.AddFieldName("sshHost");
     
 }
+

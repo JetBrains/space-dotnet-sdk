@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest
-         : IPropagatePropertyAccessPath
+    public CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest() { }
+    
+    public CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest(List<CFEnumValueModification> enumValueModifications)
     {
-        public CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest() { }
-        
-        public CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest(List<CFEnumValueModification> enumValueModifications)
-        {
-            EnumValueModifications = enumValueModifications;
-        }
-        
-        private PropertyValue<List<CFEnumValueModification>> _enumValueModifications = new PropertyValue<List<CFEnumValueModification>>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest), nameof(EnumValueModifications), new List<CFEnumValueModification>());
-        
-        [Required]
-        [JsonPropertyName("enumValueModifications")]
-        public List<CFEnumValueModification> EnumValueModifications
-        {
-            get => _enumValueModifications.GetValue();
-            set => _enumValueModifications.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _enumValueModifications.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        EnumValueModifications = enumValueModifications;
     }
     
+    private PropertyValue<List<CFEnumValueModification>> _enumValueModifications = new PropertyValue<List<CFEnumValueModification>>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest), nameof(EnumValueModifications), new List<CFEnumValueModification>());
+    
+    [Required]
+    [JsonPropertyName("enumValueModifications")]
+    public List<CFEnumValueModification> EnumValueModifications
+    {
+        get => _enumValueModifications.GetValue();
+        set => _enumValueModifications.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _enumValueModifications.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

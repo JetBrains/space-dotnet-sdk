@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BoardColumnPartialBuilder
+namespace JetBrains.Space.Client.BoardColumnPartialBuilder;
+
+public static class BoardColumnPartialExtensions
 {
-    public static class BoardColumnPartialExtensions
-    {
-        public static Partial<BoardColumn> WithName(this Partial<BoardColumn> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<BoardColumn> WithStatuses(this Partial<BoardColumn> it)
-            => it.AddFieldName("statuses");
-        
-        public static Partial<BoardColumn> WithStatuses(this Partial<BoardColumn> it, Func<Partial<IssueStatus>, Partial<IssueStatus>> partialBuilder)
-            => it.AddFieldName("statuses", partialBuilder(new Partial<IssueStatus>(it)));
-        
-    }
+    public static Partial<BoardColumn> WithName(this Partial<BoardColumn> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<BoardColumn> WithStatuses(this Partial<BoardColumn> it)
+        => it.AddFieldName("statuses");
+    
+    public static Partial<BoardColumn> WithStatuses(this Partial<BoardColumn> it, Func<Partial<IssueStatus>, Partial<IssueStatus>> partialBuilder)
+        => it.AddFieldName("statuses", partialBuilder(new Partial<IssueStatus>(it)));
     
 }
+

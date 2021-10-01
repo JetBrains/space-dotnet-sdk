@@ -27,55 +27,54 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RetentionPolicyParams
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RetentionPolicyParams
-         : IPropagatePropertyAccessPath
+    public RetentionPolicyParams() { }
+    
+    public RetentionPolicyParams(bool retainDownloadedOnce, int? numberOfDaysToRetain = null, int? numberOfVersionsToRetain = null)
     {
-        public RetentionPolicyParams() { }
-        
-        public RetentionPolicyParams(bool retainDownloadedOnce, int? numberOfDaysToRetain = null, int? numberOfVersionsToRetain = null)
-        {
-            NumberOfDaysToRetain = numberOfDaysToRetain;
-            NumberOfVersionsToRetain = numberOfVersionsToRetain;
-            IsRetainDownloadedOnce = retainDownloadedOnce;
-        }
-        
-        private PropertyValue<int?> _numberOfDaysToRetain = new PropertyValue<int?>(nameof(RetentionPolicyParams), nameof(NumberOfDaysToRetain));
-        
-        [JsonPropertyName("numberOfDaysToRetain")]
-        public int? NumberOfDaysToRetain
-        {
-            get => _numberOfDaysToRetain.GetValue();
-            set => _numberOfDaysToRetain.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _numberOfVersionsToRetain = new PropertyValue<int?>(nameof(RetentionPolicyParams), nameof(NumberOfVersionsToRetain));
-        
-        [JsonPropertyName("numberOfVersionsToRetain")]
-        public int? NumberOfVersionsToRetain
-        {
-            get => _numberOfVersionsToRetain.GetValue();
-            set => _numberOfVersionsToRetain.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _retainDownloadedOnce = new PropertyValue<bool>(nameof(RetentionPolicyParams), nameof(IsRetainDownloadedOnce));
-        
-        [Required]
-        [JsonPropertyName("retainDownloadedOnce")]
-        public bool IsRetainDownloadedOnce
-        {
-            get => _retainDownloadedOnce.GetValue();
-            set => _retainDownloadedOnce.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _numberOfDaysToRetain.SetAccessPath(path, validateHasBeenSet);
-            _numberOfVersionsToRetain.SetAccessPath(path, validateHasBeenSet);
-            _retainDownloadedOnce.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        NumberOfDaysToRetain = numberOfDaysToRetain;
+        NumberOfVersionsToRetain = numberOfVersionsToRetain;
+        IsRetainDownloadedOnce = retainDownloadedOnce;
     }
     
+    private PropertyValue<int?> _numberOfDaysToRetain = new PropertyValue<int?>(nameof(RetentionPolicyParams), nameof(NumberOfDaysToRetain));
+    
+    [JsonPropertyName("numberOfDaysToRetain")]
+    public int? NumberOfDaysToRetain
+    {
+        get => _numberOfDaysToRetain.GetValue();
+        set => _numberOfDaysToRetain.SetValue(value);
+    }
+
+    private PropertyValue<int?> _numberOfVersionsToRetain = new PropertyValue<int?>(nameof(RetentionPolicyParams), nameof(NumberOfVersionsToRetain));
+    
+    [JsonPropertyName("numberOfVersionsToRetain")]
+    public int? NumberOfVersionsToRetain
+    {
+        get => _numberOfVersionsToRetain.GetValue();
+        set => _numberOfVersionsToRetain.SetValue(value);
+    }
+
+    private PropertyValue<bool> _retainDownloadedOnce = new PropertyValue<bool>(nameof(RetentionPolicyParams), nameof(IsRetainDownloadedOnce));
+    
+    [Required]
+    [JsonPropertyName("retainDownloadedOnce")]
+    public bool IsRetainDownloadedOnce
+    {
+        get => _retainDownloadedOnce.GetValue();
+        set => _retainDownloadedOnce.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _numberOfDaysToRetain.SetAccessPath(path, validateHasBeenSet);
+        _numberOfVersionsToRetain.SetAccessPath(path, validateHasBeenSet);
+        _retainDownloadedOnce.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

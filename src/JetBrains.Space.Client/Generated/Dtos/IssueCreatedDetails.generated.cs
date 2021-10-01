@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IssueCreatedDetails
+     : IssueChangedM2Details, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class IssueCreatedDetails
-         : IssueChangedM2Details, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "IssueCreatedDetails";
+    
+    public IssueCreatedDetails() { }
+    
+    public IssueCreatedDetails(Issue? issue = null, MessageLink? originMessage = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "IssueCreatedDetails";
-        
-        public IssueCreatedDetails() { }
-        
-        public IssueCreatedDetails(Issue? issue = null, MessageLink? originMessage = null)
-        {
-            Issue = issue;
-            OriginMessage = originMessage;
-        }
-        
-        private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(IssueCreatedDetails), nameof(Issue));
-        
-        [JsonPropertyName("issue")]
-        public Issue? Issue
-        {
-            get => _issue.GetValue();
-            set => _issue.SetValue(value);
-        }
-    
-        private PropertyValue<MessageLink?> _originMessage = new PropertyValue<MessageLink?>(nameof(IssueCreatedDetails), nameof(OriginMessage));
-        
-        [JsonPropertyName("originMessage")]
-        public MessageLink? OriginMessage
-        {
-            get => _originMessage.GetValue();
-            set => _originMessage.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _issue.SetAccessPath(path, validateHasBeenSet);
-            _originMessage.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Issue = issue;
+        OriginMessage = originMessage;
     }
     
+    private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(IssueCreatedDetails), nameof(Issue));
+    
+    [JsonPropertyName("issue")]
+    public Issue? Issue
+    {
+        get => _issue.GetValue();
+        set => _issue.SetValue(value);
+    }
+
+    private PropertyValue<MessageLink?> _originMessage = new PropertyValue<MessageLink?>(nameof(IssueCreatedDetails), nameof(OriginMessage));
+    
+    [JsonPropertyName("originMessage")]
+    public MessageLink? OriginMessage
+    {
+        get => _originMessage.GetValue();
+        set => _originMessage.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _issue.SetAccessPath(path, validateHasBeenSet);
+        _originMessage.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

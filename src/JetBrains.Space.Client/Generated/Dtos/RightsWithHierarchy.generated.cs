@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RightsWithHierarchy
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RightsWithHierarchy
-         : IPropagatePropertyAccessPath
+    public RightsWithHierarchy() { }
+    
+    public RightsWithHierarchy(List<RightTypeRight> rights, List<RightsGroup> rightsGroups, List<RightsDeps> deps)
     {
-        public RightsWithHierarchy() { }
-        
-        public RightsWithHierarchy(List<RightTypeRight> rights, List<RightsGroup> rightsGroups, List<RightsDeps> deps)
-        {
-            Rights = rights;
-            RightsGroups = rightsGroups;
-            Deps = deps;
-        }
-        
-        private PropertyValue<List<RightTypeRight>> _rights = new PropertyValue<List<RightTypeRight>>(nameof(RightsWithHierarchy), nameof(Rights), new List<RightTypeRight>());
-        
-        [Required]
-        [JsonPropertyName("rights")]
-        public List<RightTypeRight> Rights
-        {
-            get => _rights.GetValue();
-            set => _rights.SetValue(value);
-        }
-    
-        private PropertyValue<List<RightsGroup>> _rightsGroups = new PropertyValue<List<RightsGroup>>(nameof(RightsWithHierarchy), nameof(RightsGroups), new List<RightsGroup>());
-        
-        [Required]
-        [JsonPropertyName("rightsGroups")]
-        public List<RightsGroup> RightsGroups
-        {
-            get => _rightsGroups.GetValue();
-            set => _rightsGroups.SetValue(value);
-        }
-    
-        private PropertyValue<List<RightsDeps>> _deps = new PropertyValue<List<RightsDeps>>(nameof(RightsWithHierarchy), nameof(Deps), new List<RightsDeps>());
-        
-        [Required]
-        [JsonPropertyName("deps")]
-        public List<RightsDeps> Deps
-        {
-            get => _deps.GetValue();
-            set => _deps.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _rights.SetAccessPath(path, validateHasBeenSet);
-            _rightsGroups.SetAccessPath(path, validateHasBeenSet);
-            _deps.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Rights = rights;
+        RightsGroups = rightsGroups;
+        Deps = deps;
     }
     
+    private PropertyValue<List<RightTypeRight>> _rights = new PropertyValue<List<RightTypeRight>>(nameof(RightsWithHierarchy), nameof(Rights), new List<RightTypeRight>());
+    
+    [Required]
+    [JsonPropertyName("rights")]
+    public List<RightTypeRight> Rights
+    {
+        get => _rights.GetValue();
+        set => _rights.SetValue(value);
+    }
+
+    private PropertyValue<List<RightsGroup>> _rightsGroups = new PropertyValue<List<RightsGroup>>(nameof(RightsWithHierarchy), nameof(RightsGroups), new List<RightsGroup>());
+    
+    [Required]
+    [JsonPropertyName("rightsGroups")]
+    public List<RightsGroup> RightsGroups
+    {
+        get => _rightsGroups.GetValue();
+        set => _rightsGroups.SetValue(value);
+    }
+
+    private PropertyValue<List<RightsDeps>> _deps = new PropertyValue<List<RightsDeps>>(nameof(RightsWithHierarchy), nameof(Deps), new List<RightsDeps>());
+    
+    [Required]
+    [JsonPropertyName("deps")]
+    public List<RightsDeps> Deps
+    {
+        get => _deps.GetValue();
+        set => _deps.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _rights.SetAccessPath(path, validateHasBeenSet);
+        _rightsGroups.SetAccessPath(path, validateHasBeenSet);
+        _deps.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

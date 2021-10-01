@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FeatureFlagDatePartialBuilder
+namespace JetBrains.Space.Client.FeatureFlagDatePartialBuilder;
+
+public static class FeatureFlagDatePartialExtensions
 {
-    public static class FeatureFlagDatePartialExtensions
-    {
-        public static Partial<FeatureFlagDate> WithYear(this Partial<FeatureFlagDate> it)
-            => it.AddFieldName("year");
-        
-        public static Partial<FeatureFlagDate> WithMonth(this Partial<FeatureFlagDate> it)
-            => it.AddFieldName("month");
-        
-        public static Partial<FeatureFlagDate> WithDay(this Partial<FeatureFlagDate> it)
-            => it.AddFieldName("day");
-        
-    }
+    public static Partial<FeatureFlagDate> WithYear(this Partial<FeatureFlagDate> it)
+        => it.AddFieldName("year");
+    
+    public static Partial<FeatureFlagDate> WithMonth(this Partial<FeatureFlagDate> it)
+        => it.AddFieldName("month");
+    
+    public static Partial<FeatureFlagDate> WithDay(this Partial<FeatureFlagDate> it)
+        => it.AddFieldName("day");
     
 }
+

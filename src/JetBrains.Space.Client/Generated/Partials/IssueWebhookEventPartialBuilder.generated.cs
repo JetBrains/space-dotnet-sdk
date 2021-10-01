@@ -27,58 +27,57 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueWebhookEventPartialBuilder
+namespace JetBrains.Space.Client.IssueWebhookEventPartialBuilder;
+
+public static class IssueWebhookEventPartialExtensions
 {
-    public static class IssueWebhookEventPartialExtensions
-    {
-        public static Partial<IssueWebhookEvent> WithMeta(this Partial<IssueWebhookEvent> it)
-            => it.AddFieldName("meta");
-        
-        public static Partial<IssueWebhookEvent> WithMeta(this Partial<IssueWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-            => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
-        
-        public static Partial<IssueWebhookEvent> WithIssue(this Partial<IssueWebhookEvent> it)
-            => it.AddFieldName("issue");
-        
-        public static Partial<IssueWebhookEvent> WithIssue(this Partial<IssueWebhookEvent> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
-            => it.AddFieldName("issue", partialBuilder(new Partial<Issue>(it)));
-        
-        public static Partial<IssueWebhookEvent> WithTitle(this Partial<IssueWebhookEvent> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<IssueWebhookEvent> WithDescription(this Partial<IssueWebhookEvent> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<IssueWebhookEvent> WithAssignee(this Partial<IssueWebhookEvent> it)
-            => it.AddFieldName("assignee");
-        
-        public static Partial<IssueWebhookEvent> WithStatus(this Partial<IssueWebhookEvent> it)
-            => it.AddFieldName("status");
-        
-        public static Partial<IssueWebhookEvent> WithDueDate(this Partial<IssueWebhookEvent> it)
-            => it.AddFieldName("dueDate");
-        
-        public static Partial<IssueWebhookEvent> WithTagDelta(this Partial<IssueWebhookEvent> it)
-            => it.AddFieldName("tagDelta");
-        
-        public static Partial<IssueWebhookEvent> WithTopicDelta(this Partial<IssueWebhookEvent> it)
-            => it.AddFieldName("topicDelta");
-        
-        public static Partial<IssueWebhookEvent> WithChecklistDelta(this Partial<IssueWebhookEvent> it)
-            => it.AddFieldName("checklistDelta");
-        
-        public static Partial<IssueWebhookEvent> WithSprintDelta(this Partial<IssueWebhookEvent> it)
-            => it.AddFieldName("sprintDelta");
-        
-        public static Partial<IssueWebhookEvent> WithCustomFieldUpdate(this Partial<IssueWebhookEvent> it)
-            => it.AddFieldName("customFieldUpdate");
-        
-        public static Partial<IssueWebhookEvent> WithCustomFieldUpdate(this Partial<IssueWebhookEvent> it, Func<Partial<IssueWebhookCustomFieldUpdate>, Partial<IssueWebhookCustomFieldUpdate>> partialBuilder)
-            => it.AddFieldName("customFieldUpdate", partialBuilder(new Partial<IssueWebhookCustomFieldUpdate>(it)));
-        
-        public static Partial<IssueWebhookEvent> WithDeleted(this Partial<IssueWebhookEvent> it)
-            => it.AddFieldName("deleted");
-        
-    }
+    public static Partial<IssueWebhookEvent> WithMeta(this Partial<IssueWebhookEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<IssueWebhookEvent> WithMeta(this Partial<IssueWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<IssueWebhookEvent> WithIssue(this Partial<IssueWebhookEvent> it)
+        => it.AddFieldName("issue");
+    
+    public static Partial<IssueWebhookEvent> WithIssue(this Partial<IssueWebhookEvent> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
+        => it.AddFieldName("issue", partialBuilder(new Partial<Issue>(it)));
+    
+    public static Partial<IssueWebhookEvent> WithTitle(this Partial<IssueWebhookEvent> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<IssueWebhookEvent> WithDescription(this Partial<IssueWebhookEvent> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<IssueWebhookEvent> WithAssignee(this Partial<IssueWebhookEvent> it)
+        => it.AddFieldName("assignee");
+    
+    public static Partial<IssueWebhookEvent> WithStatus(this Partial<IssueWebhookEvent> it)
+        => it.AddFieldName("status");
+    
+    public static Partial<IssueWebhookEvent> WithDueDate(this Partial<IssueWebhookEvent> it)
+        => it.AddFieldName("dueDate");
+    
+    public static Partial<IssueWebhookEvent> WithTagDelta(this Partial<IssueWebhookEvent> it)
+        => it.AddFieldName("tagDelta");
+    
+    public static Partial<IssueWebhookEvent> WithTopicDelta(this Partial<IssueWebhookEvent> it)
+        => it.AddFieldName("topicDelta");
+    
+    public static Partial<IssueWebhookEvent> WithChecklistDelta(this Partial<IssueWebhookEvent> it)
+        => it.AddFieldName("checklistDelta");
+    
+    public static Partial<IssueWebhookEvent> WithSprintDelta(this Partial<IssueWebhookEvent> it)
+        => it.AddFieldName("sprintDelta");
+    
+    public static Partial<IssueWebhookEvent> WithCustomFieldUpdate(this Partial<IssueWebhookEvent> it)
+        => it.AddFieldName("customFieldUpdate");
+    
+    public static Partial<IssueWebhookEvent> WithCustomFieldUpdate(this Partial<IssueWebhookEvent> it, Func<Partial<IssueWebhookCustomFieldUpdate>, Partial<IssueWebhookCustomFieldUpdate>> partialBuilder)
+        => it.AddFieldName("customFieldUpdate", partialBuilder(new Partial<IssueWebhookCustomFieldUpdate>(it)));
+    
+    public static Partial<IssueWebhookEvent> WithDeleted(this Partial<IssueWebhookEvent> it)
+        => it.AddFieldName("deleted");
     
 }
+

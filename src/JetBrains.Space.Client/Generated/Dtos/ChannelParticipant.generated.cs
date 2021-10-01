@@ -27,56 +27,55 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ChannelParticipant
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ChannelParticipant
-         : IPropagatePropertyAccessPath
+    public ChannelParticipant() { }
+    
+    public ChannelParticipant(CPrincipal principal, int messageCount, int? pendingMessageCount = null)
     {
-        public ChannelParticipant() { }
-        
-        public ChannelParticipant(CPrincipal principal, int messageCount, int? pendingMessageCount = null)
-        {
-            Principal = principal;
-            MessageCount = messageCount;
-            PendingMessageCount = pendingMessageCount;
-        }
-        
-        private PropertyValue<CPrincipal> _principal = new PropertyValue<CPrincipal>(nameof(ChannelParticipant), nameof(Principal));
-        
-        [Required]
-        [JsonPropertyName("principal")]
-        public CPrincipal Principal
-        {
-            get => _principal.GetValue();
-            set => _principal.SetValue(value);
-        }
-    
-        private PropertyValue<int> _messageCount = new PropertyValue<int>(nameof(ChannelParticipant), nameof(MessageCount));
-        
-        [Required]
-        [JsonPropertyName("messageCount")]
-        public int MessageCount
-        {
-            get => _messageCount.GetValue();
-            set => _messageCount.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _pendingMessageCount = new PropertyValue<int?>(nameof(ChannelParticipant), nameof(PendingMessageCount));
-        
-        [JsonPropertyName("pendingMessageCount")]
-        public int? PendingMessageCount
-        {
-            get => _pendingMessageCount.GetValue();
-            set => _pendingMessageCount.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _principal.SetAccessPath(path, validateHasBeenSet);
-            _messageCount.SetAccessPath(path, validateHasBeenSet);
-            _pendingMessageCount.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Principal = principal;
+        MessageCount = messageCount;
+        PendingMessageCount = pendingMessageCount;
     }
     
+    private PropertyValue<CPrincipal> _principal = new PropertyValue<CPrincipal>(nameof(ChannelParticipant), nameof(Principal));
+    
+    [Required]
+    [JsonPropertyName("principal")]
+    public CPrincipal Principal
+    {
+        get => _principal.GetValue();
+        set => _principal.SetValue(value);
+    }
+
+    private PropertyValue<int> _messageCount = new PropertyValue<int>(nameof(ChannelParticipant), nameof(MessageCount));
+    
+    [Required]
+    [JsonPropertyName("messageCount")]
+    public int MessageCount
+    {
+        get => _messageCount.GetValue();
+        set => _messageCount.SetValue(value);
+    }
+
+    private PropertyValue<int?> _pendingMessageCount = new PropertyValue<int?>(nameof(ChannelParticipant), nameof(PendingMessageCount));
+    
+    [JsonPropertyName("pendingMessageCount")]
+    public int? PendingMessageCount
+    {
+        get => _pendingMessageCount.GetValue();
+        set => _pendingMessageCount.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _principal.SetAccessPath(path, validateHasBeenSet);
+        _messageCount.SetAccessPath(path, validateHasBeenSet);
+        _pendingMessageCount.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

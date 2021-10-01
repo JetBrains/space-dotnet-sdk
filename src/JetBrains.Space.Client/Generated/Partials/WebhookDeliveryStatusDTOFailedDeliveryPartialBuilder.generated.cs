@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.WebhookDeliveryStatusDTOFailedDeliveryPartialBuilder
+namespace JetBrains.Space.Client.WebhookDeliveryStatusDTOFailedDeliveryPartialBuilder;
+
+public static class WebhookDeliveryStatusDTOFailedDeliveryPartialExtensions
 {
-    public static class WebhookDeliveryStatusDTOFailedDeliveryPartialExtensions
-    {
-        public static Partial<WebhookDeliveryStatusDTOFailedDelivery> WithDeliveryId(this Partial<WebhookDeliveryStatusDTOFailedDelivery> it)
-            => it.AddFieldName("deliveryId");
-        
-        public static Partial<WebhookDeliveryStatusDTOFailedDelivery> WithResponseCode(this Partial<WebhookDeliveryStatusDTOFailedDelivery> it)
-            => it.AddFieldName("responseCode");
-        
-        public static Partial<WebhookDeliveryStatusDTOFailedDelivery> WithMessage(this Partial<WebhookDeliveryStatusDTOFailedDelivery> it)
-            => it.AddFieldName("message");
-        
-        public static Partial<WebhookDeliveryStatusDTOFailedDelivery> WithSentTime(this Partial<WebhookDeliveryStatusDTOFailedDelivery> it)
-            => it.AddFieldName("sentTime");
-        
-    }
+    public static Partial<WebhookDeliveryStatusDTOFailedDelivery> WithDeliveryId(this Partial<WebhookDeliveryStatusDTOFailedDelivery> it)
+        => it.AddFieldName("deliveryId");
+    
+    public static Partial<WebhookDeliveryStatusDTOFailedDelivery> WithResponseCode(this Partial<WebhookDeliveryStatusDTOFailedDelivery> it)
+        => it.AddFieldName("responseCode");
+    
+    public static Partial<WebhookDeliveryStatusDTOFailedDelivery> WithMessage(this Partial<WebhookDeliveryStatusDTOFailedDelivery> it)
+        => it.AddFieldName("message");
+    
+    public static Partial<WebhookDeliveryStatusDTOFailedDelivery> WithSentTime(this Partial<WebhookDeliveryStatusDTOFailedDelivery> it)
+        => it.AddFieldName("sentTime");
     
 }
+

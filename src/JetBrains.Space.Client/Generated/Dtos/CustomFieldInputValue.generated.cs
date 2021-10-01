@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CustomFieldInputValue
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CustomFieldInputValue
-         : IPropagatePropertyAccessPath
+    public CustomFieldInputValue() { }
+    
+    public CustomFieldInputValue(string fieldId, CFInputValue value)
     {
-        public CustomFieldInputValue() { }
-        
-        public CustomFieldInputValue(string fieldId, CFInputValue value)
-        {
-            FieldId = fieldId;
-            Value = value;
-        }
-        
-        private PropertyValue<string> _fieldId = new PropertyValue<string>(nameof(CustomFieldInputValue), nameof(FieldId));
-        
-        [Required]
-        [JsonPropertyName("fieldId")]
-        public string FieldId
-        {
-            get => _fieldId.GetValue();
-            set => _fieldId.SetValue(value);
-        }
-    
-        private PropertyValue<CFInputValue> _value = new PropertyValue<CFInputValue>(nameof(CustomFieldInputValue), nameof(Value));
-        
-        [Required]
-        [JsonPropertyName("value")]
-        public CFInputValue Value
-        {
-            get => _value.GetValue();
-            set => _value.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _fieldId.SetAccessPath(path, validateHasBeenSet);
-            _value.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        FieldId = fieldId;
+        Value = value;
     }
     
+    private PropertyValue<string> _fieldId = new PropertyValue<string>(nameof(CustomFieldInputValue), nameof(FieldId));
+    
+    [Required]
+    [JsonPropertyName("fieldId")]
+    public string FieldId
+    {
+        get => _fieldId.GetValue();
+        set => _fieldId.SetValue(value);
+    }
+
+    private PropertyValue<CFInputValue> _value = new PropertyValue<CFInputValue>(nameof(CustomFieldInputValue), nameof(Value));
+    
+    [Required]
+    [JsonPropertyName("value")]
+    public CFInputValue Value
+    {
+        get => _value.GetValue();
+        set => _value.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _fieldId.SetAccessPath(path, validateHasBeenSet);
+        _value.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

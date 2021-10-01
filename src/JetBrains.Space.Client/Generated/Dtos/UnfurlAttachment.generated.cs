@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlAttachment
+     : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlAttachment
-         : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlAttachment";
+    
+    public UnfurlAttachment() { }
+    
+    public UnfurlAttachment(Unfurl unfurl, string id)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlAttachment";
-        
-        public UnfurlAttachment() { }
-        
-        public UnfurlAttachment(Unfurl unfurl, string id)
-        {
-            Unfurl = unfurl;
-            Id = id;
-        }
-        
-        private PropertyValue<Unfurl> _unfurl = new PropertyValue<Unfurl>(nameof(UnfurlAttachment), nameof(Unfurl));
-        
-        [Required]
-        [JsonPropertyName("unfurl")]
-        public Unfurl Unfurl
-        {
-            get => _unfurl.GetValue();
-            set => _unfurl.SetValue(value);
-        }
-    
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(UnfurlAttachment), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _unfurl.SetAccessPath(path, validateHasBeenSet);
-            _id.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Unfurl = unfurl;
+        Id = id;
     }
     
+    private PropertyValue<Unfurl> _unfurl = new PropertyValue<Unfurl>(nameof(UnfurlAttachment), nameof(Unfurl));
+    
+    [Required]
+    [JsonPropertyName("unfurl")]
+    public Unfurl Unfurl
+    {
+        get => _unfurl.GetValue();
+        set => _unfurl.SetValue(value);
+    }
+
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(UnfurlAttachment), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _unfurl.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RecurrenceRule
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RecurrenceRule
-         : IPropagatePropertyAccessPath
+    public RecurrenceRule() { }
+    
+    public RecurrenceRule(RecurrenceRuleFreq freq, RecurrenceRuleEnds ends)
     {
-        public RecurrenceRule() { }
-        
-        public RecurrenceRule(RecurrenceRuleFreq freq, RecurrenceRuleEnds ends)
-        {
-            Freq = freq;
-            Ends = ends;
-        }
-        
-        private PropertyValue<RecurrenceRuleFreq> _freq = new PropertyValue<RecurrenceRuleFreq>(nameof(RecurrenceRule), nameof(Freq));
-        
-        [Required]
-        [JsonPropertyName("freq")]
-        public RecurrenceRuleFreq Freq
-        {
-            get => _freq.GetValue();
-            set => _freq.SetValue(value);
-        }
-    
-        private PropertyValue<RecurrenceRuleEnds> _ends = new PropertyValue<RecurrenceRuleEnds>(nameof(RecurrenceRule), nameof(Ends));
-        
-        [Required]
-        [JsonPropertyName("ends")]
-        public RecurrenceRuleEnds Ends
-        {
-            get => _ends.GetValue();
-            set => _ends.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _freq.SetAccessPath(path, validateHasBeenSet);
-            _ends.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Freq = freq;
+        Ends = ends;
     }
     
+    private PropertyValue<RecurrenceRuleFreq> _freq = new PropertyValue<RecurrenceRuleFreq>(nameof(RecurrenceRule), nameof(Freq));
+    
+    [Required]
+    [JsonPropertyName("freq")]
+    public RecurrenceRuleFreq Freq
+    {
+        get => _freq.GetValue();
+        set => _freq.SetValue(value);
+    }
+
+    private PropertyValue<RecurrenceRuleEnds> _ends = new PropertyValue<RecurrenceRuleEnds>(nameof(RecurrenceRule), nameof(Ends));
+    
+    [Required]
+    [JsonPropertyName("ends")]
+    public RecurrenceRuleEnds Ends
+    {
+        get => _ends.GetValue();
+        set => _ends.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _freq.SetAccessPath(path, validateHasBeenSet);
+        _ends.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

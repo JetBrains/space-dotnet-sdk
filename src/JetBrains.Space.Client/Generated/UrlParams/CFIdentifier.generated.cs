@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class CFIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class CFIdentifier : IUrlParameter
+    public static CFIdentifier Id(string id)
+        => new CFIdentifierId(id);
+    
+    public static CFIdentifier Name(string name)
+        => new CFIdentifierName(name);
+    
+    private class CFIdentifierId : CFIdentifier
     {
-        public static CFIdentifier Id(string id)
-            => new CFIdentifierId(id);
+        private readonly string _id;
         
-        public static CFIdentifier Name(string name)
-            => new CFIdentifierName(name);
-        
-        private class CFIdentifierId : CFIdentifier
+        public CFIdentifierId(string id)
         {
-            private readonly string _id;
-            
-            public CFIdentifierId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
-        private class CFIdentifierName : CFIdentifier
+        public override string ToString()
+            => $"id:{_id}";
+    }
+    
+    private class CFIdentifierName : CFIdentifier
+    {
+        private readonly string _name;
+        
+        public CFIdentifierName(string name)
         {
-            private readonly string _name;
-            
-            public CFIdentifierName(string name)
-            {
-                _name = name;
-            }
-            
-            public override string ToString()
-                => $"name:{_name}";
+            _name = name;
         }
         
+        public override string ToString()
+            => $"name:{_name}";
     }
     
 }
+

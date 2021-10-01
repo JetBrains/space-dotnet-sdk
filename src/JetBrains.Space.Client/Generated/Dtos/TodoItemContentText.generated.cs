@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TodoItemContentText
+     : TodoItemContent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class TodoItemContentText
-         : TodoItemContent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "TodoItemContentText";
+    
+    public TodoItemContentText() { }
+    
+    public TodoItemContentText(string text)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "TodoItemContentText";
-        
-        public TodoItemContentText() { }
-        
-        public TodoItemContentText(string text)
-        {
-            Text = text;
-        }
-        
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoItemContentText), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _text.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Text = text;
     }
     
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoItemContentText), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _text.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

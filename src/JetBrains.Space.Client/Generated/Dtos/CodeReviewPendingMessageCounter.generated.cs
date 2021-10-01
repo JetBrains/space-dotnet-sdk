@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CodeReviewPendingMessageCounter
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CodeReviewPendingMessageCounter
-         : IPropagatePropertyAccessPath
+    public CodeReviewPendingMessageCounter() { }
+    
+    public CodeReviewPendingMessageCounter(string id, bool archived)
     {
-        public CodeReviewPendingMessageCounter() { }
-        
-        public CodeReviewPendingMessageCounter(string id, bool archived)
-        {
-            Id = id;
-            IsArchived = archived;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewPendingMessageCounter), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeReviewPendingMessageCounter), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        IsArchived = archived;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewPendingMessageCounter), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeReviewPendingMessageCounter), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

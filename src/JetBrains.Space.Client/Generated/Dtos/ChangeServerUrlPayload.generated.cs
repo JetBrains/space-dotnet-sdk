@@ -27,70 +27,69 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ChangeServerUrlPayload
+     : ApplicationPayload, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ChangeServerUrlPayload
-         : ApplicationPayload, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ChangeServerUrlPayload";
+    
+    public ChangeServerUrlPayload() { }
+    
+    public ChangeServerUrlPayload(string newServerUrl, string clientId, string? userId = null, string? verificationToken = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ChangeServerUrlPayload";
-        
-        public ChangeServerUrlPayload() { }
-        
-        public ChangeServerUrlPayload(string newServerUrl, string clientId, string? userId = null, string? verificationToken = null)
-        {
-            NewServerUrl = newServerUrl;
-            ClientId = clientId;
-            UserId = userId;
-            VerificationToken = verificationToken;
-        }
-        
-        private PropertyValue<string> _newServerUrl = new PropertyValue<string>(nameof(ChangeServerUrlPayload), nameof(NewServerUrl));
-        
-        [Required]
-        [JsonPropertyName("newServerUrl")]
-        public string NewServerUrl
-        {
-            get => _newServerUrl.GetValue();
-            set => _newServerUrl.SetValue(value);
-        }
-    
-        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ChangeServerUrlPayload), nameof(ClientId));
-        
-        [Required]
-        [JsonPropertyName("clientId")]
-        public string ClientId
-        {
-            get => _clientId.GetValue();
-            set => _clientId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _userId = new PropertyValue<string?>(nameof(ChangeServerUrlPayload), nameof(UserId));
-        
-        [JsonPropertyName("userId")]
-        public string? UserId
-        {
-            get => _userId.GetValue();
-            set => _userId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(ChangeServerUrlPayload), nameof(VerificationToken));
-        
-        [JsonPropertyName("verificationToken")]
-        public string? VerificationToken
-        {
-            get => _verificationToken.GetValue();
-            set => _verificationToken.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _newServerUrl.SetAccessPath(path, validateHasBeenSet);
-            _clientId.SetAccessPath(path, validateHasBeenSet);
-            _userId.SetAccessPath(path, validateHasBeenSet);
-            _verificationToken.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        NewServerUrl = newServerUrl;
+        ClientId = clientId;
+        UserId = userId;
+        VerificationToken = verificationToken;
     }
     
+    private PropertyValue<string> _newServerUrl = new PropertyValue<string>(nameof(ChangeServerUrlPayload), nameof(NewServerUrl));
+    
+    [Required]
+    [JsonPropertyName("newServerUrl")]
+    public string NewServerUrl
+    {
+        get => _newServerUrl.GetValue();
+        set => _newServerUrl.SetValue(value);
+    }
+
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ChangeServerUrlPayload), nameof(ClientId));
+    
+    [Required]
+    [JsonPropertyName("clientId")]
+    public string ClientId
+    {
+        get => _clientId.GetValue();
+        set => _clientId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _userId = new PropertyValue<string?>(nameof(ChangeServerUrlPayload), nameof(UserId));
+    
+    [JsonPropertyName("userId")]
+    public string? UserId
+    {
+        get => _userId.GetValue();
+        set => _userId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(ChangeServerUrlPayload), nameof(VerificationToken));
+    
+    [JsonPropertyName("verificationToken")]
+    public string? VerificationToken
+    {
+        get => _verificationToken.GetValue();
+        set => _verificationToken.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _newServerUrl.SetAccessPath(path, validateHasBeenSet);
+        _clientId.SetAccessPath(path, validateHasBeenSet);
+        _userId.SetAccessPath(path, validateHasBeenSet);
+        _verificationToken.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,170 +27,169 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class Checklist
+     : IPropagatePropertyAccessPath
 {
-    public sealed class Checklist
-         : IPropagatePropertyAccessPath
+    public Checklist() { }
+    
+    public Checklist(string id, bool archived, string name, int totalItemsCount, int doneItemsCount, string? projectId = null, PRProject? project = null, Issue? issue = null, TDMemberProfile? owner = null, PlanItem? root = null, PlanningTag? rootTag = null, string? description = null, DateTime? updatedTime = null)
     {
-        public Checklist() { }
-        
-        public Checklist(string id, bool archived, string name, int totalItemsCount, int doneItemsCount, string? projectId = null, PRProject? project = null, Issue? issue = null, TDMemberProfile? owner = null, PlanItem? root = null, PlanningTag? rootTag = null, string? description = null, DateTime? updatedTime = null)
-        {
-            Id = id;
-            IsArchived = archived;
-            ProjectId = projectId;
-            Project = project;
-            Issue = issue;
-            Owner = owner;
-            Name = name;
-            Root = root;
-            RootTag = rootTag;
-            Description = description;
-            TotalItemsCount = totalItemsCount;
-            DoneItemsCount = doneItemsCount;
-            UpdatedTime = updatedTime;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(Checklist), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Checklist), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _projectId = new PropertyValue<string?>(nameof(Checklist), nameof(ProjectId));
-        
-        [JsonPropertyName("projectId")]
-        public string? ProjectId
-        {
-            get => _projectId.GetValue();
-            set => _projectId.SetValue(value);
-        }
-    
-        private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(Checklist), nameof(Project));
-        
-        [JsonPropertyName("project")]
-        public PRProject? Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(Checklist), nameof(Issue));
-        
-        [JsonPropertyName("issue")]
-        public Issue? Issue
-        {
-            get => _issue.GetValue();
-            set => _issue.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberProfile?> _owner = new PropertyValue<TDMemberProfile?>(nameof(Checklist), nameof(Owner));
-        
-        [JsonPropertyName("owner")]
-        public TDMemberProfile? Owner
-        {
-            get => _owner.GetValue();
-            set => _owner.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(Checklist), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<PlanItem?> _root = new PropertyValue<PlanItem?>(nameof(Checklist), nameof(Root));
-        
-        [JsonPropertyName("root")]
-        public PlanItem? Root
-        {
-            get => _root.GetValue();
-            set => _root.SetValue(value);
-        }
-    
-        private PropertyValue<PlanningTag?> _rootTag = new PropertyValue<PlanningTag?>(nameof(Checklist), nameof(RootTag));
-        
-        [JsonPropertyName("rootTag")]
-        public PlanningTag? RootTag
-        {
-            get => _rootTag.GetValue();
-            set => _rootTag.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(Checklist), nameof(Description));
-        
-        [JsonPropertyName("description")]
-        public string? Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<int> _totalItemsCount = new PropertyValue<int>(nameof(Checklist), nameof(TotalItemsCount));
-        
-        [Required]
-        [JsonPropertyName("totalItemsCount")]
-        public int TotalItemsCount
-        {
-            get => _totalItemsCount.GetValue();
-            set => _totalItemsCount.SetValue(value);
-        }
-    
-        private PropertyValue<int> _doneItemsCount = new PropertyValue<int>(nameof(Checklist), nameof(DoneItemsCount));
-        
-        [Required]
-        [JsonPropertyName("doneItemsCount")]
-        public int DoneItemsCount
-        {
-            get => _doneItemsCount.GetValue();
-            set => _doneItemsCount.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _updatedTime = new PropertyValue<DateTime?>(nameof(Checklist), nameof(UpdatedTime));
-        
-        [JsonPropertyName("updatedTime")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? UpdatedTime
-        {
-            get => _updatedTime.GetValue();
-            set => _updatedTime.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-            _projectId.SetAccessPath(path, validateHasBeenSet);
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _issue.SetAccessPath(path, validateHasBeenSet);
-            _owner.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _root.SetAccessPath(path, validateHasBeenSet);
-            _rootTag.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _totalItemsCount.SetAccessPath(path, validateHasBeenSet);
-            _doneItemsCount.SetAccessPath(path, validateHasBeenSet);
-            _updatedTime.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        IsArchived = archived;
+        ProjectId = projectId;
+        Project = project;
+        Issue = issue;
+        Owner = owner;
+        Name = name;
+        Root = root;
+        RootTag = rootTag;
+        Description = description;
+        TotalItemsCount = totalItemsCount;
+        DoneItemsCount = doneItemsCount;
+        UpdatedTime = updatedTime;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Checklist), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Checklist), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<string?> _projectId = new PropertyValue<string?>(nameof(Checklist), nameof(ProjectId));
+    
+    [JsonPropertyName("projectId")]
+    public string? ProjectId
+    {
+        get => _projectId.GetValue();
+        set => _projectId.SetValue(value);
+    }
+
+    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(Checklist), nameof(Project));
+    
+    [JsonPropertyName("project")]
+    public PRProject? Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(Checklist), nameof(Issue));
+    
+    [JsonPropertyName("issue")]
+    public Issue? Issue
+    {
+        get => _issue.GetValue();
+        set => _issue.SetValue(value);
+    }
+
+    private PropertyValue<TDMemberProfile?> _owner = new PropertyValue<TDMemberProfile?>(nameof(Checklist), nameof(Owner));
+    
+    [JsonPropertyName("owner")]
+    public TDMemberProfile? Owner
+    {
+        get => _owner.GetValue();
+        set => _owner.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(Checklist), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<PlanItem?> _root = new PropertyValue<PlanItem?>(nameof(Checklist), nameof(Root));
+    
+    [JsonPropertyName("root")]
+    public PlanItem? Root
+    {
+        get => _root.GetValue();
+        set => _root.SetValue(value);
+    }
+
+    private PropertyValue<PlanningTag?> _rootTag = new PropertyValue<PlanningTag?>(nameof(Checklist), nameof(RootTag));
+    
+    [JsonPropertyName("rootTag")]
+    public PlanningTag? RootTag
+    {
+        get => _rootTag.GetValue();
+        set => _rootTag.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(Checklist), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<int> _totalItemsCount = new PropertyValue<int>(nameof(Checklist), nameof(TotalItemsCount));
+    
+    [Required]
+    [JsonPropertyName("totalItemsCount")]
+    public int TotalItemsCount
+    {
+        get => _totalItemsCount.GetValue();
+        set => _totalItemsCount.SetValue(value);
+    }
+
+    private PropertyValue<int> _doneItemsCount = new PropertyValue<int>(nameof(Checklist), nameof(DoneItemsCount));
+    
+    [Required]
+    [JsonPropertyName("doneItemsCount")]
+    public int DoneItemsCount
+    {
+        get => _doneItemsCount.GetValue();
+        set => _doneItemsCount.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _updatedTime = new PropertyValue<DateTime?>(nameof(Checklist), nameof(UpdatedTime));
+    
+    [JsonPropertyName("updatedTime")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? UpdatedTime
+    {
+        get => _updatedTime.GetValue();
+        set => _updatedTime.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _projectId.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(path, validateHasBeenSet);
+        _issue.SetAccessPath(path, validateHasBeenSet);
+        _owner.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _root.SetAccessPath(path, validateHasBeenSet);
+        _rootTag.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _totalItemsCount.SetAccessPath(path, validateHasBeenSet);
+        _doneItemsCount.SetAccessPath(path, validateHasBeenSet);
+        _updatedTime.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

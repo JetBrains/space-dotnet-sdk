@@ -27,123 +27,122 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest() { }
+    
+    public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest(string text, string repository, string revision, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null, ReviewIdentifier? reviewId = null)
     {
-        public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest() { }
-        
-        public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest(string text, string repository, string revision, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null, ReviewIdentifier? reviewId = null)
-        {
-            Text = text;
-            DiffContext = diffContext;
-            Repository = repository;
-            Revision = revision;
-            Filename = filename;
-            Line = line;
-            OldLine = oldLine;
-            IsPending = pending;
-            ReviewId = reviewId;
-        }
-        
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        private PropertyValue<DiffContext?> _diffContext = new PropertyValue<DiffContext?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(DiffContext));
-        
-        [JsonPropertyName("diffContext")]
-        public DiffContext? DiffContext
-        {
-            get => _diffContext.GetValue();
-            set => _diffContext.SetValue(value);
-        }
-    
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<string> _revision = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Revision));
-        
-        [Required]
-        [JsonPropertyName("revision")]
-        public string Revision
-        {
-            get => _revision.GetValue();
-            set => _revision.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _filename = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Filename));
-        
-        [JsonPropertyName("filename")]
-        public string? Filename
-        {
-            get => _filename.GetValue();
-            set => _filename.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _line = new PropertyValue<int?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Line));
-        
-        [JsonPropertyName("line")]
-        public int? Line
-        {
-            get => _line.GetValue();
-            set => _line.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _oldLine = new PropertyValue<int?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(OldLine));
-        
-        [JsonPropertyName("oldLine")]
-        public int? OldLine
-        {
-            get => _oldLine.GetValue();
-            set => _oldLine.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(IsPending));
-        
-        [JsonPropertyName("pending")]
-        public bool IsPending
-        {
-            get => _pending.GetValue();
-            set => _pending.SetValue(value);
-        }
-    
-        private PropertyValue<ReviewIdentifier?> _reviewId = new PropertyValue<ReviewIdentifier?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(ReviewId));
-        
-        [JsonPropertyName("reviewId")]
-        public ReviewIdentifier? ReviewId
-        {
-            get => _reviewId.GetValue();
-            set => _reviewId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _diffContext.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _revision.SetAccessPath(path, validateHasBeenSet);
-            _filename.SetAccessPath(path, validateHasBeenSet);
-            _line.SetAccessPath(path, validateHasBeenSet);
-            _oldLine.SetAccessPath(path, validateHasBeenSet);
-            _pending.SetAccessPath(path, validateHasBeenSet);
-            _reviewId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Text = text;
+        DiffContext = diffContext;
+        Repository = repository;
+        Revision = revision;
+        Filename = filename;
+        Line = line;
+        OldLine = oldLine;
+        IsPending = pending;
+        ReviewId = reviewId;
     }
     
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    private PropertyValue<DiffContext?> _diffContext = new PropertyValue<DiffContext?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(DiffContext));
+    
+    [JsonPropertyName("diffContext")]
+    public DiffContext? DiffContext
+    {
+        get => _diffContext.GetValue();
+        set => _diffContext.SetValue(value);
+    }
+
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public string Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Revision));
+    
+    [Required]
+    [JsonPropertyName("revision")]
+    public string Revision
+    {
+        get => _revision.GetValue();
+        set => _revision.SetValue(value);
+    }
+
+    private PropertyValue<string?> _filename = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Filename));
+    
+    [JsonPropertyName("filename")]
+    public string? Filename
+    {
+        get => _filename.GetValue();
+        set => _filename.SetValue(value);
+    }
+
+    private PropertyValue<int?> _line = new PropertyValue<int?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Line));
+    
+    [JsonPropertyName("line")]
+    public int? Line
+    {
+        get => _line.GetValue();
+        set => _line.SetValue(value);
+    }
+
+    private PropertyValue<int?> _oldLine = new PropertyValue<int?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(OldLine));
+    
+    [JsonPropertyName("oldLine")]
+    public int? OldLine
+    {
+        get => _oldLine.GetValue();
+        set => _oldLine.SetValue(value);
+    }
+
+    private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(IsPending));
+    
+    [JsonPropertyName("pending")]
+    public bool IsPending
+    {
+        get => _pending.GetValue();
+        set => _pending.SetValue(value);
+    }
+
+    private PropertyValue<ReviewIdentifier?> _reviewId = new PropertyValue<ReviewIdentifier?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(ReviewId));
+    
+    [JsonPropertyName("reviewId")]
+    public ReviewIdentifier? ReviewId
+    {
+        get => _reviewId.GetValue();
+        set => _reviewId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _text.SetAccessPath(path, validateHasBeenSet);
+        _diffContext.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _revision.SetAccessPath(path, validateHasBeenSet);
+        _filename.SetAccessPath(path, validateHasBeenSet);
+        _line.SetAccessPath(path, validateHasBeenSet);
+        _oldLine.SetAccessPath(path, validateHasBeenSet);
+        _pending.SetAccessPath(path, validateHasBeenSet);
+        _reviewId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class NpmPackageType
+     : PackageType, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class NpmPackageType
-         : PackageType, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "NpmPackageType";
+    
+    public NpmPackageType() { }
+    
+    public NpmPackageType(string id)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "NpmPackageType";
-        
-        public NpmPackageType() { }
-        
-        public NpmPackageType(string id)
-        {
-            Id = id;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(NpmPackageType), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(NpmPackageType), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

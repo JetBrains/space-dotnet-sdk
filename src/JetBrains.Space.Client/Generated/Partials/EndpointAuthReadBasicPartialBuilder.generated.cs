@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EndpointAuthReadBasicPartialBuilder
+namespace JetBrains.Space.Client.EndpointAuthReadBasicPartialBuilder;
+
+public static class EndpointAuthReadBasicPartialExtensions
 {
-    public static class EndpointAuthReadBasicPartialExtensions
-    {
-        public static Partial<EndpointAuthReadBasic> WithUsername(this Partial<EndpointAuthReadBasic> it)
-            => it.AddFieldName("username");
-        
-    }
+    public static Partial<EndpointAuthReadBasic> WithUsername(this Partial<EndpointAuthReadBasic> it)
+        => it.AddFieldName("username");
     
 }
+

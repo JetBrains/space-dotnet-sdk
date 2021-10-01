@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsPlanningBoardsForBoardPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsPlanningBoardsForBoardPatchRequestPartialBuilder;
+
+public static class ProjectsPlanningBoardsForBoardPatchRequestPartialExtensions
 {
-    public static class ProjectsPlanningBoardsForBoardPatchRequestPartialExtensions
-    {
-        public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithName(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithDescription(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithColumns(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it)
-            => it.AddFieldName("columns");
-        
-        public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithColumns(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it, Func<Partial<BoardColumns>, Partial<BoardColumns>> partialBuilder)
-            => it.AddFieldName("columns", partialBuilder(new Partial<BoardColumns>(it)));
-        
-        public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithMemberOwners(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it)
-            => it.AddFieldName("memberOwners");
-        
-        public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithTeamOwners(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it)
-            => it.AddFieldName("teamOwners");
-        
-    }
+    public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithName(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithDescription(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithColumns(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it)
+        => it.AddFieldName("columns");
+    
+    public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithColumns(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it, Func<Partial<BoardColumns>, Partial<BoardColumns>> partialBuilder)
+        => it.AddFieldName("columns", partialBuilder(new Partial<BoardColumns>(it)));
+    
+    public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithMemberOwners(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it)
+        => it.AddFieldName("memberOwners");
+    
+    public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithTeamOwners(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it)
+        => it.AddFieldName("teamOwners");
     
 }
+

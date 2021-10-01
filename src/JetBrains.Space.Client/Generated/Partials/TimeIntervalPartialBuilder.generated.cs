@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TimeIntervalPartialBuilder
+namespace JetBrains.Space.Client.TimeIntervalPartialBuilder;
+
+public static class TimeIntervalPartialExtensions
 {
-    public static class TimeIntervalPartialExtensions
-    {
-        public static Partial<TimeInterval> WithSince(this Partial<TimeInterval> it)
-            => it.AddFieldName("since");
-        
-        public static Partial<TimeInterval> WithSince(this Partial<TimeInterval> it, Func<Partial<TimeOfDay>, Partial<TimeOfDay>> partialBuilder)
-            => it.AddFieldName("since", partialBuilder(new Partial<TimeOfDay>(it)));
-        
-        public static Partial<TimeInterval> WithTill(this Partial<TimeInterval> it)
-            => it.AddFieldName("till");
-        
-        public static Partial<TimeInterval> WithTill(this Partial<TimeInterval> it, Func<Partial<TimeOfDay>, Partial<TimeOfDay>> partialBuilder)
-            => it.AddFieldName("till", partialBuilder(new Partial<TimeOfDay>(it)));
-        
-    }
+    public static Partial<TimeInterval> WithSince(this Partial<TimeInterval> it)
+        => it.AddFieldName("since");
+    
+    public static Partial<TimeInterval> WithSince(this Partial<TimeInterval> it, Func<Partial<TimeOfDay>, Partial<TimeOfDay>> partialBuilder)
+        => it.AddFieldName("since", partialBuilder(new Partial<TimeOfDay>(it)));
+    
+    public static Partial<TimeInterval> WithTill(this Partial<TimeInterval> it)
+        => it.AddFieldName("till");
+    
+    public static Partial<TimeInterval> WithTill(this Partial<TimeInterval> it, Func<Partial<TimeOfDay>, Partial<TimeOfDay>> partialBuilder)
+        => it.AddFieldName("till", partialBuilder(new Partial<TimeOfDay>(it)));
     
 }
+

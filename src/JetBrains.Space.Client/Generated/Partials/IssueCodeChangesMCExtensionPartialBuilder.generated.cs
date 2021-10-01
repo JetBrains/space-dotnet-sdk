@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueCodeChangesMCExtensionPartialBuilder
+namespace JetBrains.Space.Client.IssueCodeChangesMCExtensionPartialBuilder;
+
+public static class IssueCodeChangesMCExtensionPartialExtensions
 {
-    public static class IssueCodeChangesMCExtensionPartialExtensions
-    {
-    }
-    
 }
+

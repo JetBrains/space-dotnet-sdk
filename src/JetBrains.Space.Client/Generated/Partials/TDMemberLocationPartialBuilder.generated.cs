@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDMemberLocationPartialBuilder
+namespace JetBrains.Space.Client.TDMemberLocationPartialBuilder;
+
+public static class TDMemberLocationPartialExtensions
 {
-    public static class TDMemberLocationPartialExtensions
-    {
-        public static Partial<TDMemberLocation> WithId(this Partial<TDMemberLocation> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<TDMemberLocation> WithLocation(this Partial<TDMemberLocation> it)
-            => it.AddFieldName("location");
-        
-        public static Partial<TDMemberLocation> WithLocation(this Partial<TDMemberLocation> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
-            => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
-        
-        public static Partial<TDMemberLocation> WithLocationMapPoints(this Partial<TDMemberLocation> it)
-            => it.AddFieldName("locationMapPoints");
-        
-        public static Partial<TDMemberLocation> WithLocationMapPoints(this Partial<TDMemberLocation> it, Func<Partial<TDLocationMapPoint>, Partial<TDLocationMapPoint>> partialBuilder)
-            => it.AddFieldName("locationMapPoints", partialBuilder(new Partial<TDLocationMapPoint>(it)));
-        
-        public static Partial<TDMemberLocation> WithSince(this Partial<TDMemberLocation> it)
-            => it.AddFieldName("since");
-        
-        public static Partial<TDMemberLocation> WithTill(this Partial<TDMemberLocation> it)
-            => it.AddFieldName("till");
-        
-        public static Partial<TDMemberLocation> WithMember(this Partial<TDMemberLocation> it)
-            => it.AddFieldName("member");
-        
-        public static Partial<TDMemberLocation> WithMember(this Partial<TDMemberLocation> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("member", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<TDMemberLocation> WithIsArchived(this Partial<TDMemberLocation> it)
-            => it.AddFieldName("archived");
-        
-    }
+    public static Partial<TDMemberLocation> WithId(this Partial<TDMemberLocation> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<TDMemberLocation> WithLocation(this Partial<TDMemberLocation> it)
+        => it.AddFieldName("location");
+    
+    public static Partial<TDMemberLocation> WithLocation(this Partial<TDMemberLocation> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
+        => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
+    
+    public static Partial<TDMemberLocation> WithLocationMapPoints(this Partial<TDMemberLocation> it)
+        => it.AddFieldName("locationMapPoints");
+    
+    public static Partial<TDMemberLocation> WithLocationMapPoints(this Partial<TDMemberLocation> it, Func<Partial<TDLocationMapPoint>, Partial<TDLocationMapPoint>> partialBuilder)
+        => it.AddFieldName("locationMapPoints", partialBuilder(new Partial<TDLocationMapPoint>(it)));
+    
+    public static Partial<TDMemberLocation> WithSince(this Partial<TDMemberLocation> it)
+        => it.AddFieldName("since");
+    
+    public static Partial<TDMemberLocation> WithTill(this Partial<TDMemberLocation> it)
+        => it.AddFieldName("till");
+    
+    public static Partial<TDMemberLocation> WithMember(this Partial<TDMemberLocation> it)
+        => it.AddFieldName("member");
+    
+    public static Partial<TDMemberLocation> WithMember(this Partial<TDMemberLocation> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("member", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<TDMemberLocation> WithIsArchived(this Partial<TDMemberLocation> it)
+        => it.AddFieldName("archived");
     
 }
+

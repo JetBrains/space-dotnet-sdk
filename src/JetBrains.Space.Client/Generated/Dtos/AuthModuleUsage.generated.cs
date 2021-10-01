@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class AuthModuleUsage
+     : IPropagatePropertyAccessPath
 {
-    public sealed class AuthModuleUsage
-         : IPropagatePropertyAccessPath
+    public AuthModuleUsage() { }
+    
+    public AuthModuleUsage(ESAuthModule authModule, int profiles)
     {
-        public AuthModuleUsage() { }
-        
-        public AuthModuleUsage(ESAuthModule authModule, int profiles)
-        {
-            AuthModule = authModule;
-            Profiles = profiles;
-        }
-        
-        private PropertyValue<ESAuthModule> _authModule = new PropertyValue<ESAuthModule>(nameof(AuthModuleUsage), nameof(AuthModule));
-        
-        [Required]
-        [JsonPropertyName("authModule")]
-        public ESAuthModule AuthModule
-        {
-            get => _authModule.GetValue();
-            set => _authModule.SetValue(value);
-        }
-    
-        private PropertyValue<int> _profiles = new PropertyValue<int>(nameof(AuthModuleUsage), nameof(Profiles));
-        
-        [Required]
-        [JsonPropertyName("profiles")]
-        public int Profiles
-        {
-            get => _profiles.GetValue();
-            set => _profiles.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _authModule.SetAccessPath(path, validateHasBeenSet);
-            _profiles.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        AuthModule = authModule;
+        Profiles = profiles;
     }
     
+    private PropertyValue<ESAuthModule> _authModule = new PropertyValue<ESAuthModule>(nameof(AuthModuleUsage), nameof(AuthModule));
+    
+    [Required]
+    [JsonPropertyName("authModule")]
+    public ESAuthModule AuthModule
+    {
+        get => _authModule.GetValue();
+        set => _authModule.SetValue(value);
+    }
+
+    private PropertyValue<int> _profiles = new PropertyValue<int>(nameof(AuthModuleUsage), nameof(Profiles));
+    
+    [Required]
+    [JsonPropertyName("profiles")]
+    public int Profiles
+    {
+        get => _profiles.GetValue();
+        set => _profiles.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _authModule.SetAccessPath(path, validateHasBeenSet);
+        _profiles.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

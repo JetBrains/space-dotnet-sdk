@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitCommitSignatureNotVerifiedPartialBuilder
+namespace JetBrains.Space.Client.GitCommitSignatureNotVerifiedPartialBuilder;
+
+public static class GitCommitSignatureNotVerifiedPartialExtensions
 {
-    public static class GitCommitSignatureNotVerifiedPartialExtensions
-    {
-    }
-    
 }
+

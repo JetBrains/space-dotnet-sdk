@@ -27,49 +27,48 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryMembershipsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryMembershipsPostRequestPartialBuilder;
+
+public static class TeamDirectoryMembershipsPostRequestPartialExtensions
 {
-    public static class TeamDirectoryMembershipsPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithMember(this Partial<TeamDirectoryMembershipsPostRequest> it)
-            => it.AddFieldName("member");
-        
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithMember(this Partial<TeamDirectoryMembershipsPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("member", partialBuilder(new Partial<ProfileIdentifier>(it)));
-        
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithTeamId(this Partial<TeamDirectoryMembershipsPostRequest> it)
-            => it.AddFieldName("teamId");
-        
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithRoleId(this Partial<TeamDirectoryMembershipsPostRequest> it)
-            => it.AddFieldName("roleId");
-        
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithIsLead(this Partial<TeamDirectoryMembershipsPostRequest> it)
-            => it.AddFieldName("lead");
-        
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithManager(this Partial<TeamDirectoryMembershipsPostRequest> it)
-            => it.AddFieldName("manager");
-        
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithManager(this Partial<TeamDirectoryMembershipsPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("manager", partialBuilder(new Partial<ProfileIdentifier>(it)));
-        
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithActiveSince(this Partial<TeamDirectoryMembershipsPostRequest> it)
-            => it.AddFieldName("activeSince");
-        
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithActiveTill(this Partial<TeamDirectoryMembershipsPostRequest> it)
-            => it.AddFieldName("activeTill");
-        
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithPreviousMembershipId(this Partial<TeamDirectoryMembershipsPostRequest> it)
-            => it.AddFieldName("previousMembershipId");
-        
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithIsRequiresApproval(this Partial<TeamDirectoryMembershipsPostRequest> it)
-            => it.AddFieldName("requiresApproval");
-        
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsPostRequest> it)
-            => it.AddFieldName("customFieldValues");
-        
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsPostRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
-        
-    }
+    public static Partial<TeamDirectoryMembershipsPostRequest> WithMember(this Partial<TeamDirectoryMembershipsPostRequest> it)
+        => it.AddFieldName("member");
+    
+    public static Partial<TeamDirectoryMembershipsPostRequest> WithMember(this Partial<TeamDirectoryMembershipsPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+        => it.AddFieldName("member", partialBuilder(new Partial<ProfileIdentifier>(it)));
+    
+    public static Partial<TeamDirectoryMembershipsPostRequest> WithTeamId(this Partial<TeamDirectoryMembershipsPostRequest> it)
+        => it.AddFieldName("teamId");
+    
+    public static Partial<TeamDirectoryMembershipsPostRequest> WithRoleId(this Partial<TeamDirectoryMembershipsPostRequest> it)
+        => it.AddFieldName("roleId");
+    
+    public static Partial<TeamDirectoryMembershipsPostRequest> WithIsLead(this Partial<TeamDirectoryMembershipsPostRequest> it)
+        => it.AddFieldName("lead");
+    
+    public static Partial<TeamDirectoryMembershipsPostRequest> WithManager(this Partial<TeamDirectoryMembershipsPostRequest> it)
+        => it.AddFieldName("manager");
+    
+    public static Partial<TeamDirectoryMembershipsPostRequest> WithManager(this Partial<TeamDirectoryMembershipsPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+        => it.AddFieldName("manager", partialBuilder(new Partial<ProfileIdentifier>(it)));
+    
+    public static Partial<TeamDirectoryMembershipsPostRequest> WithActiveSince(this Partial<TeamDirectoryMembershipsPostRequest> it)
+        => it.AddFieldName("activeSince");
+    
+    public static Partial<TeamDirectoryMembershipsPostRequest> WithActiveTill(this Partial<TeamDirectoryMembershipsPostRequest> it)
+        => it.AddFieldName("activeTill");
+    
+    public static Partial<TeamDirectoryMembershipsPostRequest> WithPreviousMembershipId(this Partial<TeamDirectoryMembershipsPostRequest> it)
+        => it.AddFieldName("previousMembershipId");
+    
+    public static Partial<TeamDirectoryMembershipsPostRequest> WithIsRequiresApproval(this Partial<TeamDirectoryMembershipsPostRequest> it)
+        => it.AddFieldName("requiresApproval");
+    
+    public static Partial<TeamDirectoryMembershipsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsPostRequest> it)
+        => it.AddFieldName("customFieldValues");
+    
+    public static Partial<TeamDirectoryMembershipsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsPostRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+        => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
     
 }
+

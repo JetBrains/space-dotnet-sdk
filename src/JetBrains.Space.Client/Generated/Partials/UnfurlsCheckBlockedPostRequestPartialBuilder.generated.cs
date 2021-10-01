@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlsCheckBlockedPostRequestPartialBuilder
+namespace JetBrains.Space.Client.UnfurlsCheckBlockedPostRequestPartialBuilder;
+
+public static class UnfurlsCheckBlockedPostRequestPartialExtensions
 {
-    public static class UnfurlsCheckBlockedPostRequestPartialExtensions
-    {
-        public static Partial<UnfurlsCheckBlockedPostRequest> WithLink(this Partial<UnfurlsCheckBlockedPostRequest> it)
-            => it.AddFieldName("link");
-        
-    }
+    public static Partial<UnfurlsCheckBlockedPostRequest> WithLink(this Partial<UnfurlsCheckBlockedPostRequest> it)
+        => it.AddFieldName("link");
     
 }
+

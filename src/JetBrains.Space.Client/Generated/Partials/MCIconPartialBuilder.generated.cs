@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MCIconPartialBuilder
+namespace JetBrains.Space.Client.MCIconPartialBuilder;
+
+public static class MCIconPartialExtensions
 {
-    public static class MCIconPartialExtensions
-    {
-        public static Partial<MCIcon> WithName(this Partial<MCIcon> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<MCIcon> WithStyle(this Partial<MCIcon> it)
-            => it.AddFieldName("style");
-        
-    }
+    public static Partial<MCIcon> WithName(this Partial<MCIcon> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<MCIcon> WithStyle(this Partial<MCIcon> it)
+        => it.AddFieldName("style");
     
 }
+

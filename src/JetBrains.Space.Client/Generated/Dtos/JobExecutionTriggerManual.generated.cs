@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class JobExecutionTriggerManual
+     : JobExecutionTrigger, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class JobExecutionTriggerManual
-         : JobExecutionTrigger, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "JobExecutionTrigger.Manual";
+    
+    public JobExecutionTriggerManual() { }
+    
+    public JobExecutionTriggerManual(CPrincipal principal)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "JobExecutionTrigger.Manual";
-        
-        public JobExecutionTriggerManual() { }
-        
-        public JobExecutionTriggerManual(CPrincipal principal)
-        {
-            Principal = principal;
-        }
-        
-        private PropertyValue<CPrincipal> _principal = new PropertyValue<CPrincipal>(nameof(JobExecutionTriggerManual), nameof(Principal));
-        
-        [Required]
-        [JsonPropertyName("principal")]
-        public CPrincipal Principal
-        {
-            get => _principal.GetValue();
-            set => _principal.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _principal.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Principal = principal;
     }
     
+    private PropertyValue<CPrincipal> _principal = new PropertyValue<CPrincipal>(nameof(JobExecutionTriggerManual), nameof(Principal));
+    
+    [Required]
+    [JsonPropertyName("principal")]
+    public CPrincipal Principal
+    {
+        get => _principal.GetValue();
+        set => _principal.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _principal.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

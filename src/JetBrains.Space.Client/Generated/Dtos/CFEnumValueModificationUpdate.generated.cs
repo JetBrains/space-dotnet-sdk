@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CFEnumValueModificationUpdate
+     : CFEnumValueModification, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class CFEnumValueModificationUpdate
-         : CFEnumValueModification, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "CFEnumValueModification.Update";
+    
+    public CFEnumValueModificationUpdate() { }
+    
+    public CFEnumValueModificationUpdate(CFEnumValueIdentifier valueIdentifier, string newName)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "CFEnumValueModification.Update";
-        
-        public CFEnumValueModificationUpdate() { }
-        
-        public CFEnumValueModificationUpdate(CFEnumValueIdentifier valueIdentifier, string newName)
-        {
-            ValueIdentifier = valueIdentifier;
-            NewName = newName;
-        }
-        
-        private PropertyValue<CFEnumValueIdentifier> _valueIdentifier = new PropertyValue<CFEnumValueIdentifier>(nameof(CFEnumValueModificationUpdate), nameof(ValueIdentifier));
-        
-        [Required]
-        [JsonPropertyName("valueIdentifier")]
-        public CFEnumValueIdentifier ValueIdentifier
-        {
-            get => _valueIdentifier.GetValue();
-            set => _valueIdentifier.SetValue(value);
-        }
-    
-        private PropertyValue<string> _newName = new PropertyValue<string>(nameof(CFEnumValueModificationUpdate), nameof(NewName));
-        
-        [Required]
-        [JsonPropertyName("newName")]
-        public string NewName
-        {
-            get => _newName.GetValue();
-            set => _newName.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _valueIdentifier.SetAccessPath(path, validateHasBeenSet);
-            _newName.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ValueIdentifier = valueIdentifier;
+        NewName = newName;
     }
     
+    private PropertyValue<CFEnumValueIdentifier> _valueIdentifier = new PropertyValue<CFEnumValueIdentifier>(nameof(CFEnumValueModificationUpdate), nameof(ValueIdentifier));
+    
+    [Required]
+    [JsonPropertyName("valueIdentifier")]
+    public CFEnumValueIdentifier ValueIdentifier
+    {
+        get => _valueIdentifier.GetValue();
+        set => _valueIdentifier.SetValue(value);
+    }
+
+    private PropertyValue<string> _newName = new PropertyValue<string>(nameof(CFEnumValueModificationUpdate), nameof(NewName));
+    
+    [Required]
+    [JsonPropertyName("newName")]
+    public string NewName
+    {
+        get => _newName.GetValue();
+        set => _newName.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _valueIdentifier.SetAccessPath(path, validateHasBeenSet);
+        _newName.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

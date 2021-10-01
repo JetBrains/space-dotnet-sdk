@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.OpenEnumCFUpdateParametersPartialBuilder
+namespace JetBrains.Space.Client.OpenEnumCFUpdateParametersPartialBuilder;
+
+public static class OpenEnumCFUpdateParametersPartialExtensions
 {
-    public static class OpenEnumCFUpdateParametersPartialExtensions
-    {
-        public static Partial<OpenEnumCFUpdateParameters> WithModifications(this Partial<OpenEnumCFUpdateParameters> it)
-            => it.AddFieldName("modifications");
-        
-        public static Partial<OpenEnumCFUpdateParameters> WithModifications(this Partial<OpenEnumCFUpdateParameters> it, Func<Partial<CFEnumValueModification>, Partial<CFEnumValueModification>> partialBuilder)
-            => it.AddFieldName("modifications", partialBuilder(new Partial<CFEnumValueModification>(it)));
-        
-    }
+    public static Partial<OpenEnumCFUpdateParameters> WithModifications(this Partial<OpenEnumCFUpdateParameters> it)
+        => it.AddFieldName("modifications");
+    
+    public static Partial<OpenEnumCFUpdateParameters> WithModifications(this Partial<OpenEnumCFUpdateParameters> it, Func<Partial<CFEnumValueModification>, Partial<CFEnumValueModification>> partialBuilder)
+        => it.AddFieldName("modifications", partialBuilder(new Partial<CFEnumValueModification>(it)));
     
 }
+

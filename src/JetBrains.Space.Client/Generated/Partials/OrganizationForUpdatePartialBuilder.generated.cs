@@ -27,37 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.OrganizationForUpdatePartialBuilder
+namespace JetBrains.Space.Client.OrganizationForUpdatePartialBuilder;
+
+public static class OrganizationForUpdatePartialExtensions
 {
-    public static class OrganizationForUpdatePartialExtensions
-    {
-        public static Partial<OrganizationForUpdate> WithName(this Partial<OrganizationForUpdate> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<OrganizationForUpdate> WithSlogan(this Partial<OrganizationForUpdate> it)
-            => it.AddFieldName("slogan");
-        
-        public static Partial<OrganizationForUpdate> WithLogoSmall(this Partial<OrganizationForUpdate> it)
-            => it.AddFieldName("logoSmall");
-        
-        public static Partial<OrganizationForUpdate> WithLogo(this Partial<OrganizationForUpdate> it)
-            => it.AddFieldName("logo");
-        
-        public static Partial<OrganizationForUpdate> WithLogoId(this Partial<OrganizationForUpdate> it)
-            => it.AddFieldName("logoId");
-        
-        public static Partial<OrganizationForUpdate> WithSlackWorkspace(this Partial<OrganizationForUpdate> it)
-            => it.AddFieldName("slackWorkspace");
-        
-        public static Partial<OrganizationForUpdate> WithIsOnboardingRequired(this Partial<OrganizationForUpdate> it)
-            => it.AddFieldName("onboardingRequired");
-        
-        public static Partial<OrganizationForUpdate> WithTimezone(this Partial<OrganizationForUpdate> it)
-            => it.AddFieldName("timezone");
-        
-        public static Partial<OrganizationForUpdate> WithTimezone(this Partial<OrganizationForUpdate> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
-            => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
-        
-    }
+    public static Partial<OrganizationForUpdate> WithName(this Partial<OrganizationForUpdate> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<OrganizationForUpdate> WithSlogan(this Partial<OrganizationForUpdate> it)
+        => it.AddFieldName("slogan");
+    
+    public static Partial<OrganizationForUpdate> WithLogoSmall(this Partial<OrganizationForUpdate> it)
+        => it.AddFieldName("logoSmall");
+    
+    public static Partial<OrganizationForUpdate> WithLogo(this Partial<OrganizationForUpdate> it)
+        => it.AddFieldName("logo");
+    
+    public static Partial<OrganizationForUpdate> WithLogoId(this Partial<OrganizationForUpdate> it)
+        => it.AddFieldName("logoId");
+    
+    public static Partial<OrganizationForUpdate> WithSlackWorkspace(this Partial<OrganizationForUpdate> it)
+        => it.AddFieldName("slackWorkspace");
+    
+    public static Partial<OrganizationForUpdate> WithIsOnboardingRequired(this Partial<OrganizationForUpdate> it)
+        => it.AddFieldName("onboardingRequired");
+    
+    public static Partial<OrganizationForUpdate> WithTimezone(this Partial<OrganizationForUpdate> it)
+        => it.AddFieldName("timezone");
+    
+    public static Partial<OrganizationForUpdate> WithTimezone(this Partial<OrganizationForUpdate> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
+        => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
     
 }
+

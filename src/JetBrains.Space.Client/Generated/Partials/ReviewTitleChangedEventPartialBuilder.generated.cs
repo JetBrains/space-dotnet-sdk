@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ReviewTitleChangedEventPartialBuilder
+namespace JetBrains.Space.Client.ReviewTitleChangedEventPartialBuilder;
+
+public static class ReviewTitleChangedEventPartialExtensions
 {
-    public static class ReviewTitleChangedEventPartialExtensions
-    {
-        public static Partial<ReviewTitleChangedEvent> WithOldTitle(this Partial<ReviewTitleChangedEvent> it)
-            => it.AddFieldName("oldTitle");
-        
-        public static Partial<ReviewTitleChangedEvent> WithNewTitle(this Partial<ReviewTitleChangedEvent> it)
-            => it.AddFieldName("newTitle");
-        
-    }
+    public static Partial<ReviewTitleChangedEvent> WithOldTitle(this Partial<ReviewTitleChangedEvent> it)
+        => it.AddFieldName("oldTitle");
+    
+    public static Partial<ReviewTitleChangedEvent> WithNewTitle(this Partial<ReviewTitleChangedEvent> it)
+        => it.AddFieldName("newTitle");
     
 }
+

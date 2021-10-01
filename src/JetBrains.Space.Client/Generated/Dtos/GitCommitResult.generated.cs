@@ -27,78 +27,77 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitCommitResult
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GitCommitResult
-         : IPropagatePropertyAccessPath
+    public GitCommitResult() { }
+    
+    public GitCommitResult(bool success, string message, string? fromHead = null, string? toHead = null, string? resultCommitId = null)
     {
-        public GitCommitResult() { }
-        
-        public GitCommitResult(bool success, string message, string? fromHead = null, string? toHead = null, string? resultCommitId = null)
-        {
-            FromHead = fromHead;
-            ToHead = toHead;
-            IsSuccess = success;
-            Message = message;
-            ResultCommitId = resultCommitId;
-        }
-        
-        private PropertyValue<string?> _fromHead = new PropertyValue<string?>(nameof(GitCommitResult), nameof(FromHead));
-        
-        [JsonPropertyName("fromHead")]
-        public string? FromHead
-        {
-            get => _fromHead.GetValue();
-            set => _fromHead.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _toHead = new PropertyValue<string?>(nameof(GitCommitResult), nameof(ToHead));
-        
-        [JsonPropertyName("toHead")]
-        public string? ToHead
-        {
-            get => _toHead.GetValue();
-            set => _toHead.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _success = new PropertyValue<bool>(nameof(GitCommitResult), nameof(IsSuccess));
-        
-        [Required]
-        [JsonPropertyName("success")]
-        public bool IsSuccess
-        {
-            get => _success.GetValue();
-            set => _success.SetValue(value);
-        }
-    
-        private PropertyValue<string> _message = new PropertyValue<string>(nameof(GitCommitResult), nameof(Message));
-        
-        [Required]
-        [JsonPropertyName("message")]
-        public string Message
-        {
-            get => _message.GetValue();
-            set => _message.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _resultCommitId = new PropertyValue<string?>(nameof(GitCommitResult), nameof(ResultCommitId));
-        
-        [JsonPropertyName("resultCommitId")]
-        public string? ResultCommitId
-        {
-            get => _resultCommitId.GetValue();
-            set => _resultCommitId.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _fromHead.SetAccessPath(path, validateHasBeenSet);
-            _toHead.SetAccessPath(path, validateHasBeenSet);
-            _success.SetAccessPath(path, validateHasBeenSet);
-            _message.SetAccessPath(path, validateHasBeenSet);
-            _resultCommitId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        FromHead = fromHead;
+        ToHead = toHead;
+        IsSuccess = success;
+        Message = message;
+        ResultCommitId = resultCommitId;
     }
     
+    private PropertyValue<string?> _fromHead = new PropertyValue<string?>(nameof(GitCommitResult), nameof(FromHead));
+    
+    [JsonPropertyName("fromHead")]
+    public string? FromHead
+    {
+        get => _fromHead.GetValue();
+        set => _fromHead.SetValue(value);
+    }
+
+    private PropertyValue<string?> _toHead = new PropertyValue<string?>(nameof(GitCommitResult), nameof(ToHead));
+    
+    [JsonPropertyName("toHead")]
+    public string? ToHead
+    {
+        get => _toHead.GetValue();
+        set => _toHead.SetValue(value);
+    }
+
+    private PropertyValue<bool> _success = new PropertyValue<bool>(nameof(GitCommitResult), nameof(IsSuccess));
+    
+    [Required]
+    [JsonPropertyName("success")]
+    public bool IsSuccess
+    {
+        get => _success.GetValue();
+        set => _success.SetValue(value);
+    }
+
+    private PropertyValue<string> _message = new PropertyValue<string>(nameof(GitCommitResult), nameof(Message));
+    
+    [Required]
+    [JsonPropertyName("message")]
+    public string Message
+    {
+        get => _message.GetValue();
+        set => _message.SetValue(value);
+    }
+
+    private PropertyValue<string?> _resultCommitId = new PropertyValue<string?>(nameof(GitCommitResult), nameof(ResultCommitId));
+    
+    [JsonPropertyName("resultCommitId")]
+    public string? ResultCommitId
+    {
+        get => _resultCommitId.GetValue();
+        set => _resultCommitId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _fromHead.SetAccessPath(path, validateHasBeenSet);
+        _toHead.SetAccessPath(path, validateHasBeenSet);
+        _success.SetAccessPath(path, validateHasBeenSet);
+        _message.SetAccessPath(path, validateHasBeenSet);
+        _resultCommitId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

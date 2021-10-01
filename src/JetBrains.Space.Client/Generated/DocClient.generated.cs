@@ -27,275 +27,274 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public partial class DocClient : ISpaceClient
 {
-    public partial class DocClient : ISpaceClient
+    private readonly Connection _connection;
+    
+    public DocClient(Connection connection)
+    {
+        _connection = connection;
+    }
+    
+    public DraftClient Drafts => new DraftClient(_connection);
+    
+    public partial class DraftClient : ISpaceClient
     {
         private readonly Connection _connection;
         
-        public DocClient(Connection connection)
+        public DraftClient(Connection connection)
         {
             _connection = connection;
         }
         
-        public DraftClient Drafts => new DraftClient(_connection);
+        public async Task<DRDraft> CreateDraftAsync(DraftDocumentType type = DraftDocumentType.WYSIWYG, string? title = null, string? text = null, long? textVersion = null, string? folder = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<DocsDraftsPostRequest, DRDraft>("POST", $"api/http/docs/drafts{queryParameters.ToQueryString()}", 
+                new DocsDraftsPostRequest
+                { 
+                    Title = title,
+                    Text = text,
+                    TextVersion = textVersion,
+                    Type = type,
+                    Folder = folder,
+                    PublicationDetails2 = publicationDetails2,
+                }, cancellationToken);
+        }
         
-        public partial class DraftClient : ISpaceClient
+    
+        public async Task<DRDraft> GetDraftAsync(string id, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<DRDraft>("GET", $"api/http/docs/drafts/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public async Task<DRDraft> UpdateDraftAsync(string id, string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, string? folder = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<DocsDraftsForIdPatchRequest, DRDraft>("PATCH", $"api/http/docs/drafts/{id}{queryParameters.ToQueryString()}", 
+                new DocsDraftsForIdPatchRequest
+                { 
+                    Title = title,
+                    Text = text,
+                    TextVersion = textVersion,
+                    Type = type,
+                    Folder = folder,
+                    PublicationDetails2 = publicationDetails2,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task DeleteDraftAsync(string id, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public FolderClient Folder => new FolderClient(_connection);
+        
+        public partial class FolderClient : ISpaceClient
         {
             private readonly Connection _connection;
             
-            public DraftClient(Connection connection)
+            public FolderClient(Connection connection)
             {
                 _connection = connection;
             }
             
-            public async Task<DRDraft> CreateDraftAsync(DraftDocumentType type = DraftDocumentType.WYSIWYG, string? title = null, string? text = null, long? textVersion = null, string? folder = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<DocumentFolderRecord> CreateFolderAsync(string name, string? parentId = null, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DocumentFolderRecord>()) : Partial<DocumentFolderRecord>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<DocsDraftsPostRequest, DRDraft>("POST", $"api/http/docs/drafts{queryParameters.ToQueryString()}", 
-                    new DocsDraftsPostRequest
+                return await _connection.RequestResourceAsync<DocsDraftsFolderPostRequest, DocumentFolderRecord>("POST", $"api/http/docs/drafts/folder{queryParameters.ToQueryString()}", 
+                    new DocsDraftsFolderPostRequest
                     { 
-                        Title = title,
-                        Text = text,
-                        TextVersion = textVersion,
-                        Type = type,
-                        Folder = folder,
-                        PublicationDetails2 = publicationDetails2,
+                        Name = name,
+                        ParentId = parentId,
                     }, cancellationToken);
             }
             
         
-            public async Task<DRDraft> GetDraftAsync(string id, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<DocumentFolderRecord> GetFolderByAliasAsync(string alias, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DocumentFolderRecord>()) : Partial<DocumentFolderRecord>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<DRDraft>("GET", $"api/http/docs/drafts/{id}{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<DocumentFolderRecord>("GET", $"api/http/docs/drafts/folder/alias:{alias}{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
-            public async Task<DRDraft> UpdateDraftAsync(string id, string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, string? folder = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<DocsDraftsForIdPatchRequest, DRDraft>("PATCH", $"api/http/docs/drafts/{id}{queryParameters.ToQueryString()}", 
-                    new DocsDraftsForIdPatchRequest
-                    { 
-                        Title = title,
-                        Text = text,
-                        TextVersion = textVersion,
-                        Type = type,
-                        Folder = folder,
-                        PublicationDetails2 = publicationDetails2,
-                    }, cancellationToken);
-            }
-            
-        
-            public async Task DeleteDraftAsync(string id, CancellationToken cancellationToken = default)
+            public async Task DeleteFolderAsync(string id, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/folder/{id}{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
-            public FolderClient Folder => new FolderClient(_connection);
+            public NameClient Name => new NameClient(_connection);
             
-            public partial class FolderClient : ISpaceClient
+            public partial class NameClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
-                public FolderClient(Connection connection)
+                public NameClient(Connection connection)
                 {
                     _connection = connection;
                 }
                 
-                public async Task<DocumentFolderRecord> CreateFolderAsync(string name, string? parentId = null, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task UpdateNameAsync(string id, string name, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<DocumentFolderRecord>()) : Partial<DocumentFolderRecord>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<DocsDraftsFolderPostRequest, DocumentFolderRecord>("POST", $"api/http/docs/drafts/folder{queryParameters.ToQueryString()}", 
-                        new DocsDraftsFolderPostRequest
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/docs/drafts/folder/{id}/name{queryParameters.ToQueryString()}", 
+                        new DocsDraftsFolderForIdNamePatchRequest
                         { 
                             Name = name,
-                            ParentId = parentId,
                         }, cancellationToken);
                 }
                 
             
-                public async Task<DocumentFolderRecord> GetFolderByAliasAsync(string alias, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<DocumentFolderRecord>()) : Partial<DocumentFolderRecord>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<DocumentFolderRecord>("GET", $"api/http/docs/drafts/folder/alias:{alias}{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-                public async Task DeleteFolderAsync(string id, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/folder/{id}{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-                public NameClient Name => new NameClient(_connection);
-                
-                public partial class NameClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public NameClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    public async Task UpdateNameAsync(string id, string name, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("PATCH", $"api/http/docs/drafts/folder/{id}/name{queryParameters.ToQueryString()}", 
-                            new DocsDraftsFolderForIdNamePatchRequest
-                            { 
-                                Name = name,
-                            }, cancellationToken);
-                    }
-                    
-                
-                }
-            
-                public ParentClient Parent => new ParentClient(_connection);
-                
-                public partial class ParentClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public ParentClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    public async Task<DocumentFolderRecord> UpdateParentAsync(string id, string parentFolderId, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<DocumentFolderRecord>()) : Partial<DocumentFolderRecord>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<DocsDraftsFolderForIdParentPatchRequest, DocumentFolderRecord>("PATCH", $"api/http/docs/drafts/folder/{id}/parent{queryParameters.ToQueryString()}", 
-                            new DocsDraftsFolderForIdParentPatchRequest
-                            { 
-                                ParentFolderId = parentFolderId,
-                            }, cancellationToken);
-                    }
-                    
-                
-                }
-            
             }
         
-            public EditorClient Editors => new EditorClient(_connection);
+            public ParentClient Parent => new ParentClient(_connection);
             
-            public partial class EditorClient : ISpaceClient
+            public partial class ParentClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
-                public EditorClient(Connection connection)
+                public ParentClient(Connection connection)
                 {
                     _connection = connection;
                 }
                 
-                public ProfileClient Profiles => new ProfileClient(_connection);
-                
-                public partial class ProfileClient : ISpaceClient
+                public async Task<DocumentFolderRecord> UpdateParentAsync(string id, string parentFolderId, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>>? partial = null, CancellationToken cancellationToken = default)
                 {
-                    private readonly Connection _connection;
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<DocumentFolderRecord>()) : Partial<DocumentFolderRecord>.Default()).ToString());
                     
-                    public ProfileClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    public async Task CreateProfileAsync(string id, string editorId, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/{id}/editors/profiles{queryParameters.ToQueryString()}", 
-                            new DocsDraftsForIdEditorsProfilesPostRequest
-                            { 
-                                EditorId = editorId,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    public async Task<List<TDMemberProfile>> GetAllProfilesAsync(string id, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/docs/drafts/{id}/editors/profiles{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                    public async Task DeleteProfileAsync(string id, string editorId, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/profiles/{editorId}{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
+                    return await _connection.RequestResourceAsync<DocsDraftsFolderForIdParentPatchRequest, DocumentFolderRecord>("PATCH", $"api/http/docs/drafts/folder/{id}/parent{queryParameters.ToQueryString()}", 
+                        new DocsDraftsFolderForIdParentPatchRequest
+                        { 
+                            ParentFolderId = parentFolderId,
+                        }, cancellationToken);
                 }
+                
             
-                public TeamClient Teams => new TeamClient(_connection);
+            }
+        
+        }
+    
+        public EditorClient Editors => new EditorClient(_connection);
+        
+        public partial class EditorClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public EditorClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public ProfileClient Profiles => new ProfileClient(_connection);
+            
+            public partial class ProfileClient : ISpaceClient
+            {
+                private readonly Connection _connection;
                 
-                public partial class TeamClient : ISpaceClient
+                public ProfileClient(Connection connection)
                 {
-                    private readonly Connection _connection;
-                    
-                    public TeamClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    public async Task CreateTeamAsync(string id, string teamId, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/{id}/editors/teams{queryParameters.ToQueryString()}", 
-                            new DocsDraftsForIdEditorsTeamsPostRequest
-                            { 
-                                TeamId = teamId,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    public async Task<List<TDTeam>> GetAllTeamsAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<List<TDTeam>>("GET", $"api/http/docs/drafts/{id}/editors/teams{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                    public async Task DeleteTeamAsync(string id, string teamId, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/teams/{teamId}{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
+                    _connection = connection;
                 }
+                
+                public async Task CreateProfileAsync(string id, string editorId, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/{id}/editors/profiles{queryParameters.ToQueryString()}", 
+                        new DocsDraftsForIdEditorsProfilesPostRequest
+                        { 
+                            EditorId = editorId,
+                        }, cancellationToken);
+                }
+                
+            
+                public async Task<List<TDMemberProfile>> GetAllProfilesAsync(string id, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/docs/drafts/{id}/editors/profiles{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                public async Task DeleteProfileAsync(string id, string editorId, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/profiles/{editorId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+            public TeamClient Teams => new TeamClient(_connection);
+            
+            public partial class TeamClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public TeamClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task CreateTeamAsync(string id, string teamId, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/{id}/editors/teams{queryParameters.ToQueryString()}", 
+                        new DocsDraftsForIdEditorsTeamsPostRequest
+                        { 
+                            TeamId = teamId,
+                        }, cancellationToken);
+                }
+                
+            
+                public async Task<List<TDTeam>> GetAllTeamsAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<TDTeam>>("GET", $"api/http/docs/drafts/{id}/editors/teams{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                public async Task DeleteTeamAsync(string id, string teamId, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/teams/{teamId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
         }
     
     }
-    
+
 }
+

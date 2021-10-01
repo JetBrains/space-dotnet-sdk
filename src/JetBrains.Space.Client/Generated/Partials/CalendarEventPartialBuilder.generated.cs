@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CalendarEventPartialBuilder
+namespace JetBrains.Space.Client.CalendarEventPartialBuilder;
+
+public static class CalendarEventPartialExtensions
 {
-    public static class CalendarEventPartialExtensions
-    {
-        public static Partial<CalendarEvent> WithIsCalendarEvent(this Partial<CalendarEvent> it)
-            => it.AddFieldName("calendarEvent");
-        
-        public static Partial<CalendarEvent> WithStarts(this Partial<CalendarEvent> it)
-            => it.AddFieldName("starts");
-        
-        public static Partial<CalendarEvent> WithEnds(this Partial<CalendarEvent> it)
-            => it.AddFieldName("ends");
-        
-        public static Partial<CalendarEvent> WithTimezone(this Partial<CalendarEvent> it)
-            => it.AddFieldName("timezone");
-        
-        public static Partial<CalendarEvent> WithTimezone(this Partial<CalendarEvent> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
-            => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
-        
-        public static Partial<CalendarEvent> WithRooms(this Partial<CalendarEvent> it)
-            => it.AddFieldName("rooms");
-        
-        public static Partial<CalendarEvent> WithRooms(this Partial<CalendarEvent> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
-            => it.AddFieldName("rooms", partialBuilder(new Partial<TDLocation>(it)));
-        
-        public static Partial<CalendarEvent> WithIsAllDay(this Partial<CalendarEvent> it)
-            => it.AddFieldName("allDay");
-        
-    }
+    public static Partial<CalendarEvent> WithIsCalendarEvent(this Partial<CalendarEvent> it)
+        => it.AddFieldName("calendarEvent");
+    
+    public static Partial<CalendarEvent> WithStarts(this Partial<CalendarEvent> it)
+        => it.AddFieldName("starts");
+    
+    public static Partial<CalendarEvent> WithEnds(this Partial<CalendarEvent> it)
+        => it.AddFieldName("ends");
+    
+    public static Partial<CalendarEvent> WithTimezone(this Partial<CalendarEvent> it)
+        => it.AddFieldName("timezone");
+    
+    public static Partial<CalendarEvent> WithTimezone(this Partial<CalendarEvent> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
+        => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
+    
+    public static Partial<CalendarEvent> WithRooms(this Partial<CalendarEvent> it)
+        => it.AddFieldName("rooms");
+    
+    public static Partial<CalendarEvent> WithRooms(this Partial<CalendarEvent> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
+        => it.AddFieldName("rooms", partialBuilder(new Partial<TDLocation>(it)));
+    
+    public static Partial<CalendarEvent> WithIsAllDay(this Partial<CalendarEvent> it)
+        => it.AddFieldName("allDay");
     
 }
+

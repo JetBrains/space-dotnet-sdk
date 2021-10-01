@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class PublicHolidaysCalendarsForIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class PublicHolidaysCalendarsForIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public PublicHolidaysCalendarsForIdPatchRequest() { }
+    
+    public PublicHolidaysCalendarsForIdPatchRequest(string name, string location)
     {
-        public PublicHolidaysCalendarsForIdPatchRequest() { }
-        
-        public PublicHolidaysCalendarsForIdPatchRequest(string name, string location)
-        {
-            Name = name;
-            Location = location;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(PublicHolidaysCalendarsForIdPatchRequest), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _location = new PropertyValue<string>(nameof(PublicHolidaysCalendarsForIdPatchRequest), nameof(Location));
-        
-        [Required]
-        [JsonPropertyName("location")]
-        public string Location
-        {
-            get => _location.GetValue();
-            set => _location.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _location.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Location = location;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PublicHolidaysCalendarsForIdPatchRequest), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _location = new PropertyValue<string>(nameof(PublicHolidaysCalendarsForIdPatchRequest), nameof(Location));
+    
+    [Required]
+    [JsonPropertyName("location")]
+    public string Location
+    {
+        get => _location.GetValue();
+        set => _location.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _location.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

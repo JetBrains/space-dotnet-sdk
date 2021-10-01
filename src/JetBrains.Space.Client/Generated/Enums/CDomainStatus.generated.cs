@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum CDomainStatus
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum CDomainStatus
-    {
-        [EnumMember(Value = "AVAILABLE")]
-        AVAILABLE,
-        
-        [EnumMember(Value = "OCCUPIED")]
-        OCCUPIED,
-        
-        [EnumMember(Value = "BLOCKED")]
-        BLOCKED,
-        
-    }
+    [EnumMember(Value = "AVAILABLE")]
+    AVAILABLE,
+    
+    [EnumMember(Value = "OCCUPIED")]
+    OCCUPIED,
+    
+    [EnumMember(Value = "BLOCKED")]
+    BLOCKED,
     
 }
+

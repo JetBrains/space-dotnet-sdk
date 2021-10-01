@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamCFValuePartialBuilder
+namespace JetBrains.Space.Client.TeamCFValuePartialBuilder;
+
+public static class TeamCFValuePartialExtensions
 {
-    public static class TeamCFValuePartialExtensions
-    {
-        public static Partial<TeamCFValue> WithTeam(this Partial<TeamCFValue> it)
-            => it.AddFieldName("team");
-        
-        public static Partial<TeamCFValue> WithTeam(this Partial<TeamCFValue> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-            => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
-        
-    }
+    public static Partial<TeamCFValue> WithTeam(this Partial<TeamCFValue> it)
+        => it.AddFieldName("team");
+    
+    public static Partial<TeamCFValue> WithTeam(this Partial<TeamCFValue> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+        => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
     
 }
+

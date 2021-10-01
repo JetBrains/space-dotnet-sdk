@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IssueDueDateChangedDetails
+     : IssueChangedM2Details, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class IssueDueDateChangedDetails
-         : IssueChangedM2Details, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "IssueDueDateChangedDetails";
+    
+    public IssueDueDateChangedDetails() { }
+    
+    public IssueDueDateChangedDetails(DateTime? oldDueDate = null, DateTime? newDueDate = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "IssueDueDateChangedDetails";
-        
-        public IssueDueDateChangedDetails() { }
-        
-        public IssueDueDateChangedDetails(DateTime? oldDueDate = null, DateTime? newDueDate = null)
-        {
-            OldDueDate = oldDueDate;
-            NewDueDate = newDueDate;
-        }
-        
-        private PropertyValue<DateTime?> _oldDueDate = new PropertyValue<DateTime?>(nameof(IssueDueDateChangedDetails), nameof(OldDueDate));
-        
-        [JsonPropertyName("oldDueDate")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? OldDueDate
-        {
-            get => _oldDueDate.GetValue();
-            set => _oldDueDate.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _newDueDate = new PropertyValue<DateTime?>(nameof(IssueDueDateChangedDetails), nameof(NewDueDate));
-        
-        [JsonPropertyName("newDueDate")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? NewDueDate
-        {
-            get => _newDueDate.GetValue();
-            set => _newDueDate.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _oldDueDate.SetAccessPath(path, validateHasBeenSet);
-            _newDueDate.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        OldDueDate = oldDueDate;
+        NewDueDate = newDueDate;
     }
     
+    private PropertyValue<DateTime?> _oldDueDate = new PropertyValue<DateTime?>(nameof(IssueDueDateChangedDetails), nameof(OldDueDate));
+    
+    [JsonPropertyName("oldDueDate")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? OldDueDate
+    {
+        get => _oldDueDate.GetValue();
+        set => _oldDueDate.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _newDueDate = new PropertyValue<DateTime?>(nameof(IssueDueDateChangedDetails), nameof(NewDueDate));
+    
+    [JsonPropertyName("newDueDate")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? NewDueDate
+    {
+        get => _newDueDate.GetValue();
+        set => _newDueDate.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _oldDueDate.SetAccessPath(path, validateHasBeenSet);
+        _newDueDate.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

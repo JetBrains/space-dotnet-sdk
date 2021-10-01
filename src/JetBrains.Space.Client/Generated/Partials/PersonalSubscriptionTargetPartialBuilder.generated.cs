@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PersonalSubscriptionTargetPartialBuilder
+namespace JetBrains.Space.Client.PersonalSubscriptionTargetPartialBuilder;
+
+public static class PersonalSubscriptionTargetPartialExtensions
 {
-    public static class PersonalSubscriptionTargetPartialExtensions
-    {
-        public static Partial<PersonalSubscriptionTarget> WithSubjectCode(this Partial<PersonalSubscriptionTarget> it)
-            => it.AddFieldName("subjectCode");
-        
-        public static Partial<PersonalSubscriptionTarget> WithTargetCode(this Partial<PersonalSubscriptionTarget> it)
-            => it.AddFieldName("targetCode");
-        
-        public static Partial<PersonalSubscriptionTarget> WithDescription(this Partial<PersonalSubscriptionTarget> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<PersonalSubscriptionTarget> WithEvents(this Partial<PersonalSubscriptionTarget> it)
-            => it.AddFieldName("events");
-        
-        public static Partial<PersonalSubscriptionTarget> WithEvents(this Partial<PersonalSubscriptionTarget> it, Func<Partial<PersonalSubscriptionEvent>, Partial<PersonalSubscriptionEvent>> partialBuilder)
-            => it.AddFieldName("events", partialBuilder(new Partial<PersonalSubscriptionEvent>(it)));
-        
-        public static Partial<PersonalSubscriptionTarget> WithFeatureFlag(this Partial<PersonalSubscriptionTarget> it)
-            => it.AddFieldName("featureFlag");
-        
-    }
+    public static Partial<PersonalSubscriptionTarget> WithSubjectCode(this Partial<PersonalSubscriptionTarget> it)
+        => it.AddFieldName("subjectCode");
+    
+    public static Partial<PersonalSubscriptionTarget> WithTargetCode(this Partial<PersonalSubscriptionTarget> it)
+        => it.AddFieldName("targetCode");
+    
+    public static Partial<PersonalSubscriptionTarget> WithDescription(this Partial<PersonalSubscriptionTarget> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<PersonalSubscriptionTarget> WithEvents(this Partial<PersonalSubscriptionTarget> it)
+        => it.AddFieldName("events");
+    
+    public static Partial<PersonalSubscriptionTarget> WithEvents(this Partial<PersonalSubscriptionTarget> it, Func<Partial<PersonalSubscriptionEvent>, Partial<PersonalSubscriptionEvent>> partialBuilder)
+        => it.AddFieldName("events", partialBuilder(new Partial<PersonalSubscriptionEvent>(it)));
+    
+    public static Partial<PersonalSubscriptionTarget> WithFeatureFlag(this Partial<PersonalSubscriptionTarget> it)
+        => it.AddFieldName("featureFlag");
     
 }
+

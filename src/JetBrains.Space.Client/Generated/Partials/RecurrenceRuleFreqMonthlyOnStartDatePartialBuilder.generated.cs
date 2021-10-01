@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RecurrenceRuleFreqMonthlyOnStartDatePartialBuilder
+namespace JetBrains.Space.Client.RecurrenceRuleFreqMonthlyOnStartDatePartialBuilder;
+
+public static class RecurrenceRuleFreqMonthlyOnStartDatePartialExtensions
 {
-    public static class RecurrenceRuleFreqMonthlyOnStartDatePartialExtensions
-    {
-        public static Partial<RecurrenceRuleFreqMonthlyOnStartDate> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnStartDate> it)
-            => it.AddFieldName("interval");
-        
-    }
+    public static Partial<RecurrenceRuleFreqMonthlyOnStartDate> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnStartDate> it)
+        => it.AddFieldName("interval");
     
 }
+

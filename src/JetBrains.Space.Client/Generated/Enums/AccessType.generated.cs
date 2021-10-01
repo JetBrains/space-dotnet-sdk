@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum AccessType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum AccessType
-    {
-        [EnumMember(Value = "PUBLIC")]
-        PUBLIC,
-        
-        [EnumMember(Value = "CONFIDENTIAL")]
-        CONFIDENTIAL,
-        
-        [EnumMember(Value = "RESTRICTED")]
-        RESTRICTED,
-        
-    }
+    [EnumMember(Value = "PUBLIC")]
+    PUBLIC,
+    
+    [EnumMember(Value = "CONFIDENTIAL")]
+    CONFIDENTIAL,
+    
+    [EnumMember(Value = "RESTRICTED")]
+    RESTRICTED,
     
 }
+

@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MessageTag
+     : MessageAccessoryElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MessageTag
-         : MessageAccessoryElement, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MessageTag";
+    
+    public MessageTag() { }
+    
+    public MessageTag(string text, MessageStyle style)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MessageTag";
-        
-        public MessageTag() { }
-        
-        public MessageTag(string text, MessageStyle style)
-        {
-            Text = text;
-            Style = style;
-        }
-        
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageTag), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(MessageTag), nameof(Style));
-        
-        [Required]
-        [JsonPropertyName("style")]
-        public MessageStyle Style
-        {
-            get => _style.GetValue();
-            set => _style.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _style.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Text = text;
+        Style = style;
     }
     
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageTag), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(MessageTag), nameof(Style));
+    
+    [Required]
+    [JsonPropertyName("style")]
+    public MessageStyle Style
+    {
+        get => _style.GetValue();
+        set => _style.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _text.SetAccessPath(path, validateHasBeenSet);
+        _style.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NotificationsPrivateFeedsForIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.NotificationsPrivateFeedsForIdPatchRequestPartialBuilder;
+
+public static class NotificationsPrivateFeedsForIdPatchRequestPartialExtensions
 {
-    public static class NotificationsPrivateFeedsForIdPatchRequestPartialExtensions
-    {
-        public static Partial<NotificationsPrivateFeedsForIdPatchRequest> WithName(this Partial<NotificationsPrivateFeedsForIdPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<NotificationsPrivateFeedsForIdPatchRequest> WithIcon(this Partial<NotificationsPrivateFeedsForIdPatchRequest> it)
-            => it.AddFieldName("icon");
-        
-        public static Partial<NotificationsPrivateFeedsForIdPatchRequest> WithColor(this Partial<NotificationsPrivateFeedsForIdPatchRequest> it)
-            => it.AddFieldName("color");
-        
-        public static Partial<NotificationsPrivateFeedsForIdPatchRequest> WithColor(this Partial<NotificationsPrivateFeedsForIdPatchRequest> it, Func<Partial<PrivateFeedColor>, Partial<PrivateFeedColor>> partialBuilder)
-            => it.AddFieldName("color", partialBuilder(new Partial<PrivateFeedColor>(it)));
-        
-    }
+    public static Partial<NotificationsPrivateFeedsForIdPatchRequest> WithName(this Partial<NotificationsPrivateFeedsForIdPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<NotificationsPrivateFeedsForIdPatchRequest> WithIcon(this Partial<NotificationsPrivateFeedsForIdPatchRequest> it)
+        => it.AddFieldName("icon");
+    
+    public static Partial<NotificationsPrivateFeedsForIdPatchRequest> WithColor(this Partial<NotificationsPrivateFeedsForIdPatchRequest> it)
+        => it.AddFieldName("color");
+    
+    public static Partial<NotificationsPrivateFeedsForIdPatchRequest> WithColor(this Partial<NotificationsPrivateFeedsForIdPatchRequest> it, Func<Partial<PrivateFeedColor>, Partial<PrivateFeedColor>> partialBuilder)
+        => it.AddFieldName("color", partialBuilder(new Partial<PrivateFeedColor>(it)));
     
 }
+

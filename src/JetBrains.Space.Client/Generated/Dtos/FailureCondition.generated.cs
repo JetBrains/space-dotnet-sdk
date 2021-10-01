@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class FailureCondition
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class FailureCondition
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "FailureCondition";
+    
+    public static NonZeroExitCode NonZeroExitCode()
+        => new NonZeroExitCode();
+    
+    public static OutOfMemory OutOfMemory()
+        => new OutOfMemory();
+    
+    public static TestFailed TestFailed()
+        => new TestFailed();
+    
+    public static TimeOut TimeOut()
+        => new TimeOut();
+    
+    public FailureCondition() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "FailureCondition";
-        
-        public static NonZeroExitCode NonZeroExitCode()
-            => new NonZeroExitCode();
-        
-        public static OutOfMemory OutOfMemory()
-            => new OutOfMemory();
-        
-        public static TestFailed TestFailed()
-            => new TestFailed();
-        
-        public static TimeOut TimeOut()
-            => new TimeOut();
-        
-        public FailureCondition() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

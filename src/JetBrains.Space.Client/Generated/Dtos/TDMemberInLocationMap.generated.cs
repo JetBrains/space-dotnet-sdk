@@ -27,56 +27,55 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TDMemberInLocationMap
+     : IPropagatePropertyAccessPath
 {
-    public sealed class TDMemberInLocationMap
-         : IPropagatePropertyAccessPath
+    public TDMemberInLocationMap() { }
+    
+    public TDMemberInLocationMap(TDMemberProfile profile, TDMemberLocation memberLocation, TDLocationMapPoint? locationMapPoint = null)
     {
-        public TDMemberInLocationMap() { }
-        
-        public TDMemberInLocationMap(TDMemberProfile profile, TDMemberLocation memberLocation, TDLocationMapPoint? locationMapPoint = null)
-        {
-            Profile = profile;
-            MemberLocation = memberLocation;
-            LocationMapPoint = locationMapPoint;
-        }
-        
-        private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(TDMemberInLocationMap), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfile Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberLocation> _memberLocation = new PropertyValue<TDMemberLocation>(nameof(TDMemberInLocationMap), nameof(MemberLocation));
-        
-        [Required]
-        [JsonPropertyName("memberLocation")]
-        public TDMemberLocation MemberLocation
-        {
-            get => _memberLocation.GetValue();
-            set => _memberLocation.SetValue(value);
-        }
-    
-        private PropertyValue<TDLocationMapPoint?> _locationMapPoint = new PropertyValue<TDLocationMapPoint?>(nameof(TDMemberInLocationMap), nameof(LocationMapPoint));
-        
-        [JsonPropertyName("locationMapPoint")]
-        public TDLocationMapPoint? LocationMapPoint
-        {
-            get => _locationMapPoint.GetValue();
-            set => _locationMapPoint.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _memberLocation.SetAccessPath(path, validateHasBeenSet);
-            _locationMapPoint.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
+        MemberLocation = memberLocation;
+        LocationMapPoint = locationMapPoint;
     }
     
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(TDMemberInLocationMap), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public TDMemberProfile Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<TDMemberLocation> _memberLocation = new PropertyValue<TDMemberLocation>(nameof(TDMemberInLocationMap), nameof(MemberLocation));
+    
+    [Required]
+    [JsonPropertyName("memberLocation")]
+    public TDMemberLocation MemberLocation
+    {
+        get => _memberLocation.GetValue();
+        set => _memberLocation.SetValue(value);
+    }
+
+    private PropertyValue<TDLocationMapPoint?> _locationMapPoint = new PropertyValue<TDLocationMapPoint?>(nameof(TDMemberInLocationMap), nameof(LocationMapPoint));
+    
+    [JsonPropertyName("locationMapPoint")]
+    public TDLocationMapPoint? LocationMapPoint
+    {
+        get => _locationMapPoint.GetValue();
+        set => _locationMapPoint.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _memberLocation.SetAccessPath(path, validateHasBeenSet);
+        _locationMapPoint.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

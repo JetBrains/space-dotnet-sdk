@@ -27,32 +27,31 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class AttachmentInfo
+     : IPropagatePropertyAccessPath
 {
-    public sealed class AttachmentInfo
-         : IPropagatePropertyAccessPath
+    public AttachmentInfo() { }
+    
+    public AttachmentInfo(Attachment? details = null)
     {
-        public AttachmentInfo() { }
-        
-        public AttachmentInfo(Attachment? details = null)
-        {
-            Details = details;
-        }
-        
-        private PropertyValue<Attachment?> _details = new PropertyValue<Attachment?>(nameof(AttachmentInfo), nameof(Details));
-        
-        [JsonPropertyName("details")]
-        public Attachment? Details
-        {
-            get => _details.GetValue();
-            set => _details.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _details.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Details = details;
     }
     
+    private PropertyValue<Attachment?> _details = new PropertyValue<Attachment?>(nameof(AttachmentInfo), nameof(Details));
+    
+    [JsonPropertyName("details")]
+    public Attachment? Details
+    {
+        get => _details.GetValue();
+        set => _details.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _details.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

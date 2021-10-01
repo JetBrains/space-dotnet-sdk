@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class Diff
+     : IPropagatePropertyAccessPath
 {
-    public sealed class Diff
-         : IPropagatePropertyAccessPath
+    public Diff() { }
+    
+    public Diff(List<string> added, List<string> removed, bool removeAll)
     {
-        public Diff() { }
-        
-        public Diff(List<string> added, List<string> removed, bool removeAll)
-        {
-            Added = added;
-            Removed = removed;
-            IsRemoveAll = removeAll;
-        }
-        
-        private PropertyValue<List<string>> _added = new PropertyValue<List<string>>(nameof(Diff), nameof(Added), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("added")]
-        public List<string> Added
-        {
-            get => _added.GetValue();
-            set => _added.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _removed = new PropertyValue<List<string>>(nameof(Diff), nameof(Removed), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("removed")]
-        public List<string> Removed
-        {
-            get => _removed.GetValue();
-            set => _removed.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _removeAll = new PropertyValue<bool>(nameof(Diff), nameof(IsRemoveAll));
-        
-        [Required]
-        [JsonPropertyName("removeAll")]
-        public bool IsRemoveAll
-        {
-            get => _removeAll.GetValue();
-            set => _removeAll.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _added.SetAccessPath(path, validateHasBeenSet);
-            _removed.SetAccessPath(path, validateHasBeenSet);
-            _removeAll.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Added = added;
+        Removed = removed;
+        IsRemoveAll = removeAll;
     }
     
+    private PropertyValue<List<string>> _added = new PropertyValue<List<string>>(nameof(Diff), nameof(Added), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("added")]
+    public List<string> Added
+    {
+        get => _added.GetValue();
+        set => _added.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _removed = new PropertyValue<List<string>>(nameof(Diff), nameof(Removed), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("removed")]
+    public List<string> Removed
+    {
+        get => _removed.GetValue();
+        set => _removed.SetValue(value);
+    }
+
+    private PropertyValue<bool> _removeAll = new PropertyValue<bool>(nameof(Diff), nameof(IsRemoveAll));
+    
+    [Required]
+    [JsonPropertyName("removeAll")]
+    public bool IsRemoveAll
+    {
+        get => _removeAll.GetValue();
+        set => _removeAll.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _added.SetAccessPath(path, validateHasBeenSet);
+        _removed.SetAccessPath(path, validateHasBeenSet);
+        _removeAll.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

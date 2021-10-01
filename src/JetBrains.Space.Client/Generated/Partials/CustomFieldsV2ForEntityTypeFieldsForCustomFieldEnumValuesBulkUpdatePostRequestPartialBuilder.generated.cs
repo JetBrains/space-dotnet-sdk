@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequestPartialBuilder
+namespace JetBrains.Space.Client.CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequestPartialBuilder;
+
+public static class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequestPartialExtensions
 {
-    public static class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequestPartialExtensions
-    {
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest> WithEnumValueModifications(this Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest> it)
-            => it.AddFieldName("enumValueModifications");
-        
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest> WithEnumValueModifications(this Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest> it, Func<Partial<CFEnumValueModification>, Partial<CFEnumValueModification>> partialBuilder)
-            => it.AddFieldName("enumValueModifications", partialBuilder(new Partial<CFEnumValueModification>(it)));
-        
-    }
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest> WithEnumValueModifications(this Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest> it)
+        => it.AddFieldName("enumValueModifications");
+    
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest> WithEnumValueModifications(this Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest> it, Func<Partial<CFEnumValueModification>, Partial<CFEnumValueModification>> partialBuilder)
+        => it.AddFieldName("enumValueModifications", partialBuilder(new Partial<CFEnumValueModification>(it)));
     
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TodoForIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TodoForIdPatchRequestPartialBuilder;
+
+public static class TodoForIdPatchRequestPartialExtensions
 {
-    public static class TodoForIdPatchRequestPartialExtensions
-    {
-        public static Partial<TodoForIdPatchRequest> WithText(this Partial<TodoForIdPatchRequest> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<TodoForIdPatchRequest> WithDueDate(this Partial<TodoForIdPatchRequest> it)
-            => it.AddFieldName("dueDate");
-        
-        public static Partial<TodoForIdPatchRequest> WithIsOpen(this Partial<TodoForIdPatchRequest> it)
-            => it.AddFieldName("open");
-        
-    }
+    public static Partial<TodoForIdPatchRequest> WithText(this Partial<TodoForIdPatchRequest> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<TodoForIdPatchRequest> WithDueDate(this Partial<TodoForIdPatchRequest> it)
+        => it.AddFieldName("dueDate");
+    
+    public static Partial<TodoForIdPatchRequest> WithIsOpen(this Partial<TodoForIdPatchRequest> it)
+        => it.AddFieldName("open");
     
 }
+

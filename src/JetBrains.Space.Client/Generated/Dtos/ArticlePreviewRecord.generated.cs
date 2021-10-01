@@ -27,102 +27,101 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ArticlePreviewRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ArticlePreviewRecord
-         : IPropagatePropertyAccessPath
+    public ArticlePreviewRecord() { }
+    
+    public ArticlePreviewRecord(string id, bool archived, List<ArticleMarkdownImage> previewImages, string preview, List<AttachmentInfo>? previewAttachments = null, int? wordsNumber = null, bool? cut = null)
     {
-        public ArticlePreviewRecord() { }
-        
-        public ArticlePreviewRecord(string id, bool archived, List<ArticleMarkdownImage> previewImages, string preview, List<AttachmentInfo>? previewAttachments = null, int? wordsNumber = null, bool? cut = null)
-        {
-            Id = id;
-            IsArchived = archived;
-            PreviewImages = previewImages;
-            Preview = preview;
-            PreviewAttachments = previewAttachments;
-            WordsNumber = wordsNumber;
-            IsCut = cut;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticlePreviewRecord), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ArticlePreviewRecord), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        private PropertyValue<List<ArticleMarkdownImage>> _previewImages = new PropertyValue<List<ArticleMarkdownImage>>(nameof(ArticlePreviewRecord), nameof(PreviewImages), new List<ArticleMarkdownImage>());
-        
-        [Required]
-        [JsonPropertyName("previewImages")]
-        public List<ArticleMarkdownImage> PreviewImages
-        {
-            get => _previewImages.GetValue();
-            set => _previewImages.SetValue(value);
-        }
-    
-        private PropertyValue<string> _preview = new PropertyValue<string>(nameof(ArticlePreviewRecord), nameof(Preview));
-        
-        [Required]
-        [JsonPropertyName("preview")]
-        public string Preview
-        {
-            get => _preview.GetValue();
-            set => _preview.SetValue(value);
-        }
-    
-        private PropertyValue<List<AttachmentInfo>?> _previewAttachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ArticlePreviewRecord), nameof(PreviewAttachments));
-        
-        [JsonPropertyName("previewAttachments")]
-        public List<AttachmentInfo>? PreviewAttachments
-        {
-            get => _previewAttachments.GetValue();
-            set => _previewAttachments.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _wordsNumber = new PropertyValue<int?>(nameof(ArticlePreviewRecord), nameof(WordsNumber));
-        
-        [JsonPropertyName("wordsNumber")]
-        public int? WordsNumber
-        {
-            get => _wordsNumber.GetValue();
-            set => _wordsNumber.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _cut = new PropertyValue<bool?>(nameof(ArticlePreviewRecord), nameof(IsCut));
-        
-        [JsonPropertyName("cut")]
-        public bool? IsCut
-        {
-            get => _cut.GetValue();
-            set => _cut.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-            _previewImages.SetAccessPath(path, validateHasBeenSet);
-            _preview.SetAccessPath(path, validateHasBeenSet);
-            _previewAttachments.SetAccessPath(path, validateHasBeenSet);
-            _wordsNumber.SetAccessPath(path, validateHasBeenSet);
-            _cut.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        IsArchived = archived;
+        PreviewImages = previewImages;
+        Preview = preview;
+        PreviewAttachments = previewAttachments;
+        WordsNumber = wordsNumber;
+        IsCut = cut;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticlePreviewRecord), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ArticlePreviewRecord), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<List<ArticleMarkdownImage>> _previewImages = new PropertyValue<List<ArticleMarkdownImage>>(nameof(ArticlePreviewRecord), nameof(PreviewImages), new List<ArticleMarkdownImage>());
+    
+    [Required]
+    [JsonPropertyName("previewImages")]
+    public List<ArticleMarkdownImage> PreviewImages
+    {
+        get => _previewImages.GetValue();
+        set => _previewImages.SetValue(value);
+    }
+
+    private PropertyValue<string> _preview = new PropertyValue<string>(nameof(ArticlePreviewRecord), nameof(Preview));
+    
+    [Required]
+    [JsonPropertyName("preview")]
+    public string Preview
+    {
+        get => _preview.GetValue();
+        set => _preview.SetValue(value);
+    }
+
+    private PropertyValue<List<AttachmentInfo>?> _previewAttachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ArticlePreviewRecord), nameof(PreviewAttachments));
+    
+    [JsonPropertyName("previewAttachments")]
+    public List<AttachmentInfo>? PreviewAttachments
+    {
+        get => _previewAttachments.GetValue();
+        set => _previewAttachments.SetValue(value);
+    }
+
+    private PropertyValue<int?> _wordsNumber = new PropertyValue<int?>(nameof(ArticlePreviewRecord), nameof(WordsNumber));
+    
+    [JsonPropertyName("wordsNumber")]
+    public int? WordsNumber
+    {
+        get => _wordsNumber.GetValue();
+        set => _wordsNumber.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _cut = new PropertyValue<bool?>(nameof(ArticlePreviewRecord), nameof(IsCut));
+    
+    [JsonPropertyName("cut")]
+    public bool? IsCut
+    {
+        get => _cut.GetValue();
+        set => _cut.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _previewImages.SetAccessPath(path, validateHasBeenSet);
+        _preview.SetAccessPath(path, validateHasBeenSet);
+        _previewAttachments.SetAccessPath(path, validateHasBeenSet);
+        _wordsNumber.SetAccessPath(path, validateHasBeenSet);
+        _cut.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

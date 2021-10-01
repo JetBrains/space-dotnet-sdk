@@ -27,92 +27,91 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CodeReviewDiscussionRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CodeReviewDiscussionRecord
-         : IPropagatePropertyAccessPath
+    public CodeReviewDiscussionRecord() { }
+    
+    public CodeReviewDiscussionRecord(string id, CodeReviewRecord review, DateTime created, bool archived, M2ChannelRecord? channel = null, bool? resolved = null)
     {
-        public CodeReviewDiscussionRecord() { }
-        
-        public CodeReviewDiscussionRecord(string id, CodeReviewRecord review, DateTime created, bool archived, M2ChannelRecord? channel = null, bool? resolved = null)
-        {
-            Id = id;
-            Review = review;
-            Created = created;
-            Channel = channel;
-            IsResolved = resolved;
-            IsArchived = archived;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewDiscussionRecord), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<CodeReviewRecord> _review = new PropertyValue<CodeReviewRecord>(nameof(CodeReviewDiscussionRecord), nameof(Review));
-        
-        [Required]
-        [JsonPropertyName("review")]
-        public CodeReviewRecord Review
-        {
-            get => _review.GetValue();
-            set => _review.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(CodeReviewDiscussionRecord), nameof(Created));
-        
-        [Required]
-        [JsonPropertyName("created")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Created
-        {
-            get => _created.GetValue();
-            set => _created.SetValue(value);
-        }
-    
-        private PropertyValue<M2ChannelRecord?> _channel = new PropertyValue<M2ChannelRecord?>(nameof(CodeReviewDiscussionRecord), nameof(Channel));
-        
-        [JsonPropertyName("channel")]
-        public M2ChannelRecord? Channel
-        {
-            get => _channel.GetValue();
-            set => _channel.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _resolved = new PropertyValue<bool?>(nameof(CodeReviewDiscussionRecord), nameof(IsResolved));
-        
-        [JsonPropertyName("resolved")]
-        public bool? IsResolved
-        {
-            get => _resolved.GetValue();
-            set => _resolved.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeReviewDiscussionRecord), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _review.SetAccessPath(path, validateHasBeenSet);
-            _created.SetAccessPath(path, validateHasBeenSet);
-            _channel.SetAccessPath(path, validateHasBeenSet);
-            _resolved.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Review = review;
+        Created = created;
+        Channel = channel;
+        IsResolved = resolved;
+        IsArchived = archived;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewDiscussionRecord), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<CodeReviewRecord> _review = new PropertyValue<CodeReviewRecord>(nameof(CodeReviewDiscussionRecord), nameof(Review));
+    
+    [Required]
+    [JsonPropertyName("review")]
+    public CodeReviewRecord Review
+    {
+        get => _review.GetValue();
+        set => _review.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(CodeReviewDiscussionRecord), nameof(Created));
+    
+    [Required]
+    [JsonPropertyName("created")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Created
+    {
+        get => _created.GetValue();
+        set => _created.SetValue(value);
+    }
+
+    private PropertyValue<M2ChannelRecord?> _channel = new PropertyValue<M2ChannelRecord?>(nameof(CodeReviewDiscussionRecord), nameof(Channel));
+    
+    [JsonPropertyName("channel")]
+    public M2ChannelRecord? Channel
+    {
+        get => _channel.GetValue();
+        set => _channel.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _resolved = new PropertyValue<bool?>(nameof(CodeReviewDiscussionRecord), nameof(IsResolved));
+    
+    [JsonPropertyName("resolved")]
+    public bool? IsResolved
+    {
+        get => _resolved.GetValue();
+        set => _resolved.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeReviewDiscussionRecord), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _review.SetAccessPath(path, validateHasBeenSet);
+        _created.SetAccessPath(path, validateHasBeenSet);
+        _channel.SetAccessPath(path, validateHasBeenSet);
+        _resolved.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

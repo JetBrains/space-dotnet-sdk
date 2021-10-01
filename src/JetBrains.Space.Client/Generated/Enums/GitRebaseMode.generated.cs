@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum GitRebaseMode
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum GitRebaseMode
-    {
-        [EnumMember(Value = "FF")]
-        FF,
-        
-        [EnumMember(Value = "NO_FF")]
-        NOFF,
-        
-    }
+    [EnumMember(Value = "FF")]
+    FF,
+    
+    [EnumMember(Value = "NO_FF")]
+    NOFF,
     
 }
+

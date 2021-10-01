@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CFEnumValueModificationRemovePartialBuilder
+namespace JetBrains.Space.Client.CFEnumValueModificationRemovePartialBuilder;
+
+public static class CFEnumValueModificationRemovePartialExtensions
 {
-    public static class CFEnumValueModificationRemovePartialExtensions
-    {
-        public static Partial<CFEnumValueModificationRemove> WithValueIdentifier(this Partial<CFEnumValueModificationRemove> it)
-            => it.AddFieldName("valueIdentifier");
-        
-        public static Partial<CFEnumValueModificationRemove> WithValueIdentifier(this Partial<CFEnumValueModificationRemove> it, Func<Partial<CFEnumValueIdentifier>, Partial<CFEnumValueIdentifier>> partialBuilder)
-            => it.AddFieldName("valueIdentifier", partialBuilder(new Partial<CFEnumValueIdentifier>(it)));
-        
-    }
+    public static Partial<CFEnumValueModificationRemove> WithValueIdentifier(this Partial<CFEnumValueModificationRemove> it)
+        => it.AddFieldName("valueIdentifier");
+    
+    public static Partial<CFEnumValueModificationRemove> WithValueIdentifier(this Partial<CFEnumValueModificationRemove> it, Func<Partial<CFEnumValueIdentifier>, Partial<CFEnumValueIdentifier>> partialBuilder)
+        => it.AddFieldName("valueIdentifier", partialBuilder(new Partial<CFEnumValueIdentifier>(it)));
     
 }
+

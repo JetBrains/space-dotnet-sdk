@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest
-         : IPropagatePropertyAccessPath
+    public ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest() { }
+    
+    public ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest(List<string> rightCodesToAdd, List<string> rightCodesToRemove, bool requestRightsInAuthorizedContexts)
     {
-        public ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest() { }
-        
-        public ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest(List<string> rightCodesToAdd, List<string> rightCodesToRemove, bool requestRightsInAuthorizedContexts)
-        {
-            RightCodesToAdd = rightCodesToAdd;
-            RightCodesToRemove = rightCodesToRemove;
-            IsRequestRightsInAuthorizedContexts = requestRightsInAuthorizedContexts;
-        }
-        
-        private PropertyValue<List<string>> _rightCodesToAdd = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(RightCodesToAdd), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("rightCodesToAdd")]
-        public List<string> RightCodesToAdd
-        {
-            get => _rightCodesToAdd.GetValue();
-            set => _rightCodesToAdd.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _rightCodesToRemove = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(RightCodesToRemove), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("rightCodesToRemove")]
-        public List<string> RightCodesToRemove
-        {
-            get => _rightCodesToRemove.GetValue();
-            set => _rightCodesToRemove.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _requestRightsInAuthorizedContexts = new PropertyValue<bool>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(IsRequestRightsInAuthorizedContexts));
-        
-        [Required]
-        [JsonPropertyName("requestRightsInAuthorizedContexts")]
-        public bool IsRequestRightsInAuthorizedContexts
-        {
-            get => _requestRightsInAuthorizedContexts.GetValue();
-            set => _requestRightsInAuthorizedContexts.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _rightCodesToAdd.SetAccessPath(path, validateHasBeenSet);
-            _rightCodesToRemove.SetAccessPath(path, validateHasBeenSet);
-            _requestRightsInAuthorizedContexts.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        RightCodesToAdd = rightCodesToAdd;
+        RightCodesToRemove = rightCodesToRemove;
+        IsRequestRightsInAuthorizedContexts = requestRightsInAuthorizedContexts;
     }
     
+    private PropertyValue<List<string>> _rightCodesToAdd = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(RightCodesToAdd), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("rightCodesToAdd")]
+    public List<string> RightCodesToAdd
+    {
+        get => _rightCodesToAdd.GetValue();
+        set => _rightCodesToAdd.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _rightCodesToRemove = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(RightCodesToRemove), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("rightCodesToRemove")]
+    public List<string> RightCodesToRemove
+    {
+        get => _rightCodesToRemove.GetValue();
+        set => _rightCodesToRemove.SetValue(value);
+    }
+
+    private PropertyValue<bool> _requestRightsInAuthorizedContexts = new PropertyValue<bool>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(IsRequestRightsInAuthorizedContexts));
+    
+    [Required]
+    [JsonPropertyName("requestRightsInAuthorizedContexts")]
+    public bool IsRequestRightsInAuthorizedContexts
+    {
+        get => _requestRightsInAuthorizedContexts.GetValue();
+        set => _requestRightsInAuthorizedContexts.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _rightCodesToAdd.SetAccessPath(path, validateHasBeenSet);
+        _rightCodesToRemove.SetAccessPath(path, validateHasBeenSet);
+        _requestRightsInAuthorizedContexts.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequestPartialBuilder;
+
+public static class ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> WithSource(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> it)
-            => it.AddFieldName("source");
-        
-        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> WithSource(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> it, Func<Partial<PublishingSource>, Partial<PublishingSource>> partialBuilder)
-            => it.AddFieldName("source", partialBuilder(new Partial<PublishingSource>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> WithSource(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> it)
+        => it.AddFieldName("source");
+    
+    public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> WithSource(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest> it, Func<Partial<PublishingSource>, Partial<PublishingSource>> partialBuilder)
+        => it.AddFieldName("source", partialBuilder(new Partial<PublishingSource>(it)));
     
 }
+

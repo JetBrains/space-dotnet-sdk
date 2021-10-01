@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ChatsMessagesDeleteMessagePostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ChatsMessagesDeleteMessagePostRequest
-         : IPropagatePropertyAccessPath
+    public ChatsMessagesDeleteMessagePostRequest() { }
+    
+    public ChatsMessagesDeleteMessagePostRequest(string channel, ChatMessageIdentifier id)
     {
-        public ChatsMessagesDeleteMessagePostRequest() { }
-        
-        public ChatsMessagesDeleteMessagePostRequest(string channel, ChatMessageIdentifier id)
-        {
-            Channel = channel;
-            Id = id;
-        }
-        
-        private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesDeleteMessagePostRequest), nameof(Channel));
-        
-        [Required]
-        [JsonPropertyName("channel")]
-        public string Channel
-        {
-            get => _channel.GetValue();
-            set => _channel.SetValue(value);
-        }
-    
-        private PropertyValue<ChatMessageIdentifier> _id = new PropertyValue<ChatMessageIdentifier>(nameof(ChatsMessagesDeleteMessagePostRequest), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public ChatMessageIdentifier Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _channel.SetAccessPath(path, validateHasBeenSet);
-            _id.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Channel = channel;
+        Id = id;
     }
     
+    private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesDeleteMessagePostRequest), nameof(Channel));
+    
+    [Required]
+    [JsonPropertyName("channel")]
+    public string Channel
+    {
+        get => _channel.GetValue();
+        set => _channel.SetValue(value);
+    }
+
+    private PropertyValue<ChatMessageIdentifier> _id = new PropertyValue<ChatMessageIdentifier>(nameof(ChatsMessagesDeleteMessagePostRequest), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public ChatMessageIdentifier Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _channel.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

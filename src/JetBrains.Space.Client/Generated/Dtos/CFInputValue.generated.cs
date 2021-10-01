@@ -27,107 +27,106 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface CFInputValue
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface CFInputValue
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static AutonumberCFValue AutonumberCFValue(string? value = null)
-            => new AutonumberCFValue(value: value);
-        
-        public static BooleanCFValue BooleanCFValue(bool? value = null)
-            => new BooleanCFValue(value: value);
-        
-        public static ContactCFValue ContactCFValue(string? value = null)
-            => new ContactCFValue(value: value);
-        
-        public static ContactListCFValue ContactListCFValue(List<string> values)
-            => new ContactListCFValue(values: values);
-        
-        public static DateCFValue DateCFValue(DateTime? value = null)
-            => new DateCFValue(value: value);
-        
-        public static DateTimeCFValue DateTimeCFValue(DateTime? value = null)
-            => new DateTimeCFValue(value: value);
-        
-        public static DocumentCFInputValue Document(string? documentId = null)
-            => new DocumentCFInputValue(documentId: documentId);
-        
-        public static DocumentListCFInputValue DocumentList(List<string> documents)
-            => new DocumentListCFInputValue(documents: documents);
-        
-        public static EnumCFInputValue Enum(CFEnumValueIdentifier? enumValueIdentifier = null)
-            => new EnumCFInputValue(enumValueIdentifier: enumValueIdentifier);
-        
-        public static EnumCFValue EnumCFValue(EnumValueData? value = null)
-            => new EnumCFValue(value: value);
-        
-        public static EnumListCFInputValue EnumList(List<CFEnumValueIdentifier> enumValueIdentifiers)
-            => new EnumListCFInputValue(enumValueIdentifiers: enumValueIdentifiers);
-        
-        public static EnumListCFValue EnumListCFValue(List<EnumValueData> values)
-            => new EnumListCFValue(values: values);
-        
-        public static FractionCFValue FractionCFValue(Fraction? value = null)
-            => new FractionCFValue(value: value);
-        
-        public static IntCFValue IntCFValue(int? value = null)
-            => new IntCFValue(value: value);
-        
-        public static IntListCFValue IntListCFValue(List<int> values)
-            => new IntListCFValue(values: values);
-        
-        public static IssueCFInputValue Issue(IssueIdentifier? issue = null)
-            => new IssueCFInputValue(issue: issue);
-        
-        public static IssueListCFInputValue IssueList(List<IssueIdentifier> issues)
-            => new IssueListCFInputValue(issues: issues);
-        
-        public static LocationCFInputValue Location(string? location = null)
-            => new LocationCFInputValue(location: location);
-        
-        public static OpenEnumCFInputValue OpenEnum(CFEnumValueIdentifier? enumValueIdentifier = null)
-            => new OpenEnumCFInputValue(enumValueIdentifier: enumValueIdentifier);
-        
-        public static OpenEnumCFValue OpenEnumCFValue(EnumValueData? value = null)
-            => new OpenEnumCFValue(value: value);
-        
-        public static OpenEnumListCFInputValue OpenEnumList(List<CFEnumValueIdentifier> enumValueIdentifiers)
-            => new OpenEnumListCFInputValue(enumValueIdentifiers: enumValueIdentifiers);
-        
-        public static OpenEnumListCFValue OpenEnumListCFValue(List<EnumValueData> values)
-            => new OpenEnumListCFValue(values: values);
-        
-        public static PercentageCFValue PercentageCFValue(int? value = null)
-            => new PercentageCFValue(value: value);
-        
-        public static ProfileCFInputValue Profile(ProfileIdentifier? profile = null)
-            => new ProfileCFInputValue(profile: profile);
-        
-        public static ProfileListCFInputValue ProfileList(List<ProfileIdentifier> profiles)
-            => new ProfileListCFInputValue(profiles: profiles);
-        
-        public static ProjectCFInputValue Project(ProjectIdentifier? project = null)
-            => new ProjectCFInputValue(project: project);
-        
-        public static StringCFValue StringCFValue(string? value = null)
-            => new StringCFValue(value: value);
-        
-        public static StringListCFValue StringListCFValue(List<string> values)
-            => new StringListCFValue(values: values);
-        
-        public static TeamCFInputValue Team(string? team = null)
-            => new TeamCFInputValue(team: team);
-        
-        public static UrlCFValue UrlCFValue(string? href = null)
-            => new UrlCFValue(href: href);
-        
-        public static VcsCommitCFInputValue VcsCommit(CFCommitIdentifier? commit = null)
-            => new VcsCommitCFInputValue(commit: commit);
-        
-        public static VcsCommitListCFInputValue VcsCommitList(List<CFCommitIdentifier> commits)
-            => new VcsCommitListCFInputValue(commits: commits);
-        
-    }
+    public static AutonumberCFValue AutonumberCFValue(string? value = null)
+        => new AutonumberCFValue(value: value);
+    
+    public static BooleanCFValue BooleanCFValue(bool? value = null)
+        => new BooleanCFValue(value: value);
+    
+    public static ContactCFValue ContactCFValue(string? value = null)
+        => new ContactCFValue(value: value);
+    
+    public static ContactListCFValue ContactListCFValue(List<string> values)
+        => new ContactListCFValue(values: values);
+    
+    public static DateCFValue DateCFValue(DateTime? value = null)
+        => new DateCFValue(value: value);
+    
+    public static DateTimeCFValue DateTimeCFValue(DateTime? value = null)
+        => new DateTimeCFValue(value: value);
+    
+    public static DocumentCFInputValue Document(string? documentId = null)
+        => new DocumentCFInputValue(documentId: documentId);
+    
+    public static DocumentListCFInputValue DocumentList(List<string> documents)
+        => new DocumentListCFInputValue(documents: documents);
+    
+    public static EnumCFInputValue Enum(CFEnumValueIdentifier? enumValueIdentifier = null)
+        => new EnumCFInputValue(enumValueIdentifier: enumValueIdentifier);
+    
+    public static EnumCFValue EnumCFValue(EnumValueData? value = null)
+        => new EnumCFValue(value: value);
+    
+    public static EnumListCFInputValue EnumList(List<CFEnumValueIdentifier> enumValueIdentifiers)
+        => new EnumListCFInputValue(enumValueIdentifiers: enumValueIdentifiers);
+    
+    public static EnumListCFValue EnumListCFValue(List<EnumValueData> values)
+        => new EnumListCFValue(values: values);
+    
+    public static FractionCFValue FractionCFValue(Fraction? value = null)
+        => new FractionCFValue(value: value);
+    
+    public static IntCFValue IntCFValue(int? value = null)
+        => new IntCFValue(value: value);
+    
+    public static IntListCFValue IntListCFValue(List<int> values)
+        => new IntListCFValue(values: values);
+    
+    public static IssueCFInputValue Issue(IssueIdentifier? issue = null)
+        => new IssueCFInputValue(issue: issue);
+    
+    public static IssueListCFInputValue IssueList(List<IssueIdentifier> issues)
+        => new IssueListCFInputValue(issues: issues);
+    
+    public static LocationCFInputValue Location(string? location = null)
+        => new LocationCFInputValue(location: location);
+    
+    public static OpenEnumCFInputValue OpenEnum(CFEnumValueIdentifier? enumValueIdentifier = null)
+        => new OpenEnumCFInputValue(enumValueIdentifier: enumValueIdentifier);
+    
+    public static OpenEnumCFValue OpenEnumCFValue(EnumValueData? value = null)
+        => new OpenEnumCFValue(value: value);
+    
+    public static OpenEnumListCFInputValue OpenEnumList(List<CFEnumValueIdentifier> enumValueIdentifiers)
+        => new OpenEnumListCFInputValue(enumValueIdentifiers: enumValueIdentifiers);
+    
+    public static OpenEnumListCFValue OpenEnumListCFValue(List<EnumValueData> values)
+        => new OpenEnumListCFValue(values: values);
+    
+    public static PercentageCFValue PercentageCFValue(int? value = null)
+        => new PercentageCFValue(value: value);
+    
+    public static ProfileCFInputValue Profile(ProfileIdentifier? profile = null)
+        => new ProfileCFInputValue(profile: profile);
+    
+    public static ProfileListCFInputValue ProfileList(List<ProfileIdentifier> profiles)
+        => new ProfileListCFInputValue(profiles: profiles);
+    
+    public static ProjectCFInputValue Project(ProjectIdentifier? project = null)
+        => new ProjectCFInputValue(project: project);
+    
+    public static StringCFValue StringCFValue(string? value = null)
+        => new StringCFValue(value: value);
+    
+    public static StringListCFValue StringListCFValue(List<string> values)
+        => new StringListCFValue(values: values);
+    
+    public static TeamCFInputValue Team(string? team = null)
+        => new TeamCFInputValue(team: team);
+    
+    public static UrlCFValue UrlCFValue(string? href = null)
+        => new UrlCFValue(href: href);
+    
+    public static VcsCommitCFInputValue VcsCommit(CFCommitIdentifier? commit = null)
+        => new VcsCommitCFInputValue(commit: commit);
+    
+    public static VcsCommitListCFInputValue VcsCommitList(List<CFCommitIdentifier> commits)
+        => new VcsCommitListCFInputValue(commits: commits);
     
 }
+

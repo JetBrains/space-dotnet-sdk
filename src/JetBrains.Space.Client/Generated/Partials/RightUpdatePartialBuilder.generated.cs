@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RightUpdatePartialBuilder
+namespace JetBrains.Space.Client.RightUpdatePartialBuilder;
+
+public static class RightUpdatePartialExtensions
 {
-    public static class RightUpdatePartialExtensions
-    {
-        public static Partial<RightUpdate> WithRightCode(this Partial<RightUpdate> it)
-            => it.AddFieldName("rightCode");
-        
-        public static Partial<RightUpdate> WithStatus(this Partial<RightUpdate> it)
-            => it.AddFieldName("status");
-        
-        public static Partial<RightUpdate> WithStatus(this Partial<RightUpdate> it, Func<Partial<RightStatus>, Partial<RightStatus>> partialBuilder)
-            => it.AddFieldName("status", partialBuilder(new Partial<RightStatus>(it)));
-        
-    }
+    public static Partial<RightUpdate> WithRightCode(this Partial<RightUpdate> it)
+        => it.AddFieldName("rightCode");
+    
+    public static Partial<RightUpdate> WithStatus(this Partial<RightUpdate> it)
+        => it.AddFieldName("status");
+    
+    public static Partial<RightUpdate> WithStatus(this Partial<RightUpdate> it, Func<Partial<RightStatus>, Partial<RightStatus>> partialBuilder)
+        => it.AddFieldName("status", partialBuilder(new Partial<RightStatus>(it)));
     
 }
+

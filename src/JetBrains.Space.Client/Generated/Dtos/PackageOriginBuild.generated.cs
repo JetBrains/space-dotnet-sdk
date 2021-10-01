@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PackageOriginBuild
+     : PackageOrigin, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class PackageOriginBuild
-         : PackageOrigin, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "PackageOrigin.Build";
+    
+    public PackageOriginBuild() { }
+    
+    public PackageOriginBuild(string? name = null, string? url = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "PackageOrigin.Build";
-        
-        public PackageOriginBuild() { }
-        
-        public PackageOriginBuild(string? name = null, string? url = null)
-        {
-            Name = name;
-            Url = url;
-        }
-        
-        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(PackageOriginBuild), nameof(Name));
-        
-        [JsonPropertyName("name")]
-        public string? Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(PackageOriginBuild), nameof(Url));
-        
-        [JsonPropertyName("url")]
-        public string? Url
-        {
-            get => _url.GetValue();
-            set => _url.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _url.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Url = url;
     }
     
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(PackageOriginBuild), nameof(Name));
+    
+    [JsonPropertyName("name")]
+    public string? Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(PackageOriginBuild), nameof(Url));
+    
+    [JsonPropertyName("url")]
+    public string? Url
+    {
+        get => _url.GetValue();
+        set => _url.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _url.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

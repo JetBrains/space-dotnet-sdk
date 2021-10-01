@@ -27,58 +27,57 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsPackageDetails
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsPackageDetails
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsPackageDetails";
+    
+    public UnfurlDetailsPackageDetails() { }
+    
+    public UnfurlDetailsPackageDetails(ProjectPackageRepository repoRef, string? packageName = null, string? version = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsPackageDetails";
-        
-        public UnfurlDetailsPackageDetails() { }
-        
-        public UnfurlDetailsPackageDetails(ProjectPackageRepository repoRef, string? packageName = null, string? version = null)
-        {
-            RepoRef = repoRef;
-            PackageName = packageName;
-            Version = version;
-        }
-        
-        private PropertyValue<ProjectPackageRepository> _repoRef = new PropertyValue<ProjectPackageRepository>(nameof(UnfurlDetailsPackageDetails), nameof(RepoRef));
-        
-        [Required]
-        [JsonPropertyName("repoRef")]
-        public ProjectPackageRepository RepoRef
-        {
-            get => _repoRef.GetValue();
-            set => _repoRef.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _packageName = new PropertyValue<string?>(nameof(UnfurlDetailsPackageDetails), nameof(PackageName));
-        
-        [JsonPropertyName("packageName")]
-        public string? PackageName
-        {
-            get => _packageName.GetValue();
-            set => _packageName.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(UnfurlDetailsPackageDetails), nameof(Version));
-        
-        [JsonPropertyName("version")]
-        public string? Version
-        {
-            get => _version.GetValue();
-            set => _version.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _repoRef.SetAccessPath(path, validateHasBeenSet);
-            _packageName.SetAccessPath(path, validateHasBeenSet);
-            _version.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        RepoRef = repoRef;
+        PackageName = packageName;
+        Version = version;
     }
     
+    private PropertyValue<ProjectPackageRepository> _repoRef = new PropertyValue<ProjectPackageRepository>(nameof(UnfurlDetailsPackageDetails), nameof(RepoRef));
+    
+    [Required]
+    [JsonPropertyName("repoRef")]
+    public ProjectPackageRepository RepoRef
+    {
+        get => _repoRef.GetValue();
+        set => _repoRef.SetValue(value);
+    }
+
+    private PropertyValue<string?> _packageName = new PropertyValue<string?>(nameof(UnfurlDetailsPackageDetails), nameof(PackageName));
+    
+    [JsonPropertyName("packageName")]
+    public string? PackageName
+    {
+        get => _packageName.GetValue();
+        set => _packageName.SetValue(value);
+    }
+
+    private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(UnfurlDetailsPackageDetails), nameof(Version));
+    
+    [JsonPropertyName("version")]
+    public string? Version
+    {
+        get => _version.GetValue();
+        set => _version.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _repoRef.SetAccessPath(path, validateHasBeenSet);
+        _packageName.SetAccessPath(path, validateHasBeenSet);
+        _version.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsMeetingPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsMeetingPartialBuilder;
+
+public static class UnfurlDetailsMeetingPartialExtensions
 {
-    public static class UnfurlDetailsMeetingPartialExtensions
-    {
-        public static Partial<UnfurlDetailsMeeting> WithMeeting(this Partial<UnfurlDetailsMeeting> it)
-            => it.AddFieldName("meeting");
-        
-        public static Partial<UnfurlDetailsMeeting> WithMeeting(this Partial<UnfurlDetailsMeeting> it, Func<Partial<Meeting>, Partial<Meeting>> partialBuilder)
-            => it.AddFieldName("meeting", partialBuilder(new Partial<Meeting>(it)));
-        
-        public static Partial<UnfurlDetailsMeeting> WithIsCompact(this Partial<UnfurlDetailsMeeting> it)
-            => it.AddFieldName("compact");
-        
-    }
+    public static Partial<UnfurlDetailsMeeting> WithMeeting(this Partial<UnfurlDetailsMeeting> it)
+        => it.AddFieldName("meeting");
+    
+    public static Partial<UnfurlDetailsMeeting> WithMeeting(this Partial<UnfurlDetailsMeeting> it, Func<Partial<Meeting>, Partial<Meeting>> partialBuilder)
+        => it.AddFieldName("meeting", partialBuilder(new Partial<Meeting>(it)));
+    
+    public static Partial<UnfurlDetailsMeeting> WithIsCompact(this Partial<UnfurlDetailsMeeting> it)
+        => it.AddFieldName("compact");
     
 }
+

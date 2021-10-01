@@ -27,49 +27,48 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BlogWebhookEventPartialBuilder
+namespace JetBrains.Space.Client.BlogWebhookEventPartialBuilder;
+
+public static class BlogWebhookEventPartialExtensions
 {
-    public static class BlogWebhookEventPartialExtensions
-    {
-        public static Partial<BlogWebhookEvent> WithMeta(this Partial<BlogWebhookEvent> it)
-            => it.AddFieldName("meta");
-        
-        public static Partial<BlogWebhookEvent> WithMeta(this Partial<BlogWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-            => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
-        
-        public static Partial<BlogWebhookEvent> WithArticle(this Partial<BlogWebhookEvent> it)
-            => it.AddFieldName("article");
-        
-        public static Partial<BlogWebhookEvent> WithArticle(this Partial<BlogWebhookEvent> it, Func<Partial<ArticleRecord>, Partial<ArticleRecord>> partialBuilder)
-            => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecord>(it)));
-        
-        public static Partial<BlogWebhookEvent> WithAction(this Partial<BlogWebhookEvent> it)
-            => it.AddFieldName("action");
-        
-        public static Partial<BlogWebhookEvent> WithAuthor(this Partial<BlogWebhookEvent> it)
-            => it.AddFieldName("author");
-        
-        public static Partial<BlogWebhookEvent> WithCreated(this Partial<BlogWebhookEvent> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<BlogWebhookEvent> WithTitle(this Partial<BlogWebhookEvent> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<BlogWebhookEvent> WithIsTextChanged(this Partial<BlogWebhookEvent> it)
-            => it.AddFieldName("textChanged");
-        
-        public static Partial<BlogWebhookEvent> WithUnpublished(this Partial<BlogWebhookEvent> it)
-            => it.AddFieldName("unpublished");
-        
-        public static Partial<BlogWebhookEvent> WithTeams(this Partial<BlogWebhookEvent> it)
-            => it.AddFieldName("teams");
-        
-        public static Partial<BlogWebhookEvent> WithLocations(this Partial<BlogWebhookEvent> it)
-            => it.AddFieldName("locations");
-        
-        public static Partial<BlogWebhookEvent> WithExternalEntityInfo(this Partial<BlogWebhookEvent> it)
-            => it.AddFieldName("externalEntityInfo");
-        
-    }
+    public static Partial<BlogWebhookEvent> WithMeta(this Partial<BlogWebhookEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<BlogWebhookEvent> WithMeta(this Partial<BlogWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<BlogWebhookEvent> WithArticle(this Partial<BlogWebhookEvent> it)
+        => it.AddFieldName("article");
+    
+    public static Partial<BlogWebhookEvent> WithArticle(this Partial<BlogWebhookEvent> it, Func<Partial<ArticleRecord>, Partial<ArticleRecord>> partialBuilder)
+        => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecord>(it)));
+    
+    public static Partial<BlogWebhookEvent> WithAction(this Partial<BlogWebhookEvent> it)
+        => it.AddFieldName("action");
+    
+    public static Partial<BlogWebhookEvent> WithAuthor(this Partial<BlogWebhookEvent> it)
+        => it.AddFieldName("author");
+    
+    public static Partial<BlogWebhookEvent> WithCreated(this Partial<BlogWebhookEvent> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<BlogWebhookEvent> WithTitle(this Partial<BlogWebhookEvent> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<BlogWebhookEvent> WithIsTextChanged(this Partial<BlogWebhookEvent> it)
+        => it.AddFieldName("textChanged");
+    
+    public static Partial<BlogWebhookEvent> WithUnpublished(this Partial<BlogWebhookEvent> it)
+        => it.AddFieldName("unpublished");
+    
+    public static Partial<BlogWebhookEvent> WithTeams(this Partial<BlogWebhookEvent> it)
+        => it.AddFieldName("teams");
+    
+    public static Partial<BlogWebhookEvent> WithLocations(this Partial<BlogWebhookEvent> it)
+        => it.AddFieldName("locations");
+    
+    public static Partial<BlogWebhookEvent> WithExternalEntityInfo(this Partial<BlogWebhookEvent> it)
+        => it.AddFieldName("externalEntityInfo");
     
 }
+

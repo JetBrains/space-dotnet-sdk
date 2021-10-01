@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BillingFeedChannelPartialBuilder
+namespace JetBrains.Space.Client.BillingFeedChannelPartialBuilder;
+
+public static class BillingFeedChannelPartialExtensions
 {
-    public static class BillingFeedChannelPartialExtensions
-    {
-        public static Partial<BillingFeedChannel> WithNotificationDefaults(this Partial<BillingFeedChannel> it)
-            => it.AddFieldName("notificationDefaults");
-        
-        public static Partial<BillingFeedChannel> WithNotificationDefaults(this Partial<BillingFeedChannel> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
-        
-    }
+    public static Partial<BillingFeedChannel> WithNotificationDefaults(this Partial<BillingFeedChannel> it)
+        => it.AddFieldName("notificationDefaults");
+    
+    public static Partial<BillingFeedChannel> WithNotificationDefaults(this Partial<BillingFeedChannel> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
+        => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
     
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageSectionPartialBuilder
+namespace JetBrains.Space.Client.MessageSectionPartialBuilder;
+
+public static class MessageSectionPartialExtensions
 {
-    public static class MessageSectionPartialExtensions
-    {
-        public static Partial<MessageSection> WithHeader(this Partial<MessageSection> it)
-            => it.AddFieldName("header");
-        
-        public static Partial<MessageSection> WithElements(this Partial<MessageSection> it)
-            => it.AddFieldName("elements");
-        
-        public static Partial<MessageSection> WithElements(this Partial<MessageSection> it, Func<Partial<MessageElement>, Partial<MessageElement>> partialBuilder)
-            => it.AddFieldName("elements", partialBuilder(new Partial<MessageElement>(it)));
-        
-        public static Partial<MessageSection> WithFooter(this Partial<MessageSection> it)
-            => it.AddFieldName("footer");
-        
-    }
+    public static Partial<MessageSection> WithHeader(this Partial<MessageSection> it)
+        => it.AddFieldName("header");
+    
+    public static Partial<MessageSection> WithElements(this Partial<MessageSection> it)
+        => it.AddFieldName("elements");
+    
+    public static Partial<MessageSection> WithElements(this Partial<MessageSection> it, Func<Partial<MessageElement>, Partial<MessageElement>> partialBuilder)
+        => it.AddFieldName("elements", partialBuilder(new Partial<MessageElement>(it)));
+    
+    public static Partial<MessageSection> WithFooter(this Partial<MessageSection> it)
+        => it.AddFieldName("footer");
     
 }
+

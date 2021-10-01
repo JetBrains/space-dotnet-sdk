@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelIssueInfoPartialBuilder
+namespace JetBrains.Space.Client.M2ChannelIssueInfoPartialBuilder;
+
+public static class M2ChannelIssueInfoPartialExtensions
 {
-    public static class M2ChannelIssueInfoPartialExtensions
-    {
-        public static Partial<M2ChannelIssueInfo> WithProjectKey(this Partial<M2ChannelIssueInfo> it)
-            => it.AddFieldName("projectKey");
-        
-        public static Partial<M2ChannelIssueInfo> WithProjectKey(this Partial<M2ChannelIssueInfo> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
-            => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
-        
-        public static Partial<M2ChannelIssueInfo> WithIssue(this Partial<M2ChannelIssueInfo> it)
-            => it.AddFieldName("issue");
-        
-        public static Partial<M2ChannelIssueInfo> WithIssue(this Partial<M2ChannelIssueInfo> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
-            => it.AddFieldName("issue", partialBuilder(new Partial<Issue>(it)));
-        
-        public static Partial<M2ChannelIssueInfo> WithNotificationDefaults(this Partial<M2ChannelIssueInfo> it)
-            => it.AddFieldName("notificationDefaults");
-        
-        public static Partial<M2ChannelIssueInfo> WithNotificationDefaults(this Partial<M2ChannelIssueInfo> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
-        
-    }
+    public static Partial<M2ChannelIssueInfo> WithProjectKey(this Partial<M2ChannelIssueInfo> it)
+        => it.AddFieldName("projectKey");
+    
+    public static Partial<M2ChannelIssueInfo> WithProjectKey(this Partial<M2ChannelIssueInfo> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
+        => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
+    
+    public static Partial<M2ChannelIssueInfo> WithIssue(this Partial<M2ChannelIssueInfo> it)
+        => it.AddFieldName("issue");
+    
+    public static Partial<M2ChannelIssueInfo> WithIssue(this Partial<M2ChannelIssueInfo> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
+        => it.AddFieldName("issue", partialBuilder(new Partial<Issue>(it)));
+    
+    public static Partial<M2ChannelIssueInfo> WithNotificationDefaults(this Partial<M2ChannelIssueInfo> it)
+        => it.AddFieldName("notificationDefaults");
+    
+    public static Partial<M2ChannelIssueInfo> WithNotificationDefaults(this Partial<M2ChannelIssueInfo> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
+        => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
     
 }
+

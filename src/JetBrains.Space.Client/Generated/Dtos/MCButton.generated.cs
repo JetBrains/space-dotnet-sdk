@@ -27,71 +27,70 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MCButton
+     : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MCButton
-         : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MCButton";
+    
+    public MCButton() { }
+    
+    public MCButton(string text, string style, MCAction action, bool? disabled = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MCButton";
-        
-        public MCButton() { }
-        
-        public MCButton(string text, string style, MCAction action, bool? disabled = null)
-        {
-            Text = text;
-            Style = style;
-            Action = action;
-            IsDisabled = disabled;
-        }
-        
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(MCButton), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCButton), nameof(Style));
-        
-        [Required]
-        [JsonPropertyName("style")]
-        public string Style
-        {
-            get => _style.GetValue();
-            set => _style.SetValue(value);
-        }
-    
-        private PropertyValue<MCAction> _action = new PropertyValue<MCAction>(nameof(MCButton), nameof(Action));
-        
-        [Required]
-        [JsonPropertyName("action")]
-        public MCAction Action
-        {
-            get => _action.GetValue();
-            set => _action.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _disabled = new PropertyValue<bool?>(nameof(MCButton), nameof(IsDisabled));
-        
-        [JsonPropertyName("disabled")]
-        public bool? IsDisabled
-        {
-            get => _disabled.GetValue();
-            set => _disabled.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _style.SetAccessPath(path, validateHasBeenSet);
-            _action.SetAccessPath(path, validateHasBeenSet);
-            _disabled.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Text = text;
+        Style = style;
+        Action = action;
+        IsDisabled = disabled;
     }
     
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MCButton), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCButton), nameof(Style));
+    
+    [Required]
+    [JsonPropertyName("style")]
+    public string Style
+    {
+        get => _style.GetValue();
+        set => _style.SetValue(value);
+    }
+
+    private PropertyValue<MCAction> _action = new PropertyValue<MCAction>(nameof(MCButton), nameof(Action));
+    
+    [Required]
+    [JsonPropertyName("action")]
+    public MCAction Action
+    {
+        get => _action.GetValue();
+        set => _action.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _disabled = new PropertyValue<bool?>(nameof(MCButton), nameof(IsDisabled));
+    
+    [JsonPropertyName("disabled")]
+    public bool? IsDisabled
+    {
+        get => _disabled.GetValue();
+        set => _disabled.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _text.SetAccessPath(path, validateHasBeenSet);
+        _style.SetAccessPath(path, validateHasBeenSet);
+        _action.SetAccessPath(path, validateHasBeenSet);
+        _disabled.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

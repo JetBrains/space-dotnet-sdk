@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BookContainerInfoPartialBuilder
+namespace JetBrains.Space.Client.BookContainerInfoPartialBuilder;
+
+public static class BookContainerInfoPartialExtensions
 {
-    public static class BookContainerInfoPartialExtensions
-    {
-        public static Partial<BookContainerInfo> WithBook(this Partial<BookContainerInfo> it)
-            => it.AddFieldName("book");
-        
-        public static Partial<BookContainerInfo> WithBook(this Partial<BookContainerInfo> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
-            => it.AddFieldName("book", partialBuilder(new Partial<KBBook>(it)));
-        
-    }
+    public static Partial<BookContainerInfo> WithBook(this Partial<BookContainerInfo> it)
+        => it.AddFieldName("book");
+    
+    public static Partial<BookContainerInfo> WithBook(this Partial<BookContainerInfo> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
+        => it.AddFieldName("book", partialBuilder(new Partial<KBBook>(it)));
     
 }
+

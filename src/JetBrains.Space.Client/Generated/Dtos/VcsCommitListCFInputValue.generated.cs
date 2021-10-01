@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class VcsCommitListCFInputValue
+     : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class VcsCommitListCFInputValue
-         : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "VcsCommitListCFInputValue";
+    
+    public VcsCommitListCFInputValue() { }
+    
+    public VcsCommitListCFInputValue(List<CFCommitIdentifier> commits)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "VcsCommitListCFInputValue";
-        
-        public VcsCommitListCFInputValue() { }
-        
-        public VcsCommitListCFInputValue(List<CFCommitIdentifier> commits)
-        {
-            Commits = commits;
-        }
-        
-        private PropertyValue<List<CFCommitIdentifier>> _commits = new PropertyValue<List<CFCommitIdentifier>>(nameof(VcsCommitListCFInputValue), nameof(Commits), new List<CFCommitIdentifier>());
-        
-        [Required]
-        [JsonPropertyName("commits")]
-        public List<CFCommitIdentifier> Commits
-        {
-            get => _commits.GetValue();
-            set => _commits.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _commits.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Commits = commits;
     }
     
+    private PropertyValue<List<CFCommitIdentifier>> _commits = new PropertyValue<List<CFCommitIdentifier>>(nameof(VcsCommitListCFInputValue), nameof(Commits), new List<CFCommitIdentifier>());
+    
+    [Required]
+    [JsonPropertyName("commits")]
+    public List<CFCommitIdentifier> Commits
+    {
+        get => _commits.GetValue();
+        set => _commits.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _commits.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

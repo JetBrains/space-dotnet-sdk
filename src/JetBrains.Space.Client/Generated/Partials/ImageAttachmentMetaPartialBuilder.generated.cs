@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ImageAttachmentMetaPartialBuilder
+namespace JetBrains.Space.Client.ImageAttachmentMetaPartialBuilder;
+
+public static class ImageAttachmentMetaPartialExtensions
 {
-    public static class ImageAttachmentMetaPartialExtensions
-    {
-        public static Partial<ImageAttachmentMeta> WithVariants(this Partial<ImageAttachmentMeta> it)
-            => it.AddFieldName("variants");
-        
-        public static Partial<ImageAttachmentMeta> WithVariants(this Partial<ImageAttachmentMeta> it, Func<Partial<ImageAttachmentVariantsMeta>, Partial<ImageAttachmentVariantsMeta>> partialBuilder)
-            => it.AddFieldName("variants", partialBuilder(new Partial<ImageAttachmentVariantsMeta>(it)));
-        
-    }
+    public static Partial<ImageAttachmentMeta> WithVariants(this Partial<ImageAttachmentMeta> it)
+        => it.AddFieldName("variants");
+    
+    public static Partial<ImageAttachmentMeta> WithVariants(this Partial<ImageAttachmentMeta> it, Func<Partial<ImageAttachmentVariantsMeta>, Partial<ImageAttachmentVariantsMeta>> partialBuilder)
+        => it.AddFieldName("variants", partialBuilder(new Partial<ImageAttachmentVariantsMeta>(it)));
     
 }
+

@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESOAuthConsentPartialBuilder
+namespace JetBrains.Space.Client.ESOAuthConsentPartialBuilder;
+
+public static class ESOAuthConsentPartialExtensions
 {
-    public static class ESOAuthConsentPartialExtensions
-    {
-        public static Partial<ESOAuthConsent> WithClientApplication(this Partial<ESOAuthConsent> it)
-            => it.AddFieldName("clientApplication");
-        
-        public static Partial<ESOAuthConsent> WithClientApplication(this Partial<ESOAuthConsent> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
-            => it.AddFieldName("clientApplication", partialBuilder(new Partial<ESApp>(it)));
-        
-        public static Partial<ESOAuthConsent> WithApprovedScopes(this Partial<ESOAuthConsent> it)
-            => it.AddFieldName("approvedScopes");
-        
-        public static Partial<ESOAuthConsent> WithApprovedScopes(this Partial<ESOAuthConsent> it, Func<Partial<ESApprovedScope>, Partial<ESApprovedScope>> partialBuilder)
-            => it.AddFieldName("approvedScopes", partialBuilder(new Partial<ESApprovedScope>(it)));
-        
-        public static Partial<ESOAuthConsent> WithRefreshTokens(this Partial<ESOAuthConsent> it)
-            => it.AddFieldName("refreshTokens");
-        
-        public static Partial<ESOAuthConsent> WithRefreshTokens(this Partial<ESOAuthConsent> it, Func<Partial<ESRefreshToken>, Partial<ESRefreshToken>> partialBuilder)
-            => it.AddFieldName("refreshTokens", partialBuilder(new Partial<ESRefreshToken>(it)));
-        
-    }
+    public static Partial<ESOAuthConsent> WithClientApplication(this Partial<ESOAuthConsent> it)
+        => it.AddFieldName("clientApplication");
+    
+    public static Partial<ESOAuthConsent> WithClientApplication(this Partial<ESOAuthConsent> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
+        => it.AddFieldName("clientApplication", partialBuilder(new Partial<ESApp>(it)));
+    
+    public static Partial<ESOAuthConsent> WithApprovedScopes(this Partial<ESOAuthConsent> it)
+        => it.AddFieldName("approvedScopes");
+    
+    public static Partial<ESOAuthConsent> WithApprovedScopes(this Partial<ESOAuthConsent> it, Func<Partial<ESApprovedScope>, Partial<ESApprovedScope>> partialBuilder)
+        => it.AddFieldName("approvedScopes", partialBuilder(new Partial<ESApprovedScope>(it)));
+    
+    public static Partial<ESOAuthConsent> WithRefreshTokens(this Partial<ESOAuthConsent> it)
+        => it.AddFieldName("refreshTokens");
+    
+    public static Partial<ESOAuthConsent> WithRefreshTokens(this Partial<ESOAuthConsent> it, Func<Partial<ESRefreshToken>, Partial<ESRefreshToken>> partialBuilder)
+        => it.AddFieldName("refreshTokens", partialBuilder(new Partial<ESRefreshToken>(it)));
     
 }
+

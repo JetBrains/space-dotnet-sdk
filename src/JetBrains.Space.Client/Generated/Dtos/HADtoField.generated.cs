@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HADtoField
+     : IPropagatePropertyAccessPath
 {
-    public sealed class HADtoField
-         : IPropagatePropertyAccessPath
+    public HADtoField() { }
+    
+    public HADtoField(HAField field, bool extension)
     {
-        public HADtoField() { }
-        
-        public HADtoField(HAField field, bool extension)
-        {
-            Field = field;
-            IsExtension = extension;
-        }
-        
-        private PropertyValue<HAField> _field = new PropertyValue<HAField>(nameof(HADtoField), nameof(Field));
-        
-        [Required]
-        [JsonPropertyName("field")]
-        public HAField Field
-        {
-            get => _field.GetValue();
-            set => _field.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _extension = new PropertyValue<bool>(nameof(HADtoField), nameof(IsExtension));
-        
-        [Required]
-        [JsonPropertyName("extension")]
-        public bool IsExtension
-        {
-            get => _extension.GetValue();
-            set => _extension.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _field.SetAccessPath(path, validateHasBeenSet);
-            _extension.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Field = field;
+        IsExtension = extension;
     }
     
+    private PropertyValue<HAField> _field = new PropertyValue<HAField>(nameof(HADtoField), nameof(Field));
+    
+    [Required]
+    [JsonPropertyName("field")]
+    public HAField Field
+    {
+        get => _field.GetValue();
+        set => _field.SetValue(value);
+    }
+
+    private PropertyValue<bool> _extension = new PropertyValue<bool>(nameof(HADtoField), nameof(IsExtension));
+    
+    [Required]
+    [JsonPropertyName("extension")]
+    public bool IsExtension
+    {
+        get => _extension.GetValue();
+        set => _extension.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _field.SetAccessPath(path, validateHasBeenSet);
+        _extension.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

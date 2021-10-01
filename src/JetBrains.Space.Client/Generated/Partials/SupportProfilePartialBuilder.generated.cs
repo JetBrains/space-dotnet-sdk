@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SupportProfilePartialBuilder
+namespace JetBrains.Space.Client.SupportProfilePartialBuilder;
+
+public static class SupportProfilePartialExtensions
 {
-    public static class SupportProfilePartialExtensions
-    {
-        public static Partial<SupportProfile> WithProfile(this Partial<SupportProfile> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<SupportProfile> WithProfile(this Partial<SupportProfile> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<SupportProfile> WithIsAdminPermissionsGranted(this Partial<SupportProfile> it)
-            => it.AddFieldName("adminPermissionsGranted");
-        
-    }
+    public static Partial<SupportProfile> WithProfile(this Partial<SupportProfile> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<SupportProfile> WithProfile(this Partial<SupportProfile> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<SupportProfile> WithIsAdminPermissionsGranted(this Partial<SupportProfile> it)
+        => it.AddFieldName("adminPermissionsGranted");
     
 }
+

@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CFCommitInfoBaseCFCommitInfo
+     : CFCommitInfoBase, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class CFCommitInfoBaseCFCommitInfo
-         : CFCommitInfoBase, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "CFCommitInfoBase.CFCommitInfo";
+    
+    public CFCommitInfoBaseCFCommitInfo() { }
+    
+    public CFCommitInfoBaseCFCommitInfo(CommitInfo commit)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "CFCommitInfoBase.CFCommitInfo";
-        
-        public CFCommitInfoBaseCFCommitInfo() { }
-        
-        public CFCommitInfoBaseCFCommitInfo(CommitInfo commit)
-        {
-            Commit = commit;
-        }
-        
-        private PropertyValue<CommitInfo> _commit = new PropertyValue<CommitInfo>(nameof(CFCommitInfoBaseCFCommitInfo), nameof(Commit));
-        
-        [Required]
-        [JsonPropertyName("commit")]
-        public CommitInfo Commit
-        {
-            get => _commit.GetValue();
-            set => _commit.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _commit.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Commit = commit;
     }
     
+    private PropertyValue<CommitInfo> _commit = new PropertyValue<CommitInfo>(nameof(CFCommitInfoBaseCFCommitInfo), nameof(Commit));
+    
+    [Required]
+    [JsonPropertyName("commit")]
+    public CommitInfo Commit
+    {
+        get => _commit.GetValue();
+        set => _commit.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _commit.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

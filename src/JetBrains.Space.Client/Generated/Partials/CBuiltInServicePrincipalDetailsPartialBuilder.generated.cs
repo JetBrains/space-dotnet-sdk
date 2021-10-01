@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CBuiltInServicePrincipalDetailsPartialBuilder
+namespace JetBrains.Space.Client.CBuiltInServicePrincipalDetailsPartialBuilder;
+
+public static class CBuiltInServicePrincipalDetailsPartialExtensions
 {
-    public static class CBuiltInServicePrincipalDetailsPartialExtensions
-    {
-        public static Partial<CBuiltInServicePrincipalDetails> WithName(this Partial<CBuiltInServicePrincipalDetails> it)
-            => it.AddFieldName("name");
-        
-    }
+    public static Partial<CBuiltInServicePrincipalDetails> WithName(this Partial<CBuiltInServicePrincipalDetails> it)
+        => it.AddFieldName("name");
     
 }
+

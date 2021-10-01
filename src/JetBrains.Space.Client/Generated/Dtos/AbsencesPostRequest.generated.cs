@@ -27,128 +27,127 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class AbsencesPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class AbsencesPostRequest
-         : IPropagatePropertyAccessPath
+    public AbsencesPostRequest() { }
+    
+    public AbsencesPostRequest(string member, string reason, string description, DateTime since, DateTime till, string icon, bool available = false, string? location = null, List<CustomFieldInputValue>? customFieldValues = null)
     {
-        public AbsencesPostRequest() { }
-        
-        public AbsencesPostRequest(string member, string reason, string description, DateTime since, DateTime till, string icon, bool available = false, string? location = null, List<CustomFieldInputValue>? customFieldValues = null)
-        {
-            Member = member;
-            Reason = reason;
-            Description = description;
-            Location = location;
-            Since = since;
-            Till = till;
-            IsAvailable = available;
-            Icon = icon;
-            CustomFieldValues = customFieldValues;
-        }
-        
-        private PropertyValue<string> _member = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Member));
-        
-        [Required]
-        [JsonPropertyName("member")]
-        public string Member
-        {
-            get => _member.GetValue();
-            set => _member.SetValue(value);
-        }
-    
-        private PropertyValue<string> _reason = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Reason));
-        
-        [Required]
-        [JsonPropertyName("reason")]
-        public string Reason
-        {
-            get => _reason.GetValue();
-            set => _reason.SetValue(value);
-        }
-    
-        private PropertyValue<string> _description = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Description));
-        
-        [Required]
-        [JsonPropertyName("description")]
-        public string Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(AbsencesPostRequest), nameof(Location));
-        
-        [JsonPropertyName("location")]
-        public string? Location
-        {
-            get => _location.GetValue();
-            set => _location.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(AbsencesPostRequest), nameof(Since));
-        
-        [Required]
-        [JsonPropertyName("since")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime Since
-        {
-            get => _since.GetValue();
-            set => _since.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(AbsencesPostRequest), nameof(Till));
-        
-        [Required]
-        [JsonPropertyName("till")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime Till
-        {
-            get => _till.GetValue();
-            set => _till.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _available = new PropertyValue<bool>(nameof(AbsencesPostRequest), nameof(IsAvailable));
-        
-        [JsonPropertyName("available")]
-        public bool IsAvailable
-        {
-            get => _available.GetValue();
-            set => _available.SetValue(value);
-        }
-    
-        private PropertyValue<string> _icon = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Icon));
-        
-        [Required]
-        [JsonPropertyName("icon")]
-        public string Icon
-        {
-            get => _icon.GetValue();
-            set => _icon.SetValue(value);
-        }
-    
-        private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(AbsencesPostRequest), nameof(CustomFieldValues));
-        
-        [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldInputValue>? CustomFieldValues
-        {
-            get => _customFieldValues.GetValue();
-            set => _customFieldValues.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _member.SetAccessPath(path, validateHasBeenSet);
-            _reason.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _location.SetAccessPath(path, validateHasBeenSet);
-            _since.SetAccessPath(path, validateHasBeenSet);
-            _till.SetAccessPath(path, validateHasBeenSet);
-            _available.SetAccessPath(path, validateHasBeenSet);
-            _icon.SetAccessPath(path, validateHasBeenSet);
-            _customFieldValues.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Member = member;
+        Reason = reason;
+        Description = description;
+        Location = location;
+        Since = since;
+        Till = till;
+        IsAvailable = available;
+        Icon = icon;
+        CustomFieldValues = customFieldValues;
     }
     
+    private PropertyValue<string> _member = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Member));
+    
+    [Required]
+    [JsonPropertyName("member")]
+    public string Member
+    {
+        get => _member.GetValue();
+        set => _member.SetValue(value);
+    }
+
+    private PropertyValue<string> _reason = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Reason));
+    
+    [Required]
+    [JsonPropertyName("reason")]
+    public string Reason
+    {
+        get => _reason.GetValue();
+        set => _reason.SetValue(value);
+    }
+
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Description));
+    
+    [Required]
+    [JsonPropertyName("description")]
+    public string Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(AbsencesPostRequest), nameof(Location));
+    
+    [JsonPropertyName("location")]
+    public string? Location
+    {
+        get => _location.GetValue();
+        set => _location.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(AbsencesPostRequest), nameof(Since));
+    
+    [Required]
+    [JsonPropertyName("since")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime Since
+    {
+        get => _since.GetValue();
+        set => _since.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(AbsencesPostRequest), nameof(Till));
+    
+    [Required]
+    [JsonPropertyName("till")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime Till
+    {
+        get => _till.GetValue();
+        set => _till.SetValue(value);
+    }
+
+    private PropertyValue<bool> _available = new PropertyValue<bool>(nameof(AbsencesPostRequest), nameof(IsAvailable));
+    
+    [JsonPropertyName("available")]
+    public bool IsAvailable
+    {
+        get => _available.GetValue();
+        set => _available.SetValue(value);
+    }
+
+    private PropertyValue<string> _icon = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Icon));
+    
+    [Required]
+    [JsonPropertyName("icon")]
+    public string Icon
+    {
+        get => _icon.GetValue();
+        set => _icon.SetValue(value);
+    }
+
+    private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(AbsencesPostRequest), nameof(CustomFieldValues));
+    
+    [JsonPropertyName("customFieldValues")]
+    public List<CustomFieldInputValue>? CustomFieldValues
+    {
+        get => _customFieldValues.GetValue();
+        set => _customFieldValues.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _member.SetAccessPath(path, validateHasBeenSet);
+        _reason.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _location.SetAccessPath(path, validateHasBeenSet);
+        _since.SetAccessPath(path, validateHasBeenSet);
+        _till.SetAccessPath(path, validateHasBeenSet);
+        _available.SetAccessPath(path, validateHasBeenSet);
+        _icon.SetAccessPath(path, validateHasBeenSet);
+        _customFieldValues.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

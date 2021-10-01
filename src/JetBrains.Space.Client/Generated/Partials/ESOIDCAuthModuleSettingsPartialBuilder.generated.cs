@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESOIDCAuthModuleSettingsPartialBuilder
+namespace JetBrains.Space.Client.ESOIDCAuthModuleSettingsPartialBuilder;
+
+public static class ESOIDCAuthModuleSettingsPartialExtensions
 {
-    public static class ESOIDCAuthModuleSettingsPartialExtensions
-    {
-        public static Partial<ESOIDCAuthModuleSettings> WithClientId(this Partial<ESOIDCAuthModuleSettings> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<ESOIDCAuthModuleSettings> WithClientSecret(this Partial<ESOIDCAuthModuleSettings> it)
-            => it.AddFieldName("clientSecret");
-        
-        public static Partial<ESOIDCAuthModuleSettings> WithIsRegisterNewUsers(this Partial<ESOIDCAuthModuleSettings> it)
-            => it.AddFieldName("registerNewUsers");
-        
-        public static Partial<ESOIDCAuthModuleSettings> WithDiscoveryUrl(this Partial<ESOIDCAuthModuleSettings> it)
-            => it.AddFieldName("discoveryUrl");
-        
-        public static Partial<ESOIDCAuthModuleSettings> WithIssuer(this Partial<ESOIDCAuthModuleSettings> it)
-            => it.AddFieldName("issuer");
-        
-        public static Partial<ESOIDCAuthModuleSettings> WithAuthorizationEndpoint(this Partial<ESOIDCAuthModuleSettings> it)
-            => it.AddFieldName("authorizationEndpoint");
-        
-        public static Partial<ESOIDCAuthModuleSettings> WithTokenEndpoint(this Partial<ESOIDCAuthModuleSettings> it)
-            => it.AddFieldName("tokenEndpoint");
-        
-        public static Partial<ESOIDCAuthModuleSettings> WithTokenKeysEndpoint(this Partial<ESOIDCAuthModuleSettings> it)
-            => it.AddFieldName("tokenKeysEndpoint");
-        
-        public static Partial<ESOIDCAuthModuleSettings> WithUserInfoEndpoint(this Partial<ESOIDCAuthModuleSettings> it)
-            => it.AddFieldName("userInfoEndpoint");
-        
-        public static Partial<ESOIDCAuthModuleSettings> WithDomains(this Partial<ESOIDCAuthModuleSettings> it)
-            => it.AddFieldName("domains");
-        
-    }
+    public static Partial<ESOIDCAuthModuleSettings> WithClientId(this Partial<ESOIDCAuthModuleSettings> it)
+        => it.AddFieldName("clientId");
+    
+    public static Partial<ESOIDCAuthModuleSettings> WithClientSecret(this Partial<ESOIDCAuthModuleSettings> it)
+        => it.AddFieldName("clientSecret");
+    
+    public static Partial<ESOIDCAuthModuleSettings> WithIsRegisterNewUsers(this Partial<ESOIDCAuthModuleSettings> it)
+        => it.AddFieldName("registerNewUsers");
+    
+    public static Partial<ESOIDCAuthModuleSettings> WithDiscoveryUrl(this Partial<ESOIDCAuthModuleSettings> it)
+        => it.AddFieldName("discoveryUrl");
+    
+    public static Partial<ESOIDCAuthModuleSettings> WithIssuer(this Partial<ESOIDCAuthModuleSettings> it)
+        => it.AddFieldName("issuer");
+    
+    public static Partial<ESOIDCAuthModuleSettings> WithAuthorizationEndpoint(this Partial<ESOIDCAuthModuleSettings> it)
+        => it.AddFieldName("authorizationEndpoint");
+    
+    public static Partial<ESOIDCAuthModuleSettings> WithTokenEndpoint(this Partial<ESOIDCAuthModuleSettings> it)
+        => it.AddFieldName("tokenEndpoint");
+    
+    public static Partial<ESOIDCAuthModuleSettings> WithTokenKeysEndpoint(this Partial<ESOIDCAuthModuleSettings> it)
+        => it.AddFieldName("tokenKeysEndpoint");
+    
+    public static Partial<ESOIDCAuthModuleSettings> WithUserInfoEndpoint(this Partial<ESOIDCAuthModuleSettings> it)
+        => it.AddFieldName("userInfoEndpoint");
+    
+    public static Partial<ESOIDCAuthModuleSettings> WithDomains(this Partial<ESOIDCAuthModuleSettings> it)
+        => it.AddFieldName("domains");
     
 }
+

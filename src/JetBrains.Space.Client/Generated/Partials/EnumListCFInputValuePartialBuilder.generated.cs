@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EnumListCFInputValuePartialBuilder
+namespace JetBrains.Space.Client.EnumListCFInputValuePartialBuilder;
+
+public static class EnumListCFInputValuePartialExtensions
 {
-    public static class EnumListCFInputValuePartialExtensions
-    {
-        public static Partial<EnumListCFInputValue> WithEnumValueIdentifiers(this Partial<EnumListCFInputValue> it)
-            => it.AddFieldName("enumValueIdentifiers");
-        
-        public static Partial<EnumListCFInputValue> WithEnumValueIdentifiers(this Partial<EnumListCFInputValue> it, Func<Partial<CFEnumValueIdentifier>, Partial<CFEnumValueIdentifier>> partialBuilder)
-            => it.AddFieldName("enumValueIdentifiers", partialBuilder(new Partial<CFEnumValueIdentifier>(it)));
-        
-    }
+    public static Partial<EnumListCFInputValue> WithEnumValueIdentifiers(this Partial<EnumListCFInputValue> it)
+        => it.AddFieldName("enumValueIdentifiers");
+    
+    public static Partial<EnumListCFInputValue> WithEnumValueIdentifiers(this Partial<EnumListCFInputValue> it, Func<Partial<CFEnumValueIdentifier>, Partial<CFEnumValueIdentifier>> partialBuilder)
+        => it.AddFieldName("enumValueIdentifiers", partialBuilder(new Partial<CFEnumValueIdentifier>(it)));
     
 }
+

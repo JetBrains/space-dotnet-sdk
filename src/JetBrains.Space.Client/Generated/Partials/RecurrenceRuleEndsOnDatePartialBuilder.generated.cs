@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RecurrenceRuleEndsOnDatePartialBuilder
+namespace JetBrains.Space.Client.RecurrenceRuleEndsOnDatePartialBuilder;
+
+public static class RecurrenceRuleEndsOnDatePartialExtensions
 {
-    public static class RecurrenceRuleEndsOnDatePartialExtensions
-    {
-        public static Partial<RecurrenceRuleEndsOnDate> WithDate(this Partial<RecurrenceRuleEndsOnDate> it)
-            => it.AddFieldName("date");
-        
-    }
+    public static Partial<RecurrenceRuleEndsOnDate> WithDate(this Partial<RecurrenceRuleEndsOnDate> it)
+        => it.AddFieldName("date");
     
 }
+

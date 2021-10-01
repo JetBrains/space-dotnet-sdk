@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TeamPermissionTarget
+     : PermissionTarget, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class TeamPermissionTarget
-         : PermissionTarget, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "TeamPermissionTarget";
+    
+    public TeamPermissionTarget() { }
+    
+    public TeamPermissionTarget(string team)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "TeamPermissionTarget";
-        
-        public TeamPermissionTarget() { }
-        
-        public TeamPermissionTarget(string team)
-        {
-            Team = team;
-        }
-        
-        private PropertyValue<string> _team = new PropertyValue<string>(nameof(TeamPermissionTarget), nameof(Team));
-        
-        [Required]
-        [JsonPropertyName("team")]
-        public string Team
-        {
-            get => _team.GetValue();
-            set => _team.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _team.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Team = team;
     }
     
+    private PropertyValue<string> _team = new PropertyValue<string>(nameof(TeamPermissionTarget), nameof(Team));
+    
+    [Required]
+    [JsonPropertyName("team")]
+    public string Team
+    {
+        get => _team.GetValue();
+        set => _team.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _team.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

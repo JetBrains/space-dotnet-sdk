@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class Counter
+     : IPropagatePropertyAccessPath
 {
-    public sealed class Counter
-         : IPropagatePropertyAccessPath
+    public Counter() { }
+    
+    public Counter(int resolved, int unresolved)
     {
-        public Counter() { }
-        
-        public Counter(int resolved, int unresolved)
-        {
-            Resolved = resolved;
-            Unresolved = unresolved;
-        }
-        
-        private PropertyValue<int> _resolved = new PropertyValue<int>(nameof(Counter), nameof(Resolved));
-        
-        [Required]
-        [JsonPropertyName("resolved")]
-        public int Resolved
-        {
-            get => _resolved.GetValue();
-            set => _resolved.SetValue(value);
-        }
-    
-        private PropertyValue<int> _unresolved = new PropertyValue<int>(nameof(Counter), nameof(Unresolved));
-        
-        [Required]
-        [JsonPropertyName("unresolved")]
-        public int Unresolved
-        {
-            get => _unresolved.GetValue();
-            set => _unresolved.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _resolved.SetAccessPath(path, validateHasBeenSet);
-            _unresolved.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Resolved = resolved;
+        Unresolved = unresolved;
     }
     
+    private PropertyValue<int> _resolved = new PropertyValue<int>(nameof(Counter), nameof(Resolved));
+    
+    [Required]
+    [JsonPropertyName("resolved")]
+    public int Resolved
+    {
+        get => _resolved.GetValue();
+        set => _resolved.SetValue(value);
+    }
+
+    private PropertyValue<int> _unresolved = new PropertyValue<int>(nameof(Counter), nameof(Unresolved));
+    
+    [Required]
+    [JsonPropertyName("unresolved")]
+    public int Unresolved
+    {
+        get => _unresolved.GetValue();
+        set => _unresolved.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _resolved.SetAccessPath(path, validateHasBeenSet);
+        _unresolved.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

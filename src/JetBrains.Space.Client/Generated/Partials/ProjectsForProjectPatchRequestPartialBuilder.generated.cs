@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPatchRequestPartialBuilder;
+
+public static class ProjectsForProjectPatchRequestPartialExtensions
 {
-    public static class ProjectsForProjectPatchRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPatchRequest> WithKey(this Partial<ProjectsForProjectPatchRequest> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<ProjectsForProjectPatchRequest> WithKey(this Partial<ProjectsForProjectPatchRequest> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
-            => it.AddFieldName("key", partialBuilder(new Partial<ProjectKey>(it)));
-        
-        public static Partial<ProjectsForProjectPatchRequest> WithName(this Partial<ProjectsForProjectPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ProjectsForProjectPatchRequest> WithDescription(this Partial<ProjectsForProjectPatchRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<ProjectsForProjectPatchRequest> WithIsPrivate(this Partial<ProjectsForProjectPatchRequest> it)
-            => it.AddFieldName("private");
-        
-        public static Partial<ProjectsForProjectPatchRequest> WithTags(this Partial<ProjectsForProjectPatchRequest> it)
-            => it.AddFieldName("tags");
-        
-        public static Partial<ProjectsForProjectPatchRequest> WithIcon(this Partial<ProjectsForProjectPatchRequest> it)
-            => it.AddFieldName("icon");
-        
-    }
+    public static Partial<ProjectsForProjectPatchRequest> WithKey(this Partial<ProjectsForProjectPatchRequest> it)
+        => it.AddFieldName("key");
+    
+    public static Partial<ProjectsForProjectPatchRequest> WithKey(this Partial<ProjectsForProjectPatchRequest> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
+        => it.AddFieldName("key", partialBuilder(new Partial<ProjectKey>(it)));
+    
+    public static Partial<ProjectsForProjectPatchRequest> WithName(this Partial<ProjectsForProjectPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ProjectsForProjectPatchRequest> WithDescription(this Partial<ProjectsForProjectPatchRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<ProjectsForProjectPatchRequest> WithIsPrivate(this Partial<ProjectsForProjectPatchRequest> it)
+        => it.AddFieldName("private");
+    
+    public static Partial<ProjectsForProjectPatchRequest> WithTags(this Partial<ProjectsForProjectPatchRequest> it)
+        => it.AddFieldName("tags");
+    
+    public static Partial<ProjectsForProjectPatchRequest> WithIcon(this Partial<ProjectsForProjectPatchRequest> it)
+        => it.AddFieldName("icon");
     
 }
+

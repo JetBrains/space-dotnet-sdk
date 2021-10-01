@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryLocationsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryLocationsPostRequestPartialBuilder;
+
+public static class TeamDirectoryLocationsPostRequestPartialExtensions
 {
-    public static class TeamDirectoryLocationsPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryLocationsPostRequest> WithName(this Partial<TeamDirectoryLocationsPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TeamDirectoryLocationsPostRequest> WithTimezone(this Partial<TeamDirectoryLocationsPostRequest> it)
-            => it.AddFieldName("timezone");
-        
-        public static Partial<TeamDirectoryLocationsPostRequest> WithWorkdays(this Partial<TeamDirectoryLocationsPostRequest> it)
-            => it.AddFieldName("workdays");
-        
-        public static Partial<TeamDirectoryLocationsPostRequest> WithPhones(this Partial<TeamDirectoryLocationsPostRequest> it)
-            => it.AddFieldName("phones");
-        
-        public static Partial<TeamDirectoryLocationsPostRequest> WithEmails(this Partial<TeamDirectoryLocationsPostRequest> it)
-            => it.AddFieldName("emails");
-        
-        public static Partial<TeamDirectoryLocationsPostRequest> WithEquipment(this Partial<TeamDirectoryLocationsPostRequest> it)
-            => it.AddFieldName("equipment");
-        
-        public static Partial<TeamDirectoryLocationsPostRequest> WithDescription(this Partial<TeamDirectoryLocationsPostRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<TeamDirectoryLocationsPostRequest> WithAddress(this Partial<TeamDirectoryLocationsPostRequest> it)
-            => it.AddFieldName("address");
-        
-        public static Partial<TeamDirectoryLocationsPostRequest> WithType(this Partial<TeamDirectoryLocationsPostRequest> it)
-            => it.AddFieldName("type");
-        
-        public static Partial<TeamDirectoryLocationsPostRequest> WithParentId(this Partial<TeamDirectoryLocationsPostRequest> it)
-            => it.AddFieldName("parentId");
-        
-        public static Partial<TeamDirectoryLocationsPostRequest> WithCapacity(this Partial<TeamDirectoryLocationsPostRequest> it)
-            => it.AddFieldName("capacity");
-        
-    }
+    public static Partial<TeamDirectoryLocationsPostRequest> WithName(this Partial<TeamDirectoryLocationsPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TeamDirectoryLocationsPostRequest> WithTimezone(this Partial<TeamDirectoryLocationsPostRequest> it)
+        => it.AddFieldName("timezone");
+    
+    public static Partial<TeamDirectoryLocationsPostRequest> WithWorkdays(this Partial<TeamDirectoryLocationsPostRequest> it)
+        => it.AddFieldName("workdays");
+    
+    public static Partial<TeamDirectoryLocationsPostRequest> WithPhones(this Partial<TeamDirectoryLocationsPostRequest> it)
+        => it.AddFieldName("phones");
+    
+    public static Partial<TeamDirectoryLocationsPostRequest> WithEmails(this Partial<TeamDirectoryLocationsPostRequest> it)
+        => it.AddFieldName("emails");
+    
+    public static Partial<TeamDirectoryLocationsPostRequest> WithEquipment(this Partial<TeamDirectoryLocationsPostRequest> it)
+        => it.AddFieldName("equipment");
+    
+    public static Partial<TeamDirectoryLocationsPostRequest> WithDescription(this Partial<TeamDirectoryLocationsPostRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<TeamDirectoryLocationsPostRequest> WithAddress(this Partial<TeamDirectoryLocationsPostRequest> it)
+        => it.AddFieldName("address");
+    
+    public static Partial<TeamDirectoryLocationsPostRequest> WithType(this Partial<TeamDirectoryLocationsPostRequest> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<TeamDirectoryLocationsPostRequest> WithParentId(this Partial<TeamDirectoryLocationsPostRequest> it)
+        => it.AddFieldName("parentId");
+    
+    public static Partial<TeamDirectoryLocationsPostRequest> WithCapacity(this Partial<TeamDirectoryLocationsPostRequest> it)
+        => it.AddFieldName("capacity");
     
 }
+

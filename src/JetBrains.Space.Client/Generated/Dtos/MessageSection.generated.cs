@@ -27,58 +27,57 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MessageSection
+     : MessageSectionElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MessageSection
-         : MessageSectionElement, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MessageSection";
+    
+    public MessageSection() { }
+    
+    public MessageSection(List<MessageElement> elements, string? header = null, string? footer = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MessageSection";
-        
-        public MessageSection() { }
-        
-        public MessageSection(List<MessageElement> elements, string? header = null, string? footer = null)
-        {
-            Header = header;
-            Elements = elements;
-            Footer = footer;
-        }
-        
-        private PropertyValue<string?> _header = new PropertyValue<string?>(nameof(MessageSection), nameof(Header));
-        
-        [JsonPropertyName("header")]
-        public string? Header
-        {
-            get => _header.GetValue();
-            set => _header.SetValue(value);
-        }
-    
-        private PropertyValue<List<MessageElement>> _elements = new PropertyValue<List<MessageElement>>(nameof(MessageSection), nameof(Elements), new List<MessageElement>());
-        
-        [Required]
-        [JsonPropertyName("elements")]
-        public List<MessageElement> Elements
-        {
-            get => _elements.GetValue();
-            set => _elements.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _footer = new PropertyValue<string?>(nameof(MessageSection), nameof(Footer));
-        
-        [JsonPropertyName("footer")]
-        public string? Footer
-        {
-            get => _footer.GetValue();
-            set => _footer.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _header.SetAccessPath(path, validateHasBeenSet);
-            _elements.SetAccessPath(path, validateHasBeenSet);
-            _footer.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Header = header;
+        Elements = elements;
+        Footer = footer;
     }
     
+    private PropertyValue<string?> _header = new PropertyValue<string?>(nameof(MessageSection), nameof(Header));
+    
+    [JsonPropertyName("header")]
+    public string? Header
+    {
+        get => _header.GetValue();
+        set => _header.SetValue(value);
+    }
+
+    private PropertyValue<List<MessageElement>> _elements = new PropertyValue<List<MessageElement>>(nameof(MessageSection), nameof(Elements), new List<MessageElement>());
+    
+    [Required]
+    [JsonPropertyName("elements")]
+    public List<MessageElement> Elements
+    {
+        get => _elements.GetValue();
+        set => _elements.SetValue(value);
+    }
+
+    private PropertyValue<string?> _footer = new PropertyValue<string?>(nameof(MessageSection), nameof(Footer));
+    
+    [JsonPropertyName("footer")]
+    public string? Footer
+    {
+        get => _footer.GetValue();
+        set => _footer.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _header.SetAccessPath(path, validateHasBeenSet);
+        _elements.SetAccessPath(path, validateHasBeenSet);
+        _footer.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

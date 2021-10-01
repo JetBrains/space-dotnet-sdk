@@ -27,30 +27,29 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class RecurrenceRuleEnds
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class RecurrenceRuleEnds
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "RecurrenceRuleEnds";
+    
+    public static RecurrenceRuleEndsNever Never()
+        => new RecurrenceRuleEndsNever();
+    
+    public static RecurrenceRuleEndsOnDate OnDate(DateTime date)
+        => new RecurrenceRuleEndsOnDate(date: date);
+    
+    public static RecurrenceRuleEndsTotalCount TotalCount(int count)
+        => new RecurrenceRuleEndsTotalCount(count: count);
+    
+    public RecurrenceRuleEnds() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "RecurrenceRuleEnds";
-        
-        public static RecurrenceRuleEndsNever Never()
-            => new RecurrenceRuleEndsNever();
-        
-        public static RecurrenceRuleEndsOnDate OnDate(DateTime date)
-            => new RecurrenceRuleEndsOnDate(date: date);
-        
-        public static RecurrenceRuleEndsTotalCount TotalCount(int count)
-            => new RecurrenceRuleEndsTotalCount(count: count);
-        
-        public RecurrenceRuleEnds() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

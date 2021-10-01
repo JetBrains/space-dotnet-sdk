@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class VcsCommitCFParameters
+     : CFParameters, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class VcsCommitCFParameters
-         : CFParameters, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "VcsCommitCFParameters";
+    
+    public VcsCommitCFParameters() { }
+    
+    public VcsCommitCFParameters(VcsCFScope vcsCFScope)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "VcsCommitCFParameters";
-        
-        public VcsCommitCFParameters() { }
-        
-        public VcsCommitCFParameters(VcsCFScope vcsCFScope)
-        {
-            VcsCFScope = vcsCFScope;
-        }
-        
-        private PropertyValue<VcsCFScope> _vcsCFScope = new PropertyValue<VcsCFScope>(nameof(VcsCommitCFParameters), nameof(VcsCFScope));
-        
-        [Required]
-        [JsonPropertyName("vcsCFScope")]
-        public VcsCFScope VcsCFScope
-        {
-            get => _vcsCFScope.GetValue();
-            set => _vcsCFScope.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _vcsCFScope.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        VcsCFScope = vcsCFScope;
     }
     
+    private PropertyValue<VcsCFScope> _vcsCFScope = new PropertyValue<VcsCFScope>(nameof(VcsCommitCFParameters), nameof(VcsCFScope));
+    
+    [Required]
+    [JsonPropertyName("vcsCFScope")]
+    public VcsCFScope VcsCFScope
+    {
+        get => _vcsCFScope.GetValue();
+        set => _vcsCFScope.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _vcsCFScope.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RepoHeadsChangePartialBuilder
+namespace JetBrains.Space.Client.RepoHeadsChangePartialBuilder;
+
+public static class RepoHeadsChangePartialExtensions
 {
-    public static class RepoHeadsChangePartialExtensions
-    {
-        public static Partial<RepoHeadsChange> WithName(this Partial<RepoHeadsChange> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<RepoHeadsChange> WithOldId(this Partial<RepoHeadsChange> it)
-            => it.AddFieldName("oldId");
-        
-        public static Partial<RepoHeadsChange> WithNewId(this Partial<RepoHeadsChange> it)
-            => it.AddFieldName("newId");
-        
-    }
+    public static Partial<RepoHeadsChange> WithName(this Partial<RepoHeadsChange> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<RepoHeadsChange> WithOldId(this Partial<RepoHeadsChange> it)
+        => it.AddFieldName("oldId");
+    
+    public static Partial<RepoHeadsChange> WithNewId(this Partial<RepoHeadsChange> it)
+        => it.AddFieldName("newId");
     
 }
+

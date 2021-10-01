@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PackageVersionRefPartialBuilder
+namespace JetBrains.Space.Client.PackageVersionRefPartialBuilder;
+
+public static class PackageVersionRefPartialExtensions
 {
-    public static class PackageVersionRefPartialExtensions
-    {
-        public static Partial<PackageVersionRef> WithName(this Partial<PackageVersionRef> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<PackageVersionRef> WithVersion(this Partial<PackageVersionRef> it)
-            => it.AddFieldName("version");
-        
-    }
+    public static Partial<PackageVersionRef> WithName(this Partial<PackageVersionRef> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<PackageVersionRef> WithVersion(this Partial<PackageVersionRef> it)
+        => it.AddFieldName("version");
     
 }
+

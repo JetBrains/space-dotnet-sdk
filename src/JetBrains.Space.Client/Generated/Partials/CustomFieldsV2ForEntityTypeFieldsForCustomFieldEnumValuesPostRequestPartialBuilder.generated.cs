@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequestPartialBuilder
+namespace JetBrains.Space.Client.CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequestPartialBuilder;
+
+public static class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequestPartialExtensions
 {
-    public static class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequestPartialExtensions
-    {
-        public static Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest> WithEnumValueToAdd(this Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest> it)
-            => it.AddFieldName("enumValueToAdd");
-        
-    }
+    public static Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest> WithEnumValueToAdd(this Partial<CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest> it)
+        => it.AddFieldName("enumValueToAdd");
     
 }
+

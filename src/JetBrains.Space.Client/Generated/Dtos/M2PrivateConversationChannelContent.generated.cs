@@ -27,70 +27,69 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2PrivateConversationChannelContent
+     : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2PrivateConversationChannelContent
-         : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2PrivateConversationChannelContent";
+    
+    public M2PrivateConversationChannelContent() { }
+    
+    public M2PrivateConversationChannelContent(string channelId, List<TDMemberProfile> members, string? subject = null, ChannelSpecificDefaults? notificationDefaults = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2PrivateConversationChannelContent";
-        
-        public M2PrivateConversationChannelContent() { }
-        
-        public M2PrivateConversationChannelContent(string channelId, List<TDMemberProfile> members, string? subject = null, ChannelSpecificDefaults? notificationDefaults = null)
-        {
-            ChannelId = channelId;
-            Subject = subject;
-            Members = members;
-            NotificationDefaults = notificationDefaults;
-        }
-        
-        private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(M2PrivateConversationChannelContent), nameof(ChannelId));
-        
-        [Required]
-        [JsonPropertyName("channelId")]
-        public string ChannelId
-        {
-            get => _channelId.GetValue();
-            set => _channelId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _subject = new PropertyValue<string?>(nameof(M2PrivateConversationChannelContent), nameof(Subject));
-        
-        [JsonPropertyName("subject")]
-        public string? Subject
-        {
-            get => _subject.GetValue();
-            set => _subject.SetValue(value);
-        }
-    
-        private PropertyValue<List<TDMemberProfile>> _members = new PropertyValue<List<TDMemberProfile>>(nameof(M2PrivateConversationChannelContent), nameof(Members), new List<TDMemberProfile>());
-        
-        [Required]
-        [JsonPropertyName("members")]
-        public List<TDMemberProfile> Members
-        {
-            get => _members.GetValue();
-            set => _members.SetValue(value);
-        }
-    
-        private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(M2PrivateConversationChannelContent), nameof(NotificationDefaults));
-        
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaults? NotificationDefaults
-        {
-            get => _notificationDefaults.GetValue();
-            set => _notificationDefaults.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _channelId.SetAccessPath(path, validateHasBeenSet);
-            _subject.SetAccessPath(path, validateHasBeenSet);
-            _members.SetAccessPath(path, validateHasBeenSet);
-            _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ChannelId = channelId;
+        Subject = subject;
+        Members = members;
+        NotificationDefaults = notificationDefaults;
     }
     
+    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(M2PrivateConversationChannelContent), nameof(ChannelId));
+    
+    [Required]
+    [JsonPropertyName("channelId")]
+    public string ChannelId
+    {
+        get => _channelId.GetValue();
+        set => _channelId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _subject = new PropertyValue<string?>(nameof(M2PrivateConversationChannelContent), nameof(Subject));
+    
+    [JsonPropertyName("subject")]
+    public string? Subject
+    {
+        get => _subject.GetValue();
+        set => _subject.SetValue(value);
+    }
+
+    private PropertyValue<List<TDMemberProfile>> _members = new PropertyValue<List<TDMemberProfile>>(nameof(M2PrivateConversationChannelContent), nameof(Members), new List<TDMemberProfile>());
+    
+    [Required]
+    [JsonPropertyName("members")]
+    public List<TDMemberProfile> Members
+    {
+        get => _members.GetValue();
+        set => _members.SetValue(value);
+    }
+
+    private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(M2PrivateConversationChannelContent), nameof(NotificationDefaults));
+    
+    [JsonPropertyName("notificationDefaults")]
+    public ChannelSpecificDefaults? NotificationDefaults
+    {
+        get => _notificationDefaults.GetValue();
+        set => _notificationDefaults.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _channelId.SetAccessPath(path, validateHasBeenSet);
+        _subject.SetAccessPath(path, validateHasBeenSet);
+        _members.SetAccessPath(path, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

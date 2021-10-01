@@ -27,103 +27,102 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public abstract class CFValue
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public abstract class CFValue
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "CFValue";
+    
+    public static AutonumberCFValue Autonumber(string? value = null)
+        => new AutonumberCFValue(value: value);
+    
+    public static BooleanCFValue Boolean(bool? value = null)
+        => new BooleanCFValue(value: value);
+    
+    public static ContactCFValue Contact(string? value = null)
+        => new ContactCFValue(value: value);
+    
+    public static ContactListCFValue ContactList(List<string> values)
+        => new ContactListCFValue(values: values);
+    
+    public static DateCFValue Date(DateTime? value = null)
+        => new DateCFValue(value: value);
+    
+    public static DateTimeCFValue DateTime(DateTime? value = null)
+        => new DateTimeCFValue(value: value);
+    
+    public static DocumentCFValue Document(Document? document = null)
+        => new DocumentCFValue(document: document);
+    
+    public static DocumentListCFValue DocumentList(List<Document> documents)
+        => new DocumentListCFValue(documents: documents);
+    
+    public static EnumCFValue Enum(EnumValueData? value = null)
+        => new EnumCFValue(value: value);
+    
+    public static EnumListCFValue EnumList(List<EnumValueData> values)
+        => new EnumListCFValue(values: values);
+    
+    public static FractionCFValue Fraction(Fraction? value = null)
+        => new FractionCFValue(value: value);
+    
+    public static IntCFValue Int(int? value = null)
+        => new IntCFValue(value: value);
+    
+    public static IntListCFValue IntList(List<int> values)
+        => new IntListCFValue(values: values);
+    
+    public static IssueCFValue Issue(Issue? issue = null)
+        => new IssueCFValue(issue: issue);
+    
+    public static IssueListCFValue IssueList(List<Issue> issues)
+        => new IssueListCFValue(issues: issues);
+    
+    public static LocationCFValue Location(TDLocation? location = null)
+        => new LocationCFValue(location: location);
+    
+    public static OpenEnumCFValue OpenEnum(EnumValueData? value = null)
+        => new OpenEnumCFValue(value: value);
+    
+    public static OpenEnumListCFValue OpenEnumList(List<EnumValueData> values)
+        => new OpenEnumListCFValue(values: values);
+    
+    public static PercentageCFValue Percentage(int? value = null)
+        => new PercentageCFValue(value: value);
+    
+    public static ProfileCFValue Profile(TDMemberProfile? profile = null)
+        => new ProfileCFValue(profile: profile);
+    
+    public static ProfileListCFValue ProfileList(List<TDMemberProfile> profiles)
+        => new ProfileListCFValue(profiles: profiles);
+    
+    public static ProjectCFValue Project(PRProject? project = null)
+        => new ProjectCFValue(project: project);
+    
+    public static StringCFValue String(string? value = null)
+        => new StringCFValue(value: value);
+    
+    public static StringListCFValue StringList(List<string> values)
+        => new StringListCFValue(values: values);
+    
+    public static TeamCFValue Team(TDTeam? team = null)
+        => new TeamCFValue(team: team);
+    
+    public static UrlCFValue Url(string? href = null)
+        => new UrlCFValue(href: href);
+    
+    public static VcsCommitCFValue VcsCommit(CFCommitInfoBase? commit = null)
+        => new VcsCommitCFValue(commit: commit);
+    
+    public static VcsCommitListCFValue VcsCommitList(List<CFCommitInfoBase> commits)
+        => new VcsCommitListCFValue(commits: commits);
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "CFValue";
-        
-        public static AutonumberCFValue Autonumber(string? value = null)
-            => new AutonumberCFValue(value: value);
-        
-        public static BooleanCFValue Boolean(bool? value = null)
-            => new BooleanCFValue(value: value);
-        
-        public static ContactCFValue Contact(string? value = null)
-            => new ContactCFValue(value: value);
-        
-        public static ContactListCFValue ContactList(List<string> values)
-            => new ContactListCFValue(values: values);
-        
-        public static DateCFValue Date(DateTime? value = null)
-            => new DateCFValue(value: value);
-        
-        public static DateTimeCFValue DateTime(DateTime? value = null)
-            => new DateTimeCFValue(value: value);
-        
-        public static DocumentCFValue Document(Document? document = null)
-            => new DocumentCFValue(document: document);
-        
-        public static DocumentListCFValue DocumentList(List<Document> documents)
-            => new DocumentListCFValue(documents: documents);
-        
-        public static EnumCFValue Enum(EnumValueData? value = null)
-            => new EnumCFValue(value: value);
-        
-        public static EnumListCFValue EnumList(List<EnumValueData> values)
-            => new EnumListCFValue(values: values);
-        
-        public static FractionCFValue Fraction(Fraction? value = null)
-            => new FractionCFValue(value: value);
-        
-        public static IntCFValue Int(int? value = null)
-            => new IntCFValue(value: value);
-        
-        public static IntListCFValue IntList(List<int> values)
-            => new IntListCFValue(values: values);
-        
-        public static IssueCFValue Issue(Issue? issue = null)
-            => new IssueCFValue(issue: issue);
-        
-        public static IssueListCFValue IssueList(List<Issue> issues)
-            => new IssueListCFValue(issues: issues);
-        
-        public static LocationCFValue Location(TDLocation? location = null)
-            => new LocationCFValue(location: location);
-        
-        public static OpenEnumCFValue OpenEnum(EnumValueData? value = null)
-            => new OpenEnumCFValue(value: value);
-        
-        public static OpenEnumListCFValue OpenEnumList(List<EnumValueData> values)
-            => new OpenEnumListCFValue(values: values);
-        
-        public static PercentageCFValue Percentage(int? value = null)
-            => new PercentageCFValue(value: value);
-        
-        public static ProfileCFValue Profile(TDMemberProfile? profile = null)
-            => new ProfileCFValue(profile: profile);
-        
-        public static ProfileListCFValue ProfileList(List<TDMemberProfile> profiles)
-            => new ProfileListCFValue(profiles: profiles);
-        
-        public static ProjectCFValue Project(PRProject? project = null)
-            => new ProjectCFValue(project: project);
-        
-        public static StringCFValue String(string? value = null)
-            => new StringCFValue(value: value);
-        
-        public static StringListCFValue StringList(List<string> values)
-            => new StringListCFValue(values: values);
-        
-        public static TeamCFValue Team(TDTeam? team = null)
-            => new TeamCFValue(team: team);
-        
-        public static UrlCFValue Url(string? href = null)
-            => new UrlCFValue(href: href);
-        
-        public static VcsCommitCFValue VcsCommit(CFCommitInfoBase? commit = null)
-            => new VcsCommitCFValue(commit: commit);
-        
-        public static VcsCommitListCFValue VcsCommitList(List<CFCommitInfoBase> commits)
-            => new VcsCommitListCFValue(commits: commits);
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

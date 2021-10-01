@@ -27,61 +27,60 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class WebhookDeliveryStatusDTOSuccessful
+     : WebhookDeliveryStatus, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class WebhookDeliveryStatusDTOSuccessful
-         : WebhookDeliveryStatus, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "WebhookDeliveryStatusDTO.Successful";
+    
+    public WebhookDeliveryStatusDTOSuccessful() { }
+    
+    public WebhookDeliveryStatusDTOSuccessful(string deliveryId, int responseCode, DateTime sentTime)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "WebhookDeliveryStatusDTO.Successful";
-        
-        public WebhookDeliveryStatusDTOSuccessful() { }
-        
-        public WebhookDeliveryStatusDTOSuccessful(string deliveryId, int responseCode, DateTime sentTime)
-        {
-            DeliveryId = deliveryId;
-            ResponseCode = responseCode;
-            SentTime = sentTime;
-        }
-        
-        private PropertyValue<string> _deliveryId = new PropertyValue<string>(nameof(WebhookDeliveryStatusDTOSuccessful), nameof(DeliveryId));
-        
-        [Required]
-        [JsonPropertyName("deliveryId")]
-        public string DeliveryId
-        {
-            get => _deliveryId.GetValue();
-            set => _deliveryId.SetValue(value);
-        }
-    
-        private PropertyValue<int> _responseCode = new PropertyValue<int>(nameof(WebhookDeliveryStatusDTOSuccessful), nameof(ResponseCode));
-        
-        [Required]
-        [JsonPropertyName("responseCode")]
-        public int ResponseCode
-        {
-            get => _responseCode.GetValue();
-            set => _responseCode.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _sentTime = new PropertyValue<DateTime>(nameof(WebhookDeliveryStatusDTOSuccessful), nameof(SentTime));
-        
-        [Required]
-        [JsonPropertyName("sentTime")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime SentTime
-        {
-            get => _sentTime.GetValue();
-            set => _sentTime.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _deliveryId.SetAccessPath(path, validateHasBeenSet);
-            _responseCode.SetAccessPath(path, validateHasBeenSet);
-            _sentTime.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        DeliveryId = deliveryId;
+        ResponseCode = responseCode;
+        SentTime = sentTime;
     }
     
+    private PropertyValue<string> _deliveryId = new PropertyValue<string>(nameof(WebhookDeliveryStatusDTOSuccessful), nameof(DeliveryId));
+    
+    [Required]
+    [JsonPropertyName("deliveryId")]
+    public string DeliveryId
+    {
+        get => _deliveryId.GetValue();
+        set => _deliveryId.SetValue(value);
+    }
+
+    private PropertyValue<int> _responseCode = new PropertyValue<int>(nameof(WebhookDeliveryStatusDTOSuccessful), nameof(ResponseCode));
+    
+    [Required]
+    [JsonPropertyName("responseCode")]
+    public int ResponseCode
+    {
+        get => _responseCode.GetValue();
+        set => _responseCode.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _sentTime = new PropertyValue<DateTime>(nameof(WebhookDeliveryStatusDTOSuccessful), nameof(SentTime));
+    
+    [Required]
+    [JsonPropertyName("sentTime")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime SentTime
+    {
+        get => _sentTime.GetValue();
+        set => _sentTime.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _deliveryId.SetAccessPath(path, validateHasBeenSet);
+        _responseCode.SetAccessPath(path, validateHasBeenSet);
+        _sentTime.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

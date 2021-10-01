@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewDiscussionAddedFeedEventPartialBuilder
+namespace JetBrains.Space.Client.CodeReviewDiscussionAddedFeedEventPartialBuilder;
+
+public static class CodeReviewDiscussionAddedFeedEventPartialExtensions
 {
-    public static class CodeReviewDiscussionAddedFeedEventPartialExtensions
-    {
-        public static Partial<CodeReviewDiscussionAddedFeedEvent> WithDiscussion(this Partial<CodeReviewDiscussionAddedFeedEvent> it)
-            => it.AddFieldName("discussion");
-        
-        public static Partial<CodeReviewDiscussionAddedFeedEvent> WithDiscussion(this Partial<CodeReviewDiscussionAddedFeedEvent> it, Func<Partial<CodeReviewDiscussionRecord>, Partial<CodeReviewDiscussionRecord>> partialBuilder)
-            => it.AddFieldName("discussion", partialBuilder(new Partial<CodeReviewDiscussionRecord>(it)));
-        
-    }
+    public static Partial<CodeReviewDiscussionAddedFeedEvent> WithDiscussion(this Partial<CodeReviewDiscussionAddedFeedEvent> it)
+        => it.AddFieldName("discussion");
+    
+    public static Partial<CodeReviewDiscussionAddedFeedEvent> WithDiscussion(this Partial<CodeReviewDiscussionAddedFeedEvent> it, Func<Partial<CodeReviewDiscussionRecord>, Partial<CodeReviewDiscussionRecord>> partialBuilder)
+        => it.AddFieldName("discussion", partialBuilder(new Partial<CodeReviewDiscussionRecord>(it)));
     
 }
+

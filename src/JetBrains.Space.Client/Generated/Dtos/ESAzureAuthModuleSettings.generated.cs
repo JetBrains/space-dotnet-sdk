@@ -27,84 +27,83 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESAzureAuthModuleSettings
+     : ESOAuth2AuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ESAzureAuthModuleSettings
-         : ESOAuth2AuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ES_AzureAuthModuleSettings";
+    
+    public ESAzureAuthModuleSettings() { }
+    
+    public ESAzureAuthModuleSettings(string tenantId, string clientId, string clientSecret, bool registerNewUsers, bool emailVerified)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ES_AzureAuthModuleSettings";
-        
-        public ESAzureAuthModuleSettings() { }
-        
-        public ESAzureAuthModuleSettings(string tenantId, string clientId, string clientSecret, bool registerNewUsers, bool emailVerified)
-        {
-            TenantId = tenantId;
-            ClientId = clientId;
-            ClientSecret = clientSecret;
-            IsRegisterNewUsers = registerNewUsers;
-            IsEmailVerified = emailVerified;
-        }
-        
-        private PropertyValue<string> _tenantId = new PropertyValue<string>(nameof(ESAzureAuthModuleSettings), nameof(TenantId));
-        
-        [Required]
-        [JsonPropertyName("tenantId")]
-        public string TenantId
-        {
-            get => _tenantId.GetValue();
-            set => _tenantId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESAzureAuthModuleSettings), nameof(ClientId));
-        
-        [Required]
-        [JsonPropertyName("clientId")]
-        public string ClientId
-        {
-            get => _clientId.GetValue();
-            set => _clientId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESAzureAuthModuleSettings), nameof(ClientSecret));
-        
-        [Required]
-        [JsonPropertyName("clientSecret")]
-        public string ClientSecret
-        {
-            get => _clientSecret.GetValue();
-            set => _clientSecret.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESAzureAuthModuleSettings), nameof(IsRegisterNewUsers));
-        
-        [Required]
-        [JsonPropertyName("registerNewUsers")]
-        public bool IsRegisterNewUsers
-        {
-            get => _registerNewUsers.GetValue();
-            set => _registerNewUsers.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _emailVerified = new PropertyValue<bool>(nameof(ESAzureAuthModuleSettings), nameof(IsEmailVerified));
-        
-        [Required]
-        [JsonPropertyName("emailVerified")]
-        public bool IsEmailVerified
-        {
-            get => _emailVerified.GetValue();
-            set => _emailVerified.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _tenantId.SetAccessPath(path, validateHasBeenSet);
-            _clientId.SetAccessPath(path, validateHasBeenSet);
-            _clientSecret.SetAccessPath(path, validateHasBeenSet);
-            _registerNewUsers.SetAccessPath(path, validateHasBeenSet);
-            _emailVerified.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        TenantId = tenantId;
+        ClientId = clientId;
+        ClientSecret = clientSecret;
+        IsRegisterNewUsers = registerNewUsers;
+        IsEmailVerified = emailVerified;
     }
     
+    private PropertyValue<string> _tenantId = new PropertyValue<string>(nameof(ESAzureAuthModuleSettings), nameof(TenantId));
+    
+    [Required]
+    [JsonPropertyName("tenantId")]
+    public string TenantId
+    {
+        get => _tenantId.GetValue();
+        set => _tenantId.SetValue(value);
+    }
+
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESAzureAuthModuleSettings), nameof(ClientId));
+    
+    [Required]
+    [JsonPropertyName("clientId")]
+    public string ClientId
+    {
+        get => _clientId.GetValue();
+        set => _clientId.SetValue(value);
+    }
+
+    private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESAzureAuthModuleSettings), nameof(ClientSecret));
+    
+    [Required]
+    [JsonPropertyName("clientSecret")]
+    public string ClientSecret
+    {
+        get => _clientSecret.GetValue();
+        set => _clientSecret.SetValue(value);
+    }
+
+    private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESAzureAuthModuleSettings), nameof(IsRegisterNewUsers));
+    
+    [Required]
+    [JsonPropertyName("registerNewUsers")]
+    public bool IsRegisterNewUsers
+    {
+        get => _registerNewUsers.GetValue();
+        set => _registerNewUsers.SetValue(value);
+    }
+
+    private PropertyValue<bool> _emailVerified = new PropertyValue<bool>(nameof(ESAzureAuthModuleSettings), nameof(IsEmailVerified));
+    
+    [Required]
+    [JsonPropertyName("emailVerified")]
+    public bool IsEmailVerified
+    {
+        get => _emailVerified.GetValue();
+        set => _emailVerified.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _tenantId.SetAccessPath(path, validateHasBeenSet);
+        _clientId.SetAccessPath(path, validateHasBeenSet);
+        _clientSecret.SetAccessPath(path, validateHasBeenSet);
+        _registerNewUsers.SetAccessPath(path, validateHasBeenSet);
+        _emailVerified.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

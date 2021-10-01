@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlsBlockUnfurlPostRequestPartialBuilder
+namespace JetBrains.Space.Client.UnfurlsBlockUnfurlPostRequestPartialBuilder;
+
+public static class UnfurlsBlockUnfurlPostRequestPartialExtensions
 {
-    public static class UnfurlsBlockUnfurlPostRequestPartialExtensions
-    {
-        public static Partial<UnfurlsBlockUnfurlPostRequest> WithLink(this Partial<UnfurlsBlockUnfurlPostRequest> it)
-            => it.AddFieldName("link");
-        
-        public static Partial<UnfurlsBlockUnfurlPostRequest> WithIsWholeHost(this Partial<UnfurlsBlockUnfurlPostRequest> it)
-            => it.AddFieldName("wholeHost");
-        
-    }
+    public static Partial<UnfurlsBlockUnfurlPostRequest> WithLink(this Partial<UnfurlsBlockUnfurlPostRequest> it)
+        => it.AddFieldName("link");
+    
+    public static Partial<UnfurlsBlockUnfurlPostRequest> WithIsWholeHost(this Partial<UnfurlsBlockUnfurlPostRequest> it)
+        => it.AddFieldName("wholeHost");
     
 }
+

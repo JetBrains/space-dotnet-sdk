@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ContainerHelmChartDependencyPartialBuilder
+namespace JetBrains.Space.Client.ContainerHelmChartDependencyPartialBuilder;
+
+public static class ContainerHelmChartDependencyPartialExtensions
 {
-    public static class ContainerHelmChartDependencyPartialExtensions
-    {
-        public static Partial<ContainerHelmChartDependency> WithName(this Partial<ContainerHelmChartDependency> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ContainerHelmChartDependency> WithVersion(this Partial<ContainerHelmChartDependency> it)
-            => it.AddFieldName("version");
-        
-        public static Partial<ContainerHelmChartDependency> WithRepository(this Partial<ContainerHelmChartDependency> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<ContainerHelmChartDependency> WithCondition(this Partial<ContainerHelmChartDependency> it)
-            => it.AddFieldName("condition");
-        
-        public static Partial<ContainerHelmChartDependency> WithTags(this Partial<ContainerHelmChartDependency> it)
-            => it.AddFieldName("tags");
-        
-    }
+    public static Partial<ContainerHelmChartDependency> WithName(this Partial<ContainerHelmChartDependency> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ContainerHelmChartDependency> WithVersion(this Partial<ContainerHelmChartDependency> it)
+        => it.AddFieldName("version");
+    
+    public static Partial<ContainerHelmChartDependency> WithRepository(this Partial<ContainerHelmChartDependency> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<ContainerHelmChartDependency> WithCondition(this Partial<ContainerHelmChartDependency> it)
+        => it.AddFieldName("condition");
+    
+    public static Partial<ContainerHelmChartDependency> WithTags(this Partial<ContainerHelmChartDependency> it)
+        => it.AddFieldName("tags");
     
 }
+

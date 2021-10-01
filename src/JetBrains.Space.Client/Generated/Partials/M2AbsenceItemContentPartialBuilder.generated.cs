@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2AbsenceItemContentPartialBuilder
+namespace JetBrains.Space.Client.M2AbsenceItemContentPartialBuilder;
+
+public static class M2AbsenceItemContentPartialExtensions
 {
-    public static class M2AbsenceItemContentPartialExtensions
-    {
-        public static Partial<M2AbsenceItemContent> WithAbsence(this Partial<M2AbsenceItemContent> it)
-            => it.AddFieldName("absence");
-        
-        public static Partial<M2AbsenceItemContent> WithAbsence(this Partial<M2AbsenceItemContent> it, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>> partialBuilder)
-            => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecord>(it)));
-        
-        public static Partial<M2AbsenceItemContent> WithBy(this Partial<M2AbsenceItemContent> it)
-            => it.AddFieldName("by");
-        
-        public static Partial<M2AbsenceItemContent> WithBy(this Partial<M2AbsenceItemContent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<M2AbsenceItemContent> WithAbsence(this Partial<M2AbsenceItemContent> it)
+        => it.AddFieldName("absence");
+    
+    public static Partial<M2AbsenceItemContent> WithAbsence(this Partial<M2AbsenceItemContent> it, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>> partialBuilder)
+        => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecord>(it)));
+    
+    public static Partial<M2AbsenceItemContent> WithBy(this Partial<M2AbsenceItemContent> it)
+        => it.AddFieldName("by");
+    
+    public static Partial<M2AbsenceItemContent> WithBy(this Partial<M2AbsenceItemContent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

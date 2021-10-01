@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ReviewStateChangedEventPartialBuilder
+namespace JetBrains.Space.Client.ReviewStateChangedEventPartialBuilder;
+
+public static class ReviewStateChangedEventPartialExtensions
 {
-    public static class ReviewStateChangedEventPartialExtensions
-    {
-        public static Partial<ReviewStateChangedEvent> WithState(this Partial<ReviewStateChangedEvent> it)
-            => it.AddFieldName("state");
-        
-        public static Partial<ReviewStateChangedEvent> WithState(this Partial<ReviewStateChangedEvent> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
-            => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>(it)));
-        
-        public static Partial<ReviewStateChangedEvent> WithReview(this Partial<ReviewStateChangedEvent> it)
-            => it.AddFieldName("review");
-        
-        public static Partial<ReviewStateChangedEvent> WithReview(this Partial<ReviewStateChangedEvent> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
-            => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecord>(it)));
-        
-    }
+    public static Partial<ReviewStateChangedEvent> WithState(this Partial<ReviewStateChangedEvent> it)
+        => it.AddFieldName("state");
+    
+    public static Partial<ReviewStateChangedEvent> WithState(this Partial<ReviewStateChangedEvent> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
+        => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>(it)));
+    
+    public static Partial<ReviewStateChangedEvent> WithReview(this Partial<ReviewStateChangedEvent> it)
+        => it.AddFieldName("review");
+    
+    public static Partial<ReviewStateChangedEvent> WithReview(this Partial<ReviewStateChangedEvent> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
+        => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecord>(it)));
     
 }
+

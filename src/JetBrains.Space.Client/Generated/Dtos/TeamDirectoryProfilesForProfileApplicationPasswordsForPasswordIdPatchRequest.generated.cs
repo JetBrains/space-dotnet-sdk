@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest() { }
+    
+    public TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest(string? name = null, string? scope = null)
     {
-        public TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest() { }
-        
-        public TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest(string? name = null, string? scope = null)
-        {
-            Name = name;
-            Scope = scope;
-        }
-        
-        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest), nameof(Name));
-        
-        [JsonPropertyName("name")]
-        public string? Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _scope = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest), nameof(Scope));
-        
-        [JsonPropertyName("scope")]
-        public string? Scope
-        {
-            get => _scope.GetValue();
-            set => _scope.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _scope.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Scope = scope;
     }
     
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest), nameof(Name));
+    
+    [JsonPropertyName("name")]
+    public string? Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _scope = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest), nameof(Scope));
+    
+    [JsonPropertyName("scope")]
+    public string? Scope
+    {
+        get => _scope.GetValue();
+        set => _scope.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _scope.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

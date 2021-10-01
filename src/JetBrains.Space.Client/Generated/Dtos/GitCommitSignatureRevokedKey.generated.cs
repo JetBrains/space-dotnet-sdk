@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitCommitSignatureRevokedKey
+     : GitCommitSignature, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class GitCommitSignatureRevokedKey
-         : GitCommitSignature, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "GitCommitSignature.RevokedKey";
+    
+    public GitCommitSignatureRevokedKey() { }
+    
+    public GitCommitSignatureRevokedKey(string description, string? revokeComment = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "GitCommitSignature.RevokedKey";
-        
-        public GitCommitSignatureRevokedKey() { }
-        
-        public GitCommitSignatureRevokedKey(string description, string? revokeComment = null)
-        {
-            Description = description;
-            RevokeComment = revokeComment;
-        }
-        
-        private PropertyValue<string> _description = new PropertyValue<string>(nameof(GitCommitSignatureRevokedKey), nameof(Description));
-        
-        [Required]
-        [JsonPropertyName("description")]
-        public string Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _revokeComment = new PropertyValue<string?>(nameof(GitCommitSignatureRevokedKey), nameof(RevokeComment));
-        
-        [JsonPropertyName("revokeComment")]
-        public string? RevokeComment
-        {
-            get => _revokeComment.GetValue();
-            set => _revokeComment.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _revokeComment.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Description = description;
+        RevokeComment = revokeComment;
     }
     
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(GitCommitSignatureRevokedKey), nameof(Description));
+    
+    [Required]
+    [JsonPropertyName("description")]
+    public string Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<string?> _revokeComment = new PropertyValue<string?>(nameof(GitCommitSignatureRevokedKey), nameof(RevokeComment));
+    
+    [JsonPropertyName("revokeComment")]
+    public string? RevokeComment
+    {
+        get => _revokeComment.GetValue();
+        set => _revokeComment.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _revokeComment.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

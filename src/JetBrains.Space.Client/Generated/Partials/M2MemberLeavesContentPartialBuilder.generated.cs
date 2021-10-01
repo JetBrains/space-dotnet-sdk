@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2MemberLeavesContentPartialBuilder
+namespace JetBrains.Space.Client.M2MemberLeavesContentPartialBuilder;
+
+public static class M2MemberLeavesContentPartialExtensions
 {
-    public static class M2MemberLeavesContentPartialExtensions
-    {
-        public static Partial<M2MemberLeavesContent> WithMember(this Partial<M2MemberLeavesContent> it)
-            => it.AddFieldName("member");
-        
-        public static Partial<M2MemberLeavesContent> WithMember(this Partial<M2MemberLeavesContent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("member", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<M2MemberLeavesContent> WithMember(this Partial<M2MemberLeavesContent> it)
+        => it.AddFieldName("member");
+    
+    public static Partial<M2MemberLeavesContent> WithMember(this Partial<M2MemberLeavesContent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("member", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

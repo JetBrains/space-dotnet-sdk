@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class NuGetDependencyGroup
+     : IPropagatePropertyAccessPath
 {
-    public sealed class NuGetDependencyGroup
-         : IPropagatePropertyAccessPath
+    public NuGetDependencyGroup() { }
+    
+    public NuGetDependencyGroup(string? targetFramework = null, List<NuGetDependency>? dependencies = null)
     {
-        public NuGetDependencyGroup() { }
-        
-        public NuGetDependencyGroup(string? targetFramework = null, List<NuGetDependency>? dependencies = null)
-        {
-            TargetFramework = targetFramework;
-            Dependencies = dependencies;
-        }
-        
-        private PropertyValue<string?> _targetFramework = new PropertyValue<string?>(nameof(NuGetDependencyGroup), nameof(TargetFramework));
-        
-        [JsonPropertyName("targetFramework")]
-        public string? TargetFramework
-        {
-            get => _targetFramework.GetValue();
-            set => _targetFramework.SetValue(value);
-        }
-    
-        private PropertyValue<List<NuGetDependency>?> _dependencies = new PropertyValue<List<NuGetDependency>?>(nameof(NuGetDependencyGroup), nameof(Dependencies));
-        
-        [JsonPropertyName("dependencies")]
-        public List<NuGetDependency>? Dependencies
-        {
-            get => _dependencies.GetValue();
-            set => _dependencies.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _targetFramework.SetAccessPath(path, validateHasBeenSet);
-            _dependencies.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        TargetFramework = targetFramework;
+        Dependencies = dependencies;
     }
     
+    private PropertyValue<string?> _targetFramework = new PropertyValue<string?>(nameof(NuGetDependencyGroup), nameof(TargetFramework));
+    
+    [JsonPropertyName("targetFramework")]
+    public string? TargetFramework
+    {
+        get => _targetFramework.GetValue();
+        set => _targetFramework.SetValue(value);
+    }
+
+    private PropertyValue<List<NuGetDependency>?> _dependencies = new PropertyValue<List<NuGetDependency>?>(nameof(NuGetDependencyGroup), nameof(Dependencies));
+    
+    [JsonPropertyName("dependencies")]
+    public List<NuGetDependency>? Dependencies
+    {
+        get => _dependencies.GetValue();
+        set => _dependencies.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _targetFramework.SetAccessPath(path, validateHasBeenSet);
+        _dependencies.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

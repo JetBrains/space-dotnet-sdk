@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitCommitSignatureRevokedKeyPartialBuilder
+namespace JetBrains.Space.Client.GitCommitSignatureRevokedKeyPartialBuilder;
+
+public static class GitCommitSignatureRevokedKeyPartialExtensions
 {
-    public static class GitCommitSignatureRevokedKeyPartialExtensions
-    {
-        public static Partial<GitCommitSignatureRevokedKey> WithDescription(this Partial<GitCommitSignatureRevokedKey> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<GitCommitSignatureRevokedKey> WithRevokeComment(this Partial<GitCommitSignatureRevokedKey> it)
-            => it.AddFieldName("revokeComment");
-        
-    }
+    public static Partial<GitCommitSignatureRevokedKey> WithDescription(this Partial<GitCommitSignatureRevokedKey> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<GitCommitSignatureRevokedKey> WithRevokeComment(this Partial<GitCommitSignatureRevokedKey> it)
+        => it.AddFieldName("revokeComment");
     
 }
+

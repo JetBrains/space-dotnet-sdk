@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class EmojisDeletePostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class EmojisDeletePostRequest
-         : IPropagatePropertyAccessPath
+    public EmojisDeletePostRequest() { }
+    
+    public EmojisDeletePostRequest(string emoji)
     {
-        public EmojisDeletePostRequest() { }
-        
-        public EmojisDeletePostRequest(string emoji)
-        {
-            Emoji = emoji;
-        }
-        
-        private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojisDeletePostRequest), nameof(Emoji));
-        
-        [Required]
-        [JsonPropertyName("emoji")]
-        public string Emoji
-        {
-            get => _emoji.GetValue();
-            set => _emoji.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _emoji.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Emoji = emoji;
     }
     
+    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojisDeletePostRequest), nameof(Emoji));
+    
+    [Required]
+    [JsonPropertyName("emoji")]
+    public string Emoji
+    {
+        get => _emoji.GetValue();
+        set => _emoji.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _emoji.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

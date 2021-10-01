@@ -27,37 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeDiscussionAnchorPartialBuilder
+namespace JetBrains.Space.Client.CodeDiscussionAnchorPartialBuilder;
+
+public static class CodeDiscussionAnchorPartialExtensions
 {
-    public static class CodeDiscussionAnchorPartialExtensions
-    {
-        public static Partial<CodeDiscussionAnchor> WithProject(this Partial<CodeDiscussionAnchor> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<CodeDiscussionAnchor> WithProject(this Partial<CodeDiscussionAnchor> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<ProjectKey>(it)));
-        
-        public static Partial<CodeDiscussionAnchor> WithRepository(this Partial<CodeDiscussionAnchor> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<CodeDiscussionAnchor> WithRevision(this Partial<CodeDiscussionAnchor> it)
-            => it.AddFieldName("revision");
-        
-        public static Partial<CodeDiscussionAnchor> WithFilename(this Partial<CodeDiscussionAnchor> it)
-            => it.AddFieldName("filename");
-        
-        public static Partial<CodeDiscussionAnchor> WithLine(this Partial<CodeDiscussionAnchor> it)
-            => it.AddFieldName("line");
-        
-        public static Partial<CodeDiscussionAnchor> WithOldLine(this Partial<CodeDiscussionAnchor> it)
-            => it.AddFieldName("oldLine");
-        
-        public static Partial<CodeDiscussionAnchor> WithInterpolatedLineState(this Partial<CodeDiscussionAnchor> it)
-            => it.AddFieldName("interpolatedLineState");
-        
-        public static Partial<CodeDiscussionAnchor> WithInterpolatedLineState(this Partial<CodeDiscussionAnchor> it, Func<Partial<InterpolatedLineState>, Partial<InterpolatedLineState>> partialBuilder)
-            => it.AddFieldName("interpolatedLineState", partialBuilder(new Partial<InterpolatedLineState>(it)));
-        
-    }
+    public static Partial<CodeDiscussionAnchor> WithProject(this Partial<CodeDiscussionAnchor> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<CodeDiscussionAnchor> WithProject(this Partial<CodeDiscussionAnchor> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<ProjectKey>(it)));
+    
+    public static Partial<CodeDiscussionAnchor> WithRepository(this Partial<CodeDiscussionAnchor> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<CodeDiscussionAnchor> WithRevision(this Partial<CodeDiscussionAnchor> it)
+        => it.AddFieldName("revision");
+    
+    public static Partial<CodeDiscussionAnchor> WithFilename(this Partial<CodeDiscussionAnchor> it)
+        => it.AddFieldName("filename");
+    
+    public static Partial<CodeDiscussionAnchor> WithLine(this Partial<CodeDiscussionAnchor> it)
+        => it.AddFieldName("line");
+    
+    public static Partial<CodeDiscussionAnchor> WithOldLine(this Partial<CodeDiscussionAnchor> it)
+        => it.AddFieldName("oldLine");
+    
+    public static Partial<CodeDiscussionAnchor> WithInterpolatedLineState(this Partial<CodeDiscussionAnchor> it)
+        => it.AddFieldName("interpolatedLineState");
+    
+    public static Partial<CodeDiscussionAnchor> WithInterpolatedLineState(this Partial<CodeDiscussionAnchor> it, Func<Partial<InterpolatedLineState>, Partial<InterpolatedLineState>> partialBuilder)
+        => it.AddFieldName("interpolatedLineState", partialBuilder(new Partial<InterpolatedLineState>(it)));
     
 }
+

@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.LocationCFInputValuePartialBuilder
+namespace JetBrains.Space.Client.LocationCFInputValuePartialBuilder;
+
+public static class LocationCFInputValuePartialExtensions
 {
-    public static class LocationCFInputValuePartialExtensions
-    {
-        public static Partial<LocationCFInputValue> WithLocation(this Partial<LocationCFInputValue> it)
-            => it.AddFieldName("location");
-        
-    }
+    public static Partial<LocationCFInputValue> WithLocation(this Partial<LocationCFInputValue> it)
+        => it.AddFieldName("location");
     
 }
+

@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ContainerImageConfigPartialBuilder
+namespace JetBrains.Space.Client.ContainerImageConfigPartialBuilder;
+
+public static class ContainerImageConfigPartialExtensions
 {
-    public static class ContainerImageConfigPartialExtensions
-    {
-        public static Partial<ContainerImageConfig> WithUserName(this Partial<ContainerImageConfig> it)
-            => it.AddFieldName("userName");
-        
-        public static Partial<ContainerImageConfig> WithPorts(this Partial<ContainerImageConfig> it)
-            => it.AddFieldName("ports");
-        
-        public static Partial<ContainerImageConfig> WithVolumes(this Partial<ContainerImageConfig> it)
-            => it.AddFieldName("volumes");
-        
-        public static Partial<ContainerImageConfig> WithEnv(this Partial<ContainerImageConfig> it)
-            => it.AddFieldName("env");
-        
-        public static Partial<ContainerImageConfig> WithWorkingDir(this Partial<ContainerImageConfig> it)
-            => it.AddFieldName("workingDir");
-        
-        public static Partial<ContainerImageConfig> WithEntryPoint(this Partial<ContainerImageConfig> it)
-            => it.AddFieldName("entryPoint");
-        
-        public static Partial<ContainerImageConfig> WithCmd(this Partial<ContainerImageConfig> it)
-            => it.AddFieldName("cmd");
-        
-        public static Partial<ContainerImageConfig> WithLabels(this Partial<ContainerImageConfig> it)
-            => it.AddFieldName("labels");
-        
-    }
+    public static Partial<ContainerImageConfig> WithUserName(this Partial<ContainerImageConfig> it)
+        => it.AddFieldName("userName");
+    
+    public static Partial<ContainerImageConfig> WithPorts(this Partial<ContainerImageConfig> it)
+        => it.AddFieldName("ports");
+    
+    public static Partial<ContainerImageConfig> WithVolumes(this Partial<ContainerImageConfig> it)
+        => it.AddFieldName("volumes");
+    
+    public static Partial<ContainerImageConfig> WithEnv(this Partial<ContainerImageConfig> it)
+        => it.AddFieldName("env");
+    
+    public static Partial<ContainerImageConfig> WithWorkingDir(this Partial<ContainerImageConfig> it)
+        => it.AddFieldName("workingDir");
+    
+    public static Partial<ContainerImageConfig> WithEntryPoint(this Partial<ContainerImageConfig> it)
+        => it.AddFieldName("entryPoint");
+    
+    public static Partial<ContainerImageConfig> WithCmd(this Partial<ContainerImageConfig> it)
+        => it.AddFieldName("cmd");
+    
+    public static Partial<ContainerImageConfig> WithLabels(this Partial<ContainerImageConfig> it)
+        => it.AddFieldName("labels");
     
 }
+

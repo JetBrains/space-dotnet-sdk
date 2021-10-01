@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.LaunchResultSuccessPartialBuilder
+namespace JetBrains.Space.Client.LaunchResultSuccessPartialBuilder;
+
+public static class LaunchResultSuccessPartialExtensions
 {
-    public static class LaunchResultSuccessPartialExtensions
-    {
-        public static Partial<LaunchResultSuccess> WithExecutionId(this Partial<LaunchResultSuccess> it)
-            => it.AddFieldName("executionId");
-        
-    }
+    public static Partial<LaunchResultSuccess> WithExecutionId(this Partial<LaunchResultSuccess> it)
+        => it.AddFieldName("executionId");
     
 }
+

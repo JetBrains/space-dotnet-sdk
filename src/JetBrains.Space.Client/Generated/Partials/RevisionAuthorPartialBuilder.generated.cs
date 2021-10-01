@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RevisionAuthorPartialBuilder
+namespace JetBrains.Space.Client.RevisionAuthorPartialBuilder;
+
+public static class RevisionAuthorPartialExtensions
 {
-    public static class RevisionAuthorPartialExtensions
-    {
-        public static Partial<RevisionAuthor> WithAuthorName(this Partial<RevisionAuthor> it)
-            => it.AddFieldName("authorName");
-        
-        public static Partial<RevisionAuthor> WithProfile(this Partial<RevisionAuthor> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<RevisionAuthor> WithProfile(this Partial<RevisionAuthor> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<RevisionAuthor> WithAuthorName(this Partial<RevisionAuthor> it)
+        => it.AddFieldName("authorName");
+    
+    public static Partial<RevisionAuthor> WithProfile(this Partial<RevisionAuthor> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<RevisionAuthor> WithProfile(this Partial<RevisionAuthor> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

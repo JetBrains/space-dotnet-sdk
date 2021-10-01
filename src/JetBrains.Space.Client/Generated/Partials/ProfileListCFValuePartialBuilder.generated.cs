@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProfileListCFValuePartialBuilder
+namespace JetBrains.Space.Client.ProfileListCFValuePartialBuilder;
+
+public static class ProfileListCFValuePartialExtensions
 {
-    public static class ProfileListCFValuePartialExtensions
-    {
-        public static Partial<ProfileListCFValue> WithProfiles(this Partial<ProfileListCFValue> it)
-            => it.AddFieldName("profiles");
-        
-        public static Partial<ProfileListCFValue> WithProfiles(this Partial<ProfileListCFValue> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profiles", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<ProfileListCFValue> WithProfiles(this Partial<ProfileListCFValue> it)
+        => it.AddFieldName("profiles");
+    
+    public static Partial<ProfileListCFValue> WithProfiles(this Partial<ProfileListCFValue> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profiles", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

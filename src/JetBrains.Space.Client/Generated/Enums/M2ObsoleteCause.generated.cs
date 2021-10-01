@@ -27,14 +27,13 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum M2ObsoleteCause
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum M2ObsoleteCause
-    {
-        [EnumMember(Value = "PermissionsDenied")]
-        PermissionsDenied,
-        
-    }
+    [EnumMember(Value = "PermissionsDenied")]
+    PermissionsDenied,
     
 }
+

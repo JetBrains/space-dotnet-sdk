@@ -27,91 +27,90 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2AbsenceItemUpdatedContent
+     : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2AbsenceItemUpdatedContent
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2AbsenceItemUpdatedContent";
+    
+    public M2AbsenceItemUpdatedContent() { }
+    
+    public M2AbsenceItemUpdatedContent(AbsenceRecord absence, Modification<AbsenceReasonRecord>? reason = null, Modification<string>? description = null, Modification<DateTime>? since = null, Modification<DateTime>? till = null, TDMemberProfile? by = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2AbsenceItemUpdatedContent";
-        
-        public M2AbsenceItemUpdatedContent() { }
-        
-        public M2AbsenceItemUpdatedContent(AbsenceRecord absence, Modification<AbsenceReasonRecord>? reason = null, Modification<string>? description = null, Modification<DateTime>? since = null, Modification<DateTime>? till = null, TDMemberProfile? by = null)
-        {
-            Absence = absence;
-            Reason = reason;
-            Description = description;
-            Since = since;
-            Till = till;
-            By = by;
-        }
-        
-        private PropertyValue<AbsenceRecord> _absence = new PropertyValue<AbsenceRecord>(nameof(M2AbsenceItemUpdatedContent), nameof(Absence));
-        
-        [Required]
-        [JsonPropertyName("absence")]
-        public AbsenceRecord Absence
-        {
-            get => _absence.GetValue();
-            set => _absence.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<AbsenceReasonRecord>?> _reason = new PropertyValue<Modification<AbsenceReasonRecord>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Reason));
-        
-        [JsonPropertyName("reason")]
-        public Modification<AbsenceReasonRecord>? Reason
-        {
-            get => _reason.GetValue();
-            set => _reason.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<string>?> _description = new PropertyValue<Modification<string>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Description));
-        
-        [JsonPropertyName("description")]
-        public Modification<string>? Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<DateTime>?> _since = new PropertyValue<Modification<DateTime>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Since));
-        
-        [JsonPropertyName("since")]
-        public Modification<DateTime>? Since
-        {
-            get => _since.GetValue();
-            set => _since.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<DateTime>?> _till = new PropertyValue<Modification<DateTime>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Till));
-        
-        [JsonPropertyName("till")]
-        public Modification<DateTime>? Till
-        {
-            get => _till.GetValue();
-            set => _till.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberProfile?> _by = new PropertyValue<TDMemberProfile?>(nameof(M2AbsenceItemUpdatedContent), nameof(By));
-        
-        [JsonPropertyName("by")]
-        public TDMemberProfile? By
-        {
-            get => _by.GetValue();
-            set => _by.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _absence.SetAccessPath(path, validateHasBeenSet);
-            _reason.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _since.SetAccessPath(path, validateHasBeenSet);
-            _till.SetAccessPath(path, validateHasBeenSet);
-            _by.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Absence = absence;
+        Reason = reason;
+        Description = description;
+        Since = since;
+        Till = till;
+        By = by;
     }
     
+    private PropertyValue<AbsenceRecord> _absence = new PropertyValue<AbsenceRecord>(nameof(M2AbsenceItemUpdatedContent), nameof(Absence));
+    
+    [Required]
+    [JsonPropertyName("absence")]
+    public AbsenceRecord Absence
+    {
+        get => _absence.GetValue();
+        set => _absence.SetValue(value);
+    }
+
+    private PropertyValue<Modification<AbsenceReasonRecord>?> _reason = new PropertyValue<Modification<AbsenceReasonRecord>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Reason));
+    
+    [JsonPropertyName("reason")]
+    public Modification<AbsenceReasonRecord>? Reason
+    {
+        get => _reason.GetValue();
+        set => _reason.SetValue(value);
+    }
+
+    private PropertyValue<Modification<string>?> _description = new PropertyValue<Modification<string>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public Modification<string>? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<Modification<DateTime>?> _since = new PropertyValue<Modification<DateTime>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Since));
+    
+    [JsonPropertyName("since")]
+    public Modification<DateTime>? Since
+    {
+        get => _since.GetValue();
+        set => _since.SetValue(value);
+    }
+
+    private PropertyValue<Modification<DateTime>?> _till = new PropertyValue<Modification<DateTime>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Till));
+    
+    [JsonPropertyName("till")]
+    public Modification<DateTime>? Till
+    {
+        get => _till.GetValue();
+        set => _till.SetValue(value);
+    }
+
+    private PropertyValue<TDMemberProfile?> _by = new PropertyValue<TDMemberProfile?>(nameof(M2AbsenceItemUpdatedContent), nameof(By));
+    
+    [JsonPropertyName("by")]
+    public TDMemberProfile? By
+    {
+        get => _by.GetValue();
+        set => _by.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _absence.SetAccessPath(path, validateHasBeenSet);
+        _reason.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _since.SetAccessPath(path, validateHasBeenSet);
+        _till.SetAccessPath(path, validateHasBeenSet);
+        _by.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

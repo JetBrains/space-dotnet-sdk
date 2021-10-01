@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PostMessageActionPartialBuilder
+namespace JetBrains.Space.Client.PostMessageActionPartialBuilder;
+
+public static class PostMessageActionPartialExtensions
 {
-    public static class PostMessageActionPartialExtensions
-    {
-        public static Partial<PostMessageAction> WithActionId(this Partial<PostMessageAction> it)
-            => it.AddFieldName("actionId");
-        
-        public static Partial<PostMessageAction> WithPayload(this Partial<PostMessageAction> it)
-            => it.AddFieldName("payload");
-        
-    }
+    public static Partial<PostMessageAction> WithActionId(this Partial<PostMessageAction> it)
+        => it.AddFieldName("actionId");
+    
+    public static Partial<PostMessageAction> WithPayload(this Partial<PostMessageAction> it)
+        => it.AddFieldName("payload");
     
 }
+

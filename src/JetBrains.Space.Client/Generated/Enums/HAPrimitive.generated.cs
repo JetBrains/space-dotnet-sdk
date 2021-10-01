@@ -27,41 +27,40 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum HAPrimitive
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum HAPrimitive
-    {
-        [EnumMember(Value = "Byte")]
-        Byte,
-        
-        [EnumMember(Value = "Short")]
-        Short,
-        
-        [EnumMember(Value = "Int")]
-        Int,
-        
-        [EnumMember(Value = "Long")]
-        Long,
-        
-        [EnumMember(Value = "Float")]
-        Float,
-        
-        [EnumMember(Value = "Double")]
-        Double,
-        
-        [EnumMember(Value = "Boolean")]
-        Boolean,
-        
-        [EnumMember(Value = "String")]
-        String,
-        
-        [EnumMember(Value = "Date")]
-        Date,
-        
-        [EnumMember(Value = "DateTime")]
-        DateTime,
-        
-    }
+    [EnumMember(Value = "Byte")]
+    Byte,
+    
+    [EnumMember(Value = "Short")]
+    Short,
+    
+    [EnumMember(Value = "Int")]
+    Int,
+    
+    [EnumMember(Value = "Long")]
+    Long,
+    
+    [EnumMember(Value = "Float")]
+    Float,
+    
+    [EnumMember(Value = "Double")]
+    Double,
+    
+    [EnumMember(Value = "Boolean")]
+    Boolean,
+    
+    [EnumMember(Value = "String")]
+    String,
+    
+    [EnumMember(Value = "Date")]
+    Date,
+    
+    [EnumMember(Value = "DateTime")]
+    DateTime,
     
 }
+

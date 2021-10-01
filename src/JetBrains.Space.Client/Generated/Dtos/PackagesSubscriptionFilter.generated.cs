@@ -27,69 +27,68 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PackagesSubscriptionFilter
+     : SubscriptionFilter, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class PackagesSubscriptionFilter
-         : SubscriptionFilter, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "PackagesSubscriptionFilter";
+    
+    public PackagesSubscriptionFilter() { }
+    
+    public PackagesSubscriptionFilter(List<string> namePattern, PRProject? project = null, ProjectPackageRepository? repository = null, string? versionPattern = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "PackagesSubscriptionFilter";
-        
-        public PackagesSubscriptionFilter() { }
-        
-        public PackagesSubscriptionFilter(List<string> namePattern, PRProject? project = null, ProjectPackageRepository? repository = null, string? versionPattern = null)
-        {
-            Project = project;
-            Repository = repository;
-            NamePattern = namePattern;
-            VersionPattern = versionPattern;
-        }
-        
-        private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(PackagesSubscriptionFilter), nameof(Project));
-        
-        [JsonPropertyName("project")]
-        public PRProject? Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<ProjectPackageRepository?> _repository = new PropertyValue<ProjectPackageRepository?>(nameof(PackagesSubscriptionFilter), nameof(Repository));
-        
-        [JsonPropertyName("repository")]
-        public ProjectPackageRepository? Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _namePattern = new PropertyValue<List<string>>(nameof(PackagesSubscriptionFilter), nameof(NamePattern), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("namePattern")]
-        public List<string> NamePattern
-        {
-            get => _namePattern.GetValue();
-            set => _namePattern.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _versionPattern = new PropertyValue<string?>(nameof(PackagesSubscriptionFilter), nameof(VersionPattern));
-        
-        [JsonPropertyName("versionPattern")]
-        public string? VersionPattern
-        {
-            get => _versionPattern.GetValue();
-            set => _versionPattern.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _namePattern.SetAccessPath(path, validateHasBeenSet);
-            _versionPattern.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Project = project;
+        Repository = repository;
+        NamePattern = namePattern;
+        VersionPattern = versionPattern;
     }
     
+    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(PackagesSubscriptionFilter), nameof(Project));
+    
+    [JsonPropertyName("project")]
+    public PRProject? Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<ProjectPackageRepository?> _repository = new PropertyValue<ProjectPackageRepository?>(nameof(PackagesSubscriptionFilter), nameof(Repository));
+    
+    [JsonPropertyName("repository")]
+    public ProjectPackageRepository? Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _namePattern = new PropertyValue<List<string>>(nameof(PackagesSubscriptionFilter), nameof(NamePattern), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("namePattern")]
+    public List<string> NamePattern
+    {
+        get => _namePattern.GetValue();
+        set => _namePattern.SetValue(value);
+    }
+
+    private PropertyValue<string?> _versionPattern = new PropertyValue<string?>(nameof(PackagesSubscriptionFilter), nameof(VersionPattern));
+    
+    [JsonPropertyName("versionPattern")]
+    public string? VersionPattern
+    {
+        get => _versionPattern.GetValue();
+        set => _versionPattern.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _project.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _namePattern.SetAccessPath(path, validateHasBeenSet);
+        _versionPattern.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

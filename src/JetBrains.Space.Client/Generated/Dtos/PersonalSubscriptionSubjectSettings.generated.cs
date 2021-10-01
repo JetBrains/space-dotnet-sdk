@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PersonalSubscriptionSubjectSettings
+     : IPropagatePropertyAccessPath
 {
-    public sealed class PersonalSubscriptionSubjectSettings
-         : IPropagatePropertyAccessPath
+    public PersonalSubscriptionSubjectSettings() { }
+    
+    public PersonalSubscriptionSubjectSettings(string subjectCode, bool enabled)
     {
-        public PersonalSubscriptionSubjectSettings() { }
-        
-        public PersonalSubscriptionSubjectSettings(string subjectCode, bool enabled)
-        {
-            SubjectCode = subjectCode;
-            IsEnabled = enabled;
-        }
-        
-        private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(PersonalSubscriptionSubjectSettings), nameof(SubjectCode));
-        
-        [Required]
-        [JsonPropertyName("subjectCode")]
-        public string SubjectCode
-        {
-            get => _subjectCode.GetValue();
-            set => _subjectCode.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(PersonalSubscriptionSubjectSettings), nameof(IsEnabled));
-        
-        [Required]
-        [JsonPropertyName("enabled")]
-        public bool IsEnabled
-        {
-            get => _enabled.GetValue();
-            set => _enabled.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _subjectCode.SetAccessPath(path, validateHasBeenSet);
-            _enabled.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        SubjectCode = subjectCode;
+        IsEnabled = enabled;
     }
     
+    private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(PersonalSubscriptionSubjectSettings), nameof(SubjectCode));
+    
+    [Required]
+    [JsonPropertyName("subjectCode")]
+    public string SubjectCode
+    {
+        get => _subjectCode.GetValue();
+        set => _subjectCode.SetValue(value);
+    }
+
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(PersonalSubscriptionSubjectSettings), nameof(IsEnabled));
+    
+    [Required]
+    [JsonPropertyName("enabled")]
+    public bool IsEnabled
+    {
+        get => _enabled.GetValue();
+        set => _enabled.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _subjectCode.SetAccessPath(path, validateHasBeenSet);
+        _enabled.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

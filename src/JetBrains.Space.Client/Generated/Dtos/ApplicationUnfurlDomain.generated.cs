@@ -27,68 +27,67 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ApplicationUnfurlDomain
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ApplicationUnfurlDomain
-         : IPropagatePropertyAccessPath
+    public ApplicationUnfurlDomain() { }
+    
+    public ApplicationUnfurlDomain(string domain, RightStatus status, CPrincipal? modificationAuthor = null, DateTime? modificationTimestamp = null)
     {
-        public ApplicationUnfurlDomain() { }
-        
-        public ApplicationUnfurlDomain(string domain, RightStatus status, CPrincipal? modificationAuthor = null, DateTime? modificationTimestamp = null)
-        {
-            Domain = domain;
-            Status = status;
-            ModificationAuthor = modificationAuthor;
-            ModificationTimestamp = modificationTimestamp;
-        }
-        
-        private PropertyValue<string> _domain = new PropertyValue<string>(nameof(ApplicationUnfurlDomain), nameof(Domain));
-        
-        [Required]
-        [JsonPropertyName("domain")]
-        public string Domain
-        {
-            get => _domain.GetValue();
-            set => _domain.SetValue(value);
-        }
-    
-        private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(ApplicationUnfurlDomain), nameof(Status));
-        
-        [Required]
-        [JsonPropertyName("status")]
-        public RightStatus Status
-        {
-            get => _status.GetValue();
-            set => _status.SetValue(value);
-        }
-    
-        private PropertyValue<CPrincipal?> _modificationAuthor = new PropertyValue<CPrincipal?>(nameof(ApplicationUnfurlDomain), nameof(ModificationAuthor));
-        
-        [JsonPropertyName("modificationAuthor")]
-        public CPrincipal? ModificationAuthor
-        {
-            get => _modificationAuthor.GetValue();
-            set => _modificationAuthor.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _modificationTimestamp = new PropertyValue<DateTime?>(nameof(ApplicationUnfurlDomain), nameof(ModificationTimestamp));
-        
-        [JsonPropertyName("modificationTimestamp")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? ModificationTimestamp
-        {
-            get => _modificationTimestamp.GetValue();
-            set => _modificationTimestamp.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _domain.SetAccessPath(path, validateHasBeenSet);
-            _status.SetAccessPath(path, validateHasBeenSet);
-            _modificationAuthor.SetAccessPath(path, validateHasBeenSet);
-            _modificationTimestamp.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Domain = domain;
+        Status = status;
+        ModificationAuthor = modificationAuthor;
+        ModificationTimestamp = modificationTimestamp;
     }
     
+    private PropertyValue<string> _domain = new PropertyValue<string>(nameof(ApplicationUnfurlDomain), nameof(Domain));
+    
+    [Required]
+    [JsonPropertyName("domain")]
+    public string Domain
+    {
+        get => _domain.GetValue();
+        set => _domain.SetValue(value);
+    }
+
+    private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(ApplicationUnfurlDomain), nameof(Status));
+    
+    [Required]
+    [JsonPropertyName("status")]
+    public RightStatus Status
+    {
+        get => _status.GetValue();
+        set => _status.SetValue(value);
+    }
+
+    private PropertyValue<CPrincipal?> _modificationAuthor = new PropertyValue<CPrincipal?>(nameof(ApplicationUnfurlDomain), nameof(ModificationAuthor));
+    
+    [JsonPropertyName("modificationAuthor")]
+    public CPrincipal? ModificationAuthor
+    {
+        get => _modificationAuthor.GetValue();
+        set => _modificationAuthor.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _modificationTimestamp = new PropertyValue<DateTime?>(nameof(ApplicationUnfurlDomain), nameof(ModificationTimestamp));
+    
+    [JsonPropertyName("modificationTimestamp")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? ModificationTimestamp
+    {
+        get => _modificationTimestamp.GetValue();
+        set => _modificationTimestamp.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _domain.SetAccessPath(path, validateHasBeenSet);
+        _status.SetAccessPath(path, validateHasBeenSet);
+        _modificationAuthor.SetAccessPath(path, validateHasBeenSet);
+        _modificationTimestamp.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,21 +27,20 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public abstract class ESFederatedAuthModuleSettings
+     : ESAuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public abstract class ESFederatedAuthModuleSettings
-         : ESAuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ES_FederatedAuthModuleSettings";
+    
+    public static ESSamlAuthModuleSettings ESSamlAuthModuleSettings(string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, bool registerNewUsers, ESSamlAttributeNames attributeNames, SSLKeystore? sslKeystore = null, string? contactProfileId = null)
+        => new ESSamlAuthModuleSettings(idpUrl: idpUrl, idpEntityId: idpEntityId, idpCertificateSHA256: idpCertificateSHA256, spEntityId: spEntityId, registerNewUsers: registerNewUsers, attributeNames: attributeNames, sslKeystore: sslKeystore, contactProfileId: contactProfileId);
+    
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ES_FederatedAuthModuleSettings";
-        
-        public static ESSamlAuthModuleSettings ESSamlAuthModuleSettings(string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, bool registerNewUsers, ESSamlAttributeNames attributeNames, SSLKeystore? sslKeystore = null, string? contactProfileId = null)
-            => new ESSamlAuthModuleSettings(idpUrl: idpUrl, idpEntityId: idpEntityId, idpCertificateSHA256: idpCertificateSHA256, spEntityId: spEntityId, registerNewUsers: registerNewUsers, attributeNames: attributeNames, sslKeystore: sslKeystore, contactProfileId: contactProfileId);
-        
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class IssueIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class IssueIdentifier : IUrlParameter
+    public static IssueIdentifier Id(string id)
+        => new IssueIdentifierId(id);
+    
+    public static IssueIdentifier Key(string key)
+        => new IssueIdentifierKey(key);
+    
+    private class IssueIdentifierId : IssueIdentifier
     {
-        public static IssueIdentifier Id(string id)
-            => new IssueIdentifierId(id);
+        private readonly string _id;
         
-        public static IssueIdentifier Key(string key)
-            => new IssueIdentifierKey(key);
-        
-        private class IssueIdentifierId : IssueIdentifier
+        public IssueIdentifierId(string id)
         {
-            private readonly string _id;
-            
-            public IssueIdentifierId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
-        private class IssueIdentifierKey : IssueIdentifier
+        public override string ToString()
+            => $"id:{_id}";
+    }
+    
+    private class IssueIdentifierKey : IssueIdentifier
+    {
+        private readonly string _key;
+        
+        public IssueIdentifierKey(string key)
         {
-            private readonly string _key;
-            
-            public IssueIdentifierKey(string key)
-            {
-                _key = key;
-            }
-            
-            public override string ToString()
-                => $"key:{_key}";
+            _key = key;
         }
         
+        public override string ToString()
+            => $"key:{_key}";
     }
     
 }
+

@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2DraftEditorTeamAddedItemContent
+     : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2DraftEditorTeamAddedItemContent
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2DraftEditorTeamAddedItemContent";
+    
+    public M2DraftEditorTeamAddedItemContent() { }
+    
+    public M2DraftEditorTeamAddedItemContent(string id, TDTeam team, string title)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2DraftEditorTeamAddedItemContent";
-        
-        public M2DraftEditorTeamAddedItemContent() { }
-        
-        public M2DraftEditorTeamAddedItemContent(string id, TDTeam team, string title)
-        {
-            Id = id;
-            Team = team;
-            Title = title;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2DraftEditorTeamAddedItemContent), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(M2DraftEditorTeamAddedItemContent), nameof(Team));
-        
-        [Required]
-        [JsonPropertyName("team")]
-        public TDTeam Team
-        {
-            get => _team.GetValue();
-            set => _team.SetValue(value);
-        }
-    
-        private PropertyValue<string> _title = new PropertyValue<string>(nameof(M2DraftEditorTeamAddedItemContent), nameof(Title));
-        
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title
-        {
-            get => _title.GetValue();
-            set => _title.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _team.SetAccessPath(path, validateHasBeenSet);
-            _title.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Team = team;
+        Title = title;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2DraftEditorTeamAddedItemContent), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(M2DraftEditorTeamAddedItemContent), nameof(Team));
+    
+    [Required]
+    [JsonPropertyName("team")]
+    public TDTeam Team
+    {
+        get => _team.GetValue();
+        set => _team.SetValue(value);
+    }
+
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(M2DraftEditorTeamAddedItemContent), nameof(Title));
+    
+    [Required]
+    [JsonPropertyName("title")]
+    public string Title
+    {
+        get => _title.GetValue();
+        set => _title.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _team.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

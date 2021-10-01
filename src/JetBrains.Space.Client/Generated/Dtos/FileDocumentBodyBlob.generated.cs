@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class FileDocumentBodyBlob
+     : FileDocumentBody, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class FileDocumentBodyBlob
-         : FileDocumentBody, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "FileDocumentBody.Blob";
+    
+    public FileDocumentBodyBlob() { }
+    
+    public FileDocumentBodyBlob(string versionId, string mediaType, long fileSize)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "FileDocumentBody.Blob";
-        
-        public FileDocumentBodyBlob() { }
-        
-        public FileDocumentBodyBlob(string versionId, string mediaType, long fileSize)
-        {
-            VersionId = versionId;
-            MediaType = mediaType;
-            FileSize = fileSize;
-        }
-        
-        private PropertyValue<string> _versionId = new PropertyValue<string>(nameof(FileDocumentBodyBlob), nameof(VersionId));
-        
-        [Required]
-        [JsonPropertyName("versionId")]
-        public string VersionId
-        {
-            get => _versionId.GetValue();
-            set => _versionId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _mediaType = new PropertyValue<string>(nameof(FileDocumentBodyBlob), nameof(MediaType));
-        
-        [Required]
-        [JsonPropertyName("mediaType")]
-        public string MediaType
-        {
-            get => _mediaType.GetValue();
-            set => _mediaType.SetValue(value);
-        }
-    
-        private PropertyValue<long> _fileSize = new PropertyValue<long>(nameof(FileDocumentBodyBlob), nameof(FileSize));
-        
-        [Required]
-        [JsonPropertyName("fileSize")]
-        public long FileSize
-        {
-            get => _fileSize.GetValue();
-            set => _fileSize.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _versionId.SetAccessPath(path, validateHasBeenSet);
-            _mediaType.SetAccessPath(path, validateHasBeenSet);
-            _fileSize.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        VersionId = versionId;
+        MediaType = mediaType;
+        FileSize = fileSize;
     }
     
+    private PropertyValue<string> _versionId = new PropertyValue<string>(nameof(FileDocumentBodyBlob), nameof(VersionId));
+    
+    [Required]
+    [JsonPropertyName("versionId")]
+    public string VersionId
+    {
+        get => _versionId.GetValue();
+        set => _versionId.SetValue(value);
+    }
+
+    private PropertyValue<string> _mediaType = new PropertyValue<string>(nameof(FileDocumentBodyBlob), nameof(MediaType));
+    
+    [Required]
+    [JsonPropertyName("mediaType")]
+    public string MediaType
+    {
+        get => _mediaType.GetValue();
+        set => _mediaType.SetValue(value);
+    }
+
+    private PropertyValue<long> _fileSize = new PropertyValue<long>(nameof(FileDocumentBodyBlob), nameof(FileSize));
+    
+    [Required]
+    [JsonPropertyName("fileSize")]
+    public long FileSize
+    {
+        get => _fileSize.GetValue();
+        set => _fileSize.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _versionId.SetAccessPath(path, validateHasBeenSet);
+        _mediaType.SetAccessPath(path, validateHasBeenSet);
+        _fileSize.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

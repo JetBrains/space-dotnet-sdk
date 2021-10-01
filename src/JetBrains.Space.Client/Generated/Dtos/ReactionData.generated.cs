@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ReactionData
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ReactionData
-         : IPropagatePropertyAccessPath
+    public ReactionData() { }
+    
+    public ReactionData(string name, string symbol, string emoji)
     {
-        public ReactionData() { }
-        
-        public ReactionData(string name, string symbol, string emoji)
-        {
-            Name = name;
-            Symbol = symbol;
-            Emoji = emoji;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ReactionData), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _symbol = new PropertyValue<string>(nameof(ReactionData), nameof(Symbol));
-        
-        [Required]
-        [JsonPropertyName("symbol")]
-        public string Symbol
-        {
-            get => _symbol.GetValue();
-            set => _symbol.SetValue(value);
-        }
-    
-        private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(ReactionData), nameof(Emoji));
-        
-        [Required]
-        [JsonPropertyName("emoji")]
-        public string Emoji
-        {
-            get => _emoji.GetValue();
-            set => _emoji.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _symbol.SetAccessPath(path, validateHasBeenSet);
-            _emoji.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Symbol = symbol;
+        Emoji = emoji;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ReactionData), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _symbol = new PropertyValue<string>(nameof(ReactionData), nameof(Symbol));
+    
+    [Required]
+    [JsonPropertyName("symbol")]
+    public string Symbol
+    {
+        get => _symbol.GetValue();
+        set => _symbol.SetValue(value);
+    }
+
+    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(ReactionData), nameof(Emoji));
+    
+    [Required]
+    [JsonPropertyName("emoji")]
+    public string Emoji
+    {
+        get => _emoji.GetValue();
+        set => _emoji.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _symbol.SetAccessPath(path, validateHasBeenSet);
+        _emoji.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

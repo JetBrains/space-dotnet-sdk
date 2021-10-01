@@ -27,69 +27,68 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class AuthModulesPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class AuthModulesPostRequest
-         : IPropagatePropertyAccessPath
+    public AuthModulesPostRequest() { }
+    
+    public AuthModulesPostRequest(string key, string name, bool enabled, ESAuthModuleSettings settings)
     {
-        public AuthModulesPostRequest() { }
-        
-        public AuthModulesPostRequest(string key, string name, bool enabled, ESAuthModuleSettings settings)
-        {
-            Key = key;
-            Name = name;
-            IsEnabled = enabled;
-            Settings = settings;
-        }
-        
-        private PropertyValue<string> _key = new PropertyValue<string>(nameof(AuthModulesPostRequest), nameof(Key));
-        
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key
-        {
-            get => _key.GetValue();
-            set => _key.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(AuthModulesPostRequest), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(AuthModulesPostRequest), nameof(IsEnabled));
-        
-        [Required]
-        [JsonPropertyName("enabled")]
-        public bool IsEnabled
-        {
-            get => _enabled.GetValue();
-            set => _enabled.SetValue(value);
-        }
-    
-        private PropertyValue<ESAuthModuleSettings> _settings = new PropertyValue<ESAuthModuleSettings>(nameof(AuthModulesPostRequest), nameof(Settings));
-        
-        [Required]
-        [JsonPropertyName("settings")]
-        public ESAuthModuleSettings Settings
-        {
-            get => _settings.GetValue();
-            set => _settings.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _key.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _enabled.SetAccessPath(path, validateHasBeenSet);
-            _settings.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Key = key;
+        Name = name;
+        IsEnabled = enabled;
+        Settings = settings;
     }
     
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(AuthModulesPostRequest), nameof(Key));
+    
+    [Required]
+    [JsonPropertyName("key")]
+    public string Key
+    {
+        get => _key.GetValue();
+        set => _key.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(AuthModulesPostRequest), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(AuthModulesPostRequest), nameof(IsEnabled));
+    
+    [Required]
+    [JsonPropertyName("enabled")]
+    public bool IsEnabled
+    {
+        get => _enabled.GetValue();
+        set => _enabled.SetValue(value);
+    }
+
+    private PropertyValue<ESAuthModuleSettings> _settings = new PropertyValue<ESAuthModuleSettings>(nameof(AuthModulesPostRequest), nameof(Settings));
+    
+    [Required]
+    [JsonPropertyName("settings")]
+    public ESAuthModuleSettings Settings
+    {
+        get => _settings.GetValue();
+        set => _settings.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _key.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _enabled.SetAccessPath(path, validateHasBeenSet);
+        _settings.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

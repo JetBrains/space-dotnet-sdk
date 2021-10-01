@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class EndpointAuthRead
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class EndpointAuthRead
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "EndpointAuthRead";
+    
+    public static EndpointAuthReadBasic Basic(string username)
+        => new EndpointAuthReadBasic(username: username);
+    
+    public static EndpointAuthReadBearer Bearer()
+        => new EndpointAuthReadBearer();
+    
+    public static EndpointAuthReadPublicKeySignature PublicKeySignature()
+        => new EndpointAuthReadPublicKeySignature();
+    
+    public static EndpointAuthReadSigningKey SigningKey()
+        => new EndpointAuthReadSigningKey();
+    
+    public static EndpointAuthReadUnknown Unknown()
+        => new EndpointAuthReadUnknown();
+    
+    public EndpointAuthRead() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "EndpointAuthRead";
-        
-        public static EndpointAuthReadBasic Basic(string username)
-            => new EndpointAuthReadBasic(username: username);
-        
-        public static EndpointAuthReadBearer Bearer()
-            => new EndpointAuthReadBearer();
-        
-        public static EndpointAuthReadPublicKeySignature PublicKeySignature()
-            => new EndpointAuthReadPublicKeySignature();
-        
-        public static EndpointAuthReadSigningKey SigningKey()
-            => new EndpointAuthReadSigningKey();
-        
-        public static EndpointAuthReadUnknown Unknown()
-            => new EndpointAuthReadUnknown();
-        
-        public EndpointAuthRead() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CFCommitIdentifierFull
+     : CFCommitIdentifier, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class CFCommitIdentifierFull
-         : CFCommitIdentifier, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "CFCommitIdentifier.Full";
+    
+    public CFCommitIdentifierFull() { }
+    
+    public CFCommitIdentifierFull(ProjectIdentifier project, string repository, string commitHash)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "CFCommitIdentifier.Full";
-        
-        public CFCommitIdentifierFull() { }
-        
-        public CFCommitIdentifierFull(ProjectIdentifier project, string repository, string commitHash)
-        {
-            Project = project;
-            Repository = repository;
-            CommitHash = commitHash;
-        }
-        
-        private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(CFCommitIdentifierFull), nameof(Project));
-        
-        [Required]
-        [JsonPropertyName("project")]
-        public ProjectIdentifier Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CFCommitIdentifierFull), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<string> _commitHash = new PropertyValue<string>(nameof(CFCommitIdentifierFull), nameof(CommitHash));
-        
-        [Required]
-        [JsonPropertyName("commitHash")]
-        public string CommitHash
-        {
-            get => _commitHash.GetValue();
-            set => _commitHash.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _commitHash.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Project = project;
+        Repository = repository;
+        CommitHash = commitHash;
     }
     
+    private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(CFCommitIdentifierFull), nameof(Project));
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public ProjectIdentifier Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CFCommitIdentifierFull), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public string Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<string> _commitHash = new PropertyValue<string>(nameof(CFCommitIdentifierFull), nameof(CommitHash));
+    
+    [Required]
+    [JsonPropertyName("commitHash")]
+    public string CommitHash
+    {
+        get => _commitHash.GetValue();
+        set => _commitHash.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _project.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _commitHash.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

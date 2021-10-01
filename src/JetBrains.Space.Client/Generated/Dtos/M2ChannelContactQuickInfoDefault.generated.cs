@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2ChannelContactQuickInfoDefault
+     : M2ChannelContactInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2ChannelContactQuickInfoDefault
-         : M2ChannelContactInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2ChannelContactQuickInfoDefault";
+    
+    public M2ChannelContactQuickInfoDefault() { }
+    
+    public M2ChannelContactQuickInfoDefault(string name, string key)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2ChannelContactQuickInfoDefault";
-        
-        public M2ChannelContactQuickInfoDefault() { }
-        
-        public M2ChannelContactQuickInfoDefault(string name, string key)
-        {
-            Name = name;
-            Key = key;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2ChannelContactQuickInfoDefault), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _key = new PropertyValue<string>(nameof(M2ChannelContactQuickInfoDefault), nameof(Key));
-        
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key
-        {
-            get => _key.GetValue();
-            set => _key.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _key.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Key = key;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2ChannelContactQuickInfoDefault), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(M2ChannelContactQuickInfoDefault), nameof(Key));
+    
+    [Required]
+    [JsonPropertyName("key")]
+    public string Key
+    {
+        get => _key.GetValue();
+        set => _key.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _key.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

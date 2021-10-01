@@ -27,83 +27,82 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsRepositoryBranch
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsRepositoryBranch
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsRepositoryBranch";
+    
+    public UnfurlDetailsRepositoryBranch() { }
+    
+    public UnfurlDetailsRepositoryBranch(PRProject project, string repository, string branchHead, bool deleted, bool? isDefault = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsRepositoryBranch";
-        
-        public UnfurlDetailsRepositoryBranch() { }
-        
-        public UnfurlDetailsRepositoryBranch(PRProject project, string repository, string branchHead, bool deleted, bool? isDefault = null)
-        {
-            Project = project;
-            Repository = repository;
-            BranchHead = branchHead;
-            IsDeleted = deleted;
-            IsDefault = isDefault;
-        }
-        
-        private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsRepositoryBranch), nameof(Project));
-        
-        [Required]
-        [JsonPropertyName("project")]
-        public PRProject Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(UnfurlDetailsRepositoryBranch), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<string> _branchHead = new PropertyValue<string>(nameof(UnfurlDetailsRepositoryBranch), nameof(BranchHead));
-        
-        [Required]
-        [JsonPropertyName("branchHead")]
-        public string BranchHead
-        {
-            get => _branchHead.GetValue();
-            set => _branchHead.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(UnfurlDetailsRepositoryBranch), nameof(IsDeleted));
-        
-        [Required]
-        [JsonPropertyName("deleted")]
-        public bool IsDeleted
-        {
-            get => _deleted.GetValue();
-            set => _deleted.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _isDefault = new PropertyValue<bool?>(nameof(UnfurlDetailsRepositoryBranch), nameof(IsDefault));
-        
-        [JsonPropertyName("isDefault")]
-        public bool? IsDefault
-        {
-            get => _isDefault.GetValue();
-            set => _isDefault.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _branchHead.SetAccessPath(path, validateHasBeenSet);
-            _deleted.SetAccessPath(path, validateHasBeenSet);
-            _isDefault.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Project = project;
+        Repository = repository;
+        BranchHead = branchHead;
+        IsDeleted = deleted;
+        IsDefault = isDefault;
     }
     
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsRepositoryBranch), nameof(Project));
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public PRProject Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(UnfurlDetailsRepositoryBranch), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public string Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<string> _branchHead = new PropertyValue<string>(nameof(UnfurlDetailsRepositoryBranch), nameof(BranchHead));
+    
+    [Required]
+    [JsonPropertyName("branchHead")]
+    public string BranchHead
+    {
+        get => _branchHead.GetValue();
+        set => _branchHead.SetValue(value);
+    }
+
+    private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(UnfurlDetailsRepositoryBranch), nameof(IsDeleted));
+    
+    [Required]
+    [JsonPropertyName("deleted")]
+    public bool IsDeleted
+    {
+        get => _deleted.GetValue();
+        set => _deleted.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _isDefault = new PropertyValue<bool?>(nameof(UnfurlDetailsRepositoryBranch), nameof(IsDefault));
+    
+    [JsonPropertyName("isDefault")]
+    public bool? IsDefault
+    {
+        get => _isDefault.GetValue();
+        set => _isDefault.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _project.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _branchHead.SetAccessPath(path, validateHasBeenSet);
+        _deleted.SetAccessPath(path, validateHasBeenSet);
+        _isDefault.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

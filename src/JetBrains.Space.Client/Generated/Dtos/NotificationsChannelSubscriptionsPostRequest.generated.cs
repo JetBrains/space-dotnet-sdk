@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class NotificationsChannelSubscriptionsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class NotificationsChannelSubscriptionsPostRequest
-         : IPropagatePropertyAccessPath
+    public NotificationsChannelSubscriptionsPostRequest() { }
+    
+    public NotificationsChannelSubscriptionsPostRequest(ChatChannel channel, string name, CustomGenericSubscriptionIn subscription)
     {
-        public NotificationsChannelSubscriptionsPostRequest() { }
-        
-        public NotificationsChannelSubscriptionsPostRequest(ChatChannel channel, string name, CustomGenericSubscriptionIn subscription)
-        {
-            Channel = channel;
-            Name = name;
-            Subscription = subscription;
-        }
-        
-        private PropertyValue<ChatChannel> _channel = new PropertyValue<ChatChannel>(nameof(NotificationsChannelSubscriptionsPostRequest), nameof(Channel));
-        
-        [Required]
-        [JsonPropertyName("channel")]
-        public ChatChannel Channel
-        {
-            get => _channel.GetValue();
-            set => _channel.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(NotificationsChannelSubscriptionsPostRequest), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<CustomGenericSubscriptionIn> _subscription = new PropertyValue<CustomGenericSubscriptionIn>(nameof(NotificationsChannelSubscriptionsPostRequest), nameof(Subscription));
-        
-        [Required]
-        [JsonPropertyName("subscription")]
-        public CustomGenericSubscriptionIn Subscription
-        {
-            get => _subscription.GetValue();
-            set => _subscription.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _channel.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _subscription.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Channel = channel;
+        Name = name;
+        Subscription = subscription;
     }
     
+    private PropertyValue<ChatChannel> _channel = new PropertyValue<ChatChannel>(nameof(NotificationsChannelSubscriptionsPostRequest), nameof(Channel));
+    
+    [Required]
+    [JsonPropertyName("channel")]
+    public ChatChannel Channel
+    {
+        get => _channel.GetValue();
+        set => _channel.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(NotificationsChannelSubscriptionsPostRequest), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<CustomGenericSubscriptionIn> _subscription = new PropertyValue<CustomGenericSubscriptionIn>(nameof(NotificationsChannelSubscriptionsPostRequest), nameof(Subscription));
+    
+    [Required]
+    [JsonPropertyName("subscription")]
+    public CustomGenericSubscriptionIn Subscription
+    {
+        get => _subscription.GetValue();
+        set => _subscription.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _channel.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _subscription.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

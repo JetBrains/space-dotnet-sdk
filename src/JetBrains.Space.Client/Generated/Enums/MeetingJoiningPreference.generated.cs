@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum MeetingJoiningPreference
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum MeetingJoiningPreference
-    {
-        [EnumMember(Value = "NOBODY")]
-        NOBODY,
-        
-        [EnumMember(Value = "EVERYONE")]
-        EVERYONE,
-        
-    }
+    [EnumMember(Value = "NOBODY")]
+    NOBODY,
+    
+    [EnumMember(Value = "EVERYONE")]
+    EVERYONE,
     
 }
+

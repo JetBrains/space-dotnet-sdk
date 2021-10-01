@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.VcsCommitCFParametersPartialBuilder
+namespace JetBrains.Space.Client.VcsCommitCFParametersPartialBuilder;
+
+public static class VcsCommitCFParametersPartialExtensions
 {
-    public static class VcsCommitCFParametersPartialExtensions
-    {
-        public static Partial<VcsCommitCFParameters> WithVcsCFScope(this Partial<VcsCommitCFParameters> it)
-            => it.AddFieldName("vcsCFScope");
-        
-        public static Partial<VcsCommitCFParameters> WithVcsCFScope(this Partial<VcsCommitCFParameters> it, Func<Partial<VcsCFScope>, Partial<VcsCFScope>> partialBuilder)
-            => it.AddFieldName("vcsCFScope", partialBuilder(new Partial<VcsCFScope>(it)));
-        
-    }
+    public static Partial<VcsCommitCFParameters> WithVcsCFScope(this Partial<VcsCommitCFParameters> it)
+        => it.AddFieldName("vcsCFScope");
+    
+    public static Partial<VcsCommitCFParameters> WithVcsCFScope(this Partial<VcsCommitCFParameters> it, Func<Partial<VcsCFScope>, Partial<VcsCFScope>> partialBuilder)
+        => it.AddFieldName("vcsCFScope", partialBuilder(new Partial<VcsCFScope>(it)));
     
 }
+

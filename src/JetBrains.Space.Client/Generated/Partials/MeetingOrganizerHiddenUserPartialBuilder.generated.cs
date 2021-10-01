@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingOrganizerHiddenUserPartialBuilder
+namespace JetBrains.Space.Client.MeetingOrganizerHiddenUserPartialBuilder;
+
+public static class MeetingOrganizerHiddenUserPartialExtensions
 {
-    public static class MeetingOrganizerHiddenUserPartialExtensions
-    {
-    }
-    
 }
+

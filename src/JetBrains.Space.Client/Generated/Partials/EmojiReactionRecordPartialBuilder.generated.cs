@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EmojiReactionRecordPartialBuilder
+namespace JetBrains.Space.Client.EmojiReactionRecordPartialBuilder;
+
+public static class EmojiReactionRecordPartialExtensions
 {
-    public static class EmojiReactionRecordPartialExtensions
-    {
-        public static Partial<EmojiReactionRecord> WithId(this Partial<EmojiReactionRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<EmojiReactionRecord> WithItemId(this Partial<EmojiReactionRecord> it)
-            => it.AddFieldName("itemId");
-        
-        public static Partial<EmojiReactionRecord> WithEmoji(this Partial<EmojiReactionRecord> it)
-            => it.AddFieldName("emoji");
-        
-        public static Partial<EmojiReactionRecord> WithCount(this Partial<EmojiReactionRecord> it)
-            => it.AddFieldName("count");
-        
-        public static Partial<EmojiReactionRecord> WithIsMeReacted(this Partial<EmojiReactionRecord> it)
-            => it.AddFieldName("meReacted");
-        
-        public static Partial<EmojiReactionRecord> WithOrder(this Partial<EmojiReactionRecord> it)
-            => it.AddFieldName("order");
-        
-    }
+    public static Partial<EmojiReactionRecord> WithId(this Partial<EmojiReactionRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<EmojiReactionRecord> WithItemId(this Partial<EmojiReactionRecord> it)
+        => it.AddFieldName("itemId");
+    
+    public static Partial<EmojiReactionRecord> WithEmoji(this Partial<EmojiReactionRecord> it)
+        => it.AddFieldName("emoji");
+    
+    public static Partial<EmojiReactionRecord> WithCount(this Partial<EmojiReactionRecord> it)
+        => it.AddFieldName("count");
+    
+    public static Partial<EmojiReactionRecord> WithIsMeReacted(this Partial<EmojiReactionRecord> it)
+        => it.AddFieldName("meReacted");
+    
+    public static Partial<EmojiReactionRecord> WithOrder(this Partial<EmojiReactionRecord> it)
+        => it.AddFieldName("order");
     
 }
+

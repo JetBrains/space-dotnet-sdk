@@ -27,37 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ArticlePreviewRecordPartialBuilder
+namespace JetBrains.Space.Client.ArticlePreviewRecordPartialBuilder;
+
+public static class ArticlePreviewRecordPartialExtensions
 {
-    public static class ArticlePreviewRecordPartialExtensions
-    {
-        public static Partial<ArticlePreviewRecord> WithId(this Partial<ArticlePreviewRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ArticlePreviewRecord> WithIsArchived(this Partial<ArticlePreviewRecord> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<ArticlePreviewRecord> WithPreviewImages(this Partial<ArticlePreviewRecord> it)
-            => it.AddFieldName("previewImages");
-        
-        public static Partial<ArticlePreviewRecord> WithPreviewImages(this Partial<ArticlePreviewRecord> it, Func<Partial<ArticleMarkdownImage>, Partial<ArticleMarkdownImage>> partialBuilder)
-            => it.AddFieldName("previewImages", partialBuilder(new Partial<ArticleMarkdownImage>(it)));
-        
-        public static Partial<ArticlePreviewRecord> WithPreview(this Partial<ArticlePreviewRecord> it)
-            => it.AddFieldName("preview");
-        
-        public static Partial<ArticlePreviewRecord> WithPreviewAttachments(this Partial<ArticlePreviewRecord> it)
-            => it.AddFieldName("previewAttachments");
-        
-        public static Partial<ArticlePreviewRecord> WithPreviewAttachments(this Partial<ArticlePreviewRecord> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
-            => it.AddFieldName("previewAttachments", partialBuilder(new Partial<AttachmentInfo>(it)));
-        
-        public static Partial<ArticlePreviewRecord> WithWordsNumber(this Partial<ArticlePreviewRecord> it)
-            => it.AddFieldName("wordsNumber");
-        
-        public static Partial<ArticlePreviewRecord> WithIsCut(this Partial<ArticlePreviewRecord> it)
-            => it.AddFieldName("cut");
-        
-    }
+    public static Partial<ArticlePreviewRecord> WithId(this Partial<ArticlePreviewRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ArticlePreviewRecord> WithIsArchived(this Partial<ArticlePreviewRecord> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<ArticlePreviewRecord> WithPreviewImages(this Partial<ArticlePreviewRecord> it)
+        => it.AddFieldName("previewImages");
+    
+    public static Partial<ArticlePreviewRecord> WithPreviewImages(this Partial<ArticlePreviewRecord> it, Func<Partial<ArticleMarkdownImage>, Partial<ArticleMarkdownImage>> partialBuilder)
+        => it.AddFieldName("previewImages", partialBuilder(new Partial<ArticleMarkdownImage>(it)));
+    
+    public static Partial<ArticlePreviewRecord> WithPreview(this Partial<ArticlePreviewRecord> it)
+        => it.AddFieldName("preview");
+    
+    public static Partial<ArticlePreviewRecord> WithPreviewAttachments(this Partial<ArticlePreviewRecord> it)
+        => it.AddFieldName("previewAttachments");
+    
+    public static Partial<ArticlePreviewRecord> WithPreviewAttachments(this Partial<ArticlePreviewRecord> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
+        => it.AddFieldName("previewAttachments", partialBuilder(new Partial<AttachmentInfo>(it)));
+    
+    public static Partial<ArticlePreviewRecord> WithWordsNumber(this Partial<ArticlePreviewRecord> it)
+        => it.AddFieldName("wordsNumber");
+    
+    public static Partial<ArticlePreviewRecord> WithIsCut(this Partial<ArticlePreviewRecord> it)
+        => it.AddFieldName("cut");
     
 }
+

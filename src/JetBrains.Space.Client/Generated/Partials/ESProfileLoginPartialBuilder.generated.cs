@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESProfileLoginPartialBuilder
+namespace JetBrains.Space.Client.ESProfileLoginPartialBuilder;
+
+public static class ESProfileLoginPartialExtensions
 {
-    public static class ESProfileLoginPartialExtensions
-    {
-        public static Partial<ESProfileLogin> WithIdentifier(this Partial<ESProfileLogin> it)
-            => it.AddFieldName("identifier");
-        
-        public static Partial<ESProfileLogin> WithAuthModule(this Partial<ESProfileLogin> it)
-            => it.AddFieldName("authModule");
-        
-        public static Partial<ESProfileLogin> WithAuthModule(this Partial<ESProfileLogin> it, Func<Partial<ESAuthModule>, Partial<ESAuthModule>> partialBuilder)
-            => it.AddFieldName("authModule", partialBuilder(new Partial<ESAuthModule>(it)));
-        
-        public static Partial<ESProfileLogin> WithDetails(this Partial<ESProfileLogin> it)
-            => it.AddFieldName("details");
-        
-        public static Partial<ESProfileLogin> WithDetails(this Partial<ESProfileLogin> it, Func<Partial<ESProfileLoginDetails>, Partial<ESProfileLoginDetails>> partialBuilder)
-            => it.AddFieldName("details", partialBuilder(new Partial<ESProfileLoginDetails>(it)));
-        
-        public static Partial<ESProfileLogin> WithAccess(this Partial<ESProfileLogin> it)
-            => it.AddFieldName("access");
-        
-        public static Partial<ESProfileLogin> WithAccess(this Partial<ESProfileLogin> it, Func<Partial<AccessRecord>, Partial<AccessRecord>> partialBuilder)
-            => it.AddFieldName("access", partialBuilder(new Partial<AccessRecord>(it)));
-        
-    }
+    public static Partial<ESProfileLogin> WithIdentifier(this Partial<ESProfileLogin> it)
+        => it.AddFieldName("identifier");
+    
+    public static Partial<ESProfileLogin> WithAuthModule(this Partial<ESProfileLogin> it)
+        => it.AddFieldName("authModule");
+    
+    public static Partial<ESProfileLogin> WithAuthModule(this Partial<ESProfileLogin> it, Func<Partial<ESAuthModule>, Partial<ESAuthModule>> partialBuilder)
+        => it.AddFieldName("authModule", partialBuilder(new Partial<ESAuthModule>(it)));
+    
+    public static Partial<ESProfileLogin> WithDetails(this Partial<ESProfileLogin> it)
+        => it.AddFieldName("details");
+    
+    public static Partial<ESProfileLogin> WithDetails(this Partial<ESProfileLogin> it, Func<Partial<ESProfileLoginDetails>, Partial<ESProfileLoginDetails>> partialBuilder)
+        => it.AddFieldName("details", partialBuilder(new Partial<ESProfileLoginDetails>(it)));
+    
+    public static Partial<ESProfileLogin> WithAccess(this Partial<ESProfileLogin> it)
+        => it.AddFieldName("access");
+    
+    public static Partial<ESProfileLogin> WithAccess(this Partial<ESProfileLogin> it, Func<Partial<AccessRecord>, Partial<AccessRecord>> partialBuilder)
+        => it.AddFieldName("access", partialBuilder(new Partial<AccessRecord>(it)));
     
 }
+

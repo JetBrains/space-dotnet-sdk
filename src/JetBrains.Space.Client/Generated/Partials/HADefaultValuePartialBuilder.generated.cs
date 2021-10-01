@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HADefaultValuePartialBuilder
+namespace JetBrains.Space.Client.HADefaultValuePartialBuilder;
+
+public static class HADefaultValuePartialExtensions
 {
-    public static class HADefaultValuePartialExtensions
-    {
-    }
-    
 }
+

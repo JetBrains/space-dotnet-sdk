@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsSecretsForIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsSecretsForIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsSecretsForIdPatchRequest() { }
+    
+    public ProjectsSecretsForIdPatchRequest(string valueBase64, string? publicKeyId = null)
     {
-        public ProjectsSecretsForIdPatchRequest() { }
-        
-        public ProjectsSecretsForIdPatchRequest(string valueBase64, string? publicKeyId = null)
-        {
-            ValueBase64 = valueBase64;
-            PublicKeyId = publicKeyId;
-        }
-        
-        private PropertyValue<string> _valueBase64 = new PropertyValue<string>(nameof(ProjectsSecretsForIdPatchRequest), nameof(ValueBase64));
-        
-        [Required]
-        [JsonPropertyName("valueBase64")]
-        public string ValueBase64
-        {
-            get => _valueBase64.GetValue();
-            set => _valueBase64.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _publicKeyId = new PropertyValue<string?>(nameof(ProjectsSecretsForIdPatchRequest), nameof(PublicKeyId));
-        
-        [JsonPropertyName("publicKeyId")]
-        public string? PublicKeyId
-        {
-            get => _publicKeyId.GetValue();
-            set => _publicKeyId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _valueBase64.SetAccessPath(path, validateHasBeenSet);
-            _publicKeyId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ValueBase64 = valueBase64;
+        PublicKeyId = publicKeyId;
     }
     
+    private PropertyValue<string> _valueBase64 = new PropertyValue<string>(nameof(ProjectsSecretsForIdPatchRequest), nameof(ValueBase64));
+    
+    [Required]
+    [JsonPropertyName("valueBase64")]
+    public string ValueBase64
+    {
+        get => _valueBase64.GetValue();
+        set => _valueBase64.SetValue(value);
+    }
+
+    private PropertyValue<string?> _publicKeyId = new PropertyValue<string?>(nameof(ProjectsSecretsForIdPatchRequest), nameof(PublicKeyId));
+    
+    [JsonPropertyName("publicKeyId")]
+    public string? PublicKeyId
+    {
+        get => _publicKeyId.GetValue();
+        set => _publicKeyId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _valueBase64.SetAccessPath(path, validateHasBeenSet);
+        _publicKeyId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

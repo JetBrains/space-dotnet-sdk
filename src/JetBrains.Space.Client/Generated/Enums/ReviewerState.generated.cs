@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum ReviewerState
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ReviewerState
-    {
-        [EnumMember(Value = "Accepted")]
-        Accepted,
-        
-        [EnumMember(Value = "Rejected")]
-        Rejected,
-        
-    }
+    [EnumMember(Value = "Accepted")]
+    Accepted,
+    
+    [EnumMember(Value = "Rejected")]
+    Rejected,
     
 }
+

@@ -27,26 +27,25 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum MessageStyle
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum MessageStyle
-    {
-        [EnumMember(Value = "PRIMARY")]
-        PRIMARY,
-        
-        [EnumMember(Value = "SECONDARY")]
-        SECONDARY,
-        
-        [EnumMember(Value = "SUCCESS")]
-        SUCCESS,
-        
-        [EnumMember(Value = "ERROR")]
-        ERROR,
-        
-        [EnumMember(Value = "WARNING")]
-        WARNING,
-        
-    }
+    [EnumMember(Value = "PRIMARY")]
+    PRIMARY,
+    
+    [EnumMember(Value = "SECONDARY")]
+    SECONDARY,
+    
+    [EnumMember(Value = "SUCCESS")]
+    SUCCESS,
+    
+    [EnumMember(Value = "ERROR")]
+    ERROR,
+    
+    [EnumMember(Value = "WARNING")]
+    WARNING,
     
 }
+

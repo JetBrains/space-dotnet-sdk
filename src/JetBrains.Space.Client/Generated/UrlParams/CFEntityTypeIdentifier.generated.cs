@@ -27,63 +27,62 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class CFEntityTypeIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class CFEntityTypeIdentifier : IUrlParameter
+    public static CFEntityTypeIdentifier ForCFAbsenceEntityType
+        => new CFAbsenceEntityType();
+    
+    public static CFEntityTypeIdentifier ForCFIssueTrackerEntityType(IssueTrackerIdentifier issueTracker)
+        => new CFIssueTrackerEntityType(issueTracker);
+    
+    public static CFEntityTypeIdentifier ForCFMembershipEntityType
+        => new CFMembershipEntityType();
+    
+    public static CFEntityTypeIdentifier ForCFProfileEntityType
+        => new CFProfileEntityType();
+    
+    public static CFEntityTypeIdentifier ForCFTeamEntityType
+        => new CFTeamEntityType();
+    
+    private class CFAbsenceEntityType : CFEntityTypeIdentifier
     {
-        public static CFEntityTypeIdentifier ForCFAbsenceEntityType
-            => new CFAbsenceEntityType();
+        public override string ToString()
+            => "absence";
+    }
+    
+    private class CFIssueTrackerEntityType : CFEntityTypeIdentifier
+    {
+        private readonly IssueTrackerIdentifier _issueTracker;
         
-        public static CFEntityTypeIdentifier ForCFIssueTrackerEntityType(IssueTrackerIdentifier issueTracker)
-            => new CFIssueTrackerEntityType(issueTracker);
-        
-        public static CFEntityTypeIdentifier ForCFMembershipEntityType
-            => new CFMembershipEntityType();
-        
-        public static CFEntityTypeIdentifier ForCFProfileEntityType
-            => new CFProfileEntityType();
-        
-        public static CFEntityTypeIdentifier ForCFTeamEntityType
-            => new CFTeamEntityType();
-        
-        private class CFAbsenceEntityType : CFEntityTypeIdentifier
+        public CFIssueTrackerEntityType(IssueTrackerIdentifier issueTracker)
         {
-            public override string ToString()
-                => "absence";
+            _issueTracker = issueTracker;
         }
         
-        private class CFIssueTrackerEntityType : CFEntityTypeIdentifier
-        {
-            private readonly IssueTrackerIdentifier _issueTracker;
-            
-            public CFIssueTrackerEntityType(IssueTrackerIdentifier issueTracker)
-            {
-                _issueTracker = issueTracker;
-            }
-            
-            public override string ToString()
-                => $"issueTracker:{_issueTracker}";
-        }
-        
-        private class CFMembershipEntityType : CFEntityTypeIdentifier
-        {
-            public override string ToString()
-                => "membership";
-        }
-        
-        private class CFProfileEntityType : CFEntityTypeIdentifier
-        {
-            public override string ToString()
-                => "profile";
-        }
-        
-        private class CFTeamEntityType : CFEntityTypeIdentifier
-        {
-            public override string ToString()
-                => "team";
-        }
-        
+        public override string ToString()
+            => $"issueTracker:{_issueTracker}";
+    }
+    
+    private class CFMembershipEntityType : CFEntityTypeIdentifier
+    {
+        public override string ToString()
+            => "membership";
+    }
+    
+    private class CFProfileEntityType : CFEntityTypeIdentifier
+    {
+        public override string ToString()
+            => "profile";
+    }
+    
+    private class CFTeamEntityType : CFEntityTypeIdentifier
+    {
+        public override string ToString()
+            => "team";
     }
     
 }
+

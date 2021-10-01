@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum DiffLineType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum DiffLineType
-    {
-        [EnumMember(Value = "ADDED")]
-        ADDED,
-        
-        [EnumMember(Value = "DELETED")]
-        DELETED,
-        
-        [EnumMember(Value = "MODIFIED")]
-        MODIFIED,
-        
-        [EnumMember(Value = "FILTERED_ADDED")]
-        FILTEREDADDED,
-        
-        [EnumMember(Value = "FILTERED_DELETED")]
-        FILTEREDDELETED,
-        
-        [EnumMember(Value = "FILTERED_MODIFIED")]
-        FILTEREDMODIFIED,
-        
-        [EnumMember(Value = "CONFLICT_OLD")]
-        CONFLICTOLD,
-        
-        [EnumMember(Value = "CONFLICT_NEW")]
-        CONFLICTNEW,
-        
-    }
+    [EnumMember(Value = "ADDED")]
+    ADDED,
+    
+    [EnumMember(Value = "DELETED")]
+    DELETED,
+    
+    [EnumMember(Value = "MODIFIED")]
+    MODIFIED,
+    
+    [EnumMember(Value = "FILTERED_ADDED")]
+    FILTEREDADDED,
+    
+    [EnumMember(Value = "FILTERED_DELETED")]
+    FILTEREDDELETED,
+    
+    [EnumMember(Value = "FILTERED_MODIFIED")]
+    FILTEREDMODIFIED,
+    
+    [EnumMember(Value = "CONFLICT_OLD")]
+    CONFLICTOLD,
+    
+    [EnumMember(Value = "CONFLICT_NEW")]
+    CONFLICTNEW,
     
 }
+

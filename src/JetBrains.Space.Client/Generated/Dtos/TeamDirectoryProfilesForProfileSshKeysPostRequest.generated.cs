@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryProfilesForProfileSshKeysPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryProfilesForProfileSshKeysPostRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryProfilesForProfileSshKeysPostRequest() { }
+    
+    public TeamDirectoryProfilesForProfileSshKeysPostRequest(string key, string comment = "")
     {
-        public TeamDirectoryProfilesForProfileSshKeysPostRequest() { }
-        
-        public TeamDirectoryProfilesForProfileSshKeysPostRequest(string key, string comment = "")
-        {
-            Key = key;
-            Comment = comment;
-        }
-        
-        private PropertyValue<string> _key = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileSshKeysPostRequest), nameof(Key));
-        
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key
-        {
-            get => _key.GetValue();
-            set => _key.SetValue(value);
-        }
-    
-        private PropertyValue<string> _comment = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileSshKeysPostRequest), nameof(Comment));
-        
-        [JsonPropertyName("comment")]
-        public string Comment
-        {
-            get => _comment.GetValue();
-            set => _comment.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _key.SetAccessPath(path, validateHasBeenSet);
-            _comment.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Key = key;
+        Comment = comment;
     }
     
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileSshKeysPostRequest), nameof(Key));
+    
+    [Required]
+    [JsonPropertyName("key")]
+    public string Key
+    {
+        get => _key.GetValue();
+        set => _key.SetValue(value);
+    }
+
+    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileSshKeysPostRequest), nameof(Comment));
+    
+    [JsonPropertyName("comment")]
+    public string Comment
+    {
+        get => _comment.GetValue();
+        set => _comment.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _key.SetAccessPath(path, validateHasBeenSet);
+        _comment.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

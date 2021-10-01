@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IntelliJSharedIndexUploadUrlPartialBuilder
+namespace JetBrains.Space.Client.IntelliJSharedIndexUploadUrlPartialBuilder;
+
+public static class IntelliJSharedIndexUploadUrlPartialExtensions
 {
-    public static class IntelliJSharedIndexUploadUrlPartialExtensions
-    {
-        public static Partial<IntelliJSharedIndexUploadUrl> WithUrl(this Partial<IntelliJSharedIndexUploadUrl> it)
-            => it.AddFieldName("url");
-        
-        public static Partial<IntelliJSharedIndexUploadUrl> WithMethod(this Partial<IntelliJSharedIndexUploadUrl> it)
-            => it.AddFieldName("method");
-        
-    }
+    public static Partial<IntelliJSharedIndexUploadUrl> WithUrl(this Partial<IntelliJSharedIndexUploadUrl> it)
+        => it.AddFieldName("url");
+    
+    public static Partial<IntelliJSharedIndexUploadUrl> WithMethod(this Partial<IntelliJSharedIndexUploadUrl> it)
+        => it.AddFieldName("method");
     
 }
+

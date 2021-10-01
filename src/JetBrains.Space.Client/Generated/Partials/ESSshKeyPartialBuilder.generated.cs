@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESSshKeyPartialBuilder
+namespace JetBrains.Space.Client.ESSshKeyPartialBuilder;
+
+public static class ESSshKeyPartialExtensions
 {
-    public static class ESSshKeyPartialExtensions
-    {
-        public static Partial<ESSshKey> WithFingerprint(this Partial<ESSshKey> it)
-            => it.AddFieldName("fingerprint");
-        
-        public static Partial<ESSshKey> WithComment(this Partial<ESSshKey> it)
-            => it.AddFieldName("comment");
-        
-        public static Partial<ESSshKey> WithCreatedAt(this Partial<ESSshKey> it)
-            => it.AddFieldName("createdAt");
-        
-        public static Partial<ESSshKey> WithLastUsedAt(this Partial<ESSshKey> it)
-            => it.AddFieldName("lastUsedAt");
-        
-    }
+    public static Partial<ESSshKey> WithFingerprint(this Partial<ESSshKey> it)
+        => it.AddFieldName("fingerprint");
+    
+    public static Partial<ESSshKey> WithComment(this Partial<ESSshKey> it)
+        => it.AddFieldName("comment");
+    
+    public static Partial<ESSshKey> WithCreatedAt(this Partial<ESSshKey> it)
+        => it.AddFieldName("createdAt");
+    
+    public static Partial<ESSshKey> WithLastUsedAt(this Partial<ESSshKey> it)
+        => it.AddFieldName("lastUsedAt");
     
 }
+

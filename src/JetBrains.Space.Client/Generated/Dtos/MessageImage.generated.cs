@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MessageImage
+     : MessageAccessoryElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MessageImage
-         : MessageAccessoryElement, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MessageImage";
+    
+    public MessageImage() { }
+    
+    public MessageImage(string src)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MessageImage";
-        
-        public MessageImage() { }
-        
-        public MessageImage(string src)
-        {
-            Src = src;
-        }
-        
-        private PropertyValue<string> _src = new PropertyValue<string>(nameof(MessageImage), nameof(Src));
-        
-        [Required]
-        [JsonPropertyName("src")]
-        public string Src
-        {
-            get => _src.GetValue();
-            set => _src.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _src.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Src = src;
     }
     
+    private PropertyValue<string> _src = new PropertyValue<string>(nameof(MessageImage), nameof(Src));
+    
+    [Required]
+    [JsonPropertyName("src")]
+    public string Src
+    {
+        get => _src.GetValue();
+        set => _src.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _src.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

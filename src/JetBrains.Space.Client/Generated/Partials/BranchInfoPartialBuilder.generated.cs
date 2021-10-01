@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BranchInfoPartialBuilder
+namespace JetBrains.Space.Client.BranchInfoPartialBuilder;
+
+public static class BranchInfoPartialExtensions
 {
-    public static class BranchInfoPartialExtensions
-    {
-        public static Partial<BranchInfo> WithHead(this Partial<BranchInfo> it)
-            => it.AddFieldName("head");
-        
-        public static Partial<BranchInfo> WithRef(this Partial<BranchInfo> it)
-            => it.AddFieldName("ref");
-        
-    }
+    public static Partial<BranchInfo> WithHead(this Partial<BranchInfo> it)
+        => it.AddFieldName("head");
+    
+    public static Partial<BranchInfo> WithRef(this Partial<BranchInfo> it)
+        => it.AddFieldName("ref");
     
 }
+

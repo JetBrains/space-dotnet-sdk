@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingOrganizerExternalUserPartialBuilder
+namespace JetBrains.Space.Client.MeetingOrganizerExternalUserPartialBuilder;
+
+public static class MeetingOrganizerExternalUserPartialExtensions
 {
-    public static class MeetingOrganizerExternalUserPartialExtensions
-    {
-        public static Partial<MeetingOrganizerExternalUser> WithEmail(this Partial<MeetingOrganizerExternalUser> it)
-            => it.AddFieldName("email");
-        
-    }
+    public static Partial<MeetingOrganizerExternalUser> WithEmail(this Partial<MeetingOrganizerExternalUser> it)
+        => it.AddFieldName("email");
     
 }
+

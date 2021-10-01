@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BlogCommonSubscriptionFilterInPartialBuilder
+namespace JetBrains.Space.Client.BlogCommonSubscriptionFilterInPartialBuilder;
+
+public static class BlogCommonSubscriptionFilterInPartialExtensions
 {
-    public static class BlogCommonSubscriptionFilterInPartialExtensions
-    {
-        public static Partial<BlogCommonSubscriptionFilterIn> WithTeams(this Partial<BlogCommonSubscriptionFilterIn> it)
-            => it.AddFieldName("teams");
-        
-        public static Partial<BlogCommonSubscriptionFilterIn> WithLocations(this Partial<BlogCommonSubscriptionFilterIn> it)
-            => it.AddFieldName("locations");
-        
-        public static Partial<BlogCommonSubscriptionFilterIn> WithAuthors(this Partial<BlogCommonSubscriptionFilterIn> it)
-            => it.AddFieldName("authors");
-        
-    }
+    public static Partial<BlogCommonSubscriptionFilterIn> WithTeams(this Partial<BlogCommonSubscriptionFilterIn> it)
+        => it.AddFieldName("teams");
+    
+    public static Partial<BlogCommonSubscriptionFilterIn> WithLocations(this Partial<BlogCommonSubscriptionFilterIn> it)
+        => it.AddFieldName("locations");
+    
+    public static Partial<BlogCommonSubscriptionFilterIn> WithAuthors(this Partial<BlogCommonSubscriptionFilterIn> it)
+        => it.AddFieldName("authors");
     
 }
+

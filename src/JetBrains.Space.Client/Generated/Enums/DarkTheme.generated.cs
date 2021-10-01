@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum DarkTheme
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum DarkTheme
-    {
-        [EnumMember(Value = "AUTO")]
-        AUTO,
-        
-        [EnumMember(Value = "ENABLED")]
-        ENABLED,
-        
-        [EnumMember(Value = "DISABLED")]
-        DISABLED,
-        
-    }
+    [EnumMember(Value = "AUTO")]
+    AUTO,
+    
+    [EnumMember(Value = "ENABLED")]
+    ENABLED,
+    
+    [EnumMember(Value = "DISABLED")]
+    DISABLED,
     
 }
+

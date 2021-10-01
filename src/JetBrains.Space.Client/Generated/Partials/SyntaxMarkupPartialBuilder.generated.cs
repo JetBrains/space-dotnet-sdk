@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SyntaxMarkupPartialBuilder
+namespace JetBrains.Space.Client.SyntaxMarkupPartialBuilder;
+
+public static class SyntaxMarkupPartialExtensions
 {
-    public static class SyntaxMarkupPartialExtensions
-    {
-        public static Partial<SyntaxMarkup> WithType(this Partial<SyntaxMarkup> it)
-            => it.AddFieldName("type");
-        
-        public static Partial<SyntaxMarkup> WithType(this Partial<SyntaxMarkup> it, Func<Partial<SyntaxMarkupType>, Partial<SyntaxMarkupType>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<SyntaxMarkupType>(it)));
-        
-        public static Partial<SyntaxMarkup> WithRange(this Partial<SyntaxMarkup> it)
-            => it.AddFieldName("range");
-        
-        public static Partial<SyntaxMarkup> WithRange(this Partial<SyntaxMarkup> it, Func<Partial<TextRange>, Partial<TextRange>> partialBuilder)
-            => it.AddFieldName("range", partialBuilder(new Partial<TextRange>(it)));
-        
-    }
+    public static Partial<SyntaxMarkup> WithType(this Partial<SyntaxMarkup> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<SyntaxMarkup> WithType(this Partial<SyntaxMarkup> it, Func<Partial<SyntaxMarkupType>, Partial<SyntaxMarkupType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<SyntaxMarkupType>(it)));
+    
+    public static Partial<SyntaxMarkup> WithRange(this Partial<SyntaxMarkup> it)
+        => it.AddFieldName("range");
+    
+    public static Partial<SyntaxMarkup> WithRange(this Partial<SyntaxMarkup> it, Func<Partial<TextRange>, Partial<TextRange>> partialBuilder)
+        => it.AddFieldName("range", partialBuilder(new Partial<TextRange>(it)));
     
 }
+

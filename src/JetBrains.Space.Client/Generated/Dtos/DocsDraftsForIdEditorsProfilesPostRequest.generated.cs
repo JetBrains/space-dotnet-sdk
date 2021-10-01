@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class DocsDraftsForIdEditorsProfilesPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class DocsDraftsForIdEditorsProfilesPostRequest
-         : IPropagatePropertyAccessPath
+    public DocsDraftsForIdEditorsProfilesPostRequest() { }
+    
+    public DocsDraftsForIdEditorsProfilesPostRequest(string editorId)
     {
-        public DocsDraftsForIdEditorsProfilesPostRequest() { }
-        
-        public DocsDraftsForIdEditorsProfilesPostRequest(string editorId)
-        {
-            EditorId = editorId;
-        }
-        
-        private PropertyValue<string> _editorId = new PropertyValue<string>(nameof(DocsDraftsForIdEditorsProfilesPostRequest), nameof(EditorId));
-        
-        [Required]
-        [JsonPropertyName("editorId")]
-        public string EditorId
-        {
-            get => _editorId.GetValue();
-            set => _editorId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _editorId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        EditorId = editorId;
     }
     
+    private PropertyValue<string> _editorId = new PropertyValue<string>(nameof(DocsDraftsForIdEditorsProfilesPostRequest), nameof(EditorId));
+    
+    [Required]
+    [JsonPropertyName("editorId")]
+    public string EditorId
+    {
+        get => _editorId.GetValue();
+        set => _editorId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _editorId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

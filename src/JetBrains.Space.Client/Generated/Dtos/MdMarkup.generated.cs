@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MdMarkup
+     : IPropagatePropertyAccessPath
 {
-    public sealed class MdMarkup
-         : IPropagatePropertyAccessPath
+    public MdMarkup() { }
+    
+    public MdMarkup(List<Unfurl> unfurl)
     {
-        public MdMarkup() { }
-        
-        public MdMarkup(List<Unfurl> unfurl)
-        {
-            Unfurl = unfurl;
-        }
-        
-        private PropertyValue<List<Unfurl>> _unfurl = new PropertyValue<List<Unfurl>>(nameof(MdMarkup), nameof(Unfurl), new List<Unfurl>());
-        
-        [Required]
-        [JsonPropertyName("unfurl")]
-        public List<Unfurl> Unfurl
-        {
-            get => _unfurl.GetValue();
-            set => _unfurl.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _unfurl.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Unfurl = unfurl;
     }
     
+    private PropertyValue<List<Unfurl>> _unfurl = new PropertyValue<List<Unfurl>>(nameof(MdMarkup), nameof(Unfurl), new List<Unfurl>());
+    
+    [Required]
+    [JsonPropertyName("unfurl")]
+    public List<Unfurl> Unfurl
+    {
+        get => _unfurl.GetValue();
+        set => _unfurl.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _unfurl.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

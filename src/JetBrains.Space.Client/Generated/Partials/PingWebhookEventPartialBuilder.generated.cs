@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PingWebhookEventPartialBuilder
+namespace JetBrains.Space.Client.PingWebhookEventPartialBuilder;
+
+public static class PingWebhookEventPartialExtensions
 {
-    public static class PingWebhookEventPartialExtensions
-    {
-        public static Partial<PingWebhookEvent> WithWebhookName(this Partial<PingWebhookEvent> it)
-            => it.AddFieldName("webhookName");
-        
-    }
+    public static Partial<PingWebhookEvent> WithWebhookName(this Partial<PingWebhookEvent> it)
+        => it.AddFieldName("webhookName");
     
 }
+

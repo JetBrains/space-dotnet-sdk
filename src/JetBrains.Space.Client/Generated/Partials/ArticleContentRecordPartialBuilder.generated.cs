@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ArticleContentRecordPartialBuilder
+namespace JetBrains.Space.Client.ArticleContentRecordPartialBuilder;
+
+public static class ArticleContentRecordPartialExtensions
 {
-    public static class ArticleContentRecordPartialExtensions
-    {
-        public static Partial<ArticleContentRecord> WithId(this Partial<ArticleContentRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ArticleContentRecord> WithIsArchived(this Partial<ArticleContentRecord> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<ArticleContentRecord> WithContent(this Partial<ArticleContentRecord> it)
-            => it.AddFieldName("content");
-        
-        public static Partial<ArticleContentRecord> WithAttachments(this Partial<ArticleContentRecord> it)
-            => it.AddFieldName("attachments");
-        
-        public static Partial<ArticleContentRecord> WithAttachments(this Partial<ArticleContentRecord> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
-            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
-        
-    }
+    public static Partial<ArticleContentRecord> WithId(this Partial<ArticleContentRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ArticleContentRecord> WithIsArchived(this Partial<ArticleContentRecord> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<ArticleContentRecord> WithContent(this Partial<ArticleContentRecord> it)
+        => it.AddFieldName("content");
+    
+    public static Partial<ArticleContentRecord> WithAttachments(this Partial<ArticleContentRecord> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<ArticleContentRecord> WithAttachments(this Partial<ArticleContentRecord> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
+        => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
     
 }
+

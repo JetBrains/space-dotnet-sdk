@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HAUrlParameterOptionConstPartialBuilder
+namespace JetBrains.Space.Client.HAUrlParameterOptionConstPartialBuilder;
+
+public static class HAUrlParameterOptionConstPartialExtensions
 {
-    public static class HAUrlParameterOptionConstPartialExtensions
-    {
-        public static Partial<HAUrlParameterOptionConst> WithValue(this Partial<HAUrlParameterOptionConst> it)
-            => it.AddFieldName("value");
-        
-        public static Partial<HAUrlParameterOptionConst> WithOptionName(this Partial<HAUrlParameterOptionConst> it)
-            => it.AddFieldName("optionName");
-        
-        public static Partial<HAUrlParameterOptionConst> WithDeprecation(this Partial<HAUrlParameterOptionConst> it)
-            => it.AddFieldName("deprecation");
-        
-        public static Partial<HAUrlParameterOptionConst> WithDeprecation(this Partial<HAUrlParameterOptionConst> it, Func<Partial<HADeprecation>, Partial<HADeprecation>> partialBuilder)
-            => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecation>(it)));
-        
-    }
+    public static Partial<HAUrlParameterOptionConst> WithValue(this Partial<HAUrlParameterOptionConst> it)
+        => it.AddFieldName("value");
+    
+    public static Partial<HAUrlParameterOptionConst> WithOptionName(this Partial<HAUrlParameterOptionConst> it)
+        => it.AddFieldName("optionName");
+    
+    public static Partial<HAUrlParameterOptionConst> WithDeprecation(this Partial<HAUrlParameterOptionConst> it)
+        => it.AddFieldName("deprecation");
+    
+    public static Partial<HAUrlParameterOptionConst> WithDeprecation(this Partial<HAUrlParameterOptionConst> it, Func<Partial<HADeprecation>, Partial<HADeprecation>> partialBuilder)
+        => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecation>(it)));
     
 }
+

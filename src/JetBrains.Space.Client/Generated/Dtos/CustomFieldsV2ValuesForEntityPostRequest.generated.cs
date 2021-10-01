@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class CustomFieldsV2ValuesForEntityPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class CustomFieldsV2ValuesForEntityPostRequest
-         : IPropagatePropertyAccessPath
+    public CustomFieldsV2ValuesForEntityPostRequest() { }
+    
+    public CustomFieldsV2ValuesForEntityPostRequest(List<CustomFieldValueUpdate> customFieldValues)
     {
-        public CustomFieldsV2ValuesForEntityPostRequest() { }
-        
-        public CustomFieldsV2ValuesForEntityPostRequest(List<CustomFieldValueUpdate> customFieldValues)
-        {
-            CustomFieldValues = customFieldValues;
-        }
-        
-        private PropertyValue<List<CustomFieldValueUpdate>> _customFieldValues = new PropertyValue<List<CustomFieldValueUpdate>>(nameof(CustomFieldsV2ValuesForEntityPostRequest), nameof(CustomFieldValues), new List<CustomFieldValueUpdate>());
-        
-        [Required]
-        [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueUpdate> CustomFieldValues
-        {
-            get => _customFieldValues.GetValue();
-            set => _customFieldValues.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _customFieldValues.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        CustomFieldValues = customFieldValues;
     }
     
+    private PropertyValue<List<CustomFieldValueUpdate>> _customFieldValues = new PropertyValue<List<CustomFieldValueUpdate>>(nameof(CustomFieldsV2ValuesForEntityPostRequest), nameof(CustomFieldValues), new List<CustomFieldValueUpdate>());
+    
+    [Required]
+    [JsonPropertyName("customFieldValues")]
+    public List<CustomFieldValueUpdate> CustomFieldValues
+    {
+        get => _customFieldValues.GetValue();
+        set => _customFieldValues.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _customFieldValues.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

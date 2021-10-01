@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MavenPackageFilePartialBuilder
+namespace JetBrains.Space.Client.MavenPackageFilePartialBuilder;
+
+public static class MavenPackageFilePartialExtensions
 {
-    public static class MavenPackageFilePartialExtensions
-    {
-        public static Partial<MavenPackageFile> WithName(this Partial<MavenPackageFile> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<MavenPackageFile> WithCreated(this Partial<MavenPackageFile> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<MavenPackageFile> WithLength(this Partial<MavenPackageFile> it)
-            => it.AddFieldName("length");
-        
-        public static Partial<MavenPackageFile> WithChecksums(this Partial<MavenPackageFile> it)
-            => it.AddFieldName("checksums");
-        
-        public static Partial<MavenPackageFile> WithChecksums(this Partial<MavenPackageFile> it, Func<Partial<MavenChecksum>, Partial<MavenChecksum>> partialBuilder)
-            => it.AddFieldName("checksums", partialBuilder(new Partial<MavenChecksum>(it)));
-        
-    }
+    public static Partial<MavenPackageFile> WithName(this Partial<MavenPackageFile> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<MavenPackageFile> WithCreated(this Partial<MavenPackageFile> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<MavenPackageFile> WithLength(this Partial<MavenPackageFile> it)
+        => it.AddFieldName("length");
+    
+    public static Partial<MavenPackageFile> WithChecksums(this Partial<MavenPackageFile> it)
+        => it.AddFieldName("checksums");
+    
+    public static Partial<MavenPackageFile> WithChecksums(this Partial<MavenPackageFile> it, Func<Partial<MavenChecksum>, Partial<MavenChecksum>> partialBuilder)
+        => it.AddFieldName("checksums", partialBuilder(new Partial<MavenChecksum>(it)));
     
 }
+

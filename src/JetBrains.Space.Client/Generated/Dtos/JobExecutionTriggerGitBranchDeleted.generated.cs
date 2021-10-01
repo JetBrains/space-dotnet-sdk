@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class JobExecutionTriggerGitBranchDeleted
+     : JobExecutionTrigger, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class JobExecutionTriggerGitBranchDeleted
-         : JobExecutionTrigger, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "JobExecutionTrigger.GitBranchDeleted";
+    
+    public JobExecutionTriggerGitBranchDeleted() { }
+    
+    public JobExecutionTriggerGitBranchDeleted(List<string> branches)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "JobExecutionTrigger.GitBranchDeleted";
-        
-        public JobExecutionTriggerGitBranchDeleted() { }
-        
-        public JobExecutionTriggerGitBranchDeleted(List<string> branches)
-        {
-            Branches = branches;
-        }
-        
-        private PropertyValue<List<string>> _branches = new PropertyValue<List<string>>(nameof(JobExecutionTriggerGitBranchDeleted), nameof(Branches), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("branches")]
-        public List<string> Branches
-        {
-            get => _branches.GetValue();
-            set => _branches.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _branches.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Branches = branches;
     }
     
+    private PropertyValue<List<string>> _branches = new PropertyValue<List<string>>(nameof(JobExecutionTriggerGitBranchDeleted), nameof(Branches), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("branches")]
+    public List<string> Branches
+    {
+        get => _branches.GetValue();
+        set => _branches.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _branches.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

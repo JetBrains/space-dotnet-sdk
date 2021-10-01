@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProfileCFInputValuePartialBuilder
+namespace JetBrains.Space.Client.ProfileCFInputValuePartialBuilder;
+
+public static class ProfileCFInputValuePartialExtensions
 {
-    public static class ProfileCFInputValuePartialExtensions
-    {
-        public static Partial<ProfileCFInputValue> WithProfile(this Partial<ProfileCFInputValue> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<ProfileCFInputValue> WithProfile(this Partial<ProfileCFInputValue> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
-        
-    }
+    public static Partial<ProfileCFInputValue> WithProfile(this Partial<ProfileCFInputValue> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<ProfileCFInputValue> WithProfile(this Partial<ProfileCFInputValue> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
     
 }
+

@@ -27,76 +27,75 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsPlanningBoardsForBoardPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsPlanningBoardsForBoardPatchRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsPlanningBoardsForBoardPatchRequest() { }
+    
+    public ProjectsPlanningBoardsForBoardPatchRequest(string? name = null, string? description = null, BoardColumns? columns = null, List<string>? memberOwners = null, List<string>? teamOwners = null)
     {
-        public ProjectsPlanningBoardsForBoardPatchRequest() { }
-        
-        public ProjectsPlanningBoardsForBoardPatchRequest(string? name = null, string? description = null, BoardColumns? columns = null, List<string>? memberOwners = null, List<string>? teamOwners = null)
-        {
-            Name = name;
-            Description = description;
-            Columns = columns;
-            MemberOwners = memberOwners;
-            TeamOwners = teamOwners;
-        }
-        
-        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Name));
-        
-        [JsonPropertyName("name")]
-        public string? Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Description));
-        
-        [JsonPropertyName("description")]
-        public string? Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<BoardColumns?> _columns = new PropertyValue<BoardColumns?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Columns));
-        
-        [JsonPropertyName("columns")]
-        public BoardColumns? Columns
-        {
-            get => _columns.GetValue();
-            set => _columns.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _memberOwners = new PropertyValue<List<string>?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(MemberOwners));
-        
-        [JsonPropertyName("memberOwners")]
-        public List<string>? MemberOwners
-        {
-            get => _memberOwners.GetValue();
-            set => _memberOwners.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _teamOwners = new PropertyValue<List<string>?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(TeamOwners));
-        
-        [JsonPropertyName("teamOwners")]
-        public List<string>? TeamOwners
-        {
-            get => _teamOwners.GetValue();
-            set => _teamOwners.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _columns.SetAccessPath(path, validateHasBeenSet);
-            _memberOwners.SetAccessPath(path, validateHasBeenSet);
-            _teamOwners.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Description = description;
+        Columns = columns;
+        MemberOwners = memberOwners;
+        TeamOwners = teamOwners;
     }
     
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Name));
+    
+    [JsonPropertyName("name")]
+    public string? Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<BoardColumns?> _columns = new PropertyValue<BoardColumns?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Columns));
+    
+    [JsonPropertyName("columns")]
+    public BoardColumns? Columns
+    {
+        get => _columns.GetValue();
+        set => _columns.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _memberOwners = new PropertyValue<List<string>?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(MemberOwners));
+    
+    [JsonPropertyName("memberOwners")]
+    public List<string>? MemberOwners
+    {
+        get => _memberOwners.GetValue();
+        set => _memberOwners.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _teamOwners = new PropertyValue<List<string>?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(TeamOwners));
+    
+    [JsonPropertyName("teamOwners")]
+    public List<string>? TeamOwners
+    {
+        get => _teamOwners.GetValue();
+        set => _teamOwners.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _columns.SetAccessPath(path, validateHasBeenSet);
+        _memberOwners.SetAccessPath(path, validateHasBeenSet);
+        _teamOwners.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

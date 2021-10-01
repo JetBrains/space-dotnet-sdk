@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RepositoryInProjectPartialBuilder
+namespace JetBrains.Space.Client.RepositoryInProjectPartialBuilder;
+
+public static class RepositoryInProjectPartialExtensions
 {
-    public static class RepositoryInProjectPartialExtensions
-    {
-        public static Partial<RepositoryInProject> WithName(this Partial<RepositoryInProject> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<RepositoryInProject> WithIsDeleted(this Partial<RepositoryInProject> it)
-            => it.AddFieldName("isDeleted");
-        
-    }
+    public static Partial<RepositoryInProject> WithName(this Partial<RepositoryInProject> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<RepositoryInProject> WithIsDeleted(this Partial<RepositoryInProject> it)
+        => it.AddFieldName("isDeleted");
     
 }
+

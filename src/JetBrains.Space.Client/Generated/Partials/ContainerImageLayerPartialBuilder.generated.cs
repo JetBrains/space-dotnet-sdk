@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ContainerImageLayerPartialBuilder
+namespace JetBrains.Space.Client.ContainerImageLayerPartialBuilder;
+
+public static class ContainerImageLayerPartialExtensions
 {
-    public static class ContainerImageLayerPartialExtensions
-    {
-        public static Partial<ContainerImageLayer> WithId(this Partial<ContainerImageLayer> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ContainerImageLayer> WithCreated(this Partial<ContainerImageLayer> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<ContainerImageLayer> WithStatement(this Partial<ContainerImageLayer> it)
-            => it.AddFieldName("statement");
-        
-        public static Partial<ContainerImageLayer> WithCommand(this Partial<ContainerImageLayer> it)
-            => it.AddFieldName("command");
-        
-        public static Partial<ContainerImageLayer> WithSize(this Partial<ContainerImageLayer> it)
-            => it.AddFieldName("size");
-        
-    }
+    public static Partial<ContainerImageLayer> WithId(this Partial<ContainerImageLayer> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ContainerImageLayer> WithCreated(this Partial<ContainerImageLayer> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<ContainerImageLayer> WithStatement(this Partial<ContainerImageLayer> it)
+        => it.AddFieldName("statement");
+    
+    public static Partial<ContainerImageLayer> WithCommand(this Partial<ContainerImageLayer> it)
+        => it.AddFieldName("command");
+    
+    public static Partial<ContainerImageLayer> WithSize(this Partial<ContainerImageLayer> it)
+        => it.AddFieldName("size");
     
 }
+

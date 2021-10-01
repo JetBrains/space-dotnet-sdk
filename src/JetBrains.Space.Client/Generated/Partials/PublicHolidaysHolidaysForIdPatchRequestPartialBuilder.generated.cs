@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PublicHolidaysHolidaysForIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.PublicHolidaysHolidaysForIdPatchRequestPartialBuilder;
+
+public static class PublicHolidaysHolidaysForIdPatchRequestPartialExtensions
 {
-    public static class PublicHolidaysHolidaysForIdPatchRequestPartialExtensions
-    {
-        public static Partial<PublicHolidaysHolidaysForIdPatchRequest> WithCalendar(this Partial<PublicHolidaysHolidaysForIdPatchRequest> it)
-            => it.AddFieldName("calendar");
-        
-        public static Partial<PublicHolidaysHolidaysForIdPatchRequest> WithName(this Partial<PublicHolidaysHolidaysForIdPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<PublicHolidaysHolidaysForIdPatchRequest> WithDate(this Partial<PublicHolidaysHolidaysForIdPatchRequest> it)
-            => it.AddFieldName("date");
-        
-        public static Partial<PublicHolidaysHolidaysForIdPatchRequest> WithIsWorkingDay(this Partial<PublicHolidaysHolidaysForIdPatchRequest> it)
-            => it.AddFieldName("workingDay");
-        
-        public static Partial<PublicHolidaysHolidaysForIdPatchRequest> WithIsHalfDay(this Partial<PublicHolidaysHolidaysForIdPatchRequest> it)
-            => it.AddFieldName("halfDay");
-        
-    }
+    public static Partial<PublicHolidaysHolidaysForIdPatchRequest> WithCalendar(this Partial<PublicHolidaysHolidaysForIdPatchRequest> it)
+        => it.AddFieldName("calendar");
+    
+    public static Partial<PublicHolidaysHolidaysForIdPatchRequest> WithName(this Partial<PublicHolidaysHolidaysForIdPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<PublicHolidaysHolidaysForIdPatchRequest> WithDate(this Partial<PublicHolidaysHolidaysForIdPatchRequest> it)
+        => it.AddFieldName("date");
+    
+    public static Partial<PublicHolidaysHolidaysForIdPatchRequest> WithIsWorkingDay(this Partial<PublicHolidaysHolidaysForIdPatchRequest> it)
+        => it.AddFieldName("workingDay");
+    
+    public static Partial<PublicHolidaysHolidaysForIdPatchRequest> WithIsHalfDay(this Partial<PublicHolidaysHolidaysForIdPatchRequest> it)
+        => it.AddFieldName("halfDay");
     
 }
+

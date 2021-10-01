@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BlogPostRequestPartialBuilder
+namespace JetBrains.Space.Client.BlogPostRequestPartialBuilder;
+
+public static class BlogPostRequestPartialExtensions
 {
-    public static class BlogPostRequestPartialExtensions
-    {
-        public static Partial<BlogPostRequest> WithTitle(this Partial<BlogPostRequest> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<BlogPostRequest> WithContent(this Partial<BlogPostRequest> it)
-            => it.AddFieldName("content");
-        
-        public static Partial<BlogPostRequest> WithLocations(this Partial<BlogPostRequest> it)
-            => it.AddFieldName("locations");
-        
-        public static Partial<BlogPostRequest> WithTeams(this Partial<BlogPostRequest> it)
-            => it.AddFieldName("teams");
-        
-        public static Partial<BlogPostRequest> WithEvent(this Partial<BlogPostRequest> it)
-            => it.AddFieldName("event");
-        
-        public static Partial<BlogPostRequest> WithEvent(this Partial<BlogPostRequest> it, Func<Partial<BlogCalendarEvent>, Partial<BlogCalendarEvent>> partialBuilder)
-            => it.AddFieldName("event", partialBuilder(new Partial<BlogCalendarEvent>(it)));
-        
-    }
+    public static Partial<BlogPostRequest> WithTitle(this Partial<BlogPostRequest> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<BlogPostRequest> WithContent(this Partial<BlogPostRequest> it)
+        => it.AddFieldName("content");
+    
+    public static Partial<BlogPostRequest> WithLocations(this Partial<BlogPostRequest> it)
+        => it.AddFieldName("locations");
+    
+    public static Partial<BlogPostRequest> WithTeams(this Partial<BlogPostRequest> it)
+        => it.AddFieldName("teams");
+    
+    public static Partial<BlogPostRequest> WithEvent(this Partial<BlogPostRequest> it)
+        => it.AddFieldName("event");
+    
+    public static Partial<BlogPostRequest> WithEvent(this Partial<BlogPostRequest> it, Func<Partial<BlogCalendarEvent>, Partial<BlogCalendarEvent>> partialBuilder)
+        => it.AddFieldName("event", partialBuilder(new Partial<BlogCalendarEvent>(it)));
     
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDLocationWithTimeZonePartialBuilder
+namespace JetBrains.Space.Client.TDLocationWithTimeZonePartialBuilder;
+
+public static class TDLocationWithTimeZonePartialExtensions
 {
-    public static class TDLocationWithTimeZonePartialExtensions
-    {
-        public static Partial<TDLocationWithTimeZone> WithId(this Partial<TDLocationWithTimeZone> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<TDLocationWithTimeZone> WithName(this Partial<TDLocationWithTimeZone> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TDLocationWithTimeZone> WithTimezone(this Partial<TDLocationWithTimeZone> it)
-            => it.AddFieldName("timezone");
-        
-        public static Partial<TDLocationWithTimeZone> WithTimezone(this Partial<TDLocationWithTimeZone> it, Func<Partial<ATimeZoneWithOffset>, Partial<ATimeZoneWithOffset>> partialBuilder)
-            => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZoneWithOffset>(it)));
-        
-    }
+    public static Partial<TDLocationWithTimeZone> WithId(this Partial<TDLocationWithTimeZone> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<TDLocationWithTimeZone> WithName(this Partial<TDLocationWithTimeZone> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TDLocationWithTimeZone> WithTimezone(this Partial<TDLocationWithTimeZone> it)
+        => it.AddFieldName("timezone");
+    
+    public static Partial<TDLocationWithTimeZone> WithTimezone(this Partial<TDLocationWithTimeZone> it, Func<Partial<ATimeZoneWithOffset>, Partial<ATimeZoneWithOffset>> partialBuilder)
+        => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZoneWithOffset>(it)));
     
 }
+

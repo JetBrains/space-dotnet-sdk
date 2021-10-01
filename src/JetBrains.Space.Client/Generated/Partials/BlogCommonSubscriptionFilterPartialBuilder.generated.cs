@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BlogCommonSubscriptionFilterPartialBuilder
+namespace JetBrains.Space.Client.BlogCommonSubscriptionFilterPartialBuilder;
+
+public static class BlogCommonSubscriptionFilterPartialExtensions
 {
-    public static class BlogCommonSubscriptionFilterPartialExtensions
-    {
-        public static Partial<BlogCommonSubscriptionFilter> WithTeams(this Partial<BlogCommonSubscriptionFilter> it)
-            => it.AddFieldName("teams");
-        
-        public static Partial<BlogCommonSubscriptionFilter> WithTeams(this Partial<BlogCommonSubscriptionFilter> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-            => it.AddFieldName("teams", partialBuilder(new Partial<TDTeam>(it)));
-        
-        public static Partial<BlogCommonSubscriptionFilter> WithLocations(this Partial<BlogCommonSubscriptionFilter> it)
-            => it.AddFieldName("locations");
-        
-        public static Partial<BlogCommonSubscriptionFilter> WithLocations(this Partial<BlogCommonSubscriptionFilter> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
-            => it.AddFieldName("locations", partialBuilder(new Partial<TDLocation>(it)));
-        
-        public static Partial<BlogCommonSubscriptionFilter> WithAuthors(this Partial<BlogCommonSubscriptionFilter> it)
-            => it.AddFieldName("authors");
-        
-        public static Partial<BlogCommonSubscriptionFilter> WithAuthors(this Partial<BlogCommonSubscriptionFilter> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("authors", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<BlogCommonSubscriptionFilter> WithTeams(this Partial<BlogCommonSubscriptionFilter> it)
+        => it.AddFieldName("teams");
+    
+    public static Partial<BlogCommonSubscriptionFilter> WithTeams(this Partial<BlogCommonSubscriptionFilter> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+        => it.AddFieldName("teams", partialBuilder(new Partial<TDTeam>(it)));
+    
+    public static Partial<BlogCommonSubscriptionFilter> WithLocations(this Partial<BlogCommonSubscriptionFilter> it)
+        => it.AddFieldName("locations");
+    
+    public static Partial<BlogCommonSubscriptionFilter> WithLocations(this Partial<BlogCommonSubscriptionFilter> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
+        => it.AddFieldName("locations", partialBuilder(new Partial<TDLocation>(it)));
+    
+    public static Partial<BlogCommonSubscriptionFilter> WithAuthors(this Partial<BlogCommonSubscriptionFilter> it)
+        => it.AddFieldName("authors");
+    
+    public static Partial<BlogCommonSubscriptionFilter> WithAuthors(this Partial<BlogCommonSubscriptionFilter> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("authors", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

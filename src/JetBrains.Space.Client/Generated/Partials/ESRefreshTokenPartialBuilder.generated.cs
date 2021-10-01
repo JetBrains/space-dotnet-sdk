@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESRefreshTokenPartialBuilder
+namespace JetBrains.Space.Client.ESRefreshTokenPartialBuilder;
+
+public static class ESRefreshTokenPartialExtensions
 {
-    public static class ESRefreshTokenPartialExtensions
-    {
-        public static Partial<ESRefreshToken> WithId(this Partial<ESRefreshToken> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ESRefreshToken> WithScope(this Partial<ESRefreshToken> it)
-            => it.AddFieldName("scope");
-        
-        public static Partial<ESRefreshToken> WithLastAccess(this Partial<ESRefreshToken> it)
-            => it.AddFieldName("lastAccess");
-        
-        public static Partial<ESRefreshToken> WithLastAccess(this Partial<ESRefreshToken> it, Func<Partial<AccessRecord>, Partial<AccessRecord>> partialBuilder)
-            => it.AddFieldName("lastAccess", partialBuilder(new Partial<AccessRecord>(it)));
-        
-    }
+    public static Partial<ESRefreshToken> WithId(this Partial<ESRefreshToken> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ESRefreshToken> WithScope(this Partial<ESRefreshToken> it)
+        => it.AddFieldName("scope");
+    
+    public static Partial<ESRefreshToken> WithLastAccess(this Partial<ESRefreshToken> it)
+        => it.AddFieldName("lastAccess");
+    
+    public static Partial<ESRefreshToken> WithLastAccess(this Partial<ESRefreshToken> it, Func<Partial<AccessRecord>, Partial<AccessRecord>> partialBuilder)
+        => it.AddFieldName("lastAccess", partialBuilder(new Partial<AccessRecord>(it)));
     
 }
+

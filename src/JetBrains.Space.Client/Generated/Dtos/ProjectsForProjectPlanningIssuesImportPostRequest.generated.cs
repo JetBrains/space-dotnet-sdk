@@ -27,90 +27,89 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectPlanningIssuesImportPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectPlanningIssuesImportPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectPlanningIssuesImportPostRequest() { }
+    
+    public ProjectsForProjectPlanningIssuesImportPostRequest(ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun)
     {
-        public ProjectsForProjectPlanningIssuesImportPostRequest() { }
-        
-        public ProjectsForProjectPlanningIssuesImportPostRequest(ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun)
-        {
-            Metadata = metadata;
-            Issues = issues;
-            AssigneeMissingPolicy = assigneeMissingPolicy;
-            StatusMissingPolicy = statusMissingPolicy;
-            OnExistsPolicy = onExistsPolicy;
-            IsDryRun = dryRun;
-        }
-        
-        private PropertyValue<ImportMetadata> _metadata = new PropertyValue<ImportMetadata>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(Metadata));
-        
-        [Required]
-        [JsonPropertyName("metadata")]
-        public ImportMetadata Metadata
-        {
-            get => _metadata.GetValue();
-            set => _metadata.SetValue(value);
-        }
-    
-        private PropertyValue<List<ExternalIssue>> _issues = new PropertyValue<List<ExternalIssue>>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(Issues), new List<ExternalIssue>());
-        
-        [Required]
-        [JsonPropertyName("issues")]
-        public List<ExternalIssue> Issues
-        {
-            get => _issues.GetValue();
-            set => _issues.SetValue(value);
-        }
-    
-        private PropertyValue<ImportMissingPolicy> _assigneeMissingPolicy = new PropertyValue<ImportMissingPolicy>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(AssigneeMissingPolicy));
-        
-        [JsonPropertyName("assigneeMissingPolicy")]
-        public ImportMissingPolicy AssigneeMissingPolicy
-        {
-            get => _assigneeMissingPolicy.GetValue();
-            set => _assigneeMissingPolicy.SetValue(value);
-        }
-    
-        private PropertyValue<ImportMissingPolicy> _statusMissingPolicy = new PropertyValue<ImportMissingPolicy>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(StatusMissingPolicy));
-        
-        [JsonPropertyName("statusMissingPolicy")]
-        public ImportMissingPolicy StatusMissingPolicy
-        {
-            get => _statusMissingPolicy.GetValue();
-            set => _statusMissingPolicy.SetValue(value);
-        }
-    
-        private PropertyValue<ImportExistsPolicy> _onExistsPolicy = new PropertyValue<ImportExistsPolicy>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(OnExistsPolicy));
-        
-        [JsonPropertyName("onExistsPolicy")]
-        public ImportExistsPolicy OnExistsPolicy
-        {
-            get => _onExistsPolicy.GetValue();
-            set => _onExistsPolicy.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _dryRun = new PropertyValue<bool>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(IsDryRun));
-        
-        [Required]
-        [JsonPropertyName("dryRun")]
-        public bool IsDryRun
-        {
-            get => _dryRun.GetValue();
-            set => _dryRun.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _metadata.SetAccessPath(path, validateHasBeenSet);
-            _issues.SetAccessPath(path, validateHasBeenSet);
-            _assigneeMissingPolicy.SetAccessPath(path, validateHasBeenSet);
-            _statusMissingPolicy.SetAccessPath(path, validateHasBeenSet);
-            _onExistsPolicy.SetAccessPath(path, validateHasBeenSet);
-            _dryRun.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Metadata = metadata;
+        Issues = issues;
+        AssigneeMissingPolicy = assigneeMissingPolicy;
+        StatusMissingPolicy = statusMissingPolicy;
+        OnExistsPolicy = onExistsPolicy;
+        IsDryRun = dryRun;
     }
     
+    private PropertyValue<ImportMetadata> _metadata = new PropertyValue<ImportMetadata>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(Metadata));
+    
+    [Required]
+    [JsonPropertyName("metadata")]
+    public ImportMetadata Metadata
+    {
+        get => _metadata.GetValue();
+        set => _metadata.SetValue(value);
+    }
+
+    private PropertyValue<List<ExternalIssue>> _issues = new PropertyValue<List<ExternalIssue>>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(Issues), new List<ExternalIssue>());
+    
+    [Required]
+    [JsonPropertyName("issues")]
+    public List<ExternalIssue> Issues
+    {
+        get => _issues.GetValue();
+        set => _issues.SetValue(value);
+    }
+
+    private PropertyValue<ImportMissingPolicy> _assigneeMissingPolicy = new PropertyValue<ImportMissingPolicy>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(AssigneeMissingPolicy));
+    
+    [JsonPropertyName("assigneeMissingPolicy")]
+    public ImportMissingPolicy AssigneeMissingPolicy
+    {
+        get => _assigneeMissingPolicy.GetValue();
+        set => _assigneeMissingPolicy.SetValue(value);
+    }
+
+    private PropertyValue<ImportMissingPolicy> _statusMissingPolicy = new PropertyValue<ImportMissingPolicy>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(StatusMissingPolicy));
+    
+    [JsonPropertyName("statusMissingPolicy")]
+    public ImportMissingPolicy StatusMissingPolicy
+    {
+        get => _statusMissingPolicy.GetValue();
+        set => _statusMissingPolicy.SetValue(value);
+    }
+
+    private PropertyValue<ImportExistsPolicy> _onExistsPolicy = new PropertyValue<ImportExistsPolicy>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(OnExistsPolicy));
+    
+    [JsonPropertyName("onExistsPolicy")]
+    public ImportExistsPolicy OnExistsPolicy
+    {
+        get => _onExistsPolicy.GetValue();
+        set => _onExistsPolicy.SetValue(value);
+    }
+
+    private PropertyValue<bool> _dryRun = new PropertyValue<bool>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(IsDryRun));
+    
+    [Required]
+    [JsonPropertyName("dryRun")]
+    public bool IsDryRun
+    {
+        get => _dryRun.GetValue();
+        set => _dryRun.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _metadata.SetAccessPath(path, validateHasBeenSet);
+        _issues.SetAccessPath(path, validateHasBeenSet);
+        _assigneeMissingPolicy.SetAccessPath(path, validateHasBeenSet);
+        _statusMissingPolicy.SetAccessPath(path, validateHasBeenSet);
+        _onExistsPolicy.SetAccessPath(path, validateHasBeenSet);
+        _dryRun.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

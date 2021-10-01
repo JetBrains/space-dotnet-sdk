@@ -27,76 +27,75 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryInvitationsForIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryInvitationsForIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryInvitationsForIdPatchRequest() { }
+    
+    public TeamDirectoryInvitationsForIdPatchRequest(string? inviteeEmail = null, string? inviteeFirstName = null, string? inviteeLastName = null, string? team = null, string? role = null)
     {
-        public TeamDirectoryInvitationsForIdPatchRequest() { }
-        
-        public TeamDirectoryInvitationsForIdPatchRequest(string? inviteeEmail = null, string? inviteeFirstName = null, string? inviteeLastName = null, string? team = null, string? role = null)
-        {
-            InviteeEmail = inviteeEmail;
-            InviteeFirstName = inviteeFirstName;
-            InviteeLastName = inviteeLastName;
-            Team = team;
-            Role = role;
-        }
-        
-        private PropertyValue<string?> _inviteeEmail = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(InviteeEmail));
-        
-        [JsonPropertyName("inviteeEmail")]
-        public string? InviteeEmail
-        {
-            get => _inviteeEmail.GetValue();
-            set => _inviteeEmail.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _inviteeFirstName = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(InviteeFirstName));
-        
-        [JsonPropertyName("inviteeFirstName")]
-        public string? InviteeFirstName
-        {
-            get => _inviteeFirstName.GetValue();
-            set => _inviteeFirstName.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _inviteeLastName = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(InviteeLastName));
-        
-        [JsonPropertyName("inviteeLastName")]
-        public string? InviteeLastName
-        {
-            get => _inviteeLastName.GetValue();
-            set => _inviteeLastName.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(Team));
-        
-        [JsonPropertyName("team")]
-        public string? Team
-        {
-            get => _team.GetValue();
-            set => _team.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(Role));
-        
-        [JsonPropertyName("role")]
-        public string? Role
-        {
-            get => _role.GetValue();
-            set => _role.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _inviteeEmail.SetAccessPath(path, validateHasBeenSet);
-            _inviteeFirstName.SetAccessPath(path, validateHasBeenSet);
-            _inviteeLastName.SetAccessPath(path, validateHasBeenSet);
-            _team.SetAccessPath(path, validateHasBeenSet);
-            _role.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        InviteeEmail = inviteeEmail;
+        InviteeFirstName = inviteeFirstName;
+        InviteeLastName = inviteeLastName;
+        Team = team;
+        Role = role;
     }
     
+    private PropertyValue<string?> _inviteeEmail = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(InviteeEmail));
+    
+    [JsonPropertyName("inviteeEmail")]
+    public string? InviteeEmail
+    {
+        get => _inviteeEmail.GetValue();
+        set => _inviteeEmail.SetValue(value);
+    }
+
+    private PropertyValue<string?> _inviteeFirstName = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(InviteeFirstName));
+    
+    [JsonPropertyName("inviteeFirstName")]
+    public string? InviteeFirstName
+    {
+        get => _inviteeFirstName.GetValue();
+        set => _inviteeFirstName.SetValue(value);
+    }
+
+    private PropertyValue<string?> _inviteeLastName = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(InviteeLastName));
+    
+    [JsonPropertyName("inviteeLastName")]
+    public string? InviteeLastName
+    {
+        get => _inviteeLastName.GetValue();
+        set => _inviteeLastName.SetValue(value);
+    }
+
+    private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(Team));
+    
+    [JsonPropertyName("team")]
+    public string? Team
+    {
+        get => _team.GetValue();
+        set => _team.SetValue(value);
+    }
+
+    private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(Role));
+    
+    [JsonPropertyName("role")]
+    public string? Role
+    {
+        get => _role.GetValue();
+        set => _role.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _inviteeEmail.SetAccessPath(path, validateHasBeenSet);
+        _inviteeFirstName.SetAccessPath(path, validateHasBeenSet);
+        _inviteeLastName.SetAccessPath(path, validateHasBeenSet);
+        _team.SetAccessPath(path, validateHasBeenSet);
+        _role.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryRolesPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryRolesPostRequestPartialBuilder;
+
+public static class TeamDirectoryRolesPostRequestPartialExtensions
 {
-    public static class TeamDirectoryRolesPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryRolesPostRequest> WithName(this Partial<TeamDirectoryRolesPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TeamDirectoryRolesPostRequest> WithParentId(this Partial<TeamDirectoryRolesPostRequest> it)
-            => it.AddFieldName("parentId");
-        
-    }
+    public static Partial<TeamDirectoryRolesPostRequest> WithName(this Partial<TeamDirectoryRolesPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TeamDirectoryRolesPostRequest> WithParentId(this Partial<TeamDirectoryRolesPostRequest> it)
+        => it.AddFieldName("parentId");
     
 }
+

@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface AuthScope
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface AuthScope
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static GlobalScope GlobalScope()
-            => new GlobalScope();
-        
-        public static ProjectScope ProjectScope(PRProject project)
-            => new ProjectScope(project: project);
-        
-    }
+    public static GlobalScope GlobalScope()
+        => new GlobalScope();
+    
+    public static ProjectScope ProjectScope(PRProject project)
+        => new ProjectScope(project: project);
     
 }
+

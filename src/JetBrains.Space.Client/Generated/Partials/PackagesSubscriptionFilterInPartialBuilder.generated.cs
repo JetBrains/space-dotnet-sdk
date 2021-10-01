@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PackagesSubscriptionFilterInPartialBuilder
+namespace JetBrains.Space.Client.PackagesSubscriptionFilterInPartialBuilder;
+
+public static class PackagesSubscriptionFilterInPartialExtensions
 {
-    public static class PackagesSubscriptionFilterInPartialExtensions
-    {
-        public static Partial<PackagesSubscriptionFilterIn> WithProject(this Partial<PackagesSubscriptionFilterIn> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<PackagesSubscriptionFilterIn> WithRepository(this Partial<PackagesSubscriptionFilterIn> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<PackagesSubscriptionFilterIn> WithNamePattern(this Partial<PackagesSubscriptionFilterIn> it)
-            => it.AddFieldName("namePattern");
-        
-        public static Partial<PackagesSubscriptionFilterIn> WithVersionPattern(this Partial<PackagesSubscriptionFilterIn> it)
-            => it.AddFieldName("versionPattern");
-        
-    }
+    public static Partial<PackagesSubscriptionFilterIn> WithProject(this Partial<PackagesSubscriptionFilterIn> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<PackagesSubscriptionFilterIn> WithRepository(this Partial<PackagesSubscriptionFilterIn> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<PackagesSubscriptionFilterIn> WithNamePattern(this Partial<PackagesSubscriptionFilterIn> it)
+        => it.AddFieldName("namePattern");
+    
+    public static Partial<PackagesSubscriptionFilterIn> WithVersionPattern(this Partial<PackagesSubscriptionFilterIn> it)
+        => it.AddFieldName("versionPattern");
     
 }
+

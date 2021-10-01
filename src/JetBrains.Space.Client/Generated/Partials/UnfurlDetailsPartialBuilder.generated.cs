@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsPartialBuilder;
+
+public static class UnfurlDetailsPartialExtensions
 {
-    public static class UnfurlDetailsPartialExtensions
-    {
-    }
-    
 }
+

@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest() { }
+    
+    public ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest(bool moveUnresolvedIssuesFromCurrentSprint)
     {
-        public ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest() { }
-        
-        public ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest(bool moveUnresolvedIssuesFromCurrentSprint)
-        {
-            IsMoveUnresolvedIssuesFromCurrentSprint = moveUnresolvedIssuesFromCurrentSprint;
-        }
-        
-        private PropertyValue<bool> _moveUnresolvedIssuesFromCurrentSprint = new PropertyValue<bool>(nameof(ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest), nameof(IsMoveUnresolvedIssuesFromCurrentSprint));
-        
-        [Required]
-        [JsonPropertyName("moveUnresolvedIssuesFromCurrentSprint")]
-        public bool IsMoveUnresolvedIssuesFromCurrentSprint
-        {
-            get => _moveUnresolvedIssuesFromCurrentSprint.GetValue();
-            set => _moveUnresolvedIssuesFromCurrentSprint.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _moveUnresolvedIssuesFromCurrentSprint.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        IsMoveUnresolvedIssuesFromCurrentSprint = moveUnresolvedIssuesFromCurrentSprint;
     }
     
+    private PropertyValue<bool> _moveUnresolvedIssuesFromCurrentSprint = new PropertyValue<bool>(nameof(ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest), nameof(IsMoveUnresolvedIssuesFromCurrentSprint));
+    
+    [Required]
+    [JsonPropertyName("moveUnresolvedIssuesFromCurrentSprint")]
+    public bool IsMoveUnresolvedIssuesFromCurrentSprint
+    {
+        get => _moveUnresolvedIssuesFromCurrentSprint.GetValue();
+        set => _moveUnresolvedIssuesFromCurrentSprint.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _moveUnresolvedIssuesFromCurrentSprint.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

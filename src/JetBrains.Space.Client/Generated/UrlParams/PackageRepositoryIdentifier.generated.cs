@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class PackageRepositoryIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class PackageRepositoryIdentifier : IUrlParameter
+    public static PackageRepositoryIdentifier Id(string id)
+        => new PackageRepositoryIdentifierId(id);
+    
+    public static PackageRepositoryIdentifier Key(string key)
+        => new PackageRepositoryIdentifierKey(key);
+    
+    private class PackageRepositoryIdentifierId : PackageRepositoryIdentifier
     {
-        public static PackageRepositoryIdentifier Id(string id)
-            => new PackageRepositoryIdentifierId(id);
+        private readonly string _id;
         
-        public static PackageRepositoryIdentifier Key(string key)
-            => new PackageRepositoryIdentifierKey(key);
-        
-        private class PackageRepositoryIdentifierId : PackageRepositoryIdentifier
+        public PackageRepositoryIdentifierId(string id)
         {
-            private readonly string _id;
-            
-            public PackageRepositoryIdentifierId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
-        private class PackageRepositoryIdentifierKey : PackageRepositoryIdentifier
+        public override string ToString()
+            => $"id:{_id}";
+    }
+    
+    private class PackageRepositoryIdentifierKey : PackageRepositoryIdentifier
+    {
+        private readonly string _key;
+        
+        public PackageRepositoryIdentifierKey(string key)
         {
-            private readonly string _key;
-            
-            public PackageRepositoryIdentifierKey(string key)
-            {
-                _key = key;
-            }
-            
-            public override string ToString()
-                => $"key:{_key}";
+            _key = key;
         }
         
+        public override string ToString()
+            => $"key:{_key}";
     }
     
 }
+

@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewParticipantSlotBasePartialBuilder
+namespace JetBrains.Space.Client.CodeReviewParticipantSlotBasePartialBuilder;
+
+public static class CodeReviewParticipantSlotBasePartialExtensions
 {
-    public static class CodeReviewParticipantSlotBasePartialExtensions
-    {
-    }
-    
 }
+

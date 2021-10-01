@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum FailureConditionType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum FailureConditionType
-    {
-        [EnumMember(Value = "NON_ZERO_EXIT_CODE")]
-        NONZEROEXITCODE,
-        
-        [EnumMember(Value = "TEST_FAILED")]
-        TESTFAILED,
-        
-        [EnumMember(Value = "OUT_OF_MEMORY")]
-        OUTOFMEMORY,
-        
-        [EnumMember(Value = "TIME_OUT")]
-        TIMEOUT,
-        
-    }
+    [EnumMember(Value = "NON_ZERO_EXIT_CODE")]
+    NONZEROEXITCODE,
+    
+    [EnumMember(Value = "TEST_FAILED")]
+    TESTFAILED,
+    
+    [EnumMember(Value = "OUT_OF_MEMORY")]
+    OUTOFMEMORY,
+    
+    [EnumMember(Value = "TIME_OUT")]
+    TIMEOUT,
     
 }
+

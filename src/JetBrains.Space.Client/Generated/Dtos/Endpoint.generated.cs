@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class Endpoint
+     : IPropagatePropertyAccessPath
 {
-    public sealed class Endpoint
-         : IPropagatePropertyAccessPath
+    public Endpoint() { }
+    
+    public Endpoint(bool sslVerification, string? url = null)
     {
-        public Endpoint() { }
-        
-        public Endpoint(bool sslVerification, string? url = null)
-        {
-            Url = url;
-            IsSslVerification = sslVerification;
-        }
-        
-        private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(Endpoint), nameof(Url));
-        
-        [JsonPropertyName("url")]
-        public string? Url
-        {
-            get => _url.GetValue();
-            set => _url.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _sslVerification = new PropertyValue<bool>(nameof(Endpoint), nameof(IsSslVerification));
-        
-        [Required]
-        [JsonPropertyName("sslVerification")]
-        public bool IsSslVerification
-        {
-            get => _sslVerification.GetValue();
-            set => _sslVerification.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _url.SetAccessPath(path, validateHasBeenSet);
-            _sslVerification.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Url = url;
+        IsSslVerification = sslVerification;
     }
     
+    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(Endpoint), nameof(Url));
+    
+    [JsonPropertyName("url")]
+    public string? Url
+    {
+        get => _url.GetValue();
+        set => _url.SetValue(value);
+    }
+
+    private PropertyValue<bool> _sslVerification = new PropertyValue<bool>(nameof(Endpoint), nameof(IsSslVerification));
+    
+    [Required]
+    [JsonPropertyName("sslVerification")]
+    public bool IsSslVerification
+    {
+        get => _sslVerification.GetValue();
+        set => _sslVerification.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _url.SetAccessPath(path, validateHasBeenSet);
+        _sslVerification.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueCommitsPartialBuilder
+namespace JetBrains.Space.Client.IssueCommitsPartialBuilder;
+
+public static class IssueCommitsPartialExtensions
 {
-    public static class IssueCommitsPartialExtensions
-    {
-        public static Partial<IssueCommits> WithId(this Partial<IssueCommits> it)
-            => it.AddFieldName("id");
-        
-    }
+    public static Partial<IssueCommits> WithId(this Partial<IssueCommits> it)
+        => it.AddFieldName("id");
     
 }
+

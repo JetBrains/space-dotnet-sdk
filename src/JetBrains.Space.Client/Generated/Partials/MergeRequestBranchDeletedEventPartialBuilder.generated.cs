@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MergeRequestBranchDeletedEventPartialBuilder
+namespace JetBrains.Space.Client.MergeRequestBranchDeletedEventPartialBuilder;
+
+public static class MergeRequestBranchDeletedEventPartialExtensions
 {
-    public static class MergeRequestBranchDeletedEventPartialExtensions
-    {
-        public static Partial<MergeRequestBranchDeletedEvent> WithRepository(this Partial<MergeRequestBranchDeletedEvent> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<MergeRequestBranchDeletedEvent> WithBranch(this Partial<MergeRequestBranchDeletedEvent> it)
-            => it.AddFieldName("branch");
-        
-        public static Partial<MergeRequestBranchDeletedEvent> WithBranchType(this Partial<MergeRequestBranchDeletedEvent> it)
-            => it.AddFieldName("branchType");
-        
-        public static Partial<MergeRequestBranchDeletedEvent> WithBranchType(this Partial<MergeRequestBranchDeletedEvent> it, Func<Partial<MergeRequestBranchType>, Partial<MergeRequestBranchType>> partialBuilder)
-            => it.AddFieldName("branchType", partialBuilder(new Partial<MergeRequestBranchType>(it)));
-        
-    }
+    public static Partial<MergeRequestBranchDeletedEvent> WithRepository(this Partial<MergeRequestBranchDeletedEvent> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<MergeRequestBranchDeletedEvent> WithBranch(this Partial<MergeRequestBranchDeletedEvent> it)
+        => it.AddFieldName("branch");
+    
+    public static Partial<MergeRequestBranchDeletedEvent> WithBranchType(this Partial<MergeRequestBranchDeletedEvent> it)
+        => it.AddFieldName("branchType");
+    
+    public static Partial<MergeRequestBranchDeletedEvent> WithBranchType(this Partial<MergeRequestBranchDeletedEvent> it, Func<Partial<MergeRequestBranchType>, Partial<MergeRequestBranchType>> partialBuilder)
+        => it.AddFieldName("branchType", partialBuilder(new Partial<MergeRequestBranchType>(it)));
     
 }
+

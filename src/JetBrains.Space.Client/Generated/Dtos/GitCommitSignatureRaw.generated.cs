@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitCommitSignatureRaw
+     : GitCommitSignature, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class GitCommitSignatureRaw
-         : GitCommitSignature, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "GitCommitSignature.Raw";
+    
+    public GitCommitSignatureRaw() { }
+    
+    public GitCommitSignatureRaw(string signature, string signedDataB64)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "GitCommitSignature.Raw";
-        
-        public GitCommitSignatureRaw() { }
-        
-        public GitCommitSignatureRaw(string signature, string signedDataB64)
-        {
-            Signature = signature;
-            SignedDataB64 = signedDataB64;
-        }
-        
-        private PropertyValue<string> _signature = new PropertyValue<string>(nameof(GitCommitSignatureRaw), nameof(Signature));
-        
-        [Required]
-        [JsonPropertyName("signature")]
-        public string Signature
-        {
-            get => _signature.GetValue();
-            set => _signature.SetValue(value);
-        }
-    
-        private PropertyValue<string> _signedDataB64 = new PropertyValue<string>(nameof(GitCommitSignatureRaw), nameof(SignedDataB64));
-        
-        [Required]
-        [JsonPropertyName("signedDataB64")]
-        public string SignedDataB64
-        {
-            get => _signedDataB64.GetValue();
-            set => _signedDataB64.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _signature.SetAccessPath(path, validateHasBeenSet);
-            _signedDataB64.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Signature = signature;
+        SignedDataB64 = signedDataB64;
     }
     
+    private PropertyValue<string> _signature = new PropertyValue<string>(nameof(GitCommitSignatureRaw), nameof(Signature));
+    
+    [Required]
+    [JsonPropertyName("signature")]
+    public string Signature
+    {
+        get => _signature.GetValue();
+        set => _signature.SetValue(value);
+    }
+
+    private PropertyValue<string> _signedDataB64 = new PropertyValue<string>(nameof(GitCommitSignatureRaw), nameof(SignedDataB64));
+    
+    [Required]
+    [JsonPropertyName("signedDataB64")]
+    public string SignedDataB64
+    {
+        get => _signedDataB64.GetValue();
+        set => _signedDataB64.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _signature.SetAccessPath(path, validateHasBeenSet);
+        _signedDataB64.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TeamCFInputValue
+     : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class TeamCFInputValue
-         : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "TeamCFInputValue";
+    
+    public TeamCFInputValue() { }
+    
+    public TeamCFInputValue(string? team = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "TeamCFInputValue";
-        
-        public TeamCFInputValue() { }
-        
-        public TeamCFInputValue(string? team = null)
-        {
-            Team = team;
-        }
-        
-        private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamCFInputValue), nameof(Team));
-        
-        [JsonPropertyName("team")]
-        public string? Team
-        {
-            get => _team.GetValue();
-            set => _team.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _team.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Team = team;
     }
     
+    private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamCFInputValue), nameof(Team));
+    
+    [JsonPropertyName("team")]
+    public string? Team
+    {
+        get => _team.GetValue();
+        set => _team.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _team.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

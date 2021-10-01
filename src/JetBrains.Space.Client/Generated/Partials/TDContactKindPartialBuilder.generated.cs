@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDContactKindPartialBuilder
+namespace JetBrains.Space.Client.TDContactKindPartialBuilder;
+
+public static class TDContactKindPartialExtensions
 {
-    public static class TDContactKindPartialExtensions
-    {
-    }
-    
 }
+

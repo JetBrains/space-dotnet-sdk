@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2MembershipRequestedContent
+     : M2MembershipContent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2MembershipRequestedContent
-         : M2MembershipContent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "M2MembershipRequestedContent";
+    
+    public M2MembershipRequestedContent() { }
+    
+    public M2MembershipRequestedContent(TDMembership membership, bool leave)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "M2MembershipRequestedContent";
-        
-        public M2MembershipRequestedContent() { }
-        
-        public M2MembershipRequestedContent(TDMembership membership, bool leave)
-        {
-            Membership = membership;
-            IsLeave = leave;
-        }
-        
-        private PropertyValue<TDMembership> _membership = new PropertyValue<TDMembership>(nameof(M2MembershipRequestedContent), nameof(Membership));
-        
-        [Required]
-        [JsonPropertyName("membership")]
-        public TDMembership Membership
-        {
-            get => _membership.GetValue();
-            set => _membership.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _leave = new PropertyValue<bool>(nameof(M2MembershipRequestedContent), nameof(IsLeave));
-        
-        [Required]
-        [JsonPropertyName("leave")]
-        public bool IsLeave
-        {
-            get => _leave.GetValue();
-            set => _leave.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _membership.SetAccessPath(path, validateHasBeenSet);
-            _leave.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Membership = membership;
+        IsLeave = leave;
     }
     
+    private PropertyValue<TDMembership> _membership = new PropertyValue<TDMembership>(nameof(M2MembershipRequestedContent), nameof(Membership));
+    
+    [Required]
+    [JsonPropertyName("membership")]
+    public TDMembership Membership
+    {
+        get => _membership.GetValue();
+        set => _membership.SetValue(value);
+    }
+
+    private PropertyValue<bool> _leave = new PropertyValue<bool>(nameof(M2MembershipRequestedContent), nameof(IsLeave));
+    
+    [Required]
+    [JsonPropertyName("leave")]
+    public bool IsLeave
+    {
+        get => _leave.GetValue();
+        set => _leave.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _membership.SetAccessPath(path, validateHasBeenSet);
+        _leave.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.VcsCommitCFTypePartialBuilder
+namespace JetBrains.Space.Client.VcsCommitCFTypePartialBuilder;
+
+public static class VcsCommitCFTypePartialExtensions
 {
-    public static class VcsCommitCFTypePartialExtensions
-    {
-    }
-    
 }
+

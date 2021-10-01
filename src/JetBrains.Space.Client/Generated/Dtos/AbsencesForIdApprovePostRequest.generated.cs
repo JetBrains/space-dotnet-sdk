@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class AbsencesForIdApprovePostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class AbsencesForIdApprovePostRequest
-         : IPropagatePropertyAccessPath
+    public AbsencesForIdApprovePostRequest() { }
+    
+    public AbsencesForIdApprovePostRequest(bool approve)
     {
-        public AbsencesForIdApprovePostRequest() { }
-        
-        public AbsencesForIdApprovePostRequest(bool approve)
-        {
-            IsApprove = approve;
-        }
-        
-        private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(AbsencesForIdApprovePostRequest), nameof(IsApprove));
-        
-        [Required]
-        [JsonPropertyName("approve")]
-        public bool IsApprove
-        {
-            get => _approve.GetValue();
-            set => _approve.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _approve.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        IsApprove = approve;
     }
     
+    private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(AbsencesForIdApprovePostRequest), nameof(IsApprove));
+    
+    [Required]
+    [JsonPropertyName("approve")]
+    public bool IsApprove
+    {
+        get => _approve.GetValue();
+        set => _approve.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _approve.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

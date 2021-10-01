@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum ReviewerChangedType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ReviewerChangedType
-    {
-        [EnumMember(Value = "Joined")]
-        Joined,
-        
-        [EnumMember(Value = "Left")]
-        Left,
-        
-    }
+    [EnumMember(Value = "Joined")]
+    Joined,
+    
+    [EnumMember(Value = "Left")]
+    Left,
     
 }
+

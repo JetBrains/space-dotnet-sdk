@@ -27,182 +27,181 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class AppMessageDelivery
+     : IPropagatePropertyAccessPath
 {
-    public sealed class AppMessageDelivery
-         : IPropagatePropertyAccessPath
+    public AppMessageDelivery() { }
+    
+    public AppMessageDelivery(string id, AppMessageDeliveryType messageType, bool successful, DateTime sentAt, string duration, string method, WebhookRecord? webhook = null, string? deliveryId = null, string? url = null, List<HttpHeader>? requestHeaders = null, string? requestBody = null, int? responseStatusCode = null, List<HttpHeader>? responseHeaders = null, string? responseBody = null)
     {
-        public AppMessageDelivery() { }
-        
-        public AppMessageDelivery(string id, AppMessageDeliveryType messageType, bool successful, DateTime sentAt, string duration, string method, WebhookRecord? webhook = null, string? deliveryId = null, string? url = null, List<HttpHeader>? requestHeaders = null, string? requestBody = null, int? responseStatusCode = null, List<HttpHeader>? responseHeaders = null, string? responseBody = null)
-        {
-            Id = id;
-            MessageType = messageType;
-            Webhook = webhook;
-            DeliveryId = deliveryId;
-            IsSuccessful = successful;
-            SentAt = sentAt;
-            Duration = duration;
-            Method = method;
-            Url = url;
-            RequestHeaders = requestHeaders;
-            RequestBody = requestBody;
-            ResponseStatusCode = responseStatusCode;
-            ResponseHeaders = responseHeaders;
-            ResponseBody = responseBody;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(AppMessageDelivery), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<AppMessageDeliveryType> _messageType = new PropertyValue<AppMessageDeliveryType>(nameof(AppMessageDelivery), nameof(MessageType));
-        
-        [Required]
-        [JsonPropertyName("messageType")]
-        public AppMessageDeliveryType MessageType
-        {
-            get => _messageType.GetValue();
-            set => _messageType.SetValue(value);
-        }
-    
-        private PropertyValue<WebhookRecord?> _webhook = new PropertyValue<WebhookRecord?>(nameof(AppMessageDelivery), nameof(Webhook));
-        
-        [JsonPropertyName("webhook")]
-        public WebhookRecord? Webhook
-        {
-            get => _webhook.GetValue();
-            set => _webhook.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _deliveryId = new PropertyValue<string?>(nameof(AppMessageDelivery), nameof(DeliveryId));
-        
-        [JsonPropertyName("deliveryId")]
-        public string? DeliveryId
-        {
-            get => _deliveryId.GetValue();
-            set => _deliveryId.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _successful = new PropertyValue<bool>(nameof(AppMessageDelivery), nameof(IsSuccessful));
-        
-        [Required]
-        [JsonPropertyName("successful")]
-        public bool IsSuccessful
-        {
-            get => _successful.GetValue();
-            set => _successful.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _sentAt = new PropertyValue<DateTime>(nameof(AppMessageDelivery), nameof(SentAt));
-        
-        [Required]
-        [JsonPropertyName("sentAt")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime SentAt
-        {
-            get => _sentAt.GetValue();
-            set => _sentAt.SetValue(value);
-        }
-    
-        private PropertyValue<string> _duration = new PropertyValue<string>(nameof(AppMessageDelivery), nameof(Duration));
-        
-        [Required]
-        [JsonPropertyName("duration")]
-        public string Duration
-        {
-            get => _duration.GetValue();
-            set => _duration.SetValue(value);
-        }
-    
-        private PropertyValue<string> _method = new PropertyValue<string>(nameof(AppMessageDelivery), nameof(Method));
-        
-        [Required]
-        [JsonPropertyName("method")]
-        public string Method
-        {
-            get => _method.GetValue();
-            set => _method.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(AppMessageDelivery), nameof(Url));
-        
-        [JsonPropertyName("url")]
-        public string? Url
-        {
-            get => _url.GetValue();
-            set => _url.SetValue(value);
-        }
-    
-        private PropertyValue<List<HttpHeader>?> _requestHeaders = new PropertyValue<List<HttpHeader>?>(nameof(AppMessageDelivery), nameof(RequestHeaders));
-        
-        [JsonPropertyName("requestHeaders")]
-        public List<HttpHeader>? RequestHeaders
-        {
-            get => _requestHeaders.GetValue();
-            set => _requestHeaders.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _requestBody = new PropertyValue<string?>(nameof(AppMessageDelivery), nameof(RequestBody));
-        
-        [JsonPropertyName("requestBody")]
-        public string? RequestBody
-        {
-            get => _requestBody.GetValue();
-            set => _requestBody.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _responseStatusCode = new PropertyValue<int?>(nameof(AppMessageDelivery), nameof(ResponseStatusCode));
-        
-        [JsonPropertyName("responseStatusCode")]
-        public int? ResponseStatusCode
-        {
-            get => _responseStatusCode.GetValue();
-            set => _responseStatusCode.SetValue(value);
-        }
-    
-        private PropertyValue<List<HttpHeader>?> _responseHeaders = new PropertyValue<List<HttpHeader>?>(nameof(AppMessageDelivery), nameof(ResponseHeaders));
-        
-        [JsonPropertyName("responseHeaders")]
-        public List<HttpHeader>? ResponseHeaders
-        {
-            get => _responseHeaders.GetValue();
-            set => _responseHeaders.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _responseBody = new PropertyValue<string?>(nameof(AppMessageDelivery), nameof(ResponseBody));
-        
-        [JsonPropertyName("responseBody")]
-        public string? ResponseBody
-        {
-            get => _responseBody.GetValue();
-            set => _responseBody.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _messageType.SetAccessPath(path, validateHasBeenSet);
-            _webhook.SetAccessPath(path, validateHasBeenSet);
-            _deliveryId.SetAccessPath(path, validateHasBeenSet);
-            _successful.SetAccessPath(path, validateHasBeenSet);
-            _sentAt.SetAccessPath(path, validateHasBeenSet);
-            _duration.SetAccessPath(path, validateHasBeenSet);
-            _method.SetAccessPath(path, validateHasBeenSet);
-            _url.SetAccessPath(path, validateHasBeenSet);
-            _requestHeaders.SetAccessPath(path, validateHasBeenSet);
-            _requestBody.SetAccessPath(path, validateHasBeenSet);
-            _responseStatusCode.SetAccessPath(path, validateHasBeenSet);
-            _responseHeaders.SetAccessPath(path, validateHasBeenSet);
-            _responseBody.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        MessageType = messageType;
+        Webhook = webhook;
+        DeliveryId = deliveryId;
+        IsSuccessful = successful;
+        SentAt = sentAt;
+        Duration = duration;
+        Method = method;
+        Url = url;
+        RequestHeaders = requestHeaders;
+        RequestBody = requestBody;
+        ResponseStatusCode = responseStatusCode;
+        ResponseHeaders = responseHeaders;
+        ResponseBody = responseBody;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(AppMessageDelivery), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<AppMessageDeliveryType> _messageType = new PropertyValue<AppMessageDeliveryType>(nameof(AppMessageDelivery), nameof(MessageType));
+    
+    [Required]
+    [JsonPropertyName("messageType")]
+    public AppMessageDeliveryType MessageType
+    {
+        get => _messageType.GetValue();
+        set => _messageType.SetValue(value);
+    }
+
+    private PropertyValue<WebhookRecord?> _webhook = new PropertyValue<WebhookRecord?>(nameof(AppMessageDelivery), nameof(Webhook));
+    
+    [JsonPropertyName("webhook")]
+    public WebhookRecord? Webhook
+    {
+        get => _webhook.GetValue();
+        set => _webhook.SetValue(value);
+    }
+
+    private PropertyValue<string?> _deliveryId = new PropertyValue<string?>(nameof(AppMessageDelivery), nameof(DeliveryId));
+    
+    [JsonPropertyName("deliveryId")]
+    public string? DeliveryId
+    {
+        get => _deliveryId.GetValue();
+        set => _deliveryId.SetValue(value);
+    }
+
+    private PropertyValue<bool> _successful = new PropertyValue<bool>(nameof(AppMessageDelivery), nameof(IsSuccessful));
+    
+    [Required]
+    [JsonPropertyName("successful")]
+    public bool IsSuccessful
+    {
+        get => _successful.GetValue();
+        set => _successful.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _sentAt = new PropertyValue<DateTime>(nameof(AppMessageDelivery), nameof(SentAt));
+    
+    [Required]
+    [JsonPropertyName("sentAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime SentAt
+    {
+        get => _sentAt.GetValue();
+        set => _sentAt.SetValue(value);
+    }
+
+    private PropertyValue<string> _duration = new PropertyValue<string>(nameof(AppMessageDelivery), nameof(Duration));
+    
+    [Required]
+    [JsonPropertyName("duration")]
+    public string Duration
+    {
+        get => _duration.GetValue();
+        set => _duration.SetValue(value);
+    }
+
+    private PropertyValue<string> _method = new PropertyValue<string>(nameof(AppMessageDelivery), nameof(Method));
+    
+    [Required]
+    [JsonPropertyName("method")]
+    public string Method
+    {
+        get => _method.GetValue();
+        set => _method.SetValue(value);
+    }
+
+    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(AppMessageDelivery), nameof(Url));
+    
+    [JsonPropertyName("url")]
+    public string? Url
+    {
+        get => _url.GetValue();
+        set => _url.SetValue(value);
+    }
+
+    private PropertyValue<List<HttpHeader>?> _requestHeaders = new PropertyValue<List<HttpHeader>?>(nameof(AppMessageDelivery), nameof(RequestHeaders));
+    
+    [JsonPropertyName("requestHeaders")]
+    public List<HttpHeader>? RequestHeaders
+    {
+        get => _requestHeaders.GetValue();
+        set => _requestHeaders.SetValue(value);
+    }
+
+    private PropertyValue<string?> _requestBody = new PropertyValue<string?>(nameof(AppMessageDelivery), nameof(RequestBody));
+    
+    [JsonPropertyName("requestBody")]
+    public string? RequestBody
+    {
+        get => _requestBody.GetValue();
+        set => _requestBody.SetValue(value);
+    }
+
+    private PropertyValue<int?> _responseStatusCode = new PropertyValue<int?>(nameof(AppMessageDelivery), nameof(ResponseStatusCode));
+    
+    [JsonPropertyName("responseStatusCode")]
+    public int? ResponseStatusCode
+    {
+        get => _responseStatusCode.GetValue();
+        set => _responseStatusCode.SetValue(value);
+    }
+
+    private PropertyValue<List<HttpHeader>?> _responseHeaders = new PropertyValue<List<HttpHeader>?>(nameof(AppMessageDelivery), nameof(ResponseHeaders));
+    
+    [JsonPropertyName("responseHeaders")]
+    public List<HttpHeader>? ResponseHeaders
+    {
+        get => _responseHeaders.GetValue();
+        set => _responseHeaders.SetValue(value);
+    }
+
+    private PropertyValue<string?> _responseBody = new PropertyValue<string?>(nameof(AppMessageDelivery), nameof(ResponseBody));
+    
+    [JsonPropertyName("responseBody")]
+    public string? ResponseBody
+    {
+        get => _responseBody.GetValue();
+        set => _responseBody.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _messageType.SetAccessPath(path, validateHasBeenSet);
+        _webhook.SetAccessPath(path, validateHasBeenSet);
+        _deliveryId.SetAccessPath(path, validateHasBeenSet);
+        _successful.SetAccessPath(path, validateHasBeenSet);
+        _sentAt.SetAccessPath(path, validateHasBeenSet);
+        _duration.SetAccessPath(path, validateHasBeenSet);
+        _method.SetAccessPath(path, validateHasBeenSet);
+        _url.SetAccessPath(path, validateHasBeenSet);
+        _requestHeaders.SetAccessPath(path, validateHasBeenSet);
+        _requestBody.SetAccessPath(path, validateHasBeenSet);
+        _responseStatusCode.SetAccessPath(path, validateHasBeenSet);
+        _responseHeaders.SetAccessPath(path, validateHasBeenSet);
+        _responseBody.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

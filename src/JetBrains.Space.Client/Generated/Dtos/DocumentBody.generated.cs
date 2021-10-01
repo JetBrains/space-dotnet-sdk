@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface DocumentBody
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface DocumentBody
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static ChecklistDocumentBody Checklist(Checklist checklist, bool canConvertItemsToIssues)
-            => new ChecklistDocumentBody(checklist: checklist, canConvertItemsToIssues: canConvertItemsToIssues);
-        
-        public static FileDocumentBody File()
-            => new FileDocumentBody();
-        
-        public static InaccessibleDocumentBody Inaccessible(DocumentBodyType docBodyType, string docBodyId)
-            => new InaccessibleDocumentBody(docBodyType: docBodyType, docBodyId: docBodyId);
-        
-        public static TextDocument TextDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null, string? model = null, List<AttachmentInfo>? attachments = null)
-            => new TextDocument(id: id, resetCounter: resetCounter, type: type, text: text, version: version, model: model, attachments: attachments);
-        
-    }
+    public static ChecklistDocumentBody Checklist(Checklist checklist, bool canConvertItemsToIssues)
+        => new ChecklistDocumentBody(checklist: checklist, canConvertItemsToIssues: canConvertItemsToIssues);
+    
+    public static FileDocumentBody File()
+        => new FileDocumentBody();
+    
+    public static InaccessibleDocumentBody Inaccessible(DocumentBodyType docBodyType, string docBodyId)
+        => new InaccessibleDocumentBody(docBodyType: docBodyType, docBodyId: docBodyId);
+    
+    public static TextDocument TextDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null, string? model = null, List<AttachmentInfo>? attachments = null)
+        => new TextDocument(id: id, resetCounter: resetCounter, type: type, text: text, version: version, model: model, attachments: attachments);
     
 }
+

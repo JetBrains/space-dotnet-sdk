@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class AuthModulesTestBuiltInPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class AuthModulesTestBuiltInPostRequest
-         : IPropagatePropertyAccessPath
+    public AuthModulesTestBuiltInPostRequest() { }
+    
+    public AuthModulesTestBuiltInPostRequest(ESBuiltinAuthModuleSettings settings, string username, string password)
     {
-        public AuthModulesTestBuiltInPostRequest() { }
-        
-        public AuthModulesTestBuiltInPostRequest(ESBuiltinAuthModuleSettings settings, string username, string password)
-        {
-            Settings = settings;
-            Username = username;
-            Password = password;
-        }
-        
-        private PropertyValue<ESBuiltinAuthModuleSettings> _settings = new PropertyValue<ESBuiltinAuthModuleSettings>(nameof(AuthModulesTestBuiltInPostRequest), nameof(Settings));
-        
-        [Required]
-        [JsonPropertyName("settings")]
-        public ESBuiltinAuthModuleSettings Settings
-        {
-            get => _settings.GetValue();
-            set => _settings.SetValue(value);
-        }
-    
-        private PropertyValue<string> _username = new PropertyValue<string>(nameof(AuthModulesTestBuiltInPostRequest), nameof(Username));
-        
-        [Required]
-        [JsonPropertyName("username")]
-        public string Username
-        {
-            get => _username.GetValue();
-            set => _username.SetValue(value);
-        }
-    
-        private PropertyValue<string> _password = new PropertyValue<string>(nameof(AuthModulesTestBuiltInPostRequest), nameof(Password));
-        
-        [Required]
-        [JsonPropertyName("password")]
-        public string Password
-        {
-            get => _password.GetValue();
-            set => _password.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _settings.SetAccessPath(path, validateHasBeenSet);
-            _username.SetAccessPath(path, validateHasBeenSet);
-            _password.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Settings = settings;
+        Username = username;
+        Password = password;
     }
     
+    private PropertyValue<ESBuiltinAuthModuleSettings> _settings = new PropertyValue<ESBuiltinAuthModuleSettings>(nameof(AuthModulesTestBuiltInPostRequest), nameof(Settings));
+    
+    [Required]
+    [JsonPropertyName("settings")]
+    public ESBuiltinAuthModuleSettings Settings
+    {
+        get => _settings.GetValue();
+        set => _settings.SetValue(value);
+    }
+
+    private PropertyValue<string> _username = new PropertyValue<string>(nameof(AuthModulesTestBuiltInPostRequest), nameof(Username));
+    
+    [Required]
+    [JsonPropertyName("username")]
+    public string Username
+    {
+        get => _username.GetValue();
+        set => _username.SetValue(value);
+    }
+
+    private PropertyValue<string> _password = new PropertyValue<string>(nameof(AuthModulesTestBuiltInPostRequest), nameof(Password));
+    
+    [Required]
+    [JsonPropertyName("password")]
+    public string Password
+    {
+        get => _password.GetValue();
+        set => _password.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _settings.SetAccessPath(path, validateHasBeenSet);
+        _username.SetAccessPath(path, validateHasBeenSet);
+        _password.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,54 +27,53 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DateTimeViewParams
+     : IPropagatePropertyAccessPath
 {
-    public sealed class DateTimeViewParams
-         : IPropagatePropertyAccessPath
+    public DateTimeViewParams() { }
+    
+    public DateTimeViewParams(UnfurlDateTimeFormat? format = null, UnfurlDateTimeStyle? style = null, string? template = null)
     {
-        public DateTimeViewParams() { }
-        
-        public DateTimeViewParams(UnfurlDateTimeFormat? format = null, UnfurlDateTimeStyle? style = null, string? template = null)
-        {
-            Format = format;
-            Style = style;
-            Template = template;
-        }
-        
-        private PropertyValue<UnfurlDateTimeFormat?> _format = new PropertyValue<UnfurlDateTimeFormat?>(nameof(DateTimeViewParams), nameof(Format));
-        
-        [JsonPropertyName("format")]
-        public UnfurlDateTimeFormat? Format
-        {
-            get => _format.GetValue();
-            set => _format.SetValue(value);
-        }
-    
-        private PropertyValue<UnfurlDateTimeStyle?> _style = new PropertyValue<UnfurlDateTimeStyle?>(nameof(DateTimeViewParams), nameof(Style));
-        
-        [JsonPropertyName("style")]
-        public UnfurlDateTimeStyle? Style
-        {
-            get => _style.GetValue();
-            set => _style.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _template = new PropertyValue<string?>(nameof(DateTimeViewParams), nameof(Template));
-        
-        [JsonPropertyName("template")]
-        public string? Template
-        {
-            get => _template.GetValue();
-            set => _template.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _format.SetAccessPath(path, validateHasBeenSet);
-            _style.SetAccessPath(path, validateHasBeenSet);
-            _template.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Format = format;
+        Style = style;
+        Template = template;
     }
     
+    private PropertyValue<UnfurlDateTimeFormat?> _format = new PropertyValue<UnfurlDateTimeFormat?>(nameof(DateTimeViewParams), nameof(Format));
+    
+    [JsonPropertyName("format")]
+    public UnfurlDateTimeFormat? Format
+    {
+        get => _format.GetValue();
+        set => _format.SetValue(value);
+    }
+
+    private PropertyValue<UnfurlDateTimeStyle?> _style = new PropertyValue<UnfurlDateTimeStyle?>(nameof(DateTimeViewParams), nameof(Style));
+    
+    [JsonPropertyName("style")]
+    public UnfurlDateTimeStyle? Style
+    {
+        get => _style.GetValue();
+        set => _style.SetValue(value);
+    }
+
+    private PropertyValue<string?> _template = new PropertyValue<string?>(nameof(DateTimeViewParams), nameof(Template));
+    
+    [JsonPropertyName("template")]
+    public string? Template
+    {
+        get => _template.GetValue();
+        set => _template.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _format.SetAccessPath(path, validateHasBeenSet);
+        _style.SetAccessPath(path, validateHasBeenSet);
+        _template.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HATypeEnumPartialBuilder
+namespace JetBrains.Space.Client.HATypeEnumPartialBuilder;
+
+public static class HATypeEnumPartialExtensions
 {
-    public static class HATypeEnumPartialExtensions
-    {
-        public static Partial<HATypeEnum> WithEnum(this Partial<HATypeEnum> it)
-            => it.AddFieldName("enum");
-        
-        public static Partial<HATypeEnum> WithEnum(this Partial<HATypeEnum> it, Func<Partial<HAEnum>, Partial<HAEnum>> partialBuilder)
-            => it.AddFieldName("enum", partialBuilder(new Partial<HAEnum>(it)));
-        
-        public static Partial<HATypeEnum> WithIsNullable(this Partial<HATypeEnum> it)
-            => it.AddFieldName("nullable");
-        
-        public static Partial<HATypeEnum> WithTags(this Partial<HATypeEnum> it)
-            => it.AddFieldName("tags");
-        
-    }
+    public static Partial<HATypeEnum> WithEnum(this Partial<HATypeEnum> it)
+        => it.AddFieldName("enum");
+    
+    public static Partial<HATypeEnum> WithEnum(this Partial<HATypeEnum> it, Func<Partial<HAEnum>, Partial<HAEnum>> partialBuilder)
+        => it.AddFieldName("enum", partialBuilder(new Partial<HAEnum>(it)));
+    
+    public static Partial<HATypeEnum> WithIsNullable(this Partial<HATypeEnum> it)
+        => it.AddFieldName("nullable");
+    
+    public static Partial<HATypeEnum> WithTags(this Partial<HATypeEnum> it)
+        => it.AddFieldName("tags");
     
 }
+

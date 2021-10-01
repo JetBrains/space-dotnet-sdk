@@ -27,21 +27,20 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public abstract class ESPasswordAuthModuleSettings
+     : ESAuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public abstract class ESPasswordAuthModuleSettings
-         : ESAuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ES_PasswordAuthModuleSettings";
+    
+    public static ESBuiltinAuthModuleSettings ESBuiltinAuthModuleSettings(PasswordStrength passwordStrengthPolicy, List<string>? domains = null)
+        => new ESBuiltinAuthModuleSettings(passwordStrengthPolicy: passwordStrengthPolicy, domains: domains);
+    
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ES_PasswordAuthModuleSettings";
-        
-        public static ESBuiltinAuthModuleSettings ESBuiltinAuthModuleSettings(PasswordStrength passwordStrengthPolicy, List<string>? domains = null)
-            => new ESBuiltinAuthModuleSettings(passwordStrengthPolicy: passwordStrengthPolicy, domains: domains);
-        
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

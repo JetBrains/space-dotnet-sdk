@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2AbsenceItemDeletedContent
+     : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2AbsenceItemDeletedContent
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2AbsenceItemDeletedContent";
+    
+    public M2AbsenceItemDeletedContent() { }
+    
+    public M2AbsenceItemDeletedContent(AbsenceRecord absence, TDMemberProfile? by = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2AbsenceItemDeletedContent";
-        
-        public M2AbsenceItemDeletedContent() { }
-        
-        public M2AbsenceItemDeletedContent(AbsenceRecord absence, TDMemberProfile? by = null)
-        {
-            Absence = absence;
-            By = by;
-        }
-        
-        private PropertyValue<AbsenceRecord> _absence = new PropertyValue<AbsenceRecord>(nameof(M2AbsenceItemDeletedContent), nameof(Absence));
-        
-        [Required]
-        [JsonPropertyName("absence")]
-        public AbsenceRecord Absence
-        {
-            get => _absence.GetValue();
-            set => _absence.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberProfile?> _by = new PropertyValue<TDMemberProfile?>(nameof(M2AbsenceItemDeletedContent), nameof(By));
-        
-        [JsonPropertyName("by")]
-        public TDMemberProfile? By
-        {
-            get => _by.GetValue();
-            set => _by.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _absence.SetAccessPath(path, validateHasBeenSet);
-            _by.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Absence = absence;
+        By = by;
     }
     
+    private PropertyValue<AbsenceRecord> _absence = new PropertyValue<AbsenceRecord>(nameof(M2AbsenceItemDeletedContent), nameof(Absence));
+    
+    [Required]
+    [JsonPropertyName("absence")]
+    public AbsenceRecord Absence
+    {
+        get => _absence.GetValue();
+        set => _absence.SetValue(value);
+    }
+
+    private PropertyValue<TDMemberProfile?> _by = new PropertyValue<TDMemberProfile?>(nameof(M2AbsenceItemDeletedContent), nameof(By));
+    
+    [JsonPropertyName("by")]
+    public TDMemberProfile? By
+    {
+        get => _by.GetValue();
+        set => _by.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _absence.SetAccessPath(path, validateHasBeenSet);
+        _by.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

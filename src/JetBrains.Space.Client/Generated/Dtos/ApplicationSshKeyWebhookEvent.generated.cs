@@ -27,70 +27,69 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ApplicationSshKeyWebhookEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ApplicationSshKeyWebhookEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ApplicationSshKeyWebhookEvent";
+    
+    public ApplicationSshKeyWebhookEvent() { }
+    
+    public ApplicationSshKeyWebhookEvent(KMetaMod meta, ESApp application, Modification<string>? fingerprint = null, Modification<string>? comment = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ApplicationSshKeyWebhookEvent";
-        
-        public ApplicationSshKeyWebhookEvent() { }
-        
-        public ApplicationSshKeyWebhookEvent(KMetaMod meta, ESApp application, Modification<string>? fingerprint = null, Modification<string>? comment = null)
-        {
-            Meta = meta;
-            Application = application;
-            Fingerprint = fingerprint;
-            Comment = comment;
-        }
-        
-        private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationSshKeyWebhookEvent), nameof(Meta));
-        
-        [Required]
-        [JsonPropertyName("meta")]
-        public KMetaMod Meta
-        {
-            get => _meta.GetValue();
-            set => _meta.SetValue(value);
-        }
-    
-        private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationSshKeyWebhookEvent), nameof(Application));
-        
-        [Required]
-        [JsonPropertyName("application")]
-        public ESApp Application
-        {
-            get => _application.GetValue();
-            set => _application.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<string>?> _fingerprint = new PropertyValue<Modification<string>?>(nameof(ApplicationSshKeyWebhookEvent), nameof(Fingerprint));
-        
-        [JsonPropertyName("fingerprint")]
-        public Modification<string>? Fingerprint
-        {
-            get => _fingerprint.GetValue();
-            set => _fingerprint.SetValue(value);
-        }
-    
-        private PropertyValue<Modification<string>?> _comment = new PropertyValue<Modification<string>?>(nameof(ApplicationSshKeyWebhookEvent), nameof(Comment));
-        
-        [JsonPropertyName("comment")]
-        public Modification<string>? Comment
-        {
-            get => _comment.GetValue();
-            set => _comment.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _meta.SetAccessPath(path, validateHasBeenSet);
-            _application.SetAccessPath(path, validateHasBeenSet);
-            _fingerprint.SetAccessPath(path, validateHasBeenSet);
-            _comment.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Meta = meta;
+        Application = application;
+        Fingerprint = fingerprint;
+        Comment = comment;
     }
     
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationSshKeyWebhookEvent), nameof(Meta));
+    
+    [Required]
+    [JsonPropertyName("meta")]
+    public KMetaMod Meta
+    {
+        get => _meta.GetValue();
+        set => _meta.SetValue(value);
+    }
+
+    private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationSshKeyWebhookEvent), nameof(Application));
+    
+    [Required]
+    [JsonPropertyName("application")]
+    public ESApp Application
+    {
+        get => _application.GetValue();
+        set => _application.SetValue(value);
+    }
+
+    private PropertyValue<Modification<string>?> _fingerprint = new PropertyValue<Modification<string>?>(nameof(ApplicationSshKeyWebhookEvent), nameof(Fingerprint));
+    
+    [JsonPropertyName("fingerprint")]
+    public Modification<string>? Fingerprint
+    {
+        get => _fingerprint.GetValue();
+        set => _fingerprint.SetValue(value);
+    }
+
+    private PropertyValue<Modification<string>?> _comment = new PropertyValue<Modification<string>?>(nameof(ApplicationSshKeyWebhookEvent), nameof(Comment));
+    
+    [JsonPropertyName("comment")]
+    public Modification<string>? Comment
+    {
+        get => _comment.GetValue();
+        set => _comment.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _meta.SetAccessPath(path, validateHasBeenSet);
+        _application.SetAccessPath(path, validateHasBeenSet);
+        _fingerprint.SetAccessPath(path, validateHasBeenSet);
+        _comment.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

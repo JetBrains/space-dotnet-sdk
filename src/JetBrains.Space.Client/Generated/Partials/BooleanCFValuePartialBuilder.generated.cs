@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BooleanCFValuePartialBuilder
+namespace JetBrains.Space.Client.BooleanCFValuePartialBuilder;
+
+public static class BooleanCFValuePartialExtensions
 {
-    public static class BooleanCFValuePartialExtensions
-    {
-        public static Partial<BooleanCFValue> WithIsValue(this Partial<BooleanCFValue> it)
-            => it.AddFieldName("value");
-        
-    }
+    public static Partial<BooleanCFValue> WithIsValue(this Partial<BooleanCFValue> it)
+        => it.AddFieldName("value");
     
 }
+

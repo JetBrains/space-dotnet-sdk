@@ -27,68 +27,67 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ArticleContentRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ArticleContentRecord
-         : IPropagatePropertyAccessPath
+    public ArticleContentRecord() { }
+    
+    public ArticleContentRecord(string id, bool archived, string content, List<AttachmentInfo>? attachments = null)
     {
-        public ArticleContentRecord() { }
-        
-        public ArticleContentRecord(string id, bool archived, string content, List<AttachmentInfo>? attachments = null)
-        {
-            Id = id;
-            IsArchived = archived;
-            Content = content;
-            Attachments = attachments;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticleContentRecord), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ArticleContentRecord), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        private PropertyValue<string> _content = new PropertyValue<string>(nameof(ArticleContentRecord), nameof(Content));
-        
-        [Required]
-        [JsonPropertyName("content")]
-        public string Content
-        {
-            get => _content.GetValue();
-            set => _content.SetValue(value);
-        }
-    
-        private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ArticleContentRecord), nameof(Attachments));
-        
-        [JsonPropertyName("attachments")]
-        public List<AttachmentInfo>? Attachments
-        {
-            get => _attachments.GetValue();
-            set => _attachments.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-            _content.SetAccessPath(path, validateHasBeenSet);
-            _attachments.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        IsArchived = archived;
+        Content = content;
+        Attachments = attachments;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticleContentRecord), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ArticleContentRecord), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<string> _content = new PropertyValue<string>(nameof(ArticleContentRecord), nameof(Content));
+    
+    [Required]
+    [JsonPropertyName("content")]
+    public string Content
+    {
+        get => _content.GetValue();
+        set => _content.SetValue(value);
+    }
+
+    private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ArticleContentRecord), nameof(Attachments));
+    
+    [JsonPropertyName("attachments")]
+    public List<AttachmentInfo>? Attachments
+    {
+        get => _attachments.GetValue();
+        set => _attachments.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _content.SetAccessPath(path, validateHasBeenSet);
+        _attachments.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

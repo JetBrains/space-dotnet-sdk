@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class AuthModulesForIdLoginsForIdentifierChangePostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class AuthModulesForIdLoginsForIdentifierChangePostRequest
-         : IPropagatePropertyAccessPath
+    public AuthModulesForIdLoginsForIdentifierChangePostRequest() { }
+    
+    public AuthModulesForIdLoginsForIdentifierChangePostRequest(string oldPassword, string newPassword)
     {
-        public AuthModulesForIdLoginsForIdentifierChangePostRequest() { }
-        
-        public AuthModulesForIdLoginsForIdentifierChangePostRequest(string oldPassword, string newPassword)
-        {
-            OldPassword = oldPassword;
-            NewPassword = newPassword;
-        }
-        
-        private PropertyValue<string> _oldPassword = new PropertyValue<string>(nameof(AuthModulesForIdLoginsForIdentifierChangePostRequest), nameof(OldPassword));
-        
-        [Required]
-        [JsonPropertyName("oldPassword")]
-        public string OldPassword
-        {
-            get => _oldPassword.GetValue();
-            set => _oldPassword.SetValue(value);
-        }
-    
-        private PropertyValue<string> _newPassword = new PropertyValue<string>(nameof(AuthModulesForIdLoginsForIdentifierChangePostRequest), nameof(NewPassword));
-        
-        [Required]
-        [JsonPropertyName("newPassword")]
-        public string NewPassword
-        {
-            get => _newPassword.GetValue();
-            set => _newPassword.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _oldPassword.SetAccessPath(path, validateHasBeenSet);
-            _newPassword.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        OldPassword = oldPassword;
+        NewPassword = newPassword;
     }
     
+    private PropertyValue<string> _oldPassword = new PropertyValue<string>(nameof(AuthModulesForIdLoginsForIdentifierChangePostRequest), nameof(OldPassword));
+    
+    [Required]
+    [JsonPropertyName("oldPassword")]
+    public string OldPassword
+    {
+        get => _oldPassword.GetValue();
+        set => _oldPassword.SetValue(value);
+    }
+
+    private PropertyValue<string> _newPassword = new PropertyValue<string>(nameof(AuthModulesForIdLoginsForIdentifierChangePostRequest), nameof(NewPassword));
+    
+    [Required]
+    [JsonPropertyName("newPassword")]
+    public string NewPassword
+    {
+        get => _newPassword.GetValue();
+        set => _newPassword.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _oldPassword.SetAccessPath(path, validateHasBeenSet);
+        _newPassword.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

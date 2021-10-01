@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TrackedBranchesInReviewPartialBuilder
+namespace JetBrains.Space.Client.TrackedBranchesInReviewPartialBuilder;
+
+public static class TrackedBranchesInReviewPartialExtensions
 {
-    public static class TrackedBranchesInReviewPartialExtensions
-    {
-        public static Partial<TrackedBranchesInReview> WithRepository(this Partial<TrackedBranchesInReview> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<TrackedBranchesInReview> WithBranches(this Partial<TrackedBranchesInReview> it)
-            => it.AddFieldName("branches");
-        
-        public static Partial<TrackedBranchesInReview> WithBranches(this Partial<TrackedBranchesInReview> it, Func<Partial<BranchInfo>, Partial<BranchInfo>> partialBuilder)
-            => it.AddFieldName("branches", partialBuilder(new Partial<BranchInfo>(it)));
-        
-    }
+    public static Partial<TrackedBranchesInReview> WithRepository(this Partial<TrackedBranchesInReview> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<TrackedBranchesInReview> WithBranches(this Partial<TrackedBranchesInReview> it)
+        => it.AddFieldName("branches");
+    
+    public static Partial<TrackedBranchesInReview> WithBranches(this Partial<TrackedBranchesInReview> it, Func<Partial<BranchInfo>, Partial<BranchInfo>> partialBuilder)
+        => it.AddFieldName("branches", partialBuilder(new Partial<BranchInfo>(it)));
     
 }
+

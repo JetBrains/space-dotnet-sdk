@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsLocationPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsLocationPartialBuilder;
+
+public static class UnfurlDetailsLocationPartialExtensions
 {
-    public static class UnfurlDetailsLocationPartialExtensions
-    {
-        public static Partial<UnfurlDetailsLocation> WithLocation(this Partial<UnfurlDetailsLocation> it)
-            => it.AddFieldName("location");
-        
-        public static Partial<UnfurlDetailsLocation> WithLocation(this Partial<UnfurlDetailsLocation> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
-            => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
-        
-        public static Partial<UnfurlDetailsLocation> WithIsStrikeThrough(this Partial<UnfurlDetailsLocation> it)
-            => it.AddFieldName("strikeThrough");
-        
-    }
+    public static Partial<UnfurlDetailsLocation> WithLocation(this Partial<UnfurlDetailsLocation> it)
+        => it.AddFieldName("location");
+    
+    public static Partial<UnfurlDetailsLocation> WithLocation(this Partial<UnfurlDetailsLocation> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
+        => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
+    
+    public static Partial<UnfurlDetailsLocation> WithIsStrikeThrough(this Partial<UnfurlDetailsLocation> it)
+        => it.AddFieldName("strikeThrough");
     
 }
+

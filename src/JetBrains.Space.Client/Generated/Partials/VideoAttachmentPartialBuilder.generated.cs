@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.VideoAttachmentPartialBuilder
+namespace JetBrains.Space.Client.VideoAttachmentPartialBuilder;
+
+public static class VideoAttachmentPartialExtensions
 {
-    public static class VideoAttachmentPartialExtensions
-    {
-        public static Partial<VideoAttachment> WithId(this Partial<VideoAttachment> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<VideoAttachment> WithName(this Partial<VideoAttachment> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<VideoAttachment> WithWidth(this Partial<VideoAttachment> it)
-            => it.AddFieldName("width");
-        
-        public static Partial<VideoAttachment> WithHeight(this Partial<VideoAttachment> it)
-            => it.AddFieldName("height");
-        
-        public static Partial<VideoAttachment> WithSizeBytes(this Partial<VideoAttachment> it)
-            => it.AddFieldName("sizeBytes");
-        
-        public static Partial<VideoAttachment> WithPreviewBytes(this Partial<VideoAttachment> it)
-            => it.AddFieldName("previewBytes");
-        
-    }
+    public static Partial<VideoAttachment> WithId(this Partial<VideoAttachment> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<VideoAttachment> WithName(this Partial<VideoAttachment> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<VideoAttachment> WithWidth(this Partial<VideoAttachment> it)
+        => it.AddFieldName("width");
+    
+    public static Partial<VideoAttachment> WithHeight(this Partial<VideoAttachment> it)
+        => it.AddFieldName("height");
+    
+    public static Partial<VideoAttachment> WithSizeBytes(this Partial<VideoAttachment> it)
+        => it.AddFieldName("sizeBytes");
+    
+    public static Partial<VideoAttachment> WithPreviewBytes(this Partial<VideoAttachment> it)
+        => it.AddFieldName("previewBytes");
     
 }
+

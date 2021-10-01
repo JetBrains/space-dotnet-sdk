@@ -27,81 +27,80 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class Job
+     : IPropagatePropertyAccessPath
 {
-    public sealed class Job
-         : IPropagatePropertyAccessPath
+    public Job() { }
+    
+    public Job(string id, string name, string repoName, RepositoryInProject repository, bool archive)
     {
-        public Job() { }
-        
-        public Job(string id, string name, string repoName, RepositoryInProject repository, bool archive)
-        {
-            Id = id;
-            Name = name;
-            RepoName = repoName;
-            Repository = repository;
-            IsArchive = archive;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(Job), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(Job), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _repoName = new PropertyValue<string>(nameof(Job), nameof(RepoName));
-        
-        [Required]
-        [JsonPropertyName("repoName")]
-        public string RepoName
-        {
-            get => _repoName.GetValue();
-            set => _repoName.SetValue(value);
-        }
-    
-        private PropertyValue<RepositoryInProject> _repository = new PropertyValue<RepositoryInProject>(nameof(Job), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public RepositoryInProject Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archive = new PropertyValue<bool>(nameof(Job), nameof(IsArchive));
-        
-        [Required]
-        [JsonPropertyName("archive")]
-        public bool IsArchive
-        {
-            get => _archive.GetValue();
-            set => _archive.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _repoName.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _archive.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Name = name;
+        RepoName = repoName;
+        Repository = repository;
+        IsArchive = archive;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Job), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(Job), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _repoName = new PropertyValue<string>(nameof(Job), nameof(RepoName));
+    
+    [Required]
+    [JsonPropertyName("repoName")]
+    public string RepoName
+    {
+        get => _repoName.GetValue();
+        set => _repoName.SetValue(value);
+    }
+
+    private PropertyValue<RepositoryInProject> _repository = new PropertyValue<RepositoryInProject>(nameof(Job), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public RepositoryInProject Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archive = new PropertyValue<bool>(nameof(Job), nameof(IsArchive));
+    
+    [Required]
+    [JsonPropertyName("archive")]
+    public bool IsArchive
+    {
+        get => _archive.GetValue();
+        set => _archive.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _repoName.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _archive.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

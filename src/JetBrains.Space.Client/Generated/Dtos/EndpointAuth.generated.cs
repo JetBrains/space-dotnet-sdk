@@ -27,56 +27,55 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class EndpointAuth
+     : IPropagatePropertyAccessPath
 {
-    public sealed class EndpointAuth
-         : IPropagatePropertyAccessPath
+    public EndpointAuth() { }
+    
+    public EndpointAuth(EndpointAuthRead appLevelAuth, bool verificationToken, SSLKeystoreEndpointAuth? sslKeystore = null)
     {
-        public EndpointAuth() { }
-        
-        public EndpointAuth(EndpointAuthRead appLevelAuth, bool verificationToken, SSLKeystoreEndpointAuth? sslKeystore = null)
-        {
-            AppLevelAuth = appLevelAuth;
-            SslKeystore = sslKeystore;
-            IsVerificationToken = verificationToken;
-        }
-        
-        private PropertyValue<EndpointAuthRead> _appLevelAuth = new PropertyValue<EndpointAuthRead>(nameof(EndpointAuth), nameof(AppLevelAuth));
-        
-        [Required]
-        [JsonPropertyName("appLevelAuth")]
-        public EndpointAuthRead AppLevelAuth
-        {
-            get => _appLevelAuth.GetValue();
-            set => _appLevelAuth.SetValue(value);
-        }
-    
-        private PropertyValue<SSLKeystoreEndpointAuth?> _sslKeystore = new PropertyValue<SSLKeystoreEndpointAuth?>(nameof(EndpointAuth), nameof(SslKeystore));
-        
-        [JsonPropertyName("sslKeystore")]
-        public SSLKeystoreEndpointAuth? SslKeystore
-        {
-            get => _sslKeystore.GetValue();
-            set => _sslKeystore.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _verificationToken = new PropertyValue<bool>(nameof(EndpointAuth), nameof(IsVerificationToken));
-        
-        [Required]
-        [JsonPropertyName("verificationToken")]
-        public bool IsVerificationToken
-        {
-            get => _verificationToken.GetValue();
-            set => _verificationToken.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _appLevelAuth.SetAccessPath(path, validateHasBeenSet);
-            _sslKeystore.SetAccessPath(path, validateHasBeenSet);
-            _verificationToken.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        AppLevelAuth = appLevelAuth;
+        SslKeystore = sslKeystore;
+        IsVerificationToken = verificationToken;
     }
     
+    private PropertyValue<EndpointAuthRead> _appLevelAuth = new PropertyValue<EndpointAuthRead>(nameof(EndpointAuth), nameof(AppLevelAuth));
+    
+    [Required]
+    [JsonPropertyName("appLevelAuth")]
+    public EndpointAuthRead AppLevelAuth
+    {
+        get => _appLevelAuth.GetValue();
+        set => _appLevelAuth.SetValue(value);
+    }
+
+    private PropertyValue<SSLKeystoreEndpointAuth?> _sslKeystore = new PropertyValue<SSLKeystoreEndpointAuth?>(nameof(EndpointAuth), nameof(SslKeystore));
+    
+    [JsonPropertyName("sslKeystore")]
+    public SSLKeystoreEndpointAuth? SslKeystore
+    {
+        get => _sslKeystore.GetValue();
+        set => _sslKeystore.SetValue(value);
+    }
+
+    private PropertyValue<bool> _verificationToken = new PropertyValue<bool>(nameof(EndpointAuth), nameof(IsVerificationToken));
+    
+    [Required]
+    [JsonPropertyName("verificationToken")]
+    public bool IsVerificationToken
+    {
+        get => _verificationToken.GetValue();
+        set => _verificationToken.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _appLevelAuth.SetAccessPath(path, validateHasBeenSet);
+        _sslKeystore.SetAccessPath(path, validateHasBeenSet);
+        _verificationToken.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

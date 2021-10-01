@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TDMergedEvent
+     : IPropagatePropertyAccessPath
 {
-    public sealed class TDMergedEvent
-         : IPropagatePropertyAccessPath
+    public TDMergedEvent() { }
+    
+    public TDMergedEvent(List<Pair<TDMembership, int>> events, TDMemberProfile profile)
     {
-        public TDMergedEvent() { }
-        
-        public TDMergedEvent(List<Pair<TDMembership, int>> events, TDMemberProfile profile)
-        {
-            Events = events;
-            Profile = profile;
-        }
-        
-        private PropertyValue<List<Pair<TDMembership, int>>> _events = new PropertyValue<List<Pair<TDMembership, int>>>(nameof(TDMergedEvent), nameof(Events), new List<Pair<TDMembership, int>>());
-        
-        [Required]
-        [JsonPropertyName("events")]
-        public List<Pair<TDMembership, int>> Events
-        {
-            get => _events.GetValue();
-            set => _events.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(TDMergedEvent), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfile Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _events.SetAccessPath(path, validateHasBeenSet);
-            _profile.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Events = events;
+        Profile = profile;
     }
     
+    private PropertyValue<List<Pair<TDMembership, int>>> _events = new PropertyValue<List<Pair<TDMembership, int>>>(nameof(TDMergedEvent), nameof(Events), new List<Pair<TDMembership, int>>());
+    
+    [Required]
+    [JsonPropertyName("events")]
+    public List<Pair<TDMembership, int>> Events
+    {
+        get => _events.GetValue();
+        set => _events.SetValue(value);
+    }
+
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(TDMergedEvent), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public TDMemberProfile Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _events.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequestPartialBuilder;
+
+public static class ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequestPartialExtensions
 {
-    public static class ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequestPartialExtensions
-    {
-        public static Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest> WithContextIdentifier(this Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest> it)
-            => it.AddFieldName("contextIdentifier");
-        
-        public static Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest> WithContextIdentifier(this Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest> it, Func<Partial<PermissionContextIdentifier>, Partial<PermissionContextIdentifier>> partialBuilder)
-            => it.AddFieldName("contextIdentifier", partialBuilder(new Partial<PermissionContextIdentifier>(it)));
-        
-        public static Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest> WithRightCodes(this Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest> it)
-            => it.AddFieldName("rightCodes");
-        
-    }
+    public static Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest> WithContextIdentifier(this Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest> it)
+        => it.AddFieldName("contextIdentifier");
+    
+    public static Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest> WithContextIdentifier(this Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest> it, Func<Partial<PermissionContextIdentifier>, Partial<PermissionContextIdentifier>> partialBuilder)
+        => it.AddFieldName("contextIdentifier", partialBuilder(new Partial<PermissionContextIdentifier>(it)));
+    
+    public static Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest> WithRightCodes(this Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest> it)
+        => it.AddFieldName("rightCodes");
     
 }
+

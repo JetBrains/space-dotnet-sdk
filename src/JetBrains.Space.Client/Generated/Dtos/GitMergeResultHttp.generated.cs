@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitMergeResultHttp
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GitMergeResultHttp
-         : IPropagatePropertyAccessPath
+    public GitMergeResultHttp() { }
+    
+    public GitMergeResultHttp(GitMergeStatusHttp status, string? resultCommitId = null)
     {
-        public GitMergeResultHttp() { }
-        
-        public GitMergeResultHttp(GitMergeStatusHttp status, string? resultCommitId = null)
-        {
-            Status = status;
-            ResultCommitId = resultCommitId;
-        }
-        
-        private PropertyValue<GitMergeStatusHttp> _status = new PropertyValue<GitMergeStatusHttp>(nameof(GitMergeResultHttp), nameof(Status));
-        
-        [Required]
-        [JsonPropertyName("status")]
-        public GitMergeStatusHttp Status
-        {
-            get => _status.GetValue();
-            set => _status.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _resultCommitId = new PropertyValue<string?>(nameof(GitMergeResultHttp), nameof(ResultCommitId));
-        
-        [JsonPropertyName("resultCommitId")]
-        public string? ResultCommitId
-        {
-            get => _resultCommitId.GetValue();
-            set => _resultCommitId.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _status.SetAccessPath(path, validateHasBeenSet);
-            _resultCommitId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Status = status;
+        ResultCommitId = resultCommitId;
     }
     
+    private PropertyValue<GitMergeStatusHttp> _status = new PropertyValue<GitMergeStatusHttp>(nameof(GitMergeResultHttp), nameof(Status));
+    
+    [Required]
+    [JsonPropertyName("status")]
+    public GitMergeStatusHttp Status
+    {
+        get => _status.GetValue();
+        set => _status.SetValue(value);
+    }
+
+    private PropertyValue<string?> _resultCommitId = new PropertyValue<string?>(nameof(GitMergeResultHttp), nameof(ResultCommitId));
+    
+    [JsonPropertyName("resultCommitId")]
+    public string? ResultCommitId
+    {
+        get => _resultCommitId.GetValue();
+        set => _resultCommitId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _status.SetAccessPath(path, validateHasBeenSet);
+        _resultCommitId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

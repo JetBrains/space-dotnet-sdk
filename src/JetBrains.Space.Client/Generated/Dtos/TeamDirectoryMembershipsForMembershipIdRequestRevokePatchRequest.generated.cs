@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest() { }
+    
+    public TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest(DateTime till)
     {
-        public TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest() { }
-        
-        public TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest(DateTime till)
-        {
-            Till = till;
-        }
-        
-        private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest), nameof(Till));
-        
-        [Required]
-        [JsonPropertyName("till")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Till
-        {
-            get => _till.GetValue();
-            set => _till.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _till.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Till = till;
     }
     
+    private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest), nameof(Till));
+    
+    [Required]
+    [JsonPropertyName("till")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Till
+    {
+        get => _till.GetValue();
+        set => _till.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _till.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

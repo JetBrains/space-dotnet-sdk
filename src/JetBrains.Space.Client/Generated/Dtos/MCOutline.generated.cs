@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MCOutline
+     : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MCOutline
-         : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MCOutline";
+    
+    public MCOutline() { }
+    
+    public MCOutline(MCElement? icon = null, MCText? text = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MCOutline";
-        
-        public MCOutline() { }
-        
-        public MCOutline(MCElement? icon = null, MCText? text = null)
-        {
-            Icon = icon;
-            Text = text;
-        }
-        
-        private PropertyValue<MCElement?> _icon = new PropertyValue<MCElement?>(nameof(MCOutline), nameof(Icon));
-        
-        [JsonPropertyName("icon")]
-        public MCElement? Icon
-        {
-            get => _icon.GetValue();
-            set => _icon.SetValue(value);
-        }
-    
-        private PropertyValue<MCText?> _text = new PropertyValue<MCText?>(nameof(MCOutline), nameof(Text));
-        
-        [JsonPropertyName("text")]
-        public MCText? Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _icon.SetAccessPath(path, validateHasBeenSet);
-            _text.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Icon = icon;
+        Text = text;
     }
     
+    private PropertyValue<MCElement?> _icon = new PropertyValue<MCElement?>(nameof(MCOutline), nameof(Icon));
+    
+    [JsonPropertyName("icon")]
+    public MCElement? Icon
+    {
+        get => _icon.GetValue();
+        set => _icon.SetValue(value);
+    }
+
+    private PropertyValue<MCText?> _text = new PropertyValue<MCText?>(nameof(MCOutline), nameof(Text));
+    
+    [JsonPropertyName("text")]
+    public MCText? Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _icon.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DryCleanupResultsResults
+     : DryCleanupResults, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class DryCleanupResultsResults
-         : DryCleanupResults, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "DryCleanupResults.Results";
+    
+    public DryCleanupResultsResults() { }
+    
+    public DryCleanupResultsResults(long totalSize, List<PackageVersionRef> packageVersions)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "DryCleanupResults.Results";
-        
-        public DryCleanupResultsResults() { }
-        
-        public DryCleanupResultsResults(long totalSize, List<PackageVersionRef> packageVersions)
-        {
-            TotalSize = totalSize;
-            PackageVersions = packageVersions;
-        }
-        
-        private PropertyValue<long> _totalSize = new PropertyValue<long>(nameof(DryCleanupResultsResults), nameof(TotalSize));
-        
-        [Required]
-        [JsonPropertyName("totalSize")]
-        public long TotalSize
-        {
-            get => _totalSize.GetValue();
-            set => _totalSize.SetValue(value);
-        }
-    
-        private PropertyValue<List<PackageVersionRef>> _packageVersions = new PropertyValue<List<PackageVersionRef>>(nameof(DryCleanupResultsResults), nameof(PackageVersions), new List<PackageVersionRef>());
-        
-        [Required]
-        [JsonPropertyName("packageVersions")]
-        public List<PackageVersionRef> PackageVersions
-        {
-            get => _packageVersions.GetValue();
-            set => _packageVersions.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _totalSize.SetAccessPath(path, validateHasBeenSet);
-            _packageVersions.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        TotalSize = totalSize;
+        PackageVersions = packageVersions;
     }
     
+    private PropertyValue<long> _totalSize = new PropertyValue<long>(nameof(DryCleanupResultsResults), nameof(TotalSize));
+    
+    [Required]
+    [JsonPropertyName("totalSize")]
+    public long TotalSize
+    {
+        get => _totalSize.GetValue();
+        set => _totalSize.SetValue(value);
+    }
+
+    private PropertyValue<List<PackageVersionRef>> _packageVersions = new PropertyValue<List<PackageVersionRef>>(nameof(DryCleanupResultsResults), nameof(PackageVersions), new List<PackageVersionRef>());
+    
+    [Required]
+    [JsonPropertyName("packageVersions")]
+    public List<PackageVersionRef> PackageVersions
+    {
+        get => _packageVersions.GetValue();
+        set => _packageVersions.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _totalSize.SetAccessPath(path, validateHasBeenSet);
+        _packageVersions.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

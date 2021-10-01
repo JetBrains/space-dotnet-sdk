@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PersonalSubscriptionSubjectSettingsPartialBuilder
+namespace JetBrains.Space.Client.PersonalSubscriptionSubjectSettingsPartialBuilder;
+
+public static class PersonalSubscriptionSubjectSettingsPartialExtensions
 {
-    public static class PersonalSubscriptionSubjectSettingsPartialExtensions
-    {
-        public static Partial<PersonalSubscriptionSubjectSettings> WithSubjectCode(this Partial<PersonalSubscriptionSubjectSettings> it)
-            => it.AddFieldName("subjectCode");
-        
-        public static Partial<PersonalSubscriptionSubjectSettings> WithIsEnabled(this Partial<PersonalSubscriptionSubjectSettings> it)
-            => it.AddFieldName("enabled");
-        
-    }
+    public static Partial<PersonalSubscriptionSubjectSettings> WithSubjectCode(this Partial<PersonalSubscriptionSubjectSettings> it)
+        => it.AddFieldName("subjectCode");
+    
+    public static Partial<PersonalSubscriptionSubjectSettings> WithIsEnabled(this Partial<PersonalSubscriptionSubjectSettings> it)
+        => it.AddFieldName("enabled");
     
 }
+

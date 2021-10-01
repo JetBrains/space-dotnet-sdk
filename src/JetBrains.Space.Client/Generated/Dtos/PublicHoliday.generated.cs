@@ -27,104 +27,103 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PublicHoliday
+     : IPropagatePropertyAccessPath
 {
-    public sealed class PublicHoliday
-         : IPropagatePropertyAccessPath
+    public PublicHoliday() { }
+    
+    public PublicHoliday(string id, PublicHolidayCalendarRecord calendar, string name, DateTime date, bool workingDay, bool? halfDay = null, bool? archived = null)
     {
-        public PublicHoliday() { }
-        
-        public PublicHoliday(string id, PublicHolidayCalendarRecord calendar, string name, DateTime date, bool workingDay, bool? halfDay = null, bool? archived = null)
-        {
-            Id = id;
-            Calendar = calendar;
-            Name = name;
-            Date = date;
-            IsWorkingDay = workingDay;
-            IsHalfDay = halfDay;
-            IsArchived = archived;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(PublicHoliday), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<PublicHolidayCalendarRecord> _calendar = new PropertyValue<PublicHolidayCalendarRecord>(nameof(PublicHoliday), nameof(Calendar));
-        
-        [Required]
-        [JsonPropertyName("calendar")]
-        public PublicHolidayCalendarRecord Calendar
-        {
-            get => _calendar.GetValue();
-            set => _calendar.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(PublicHoliday), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _date = new PropertyValue<DateTime>(nameof(PublicHoliday), nameof(Date));
-        
-        [Required]
-        [JsonPropertyName("date")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime Date
-        {
-            get => _date.GetValue();
-            set => _date.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _workingDay = new PropertyValue<bool>(nameof(PublicHoliday), nameof(IsWorkingDay));
-        
-        [Required]
-        [JsonPropertyName("workingDay")]
-        public bool IsWorkingDay
-        {
-            get => _workingDay.GetValue();
-            set => _workingDay.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _halfDay = new PropertyValue<bool?>(nameof(PublicHoliday), nameof(IsHalfDay));
-        
-        [JsonPropertyName("halfDay")]
-        public bool? IsHalfDay
-        {
-            get => _halfDay.GetValue();
-            set => _halfDay.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _archived = new PropertyValue<bool?>(nameof(PublicHoliday), nameof(IsArchived));
-        
-        [JsonPropertyName("archived")]
-        public bool? IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _calendar.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _date.SetAccessPath(path, validateHasBeenSet);
-            _workingDay.SetAccessPath(path, validateHasBeenSet);
-            _halfDay.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Calendar = calendar;
+        Name = name;
+        Date = date;
+        IsWorkingDay = workingDay;
+        IsHalfDay = halfDay;
+        IsArchived = archived;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PublicHoliday), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<PublicHolidayCalendarRecord> _calendar = new PropertyValue<PublicHolidayCalendarRecord>(nameof(PublicHoliday), nameof(Calendar));
+    
+    [Required]
+    [JsonPropertyName("calendar")]
+    public PublicHolidayCalendarRecord Calendar
+    {
+        get => _calendar.GetValue();
+        set => _calendar.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PublicHoliday), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _date = new PropertyValue<DateTime>(nameof(PublicHoliday), nameof(Date));
+    
+    [Required]
+    [JsonPropertyName("date")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime Date
+    {
+        get => _date.GetValue();
+        set => _date.SetValue(value);
+    }
+
+    private PropertyValue<bool> _workingDay = new PropertyValue<bool>(nameof(PublicHoliday), nameof(IsWorkingDay));
+    
+    [Required]
+    [JsonPropertyName("workingDay")]
+    public bool IsWorkingDay
+    {
+        get => _workingDay.GetValue();
+        set => _workingDay.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _halfDay = new PropertyValue<bool?>(nameof(PublicHoliday), nameof(IsHalfDay));
+    
+    [JsonPropertyName("halfDay")]
+    public bool? IsHalfDay
+    {
+        get => _halfDay.GetValue();
+        set => _halfDay.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _archived = new PropertyValue<bool?>(nameof(PublicHoliday), nameof(IsArchived));
+    
+    [JsonPropertyName("archived")]
+    public bool? IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _calendar.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _date.SetAccessPath(path, validateHasBeenSet);
+        _workingDay.SetAccessPath(path, validateHasBeenSet);
+        _halfDay.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingWebhookEventPartialBuilder
+namespace JetBrains.Space.Client.MeetingWebhookEventPartialBuilder;
+
+public static class MeetingWebhookEventPartialExtensions
 {
-    public static class MeetingWebhookEventPartialExtensions
-    {
-        public static Partial<MeetingWebhookEvent> WithMeta(this Partial<MeetingWebhookEvent> it)
-            => it.AddFieldName("meta");
-        
-        public static Partial<MeetingWebhookEvent> WithMeta(this Partial<MeetingWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-            => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
-        
-        public static Partial<MeetingWebhookEvent> WithMeeting(this Partial<MeetingWebhookEvent> it)
-            => it.AddFieldName("meeting");
-        
-        public static Partial<MeetingWebhookEvent> WithMeeting(this Partial<MeetingWebhookEvent> it, Func<Partial<MeetingRecord>, Partial<MeetingRecord>> partialBuilder)
-            => it.AddFieldName("meeting", partialBuilder(new Partial<MeetingRecord>(it)));
-        
-    }
+    public static Partial<MeetingWebhookEvent> WithMeta(this Partial<MeetingWebhookEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<MeetingWebhookEvent> WithMeta(this Partial<MeetingWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<MeetingWebhookEvent> WithMeeting(this Partial<MeetingWebhookEvent> it)
+        => it.AddFieldName("meeting");
+    
+    public static Partial<MeetingWebhookEvent> WithMeeting(this Partial<MeetingWebhookEvent> it, Func<Partial<MeetingRecord>, Partial<MeetingRecord>> partialBuilder)
+        => it.AddFieldName("meeting", partialBuilder(new Partial<MeetingRecord>(it)));
     
 }
+

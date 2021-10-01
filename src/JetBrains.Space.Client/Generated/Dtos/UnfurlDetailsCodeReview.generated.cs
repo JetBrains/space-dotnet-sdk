@@ -27,103 +27,102 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsCodeReview
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsCodeReview
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsCodeReview";
+    
+    public UnfurlDetailsCodeReview() { }
+    
+    public UnfurlDetailsCodeReview(CodeReviewRecord review, bool withBranchPair, bool? withIcon = null, string? defaultBranchInRepo = null, bool? hideIfCannotResolve = null, CodeReviewState? reviewState = null, bool? isMerged = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsCodeReview";
-        
-        public UnfurlDetailsCodeReview() { }
-        
-        public UnfurlDetailsCodeReview(CodeReviewRecord review, bool withBranchPair, bool? withIcon = null, string? defaultBranchInRepo = null, bool? hideIfCannotResolve = null, CodeReviewState? reviewState = null, bool? isMerged = null)
-        {
-            Review = review;
-            IsWithIcon = withIcon;
-            IsWithBranchPair = withBranchPair;
-            DefaultBranchInRepo = defaultBranchInRepo;
-            IsHideIfCannotResolve = hideIfCannotResolve;
-            ReviewState = reviewState;
-            IsMerged = isMerged;
-        }
-        
-        private PropertyValue<CodeReviewRecord> _review = new PropertyValue<CodeReviewRecord>(nameof(UnfurlDetailsCodeReview), nameof(Review));
-        
-        [Required]
-        [JsonPropertyName("review")]
-        public CodeReviewRecord Review
-        {
-            get => _review.GetValue();
-            set => _review.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _withIcon = new PropertyValue<bool?>(nameof(UnfurlDetailsCodeReview), nameof(IsWithIcon));
-        
-        [JsonPropertyName("withIcon")]
-        public bool? IsWithIcon
-        {
-            get => _withIcon.GetValue();
-            set => _withIcon.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _withBranchPair = new PropertyValue<bool>(nameof(UnfurlDetailsCodeReview), nameof(IsWithBranchPair));
-        
-        [Required]
-        [JsonPropertyName("withBranchPair")]
-        public bool IsWithBranchPair
-        {
-            get => _withBranchPair.GetValue();
-            set => _withBranchPair.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _defaultBranchInRepo = new PropertyValue<string?>(nameof(UnfurlDetailsCodeReview), nameof(DefaultBranchInRepo));
-        
-        [JsonPropertyName("defaultBranchInRepo")]
-        public string? DefaultBranchInRepo
-        {
-            get => _defaultBranchInRepo.GetValue();
-            set => _defaultBranchInRepo.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _hideIfCannotResolve = new PropertyValue<bool?>(nameof(UnfurlDetailsCodeReview), nameof(IsHideIfCannotResolve));
-        
-        [JsonPropertyName("hideIfCannotResolve")]
-        public bool? IsHideIfCannotResolve
-        {
-            get => _hideIfCannotResolve.GetValue();
-            set => _hideIfCannotResolve.SetValue(value);
-        }
-    
-        private PropertyValue<CodeReviewState?> _reviewState = new PropertyValue<CodeReviewState?>(nameof(UnfurlDetailsCodeReview), nameof(ReviewState));
-        
-        [JsonPropertyName("reviewState")]
-        public CodeReviewState? ReviewState
-        {
-            get => _reviewState.GetValue();
-            set => _reviewState.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _isMerged = new PropertyValue<bool?>(nameof(UnfurlDetailsCodeReview), nameof(IsMerged));
-        
-        [JsonPropertyName("isMerged")]
-        public bool? IsMerged
-        {
-            get => _isMerged.GetValue();
-            set => _isMerged.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _review.SetAccessPath(path, validateHasBeenSet);
-            _withIcon.SetAccessPath(path, validateHasBeenSet);
-            _withBranchPair.SetAccessPath(path, validateHasBeenSet);
-            _defaultBranchInRepo.SetAccessPath(path, validateHasBeenSet);
-            _hideIfCannotResolve.SetAccessPath(path, validateHasBeenSet);
-            _reviewState.SetAccessPath(path, validateHasBeenSet);
-            _isMerged.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Review = review;
+        IsWithIcon = withIcon;
+        IsWithBranchPair = withBranchPair;
+        DefaultBranchInRepo = defaultBranchInRepo;
+        IsHideIfCannotResolve = hideIfCannotResolve;
+        ReviewState = reviewState;
+        IsMerged = isMerged;
     }
     
+    private PropertyValue<CodeReviewRecord> _review = new PropertyValue<CodeReviewRecord>(nameof(UnfurlDetailsCodeReview), nameof(Review));
+    
+    [Required]
+    [JsonPropertyName("review")]
+    public CodeReviewRecord Review
+    {
+        get => _review.GetValue();
+        set => _review.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _withIcon = new PropertyValue<bool?>(nameof(UnfurlDetailsCodeReview), nameof(IsWithIcon));
+    
+    [JsonPropertyName("withIcon")]
+    public bool? IsWithIcon
+    {
+        get => _withIcon.GetValue();
+        set => _withIcon.SetValue(value);
+    }
+
+    private PropertyValue<bool> _withBranchPair = new PropertyValue<bool>(nameof(UnfurlDetailsCodeReview), nameof(IsWithBranchPair));
+    
+    [Required]
+    [JsonPropertyName("withBranchPair")]
+    public bool IsWithBranchPair
+    {
+        get => _withBranchPair.GetValue();
+        set => _withBranchPair.SetValue(value);
+    }
+
+    private PropertyValue<string?> _defaultBranchInRepo = new PropertyValue<string?>(nameof(UnfurlDetailsCodeReview), nameof(DefaultBranchInRepo));
+    
+    [JsonPropertyName("defaultBranchInRepo")]
+    public string? DefaultBranchInRepo
+    {
+        get => _defaultBranchInRepo.GetValue();
+        set => _defaultBranchInRepo.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _hideIfCannotResolve = new PropertyValue<bool?>(nameof(UnfurlDetailsCodeReview), nameof(IsHideIfCannotResolve));
+    
+    [JsonPropertyName("hideIfCannotResolve")]
+    public bool? IsHideIfCannotResolve
+    {
+        get => _hideIfCannotResolve.GetValue();
+        set => _hideIfCannotResolve.SetValue(value);
+    }
+
+    private PropertyValue<CodeReviewState?> _reviewState = new PropertyValue<CodeReviewState?>(nameof(UnfurlDetailsCodeReview), nameof(ReviewState));
+    
+    [JsonPropertyName("reviewState")]
+    public CodeReviewState? ReviewState
+    {
+        get => _reviewState.GetValue();
+        set => _reviewState.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _isMerged = new PropertyValue<bool?>(nameof(UnfurlDetailsCodeReview), nameof(IsMerged));
+    
+    [JsonPropertyName("isMerged")]
+    public bool? IsMerged
+    {
+        get => _isMerged.GetValue();
+        set => _isMerged.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _review.SetAccessPath(path, validateHasBeenSet);
+        _withIcon.SetAccessPath(path, validateHasBeenSet);
+        _withBranchPair.SetAccessPath(path, validateHasBeenSet);
+        _defaultBranchInRepo.SetAccessPath(path, validateHasBeenSet);
+        _hideIfCannotResolve.SetAccessPath(path, validateHasBeenSet);
+        _reviewState.SetAccessPath(path, validateHasBeenSet);
+        _isMerged.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

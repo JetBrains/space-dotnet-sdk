@@ -27,32 +27,31 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum TodoItemContentKind
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum TodoItemContentKind
-    {
-        [EnumMember(Value = "NONE")]
-        NONE,
-        
-        [EnumMember(Value = "REGULAR")]
-        REGULAR,
-        
-        [EnumMember(Value = "MESSAGE")]
-        MESSAGE,
-        
-        [EnumMember(Value = "ISSUE")]
-        ISSUE,
-        
-        [EnumMember(Value = "BLOG")]
-        BLOG,
-        
-        [EnumMember(Value = "DOCUMENT")]
-        DOCUMENT,
-        
-        [EnumMember(Value = "MEETING")]
-        MEETING,
-        
-    }
+    [EnumMember(Value = "NONE")]
+    NONE,
+    
+    [EnumMember(Value = "REGULAR")]
+    REGULAR,
+    
+    [EnumMember(Value = "MESSAGE")]
+    MESSAGE,
+    
+    [EnumMember(Value = "ISSUE")]
+    ISSUE,
+    
+    [EnumMember(Value = "BLOG")]
+    BLOG,
+    
+    [EnumMember(Value = "DOCUMENT")]
+    DOCUMENT,
+    
+    [EnumMember(Value = "MEETING")]
+    MEETING,
     
 }
+

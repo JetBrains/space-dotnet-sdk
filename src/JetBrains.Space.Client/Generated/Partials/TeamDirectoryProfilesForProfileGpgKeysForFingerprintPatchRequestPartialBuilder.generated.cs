@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest> WithComment(this Partial<TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest> it)
-            => it.AddFieldName("comment");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest> WithComment(this Partial<TeamDirectoryProfilesForProfileGpgKeysForFingerprintPatchRequest> it)
+        => it.AddFieldName("comment");
     
 }
+

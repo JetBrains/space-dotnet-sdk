@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsMergeRequestsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsMergeRequestsPostRequestPartialBuilder;
+
+public static class ProjectsForProjectCodeReviewsMergeRequestsPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectCodeReviewsMergeRequestsPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> WithRepository(this Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> WithSourceBranch(this Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> it)
-            => it.AddFieldName("sourceBranch");
-        
-        public static Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> WithTargetBranch(this Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> it)
-            => it.AddFieldName("targetBranch");
-        
-        public static Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> WithTitle(this Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> WithReviewers(this Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> it)
-            => it.AddFieldName("reviewers");
-        
-        public static Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> WithReviewers(this Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> it, Func<Partial<ReviewerParam>, Partial<ReviewerParam>> partialBuilder)
-            => it.AddFieldName("reviewers", partialBuilder(new Partial<ReviewerParam>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> WithRepository(this Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> WithSourceBranch(this Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> it)
+        => it.AddFieldName("sourceBranch");
+    
+    public static Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> WithTargetBranch(this Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> it)
+        => it.AddFieldName("targetBranch");
+    
+    public static Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> WithTitle(this Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> WithReviewers(this Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> it)
+        => it.AddFieldName("reviewers");
+    
+    public static Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> WithReviewers(this Partial<ProjectsForProjectCodeReviewsMergeRequestsPostRequest> it, Func<Partial<ReviewerParam>, Partial<ReviewerParam>> partialBuilder)
+        => it.AddFieldName("reviewers", partialBuilder(new Partial<ReviewerParam>(it)));
     
 }
+

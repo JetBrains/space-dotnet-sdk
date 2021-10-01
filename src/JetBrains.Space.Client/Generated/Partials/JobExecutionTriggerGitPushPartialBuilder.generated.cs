@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.JobExecutionTriggerGitPushPartialBuilder
+namespace JetBrains.Space.Client.JobExecutionTriggerGitPushPartialBuilder;
+
+public static class JobExecutionTriggerGitPushPartialExtensions
 {
-    public static class JobExecutionTriggerGitPushPartialExtensions
-    {
-        public static Partial<JobExecutionTriggerGitPush> WithCommit(this Partial<JobExecutionTriggerGitPush> it)
-            => it.AddFieldName("commit");
-        
-    }
+    public static Partial<JobExecutionTriggerGitPush> WithCommit(this Partial<JobExecutionTriggerGitPush> it)
+        => it.AddFieldName("commit");
     
 }
+

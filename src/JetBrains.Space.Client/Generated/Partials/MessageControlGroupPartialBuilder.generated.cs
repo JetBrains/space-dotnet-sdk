@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageControlGroupPartialBuilder
+namespace JetBrains.Space.Client.MessageControlGroupPartialBuilder;
+
+public static class MessageControlGroupPartialExtensions
 {
-    public static class MessageControlGroupPartialExtensions
-    {
-        public static Partial<MessageControlGroup> WithElements(this Partial<MessageControlGroup> it)
-            => it.AddFieldName("elements");
-        
-        public static Partial<MessageControlGroup> WithElements(this Partial<MessageControlGroup> it, Func<Partial<MessageControlElement>, Partial<MessageControlElement>> partialBuilder)
-            => it.AddFieldName("elements", partialBuilder(new Partial<MessageControlElement>(it)));
-        
-    }
+    public static Partial<MessageControlGroup> WithElements(this Partial<MessageControlGroup> it)
+        => it.AddFieldName("elements");
+    
+    public static Partial<MessageControlGroup> WithElements(this Partial<MessageControlGroup> it, Func<Partial<MessageControlElement>, Partial<MessageControlElement>> partialBuilder)
+        => it.AddFieldName("elements", partialBuilder(new Partial<MessageControlElement>(it)));
     
 }
+

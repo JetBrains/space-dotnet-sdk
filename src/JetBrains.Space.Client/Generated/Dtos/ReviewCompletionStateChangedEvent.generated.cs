@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ReviewCompletionStateChangedEvent
+     : FeedEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ReviewCompletionStateChangedEvent
-         : FeedEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ReviewCompletionStateChangedEvent";
+    
+    public ReviewCompletionStateChangedEvent() { }
+    
+    public ReviewCompletionStateChangedEvent(ReviewerState state)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ReviewCompletionStateChangedEvent";
-        
-        public ReviewCompletionStateChangedEvent() { }
-        
-        public ReviewCompletionStateChangedEvent(ReviewerState state)
-        {
-            State = state;
-        }
-        
-        private PropertyValue<ReviewerState> _state = new PropertyValue<ReviewerState>(nameof(ReviewCompletionStateChangedEvent), nameof(State));
-        
-        [Required]
-        [JsonPropertyName("state")]
-        public ReviewerState State
-        {
-            get => _state.GetValue();
-            set => _state.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _state.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        State = state;
     }
     
+    private PropertyValue<ReviewerState> _state = new PropertyValue<ReviewerState>(nameof(ReviewCompletionStateChangedEvent), nameof(State));
+    
+    [Required]
+    [JsonPropertyName("state")]
+    public ReviewerState State
+    {
+        get => _state.GetValue();
+        set => _state.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _state.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

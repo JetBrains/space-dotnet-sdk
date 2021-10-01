@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequestPartialBuilder;
+
+public static class ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequestPartialExtensions
 {
-    public static class ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest> WithIsPin(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest> it)
-            => it.AddFieldName("pin");
-        
-        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest> WithComment(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest> it)
-            => it.AddFieldName("comment");
-        
-    }
+    public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest> WithIsPin(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest> it)
+        => it.AddFieldName("pin");
+    
+    public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest> WithComment(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest> it)
+        => it.AddFieldName("comment");
     
 }
+

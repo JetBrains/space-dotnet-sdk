@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AutonumberCFParametersPartialBuilder
+namespace JetBrains.Space.Client.AutonumberCFParametersPartialBuilder;
+
+public static class AutonumberCFParametersPartialExtensions
 {
-    public static class AutonumberCFParametersPartialExtensions
-    {
-        public static Partial<AutonumberCFParameters> WithPrefix(this Partial<AutonumberCFParameters> it)
-            => it.AddFieldName("prefix");
-        
-        public static Partial<AutonumberCFParameters> WithSuffix(this Partial<AutonumberCFParameters> it)
-            => it.AddFieldName("suffix");
-        
-    }
+    public static Partial<AutonumberCFParameters> WithPrefix(this Partial<AutonumberCFParameters> it)
+        => it.AddFieldName("prefix");
+    
+    public static Partial<AutonumberCFParameters> WithSuffix(this Partial<AutonumberCFParameters> it)
+        => it.AddFieldName("suffix");
     
 }
+

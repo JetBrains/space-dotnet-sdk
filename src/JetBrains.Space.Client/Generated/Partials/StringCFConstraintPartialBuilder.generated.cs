@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.StringCFConstraintPartialBuilder
+namespace JetBrains.Space.Client.StringCFConstraintPartialBuilder;
+
+public static class StringCFConstraintPartialExtensions
 {
-    public static class StringCFConstraintPartialExtensions
-    {
-        public static Partial<StringCFConstraint> WithMin(this Partial<StringCFConstraint> it)
-            => it.AddFieldName("min");
-        
-        public static Partial<StringCFConstraint> WithMax(this Partial<StringCFConstraint> it)
-            => it.AddFieldName("max");
-        
-        public static Partial<StringCFConstraint> WithPattern(this Partial<StringCFConstraint> it)
-            => it.AddFieldName("pattern");
-        
-        public static Partial<StringCFConstraint> WithMessage(this Partial<StringCFConstraint> it)
-            => it.AddFieldName("message");
-        
-    }
+    public static Partial<StringCFConstraint> WithMin(this Partial<StringCFConstraint> it)
+        => it.AddFieldName("min");
+    
+    public static Partial<StringCFConstraint> WithMax(this Partial<StringCFConstraint> it)
+        => it.AddFieldName("max");
+    
+    public static Partial<StringCFConstraint> WithPattern(this Partial<StringCFConstraint> it)
+        => it.AddFieldName("pattern");
+    
+    public static Partial<StringCFConstraint> WithMessage(this Partial<StringCFConstraint> it)
+        => it.AddFieldName("message");
     
 }
+

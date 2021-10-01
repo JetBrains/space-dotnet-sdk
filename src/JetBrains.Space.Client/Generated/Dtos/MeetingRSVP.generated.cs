@@ -27,81 +27,80 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MeetingRSVP
+     : IPropagatePropertyAccessPath
 {
-    public sealed class MeetingRSVP
-         : IPropagatePropertyAccessPath
+    public MeetingRSVP() { }
+    
+    public MeetingRSVP(string id, bool archived, TDMemberProfile member, Meeting meeting, EventParticipationStatus status)
     {
-        public MeetingRSVP() { }
-        
-        public MeetingRSVP(string id, bool archived, TDMemberProfile member, Meeting meeting, EventParticipationStatus status)
-        {
-            Id = id;
-            IsArchived = archived;
-            Member = member;
-            Meeting = meeting;
-            Status = status;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(MeetingRSVP), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(MeetingRSVP), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(MeetingRSVP), nameof(Member));
-        
-        [Required]
-        [JsonPropertyName("member")]
-        public TDMemberProfile Member
-        {
-            get => _member.GetValue();
-            set => _member.SetValue(value);
-        }
-    
-        private PropertyValue<Meeting> _meeting = new PropertyValue<Meeting>(nameof(MeetingRSVP), nameof(Meeting));
-        
-        [Required]
-        [JsonPropertyName("meeting")]
-        public Meeting Meeting
-        {
-            get => _meeting.GetValue();
-            set => _meeting.SetValue(value);
-        }
-    
-        private PropertyValue<EventParticipationStatus> _status = new PropertyValue<EventParticipationStatus>(nameof(MeetingRSVP), nameof(Status));
-        
-        [Required]
-        [JsonPropertyName("status")]
-        public EventParticipationStatus Status
-        {
-            get => _status.GetValue();
-            set => _status.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-            _member.SetAccessPath(path, validateHasBeenSet);
-            _meeting.SetAccessPath(path, validateHasBeenSet);
-            _status.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        IsArchived = archived;
+        Member = member;
+        Meeting = meeting;
+        Status = status;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(MeetingRSVP), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(MeetingRSVP), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(MeetingRSVP), nameof(Member));
+    
+    [Required]
+    [JsonPropertyName("member")]
+    public TDMemberProfile Member
+    {
+        get => _member.GetValue();
+        set => _member.SetValue(value);
+    }
+
+    private PropertyValue<Meeting> _meeting = new PropertyValue<Meeting>(nameof(MeetingRSVP), nameof(Meeting));
+    
+    [Required]
+    [JsonPropertyName("meeting")]
+    public Meeting Meeting
+    {
+        get => _meeting.GetValue();
+        set => _meeting.SetValue(value);
+    }
+
+    private PropertyValue<EventParticipationStatus> _status = new PropertyValue<EventParticipationStatus>(nameof(MeetingRSVP), nameof(Status));
+    
+    [Required]
+    [JsonPropertyName("status")]
+    public EventParticipationStatus Status
+    {
+        get => _status.GetValue();
+        set => _status.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _member.SetAccessPath(path, validateHasBeenSet);
+        _meeting.SetAccessPath(path, validateHasBeenSet);
+        _status.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

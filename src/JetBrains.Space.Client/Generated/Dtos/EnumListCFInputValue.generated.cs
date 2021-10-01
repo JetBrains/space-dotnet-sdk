@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class EnumListCFInputValue
+     : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class EnumListCFInputValue
-         : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "EnumListCFInputValue";
+    
+    public EnumListCFInputValue() { }
+    
+    public EnumListCFInputValue(List<CFEnumValueIdentifier> enumValueIdentifiers)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "EnumListCFInputValue";
-        
-        public EnumListCFInputValue() { }
-        
-        public EnumListCFInputValue(List<CFEnumValueIdentifier> enumValueIdentifiers)
-        {
-            EnumValueIdentifiers = enumValueIdentifiers;
-        }
-        
-        private PropertyValue<List<CFEnumValueIdentifier>> _enumValueIdentifiers = new PropertyValue<List<CFEnumValueIdentifier>>(nameof(EnumListCFInputValue), nameof(EnumValueIdentifiers), new List<CFEnumValueIdentifier>());
-        
-        [Required]
-        [JsonPropertyName("enumValueIdentifiers")]
-        public List<CFEnumValueIdentifier> EnumValueIdentifiers
-        {
-            get => _enumValueIdentifiers.GetValue();
-            set => _enumValueIdentifiers.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _enumValueIdentifiers.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        EnumValueIdentifiers = enumValueIdentifiers;
     }
     
+    private PropertyValue<List<CFEnumValueIdentifier>> _enumValueIdentifiers = new PropertyValue<List<CFEnumValueIdentifier>>(nameof(EnumListCFInputValue), nameof(EnumValueIdentifiers), new List<CFEnumValueIdentifier>());
+    
+    [Required]
+    [JsonPropertyName("enumValueIdentifiers")]
+    public List<CFEnumValueIdentifier> EnumValueIdentifiers
+    {
+        get => _enumValueIdentifiers.GetValue();
+        set => _enumValueIdentifiers.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _enumValueIdentifiers.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

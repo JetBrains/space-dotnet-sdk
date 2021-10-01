@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest() { }
+    
+    public TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest(string item, bool enabled)
     {
-        public TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest() { }
-        
-        public TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest(string item, bool enabled)
-        {
-            Item = item;
-            IsEnabled = enabled;
-        }
-        
-        private PropertyValue<string> _item = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest), nameof(Item));
-        
-        [Required]
-        [JsonPropertyName("item")]
-        public string Item
-        {
-            get => _item.GetValue();
-            set => _item.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest), nameof(IsEnabled));
-        
-        [Required]
-        [JsonPropertyName("enabled")]
-        public bool IsEnabled
-        {
-            get => _enabled.GetValue();
-            set => _enabled.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _item.SetAccessPath(path, validateHasBeenSet);
-            _enabled.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Item = item;
+        IsEnabled = enabled;
     }
     
+    private PropertyValue<string> _item = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest), nameof(Item));
+    
+    [Required]
+    [JsonPropertyName("item")]
+    public string Item
+    {
+        get => _item.GetValue();
+        set => _item.SetValue(value);
+    }
+
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest), nameof(IsEnabled));
+    
+    [Required]
+    [JsonPropertyName("enabled")]
+    public bool IsEnabled
+    {
+        get => _enabled.GetValue();
+        set => _enabled.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _item.SetAccessPath(path, validateHasBeenSet);
+        _enabled.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

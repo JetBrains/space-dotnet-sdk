@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectAutomationJobsForJobIdStartPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectAutomationJobsForJobIdStartPostRequestPartialBuilder;
+
+public static class ProjectsForProjectAutomationJobsForJobIdStartPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectAutomationJobsForJobIdStartPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectAutomationJobsForJobIdStartPostRequest> WithBranch(this Partial<ProjectsForProjectAutomationJobsForJobIdStartPostRequest> it)
-            => it.AddFieldName("branch");
-        
-        public static Partial<ProjectsForProjectAutomationJobsForJobIdStartPostRequest> WithBranch(this Partial<ProjectsForProjectAutomationJobsForJobIdStartPostRequest> it, Func<Partial<Branch>, Partial<Branch>> partialBuilder)
-            => it.AddFieldName("branch", partialBuilder(new Partial<Branch>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectAutomationJobsForJobIdStartPostRequest> WithBranch(this Partial<ProjectsForProjectAutomationJobsForJobIdStartPostRequest> it)
+        => it.AddFieldName("branch");
+    
+    public static Partial<ProjectsForProjectAutomationJobsForJobIdStartPostRequest> WithBranch(this Partial<ProjectsForProjectAutomationJobsForJobIdStartPostRequest> it, Func<Partial<Branch>, Partial<Branch>> partialBuilder)
+        => it.AddFieldName("branch", partialBuilder(new Partial<Branch>(it)));
     
 }
+

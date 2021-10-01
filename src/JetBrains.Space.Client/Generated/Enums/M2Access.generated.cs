@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum M2Access
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum M2Access
-    {
-        [EnumMember(Value = "Private")]
-        Private,
-        
-        [EnumMember(Value = "Public")]
-        Public,
-        
-    }
+    [EnumMember(Value = "Private")]
+    Private,
+    
+    [EnumMember(Value = "Public")]
+    Public,
     
 }
+

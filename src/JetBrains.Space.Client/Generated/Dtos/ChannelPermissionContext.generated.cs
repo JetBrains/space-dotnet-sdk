@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ChannelPermissionContext
+     : PermissionContextApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ChannelPermissionContext
-         : PermissionContextApi, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ChannelPermissionContext";
+    
+    public ChannelPermissionContext() { }
+    
+    public ChannelPermissionContext(M2ChannelRecord channel)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ChannelPermissionContext";
-        
-        public ChannelPermissionContext() { }
-        
-        public ChannelPermissionContext(M2ChannelRecord channel)
-        {
-            Channel = channel;
-        }
-        
-        private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(ChannelPermissionContext), nameof(Channel));
-        
-        [Required]
-        [JsonPropertyName("channel")]
-        public M2ChannelRecord Channel
-        {
-            get => _channel.GetValue();
-            set => _channel.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _channel.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Channel = channel;
     }
     
+    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(ChannelPermissionContext), nameof(Channel));
+    
+    [Required]
+    [JsonPropertyName("channel")]
+    public M2ChannelRecord Channel
+    {
+        get => _channel.GetValue();
+        set => _channel.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _channel.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

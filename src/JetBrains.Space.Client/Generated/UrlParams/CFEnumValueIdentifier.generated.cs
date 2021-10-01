@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class CFEnumValueIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class CFEnumValueIdentifier : IUrlParameter
+    public static CFEnumValueIdentifier Id(string id)
+        => new CFEnumValueIdentifierId(id);
+    
+    public static CFEnumValueIdentifier Name(string name)
+        => new CFEnumValueIdentifierName(name);
+    
+    private class CFEnumValueIdentifierId : CFEnumValueIdentifier
     {
-        public static CFEnumValueIdentifier Id(string id)
-            => new CFEnumValueIdentifierId(id);
+        private readonly string _id;
         
-        public static CFEnumValueIdentifier Name(string name)
-            => new CFEnumValueIdentifierName(name);
-        
-        private class CFEnumValueIdentifierId : CFEnumValueIdentifier
+        public CFEnumValueIdentifierId(string id)
         {
-            private readonly string _id;
-            
-            public CFEnumValueIdentifierId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
-        private class CFEnumValueIdentifierName : CFEnumValueIdentifier
+        public override string ToString()
+            => $"id:{_id}";
+    }
+    
+    private class CFEnumValueIdentifierName : CFEnumValueIdentifier
+    {
+        private readonly string _name;
+        
+        public CFEnumValueIdentifierName(string name)
         {
-            private readonly string _name;
-            
-            public CFEnumValueIdentifierName(string name)
-            {
-                _name = name;
-            }
-            
-            public override string ToString()
-                => $"name:{_name}";
+            _name = name;
         }
         
+        public override string ToString()
+            => $"name:{_name}";
     }
     
 }
+

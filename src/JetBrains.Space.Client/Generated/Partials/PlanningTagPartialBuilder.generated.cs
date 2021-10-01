@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PlanningTagPartialBuilder
+namespace JetBrains.Space.Client.PlanningTagPartialBuilder;
+
+public static class PlanningTagPartialExtensions
 {
-    public static class PlanningTagPartialExtensions
-    {
-        public static Partial<PlanningTag> WithId(this Partial<PlanningTag> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<PlanningTag> WithIsArchived(this Partial<PlanningTag> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<PlanningTag> WithProjectId(this Partial<PlanningTag> it)
-            => it.AddFieldName("projectId");
-        
-        public static Partial<PlanningTag> WithParent(this Partial<PlanningTag> it)
-            => it.AddFieldName("parent");
-        
-        public static Partial<PlanningTag> WithParentRecursive(this Partial<PlanningTag> it)
-            => it.AddFieldName("parent!");
-        
-        public static Partial<PlanningTag> WithParent(this Partial<PlanningTag> it, Func<Partial<PlanningTag>, Partial<PlanningTag>> partialBuilder)
-            => it.AddFieldName("parent", partialBuilder(new Partial<PlanningTag>(it)));
-        
-        public static Partial<PlanningTag> WithName(this Partial<PlanningTag> it)
-            => it.AddFieldName("name");
-        
-    }
+    public static Partial<PlanningTag> WithId(this Partial<PlanningTag> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<PlanningTag> WithIsArchived(this Partial<PlanningTag> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<PlanningTag> WithProjectId(this Partial<PlanningTag> it)
+        => it.AddFieldName("projectId");
+    
+    public static Partial<PlanningTag> WithParent(this Partial<PlanningTag> it)
+        => it.AddFieldName("parent");
+    
+    public static Partial<PlanningTag> WithParentRecursive(this Partial<PlanningTag> it)
+        => it.AddFieldName("parent!");
+    
+    public static Partial<PlanningTag> WithParent(this Partial<PlanningTag> it, Func<Partial<PlanningTag>, Partial<PlanningTag>> partialBuilder)
+        => it.AddFieldName("parent", partialBuilder(new Partial<PlanningTag>(it)));
+    
+    public static Partial<PlanningTag> WithName(this Partial<PlanningTag> it)
+        => it.AddFieldName("name");
     
 }
+

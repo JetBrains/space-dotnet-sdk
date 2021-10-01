@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueAttachmentsChangedDetailsPartialBuilder
+namespace JetBrains.Space.Client.IssueAttachmentsChangedDetailsPartialBuilder;
+
+public static class IssueAttachmentsChangedDetailsPartialExtensions
 {
-    public static class IssueAttachmentsChangedDetailsPartialExtensions
-    {
-        public static Partial<IssueAttachmentsChangedDetails> WithAddedNames(this Partial<IssueAttachmentsChangedDetails> it)
-            => it.AddFieldName("addedNames");
-        
-        public static Partial<IssueAttachmentsChangedDetails> WithRemovedNames(this Partial<IssueAttachmentsChangedDetails> it)
-            => it.AddFieldName("removedNames");
-        
-    }
+    public static Partial<IssueAttachmentsChangedDetails> WithAddedNames(this Partial<IssueAttachmentsChangedDetails> it)
+        => it.AddFieldName("addedNames");
+    
+    public static Partial<IssueAttachmentsChangedDetails> WithRemovedNames(this Partial<IssueAttachmentsChangedDetails> it)
+        => it.AddFieldName("removedNames");
     
 }
+

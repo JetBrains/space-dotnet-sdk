@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EndpointAuthCreateBearerPartialBuilder
+namespace JetBrains.Space.Client.EndpointAuthCreateBearerPartialBuilder;
+
+public static class EndpointAuthCreateBearerPartialExtensions
 {
-    public static class EndpointAuthCreateBearerPartialExtensions
-    {
-        public static Partial<EndpointAuthCreateBearer> WithToken(this Partial<EndpointAuthCreateBearer> it)
-            => it.AddFieldName("token");
-        
-    }
+    public static Partial<EndpointAuthCreateBearer> WithToken(this Partial<EndpointAuthCreateBearer> it)
+        => it.AddFieldName("token");
     
 }
+

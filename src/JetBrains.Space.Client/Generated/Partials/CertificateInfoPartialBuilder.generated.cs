@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CertificateInfoPartialBuilder
+namespace JetBrains.Space.Client.CertificateInfoPartialBuilder;
+
+public static class CertificateInfoPartialExtensions
 {
-    public static class CertificateInfoPartialExtensions
-    {
-        public static Partial<CertificateInfo> WithCertificateType(this Partial<CertificateInfo> it)
-            => it.AddFieldName("certificateType");
-        
-        public static Partial<CertificateInfo> WithVersion(this Partial<CertificateInfo> it)
-            => it.AddFieldName("version");
-        
-        public static Partial<CertificateInfo> WithSerialNumber(this Partial<CertificateInfo> it)
-            => it.AddFieldName("serialNumber");
-        
-        public static Partial<CertificateInfo> WithIssuedBy(this Partial<CertificateInfo> it)
-            => it.AddFieldName("issuedBy");
-        
-        public static Partial<CertificateInfo> WithIssuedTo(this Partial<CertificateInfo> it)
-            => it.AddFieldName("issuedTo");
-        
-        public static Partial<CertificateInfo> WithValidFrom(this Partial<CertificateInfo> it)
-            => it.AddFieldName("validFrom");
-        
-        public static Partial<CertificateInfo> WithValidTo(this Partial<CertificateInfo> it)
-            => it.AddFieldName("validTo");
-        
-        public static Partial<CertificateInfo> WithAlgorithm(this Partial<CertificateInfo> it)
-            => it.AddFieldName("algorithm");
-        
-        public static Partial<CertificateInfo> WithFingerprint(this Partial<CertificateInfo> it)
-            => it.AddFieldName("fingerprint");
-        
-        public static Partial<CertificateInfo> WithFingerprint(this Partial<CertificateInfo> it, Func<Partial<Fingerprint>, Partial<Fingerprint>> partialBuilder)
-            => it.AddFieldName("fingerprint", partialBuilder(new Partial<Fingerprint>(it)));
-        
-    }
+    public static Partial<CertificateInfo> WithCertificateType(this Partial<CertificateInfo> it)
+        => it.AddFieldName("certificateType");
+    
+    public static Partial<CertificateInfo> WithVersion(this Partial<CertificateInfo> it)
+        => it.AddFieldName("version");
+    
+    public static Partial<CertificateInfo> WithSerialNumber(this Partial<CertificateInfo> it)
+        => it.AddFieldName("serialNumber");
+    
+    public static Partial<CertificateInfo> WithIssuedBy(this Partial<CertificateInfo> it)
+        => it.AddFieldName("issuedBy");
+    
+    public static Partial<CertificateInfo> WithIssuedTo(this Partial<CertificateInfo> it)
+        => it.AddFieldName("issuedTo");
+    
+    public static Partial<CertificateInfo> WithValidFrom(this Partial<CertificateInfo> it)
+        => it.AddFieldName("validFrom");
+    
+    public static Partial<CertificateInfo> WithValidTo(this Partial<CertificateInfo> it)
+        => it.AddFieldName("validTo");
+    
+    public static Partial<CertificateInfo> WithAlgorithm(this Partial<CertificateInfo> it)
+        => it.AddFieldName("algorithm");
+    
+    public static Partial<CertificateInfo> WithFingerprint(this Partial<CertificateInfo> it)
+        => it.AddFieldName("fingerprint");
+    
+    public static Partial<CertificateInfo> WithFingerprint(this Partial<CertificateInfo> it, Func<Partial<Fingerprint>, Partial<Fingerprint>> partialBuilder)
+        => it.AddFieldName("fingerprint", partialBuilder(new Partial<Fingerprint>(it)));
     
 }
+

@@ -27,75 +27,74 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class MessageRecipient : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class MessageRecipient : IUrlParameter
+    public static MessageRecipient Channel(ChatChannel channel)
+        => new MessageRecipientChannel(channel);
+    
+    public static MessageRecipient CodeReview(string codeReview)
+        => new MessageRecipientCodeReview(codeReview);
+    
+    public static MessageRecipient Issue(string issue)
+        => new MessageRecipientIssue(issue);
+    
+    public static MessageRecipient Member(ProfileIdentifier member)
+        => new MessageRecipientMember(member);
+    
+    private class MessageRecipientChannel : MessageRecipient
     {
-        public static MessageRecipient Channel(ChatChannel channel)
-            => new MessageRecipientChannel(channel);
+        private readonly ChatChannel _channel;
         
-        public static MessageRecipient CodeReview(string codeReview)
-            => new MessageRecipientCodeReview(codeReview);
-        
-        public static MessageRecipient Issue(string issue)
-            => new MessageRecipientIssue(issue);
-        
-        public static MessageRecipient Member(ProfileIdentifier member)
-            => new MessageRecipientMember(member);
-        
-        private class MessageRecipientChannel : MessageRecipient
+        public MessageRecipientChannel(ChatChannel channel)
         {
-            private readonly ChatChannel _channel;
-            
-            public MessageRecipientChannel(ChatChannel channel)
-            {
-                _channel = channel;
-            }
-            
-            public override string ToString()
-                => $"channel:{_channel}";
+            _channel = channel;
         }
         
-        private class MessageRecipientCodeReview : MessageRecipient
+        public override string ToString()
+            => $"channel:{_channel}";
+    }
+    
+    private class MessageRecipientCodeReview : MessageRecipient
+    {
+        private readonly string _codeReview;
+        
+        public MessageRecipientCodeReview(string codeReview)
         {
-            private readonly string _codeReview;
-            
-            public MessageRecipientCodeReview(string codeReview)
-            {
-                _codeReview = codeReview;
-            }
-            
-            public override string ToString()
-                => $"codeReview:{_codeReview}";
+            _codeReview = codeReview;
         }
         
-        private class MessageRecipientIssue : MessageRecipient
+        public override string ToString()
+            => $"codeReview:{_codeReview}";
+    }
+    
+    private class MessageRecipientIssue : MessageRecipient
+    {
+        private readonly string _issue;
+        
+        public MessageRecipientIssue(string issue)
         {
-            private readonly string _issue;
-            
-            public MessageRecipientIssue(string issue)
-            {
-                _issue = issue;
-            }
-            
-            public override string ToString()
-                => $"issue:{_issue}";
+            _issue = issue;
         }
         
-        private class MessageRecipientMember : MessageRecipient
+        public override string ToString()
+            => $"issue:{_issue}";
+    }
+    
+    private class MessageRecipientMember : MessageRecipient
+    {
+        private readonly ProfileIdentifier _member;
+        
+        public MessageRecipientMember(ProfileIdentifier member)
         {
-            private readonly ProfileIdentifier _member;
-            
-            public MessageRecipientMember(ProfileIdentifier member)
-            {
-                _member = member;
-            }
-            
-            public override string ToString()
-                => $"member:{_member}";
+            _member = member;
         }
         
+        public override string ToString()
+            => $"member:{_member}";
     }
     
 }
+

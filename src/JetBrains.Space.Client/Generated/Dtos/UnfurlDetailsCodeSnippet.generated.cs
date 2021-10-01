@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsCodeSnippet
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsCodeSnippet
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsCodeSnippet";
+    
+    public UnfurlDetailsCodeSnippet() { }
+    
+    public UnfurlDetailsCodeSnippet(CodeSnippetAnchor anchor, List<CodeLine> lines)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsCodeSnippet";
-        
-        public UnfurlDetailsCodeSnippet() { }
-        
-        public UnfurlDetailsCodeSnippet(CodeSnippetAnchor anchor, List<CodeLine> lines)
-        {
-            Anchor = anchor;
-            Lines = lines;
-        }
-        
-        private PropertyValue<CodeSnippetAnchor> _anchor = new PropertyValue<CodeSnippetAnchor>(nameof(UnfurlDetailsCodeSnippet), nameof(Anchor));
-        
-        [Required]
-        [JsonPropertyName("anchor")]
-        public CodeSnippetAnchor Anchor
-        {
-            get => _anchor.GetValue();
-            set => _anchor.SetValue(value);
-        }
-    
-        private PropertyValue<List<CodeLine>> _lines = new PropertyValue<List<CodeLine>>(nameof(UnfurlDetailsCodeSnippet), nameof(Lines), new List<CodeLine>());
-        
-        [Required]
-        [JsonPropertyName("lines")]
-        public List<CodeLine> Lines
-        {
-            get => _lines.GetValue();
-            set => _lines.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _anchor.SetAccessPath(path, validateHasBeenSet);
-            _lines.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Anchor = anchor;
+        Lines = lines;
     }
     
+    private PropertyValue<CodeSnippetAnchor> _anchor = new PropertyValue<CodeSnippetAnchor>(nameof(UnfurlDetailsCodeSnippet), nameof(Anchor));
+    
+    [Required]
+    [JsonPropertyName("anchor")]
+    public CodeSnippetAnchor Anchor
+    {
+        get => _anchor.GetValue();
+        set => _anchor.SetValue(value);
+    }
+
+    private PropertyValue<List<CodeLine>> _lines = new PropertyValue<List<CodeLine>>(nameof(UnfurlDetailsCodeSnippet), nameof(Lines), new List<CodeLine>());
+    
+    [Required]
+    [JsonPropertyName("lines")]
+    public List<CodeLine> Lines
+    {
+        get => _lines.GetValue();
+        set => _lines.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _anchor.SetAccessPath(path, validateHasBeenSet);
+        _lines.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

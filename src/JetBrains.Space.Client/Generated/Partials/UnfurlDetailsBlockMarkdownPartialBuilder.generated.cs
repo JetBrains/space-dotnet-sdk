@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsBlockMarkdownPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsBlockMarkdownPartialBuilder;
+
+public static class UnfurlDetailsBlockMarkdownPartialExtensions
 {
-    public static class UnfurlDetailsBlockMarkdownPartialExtensions
-    {
-        public static Partial<UnfurlDetailsBlockMarkdown> WithIcon(this Partial<UnfurlDetailsBlockMarkdown> it)
-            => it.AddFieldName("icon");
-        
-        public static Partial<UnfurlDetailsBlockMarkdown> WithTitle(this Partial<UnfurlDetailsBlockMarkdown> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<UnfurlDetailsBlockMarkdown> WithMarkdown(this Partial<UnfurlDetailsBlockMarkdown> it)
-            => it.AddFieldName("markdown");
-        
-    }
+    public static Partial<UnfurlDetailsBlockMarkdown> WithIcon(this Partial<UnfurlDetailsBlockMarkdown> it)
+        => it.AddFieldName("icon");
+    
+    public static Partial<UnfurlDetailsBlockMarkdown> WithTitle(this Partial<UnfurlDetailsBlockMarkdown> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<UnfurlDetailsBlockMarkdown> WithMarkdown(this Partial<UnfurlDetailsBlockMarkdown> it)
+        => it.AddFieldName("markdown");
     
 }
+

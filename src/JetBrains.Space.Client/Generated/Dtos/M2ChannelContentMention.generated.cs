@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2ChannelContentMention
+     : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2ChannelContentMention
-         : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2ChannelContentMention";
+    
+    public M2ChannelContentMention() { }
+    
+    public M2ChannelContentMention(ChannelItemRecord record, M2ChannelRecord parent)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2ChannelContentMention";
-        
-        public M2ChannelContentMention() { }
-        
-        public M2ChannelContentMention(ChannelItemRecord record, M2ChannelRecord parent)
-        {
-            Record = record;
-            Parent = parent;
-        }
-        
-        private PropertyValue<ChannelItemRecord> _record = new PropertyValue<ChannelItemRecord>(nameof(M2ChannelContentMention), nameof(Record));
-        
-        [Required]
-        [JsonPropertyName("record")]
-        public ChannelItemRecord Record
-        {
-            get => _record.GetValue();
-            set => _record.SetValue(value);
-        }
-    
-        private PropertyValue<M2ChannelRecord> _parent = new PropertyValue<M2ChannelRecord>(nameof(M2ChannelContentMention), nameof(Parent));
-        
-        [Required]
-        [JsonPropertyName("parent")]
-        public M2ChannelRecord Parent
-        {
-            get => _parent.GetValue();
-            set => _parent.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _record.SetAccessPath(path, validateHasBeenSet);
-            _parent.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Record = record;
+        Parent = parent;
     }
     
+    private PropertyValue<ChannelItemRecord> _record = new PropertyValue<ChannelItemRecord>(nameof(M2ChannelContentMention), nameof(Record));
+    
+    [Required]
+    [JsonPropertyName("record")]
+    public ChannelItemRecord Record
+    {
+        get => _record.GetValue();
+        set => _record.SetValue(value);
+    }
+
+    private PropertyValue<M2ChannelRecord> _parent = new PropertyValue<M2ChannelRecord>(nameof(M2ChannelContentMention), nameof(Parent));
+    
+    [Required]
+    [JsonPropertyName("parent")]
+    public M2ChannelRecord Parent
+    {
+        get => _parent.GetValue();
+        set => _parent.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _record.SetAccessPath(path, validateHasBeenSet);
+        _parent.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

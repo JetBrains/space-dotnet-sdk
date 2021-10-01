@@ -27,64 +27,63 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AppMessageDeliveryPartialBuilder
+namespace JetBrains.Space.Client.AppMessageDeliveryPartialBuilder;
+
+public static class AppMessageDeliveryPartialExtensions
 {
-    public static class AppMessageDeliveryPartialExtensions
-    {
-        public static Partial<AppMessageDelivery> WithId(this Partial<AppMessageDelivery> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<AppMessageDelivery> WithMessageType(this Partial<AppMessageDelivery> it)
-            => it.AddFieldName("messageType");
-        
-        public static Partial<AppMessageDelivery> WithMessageType(this Partial<AppMessageDelivery> it, Func<Partial<AppMessageDeliveryType>, Partial<AppMessageDeliveryType>> partialBuilder)
-            => it.AddFieldName("messageType", partialBuilder(new Partial<AppMessageDeliveryType>(it)));
-        
-        public static Partial<AppMessageDelivery> WithWebhook(this Partial<AppMessageDelivery> it)
-            => it.AddFieldName("webhook");
-        
-        public static Partial<AppMessageDelivery> WithWebhook(this Partial<AppMessageDelivery> it, Func<Partial<WebhookRecord>, Partial<WebhookRecord>> partialBuilder)
-            => it.AddFieldName("webhook", partialBuilder(new Partial<WebhookRecord>(it)));
-        
-        public static Partial<AppMessageDelivery> WithDeliveryId(this Partial<AppMessageDelivery> it)
-            => it.AddFieldName("deliveryId");
-        
-        public static Partial<AppMessageDelivery> WithIsSuccessful(this Partial<AppMessageDelivery> it)
-            => it.AddFieldName("successful");
-        
-        public static Partial<AppMessageDelivery> WithSentAt(this Partial<AppMessageDelivery> it)
-            => it.AddFieldName("sentAt");
-        
-        public static Partial<AppMessageDelivery> WithDuration(this Partial<AppMessageDelivery> it)
-            => it.AddFieldName("duration");
-        
-        public static Partial<AppMessageDelivery> WithMethod(this Partial<AppMessageDelivery> it)
-            => it.AddFieldName("method");
-        
-        public static Partial<AppMessageDelivery> WithUrl(this Partial<AppMessageDelivery> it)
-            => it.AddFieldName("url");
-        
-        public static Partial<AppMessageDelivery> WithRequestHeaders(this Partial<AppMessageDelivery> it)
-            => it.AddFieldName("requestHeaders");
-        
-        public static Partial<AppMessageDelivery> WithRequestHeaders(this Partial<AppMessageDelivery> it, Func<Partial<HttpHeader>, Partial<HttpHeader>> partialBuilder)
-            => it.AddFieldName("requestHeaders", partialBuilder(new Partial<HttpHeader>(it)));
-        
-        public static Partial<AppMessageDelivery> WithRequestBody(this Partial<AppMessageDelivery> it)
-            => it.AddFieldName("requestBody");
-        
-        public static Partial<AppMessageDelivery> WithResponseStatusCode(this Partial<AppMessageDelivery> it)
-            => it.AddFieldName("responseStatusCode");
-        
-        public static Partial<AppMessageDelivery> WithResponseHeaders(this Partial<AppMessageDelivery> it)
-            => it.AddFieldName("responseHeaders");
-        
-        public static Partial<AppMessageDelivery> WithResponseHeaders(this Partial<AppMessageDelivery> it, Func<Partial<HttpHeader>, Partial<HttpHeader>> partialBuilder)
-            => it.AddFieldName("responseHeaders", partialBuilder(new Partial<HttpHeader>(it)));
-        
-        public static Partial<AppMessageDelivery> WithResponseBody(this Partial<AppMessageDelivery> it)
-            => it.AddFieldName("responseBody");
-        
-    }
+    public static Partial<AppMessageDelivery> WithId(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<AppMessageDelivery> WithMessageType(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("messageType");
+    
+    public static Partial<AppMessageDelivery> WithMessageType(this Partial<AppMessageDelivery> it, Func<Partial<AppMessageDeliveryType>, Partial<AppMessageDeliveryType>> partialBuilder)
+        => it.AddFieldName("messageType", partialBuilder(new Partial<AppMessageDeliveryType>(it)));
+    
+    public static Partial<AppMessageDelivery> WithWebhook(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("webhook");
+    
+    public static Partial<AppMessageDelivery> WithWebhook(this Partial<AppMessageDelivery> it, Func<Partial<WebhookRecord>, Partial<WebhookRecord>> partialBuilder)
+        => it.AddFieldName("webhook", partialBuilder(new Partial<WebhookRecord>(it)));
+    
+    public static Partial<AppMessageDelivery> WithDeliveryId(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("deliveryId");
+    
+    public static Partial<AppMessageDelivery> WithIsSuccessful(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("successful");
+    
+    public static Partial<AppMessageDelivery> WithSentAt(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("sentAt");
+    
+    public static Partial<AppMessageDelivery> WithDuration(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("duration");
+    
+    public static Partial<AppMessageDelivery> WithMethod(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("method");
+    
+    public static Partial<AppMessageDelivery> WithUrl(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("url");
+    
+    public static Partial<AppMessageDelivery> WithRequestHeaders(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("requestHeaders");
+    
+    public static Partial<AppMessageDelivery> WithRequestHeaders(this Partial<AppMessageDelivery> it, Func<Partial<HttpHeader>, Partial<HttpHeader>> partialBuilder)
+        => it.AddFieldName("requestHeaders", partialBuilder(new Partial<HttpHeader>(it)));
+    
+    public static Partial<AppMessageDelivery> WithRequestBody(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("requestBody");
+    
+    public static Partial<AppMessageDelivery> WithResponseStatusCode(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("responseStatusCode");
+    
+    public static Partial<AppMessageDelivery> WithResponseHeaders(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("responseHeaders");
+    
+    public static Partial<AppMessageDelivery> WithResponseHeaders(this Partial<AppMessageDelivery> it, Func<Partial<HttpHeader>, Partial<HttpHeader>> partialBuilder)
+        => it.AddFieldName("responseHeaders", partialBuilder(new Partial<HttpHeader>(it)));
+    
+    public static Partial<AppMessageDelivery> WithResponseBody(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("responseBody");
     
 }
+

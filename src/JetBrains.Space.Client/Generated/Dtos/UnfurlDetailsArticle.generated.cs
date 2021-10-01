@@ -27,69 +27,68 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsArticle
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsArticle
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsArticle";
+    
+    public UnfurlDetailsArticle() { }
+    
+    public UnfurlDetailsArticle(ArticleRecord article, ArticleContentRecord? content = null, ArticleChannelRecord? channel = null, ArticleDetailsRecord? details = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsArticle";
-        
-        public UnfurlDetailsArticle() { }
-        
-        public UnfurlDetailsArticle(ArticleRecord article, ArticleContentRecord? content = null, ArticleChannelRecord? channel = null, ArticleDetailsRecord? details = null)
-        {
-            Article = article;
-            Content = content;
-            Channel = channel;
-            Details = details;
-        }
-        
-        private PropertyValue<ArticleRecord> _article = new PropertyValue<ArticleRecord>(nameof(UnfurlDetailsArticle), nameof(Article));
-        
-        [Required]
-        [JsonPropertyName("article")]
-        public ArticleRecord Article
-        {
-            get => _article.GetValue();
-            set => _article.SetValue(value);
-        }
-    
-        private PropertyValue<ArticleContentRecord?> _content = new PropertyValue<ArticleContentRecord?>(nameof(UnfurlDetailsArticle), nameof(Content));
-        
-        [JsonPropertyName("content")]
-        public ArticleContentRecord? Content
-        {
-            get => _content.GetValue();
-            set => _content.SetValue(value);
-        }
-    
-        private PropertyValue<ArticleChannelRecord?> _channel = new PropertyValue<ArticleChannelRecord?>(nameof(UnfurlDetailsArticle), nameof(Channel));
-        
-        [JsonPropertyName("channel")]
-        public ArticleChannelRecord? Channel
-        {
-            get => _channel.GetValue();
-            set => _channel.SetValue(value);
-        }
-    
-        private PropertyValue<ArticleDetailsRecord?> _details = new PropertyValue<ArticleDetailsRecord?>(nameof(UnfurlDetailsArticle), nameof(Details));
-        
-        [JsonPropertyName("details")]
-        public ArticleDetailsRecord? Details
-        {
-            get => _details.GetValue();
-            set => _details.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _article.SetAccessPath(path, validateHasBeenSet);
-            _content.SetAccessPath(path, validateHasBeenSet);
-            _channel.SetAccessPath(path, validateHasBeenSet);
-            _details.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Article = article;
+        Content = content;
+        Channel = channel;
+        Details = details;
     }
     
+    private PropertyValue<ArticleRecord> _article = new PropertyValue<ArticleRecord>(nameof(UnfurlDetailsArticle), nameof(Article));
+    
+    [Required]
+    [JsonPropertyName("article")]
+    public ArticleRecord Article
+    {
+        get => _article.GetValue();
+        set => _article.SetValue(value);
+    }
+
+    private PropertyValue<ArticleContentRecord?> _content = new PropertyValue<ArticleContentRecord?>(nameof(UnfurlDetailsArticle), nameof(Content));
+    
+    [JsonPropertyName("content")]
+    public ArticleContentRecord? Content
+    {
+        get => _content.GetValue();
+        set => _content.SetValue(value);
+    }
+
+    private PropertyValue<ArticleChannelRecord?> _channel = new PropertyValue<ArticleChannelRecord?>(nameof(UnfurlDetailsArticle), nameof(Channel));
+    
+    [JsonPropertyName("channel")]
+    public ArticleChannelRecord? Channel
+    {
+        get => _channel.GetValue();
+        set => _channel.SetValue(value);
+    }
+
+    private PropertyValue<ArticleDetailsRecord?> _details = new PropertyValue<ArticleDetailsRecord?>(nameof(UnfurlDetailsArticle), nameof(Details));
+    
+    [JsonPropertyName("details")]
+    public ArticleDetailsRecord? Details
+    {
+        get => _details.GetValue();
+        set => _details.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _article.SetAccessPath(path, validateHasBeenSet);
+        _content.SetAccessPath(path, validateHasBeenSet);
+        _channel.SetAccessPath(path, validateHasBeenSet);
+        _details.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

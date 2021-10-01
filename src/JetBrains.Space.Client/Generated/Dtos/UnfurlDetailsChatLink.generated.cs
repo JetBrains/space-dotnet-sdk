@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsChatLink
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsChatLink
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsChatLink";
+    
+    public UnfurlDetailsChatLink() { }
+    
+    public UnfurlDetailsChatLink(string contactKey, string title)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsChatLink";
-        
-        public UnfurlDetailsChatLink() { }
-        
-        public UnfurlDetailsChatLink(string contactKey, string title)
-        {
-            ContactKey = contactKey;
-            Title = title;
-        }
-        
-        private PropertyValue<string> _contactKey = new PropertyValue<string>(nameof(UnfurlDetailsChatLink), nameof(ContactKey));
-        
-        [Required]
-        [JsonPropertyName("contactKey")]
-        public string ContactKey
-        {
-            get => _contactKey.GetValue();
-            set => _contactKey.SetValue(value);
-        }
-    
-        private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsChatLink), nameof(Title));
-        
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title
-        {
-            get => _title.GetValue();
-            set => _title.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _contactKey.SetAccessPath(path, validateHasBeenSet);
-            _title.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ContactKey = contactKey;
+        Title = title;
     }
     
+    private PropertyValue<string> _contactKey = new PropertyValue<string>(nameof(UnfurlDetailsChatLink), nameof(ContactKey));
+    
+    [Required]
+    [JsonPropertyName("contactKey")]
+    public string ContactKey
+    {
+        get => _contactKey.GetValue();
+        set => _contactKey.SetValue(value);
+    }
+
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsChatLink), nameof(Title));
+    
+    [Required]
+    [JsonPropertyName("title")]
+    public string Title
+    {
+        get => _title.GetValue();
+        set => _title.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _contactKey.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

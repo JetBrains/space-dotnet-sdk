@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RightsWithHierarchyPartialBuilder
+namespace JetBrains.Space.Client.RightsWithHierarchyPartialBuilder;
+
+public static class RightsWithHierarchyPartialExtensions
 {
-    public static class RightsWithHierarchyPartialExtensions
-    {
-        public static Partial<RightsWithHierarchy> WithRights(this Partial<RightsWithHierarchy> it)
-            => it.AddFieldName("rights");
-        
-        public static Partial<RightsWithHierarchy> WithRights(this Partial<RightsWithHierarchy> it, Func<Partial<RightTypeRight>, Partial<RightTypeRight>> partialBuilder)
-            => it.AddFieldName("rights", partialBuilder(new Partial<RightTypeRight>(it)));
-        
-        public static Partial<RightsWithHierarchy> WithRightsGroups(this Partial<RightsWithHierarchy> it)
-            => it.AddFieldName("rightsGroups");
-        
-        public static Partial<RightsWithHierarchy> WithRightsGroups(this Partial<RightsWithHierarchy> it, Func<Partial<RightsGroup>, Partial<RightsGroup>> partialBuilder)
-            => it.AddFieldName("rightsGroups", partialBuilder(new Partial<RightsGroup>(it)));
-        
-        public static Partial<RightsWithHierarchy> WithDeps(this Partial<RightsWithHierarchy> it)
-            => it.AddFieldName("deps");
-        
-        public static Partial<RightsWithHierarchy> WithDeps(this Partial<RightsWithHierarchy> it, Func<Partial<RightsDeps>, Partial<RightsDeps>> partialBuilder)
-            => it.AddFieldName("deps", partialBuilder(new Partial<RightsDeps>(it)));
-        
-    }
+    public static Partial<RightsWithHierarchy> WithRights(this Partial<RightsWithHierarchy> it)
+        => it.AddFieldName("rights");
+    
+    public static Partial<RightsWithHierarchy> WithRights(this Partial<RightsWithHierarchy> it, Func<Partial<RightTypeRight>, Partial<RightTypeRight>> partialBuilder)
+        => it.AddFieldName("rights", partialBuilder(new Partial<RightTypeRight>(it)));
+    
+    public static Partial<RightsWithHierarchy> WithRightsGroups(this Partial<RightsWithHierarchy> it)
+        => it.AddFieldName("rightsGroups");
+    
+    public static Partial<RightsWithHierarchy> WithRightsGroups(this Partial<RightsWithHierarchy> it, Func<Partial<RightsGroup>, Partial<RightsGroup>> partialBuilder)
+        => it.AddFieldName("rightsGroups", partialBuilder(new Partial<RightsGroup>(it)));
+    
+    public static Partial<RightsWithHierarchy> WithDeps(this Partial<RightsWithHierarchy> it)
+        => it.AddFieldName("deps");
+    
+    public static Partial<RightsWithHierarchy> WithDeps(this Partial<RightsWithHierarchy> it, Func<Partial<RightsDeps>, Partial<RightsDeps>> partialBuilder)
+        => it.AddFieldName("deps", partialBuilder(new Partial<RightsDeps>(it)));
     
 }
+

@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2AbsenceItemApprovedContentPartialBuilder
+namespace JetBrains.Space.Client.M2AbsenceItemApprovedContentPartialBuilder;
+
+public static class M2AbsenceItemApprovedContentPartialExtensions
 {
-    public static class M2AbsenceItemApprovedContentPartialExtensions
-    {
-        public static Partial<M2AbsenceItemApprovedContent> WithAbsence(this Partial<M2AbsenceItemApprovedContent> it)
-            => it.AddFieldName("absence");
-        
-        public static Partial<M2AbsenceItemApprovedContent> WithAbsence(this Partial<M2AbsenceItemApprovedContent> it, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>> partialBuilder)
-            => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecord>(it)));
-        
-        public static Partial<M2AbsenceItemApprovedContent> WithBy(this Partial<M2AbsenceItemApprovedContent> it)
-            => it.AddFieldName("by");
-        
-        public static Partial<M2AbsenceItemApprovedContent> WithBy(this Partial<M2AbsenceItemApprovedContent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<M2AbsenceItemApprovedContent> WithIsApprove(this Partial<M2AbsenceItemApprovedContent> it)
-            => it.AddFieldName("approve");
-        
-    }
+    public static Partial<M2AbsenceItemApprovedContent> WithAbsence(this Partial<M2AbsenceItemApprovedContent> it)
+        => it.AddFieldName("absence");
+    
+    public static Partial<M2AbsenceItemApprovedContent> WithAbsence(this Partial<M2AbsenceItemApprovedContent> it, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>> partialBuilder)
+        => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecord>(it)));
+    
+    public static Partial<M2AbsenceItemApprovedContent> WithBy(this Partial<M2AbsenceItemApprovedContent> it)
+        => it.AddFieldName("by");
+    
+    public static Partial<M2AbsenceItemApprovedContent> WithBy(this Partial<M2AbsenceItemApprovedContent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<M2AbsenceItemApprovedContent> WithIsApprove(this Partial<M2AbsenceItemApprovedContent> it)
+        => it.AddFieldName("approve");
     
 }
+

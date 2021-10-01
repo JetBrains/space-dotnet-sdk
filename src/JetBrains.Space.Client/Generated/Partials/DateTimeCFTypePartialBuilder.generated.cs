@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DateTimeCFTypePartialBuilder
+namespace JetBrains.Space.Client.DateTimeCFTypePartialBuilder;
+
+public static class DateTimeCFTypePartialExtensions
 {
-    public static class DateTimeCFTypePartialExtensions
-    {
-    }
-    
 }
+

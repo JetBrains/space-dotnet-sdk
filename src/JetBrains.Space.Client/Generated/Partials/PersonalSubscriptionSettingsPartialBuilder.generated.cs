@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PersonalSubscriptionSettingsPartialBuilder
+namespace JetBrains.Space.Client.PersonalSubscriptionSettingsPartialBuilder;
+
+public static class PersonalSubscriptionSettingsPartialExtensions
 {
-    public static class PersonalSubscriptionSettingsPartialExtensions
-    {
-        public static Partial<PersonalSubscriptionSettings> WithFeed(this Partial<PersonalSubscriptionSettings> it)
-            => it.AddFieldName("feed");
-        
-        public static Partial<PersonalSubscriptionSettings> WithFeed(this Partial<PersonalSubscriptionSettings> it, Func<Partial<PrivateFeed>, Partial<PrivateFeed>> partialBuilder)
-            => it.AddFieldName("feed", partialBuilder(new Partial<PrivateFeed>(it)));
-        
-        public static Partial<PersonalSubscriptionSettings> WithSubjectSettings(this Partial<PersonalSubscriptionSettings> it)
-            => it.AddFieldName("subjectSettings");
-        
-        public static Partial<PersonalSubscriptionSettings> WithSubjectSettings(this Partial<PersonalSubscriptionSettings> it, Func<Partial<PersonalSubscriptionSubjectSettings>, Partial<PersonalSubscriptionSubjectSettings>> partialBuilder)
-            => it.AddFieldName("subjectSettings", partialBuilder(new Partial<PersonalSubscriptionSubjectSettings>(it)));
-        
-        public static Partial<PersonalSubscriptionSettings> WithEnabledCodes(this Partial<PersonalSubscriptionSettings> it)
-            => it.AddFieldName("enabledCodes");
-        
-    }
+    public static Partial<PersonalSubscriptionSettings> WithFeed(this Partial<PersonalSubscriptionSettings> it)
+        => it.AddFieldName("feed");
+    
+    public static Partial<PersonalSubscriptionSettings> WithFeed(this Partial<PersonalSubscriptionSettings> it, Func<Partial<PrivateFeed>, Partial<PrivateFeed>> partialBuilder)
+        => it.AddFieldName("feed", partialBuilder(new Partial<PrivateFeed>(it)));
+    
+    public static Partial<PersonalSubscriptionSettings> WithSubjectSettings(this Partial<PersonalSubscriptionSettings> it)
+        => it.AddFieldName("subjectSettings");
+    
+    public static Partial<PersonalSubscriptionSettings> WithSubjectSettings(this Partial<PersonalSubscriptionSettings> it, Func<Partial<PersonalSubscriptionSubjectSettings>, Partial<PersonalSubscriptionSubjectSettings>> partialBuilder)
+        => it.AddFieldName("subjectSettings", partialBuilder(new Partial<PersonalSubscriptionSubjectSettings>(it)));
+    
+    public static Partial<PersonalSubscriptionSettings> WithEnabledCodes(this Partial<PersonalSubscriptionSettings> it)
+        => it.AddFieldName("enabledCodes");
     
 }
+

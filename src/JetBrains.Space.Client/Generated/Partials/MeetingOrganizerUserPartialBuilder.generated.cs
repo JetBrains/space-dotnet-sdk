@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingOrganizerUserPartialBuilder
+namespace JetBrains.Space.Client.MeetingOrganizerUserPartialBuilder;
+
+public static class MeetingOrganizerUserPartialExtensions
 {
-    public static class MeetingOrganizerUserPartialExtensions
-    {
-        public static Partial<MeetingOrganizerUser> WithProfileRef(this Partial<MeetingOrganizerUser> it)
-            => it.AddFieldName("profileRef");
-        
-        public static Partial<MeetingOrganizerUser> WithProfileRef(this Partial<MeetingOrganizerUser> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profileRef", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<MeetingOrganizerUser> WithProfileRef(this Partial<MeetingOrganizerUser> it)
+        => it.AddFieldName("profileRef");
+    
+    public static Partial<MeetingOrganizerUser> WithProfileRef(this Partial<MeetingOrganizerUser> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profileRef", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

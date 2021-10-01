@@ -27,26 +27,25 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum CodeReviewStateFilter
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum CodeReviewStateFilter
-    {
-        [EnumMember(Value = "Opened")]
-        Opened,
-        
-        [EnumMember(Value = "Closed")]
-        Closed,
-        
-        [EnumMember(Value = "RequiresAuthorAttention")]
-        RequiresAuthorAttention,
-        
-        [EnumMember(Value = "NeedsReview")]
-        NeedsReview,
-        
-        [EnumMember(Value = "Merged")]
-        Merged,
-        
-    }
+    [EnumMember(Value = "Opened")]
+    Opened,
+    
+    [EnumMember(Value = "Closed")]
+    Closed,
+    
+    [EnumMember(Value = "RequiresAuthorAttention")]
+    RequiresAuthorAttention,
+    
+    [EnumMember(Value = "NeedsReview")]
+    NeedsReview,
+    
+    [EnumMember(Value = "Merged")]
+    Merged,
     
 }
+

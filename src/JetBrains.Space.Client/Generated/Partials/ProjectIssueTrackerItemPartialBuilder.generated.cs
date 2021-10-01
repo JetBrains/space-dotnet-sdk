@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectIssueTrackerItemPartialBuilder
+namespace JetBrains.Space.Client.ProjectIssueTrackerItemPartialBuilder;
+
+public static class ProjectIssueTrackerItemPartialExtensions
 {
-    public static class ProjectIssueTrackerItemPartialExtensions
-    {
-        public static Partial<ProjectIssueTrackerItem> WithKey(this Partial<ProjectIssueTrackerItem> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<ProjectIssueTrackerItem> WithTracker(this Partial<ProjectIssueTrackerItem> it)
-            => it.AddFieldName("tracker");
-        
-        public static Partial<ProjectIssueTrackerItem> WithTracker(this Partial<ProjectIssueTrackerItem> it, Func<Partial<IssueTracker>, Partial<IssueTracker>> partialBuilder)
-            => it.AddFieldName("tracker", partialBuilder(new Partial<IssueTracker>(it)));
-        
-    }
+    public static Partial<ProjectIssueTrackerItem> WithKey(this Partial<ProjectIssueTrackerItem> it)
+        => it.AddFieldName("key");
+    
+    public static Partial<ProjectIssueTrackerItem> WithTracker(this Partial<ProjectIssueTrackerItem> it)
+        => it.AddFieldName("tracker");
+    
+    public static Partial<ProjectIssueTrackerItem> WithTracker(this Partial<ProjectIssueTrackerItem> it, Func<Partial<IssueTracker>, Partial<IssueTracker>> partialBuilder)
+        => it.AddFieldName("tracker", partialBuilder(new Partial<IssueTracker>(it)));
     
 }
+

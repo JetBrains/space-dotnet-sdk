@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MavenPackageParentPartialBuilder
+namespace JetBrains.Space.Client.MavenPackageParentPartialBuilder;
+
+public static class MavenPackageParentPartialExtensions
 {
-    public static class MavenPackageParentPartialExtensions
-    {
-        public static Partial<MavenPackageParent> WithGroup(this Partial<MavenPackageParent> it)
-            => it.AddFieldName("group");
-        
-        public static Partial<MavenPackageParent> WithArtifact(this Partial<MavenPackageParent> it)
-            => it.AddFieldName("artifact");
-        
-        public static Partial<MavenPackageParent> WithVersion(this Partial<MavenPackageParent> it)
-            => it.AddFieldName("version");
-        
-    }
+    public static Partial<MavenPackageParent> WithGroup(this Partial<MavenPackageParent> it)
+        => it.AddFieldName("group");
+    
+    public static Partial<MavenPackageParent> WithArtifact(this Partial<MavenPackageParent> it)
+        => it.AddFieldName("artifact");
+    
+    public static Partial<MavenPackageParent> WithVersion(this Partial<MavenPackageParent> it)
+        => it.AddFieldName("version");
     
 }
+

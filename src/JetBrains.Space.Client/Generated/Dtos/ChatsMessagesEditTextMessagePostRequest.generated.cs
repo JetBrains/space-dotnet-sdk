@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ChatsMessagesEditTextMessagePostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ChatsMessagesEditTextMessagePostRequest
-         : IPropagatePropertyAccessPath
+    public ChatsMessagesEditTextMessagePostRequest() { }
+    
+    public ChatsMessagesEditTextMessagePostRequest(string channelId, string text, string messageId)
     {
-        public ChatsMessagesEditTextMessagePostRequest() { }
-        
-        public ChatsMessagesEditTextMessagePostRequest(string channelId, string text, string messageId)
-        {
-            ChannelId = channelId;
-            Text = text;
-            MessageId = messageId;
-        }
-        
-        private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(ChatsMessagesEditTextMessagePostRequest), nameof(ChannelId));
-        
-        [Required]
-        [JsonPropertyName("channelId")]
-        public string ChannelId
-        {
-            get => _channelId.GetValue();
-            set => _channelId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatsMessagesEditTextMessagePostRequest), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(ChatsMessagesEditTextMessagePostRequest), nameof(MessageId));
-        
-        [Required]
-        [JsonPropertyName("messageId")]
-        public string MessageId
-        {
-            get => _messageId.GetValue();
-            set => _messageId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _channelId.SetAccessPath(path, validateHasBeenSet);
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _messageId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ChannelId = channelId;
+        Text = text;
+        MessageId = messageId;
     }
     
+    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(ChatsMessagesEditTextMessagePostRequest), nameof(ChannelId));
+    
+    [Required]
+    [JsonPropertyName("channelId")]
+    public string ChannelId
+    {
+        get => _channelId.GetValue();
+        set => _channelId.SetValue(value);
+    }
+
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatsMessagesEditTextMessagePostRequest), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(ChatsMessagesEditTextMessagePostRequest), nameof(MessageId));
+    
+    [Required]
+    [JsonPropertyName("messageId")]
+    public string MessageId
+    {
+        get => _messageId.GetValue();
+        set => _messageId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _channelId.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(path, validateHasBeenSet);
+        _messageId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

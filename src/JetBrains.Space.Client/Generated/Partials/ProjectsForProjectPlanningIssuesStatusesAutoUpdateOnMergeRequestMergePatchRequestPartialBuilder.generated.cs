@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequestPartialBuilder;
+
+public static class ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequestPartialExtensions
 {
-    public static class ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest> WithStatusId(this Partial<ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest> it)
-            => it.AddFieldName("statusId");
-        
-    }
+    public static Partial<ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest> WithStatusId(this Partial<ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest> it)
+        => it.AddFieldName("statusId");
     
 }
+

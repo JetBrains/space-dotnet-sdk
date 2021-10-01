@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RevisionInReviewPartialBuilder
+namespace JetBrains.Space.Client.RevisionInReviewPartialBuilder;
+
+public static class RevisionInReviewPartialExtensions
 {
-    public static class RevisionInReviewPartialExtensions
-    {
-        public static Partial<RevisionInReview> WithRepository(this Partial<RevisionInReview> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<RevisionInReview> WithCommit(this Partial<RevisionInReview> it)
-            => it.AddFieldName("commit");
-        
-    }
+    public static Partial<RevisionInReview> WithRepository(this Partial<RevisionInReview> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<RevisionInReview> WithCommit(this Partial<RevisionInReview> it)
+        => it.AddFieldName("commit");
     
 }
+

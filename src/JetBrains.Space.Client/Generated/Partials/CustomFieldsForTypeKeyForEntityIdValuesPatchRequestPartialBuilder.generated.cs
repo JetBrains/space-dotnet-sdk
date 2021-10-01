@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomFieldsForTypeKeyForEntityIdValuesPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.CustomFieldsForTypeKeyForEntityIdValuesPatchRequestPartialBuilder;
+
+public static class CustomFieldsForTypeKeyForEntityIdValuesPatchRequestPartialExtensions
 {
-    public static class CustomFieldsForTypeKeyForEntityIdValuesPatchRequestPartialExtensions
-    {
-        public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithValues(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it)
-            => it.AddFieldName("values");
-        
-        public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithValues(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
-            => it.AddFieldName("values", partialBuilder(new Partial<CustomFieldInputValue>(it)));
-        
-        public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithScope(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it)
-            => it.AddFieldName("scope");
-        
-        public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithScope(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
-            => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
-        
-    }
+    public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithValues(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it)
+        => it.AddFieldName("values");
+    
+    public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithValues(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
+        => it.AddFieldName("values", partialBuilder(new Partial<CustomFieldInputValue>(it)));
+    
+    public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithScope(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it)
+        => it.AddFieldName("scope");
+    
+    public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithScope(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
+        => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
     
 }
+

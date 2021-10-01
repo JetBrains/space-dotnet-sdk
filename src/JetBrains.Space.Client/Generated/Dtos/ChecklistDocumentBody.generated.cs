@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ChecklistDocumentBody
+     : DocumentBody, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ChecklistDocumentBody
-         : DocumentBody, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ChecklistDocumentBody";
+    
+    public ChecklistDocumentBody() { }
+    
+    public ChecklistDocumentBody(Checklist checklist, bool canConvertItemsToIssues)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ChecklistDocumentBody";
-        
-        public ChecklistDocumentBody() { }
-        
-        public ChecklistDocumentBody(Checklist checklist, bool canConvertItemsToIssues)
-        {
-            Checklist = checklist;
-            CanConvertItemsToIssues = canConvertItemsToIssues;
-        }
-        
-        private PropertyValue<Checklist> _checklist = new PropertyValue<Checklist>(nameof(ChecklistDocumentBody), nameof(Checklist));
-        
-        [Required]
-        [JsonPropertyName("checklist")]
-        public Checklist Checklist
-        {
-            get => _checklist.GetValue();
-            set => _checklist.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _canConvertItemsToIssues = new PropertyValue<bool>(nameof(ChecklistDocumentBody), nameof(CanConvertItemsToIssues));
-        
-        [Required]
-        [JsonPropertyName("canConvertItemsToIssues")]
-        public bool CanConvertItemsToIssues
-        {
-            get => _canConvertItemsToIssues.GetValue();
-            set => _canConvertItemsToIssues.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _checklist.SetAccessPath(path, validateHasBeenSet);
-            _canConvertItemsToIssues.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Checklist = checklist;
+        CanConvertItemsToIssues = canConvertItemsToIssues;
     }
     
+    private PropertyValue<Checklist> _checklist = new PropertyValue<Checklist>(nameof(ChecklistDocumentBody), nameof(Checklist));
+    
+    [Required]
+    [JsonPropertyName("checklist")]
+    public Checklist Checklist
+    {
+        get => _checklist.GetValue();
+        set => _checklist.SetValue(value);
+    }
+
+    private PropertyValue<bool> _canConvertItemsToIssues = new PropertyValue<bool>(nameof(ChecklistDocumentBody), nameof(CanConvertItemsToIssues));
+    
+    [Required]
+    [JsonPropertyName("canConvertItemsToIssues")]
+    public bool CanConvertItemsToIssues
+    {
+        get => _canConvertItemsToIssues.GetValue();
+        set => _canConvertItemsToIssues.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _checklist.SetAccessPath(path, validateHasBeenSet);
+        _canConvertItemsToIssues.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MergeRequestMergedEventPartialBuilder
+namespace JetBrains.Space.Client.MergeRequestMergedEventPartialBuilder;
+
+public static class MergeRequestMergedEventPartialExtensions
 {
-    public static class MergeRequestMergedEventPartialExtensions
-    {
-        public static Partial<MergeRequestMergedEvent> WithRepository(this Partial<MergeRequestMergedEvent> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<MergeRequestMergedEvent> WithSourceBranch(this Partial<MergeRequestMergedEvent> it)
-            => it.AddFieldName("sourceBranch");
-        
-        public static Partial<MergeRequestMergedEvent> WithTargetBranch(this Partial<MergeRequestMergedEvent> it)
-            => it.AddFieldName("targetBranch");
-        
-    }
+    public static Partial<MergeRequestMergedEvent> WithRepository(this Partial<MergeRequestMergedEvent> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<MergeRequestMergedEvent> WithSourceBranch(this Partial<MergeRequestMergedEvent> it)
+        => it.AddFieldName("sourceBranch");
+    
+    public static Partial<MergeRequestMergedEvent> WithTargetBranch(this Partial<MergeRequestMergedEvent> it)
+        => it.AddFieldName("targetBranch");
     
 }
+

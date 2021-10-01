@@ -27,54 +27,53 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TrustedCertificatesForIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TrustedCertificatesForIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public TrustedCertificatesForIdPatchRequest() { }
+    
+    public TrustedCertificatesForIdPatchRequest(string? alias = null, string? data = null, bool? archived = false)
     {
-        public TrustedCertificatesForIdPatchRequest() { }
-        
-        public TrustedCertificatesForIdPatchRequest(string? alias = null, string? data = null, bool? archived = false)
-        {
-            Alias = alias;
-            Data = data;
-            IsArchived = archived;
-        }
-        
-        private PropertyValue<string?> _alias = new PropertyValue<string?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(Alias));
-        
-        [JsonPropertyName("alias")]
-        public string? Alias
-        {
-            get => _alias.GetValue();
-            set => _alias.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _data = new PropertyValue<string?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(Data));
-        
-        [JsonPropertyName("data")]
-        public string? Data
-        {
-            get => _data.GetValue();
-            set => _data.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _archived = new PropertyValue<bool?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(IsArchived));
-        
-        [JsonPropertyName("archived")]
-        public bool? IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _alias.SetAccessPath(path, validateHasBeenSet);
-            _data.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Alias = alias;
+        Data = data;
+        IsArchived = archived;
     }
     
+    private PropertyValue<string?> _alias = new PropertyValue<string?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(Alias));
+    
+    [JsonPropertyName("alias")]
+    public string? Alias
+    {
+        get => _alias.GetValue();
+        set => _alias.SetValue(value);
+    }
+
+    private PropertyValue<string?> _data = new PropertyValue<string?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(Data));
+    
+    [JsonPropertyName("data")]
+    public string? Data
+    {
+        get => _data.GetValue();
+        set => _data.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _archived = new PropertyValue<bool?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(IsArchived));
+    
+    [JsonPropertyName("archived")]
+    public bool? IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _alias.SetAccessPath(path, validateHasBeenSet);
+        _data.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

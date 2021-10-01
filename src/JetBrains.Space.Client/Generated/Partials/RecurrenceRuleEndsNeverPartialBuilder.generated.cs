@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RecurrenceRuleEndsNeverPartialBuilder
+namespace JetBrains.Space.Client.RecurrenceRuleEndsNeverPartialBuilder;
+
+public static class RecurrenceRuleEndsNeverPartialExtensions
 {
-    public static class RecurrenceRuleEndsNeverPartialExtensions
-    {
-    }
-    
 }
+

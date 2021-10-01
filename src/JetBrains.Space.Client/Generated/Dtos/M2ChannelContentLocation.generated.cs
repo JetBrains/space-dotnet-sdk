@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2ChannelContentLocation
+     : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2ChannelContentLocation
-         : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2ChannelContentLocation";
+    
+    public M2ChannelContentLocation() { }
+    
+    public M2ChannelContentLocation(TDLocation location, ChannelSpecificDefaults notificationDefaults)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2ChannelContentLocation";
-        
-        public M2ChannelContentLocation() { }
-        
-        public M2ChannelContentLocation(TDLocation location, ChannelSpecificDefaults notificationDefaults)
-        {
-            Location = location;
-            NotificationDefaults = notificationDefaults;
-        }
-        
-        private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(M2ChannelContentLocation), nameof(Location));
-        
-        [Required]
-        [JsonPropertyName("location")]
-        public TDLocation Location
-        {
-            get => _location.GetValue();
-            set => _location.SetValue(value);
-        }
-    
-        private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentLocation), nameof(NotificationDefaults));
-        
-        [Required]
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaults NotificationDefaults
-        {
-            get => _notificationDefaults.GetValue();
-            set => _notificationDefaults.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _location.SetAccessPath(path, validateHasBeenSet);
-            _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Location = location;
+        NotificationDefaults = notificationDefaults;
     }
     
+    private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(M2ChannelContentLocation), nameof(Location));
+    
+    [Required]
+    [JsonPropertyName("location")]
+    public TDLocation Location
+    {
+        get => _location.GetValue();
+        set => _location.SetValue(value);
+    }
+
+    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentLocation), nameof(NotificationDefaults));
+    
+    [Required]
+    [JsonPropertyName("notificationDefaults")]
+    public ChannelSpecificDefaults NotificationDefaults
+    {
+        get => _notificationDefaults.GetValue();
+        set => _notificationDefaults.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _location.SetAccessPath(path, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.JobExecutionTriggerManualPartialBuilder
+namespace JetBrains.Space.Client.JobExecutionTriggerManualPartialBuilder;
+
+public static class JobExecutionTriggerManualPartialExtensions
 {
-    public static class JobExecutionTriggerManualPartialExtensions
-    {
-        public static Partial<JobExecutionTriggerManual> WithPrincipal(this Partial<JobExecutionTriggerManual> it)
-            => it.AddFieldName("principal");
-        
-        public static Partial<JobExecutionTriggerManual> WithPrincipal(this Partial<JobExecutionTriggerManual> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipal>(it)));
-        
-    }
+    public static Partial<JobExecutionTriggerManual> WithPrincipal(this Partial<JobExecutionTriggerManual> it)
+        => it.AddFieldName("principal");
+    
+    public static Partial<JobExecutionTriggerManual> WithPrincipal(this Partial<JobExecutionTriggerManual> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipal>(it)));
     
 }
+

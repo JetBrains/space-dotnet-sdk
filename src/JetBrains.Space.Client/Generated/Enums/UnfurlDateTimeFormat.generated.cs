@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum UnfurlDateTimeFormat
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum UnfurlDateTimeFormat
-    {
-        [EnumMember(Value = "RELATIVE_TO_NOW")]
-        RELATIVETONOW,
-        
-        [EnumMember(Value = "FULL")]
-        FULL,
-        
-        [EnumMember(Value = "TIME_ONLY")]
-        TIMEONLY,
-        
-        [EnumMember(Value = "DATE_ONLY")]
-        DATEONLY,
-        
-    }
+    [EnumMember(Value = "RELATIVE_TO_NOW")]
+    RELATIVETONOW,
+    
+    [EnumMember(Value = "FULL")]
+    FULL,
+    
+    [EnumMember(Value = "TIME_ONLY")]
+    TIMEONLY,
+    
+    [EnumMember(Value = "DATE_ONLY")]
+    DATEONLY,
     
 }
+

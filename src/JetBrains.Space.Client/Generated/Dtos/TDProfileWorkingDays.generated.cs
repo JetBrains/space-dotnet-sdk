@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TDProfileWorkingDays
+     : IPropagatePropertyAccessPath
 {
-    public sealed class TDProfileWorkingDays
-         : IPropagatePropertyAccessPath
+    public TDProfileWorkingDays() { }
+    
+    public TDProfileWorkingDays(TDMemberProfile profile, TDWorkingDays workingDays)
     {
-        public TDProfileWorkingDays() { }
-        
-        public TDProfileWorkingDays(TDMemberProfile profile, TDWorkingDays workingDays)
-        {
-            Profile = profile;
-            WorkingDays = workingDays;
-        }
-        
-        private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(TDProfileWorkingDays), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfile Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<TDWorkingDays> _workingDays = new PropertyValue<TDWorkingDays>(nameof(TDProfileWorkingDays), nameof(WorkingDays));
-        
-        [Required]
-        [JsonPropertyName("workingDays")]
-        public TDWorkingDays WorkingDays
-        {
-            get => _workingDays.GetValue();
-            set => _workingDays.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _workingDays.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
+        WorkingDays = workingDays;
     }
     
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(TDProfileWorkingDays), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public TDMemberProfile Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<TDWorkingDays> _workingDays = new PropertyValue<TDWorkingDays>(nameof(TDProfileWorkingDays), nameof(WorkingDays));
+    
+    [Required]
+    [JsonPropertyName("workingDays")]
+    public TDWorkingDays WorkingDays
+    {
+        get => _workingDays.GetValue();
+        set => _workingDays.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _workingDays.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

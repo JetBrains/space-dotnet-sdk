@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PackageVersionRef
+     : IPropagatePropertyAccessPath
 {
-    public sealed class PackageVersionRef
-         : IPropagatePropertyAccessPath
+    public PackageVersionRef() { }
+    
+    public PackageVersionRef(string name, string version)
     {
-        public PackageVersionRef() { }
-        
-        public PackageVersionRef(string name, string version)
-        {
-            Name = name;
-            Version = version;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(PackageVersionRef), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _version = new PropertyValue<string>(nameof(PackageVersionRef), nameof(Version));
-        
-        [Required]
-        [JsonPropertyName("version")]
-        public string Version
-        {
-            get => _version.GetValue();
-            set => _version.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _version.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Version = version;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PackageVersionRef), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _version = new PropertyValue<string>(nameof(PackageVersionRef), nameof(Version));
+    
+    [Required]
+    [JsonPropertyName("version")]
+    public string Version
+    {
+        get => _version.GetValue();
+        set => _version.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _version.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

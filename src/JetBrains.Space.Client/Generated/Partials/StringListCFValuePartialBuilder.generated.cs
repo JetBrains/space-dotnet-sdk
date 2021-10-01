@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.StringListCFValuePartialBuilder
+namespace JetBrains.Space.Client.StringListCFValuePartialBuilder;
+
+public static class StringListCFValuePartialExtensions
 {
-    public static class StringListCFValuePartialExtensions
-    {
-        public static Partial<StringListCFValue> WithValues(this Partial<StringListCFValue> it)
-            => it.AddFieldName("values");
-        
-    }
+    public static Partial<StringListCFValue> WithValues(this Partial<StringListCFValue> it)
+        => it.AddFieldName("values");
     
 }
+

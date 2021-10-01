@@ -27,56 +27,55 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PersonalSubscriptionEvent
+     : IPropagatePropertyAccessPath
 {
-    public sealed class PersonalSubscriptionEvent
-         : IPropagatePropertyAccessPath
+    public PersonalSubscriptionEvent() { }
+    
+    public PersonalSubscriptionEvent(string eventCode, string name, string? featureFlag = null)
     {
-        public PersonalSubscriptionEvent() { }
-        
-        public PersonalSubscriptionEvent(string eventCode, string name, string? featureFlag = null)
-        {
-            EventCode = eventCode;
-            Name = name;
-            FeatureFlag = featureFlag;
-        }
-        
-        private PropertyValue<string> _eventCode = new PropertyValue<string>(nameof(PersonalSubscriptionEvent), nameof(EventCode));
-        
-        [Required]
-        [JsonPropertyName("eventCode")]
-        public string EventCode
-        {
-            get => _eventCode.GetValue();
-            set => _eventCode.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(PersonalSubscriptionEvent), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(PersonalSubscriptionEvent), nameof(FeatureFlag));
-        
-        [JsonPropertyName("featureFlag")]
-        public string? FeatureFlag
-        {
-            get => _featureFlag.GetValue();
-            set => _featureFlag.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _eventCode.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _featureFlag.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        EventCode = eventCode;
+        Name = name;
+        FeatureFlag = featureFlag;
     }
     
+    private PropertyValue<string> _eventCode = new PropertyValue<string>(nameof(PersonalSubscriptionEvent), nameof(EventCode));
+    
+    [Required]
+    [JsonPropertyName("eventCode")]
+    public string EventCode
+    {
+        get => _eventCode.GetValue();
+        set => _eventCode.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PersonalSubscriptionEvent), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(PersonalSubscriptionEvent), nameof(FeatureFlag));
+    
+    [JsonPropertyName("featureFlag")]
+    public string? FeatureFlag
+    {
+        get => _featureFlag.GetValue();
+        set => _featureFlag.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _eventCode.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _featureFlag.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

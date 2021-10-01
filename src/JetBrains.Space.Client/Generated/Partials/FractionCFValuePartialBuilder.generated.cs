@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FractionCFValuePartialBuilder
+namespace JetBrains.Space.Client.FractionCFValuePartialBuilder;
+
+public static class FractionCFValuePartialExtensions
 {
-    public static class FractionCFValuePartialExtensions
-    {
-        public static Partial<FractionCFValue> WithValue(this Partial<FractionCFValue> it)
-            => it.AddFieldName("value");
-        
-        public static Partial<FractionCFValue> WithValue(this Partial<FractionCFValue> it, Func<Partial<Fraction>, Partial<Fraction>> partialBuilder)
-            => it.AddFieldName("value", partialBuilder(new Partial<Fraction>(it)));
-        
-    }
+    public static Partial<FractionCFValue> WithValue(this Partial<FractionCFValue> it)
+        => it.AddFieldName("value");
+    
+    public static Partial<FractionCFValue> WithValue(this Partial<FractionCFValue> it, Func<Partial<Fraction>, Partial<Fraction>> partialBuilder)
+        => it.AddFieldName("value", partialBuilder(new Partial<Fraction>(it)));
     
 }
+

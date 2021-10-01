@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocsDraftsForIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.DocsDraftsForIdPatchRequestPartialBuilder;
+
+public static class DocsDraftsForIdPatchRequestPartialExtensions
 {
-    public static class DocsDraftsForIdPatchRequestPartialExtensions
-    {
-        public static Partial<DocsDraftsForIdPatchRequest> WithTitle(this Partial<DocsDraftsForIdPatchRequest> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<DocsDraftsForIdPatchRequest> WithText(this Partial<DocsDraftsForIdPatchRequest> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<DocsDraftsForIdPatchRequest> WithTextVersion(this Partial<DocsDraftsForIdPatchRequest> it)
-            => it.AddFieldName("textVersion");
-        
-        public static Partial<DocsDraftsForIdPatchRequest> WithType(this Partial<DocsDraftsForIdPatchRequest> it)
-            => it.AddFieldName("type");
-        
-        public static Partial<DocsDraftsForIdPatchRequest> WithType(this Partial<DocsDraftsForIdPatchRequest> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>(it)));
-        
-        public static Partial<DocsDraftsForIdPatchRequest> WithFolder(this Partial<DocsDraftsForIdPatchRequest> it)
-            => it.AddFieldName("folder");
-        
-        public static Partial<DocsDraftsForIdPatchRequest> WithPublicationDetails2(this Partial<DocsDraftsForIdPatchRequest> it)
-            => it.AddFieldName("publicationDetails2");
-        
-        public static Partial<DocsDraftsForIdPatchRequest> WithPublicationDetails2(this Partial<DocsDraftsForIdPatchRequest> it, Func<Partial<PublicationDetails>, Partial<PublicationDetails>> partialBuilder)
-            => it.AddFieldName("publicationDetails2", partialBuilder(new Partial<PublicationDetails>(it)));
-        
-    }
+    public static Partial<DocsDraftsForIdPatchRequest> WithTitle(this Partial<DocsDraftsForIdPatchRequest> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<DocsDraftsForIdPatchRequest> WithText(this Partial<DocsDraftsForIdPatchRequest> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<DocsDraftsForIdPatchRequest> WithTextVersion(this Partial<DocsDraftsForIdPatchRequest> it)
+        => it.AddFieldName("textVersion");
+    
+    public static Partial<DocsDraftsForIdPatchRequest> WithType(this Partial<DocsDraftsForIdPatchRequest> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<DocsDraftsForIdPatchRequest> WithType(this Partial<DocsDraftsForIdPatchRequest> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>(it)));
+    
+    public static Partial<DocsDraftsForIdPatchRequest> WithFolder(this Partial<DocsDraftsForIdPatchRequest> it)
+        => it.AddFieldName("folder");
+    
+    public static Partial<DocsDraftsForIdPatchRequest> WithPublicationDetails2(this Partial<DocsDraftsForIdPatchRequest> it)
+        => it.AddFieldName("publicationDetails2");
+    
+    public static Partial<DocsDraftsForIdPatchRequest> WithPublicationDetails2(this Partial<DocsDraftsForIdPatchRequest> it, Func<Partial<PublicationDetails>, Partial<PublicationDetails>> partialBuilder)
+        => it.AddFieldName("publicationDetails2", partialBuilder(new Partial<PublicationDetails>(it)));
     
 }
+

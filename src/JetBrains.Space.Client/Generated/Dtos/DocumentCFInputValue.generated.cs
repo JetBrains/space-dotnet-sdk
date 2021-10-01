@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DocumentCFInputValue
+     : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class DocumentCFInputValue
-         : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "DocumentCFInputValue";
+    
+    public DocumentCFInputValue() { }
+    
+    public DocumentCFInputValue(string? documentId = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "DocumentCFInputValue";
-        
-        public DocumentCFInputValue() { }
-        
-        public DocumentCFInputValue(string? documentId = null)
-        {
-            DocumentId = documentId;
-        }
-        
-        private PropertyValue<string?> _documentId = new PropertyValue<string?>(nameof(DocumentCFInputValue), nameof(DocumentId));
-        
-        [JsonPropertyName("documentId")]
-        public string? DocumentId
-        {
-            get => _documentId.GetValue();
-            set => _documentId.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _documentId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        DocumentId = documentId;
     }
     
+    private PropertyValue<string?> _documentId = new PropertyValue<string?>(nameof(DocumentCFInputValue), nameof(DocumentId));
+    
+    [JsonPropertyName("documentId")]
+    public string? DocumentId
+    {
+        get => _documentId.GetValue();
+        set => _documentId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _documentId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

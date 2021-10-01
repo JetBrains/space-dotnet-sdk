@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESAzureAuthModuleSettingsPartialBuilder
+namespace JetBrains.Space.Client.ESAzureAuthModuleSettingsPartialBuilder;
+
+public static class ESAzureAuthModuleSettingsPartialExtensions
 {
-    public static class ESAzureAuthModuleSettingsPartialExtensions
-    {
-        public static Partial<ESAzureAuthModuleSettings> WithTenantId(this Partial<ESAzureAuthModuleSettings> it)
-            => it.AddFieldName("tenantId");
-        
-        public static Partial<ESAzureAuthModuleSettings> WithClientId(this Partial<ESAzureAuthModuleSettings> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<ESAzureAuthModuleSettings> WithClientSecret(this Partial<ESAzureAuthModuleSettings> it)
-            => it.AddFieldName("clientSecret");
-        
-        public static Partial<ESAzureAuthModuleSettings> WithIsRegisterNewUsers(this Partial<ESAzureAuthModuleSettings> it)
-            => it.AddFieldName("registerNewUsers");
-        
-        public static Partial<ESAzureAuthModuleSettings> WithIsEmailVerified(this Partial<ESAzureAuthModuleSettings> it)
-            => it.AddFieldName("emailVerified");
-        
-    }
+    public static Partial<ESAzureAuthModuleSettings> WithTenantId(this Partial<ESAzureAuthModuleSettings> it)
+        => it.AddFieldName("tenantId");
+    
+    public static Partial<ESAzureAuthModuleSettings> WithClientId(this Partial<ESAzureAuthModuleSettings> it)
+        => it.AddFieldName("clientId");
+    
+    public static Partial<ESAzureAuthModuleSettings> WithClientSecret(this Partial<ESAzureAuthModuleSettings> it)
+        => it.AddFieldName("clientSecret");
+    
+    public static Partial<ESAzureAuthModuleSettings> WithIsRegisterNewUsers(this Partial<ESAzureAuthModuleSettings> it)
+        => it.AddFieldName("registerNewUsers");
+    
+    public static Partial<ESAzureAuthModuleSettings> WithIsEmailVerified(this Partial<ESAzureAuthModuleSettings> it)
+        => it.AddFieldName("emailVerified");
     
 }
+

@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum Gender
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum Gender
-    {
-        [EnumMember(Value = "Female")]
-        Female,
-        
-        [EnumMember(Value = "Male")]
-        Male,
-        
-        [EnumMember(Value = "Other")]
-        Other,
-        
-        [EnumMember(Value = "NotSpecified")]
-        NotSpecified,
-        
-    }
+    [EnumMember(Value = "Female")]
+    Female,
+    
+    [EnumMember(Value = "Male")]
+    Male,
+    
+    [EnumMember(Value = "Other")]
+    Other,
+    
+    [EnumMember(Value = "NotSpecified")]
+    NotSpecified,
     
 }
+

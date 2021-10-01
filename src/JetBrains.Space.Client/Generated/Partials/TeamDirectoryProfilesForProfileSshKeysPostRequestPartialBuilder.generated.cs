@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileSshKeysPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileSshKeysPostRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfileSshKeysPostRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfileSshKeysPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfileSshKeysPostRequest> WithKey(this Partial<TeamDirectoryProfilesForProfileSshKeysPostRequest> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<TeamDirectoryProfilesForProfileSshKeysPostRequest> WithComment(this Partial<TeamDirectoryProfilesForProfileSshKeysPostRequest> it)
-            => it.AddFieldName("comment");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfileSshKeysPostRequest> WithKey(this Partial<TeamDirectoryProfilesForProfileSshKeysPostRequest> it)
+        => it.AddFieldName("key");
+    
+    public static Partial<TeamDirectoryProfilesForProfileSshKeysPostRequest> WithComment(this Partial<TeamDirectoryProfilesForProfileSshKeysPostRequest> it)
+        => it.AddFieldName("comment");
     
 }
+

@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TDContactKindMessenger
+     : TDContactKind, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class TDContactKindMessenger
-         : TDContactKind, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "TD_ContactKind.Messenger";
+    
+    public TDContactKindMessenger() { }
+    
+    public TDContactKindMessenger(string messenger)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "TD_ContactKind.Messenger";
-        
-        public TDContactKindMessenger() { }
-        
-        public TDContactKindMessenger(string messenger)
-        {
-            Messenger = messenger;
-        }
-        
-        private PropertyValue<string> _messenger = new PropertyValue<string>(nameof(TDContactKindMessenger), nameof(Messenger));
-        
-        [Required]
-        [JsonPropertyName("messenger")]
-        public string Messenger
-        {
-            get => _messenger.GetValue();
-            set => _messenger.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _messenger.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Messenger = messenger;
     }
     
+    private PropertyValue<string> _messenger = new PropertyValue<string>(nameof(TDContactKindMessenger), nameof(Messenger));
+    
+    [Required]
+    [JsonPropertyName("messenger")]
+    public string Messenger
+    {
+        get => _messenger.GetValue();
+        set => _messenger.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _messenger.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

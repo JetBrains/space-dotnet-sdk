@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AdministrationUserAgreementPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.AdministrationUserAgreementPatchRequestPartialBuilder;
+
+public static class AdministrationUserAgreementPatchRequestPartialExtensions
 {
-    public static class AdministrationUserAgreementPatchRequestPartialExtensions
-    {
-        public static Partial<AdministrationUserAgreementPatchRequest> WithNewContent(this Partial<AdministrationUserAgreementPatchRequest> it)
-            => it.AddFieldName("newContent");
-        
-        public static Partial<AdministrationUserAgreementPatchRequest> WithIsInvalidate(this Partial<AdministrationUserAgreementPatchRequest> it)
-            => it.AddFieldName("invalidate");
-        
-    }
+    public static Partial<AdministrationUserAgreementPatchRequest> WithNewContent(this Partial<AdministrationUserAgreementPatchRequest> it)
+        => it.AddFieldName("newContent");
+    
+    public static Partial<AdministrationUserAgreementPatchRequest> WithIsInvalidate(this Partial<AdministrationUserAgreementPatchRequest> it)
+        => it.AddFieldName("invalidate");
     
 }
+

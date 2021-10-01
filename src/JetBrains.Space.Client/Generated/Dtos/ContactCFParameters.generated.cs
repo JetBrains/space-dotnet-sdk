@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ContactCFParameters
+     : CFCreateParameters, CFParameters, CFUpdateParameters, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ContactCFParameters
-         : CFCreateParameters, CFParameters, CFUpdateParameters, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ContactCFParameters";
+    
+    public ContactCFParameters() { }
+    
+    public ContactCFParameters(TDContactKind? contactKind = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ContactCFParameters";
-        
-        public ContactCFParameters() { }
-        
-        public ContactCFParameters(TDContactKind? contactKind = null)
-        {
-            ContactKind = contactKind;
-        }
-        
-        private PropertyValue<TDContactKind?> _contactKind = new PropertyValue<TDContactKind?>(nameof(ContactCFParameters), nameof(ContactKind));
-        
-        [JsonPropertyName("contactKind")]
-        public TDContactKind? ContactKind
-        {
-            get => _contactKind.GetValue();
-            set => _contactKind.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _contactKind.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ContactKind = contactKind;
     }
     
+    private PropertyValue<TDContactKind?> _contactKind = new PropertyValue<TDContactKind?>(nameof(ContactCFParameters), nameof(ContactKind));
+    
+    [JsonPropertyName("contactKind")]
+    public TDContactKind? ContactKind
+    {
+        get => _contactKind.GetValue();
+        set => _contactKind.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _contactKind.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

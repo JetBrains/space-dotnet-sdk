@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.KbPublicationDetailsPartialBuilder
+namespace JetBrains.Space.Client.KbPublicationDetailsPartialBuilder;
+
+public static class KbPublicationDetailsPartialExtensions
 {
-    public static class KbPublicationDetailsPartialExtensions
-    {
-        public static Partial<KbPublicationDetails> WithBook(this Partial<KbPublicationDetails> it)
-            => it.AddFieldName("book");
-        
-        public static Partial<KbPublicationDetails> WithBook(this Partial<KbPublicationDetails> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
-            => it.AddFieldName("book", partialBuilder(new Partial<KBBook>(it)));
-        
-        public static Partial<KbPublicationDetails> WithFolder(this Partial<KbPublicationDetails> it)
-            => it.AddFieldName("folder");
-        
-        public static Partial<KbPublicationDetails> WithFolder(this Partial<KbPublicationDetails> it, Func<Partial<KBFolder>, Partial<KBFolder>> partialBuilder)
-            => it.AddFieldName("folder", partialBuilder(new Partial<KBFolder>(it)));
-        
-        public static Partial<KbPublicationDetails> WithArticleId(this Partial<KbPublicationDetails> it)
-            => it.AddFieldName("articleId");
-        
-        public static Partial<KbPublicationDetails> WithArticleId(this Partial<KbPublicationDetails> it, Func<Partial<KBArticle>, Partial<KBArticle>> partialBuilder)
-            => it.AddFieldName("articleId", partialBuilder(new Partial<KBArticle>(it)));
-        
-    }
+    public static Partial<KbPublicationDetails> WithBook(this Partial<KbPublicationDetails> it)
+        => it.AddFieldName("book");
+    
+    public static Partial<KbPublicationDetails> WithBook(this Partial<KbPublicationDetails> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
+        => it.AddFieldName("book", partialBuilder(new Partial<KBBook>(it)));
+    
+    public static Partial<KbPublicationDetails> WithFolder(this Partial<KbPublicationDetails> it)
+        => it.AddFieldName("folder");
+    
+    public static Partial<KbPublicationDetails> WithFolder(this Partial<KbPublicationDetails> it, Func<Partial<KBFolder>, Partial<KBFolder>> partialBuilder)
+        => it.AddFieldName("folder", partialBuilder(new Partial<KBFolder>(it)));
+    
+    public static Partial<KbPublicationDetails> WithArticleId(this Partial<KbPublicationDetails> it)
+        => it.AddFieldName("articleId");
+    
+    public static Partial<KbPublicationDetails> WithArticleId(this Partial<KbPublicationDetails> it, Func<Partial<KBArticle>, Partial<KBArticle>> partialBuilder)
+        => it.AddFieldName("articleId", partialBuilder(new Partial<KBArticle>(it)));
     
 }
+

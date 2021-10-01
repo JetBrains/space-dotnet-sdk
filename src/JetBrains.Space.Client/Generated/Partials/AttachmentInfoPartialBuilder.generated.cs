@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AttachmentInfoPartialBuilder
+namespace JetBrains.Space.Client.AttachmentInfoPartialBuilder;
+
+public static class AttachmentInfoPartialExtensions
 {
-    public static class AttachmentInfoPartialExtensions
-    {
-        public static Partial<AttachmentInfo> WithDetails(this Partial<AttachmentInfo> it)
-            => it.AddFieldName("details");
-        
-        public static Partial<AttachmentInfo> WithDetails(this Partial<AttachmentInfo> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
-            => it.AddFieldName("details", partialBuilder(new Partial<Attachment>(it)));
-        
-    }
+    public static Partial<AttachmentInfo> WithDetails(this Partial<AttachmentInfo> it)
+        => it.AddFieldName("details");
+    
+    public static Partial<AttachmentInfo> WithDetails(this Partial<AttachmentInfo> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
+        => it.AddFieldName("details", partialBuilder(new Partial<Attachment>(it)));
     
 }
+

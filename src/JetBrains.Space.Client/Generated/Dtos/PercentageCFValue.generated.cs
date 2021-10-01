@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PercentageCFValue
+     : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class PercentageCFValue
-         : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "PercentageCFValue";
+    
+    public PercentageCFValue() { }
+    
+    public PercentageCFValue(int? value = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "PercentageCFValue";
-        
-        public PercentageCFValue() { }
-        
-        public PercentageCFValue(int? value = null)
-        {
-            Value = value;
-        }
-        
-        private PropertyValue<int?> _value = new PropertyValue<int?>(nameof(PercentageCFValue), nameof(Value));
-        
-        [JsonPropertyName("value")]
-        public int? Value
-        {
-            get => _value.GetValue();
-            set => _value.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _value.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Value = value;
     }
     
+    private PropertyValue<int?> _value = new PropertyValue<int?>(nameof(PercentageCFValue), nameof(Value));
+    
+    [JsonPropertyName("value")]
+    public int? Value
+    {
+        get => _value.GetValue();
+        set => _value.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _value.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

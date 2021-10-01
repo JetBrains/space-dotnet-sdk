@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class AbsenceEvent
+     : IPropagatePropertyAccessPath
 {
-    public sealed class AbsenceEvent
-         : IPropagatePropertyAccessPath
+    public AbsenceEvent() { }
+    
+    public AbsenceEvent(TDMemberWithTeam profile, List<AbsenceRecord> events)
     {
-        public AbsenceEvent() { }
-        
-        public AbsenceEvent(TDMemberWithTeam profile, List<AbsenceRecord> events)
-        {
-            Profile = profile;
-            Events = events;
-        }
-        
-        private PropertyValue<TDMemberWithTeam> _profile = new PropertyValue<TDMemberWithTeam>(nameof(AbsenceEvent), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberWithTeam Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<List<AbsenceRecord>> _events = new PropertyValue<List<AbsenceRecord>>(nameof(AbsenceEvent), nameof(Events), new List<AbsenceRecord>());
-        
-        [Required]
-        [JsonPropertyName("events")]
-        public List<AbsenceRecord> Events
-        {
-            get => _events.GetValue();
-            set => _events.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _events.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
+        Events = events;
     }
     
+    private PropertyValue<TDMemberWithTeam> _profile = new PropertyValue<TDMemberWithTeam>(nameof(AbsenceEvent), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public TDMemberWithTeam Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<List<AbsenceRecord>> _events = new PropertyValue<List<AbsenceRecord>>(nameof(AbsenceEvent), nameof(Events), new List<AbsenceRecord>());
+    
+    [Required]
+    [JsonPropertyName("events")]
+    public List<AbsenceRecord> Events
+    {
+        get => _events.GetValue();
+        set => _events.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _events.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

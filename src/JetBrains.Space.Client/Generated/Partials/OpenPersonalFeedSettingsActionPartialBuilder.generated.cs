@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.OpenPersonalFeedSettingsActionPartialBuilder
+namespace JetBrains.Space.Client.OpenPersonalFeedSettingsActionPartialBuilder;
+
+public static class OpenPersonalFeedSettingsActionPartialExtensions
 {
-    public static class OpenPersonalFeedSettingsActionPartialExtensions
-    {
-        public static Partial<OpenPersonalFeedSettingsAction> WithTab(this Partial<OpenPersonalFeedSettingsAction> it)
-            => it.AddFieldName("tab");
-        
-        public static Partial<OpenPersonalFeedSettingsAction> WithFeed(this Partial<OpenPersonalFeedSettingsAction> it)
-            => it.AddFieldName("feed");
-        
-        public static Partial<OpenPersonalFeedSettingsAction> WithFeedId(this Partial<OpenPersonalFeedSettingsAction> it)
-            => it.AddFieldName("feedId");
-        
-    }
+    public static Partial<OpenPersonalFeedSettingsAction> WithTab(this Partial<OpenPersonalFeedSettingsAction> it)
+        => it.AddFieldName("tab");
+    
+    public static Partial<OpenPersonalFeedSettingsAction> WithFeed(this Partial<OpenPersonalFeedSettingsAction> it)
+        => it.AddFieldName("feed");
+    
+    public static Partial<OpenPersonalFeedSettingsAction> WithFeedId(this Partial<OpenPersonalFeedSettingsAction> it)
+        => it.AddFieldName("feedId");
     
 }
+

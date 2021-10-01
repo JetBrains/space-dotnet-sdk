@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HAMenuId
+     : IPropagatePropertyAccessPath
 {
-    public sealed class HAMenuId
-         : IPropagatePropertyAccessPath
+    public HAMenuId() { }
+    
+    public HAMenuId(string menuId, HADto context)
     {
-        public HAMenuId() { }
-        
-        public HAMenuId(string menuId, HADto context)
-        {
-            MenuId = menuId;
-            Context = context;
-        }
-        
-        private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(HAMenuId), nameof(MenuId));
-        
-        [Required]
-        [JsonPropertyName("menuId")]
-        public string MenuId
-        {
-            get => _menuId.GetValue();
-            set => _menuId.SetValue(value);
-        }
-    
-        private PropertyValue<HADto> _context = new PropertyValue<HADto>(nameof(HAMenuId), nameof(Context));
-        
-        [Required]
-        [JsonPropertyName("context")]
-        public HADto Context
-        {
-            get => _context.GetValue();
-            set => _context.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _menuId.SetAccessPath(path, validateHasBeenSet);
-            _context.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        MenuId = menuId;
+        Context = context;
     }
     
+    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(HAMenuId), nameof(MenuId));
+    
+    [Required]
+    [JsonPropertyName("menuId")]
+    public string MenuId
+    {
+        get => _menuId.GetValue();
+        set => _menuId.SetValue(value);
+    }
+
+    private PropertyValue<HADto> _context = new PropertyValue<HADto>(nameof(HAMenuId), nameof(Context));
+    
+    [Required]
+    [JsonPropertyName("context")]
+    public HADto Context
+    {
+        get => _context.GetValue();
+        set => _context.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _menuId.SetAccessPath(path, validateHasBeenSet);
+        _context.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

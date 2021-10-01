@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CFEnumValueModificationUpdatePartialBuilder
+namespace JetBrains.Space.Client.CFEnumValueModificationUpdatePartialBuilder;
+
+public static class CFEnumValueModificationUpdatePartialExtensions
 {
-    public static class CFEnumValueModificationUpdatePartialExtensions
-    {
-        public static Partial<CFEnumValueModificationUpdate> WithValueIdentifier(this Partial<CFEnumValueModificationUpdate> it)
-            => it.AddFieldName("valueIdentifier");
-        
-        public static Partial<CFEnumValueModificationUpdate> WithValueIdentifier(this Partial<CFEnumValueModificationUpdate> it, Func<Partial<CFEnumValueIdentifier>, Partial<CFEnumValueIdentifier>> partialBuilder)
-            => it.AddFieldName("valueIdentifier", partialBuilder(new Partial<CFEnumValueIdentifier>(it)));
-        
-        public static Partial<CFEnumValueModificationUpdate> WithNewName(this Partial<CFEnumValueModificationUpdate> it)
-            => it.AddFieldName("newName");
-        
-    }
+    public static Partial<CFEnumValueModificationUpdate> WithValueIdentifier(this Partial<CFEnumValueModificationUpdate> it)
+        => it.AddFieldName("valueIdentifier");
+    
+    public static Partial<CFEnumValueModificationUpdate> WithValueIdentifier(this Partial<CFEnumValueModificationUpdate> it, Func<Partial<CFEnumValueIdentifier>, Partial<CFEnumValueIdentifier>> partialBuilder)
+        => it.AddFieldName("valueIdentifier", partialBuilder(new Partial<CFEnumValueIdentifier>(it)));
+    
+    public static Partial<CFEnumValueModificationUpdate> WithNewName(this Partial<CFEnumValueModificationUpdate> it)
+        => it.AddFieldName("newName");
     
 }
+

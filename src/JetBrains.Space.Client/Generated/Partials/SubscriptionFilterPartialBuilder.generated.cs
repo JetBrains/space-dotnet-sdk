@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SubscriptionFilterPartialBuilder
+namespace JetBrains.Space.Client.SubscriptionFilterPartialBuilder;
+
+public static class SubscriptionFilterPartialExtensions
 {
-    public static class SubscriptionFilterPartialExtensions
-    {
-    }
-    
 }
+

@@ -27,474 +27,529 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public partial class ProjectClient : ISpaceClient
 {
-    public partial class ProjectClient : ISpaceClient
+    private readonly Connection _connection;
+    
+    public ProjectClient(Connection connection)
+    {
+        _connection = connection;
+    }
+    
+    /// <summary>
+    /// Create a new project
+    /// </summary>
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Create projects</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<PRProject> CreateProjectAsync(ProjectKey key, string name, bool @private = false, List<string>? tags = null, string? description = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<ProjectsPostRequest, PRProject>("POST", $"api/http/projects{queryParameters.ToQueryString()}", 
+            new ProjectsPostRequest
+            { 
+                Key = key,
+                Name = name,
+                Description = description,
+                IsPrivate = @private,
+                Tags = (tags ?? new List<string>()),
+            }, cancellationToken);
+    }
+    
+
+    /// <summary>
+    /// Get/search all projects. Parameters are applied as 'AND' filters.
+    /// </summary>
+    public async Task<Batch<PRProject>> GetAllProjectsAsync(string? skip = null, int? top = 100, string? term = null, string? tag = null, bool? starred = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        if (skip != null) queryParameters.Append("$skip", skip);
+        if (top != null) queryParameters.Append("$top", top?.ToString());
+        if (term != null) queryParameters.Append("term", term);
+        if (tag != null) queryParameters.Append("tag", tag);
+        if (starred != null) queryParameters.Append("starred", starred?.ToString("l"));
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+    
+    /// <summary>
+    /// Get/search all projects. Parameters are applied as 'AND' filters.
+    /// </summary>
+    public IAsyncEnumerable<PRProject> GetAllProjectsAsyncEnumerable(string? skip = null, int? top = 100, string? term = null, string? tag = null, bool? starred = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsAsync(top: top, term: term, tag: tag, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
+
+    /// <summary>
+    /// Get all projects for a member
+    /// </summary>
+    public async Task<Batch<PRProject>> GetAllProjectsByMemberAsync(ProfileIdentifier member, string? skip = null, int? top = 100, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        if (skip != null) queryParameters.Append("$skip", skip);
+        if (top != null) queryParameters.Append("$top", top?.ToString());
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/member:{member}{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+    
+    /// <summary>
+    /// Get all projects for a member
+    /// </summary>
+    public IAsyncEnumerable<PRProject> GetAllProjectsByMemberAsyncEnumerable(ProfileIdentifier member, string? skip = null, int? top = 100, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsByMemberAsync(member: member, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
+
+    public async Task<Batch<PRProject>> GetAllProjectsWithRightAsync(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        if (skip != null) queryParameters.Append("$skip", skip);
+        if (top != null) queryParameters.Append("$top", top?.ToString());
+        if (term != null) queryParameters.Append("term", term);
+        if (path != null) queryParameters.Append("path", path);
+        if (starred != null) queryParameters.Append("starred", starred?.ToString("l"));
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/right-code:{rightCode}{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+    
+    public IAsyncEnumerable<PRProject> GetAllProjectsWithRightAsyncEnumerable(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsWithRightAsync(rightCode: rightCode, top: top, term: term, path: path, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
+
+    /// <summary>
+    /// Get all projects for a team
+    /// </summary>
+    public async Task<Batch<PRProject>> GetAllProjectsByTeamAsync(string team, string? skip = null, int? top = 100, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        if (skip != null) queryParameters.Append("$skip", skip);
+        if (top != null) queryParameters.Append("$top", top?.ToString());
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/team:{team}{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+    
+    /// <summary>
+    /// Get all projects for a team
+    /// </summary>
+    public IAsyncEnumerable<PRProject> GetAllProjectsByTeamAsyncEnumerable(string team, string? skip = null, int? top = 100, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsByTeamAsync(team: team, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
+
+    /// <summary>
+    /// Get project by ID or project key
+    /// </summary>
+    public async Task<PRProject> GetProjectAsync(ProjectIdentifier project, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<PRProject>("GET", $"api/http/projects/{project}{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
+    /// <summary>
+    /// Update an existing project. Optional parameters will be ignored when not specified and updated otherwise.
+    /// </summary>
+    public async Task<PRProject> UpdateProjectAsync(ProjectIdentifier project, ProjectKey? key = null, string? name = null, string? description = null, bool? @private = null, List<string>? tags = null, string? icon = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<ProjectsForProjectPatchRequest, PRProject>("PATCH", $"api/http/projects/{project}{queryParameters.ToQueryString()}", 
+            new ProjectsForProjectPatchRequest
+            { 
+                Key = key,
+                Name = name,
+                Description = description,
+                IsPrivate = @private,
+                Tags = tags,
+                Icon = icon,
+            }, cancellationToken);
+    }
+    
+
+    /// <summary>
+    /// Archive a project
+    /// </summary>
+    public async Task ArchiveProjectAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+
+    public AutomationClient Automation => new AutomationClient(_connection);
+    
+    public partial class AutomationClient : ISpaceClient
     {
         private readonly Connection _connection;
         
-        public ProjectClient(Connection connection)
+        public AutomationClient(Connection connection)
         {
             _connection = connection;
         }
         
-        /// <summary>
-        /// Create a new project
-        /// </summary>
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Create projects</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<PRProject> CreateProjectAsync(ProjectKey key, string name, bool @private = false, List<string>? tags = null, string? description = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ProjectsPostRequest, PRProject>("POST", $"api/http/projects{queryParameters.ToQueryString()}", 
-                new ProjectsPostRequest
-                { 
-                    Key = key,
-                    Name = name,
-                    Description = description,
-                    IsPrivate = @private,
-                    Tags = (tags ?? new List<string>()),
-                }, cancellationToken);
-        }
+        public GraphExecutionClient GraphExecutions => new GraphExecutionClient(_connection);
         
-    
-        /// <summary>
-        /// Get/search all projects. Parameters are applied as 'AND' filters.
-        /// </summary>
-        public async Task<Batch<PRProject>> GetAllProjectsAsync(string? skip = null, int? top = 100, string? term = null, string? tag = null, bool? starred = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            if (skip != null) queryParameters.Append("$skip", skip);
-            if (top != null) queryParameters.Append("$top", top?.ToString());
-            if (term != null) queryParameters.Append("term", term);
-            if (tag != null) queryParameters.Append("tag", tag);
-            if (starred != null) queryParameters.Append("starred", starred?.ToString("l"));
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-        
-        /// <summary>
-        /// Get/search all projects. Parameters are applied as 'AND' filters.
-        /// </summary>
-        public IAsyncEnumerable<PRProject> GetAllProjectsAsyncEnumerable(string? skip = null, int? top = 100, string? term = null, string? tag = null, bool? starred = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsAsync(top: top, term: term, tag: tag, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
-    
-        /// <summary>
-        /// Get all projects for a member
-        /// </summary>
-        public async Task<Batch<PRProject>> GetAllProjectsByMemberAsync(ProfileIdentifier member, string? skip = null, int? top = 100, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            if (skip != null) queryParameters.Append("$skip", skip);
-            if (top != null) queryParameters.Append("$top", top?.ToString());
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/member:{member}{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-        
-        /// <summary>
-        /// Get all projects for a member
-        /// </summary>
-        public IAsyncEnumerable<PRProject> GetAllProjectsByMemberAsyncEnumerable(ProfileIdentifier member, string? skip = null, int? top = 100, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsByMemberAsync(member: member, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
-    
-        public async Task<Batch<PRProject>> GetAllProjectsWithRightAsync(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            if (skip != null) queryParameters.Append("$skip", skip);
-            if (top != null) queryParameters.Append("$top", top?.ToString());
-            if (term != null) queryParameters.Append("term", term);
-            if (path != null) queryParameters.Append("path", path);
-            if (starred != null) queryParameters.Append("starred", starred?.ToString("l"));
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/right-code:{rightCode}{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-        
-        public IAsyncEnumerable<PRProject> GetAllProjectsWithRightAsyncEnumerable(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsWithRightAsync(rightCode: rightCode, top: top, term: term, path: path, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
-    
-        /// <summary>
-        /// Get all projects for a team
-        /// </summary>
-        public async Task<Batch<PRProject>> GetAllProjectsByTeamAsync(string team, string? skip = null, int? top = 100, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            if (skip != null) queryParameters.Append("$skip", skip);
-            if (top != null) queryParameters.Append("$top", top?.ToString());
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/team:{team}{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-        
-        /// <summary>
-        /// Get all projects for a team
-        /// </summary>
-        public IAsyncEnumerable<PRProject> GetAllProjectsByTeamAsyncEnumerable(string team, string? skip = null, int? top = 100, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsByTeamAsync(team: team, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
-    
-        /// <summary>
-        /// Get project by ID or project key
-        /// </summary>
-        public async Task<PRProject> GetProjectAsync(ProjectIdentifier project, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<PRProject>("GET", $"api/http/projects/{project}{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
-        /// <summary>
-        /// Update an existing project. Optional parameters will be ignored when not specified and updated otherwise.
-        /// </summary>
-        public async Task<PRProject> UpdateProjectAsync(ProjectIdentifier project, ProjectKey? key = null, string? name = null, string? description = null, bool? @private = null, List<string>? tags = null, string? icon = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ProjectsForProjectPatchRequest, PRProject>("PATCH", $"api/http/projects/{project}{queryParameters.ToQueryString()}", 
-                new ProjectsForProjectPatchRequest
-                { 
-                    Key = key,
-                    Name = name,
-                    Description = description,
-                    IsPrivate = @private,
-                    Tags = tags,
-                    Icon = icon,
-                }, cancellationToken);
-        }
-        
-    
-        /// <summary>
-        /// Archive a project
-        /// </summary>
-        public async Task ArchiveProjectAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
-        public AutomationClient Automation => new AutomationClient(_connection);
-        
-        public partial class AutomationClient : ISpaceClient
+        public partial class GraphExecutionClient : ISpaceClient
         {
             private readonly Connection _connection;
             
-            public AutomationClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            public GraphExecutionClient GraphExecutions => new GraphExecutionClient(_connection);
-            
-            public partial class GraphExecutionClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public GraphExecutionClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Stop execution by ExecutionId
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Stop</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task StopExecutionAsync(string id, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("POST", $"api/http/projects/automation/graph-executions/{id}/stop{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<JobExecution> GetGraphExecutionAsync(string id, Func<Partial<JobExecution>, Partial<JobExecution>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<JobExecution>()) : Partial<JobExecution>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<JobExecution>("GET", $"api/http/projects/automation/graph-executions/{id}{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-            }
-        
-            public JobExecutionClient JobExecutions => new JobExecutionClient(_connection);
-            
-            public partial class JobExecutionClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public JobExecutionClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<JobExecution> GetCurrentAsync(Func<Partial<JobExecution>, Partial<JobExecution>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<JobExecution>()) : Partial<JobExecution>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<JobExecution>("GET", $"api/http/projects/automation/job-executions/current{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-            }
-        
-            public JobClient Jobs => new JobClient(_connection);
-            
-            public partial class JobClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public JobClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<Job> GetJobAsync(string jobId, ProjectIdentifier project, Func<Partial<Job>, Partial<Job>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("project", project.ToString());
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Job>()) : Partial<Job>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Job>("GET", $"api/http/projects/automation/jobs/{jobId}{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-            }
-        
-            public StepExecutionClient StepExecutions => new StepExecutionClient(_connection);
-            
-            public partial class StepExecutionClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public StepExecutionClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public ParameterClient Parameters => new ParameterClient(_connection);
-                
-                public partial class ParameterClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public ParameterClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    public async Task<string> GetParameterAsync(string stepExecId, string key, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        return await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                    public async Task UpdateParameterAsync(string stepExecId, string key, string value, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("PATCH", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}{queryParameters.ToQueryString()}", 
-                            new ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequest
-                            { 
-                                Value = value,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    public async Task DeleteParameterAsync(string stepExecId, string key, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-            }
-        
-        }
-    
-        public partial class AutomationClient : ISpaceClient
-        {
-            public partial class GraphExecutionClient : ISpaceClient
-            {
-                /// <summary>
-                /// Search executions. Parameters are applied as 'AND' filters.
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<Batch<JobExecution>> GetAllGraphExecutionsAsync(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, string? skip = null, int? top = 100, Func<Partial<Batch<JobExecution>>, Partial<Batch<JobExecution>>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("jobId", jobId);
-                    if (branchFilter != null) queryParameters.Append("branchFilter", branchFilter);
-                    queryParameters.Append("statusFilter", statusFilter.ToEnumString());
-                    queryParameters.Append("jobTriggerFilter", jobTriggerFilter.ToEnumString());
-                    if (skip != null) queryParameters.Append("$skip", skip);
-                    if (top != null) queryParameters.Append("$top", top?.ToString());
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<JobExecution>>()) : Partial<Batch<JobExecution>>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Batch<JobExecution>>("GET", $"api/http/projects/{project}/automation/graph-executions{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-                
-                /// <summary>
-                /// Search executions. Parameters are applied as 'AND' filters.
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public IAsyncEnumerable<JobExecution> GetAllGraphExecutionsAsyncEnumerable(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, string? skip = null, int? top = 100, Func<Partial<JobExecution>, Partial<JobExecution>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllGraphExecutionsAsync(project: project, jobId: jobId, branchFilter: branchFilter, statusFilter: statusFilter, jobTriggerFilter: jobTriggerFilter, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<JobExecution>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<JobExecution>.Default())), skip, cancellationToken);
-            
-            }
-        
-            public partial class JobClient : ISpaceClient
-            {
-                /// <summary>
-                /// Start job. Returns ExecutionId, see projects/automation/graph-executions/{id}.
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Start</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<LaunchResult> StartJobAsync(ProjectIdentifier project, string jobId, Branch branch, Func<Partial<LaunchResult>, Partial<LaunchResult>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<LaunchResult>()) : Partial<LaunchResult>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<ProjectsForProjectAutomationJobsForJobIdStartPostRequest, LaunchResult>("POST", $"api/http/projects/{project}/automation/jobs/{jobId}/start{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectAutomationJobsForJobIdStartPostRequest
-                        { 
-                            Branch = branch,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// List jobs. Parameters are applied as 'AND' filters.
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<Batch<Job>> GetAllJobsAsync(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = 100, Func<Partial<Batch<Job>>, Partial<Batch<Job>>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("repoFilter", repoFilter);
-                    queryParameters.Append("branchFilter", branchFilter);
-                    queryParameters.Append("trigger", trigger.ToEnumString());
-                    if (skip != null) queryParameters.Append("$skip", skip);
-                    if (top != null) queryParameters.Append("$top", top?.ToString());
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Job>>()) : Partial<Batch<Job>>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Batch<Job>>("GET", $"api/http/projects/{project}/automation/jobs{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-                
-                /// <summary>
-                /// List jobs. Parameters are applied as 'AND' filters.
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public IAsyncEnumerable<Job> GetAllJobsAsyncEnumerable(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = 100, Func<Partial<Job>, Partial<Job>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllJobsAsync(project: project, repoFilter: repoFilter, branchFilter: branchFilter, trigger: trigger, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Job>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Job>.Default())), skip, cancellationToken);
-            
-            }
-        
-        }
-    
-        public ParamClient Params => new ParamClient(_connection);
-        
-        public partial class ParamClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public ParamClient(Connection connection)
+            public GraphExecutionClient(Connection connection)
             {
                 _connection = connection;
             }
             
             /// <summary>
-            /// Update an existing project parameter
+            /// Stop execution by ExecutionId
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Stop</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task StopExecutionAsync(string id, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/automation/graph-executions/{id}/stop{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<JobExecution> GetGraphExecutionAsync(string id, Func<Partial<JobExecution>, Partial<JobExecution>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<JobExecution>()) : Partial<JobExecution>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<JobExecution>("GET", $"api/http/projects/automation/graph-executions/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
+        public JobExecutionClient JobExecutions => new JobExecutionClient(_connection);
+        
+        public partial class JobExecutionClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public JobExecutionClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<JobExecution> GetCurrentAsync(Func<Partial<JobExecution>, Partial<JobExecution>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<JobExecution>()) : Partial<JobExecution>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<JobExecution>("GET", $"api/http/projects/automation/job-executions/current{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
+        public JobClient Jobs => new JobClient(_connection);
+        
+        public partial class JobClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public JobClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Job> GetJobAsync(string jobId, ProjectIdentifier project, Func<Partial<Job>, Partial<Job>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("project", project.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Job>()) : Partial<Job>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Job>("GET", $"api/http/projects/automation/jobs/{jobId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
+        public StepExecutionClient StepExecutions => new StepExecutionClient(_connection);
+        
+        public partial class StepExecutionClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public StepExecutionClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public ParameterClient Parameters => new ParameterClient(_connection);
+            
+            public partial class ParameterClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public ParameterClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<string> GetParameterAsync(string stepExecId, string key, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    return await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                public async Task UpdateParameterAsync(string stepExecId, string key, string value, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}{queryParameters.ToQueryString()}", 
+                        new ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequest
+                        { 
+                            Value = value,
+                        }, cancellationToken);
+                }
+                
+            
+                public async Task DeleteParameterAsync(string stepExecId, string key, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+        }
+    
+    }
+
+    public partial class AutomationClient : ISpaceClient
+    {
+        public partial class GraphExecutionClient : ISpaceClient
+        {
+            /// <summary>
+            /// Search executions. Parameters are applied as 'AND' filters.
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Batch<JobExecution>> GetAllGraphExecutionsAsync(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, string? skip = null, int? top = 100, Func<Partial<Batch<JobExecution>>, Partial<Batch<JobExecution>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("jobId", jobId);
+                if (branchFilter != null) queryParameters.Append("branchFilter", branchFilter);
+                queryParameters.Append("statusFilter", statusFilter.ToEnumString());
+                queryParameters.Append("jobTriggerFilter", jobTriggerFilter.ToEnumString());
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<JobExecution>>()) : Partial<Batch<JobExecution>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<JobExecution>>("GET", $"api/http/projects/{project}/automation/graph-executions{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            /// <summary>
+            /// Search executions. Parameters are applied as 'AND' filters.
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<JobExecution> GetAllGraphExecutionsAsyncEnumerable(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, string? skip = null, int? top = 100, Func<Partial<JobExecution>, Partial<JobExecution>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllGraphExecutionsAsync(project: project, jobId: jobId, branchFilter: branchFilter, statusFilter: statusFilter, jobTriggerFilter: jobTriggerFilter, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<JobExecution>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<JobExecution>.Default())), skip, cancellationToken);
+        
+        }
+    
+        public partial class JobClient : ISpaceClient
+        {
+            /// <summary>
+            /// Start job. Returns ExecutionId, see projects/automation/graph-executions/{id}.
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Start</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<LaunchResult> StartJobAsync(ProjectIdentifier project, string jobId, Branch branch, Func<Partial<LaunchResult>, Partial<LaunchResult>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<LaunchResult>()) : Partial<LaunchResult>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectAutomationJobsForJobIdStartPostRequest, LaunchResult>("POST", $"api/http/projects/{project}/automation/jobs/{jobId}/start{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectAutomationJobsForJobIdStartPostRequest
+                    { 
+                        Branch = branch,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// List jobs. Parameters are applied as 'AND' filters.
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Batch<Job>> GetAllJobsAsync(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = 100, Func<Partial<Batch<Job>>, Partial<Batch<Job>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("repoFilter", repoFilter);
+                queryParameters.Append("branchFilter", branchFilter);
+                queryParameters.Append("trigger", trigger.ToEnumString());
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Job>>()) : Partial<Batch<Job>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<Job>>("GET", $"api/http/projects/{project}/automation/jobs{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            /// <summary>
+            /// List jobs. Parameters are applied as 'AND' filters.
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<Job> GetAllJobsAsyncEnumerable(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = 100, Func<Partial<Job>, Partial<Job>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllJobsAsync(project: project, repoFilter: repoFilter, branchFilter: branchFilter, trigger: trigger, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Job>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Job>.Default())), skip, cancellationToken);
+        
+        }
+    
+    }
+
+    public ParamClient Params => new ParamClient(_connection);
+    
+    public partial class ParamClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public ParamClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Update an existing project parameter
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Modify parameters</term>
+        /// <description>Create or edit project parameters</description>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task UpdateParamAsync(string id, string value, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/projects/params/{id}{queryParameters.ToQueryString()}", 
+                new ProjectsParamsForIdPatchRequest
+                { 
+                    Value = value,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Delete an existing project parameter
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Delete parameters</term>
+        /// <description>Delete project parameters</description>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task DeleteParamAsync(string id, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/params/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public DefaultBundleClient DefaultBundle => new DefaultBundleClient(_connection);
+        
+        public partial class DefaultBundleClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public DefaultBundleClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Create a new project parameter in the default parameter bundle
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -505,220 +560,204 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task UpdateParamAsync(string id, string value, CancellationToken cancellationToken = default)
+            public async Task<string> CreateDefaultBundleAsync(ProjectIdentifier project, string key, string value, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/params/{id}{queryParameters.ToQueryString()}", 
-                    new ProjectsParamsForIdPatchRequest
+                return await _connection.RequestResourceAsync<ProjectsParamsDefaultBundlePostRequest, string>("POST", $"api/http/projects/params/default-bundle{queryParameters.ToQueryString()}", 
+                    new ProjectsParamsDefaultBundlePostRequest
                     { 
+                        Project = project,
+                        Key = key,
                         Value = value,
                     }, cancellationToken);
             }
             
         
             /// <summary>
-            /// Delete an existing project parameter
+            /// List project parameters in a parameter bundle
             /// </summary>
             /// <remarks>
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Delete parameters</term>
-            /// <description>Delete project parameters</description>
+            /// <term>View parameters</term>
+            /// <description>View project parameters</description>
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task DeleteParamAsync(string id, CancellationToken cancellationToken = default)
+            public async Task<Batch<PlainParameterRecord>> GetAllDefaultBundleAsync(ProjectIdentifier project, string? skip = null, int? top = 100, Func<Partial<Batch<PlainParameterRecord>>, Partial<Batch<PlainParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
+                queryParameters.Append("project", project.ToString());
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PlainParameterRecord>>()) : Partial<Batch<PlainParameterRecord>>.Default()).ToString());
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/params/{id}{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<PlainParameterRecord>>("GET", $"api/http/projects/params/default-bundle{queryParameters.ToQueryString()}", cancellationToken);
             }
             
-        
-            public DefaultBundleClient DefaultBundle => new DefaultBundleClient(_connection);
             
-            public partial class DefaultBundleClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public DefaultBundleClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Create a new project parameter in the default parameter bundle
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Modify parameters</term>
-                /// <description>Create or edit project parameters</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<string> CreateDefaultBundleAsync(ProjectIdentifier project, string key, string value, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    return await _connection.RequestResourceAsync<ProjectsParamsDefaultBundlePostRequest, string>("POST", $"api/http/projects/params/default-bundle{queryParameters.ToQueryString()}", 
-                        new ProjectsParamsDefaultBundlePostRequest
-                        { 
-                            Project = project,
-                            Key = key,
-                            Value = value,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// List project parameters in a parameter bundle
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View parameters</term>
-                /// <description>View project parameters</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<Batch<PlainParameterRecord>> GetAllDefaultBundleAsync(ProjectIdentifier project, string? skip = null, int? top = 100, Func<Partial<Batch<PlainParameterRecord>>, Partial<Batch<PlainParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("project", project.ToString());
-                    if (skip != null) queryParameters.Append("$skip", skip);
-                    if (top != null) queryParameters.Append("$top", top?.ToString());
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PlainParameterRecord>>()) : Partial<Batch<PlainParameterRecord>>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Batch<PlainParameterRecord>>("GET", $"api/http/projects/params/default-bundle{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-                
-                /// <summary>
-                /// List project parameters in a parameter bundle
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View parameters</term>
-                /// <description>View project parameters</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public IAsyncEnumerable<PlainParameterRecord> GetAllDefaultBundleAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, Func<Partial<PlainParameterRecord>, Partial<PlainParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllDefaultBundleAsync(project: project, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlainParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlainParameterRecord>.Default())), skip, cancellationToken);
-            
-            }
-        
-            public InDefaultBundleClient InDefaultBundle => new InDefaultBundleClient(_connection);
-            
-            public partial class InDefaultBundleClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public InDefaultBundleClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Modify parameters</term>
-                /// <description>Create or edit project parameters</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
-                public async Task<string> CreateInDefaultBundleAsync(string projectId, string key, string value, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    return await _connection.RequestResourceAsync<ProjectsParamsInDefaultBundlePostRequest, string>("POST", $"api/http/projects/params/in-default-bundle{queryParameters.ToQueryString()}", 
-                        new ProjectsParamsInDefaultBundlePostRequest
-                        { 
-                            ProjectId = projectId,
-                            Key = key,
-                            Value = value,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// List project parameters in a parameter bundle
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View parameters</term>
-                /// <description>View project parameters</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
-                public async Task<Batch<PlainParameterRecord>> GetAllInDefaultBundleAsync(string projectId, string? skip = null, int? top = 100, Func<Partial<Batch<PlainParameterRecord>>, Partial<Batch<PlainParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("projectId", projectId);
-                    if (skip != null) queryParameters.Append("$skip", skip);
-                    if (top != null) queryParameters.Append("$top", top?.ToString());
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PlainParameterRecord>>()) : Partial<Batch<PlainParameterRecord>>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Batch<PlainParameterRecord>>("GET", $"api/http/projects/params/in-default-bundle{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-                
-                /// <summary>
-                /// List project parameters in a parameter bundle
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View parameters</term>
-                /// <description>View project parameters</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
-                public IAsyncEnumerable<PlainParameterRecord> GetAllInDefaultBundleAsyncEnumerable(string projectId, string? skip = null, int? top = 100, Func<Partial<PlainParameterRecord>, Partial<PlainParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInDefaultBundleAsync(projectId: projectId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlainParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlainParameterRecord>.Default())), skip, cancellationToken);
-            
-            }
+            /// <summary>
+            /// List project parameters in a parameter bundle
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View parameters</term>
+            /// <description>View project parameters</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<PlainParameterRecord> GetAllDefaultBundleAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, Func<Partial<PlainParameterRecord>, Partial<PlainParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllDefaultBundleAsync(project: project, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlainParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlainParameterRecord>.Default())), skip, cancellationToken);
         
         }
     
-        public PlanningClient Planning => new PlanningClient(_connection);
+        public InDefaultBundleClient InDefaultBundle => new InDefaultBundleClient(_connection);
         
-        public partial class PlanningClient : ISpaceClient
+        public partial class InDefaultBundleClient : ISpaceClient
         {
             private readonly Connection _connection;
             
-            public PlanningClient(Connection connection)
+            public InDefaultBundleClient(Connection connection)
             {
                 _connection = connection;
             }
             
-            public BoardClient Boards => new BoardClient(_connection);
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Modify parameters</term>
+            /// <description>Create or edit project parameters</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
+            public async Task<string> CreateInDefaultBundleAsync(string projectId, string key, string value, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<ProjectsParamsInDefaultBundlePostRequest, string>("POST", $"api/http/projects/params/in-default-bundle{queryParameters.ToQueryString()}", 
+                    new ProjectsParamsInDefaultBundlePostRequest
+                    { 
+                        ProjectId = projectId,
+                        Key = key,
+                        Value = value,
+                    }, cancellationToken);
+            }
             
-            public partial class BoardClient : ISpaceClient
+        
+            /// <summary>
+            /// List project parameters in a parameter bundle
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View parameters</term>
+            /// <description>View project parameters</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
+            public async Task<Batch<PlainParameterRecord>> GetAllInDefaultBundleAsync(string projectId, string? skip = null, int? top = 100, Func<Partial<Batch<PlainParameterRecord>>, Partial<Batch<PlainParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("projectId", projectId);
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PlainParameterRecord>>()) : Partial<Batch<PlainParameterRecord>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<PlainParameterRecord>>("GET", $"api/http/projects/params/in-default-bundle{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            /// <summary>
+            /// List project parameters in a parameter bundle
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View parameters</term>
+            /// <description>View project parameters</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
+            public IAsyncEnumerable<PlainParameterRecord> GetAllInDefaultBundleAsyncEnumerable(string projectId, string? skip = null, int? top = 100, Func<Partial<PlainParameterRecord>, Partial<PlainParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInDefaultBundleAsync(projectId: projectId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlainParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlainParameterRecord>.Default())), skip, cancellationToken);
+        
+        }
+    
+    }
+
+    public PlanningClient Planning => new PlanningClient(_connection);
+    
+    public partial class PlanningClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public PlanningClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        public BoardClient Boards => new BoardClient(_connection);
+        
+        public partial class BoardClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public BoardClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Update an existing board. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Manage boards</term>
+            /// <description>Update issue board settings and delete issue boards</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task UpdateBoardAsync(BoardIdentifier board, string? name = null, string? description = null, BoardColumns? columns = null, List<string>? memberOwners = null, List<string>? teamOwners = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/planning/boards/{board}{queryParameters.ToQueryString()}", 
+                    new ProjectsPlanningBoardsForBoardPatchRequest
+                    { 
+                        Name = name,
+                        Description = description,
+                        Columns = columns,
+                        MemberOwners = memberOwners,
+                        TeamOwners = teamOwners,
+                    }, cancellationToken);
+            }
+            
+        
+            public SprintClient Sprints => new SprintClient(_connection);
+            
+            public partial class SprintClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
-                public BoardClient(Connection connection)
+                public SprintClient(Connection connection)
                 {
                     _connection = connection;
                 }
                 
                 /// <summary>
-                /// Update an existing board. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
+                /// Create a new sprint in a board. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -729,35 +768,87 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task UpdateBoardAsync(BoardIdentifier board, string? name = null, string? description = null, BoardColumns? columns = null, List<string>? memberOwners = null, List<string>? teamOwners = null, CancellationToken cancellationToken = default)
+                public async Task<SprintRecord> CreateSprintAsync(BoardIdentifier board, string name, DateTime from, DateTime to, string? description = null, Func<Partial<SprintRecord>, Partial<SprintRecord>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<SprintRecord>()) : Partial<SprintRecord>.Default()).ToString());
                     
-                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/planning/boards/{board}{queryParameters.ToQueryString()}", 
-                        new ProjectsPlanningBoardsForBoardPatchRequest
+                    return await _connection.RequestResourceAsync<ProjectsPlanningBoardsSprintsPostRequest, SprintRecord>("POST", $"api/http/projects/planning/boards/sprints{queryParameters.ToQueryString()}", 
+                        new ProjectsPlanningBoardsSprintsPostRequest
                         { 
+                            Board = board,
                             Name = name,
                             Description = description,
-                            Columns = columns,
-                            MemberOwners = memberOwners,
-                            TeamOwners = teamOwners,
+                            From = from,
+                            To = to,
                         }, cancellationToken);
                 }
                 
             
-                public SprintClient Sprints => new SprintClient(_connection);
+                /// <summary>
+                /// Launch a planned sprint. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage boards</term>
+                /// <description>Update issue board settings and delete issue boards</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task LaunchPlannedSprintAsync(SprintIdentifier sprint, bool moveUnresolvedIssuesFromCurrentSprint, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/planning/boards/sprints/{sprint}/launch{queryParameters.ToQueryString()}", 
+                        new ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest
+                        { 
+                            IsMoveUnresolvedIssuesFromCurrentSprint = moveUnresolvedIssuesFromCurrentSprint,
+                        }, cancellationToken);
+                }
                 
-                public partial class SprintClient : ISpaceClient
+            
+                /// <summary>
+                /// Update an existing sprint in a board. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage boards</term>
+                /// <description>Update issue board settings and delete issue boards</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task UpdateSprintAsync(SprintIdentifier sprint, string? name = null, string? description = null, DateTime? from = null, DateTime? to = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/planning/boards/sprints/{sprint}{queryParameters.ToQueryString()}", 
+                        new ProjectsPlanningBoardsSprintsForSprintPatchRequest
+                        { 
+                            Name = name,
+                            Description = description,
+                            From = from,
+                            To = to,
+                        }, cancellationToken);
+                }
+                
+            
+                public ArchiveClient Archive => new ArchiveClient(_connection);
+                
+                public partial class ArchiveClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
-                    public SprintClient(Connection connection)
+                    public ArchiveClient(Connection connection)
                     {
                         _connection = connection;
                     }
                     
                     /// <summary>
-                    /// Create a new sprint in a board. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
+                    /// Archive closed or planned sprint. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -768,197 +859,13 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task<SprintRecord> CreateSprintAsync(BoardIdentifier board, string name, DateTime from, DateTime to, string? description = null, Func<Partial<SprintRecord>, Partial<SprintRecord>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<SprintRecord>()) : Partial<SprintRecord>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<ProjectsPlanningBoardsSprintsPostRequest, SprintRecord>("POST", $"api/http/projects/planning/boards/sprints{queryParameters.ToQueryString()}", 
-                            new ProjectsPlanningBoardsSprintsPostRequest
-                            { 
-                                Board = board,
-                                Name = name,
-                                Description = description,
-                                From = from,
-                                To = to,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    /// <summary>
-                    /// Launch a planned sprint. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Manage boards</term>
-                    /// <description>Update issue board settings and delete issue boards</description>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task LaunchPlannedSprintAsync(SprintIdentifier sprint, bool moveUnresolvedIssuesFromCurrentSprint, CancellationToken cancellationToken = default)
+                    public async Task ArchiveSprintAsync(SprintIdentifier sprint, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/planning/boards/sprints/{sprint}/launch{queryParameters.ToQueryString()}", 
-                            new ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest
-                            { 
-                                IsMoveUnresolvedIssuesFromCurrentSprint = moveUnresolvedIssuesFromCurrentSprint,
-                            }, cancellationToken);
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/sprints/{sprint}/archive{queryParameters.ToQueryString()}", cancellationToken);
                     }
                     
-                
-                    /// <summary>
-                    /// Update an existing sprint in a board. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Manage boards</term>
-                    /// <description>Update issue board settings and delete issue boards</description>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task UpdateSprintAsync(SprintIdentifier sprint, string? name = null, string? description = null, DateTime? from = null, DateTime? to = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("PATCH", $"api/http/projects/planning/boards/sprints/{sprint}{queryParameters.ToQueryString()}", 
-                            new ProjectsPlanningBoardsSprintsForSprintPatchRequest
-                            { 
-                                Name = name,
-                                Description = description,
-                                From = from,
-                                To = to,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    public ArchiveClient Archive => new ArchiveClient(_connection);
-                    
-                    public partial class ArchiveClient : ISpaceClient
-                    {
-                        private readonly Connection _connection;
-                        
-                        public ArchiveClient(Connection connection)
-                        {
-                            _connection = connection;
-                        }
-                        
-                        /// <summary>
-                        /// Archive closed or planned sprint. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Manage boards</term>
-                        /// <description>Update issue board settings and delete issue boards</description>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public async Task ArchiveSprintAsync(SprintIdentifier sprint, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            
-                            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/sprints/{sprint}/archive{queryParameters.ToQueryString()}", cancellationToken);
-                        }
-                        
-                    
-                    }
-                
-                    public IssueClient Issues => new IssueClient(_connection);
-                    
-                    public partial class IssueClient : ISpaceClient
-                    {
-                        private readonly Connection _connection;
-                        
-                        public IssueClient(Connection connection)
-                        {
-                            _connection = connection;
-                        }
-                        
-                        /// <summary>
-                        /// Add an existing issue in a project to a sprint
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Manage issue assignment</term>
-                        /// <description>Add issues to and remove issues from issue boards</description>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public async Task AddIssueToSprintAsync(IssueIdentifier issue, SprintIdentifier sprint, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            
-                            await _connection.RequestResourceAsync("POST", $"api/http/projects/planning/boards/sprints/{sprint}/issues/{issue}{queryParameters.ToQueryString()}", cancellationToken);
-                        }
-                        
-                    
-                        /// <summary>
-                        /// Fetch issues from an existing non-archived sprint
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>View boards</term>
-                        /// <description>View issue boards</description>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public async Task<Batch<Issue>> GetAllIssuesInSprintAsync(SprintIdentifier sprint, string? skip = null, int? top = 100, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            if (skip != null) queryParameters.Append("$skip", skip);
-                            if (top != null) queryParameters.Append("$top", top?.ToString());
-                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default()).ToString());
-                            
-                            return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/planning/boards/sprints/{sprint}/issues{queryParameters.ToQueryString()}", cancellationToken);
-                        }
-                        
-                        
-                        /// <summary>
-                        /// Fetch issues from an existing non-archived sprint
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>View boards</term>
-                        /// <description>View issue boards</description>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public IAsyncEnumerable<Issue> GetAllIssuesInSprintAsyncEnumerable(SprintIdentifier sprint, string? skip = null, int? top = 100, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
-                            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesInSprintAsync(sprint: sprint, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
-                    
-                        /// <summary>
-                        /// Remove an existing issue in a project from a sprint.
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Manage issue assignment</term>
-                        /// <description>Add issues to and remove issues from issue boards</description>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public async Task RemoveIssueFromSprintAsync(IssueIdentifier issue, SprintIdentifier sprint, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            
-                            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/sprints/{sprint}/issues/{issue}{queryParameters.ToQueryString()}", cancellationToken);
-                        }
-                        
-                    
-                    }
                 
                 }
             
@@ -974,7 +881,7 @@ namespace JetBrains.Space.Client
                     }
                     
                     /// <summary>
-                    /// Add an existing issue in a project to a board or its current sprint
+                    /// Add an existing issue in a project to a sprint
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -985,16 +892,16 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task AddIssueToBoardAsync(IssueIdentifier issue, BoardIdentifier board, CancellationToken cancellationToken = default)
+                    public async Task AddIssueToSprintAsync(IssueIdentifier issue, SprintIdentifier sprint, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/planning/boards/{board}/issues/{issue}{queryParameters.ToQueryString()}", cancellationToken);
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/planning/boards/sprints/{sprint}/issues/{issue}{queryParameters.ToQueryString()}", cancellationToken);
                     }
                     
                 
                     /// <summary>
-                    /// Fetch issues from the board across all its non-archived sprints
+                    /// Fetch issues from an existing non-archived sprint
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1005,19 +912,19 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task<Batch<Issue>> GetAllIssuesOnBoardAsync(BoardIdentifier board, string? skip = null, int? top = 100, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
+                    public async Task<Batch<Issue>> GetAllIssuesInSprintAsync(SprintIdentifier sprint, string? skip = null, int? top = 100, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         if (skip != null) queryParameters.Append("$skip", skip);
                         if (top != null) queryParameters.Append("$top", top?.ToString());
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/planning/boards/{board}/issues{queryParameters.ToQueryString()}", cancellationToken);
+                        return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/planning/boards/sprints/{sprint}/issues{queryParameters.ToQueryString()}", cancellationToken);
                     }
                     
                     
                     /// <summary>
-                    /// Fetch issues from the board across all its non-archived sprints
+                    /// Fetch issues from an existing non-archived sprint
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1028,11 +935,11 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public IAsyncEnumerable<Issue> GetAllIssuesOnBoardAsyncEnumerable(BoardIdentifier board, string? skip = null, int? top = 100, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
-                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesOnBoardAsync(board: board, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
+                    public IAsyncEnumerable<Issue> GetAllIssuesInSprintAsyncEnumerable(SprintIdentifier sprint, string? skip = null, int? top = 100, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesInSprintAsync(sprint: sprint, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
                 
                     /// <summary>
-                    /// Remove an existing issue in a project from a board or all of its sprints
+                    /// Remove an existing issue in a project from a sprint.
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1043,364 +950,11 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task RemoveIssueFromBoardAsync(IssueIdentifier issue, BoardIdentifier board, CancellationToken cancellationToken = default)
+                    public async Task RemoveIssueFromSprintAsync(IssueIdentifier issue, SprintIdentifier sprint, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/{board}/issues/{issue}{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-            }
-        
-        }
-    
-        public partial class PlanningClient : ISpaceClient
-        {
-            public partial class BoardClient : ISpaceClient
-            {
-                /// <summary>
-                /// Create a new issue board in a project. The user will become the owner of the board.
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Create boards</term>
-                /// <description>Create issue boards</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<BoardRecord> CreateBoardAsync(ProjectIdentifier project, string name, string? description = null, Func<Partial<BoardRecord>, Partial<BoardRecord>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<BoardRecord>()) : Partial<BoardRecord>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<ProjectsForProjectPlanningBoardsPostRequest, BoardRecord>("POST", $"api/http/projects/{project}/planning/boards{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectPlanningBoardsPostRequest
-                        { 
-                            Name = name,
-                            Description = description,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Search existing boards in a project
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View boards</term>
-                /// <description>View issue boards</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<Batch<BoardRecord>> GetAllBoardsAsync(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<BoardRecord>>, Partial<Batch<BoardRecord>>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    if (skip != null) queryParameters.Append("$skip", skip);
-                    if (top != null) queryParameters.Append("$top", top?.ToString());
-                    if (query != null) queryParameters.Append("query", query);
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<BoardRecord>>()) : Partial<Batch<BoardRecord>>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Batch<BoardRecord>>("GET", $"api/http/projects/{project}/planning/boards{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-                
-                /// <summary>
-                /// Search existing boards in a project
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View boards</term>
-                /// <description>View issue boards</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public IAsyncEnumerable<BoardRecord> GetAllBoardsAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<BoardRecord>, Partial<BoardRecord>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllBoardsAsync(project: project, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<BoardRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<BoardRecord>.Default())), skip, cancellationToken);
-            
-                public partial class SprintClient : ISpaceClient
-                {
-                    /// <summary>
-                    /// Search existing sprints in a project
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>View boards</term>
-                    /// <description>View issue boards</description>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task<Batch<SprintRecord>> GetAllSprintsAsync(ProjectIdentifier project, string? skip = null, int? top = 100, BoardIdentifier? board = null, string? query = null, Func<Partial<Batch<SprintRecord>>, Partial<Batch<SprintRecord>>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        if (skip != null) queryParameters.Append("$skip", skip);
-                        if (top != null) queryParameters.Append("$top", top?.ToString());
-                        if (board != null) queryParameters.Append("board", board?.ToString());
-                        if (query != null) queryParameters.Append("query", query);
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<SprintRecord>>()) : Partial<Batch<SprintRecord>>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<Batch<SprintRecord>>("GET", $"api/http/projects/{project}/planning/boards/sprints{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                    
-                    /// <summary>
-                    /// Search existing sprints in a project
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>View boards</term>
-                    /// <description>View issue boards</description>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public IAsyncEnumerable<SprintRecord> GetAllSprintsAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, BoardIdentifier? board = null, string? query = null, Func<Partial<SprintRecord>, Partial<SprintRecord>>? partial = null, CancellationToken cancellationToken = default)
-                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllSprintsAsync(project: project, top: top, board: board, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<SprintRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<SprintRecord>.Default())), skip, cancellationToken);
-                
-                }
-            
-                public StarredClient Starred => new StarredClient(_connection);
-                
-                public partial class StarredClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public StarredClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Get all starred boards in a project
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>View boards</term>
-                    /// <description>View issue boards</description>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task<List<BoardRecord>> GetAllStarredBoardsAsync(ProjectIdentifier project, Func<Partial<BoardRecord>, Partial<BoardRecord>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<BoardRecord>()) : Partial<BoardRecord>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<List<BoardRecord>>("GET", $"api/http/projects/{project}/planning/boards/starred{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-                public ArchiveClient Archive => new ArchiveClient(_connection);
-                
-                public partial class ArchiveClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public ArchiveClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Archive an existing board. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Manage boards</term>
-                    /// <description>Update issue board settings and delete issue boards</description>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task ArchiveBoardAsync(ProjectIdentifier project, BoardIdentifier board, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/boards/{board}/archive{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-            }
-        
-            public ChecklistClient Checklists => new ChecklistClient(_connection);
-            
-            public partial class ChecklistClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public ChecklistClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Create a new checklist in a project
-                /// </summary>
-                public async Task<Checklist> CreateChecklistAsync(ProjectIdentifier project, string name, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<ProjectsForProjectPlanningChecklistsPostRequest, Checklist>("POST", $"api/http/projects/{project}/planning/checklists{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectPlanningChecklistsPostRequest
-                        { 
-                            Name = name,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Create a new checklist in a project using tab indented lines as checkable items.
-                /// The items with the same indent level will be placed one under the other.
-                /// An issue URL will be converted into the corresponding issue.
-                /// </summary>
-                public async Task<Checklist> ImportChecklistAsync(ProjectIdentifier project, string name, string tabIndentedLines, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<ProjectsForProjectPlanningChecklistsImportPostRequest, Checklist>("POST", $"api/http/projects/{project}/planning/checklists/import{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectPlanningChecklistsImportPostRequest
-                        { 
-                            Name = name,
-                            TabIndentedLines = tabIndentedLines,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Tab indented lines are converted into checkable items following the same rules as in Import Checklist.
-                /// The result is placed inside of the specified project checklist.
-                /// </summary>
-                public async Task ImportChecklistLinesAsync(ProjectIdentifier project, string checklistId, string targetParentId, string tabIndentedLines, string? afterItemId = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/checklists/{checklistId}/import{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest
-                        { 
-                            TargetParentId = targetParentId,
-                            AfterItemId = afterItemId,
-                            TabIndentedLines = tabIndentedLines,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Search existing checklists in a project
-                /// </summary>
-                public async Task<Batch<Checklist>> GetAllChecklistsAsync(ProjectIdentifier project, ChecklistSorting sorting = ChecklistSorting.UPDATED, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<Checklist>>, Partial<Batch<Checklist>>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    if (skip != null) queryParameters.Append("$skip", skip);
-                    if (top != null) queryParameters.Append("$top", top?.ToString());
-                    if (query != null) queryParameters.Append("query", query);
-                    queryParameters.Append("sorting", sorting.ToEnumString());
-                    queryParameters.Append("descending", descending.ToString("l"));
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Checklist>>()) : Partial<Batch<Checklist>>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Batch<Checklist>>("GET", $"api/http/projects/{project}/planning/checklists{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-                
-                /// <summary>
-                /// Search existing checklists in a project
-                /// </summary>
-                public IAsyncEnumerable<Checklist> GetAllChecklistsAsyncEnumerable(ProjectIdentifier project, ChecklistSorting sorting = ChecklistSorting.UPDATED, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllChecklistsAsync(project: project, sorting: sorting, descending: descending, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Checklist>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Checklist>.Default())), skip, cancellationToken);
-            
-                /// <summary>
-                /// Update an existing checklist in a project
-                /// </summary>
-                public async Task UpdateChecklistAsync(ProjectIdentifier project, string checklistId, List<string> topics, string? name = null, string? description = null, string? owner = null, string? tag = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/checklists/{checklistId}{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest
-                        { 
-                            Name = (name ?? string.Empty),
-                            Description = description,
-                            Owner = owner,
-                            Tag = tag,
-                            Topics = topics,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Delete an existing checklist in a project
-                /// </summary>
-                public async Task DeleteChecklistAsync(ProjectIdentifier project, string checklistId, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/checklists/{checklistId}{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-                public StarredClient Starred => new StarredClient(_connection);
-                
-                public partial class StarredClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public StarredClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Get all starred checklists in a project
-                    /// </summary>
-                    public async Task<List<Checklist>> GetAllStarredChecklistsAsync(ProjectIdentifier project, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<List<Checklist>>("GET", $"api/http/projects/{project}/planning/checklists/starred{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-                public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
-                
-                public partial class FullChecklistTreeClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public FullChecklistTreeClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Get the content of a checklist in a project
-                    /// </summary>
-                    public async Task<List<PlanItemChildren>> GetFullChecklistTreeAsync(ProjectIdentifier project, string checklistId, Func<Partial<PlanItemChildren>, Partial<PlanItemChildren>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanItemChildren>()) : Partial<PlanItemChildren>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<List<PlanItemChildren>>("GET", $"api/http/projects/{project}/planning/checklists/{checklistId}/full-checklist-tree{queryParameters.ToQueryString()}", cancellationToken);
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/sprints/{sprint}/issues/{issue}{queryParameters.ToQueryString()}", cancellationToken);
                     }
                     
                 
@@ -1420,156 +974,717 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Create a new issue in a project
+                /// Add an existing issue in a project to a board or its current sprint
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Create issues</term>
-                /// <description>Create issues in a project</description>
+                /// <term>Manage issue assignment</term>
+                /// <description>Add issues to and remove issues from issue boards</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null, List<IssueIdentifier>? parents = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task AddIssueToBoardAsync(IssueIdentifier issue, BoardIdentifier board, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesPostRequest, Issue>("POST", $"api/http/projects/{project}/planning/issues{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectPlanningIssuesPostRequest
-                        { 
-                            Title = title,
-                            Description = description,
-                            Assignee = assignee,
-                            Status = status,
-                            DueDate = dueDate,
-                            Tags = (tags ?? new List<string>()),
-                            Checklists = (checklists ?? new List<string>()),
-                            Sprints = (sprints ?? new List<string>()),
-                            Attachments = (attachments ?? new List<AttachmentIn>()),
-                            FromMessage = fromMessage,
-                            CustomFields = customFields,
-                            Topics = topics,
-                            Parents = parents,
-                        }, cancellationToken);
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/planning/boards/{board}/issues/{issue}{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
             
                 /// <summary>
-                /// Import issues in a project
+                /// Fetch issues from the board across all its non-archived sprints
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Import issues</term>
-                /// <description>Import issues</description>
+                /// <term>View boards</term>
+                /// <description>View issue boards</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<IssueImportResult> ImportIssuesAsync(ProjectIdentifier project, ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, Func<Partial<IssueImportResult>, Partial<IssueImportResult>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueImportResult>()) : Partial<IssueImportResult>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesImportPostRequest, IssueImportResult>("POST", $"api/http/projects/{project}/planning/issues/import{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectPlanningIssuesImportPostRequest
-                        { 
-                            Metadata = metadata,
-                            Issues = issues,
-                            AssigneeMissingPolicy = assigneeMissingPolicy,
-                            StatusMissingPolicy = statusMissingPolicy,
-                            OnExistsPolicy = onExistsPolicy,
-                            IsDryRun = dryRun,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Restore an issue in a project
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Restore issues</term>
-                /// <description>Restore issues that were created by other users</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task RestoreIssueAsync(ProjectIdentifier project, IssueIdentifier issueId, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/restore{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Toggle status of an existing issue between resolved and unresolved
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task ToggleIssueResolvedStatusAsync(ProjectIdentifier project, IssueIdentifier issueId, bool resolved, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/toggle-resolved{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest
-                        { 
-                            IsResolved = resolved,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Search existing issues in a project. Parameters are applied as 'AND' filters.
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View issues</term>
-                /// <description>View issues in a project</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<Batch<Issue>> GetAllIssuesAsync(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, DateTime? creationTimeFrom = null, DateTime? creationTimeTo = null, DateTime? dueDateFrom = null, DateTime? dueDateTo = null, List<string>? topics = null, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<Issue>> GetAllIssuesOnBoardAsync(BoardIdentifier board, string? skip = null, int? top = 100, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
-                    queryParameters.Append("assigneeId", assigneeId.Select(it => it?.ToString()));
-                    if (createdByProfileId != null) queryParameters.Append("createdByProfileId", createdByProfileId?.ToString());
-                    queryParameters.Append("statuses", statuses.Select(it => it));
-                    if (tagId != null) queryParameters.Append("tagId", tagId);
-                    if (query != null) queryParameters.Append("query", query);
-                    queryParameters.Append("sorting", sorting.ToEnumString());
-                    queryParameters.Append("descending", descending.ToString("l"));
-                    if (tags != null) queryParameters.Append("tags", tags.Select(it => it));
-                    if (customFields != null) queryParameters.Append("customFields", customFields.Select(it => it));
-                    if (importTransaction != null) queryParameters.Append("importTransaction", importTransaction);
-                    if (creationTimeFrom != null) queryParameters.Append("creationTimeFrom", creationTimeFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
-                    if (creationTimeTo != null) queryParameters.Append("creationTimeTo", creationTimeTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
-                    if (dueDateFrom != null) queryParameters.Append("dueDateFrom", dueDateFrom?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
-                    if (dueDateTo != null) queryParameters.Append("dueDateTo", dueDateTo?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
-                    if (topics != null) queryParameters.Append("topics", topics.Select(it => it));
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/{project}/planning/issues{queryParameters.ToQueryString()}", cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/planning/boards/{board}/issues{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
                 
                 /// <summary>
-                /// Search existing issues in a project. Parameters are applied as 'AND' filters.
+                /// Fetch issues from the board across all its non-archived sprints
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View boards</term>
+                /// <description>View issue boards</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public IAsyncEnumerable<Issue> GetAllIssuesOnBoardAsyncEnumerable(BoardIdentifier board, string? skip = null, int? top = 100, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesOnBoardAsync(board: board, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
+            
+                /// <summary>
+                /// Remove an existing issue in a project from a board or all of its sprints
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage issue assignment</term>
+                /// <description>Add issues to and remove issues from issue boards</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task RemoveIssueFromBoardAsync(IssueIdentifier issue, BoardIdentifier board, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/{board}/issues/{issue}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+        }
+    
+    }
+
+    public partial class PlanningClient : ISpaceClient
+    {
+        public partial class BoardClient : ISpaceClient
+        {
+            /// <summary>
+            /// Create a new issue board in a project. The user will become the owner of the board.
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Create boards</term>
+            /// <description>Create issue boards</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<BoardRecord> CreateBoardAsync(ProjectIdentifier project, string name, string? description = null, Func<Partial<BoardRecord>, Partial<BoardRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<BoardRecord>()) : Partial<BoardRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectPlanningBoardsPostRequest, BoardRecord>("POST", $"api/http/projects/{project}/planning/boards{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectPlanningBoardsPostRequest
+                    { 
+                        Name = name,
+                        Description = description,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Search existing boards in a project
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View boards</term>
+            /// <description>View issue boards</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Batch<BoardRecord>> GetAllBoardsAsync(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<BoardRecord>>, Partial<Batch<BoardRecord>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                if (query != null) queryParameters.Append("query", query);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<BoardRecord>>()) : Partial<Batch<BoardRecord>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<BoardRecord>>("GET", $"api/http/projects/{project}/planning/boards{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            /// <summary>
+            /// Search existing boards in a project
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View boards</term>
+            /// <description>View issue boards</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<BoardRecord> GetAllBoardsAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<BoardRecord>, Partial<BoardRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllBoardsAsync(project: project, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<BoardRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<BoardRecord>.Default())), skip, cancellationToken);
+        
+            public partial class SprintClient : ISpaceClient
+            {
+                /// <summary>
+                /// Search existing sprints in a project
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View boards</term>
+                /// <description>View issue boards</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<Batch<SprintRecord>> GetAllSprintsAsync(ProjectIdentifier project, string? skip = null, int? top = 100, BoardIdentifier? board = null, string? query = null, Func<Partial<Batch<SprintRecord>>, Partial<Batch<SprintRecord>>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    if (board != null) queryParameters.Append("board", board?.ToString());
+                    if (query != null) queryParameters.Append("query", query);
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<SprintRecord>>()) : Partial<Batch<SprintRecord>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<SprintRecord>>("GET", $"api/http/projects/{project}/planning/boards/sprints{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+                
+                /// <summary>
+                /// Search existing sprints in a project
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View boards</term>
+                /// <description>View issue boards</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public IAsyncEnumerable<SprintRecord> GetAllSprintsAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, BoardIdentifier? board = null, string? query = null, Func<Partial<SprintRecord>, Partial<SprintRecord>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllSprintsAsync(project: project, top: top, board: board, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<SprintRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<SprintRecord>.Default())), skip, cancellationToken);
+            
+            }
+        
+            public StarredClient Starred => new StarredClient(_connection);
+            
+            public partial class StarredClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public StarredClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Get all starred boards in a project
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View boards</term>
+                /// <description>View issue boards</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<List<BoardRecord>> GetAllStarredBoardsAsync(ProjectIdentifier project, Func<Partial<BoardRecord>, Partial<BoardRecord>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<BoardRecord>()) : Partial<BoardRecord>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<BoardRecord>>("GET", $"api/http/projects/{project}/planning/boards/starred{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+            public ArchiveClient Archive => new ArchiveClient(_connection);
+            
+            public partial class ArchiveClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public ArchiveClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Archive an existing board. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage boards</term>
+                /// <description>Update issue board settings and delete issue boards</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task ArchiveBoardAsync(ProjectIdentifier project, BoardIdentifier board, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/boards/{board}/archive{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+        }
+    
+        public ChecklistClient Checklists => new ChecklistClient(_connection);
+        
+        public partial class ChecklistClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public ChecklistClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Create a new checklist in a project
+            /// </summary>
+            public async Task<Checklist> CreateChecklistAsync(ProjectIdentifier project, string name, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectPlanningChecklistsPostRequest, Checklist>("POST", $"api/http/projects/{project}/planning/checklists{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectPlanningChecklistsPostRequest
+                    { 
+                        Name = name,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Create a new checklist in a project using tab indented lines as checkable items.
+            /// The items with the same indent level will be placed one under the other.
+            /// An issue URL will be converted into the corresponding issue.
+            /// </summary>
+            public async Task<Checklist> ImportChecklistAsync(ProjectIdentifier project, string name, string tabIndentedLines, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectPlanningChecklistsImportPostRequest, Checklist>("POST", $"api/http/projects/{project}/planning/checklists/import{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectPlanningChecklistsImportPostRequest
+                    { 
+                        Name = name,
+                        TabIndentedLines = tabIndentedLines,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Tab indented lines are converted into checkable items following the same rules as in Import Checklist.
+            /// The result is placed inside of the specified project checklist.
+            /// </summary>
+            public async Task ImportChecklistLinesAsync(ProjectIdentifier project, string checklistId, string targetParentId, string tabIndentedLines, string? afterItemId = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/checklists/{checklistId}/import{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest
+                    { 
+                        TargetParentId = targetParentId,
+                        AfterItemId = afterItemId,
+                        TabIndentedLines = tabIndentedLines,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Search existing checklists in a project
+            /// </summary>
+            public async Task<Batch<Checklist>> GetAllChecklistsAsync(ProjectIdentifier project, ChecklistSorting sorting = ChecklistSorting.UPDATED, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<Checklist>>, Partial<Batch<Checklist>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                if (query != null) queryParameters.Append("query", query);
+                queryParameters.Append("sorting", sorting.ToEnumString());
+                queryParameters.Append("descending", descending.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Checklist>>()) : Partial<Batch<Checklist>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<Checklist>>("GET", $"api/http/projects/{project}/planning/checklists{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            /// <summary>
+            /// Search existing checklists in a project
+            /// </summary>
+            public IAsyncEnumerable<Checklist> GetAllChecklistsAsyncEnumerable(ProjectIdentifier project, ChecklistSorting sorting = ChecklistSorting.UPDATED, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllChecklistsAsync(project: project, sorting: sorting, descending: descending, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Checklist>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Checklist>.Default())), skip, cancellationToken);
+        
+            /// <summary>
+            /// Update an existing checklist in a project
+            /// </summary>
+            public async Task UpdateChecklistAsync(ProjectIdentifier project, string checklistId, List<string> topics, string? name = null, string? description = null, string? owner = null, string? tag = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/checklists/{checklistId}{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest
+                    { 
+                        Name = (name ?? string.Empty),
+                        Description = description,
+                        Owner = owner,
+                        Tag = tag,
+                        Topics = topics,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Delete an existing checklist in a project
+            /// </summary>
+            public async Task DeleteChecklistAsync(ProjectIdentifier project, string checklistId, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/checklists/{checklistId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            public StarredClient Starred => new StarredClient(_connection);
+            
+            public partial class StarredClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public StarredClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Get all starred checklists in a project
+                /// </summary>
+                public async Task<List<Checklist>> GetAllStarredChecklistsAsync(ProjectIdentifier project, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<Checklist>>("GET", $"api/http/projects/{project}/planning/checklists/starred{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+            public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
+            
+            public partial class FullChecklistTreeClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public FullChecklistTreeClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Get the content of a checklist in a project
+                /// </summary>
+                public async Task<List<PlanItemChildren>> GetFullChecklistTreeAsync(ProjectIdentifier project, string checklistId, Func<Partial<PlanItemChildren>, Partial<PlanItemChildren>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanItemChildren>()) : Partial<PlanItemChildren>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<PlanItemChildren>>("GET", $"api/http/projects/{project}/planning/checklists/{checklistId}/full-checklist-tree{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+        }
+    
+        public IssueClient Issues => new IssueClient(_connection);
+        
+        public partial class IssueClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public IssueClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Create a new issue in a project
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Create issues</term>
+            /// <description>Create issues in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null, List<IssueIdentifier>? parents = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesPostRequest, Issue>("POST", $"api/http/projects/{project}/planning/issues{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectPlanningIssuesPostRequest
+                    { 
+                        Title = title,
+                        Description = description,
+                        Assignee = assignee,
+                        Status = status,
+                        DueDate = dueDate,
+                        Tags = (tags ?? new List<string>()),
+                        Checklists = (checklists ?? new List<string>()),
+                        Sprints = (sprints ?? new List<string>()),
+                        Attachments = (attachments ?? new List<AttachmentIn>()),
+                        FromMessage = fromMessage,
+                        CustomFields = customFields,
+                        Topics = topics,
+                        Parents = parents,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Import issues in a project
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Import issues</term>
+            /// <description>Import issues</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<IssueImportResult> ImportIssuesAsync(ProjectIdentifier project, ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, Func<Partial<IssueImportResult>, Partial<IssueImportResult>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueImportResult>()) : Partial<IssueImportResult>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesImportPostRequest, IssueImportResult>("POST", $"api/http/projects/{project}/planning/issues/import{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectPlanningIssuesImportPostRequest
+                    { 
+                        Metadata = metadata,
+                        Issues = issues,
+                        AssigneeMissingPolicy = assigneeMissingPolicy,
+                        StatusMissingPolicy = statusMissingPolicy,
+                        OnExistsPolicy = onExistsPolicy,
+                        IsDryRun = dryRun,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Restore an issue in a project
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Restore issues</term>
+            /// <description>Restore issues that were created by other users</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task RestoreIssueAsync(ProjectIdentifier project, IssueIdentifier issueId, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/restore{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Toggle status of an existing issue between resolved and unresolved
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit issues</term>
+            /// <description>Edit issues that were created by other users</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task ToggleIssueResolvedStatusAsync(ProjectIdentifier project, IssueIdentifier issueId, bool resolved, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/toggle-resolved{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest
+                    { 
+                        IsResolved = resolved,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Search existing issues in a project. Parameters are applied as 'AND' filters.
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View issues</term>
+            /// <description>View issues in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Batch<Issue>> GetAllIssuesAsync(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, DateTime? creationTimeFrom = null, DateTime? creationTimeTo = null, DateTime? dueDateFrom = null, DateTime? dueDateTo = null, List<string>? topics = null, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("assigneeId", assigneeId.Select(it => it?.ToString()));
+                if (createdByProfileId != null) queryParameters.Append("createdByProfileId", createdByProfileId?.ToString());
+                queryParameters.Append("statuses", statuses.Select(it => it));
+                if (tagId != null) queryParameters.Append("tagId", tagId);
+                if (query != null) queryParameters.Append("query", query);
+                queryParameters.Append("sorting", sorting.ToEnumString());
+                queryParameters.Append("descending", descending.ToString("l"));
+                if (tags != null) queryParameters.Append("tags", tags.Select(it => it));
+                if (customFields != null) queryParameters.Append("customFields", customFields.Select(it => it));
+                if (importTransaction != null) queryParameters.Append("importTransaction", importTransaction);
+                if (creationTimeFrom != null) queryParameters.Append("creationTimeFrom", creationTimeFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+                if (creationTimeTo != null) queryParameters.Append("creationTimeTo", creationTimeTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+                if (dueDateFrom != null) queryParameters.Append("dueDateFrom", dueDateFrom?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                if (dueDateTo != null) queryParameters.Append("dueDateTo", dueDateTo?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                if (topics != null) queryParameters.Append("topics", topics.Select(it => it));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/{project}/planning/issues{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            /// <summary>
+            /// Search existing issues in a project. Parameters are applied as 'AND' filters.
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View issues</term>
+            /// <description>View issues in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<Issue> GetAllIssuesAsyncEnumerable(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, DateTime? creationTimeFrom = null, DateTime? creationTimeTo = null, DateTime? dueDateFrom = null, DateTime? dueDateTo = null, List<string>? topics = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, statuses: statuses, sorting: sorting, descending: descending, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, customFields: customFields, importTransaction: importTransaction, creationTimeFrom: creationTimeFrom, creationTimeTo: creationTimeTo, dueDateFrom: dueDateFrom, dueDateTo: dueDateTo, topics: topics, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
+        
+            /// <summary>
+            /// Find an existing issue by a given number in a project
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View issues</term>
+            /// <description>View issues in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Issue> GetIssueByNumberAsync(ProjectIdentifier project, int number, bool resolveAlias = false, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("resolveAlias", resolveAlias.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Issue>("GET", $"api/http/projects/{project}/planning/issues/number:{number}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View issues</term>
+            /// <description>View issues in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Issue> GetIssueAsync(ProjectIdentifier project, IssueIdentifier issueId, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Issue>("GET", $"api/http/projects/{project}/planning/issues/{issueId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Update an existing issue in a project
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit issues</term>
+            /// <description>Edit issues that were created by other users</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task UpdateIssueAsync(ProjectIdentifier project, IssueIdentifier issueId, string? title = null, string? status = null, List<CustomFieldInputValue>? customFields = null, string? description = null, string? assignee = null, DateTime? dueDate = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/{issueId}{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectPlanningIssuesForIssueIdPatchRequest
+                    { 
+                        Title = (title ?? string.Empty),
+                        Description = description,
+                        Assignee = assignee,
+                        Status = (status ?? string.Empty),
+                        DueDate = dueDate,
+                        CustomFields = (customFields ?? new List<CustomFieldInputValue>()),
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Delete an issue from a project
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit issues</term>
+            /// <description>Edit issues that were created by other users</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task DeleteIssueAsync(ProjectIdentifier project, IssueIdentifier issueId, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            public StatusClient Statuses => new StatusClient(_connection);
+            
+            public partial class StatusClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public StatusClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Get all existing issue statuses in a project
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
@@ -1580,111 +1695,52 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public IAsyncEnumerable<Issue> GetAllIssuesAsyncEnumerable(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, DateTime? creationTimeFrom = null, DateTime? creationTimeTo = null, DateTime? dueDateFrom = null, DateTime? dueDateTo = null, List<string>? topics = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, statuses: statuses, sorting: sorting, descending: descending, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, customFields: customFields, importTransaction: importTransaction, creationTimeFrom: creationTimeFrom, creationTimeTo: creationTimeTo, dueDateFrom: dueDateFrom, dueDateTo: dueDateTo, topics: topics, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
+                public async Task<List<IssueStatus>> GetAllIssueStatusesAsync(ProjectIdentifier project, Func<Partial<IssueStatus>, Partial<IssueStatus>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueStatus>()) : Partial<IssueStatus>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<IssueStatus>>("GET", $"api/http/projects/{project}/planning/issues/statuses{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
                 /// <summary>
-                /// Find an existing issue by a given number in a project
+                /// Configure issue statuses in a project. The list must contain at least one resolved and one unresolved status.
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>View issues</term>
-                /// <description>View issues in a project</description>
+                /// <term>Manage issue settings</term>
+                /// <description>Manage settings of the issue tracker</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Issue> GetIssueByNumberAsync(ProjectIdentifier project, int number, bool resolveAlias = false, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("resolveAlias", resolveAlias.ToString("l"));
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Issue>("GET", $"api/http/projects/{project}/planning/issues/number:{number}{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View issues</term>
-                /// <description>View issues in a project</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<Issue> GetIssueAsync(ProjectIdentifier project, IssueIdentifier issueId, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Issue>("GET", $"api/http/projects/{project}/planning/issues/{issueId}{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Update an existing issue in a project
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task UpdateIssueAsync(ProjectIdentifier project, IssueIdentifier issueId, string? title = null, string? status = null, List<CustomFieldInputValue>? customFields = null, string? description = null, string? assignee = null, DateTime? dueDate = null, CancellationToken cancellationToken = default)
+                public async Task UpdateIssueStatusesListAsync(ProjectIdentifier project, List<IssueStatusData> statuses, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/{issueId}{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectPlanningIssuesForIssueIdPatchRequest
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/statuses{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningIssuesStatusesPatchRequest
                         { 
-                            Title = (title ?? string.Empty),
-                            Description = description,
-                            Assignee = assignee,
-                            Status = (status ?? string.Empty),
-                            DueDate = dueDate,
-                            CustomFields = (customFields ?? new List<CustomFieldInputValue>()),
+                            Statuses = statuses,
                         }, cancellationToken);
                 }
                 
             
-                /// <summary>
-                /// Delete an issue from a project
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task DeleteIssueAsync(ProjectIdentifier project, IssueIdentifier issueId, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}{queryParameters.ToQueryString()}", cancellationToken);
-                }
+                public AutoUpdateOnMergeRequestMergeClient AutoUpdateOnMergeRequestMerge => new AutoUpdateOnMergeRequestMergeClient(_connection);
                 
-            
-                public StatusClient Statuses => new StatusClient(_connection);
-                
-                public partial class StatusClient : ISpaceClient
+                public partial class AutoUpdateOnMergeRequestMergeClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
-                    public StatusClient(Connection connection)
+                    public AutoUpdateOnMergeRequestMergeClient(Connection connection)
                     {
                         _connection = connection;
                     }
                     
                     /// <summary>
-                    /// Get all existing issue statuses in a project
+                    /// Get target issue status for auto updating issues on linked merge request merge
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1695,17 +1751,17 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task<List<IssueStatus>> GetAllIssueStatusesAsync(ProjectIdentifier project, Func<Partial<IssueStatus>, Partial<IssueStatus>>? partial = null, CancellationToken cancellationToken = default)
+                    public async Task<IssueStatus> GetAutoUpdateTargetIssueStatusForMergeRequestMergeAsync(ProjectIdentifier project, Func<Partial<IssueStatus>, Partial<IssueStatus>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueStatus>()) : Partial<IssueStatus>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<List<IssueStatus>>("GET", $"api/http/projects/{project}/planning/issues/statuses{queryParameters.ToQueryString()}", cancellationToken);
+                        return await _connection.RequestResourceAsync<IssueStatus>("GET", $"api/http/projects/{project}/planning/issues/statuses/auto-update-on-merge-request-merge{queryParameters.ToQueryString()}", cancellationToken);
                     }
                     
                 
                     /// <summary>
-                    /// Configure issue statuses in a project. The list must contain at least one resolved and one unresolved status.
+                    /// Set target issue status for auto updating issues on linked merge request merge
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
@@ -1716,441 +1772,330 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task UpdateIssueStatusesListAsync(ProjectIdentifier project, List<IssueStatusData> statuses, CancellationToken cancellationToken = default)
+                    public async Task SetAutoUpdateTargetIssueStatusForMergeRequestMergeAsync(ProjectIdentifier project, string? statusId = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         
-                        await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/statuses{queryParameters.ToQueryString()}", 
-                            new ProjectsForProjectPlanningIssuesStatusesPatchRequest
+                        await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/statuses/auto-update-on-merge-request-merge{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest
                             { 
-                                Statuses = statuses,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    public AutoUpdateOnMergeRequestMergeClient AutoUpdateOnMergeRequestMerge => new AutoUpdateOnMergeRequestMergeClient(_connection);
-                    
-                    public partial class AutoUpdateOnMergeRequestMergeClient : ISpaceClient
-                    {
-                        private readonly Connection _connection;
-                        
-                        public AutoUpdateOnMergeRequestMergeClient(Connection connection)
-                        {
-                            _connection = connection;
-                        }
-                        
-                        /// <summary>
-                        /// Get target issue status for auto updating issues on linked merge request merge
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>View issues</term>
-                        /// <description>View issues in a project</description>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public async Task<IssueStatus> GetAutoUpdateTargetIssueStatusForMergeRequestMergeAsync(ProjectIdentifier project, Func<Partial<IssueStatus>, Partial<IssueStatus>>? partial = null, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueStatus>()) : Partial<IssueStatus>.Default()).ToString());
-                            
-                            return await _connection.RequestResourceAsync<IssueStatus>("GET", $"api/http/projects/{project}/planning/issues/statuses/auto-update-on-merge-request-merge{queryParameters.ToQueryString()}", cancellationToken);
-                        }
-                        
-                    
-                        /// <summary>
-                        /// Set target issue status for auto updating issues on linked merge request merge
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Manage issue settings</term>
-                        /// <description>Manage settings of the issue tracker</description>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public async Task SetAutoUpdateTargetIssueStatusForMergeRequestMergeAsync(ProjectIdentifier project, string? statusId = null, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            
-                            await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/statuses/auto-update-on-merge-request-merge{queryParameters.ToQueryString()}", 
-                                new ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest
-                                { 
-                                    StatusId = statusId,
-                                }, cancellationToken);
-                        }
-                        
-                    
-                    }
-                
-                    public DistributionClient Distribution => new DistributionClient(_connection);
-                    
-                    public partial class DistributionClient : ISpaceClient
-                    {
-                        private readonly Connection _connection;
-                        
-                        public DistributionClient(Connection connection)
-                        {
-                            _connection = connection;
-                        }
-                        
-                        /// <summary>
-                        /// Get all existing issue statuses with their usage, number of existing issues, in a project
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>View issues</term>
-                        /// <description>View issues in a project</description>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public async Task<List<IssueStatusWithUsages>> GetIssueStatusDistributionAsync(ProjectIdentifier project, Func<Partial<IssueStatusWithUsages>, Partial<IssueStatusWithUsages>>? partial = null, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueStatusWithUsages>()) : Partial<IssueStatusWithUsages>.Default()).ToString());
-                            
-                            return await _connection.RequestResourceAsync<List<IssueStatusWithUsages>>("GET", $"api/http/projects/{project}/planning/issues/statuses/distribution{queryParameters.ToQueryString()}", cancellationToken);
-                        }
-                        
-                    
-                    }
-                
-                }
-            
-                public AttachmentClient Attachments => new AttachmentClient(_connection);
-                
-                public partial class AttachmentClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public AttachmentClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Add attachments to an existing issue in a project
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Edit issues</term>
-                    /// <description>Edit issues that were created by other users</description>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task AddAttachmentsAsync(ProjectIdentifier project, IssueIdentifier issueId, List<AttachmentIn> attachments, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/attachments{queryParameters.ToQueryString()}", 
-                            new ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest
-                            { 
-                                Attachments = attachments,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    /// <summary>
-                    /// Remove attachments from an existing issue in a project
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Edit issues</term>
-                    /// <description>Edit issues that were created by other users</description>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task RemoveAttachmentsAsync(ProjectIdentifier project, IssueIdentifier issueId, List<string> identities, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("identities", identities.Select(it => it));
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/attachments{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-                public ChecklistClient Checklists => new ChecklistClient(_connection);
-                
-                public partial class ChecklistClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public ChecklistClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Add the checklist to an existing issue in a project
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Edit issues</term>
-                    /// <description>Edit issues that were created by other users</description>
-                    /// </item>
-                    /// <item>
-                    /// <term>Manage checklists</term>
-                    /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
-                    /// </item>
-                    /// <item>
-                    /// <term>Edit content</term>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task AddIssueChecklistAsync(ProjectIdentifier project, string issueId, string checklistId, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/checklists/{checklistId}{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                    /// <summary>
-                    /// Remove the checklist from an existing issue in a project
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Edit issues</term>
-                    /// <description>Edit issues that were created by other users</description>
-                    /// </item>
-                    /// <item>
-                    /// <term>Manage checklists</term>
-                    /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
-                    /// </item>
-                    /// <item>
-                    /// <term>Edit content</term>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task RemoveIssueChecklistAsync(ProjectIdentifier project, string issueId, string checklistId, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/checklists/{checklistId}{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-                public CodeReviewClient CodeReviews => new CodeReviewClient(_connection);
-                
-                public partial class CodeReviewClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public CodeReviewClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Add code review links to an existing issue in a project
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Edit issues</term>
-                    /// <description>Edit issues that were created by other users</description>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task AddCodeReviewLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, List<ReviewIdentifier> codeReviewIds, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/code-reviews{queryParameters.ToQueryString()}", 
-                            new ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest
-                            { 
-                                CodeReviewIds = codeReviewIds,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    /// <summary>
-                    /// Remove code review links from an existing issue in a project
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Edit issues</term>
-                    /// <description>Edit issues that were created by other users</description>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task RemoveCodeReviewLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, List<ReviewIdentifier> codeReviewIds, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("codeReviewIds", codeReviewIds.Select(it => it.ToString()));
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/code-reviews{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-                public CommentClient Comments => new CommentClient(_connection);
-                
-                public partial class CommentClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public CommentClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Import issues</term>
-                    /// <description>Import issues</description>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task<List<string>> ImportIssueCommentHistoryAsync(ProjectIdentifier project, IssueIdentifier issueId, List<MessageForImport> comments, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        return await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest, List<string>>("POST", $"api/http/projects/{project}/planning/issues/{issueId}/comments/import{queryParameters.ToQueryString()}", 
-                            new ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest
-                            { 
-                                Comments = comments,
+                                StatusId = statusId,
                             }, cancellationToken);
                     }
                     
                 
                 }
             
-                public CommitClient Commits => new CommitClient(_connection);
+                public DistributionClient Distribution => new DistributionClient(_connection);
                 
-                public partial class CommitClient : ISpaceClient
+                public partial class DistributionClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
-                    public CommitClient(Connection connection)
+                    public DistributionClient(Connection connection)
                     {
                         _connection = connection;
                     }
                     
                     /// <summary>
-                    /// Add commit links to an existing issue in a project
+                    /// Get all existing issue statuses with their usage, number of existing issues, in a project
                     /// </summary>
                     /// <remarks>
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Edit issues</term>
-                    /// <description>Edit issues that were created by other users</description>
+                    /// <term>View issues</term>
+                    /// <description>View issues in a project</description>
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task AddCommitLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, string repository, List<string> commitIds, CancellationToken cancellationToken = default)
+                    public async Task<List<IssueStatusWithUsages>> GetIssueStatusDistributionAsync(ProjectIdentifier project, Func<Partial<IssueStatusWithUsages>, Partial<IssueStatusWithUsages>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueStatusWithUsages>()) : Partial<IssueStatusWithUsages>.Default()).ToString());
                         
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/commits{queryParameters.ToQueryString()}", 
-                            new ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest
-                            { 
-                                Repository = repository,
-                                CommitIds = commitIds,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    /// <summary>
-                    /// Remove commit links from an existing issue in a project
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Edit issues</term>
-                    /// <description>Edit issues that were created by other users</description>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task RemoveCommitLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, string repository, List<string> commitIds, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("repository", repository);
-                        queryParameters.Append("commitIds", commitIds.Select(it => it));
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/commits{queryParameters.ToQueryString()}", cancellationToken);
+                        return await _connection.RequestResourceAsync<List<IssueStatusWithUsages>>("GET", $"api/http/projects/{project}/planning/issues/statuses/distribution{queryParameters.ToQueryString()}", cancellationToken);
                     }
                     
                 
                 }
             
-                public TagClient Tags => new TagClient(_connection);
+            }
+        
+            public AttachmentClient Attachments => new AttachmentClient(_connection);
+            
+            public partial class AttachmentClient : ISpaceClient
+            {
+                private readonly Connection _connection;
                 
-                public partial class TagClient : ISpaceClient
+                public AttachmentClient(Connection connection)
                 {
-                    private readonly Connection _connection;
-                    
-                    public TagClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Add an existing tag to an issue in a project
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Edit issues</term>
-                    /// <description>Edit issues that were created by other users</description>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task AddIssueTagAsync(ProjectIdentifier project, IssueIdentifier issueId, string tagId, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/tags/{tagId}{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                    /// <summary>
-                    /// Remove an existing tag from an issue in a project
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Edit issues</term>
-                    /// <description>Edit issues that were created by other users</description>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task RemoveIssueTagAsync(ProjectIdentifier project, IssueIdentifier issueId, string tagId, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/tags/{tagId}{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
+                    _connection = connection;
                 }
+                
+                /// <summary>
+                /// Add attachments to an existing issue in a project
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task AddAttachmentsAsync(ProjectIdentifier project, IssueIdentifier issueId, List<AttachmentIn> attachments, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/attachments{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest
+                        { 
+                            Attachments = attachments,
+                        }, cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Remove attachments from an existing issue in a project
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task RemoveAttachmentsAsync(ProjectIdentifier project, IssueIdentifier issueId, List<string> identities, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("identities", identities.Select(it => it));
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/attachments{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+            public ChecklistClient Checklists => new ChecklistClient(_connection);
+            
+            public partial class ChecklistClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public ChecklistClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Add the checklist to an existing issue in a project
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
+                /// </item>
+                /// <item>
+                /// <term>Manage checklists</term>
+                /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
+                /// </item>
+                /// <item>
+                /// <term>Edit content</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task AddIssueChecklistAsync(ProjectIdentifier project, string issueId, string checklistId, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/checklists/{checklistId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Remove the checklist from an existing issue in a project
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
+                /// </item>
+                /// <item>
+                /// <term>Manage checklists</term>
+                /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
+                /// </item>
+                /// <item>
+                /// <term>Edit content</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task RemoveIssueChecklistAsync(ProjectIdentifier project, string issueId, string checklistId, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/checklists/{checklistId}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+            public CodeReviewClient CodeReviews => new CodeReviewClient(_connection);
+            
+            public partial class CodeReviewClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public CodeReviewClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Add code review links to an existing issue in a project
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task AddCodeReviewLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, List<ReviewIdentifier> codeReviewIds, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/code-reviews{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest
+                        { 
+                            CodeReviewIds = codeReviewIds,
+                        }, cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Remove code review links from an existing issue in a project
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task RemoveCodeReviewLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, List<ReviewIdentifier> codeReviewIds, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("codeReviewIds", codeReviewIds.Select(it => it.ToString()));
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/code-reviews{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+            public CommentClient Comments => new CommentClient(_connection);
+            
+            public partial class CommentClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public CommentClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Import issues</term>
+                /// <description>Import issues</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<List<string>> ImportIssueCommentHistoryAsync(ProjectIdentifier project, IssueIdentifier issueId, List<MessageForImport> comments, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    return await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest, List<string>>("POST", $"api/http/projects/{project}/planning/issues/{issueId}/comments/import{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest
+                        { 
+                            Comments = comments,
+                        }, cancellationToken);
+                }
+                
+            
+            }
+        
+            public CommitClient Commits => new CommitClient(_connection);
+            
+            public partial class CommitClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public CommitClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Add commit links to an existing issue in a project
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task AddCommitLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, string repository, List<string> commitIds, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/commits{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest
+                        { 
+                            Repository = repository,
+                            CommitIds = commitIds,
+                        }, cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Remove commit links from an existing issue in a project
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task RemoveCommitLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, string repository, List<string> commitIds, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("repository", repository);
+                    queryParameters.Append("commitIds", commitIds.Select(it => it));
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/commits{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
@@ -2166,498 +2111,44 @@ namespace JetBrains.Space.Client
                 }
                 
                 /// <summary>
-                /// Create a new hierarchical tag in a project
+                /// Add an existing tag to an issue in a project
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Manage checklists</term>
-                /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<PlanningTag> CreateHierarchicalTagAsync(ProjectIdentifier project, List<string> path, string? parentTagId = null, Func<Partial<PlanningTag>, Partial<PlanningTag>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task AddIssueTagAsync(ProjectIdentifier project, IssueIdentifier issueId, string tagId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanningTag>()) : Partial<PlanningTag>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<ProjectsForProjectPlanningTagsPostRequest, PlanningTag>("POST", $"api/http/projects/{project}/planning/tags{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectPlanningTagsPostRequest
-                        { 
-                            ParentTagId = parentTagId,
-                            Path = path,
-                        }, cancellationToken);
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/tags/{tagId}{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
             
                 /// <summary>
-                /// Search existing tags in a project
+                /// Remove an existing tag from an issue in a project
                 /// </summary>
                 /// <remarks>
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>View project data</term>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<PlanningTag>> GetAllHierarchicalTagsAsync(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<PlanningTag>>, Partial<Batch<PlanningTag>>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    if (skip != null) queryParameters.Append("$skip", skip);
-                    if (top != null) queryParameters.Append("$top", top?.ToString());
-                    if (query != null) queryParameters.Append("query", query);
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PlanningTag>>()) : Partial<Batch<PlanningTag>>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Batch<PlanningTag>>("GET", $"api/http/projects/{project}/planning/tags{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-                
-                /// <summary>
-                /// Search existing tags in a project
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View project data</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public IAsyncEnumerable<PlanningTag> GetAllHierarchicalTagsAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<PlanningTag>, Partial<PlanningTag>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllHierarchicalTagsAsync(project: project, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlanningTag>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlanningTag>.Default())), skip, cancellationToken);
-            
-            }
-        
-        }
-    
-        public PrivateProjectClient PrivateProjects => new PrivateProjectClient(_connection);
-        
-        public partial class PrivateProjectClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public PrivateProjectClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            /// <summary>
-            /// Request access to a project
-            /// </summary>
-            public async Task RequestAccessToProjectAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("POST", $"api/http/projects/private-projects/{project}/request-access{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            /// <summary>
-            /// List private projects in the current organisation
-            /// </summary>
-            public async Task<List<PRPrivateProject>> GetAllPrivateProjectsAsync(Func<Partial<PRPrivateProject>, Partial<PRPrivateProject>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRPrivateProject>()) : Partial<PRPrivateProject>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<List<PRPrivateProject>>("GET", $"api/http/projects/private-projects{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-        }
-    
-        public ResponsibilityClient Responsibilities => new ResponsibilityClient(_connection);
-        
-        public partial class ResponsibilityClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public ResponsibilityClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            /// <summary>
-            /// Add a responsibility for a given subject ID
-            /// </summary>
-            public async Task<string> AddResponsibilityAsync(string subjectId, string summary, string? notes = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                return await _connection.RequestResourceAsync<ProjectsResponsibilitiesPostRequest, string>("POST", $"api/http/projects/responsibilities{queryParameters.ToQueryString()}", 
-                    new ProjectsResponsibilitiesPostRequest
-                    { 
-                        SubjectId = subjectId,
-                        Summary = summary,
-                        Notes = notes,
-                    }, cancellationToken);
-            }
-            
-        
-            /// <summary>
-            /// Edit an existing responsibility
-            /// </summary>
-            public async Task UpdateResponsibilityAsync(string responsibilityId, string summary, string? notes = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/responsibilities/{responsibilityId}{queryParameters.ToQueryString()}", 
-                    new ProjectsResponsibilitiesForResponsibilityIdPatchRequest
-                    { 
-                        Summary = summary,
-                        Notes = notes,
-                    }, cancellationToken);
-            }
-            
-        
-            /// <summary>
-            /// Delete an existing responsibility
-            /// </summary>
-            public async Task DeleteResponsibilityAsync(string responsibilityId, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/{responsibilityId}{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            public SubjectClient Subjects => new SubjectClient(_connection);
-            
-            public partial class SubjectClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public SubjectClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Delete an existing responsibility subject for a given project ID
-                /// </summary>
-                public async Task DeleteResponsibilitySubjectAsync(string subjectId, ProjectIdentifier? project = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    if (project != null) queryParameters.Append("project", project?.ToString());
-                    
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/subjects/{subjectId}{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-            }
-        
-        }
-    
-        public partial class ResponsibilityClient : ISpaceClient
-        {
-            public SchemeClient Scheme => new SchemeClient(_connection);
-            
-            public partial class SchemeClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public SchemeClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Get the responsibilities schema for a given project ID
-                /// </summary>
-                public async Task<List<SubjectResponsibilitiesTable>> GetProjectResponsibilitySchemeAsync(ProjectIdentifier project, Func<Partial<SubjectResponsibilitiesTable>, Partial<SubjectResponsibilitiesTable>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubjectResponsibilitiesTable>()) : Partial<SubjectResponsibilitiesTable>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTable>>("GET", $"api/http/projects/{project}/responsibilities/scheme{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-            }
-        
-            public partial class SubjectClient : ISpaceClient
-            {
-                /// <summary>
-                /// Add a responsibility subject for a given project ID
-                /// </summary>
-                public async Task<string> AddResponsibilitySubjectAsync(ProjectIdentifier project, string? name = null, CancellationToken cancellationToken = default)
+                public async Task RemoveIssueTagAsync(ProjectIdentifier project, IssueIdentifier issueId, string tagId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    return await _connection.RequestResourceAsync<ProjectsForProjectResponsibilitiesSubjectsPostRequest, string>("POST", $"api/http/projects/{project}/responsibilities/subjects{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectResponsibilitiesSubjectsPostRequest
-                        { 
-                            Name = name,
-                        }, cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/tags/{tagId}{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
-            
-                /// <summary>
-                /// Update an existing responsibility subject for a given project ID
-                /// </summary>
-                public async Task EditResponsibilitySubjectAsync(ProjectIdentifier project, string subjectId, string? name = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/responsibilities/subjects/{subjectId}{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectResponsibilitiesSubjectsForSubjectIdPatchRequest
-                        { 
-                            Name = name,
-                        }, cancellationToken);
-                }
-                
-            
-            }
-        
-            public AssigneeClient Assignees => new AssigneeClient(_connection);
-            
-            public partial class AssigneeClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public AssigneeClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Assign a responsible person for a given project ID and responsibility ID
-                /// </summary>
-                public async Task AssignResponsibleAsync(ProjectIdentifier project, string responsibilityId, string profileId, string? role = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/responsibilities/{responsibilityId}/assignees/{profileId}{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest
-                        { 
-                            Role = role,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// Remove a responsible person for a given project ID and responsibility ID
-                /// </summary>
-                public async Task RemoveResponsibleAsync(ProjectIdentifier project, string responsibilityId, string profileId, string? role = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    if (role != null) queryParameters.Append("role", role);
-                    
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/responsibilities/{responsibilityId}/assignees/{profileId}{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-            }
-        
-        }
-    
-        public SecretClient Secrets => new SecretClient(_connection);
-        
-        public partial class SecretClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public SecretClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            /// <summary>
-            /// Update an existing project secret
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Edit secrets</term>
-            /// <description>Edit project secrets</description>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task UpdateSecretAsync(string id, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/secrets/{id}{queryParameters.ToQueryString()}", 
-                    new ProjectsSecretsForIdPatchRequest
-                    { 
-                        ValueBase64 = valueBase64,
-                        PublicKeyId = publicKeyId,
-                    }, cancellationToken);
-            }
-            
-        
-            /// <summary>
-            /// Delete an existing project secret
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Delete secrets</term>
-            /// <description>Delete project secrets</description>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task DeleteSecretAsync(string id, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/secrets/{id}{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            public DefaultBundleClient DefaultBundle => new DefaultBundleClient(_connection);
-            
-            public partial class DefaultBundleClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public DefaultBundleClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Create a new secret in the default parameter bundle. Value is base64 encoded bytes of the secret value, possibly after client side encryption. If the secret value bytes are encrypted then the id of the Space public key must be provided
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Create secrets</term>
-                /// <description>Create project secrets</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<string> CreateDefaultBundleAsync(ProjectIdentifier project, string key, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    return await _connection.RequestResourceAsync<ProjectsSecretsDefaultBundlePostRequest, string>("POST", $"api/http/projects/secrets/default-bundle{queryParameters.ToQueryString()}", 
-                        new ProjectsSecretsDefaultBundlePostRequest
-                        { 
-                            Project = project,
-                            Key = key,
-                            ValueBase64 = valueBase64,
-                            PublicKeyId = publicKeyId,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <summary>
-                /// List project secrets in a parameter bundle
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View keys of secrets</term>
-                /// <description>View keys of project secrets</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<Batch<SecretParameterRecord>> GetAllDefaultBundleAsync(ProjectIdentifier project, string? skip = null, int? top = 100, Func<Partial<Batch<SecretParameterRecord>>, Partial<Batch<SecretParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("project", project.ToString());
-                    if (skip != null) queryParameters.Append("$skip", skip);
-                    if (top != null) queryParameters.Append("$top", top?.ToString());
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<SecretParameterRecord>>()) : Partial<Batch<SecretParameterRecord>>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets/default-bundle{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-                
-                /// <summary>
-                /// List project secrets in a parameter bundle
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View keys of secrets</term>
-                /// <description>View keys of project secrets</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public IAsyncEnumerable<SecretParameterRecord> GetAllDefaultBundleAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, Func<Partial<SecretParameterRecord>, Partial<SecretParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllDefaultBundleAsync(project: project, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<SecretParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<SecretParameterRecord>.Default())), skip, cancellationToken);
-            
-            }
-        
-            public InDefaultBundleClient InDefaultBundle => new InDefaultBundleClient(_connection);
-            
-            public partial class InDefaultBundleClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public InDefaultBundleClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Create secrets</term>
-                /// <description>Create project secrets</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
-                public async Task<string> CreateInDefaultBundleAsync(string projectId, string key, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    return await _connection.RequestResourceAsync<ProjectsSecretsInDefaultBundlePostRequest, string>("POST", $"api/http/projects/secrets/in-default-bundle{queryParameters.ToQueryString()}", 
-                        new ProjectsSecretsInDefaultBundlePostRequest
-                        { 
-                            ProjectId = projectId,
-                            Key = key,
-                            ValueBase64 = valueBase64,
-                            PublicKeyId = publicKeyId,
-                        }, cancellationToken);
-                }
-                
-            
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View keys of secrets</term>
-                /// <description>View keys of project secrets</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
-                public async Task<Batch<SecretParameterRecord>> GetAllInDefaultBundleAsync(string projectId, string? skip = null, int? top = 100, Func<Partial<Batch<SecretParameterRecord>>, Partial<Batch<SecretParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("projectId", projectId);
-                    if (skip != null) queryParameters.Append("$skip", skip);
-                    if (top != null) queryParameters.Append("$top", top?.ToString());
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<SecretParameterRecord>>()) : Partial<Batch<SecretParameterRecord>>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets/in-default-bundle{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-                
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View keys of secrets</term>
-                /// <description>View keys of project secrets</description>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
-                public IAsyncEnumerable<SecretParameterRecord> GetAllInDefaultBundleAsyncEnumerable(string projectId, string? skip = null, int? top = 100, Func<Partial<SecretParameterRecord>, Partial<SecretParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInDefaultBundleAsync(projectId: projectId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<SecretParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<SecretParameterRecord>.Default())), skip, cancellationToken);
             
             }
         
@@ -2675,675 +2166,650 @@ namespace JetBrains.Space.Client
             }
             
             /// <summary>
-            /// Track a tag has been accessed
+            /// Create a new hierarchical tag in a project
             /// </summary>
-            public async Task TrackTagAccessAsync(string tag, CancellationToken cancellationToken = default)
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Manage checklists</term>
+            /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<PlanningTag> CreateHierarchicalTagAsync(ProjectIdentifier project, List<string> path, string? parentTagId = null, Func<Partial<PlanningTag>, Partial<PlanningTag>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanningTag>()) : Partial<PlanningTag>.Default()).ToString());
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/projects/tags/track-access{queryParameters.ToQueryString()}", 
-                    new ProjectsTagsTrackAccessPostRequest
+                return await _connection.RequestResourceAsync<ProjectsForProjectPlanningTagsPostRequest, PlanningTag>("POST", $"api/http/projects/{project}/planning/tags{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectPlanningTagsPostRequest
                     { 
-                        Tag = tag,
+                        ParentTagId = parentTagId,
+                        Path = path,
                     }, cancellationToken);
             }
             
         
             /// <summary>
-            /// List all tags, mapped to the number of projects they are used in
+            /// Search existing tags in a project
             /// </summary>
-            public async Task<List<PRTag>> GetAllTagsAsync(Func<Partial<PRTag>, Partial<PRTag>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRTag>()) : Partial<PRTag>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<List<PRTag>>("GET", $"api/http/projects/tags{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-        }
-    
-        public AccesClient Access => new AccesClient(_connection);
-        
-        public partial class AccesClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public AccesClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            public AdminClient Admins => new AdminClient(_connection);
-            
-            public partial class AdminClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public AdminClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Returns the list of all project administrators
-                /// </summary>
-                public async Task<List<TDMemberProfile>> GetAllAdminsAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/admins{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-                public ProfileClient Profiles => new ProfileClient(_connection);
-                
-                public partial class ProfileClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public ProfileClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Add a member as administrator to a project
-                    /// </summary>
-                    public async Task AddAdministratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/admins/profiles{queryParameters.ToQueryString()}", 
-                            new ProjectsForProjectAccessAdminsProfilesPostRequest
-                            { 
-                                Profile = profile,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    /// <summary>
-                    /// Remove a member as administrator from a project
-                    /// </summary>
-                    public async Task RemoveAdministratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/admins/profiles/{profile}{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-                public TeamClient Teams => new TeamClient(_connection);
-                
-                public partial class TeamClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public TeamClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Add a team as administrators to a project
-                    /// </summary>
-                    public async Task AddAdministratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/admins/teams{queryParameters.ToQueryString()}", 
-                            new ProjectsForProjectAccessAdminsTeamsPostRequest
-                            { 
-                                TeamId = teamId,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    /// <summary>
-                    /// Remove a team as administrators from a project
-                    /// </summary>
-                    public async Task RemoveAdministratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/admins/teams/{teamId}{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-            }
-        
-            public CollaboratorClient Collaborators => new CollaboratorClient(_connection);
-            
-            public partial class CollaboratorClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public CollaboratorClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public async Task<List<TDMemberProfile>> GetAllCollaboratorsProfilesAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/collaborators{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-                public ProfileClient Profiles => new ProfileClient(_connection);
-                
-                public partial class ProfileClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public ProfileClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    public async Task AddACollaboratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/collaborators/profiles{queryParameters.ToQueryString()}", 
-                            new ProjectsForProjectAccessCollaboratorsProfilesPostRequest
-                            { 
-                                Profile = profile,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    public async Task<List<TDMemberProfile>> GetAllIndividualCollaboratorsAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/collaborators/profiles{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                    public async Task RemoveACollaboratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("profile", profile.ToString());
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/collaborators/profiles{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-                public TeamClient Teams => new TeamClient(_connection);
-                
-                public partial class TeamClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public TeamClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    public async Task AddACollaboratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/collaborators/teams{queryParameters.ToQueryString()}", 
-                            new ProjectsForProjectAccessCollaboratorsTeamsPostRequest
-                            { 
-                                TeamId = teamId,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    public async Task<List<TDTeam>> GetAllCollaboratorsTeamsAsync(ProjectIdentifier project, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<List<TDTeam>>("GET", $"api/http/projects/{project}/access/collaborators/teams{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                    public async Task RemoveACollaboratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("teamId", teamId);
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/collaborators/teams{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-            }
-        
-            public MemberProfileClient MemberProfiles => new MemberProfileClient(_connection);
-            
-            public partial class MemberProfileClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public MemberProfileClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Get project members for a given project key
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View project data</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<Batch<TDMemberProfile>> GetAllMemberProfilesAsync(ProjectIdentifier project, string query = "", bool includingAdmins = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    if (skip != null) queryParameters.Append("$skip", skip);
-                    if (top != null) queryParameters.Append("$top", top?.ToString());
-                    queryParameters.Append("query", query);
-                    queryParameters.Append("includingAdmins", includingAdmins.ToString("l"));
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/member-profiles{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-                
-                /// <summary>
-                /// Get project members for a given project key
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View project data</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public IAsyncEnumerable<TDMemberProfile> GetAllMemberProfilesAsyncEnumerable(ProjectIdentifier project, string query = "", bool includingAdmins = false, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMemberProfilesAsync(project: project, query: query, includingAdmins: includingAdmins, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
-            
-            }
-        
-            public MemberClient Members => new MemberClient(_connection);
-            
-            public partial class MemberClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public MemberClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public ProfileClient Profiles => new ProfileClient(_connection);
-                
-                public partial class ProfileClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public ProfileClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Add a member to a project
-                    /// </summary>
-                    public async Task AddMemberAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/members/profiles{queryParameters.ToQueryString()}", 
-                            new ProjectsForProjectAccessMembersProfilesPostRequest
-                            { 
-                                Profile = profile,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    /// <summary>
-                    /// Remove a member from a project
-                    /// </summary>
-                    public async Task RemoveMemberAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/members/profiles/{profile}{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-                public TeamClient Teams => new TeamClient(_connection);
-                
-                public partial class TeamClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public TeamClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Add a team to a project
-                    /// </summary>
-                    public async Task AddTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/members/teams{queryParameters.ToQueryString()}", 
-                            new ProjectsForProjectAccessMembersTeamsPostRequest
-                            { 
-                                TeamId = teamId,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    /// <summary>
-                    /// Remove a team from a project
-                    /// </summary>
-                    public async Task RemoveTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/members/teams/{teamId}{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-            }
-        
-            public ViewerClient Viewers => new ViewerClient(_connection);
-            
-            public partial class ViewerClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public ViewerClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Get organization members who can view a project
-                /// </summary>
-                public async Task<Batch<TDMemberProfile>> OrganizationProfilesThatCanViewTheProjectAsync(ProjectIdentifier project, string term, bool meOnTop = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    if (skip != null) queryParameters.Append("$skip", skip);
-                    if (top != null) queryParameters.Append("$top", top?.ToString());
-                    queryParameters.Append("term", term);
-                    queryParameters.Append("meOnTop", meOnTop.ToString("l"));
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/viewers{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-                
-                /// <summary>
-                /// Get organization members who can view a project
-                /// </summary>
-                public IAsyncEnumerable<TDMemberProfile> OrganizationProfilesThatCanViewTheProjectAsyncEnumerable(ProjectIdentifier project, string term, bool meOnTop = false, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => OrganizationProfilesThatCanViewTheProjectAsync(project: project, term: term, meOnTop: meOnTop, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
-            
-            }
-        
-        }
-    
-        public CodeReviewClient CodeReviews => new CodeReviewClient(_connection);
-        
-        public partial class CodeReviewClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public CodeReviewClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            public async Task<CodeDiscussionRecord> CreateCodeDiscussionAsync(ProjectIdentifier project, string text, string repository, string revision, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null, ReviewIdentifier? reviewId = null, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeDiscussionRecord>()) : Partial<CodeDiscussionRecord>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest, CodeDiscussionRecord>("POST", $"api/http/projects/{project}/code-reviews/code-discussions{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
-                    { 
-                        Text = text,
-                        DiffContext = diffContext,
-                        Repository = repository,
-                        Revision = revision,
-                        Filename = filename,
-                        Line = line,
-                        OldLine = oldLine,
-                        IsPending = pending,
-                        ReviewId = reviewId,
-                    }, cancellationToken);
-            }
-            
-        
-            public async Task<CommitSetReviewRecord> CreateReviewBasedOnCommitSetAsync(ProjectIdentifier project, string repository, List<string> revisions, string? title = null, List<string>? authorProfileIds = null, Func<Partial<CommitSetReviewRecord>, Partial<CommitSetReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CommitSetReviewRecord>()) : Partial<CommitSetReviewRecord>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest, CommitSetReviewRecord>("POST", $"api/http/projects/{project}/code-reviews/commit-set-review{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectCodeReviewsCommitSetReviewPostRequest
-                    { 
-                        Repository = repository,
-                        Revisions = revisions,
-                        Title = title,
-                        AuthorProfileIds = authorProfileIds,
-                    }, cancellationToken);
-            }
-            
-        
-            public async Task<MergeRequestRecord> CreateMergeRequestAsync(ProjectIdentifier project, string repository, string sourceBranch, string targetBranch, string title, List<ReviewerParam>? reviewers = null, Func<Partial<MergeRequestRecord>, Partial<MergeRequestRecord>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<MergeRequestRecord>()) : Partial<MergeRequestRecord>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsMergeRequestsPostRequest, MergeRequestRecord>("POST", $"api/http/projects/{project}/code-reviews/merge-requests{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectCodeReviewsMergeRequestsPostRequest
-                    { 
-                        Repository = repository,
-                        SourceBranch = sourceBranch,
-                        TargetBranch = targetBranch,
-                        Title = title,
-                        Reviewers = reviewers,
-                    }, cancellationToken);
-            }
-            
-        
-            public async Task<Batch<CodeReviewWithCount>> GetAllCodeReviewsAsync(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<Batch<CodeReviewWithCount>>, Partial<Batch<CodeReviewWithCount>>>? partial = null, CancellationToken cancellationToken = default)
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View project data</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Batch<PlanningTag>> GetAllHierarchicalTagsAsync(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<PlanningTag>>, Partial<Batch<PlanningTag>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (skip != null) queryParameters.Append("$skip", skip);
                 if (top != null) queryParameters.Append("$top", top?.ToString());
-                queryParameters.Append("state", state.ToEnumString());
-                if (text != null) queryParameters.Append("text", text);
-                if (author != null) queryParameters.Append("author", author?.ToString());
-                if (from != null) queryParameters.Append("from", from?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
-                if (to != null) queryParameters.Append("to", to?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
-                queryParameters.Append("sort", sort.ToEnumString());
-                if (reviewer != null) queryParameters.Append("reviewer", reviewer?.ToString());
-                queryParameters.Append("type", type.ToEnumString());
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CodeReviewWithCount>>()) : Partial<Batch<CodeReviewWithCount>>.Default()).ToString());
+                if (query != null) queryParameters.Append("query", query);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PlanningTag>>()) : Partial<Batch<PlanningTag>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<CodeReviewWithCount>>("GET", $"api/http/projects/{project}/code-reviews{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<PlanningTag>>("GET", $"api/http/projects/{project}/planning/tags{queryParameters.ToQueryString()}", cancellationToken);
             }
             
             
-            public IAsyncEnumerable<CodeReviewWithCount> GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<CodeReviewWithCount>, Partial<CodeReviewWithCount>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllCodeReviewsAsync(project: project, sort: sort, top: top, state: state, text: text, author: author, from: from, to: to, reviewer: reviewer, type: type, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CodeReviewWithCount>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeReviewWithCount>.Default())), skip, cancellationToken);
+            /// <summary>
+            /// Search existing tags in a project
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View project data</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<PlanningTag> GetAllHierarchicalTagsAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<PlanningTag>, Partial<PlanningTag>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllHierarchicalTagsAsync(project: project, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlanningTag>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlanningTag>.Default())), skip, cancellationToken);
         
-            public async Task<CodeReviewRecord> GetCodeReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
+        }
+    
+    }
+
+    public PrivateProjectClient PrivateProjects => new PrivateProjectClient(_connection);
+    
+    public partial class PrivateProjectClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public PrivateProjectClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Request access to a project
+        /// </summary>
+        public async Task RequestAccessToProjectAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/projects/private-projects/{project}/request-access{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// List private projects in the current organisation
+        /// </summary>
+        public async Task<List<PRPrivateProject>> GetAllPrivateProjectsAsync(Func<Partial<PRPrivateProject>, Partial<PRPrivateProject>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRPrivateProject>()) : Partial<PRPrivateProject>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<PRPrivateProject>>("GET", $"api/http/projects/private-projects{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+    }
+
+    public ResponsibilityClient Responsibilities => new ResponsibilityClient(_connection);
+    
+    public partial class ResponsibilityClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public ResponsibilityClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Add a responsibility for a given subject ID
+        /// </summary>
+        public async Task<string> AddResponsibilityAsync(string subjectId, string summary, string? notes = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            return await _connection.RequestResourceAsync<ProjectsResponsibilitiesPostRequest, string>("POST", $"api/http/projects/responsibilities{queryParameters.ToQueryString()}", 
+                new ProjectsResponsibilitiesPostRequest
+                { 
+                    SubjectId = subjectId,
+                    Summary = summary,
+                    Notes = notes,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Edit an existing responsibility
+        /// </summary>
+        public async Task UpdateResponsibilityAsync(string responsibilityId, string summary, string? notes = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/projects/responsibilities/{responsibilityId}{queryParameters.ToQueryString()}", 
+                new ProjectsResponsibilitiesForResponsibilityIdPatchRequest
+                { 
+                    Summary = summary,
+                    Notes = notes,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Delete an existing responsibility
+        /// </summary>
+        public async Task DeleteResponsibilityAsync(string responsibilityId, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/{responsibilityId}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public SubjectClient Subjects => new SubjectClient(_connection);
+        
+        public partial class SubjectClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public SubjectClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Delete an existing responsibility subject for a given project ID
+            /// </summary>
+            public async Task DeleteResponsibilitySubjectAsync(string subjectId, ProjectIdentifier? project = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeReviewRecord>()) : Partial<CodeReviewRecord>.Default()).ToString());
+                if (project != null) queryParameters.Append("project", project?.ToString());
                 
-                return await _connection.RequestResourceAsync<CodeReviewRecord>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/subjects/{subjectId}{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
-            public async Task<CodeReviewDetailedInfo> GetReviewDetailsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<CodeReviewDetailedInfo>, Partial<CodeReviewDetailedInfo>>? partial = null, CancellationToken cancellationToken = default)
+        }
+    
+    }
+
+    public partial class ResponsibilityClient : ISpaceClient
+    {
+        public SchemeClient Scheme => new SchemeClient(_connection);
+        
+        public partial class SchemeClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public SchemeClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Get the responsibilities schema for a given project ID
+            /// </summary>
+            public async Task<List<SubjectResponsibilitiesTable>> GetProjectResponsibilitySchemeAsync(ProjectIdentifier project, Func<Partial<SubjectResponsibilitiesTable>, Partial<SubjectResponsibilitiesTable>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeReviewDetailedInfo>()) : Partial<CodeReviewDetailedInfo>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubjectResponsibilitiesTable>()) : Partial<SubjectResponsibilitiesTable>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<CodeReviewDetailedInfo>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/details{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTable>>("GET", $"api/http/projects/{project}/responsibilities/scheme{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
-            public async Task<List<TDMemberProfile>> GetSuggestedReviewersAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+        }
+    
+        public partial class SubjectClient : ISpaceClient
+        {
+            /// <summary>
+            /// Add a responsibility subject for a given project ID
+            /// </summary>
+            public async Task<string> AddResponsibilitySubjectAsync(ProjectIdentifier project, string? name = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectResponsibilitiesSubjectsPostRequest, string>("POST", $"api/http/projects/{project}/responsibilities/subjects{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectResponsibilitiesSubjectsPostRequest
+                    { 
+                        Name = name,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Update an existing responsibility subject for a given project ID
+            /// </summary>
+            public async Task EditResponsibilitySubjectAsync(ProjectIdentifier project, string subjectId, string? name = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/responsibilities/subjects/{subjectId}{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectResponsibilitiesSubjectsForSubjectIdPatchRequest
+                    { 
+                        Name = name,
+                    }, cancellationToken);
+            }
+            
+        
+        }
+    
+        public AssigneeClient Assignees => new AssigneeClient(_connection);
+        
+        public partial class AssigneeClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public AssigneeClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Assign a responsible person for a given project ID and responsibility ID
+            /// </summary>
+            public async Task AssignResponsibleAsync(ProjectIdentifier project, string responsibilityId, string profileId, string? role = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/responsibilities/{responsibilityId}/assignees/{profileId}{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest
+                    { 
+                        Role = role,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Remove a responsible person for a given project ID and responsibility ID
+            /// </summary>
+            public async Task RemoveResponsibleAsync(ProjectIdentifier project, string responsibilityId, string profileId, string? role = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (role != null) queryParameters.Append("role", role);
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/responsibilities/{responsibilityId}/assignees/{profileId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
+    }
+
+    public SecretClient Secrets => new SecretClient(_connection);
+    
+    public partial class SecretClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public SecretClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Update an existing project secret
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit secrets</term>
+        /// <description>Edit project secrets</description>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task UpdateSecretAsync(string id, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/projects/secrets/{id}{queryParameters.ToQueryString()}", 
+                new ProjectsSecretsForIdPatchRequest
+                { 
+                    ValueBase64 = valueBase64,
+                    PublicKeyId = publicKeyId,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Delete an existing project secret
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Delete secrets</term>
+        /// <description>Delete project secrets</description>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task DeleteSecretAsync(string id, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/secrets/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public DefaultBundleClient DefaultBundle => new DefaultBundleClient(_connection);
+        
+        public partial class DefaultBundleClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public DefaultBundleClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Create a new secret in the default parameter bundle. Value is base64 encoded bytes of the secret value, possibly after client side encryption. If the secret value bytes are encrypted then the id of the Space public key must be provided
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Create secrets</term>
+            /// <description>Create project secrets</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<string> CreateDefaultBundleAsync(ProjectIdentifier project, string key, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<ProjectsSecretsDefaultBundlePostRequest, string>("POST", $"api/http/projects/secrets/default-bundle{queryParameters.ToQueryString()}", 
+                    new ProjectsSecretsDefaultBundlePostRequest
+                    { 
+                        Project = project,
+                        Key = key,
+                        ValueBase64 = valueBase64,
+                        PublicKeyId = publicKeyId,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// List project secrets in a parameter bundle
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View keys of secrets</term>
+            /// <description>View keys of project secrets</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Batch<SecretParameterRecord>> GetAllDefaultBundleAsync(ProjectIdentifier project, string? skip = null, int? top = 100, Func<Partial<Batch<SecretParameterRecord>>, Partial<Batch<SecretParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("project", project.ToString());
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<SecretParameterRecord>>()) : Partial<Batch<SecretParameterRecord>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets/default-bundle{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            /// <summary>
+            /// List project secrets in a parameter bundle
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View keys of secrets</term>
+            /// <description>View keys of project secrets</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<SecretParameterRecord> GetAllDefaultBundleAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, Func<Partial<SecretParameterRecord>, Partial<SecretParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllDefaultBundleAsync(project: project, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<SecretParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<SecretParameterRecord>.Default())), skip, cancellationToken);
+        
+        }
+    
+        public InDefaultBundleClient InDefaultBundle => new InDefaultBundleClient(_connection);
+        
+        public partial class InDefaultBundleClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public InDefaultBundleClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Create secrets</term>
+            /// <description>Create project secrets</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
+            public async Task<string> CreateInDefaultBundleAsync(string projectId, string key, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<ProjectsSecretsInDefaultBundlePostRequest, string>("POST", $"api/http/projects/secrets/in-default-bundle{queryParameters.ToQueryString()}", 
+                    new ProjectsSecretsInDefaultBundlePostRequest
+                    { 
+                        ProjectId = projectId,
+                        Key = key,
+                        ValueBase64 = valueBase64,
+                        PublicKeyId = publicKeyId,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View keys of secrets</term>
+            /// <description>View keys of project secrets</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
+            public async Task<Batch<SecretParameterRecord>> GetAllInDefaultBundleAsync(string projectId, string? skip = null, int? top = 100, Func<Partial<Batch<SecretParameterRecord>>, Partial<Batch<SecretParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("projectId", projectId);
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<SecretParameterRecord>>()) : Partial<Batch<SecretParameterRecord>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets/in-default-bundle{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View keys of secrets</term>
+            /// <description>View keys of project secrets</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            [Obsolete("Use the method that accepts a project identifier instead (since 2021.05.18)")]
+            public IAsyncEnumerable<SecretParameterRecord> GetAllInDefaultBundleAsyncEnumerable(string projectId, string? skip = null, int? top = 100, Func<Partial<SecretParameterRecord>, Partial<SecretParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInDefaultBundleAsync(projectId: projectId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<SecretParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<SecretParameterRecord>.Default())), skip, cancellationToken);
+        
+        }
+    
+    }
+
+    public TagClient Tags => new TagClient(_connection);
+    
+    public partial class TagClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public TagClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Track a tag has been accessed
+        /// </summary>
+        public async Task TrackTagAccessAsync(string tag, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/projects/tags/track-access{queryParameters.ToQueryString()}", 
+                new ProjectsTagsTrackAccessPostRequest
+                { 
+                    Tag = tag,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// List all tags, mapped to the number of projects they are used in
+        /// </summary>
+        public async Task<List<PRTag>> GetAllTagsAsync(Func<Partial<PRTag>, Partial<PRTag>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRTag>()) : Partial<PRTag>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<PRTag>>("GET", $"api/http/projects/tags{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+    }
+
+    public AccesClient Access => new AccesClient(_connection);
+    
+    public partial class AccesClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public AccesClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        public AdminClient Admins => new AdminClient(_connection);
+        
+        public partial class AdminClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public AdminClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Returns the list of all project administrators
+            /// </summary>
+            public async Task<List<TDMemberProfile>> GetAllAdminsAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/suggested-reviewers{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/admins{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
-            public async Task<List<RevisionInReview>> GetUnreadRevisionsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<RevisionInReview>, Partial<RevisionInReview>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<RevisionInReview>()) : Partial<RevisionInReview>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<List<RevisionInReview>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/unread-revisions{queryParameters.ToQueryString()}", cancellationToken);
-            }
+            public ProfileClient Profiles => new ProfileClient(_connection);
             
-        
-            public async Task EditReviewStateAsync(ProjectIdentifier project, ReviewIdentifier reviewId, CodeReviewState state, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/code-reviews/{reviewId}/state{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest
-                    { 
-                        State = state,
-                    }, cancellationToken);
-            }
-            
-        
-            public async Task EditReviewTitleAsync(ProjectIdentifier project, ReviewIdentifier reviewId, string title, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/code-reviews/{reviewId}/title{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest
-                    { 
-                        Title = title,
-                    }, cancellationToken);
-            }
-            
-        
-            public async Task<GitMergeResultHttp> MergeAMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitMergeMode mergeMode, Func<Partial<GitMergeResultHttp>, Partial<GitMergeResultHttp>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitMergeResultHttp>()) : Partial<GitMergeResultHttp>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsForReviewIdMergePutRequest, GitMergeResultHttp>("PUT", $"api/http/projects/{project}/code-reviews/{reviewId}/merge{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectCodeReviewsForReviewIdMergePutRequest
-                    { 
-                        IsDeleteSourceBranch = deleteSourceBranch,
-                        MergeMode = mergeMode,
-                    }, cancellationToken);
-            }
-            
-        
-            public async Task<GitRebaseResultHttp> RebaseAMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitRebaseMode rebaseMode, bool squash, string? squashedCommitMessage = null, Func<Partial<GitRebaseResultHttp>, Partial<GitRebaseResultHttp>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitRebaseResultHttp>()) : Partial<GitRebaseResultHttp>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest, GitRebaseResultHttp>("PUT", $"api/http/projects/{project}/code-reviews/{reviewId}/rebase{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest
-                    { 
-                        IsDeleteSourceBranch = deleteSourceBranch,
-                        RebaseMode = rebaseMode,
-                        IsSquash = squash,
-                        SquashedCommitMessage = squashedCommitMessage,
-                    }, cancellationToken);
-            }
-            
-        
-            public ParticipantClient Participants => new ParticipantClient(_connection);
-            
-            public partial class ParticipantClient : ISpaceClient
+            public partial class ProfileClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
-                public ParticipantClient(Connection connection)
+                public ProfileClient(Connection connection)
                 {
                     _connection = connection;
                 }
                 
-                public async Task AddReviewParticipantAsync(ProjectIdentifier project, ReviewIdentifier reviewId, ProfileIdentifier user, CodeReviewParticipantRole role, CancellationToken cancellationToken = default)
+                /// <summary>
+                /// Add a member as administrator to a project
+                /// </summary>
+                public async Task AddAdministratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/code-reviews/{reviewId}/participants/{user}{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/admins/profiles{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectAccessAdminsProfilesPostRequest
                         { 
-                            Role = role,
+                            Profile = profile,
                         }, cancellationToken);
                 }
                 
             
-                public async Task RemoveReviewParticipantAsync(ProjectIdentifier project, ReviewIdentifier reviewId, ProfileIdentifier user, CodeReviewParticipantRole role, CancellationToken cancellationToken = default)
+                /// <summary>
+                /// Remove a member as administrator from a project
+                /// </summary>
+                public async Task RemoveAdministratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
-                    queryParameters.Append("role", role.ToEnumString());
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/code-reviews/{reviewId}/participants/{user}{queryParameters.ToQueryString()}", cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/admins/profiles/{profile}{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
             
             }
         
-            public RevisionClient Revisions => new RevisionClient(_connection);
+            public TeamClient Teams => new TeamClient(_connection);
             
-            public partial class RevisionClient : ISpaceClient
+            public partial class TeamClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
-                public RevisionClient(Connection connection)
+                public TeamClient(Connection connection)
                 {
                     _connection = connection;
                 }
                 
-                public async Task AddRevisionsToReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, List<RevisionInReview> revisions, CancellationToken cancellationToken = default)
+                /// <summary>
+                /// Add a team as administrators to a project
+                /// </summary>
+                public async Task AddAdministratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/code-reviews/{reviewId}/revisions{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/admins/teams{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectAccessAdminsTeamsPostRequest
                         { 
-                            Revisions = revisions,
+                            TeamId = teamId,
                         }, cancellationToken);
                 }
                 
             
-                public async Task RemoveRevisionsFromReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, List<string> revisions, CancellationToken cancellationToken = default)
+                /// <summary>
+                /// Remove a team as administrators from a project
+                /// </summary>
+                public async Task RemoveAdministratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
-                    queryParameters.Append("revisions", revisions.Select(it => it));
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/code-reviews/{reviewId}/revisions{queryParameters.ToQueryString()}", cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/admins/teams/{teamId}{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
             
@@ -3351,781 +2817,249 @@ namespace JetBrains.Space.Client
         
         }
     
-        public IntellijSharedIndexClient IntellijSharedIndexes => new IntellijSharedIndexClient(_connection);
+        public CollaboratorClient Collaborators => new CollaboratorClient(_connection);
         
-        public partial class IntellijSharedIndexClient : ISpaceClient
+        public partial class CollaboratorClient : ISpaceClient
         {
             private readonly Connection _connection;
             
-            public IntellijSharedIndexClient(Connection connection)
+            public CollaboratorClient(Connection connection)
             {
                 _connection = connection;
             }
             
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Change permissions for the project</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task IndexRefreshCdnAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
+            public async Task<List<TDMemberProfile>> GetAllCollaboratorsProfilesAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/intellij-shared-indexes/index-refresh-cdn{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/collaborators{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Change permissions for the project</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<IntelliJSharedIndexUploadUrls> IndexUploadAsync(ProjectIdentifier project, List<string> fileNames, Func<Partial<IntelliJSharedIndexUploadUrls>, Partial<IntelliJSharedIndexUploadUrls>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<IntelliJSharedIndexUploadUrls>()) : Partial<IntelliJSharedIndexUploadUrls>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest, IntelliJSharedIndexUploadUrls>("POST", $"api/http/projects/{project}/intellij-shared-indexes/index-upload{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest
-                    { 
-                        FileNames = fileNames,
-                    }, cancellationToken);
-            }
+            public ProfileClient Profiles => new ProfileClient(_connection);
             
+            public partial class ProfileClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public ProfileClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task AddACollaboratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/collaborators/profiles{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectAccessCollaboratorsProfilesPostRequest
+                        { 
+                            Profile = profile,
+                        }, cancellationToken);
+                }
+                
+            
+                public async Task<List<TDMemberProfile>> GetAllIndividualCollaboratorsAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/collaborators/profiles{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                public async Task RemoveACollaboratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("profile", profile.ToString());
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/collaborators/profiles{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+            public TeamClient Teams => new TeamClient(_connection);
+            
+            public partial class TeamClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public TeamClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task AddACollaboratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/collaborators/teams{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectAccessCollaboratorsTeamsPostRequest
+                        { 
+                            TeamId = teamId,
+                        }, cancellationToken);
+                }
+                
+            
+                public async Task<List<TDTeam>> GetAllCollaboratorsTeamsAsync(ProjectIdentifier project, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<TDTeam>>("GET", $"api/http/projects/{project}/access/collaborators/teams{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                public async Task RemoveACollaboratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("teamId", teamId);
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/collaborators/teams{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
         
         }
     
-        public PackageClient Packages => new PackageClient(_connection);
+        public MemberProfileClient MemberProfiles => new MemberProfileClient(_connection);
         
-        public partial class PackageClient : ISpaceClient
+        public partial class MemberProfileClient : ISpaceClient
         {
             private readonly Connection _connection;
             
-            public PackageClient(Connection connection)
+            public MemberProfileClient(Connection connection)
             {
                 _connection = connection;
             }
             
-            public RepositoryClient Repositories => new RepositoryClient(_connection);
+            /// <summary>
+            /// Get project members for a given project key
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View project data</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Batch<TDMemberProfile>> GetAllMemberProfilesAsync(ProjectIdentifier project, string query = "", bool includingAdmins = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("query", query);
+                queryParameters.Append("includingAdmins", includingAdmins.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/member-profiles{queryParameters.ToQueryString()}", cancellationToken);
+            }
             
-            public partial class RepositoryClient : ISpaceClient
+            
+            /// <summary>
+            /// Get project members for a given project key
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View project data</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<TDMemberProfile> GetAllMemberProfilesAsyncEnumerable(ProjectIdentifier project, string query = "", bool includingAdmins = false, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMemberProfilesAsync(project: project, query: query, includingAdmins: includingAdmins, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
+        
+        }
+    
+        public MemberClient Members => new MemberClient(_connection);
+        
+        public partial class MemberClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public MemberClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public ProfileClient Profiles => new ProfileClient(_connection);
+            
+            public partial class ProfileClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
-                public RepositoryClient(Connection connection)
+                public ProfileClient(Connection connection)
                 {
                     _connection = connection;
                 }
                 
                 /// <summary>
-                /// Creates a new package repository for a given project ID
+                /// Add a member to a project
                 /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Create</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<ProjectPackageRepository> CreateNewRepositoryAsync(ProjectIdentifier project, string type, string name, bool @public, ESPackageRepositorySettings settings, PackageRepositoryMode mode, string? description = null, PackageRepositoryConnection? connection = null, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task AddMemberAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesPostRequest, ProjectPackageRepository>("POST", $"api/http/projects/{project}/packages/repositories{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectPackagesRepositoriesPostRequest
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/members/profiles{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectAccessMembersProfilesPostRequest
                         { 
-                            Type = type,
-                            Name = name,
-                            Description = description,
-                            IsPublic = @public,
-                            Settings = settings,
-                            Mode = mode,
-                            Connection = connection,
+                            Profile = profile,
                         }, cancellationToken);
                 }
                 
             
                 /// <summary>
-                /// Gets a list of package repositories for a given project ID
+                /// Remove a member from a project
                 /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Read</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<List<ProjectPackageRepository>> GetRepositoriesAsync(ProjectIdentifier project, string? type = null, string? query = null, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task RemoveMemberAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
-                    if (type != null) queryParameters.Append("type", type);
-                    if (query != null) queryParameters.Append("query", query);
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<List<ProjectPackageRepository>>("GET", $"api/http/projects/{project}/packages/repositories{queryParameters.ToQueryString()}", cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/members/profiles/{profile}{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
             
-                /// <summary>
-                /// Gets a package repository for a given project ID by type and name
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Read</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<ProjectPackageRepository> GetRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
+            }
+        
+            public TeamClient Teams => new TeamClient(_connection);
+            
+            public partial class TeamClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public TeamClient(Connection connection)
                 {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<ProjectPackageRepository>("GET", $"api/http/projects/{project}/packages/repositories/{repository}{queryParameters.ToQueryString()}", cancellationToken);
+                    _connection = connection;
                 }
                 
-            
                 /// <summary>
-                /// Updates package repository settings for a given project ID
+                /// Add a team to a project
                 /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Admin</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task UpdateRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string? name = null, string? description = null, bool? @public = null, ESPackageRepositorySettings? settings = null, CancellationToken cancellationToken = default)
+                public async Task AddTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/packages/repositories/{repository}{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/members/teams{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectAccessMembersTeamsPostRequest
                         { 
-                            Name = name,
-                            Description = description,
-                            IsPublic = @public,
-                            Settings = settings,
+                            TeamId = teamId,
                         }, cancellationToken);
                 }
                 
             
                 /// <summary>
-                /// Removes package repository for a given project ID
+                /// Remove a team from a project
                 /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Admin</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task DeleteRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, CancellationToken cancellationToken = default)
+                public async Task RemoveTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-                public CleanupClient Cleanup => new CleanupClient(_connection);
-                
-                public partial class CleanupClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public CleanupClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Cleanup specified package repository
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Admin</term>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task<PackagesExecutionResult> CleanupRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, RetentionPolicyParams? retentionPolicyParams = null, Func<Partial<PackagesExecutionResult>, Partial<PackagesExecutionResult>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackagesExecutionResult>()) : Partial<PackagesExecutionResult>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequest, PackagesExecutionResult>("POST", $"api/http/projects/{project}/packages/repositories/{repository}/cleanup{queryParameters.ToQueryString()}", 
-                            new ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequest
-                            { 
-                                RetentionPolicyParams = retentionPolicyParams,
-                            }, cancellationToken);
-                    }
-                    
-                
-                    public DryClient Dry => new DryClient(_connection);
-                    
-                    public partial class DryClient : ISpaceClient
-                    {
-                        private readonly Connection _connection;
-                        
-                        public DryClient(Connection connection)
-                        {
-                            _connection = connection;
-                        }
-                        
-                        /// <summary>
-                        /// Dry run of cleanup for specified package repository
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Admin</term>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public async Task<DryCleanupResults> DryRunRepositoryCleanupAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, RetentionPolicyParams retentionParams, Func<Partial<DryCleanupResults>, Partial<DryCleanupResults>>? partial = null, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<DryCleanupResults>()) : Partial<DryCleanupResults>.Default()).ToString());
-                            
-                            return await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupDryPostRequest, DryCleanupResults>("POST", $"api/http/projects/{project}/packages/repositories/{repository}/cleanup/dry{queryParameters.ToQueryString()}", 
-                                new ProjectsForProjectPackagesRepositoriesForRepositoryCleanupDryPostRequest
-                                { 
-                                    RetentionParams = retentionParams,
-                                }, cancellationToken);
-                        }
-                        
-                    
-                    }
-                
-                }
-            
-                public ConnectionClient Connections => new ConnectionClient(_connection);
-                
-                public partial class ConnectionClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public ConnectionClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Gets a list of remote package repositories for given project
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Read</term>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task<List<PackageRepositoryConnection>> GetAllRemoteRepositoriesAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, Func<Partial<PackageRepositoryConnection>, Partial<PackageRepositoryConnection>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageRepositoryConnection>()) : Partial<PackageRepositoryConnection>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<List<PackageRepositoryConnection>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/connections{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                    public PublishClient Publish => new PublishClient(_connection);
-                    
-                    public partial class PublishClient : ISpaceClient
-                    {
-                        private readonly Connection _connection;
-                        
-                        public PublishClient(Connection connection)
-                        {
-                            _connection = connection;
-                        }
-                        
-                        /// <summary>
-                        /// Publishes packages to remote repository
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Write</term>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public async Task<string> PublishPackagesToRemoteRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string connectionId, PublishingSource source, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            
-                            return await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest, string>("POST", $"api/http/projects/{project}/packages/repositories/{repository}/connections/{connectionId}/publish{queryParameters.ToQueryString()}", 
-                                new ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest
-                                { 
-                                    Source = source,
-                                }, cancellationToken);
-                        }
-                        
-                    
-                        /// <summary>
-                        /// Get list of publishing to remote repository
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Read</term>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public async Task<Batch<PackagesPublishing>> GetListOfPublishingToRemoteRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string connectionId, string? skip = null, int? top = 100, Func<Partial<Batch<PackagesPublishing>>, Partial<Batch<PackagesPublishing>>>? partial = null, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            if (skip != null) queryParameters.Append("$skip", skip);
-                            if (top != null) queryParameters.Append("$top", top?.ToString());
-                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackagesPublishing>>()) : Partial<Batch<PackagesPublishing>>.Default()).ToString());
-                            
-                            return await _connection.RequestResourceAsync<Batch<PackagesPublishing>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/connections/{connectionId}/publish{queryParameters.ToQueryString()}", cancellationToken);
-                        }
-                        
-                        
-                        /// <summary>
-                        /// Get list of publishing to remote repository
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Read</term>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public IAsyncEnumerable<PackagesPublishing> GetListOfPublishingToRemoteRepositoryAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string connectionId, string? skip = null, int? top = 100, Func<Partial<PackagesPublishing>, Partial<PackagesPublishing>>? partial = null, CancellationToken cancellationToken = default)
-                            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetListOfPublishingToRemoteRepositoryAsync(project: project, repository: repository, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackagesPublishing>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackagesPublishing>.Default())), skip, cancellationToken);
-                    
-                    }
-                
-                }
-            
-                public PackageClient Packages => new PackageClient(_connection);
-                
-                public partial class PackageClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public PackageClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Gets a list of repository packages for a given project ID
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Read</term>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task<Batch<PackageData>> GetAllPackagesAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageData>>, Partial<Batch<PackageData>>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("query", query);
-                        if (connectionId != null) queryParameters.Append("connectionId", connectionId);
-                        if (skip != null) queryParameters.Append("$skip", skip);
-                        if (top != null) queryParameters.Append("$top", top?.ToString());
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                    
-                    /// <summary>
-                    /// Gets a list of repository packages for a given project ID
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Read</term>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public IAsyncEnumerable<PackageData> GetAllPackagesAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<PackageData>, Partial<PackageData>>? partial = null, CancellationToken cancellationToken = default)
-                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackagesAsync(project: project, repository: repository, query: query, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageData>.Default())), skip, cancellationToken);
-                
-                    public MetadataClient Metadata => new MetadataClient(_connection);
-                    
-                    public partial class MetadataClient : ISpaceClient
-                    {
-                        private readonly Connection _connection;
-                        
-                        public MetadataClient(Connection connection)
-                        {
-                            _connection = connection;
-                        }
-                        
-                        /// <summary>
-                        /// Report a package version metadata in repository for a given project ID
-                        /// </summary>
-                        public async Task ReportPackageVersionMetadataAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string packageVersion, bool pin, string? comment = null, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            
-                            await _connection.RequestResourceAsync("PUT", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/metadata/version:{packageVersion}{queryParameters.ToQueryString()}", 
-                                new ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest
-                                { 
-                                    IsPin = pin,
-                                    Comment = comment,
-                                }, cancellationToken);
-                        }
-                        
-                    
-                    }
-                
-                    public VersionClient Versions => new VersionClient(_connection);
-                    
-                    public partial class VersionClient : ISpaceClient
-                    {
-                        private readonly Connection _connection;
-                        
-                        public VersionClient(Connection connection)
-                        {
-                            _connection = connection;
-                        }
-                        
-                        /// <summary>
-                        /// Gets a list of repository package versions for a given project ID
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Read</term>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, PackagesSortColumn sortColumn, ColumnSortOrder sortOrder, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            queryParameters.Append("query", query);
-                            if (connectionId != null) queryParameters.Append("connectionId", connectionId);
-                            if (skip != null) queryParameters.Append("$skip", skip);
-                            if (top != null) queryParameters.Append("$top", top?.ToString());
-                            queryParameters.Append("sortColumn", sortColumn.ToEnumString());
-                            queryParameters.Append("sortOrder", sortOrder.ToEnumString());
-                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
-                            
-                            return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions{queryParameters.ToQueryString()}", cancellationToken);
-                        }
-                        
-                        
-                        /// <summary>
-                        /// Gets a list of repository package versions for a given project ID
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Read</term>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, PackagesSortColumn sortColumn, ColumnSortOrder sortOrder, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
-                            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, repository: repository, packageName: packageName, query: query, sortColumn: sortColumn, sortOrder: sortOrder, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
-                    
-                        /// <summary>
-                        /// Gets a details for repository package version for a given project ID
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Read</term>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public async Task<PackageVersionDetails> GetPackageVersionDetailsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string packageVersion, Func<Partial<PackageVersionDetails>, Partial<PackageVersionDetails>>? partial = null, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageVersionDetails>()) : Partial<PackageVersionDetails>.Default()).ToString());
-                            
-                            return await _connection.RequestResourceAsync<PackageVersionDetails>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", cancellationToken);
-                        }
-                        
-                    
-                        /// <summary>
-                        /// Removes a package version in repository for a given project ID
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Write</term>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        public async Task DeletePackageVersionAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string packageVersion, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            
-                            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", cancellationToken);
-                        }
-                        
-                    
-                    }
-                
-                }
-            
-                public partial class PackageClient : ISpaceClient
-                {
-                    /// <summary>
-                    /// Gets a list of repository packages for a given project ID
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Read</term>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages (since 2020-09-01) (will be removed in a future version)")]
-                    public async Task<Batch<PackageData>> GetAllPackagesAsync(ProjectIdentifier project, string type, string repositoryName, string query, string? skip = null, int? top = 100, Func<Partial<Batch<PackageData>>, Partial<Batch<PackageData>>>? partial = null, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        queryParameters.Append("query", query);
-                        if (skip != null) queryParameters.Append("$skip", skip);
-                        if (top != null) queryParameters.Append("$top", top?.ToString());
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default()).ToString());
-                        
-                        return await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                    
-                    /// <summary>
-                    /// Gets a list of repository packages for a given project ID
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Read</term>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages (since 2020-09-01) (will be removed in a future version)")]
-                    public IAsyncEnumerable<PackageData> GetAllPackagesAsyncEnumerable(ProjectIdentifier project, string type, string repositoryName, string query, string? skip = null, int? top = 100, Func<Partial<PackageData>, Partial<PackageData>>? partial = null, CancellationToken cancellationToken = default)
-                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackagesAsync(project: project, type: type, repositoryName: repositoryName, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageData>.Default())), skip, cancellationToken);
-                
-                    public partial class VersionClient : ISpaceClient
-                    {
-                        /// <summary>
-                        /// Gets a list of repository package versions for a given project ID
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Read</term>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (will be removed in a future version)")]
-                        public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, PackagesSortColumn sortColumn, ColumnSortOrder sortOrder, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            queryParameters.Append("query", query);
-                            if (skip != null) queryParameters.Append("$skip", skip);
-                            if (top != null) queryParameters.Append("$top", top?.ToString());
-                            queryParameters.Append("sortColumn", sortColumn.ToEnumString());
-                            queryParameters.Append("sortOrder", sortOrder.ToEnumString());
-                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
-                            
-                            return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions{queryParameters.ToQueryString()}", cancellationToken);
-                        }
-                        
-                        
-                        /// <summary>
-                        /// Gets a list of repository package versions for a given project ID
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Read</term>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (will be removed in a future version)")]
-                        public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, PackagesSortColumn sortColumn, ColumnSortOrder sortOrder, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
-                            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, type: type, repositoryName: repositoryName, packageName: packageName, query: query, sortColumn: sortColumn, sortOrder: sortOrder, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
-                    
-                        /// <summary>
-                        /// Gets a details for repository package version for a given project ID
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Read</term>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion} (since 2020-09-01) (will be removed in a future version)")]
-                        public async Task<PackageVersionDetails> GetPackageVersionDetailsAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string packageVersion, Func<Partial<PackageVersionDetails>, Partial<PackageVersionDetails>>? partial = null, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageVersionDetails>()) : Partial<PackageVersionDetails>.Default()).ToString());
-                            
-                            return await _connection.RequestResourceAsync<PackageVersionDetails>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", cancellationToken);
-                        }
-                        
-                    
-                        /// <summary>
-                        /// Removes a package version in repository for a given project ID
-                        /// </summary>
-                        /// <remarks>
-                        /// Required permissions:
-                        /// <list type="bullet">
-                        /// <item>
-                        /// <term>Write</term>
-                        /// </item>
-                        /// </list>
-                        /// </remarks>
-                        [Obsolete("Use DELETE /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion} (since 2020-09-01) (will be removed in a future version)")]
-                        public async Task DeletePackageVersionAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string packageVersion, CancellationToken cancellationToken = default)
-                        {
-                            var queryParameters = new NameValueCollection();
-                            
-                            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", cancellationToken);
-                        }
-                        
-                    
-                    }
-                
-                }
-            
-                public UrlClient Url => new UrlClient(_connection);
-                
-                public partial class UrlClient : ISpaceClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public UrlClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Gets a package repository URL for a given project ID
-                    /// </summary>
-                    /// <remarks>
-                    /// Required permissions:
-                    /// <list type="bullet">
-                    /// <item>
-                    /// <term>Read</term>
-                    /// </item>
-                    /// </list>
-                    /// </remarks>
-                    public async Task<string> GetRepositoryUrlAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, CancellationToken cancellationToken = default)
-                    {
-                        var queryParameters = new NameValueCollection();
-                        
-                        return await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/url{queryParameters.ToQueryString()}", cancellationToken);
-                    }
-                    
-                
-                }
-            
-            }
-        
-            public SearchClient Search => new SearchClient(_connection);
-            
-            public partial class SearchClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public SearchClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Executes a package search for a given project ID
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Read</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<Batch<PackageVersionData>> FindPackagesInRepositoryAsync(ProjectIdentifier project, string type, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("type", type);
-                    queryParameters.Append("query", query);
-                    if (connectionId != null) queryParameters.Append("connectionId", connectionId);
-                    if (skip != null) queryParameters.Append("$skip", skip);
-                    if (top != null) queryParameters.Append("$top", top?.ToString());
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/search{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-                
-                /// <summary>
-                /// Executes a package search for a given project ID
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Read</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public IAsyncEnumerable<PackageVersionData> FindPackagesInRepositoryAsyncEnumerable(ProjectIdentifier project, string type, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => FindPackagesInRepositoryAsync(project: project, type: type, query: query, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
-            
-            }
-        
-            public TypeClient Types => new TypeClient(_connection);
-            
-            public partial class TypeClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public TypeClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Creates a new package repository for a given project ID
-                /// </summary>
-                public async Task<List<PackageType>> GetAllTypesAsync(ProjectIdentifier project, Func<Partial<PackageType>, Partial<PackageType>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageType>()) : Partial<PackageType>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<List<PackageType>>("GET", $"api/http/projects/{project}/packages/types{queryParameters.ToQueryString()}", cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/members/teams/{teamId}{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
             
@@ -4133,6 +3067,351 @@ namespace JetBrains.Space.Client
         
         }
     
+        public ViewerClient Viewers => new ViewerClient(_connection);
+        
+        public partial class ViewerClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public ViewerClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Get organization members who can view a project
+            /// </summary>
+            public async Task<Batch<TDMemberProfile>> OrganizationProfilesThatCanViewTheProjectAsync(ProjectIdentifier project, string term, bool meOnTop = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("term", term);
+                queryParameters.Append("meOnTop", meOnTop.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/viewers{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            /// <summary>
+            /// Get organization members who can view a project
+            /// </summary>
+            public IAsyncEnumerable<TDMemberProfile> OrganizationProfilesThatCanViewTheProjectAsyncEnumerable(ProjectIdentifier project, string term, bool meOnTop = false, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => OrganizationProfilesThatCanViewTheProjectAsync(project: project, term: term, meOnTop: meOnTop, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
+        
+        }
+    
+    }
+
+    public CodeReviewClient CodeReviews => new CodeReviewClient(_connection);
+    
+    public partial class CodeReviewClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public CodeReviewClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        public async Task<CodeDiscussionRecord> CreateCodeDiscussionAsync(ProjectIdentifier project, string text, string repository, string revision, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null, ReviewIdentifier? reviewId = null, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeDiscussionRecord>()) : Partial<CodeDiscussionRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest, CodeDiscussionRecord>("POST", $"api/http/projects/{project}/code-reviews/code-discussions{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
+                { 
+                    Text = text,
+                    DiffContext = diffContext,
+                    Repository = repository,
+                    Revision = revision,
+                    Filename = filename,
+                    Line = line,
+                    OldLine = oldLine,
+                    IsPending = pending,
+                    ReviewId = reviewId,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task<CommitSetReviewRecord> CreateReviewBasedOnCommitSetAsync(ProjectIdentifier project, string repository, List<string> revisions, string? title = null, List<string>? authorProfileIds = null, Func<Partial<CommitSetReviewRecord>, Partial<CommitSetReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<CommitSetReviewRecord>()) : Partial<CommitSetReviewRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsCommitSetReviewPostRequest, CommitSetReviewRecord>("POST", $"api/http/projects/{project}/code-reviews/commit-set-review{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsCommitSetReviewPostRequest
+                { 
+                    Repository = repository,
+                    Revisions = revisions,
+                    Title = title,
+                    AuthorProfileIds = authorProfileIds,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task<MergeRequestRecord> CreateMergeRequestAsync(ProjectIdentifier project, string repository, string sourceBranch, string targetBranch, string title, List<ReviewerParam>? reviewers = null, Func<Partial<MergeRequestRecord>, Partial<MergeRequestRecord>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<MergeRequestRecord>()) : Partial<MergeRequestRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsMergeRequestsPostRequest, MergeRequestRecord>("POST", $"api/http/projects/{project}/code-reviews/merge-requests{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsMergeRequestsPostRequest
+                { 
+                    Repository = repository,
+                    SourceBranch = sourceBranch,
+                    TargetBranch = targetBranch,
+                    Title = title,
+                    Reviewers = reviewers,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task<Batch<CodeReviewWithCount>> GetAllCodeReviewsAsync(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<Batch<CodeReviewWithCount>>, Partial<Batch<CodeReviewWithCount>>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            queryParameters.Append("state", state.ToEnumString());
+            if (text != null) queryParameters.Append("text", text);
+            if (author != null) queryParameters.Append("author", author?.ToString());
+            if (from != null) queryParameters.Append("from", from?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+            if (to != null) queryParameters.Append("to", to?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+            queryParameters.Append("sort", sort.ToEnumString());
+            if (reviewer != null) queryParameters.Append("reviewer", reviewer?.ToString());
+            queryParameters.Append("type", type.ToEnumString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CodeReviewWithCount>>()) : Partial<Batch<CodeReviewWithCount>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<CodeReviewWithCount>>("GET", $"api/http/projects/{project}/code-reviews{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+        
+        public IAsyncEnumerable<CodeReviewWithCount> GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<CodeReviewWithCount>, Partial<CodeReviewWithCount>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllCodeReviewsAsync(project: project, sort: sort, top: top, state: state, text: text, author: author, from: from, to: to, reviewer: reviewer, type: type, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CodeReviewWithCount>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeReviewWithCount>.Default())), skip, cancellationToken);
+    
+        public async Task<CodeReviewRecord> GetCodeReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeReviewRecord>()) : Partial<CodeReviewRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<CodeReviewRecord>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public async Task<CodeReviewDetailedInfo> GetReviewDetailsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<CodeReviewDetailedInfo>, Partial<CodeReviewDetailedInfo>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeReviewDetailedInfo>()) : Partial<CodeReviewDetailedInfo>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<CodeReviewDetailedInfo>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/details{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public async Task<List<TDMemberProfile>> GetSuggestedReviewersAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/suggested-reviewers{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public async Task<List<RevisionInReview>> GetUnreadRevisionsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<RevisionInReview>, Partial<RevisionInReview>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<RevisionInReview>()) : Partial<RevisionInReview>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<RevisionInReview>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/unread-revisions{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public async Task EditReviewStateAsync(ProjectIdentifier project, ReviewIdentifier reviewId, CodeReviewState state, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/code-reviews/{reviewId}/state{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest
+                { 
+                    State = state,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task EditReviewTitleAsync(ProjectIdentifier project, ReviewIdentifier reviewId, string title, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/code-reviews/{reviewId}/title{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest
+                { 
+                    Title = title,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task<GitMergeResultHttp> MergeAMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitMergeMode mergeMode, Func<Partial<GitMergeResultHttp>, Partial<GitMergeResultHttp>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitMergeResultHttp>()) : Partial<GitMergeResultHttp>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsForReviewIdMergePutRequest, GitMergeResultHttp>("PUT", $"api/http/projects/{project}/code-reviews/{reviewId}/merge{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsForReviewIdMergePutRequest
+                { 
+                    IsDeleteSourceBranch = deleteSourceBranch,
+                    MergeMode = mergeMode,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task<GitRebaseResultHttp> RebaseAMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitRebaseMode rebaseMode, bool squash, string? squashedCommitMessage = null, Func<Partial<GitRebaseResultHttp>, Partial<GitRebaseResultHttp>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitRebaseResultHttp>()) : Partial<GitRebaseResultHttp>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest, GitRebaseResultHttp>("PUT", $"api/http/projects/{project}/code-reviews/{reviewId}/rebase{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest
+                { 
+                    IsDeleteSourceBranch = deleteSourceBranch,
+                    RebaseMode = rebaseMode,
+                    IsSquash = squash,
+                    SquashedCommitMessage = squashedCommitMessage,
+                }, cancellationToken);
+        }
+        
+    
+        public ParticipantClient Participants => new ParticipantClient(_connection);
+        
+        public partial class ParticipantClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public ParticipantClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task AddReviewParticipantAsync(ProjectIdentifier project, ReviewIdentifier reviewId, ProfileIdentifier user, CodeReviewParticipantRole role, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/code-reviews/{reviewId}/participants/{user}{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest
+                    { 
+                        Role = role,
+                    }, cancellationToken);
+            }
+            
+        
+            public async Task RemoveReviewParticipantAsync(ProjectIdentifier project, ReviewIdentifier reviewId, ProfileIdentifier user, CodeReviewParticipantRole role, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("role", role.ToEnumString());
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/code-reviews/{reviewId}/participants/{user}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
+        public RevisionClient Revisions => new RevisionClient(_connection);
+        
+        public partial class RevisionClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public RevisionClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task AddRevisionsToReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, List<RevisionInReview> revisions, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/code-reviews/{reviewId}/revisions{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest
+                    { 
+                        Revisions = revisions,
+                    }, cancellationToken);
+            }
+            
+        
+            public async Task RemoveRevisionsFromReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, List<string> revisions, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("revisions", revisions.Select(it => it));
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/code-reviews/{reviewId}/revisions{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
+    }
+
+    public IntellijSharedIndexClient IntellijSharedIndexes => new IntellijSharedIndexClient(_connection);
+    
+    public partial class IntellijSharedIndexClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public IntellijSharedIndexClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Change permissions for the project</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task IndexRefreshCdnAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/intellij-shared-indexes/index-refresh-cdn{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Change permissions for the project</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<IntelliJSharedIndexUploadUrls> IndexUploadAsync(ProjectIdentifier project, List<string> fileNames, Func<Partial<IntelliJSharedIndexUploadUrls>, Partial<IntelliJSharedIndexUploadUrls>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<IntelliJSharedIndexUploadUrls>()) : Partial<IntelliJSharedIndexUploadUrls>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest, IntelliJSharedIndexUploadUrls>("POST", $"api/http/projects/{project}/intellij-shared-indexes/index-upload{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest
+                { 
+                    FileNames = fileNames,
+                }, cancellationToken);
+        }
+        
+    
+    }
+
+    public PackageClient Packages => new PackageClient(_connection);
+    
+    public partial class PackageClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public PackageClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
         public RepositoryClient Repositories => new RepositoryClient(_connection);
         
         public partial class RepositoryClient : ISpaceClient
@@ -4144,210 +3423,930 @@ namespace JetBrains.Space.Client
                 _connection = connection;
             }
             
-            public async Task<PRRepositoryInfo> CreateNewRepositoryAsync(ProjectIdentifier project, string repository, string description = "", bool initialize = true, bool defaultSetup = false, string? defaultBranch = null, Func<Partial<PRRepositoryInfo>, Partial<PRRepositoryInfo>>? partial = null, CancellationToken cancellationToken = default)
+            /// <summary>
+            /// Creates a new package repository for a given project ID
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Create</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<ProjectPackageRepository> CreateNewRepositoryAsync(ProjectIdentifier project, string type, string name, bool @public, ESPackageRepositorySettings settings, PackageRepositoryMode mode, string? description = null, PackageRepositoryConnection? connection = null, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRRepositoryInfo>()) : Partial<PRRepositoryInfo>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryPostRequest, PRRepositoryInfo>("POST", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectRepositoriesForRepositoryPostRequest
+                return await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesPostRequest, ProjectPackageRepository>("POST", $"api/http/projects/{project}/packages/repositories{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectPackagesRepositoriesPostRequest
                     { 
+                        Type = type,
+                        Name = name,
                         Description = description,
-                        DefaultBranch = defaultBranch,
-                        IsInitialize = initialize,
-                        IsDefaultSetup = defaultSetup,
+                        IsPublic = @public,
+                        Settings = settings,
+                        Mode = mode,
+                        Connection = connection,
                     }, cancellationToken);
             }
             
         
-            public async Task<GitCommitResult> CommitAsync(string project, string repository, string baseCommit, string targetBranch, string commitMessage, List<GitCommitFileRequest> files, Func<Partial<GitCommitResult>, Partial<GitCommitResult>>? partial = null, CancellationToken cancellationToken = default)
+            /// <summary>
+            /// Gets a list of package repositories for a given project ID
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Read</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<List<ProjectPackageRepository>> GetRepositoriesAsync(ProjectIdentifier project, string? type = null, string? query = null, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitCommitResult>()) : Partial<GitCommitResult>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest, GitCommitResult>("POST", $"api/http/projects/{project}/repositories/{repository}/commit{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectRepositoriesForRepositoryCommitPostRequest
-                    { 
-                        BaseCommit = baseCommit,
-                        TargetBranch = targetBranch,
-                        CommitMessage = commitMessage,
-                        Files = files,
-                    }, cancellationToken);
-            }
-            
-        
-            public async Task GcAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/gc{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            public async Task<Batch<GitCommitInfo>> CommitsAsync(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<GitCommitInfo>>, Partial<Batch<GitCommitInfo>>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                if (skip != null) queryParameters.Append("$skip", skip);
-                if (top != null) queryParameters.Append("$top", top?.ToString());
+                if (type != null) queryParameters.Append("type", type);
                 if (query != null) queryParameters.Append("query", query);
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<GitCommitInfo>>()) : Partial<Batch<GitCommitInfo>>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<GitCommitInfo>>("GET", $"api/http/projects/{project}/repositories/{repository}/commits{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<List<ProjectPackageRepository>>("GET", $"api/http/projects/{project}/packages/repositories{queryParameters.ToQueryString()}", cancellationToken);
             }
             
-            
-            public IAsyncEnumerable<GitCommitInfo> CommitsAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => CommitsAsync(project: project, repository: repository, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitCommitInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitCommitInfo>.Default())), skip, cancellationToken);
         
-            public async Task<RepositoryUrls> UrlAsync(ProjectIdentifier project, string repository, Func<Partial<RepositoryUrls>, Partial<RepositoryUrls>>? partial = null, CancellationToken cancellationToken = default)
+            /// <summary>
+            /// Gets a package repository for a given project ID by type and name
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Read</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<ProjectPackageRepository> GetRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<RepositoryUrls>()) : Partial<RepositoryUrls>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<RepositoryUrls>("GET", $"api/http/projects/{project}/repositories/{repository}/url{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<ProjectPackageRepository>("GET", $"api/http/projects/{project}/packages/repositories/{repository}{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
-            public async Task DeleteRepositoryAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
+            /// <summary>
+            /// Updates package repository settings for a given project ID
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Admin</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task UpdateRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string? name = null, string? description = null, bool? @public = null, ESPackageRepositorySettings? settings = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/packages/repositories/{repository}{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest
+                    { 
+                        Name = name,
+                        Description = description,
+                        IsPublic = @public,
+                        Settings = settings,
+                    }, cancellationToken);
             }
             
         
-            public RevisionClient Revisions => new RevisionClient(_connection);
+            /// <summary>
+            /// Removes package repository for a given project ID
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Admin</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task DeleteRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}{queryParameters.ToQueryString()}", cancellationToken);
+            }
             
-            public partial class RevisionClient : ISpaceClient
+        
+            public CleanupClient Cleanup => new CleanupClient(_connection);
+            
+            public partial class CleanupClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
-                public RevisionClient(Connection connection)
+                public CleanupClient(Connection connection)
                 {
                     _connection = connection;
                 }
                 
-                public ExternalCheckClient ExternalChecks => new ExternalCheckClient(_connection);
+                /// <summary>
+                /// Cleanup specified package repository
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Admin</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<PackagesExecutionResult> CleanupRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, RetentionPolicyParams? retentionPolicyParams = null, Func<Partial<PackagesExecutionResult>, Partial<PackagesExecutionResult>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackagesExecutionResult>()) : Partial<PackagesExecutionResult>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequest, PackagesExecutionResult>("POST", $"api/http/projects/{project}/packages/repositories/{repository}/cleanup{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequest
+                        { 
+                            RetentionPolicyParams = retentionPolicyParams,
+                        }, cancellationToken);
+                }
                 
-                public partial class ExternalCheckClient : ISpaceClient
+            
+                public DryClient Dry => new DryClient(_connection);
+                
+                public partial class DryClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
-                    public ExternalCheckClient(Connection connection)
+                    public DryClient(Connection connection)
                     {
                         _connection = connection;
                     }
                     
-                    public async Task ReportExternalCheckStatusAsync(ProjectIdentifier project, string repository, string revision, CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, long? timestamp = null, string? description = null, CancellationToken cancellationToken = default)
+                    /// <summary>
+                    /// Dry run of cleanup for specified package repository
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Admin</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public async Task<DryCleanupResults> DryRunRepositoryCleanupAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, RetentionPolicyParams retentionParams, Func<Partial<DryCleanupResults>, Partial<DryCleanupResults>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<DryCleanupResults>()) : Partial<DryCleanupResults>.Default()).ToString());
                         
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks{queryParameters.ToQueryString()}", 
-                            new ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest
+                        return await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesForRepositoryCleanupDryPostRequest, DryCleanupResults>("POST", $"api/http/projects/{project}/packages/repositories/{repository}/cleanup/dry{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectPackagesRepositoriesForRepositoryCleanupDryPostRequest
                             { 
-                                Branch = branch,
-                                Changes = changes,
-                                ExecutionStatus = executionStatus,
-                                Url = url,
-                                ExternalServiceName = externalServiceName,
-                                TaskName = taskName,
-                                TaskId = taskId,
-                                Timestamp = timestamp,
-                                Description = description,
+                                RetentionParams = retentionParams,
                             }, cancellationToken);
                     }
                     
                 
-                    public async Task<List<ExternalCheck>> GetExternalChecksForACommitAsync(ProjectIdentifier project, string repository, string revision, Func<Partial<ExternalCheck>, Partial<ExternalCheck>>? partial = null, CancellationToken cancellationToken = default)
+                }
+            
+            }
+        
+            public ConnectionClient Connections => new ConnectionClient(_connection);
+            
+            public partial class ConnectionClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public ConnectionClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Gets a list of remote package repositories for given project
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Read</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<List<PackageRepositoryConnection>> GetAllRemoteRepositoriesAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, Func<Partial<PackageRepositoryConnection>, Partial<PackageRepositoryConnection>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageRepositoryConnection>()) : Partial<PackageRepositoryConnection>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<PackageRepositoryConnection>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/connections{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                public PublishClient Publish => new PublishClient(_connection);
+                
+                public partial class PublishClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public PublishClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    /// <summary>
+                    /// Publishes packages to remote repository
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Write</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public async Task<string> PublishPackagesToRemoteRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string connectionId, PublishingSource source, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ExternalCheck>()) : Partial<ExternalCheck>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<List<ExternalCheck>>("GET", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks{queryParameters.ToQueryString()}", cancellationToken);
+                        return await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest, string>("POST", $"api/http/projects/{project}/packages/repositories/{repository}/connections/{connectionId}/publish{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest
+                            { 
+                                Source = source,
+                            }, cancellationToken);
+                    }
+                    
+                
+                    /// <summary>
+                    /// Get list of publishing to remote repository
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public async Task<Batch<PackagesPublishing>> GetListOfPublishingToRemoteRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string connectionId, string? skip = null, int? top = 100, Func<Partial<Batch<PackagesPublishing>>, Partial<Batch<PackagesPublishing>>>? partial = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        if (skip != null) queryParameters.Append("$skip", skip);
+                        if (top != null) queryParameters.Append("$top", top?.ToString());
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackagesPublishing>>()) : Partial<Batch<PackagesPublishing>>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<Batch<PackagesPublishing>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/connections/{connectionId}/publish{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                    
+                    /// <summary>
+                    /// Get list of publishing to remote repository
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public IAsyncEnumerable<PackagesPublishing> GetListOfPublishingToRemoteRepositoryAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string connectionId, string? skip = null, int? top = 100, Func<Partial<PackagesPublishing>, Partial<PackagesPublishing>>? partial = null, CancellationToken cancellationToken = default)
+                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetListOfPublishingToRemoteRepositoryAsync(project: project, repository: repository, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackagesPublishing>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackagesPublishing>.Default())), skip, cancellationToken);
+                
+                }
+            
+            }
+        
+            public PackageClient Packages => new PackageClient(_connection);
+            
+            public partial class PackageClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public PackageClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Gets a list of repository packages for a given project ID
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Read</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<Batch<PackageData>> GetAllPackagesAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageData>>, Partial<Batch<PackageData>>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("query", query);
+                    if (connectionId != null) queryParameters.Append("connectionId", connectionId);
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+                
+                /// <summary>
+                /// Gets a list of repository packages for a given project ID
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Read</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public IAsyncEnumerable<PackageData> GetAllPackagesAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<PackageData>, Partial<PackageData>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackagesAsync(project: project, repository: repository, query: query, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageData>.Default())), skip, cancellationToken);
+            
+                public MetadataClient Metadata => new MetadataClient(_connection);
+                
+                public partial class MetadataClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public MetadataClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    /// <summary>
+                    /// Report a package version metadata in repository for a given project ID
+                    /// </summary>
+                    public async Task ReportPackageVersionMetadataAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string packageVersion, bool pin, string? comment = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("PUT", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/metadata/version:{packageVersion}{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest
+                            { 
+                                IsPin = pin,
+                                Comment = comment,
+                            }, cancellationToken);
                     }
                     
                 
                 }
+            
+                public VersionClient Versions => new VersionClient(_connection);
+                
+                public partial class VersionClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public VersionClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    /// <summary>
+                    /// Gets a list of repository package versions for a given project ID
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, PackagesSortColumn sortColumn, ColumnSortOrder sortOrder, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("query", query);
+                        if (connectionId != null) queryParameters.Append("connectionId", connectionId);
+                        if (skip != null) queryParameters.Append("$skip", skip);
+                        if (top != null) queryParameters.Append("$top", top?.ToString());
+                        queryParameters.Append("sortColumn", sortColumn.ToEnumString());
+                        queryParameters.Append("sortOrder", sortOrder.ToEnumString());
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                    
+                    /// <summary>
+                    /// Gets a list of repository package versions for a given project ID
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, PackagesSortColumn sortColumn, ColumnSortOrder sortOrder, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
+                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, repository: repository, packageName: packageName, query: query, sortColumn: sortColumn, sortOrder: sortOrder, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
+                
+                    /// <summary>
+                    /// Gets a details for repository package version for a given project ID
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public async Task<PackageVersionDetails> GetPackageVersionDetailsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string packageVersion, Func<Partial<PackageVersionDetails>, Partial<PackageVersionDetails>>? partial = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageVersionDetails>()) : Partial<PackageVersionDetails>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<PackageVersionDetails>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                
+                    /// <summary>
+                    /// Removes a package version in repository for a given project ID
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Write</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public async Task DeletePackageVersionAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string packageVersion, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                
+                }
+            
+            }
+        
+            public partial class PackageClient : ISpaceClient
+            {
+                /// <summary>
+                /// Gets a list of repository packages for a given project ID
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Read</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages (since 2020-09-01) (will be removed in a future version)")]
+                public async Task<Batch<PackageData>> GetAllPackagesAsync(ProjectIdentifier project, string type, string repositoryName, string query, string? skip = null, int? top = 100, Func<Partial<Batch<PackageData>>, Partial<Batch<PackageData>>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("query", query);
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+                
+                /// <summary>
+                /// Gets a list of repository packages for a given project ID
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Read</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages (since 2020-09-01) (will be removed in a future version)")]
+                public IAsyncEnumerable<PackageData> GetAllPackagesAsyncEnumerable(ProjectIdentifier project, string type, string repositoryName, string query, string? skip = null, int? top = 100, Func<Partial<PackageData>, Partial<PackageData>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackagesAsync(project: project, type: type, repositoryName: repositoryName, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageData>.Default())), skip, cancellationToken);
+            
+                public partial class VersionClient : ISpaceClient
+                {
+                    /// <summary>
+                    /// Gets a list of repository package versions for a given project ID
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (will be removed in a future version)")]
+                    public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, PackagesSortColumn sortColumn, ColumnSortOrder sortOrder, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("query", query);
+                        if (skip != null) queryParameters.Append("$skip", skip);
+                        if (top != null) queryParameters.Append("$top", top?.ToString());
+                        queryParameters.Append("sortColumn", sortColumn.ToEnumString());
+                        queryParameters.Append("sortOrder", sortOrder.ToEnumString());
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                    
+                    /// <summary>
+                    /// Gets a list of repository package versions for a given project ID
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (will be removed in a future version)")]
+                    public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, PackagesSortColumn sortColumn, ColumnSortOrder sortOrder, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
+                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, type: type, repositoryName: repositoryName, packageName: packageName, query: query, sortColumn: sortColumn, sortOrder: sortOrder, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
+                
+                    /// <summary>
+                    /// Gets a details for repository package version for a given project ID
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion} (since 2020-09-01) (will be removed in a future version)")]
+                    public async Task<PackageVersionDetails> GetPackageVersionDetailsAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string packageVersion, Func<Partial<PackageVersionDetails>, Partial<PackageVersionDetails>>? partial = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageVersionDetails>()) : Partial<PackageVersionDetails>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<PackageVersionDetails>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                
+                    /// <summary>
+                    /// Removes a package version in repository for a given project ID
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Write</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    [Obsolete("Use DELETE /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion} (since 2020-09-01) (will be removed in a future version)")]
+                    public async Task DeletePackageVersionAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string packageVersion, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                
+                }
+            
+            }
+        
+            public UrlClient Url => new UrlClient(_connection);
+            
+            public partial class UrlClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public UrlClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Gets a package repository URL for a given project ID
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Read</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<string> GetRepositoryUrlAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    return await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/url{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         
         }
     
-        public TopicClient Topics => new TopicClient(_connection);
+        public SearchClient Search => new SearchClient(_connection);
         
-        public partial class TopicClient : ISpaceClient
+        public partial class SearchClient : ISpaceClient
         {
             private readonly Connection _connection;
             
-            public TopicClient(Connection connection)
+            public SearchClient(Connection connection)
             {
                 _connection = connection;
             }
             
-            public async Task<Topic> CreateTopicAsync(ProjectIdentifier project, string name, string? parentTopicId = null, Func<Partial<Topic>, Partial<Topic>>? partial = null, CancellationToken cancellationToken = default)
+            /// <summary>
+            /// Executes a package search for a given project ID
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Read</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Batch<PackageVersionData>> FindPackagesInRepositoryAsync(ProjectIdentifier project, string type, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Topic>()) : Partial<Topic>.Default()).ToString());
+                queryParameters.Append("type", type);
+                queryParameters.Append("query", query);
+                if (connectionId != null) queryParameters.Append("connectionId", connectionId);
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<ProjectsForProjectTopicsPostRequest, Topic>("POST", $"api/http/projects/{project}/topics{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectTopicsPostRequest
-                    { 
-                        Name = name,
-                        ParentTopicId = parentTopicId,
-                    }, cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/search{queryParameters.ToQueryString()}", cancellationToken);
             }
             
+            
+            /// <summary>
+            /// Executes a package search for a given project ID
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Read</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<PackageVersionData> FindPackagesInRepositoryAsyncEnumerable(ProjectIdentifier project, string type, string query, string? connectionId = null, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => FindPackagesInRepositoryAsync(project: project, type: type, query: query, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
         
-            public async Task RemoveTopicsAsync(ProjectIdentifier project, List<string> ids, CancellationToken cancellationToken = default)
+        }
+    
+        public TypeClient Types => new TypeClient(_connection);
+        
+        public partial class TypeClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public TypeClient(Connection connection)
             {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/topics/remove-topics{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectTopicsRemoveTopicsPostRequest
-                    { 
-                        Ids = ids,
-                    }, cancellationToken);
+                _connection = connection;
             }
             
-        
-            public async Task SetResponsibleAsync(ProjectIdentifier project, string topicId, List<ProfileIdentifier> responsible, CancellationToken cancellationToken = default)
+            /// <summary>
+            /// Creates a new package repository for a given project ID
+            /// </summary>
+            public async Task<List<PackageType>> GetAllTypesAsync(ProjectIdentifier project, Func<Partial<PackageType>, Partial<PackageType>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageType>()) : Partial<PackageType>.Default()).ToString());
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/topics/set-responsible{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectTopicsSetResponsiblePostRequest
-                    { 
-                        TopicId = topicId,
-                        Responsible = responsible,
-                    }, cancellationToken);
-            }
-            
-        
-            public async Task<List<Topic>> GetTopicAsync(ProjectIdentifier project, Func<Partial<Topic>, Partial<Topic>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Topic>()) : Partial<Topic>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<List<Topic>>("GET", $"api/http/projects/{project}/topics{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            public async Task<Topic> UpdateTopicAsync(ProjectIdentifier project, string id, string? name = null, string? parentTopicId = null, Func<Partial<Topic>, Partial<Topic>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Topic>()) : Partial<Topic>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<ProjectsForProjectTopicsForIdPatchRequest, Topic>("PATCH", $"api/http/projects/{project}/topics/{id}{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectTopicsForIdPatchRequest
-                    { 
-                        Name = (name ?? string.Empty),
-                        ParentTopicId = parentTopicId,
-                    }, cancellationToken);
+                return await _connection.RequestResourceAsync<List<PackageType>>("GET", $"api/http/projects/{project}/packages/types{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
         }
     
     }
+
+    public RepositoryClient Repositories => new RepositoryClient(_connection);
     
+    public partial class RepositoryClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public RepositoryClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        public async Task<PRRepositoryInfo> CreateNewRepositoryAsync(ProjectIdentifier project, string repository, string description = "", bool initialize = true, bool defaultSetup = false, string? defaultBranch = null, Func<Partial<PRRepositoryInfo>, Partial<PRRepositoryInfo>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRRepositoryInfo>()) : Partial<PRRepositoryInfo>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryPostRequest, PRRepositoryInfo>("POST", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectRepositoriesForRepositoryPostRequest
+                { 
+                    Description = description,
+                    DefaultBranch = defaultBranch,
+                    IsInitialize = initialize,
+                    IsDefaultSetup = defaultSetup,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task<GitCommitResult> CommitAsync(string project, string repository, string baseCommit, string targetBranch, string commitMessage, List<GitCommitFileRequest> files, Func<Partial<GitCommitResult>, Partial<GitCommitResult>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitCommitResult>()) : Partial<GitCommitResult>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest, GitCommitResult>("POST", $"api/http/projects/{project}/repositories/{repository}/commit{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectRepositoriesForRepositoryCommitPostRequest
+                { 
+                    BaseCommit = baseCommit,
+                    TargetBranch = targetBranch,
+                    CommitMessage = commitMessage,
+                    Files = files,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task GcAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/gc{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public async Task<Batch<GitCommitInfo>> CommitsAsync(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<GitCommitInfo>>, Partial<Batch<GitCommitInfo>>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            if (query != null) queryParameters.Append("query", query);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<GitCommitInfo>>()) : Partial<Batch<GitCommitInfo>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<GitCommitInfo>>("GET", $"api/http/projects/{project}/repositories/{repository}/commits{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+        
+        public IAsyncEnumerable<GitCommitInfo> CommitsAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => CommitsAsync(project: project, repository: repository, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitCommitInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitCommitInfo>.Default())), skip, cancellationToken);
+    
+        public async Task<RepositoryUrls> UrlAsync(ProjectIdentifier project, string repository, Func<Partial<RepositoryUrls>, Partial<RepositoryUrls>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<RepositoryUrls>()) : Partial<RepositoryUrls>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<RepositoryUrls>("GET", $"api/http/projects/{project}/repositories/{repository}/url{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public async Task DeleteRepositoryAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public RevisionClient Revisions => new RevisionClient(_connection);
+        
+        public partial class RevisionClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public RevisionClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public ExternalCheckClient ExternalChecks => new ExternalCheckClient(_connection);
+            
+            public partial class ExternalCheckClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public ExternalCheckClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task ReportExternalCheckStatusAsync(ProjectIdentifier project, string repository, string revision, CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, long? timestamp = null, string? description = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest
+                        { 
+                            Branch = branch,
+                            Changes = changes,
+                            ExecutionStatus = executionStatus,
+                            Url = url,
+                            ExternalServiceName = externalServiceName,
+                            TaskName = taskName,
+                            TaskId = taskId,
+                            Timestamp = timestamp,
+                            Description = description,
+                        }, cancellationToken);
+                }
+                
+            
+                public async Task<List<ExternalCheck>> GetExternalChecksForACommitAsync(ProjectIdentifier project, string repository, string revision, Func<Partial<ExternalCheck>, Partial<ExternalCheck>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<ExternalCheck>()) : Partial<ExternalCheck>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<ExternalCheck>>("GET", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+        }
+    
+    }
+
+    public TopicClient Topics => new TopicClient(_connection);
+    
+    public partial class TopicClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public TopicClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        public async Task<Topic> CreateTopicAsync(ProjectIdentifier project, string name, string? parentTopicId = null, Func<Partial<Topic>, Partial<Topic>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Topic>()) : Partial<Topic>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectTopicsPostRequest, Topic>("POST", $"api/http/projects/{project}/topics{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectTopicsPostRequest
+                { 
+                    Name = name,
+                    ParentTopicId = parentTopicId,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task RemoveTopicsAsync(ProjectIdentifier project, List<string> ids, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/topics/remove-topics{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectTopicsRemoveTopicsPostRequest
+                { 
+                    Ids = ids,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task SetResponsibleAsync(ProjectIdentifier project, string topicId, List<ProfileIdentifier> responsible, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/topics/set-responsible{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectTopicsSetResponsiblePostRequest
+                { 
+                    TopicId = topicId,
+                    Responsible = responsible,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task<List<Topic>> GetTopicAsync(ProjectIdentifier project, Func<Partial<Topic>, Partial<Topic>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Topic>()) : Partial<Topic>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<Topic>>("GET", $"api/http/projects/{project}/topics{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public async Task<Topic> UpdateTopicAsync(ProjectIdentifier project, string id, string? name = null, string? parentTopicId = null, Func<Partial<Topic>, Partial<Topic>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Topic>()) : Partial<Topic>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectTopicsForIdPatchRequest, Topic>("PATCH", $"api/http/projects/{project}/topics/{id}{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectTopicsForIdPatchRequest
+                { 
+                    Name = (name ?? string.Empty),
+                    ParentTopicId = parentTopicId,
+                }, cancellationToken);
+        }
+        
+    
+    }
+
 }
+

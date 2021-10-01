@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsTeam
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsTeam
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsTeam";
+    
+    public UnfurlDetailsTeam() { }
+    
+    public UnfurlDetailsTeam(TDTeam team, bool? strikeThrough = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsTeam";
-        
-        public UnfurlDetailsTeam() { }
-        
-        public UnfurlDetailsTeam(TDTeam team, bool? strikeThrough = null)
-        {
-            Team = team;
-            IsStrikeThrough = strikeThrough;
-        }
-        
-        private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(UnfurlDetailsTeam), nameof(Team));
-        
-        [Required]
-        [JsonPropertyName("team")]
-        public TDTeam Team
-        {
-            get => _team.GetValue();
-            set => _team.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsTeam), nameof(IsStrikeThrough));
-        
-        [JsonPropertyName("strikeThrough")]
-        public bool? IsStrikeThrough
-        {
-            get => _strikeThrough.GetValue();
-            set => _strikeThrough.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _team.SetAccessPath(path, validateHasBeenSet);
-            _strikeThrough.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Team = team;
+        IsStrikeThrough = strikeThrough;
     }
     
+    private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(UnfurlDetailsTeam), nameof(Team));
+    
+    [Required]
+    [JsonPropertyName("team")]
+    public TDTeam Team
+    {
+        get => _team.GetValue();
+        set => _team.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsTeam), nameof(IsStrikeThrough));
+    
+    [JsonPropertyName("strikeThrough")]
+    public bool? IsStrikeThrough
+    {
+        get => _strikeThrough.GetValue();
+        set => _strikeThrough.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _team.SetAccessPath(path, validateHasBeenSet);
+        _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,79 +27,78 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CRight
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CRight
-         : IPropagatePropertyAccessPath
+    public CRight() { }
+    
+    public CRight(string typeCode, string code, string title, string? description = null, FeatureFlag? featureFlag = null)
     {
-        public CRight() { }
-        
-        public CRight(string typeCode, string code, string title, string? description = null, FeatureFlag? featureFlag = null)
-        {
-            TypeCode = typeCode;
-            Code = code;
-            Title = title;
-            Description = description;
-            FeatureFlag = featureFlag;
-        }
-        
-        private PropertyValue<string> _typeCode = new PropertyValue<string>(nameof(CRight), nameof(TypeCode));
-        
-        [Required]
-        [JsonPropertyName("typeCode")]
-        public string TypeCode
-        {
-            get => _typeCode.GetValue();
-            set => _typeCode.SetValue(value);
-        }
-    
-        private PropertyValue<string> _code = new PropertyValue<string>(nameof(CRight), nameof(Code));
-        
-        [Required]
-        [JsonPropertyName("code")]
-        public string Code
-        {
-            get => _code.GetValue();
-            set => _code.SetValue(value);
-        }
-    
-        private PropertyValue<string> _title = new PropertyValue<string>(nameof(CRight), nameof(Title));
-        
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title
-        {
-            get => _title.GetValue();
-            set => _title.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CRight), nameof(Description));
-        
-        [JsonPropertyName("description")]
-        public string? Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<FeatureFlag?> _featureFlag = new PropertyValue<FeatureFlag?>(nameof(CRight), nameof(FeatureFlag));
-        
-        [JsonPropertyName("featureFlag")]
-        public FeatureFlag? FeatureFlag
-        {
-            get => _featureFlag.GetValue();
-            set => _featureFlag.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _typeCode.SetAccessPath(path, validateHasBeenSet);
-            _code.SetAccessPath(path, validateHasBeenSet);
-            _title.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _featureFlag.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        TypeCode = typeCode;
+        Code = code;
+        Title = title;
+        Description = description;
+        FeatureFlag = featureFlag;
     }
     
+    private PropertyValue<string> _typeCode = new PropertyValue<string>(nameof(CRight), nameof(TypeCode));
+    
+    [Required]
+    [JsonPropertyName("typeCode")]
+    public string TypeCode
+    {
+        get => _typeCode.GetValue();
+        set => _typeCode.SetValue(value);
+    }
+
+    private PropertyValue<string> _code = new PropertyValue<string>(nameof(CRight), nameof(Code));
+    
+    [Required]
+    [JsonPropertyName("code")]
+    public string Code
+    {
+        get => _code.GetValue();
+        set => _code.SetValue(value);
+    }
+
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(CRight), nameof(Title));
+    
+    [Required]
+    [JsonPropertyName("title")]
+    public string Title
+    {
+        get => _title.GetValue();
+        set => _title.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CRight), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<FeatureFlag?> _featureFlag = new PropertyValue<FeatureFlag?>(nameof(CRight), nameof(FeatureFlag));
+    
+    [JsonPropertyName("featureFlag")]
+    public FeatureFlag? FeatureFlag
+    {
+        get => _featureFlag.GetValue();
+        set => _featureFlag.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _typeCode.SetAccessPath(path, validateHasBeenSet);
+        _code.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _featureFlag.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

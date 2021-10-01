@@ -27,32 +27,31 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum PrivateFeedColor
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum PrivateFeedColor
-    {
-        [EnumMember(Value = "Blue")]
-        Blue,
-        
-        [EnumMember(Value = "Purple")]
-        Purple,
-        
-        [EnumMember(Value = "Yellow")]
-        Yellow,
-        
-        [EnumMember(Value = "Green")]
-        Green,
-        
-        [EnumMember(Value = "Grey")]
-        Grey,
-        
-        [EnumMember(Value = "Orange")]
-        Orange,
-        
-        [EnumMember(Value = "Pink")]
-        Pink,
-        
-    }
+    [EnumMember(Value = "Blue")]
+    Blue,
+    
+    [EnumMember(Value = "Purple")]
+    Purple,
+    
+    [EnumMember(Value = "Yellow")]
+    Yellow,
+    
+    [EnumMember(Value = "Green")]
+    Green,
+    
+    [EnumMember(Value = "Grey")]
+    Grey,
+    
+    [EnumMember(Value = "Orange")]
+    Orange,
+    
+    [EnumMember(Value = "Pink")]
+    Pink,
     
 }
+

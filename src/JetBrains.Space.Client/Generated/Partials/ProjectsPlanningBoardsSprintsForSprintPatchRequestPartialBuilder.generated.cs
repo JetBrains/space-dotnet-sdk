@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsPlanningBoardsSprintsForSprintPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsPlanningBoardsSprintsForSprintPatchRequestPartialBuilder;
+
+public static class ProjectsPlanningBoardsSprintsForSprintPatchRequestPartialExtensions
 {
-    public static class ProjectsPlanningBoardsSprintsForSprintPatchRequestPartialExtensions
-    {
-        public static Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> WithName(this Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> WithDescription(this Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> WithFrom(this Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> it)
-            => it.AddFieldName("from");
-        
-        public static Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> WithTo(this Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> it)
-            => it.AddFieldName("to");
-        
-    }
+    public static Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> WithName(this Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> WithDescription(this Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> WithFrom(this Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> it)
+        => it.AddFieldName("from");
+    
+    public static Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> WithTo(this Partial<ProjectsPlanningBoardsSprintsForSprintPatchRequest> it)
+        => it.AddFieldName("to");
     
 }
+

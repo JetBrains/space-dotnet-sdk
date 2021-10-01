@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PackageRepositoryConnectionSpacePartialBuilder
+namespace JetBrains.Space.Client.PackageRepositoryConnectionSpacePartialBuilder;
+
+public static class PackageRepositoryConnectionSpacePartialExtensions
 {
-    public static class PackageRepositoryConnectionSpacePartialExtensions
-    {
-        public static Partial<PackageRepositoryConnectionSpace> WithId(this Partial<PackageRepositoryConnectionSpace> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<PackageRepositoryConnectionSpace> WithIsEnableCaching(this Partial<PackageRepositoryConnectionSpace> it)
-            => it.AddFieldName("enableCaching");
-        
-        public static Partial<PackageRepositoryConnectionSpace> WithPackageNameFilters(this Partial<PackageRepositoryConnectionSpace> it)
-            => it.AddFieldName("packageNameFilters");
-        
-        public static Partial<PackageRepositoryConnectionSpace> WithRepository(this Partial<PackageRepositoryConnectionSpace> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<PackageRepositoryConnectionSpace> WithRepository(this Partial<PackageRepositoryConnectionSpace> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
-            => it.AddFieldName("repository", partialBuilder(new Partial<ProjectPackageRepository>(it)));
-        
-    }
+    public static Partial<PackageRepositoryConnectionSpace> WithId(this Partial<PackageRepositoryConnectionSpace> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<PackageRepositoryConnectionSpace> WithIsEnableCaching(this Partial<PackageRepositoryConnectionSpace> it)
+        => it.AddFieldName("enableCaching");
+    
+    public static Partial<PackageRepositoryConnectionSpace> WithPackageNameFilters(this Partial<PackageRepositoryConnectionSpace> it)
+        => it.AddFieldName("packageNameFilters");
+    
+    public static Partial<PackageRepositoryConnectionSpace> WithRepository(this Partial<PackageRepositoryConnectionSpace> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<PackageRepositoryConnectionSpace> WithRepository(this Partial<PackageRepositoryConnectionSpace> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
+        => it.AddFieldName("repository", partialBuilder(new Partial<ProjectPackageRepository>(it)));
     
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.WeekDayTimeIntervalPartialBuilder
+namespace JetBrains.Space.Client.WeekDayTimeIntervalPartialBuilder;
+
+public static class WeekDayTimeIntervalPartialExtensions
 {
-    public static class WeekDayTimeIntervalPartialExtensions
-    {
-        public static Partial<WeekDayTimeInterval> WithDay(this Partial<WeekDayTimeInterval> it)
-            => it.AddFieldName("day");
-        
-        public static Partial<WeekDayTimeInterval> WithIsChecked(this Partial<WeekDayTimeInterval> it)
-            => it.AddFieldName("checked");
-        
-        public static Partial<WeekDayTimeInterval> WithInterval(this Partial<WeekDayTimeInterval> it)
-            => it.AddFieldName("interval");
-        
-        public static Partial<WeekDayTimeInterval> WithInterval(this Partial<WeekDayTimeInterval> it, Func<Partial<TimeInterval>, Partial<TimeInterval>> partialBuilder)
-            => it.AddFieldName("interval", partialBuilder(new Partial<TimeInterval>(it)));
-        
-    }
+    public static Partial<WeekDayTimeInterval> WithDay(this Partial<WeekDayTimeInterval> it)
+        => it.AddFieldName("day");
+    
+    public static Partial<WeekDayTimeInterval> WithIsChecked(this Partial<WeekDayTimeInterval> it)
+        => it.AddFieldName("checked");
+    
+    public static Partial<WeekDayTimeInterval> WithInterval(this Partial<WeekDayTimeInterval> it)
+        => it.AddFieldName("interval");
+    
+    public static Partial<WeekDayTimeInterval> WithInterval(this Partial<WeekDayTimeInterval> it, Func<Partial<TimeInterval>, Partial<TimeInterval>> partialBuilder)
+        => it.AddFieldName("interval", partialBuilder(new Partial<TimeInterval>(it)));
     
 }
+

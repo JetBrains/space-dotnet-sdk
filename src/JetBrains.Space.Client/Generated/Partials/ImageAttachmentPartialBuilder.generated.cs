@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ImageAttachmentPartialBuilder
+namespace JetBrains.Space.Client.ImageAttachmentPartialBuilder;
+
+public static class ImageAttachmentPartialExtensions
 {
-    public static class ImageAttachmentPartialExtensions
-    {
-        public static Partial<ImageAttachment> WithId(this Partial<ImageAttachment> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ImageAttachment> WithName(this Partial<ImageAttachment> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ImageAttachment> WithWidth(this Partial<ImageAttachment> it)
-            => it.AddFieldName("width");
-        
-        public static Partial<ImageAttachment> WithHeight(this Partial<ImageAttachment> it)
-            => it.AddFieldName("height");
-        
-        public static Partial<ImageAttachment> WithPreviewBytes(this Partial<ImageAttachment> it)
-            => it.AddFieldName("previewBytes");
-        
-        public static Partial<ImageAttachment> WithVariants(this Partial<ImageAttachment> it)
-            => it.AddFieldName("variants");
-        
-        public static Partial<ImageAttachment> WithVariants(this Partial<ImageAttachment> it, Func<Partial<ImageAttachmentVariant>, Partial<ImageAttachmentVariant>> partialBuilder)
-            => it.AddFieldName("variants", partialBuilder(new Partial<ImageAttachmentVariant>(it)));
-        
-    }
+    public static Partial<ImageAttachment> WithId(this Partial<ImageAttachment> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ImageAttachment> WithName(this Partial<ImageAttachment> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ImageAttachment> WithWidth(this Partial<ImageAttachment> it)
+        => it.AddFieldName("width");
+    
+    public static Partial<ImageAttachment> WithHeight(this Partial<ImageAttachment> it)
+        => it.AddFieldName("height");
+    
+    public static Partial<ImageAttachment> WithPreviewBytes(this Partial<ImageAttachment> it)
+        => it.AddFieldName("previewBytes");
+    
+    public static Partial<ImageAttachment> WithVariants(this Partial<ImageAttachment> it)
+        => it.AddFieldName("variants");
+    
+    public static Partial<ImageAttachment> WithVariants(this Partial<ImageAttachment> it, Func<Partial<ImageAttachmentVariant>, Partial<ImageAttachmentVariant>> partialBuilder)
+        => it.AddFieldName("variants", partialBuilder(new Partial<ImageAttachmentVariant>(it)));
     
 }
+

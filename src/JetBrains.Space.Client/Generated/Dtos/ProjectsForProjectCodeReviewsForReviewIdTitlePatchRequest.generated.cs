@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest() { }
+    
+    public ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest(string title)
     {
-        public ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest() { }
-        
-        public ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest(string title)
-        {
-            Title = title;
-        }
-        
-        private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest), nameof(Title));
-        
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title
-        {
-            get => _title.GetValue();
-            set => _title.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _title.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Title = title;
     }
     
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest), nameof(Title));
+    
+    [Required]
+    [JsonPropertyName("title")]
+    public string Title
+    {
+        get => _title.GetValue();
+        set => _title.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _title.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

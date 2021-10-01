@@ -27,59 +27,58 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2ChannelContentCodeDiscussion
+     : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2ChannelContentCodeDiscussion
-         : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2ChannelContentCodeDiscussion";
+    
+    public M2ChannelContentCodeDiscussion() { }
+    
+    public M2ChannelContentCodeDiscussion(string codeDiscussionId, ChannelSpecificDefaults notificationDefaults, CodeDiscussionRecord? codeDiscussion = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2ChannelContentCodeDiscussion";
-        
-        public M2ChannelContentCodeDiscussion() { }
-        
-        public M2ChannelContentCodeDiscussion(string codeDiscussionId, ChannelSpecificDefaults notificationDefaults, CodeDiscussionRecord? codeDiscussion = null)
-        {
-            CodeDiscussionId = codeDiscussionId;
-            NotificationDefaults = notificationDefaults;
-            CodeDiscussion = codeDiscussion;
-        }
-        
-        private PropertyValue<string> _codeDiscussionId = new PropertyValue<string>(nameof(M2ChannelContentCodeDiscussion), nameof(CodeDiscussionId));
-        
-        [Required]
-        [JsonPropertyName("codeDiscussionId")]
-        public string CodeDiscussionId
-        {
-            get => _codeDiscussionId.GetValue();
-            set => _codeDiscussionId.SetValue(value);
-        }
-    
-        private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentCodeDiscussion), nameof(NotificationDefaults));
-        
-        [Required]
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaults NotificationDefaults
-        {
-            get => _notificationDefaults.GetValue();
-            set => _notificationDefaults.SetValue(value);
-        }
-    
-        private PropertyValue<CodeDiscussionRecord?> _codeDiscussion = new PropertyValue<CodeDiscussionRecord?>(nameof(M2ChannelContentCodeDiscussion), nameof(CodeDiscussion));
-        
-        [JsonPropertyName("codeDiscussion")]
-        public CodeDiscussionRecord? CodeDiscussion
-        {
-            get => _codeDiscussion.GetValue();
-            set => _codeDiscussion.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _codeDiscussionId.SetAccessPath(path, validateHasBeenSet);
-            _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-            _codeDiscussion.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        CodeDiscussionId = codeDiscussionId;
+        NotificationDefaults = notificationDefaults;
+        CodeDiscussion = codeDiscussion;
     }
     
+    private PropertyValue<string> _codeDiscussionId = new PropertyValue<string>(nameof(M2ChannelContentCodeDiscussion), nameof(CodeDiscussionId));
+    
+    [Required]
+    [JsonPropertyName("codeDiscussionId")]
+    public string CodeDiscussionId
+    {
+        get => _codeDiscussionId.GetValue();
+        set => _codeDiscussionId.SetValue(value);
+    }
+
+    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentCodeDiscussion), nameof(NotificationDefaults));
+    
+    [Required]
+    [JsonPropertyName("notificationDefaults")]
+    public ChannelSpecificDefaults NotificationDefaults
+    {
+        get => _notificationDefaults.GetValue();
+        set => _notificationDefaults.SetValue(value);
+    }
+
+    private PropertyValue<CodeDiscussionRecord?> _codeDiscussion = new PropertyValue<CodeDiscussionRecord?>(nameof(M2ChannelContentCodeDiscussion), nameof(CodeDiscussion));
+    
+    [JsonPropertyName("codeDiscussion")]
+    public CodeDiscussionRecord? CodeDiscussion
+    {
+        get => _codeDiscussion.GetValue();
+        set => _codeDiscussion.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _codeDiscussionId.SetAccessPath(path, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+        _codeDiscussion.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

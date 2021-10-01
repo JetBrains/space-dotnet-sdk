@@ -27,61 +27,60 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public partial class UploadClient : ISpaceClient
 {
-    public partial class UploadClient : ISpaceClient
+    private readonly Connection _connection;
+    
+    public UploadClient(Connection connection)
+    {
+        _connection = connection;
+    }
+    
+    /// <summary>
+    /// Request a URL that can be used to upload an attachment.
+    /// An attachment can be uploaded to the URL that is returned, by making a PUT request that has a proper content-type header and the attachment data as the request body.
+    /// The 'storagePrefix' parameter can be one of file, maps, emoji or attachments.
+    /// The 'mediaType' parameter can be omitted for all uploads. For image uploads that need to be resized automatically for specific use, such as chat stickers or emoji, use one of `chat-image-attachment`, `chat-sticker`, `chat-animated-sticker`, `emoji`.
+    /// </summary>
+    public async Task<string> CreateUploadAsync(string storagePrefix, string? mediaType = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        return await _connection.RequestResourceAsync<UploadsPostRequest, string>("POST", $"api/http/uploads{queryParameters.ToQueryString()}", 
+            new UploadsPostRequest
+            { 
+                StoragePrefix = storagePrefix,
+                MediaType = mediaType,
+            }, cancellationToken);
+    }
+    
+
+    public ImageClient Image => new ImageClient(_connection);
+    
+    public partial class ImageClient : ISpaceClient
     {
         private readonly Connection _connection;
         
-        public UploadClient(Connection connection)
+        public ImageClient(Connection connection)
         {
             _connection = connection;
         }
         
         /// <summary>
-        /// Request a URL that can be used to upload an attachment.
-        /// An attachment can be uploaded to the URL that is returned, by making a PUT request that has a proper content-type header and the attachment data as the request body.
-        /// The 'storagePrefix' parameter can be one of file, maps, emoji or attachments.
-        /// The 'mediaType' parameter can be omitted for all uploads. For image uploads that need to be resized automatically for specific use, such as chat stickers or emoji, use one of `chat-image-attachment`, `chat-sticker`, `chat-animated-sticker`, `emoji`.
+        /// Get meta information for a previously uploaded image
         /// </summary>
-        public async Task<string> CreateUploadAsync(string storagePrefix, string? mediaType = null, CancellationToken cancellationToken = default)
+        public async Task<ImageAttachmentMeta> GetImageAttachmentMetadataAsync(string id, Func<Partial<ImageAttachmentMeta>, Partial<ImageAttachmentMeta>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ImageAttachmentMeta>()) : Partial<ImageAttachmentMeta>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<UploadsPostRequest, string>("POST", $"api/http/uploads{queryParameters.ToQueryString()}", 
-                new UploadsPostRequest
-                { 
-                    StoragePrefix = storagePrefix,
-                    MediaType = mediaType,
-                }, cancellationToken);
+            return await _connection.RequestResourceAsync<ImageAttachmentMeta>("GET", $"api/http/uploads/image/{id}{queryParameters.ToQueryString()}", cancellationToken);
         }
         
-    
-        public ImageClient Image => new ImageClient(_connection);
-        
-        public partial class ImageClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public ImageClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            /// <summary>
-            /// Get meta information for a previously uploaded image
-            /// </summary>
-            public async Task<ImageAttachmentMeta> GetImageAttachmentMetadataAsync(string id, Func<Partial<ImageAttachmentMeta>, Partial<ImageAttachmentMeta>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<ImageAttachmentMeta>()) : Partial<ImageAttachmentMeta>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<ImageAttachmentMeta>("GET", $"api/http/uploads/image/{id}{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-        }
     
     }
-    
+
 }
+

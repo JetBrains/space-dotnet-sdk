@@ -27,68 +27,67 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class Workday
+     : IPropagatePropertyAccessPath
 {
-    public sealed class Workday
-         : IPropagatePropertyAccessPath
+    public Workday() { }
+    
+    public Workday(string weekday, bool working, int hours, int? minutes = null)
     {
-        public Workday() { }
-        
-        public Workday(string weekday, bool working, int hours, int? minutes = null)
-        {
-            Weekday = weekday;
-            IsWorking = working;
-            Hours = hours;
-            Minutes = minutes;
-        }
-        
-        private PropertyValue<string> _weekday = new PropertyValue<string>(nameof(Workday), nameof(Weekday));
-        
-        [Required]
-        [JsonPropertyName("weekday")]
-        public string Weekday
-        {
-            get => _weekday.GetValue();
-            set => _weekday.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _working = new PropertyValue<bool>(nameof(Workday), nameof(IsWorking));
-        
-        [Required]
-        [JsonPropertyName("working")]
-        public bool IsWorking
-        {
-            get => _working.GetValue();
-            set => _working.SetValue(value);
-        }
-    
-        private PropertyValue<int> _hours = new PropertyValue<int>(nameof(Workday), nameof(Hours));
-        
-        [Required]
-        [JsonPropertyName("hours")]
-        public int Hours
-        {
-            get => _hours.GetValue();
-            set => _hours.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _minutes = new PropertyValue<int?>(nameof(Workday), nameof(Minutes));
-        
-        [JsonPropertyName("minutes")]
-        public int? Minutes
-        {
-            get => _minutes.GetValue();
-            set => _minutes.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _weekday.SetAccessPath(path, validateHasBeenSet);
-            _working.SetAccessPath(path, validateHasBeenSet);
-            _hours.SetAccessPath(path, validateHasBeenSet);
-            _minutes.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Weekday = weekday;
+        IsWorking = working;
+        Hours = hours;
+        Minutes = minutes;
     }
     
+    private PropertyValue<string> _weekday = new PropertyValue<string>(nameof(Workday), nameof(Weekday));
+    
+    [Required]
+    [JsonPropertyName("weekday")]
+    public string Weekday
+    {
+        get => _weekday.GetValue();
+        set => _weekday.SetValue(value);
+    }
+
+    private PropertyValue<bool> _working = new PropertyValue<bool>(nameof(Workday), nameof(IsWorking));
+    
+    [Required]
+    [JsonPropertyName("working")]
+    public bool IsWorking
+    {
+        get => _working.GetValue();
+        set => _working.SetValue(value);
+    }
+
+    private PropertyValue<int> _hours = new PropertyValue<int>(nameof(Workday), nameof(Hours));
+    
+    [Required]
+    [JsonPropertyName("hours")]
+    public int Hours
+    {
+        get => _hours.GetValue();
+        set => _hours.SetValue(value);
+    }
+
+    private PropertyValue<int?> _minutes = new PropertyValue<int?>(nameof(Workday), nameof(Minutes));
+    
+    [JsonPropertyName("minutes")]
+    public int? Minutes
+    {
+        get => _minutes.GetValue();
+        set => _minutes.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _weekday.SetAccessPath(path, validateHasBeenSet);
+        _working.SetAccessPath(path, validateHasBeenSet);
+        _hours.SetAccessPath(path, validateHasBeenSet);
+        _minutes.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

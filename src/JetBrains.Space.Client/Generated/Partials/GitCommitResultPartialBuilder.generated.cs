@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitCommitResultPartialBuilder
+namespace JetBrains.Space.Client.GitCommitResultPartialBuilder;
+
+public static class GitCommitResultPartialExtensions
 {
-    public static class GitCommitResultPartialExtensions
-    {
-        public static Partial<GitCommitResult> WithFromHead(this Partial<GitCommitResult> it)
-            => it.AddFieldName("fromHead");
-        
-        public static Partial<GitCommitResult> WithToHead(this Partial<GitCommitResult> it)
-            => it.AddFieldName("toHead");
-        
-        public static Partial<GitCommitResult> WithIsSuccess(this Partial<GitCommitResult> it)
-            => it.AddFieldName("success");
-        
-        public static Partial<GitCommitResult> WithMessage(this Partial<GitCommitResult> it)
-            => it.AddFieldName("message");
-        
-        public static Partial<GitCommitResult> WithResultCommitId(this Partial<GitCommitResult> it)
-            => it.AddFieldName("resultCommitId");
-        
-    }
+    public static Partial<GitCommitResult> WithFromHead(this Partial<GitCommitResult> it)
+        => it.AddFieldName("fromHead");
+    
+    public static Partial<GitCommitResult> WithToHead(this Partial<GitCommitResult> it)
+        => it.AddFieldName("toHead");
+    
+    public static Partial<GitCommitResult> WithIsSuccess(this Partial<GitCommitResult> it)
+        => it.AddFieldName("success");
+    
+    public static Partial<GitCommitResult> WithMessage(this Partial<GitCommitResult> it)
+        => it.AddFieldName("message");
+    
+    public static Partial<GitCommitResult> WithResultCommitId(this Partial<GitCommitResult> it)
+        => it.AddFieldName("resultCommitId");
     
 }
+

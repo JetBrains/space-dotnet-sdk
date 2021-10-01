@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsSprintPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsSprintPartialBuilder;
+
+public static class UnfurlDetailsSprintPartialExtensions
 {
-    public static class UnfurlDetailsSprintPartialExtensions
-    {
-        public static Partial<UnfurlDetailsSprint> WithProject(this Partial<UnfurlDetailsSprint> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<UnfurlDetailsSprint> WithProject(this Partial<UnfurlDetailsSprint> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
-        public static Partial<UnfurlDetailsSprint> WithSprint(this Partial<UnfurlDetailsSprint> it)
-            => it.AddFieldName("sprint");
-        
-        public static Partial<UnfurlDetailsSprint> WithSprint(this Partial<UnfurlDetailsSprint> it, Func<Partial<SprintRecord>, Partial<SprintRecord>> partialBuilder)
-            => it.AddFieldName("sprint", partialBuilder(new Partial<SprintRecord>(it)));
-        
-    }
+    public static Partial<UnfurlDetailsSprint> WithProject(this Partial<UnfurlDetailsSprint> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<UnfurlDetailsSprint> WithProject(this Partial<UnfurlDetailsSprint> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+    
+    public static Partial<UnfurlDetailsSprint> WithSprint(this Partial<UnfurlDetailsSprint> it)
+        => it.AddFieldName("sprint");
+    
+    public static Partial<UnfurlDetailsSprint> WithSprint(this Partial<UnfurlDetailsSprint> it, Func<Partial<SprintRecord>, Partial<SprintRecord>> partialBuilder)
+        => it.AddFieldName("sprint", partialBuilder(new Partial<SprintRecord>(it)));
     
 }
+

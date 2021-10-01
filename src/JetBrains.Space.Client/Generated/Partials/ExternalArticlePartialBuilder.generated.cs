@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ExternalArticlePartialBuilder
+namespace JetBrains.Space.Client.ExternalArticlePartialBuilder;
+
+public static class ExternalArticlePartialExtensions
 {
-    public static class ExternalArticlePartialExtensions
-    {
-        public static Partial<ExternalArticle> WithTitle(this Partial<ExternalArticle> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<ExternalArticle> WithContent(this Partial<ExternalArticle> it)
-            => it.AddFieldName("content");
-        
-        public static Partial<ExternalArticle> WithAuthorId(this Partial<ExternalArticle> it)
-            => it.AddFieldName("authorId");
-        
-        public static Partial<ExternalArticle> WithCreated(this Partial<ExternalArticle> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<ExternalArticle> WithTeams(this Partial<ExternalArticle> it)
-            => it.AddFieldName("teams");
-        
-        public static Partial<ExternalArticle> WithLocations(this Partial<ExternalArticle> it)
-            => it.AddFieldName("locations");
-        
-        public static Partial<ExternalArticle> WithExternalId(this Partial<ExternalArticle> it)
-            => it.AddFieldName("externalId");
-        
-        public static Partial<ExternalArticle> WithExternalUrl(this Partial<ExternalArticle> it)
-            => it.AddFieldName("externalUrl");
-        
-    }
+    public static Partial<ExternalArticle> WithTitle(this Partial<ExternalArticle> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<ExternalArticle> WithContent(this Partial<ExternalArticle> it)
+        => it.AddFieldName("content");
+    
+    public static Partial<ExternalArticle> WithAuthorId(this Partial<ExternalArticle> it)
+        => it.AddFieldName("authorId");
+    
+    public static Partial<ExternalArticle> WithCreated(this Partial<ExternalArticle> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<ExternalArticle> WithTeams(this Partial<ExternalArticle> it)
+        => it.AddFieldName("teams");
+    
+    public static Partial<ExternalArticle> WithLocations(this Partial<ExternalArticle> it)
+        => it.AddFieldName("locations");
+    
+    public static Partial<ExternalArticle> WithExternalId(this Partial<ExternalArticle> it)
+        => it.AddFieldName("externalId");
+    
+    public static Partial<ExternalArticle> WithExternalUrl(this Partial<ExternalArticle> it)
+        => it.AddFieldName("externalUrl");
     
 }
+

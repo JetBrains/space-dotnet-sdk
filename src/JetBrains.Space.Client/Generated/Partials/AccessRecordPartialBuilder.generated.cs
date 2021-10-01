@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AccessRecordPartialBuilder
+namespace JetBrains.Space.Client.AccessRecordPartialBuilder;
+
+public static class AccessRecordPartialExtensions
 {
-    public static class AccessRecordPartialExtensions
-    {
-        public static Partial<AccessRecord> WithTime(this Partial<AccessRecord> it)
-            => it.AddFieldName("time");
-        
-        public static Partial<AccessRecord> WithAddress(this Partial<AccessRecord> it)
-            => it.AddFieldName("address");
-        
-        public static Partial<AccessRecord> WithUserAgent(this Partial<AccessRecord> it)
-            => it.AddFieldName("userAgent");
-        
-    }
+    public static Partial<AccessRecord> WithTime(this Partial<AccessRecord> it)
+        => it.AddFieldName("time");
+    
+    public static Partial<AccessRecord> WithAddress(this Partial<AccessRecord> it)
+        => it.AddFieldName("address");
+    
+    public static Partial<AccessRecord> WithUserAgent(this Partial<AccessRecord> it)
+        => it.AddFieldName("userAgent");
     
 }
+

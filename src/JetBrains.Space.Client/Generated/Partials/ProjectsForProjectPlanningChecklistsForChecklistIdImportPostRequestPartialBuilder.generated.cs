@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequestPartialBuilder;
+
+public static class ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest> WithTargetParentId(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest> it)
-            => it.AddFieldName("targetParentId");
-        
-        public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest> WithAfterItemId(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest> it)
-            => it.AddFieldName("afterItemId");
-        
-        public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest> WithTabIndentedLines(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest> it)
-            => it.AddFieldName("tabIndentedLines");
-        
-    }
+    public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest> WithTargetParentId(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest> it)
+        => it.AddFieldName("targetParentId");
+    
+    public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest> WithAfterItemId(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest> it)
+        => it.AddFieldName("afterItemId");
+    
+    public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest> WithTabIndentedLines(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest> it)
+        => it.AddFieldName("tabIndentedLines");
     
 }
+

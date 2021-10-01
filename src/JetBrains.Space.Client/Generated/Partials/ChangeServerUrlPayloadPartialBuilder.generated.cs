@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChangeServerUrlPayloadPartialBuilder
+namespace JetBrains.Space.Client.ChangeServerUrlPayloadPartialBuilder;
+
+public static class ChangeServerUrlPayloadPartialExtensions
 {
-    public static class ChangeServerUrlPayloadPartialExtensions
-    {
-        public static Partial<ChangeServerUrlPayload> WithNewServerUrl(this Partial<ChangeServerUrlPayload> it)
-            => it.AddFieldName("newServerUrl");
-        
-        public static Partial<ChangeServerUrlPayload> WithClientId(this Partial<ChangeServerUrlPayload> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<ChangeServerUrlPayload> WithUserId(this Partial<ChangeServerUrlPayload> it)
-            => it.AddFieldName("userId");
-        
-        public static Partial<ChangeServerUrlPayload> WithVerificationToken(this Partial<ChangeServerUrlPayload> it)
-            => it.AddFieldName("verificationToken");
-        
-    }
+    public static Partial<ChangeServerUrlPayload> WithNewServerUrl(this Partial<ChangeServerUrlPayload> it)
+        => it.AddFieldName("newServerUrl");
+    
+    public static Partial<ChangeServerUrlPayload> WithClientId(this Partial<ChangeServerUrlPayload> it)
+        => it.AddFieldName("clientId");
+    
+    public static Partial<ChangeServerUrlPayload> WithUserId(this Partial<ChangeServerUrlPayload> it)
+        => it.AddFieldName("userId");
+    
+    public static Partial<ChangeServerUrlPayload> WithVerificationToken(this Partial<ChangeServerUrlPayload> it)
+        => it.AddFieldName("verificationToken");
     
 }
+

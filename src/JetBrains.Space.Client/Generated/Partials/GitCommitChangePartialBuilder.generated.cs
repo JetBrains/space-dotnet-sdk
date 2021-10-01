@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitCommitChangePartialBuilder
+namespace JetBrains.Space.Client.GitCommitChangePartialBuilder;
+
+public static class GitCommitChangePartialExtensions
 {
-    public static class GitCommitChangePartialExtensions
-    {
-        public static Partial<GitCommitChange> WithChangeType(this Partial<GitCommitChange> it)
-            => it.AddFieldName("changeType");
-        
-        public static Partial<GitCommitChange> WithChangeType(this Partial<GitCommitChange> it, Func<Partial<GitCommitChangeType>, Partial<GitCommitChangeType>> partialBuilder)
-            => it.AddFieldName("changeType", partialBuilder(new Partial<GitCommitChangeType>(it)));
-        
-        public static Partial<GitCommitChange> WithOld(this Partial<GitCommitChange> it)
-            => it.AddFieldName("old");
-        
-        public static Partial<GitCommitChange> WithOld(this Partial<GitCommitChange> it, Func<Partial<GitFile>, Partial<GitFile>> partialBuilder)
-            => it.AddFieldName("old", partialBuilder(new Partial<GitFile>(it)));
-        
-        public static Partial<GitCommitChange> WithNew(this Partial<GitCommitChange> it)
-            => it.AddFieldName("new");
-        
-        public static Partial<GitCommitChange> WithNew(this Partial<GitCommitChange> it, Func<Partial<GitFile>, Partial<GitFile>> partialBuilder)
-            => it.AddFieldName("new", partialBuilder(new Partial<GitFile>(it)));
-        
-        public static Partial<GitCommitChange> WithRevision(this Partial<GitCommitChange> it)
-            => it.AddFieldName("revision");
-        
-        public static Partial<GitCommitChange> WithDiffSize(this Partial<GitCommitChange> it)
-            => it.AddFieldName("diffSize");
-        
-        public static Partial<GitCommitChange> WithDiffSize(this Partial<GitCommitChange> it, Func<Partial<GitDiffSize>, Partial<GitDiffSize>> partialBuilder)
-            => it.AddFieldName("diffSize", partialBuilder(new Partial<GitDiffSize>(it)));
-        
-        public static Partial<GitCommitChange> WithPath(this Partial<GitCommitChange> it)
-            => it.AddFieldName("path");
-        
-    }
+    public static Partial<GitCommitChange> WithChangeType(this Partial<GitCommitChange> it)
+        => it.AddFieldName("changeType");
+    
+    public static Partial<GitCommitChange> WithChangeType(this Partial<GitCommitChange> it, Func<Partial<GitCommitChangeType>, Partial<GitCommitChangeType>> partialBuilder)
+        => it.AddFieldName("changeType", partialBuilder(new Partial<GitCommitChangeType>(it)));
+    
+    public static Partial<GitCommitChange> WithOld(this Partial<GitCommitChange> it)
+        => it.AddFieldName("old");
+    
+    public static Partial<GitCommitChange> WithOld(this Partial<GitCommitChange> it, Func<Partial<GitFile>, Partial<GitFile>> partialBuilder)
+        => it.AddFieldName("old", partialBuilder(new Partial<GitFile>(it)));
+    
+    public static Partial<GitCommitChange> WithNew(this Partial<GitCommitChange> it)
+        => it.AddFieldName("new");
+    
+    public static Partial<GitCommitChange> WithNew(this Partial<GitCommitChange> it, Func<Partial<GitFile>, Partial<GitFile>> partialBuilder)
+        => it.AddFieldName("new", partialBuilder(new Partial<GitFile>(it)));
+    
+    public static Partial<GitCommitChange> WithRevision(this Partial<GitCommitChange> it)
+        => it.AddFieldName("revision");
+    
+    public static Partial<GitCommitChange> WithDiffSize(this Partial<GitCommitChange> it)
+        => it.AddFieldName("diffSize");
+    
+    public static Partial<GitCommitChange> WithDiffSize(this Partial<GitCommitChange> it, Func<Partial<GitDiffSize>, Partial<GitDiffSize>> partialBuilder)
+        => it.AddFieldName("diffSize", partialBuilder(new Partial<GitDiffSize>(it)));
+    
+    public static Partial<GitCommitChange> WithPath(this Partial<GitCommitChange> it)
+        => it.AddFieldName("path");
     
 }
+

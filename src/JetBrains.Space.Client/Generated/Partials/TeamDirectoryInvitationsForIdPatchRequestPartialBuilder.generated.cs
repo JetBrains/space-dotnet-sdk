@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryInvitationsForIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryInvitationsForIdPatchRequestPartialBuilder;
+
+public static class TeamDirectoryInvitationsForIdPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryInvitationsForIdPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithInviteeEmail(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it)
-            => it.AddFieldName("inviteeEmail");
-        
-        public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithInviteeFirstName(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it)
-            => it.AddFieldName("inviteeFirstName");
-        
-        public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithInviteeLastName(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it)
-            => it.AddFieldName("inviteeLastName");
-        
-        public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithTeam(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it)
-            => it.AddFieldName("team");
-        
-        public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithRole(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it)
-            => it.AddFieldName("role");
-        
-    }
+    public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithInviteeEmail(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it)
+        => it.AddFieldName("inviteeEmail");
+    
+    public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithInviteeFirstName(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it)
+        => it.AddFieldName("inviteeFirstName");
+    
+    public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithInviteeLastName(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it)
+        => it.AddFieldName("inviteeLastName");
+    
+    public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithTeam(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it)
+        => it.AddFieldName("team");
+    
+    public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithRole(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it)
+        => it.AddFieldName("role");
     
 }
+

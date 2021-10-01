@@ -27,76 +27,75 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentPartialBuilder
+namespace JetBrains.Space.Client.DocumentPartialBuilder;
+
+public static class DocumentPartialExtensions
 {
-    public static class DocumentPartialExtensions
-    {
-        public static Partial<Document> WithId(this Partial<Document> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<Document> WithContainerInfo(this Partial<Document> it)
-            => it.AddFieldName("containerInfo");
-        
-        public static Partial<Document> WithContainerInfo(this Partial<Document> it, Func<Partial<DocumentContainerInfo>, Partial<DocumentContainerInfo>> partialBuilder)
-            => it.AddFieldName("containerInfo", partialBuilder(new Partial<DocumentContainerInfo>(it)));
-        
-        public static Partial<Document> WithTitle(this Partial<Document> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<Document> WithPublicationDetails2(this Partial<Document> it)
-            => it.AddFieldName("publicationDetails2");
-        
-        public static Partial<Document> WithPublicationDetails2(this Partial<Document> it, Func<Partial<PublicationDetails>, Partial<PublicationDetails>> partialBuilder)
-            => it.AddFieldName("publicationDetails2", partialBuilder(new Partial<PublicationDetails>(it)));
-        
-        public static Partial<Document> WithFolderRef(this Partial<Document> it)
-            => it.AddFieldName("folderRef");
-        
-        public static Partial<Document> WithFolderRef(this Partial<Document> it, Func<Partial<DocumentFolder>, Partial<DocumentFolder>> partialBuilder)
-            => it.AddFieldName("folderRef", partialBuilder(new Partial<DocumentFolder>(it)));
-        
-        public static Partial<Document> WithBodyType(this Partial<Document> it)
-            => it.AddFieldName("bodyType");
-        
-        public static Partial<Document> WithBodyType(this Partial<Document> it, Func<Partial<DocumentBodyType>, Partial<DocumentBodyType>> partialBuilder)
-            => it.AddFieldName("bodyType", partialBuilder(new Partial<DocumentBodyType>(it)));
-        
-        public static Partial<Document> WithIsArchived(this Partial<Document> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<Document> WithArchivedBy(this Partial<Document> it)
-            => it.AddFieldName("archivedBy");
-        
-        public static Partial<Document> WithArchivedBy(this Partial<Document> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("archivedBy", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<Document> WithArchivedAt(this Partial<Document> it)
-            => it.AddFieldName("archivedAt");
-        
-        public static Partial<Document> WithCreatedBy(this Partial<Document> it)
-            => it.AddFieldName("createdBy");
-        
-        public static Partial<Document> WithCreatedBy(this Partial<Document> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<Document> WithCreated(this Partial<Document> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<Document> WithModifiedBy(this Partial<Document> it)
-            => it.AddFieldName("modifiedBy");
-        
-        public static Partial<Document> WithModifiedBy(this Partial<Document> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("modifiedBy", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<Document> WithModified(this Partial<Document> it)
-            => it.AddFieldName("modified");
-        
-        public static Partial<Document> WithDocumentBody(this Partial<Document> it)
-            => it.AddFieldName("documentBody");
-        
-        public static Partial<Document> WithDocumentBody(this Partial<Document> it, Func<Partial<DocumentBody>, Partial<DocumentBody>> partialBuilder)
-            => it.AddFieldName("documentBody", partialBuilder(new Partial<DocumentBody>(it)));
-        
-    }
+    public static Partial<Document> WithId(this Partial<Document> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<Document> WithContainerInfo(this Partial<Document> it)
+        => it.AddFieldName("containerInfo");
+    
+    public static Partial<Document> WithContainerInfo(this Partial<Document> it, Func<Partial<DocumentContainerInfo>, Partial<DocumentContainerInfo>> partialBuilder)
+        => it.AddFieldName("containerInfo", partialBuilder(new Partial<DocumentContainerInfo>(it)));
+    
+    public static Partial<Document> WithTitle(this Partial<Document> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<Document> WithPublicationDetails2(this Partial<Document> it)
+        => it.AddFieldName("publicationDetails2");
+    
+    public static Partial<Document> WithPublicationDetails2(this Partial<Document> it, Func<Partial<PublicationDetails>, Partial<PublicationDetails>> partialBuilder)
+        => it.AddFieldName("publicationDetails2", partialBuilder(new Partial<PublicationDetails>(it)));
+    
+    public static Partial<Document> WithFolderRef(this Partial<Document> it)
+        => it.AddFieldName("folderRef");
+    
+    public static Partial<Document> WithFolderRef(this Partial<Document> it, Func<Partial<DocumentFolder>, Partial<DocumentFolder>> partialBuilder)
+        => it.AddFieldName("folderRef", partialBuilder(new Partial<DocumentFolder>(it)));
+    
+    public static Partial<Document> WithBodyType(this Partial<Document> it)
+        => it.AddFieldName("bodyType");
+    
+    public static Partial<Document> WithBodyType(this Partial<Document> it, Func<Partial<DocumentBodyType>, Partial<DocumentBodyType>> partialBuilder)
+        => it.AddFieldName("bodyType", partialBuilder(new Partial<DocumentBodyType>(it)));
+    
+    public static Partial<Document> WithIsArchived(this Partial<Document> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<Document> WithArchivedBy(this Partial<Document> it)
+        => it.AddFieldName("archivedBy");
+    
+    public static Partial<Document> WithArchivedBy(this Partial<Document> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("archivedBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<Document> WithArchivedAt(this Partial<Document> it)
+        => it.AddFieldName("archivedAt");
+    
+    public static Partial<Document> WithCreatedBy(this Partial<Document> it)
+        => it.AddFieldName("createdBy");
+    
+    public static Partial<Document> WithCreatedBy(this Partial<Document> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<Document> WithCreated(this Partial<Document> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<Document> WithModifiedBy(this Partial<Document> it)
+        => it.AddFieldName("modifiedBy");
+    
+    public static Partial<Document> WithModifiedBy(this Partial<Document> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("modifiedBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<Document> WithModified(this Partial<Document> it)
+        => it.AddFieldName("modified");
+    
+    public static Partial<Document> WithDocumentBody(this Partial<Document> it)
+        => it.AddFieldName("documentBody");
+    
+    public static Partial<Document> WithDocumentBody(this Partial<Document> it, Func<Partial<DocumentBody>, Partial<DocumentBody>> partialBuilder)
+        => it.AddFieldName("documentBody", partialBuilder(new Partial<DocumentBody>(it)));
     
 }
+

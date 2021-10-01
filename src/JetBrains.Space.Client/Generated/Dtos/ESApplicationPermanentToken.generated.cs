@@ -27,105 +27,104 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESApplicationPermanentToken
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ESApplicationPermanentToken
-         : IPropagatePropertyAccessPath
+    public ESApplicationPermanentToken() { }
+    
+    public ESApplicationPermanentToken(string id, string name, ESApp application, string scope, DateTime created, DateTime? expires = null, AccessRecord? lastAccess = null)
     {
-        public ESApplicationPermanentToken() { }
-        
-        public ESApplicationPermanentToken(string id, string name, ESApp application, string scope, DateTime created, DateTime? expires = null, AccessRecord? lastAccess = null)
-        {
-            Id = id;
-            Name = name;
-            Application = application;
-            Scope = scope;
-            Created = created;
-            Expires = expires;
-            LastAccess = lastAccess;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ESApplicationPermanentToken), nameof(Application));
-        
-        [Required]
-        [JsonPropertyName("application")]
-        public ESApp Application
-        {
-            get => _application.GetValue();
-            set => _application.SetValue(value);
-        }
-    
-        private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Scope));
-        
-        [Required]
-        [JsonPropertyName("scope")]
-        public string Scope
-        {
-            get => _scope.GetValue();
-            set => _scope.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESApplicationPermanentToken), nameof(Created));
-        
-        [Required]
-        [JsonPropertyName("created")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Created
-        {
-            get => _created.GetValue();
-            set => _created.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(ESApplicationPermanentToken), nameof(Expires));
-        
-        [JsonPropertyName("expires")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? Expires
-        {
-            get => _expires.GetValue();
-            set => _expires.SetValue(value);
-        }
-    
-        private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESApplicationPermanentToken), nameof(LastAccess));
-        
-        [JsonPropertyName("lastAccess")]
-        public AccessRecord? LastAccess
-        {
-            get => _lastAccess.GetValue();
-            set => _lastAccess.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _application.SetAccessPath(path, validateHasBeenSet);
-            _scope.SetAccessPath(path, validateHasBeenSet);
-            _created.SetAccessPath(path, validateHasBeenSet);
-            _expires.SetAccessPath(path, validateHasBeenSet);
-            _lastAccess.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Name = name;
+        Application = application;
+        Scope = scope;
+        Created = created;
+        Expires = expires;
+        LastAccess = lastAccess;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ESApplicationPermanentToken), nameof(Application));
+    
+    [Required]
+    [JsonPropertyName("application")]
+    public ESApp Application
+    {
+        get => _application.GetValue();
+        set => _application.SetValue(value);
+    }
+
+    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Scope));
+    
+    [Required]
+    [JsonPropertyName("scope")]
+    public string Scope
+    {
+        get => _scope.GetValue();
+        set => _scope.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESApplicationPermanentToken), nameof(Created));
+    
+    [Required]
+    [JsonPropertyName("created")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Created
+    {
+        get => _created.GetValue();
+        set => _created.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(ESApplicationPermanentToken), nameof(Expires));
+    
+    [JsonPropertyName("expires")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? Expires
+    {
+        get => _expires.GetValue();
+        set => _expires.SetValue(value);
+    }
+
+    private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESApplicationPermanentToken), nameof(LastAccess));
+    
+    [JsonPropertyName("lastAccess")]
+    public AccessRecord? LastAccess
+    {
+        get => _lastAccess.GetValue();
+        set => _lastAccess.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _application.SetAccessPath(path, validateHasBeenSet);
+        _scope.SetAccessPath(path, validateHasBeenSet);
+        _created.SetAccessPath(path, validateHasBeenSet);
+        _expires.SetAccessPath(path, validateHasBeenSet);
+        _lastAccess.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

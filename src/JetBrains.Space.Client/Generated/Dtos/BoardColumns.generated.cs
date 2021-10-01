@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BoardColumns
+     : IPropagatePropertyAccessPath
 {
-    public sealed class BoardColumns
-         : IPropagatePropertyAccessPath
+    public BoardColumns() { }
+    
+    public BoardColumns(List<BoardColumn> columns)
     {
-        public BoardColumns() { }
-        
-        public BoardColumns(List<BoardColumn> columns)
-        {
-            Columns = columns;
-        }
-        
-        private PropertyValue<List<BoardColumn>> _columns = new PropertyValue<List<BoardColumn>>(nameof(BoardColumns), nameof(Columns), new List<BoardColumn>());
-        
-        [Required]
-        [JsonPropertyName("columns")]
-        public List<BoardColumn> Columns
-        {
-            get => _columns.GetValue();
-            set => _columns.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _columns.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Columns = columns;
     }
     
+    private PropertyValue<List<BoardColumn>> _columns = new PropertyValue<List<BoardColumn>>(nameof(BoardColumns), nameof(Columns), new List<BoardColumn>());
+    
+    [Required]
+    [JsonPropertyName("columns")]
+    public List<BoardColumn> Columns
+    {
+        get => _columns.GetValue();
+        set => _columns.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _columns.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

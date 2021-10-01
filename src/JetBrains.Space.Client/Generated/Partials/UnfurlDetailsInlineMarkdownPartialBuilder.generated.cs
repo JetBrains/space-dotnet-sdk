@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsInlineMarkdownPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsInlineMarkdownPartialBuilder;
+
+public static class UnfurlDetailsInlineMarkdownPartialExtensions
 {
-    public static class UnfurlDetailsInlineMarkdownPartialExtensions
-    {
-        public static Partial<UnfurlDetailsInlineMarkdown> WithMarkdown(this Partial<UnfurlDetailsInlineMarkdown> it)
-            => it.AddFieldName("markdown");
-        
-    }
+    public static Partial<UnfurlDetailsInlineMarkdown> WithMarkdown(this Partial<UnfurlDetailsInlineMarkdown> it)
+        => it.AddFieldName("markdown");
     
 }
+

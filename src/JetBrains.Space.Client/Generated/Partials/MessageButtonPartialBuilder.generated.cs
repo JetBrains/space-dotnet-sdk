@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageButtonPartialBuilder
+namespace JetBrains.Space.Client.MessageButtonPartialBuilder;
+
+public static class MessageButtonPartialExtensions
 {
-    public static class MessageButtonPartialExtensions
-    {
-        public static Partial<MessageButton> WithText(this Partial<MessageButton> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<MessageButton> WithStyle(this Partial<MessageButton> it)
-            => it.AddFieldName("style");
-        
-        public static Partial<MessageButton> WithStyle(this Partial<MessageButton> it, Func<Partial<MessageButtonStyle>, Partial<MessageButtonStyle>> partialBuilder)
-            => it.AddFieldName("style", partialBuilder(new Partial<MessageButtonStyle>(it)));
-        
-        public static Partial<MessageButton> WithAction(this Partial<MessageButton> it)
-            => it.AddFieldName("action");
-        
-        public static Partial<MessageButton> WithAction(this Partial<MessageButton> it, Func<Partial<MessageAction>, Partial<MessageAction>> partialBuilder)
-            => it.AddFieldName("action", partialBuilder(new Partial<MessageAction>(it)));
-        
-        public static Partial<MessageButton> WithIsDisabled(this Partial<MessageButton> it)
-            => it.AddFieldName("disabled");
-        
-    }
+    public static Partial<MessageButton> WithText(this Partial<MessageButton> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<MessageButton> WithStyle(this Partial<MessageButton> it)
+        => it.AddFieldName("style");
+    
+    public static Partial<MessageButton> WithStyle(this Partial<MessageButton> it, Func<Partial<MessageButtonStyle>, Partial<MessageButtonStyle>> partialBuilder)
+        => it.AddFieldName("style", partialBuilder(new Partial<MessageButtonStyle>(it)));
+    
+    public static Partial<MessageButton> WithAction(this Partial<MessageButton> it)
+        => it.AddFieldName("action");
+    
+    public static Partial<MessageButton> WithAction(this Partial<MessageButton> it, Func<Partial<MessageAction>, Partial<MessageAction>> partialBuilder)
+        => it.AddFieldName("action", partialBuilder(new Partial<MessageAction>(it)));
+    
+    public static Partial<MessageButton> WithIsDisabled(this Partial<MessageButton> it)
+        => it.AddFieldName("disabled");
     
 }
+

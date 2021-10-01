@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ConfigurePermissionsActionPartialBuilder
+namespace JetBrains.Space.Client.ConfigurePermissionsActionPartialBuilder;
+
+public static class ConfigurePermissionsActionPartialExtensions
 {
-    public static class ConfigurePermissionsActionPartialExtensions
-    {
-        public static Partial<ConfigurePermissionsAction> WithApp(this Partial<ConfigurePermissionsAction> it)
-            => it.AddFieldName("app");
-        
-        public static Partial<ConfigurePermissionsAction> WithApp(this Partial<ConfigurePermissionsAction> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
-            => it.AddFieldName("app", partialBuilder(new Partial<ESApp>(it)));
-        
-        public static Partial<ConfigurePermissionsAction> WithContext(this Partial<ConfigurePermissionsAction> it)
-            => it.AddFieldName("context");
-        
-        public static Partial<ConfigurePermissionsAction> WithContext(this Partial<ConfigurePermissionsAction> it, Func<Partial<PermissionContextIdentifier>, Partial<PermissionContextIdentifier>> partialBuilder)
-            => it.AddFieldName("context", partialBuilder(new Partial<PermissionContextIdentifier>(it)));
-        
-    }
+    public static Partial<ConfigurePermissionsAction> WithApp(this Partial<ConfigurePermissionsAction> it)
+        => it.AddFieldName("app");
+    
+    public static Partial<ConfigurePermissionsAction> WithApp(this Partial<ConfigurePermissionsAction> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
+        => it.AddFieldName("app", partialBuilder(new Partial<ESApp>(it)));
+    
+    public static Partial<ConfigurePermissionsAction> WithContext(this Partial<ConfigurePermissionsAction> it)
+        => it.AddFieldName("context");
+    
+    public static Partial<ConfigurePermissionsAction> WithContext(this Partial<ConfigurePermissionsAction> it, Func<Partial<PermissionContextIdentifier>, Partial<PermissionContextIdentifier>> partialBuilder)
+        => it.AddFieldName("context", partialBuilder(new Partial<PermissionContextIdentifier>(it)));
     
 }
+

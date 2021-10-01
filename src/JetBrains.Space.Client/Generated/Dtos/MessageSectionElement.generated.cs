@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface MessageSectionElement
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface MessageSectionElement
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static MessageDivider MessageDivider()
-            => new MessageDivider();
-        
-        public static MessageSection MessageSection(List<MessageElement> elements, string? header = null, string? footer = null)
-            => new MessageSection(elements: elements, header: header, footer: footer);
-        
-    }
+    public static MessageDivider MessageDivider()
+        => new MessageDivider();
+    
+    public static MessageSection MessageSection(List<MessageElement> elements, string? header = null, string? footer = null)
+        => new MessageSection(elements: elements, header: header, footer: footer);
     
 }
+

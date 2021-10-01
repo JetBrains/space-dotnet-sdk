@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UAUserAgreementStatusAcceptedPartialBuilder
+namespace JetBrains.Space.Client.UAUserAgreementStatusAcceptedPartialBuilder;
+
+public static class UAUserAgreementStatusAcceptedPartialExtensions
 {
-    public static class UAUserAgreementStatusAcceptedPartialExtensions
-    {
-        public static Partial<UAUserAgreementStatusAccepted> WithProfile(this Partial<UAUserAgreementStatusAccepted> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<UAUserAgreementStatusAccepted> WithProfile(this Partial<UAUserAgreementStatusAccepted> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<UAUserAgreementStatusAccepted> WithUserAgreement(this Partial<UAUserAgreementStatusAccepted> it)
-            => it.AddFieldName("userAgreement");
-        
-        public static Partial<UAUserAgreementStatusAccepted> WithUserAgreement(this Partial<UAUserAgreementStatusAccepted> it, Func<Partial<UAUserAgreement>, Partial<UAUserAgreement>> partialBuilder)
-            => it.AddFieldName("userAgreement", partialBuilder(new Partial<UAUserAgreement>(it)));
-        
-        public static Partial<UAUserAgreementStatusAccepted> WithAccepted(this Partial<UAUserAgreementStatusAccepted> it)
-            => it.AddFieldName("accepted");
-        
-    }
+    public static Partial<UAUserAgreementStatusAccepted> WithProfile(this Partial<UAUserAgreementStatusAccepted> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<UAUserAgreementStatusAccepted> WithProfile(this Partial<UAUserAgreementStatusAccepted> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<UAUserAgreementStatusAccepted> WithUserAgreement(this Partial<UAUserAgreementStatusAccepted> it)
+        => it.AddFieldName("userAgreement");
+    
+    public static Partial<UAUserAgreementStatusAccepted> WithUserAgreement(this Partial<UAUserAgreementStatusAccepted> it, Func<Partial<UAUserAgreement>, Partial<UAUserAgreement>> partialBuilder)
+        => it.AddFieldName("userAgreement", partialBuilder(new Partial<UAUserAgreement>(it)));
+    
+    public static Partial<UAUserAgreementStatusAccepted> WithAccepted(this Partial<UAUserAgreementStatusAccepted> it)
+        => it.AddFieldName("accepted");
     
 }
+

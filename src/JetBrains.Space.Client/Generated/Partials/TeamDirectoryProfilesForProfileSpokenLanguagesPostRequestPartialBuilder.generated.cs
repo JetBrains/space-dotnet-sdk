@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileSpokenLanguagesPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileSpokenLanguagesPostRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfileSpokenLanguagesPostRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfileSpokenLanguagesPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest> WithLanguage(this Partial<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest> it)
-            => it.AddFieldName("language");
-        
-        public static Partial<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest> WithFirstName(this Partial<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest> it)
-            => it.AddFieldName("firstName");
-        
-        public static Partial<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest> WithLastName(this Partial<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest> it)
-            => it.AddFieldName("lastName");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest> WithLanguage(this Partial<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest> it)
+        => it.AddFieldName("language");
+    
+    public static Partial<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest> WithFirstName(this Partial<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest> it)
+        => it.AddFieldName("firstName");
+    
+    public static Partial<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest> WithLastName(this Partial<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest> it)
+        => it.AddFieldName("lastName");
     
 }
+

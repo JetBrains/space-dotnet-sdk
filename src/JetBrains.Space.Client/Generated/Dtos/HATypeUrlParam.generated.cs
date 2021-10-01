@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HATypeUrlParam
+     : HAType, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class HATypeUrlParam
-         : HAType, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "HA_Type.UrlParam";
+    
+    public HATypeUrlParam() { }
+    
+    public HATypeUrlParam(HAUrlParameter urlParam, bool nullable, List<string> tags)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "HA_Type.UrlParam";
-        
-        public HATypeUrlParam() { }
-        
-        public HATypeUrlParam(HAUrlParameter urlParam, bool nullable, List<string> tags)
-        {
-            UrlParam = urlParam;
-            IsNullable = nullable;
-            Tags = tags;
-        }
-        
-        private PropertyValue<HAUrlParameter> _urlParam = new PropertyValue<HAUrlParameter>(nameof(HATypeUrlParam), nameof(UrlParam));
-        
-        [Required]
-        [JsonPropertyName("urlParam")]
-        public HAUrlParameter UrlParam
-        {
-            get => _urlParam.GetValue();
-            set => _urlParam.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeUrlParam), nameof(IsNullable));
-        
-        [Required]
-        [JsonPropertyName("nullable")]
-        public bool IsNullable
-        {
-            get => _nullable.GetValue();
-            set => _nullable.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypeUrlParam), nameof(Tags), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("tags")]
-        public List<string> Tags
-        {
-            get => _tags.GetValue();
-            set => _tags.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _urlParam.SetAccessPath(path, validateHasBeenSet);
-            _nullable.SetAccessPath(path, validateHasBeenSet);
-            _tags.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        UrlParam = urlParam;
+        IsNullable = nullable;
+        Tags = tags;
     }
     
+    private PropertyValue<HAUrlParameter> _urlParam = new PropertyValue<HAUrlParameter>(nameof(HATypeUrlParam), nameof(UrlParam));
+    
+    [Required]
+    [JsonPropertyName("urlParam")]
+    public HAUrlParameter UrlParam
+    {
+        get => _urlParam.GetValue();
+        set => _urlParam.SetValue(value);
+    }
+
+    private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeUrlParam), nameof(IsNullable));
+    
+    [Required]
+    [JsonPropertyName("nullable")]
+    public bool IsNullable
+    {
+        get => _nullable.GetValue();
+        set => _nullable.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypeUrlParam), nameof(Tags), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("tags")]
+    public List<string> Tags
+    {
+        get => _tags.GetValue();
+        set => _tags.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _urlParam.SetAccessPath(path, validateHasBeenSet);
+        _nullable.SetAccessPath(path, validateHasBeenSet);
+        _tags.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

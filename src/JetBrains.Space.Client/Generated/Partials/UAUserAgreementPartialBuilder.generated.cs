@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UAUserAgreementPartialBuilder
+namespace JetBrains.Space.Client.UAUserAgreementPartialBuilder;
+
+public static class UAUserAgreementPartialExtensions
 {
-    public static class UAUserAgreementPartialExtensions
-    {
-        public static Partial<UAUserAgreement> WithId(this Partial<UAUserAgreement> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<UAUserAgreement> WithContent(this Partial<UAUserAgreement> it)
-            => it.AddFieldName("content");
-        
-        public static Partial<UAUserAgreement> WithVersion(this Partial<UAUserAgreement> it)
-            => it.AddFieldName("version");
-        
-        public static Partial<UAUserAgreement> WithVersion(this Partial<UAUserAgreement> it, Func<Partial<UAVersion>, Partial<UAVersion>> partialBuilder)
-            => it.AddFieldName("version", partialBuilder(new Partial<UAVersion>(it)));
-        
-        public static Partial<UAUserAgreement> WithUpdated(this Partial<UAUserAgreement> it)
-            => it.AddFieldName("updated");
-        
-    }
+    public static Partial<UAUserAgreement> WithId(this Partial<UAUserAgreement> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<UAUserAgreement> WithContent(this Partial<UAUserAgreement> it)
+        => it.AddFieldName("content");
+    
+    public static Partial<UAUserAgreement> WithVersion(this Partial<UAUserAgreement> it)
+        => it.AddFieldName("version");
+    
+    public static Partial<UAUserAgreement> WithVersion(this Partial<UAUserAgreement> it, Func<Partial<UAVersion>, Partial<UAVersion>> partialBuilder)
+        => it.AddFieldName("version", partialBuilder(new Partial<UAVersion>(it)));
+    
+    public static Partial<UAUserAgreement> WithUpdated(this Partial<UAUserAgreement> it)
+        => it.AddFieldName("updated");
     
 }
+

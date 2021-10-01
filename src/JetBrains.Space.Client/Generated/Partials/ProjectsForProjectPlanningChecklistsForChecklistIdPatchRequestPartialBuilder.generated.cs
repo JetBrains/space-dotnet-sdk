@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequestPartialBuilder;
+
+public static class ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequestPartialExtensions
 {
-    public static class ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> WithName(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> WithDescription(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> WithOwner(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> it)
-            => it.AddFieldName("owner");
-        
-        public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> WithTag(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> it)
-            => it.AddFieldName("tag");
-        
-        public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> WithTopics(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> it)
-            => it.AddFieldName("topics");
-        
-    }
+    public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> WithName(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> WithDescription(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> WithOwner(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> it)
+        => it.AddFieldName("owner");
+    
+    public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> WithTag(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> it)
+        => it.AddFieldName("tag");
+    
+    public static Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> WithTopics(this Partial<ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest> it)
+        => it.AddFieldName("topics");
     
 }
+

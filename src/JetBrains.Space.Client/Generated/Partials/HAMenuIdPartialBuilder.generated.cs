@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HAMenuIdPartialBuilder
+namespace JetBrains.Space.Client.HAMenuIdPartialBuilder;
+
+public static class HAMenuIdPartialExtensions
 {
-    public static class HAMenuIdPartialExtensions
-    {
-        public static Partial<HAMenuId> WithMenuId(this Partial<HAMenuId> it)
-            => it.AddFieldName("menuId");
-        
-        public static Partial<HAMenuId> WithContext(this Partial<HAMenuId> it)
-            => it.AddFieldName("context");
-        
-        public static Partial<HAMenuId> WithContext(this Partial<HAMenuId> it, Func<Partial<HADto>, Partial<HADto>> partialBuilder)
-            => it.AddFieldName("context", partialBuilder(new Partial<HADto>(it)));
-        
-    }
+    public static Partial<HAMenuId> WithMenuId(this Partial<HAMenuId> it)
+        => it.AddFieldName("menuId");
+    
+    public static Partial<HAMenuId> WithContext(this Partial<HAMenuId> it)
+        => it.AddFieldName("context");
+    
+    public static Partial<HAMenuId> WithContext(this Partial<HAMenuId> it, Func<Partial<HADto>, Partial<HADto>> partialBuilder)
+        => it.AddFieldName("context", partialBuilder(new Partial<HADto>(it)));
     
 }
+

@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IntListCFValue
+     : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class IntListCFValue
-         : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "IntListCFValue";
+    
+    public IntListCFValue() { }
+    
+    public IntListCFValue(List<int> values)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "IntListCFValue";
-        
-        public IntListCFValue() { }
-        
-        public IntListCFValue(List<int> values)
-        {
-            Values = values;
-        }
-        
-        private PropertyValue<List<int>> _values = new PropertyValue<List<int>>(nameof(IntListCFValue), nameof(Values), new List<int>());
-        
-        [Required]
-        [JsonPropertyName("values")]
-        public List<int> Values
-        {
-            get => _values.GetValue();
-            set => _values.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _values.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Values = values;
     }
     
+    private PropertyValue<List<int>> _values = new PropertyValue<List<int>>(nameof(IntListCFValue), nameof(Values), new List<int>());
+    
+    [Required]
+    [JsonPropertyName("values")]
+    public List<int> Values
+    {
+        get => _values.GetValue();
+        set => _values.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _values.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

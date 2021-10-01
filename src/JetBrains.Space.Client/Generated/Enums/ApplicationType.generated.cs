@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum ApplicationType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ApplicationType
-    {
-        [EnumMember(Value = "Application")]
-        Application,
-        
-        [EnumMember(Value = "InternalApp")]
-        InternalApp,
-        
-        [EnumMember(Value = "MarketplaceApp")]
-        MarketplaceApp,
-        
-    }
+    [EnumMember(Value = "Application")]
+    Application,
+    
+    [EnumMember(Value = "InternalApp")]
+    InternalApp,
+    
+    [EnumMember(Value = "MarketplaceApp")]
+    MarketplaceApp,
     
 }
+

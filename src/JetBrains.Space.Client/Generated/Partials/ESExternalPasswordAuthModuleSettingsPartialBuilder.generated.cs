@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESExternalPasswordAuthModuleSettingsPartialBuilder
+namespace JetBrains.Space.Client.ESExternalPasswordAuthModuleSettingsPartialBuilder;
+
+public static class ESExternalPasswordAuthModuleSettingsPartialExtensions
 {
-    public static class ESExternalPasswordAuthModuleSettingsPartialExtensions
-    {
-    }
-    
 }
+

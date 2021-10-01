@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class AccessRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class AccessRecord
-         : IPropagatePropertyAccessPath
+    public AccessRecord() { }
+    
+    public AccessRecord(DateTime time, string address, string? userAgent = null)
     {
-        public AccessRecord() { }
-        
-        public AccessRecord(DateTime time, string address, string? userAgent = null)
-        {
-            Time = time;
-            Address = address;
-            UserAgent = userAgent;
-        }
-        
-        private PropertyValue<DateTime> _time = new PropertyValue<DateTime>(nameof(AccessRecord), nameof(Time));
-        
-        [Required]
-        [JsonPropertyName("time")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Time
-        {
-            get => _time.GetValue();
-            set => _time.SetValue(value);
-        }
-    
-        private PropertyValue<string> _address = new PropertyValue<string>(nameof(AccessRecord), nameof(Address));
-        
-        [Required]
-        [JsonPropertyName("address")]
-        public string Address
-        {
-            get => _address.GetValue();
-            set => _address.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _userAgent = new PropertyValue<string?>(nameof(AccessRecord), nameof(UserAgent));
-        
-        [JsonPropertyName("userAgent")]
-        public string? UserAgent
-        {
-            get => _userAgent.GetValue();
-            set => _userAgent.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _time.SetAccessPath(path, validateHasBeenSet);
-            _address.SetAccessPath(path, validateHasBeenSet);
-            _userAgent.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Time = time;
+        Address = address;
+        UserAgent = userAgent;
     }
     
+    private PropertyValue<DateTime> _time = new PropertyValue<DateTime>(nameof(AccessRecord), nameof(Time));
+    
+    [Required]
+    [JsonPropertyName("time")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Time
+    {
+        get => _time.GetValue();
+        set => _time.SetValue(value);
+    }
+
+    private PropertyValue<string> _address = new PropertyValue<string>(nameof(AccessRecord), nameof(Address));
+    
+    [Required]
+    [JsonPropertyName("address")]
+    public string Address
+    {
+        get => _address.GetValue();
+        set => _address.SetValue(value);
+    }
+
+    private PropertyValue<string?> _userAgent = new PropertyValue<string?>(nameof(AccessRecord), nameof(UserAgent));
+    
+    [JsonPropertyName("userAgent")]
+    public string? UserAgent
+    {
+        get => _userAgent.GetValue();
+        set => _userAgent.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _time.SetAccessPath(path, validateHasBeenSet);
+        _address.SetAccessPath(path, validateHasBeenSet);
+        _userAgent.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

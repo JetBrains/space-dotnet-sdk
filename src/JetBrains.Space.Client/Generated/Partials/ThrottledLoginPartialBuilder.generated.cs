@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ThrottledLoginPartialBuilder
+namespace JetBrains.Space.Client.ThrottledLoginPartialBuilder;
+
+public static class ThrottledLoginPartialExtensions
 {
-    public static class ThrottledLoginPartialExtensions
-    {
-        public static Partial<ThrottledLogin> WithLogin(this Partial<ThrottledLogin> it)
-            => it.AddFieldName("login");
-        
-        public static Partial<ThrottledLogin> WithThrottledUntil(this Partial<ThrottledLogin> it)
-            => it.AddFieldName("throttledUntil");
-        
-    }
+    public static Partial<ThrottledLogin> WithLogin(this Partial<ThrottledLogin> it)
+        => it.AddFieldName("login");
+    
+    public static Partial<ThrottledLogin> WithThrottledUntil(this Partial<ThrottledLogin> it)
+        => it.AddFieldName("throttledUntil");
     
 }
+

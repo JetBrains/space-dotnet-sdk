@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CPrincipal
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CPrincipal
-         : IPropagatePropertyAccessPath
+    public CPrincipal() { }
+    
+    public CPrincipal(string name, CPrincipalDetails? details = null)
     {
-        public CPrincipal() { }
-        
-        public CPrincipal(string name, CPrincipalDetails? details = null)
-        {
-            Name = name;
-            Details = details;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(CPrincipal), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<CPrincipalDetails?> _details = new PropertyValue<CPrincipalDetails?>(nameof(CPrincipal), nameof(Details));
-        
-        [JsonPropertyName("details")]
-        public CPrincipalDetails? Details
-        {
-            get => _details.GetValue();
-            set => _details.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _details.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Details = details;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(CPrincipal), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<CPrincipalDetails?> _details = new PropertyValue<CPrincipalDetails?>(nameof(CPrincipal), nameof(Details));
+    
+    [JsonPropertyName("details")]
+    public CPrincipalDetails? Details
+    {
+        get => _details.GetValue();
+        set => _details.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _details.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TodoPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TodoPostRequestPartialBuilder;
+
+public static class TodoPostRequestPartialExtensions
 {
-    public static class TodoPostRequestPartialExtensions
-    {
-        public static Partial<TodoPostRequest> WithText(this Partial<TodoPostRequest> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<TodoPostRequest> WithDueDate(this Partial<TodoPostRequest> it)
-            => it.AddFieldName("dueDate");
-        
-    }
+    public static Partial<TodoPostRequest> WithText(this Partial<TodoPostRequest> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<TodoPostRequest> WithDueDate(this Partial<TodoPostRequest> it)
+        => it.AddFieldName("dueDate");
     
 }
+

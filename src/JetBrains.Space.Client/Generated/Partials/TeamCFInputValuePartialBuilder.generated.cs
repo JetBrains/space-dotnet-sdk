@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamCFInputValuePartialBuilder
+namespace JetBrains.Space.Client.TeamCFInputValuePartialBuilder;
+
+public static class TeamCFInputValuePartialExtensions
 {
-    public static class TeamCFInputValuePartialExtensions
-    {
-        public static Partial<TeamCFInputValue> WithTeam(this Partial<TeamCFInputValue> it)
-            => it.AddFieldName("team");
-        
-    }
+    public static Partial<TeamCFInputValue> WithTeam(this Partial<TeamCFInputValue> it)
+        => it.AddFieldName("team");
     
 }
+

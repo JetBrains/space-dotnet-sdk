@@ -27,41 +27,40 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum CommitExecutionStatus
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum CommitExecutionStatus
-    {
-        [EnumMember(Value = "SCHEDULED")]
-        SCHEDULED,
-        
-        [EnumMember(Value = "PENDING")]
-        PENDING,
-        
-        [EnumMember(Value = "READY_TO_START")]
-        READYTOSTART,
-        
-        [EnumMember(Value = "FAILED_TO_START")]
-        FAILEDTOSTART,
-        
-        [EnumMember(Value = "RUNNING")]
-        RUNNING,
-        
-        [EnumMember(Value = "FAILING")]
-        FAILING,
-        
-        [EnumMember(Value = "SUCCEEDED")]
-        SUCCEEDED,
-        
-        [EnumMember(Value = "TERMINATED")]
-        TERMINATED,
-        
-        [EnumMember(Value = "FAILED")]
-        FAILED,
-        
-        [EnumMember(Value = "HANGING")]
-        HANGING,
-        
-    }
+    [EnumMember(Value = "SCHEDULED")]
+    SCHEDULED,
+    
+    [EnumMember(Value = "PENDING")]
+    PENDING,
+    
+    [EnumMember(Value = "READY_TO_START")]
+    READYTOSTART,
+    
+    [EnumMember(Value = "FAILED_TO_START")]
+    FAILEDTOSTART,
+    
+    [EnumMember(Value = "RUNNING")]
+    RUNNING,
+    
+    [EnumMember(Value = "FAILING")]
+    FAILING,
+    
+    [EnumMember(Value = "SUCCEEDED")]
+    SUCCEEDED,
+    
+    [EnumMember(Value = "TERMINATED")]
+    TERMINATED,
+    
+    [EnumMember(Value = "FAILED")]
+    FAILED,
+    
+    [EnumMember(Value = "HANGING")]
+    HANGING,
     
 }
+

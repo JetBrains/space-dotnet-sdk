@@ -27,70 +27,69 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HADtoPartialBuilder
+namespace JetBrains.Space.Client.HADtoPartialBuilder;
+
+public static class HADtoPartialExtensions
 {
-    public static class HADtoPartialExtensions
-    {
-        public static Partial<HADto> WithId(this Partial<HADto> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<HADto> WithName(this Partial<HADto> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<HADto> WithFields(this Partial<HADto> it)
-            => it.AddFieldName("fields");
-        
-        public static Partial<HADto> WithFields(this Partial<HADto> it, Func<Partial<HADtoField>, Partial<HADtoField>> partialBuilder)
-            => it.AddFieldName("fields", partialBuilder(new Partial<HADtoField>(it)));
-        
-        public static Partial<HADto> WithHierarchyRole(this Partial<HADto> it)
-            => it.AddFieldName("hierarchyRole");
-        
-        public static Partial<HADto> WithHierarchyRole(this Partial<HADto> it, Func<Partial<HierarchyRole>, Partial<HierarchyRole>> partialBuilder)
-            => it.AddFieldName("hierarchyRole", partialBuilder(new Partial<HierarchyRole>(it)));
-        
-        public static Partial<HADto> WithHierarchyRole2(this Partial<HADto> it)
-            => it.AddFieldName("hierarchyRole2");
-        
-        public static Partial<HADto> WithHierarchyRole2(this Partial<HADto> it, Func<Partial<HierarchyRole2>, Partial<HierarchyRole2>> partialBuilder)
-            => it.AddFieldName("hierarchyRole2", partialBuilder(new Partial<HierarchyRole2>(it)));
-        
-        public static Partial<HADto> WithExtends(this Partial<HADto> it)
-            => it.AddFieldName("extends");
-        
-        public static Partial<HADto> WithExtendsRecursive(this Partial<HADto> it)
-            => it.AddFieldName("extends!");
-        
-        public static Partial<HADto> WithExtends(this Partial<HADto> it, Func<Partial<HADto>, Partial<HADto>> partialBuilder)
-            => it.AddFieldName("extends", partialBuilder(new Partial<HADto>(it)));
-        
-        public static Partial<HADto> WithImplements(this Partial<HADto> it)
-            => it.AddFieldName("implements");
-        
-        public static Partial<HADto> WithImplementsRecursive(this Partial<HADto> it)
-            => it.AddFieldName("implements!");
-        
-        public static Partial<HADto> WithImplements(this Partial<HADto> it, Func<Partial<HADto>, Partial<HADto>> partialBuilder)
-            => it.AddFieldName("implements", partialBuilder(new Partial<HADto>(it)));
-        
-        public static Partial<HADto> WithInheritors(this Partial<HADto> it)
-            => it.AddFieldName("inheritors");
-        
-        public static Partial<HADto> WithInheritorsRecursive(this Partial<HADto> it)
-            => it.AddFieldName("inheritors!");
-        
-        public static Partial<HADto> WithInheritors(this Partial<HADto> it, Func<Partial<HADto>, Partial<HADto>> partialBuilder)
-            => it.AddFieldName("inheritors", partialBuilder(new Partial<HADto>(it)));
-        
-        public static Partial<HADto> WithDeprecation(this Partial<HADto> it)
-            => it.AddFieldName("deprecation");
-        
-        public static Partial<HADto> WithDeprecation(this Partial<HADto> it, Func<Partial<HADeprecation>, Partial<HADeprecation>> partialBuilder)
-            => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecation>(it)));
-        
-        public static Partial<HADto> WithIsRecord(this Partial<HADto> it)
-            => it.AddFieldName("record");
-        
-    }
+    public static Partial<HADto> WithId(this Partial<HADto> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<HADto> WithName(this Partial<HADto> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<HADto> WithFields(this Partial<HADto> it)
+        => it.AddFieldName("fields");
+    
+    public static Partial<HADto> WithFields(this Partial<HADto> it, Func<Partial<HADtoField>, Partial<HADtoField>> partialBuilder)
+        => it.AddFieldName("fields", partialBuilder(new Partial<HADtoField>(it)));
+    
+    public static Partial<HADto> WithHierarchyRole(this Partial<HADto> it)
+        => it.AddFieldName("hierarchyRole");
+    
+    public static Partial<HADto> WithHierarchyRole(this Partial<HADto> it, Func<Partial<HierarchyRole>, Partial<HierarchyRole>> partialBuilder)
+        => it.AddFieldName("hierarchyRole", partialBuilder(new Partial<HierarchyRole>(it)));
+    
+    public static Partial<HADto> WithHierarchyRole2(this Partial<HADto> it)
+        => it.AddFieldName("hierarchyRole2");
+    
+    public static Partial<HADto> WithHierarchyRole2(this Partial<HADto> it, Func<Partial<HierarchyRole2>, Partial<HierarchyRole2>> partialBuilder)
+        => it.AddFieldName("hierarchyRole2", partialBuilder(new Partial<HierarchyRole2>(it)));
+    
+    public static Partial<HADto> WithExtends(this Partial<HADto> it)
+        => it.AddFieldName("extends");
+    
+    public static Partial<HADto> WithExtendsRecursive(this Partial<HADto> it)
+        => it.AddFieldName("extends!");
+    
+    public static Partial<HADto> WithExtends(this Partial<HADto> it, Func<Partial<HADto>, Partial<HADto>> partialBuilder)
+        => it.AddFieldName("extends", partialBuilder(new Partial<HADto>(it)));
+    
+    public static Partial<HADto> WithImplements(this Partial<HADto> it)
+        => it.AddFieldName("implements");
+    
+    public static Partial<HADto> WithImplementsRecursive(this Partial<HADto> it)
+        => it.AddFieldName("implements!");
+    
+    public static Partial<HADto> WithImplements(this Partial<HADto> it, Func<Partial<HADto>, Partial<HADto>> partialBuilder)
+        => it.AddFieldName("implements", partialBuilder(new Partial<HADto>(it)));
+    
+    public static Partial<HADto> WithInheritors(this Partial<HADto> it)
+        => it.AddFieldName("inheritors");
+    
+    public static Partial<HADto> WithInheritorsRecursive(this Partial<HADto> it)
+        => it.AddFieldName("inheritors!");
+    
+    public static Partial<HADto> WithInheritors(this Partial<HADto> it, Func<Partial<HADto>, Partial<HADto>> partialBuilder)
+        => it.AddFieldName("inheritors", partialBuilder(new Partial<HADto>(it)));
+    
+    public static Partial<HADto> WithDeprecation(this Partial<HADto> it)
+        => it.AddFieldName("deprecation");
+    
+    public static Partial<HADto> WithDeprecation(this Partial<HADto> it, Func<Partial<HADeprecation>, Partial<HADeprecation>> partialBuilder)
+        => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecation>(it)));
+    
+    public static Partial<HADto> WithIsRecord(this Partial<HADto> it)
+        => it.AddFieldName("record");
     
 }
+

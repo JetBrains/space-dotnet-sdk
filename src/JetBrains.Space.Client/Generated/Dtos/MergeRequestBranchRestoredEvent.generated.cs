@@ -27,60 +27,59 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MergeRequestBranchRestoredEvent
+     : FeedEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MergeRequestBranchRestoredEvent
-         : FeedEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MergeRequestBranchRestoredEvent";
+    
+    public MergeRequestBranchRestoredEvent() { }
+    
+    public MergeRequestBranchRestoredEvent(string repository, string branch, MergeRequestBranchType branchType)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MergeRequestBranchRestoredEvent";
-        
-        public MergeRequestBranchRestoredEvent() { }
-        
-        public MergeRequestBranchRestoredEvent(string repository, string branch, MergeRequestBranchType branchType)
-        {
-            Repository = repository;
-            Branch = branch;
-            BranchType = branchType;
-        }
-        
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MergeRequestBranchRestoredEvent), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<string> _branch = new PropertyValue<string>(nameof(MergeRequestBranchRestoredEvent), nameof(Branch));
-        
-        [Required]
-        [JsonPropertyName("branch")]
-        public string Branch
-        {
-            get => _branch.GetValue();
-            set => _branch.SetValue(value);
-        }
-    
-        private PropertyValue<MergeRequestBranchType> _branchType = new PropertyValue<MergeRequestBranchType>(nameof(MergeRequestBranchRestoredEvent), nameof(BranchType));
-        
-        [Required]
-        [JsonPropertyName("branchType")]
-        public MergeRequestBranchType BranchType
-        {
-            get => _branchType.GetValue();
-            set => _branchType.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _branch.SetAccessPath(path, validateHasBeenSet);
-            _branchType.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Repository = repository;
+        Branch = branch;
+        BranchType = branchType;
     }
     
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MergeRequestBranchRestoredEvent), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public string Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<string> _branch = new PropertyValue<string>(nameof(MergeRequestBranchRestoredEvent), nameof(Branch));
+    
+    [Required]
+    [JsonPropertyName("branch")]
+    public string Branch
+    {
+        get => _branch.GetValue();
+        set => _branch.SetValue(value);
+    }
+
+    private PropertyValue<MergeRequestBranchType> _branchType = new PropertyValue<MergeRequestBranchType>(nameof(MergeRequestBranchRestoredEvent), nameof(BranchType));
+    
+    [Required]
+    [JsonPropertyName("branchType")]
+    public MergeRequestBranchType BranchType
+    {
+        get => _branchType.GetValue();
+        set => _branchType.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _branch.SetAccessPath(path, validateHasBeenSet);
+        _branchType.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

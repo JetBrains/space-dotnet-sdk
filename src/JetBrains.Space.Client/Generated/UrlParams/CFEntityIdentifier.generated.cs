@@ -27,91 +27,90 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class CFEntityIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class CFEntityIdentifier : IUrlParameter
+    public static CFEntityIdentifier CFAbsence(AbsenceIdentifier absence)
+        => new CFAbsenceIdentifier(absence);
+    
+    public static CFEntityIdentifier CFIssue(IssueIdentifier issue)
+        => new CFIssueIdentifier(issue);
+    
+    public static CFEntityIdentifier CFMembership(TeamMembershipIdentifier membership)
+        => new CFMembershipIdentifier(membership);
+    
+    public static CFEntityIdentifier CFProfile(ProfileIdentifier profile)
+        => new CFProfileIdentifier(profile);
+    
+    public static CFEntityIdentifier CFTeam(TeamIdentifier team)
+        => new CFTeamIdentifier(team);
+    
+    private class CFAbsenceIdentifier : CFEntityIdentifier
     {
-        public static CFEntityIdentifier CFAbsence(AbsenceIdentifier absence)
-            => new CFAbsenceIdentifier(absence);
+        private readonly AbsenceIdentifier _absence;
         
-        public static CFEntityIdentifier CFIssue(IssueIdentifier issue)
-            => new CFIssueIdentifier(issue);
-        
-        public static CFEntityIdentifier CFMembership(TeamMembershipIdentifier membership)
-            => new CFMembershipIdentifier(membership);
-        
-        public static CFEntityIdentifier CFProfile(ProfileIdentifier profile)
-            => new CFProfileIdentifier(profile);
-        
-        public static CFEntityIdentifier CFTeam(TeamIdentifier team)
-            => new CFTeamIdentifier(team);
-        
-        private class CFAbsenceIdentifier : CFEntityIdentifier
+        public CFAbsenceIdentifier(AbsenceIdentifier absence)
         {
-            private readonly AbsenceIdentifier _absence;
-            
-            public CFAbsenceIdentifier(AbsenceIdentifier absence)
-            {
-                _absence = absence;
-            }
-            
-            public override string ToString()
-                => $"absence:{_absence}";
+            _absence = absence;
         }
         
-        private class CFIssueIdentifier : CFEntityIdentifier
+        public override string ToString()
+            => $"absence:{_absence}";
+    }
+    
+    private class CFIssueIdentifier : CFEntityIdentifier
+    {
+        private readonly IssueIdentifier _issue;
+        
+        public CFIssueIdentifier(IssueIdentifier issue)
         {
-            private readonly IssueIdentifier _issue;
-            
-            public CFIssueIdentifier(IssueIdentifier issue)
-            {
-                _issue = issue;
-            }
-            
-            public override string ToString()
-                => $"issue:{_issue}";
+            _issue = issue;
         }
         
-        private class CFMembershipIdentifier : CFEntityIdentifier
+        public override string ToString()
+            => $"issue:{_issue}";
+    }
+    
+    private class CFMembershipIdentifier : CFEntityIdentifier
+    {
+        private readonly TeamMembershipIdentifier _membership;
+        
+        public CFMembershipIdentifier(TeamMembershipIdentifier membership)
         {
-            private readonly TeamMembershipIdentifier _membership;
-            
-            public CFMembershipIdentifier(TeamMembershipIdentifier membership)
-            {
-                _membership = membership;
-            }
-            
-            public override string ToString()
-                => $"membership:{_membership}";
+            _membership = membership;
         }
         
-        private class CFProfileIdentifier : CFEntityIdentifier
+        public override string ToString()
+            => $"membership:{_membership}";
+    }
+    
+    private class CFProfileIdentifier : CFEntityIdentifier
+    {
+        private readonly ProfileIdentifier _profile;
+        
+        public CFProfileIdentifier(ProfileIdentifier profile)
         {
-            private readonly ProfileIdentifier _profile;
-            
-            public CFProfileIdentifier(ProfileIdentifier profile)
-            {
-                _profile = profile;
-            }
-            
-            public override string ToString()
-                => $"profile:{_profile}";
+            _profile = profile;
         }
         
-        private class CFTeamIdentifier : CFEntityIdentifier
+        public override string ToString()
+            => $"profile:{_profile}";
+    }
+    
+    private class CFTeamIdentifier : CFEntityIdentifier
+    {
+        private readonly TeamIdentifier _team;
+        
+        public CFTeamIdentifier(TeamIdentifier team)
         {
-            private readonly TeamIdentifier _team;
-            
-            public CFTeamIdentifier(TeamIdentifier team)
-            {
-                _team = team;
-            }
-            
-            public override string ToString()
-                => $"team:{_team}";
+            _team = team;
         }
         
+        public override string ToString()
+            => $"team:{_team}";
     }
     
 }
+

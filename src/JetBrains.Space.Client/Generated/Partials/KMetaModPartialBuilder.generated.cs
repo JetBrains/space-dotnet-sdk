@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.KMetaModPartialBuilder
+namespace JetBrains.Space.Client.KMetaModPartialBuilder;
+
+public static class KMetaModPartialExtensions
 {
-    public static class KMetaModPartialExtensions
-    {
-        public static Partial<KMetaMod> WithPrincipal(this Partial<KMetaMod> it)
-            => it.AddFieldName("principal");
-        
-        public static Partial<KMetaMod> WithPrincipal(this Partial<KMetaMod> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<KMetaMod> WithTimestamp(this Partial<KMetaMod> it)
-            => it.AddFieldName("timestamp");
-        
-        public static Partial<KMetaMod> WithMethod(this Partial<KMetaMod> it)
-            => it.AddFieldName("method");
-        
-    }
+    public static Partial<KMetaMod> WithPrincipal(this Partial<KMetaMod> it)
+        => it.AddFieldName("principal");
+    
+    public static Partial<KMetaMod> WithPrincipal(this Partial<KMetaMod> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<KMetaMod> WithTimestamp(this Partial<KMetaMod> it)
+        => it.AddFieldName("timestamp");
+    
+    public static Partial<KMetaMod> WithMethod(this Partial<KMetaMod> it)
+        => it.AddFieldName("method");
     
 }
+

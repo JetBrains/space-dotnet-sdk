@@ -27,98 +27,97 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryTeamsForIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryTeamsForIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryTeamsForIdPatchRequest() { }
+    
+    public TeamDirectoryTeamsForIdPatchRequest(string? name = null, string? description = null, List<string>? emails = null, string? parentId = null, string? defaultManager = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null)
     {
-        public TeamDirectoryTeamsForIdPatchRequest() { }
-        
-        public TeamDirectoryTeamsForIdPatchRequest(string? name = null, string? description = null, List<string>? emails = null, string? parentId = null, string? defaultManager = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null)
-        {
-            Name = (name ?? string.Empty);
-            Description = description;
-            Emails = emails;
-            ParentId = parentId;
-            DefaultManager = defaultManager;
-            CustomFieldValues = customFieldValues;
-            ExternalId = externalId;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(Name), string.Empty);
-        
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(Description));
-        
-        [JsonPropertyName("description")]
-        public string? Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _emails = new PropertyValue<List<string>?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(Emails));
-        
-        [JsonPropertyName("emails")]
-        public List<string>? Emails
-        {
-            get => _emails.GetValue();
-            set => _emails.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(ParentId));
-        
-        [JsonPropertyName("parentId")]
-        public string? ParentId
-        {
-            get => _parentId.GetValue();
-            set => _parentId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _defaultManager = new PropertyValue<string?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(DefaultManager));
-        
-        [JsonPropertyName("defaultManager")]
-        public string? DefaultManager
-        {
-            get => _defaultManager.GetValue();
-            set => _defaultManager.SetValue(value);
-        }
-    
-        private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(CustomFieldValues));
-        
-        [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldInputValue>? CustomFieldValues
-        {
-            get => _customFieldValues.GetValue();
-            set => _customFieldValues.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(ExternalId));
-        
-        [JsonPropertyName("externalId")]
-        public string? ExternalId
-        {
-            get => _externalId.GetValue();
-            set => _externalId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _emails.SetAccessPath(path, validateHasBeenSet);
-            _parentId.SetAccessPath(path, validateHasBeenSet);
-            _defaultManager.SetAccessPath(path, validateHasBeenSet);
-            _customFieldValues.SetAccessPath(path, validateHasBeenSet);
-            _externalId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = (name ?? string.Empty);
+        Description = description;
+        Emails = emails;
+        ParentId = parentId;
+        DefaultManager = defaultManager;
+        CustomFieldValues = customFieldValues;
+        ExternalId = externalId;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(Name), string.Empty);
+    
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _emails = new PropertyValue<List<string>?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(Emails));
+    
+    [JsonPropertyName("emails")]
+    public List<string>? Emails
+    {
+        get => _emails.GetValue();
+        set => _emails.SetValue(value);
+    }
+
+    private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(ParentId));
+    
+    [JsonPropertyName("parentId")]
+    public string? ParentId
+    {
+        get => _parentId.GetValue();
+        set => _parentId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _defaultManager = new PropertyValue<string?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(DefaultManager));
+    
+    [JsonPropertyName("defaultManager")]
+    public string? DefaultManager
+    {
+        get => _defaultManager.GetValue();
+        set => _defaultManager.SetValue(value);
+    }
+
+    private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(CustomFieldValues));
+    
+    [JsonPropertyName("customFieldValues")]
+    public List<CustomFieldInputValue>? CustomFieldValues
+    {
+        get => _customFieldValues.GetValue();
+        set => _customFieldValues.SetValue(value);
+    }
+
+    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(ExternalId));
+    
+    [JsonPropertyName("externalId")]
+    public string? ExternalId
+    {
+        get => _externalId.GetValue();
+        set => _externalId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _emails.SetAccessPath(path, validateHasBeenSet);
+        _parentId.SetAccessPath(path, validateHasBeenSet);
+        _defaultManager.SetAccessPath(path, validateHasBeenSet);
+        _customFieldValues.SetAccessPath(path, validateHasBeenSet);
+        _externalId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

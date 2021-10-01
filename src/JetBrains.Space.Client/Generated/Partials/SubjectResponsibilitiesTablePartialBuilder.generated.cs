@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SubjectResponsibilitiesTablePartialBuilder
+namespace JetBrains.Space.Client.SubjectResponsibilitiesTablePartialBuilder;
+
+public static class SubjectResponsibilitiesTablePartialExtensions
 {
-    public static class SubjectResponsibilitiesTablePartialExtensions
-    {
-        public static Partial<SubjectResponsibilitiesTable> WithSubjectId(this Partial<SubjectResponsibilitiesTable> it)
-            => it.AddFieldName("subjectId");
-        
-        public static Partial<SubjectResponsibilitiesTable> WithName(this Partial<SubjectResponsibilitiesTable> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<SubjectResponsibilitiesTable> WithReusedInProjects(this Partial<SubjectResponsibilitiesTable> it)
-            => it.AddFieldName("reusedInProjects");
-        
-        public static Partial<SubjectResponsibilitiesTable> WithResponsibilityRecords(this Partial<SubjectResponsibilitiesTable> it)
-            => it.AddFieldName("responsibilityRecords");
-        
-        public static Partial<SubjectResponsibilitiesTable> WithResponsibilityRecords(this Partial<SubjectResponsibilitiesTable> it, Func<Partial<ResponsibilityRecord>, Partial<ResponsibilityRecord>> partialBuilder)
-            => it.AddFieldName("responsibilityRecords", partialBuilder(new Partial<ResponsibilityRecord>(it)));
-        
-    }
+    public static Partial<SubjectResponsibilitiesTable> WithSubjectId(this Partial<SubjectResponsibilitiesTable> it)
+        => it.AddFieldName("subjectId");
+    
+    public static Partial<SubjectResponsibilitiesTable> WithName(this Partial<SubjectResponsibilitiesTable> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<SubjectResponsibilitiesTable> WithReusedInProjects(this Partial<SubjectResponsibilitiesTable> it)
+        => it.AddFieldName("reusedInProjects");
+    
+    public static Partial<SubjectResponsibilitiesTable> WithResponsibilityRecords(this Partial<SubjectResponsibilitiesTable> it)
+        => it.AddFieldName("responsibilityRecords");
+    
+    public static Partial<SubjectResponsibilitiesTable> WithResponsibilityRecords(this Partial<SubjectResponsibilitiesTable> it, Func<Partial<ResponsibilityRecord>, Partial<ResponsibilityRecord>> partialBuilder)
+        => it.AddFieldName("responsibilityRecords", partialBuilder(new Partial<ResponsibilityRecord>(it)));
     
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectReposRecordPartialBuilder
+namespace JetBrains.Space.Client.ProjectReposRecordPartialBuilder;
+
+public static class ProjectReposRecordPartialExtensions
 {
-    public static class ProjectReposRecordPartialExtensions
-    {
-        public static Partial<ProjectReposRecord> WithId(this Partial<ProjectReposRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ProjectReposRecord> WithRepos(this Partial<ProjectReposRecord> it)
-            => it.AddFieldName("repos");
-        
-        public static Partial<ProjectReposRecord> WithRepos(this Partial<ProjectReposRecord> it, Func<Partial<PRRepositoryInfo>, Partial<PRRepositoryInfo>> partialBuilder)
-            => it.AddFieldName("repos", partialBuilder(new Partial<PRRepositoryInfo>(it)));
-        
-    }
+    public static Partial<ProjectReposRecord> WithId(this Partial<ProjectReposRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ProjectReposRecord> WithRepos(this Partial<ProjectReposRecord> it)
+        => it.AddFieldName("repos");
+    
+    public static Partial<ProjectReposRecord> WithRepos(this Partial<ProjectReposRecord> it, Func<Partial<PRRepositoryInfo>, Partial<PRRepositoryInfo>> partialBuilder)
+        => it.AddFieldName("repos", partialBuilder(new Partial<PRRepositoryInfo>(it)));
     
 }
+

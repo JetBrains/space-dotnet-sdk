@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDProfileLanguagePartialBuilder
+namespace JetBrains.Space.Client.TDProfileLanguagePartialBuilder;
+
+public static class TDProfileLanguagePartialExtensions
 {
-    public static class TDProfileLanguagePartialExtensions
-    {
-        public static Partial<TDProfileLanguage> WithName(this Partial<TDProfileLanguage> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TDProfileLanguage> WithName(this Partial<TDProfileLanguage> it, Func<Partial<TDProfileName>, Partial<TDProfileName>> partialBuilder)
-            => it.AddFieldName("name", partialBuilder(new Partial<TDProfileName>(it)));
-        
-        public static Partial<TDProfileLanguage> WithLanguage(this Partial<TDProfileLanguage> it)
-            => it.AddFieldName("language");
-        
-        public static Partial<TDProfileLanguage> WithLanguage(this Partial<TDProfileLanguage> it, Func<Partial<TDLanguage>, Partial<TDLanguage>> partialBuilder)
-            => it.AddFieldName("language", partialBuilder(new Partial<TDLanguage>(it)));
-        
-        public static Partial<TDProfileLanguage> WithLanguageCode(this Partial<TDProfileLanguage> it)
-            => it.AddFieldName("languageCode");
-        
-    }
+    public static Partial<TDProfileLanguage> WithName(this Partial<TDProfileLanguage> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TDProfileLanguage> WithName(this Partial<TDProfileLanguage> it, Func<Partial<TDProfileName>, Partial<TDProfileName>> partialBuilder)
+        => it.AddFieldName("name", partialBuilder(new Partial<TDProfileName>(it)));
+    
+    public static Partial<TDProfileLanguage> WithLanguage(this Partial<TDProfileLanguage> it)
+        => it.AddFieldName("language");
+    
+    public static Partial<TDProfileLanguage> WithLanguage(this Partial<TDProfileLanguage> it, Func<Partial<TDLanguage>, Partial<TDLanguage>> partialBuilder)
+        => it.AddFieldName("language", partialBuilder(new Partial<TDLanguage>(it)));
+    
+    public static Partial<TDProfileLanguage> WithLanguageCode(this Partial<TDProfileLanguage> it)
+        => it.AddFieldName("languageCode");
     
 }
+

@@ -27,81 +27,80 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TrustedCertificate
+     : IPropagatePropertyAccessPath
 {
-    public sealed class TrustedCertificate
-         : IPropagatePropertyAccessPath
+    public TrustedCertificate() { }
+    
+    public TrustedCertificate(string id, string alias, string data, CertificateInfo info, bool archived)
     {
-        public TrustedCertificate() { }
-        
-        public TrustedCertificate(string id, string alias, string data, CertificateInfo info, bool archived)
-        {
-            Id = id;
-            Alias = alias;
-            Data = data;
-            Info = info;
-            IsArchived = archived;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(TrustedCertificate), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<string> _alias = new PropertyValue<string>(nameof(TrustedCertificate), nameof(Alias));
-        
-        [Required]
-        [JsonPropertyName("alias")]
-        public string Alias
-        {
-            get => _alias.GetValue();
-            set => _alias.SetValue(value);
-        }
-    
-        private PropertyValue<string> _data = new PropertyValue<string>(nameof(TrustedCertificate), nameof(Data));
-        
-        [Required]
-        [JsonPropertyName("data")]
-        public string Data
-        {
-            get => _data.GetValue();
-            set => _data.SetValue(value);
-        }
-    
-        private PropertyValue<CertificateInfo> _info = new PropertyValue<CertificateInfo>(nameof(TrustedCertificate), nameof(Info));
-        
-        [Required]
-        [JsonPropertyName("info")]
-        public CertificateInfo Info
-        {
-            get => _info.GetValue();
-            set => _info.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TrustedCertificate), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _alias.SetAccessPath(path, validateHasBeenSet);
-            _data.SetAccessPath(path, validateHasBeenSet);
-            _info.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Alias = alias;
+        Data = data;
+        Info = info;
+        IsArchived = archived;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TrustedCertificate), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string> _alias = new PropertyValue<string>(nameof(TrustedCertificate), nameof(Alias));
+    
+    [Required]
+    [JsonPropertyName("alias")]
+    public string Alias
+    {
+        get => _alias.GetValue();
+        set => _alias.SetValue(value);
+    }
+
+    private PropertyValue<string> _data = new PropertyValue<string>(nameof(TrustedCertificate), nameof(Data));
+    
+    [Required]
+    [JsonPropertyName("data")]
+    public string Data
+    {
+        get => _data.GetValue();
+        set => _data.SetValue(value);
+    }
+
+    private PropertyValue<CertificateInfo> _info = new PropertyValue<CertificateInfo>(nameof(TrustedCertificate), nameof(Info));
+    
+    [Required]
+    [JsonPropertyName("info")]
+    public CertificateInfo Info
+    {
+        get => _info.GetValue();
+        set => _info.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TrustedCertificate), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _alias.SetAccessPath(path, validateHasBeenSet);
+        _data.SetAccessPath(path, validateHasBeenSet);
+        _info.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

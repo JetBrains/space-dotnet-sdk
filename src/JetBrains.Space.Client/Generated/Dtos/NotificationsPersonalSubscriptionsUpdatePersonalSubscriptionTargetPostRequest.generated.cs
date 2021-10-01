@@ -27,69 +27,68 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest
-         : IPropagatePropertyAccessPath
+    public NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest() { }
+    
+    public NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest(ProfileIdentifier profile, string targetCode, string feed, List<string> eventCodes)
     {
-        public NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest() { }
-        
-        public NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest(ProfileIdentifier profile, string targetCode, string feed, List<string> eventCodes)
-        {
-            Profile = profile;
-            TargetCode = targetCode;
-            Feed = feed;
-            EventCodes = eventCodes;
-        }
-        
-        private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public ProfileIdentifier Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<string> _targetCode = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(TargetCode));
-        
-        [Required]
-        [JsonPropertyName("targetCode")]
-        public string TargetCode
-        {
-            get => _targetCode.GetValue();
-            set => _targetCode.SetValue(value);
-        }
-    
-        private PropertyValue<string> _feed = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(Feed));
-        
-        [Required]
-        [JsonPropertyName("feed")]
-        public string Feed
-        {
-            get => _feed.GetValue();
-            set => _feed.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _eventCodes = new PropertyValue<List<string>>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(EventCodes), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("eventCodes")]
-        public List<string> EventCodes
-        {
-            get => _eventCodes.GetValue();
-            set => _eventCodes.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _targetCode.SetAccessPath(path, validateHasBeenSet);
-            _feed.SetAccessPath(path, validateHasBeenSet);
-            _eventCodes.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
+        TargetCode = targetCode;
+        Feed = feed;
+        EventCodes = eventCodes;
     }
     
+    private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public ProfileIdentifier Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<string> _targetCode = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(TargetCode));
+    
+    [Required]
+    [JsonPropertyName("targetCode")]
+    public string TargetCode
+    {
+        get => _targetCode.GetValue();
+        set => _targetCode.SetValue(value);
+    }
+
+    private PropertyValue<string> _feed = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(Feed));
+    
+    [Required]
+    [JsonPropertyName("feed")]
+    public string Feed
+    {
+        get => _feed.GetValue();
+        set => _feed.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _eventCodes = new PropertyValue<List<string>>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(EventCodes), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("eventCodes")]
+    public List<string> EventCodes
+    {
+        get => _eventCodes.GetValue();
+        set => _eventCodes.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _targetCode.SetAccessPath(path, validateHasBeenSet);
+        _feed.SetAccessPath(path, validateHasBeenSet);
+        _eventCodes.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

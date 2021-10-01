@@ -27,89 +27,88 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitCommitChange
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GitCommitChange
-         : IPropagatePropertyAccessPath
+    public GitCommitChange() { }
+    
+    public GitCommitChange(GitCommitChangeType changeType, string revision, GitFile? old = null, GitFile? @new = null, GitDiffSize? diffSize = null, string? path = null)
     {
-        public GitCommitChange() { }
-        
-        public GitCommitChange(GitCommitChangeType changeType, string revision, GitFile? old = null, GitFile? @new = null, GitDiffSize? diffSize = null, string? path = null)
-        {
-            ChangeType = changeType;
-            Old = old;
-            New = @new;
-            Revision = revision;
-            DiffSize = diffSize;
-            Path = path;
-        }
-        
-        private PropertyValue<GitCommitChangeType> _changeType = new PropertyValue<GitCommitChangeType>(nameof(GitCommitChange), nameof(ChangeType));
-        
-        [Required]
-        [JsonPropertyName("changeType")]
-        public GitCommitChangeType ChangeType
-        {
-            get => _changeType.GetValue();
-            set => _changeType.SetValue(value);
-        }
-    
-        private PropertyValue<GitFile?> _old = new PropertyValue<GitFile?>(nameof(GitCommitChange), nameof(Old));
-        
-        [JsonPropertyName("old")]
-        public GitFile? Old
-        {
-            get => _old.GetValue();
-            set => _old.SetValue(value);
-        }
-    
-        private PropertyValue<GitFile?> _new = new PropertyValue<GitFile?>(nameof(GitCommitChange), nameof(New));
-        
-        [JsonPropertyName("new")]
-        public GitFile? New
-        {
-            get => _new.GetValue();
-            set => _new.SetValue(value);
-        }
-    
-        private PropertyValue<string> _revision = new PropertyValue<string>(nameof(GitCommitChange), nameof(Revision));
-        
-        [Required]
-        [JsonPropertyName("revision")]
-        public string Revision
-        {
-            get => _revision.GetValue();
-            set => _revision.SetValue(value);
-        }
-    
-        private PropertyValue<GitDiffSize?> _diffSize = new PropertyValue<GitDiffSize?>(nameof(GitCommitChange), nameof(DiffSize));
-        
-        [JsonPropertyName("diffSize")]
-        public GitDiffSize? DiffSize
-        {
-            get => _diffSize.GetValue();
-            set => _diffSize.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _path = new PropertyValue<string?>(nameof(GitCommitChange), nameof(Path));
-        
-        [JsonPropertyName("path")]
-        public string? Path
-        {
-            get => _path.GetValue();
-            set => _path.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _changeType.SetAccessPath(path, validateHasBeenSet);
-            _old.SetAccessPath(path, validateHasBeenSet);
-            _new.SetAccessPath(path, validateHasBeenSet);
-            _revision.SetAccessPath(path, validateHasBeenSet);
-            _diffSize.SetAccessPath(path, validateHasBeenSet);
-            _path.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ChangeType = changeType;
+        Old = old;
+        New = @new;
+        Revision = revision;
+        DiffSize = diffSize;
+        Path = path;
     }
     
+    private PropertyValue<GitCommitChangeType> _changeType = new PropertyValue<GitCommitChangeType>(nameof(GitCommitChange), nameof(ChangeType));
+    
+    [Required]
+    [JsonPropertyName("changeType")]
+    public GitCommitChangeType ChangeType
+    {
+        get => _changeType.GetValue();
+        set => _changeType.SetValue(value);
+    }
+
+    private PropertyValue<GitFile?> _old = new PropertyValue<GitFile?>(nameof(GitCommitChange), nameof(Old));
+    
+    [JsonPropertyName("old")]
+    public GitFile? Old
+    {
+        get => _old.GetValue();
+        set => _old.SetValue(value);
+    }
+
+    private PropertyValue<GitFile?> _new = new PropertyValue<GitFile?>(nameof(GitCommitChange), nameof(New));
+    
+    [JsonPropertyName("new")]
+    public GitFile? New
+    {
+        get => _new.GetValue();
+        set => _new.SetValue(value);
+    }
+
+    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(GitCommitChange), nameof(Revision));
+    
+    [Required]
+    [JsonPropertyName("revision")]
+    public string Revision
+    {
+        get => _revision.GetValue();
+        set => _revision.SetValue(value);
+    }
+
+    private PropertyValue<GitDiffSize?> _diffSize = new PropertyValue<GitDiffSize?>(nameof(GitCommitChange), nameof(DiffSize));
+    
+    [JsonPropertyName("diffSize")]
+    public GitDiffSize? DiffSize
+    {
+        get => _diffSize.GetValue();
+        set => _diffSize.SetValue(value);
+    }
+
+    private PropertyValue<string?> _path = new PropertyValue<string?>(nameof(GitCommitChange), nameof(Path));
+    
+    [JsonPropertyName("path")]
+    public string? Path
+    {
+        get => _path.GetValue();
+        set => _path.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _changeType.SetAccessPath(path, validateHasBeenSet);
+        _old.SetAccessPath(path, validateHasBeenSet);
+        _new.SetAccessPath(path, validateHasBeenSet);
+        _revision.SetAccessPath(path, validateHasBeenSet);
+        _diffSize.SetAccessPath(path, validateHasBeenSet);
+        _path.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

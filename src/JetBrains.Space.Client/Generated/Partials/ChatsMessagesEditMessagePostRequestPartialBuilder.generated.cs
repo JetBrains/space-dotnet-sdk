@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChatsMessagesEditMessagePostRequestPartialBuilder
+namespace JetBrains.Space.Client.ChatsMessagesEditMessagePostRequestPartialBuilder;
+
+public static class ChatsMessagesEditMessagePostRequestPartialExtensions
 {
-    public static class ChatsMessagesEditMessagePostRequestPartialExtensions
-    {
-        public static Partial<ChatsMessagesEditMessagePostRequest> WithChannel(this Partial<ChatsMessagesEditMessagePostRequest> it)
-            => it.AddFieldName("channel");
-        
-        public static Partial<ChatsMessagesEditMessagePostRequest> WithMessage(this Partial<ChatsMessagesEditMessagePostRequest> it)
-            => it.AddFieldName("message");
-        
-        public static Partial<ChatsMessagesEditMessagePostRequest> WithMessage(this Partial<ChatsMessagesEditMessagePostRequest> it, Func<Partial<ChatMessageIdentifier>, Partial<ChatMessageIdentifier>> partialBuilder)
-            => it.AddFieldName("message", partialBuilder(new Partial<ChatMessageIdentifier>(it)));
-        
-        public static Partial<ChatsMessagesEditMessagePostRequest> WithContent(this Partial<ChatsMessagesEditMessagePostRequest> it)
-            => it.AddFieldName("content");
-        
-        public static Partial<ChatsMessagesEditMessagePostRequest> WithContent(this Partial<ChatsMessagesEditMessagePostRequest> it, Func<Partial<ChatMessage>, Partial<ChatMessage>> partialBuilder)
-            => it.AddFieldName("content", partialBuilder(new Partial<ChatMessage>(it)));
-        
-        public static Partial<ChatsMessagesEditMessagePostRequest> WithIsUnfurlLinks(this Partial<ChatsMessagesEditMessagePostRequest> it)
-            => it.AddFieldName("unfurlLinks");
-        
-    }
+    public static Partial<ChatsMessagesEditMessagePostRequest> WithChannel(this Partial<ChatsMessagesEditMessagePostRequest> it)
+        => it.AddFieldName("channel");
+    
+    public static Partial<ChatsMessagesEditMessagePostRequest> WithMessage(this Partial<ChatsMessagesEditMessagePostRequest> it)
+        => it.AddFieldName("message");
+    
+    public static Partial<ChatsMessagesEditMessagePostRequest> WithMessage(this Partial<ChatsMessagesEditMessagePostRequest> it, Func<Partial<ChatMessageIdentifier>, Partial<ChatMessageIdentifier>> partialBuilder)
+        => it.AddFieldName("message", partialBuilder(new Partial<ChatMessageIdentifier>(it)));
+    
+    public static Partial<ChatsMessagesEditMessagePostRequest> WithContent(this Partial<ChatsMessagesEditMessagePostRequest> it)
+        => it.AddFieldName("content");
+    
+    public static Partial<ChatsMessagesEditMessagePostRequest> WithContent(this Partial<ChatsMessagesEditMessagePostRequest> it, Func<Partial<ChatMessage>, Partial<ChatMessage>> partialBuilder)
+        => it.AddFieldName("content", partialBuilder(new Partial<ChatMessage>(it)));
+    
+    public static Partial<ChatsMessagesEditMessagePostRequest> WithIsUnfurlLinks(this Partial<ChatsMessagesEditMessagePostRequest> it)
+        => it.AddFieldName("unfurlLinks");
     
 }
+

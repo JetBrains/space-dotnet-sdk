@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsResponsibilitiesPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsResponsibilitiesPostRequestPartialBuilder;
+
+public static class ProjectsResponsibilitiesPostRequestPartialExtensions
 {
-    public static class ProjectsResponsibilitiesPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsResponsibilitiesPostRequest> WithSubjectId(this Partial<ProjectsResponsibilitiesPostRequest> it)
-            => it.AddFieldName("subjectId");
-        
-        public static Partial<ProjectsResponsibilitiesPostRequest> WithSummary(this Partial<ProjectsResponsibilitiesPostRequest> it)
-            => it.AddFieldName("summary");
-        
-        public static Partial<ProjectsResponsibilitiesPostRequest> WithNotes(this Partial<ProjectsResponsibilitiesPostRequest> it)
-            => it.AddFieldName("notes");
-        
-    }
+    public static Partial<ProjectsResponsibilitiesPostRequest> WithSubjectId(this Partial<ProjectsResponsibilitiesPostRequest> it)
+        => it.AddFieldName("subjectId");
+    
+    public static Partial<ProjectsResponsibilitiesPostRequest> WithSummary(this Partial<ProjectsResponsibilitiesPostRequest> it)
+        => it.AddFieldName("summary");
+    
+    public static Partial<ProjectsResponsibilitiesPostRequest> WithNotes(this Partial<ProjectsResponsibilitiesPostRequest> it)
+        => it.AddFieldName("notes");
     
 }
+

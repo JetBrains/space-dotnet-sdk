@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IssueAttachmentsChangedDetails
+     : IssueChangedM2Details, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class IssueAttachmentsChangedDetails
-         : IssueChangedM2Details, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "IssueAttachmentsChangedDetails";
+    
+    public IssueAttachmentsChangedDetails() { }
+    
+    public IssueAttachmentsChangedDetails(List<string>? addedNames = null, List<string>? removedNames = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "IssueAttachmentsChangedDetails";
-        
-        public IssueAttachmentsChangedDetails() { }
-        
-        public IssueAttachmentsChangedDetails(List<string>? addedNames = null, List<string>? removedNames = null)
-        {
-            AddedNames = addedNames;
-            RemovedNames = removedNames;
-        }
-        
-        private PropertyValue<List<string>?> _addedNames = new PropertyValue<List<string>?>(nameof(IssueAttachmentsChangedDetails), nameof(AddedNames));
-        
-        [JsonPropertyName("addedNames")]
-        public List<string>? AddedNames
-        {
-            get => _addedNames.GetValue();
-            set => _addedNames.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _removedNames = new PropertyValue<List<string>?>(nameof(IssueAttachmentsChangedDetails), nameof(RemovedNames));
-        
-        [JsonPropertyName("removedNames")]
-        public List<string>? RemovedNames
-        {
-            get => _removedNames.GetValue();
-            set => _removedNames.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _addedNames.SetAccessPath(path, validateHasBeenSet);
-            _removedNames.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        AddedNames = addedNames;
+        RemovedNames = removedNames;
     }
     
+    private PropertyValue<List<string>?> _addedNames = new PropertyValue<List<string>?>(nameof(IssueAttachmentsChangedDetails), nameof(AddedNames));
+    
+    [JsonPropertyName("addedNames")]
+    public List<string>? AddedNames
+    {
+        get => _addedNames.GetValue();
+        set => _addedNames.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _removedNames = new PropertyValue<List<string>?>(nameof(IssueAttachmentsChangedDetails), nameof(RemovedNames));
+    
+    [JsonPropertyName("removedNames")]
+    public List<string>? RemovedNames
+    {
+        get => _removedNames.GetValue();
+        set => _removedNames.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _addedNames.SetAccessPath(path, validateHasBeenSet);
+        _removedNames.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

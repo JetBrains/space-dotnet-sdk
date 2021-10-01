@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESAuthModuleSettingsPartialBuilder
+namespace JetBrains.Space.Client.ESAuthModuleSettingsPartialBuilder;
+
+public static class ESAuthModuleSettingsPartialExtensions
 {
-    public static class ESAuthModuleSettingsPartialExtensions
-    {
-    }
-    
 }
+

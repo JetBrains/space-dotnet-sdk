@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitRebaseResultHttp
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GitRebaseResultHttp
-         : IPropagatePropertyAccessPath
+    public GitRebaseResultHttp() { }
+    
+    public GitRebaseResultHttp(List<string> resultCommitIds)
     {
-        public GitRebaseResultHttp() { }
-        
-        public GitRebaseResultHttp(List<string> resultCommitIds)
-        {
-            ResultCommitIds = resultCommitIds;
-        }
-        
-        private PropertyValue<List<string>> _resultCommitIds = new PropertyValue<List<string>>(nameof(GitRebaseResultHttp), nameof(ResultCommitIds), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("resultCommitIds")]
-        public List<string> ResultCommitIds
-        {
-            get => _resultCommitIds.GetValue();
-            set => _resultCommitIds.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _resultCommitIds.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ResultCommitIds = resultCommitIds;
     }
     
+    private PropertyValue<List<string>> _resultCommitIds = new PropertyValue<List<string>>(nameof(GitRebaseResultHttp), nameof(ResultCommitIds), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("resultCommitIds")]
+    public List<string> ResultCommitIds
+    {
+        get => _resultCommitIds.GetValue();
+        set => _resultCommitIds.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _resultCommitIds.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

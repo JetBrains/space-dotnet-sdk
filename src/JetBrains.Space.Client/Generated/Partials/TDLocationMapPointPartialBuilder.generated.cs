@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDLocationMapPointPartialBuilder
+namespace JetBrains.Space.Client.TDLocationMapPointPartialBuilder;
+
+public static class TDLocationMapPointPartialExtensions
 {
-    public static class TDLocationMapPointPartialExtensions
-    {
-        public static Partial<TDLocationMapPoint> WithId(this Partial<TDLocationMapPoint> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<TDLocationMapPoint> WithMapId(this Partial<TDLocationMapPoint> it)
-            => it.AddFieldName("mapId");
-        
-        public static Partial<TDLocationMapPoint> WithX(this Partial<TDLocationMapPoint> it)
-            => it.AddFieldName("x");
-        
-        public static Partial<TDLocationMapPoint> WithY(this Partial<TDLocationMapPoint> it)
-            => it.AddFieldName("y");
-        
-        public static Partial<TDLocationMapPoint> WithCreated(this Partial<TDLocationMapPoint> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<TDLocationMapPoint> WithMemberLocation(this Partial<TDLocationMapPoint> it)
-            => it.AddFieldName("memberLocation");
-        
-        public static Partial<TDLocationMapPoint> WithIsDeleted(this Partial<TDLocationMapPoint> it)
-            => it.AddFieldName("deleted");
-        
-    }
+    public static Partial<TDLocationMapPoint> WithId(this Partial<TDLocationMapPoint> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<TDLocationMapPoint> WithMapId(this Partial<TDLocationMapPoint> it)
+        => it.AddFieldName("mapId");
+    
+    public static Partial<TDLocationMapPoint> WithX(this Partial<TDLocationMapPoint> it)
+        => it.AddFieldName("x");
+    
+    public static Partial<TDLocationMapPoint> WithY(this Partial<TDLocationMapPoint> it)
+        => it.AddFieldName("y");
+    
+    public static Partial<TDLocationMapPoint> WithCreated(this Partial<TDLocationMapPoint> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<TDLocationMapPoint> WithMemberLocation(this Partial<TDLocationMapPoint> it)
+        => it.AddFieldName("memberLocation");
+    
+    public static Partial<TDLocationMapPoint> WithIsDeleted(this Partial<TDLocationMapPoint> it)
+        => it.AddFieldName("deleted");
     
 }
+

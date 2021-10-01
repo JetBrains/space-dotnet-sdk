@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsIssueTagPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsIssueTagPartialBuilder;
+
+public static class UnfurlDetailsIssueTagPartialExtensions
 {
-    public static class UnfurlDetailsIssueTagPartialExtensions
-    {
-        public static Partial<UnfurlDetailsIssueTag> WithTag(this Partial<UnfurlDetailsIssueTag> it)
-            => it.AddFieldName("tag");
-        
-        public static Partial<UnfurlDetailsIssueTag> WithTag(this Partial<UnfurlDetailsIssueTag> it, Func<Partial<PlanningTag>, Partial<PlanningTag>> partialBuilder)
-            => it.AddFieldName("tag", partialBuilder(new Partial<PlanningTag>(it)));
-        
-        public static Partial<UnfurlDetailsIssueTag> WithIsStrikeThrough(this Partial<UnfurlDetailsIssueTag> it)
-            => it.AddFieldName("strikeThrough");
-        
-    }
+    public static Partial<UnfurlDetailsIssueTag> WithTag(this Partial<UnfurlDetailsIssueTag> it)
+        => it.AddFieldName("tag");
+    
+    public static Partial<UnfurlDetailsIssueTag> WithTag(this Partial<UnfurlDetailsIssueTag> it, Func<Partial<PlanningTag>, Partial<PlanningTag>> partialBuilder)
+        => it.AddFieldName("tag", partialBuilder(new Partial<PlanningTag>(it)));
+    
+    public static Partial<UnfurlDetailsIssueTag> WithIsStrikeThrough(this Partial<UnfurlDetailsIssueTag> it)
+        => it.AddFieldName("strikeThrough");
     
 }
+

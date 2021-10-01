@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ApplicationsSubscriptionFilter
+     : SubscriptionFilter, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ApplicationsSubscriptionFilter
-         : SubscriptionFilter, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ApplicationsSubscriptionFilter";
+    
+    public ApplicationsSubscriptionFilter() { }
+    
+    public ApplicationsSubscriptionFilter(ESApp? application = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ApplicationsSubscriptionFilter";
-        
-        public ApplicationsSubscriptionFilter() { }
-        
-        public ApplicationsSubscriptionFilter(ESApp? application = null)
-        {
-            Application = application;
-        }
-        
-        private PropertyValue<ESApp?> _application = new PropertyValue<ESApp?>(nameof(ApplicationsSubscriptionFilter), nameof(Application));
-        
-        [JsonPropertyName("application")]
-        public ESApp? Application
-        {
-            get => _application.GetValue();
-            set => _application.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _application.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Application = application;
     }
     
+    private PropertyValue<ESApp?> _application = new PropertyValue<ESApp?>(nameof(ApplicationsSubscriptionFilter), nameof(Application));
+    
+    [JsonPropertyName("application")]
+    public ESApp? Application
+    {
+        get => _application.GetValue();
+        set => _application.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _application.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

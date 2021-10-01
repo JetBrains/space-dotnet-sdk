@@ -27,147 +27,146 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PackageVersionData
+     : IPropagatePropertyAccessPath
 {
-    public sealed class PackageVersionData
-         : IPropagatePropertyAccessPath
+    public PackageVersionData() { }
+    
+    public PackageVersionData(PackageType type, string repository, string name, string version, bool pinned, List<string>? tags = null, long? created = null, long? lastAccessed = null, long? downloads = null, string? comment = null, long? diskSize = null)
     {
-        public PackageVersionData() { }
-        
-        public PackageVersionData(PackageType type, string repository, string name, string version, bool pinned, List<string>? tags = null, long? created = null, long? lastAccessed = null, long? downloads = null, string? comment = null, long? diskSize = null)
-        {
-            Type = type;
-            Repository = repository;
-            Name = name;
-            Version = version;
-            Tags = tags;
-            Created = created;
-            LastAccessed = lastAccessed;
-            Downloads = downloads;
-            IsPinned = pinned;
-            Comment = comment;
-            DiskSize = diskSize;
-        }
-        
-        private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(PackageVersionData), nameof(Type));
-        
-        [Required]
-        [JsonPropertyName("type")]
-        public PackageType Type
-        {
-            get => _type.GetValue();
-            set => _type.SetValue(value);
-        }
-    
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(PackageVersionData), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(PackageVersionData), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _version = new PropertyValue<string>(nameof(PackageVersionData), nameof(Version));
-        
-        [Required]
-        [JsonPropertyName("version")]
-        public string Version
-        {
-            get => _version.GetValue();
-            set => _version.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(PackageVersionData), nameof(Tags));
-        
-        [JsonPropertyName("tags")]
-        public List<string>? Tags
-        {
-            get => _tags.GetValue();
-            set => _tags.SetValue(value);
-        }
-    
-        private PropertyValue<long?> _created = new PropertyValue<long?>(nameof(PackageVersionData), nameof(Created));
-        
-        [JsonPropertyName("created")]
-        public long? Created
-        {
-            get => _created.GetValue();
-            set => _created.SetValue(value);
-        }
-    
-        private PropertyValue<long?> _lastAccessed = new PropertyValue<long?>(nameof(PackageVersionData), nameof(LastAccessed));
-        
-        [JsonPropertyName("lastAccessed")]
-        public long? LastAccessed
-        {
-            get => _lastAccessed.GetValue();
-            set => _lastAccessed.SetValue(value);
-        }
-    
-        private PropertyValue<long?> _downloads = new PropertyValue<long?>(nameof(PackageVersionData), nameof(Downloads));
-        
-        [JsonPropertyName("downloads")]
-        public long? Downloads
-        {
-            get => _downloads.GetValue();
-            set => _downloads.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _pinned = new PropertyValue<bool>(nameof(PackageVersionData), nameof(IsPinned));
-        
-        [Required]
-        [JsonPropertyName("pinned")]
-        public bool IsPinned
-        {
-            get => _pinned.GetValue();
-            set => _pinned.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _comment = new PropertyValue<string?>(nameof(PackageVersionData), nameof(Comment));
-        
-        [JsonPropertyName("comment")]
-        public string? Comment
-        {
-            get => _comment.GetValue();
-            set => _comment.SetValue(value);
-        }
-    
-        private PropertyValue<long?> _diskSize = new PropertyValue<long?>(nameof(PackageVersionData), nameof(DiskSize));
-        
-        [JsonPropertyName("diskSize")]
-        public long? DiskSize
-        {
-            get => _diskSize.GetValue();
-            set => _diskSize.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _type.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _version.SetAccessPath(path, validateHasBeenSet);
-            _tags.SetAccessPath(path, validateHasBeenSet);
-            _created.SetAccessPath(path, validateHasBeenSet);
-            _lastAccessed.SetAccessPath(path, validateHasBeenSet);
-            _downloads.SetAccessPath(path, validateHasBeenSet);
-            _pinned.SetAccessPath(path, validateHasBeenSet);
-            _comment.SetAccessPath(path, validateHasBeenSet);
-            _diskSize.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Type = type;
+        Repository = repository;
+        Name = name;
+        Version = version;
+        Tags = tags;
+        Created = created;
+        LastAccessed = lastAccessed;
+        Downloads = downloads;
+        IsPinned = pinned;
+        Comment = comment;
+        DiskSize = diskSize;
     }
     
+    private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(PackageVersionData), nameof(Type));
+    
+    [Required]
+    [JsonPropertyName("type")]
+    public PackageType Type
+    {
+        get => _type.GetValue();
+        set => _type.SetValue(value);
+    }
+
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(PackageVersionData), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public string Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PackageVersionData), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _version = new PropertyValue<string>(nameof(PackageVersionData), nameof(Version));
+    
+    [Required]
+    [JsonPropertyName("version")]
+    public string Version
+    {
+        get => _version.GetValue();
+        set => _version.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(PackageVersionData), nameof(Tags));
+    
+    [JsonPropertyName("tags")]
+    public List<string>? Tags
+    {
+        get => _tags.GetValue();
+        set => _tags.SetValue(value);
+    }
+
+    private PropertyValue<long?> _created = new PropertyValue<long?>(nameof(PackageVersionData), nameof(Created));
+    
+    [JsonPropertyName("created")]
+    public long? Created
+    {
+        get => _created.GetValue();
+        set => _created.SetValue(value);
+    }
+
+    private PropertyValue<long?> _lastAccessed = new PropertyValue<long?>(nameof(PackageVersionData), nameof(LastAccessed));
+    
+    [JsonPropertyName("lastAccessed")]
+    public long? LastAccessed
+    {
+        get => _lastAccessed.GetValue();
+        set => _lastAccessed.SetValue(value);
+    }
+
+    private PropertyValue<long?> _downloads = new PropertyValue<long?>(nameof(PackageVersionData), nameof(Downloads));
+    
+    [JsonPropertyName("downloads")]
+    public long? Downloads
+    {
+        get => _downloads.GetValue();
+        set => _downloads.SetValue(value);
+    }
+
+    private PropertyValue<bool> _pinned = new PropertyValue<bool>(nameof(PackageVersionData), nameof(IsPinned));
+    
+    [Required]
+    [JsonPropertyName("pinned")]
+    public bool IsPinned
+    {
+        get => _pinned.GetValue();
+        set => _pinned.SetValue(value);
+    }
+
+    private PropertyValue<string?> _comment = new PropertyValue<string?>(nameof(PackageVersionData), nameof(Comment));
+    
+    [JsonPropertyName("comment")]
+    public string? Comment
+    {
+        get => _comment.GetValue();
+        set => _comment.SetValue(value);
+    }
+
+    private PropertyValue<long?> _diskSize = new PropertyValue<long?>(nameof(PackageVersionData), nameof(DiskSize));
+    
+    [JsonPropertyName("diskSize")]
+    public long? DiskSize
+    {
+        get => _diskSize.GetValue();
+        set => _diskSize.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _type.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _version.SetAccessPath(path, validateHasBeenSet);
+        _tags.SetAccessPath(path, validateHasBeenSet);
+        _created.SetAccessPath(path, validateHasBeenSet);
+        _lastAccessed.SetAccessPath(path, validateHasBeenSet);
+        _downloads.SetAccessPath(path, validateHasBeenSet);
+        _pinned.SetAccessPath(path, validateHasBeenSet);
+        _comment.SetAccessPath(path, validateHasBeenSet);
+        _diskSize.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

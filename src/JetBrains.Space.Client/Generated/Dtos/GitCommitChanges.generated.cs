@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitCommitChanges
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GitCommitChanges
-         : IPropagatePropertyAccessPath
+    public GitCommitChanges() { }
+    
+    public GitCommitChanges(List<GitCommitChange> changes, bool overflow)
     {
-        public GitCommitChanges() { }
-        
-        public GitCommitChanges(List<GitCommitChange> changes, bool overflow)
-        {
-            Changes = changes;
-            IsOverflow = overflow;
-        }
-        
-        private PropertyValue<List<GitCommitChange>> _changes = new PropertyValue<List<GitCommitChange>>(nameof(GitCommitChanges), nameof(Changes), new List<GitCommitChange>());
-        
-        [Required]
-        [JsonPropertyName("changes")]
-        public List<GitCommitChange> Changes
-        {
-            get => _changes.GetValue();
-            set => _changes.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _overflow = new PropertyValue<bool>(nameof(GitCommitChanges), nameof(IsOverflow));
-        
-        [Required]
-        [JsonPropertyName("overflow")]
-        public bool IsOverflow
-        {
-            get => _overflow.GetValue();
-            set => _overflow.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _changes.SetAccessPath(path, validateHasBeenSet);
-            _overflow.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Changes = changes;
+        IsOverflow = overflow;
     }
     
+    private PropertyValue<List<GitCommitChange>> _changes = new PropertyValue<List<GitCommitChange>>(nameof(GitCommitChanges), nameof(Changes), new List<GitCommitChange>());
+    
+    [Required]
+    [JsonPropertyName("changes")]
+    public List<GitCommitChange> Changes
+    {
+        get => _changes.GetValue();
+        set => _changes.SetValue(value);
+    }
+
+    private PropertyValue<bool> _overflow = new PropertyValue<bool>(nameof(GitCommitChanges), nameof(IsOverflow));
+    
+    [Required]
+    [JsonPropertyName("overflow")]
+    public bool IsOverflow
+    {
+        get => _overflow.GetValue();
+        set => _overflow.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _changes.SetAccessPath(path, validateHasBeenSet);
+        _overflow.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

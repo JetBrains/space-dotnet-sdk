@@ -27,37 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RecurrenceRuleEndsOnDate
+     : RecurrenceRuleEnds, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class RecurrenceRuleEndsOnDate
-         : RecurrenceRuleEnds, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "RecurrenceRuleEnds.OnDate";
+    
+    public RecurrenceRuleEndsOnDate() { }
+    
+    public RecurrenceRuleEndsOnDate(DateTime date)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "RecurrenceRuleEnds.OnDate";
-        
-        public RecurrenceRuleEndsOnDate() { }
-        
-        public RecurrenceRuleEndsOnDate(DateTime date)
-        {
-            Date = date;
-        }
-        
-        private PropertyValue<DateTime> _date = new PropertyValue<DateTime>(nameof(RecurrenceRuleEndsOnDate), nameof(Date));
-        
-        [Required]
-        [JsonPropertyName("date")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime Date
-        {
-            get => _date.GetValue();
-            set => _date.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _date.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Date = date;
     }
     
+    private PropertyValue<DateTime> _date = new PropertyValue<DateTime>(nameof(RecurrenceRuleEndsOnDate), nameof(Date));
+    
+    [Required]
+    [JsonPropertyName("date")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime Date
+    {
+        get => _date.GetValue();
+        set => _date.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _date.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest() { }
+    
+    public TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest(bool approved)
     {
-        public TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest() { }
-        
-        public TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest(bool approved)
-        {
-            IsApproved = approved;
-        }
-        
-        private PropertyValue<bool> _approved = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest), nameof(IsApproved));
-        
-        [Required]
-        [JsonPropertyName("approved")]
-        public bool IsApproved
-        {
-            get => _approved.GetValue();
-            set => _approved.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _approved.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        IsApproved = approved;
     }
     
+    private PropertyValue<bool> _approved = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest), nameof(IsApproved));
+    
+    [Required]
+    [JsonPropertyName("approved")]
+    public bool IsApproved
+    {
+        get => _approved.GetValue();
+        set => _approved.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _approved.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

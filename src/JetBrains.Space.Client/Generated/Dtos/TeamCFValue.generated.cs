@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TeamCFValue
+     : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class TeamCFValue
-         : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "TeamCFValue";
+    
+    public TeamCFValue() { }
+    
+    public TeamCFValue(TDTeam? team = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "TeamCFValue";
-        
-        public TeamCFValue() { }
-        
-        public TeamCFValue(TDTeam? team = null)
-        {
-            Team = team;
-        }
-        
-        private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(TeamCFValue), nameof(Team));
-        
-        [JsonPropertyName("team")]
-        public TDTeam? Team
-        {
-            get => _team.GetValue();
-            set => _team.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _team.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Team = team;
     }
     
+    private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(TeamCFValue), nameof(Team));
+    
+    [JsonPropertyName("team")]
+    public TDTeam? Team
+    {
+        get => _team.GetValue();
+        set => _team.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _team.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

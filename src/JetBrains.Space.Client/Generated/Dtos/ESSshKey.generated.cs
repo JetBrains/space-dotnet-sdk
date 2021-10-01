@@ -27,70 +27,69 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESSshKey
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ESSshKey
-         : IPropagatePropertyAccessPath
+    public ESSshKey() { }
+    
+    public ESSshKey(string fingerprint, string comment, DateTime createdAt, DateTime? lastUsedAt = null)
     {
-        public ESSshKey() { }
-        
-        public ESSshKey(string fingerprint, string comment, DateTime createdAt, DateTime? lastUsedAt = null)
-        {
-            Fingerprint = fingerprint;
-            Comment = comment;
-            CreatedAt = createdAt;
-            LastUsedAt = lastUsedAt;
-        }
-        
-        private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(ESSshKey), nameof(Fingerprint));
-        
-        [Required]
-        [JsonPropertyName("fingerprint")]
-        public string Fingerprint
-        {
-            get => _fingerprint.GetValue();
-            set => _fingerprint.SetValue(value);
-        }
-    
-        private PropertyValue<string> _comment = new PropertyValue<string>(nameof(ESSshKey), nameof(Comment));
-        
-        [Required]
-        [JsonPropertyName("comment")]
-        public string Comment
-        {
-            get => _comment.GetValue();
-            set => _comment.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _createdAt = new PropertyValue<DateTime>(nameof(ESSshKey), nameof(CreatedAt));
-        
-        [Required]
-        [JsonPropertyName("createdAt")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime CreatedAt
-        {
-            get => _createdAt.GetValue();
-            set => _createdAt.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _lastUsedAt = new PropertyValue<DateTime?>(nameof(ESSshKey), nameof(LastUsedAt));
-        
-        [JsonPropertyName("lastUsedAt")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? LastUsedAt
-        {
-            get => _lastUsedAt.GetValue();
-            set => _lastUsedAt.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _fingerprint.SetAccessPath(path, validateHasBeenSet);
-            _comment.SetAccessPath(path, validateHasBeenSet);
-            _createdAt.SetAccessPath(path, validateHasBeenSet);
-            _lastUsedAt.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Fingerprint = fingerprint;
+        Comment = comment;
+        CreatedAt = createdAt;
+        LastUsedAt = lastUsedAt;
     }
     
+    private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(ESSshKey), nameof(Fingerprint));
+    
+    [Required]
+    [JsonPropertyName("fingerprint")]
+    public string Fingerprint
+    {
+        get => _fingerprint.GetValue();
+        set => _fingerprint.SetValue(value);
+    }
+
+    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(ESSshKey), nameof(Comment));
+    
+    [Required]
+    [JsonPropertyName("comment")]
+    public string Comment
+    {
+        get => _comment.GetValue();
+        set => _comment.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _createdAt = new PropertyValue<DateTime>(nameof(ESSshKey), nameof(CreatedAt));
+    
+    [Required]
+    [JsonPropertyName("createdAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime CreatedAt
+    {
+        get => _createdAt.GetValue();
+        set => _createdAt.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _lastUsedAt = new PropertyValue<DateTime?>(nameof(ESSshKey), nameof(LastUsedAt));
+    
+    [JsonPropertyName("lastUsedAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? LastUsedAt
+    {
+        get => _lastUsedAt.GetValue();
+        set => _lastUsedAt.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _fingerprint.SetAccessPath(path, validateHasBeenSet);
+        _comment.SetAccessPath(path, validateHasBeenSet);
+        _createdAt.SetAccessPath(path, validateHasBeenSet);
+        _lastUsedAt.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,65 +27,64 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectRepositoriesForRepositoryPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectRepositoriesForRepositoryPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectRepositoriesForRepositoryPostRequest() { }
+    
+    public ProjectsForProjectRepositoriesForRepositoryPostRequest(string description = "", bool initialize = true, bool defaultSetup = false, string? defaultBranch = null)
     {
-        public ProjectsForProjectRepositoriesForRepositoryPostRequest() { }
-        
-        public ProjectsForProjectRepositoriesForRepositoryPostRequest(string description = "", bool initialize = true, bool defaultSetup = false, string? defaultBranch = null)
-        {
-            Description = description;
-            DefaultBranch = defaultBranch;
-            IsInitialize = initialize;
-            IsDefaultSetup = defaultSetup;
-        }
-        
-        private PropertyValue<string> _description = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(Description));
-        
-        [JsonPropertyName("description")]
-        public string Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _defaultBranch = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(DefaultBranch));
-        
-        [JsonPropertyName("defaultBranch")]
-        public string? DefaultBranch
-        {
-            get => _defaultBranch.GetValue();
-            set => _defaultBranch.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _initialize = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(IsInitialize));
-        
-        [JsonPropertyName("initialize")]
-        public bool IsInitialize
-        {
-            get => _initialize.GetValue();
-            set => _initialize.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _defaultSetup = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(IsDefaultSetup));
-        
-        [JsonPropertyName("defaultSetup")]
-        public bool IsDefaultSetup
-        {
-            get => _defaultSetup.GetValue();
-            set => _defaultSetup.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _defaultBranch.SetAccessPath(path, validateHasBeenSet);
-            _initialize.SetAccessPath(path, validateHasBeenSet);
-            _defaultSetup.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Description = description;
+        DefaultBranch = defaultBranch;
+        IsInitialize = initialize;
+        IsDefaultSetup = defaultSetup;
     }
     
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<string?> _defaultBranch = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(DefaultBranch));
+    
+    [JsonPropertyName("defaultBranch")]
+    public string? DefaultBranch
+    {
+        get => _defaultBranch.GetValue();
+        set => _defaultBranch.SetValue(value);
+    }
+
+    private PropertyValue<bool> _initialize = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(IsInitialize));
+    
+    [JsonPropertyName("initialize")]
+    public bool IsInitialize
+    {
+        get => _initialize.GetValue();
+        set => _initialize.SetValue(value);
+    }
+
+    private PropertyValue<bool> _defaultSetup = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(IsDefaultSetup));
+    
+    [JsonPropertyName("defaultSetup")]
+    public bool IsDefaultSetup
+    {
+        get => _defaultSetup.GetValue();
+        set => _defaultSetup.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _defaultBranch.SetAccessPath(path, validateHasBeenSet);
+        _initialize.SetAccessPath(path, validateHasBeenSet);
+        _defaultSetup.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class AutonumberCFValue
+     : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class AutonumberCFValue
-         : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "AutonumberCFValue";
+    
+    public AutonumberCFValue() { }
+    
+    public AutonumberCFValue(string? value = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "AutonumberCFValue";
-        
-        public AutonumberCFValue() { }
-        
-        public AutonumberCFValue(string? value = null)
-        {
-            Value = value;
-        }
-        
-        private PropertyValue<string?> _value = new PropertyValue<string?>(nameof(AutonumberCFValue), nameof(Value));
-        
-        [JsonPropertyName("value")]
-        public string? Value
-        {
-            get => _value.GetValue();
-            set => _value.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _value.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Value = value;
     }
     
+    private PropertyValue<string?> _value = new PropertyValue<string?>(nameof(AutonumberCFValue), nameof(Value));
+    
+    [JsonPropertyName("value")]
+    public string? Value
+    {
+        get => _value.GetValue();
+        set => _value.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _value.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

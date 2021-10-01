@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueCFInputValuePartialBuilder
+namespace JetBrains.Space.Client.IssueCFInputValuePartialBuilder;
+
+public static class IssueCFInputValuePartialExtensions
 {
-    public static class IssueCFInputValuePartialExtensions
-    {
-        public static Partial<IssueCFInputValue> WithIssue(this Partial<IssueCFInputValue> it)
-            => it.AddFieldName("issue");
-        
-        public static Partial<IssueCFInputValue> WithIssue(this Partial<IssueCFInputValue> it, Func<Partial<IssueIdentifier>, Partial<IssueIdentifier>> partialBuilder)
-            => it.AddFieldName("issue", partialBuilder(new Partial<IssueIdentifier>(it)));
-        
-    }
+    public static Partial<IssueCFInputValue> WithIssue(this Partial<IssueCFInputValue> it)
+        => it.AddFieldName("issue");
+    
+    public static Partial<IssueCFInputValue> WithIssue(this Partial<IssueCFInputValue> it, Func<Partial<IssueIdentifier>, Partial<IssueIdentifier>> partialBuilder)
+        => it.AddFieldName("issue", partialBuilder(new Partial<IssueIdentifier>(it)));
     
 }
+

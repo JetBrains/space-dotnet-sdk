@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TrackedBranchesInReview
+     : IPropagatePropertyAccessPath
 {
-    public sealed class TrackedBranchesInReview
-         : IPropagatePropertyAccessPath
+    public TrackedBranchesInReview() { }
+    
+    public TrackedBranchesInReview(string repository, List<BranchInfo> branches)
     {
-        public TrackedBranchesInReview() { }
-        
-        public TrackedBranchesInReview(string repository, List<BranchInfo> branches)
-        {
-            Repository = repository;
-            Branches = branches;
-        }
-        
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(TrackedBranchesInReview), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<List<BranchInfo>> _branches = new PropertyValue<List<BranchInfo>>(nameof(TrackedBranchesInReview), nameof(Branches), new List<BranchInfo>());
-        
-        [Required]
-        [JsonPropertyName("branches")]
-        public List<BranchInfo> Branches
-        {
-            get => _branches.GetValue();
-            set => _branches.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _branches.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Repository = repository;
+        Branches = branches;
     }
     
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(TrackedBranchesInReview), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public string Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<List<BranchInfo>> _branches = new PropertyValue<List<BranchInfo>>(nameof(TrackedBranchesInReview), nameof(Branches), new List<BranchInfo>());
+    
+    [Required]
+    [JsonPropertyName("branches")]
+    public List<BranchInfo> Branches
+    {
+        get => _branches.GetValue();
+        set => _branches.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _branches.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

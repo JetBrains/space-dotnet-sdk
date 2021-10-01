@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequestPartialBuilder;
+
+public static class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithBranch(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
-            => it.AddFieldName("branch");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithChanges(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
-            => it.AddFieldName("changes");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithExecutionStatus(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
-            => it.AddFieldName("executionStatus");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithExecutionStatus(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it, Func<Partial<CommitExecutionStatus>, Partial<CommitExecutionStatus>> partialBuilder)
-            => it.AddFieldName("executionStatus", partialBuilder(new Partial<CommitExecutionStatus>(it)));
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithUrl(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
-            => it.AddFieldName("url");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithExternalServiceName(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
-            => it.AddFieldName("externalServiceName");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithTaskName(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
-            => it.AddFieldName("taskName");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithTaskId(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
-            => it.AddFieldName("taskId");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithTimestamp(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
-            => it.AddFieldName("timestamp");
-        
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithDescription(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
-            => it.AddFieldName("description");
-        
-    }
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithBranch(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
+        => it.AddFieldName("branch");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithChanges(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
+        => it.AddFieldName("changes");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithExecutionStatus(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
+        => it.AddFieldName("executionStatus");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithExecutionStatus(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it, Func<Partial<CommitExecutionStatus>, Partial<CommitExecutionStatus>> partialBuilder)
+        => it.AddFieldName("executionStatus", partialBuilder(new Partial<CommitExecutionStatus>(it)));
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithUrl(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
+        => it.AddFieldName("url");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithExternalServiceName(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
+        => it.AddFieldName("externalServiceName");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithTaskName(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
+        => it.AddFieldName("taskName");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithTaskId(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
+        => it.AddFieldName("taskId");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithTimestamp(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
+        => it.AddFieldName("timestamp");
+    
+    public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> WithDescription(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest> it)
+        => it.AddFieldName("description");
     
 }
+

@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CFEnumValueModificationCreatePartialBuilder
+namespace JetBrains.Space.Client.CFEnumValueModificationCreatePartialBuilder;
+
+public static class CFEnumValueModificationCreatePartialExtensions
 {
-    public static class CFEnumValueModificationCreatePartialExtensions
-    {
-        public static Partial<CFEnumValueModificationCreate> WithName(this Partial<CFEnumValueModificationCreate> it)
-            => it.AddFieldName("name");
-        
-    }
+    public static Partial<CFEnumValueModificationCreate> WithName(this Partial<CFEnumValueModificationCreate> it)
+        => it.AddFieldName("name");
     
 }
+

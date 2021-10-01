@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitCommitterProfilePartialBuilder
+namespace JetBrains.Space.Client.GitCommitterProfilePartialBuilder;
+
+public static class GitCommitterProfilePartialExtensions
 {
-    public static class GitCommitterProfilePartialExtensions
-    {
-        public static Partial<GitCommitterProfile> WithAuthor(this Partial<GitCommitterProfile> it)
-            => it.AddFieldName("author");
-        
-        public static Partial<GitCommitterProfile> WithEmail(this Partial<GitCommitterProfile> it)
-            => it.AddFieldName("email");
-        
-        public static Partial<GitCommitterProfile> WithProfile(this Partial<GitCommitterProfile> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<GitCommitterProfile> WithProfile(this Partial<GitCommitterProfile> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<GitCommitterProfile> WithAuthor(this Partial<GitCommitterProfile> it)
+        => it.AddFieldName("author");
+    
+    public static Partial<GitCommitterProfile> WithEmail(this Partial<GitCommitterProfile> it)
+        => it.AddFieldName("email");
+    
+    public static Partial<GitCommitterProfile> WithProfile(this Partial<GitCommitterProfile> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<GitCommitterProfile> WithProfile(this Partial<GitCommitterProfile> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

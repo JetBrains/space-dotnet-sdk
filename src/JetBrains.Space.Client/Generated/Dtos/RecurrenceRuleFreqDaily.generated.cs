@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RecurrenceRuleFreqDaily
+     : RecurrenceRuleFreq, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class RecurrenceRuleFreqDaily
-         : RecurrenceRuleFreq, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "RecurrenceRuleFreq.Daily";
+    
+    public RecurrenceRuleFreqDaily() { }
+    
+    public RecurrenceRuleFreqDaily(int interval)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "RecurrenceRuleFreq.Daily";
-        
-        public RecurrenceRuleFreqDaily() { }
-        
-        public RecurrenceRuleFreqDaily(int interval)
-        {
-            Interval = interval;
-        }
-        
-        private PropertyValue<int> _interval = new PropertyValue<int>(nameof(RecurrenceRuleFreqDaily), nameof(Interval));
-        
-        [Required]
-        [JsonPropertyName("interval")]
-        public int Interval
-        {
-            get => _interval.GetValue();
-            set => _interval.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _interval.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Interval = interval;
     }
     
+    private PropertyValue<int> _interval = new PropertyValue<int>(nameof(RecurrenceRuleFreqDaily), nameof(Interval));
+    
+    [Required]
+    [JsonPropertyName("interval")]
+    public int Interval
+    {
+        get => _interval.GetValue();
+        set => _interval.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _interval.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

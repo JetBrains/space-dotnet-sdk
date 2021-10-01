@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SlackImportSetTokenPostRequestPartialBuilder
+namespace JetBrains.Space.Client.SlackImportSetTokenPostRequestPartialBuilder;
+
+public static class SlackImportSetTokenPostRequestPartialExtensions
 {
-    public static class SlackImportSetTokenPostRequestPartialExtensions
-    {
-        public static Partial<SlackImportSetTokenPostRequest> WithToken(this Partial<SlackImportSetTokenPostRequest> it)
-            => it.AddFieldName("token");
-        
-    }
+    public static Partial<SlackImportSetTokenPostRequest> WithToken(this Partial<SlackImportSetTokenPostRequest> it)
+        => it.AddFieldName("token");
     
 }
+

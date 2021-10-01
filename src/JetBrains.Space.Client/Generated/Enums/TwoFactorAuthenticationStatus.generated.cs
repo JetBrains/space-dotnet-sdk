@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum TwoFactorAuthenticationStatus
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum TwoFactorAuthenticationStatus
-    {
-        [EnumMember(Value = "NOT_SETUP")]
-        NOTSETUP,
-        
-        [EnumMember(Value = "INACTIVE")]
-        INACTIVE,
-        
-        [EnumMember(Value = "ACTIVE")]
-        ACTIVE,
-        
-    }
+    [EnumMember(Value = "NOT_SETUP")]
+    NOTSETUP,
+    
+    [EnumMember(Value = "INACTIVE")]
+    INACTIVE,
+    
+    [EnumMember(Value = "ACTIVE")]
+    ACTIVE,
     
 }
+

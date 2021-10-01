@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PublicHolidaysHolidaysPostRequestPartialBuilder
+namespace JetBrains.Space.Client.PublicHolidaysHolidaysPostRequestPartialBuilder;
+
+public static class PublicHolidaysHolidaysPostRequestPartialExtensions
 {
-    public static class PublicHolidaysHolidaysPostRequestPartialExtensions
-    {
-        public static Partial<PublicHolidaysHolidaysPostRequest> WithCalendar(this Partial<PublicHolidaysHolidaysPostRequest> it)
-            => it.AddFieldName("calendar");
-        
-        public static Partial<PublicHolidaysHolidaysPostRequest> WithName(this Partial<PublicHolidaysHolidaysPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<PublicHolidaysHolidaysPostRequest> WithDate(this Partial<PublicHolidaysHolidaysPostRequest> it)
-            => it.AddFieldName("date");
-        
-        public static Partial<PublicHolidaysHolidaysPostRequest> WithIsWorkingDay(this Partial<PublicHolidaysHolidaysPostRequest> it)
-            => it.AddFieldName("workingDay");
-        
-        public static Partial<PublicHolidaysHolidaysPostRequest> WithIsHalfDay(this Partial<PublicHolidaysHolidaysPostRequest> it)
-            => it.AddFieldName("halfDay");
-        
-    }
+    public static Partial<PublicHolidaysHolidaysPostRequest> WithCalendar(this Partial<PublicHolidaysHolidaysPostRequest> it)
+        => it.AddFieldName("calendar");
+    
+    public static Partial<PublicHolidaysHolidaysPostRequest> WithName(this Partial<PublicHolidaysHolidaysPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<PublicHolidaysHolidaysPostRequest> WithDate(this Partial<PublicHolidaysHolidaysPostRequest> it)
+        => it.AddFieldName("date");
+    
+    public static Partial<PublicHolidaysHolidaysPostRequest> WithIsWorkingDay(this Partial<PublicHolidaysHolidaysPostRequest> it)
+        => it.AddFieldName("workingDay");
+    
+    public static Partial<PublicHolidaysHolidaysPostRequest> WithIsHalfDay(this Partial<PublicHolidaysHolidaysPostRequest> it)
+        => it.AddFieldName("halfDay");
     
 }
+

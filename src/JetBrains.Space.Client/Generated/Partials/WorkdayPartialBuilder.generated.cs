@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.WorkdayPartialBuilder
+namespace JetBrains.Space.Client.WorkdayPartialBuilder;
+
+public static class WorkdayPartialExtensions
 {
-    public static class WorkdayPartialExtensions
-    {
-        public static Partial<Workday> WithWeekday(this Partial<Workday> it)
-            => it.AddFieldName("weekday");
-        
-        public static Partial<Workday> WithIsWorking(this Partial<Workday> it)
-            => it.AddFieldName("working");
-        
-        public static Partial<Workday> WithHours(this Partial<Workday> it)
-            => it.AddFieldName("hours");
-        
-        public static Partial<Workday> WithMinutes(this Partial<Workday> it)
-            => it.AddFieldName("minutes");
-        
-    }
+    public static Partial<Workday> WithWeekday(this Partial<Workday> it)
+        => it.AddFieldName("weekday");
+    
+    public static Partial<Workday> WithIsWorking(this Partial<Workday> it)
+        => it.AddFieldName("working");
+    
+    public static Partial<Workday> WithHours(this Partial<Workday> it)
+        => it.AddFieldName("hours");
+    
+    public static Partial<Workday> WithMinutes(this Partial<Workday> it)
+        => it.AddFieldName("minutes");
     
 }
+

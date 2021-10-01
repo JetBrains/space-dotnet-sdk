@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface SubscriptionFilterIn
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface SubscriptionFilterIn
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static AbsenceCommonSubscriptionFilterIn AbsenceCommon(List<string> reasons)
-            => new AbsenceCommonSubscriptionFilterIn(reasons: reasons);
-        
-        public static ApplicationsSubscriptionFilterIn Applications(string? application = null)
-            => new ApplicationsSubscriptionFilterIn(application: application);
-        
-        public static AutomationJobSubscriptionFilterIn AutomationJob(List<string>? projects = null, string? repositoryName = null, List<string>? branchSpec = null, List<string>? jobs = null)
-            => new AutomationJobSubscriptionFilterIn(projects: projects, repositoryName: repositoryName, branchSpec: branchSpec, jobs: jobs);
-        
-        public static BlogCommonSubscriptionFilterIn BlogCommon(List<string> teams, List<string> locations, List<string> authors)
-            => new BlogCommonSubscriptionFilterIn(teams: teams, locations: locations, authors: authors);
-        
-        public static CodeReviewSubscriptionFilterIn CodeReview(List<string> authors, List<string> participants, List<string> branchSpec, List<string> pathSpec, string titleRegex, string? project = null, string? repository = null)
-            => new CodeReviewSubscriptionFilterIn(authors: authors, participants: participants, branchSpec: branchSpec, pathSpec: pathSpec, titleRegex: titleRegex, project: project, repository: repository);
-        
-        public static DocumentCustomSubscriptionFilterIn DocumentCustom(List<string> documents, string? project = null, List<string>? books = null, List<string>? folders = null)
-            => new DocumentCustomSubscriptionFilterIn(documents: documents, project: project, books: books, folders: folders);
-        
-        public static MemberCommonSubscriptionFilterIn MemberCommon(List<string> teams, List<string> locations, List<ProfileIdentifier>? profiles = null)
-            => new MemberCommonSubscriptionFilterIn(teams: teams, locations: locations, profiles: profiles);
-        
-        public static PackagesSubscriptionFilterIn Packages(List<string> namePattern, string? project = null, string? repository = null, string? versionPattern = null)
-            => new PackagesSubscriptionFilterIn(namePattern: namePattern, project: project, repository: repository, versionPattern: versionPattern);
-        
-        public static ProjectCommonSubscriptionFilterIn ProjectCommon(string? project = null)
-            => new ProjectCommonSubscriptionFilterIn(project: project);
-        
-        public static RepoCommitsSubscriptionFilterIn RepoCommits(string repository, RepoCommitsSubscriptionFilterSpec spec, string? project = null)
-            => new RepoCommitsSubscriptionFilterIn(repository: repository, spec: spec, project: project);
-        
-        public static RepoHeadsSubscriptionFilterIn RepoHeads(string repository, string? project = null)
-            => new RepoHeadsSubscriptionFilterIn(repository: repository, project: project);
-        
-    }
+    public static AbsenceCommonSubscriptionFilterIn AbsenceCommon(List<string> reasons)
+        => new AbsenceCommonSubscriptionFilterIn(reasons: reasons);
+    
+    public static ApplicationsSubscriptionFilterIn Applications(string? application = null)
+        => new ApplicationsSubscriptionFilterIn(application: application);
+    
+    public static AutomationJobSubscriptionFilterIn AutomationJob(List<string>? projects = null, string? repositoryName = null, List<string>? branchSpec = null, List<string>? jobs = null)
+        => new AutomationJobSubscriptionFilterIn(projects: projects, repositoryName: repositoryName, branchSpec: branchSpec, jobs: jobs);
+    
+    public static BlogCommonSubscriptionFilterIn BlogCommon(List<string> teams, List<string> locations, List<string> authors)
+        => new BlogCommonSubscriptionFilterIn(teams: teams, locations: locations, authors: authors);
+    
+    public static CodeReviewSubscriptionFilterIn CodeReview(List<string> authors, List<string> participants, List<string> branchSpec, List<string> pathSpec, string titleRegex, string? project = null, string? repository = null)
+        => new CodeReviewSubscriptionFilterIn(authors: authors, participants: participants, branchSpec: branchSpec, pathSpec: pathSpec, titleRegex: titleRegex, project: project, repository: repository);
+    
+    public static DocumentCustomSubscriptionFilterIn DocumentCustom(List<string> documents, string? project = null, List<string>? books = null, List<string>? folders = null)
+        => new DocumentCustomSubscriptionFilterIn(documents: documents, project: project, books: books, folders: folders);
+    
+    public static MemberCommonSubscriptionFilterIn MemberCommon(List<string> teams, List<string> locations, List<ProfileIdentifier>? profiles = null)
+        => new MemberCommonSubscriptionFilterIn(teams: teams, locations: locations, profiles: profiles);
+    
+    public static PackagesSubscriptionFilterIn Packages(List<string> namePattern, string? project = null, string? repository = null, string? versionPattern = null)
+        => new PackagesSubscriptionFilterIn(namePattern: namePattern, project: project, repository: repository, versionPattern: versionPattern);
+    
+    public static ProjectCommonSubscriptionFilterIn ProjectCommon(string? project = null)
+        => new ProjectCommonSubscriptionFilterIn(project: project);
+    
+    public static RepoCommitsSubscriptionFilterIn RepoCommits(string repository, RepoCommitsSubscriptionFilterSpec spec, string? project = null)
+        => new RepoCommitsSubscriptionFilterIn(repository: repository, spec: spec, project: project);
+    
+    public static RepoHeadsSubscriptionFilterIn RepoHeads(string repository, string? project = null)
+        => new RepoHeadsSubscriptionFilterIn(repository: repository, project: project);
     
 }
+

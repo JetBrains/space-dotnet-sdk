@@ -27,79 +27,78 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HAField
+     : IPropagatePropertyAccessPath
 {
-    public sealed class HAField
-         : IPropagatePropertyAccessPath
+    public HAField() { }
+    
+    public HAField(string name, HAType type, bool optional, HADefaultValue? defaultValue = null, HADeprecation? deprecation = null)
     {
-        public HAField() { }
-        
-        public HAField(string name, HAType type, bool optional, HADefaultValue? defaultValue = null, HADeprecation? deprecation = null)
-        {
-            Name = name;
-            Type = type;
-            DefaultValue = defaultValue;
-            IsOptional = optional;
-            Deprecation = deprecation;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAField), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<HAType> _type = new PropertyValue<HAType>(nameof(HAField), nameof(Type));
-        
-        [Required]
-        [JsonPropertyName("type")]
-        public HAType Type
-        {
-            get => _type.GetValue();
-            set => _type.SetValue(value);
-        }
-    
-        private PropertyValue<HADefaultValue?> _defaultValue = new PropertyValue<HADefaultValue?>(nameof(HAField), nameof(DefaultValue));
-        
-        [JsonPropertyName("defaultValue")]
-        public HADefaultValue? DefaultValue
-        {
-            get => _defaultValue.GetValue();
-            set => _defaultValue.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _optional = new PropertyValue<bool>(nameof(HAField), nameof(IsOptional));
-        
-        [Required]
-        [JsonPropertyName("optional")]
-        public bool IsOptional
-        {
-            get => _optional.GetValue();
-            set => _optional.SetValue(value);
-        }
-    
-        private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAField), nameof(Deprecation));
-        
-        [JsonPropertyName("deprecation")]
-        public HADeprecation? Deprecation
-        {
-            get => _deprecation.GetValue();
-            set => _deprecation.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _type.SetAccessPath(path, validateHasBeenSet);
-            _defaultValue.SetAccessPath(path, validateHasBeenSet);
-            _optional.SetAccessPath(path, validateHasBeenSet);
-            _deprecation.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Type = type;
+        DefaultValue = defaultValue;
+        IsOptional = optional;
+        Deprecation = deprecation;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAField), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<HAType> _type = new PropertyValue<HAType>(nameof(HAField), nameof(Type));
+    
+    [Required]
+    [JsonPropertyName("type")]
+    public HAType Type
+    {
+        get => _type.GetValue();
+        set => _type.SetValue(value);
+    }
+
+    private PropertyValue<HADefaultValue?> _defaultValue = new PropertyValue<HADefaultValue?>(nameof(HAField), nameof(DefaultValue));
+    
+    [JsonPropertyName("defaultValue")]
+    public HADefaultValue? DefaultValue
+    {
+        get => _defaultValue.GetValue();
+        set => _defaultValue.SetValue(value);
+    }
+
+    private PropertyValue<bool> _optional = new PropertyValue<bool>(nameof(HAField), nameof(IsOptional));
+    
+    [Required]
+    [JsonPropertyName("optional")]
+    public bool IsOptional
+    {
+        get => _optional.GetValue();
+        set => _optional.SetValue(value);
+    }
+
+    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAField), nameof(Deprecation));
+    
+    [JsonPropertyName("deprecation")]
+    public HADeprecation? Deprecation
+    {
+        get => _deprecation.GetValue();
+        set => _deprecation.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _type.SetAccessPath(path, validateHasBeenSet);
+        _defaultValue.SetAccessPath(path, validateHasBeenSet);
+        _optional.SetAccessPath(path, validateHasBeenSet);
+        _deprecation.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

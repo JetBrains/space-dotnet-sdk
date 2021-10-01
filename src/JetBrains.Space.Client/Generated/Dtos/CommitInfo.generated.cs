@@ -27,117 +27,116 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CommitInfo
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CommitInfo
-         : IPropagatePropertyAccessPath
+    public CommitInfo() { }
+    
+    public CommitInfo(PRProject project, string repository, string commitId, string message, DateTime commitDate, string authorName, string authorEmail, TDMemberProfile? authorProfile = null)
     {
-        public CommitInfo() { }
-        
-        public CommitInfo(PRProject project, string repository, string commitId, string message, DateTime commitDate, string authorName, string authorEmail, TDMemberProfile? authorProfile = null)
-        {
-            Project = project;
-            Repository = repository;
-            CommitId = commitId;
-            Message = message;
-            CommitDate = commitDate;
-            AuthorName = authorName;
-            AuthorEmail = authorEmail;
-            AuthorProfile = authorProfile;
-        }
-        
-        private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(CommitInfo), nameof(Project));
-        
-        [Required]
-        [JsonPropertyName("project")]
-        public PRProject Project
-        {
-            get => _project.GetValue();
-            set => _project.SetValue(value);
-        }
-    
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CommitInfo), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<string> _commitId = new PropertyValue<string>(nameof(CommitInfo), nameof(CommitId));
-        
-        [Required]
-        [JsonPropertyName("commitId")]
-        public string CommitId
-        {
-            get => _commitId.GetValue();
-            set => _commitId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _message = new PropertyValue<string>(nameof(CommitInfo), nameof(Message));
-        
-        [Required]
-        [JsonPropertyName("message")]
-        public string Message
-        {
-            get => _message.GetValue();
-            set => _message.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _commitDate = new PropertyValue<DateTime>(nameof(CommitInfo), nameof(CommitDate));
-        
-        [Required]
-        [JsonPropertyName("commitDate")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime CommitDate
-        {
-            get => _commitDate.GetValue();
-            set => _commitDate.SetValue(value);
-        }
-    
-        private PropertyValue<string> _authorName = new PropertyValue<string>(nameof(CommitInfo), nameof(AuthorName));
-        
-        [Required]
-        [JsonPropertyName("authorName")]
-        public string AuthorName
-        {
-            get => _authorName.GetValue();
-            set => _authorName.SetValue(value);
-        }
-    
-        private PropertyValue<string> _authorEmail = new PropertyValue<string>(nameof(CommitInfo), nameof(AuthorEmail));
-        
-        [Required]
-        [JsonPropertyName("authorEmail")]
-        public string AuthorEmail
-        {
-            get => _authorEmail.GetValue();
-            set => _authorEmail.SetValue(value);
-        }
-    
-        private PropertyValue<TDMemberProfile?> _authorProfile = new PropertyValue<TDMemberProfile?>(nameof(CommitInfo), nameof(AuthorProfile));
-        
-        [JsonPropertyName("authorProfile")]
-        public TDMemberProfile? AuthorProfile
-        {
-            get => _authorProfile.GetValue();
-            set => _authorProfile.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _commitId.SetAccessPath(path, validateHasBeenSet);
-            _message.SetAccessPath(path, validateHasBeenSet);
-            _commitDate.SetAccessPath(path, validateHasBeenSet);
-            _authorName.SetAccessPath(path, validateHasBeenSet);
-            _authorEmail.SetAccessPath(path, validateHasBeenSet);
-            _authorProfile.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Project = project;
+        Repository = repository;
+        CommitId = commitId;
+        Message = message;
+        CommitDate = commitDate;
+        AuthorName = authorName;
+        AuthorEmail = authorEmail;
+        AuthorProfile = authorProfile;
     }
     
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(CommitInfo), nameof(Project));
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public PRProject Project
+    {
+        get => _project.GetValue();
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CommitInfo), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public string Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<string> _commitId = new PropertyValue<string>(nameof(CommitInfo), nameof(CommitId));
+    
+    [Required]
+    [JsonPropertyName("commitId")]
+    public string CommitId
+    {
+        get => _commitId.GetValue();
+        set => _commitId.SetValue(value);
+    }
+
+    private PropertyValue<string> _message = new PropertyValue<string>(nameof(CommitInfo), nameof(Message));
+    
+    [Required]
+    [JsonPropertyName("message")]
+    public string Message
+    {
+        get => _message.GetValue();
+        set => _message.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _commitDate = new PropertyValue<DateTime>(nameof(CommitInfo), nameof(CommitDate));
+    
+    [Required]
+    [JsonPropertyName("commitDate")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime CommitDate
+    {
+        get => _commitDate.GetValue();
+        set => _commitDate.SetValue(value);
+    }
+
+    private PropertyValue<string> _authorName = new PropertyValue<string>(nameof(CommitInfo), nameof(AuthorName));
+    
+    [Required]
+    [JsonPropertyName("authorName")]
+    public string AuthorName
+    {
+        get => _authorName.GetValue();
+        set => _authorName.SetValue(value);
+    }
+
+    private PropertyValue<string> _authorEmail = new PropertyValue<string>(nameof(CommitInfo), nameof(AuthorEmail));
+    
+    [Required]
+    [JsonPropertyName("authorEmail")]
+    public string AuthorEmail
+    {
+        get => _authorEmail.GetValue();
+        set => _authorEmail.SetValue(value);
+    }
+
+    private PropertyValue<TDMemberProfile?> _authorProfile = new PropertyValue<TDMemberProfile?>(nameof(CommitInfo), nameof(AuthorProfile));
+    
+    [JsonPropertyName("authorProfile")]
+    public TDMemberProfile? AuthorProfile
+    {
+        get => _authorProfile.GetValue();
+        set => _authorProfile.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _project.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _commitId.SetAccessPath(path, validateHasBeenSet);
+        _message.SetAccessPath(path, validateHasBeenSet);
+        _commitDate.SetAccessPath(path, validateHasBeenSet);
+        _authorName.SetAccessPath(path, validateHasBeenSet);
+        _authorEmail.SetAccessPath(path, validateHasBeenSet);
+        _authorProfile.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PackageRepositoryConnectionRemotePartialBuilder
+namespace JetBrains.Space.Client.PackageRepositoryConnectionRemotePartialBuilder;
+
+public static class PackageRepositoryConnectionRemotePartialExtensions
 {
-    public static class PackageRepositoryConnectionRemotePartialExtensions
-    {
-        public static Partial<PackageRepositoryConnectionRemote> WithId(this Partial<PackageRepositoryConnectionRemote> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<PackageRepositoryConnectionRemote> WithIsEnableCaching(this Partial<PackageRepositoryConnectionRemote> it)
-            => it.AddFieldName("enableCaching");
-        
-        public static Partial<PackageRepositoryConnectionRemote> WithIsEnablePublishing(this Partial<PackageRepositoryConnectionRemote> it)
-            => it.AddFieldName("enablePublishing");
-        
-        public static Partial<PackageRepositoryConnectionRemote> WithPackageNameFilters(this Partial<PackageRepositoryConnectionRemote> it)
-            => it.AddFieldName("packageNameFilters");
-        
-        public static Partial<PackageRepositoryConnectionRemote> WithUrl(this Partial<PackageRepositoryConnectionRemote> it)
-            => it.AddFieldName("url");
-        
-        public static Partial<PackageRepositoryConnectionRemote> WithCredentials(this Partial<PackageRepositoryConnectionRemote> it)
-            => it.AddFieldName("credentials");
-        
-        public static Partial<PackageRepositoryConnectionRemote> WithCredentials(this Partial<PackageRepositoryConnectionRemote> it, Func<Partial<PackageRepositoryCredentials>, Partial<PackageRepositoryCredentials>> partialBuilder)
-            => it.AddFieldName("credentials", partialBuilder(new Partial<PackageRepositoryCredentials>(it)));
-        
-        public static Partial<PackageRepositoryConnectionRemote> WithSecretId(this Partial<PackageRepositoryConnectionRemote> it)
-            => it.AddFieldName("secretId");
-        
-        public static Partial<PackageRepositoryConnectionRemote> WithSecretValue(this Partial<PackageRepositoryConnectionRemote> it)
-            => it.AddFieldName("secretValue");
-        
-        public static Partial<PackageRepositoryConnectionRemote> WithSettings(this Partial<PackageRepositoryConnectionRemote> it)
-            => it.AddFieldName("settings");
-        
-        public static Partial<PackageRepositoryConnectionRemote> WithSettings(this Partial<PackageRepositoryConnectionRemote> it, Func<Partial<PackageRepositoryConnectionSettings>, Partial<PackageRepositoryConnectionSettings>> partialBuilder)
-            => it.AddFieldName("settings", partialBuilder(new Partial<PackageRepositoryConnectionSettings>(it)));
-        
-    }
+    public static Partial<PackageRepositoryConnectionRemote> WithId(this Partial<PackageRepositoryConnectionRemote> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<PackageRepositoryConnectionRemote> WithIsEnableCaching(this Partial<PackageRepositoryConnectionRemote> it)
+        => it.AddFieldName("enableCaching");
+    
+    public static Partial<PackageRepositoryConnectionRemote> WithIsEnablePublishing(this Partial<PackageRepositoryConnectionRemote> it)
+        => it.AddFieldName("enablePublishing");
+    
+    public static Partial<PackageRepositoryConnectionRemote> WithPackageNameFilters(this Partial<PackageRepositoryConnectionRemote> it)
+        => it.AddFieldName("packageNameFilters");
+    
+    public static Partial<PackageRepositoryConnectionRemote> WithUrl(this Partial<PackageRepositoryConnectionRemote> it)
+        => it.AddFieldName("url");
+    
+    public static Partial<PackageRepositoryConnectionRemote> WithCredentials(this Partial<PackageRepositoryConnectionRemote> it)
+        => it.AddFieldName("credentials");
+    
+    public static Partial<PackageRepositoryConnectionRemote> WithCredentials(this Partial<PackageRepositoryConnectionRemote> it, Func<Partial<PackageRepositoryCredentials>, Partial<PackageRepositoryCredentials>> partialBuilder)
+        => it.AddFieldName("credentials", partialBuilder(new Partial<PackageRepositoryCredentials>(it)));
+    
+    public static Partial<PackageRepositoryConnectionRemote> WithSecretId(this Partial<PackageRepositoryConnectionRemote> it)
+        => it.AddFieldName("secretId");
+    
+    public static Partial<PackageRepositoryConnectionRemote> WithSecretValue(this Partial<PackageRepositoryConnectionRemote> it)
+        => it.AddFieldName("secretValue");
+    
+    public static Partial<PackageRepositoryConnectionRemote> WithSettings(this Partial<PackageRepositoryConnectionRemote> it)
+        => it.AddFieldName("settings");
+    
+    public static Partial<PackageRepositoryConnectionRemote> WithSettings(this Partial<PackageRepositoryConnectionRemote> it, Func<Partial<PackageRepositoryConnectionSettings>, Partial<PackageRepositoryConnectionSettings>> partialBuilder)
+        => it.AddFieldName("settings", partialBuilder(new Partial<PackageRepositoryConnectionSettings>(it)));
     
 }
+

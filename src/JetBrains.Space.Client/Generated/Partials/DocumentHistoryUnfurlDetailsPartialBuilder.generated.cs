@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentHistoryUnfurlDetailsPartialBuilder
+namespace JetBrains.Space.Client.DocumentHistoryUnfurlDetailsPartialBuilder;
+
+public static class DocumentHistoryUnfurlDetailsPartialExtensions
 {
-    public static class DocumentHistoryUnfurlDetailsPartialExtensions
-    {
-        public static Partial<DocumentHistoryUnfurlDetails> WithDocument(this Partial<DocumentHistoryUnfurlDetails> it)
-            => it.AddFieldName("document");
-        
-        public static Partial<DocumentHistoryUnfurlDetails> WithTitle(this Partial<DocumentHistoryUnfurlDetails> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<DocumentHistoryUnfurlDetails> WithVersion(this Partial<DocumentHistoryUnfurlDetails> it)
-            => it.AddFieldName("version");
-        
-        public static Partial<DocumentHistoryUnfurlDetails> WithBase(this Partial<DocumentHistoryUnfurlDetails> it)
-            => it.AddFieldName("base");
-        
-        public static Partial<DocumentHistoryUnfurlDetails> WithPreview(this Partial<DocumentHistoryUnfurlDetails> it)
-            => it.AddFieldName("preview");
-        
-    }
+    public static Partial<DocumentHistoryUnfurlDetails> WithDocument(this Partial<DocumentHistoryUnfurlDetails> it)
+        => it.AddFieldName("document");
+    
+    public static Partial<DocumentHistoryUnfurlDetails> WithTitle(this Partial<DocumentHistoryUnfurlDetails> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<DocumentHistoryUnfurlDetails> WithVersion(this Partial<DocumentHistoryUnfurlDetails> it)
+        => it.AddFieldName("version");
+    
+    public static Partial<DocumentHistoryUnfurlDetails> WithBase(this Partial<DocumentHistoryUnfurlDetails> it)
+        => it.AddFieldName("base");
+    
+    public static Partial<DocumentHistoryUnfurlDetails> WithPreview(this Partial<DocumentHistoryUnfurlDetails> it)
+        => it.AddFieldName("preview");
     
 }
+

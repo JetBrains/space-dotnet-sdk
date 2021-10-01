@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MeetingOrganizerExternalUser
+     : MeetingOrganizer, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MeetingOrganizerExternalUser
-         : MeetingOrganizer, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "MeetingOrganizer.ExternalUser";
+    
+    public MeetingOrganizerExternalUser() { }
+    
+    public MeetingOrganizerExternalUser(string email)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "MeetingOrganizer.ExternalUser";
-        
-        public MeetingOrganizerExternalUser() { }
-        
-        public MeetingOrganizerExternalUser(string email)
-        {
-            Email = email;
-        }
-        
-        private PropertyValue<string> _email = new PropertyValue<string>(nameof(MeetingOrganizerExternalUser), nameof(Email));
-        
-        [Required]
-        [JsonPropertyName("email")]
-        public string Email
-        {
-            get => _email.GetValue();
-            set => _email.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _email.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Email = email;
     }
     
+    private PropertyValue<string> _email = new PropertyValue<string>(nameof(MeetingOrganizerExternalUser), nameof(Email));
+    
+    [Required]
+    [JsonPropertyName("email")]
+    public string Email
+    {
+        get => _email.GetValue();
+        set => _email.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _email.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

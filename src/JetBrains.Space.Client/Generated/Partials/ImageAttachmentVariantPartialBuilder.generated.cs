@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ImageAttachmentVariantPartialBuilder
+namespace JetBrains.Space.Client.ImageAttachmentVariantPartialBuilder;
+
+public static class ImageAttachmentVariantPartialExtensions
 {
-    public static class ImageAttachmentVariantPartialExtensions
-    {
-        public static Partial<ImageAttachmentVariant> WithId(this Partial<ImageAttachmentVariant> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ImageAttachmentVariant> WithName(this Partial<ImageAttachmentVariant> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ImageAttachmentVariant> WithWidth(this Partial<ImageAttachmentVariant> it)
-            => it.AddFieldName("width");
-        
-        public static Partial<ImageAttachmentVariant> WithHeight(this Partial<ImageAttachmentVariant> it)
-            => it.AddFieldName("height");
-        
-    }
+    public static Partial<ImageAttachmentVariant> WithId(this Partial<ImageAttachmentVariant> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ImageAttachmentVariant> WithName(this Partial<ImageAttachmentVariant> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ImageAttachmentVariant> WithWidth(this Partial<ImageAttachmentVariant> it)
+        => it.AddFieldName("width");
+    
+    public static Partial<ImageAttachmentVariant> WithHeight(this Partial<ImageAttachmentVariant> it)
+        => it.AddFieldName("height");
     
 }
+

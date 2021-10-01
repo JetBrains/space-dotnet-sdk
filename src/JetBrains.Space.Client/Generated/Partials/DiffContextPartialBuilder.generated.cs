@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DiffContextPartialBuilder
+namespace JetBrains.Space.Client.DiffContextPartialBuilder;
+
+public static class DiffContextPartialExtensions
 {
-    public static class DiffContextPartialExtensions
-    {
-        public static Partial<DiffContext> WithLeft(this Partial<DiffContext> it)
-            => it.AddFieldName("left");
-        
-        public static Partial<DiffContext> WithLeft(this Partial<DiffContext> it, Func<Partial<DiffSide>, Partial<DiffSide>> partialBuilder)
-            => it.AddFieldName("left", partialBuilder(new Partial<DiffSide>(it)));
-        
-        public static Partial<DiffContext> WithRight(this Partial<DiffContext> it)
-            => it.AddFieldName("right");
-        
-        public static Partial<DiffContext> WithRight(this Partial<DiffContext> it, Func<Partial<DiffSide>, Partial<DiffSide>> partialBuilder)
-            => it.AddFieldName("right", partialBuilder(new Partial<DiffSide>(it)));
-        
-    }
+    public static Partial<DiffContext> WithLeft(this Partial<DiffContext> it)
+        => it.AddFieldName("left");
+    
+    public static Partial<DiffContext> WithLeft(this Partial<DiffContext> it, Func<Partial<DiffSide>, Partial<DiffSide>> partialBuilder)
+        => it.AddFieldName("left", partialBuilder(new Partial<DiffSide>(it)));
+    
+    public static Partial<DiffContext> WithRight(this Partial<DiffContext> it)
+        => it.AddFieldName("right");
+    
+    public static Partial<DiffContext> WithRight(this Partial<DiffContext> it, Func<Partial<DiffSide>, Partial<DiffSide>> partialBuilder)
+        => it.AddFieldName("right", partialBuilder(new Partial<DiffSide>(it)));
     
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueChecklistsChangedDetailsPartialBuilder
+namespace JetBrains.Space.Client.IssueChecklistsChangedDetailsPartialBuilder;
+
+public static class IssueChecklistsChangedDetailsPartialExtensions
 {
-    public static class IssueChecklistsChangedDetailsPartialExtensions
-    {
-        public static Partial<IssueChecklistsChangedDetails> WithAddedChecklists(this Partial<IssueChecklistsChangedDetails> it)
-            => it.AddFieldName("addedChecklists");
-        
-        public static Partial<IssueChecklistsChangedDetails> WithAddedChecklists(this Partial<IssueChecklistsChangedDetails> it, Func<Partial<Checklist>, Partial<Checklist>> partialBuilder)
-            => it.AddFieldName("addedChecklists", partialBuilder(new Partial<Checklist>(it)));
-        
-        public static Partial<IssueChecklistsChangedDetails> WithRemovedChecklists(this Partial<IssueChecklistsChangedDetails> it)
-            => it.AddFieldName("removedChecklists");
-        
-        public static Partial<IssueChecklistsChangedDetails> WithRemovedChecklists(this Partial<IssueChecklistsChangedDetails> it, Func<Partial<Checklist>, Partial<Checklist>> partialBuilder)
-            => it.AddFieldName("removedChecklists", partialBuilder(new Partial<Checklist>(it)));
-        
-    }
+    public static Partial<IssueChecklistsChangedDetails> WithAddedChecklists(this Partial<IssueChecklistsChangedDetails> it)
+        => it.AddFieldName("addedChecklists");
+    
+    public static Partial<IssueChecklistsChangedDetails> WithAddedChecklists(this Partial<IssueChecklistsChangedDetails> it, Func<Partial<Checklist>, Partial<Checklist>> partialBuilder)
+        => it.AddFieldName("addedChecklists", partialBuilder(new Partial<Checklist>(it)));
+    
+    public static Partial<IssueChecklistsChangedDetails> WithRemovedChecklists(this Partial<IssueChecklistsChangedDetails> it)
+        => it.AddFieldName("removedChecklists");
+    
+    public static Partial<IssueChecklistsChangedDetails> WithRemovedChecklists(this Partial<IssueChecklistsChangedDetails> it, Func<Partial<Checklist>, Partial<Checklist>> partialBuilder)
+        => it.AddFieldName("removedChecklists", partialBuilder(new Partial<Checklist>(it)));
     
 }
+

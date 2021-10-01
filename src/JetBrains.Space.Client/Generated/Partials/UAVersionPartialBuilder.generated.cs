@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UAVersionPartialBuilder
+namespace JetBrains.Space.Client.UAVersionPartialBuilder;
+
+public static class UAVersionPartialExtensions
 {
-    public static class UAVersionPartialExtensions
-    {
-        public static Partial<UAVersion> WithMajor(this Partial<UAVersion> it)
-            => it.AddFieldName("major");
-        
-        public static Partial<UAVersion> WithMinor(this Partial<UAVersion> it)
-            => it.AddFieldName("minor");
-        
-    }
+    public static Partial<UAVersion> WithMajor(this Partial<UAVersion> it)
+        => it.AddFieldName("major");
+    
+    public static Partial<UAVersion> WithMinor(this Partial<UAVersion> it)
+        => it.AddFieldName("minor");
     
 }
+

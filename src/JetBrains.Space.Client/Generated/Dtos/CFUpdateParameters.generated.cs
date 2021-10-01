@@ -27,29 +27,28 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface CFUpdateParameters
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface CFUpdateParameters
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static AutonumberCFParameters AutonumberCFParameters(string prefix, string suffix)
-            => new AutonumberCFParameters(prefix: prefix, suffix: suffix);
-        
-        public static ContactCFParameters ContactCFParameters(TDContactKind? contactKind = null)
-            => new ContactCFParameters(contactKind: contactKind);
-        
-        public static DocumentCFParametersInput DocumentCFParametersInput(DocumentCFScopeInput documentScope)
-            => new DocumentCFParametersInput(documentScope: documentScope);
-        
-        public static EnumCFInputParameters EnumCFInputParameters(List<string> values)
-            => new EnumCFInputParameters(values: values);
-        
-        public static OpenEnumCFUpdateParameters OpenEnum(List<CFEnumValueModification> modifications)
-            => new OpenEnumCFUpdateParameters(modifications: modifications);
-        
-        public static VcsCommitCFParametersInput VcsCommitCFParametersInput(VcsCFScopeInput vcsCFScope)
-            => new VcsCommitCFParametersInput(vcsCFScope: vcsCFScope);
-        
-    }
+    public static AutonumberCFParameters AutonumberCFParameters(string prefix, string suffix)
+        => new AutonumberCFParameters(prefix: prefix, suffix: suffix);
+    
+    public static ContactCFParameters ContactCFParameters(TDContactKind? contactKind = null)
+        => new ContactCFParameters(contactKind: contactKind);
+    
+    public static DocumentCFParametersInput DocumentCFParametersInput(DocumentCFScopeInput documentScope)
+        => new DocumentCFParametersInput(documentScope: documentScope);
+    
+    public static EnumCFInputParameters EnumCFInputParameters(List<string> values)
+        => new EnumCFInputParameters(values: values);
+    
+    public static OpenEnumCFUpdateParameters OpenEnum(List<CFEnumValueModification> modifications)
+        => new OpenEnumCFUpdateParameters(modifications: modifications);
+    
+    public static VcsCommitCFParametersInput VcsCommitCFParametersInput(VcsCFScopeInput vcsCFScope)
+        => new VcsCommitCFParametersInput(vcsCFScope: vcsCFScope);
     
 }
+

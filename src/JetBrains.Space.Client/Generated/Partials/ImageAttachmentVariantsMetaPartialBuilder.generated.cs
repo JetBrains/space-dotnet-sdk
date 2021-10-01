@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ImageAttachmentVariantsMetaPartialBuilder
+namespace JetBrains.Space.Client.ImageAttachmentVariantsMetaPartialBuilder;
+
+public static class ImageAttachmentVariantsMetaPartialExtensions
 {
-    public static class ImageAttachmentVariantsMetaPartialExtensions
-    {
-        public static Partial<ImageAttachmentVariantsMeta> WithId(this Partial<ImageAttachmentVariantsMeta> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ImageAttachmentVariantsMeta> WithName(this Partial<ImageAttachmentVariantsMeta> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ImageAttachmentVariantsMeta> WithWidth(this Partial<ImageAttachmentVariantsMeta> it)
-            => it.AddFieldName("width");
-        
-        public static Partial<ImageAttachmentVariantsMeta> WithHeight(this Partial<ImageAttachmentVariantsMeta> it)
-            => it.AddFieldName("height");
-        
-    }
+    public static Partial<ImageAttachmentVariantsMeta> WithId(this Partial<ImageAttachmentVariantsMeta> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ImageAttachmentVariantsMeta> WithName(this Partial<ImageAttachmentVariantsMeta> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ImageAttachmentVariantsMeta> WithWidth(this Partial<ImageAttachmentVariantsMeta> it)
+        => it.AddFieldName("width");
+    
+    public static Partial<ImageAttachmentVariantsMeta> WithHeight(this Partial<ImageAttachmentVariantsMeta> it)
+        => it.AddFieldName("height");
     
 }
+

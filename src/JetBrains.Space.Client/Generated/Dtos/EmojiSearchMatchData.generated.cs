@@ -27,56 +27,55 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class EmojiSearchMatchData
+     : IPropagatePropertyAccessPath
 {
-    public sealed class EmojiSearchMatchData
-         : IPropagatePropertyAccessPath
+    public EmojiSearchMatchData() { }
+    
+    public EmojiSearchMatchData(string emoji, EmojiSearchMatchType matchType, string? matched = null)
     {
-        public EmojiSearchMatchData() { }
-        
-        public EmojiSearchMatchData(string emoji, EmojiSearchMatchType matchType, string? matched = null)
-        {
-            Emoji = emoji;
-            Matched = matched;
-            MatchType = matchType;
-        }
-        
-        private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojiSearchMatchData), nameof(Emoji));
-        
-        [Required]
-        [JsonPropertyName("emoji")]
-        public string Emoji
-        {
-            get => _emoji.GetValue();
-            set => _emoji.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _matched = new PropertyValue<string?>(nameof(EmojiSearchMatchData), nameof(Matched));
-        
-        [JsonPropertyName("matched")]
-        public string? Matched
-        {
-            get => _matched.GetValue();
-            set => _matched.SetValue(value);
-        }
-    
-        private PropertyValue<EmojiSearchMatchType> _matchType = new PropertyValue<EmojiSearchMatchType>(nameof(EmojiSearchMatchData), nameof(MatchType));
-        
-        [Required]
-        [JsonPropertyName("matchType")]
-        public EmojiSearchMatchType MatchType
-        {
-            get => _matchType.GetValue();
-            set => _matchType.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _emoji.SetAccessPath(path, validateHasBeenSet);
-            _matched.SetAccessPath(path, validateHasBeenSet);
-            _matchType.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Emoji = emoji;
+        Matched = matched;
+        MatchType = matchType;
     }
     
+    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojiSearchMatchData), nameof(Emoji));
+    
+    [Required]
+    [JsonPropertyName("emoji")]
+    public string Emoji
+    {
+        get => _emoji.GetValue();
+        set => _emoji.SetValue(value);
+    }
+
+    private PropertyValue<string?> _matched = new PropertyValue<string?>(nameof(EmojiSearchMatchData), nameof(Matched));
+    
+    [JsonPropertyName("matched")]
+    public string? Matched
+    {
+        get => _matched.GetValue();
+        set => _matched.SetValue(value);
+    }
+
+    private PropertyValue<EmojiSearchMatchType> _matchType = new PropertyValue<EmojiSearchMatchType>(nameof(EmojiSearchMatchData), nameof(MatchType));
+    
+    [Required]
+    [JsonPropertyName("matchType")]
+    public EmojiSearchMatchType MatchType
+    {
+        get => _matchType.GetValue();
+        set => _matchType.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _emoji.SetAccessPath(path, validateHasBeenSet);
+        _matched.SetAccessPath(path, validateHasBeenSet);
+        _matchType.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

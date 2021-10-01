@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPlanningTagsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPlanningTagsPostRequestPartialBuilder;
+
+public static class ProjectsForProjectPlanningTagsPostRequestPartialExtensions
 {
-    public static class ProjectsForProjectPlanningTagsPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPlanningTagsPostRequest> WithParentTagId(this Partial<ProjectsForProjectPlanningTagsPostRequest> it)
-            => it.AddFieldName("parentTagId");
-        
-        public static Partial<ProjectsForProjectPlanningTagsPostRequest> WithPath(this Partial<ProjectsForProjectPlanningTagsPostRequest> it)
-            => it.AddFieldName("path");
-        
-    }
+    public static Partial<ProjectsForProjectPlanningTagsPostRequest> WithParentTagId(this Partial<ProjectsForProjectPlanningTagsPostRequest> it)
+        => it.AddFieldName("parentTagId");
+    
+    public static Partial<ProjectsForProjectPlanningTagsPostRequest> WithPath(this Partial<ProjectsForProjectPlanningTagsPostRequest> it)
+        => it.AddFieldName("path");
     
 }
+

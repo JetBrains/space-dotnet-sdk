@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CodeDiscussionAddedFeedEvent
+     : FeedEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class CodeDiscussionAddedFeedEvent
-         : FeedEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "CodeDiscussionAddedFeedEvent";
+    
+    public CodeDiscussionAddedFeedEvent() { }
+    
+    public CodeDiscussionAddedFeedEvent(CodeDiscussionRecord codeDiscussion, CodeReviewRecord codeReview)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "CodeDiscussionAddedFeedEvent";
-        
-        public CodeDiscussionAddedFeedEvent() { }
-        
-        public CodeDiscussionAddedFeedEvent(CodeDiscussionRecord codeDiscussion, CodeReviewRecord codeReview)
-        {
-            CodeDiscussion = codeDiscussion;
-            CodeReview = codeReview;
-        }
-        
-        private PropertyValue<CodeDiscussionRecord> _codeDiscussion = new PropertyValue<CodeDiscussionRecord>(nameof(CodeDiscussionAddedFeedEvent), nameof(CodeDiscussion));
-        
-        [Required]
-        [JsonPropertyName("codeDiscussion")]
-        public CodeDiscussionRecord CodeDiscussion
-        {
-            get => _codeDiscussion.GetValue();
-            set => _codeDiscussion.SetValue(value);
-        }
-    
-        private PropertyValue<CodeReviewRecord> _codeReview = new PropertyValue<CodeReviewRecord>(nameof(CodeDiscussionAddedFeedEvent), nameof(CodeReview));
-        
-        [Required]
-        [JsonPropertyName("codeReview")]
-        public CodeReviewRecord CodeReview
-        {
-            get => _codeReview.GetValue();
-            set => _codeReview.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _codeDiscussion.SetAccessPath(path, validateHasBeenSet);
-            _codeReview.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        CodeDiscussion = codeDiscussion;
+        CodeReview = codeReview;
     }
     
+    private PropertyValue<CodeDiscussionRecord> _codeDiscussion = new PropertyValue<CodeDiscussionRecord>(nameof(CodeDiscussionAddedFeedEvent), nameof(CodeDiscussion));
+    
+    [Required]
+    [JsonPropertyName("codeDiscussion")]
+    public CodeDiscussionRecord CodeDiscussion
+    {
+        get => _codeDiscussion.GetValue();
+        set => _codeDiscussion.SetValue(value);
+    }
+
+    private PropertyValue<CodeReviewRecord> _codeReview = new PropertyValue<CodeReviewRecord>(nameof(CodeDiscussionAddedFeedEvent), nameof(CodeReview));
+    
+    [Required]
+    [JsonPropertyName("codeReview")]
+    public CodeReviewRecord CodeReview
+    {
+        get => _codeReview.GetValue();
+        set => _codeReview.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _codeDiscussion.SetAccessPath(path, validateHasBeenSet);
+        _codeReview.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

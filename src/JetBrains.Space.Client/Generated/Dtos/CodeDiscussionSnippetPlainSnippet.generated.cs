@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CodeDiscussionSnippetPlainSnippet
+     : CodeDiscussionSnippet, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class CodeDiscussionSnippetPlainSnippet
-         : CodeDiscussionSnippet, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "CodeDiscussionSnippet.PlainSnippet";
+    
+    public CodeDiscussionSnippetPlainSnippet() { }
+    
+    public CodeDiscussionSnippetPlainSnippet(List<CodeLine> lines)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "CodeDiscussionSnippet.PlainSnippet";
-        
-        public CodeDiscussionSnippetPlainSnippet() { }
-        
-        public CodeDiscussionSnippetPlainSnippet(List<CodeLine> lines)
-        {
-            Lines = lines;
-        }
-        
-        private PropertyValue<List<CodeLine>> _lines = new PropertyValue<List<CodeLine>>(nameof(CodeDiscussionSnippetPlainSnippet), nameof(Lines), new List<CodeLine>());
-        
-        [Required]
-        [JsonPropertyName("lines")]
-        public List<CodeLine> Lines
-        {
-            get => _lines.GetValue();
-            set => _lines.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _lines.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Lines = lines;
     }
     
+    private PropertyValue<List<CodeLine>> _lines = new PropertyValue<List<CodeLine>>(nameof(CodeDiscussionSnippetPlainSnippet), nameof(Lines), new List<CodeLine>());
+    
+    [Required]
+    [JsonPropertyName("lines")]
+    public List<CodeLine> Lines
+    {
+        get => _lines.GetValue();
+        set => _lines.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _lines.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

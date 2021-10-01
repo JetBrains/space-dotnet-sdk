@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HATypeArrayPartialBuilder
+namespace JetBrains.Space.Client.HATypeArrayPartialBuilder;
+
+public static class HATypeArrayPartialExtensions
 {
-    public static class HATypeArrayPartialExtensions
-    {
-        public static Partial<HATypeArray> WithElementType(this Partial<HATypeArray> it)
-            => it.AddFieldName("elementType");
-        
-        public static Partial<HATypeArray> WithElementType(this Partial<HATypeArray> it, Func<Partial<HAType>, Partial<HAType>> partialBuilder)
-            => it.AddFieldName("elementType", partialBuilder(new Partial<HAType>(it)));
-        
-        public static Partial<HATypeArray> WithIsNullable(this Partial<HATypeArray> it)
-            => it.AddFieldName("nullable");
-        
-        public static Partial<HATypeArray> WithTags(this Partial<HATypeArray> it)
-            => it.AddFieldName("tags");
-        
-    }
+    public static Partial<HATypeArray> WithElementType(this Partial<HATypeArray> it)
+        => it.AddFieldName("elementType");
+    
+    public static Partial<HATypeArray> WithElementType(this Partial<HATypeArray> it, Func<Partial<HAType>, Partial<HAType>> partialBuilder)
+        => it.AddFieldName("elementType", partialBuilder(new Partial<HAType>(it)));
+    
+    public static Partial<HATypeArray> WithIsNullable(this Partial<HATypeArray> it)
+        => it.AddFieldName("nullable");
+    
+    public static Partial<HATypeArray> WithTags(this Partial<HATypeArray> it)
+        => it.AddFieldName("tags");
     
 }
+

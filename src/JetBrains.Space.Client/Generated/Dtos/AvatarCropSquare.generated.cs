@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class AvatarCropSquare
+     : IPropagatePropertyAccessPath
 {
-    public sealed class AvatarCropSquare
-         : IPropagatePropertyAccessPath
+    public AvatarCropSquare() { }
+    
+    public AvatarCropSquare(int x, int y, int length)
     {
-        public AvatarCropSquare() { }
-        
-        public AvatarCropSquare(int x, int y, int length)
-        {
-            X = x;
-            Y = y;
-            Length = length;
-        }
-        
-        private PropertyValue<int> _x = new PropertyValue<int>(nameof(AvatarCropSquare), nameof(X));
-        
-        [Required]
-        [JsonPropertyName("x")]
-        public int X
-        {
-            get => _x.GetValue();
-            set => _x.SetValue(value);
-        }
-    
-        private PropertyValue<int> _y = new PropertyValue<int>(nameof(AvatarCropSquare), nameof(Y));
-        
-        [Required]
-        [JsonPropertyName("y")]
-        public int Y
-        {
-            get => _y.GetValue();
-            set => _y.SetValue(value);
-        }
-    
-        private PropertyValue<int> _length = new PropertyValue<int>(nameof(AvatarCropSquare), nameof(Length));
-        
-        [Required]
-        [JsonPropertyName("length")]
-        public int Length
-        {
-            get => _length.GetValue();
-            set => _length.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _x.SetAccessPath(path, validateHasBeenSet);
-            _y.SetAccessPath(path, validateHasBeenSet);
-            _length.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        X = x;
+        Y = y;
+        Length = length;
     }
     
+    private PropertyValue<int> _x = new PropertyValue<int>(nameof(AvatarCropSquare), nameof(X));
+    
+    [Required]
+    [JsonPropertyName("x")]
+    public int X
+    {
+        get => _x.GetValue();
+        set => _x.SetValue(value);
+    }
+
+    private PropertyValue<int> _y = new PropertyValue<int>(nameof(AvatarCropSquare), nameof(Y));
+    
+    [Required]
+    [JsonPropertyName("y")]
+    public int Y
+    {
+        get => _y.GetValue();
+        set => _y.SetValue(value);
+    }
+
+    private PropertyValue<int> _length = new PropertyValue<int>(nameof(AvatarCropSquare), nameof(Length));
+    
+    [Required]
+    [JsonPropertyName("length")]
+    public int Length
+    {
+        get => _length.GetValue();
+        set => _length.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _x.SetAccessPath(path, validateHasBeenSet);
+        _y.SetAccessPath(path, validateHasBeenSet);
+        _length.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

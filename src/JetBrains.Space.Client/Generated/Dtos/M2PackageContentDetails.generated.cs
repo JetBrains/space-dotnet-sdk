@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface M2PackageContentDetails
+     : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface M2PackageContentDetails
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static M2PackageCreatedDetails M2PackageCreatedDetails(PackageVersionInfo pkg)
-            => new M2PackageCreatedDetails(pkg: pkg);
-        
-        public static M2PackageDeletedDetails M2PackageDeletedDetails(PackageVersionInfo pkg)
-            => new M2PackageDeletedDetails(pkg: pkg);
-        
-    }
+    public static M2PackageCreatedDetails M2PackageCreatedDetails(PackageVersionInfo pkg)
+        => new M2PackageCreatedDetails(pkg: pkg);
+    
+    public static M2PackageDeletedDetails M2PackageDeletedDetails(PackageVersionInfo pkg)
+        => new M2PackageDeletedDetails(pkg: pkg);
     
 }
+

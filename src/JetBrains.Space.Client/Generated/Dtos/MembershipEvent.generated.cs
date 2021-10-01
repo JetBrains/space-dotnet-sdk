@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MembershipEvent
+     : IPropagatePropertyAccessPath
 {
-    public sealed class MembershipEvent
-         : IPropagatePropertyAccessPath
+    public MembershipEvent() { }
+    
+    public MembershipEvent(TDMemberProfile profile, List<TDMembership> membership)
     {
-        public MembershipEvent() { }
-        
-        public MembershipEvent(TDMemberProfile profile, List<TDMembership> membership)
-        {
-            Profile = profile;
-            Membership = membership;
-        }
-        
-        private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(MembershipEvent), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfile Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<List<TDMembership>> _membership = new PropertyValue<List<TDMembership>>(nameof(MembershipEvent), nameof(Membership), new List<TDMembership>());
-        
-        [Required]
-        [JsonPropertyName("membership")]
-        public List<TDMembership> Membership
-        {
-            get => _membership.GetValue();
-            set => _membership.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _membership.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
+        Membership = membership;
     }
     
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(MembershipEvent), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public TDMemberProfile Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<List<TDMembership>> _membership = new PropertyValue<List<TDMembership>>(nameof(MembershipEvent), nameof(Membership), new List<TDMembership>());
+    
+    [Required]
+    [JsonPropertyName("membership")]
+    public List<TDMembership> Membership
+    {
+        get => _membership.GetValue();
+        set => _membership.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _membership.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageInfoPartialBuilder
+namespace JetBrains.Space.Client.MessageInfoPartialBuilder;
+
+public static class MessageInfoPartialExtensions
 {
-    public static class MessageInfoPartialExtensions
-    {
-        public static Partial<MessageInfo> WithId(this Partial<MessageInfo> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<MessageInfo> WithText(this Partial<MessageInfo> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<MessageInfo> WithTime(this Partial<MessageInfo> it)
-            => it.AddFieldName("time");
-        
-        public static Partial<MessageInfo> WithAuthor(this Partial<MessageInfo> it)
-            => it.AddFieldName("author");
-        
-        public static Partial<MessageInfo> WithAuthor(this Partial<MessageInfo> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("author", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<MessageInfo> WithAttachments(this Partial<MessageInfo> it)
-            => it.AddFieldName("attachments");
-        
-        public static Partial<MessageInfo> WithIsInThirdPerson(this Partial<MessageInfo> it)
-            => it.AddFieldName("inThirdPerson");
-        
-    }
+    public static Partial<MessageInfo> WithId(this Partial<MessageInfo> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<MessageInfo> WithText(this Partial<MessageInfo> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<MessageInfo> WithTime(this Partial<MessageInfo> it)
+        => it.AddFieldName("time");
+    
+    public static Partial<MessageInfo> WithAuthor(this Partial<MessageInfo> it)
+        => it.AddFieldName("author");
+    
+    public static Partial<MessageInfo> WithAuthor(this Partial<MessageInfo> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("author", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<MessageInfo> WithAttachments(this Partial<MessageInfo> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<MessageInfo> WithIsInThirdPerson(this Partial<MessageInfo> it)
+        => it.AddFieldName("inThirdPerson");
     
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectTopicsSetResponsiblePostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectTopicsSetResponsiblePostRequestPartialBuilder;
+
+public static class ProjectsForProjectTopicsSetResponsiblePostRequestPartialExtensions
 {
-    public static class ProjectsForProjectTopicsSetResponsiblePostRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectTopicsSetResponsiblePostRequest> WithTopicId(this Partial<ProjectsForProjectTopicsSetResponsiblePostRequest> it)
-            => it.AddFieldName("topicId");
-        
-        public static Partial<ProjectsForProjectTopicsSetResponsiblePostRequest> WithResponsible(this Partial<ProjectsForProjectTopicsSetResponsiblePostRequest> it)
-            => it.AddFieldName("responsible");
-        
-        public static Partial<ProjectsForProjectTopicsSetResponsiblePostRequest> WithResponsible(this Partial<ProjectsForProjectTopicsSetResponsiblePostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("responsible", partialBuilder(new Partial<ProfileIdentifier>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectTopicsSetResponsiblePostRequest> WithTopicId(this Partial<ProjectsForProjectTopicsSetResponsiblePostRequest> it)
+        => it.AddFieldName("topicId");
+    
+    public static Partial<ProjectsForProjectTopicsSetResponsiblePostRequest> WithResponsible(this Partial<ProjectsForProjectTopicsSetResponsiblePostRequest> it)
+        => it.AddFieldName("responsible");
+    
+    public static Partial<ProjectsForProjectTopicsSetResponsiblePostRequest> WithResponsible(this Partial<ProjectsForProjectTopicsSetResponsiblePostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+        => it.AddFieldName("responsible", partialBuilder(new Partial<ProfileIdentifier>(it)));
     
 }
+

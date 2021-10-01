@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CodeReviewParticipantQualityGateSlot
+     : CodeReviewParticipantSlotBase, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class CodeReviewParticipantQualityGateSlot
-         : CodeReviewParticipantSlotBase, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "CodeReviewParticipantQualityGateSlot";
+    
+    public CodeReviewParticipantQualityGateSlot() { }
+    
+    public CodeReviewParticipantQualityGateSlot(List<string> rule, int index)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "CodeReviewParticipantQualityGateSlot";
-        
-        public CodeReviewParticipantQualityGateSlot() { }
-        
-        public CodeReviewParticipantQualityGateSlot(List<string> rule, int index)
-        {
-            Rule = rule;
-            Index = index;
-        }
-        
-        private PropertyValue<List<string>> _rule = new PropertyValue<List<string>>(nameof(CodeReviewParticipantQualityGateSlot), nameof(Rule), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("rule")]
-        public List<string> Rule
-        {
-            get => _rule.GetValue();
-            set => _rule.SetValue(value);
-        }
-    
-        private PropertyValue<int> _index = new PropertyValue<int>(nameof(CodeReviewParticipantQualityGateSlot), nameof(Index));
-        
-        [Required]
-        [JsonPropertyName("index")]
-        public int Index
-        {
-            get => _index.GetValue();
-            set => _index.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _rule.SetAccessPath(path, validateHasBeenSet);
-            _index.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Rule = rule;
+        Index = index;
     }
     
+    private PropertyValue<List<string>> _rule = new PropertyValue<List<string>>(nameof(CodeReviewParticipantQualityGateSlot), nameof(Rule), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("rule")]
+    public List<string> Rule
+    {
+        get => _rule.GetValue();
+        set => _rule.SetValue(value);
+    }
+
+    private PropertyValue<int> _index = new PropertyValue<int>(nameof(CodeReviewParticipantQualityGateSlot), nameof(Index));
+    
+    [Required]
+    [JsonPropertyName("index")]
+    public int Index
+    {
+        get => _index.GetValue();
+        set => _index.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _rule.SetAccessPath(path, validateHasBeenSet);
+        _index.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

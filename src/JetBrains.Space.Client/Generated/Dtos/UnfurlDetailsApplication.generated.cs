@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class UnfurlDetailsApplication
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class UnfurlDetailsApplication
-         : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsApplication";
+    
+    public UnfurlDetailsApplication() { }
+    
+    public UnfurlDetailsApplication(ESApp app)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "UnfurlDetailsApplication";
-        
-        public UnfurlDetailsApplication() { }
-        
-        public UnfurlDetailsApplication(ESApp app)
-        {
-            App = app;
-        }
-        
-        private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(UnfurlDetailsApplication), nameof(App));
-        
-        [Required]
-        [JsonPropertyName("app")]
-        public ESApp App
-        {
-            get => _app.GetValue();
-            set => _app.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _app.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        App = app;
     }
     
+    private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(UnfurlDetailsApplication), nameof(App));
+    
+    [Required]
+    [JsonPropertyName("app")]
+    public ESApp App
+    {
+        get => _app.GetValue();
+        set => _app.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _app.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

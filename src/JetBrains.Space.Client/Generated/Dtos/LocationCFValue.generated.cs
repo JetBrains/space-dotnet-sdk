@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class LocationCFValue
+     : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class LocationCFValue
-         : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "LocationCFValue";
+    
+    public LocationCFValue() { }
+    
+    public LocationCFValue(TDLocation? location = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "LocationCFValue";
-        
-        public LocationCFValue() { }
-        
-        public LocationCFValue(TDLocation? location = null)
-        {
-            Location = location;
-        }
-        
-        private PropertyValue<TDLocation?> _location = new PropertyValue<TDLocation?>(nameof(LocationCFValue), nameof(Location));
-        
-        [JsonPropertyName("location")]
-        public TDLocation? Location
-        {
-            get => _location.GetValue();
-            set => _location.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _location.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Location = location;
     }
     
+    private PropertyValue<TDLocation?> _location = new PropertyValue<TDLocation?>(nameof(LocationCFValue), nameof(Location));
+    
+    [JsonPropertyName("location")]
+    public TDLocation? Location
+    {
+        get => _location.GetValue();
+        set => _location.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _location.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

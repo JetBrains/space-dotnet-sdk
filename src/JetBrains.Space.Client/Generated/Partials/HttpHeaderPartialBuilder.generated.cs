@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HttpHeaderPartialBuilder
+namespace JetBrains.Space.Client.HttpHeaderPartialBuilder;
+
+public static class HttpHeaderPartialExtensions
 {
-    public static class HttpHeaderPartialExtensions
-    {
-        public static Partial<HttpHeader> WithName(this Partial<HttpHeader> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<HttpHeader> WithIsMaskedValue(this Partial<HttpHeader> it)
-            => it.AddFieldName("maskedValue");
-        
-        public static Partial<HttpHeader> WithValues(this Partial<HttpHeader> it)
-            => it.AddFieldName("values");
-        
-    }
+    public static Partial<HttpHeader> WithName(this Partial<HttpHeader> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<HttpHeader> WithIsMaskedValue(this Partial<HttpHeader> it)
+        => it.AddFieldName("maskedValue");
+    
+    public static Partial<HttpHeader> WithValues(this Partial<HttpHeader> it)
+        => it.AddFieldName("values");
     
 }
+

@@ -27,58 +27,57 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESMavenRepositorySettings
+     : ESPackageRepositorySettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ESMavenRepositorySettings
-         : ESPackageRepositorySettings, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ES_MavenRepositorySettings";
+    
+    public ESMavenRepositorySettings() { }
+    
+    public ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ES_MavenRepositorySettings";
-        
-        public ESMavenRepositorySettings() { }
-        
-        public ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-        {
-            IsEnableSnapshots = enableSnapshots;
-            RetentionPolicyParams = retentionPolicyParams;
-            IsImmutablePackageVersions = immutablePackageVersions;
-        }
-        
-        private PropertyValue<bool> _enableSnapshots = new PropertyValue<bool>(nameof(ESMavenRepositorySettings), nameof(IsEnableSnapshots));
-        
-        [Required]
-        [JsonPropertyName("enableSnapshots")]
-        public bool IsEnableSnapshots
-        {
-            get => _enableSnapshots.GetValue();
-            set => _enableSnapshots.SetValue(value);
-        }
-    
-        private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESMavenRepositorySettings), nameof(RetentionPolicyParams));
-        
-        [JsonPropertyName("retentionPolicyParams")]
-        public RetentionPolicyParams? RetentionPolicyParams
-        {
-            get => _retentionPolicyParams.GetValue();
-            set => _retentionPolicyParams.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _immutablePackageVersions = new PropertyValue<bool?>(nameof(ESMavenRepositorySettings), nameof(IsImmutablePackageVersions));
-        
-        [JsonPropertyName("immutablePackageVersions")]
-        public bool? IsImmutablePackageVersions
-        {
-            get => _immutablePackageVersions.GetValue();
-            set => _immutablePackageVersions.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _enableSnapshots.SetAccessPath(path, validateHasBeenSet);
-            _retentionPolicyParams.SetAccessPath(path, validateHasBeenSet);
-            _immutablePackageVersions.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        IsEnableSnapshots = enableSnapshots;
+        RetentionPolicyParams = retentionPolicyParams;
+        IsImmutablePackageVersions = immutablePackageVersions;
     }
     
+    private PropertyValue<bool> _enableSnapshots = new PropertyValue<bool>(nameof(ESMavenRepositorySettings), nameof(IsEnableSnapshots));
+    
+    [Required]
+    [JsonPropertyName("enableSnapshots")]
+    public bool IsEnableSnapshots
+    {
+        get => _enableSnapshots.GetValue();
+        set => _enableSnapshots.SetValue(value);
+    }
+
+    private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESMavenRepositorySettings), nameof(RetentionPolicyParams));
+    
+    [JsonPropertyName("retentionPolicyParams")]
+    public RetentionPolicyParams? RetentionPolicyParams
+    {
+        get => _retentionPolicyParams.GetValue();
+        set => _retentionPolicyParams.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _immutablePackageVersions = new PropertyValue<bool?>(nameof(ESMavenRepositorySettings), nameof(IsImmutablePackageVersions));
+    
+    [JsonPropertyName("immutablePackageVersions")]
+    public bool? IsImmutablePackageVersions
+    {
+        get => _immutablePackageVersions.GetValue();
+        set => _immutablePackageVersions.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _enableSnapshots.SetAccessPath(path, validateHasBeenSet);
+        _retentionPolicyParams.SetAccessPath(path, validateHasBeenSet);
+        _immutablePackageVersions.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

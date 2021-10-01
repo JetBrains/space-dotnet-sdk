@@ -27,14 +27,13 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface MessageAction
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface MessageAction
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static PostMessageAction Post(string actionId, string payload)
-            => new PostMessageAction(actionId: actionId, payload: payload);
-        
-    }
+    public static PostMessageAction Post(string actionId, string payload)
+        => new PostMessageAction(actionId: actionId, payload: payload);
     
 }
+

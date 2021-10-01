@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDContactKindPhoneNumberPartialBuilder
+namespace JetBrains.Space.Client.TDContactKindPhoneNumberPartialBuilder;
+
+public static class TDContactKindPhoneNumberPartialExtensions
 {
-    public static class TDContactKindPhoneNumberPartialExtensions
-    {
-        public static Partial<TDContactKindPhoneNumber> WithType(this Partial<TDContactKindPhoneNumber> it)
-            => it.AddFieldName("type");
-        
-    }
+    public static Partial<TDContactKindPhoneNumber> WithType(this Partial<TDContactKindPhoneNumber> it)
+        => it.AddFieldName("type");
     
 }
+

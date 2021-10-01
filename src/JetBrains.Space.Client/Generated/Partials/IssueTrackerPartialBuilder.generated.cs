@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueTrackerPartialBuilder
+namespace JetBrains.Space.Client.IssueTrackerPartialBuilder;
+
+public static class IssueTrackerPartialExtensions
 {
-    public static class IssueTrackerPartialExtensions
-    {
-        public static Partial<IssueTracker> WithId(this Partial<IssueTracker> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<IssueTracker> WithIsArchived(this Partial<IssueTracker> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<IssueTracker> WithName(this Partial<IssueTracker> it)
-            => it.AddFieldName("name");
-        
-    }
+    public static Partial<IssueTracker> WithId(this Partial<IssueTracker> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<IssueTracker> WithIsArchived(this Partial<IssueTracker> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<IssueTracker> WithName(this Partial<IssueTracker> it)
+        => it.AddFieldName("name");
     
 }
+

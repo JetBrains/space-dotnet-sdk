@@ -27,82 +27,113 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public partial class BillingAdminClient : ISpaceClient
 {
-    public partial class BillingAdminClient : ISpaceClient
+    private readonly Connection _connection;
+    
+    public BillingAdminClient(Connection connection)
+    {
+        _connection = connection;
+    }
+    
+    public OverdraftClient Overdrafts => new OverdraftClient(_connection);
+    
+    public partial class OverdraftClient : ISpaceClient
     {
         private readonly Connection _connection;
         
-        public BillingAdminClient(Connection connection)
+        public OverdraftClient(Connection connection)
         {
             _connection = connection;
         }
         
-        public OverdraftClient Overdrafts => new OverdraftClient(_connection);
-        
-        public partial class OverdraftClient : ISpaceClient
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View usage data</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<Overdrafts> GetOverdraftsAsync(Func<Partial<Overdrafts>, Partial<Overdrafts>>? partial = null, CancellationToken cancellationToken = default)
         {
-            private readonly Connection _connection;
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Overdrafts>()) : Partial<Overdrafts>.Default()).ToString());
             
-            public OverdraftClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View usage data</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<Overdrafts> GetOverdraftsAsync(Func<Partial<Overdrafts>, Partial<Overdrafts>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Overdrafts>()) : Partial<Overdrafts>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<Overdrafts>("GET", $"api/http/billing-admin/overdrafts{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Update overdrafts</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task SetOverdraftsAsync(int storage, int bandwidth, int ciCredits, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("PUT", $"api/http/billing-admin/overdrafts{queryParameters.ToQueryString()}", 
-                    new BillingAdminOverdraftsPutRequest
-                    { 
-                        Storage = storage,
-                        Bandwidth = bandwidth,
-                        CiCredits = ciCredits,
-                    }, cancellationToken);
-            }
-            
-        
+            return await _connection.RequestResourceAsync<Overdrafts>("GET", $"api/http/billing-admin/overdrafts{queryParameters.ToQueryString()}", cancellationToken);
         }
-    
-        public ReportClient Reports => new ReportClient(_connection);
         
-        public partial class ReportClient : ISpaceClient
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Update overdrafts</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task SetOverdraftsAsync(int storage, int bandwidth, int ciCredits, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PUT", $"api/http/billing-admin/overdrafts{queryParameters.ToQueryString()}", 
+                new BillingAdminOverdraftsPutRequest
+                { 
+                    Storage = storage,
+                    Bandwidth = bandwidth,
+                    CiCredits = ciCredits,
+                }, cancellationToken);
+        }
+        
+    
+    }
+
+    public ReportClient Reports => new ReportClient(_connection);
+    
+    public partial class ReportClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public ReportClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Returns a billing report for the given billing period
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View usage data</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<BillingReport> GetBillingReportAsync(string billingPeriod, Func<Partial<BillingReport>, Partial<BillingReport>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<BillingReport>()) : Partial<BillingReport>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<BillingReport>("GET", $"api/http/billing-admin/reports/{billingPeriod}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public TodayClient Today => new TodayClient(_connection);
+        
+        public partial class TodayClient : ISpaceClient
         {
             private readonly Connection _connection;
             
-            public ReportClient(Connection connection)
+            public TodayClient(Connection connection)
             {
                 _connection = connection;
             }
             
             /// <summary>
-            /// Returns a billing report for the given billing period
+            /// Returns a billing report for today
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -112,51 +143,19 @@ namespace JetBrains.Space.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<BillingReport> GetBillingReportAsync(string billingPeriod, Func<Partial<BillingReport>, Partial<BillingReport>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TodayBillingReport> GetBillingReportForTodayAsync(DateTime date, Func<Partial<TodayBillingReport>, Partial<TodayBillingReport>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<BillingReport>()) : Partial<BillingReport>.Default()).ToString());
+                queryParameters.Append("date", date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TodayBillingReport>()) : Partial<TodayBillingReport>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<BillingReport>("GET", $"api/http/billing-admin/reports/{billingPeriod}{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<TodayBillingReport>("GET", $"api/http/billing-admin/reports/today{queryParameters.ToQueryString()}", cancellationToken);
             }
             
-        
-            public TodayClient Today => new TodayClient(_connection);
-            
-            public partial class TodayClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public TodayClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Returns a billing report for today
-                /// </summary>
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>View usage data</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<TodayBillingReport> GetBillingReportForTodayAsync(DateTime date, Func<Partial<TodayBillingReport>, Partial<TodayBillingReport>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("date", date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<TodayBillingReport>()) : Partial<TodayBillingReport>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<TodayBillingReport>("GET", $"api/http/billing-admin/reports/today{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-            }
         
         }
     
     }
-    
+
 }
+

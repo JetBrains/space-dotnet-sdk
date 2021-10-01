@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DiffSideEmpty
+     : DiffSide, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class DiffSideEmpty
-         : DiffSide, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "DiffSide.Empty";
+    
+    public DiffSideEmpty() { }
+    
+    public DiffSideEmpty(string revision)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "DiffSide.Empty";
-        
-        public DiffSideEmpty() { }
-        
-        public DiffSideEmpty(string revision)
-        {
-            Revision = revision;
-        }
-        
-        private PropertyValue<string> _revision = new PropertyValue<string>(nameof(DiffSideEmpty), nameof(Revision));
-        
-        [Required]
-        [JsonPropertyName("revision")]
-        public string Revision
-        {
-            get => _revision.GetValue();
-            set => _revision.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _revision.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Revision = revision;
     }
     
+    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(DiffSideEmpty), nameof(Revision));
+    
+    [Required]
+    [JsonPropertyName("revision")]
+    public string Revision
+    {
+        get => _revision.GetValue();
+        set => _revision.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _revision.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

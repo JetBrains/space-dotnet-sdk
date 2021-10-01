@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.IssueImportResultItemPartialBuilder
+namespace JetBrains.Space.Client.IssueImportResultItemPartialBuilder;
+
+public static class IssueImportResultItemPartialExtensions
 {
-    public static class IssueImportResultItemPartialExtensions
-    {
-        public static Partial<IssueImportResultItem> WithExternalId(this Partial<IssueImportResultItem> it)
-            => it.AddFieldName("externalId");
-        
-        public static Partial<IssueImportResultItem> WithIssue(this Partial<IssueImportResultItem> it)
-            => it.AddFieldName("issue");
-        
-        public static Partial<IssueImportResultItem> WithIssue(this Partial<IssueImportResultItem> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
-            => it.AddFieldName("issue", partialBuilder(new Partial<Issue>(it)));
-        
-        public static Partial<IssueImportResultItem> WithError(this Partial<IssueImportResultItem> it)
-            => it.AddFieldName("error");
-        
-    }
+    public static Partial<IssueImportResultItem> WithExternalId(this Partial<IssueImportResultItem> it)
+        => it.AddFieldName("externalId");
+    
+    public static Partial<IssueImportResultItem> WithIssue(this Partial<IssueImportResultItem> it)
+        => it.AddFieldName("issue");
+    
+    public static Partial<IssueImportResultItem> WithIssue(this Partial<IssueImportResultItem> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
+        => it.AddFieldName("issue", partialBuilder(new Partial<Issue>(it)));
+    
+    public static Partial<IssueImportResultItem> WithError(this Partial<IssueImportResultItem> it)
+        => it.AddFieldName("error");
     
 }
+

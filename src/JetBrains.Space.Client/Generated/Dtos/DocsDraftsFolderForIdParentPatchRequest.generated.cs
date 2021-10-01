@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class DocsDraftsFolderForIdParentPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class DocsDraftsFolderForIdParentPatchRequest
-         : IPropagatePropertyAccessPath
+    public DocsDraftsFolderForIdParentPatchRequest() { }
+    
+    public DocsDraftsFolderForIdParentPatchRequest(string parentFolderId)
     {
-        public DocsDraftsFolderForIdParentPatchRequest() { }
-        
-        public DocsDraftsFolderForIdParentPatchRequest(string parentFolderId)
-        {
-            ParentFolderId = parentFolderId;
-        }
-        
-        private PropertyValue<string> _parentFolderId = new PropertyValue<string>(nameof(DocsDraftsFolderForIdParentPatchRequest), nameof(ParentFolderId));
-        
-        [Required]
-        [JsonPropertyName("parentFolderId")]
-        public string ParentFolderId
-        {
-            get => _parentFolderId.GetValue();
-            set => _parentFolderId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _parentFolderId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ParentFolderId = parentFolderId;
     }
     
+    private PropertyValue<string> _parentFolderId = new PropertyValue<string>(nameof(DocsDraftsFolderForIdParentPatchRequest), nameof(ParentFolderId));
+    
+    [Required]
+    [JsonPropertyName("parentFolderId")]
+    public string ParentFolderId
+    {
+        get => _parentFolderId.GetValue();
+        set => _parentFolderId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _parentFolderId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

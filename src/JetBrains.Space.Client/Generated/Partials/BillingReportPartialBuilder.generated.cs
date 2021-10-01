@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BillingReportPartialBuilder
+namespace JetBrains.Space.Client.BillingReportPartialBuilder;
+
+public static class BillingReportPartialExtensions
 {
-    public static class BillingReportPartialExtensions
-    {
-        public static Partial<BillingReport> WithPlans(this Partial<BillingReport> it)
-            => it.AddFieldName("plans");
-        
-        public static Partial<BillingReport> WithPlans(this Partial<BillingReport> it, Func<Partial<PurchasedBillingPlan>, Partial<PurchasedBillingPlan>> partialBuilder)
-            => it.AddFieldName("plans", partialBuilder(new Partial<PurchasedBillingPlan>(it)));
-        
-        public static Partial<BillingReport> WithReportDays(this Partial<BillingReport> it)
-            => it.AddFieldName("reportDays");
-        
-        public static Partial<BillingReport> WithReportDays(this Partial<BillingReport> it, Func<Partial<BillingReportDay>, Partial<BillingReportDay>> partialBuilder)
-            => it.AddFieldName("reportDays", partialBuilder(new Partial<BillingReportDay>(it)));
-        
-        public static Partial<BillingReport> WithBandwidthAllocation(this Partial<BillingReport> it)
-            => it.AddFieldName("bandwidthAllocation");
-        
-        public static Partial<BillingReport> WithCiAllocation(this Partial<BillingReport> it)
-            => it.AddFieldName("ciAllocation");
-        
-        public static Partial<BillingReport> WithServerToday(this Partial<BillingReport> it)
-            => it.AddFieldName("serverToday");
-        
-        public static Partial<BillingReport> WithEarliestBillingDate(this Partial<BillingReport> it)
-            => it.AddFieldName("earliestBillingDate");
-        
-    }
+    public static Partial<BillingReport> WithPlans(this Partial<BillingReport> it)
+        => it.AddFieldName("plans");
+    
+    public static Partial<BillingReport> WithPlans(this Partial<BillingReport> it, Func<Partial<PurchasedBillingPlan>, Partial<PurchasedBillingPlan>> partialBuilder)
+        => it.AddFieldName("plans", partialBuilder(new Partial<PurchasedBillingPlan>(it)));
+    
+    public static Partial<BillingReport> WithReportDays(this Partial<BillingReport> it)
+        => it.AddFieldName("reportDays");
+    
+    public static Partial<BillingReport> WithReportDays(this Partial<BillingReport> it, Func<Partial<BillingReportDay>, Partial<BillingReportDay>> partialBuilder)
+        => it.AddFieldName("reportDays", partialBuilder(new Partial<BillingReportDay>(it)));
+    
+    public static Partial<BillingReport> WithBandwidthAllocation(this Partial<BillingReport> it)
+        => it.AddFieldName("bandwidthAllocation");
+    
+    public static Partial<BillingReport> WithCiAllocation(this Partial<BillingReport> it)
+        => it.AddFieldName("ciAllocation");
+    
+    public static Partial<BillingReport> WithServerToday(this Partial<BillingReport> it)
+        => it.AddFieldName("serverToday");
+    
+    public static Partial<BillingReport> WithEarliestBillingDate(this Partial<BillingReport> it)
+        => it.AddFieldName("earliestBillingDate");
     
 }
+

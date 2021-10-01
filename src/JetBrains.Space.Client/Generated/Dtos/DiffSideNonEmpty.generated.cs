@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DiffSideNonEmpty
+     : DiffSide, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class DiffSideNonEmpty
-         : DiffSide, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "DiffSide.NonEmpty";
+    
+    public DiffSideNonEmpty() { }
+    
+    public DiffSideNonEmpty(string revision, string path)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "DiffSide.NonEmpty";
-        
-        public DiffSideNonEmpty() { }
-        
-        public DiffSideNonEmpty(string revision, string path)
-        {
-            Revision = revision;
-            Path = path;
-        }
-        
-        private PropertyValue<string> _revision = new PropertyValue<string>(nameof(DiffSideNonEmpty), nameof(Revision));
-        
-        [Required]
-        [JsonPropertyName("revision")]
-        public string Revision
-        {
-            get => _revision.GetValue();
-            set => _revision.SetValue(value);
-        }
-    
-        private PropertyValue<string> _path = new PropertyValue<string>(nameof(DiffSideNonEmpty), nameof(Path));
-        
-        [Required]
-        [JsonPropertyName("path")]
-        public string Path
-        {
-            get => _path.GetValue();
-            set => _path.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _revision.SetAccessPath(path, validateHasBeenSet);
-            _path.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Revision = revision;
+        Path = path;
     }
     
+    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(DiffSideNonEmpty), nameof(Revision));
+    
+    [Required]
+    [JsonPropertyName("revision")]
+    public string Revision
+    {
+        get => _revision.GetValue();
+        set => _revision.SetValue(value);
+    }
+
+    private PropertyValue<string> _path = new PropertyValue<string>(nameof(DiffSideNonEmpty), nameof(Path));
+    
+    [Required]
+    [JsonPropertyName("path")]
+    public string Path
+    {
+        get => _path.GetValue();
+        set => _path.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _revision.SetAccessPath(path, validateHasBeenSet);
+        _path.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class SupportProfile
+     : IPropagatePropertyAccessPath
 {
-    public sealed class SupportProfile
-         : IPropagatePropertyAccessPath
+    public SupportProfile() { }
+    
+    public SupportProfile(TDMemberProfile profile, bool adminPermissionsGranted)
     {
-        public SupportProfile() { }
-        
-        public SupportProfile(TDMemberProfile profile, bool adminPermissionsGranted)
-        {
-            Profile = profile;
-            IsAdminPermissionsGranted = adminPermissionsGranted;
-        }
-        
-        private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(SupportProfile), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfile Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _adminPermissionsGranted = new PropertyValue<bool>(nameof(SupportProfile), nameof(IsAdminPermissionsGranted));
-        
-        [Required]
-        [JsonPropertyName("adminPermissionsGranted")]
-        public bool IsAdminPermissionsGranted
-        {
-            get => _adminPermissionsGranted.GetValue();
-            set => _adminPermissionsGranted.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _adminPermissionsGranted.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
+        IsAdminPermissionsGranted = adminPermissionsGranted;
     }
     
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(SupportProfile), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public TDMemberProfile Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<bool> _adminPermissionsGranted = new PropertyValue<bool>(nameof(SupportProfile), nameof(IsAdminPermissionsGranted));
+    
+    [Required]
+    [JsonPropertyName("adminPermissionsGranted")]
+    public bool IsAdminPermissionsGranted
+    {
+        get => _adminPermissionsGranted.GetValue();
+        set => _adminPermissionsGranted.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _adminPermissionsGranted.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

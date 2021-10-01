@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitCommitFileRequest
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GitCommitFileRequest
-         : IPropagatePropertyAccessPath
+    public GitCommitFileRequest() { }
+    
+    public GitCommitFileRequest(string path, GitFileContent content)
     {
-        public GitCommitFileRequest() { }
-        
-        public GitCommitFileRequest(string path, GitFileContent content)
-        {
-            Path = path;
-            Content = content;
-        }
-        
-        private PropertyValue<string> _path = new PropertyValue<string>(nameof(GitCommitFileRequest), nameof(Path));
-        
-        [Required]
-        [JsonPropertyName("path")]
-        public string Path
-        {
-            get => _path.GetValue();
-            set => _path.SetValue(value);
-        }
-    
-        private PropertyValue<GitFileContent> _content = new PropertyValue<GitFileContent>(nameof(GitCommitFileRequest), nameof(Content));
-        
-        [Required]
-        [JsonPropertyName("content")]
-        public GitFileContent Content
-        {
-            get => _content.GetValue();
-            set => _content.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _path.SetAccessPath(path, validateHasBeenSet);
-            _content.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Path = path;
+        Content = content;
     }
     
+    private PropertyValue<string> _path = new PropertyValue<string>(nameof(GitCommitFileRequest), nameof(Path));
+    
+    [Required]
+    [JsonPropertyName("path")]
+    public string Path
+    {
+        get => _path.GetValue();
+        set => _path.SetValue(value);
+    }
+
+    private PropertyValue<GitFileContent> _content = new PropertyValue<GitFileContent>(nameof(GitCommitFileRequest), nameof(Content));
+    
+    [Required]
+    [JsonPropertyName("content")]
+    public GitFileContent Content
+    {
+        get => _content.GetValue();
+        set => _content.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _path.SetAccessPath(path, validateHasBeenSet);
+        _content.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

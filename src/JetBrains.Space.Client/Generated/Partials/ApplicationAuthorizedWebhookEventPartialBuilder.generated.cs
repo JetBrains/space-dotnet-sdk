@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationAuthorizedWebhookEventPartialBuilder
+namespace JetBrains.Space.Client.ApplicationAuthorizedWebhookEventPartialBuilder;
+
+public static class ApplicationAuthorizedWebhookEventPartialExtensions
 {
-    public static class ApplicationAuthorizedWebhookEventPartialExtensions
-    {
-        public static Partial<ApplicationAuthorizedWebhookEvent> WithMeta(this Partial<ApplicationAuthorizedWebhookEvent> it)
-            => it.AddFieldName("meta");
-        
-        public static Partial<ApplicationAuthorizedWebhookEvent> WithMeta(this Partial<ApplicationAuthorizedWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-            => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
-        
-        public static Partial<ApplicationAuthorizedWebhookEvent> WithApplication(this Partial<ApplicationAuthorizedWebhookEvent> it)
-            => it.AddFieldName("application");
-        
-        public static Partial<ApplicationAuthorizedWebhookEvent> WithApplication(this Partial<ApplicationAuthorizedWebhookEvent> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
-            => it.AddFieldName("application", partialBuilder(new Partial<ESApp>(it)));
-        
-        public static Partial<ApplicationAuthorizedWebhookEvent> WithScope(this Partial<ApplicationAuthorizedWebhookEvent> it)
-            => it.AddFieldName("scope");
-        
-        public static Partial<ApplicationAuthorizedWebhookEvent> WithScope(this Partial<ApplicationAuthorizedWebhookEvent> it, Func<Partial<AuthScope>, Partial<AuthScope>> partialBuilder)
-            => it.AddFieldName("scope", partialBuilder(new Partial<AuthScope>(it)));
-        
-    }
+    public static Partial<ApplicationAuthorizedWebhookEvent> WithMeta(this Partial<ApplicationAuthorizedWebhookEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<ApplicationAuthorizedWebhookEvent> WithMeta(this Partial<ApplicationAuthorizedWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<ApplicationAuthorizedWebhookEvent> WithApplication(this Partial<ApplicationAuthorizedWebhookEvent> it)
+        => it.AddFieldName("application");
+    
+    public static Partial<ApplicationAuthorizedWebhookEvent> WithApplication(this Partial<ApplicationAuthorizedWebhookEvent> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
+        => it.AddFieldName("application", partialBuilder(new Partial<ESApp>(it)));
+    
+    public static Partial<ApplicationAuthorizedWebhookEvent> WithScope(this Partial<ApplicationAuthorizedWebhookEvent> it)
+        => it.AddFieldName("scope");
+    
+    public static Partial<ApplicationAuthorizedWebhookEvent> WithScope(this Partial<ApplicationAuthorizedWebhookEvent> it, Func<Partial<AuthScope>, Partial<AuthScope>> partialBuilder)
+        => it.AddFieldName("scope", partialBuilder(new Partial<AuthScope>(it)));
     
 }
+

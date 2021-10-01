@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum MessageButtonStyle
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum MessageButtonStyle
-    {
-        [EnumMember(Value = "PRIMARY")]
-        PRIMARY,
-        
-        [EnumMember(Value = "REGULAR")]
-        REGULAR,
-        
-        [EnumMember(Value = "DANGER")]
-        DANGER,
-        
-        [EnumMember(Value = "SECONDARY")]
-        SECONDARY,
-        
-    }
+    [EnumMember(Value = "PRIMARY")]
+    PRIMARY,
+    
+    [EnumMember(Value = "REGULAR")]
+    REGULAR,
+    
+    [EnumMember(Value = "DANGER")]
+    DANGER,
+    
+    [EnumMember(Value = "SECONDARY")]
+    SECONDARY,
     
 }
+

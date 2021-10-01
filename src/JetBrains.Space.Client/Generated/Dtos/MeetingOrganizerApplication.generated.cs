@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MeetingOrganizerApplication
+     : MeetingOrganizer, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MeetingOrganizerApplication
-         : MeetingOrganizer, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "MeetingOrganizer.Application";
+    
+    public MeetingOrganizerApplication() { }
+    
+    public MeetingOrganizerApplication(ESApp? applicationRef = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "MeetingOrganizer.Application";
-        
-        public MeetingOrganizerApplication() { }
-        
-        public MeetingOrganizerApplication(ESApp? applicationRef = null)
-        {
-            ApplicationRef = applicationRef;
-        }
-        
-        private PropertyValue<ESApp?> _applicationRef = new PropertyValue<ESApp?>(nameof(MeetingOrganizerApplication), nameof(ApplicationRef));
-        
-        [JsonPropertyName("applicationRef")]
-        public ESApp? ApplicationRef
-        {
-            get => _applicationRef.GetValue();
-            set => _applicationRef.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _applicationRef.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ApplicationRef = applicationRef;
     }
     
+    private PropertyValue<ESApp?> _applicationRef = new PropertyValue<ESApp?>(nameof(MeetingOrganizerApplication), nameof(ApplicationRef));
+    
+    [JsonPropertyName("applicationRef")]
+    public ESApp? ApplicationRef
+    {
+        get => _applicationRef.GetValue();
+        set => _applicationRef.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _applicationRef.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

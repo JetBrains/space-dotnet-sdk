@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MemberCommonSubscriptionFilterInPartialBuilder
+namespace JetBrains.Space.Client.MemberCommonSubscriptionFilterInPartialBuilder;
+
+public static class MemberCommonSubscriptionFilterInPartialExtensions
 {
-    public static class MemberCommonSubscriptionFilterInPartialExtensions
-    {
-        public static Partial<MemberCommonSubscriptionFilterIn> WithTeams(this Partial<MemberCommonSubscriptionFilterIn> it)
-            => it.AddFieldName("teams");
-        
-        public static Partial<MemberCommonSubscriptionFilterIn> WithLocations(this Partial<MemberCommonSubscriptionFilterIn> it)
-            => it.AddFieldName("locations");
-        
-        public static Partial<MemberCommonSubscriptionFilterIn> WithProfiles(this Partial<MemberCommonSubscriptionFilterIn> it)
-            => it.AddFieldName("profiles");
-        
-        public static Partial<MemberCommonSubscriptionFilterIn> WithProfiles(this Partial<MemberCommonSubscriptionFilterIn> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("profiles", partialBuilder(new Partial<ProfileIdentifier>(it)));
-        
-    }
+    public static Partial<MemberCommonSubscriptionFilterIn> WithTeams(this Partial<MemberCommonSubscriptionFilterIn> it)
+        => it.AddFieldName("teams");
+    
+    public static Partial<MemberCommonSubscriptionFilterIn> WithLocations(this Partial<MemberCommonSubscriptionFilterIn> it)
+        => it.AddFieldName("locations");
+    
+    public static Partial<MemberCommonSubscriptionFilterIn> WithProfiles(this Partial<MemberCommonSubscriptionFilterIn> it)
+        => it.AddFieldName("profiles");
+    
+    public static Partial<MemberCommonSubscriptionFilterIn> WithProfiles(this Partial<MemberCommonSubscriptionFilterIn> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+        => it.AddFieldName("profiles", partialBuilder(new Partial<ProfileIdentifier>(it)));
     
 }
+

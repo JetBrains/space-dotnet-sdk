@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RightsDeps
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RightsDeps
-         : IPropagatePropertyAccessPath
+    public RightsDeps() { }
+    
+    public RightsDeps(string code, List<string> deps)
     {
-        public RightsDeps() { }
-        
-        public RightsDeps(string code, List<string> deps)
-        {
-            Code = code;
-            Deps = deps;
-        }
-        
-        private PropertyValue<string> _code = new PropertyValue<string>(nameof(RightsDeps), nameof(Code));
-        
-        [Required]
-        [JsonPropertyName("code")]
-        public string Code
-        {
-            get => _code.GetValue();
-            set => _code.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _deps = new PropertyValue<List<string>>(nameof(RightsDeps), nameof(Deps), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("deps")]
-        public List<string> Deps
-        {
-            get => _deps.GetValue();
-            set => _deps.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _code.SetAccessPath(path, validateHasBeenSet);
-            _deps.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Code = code;
+        Deps = deps;
     }
     
+    private PropertyValue<string> _code = new PropertyValue<string>(nameof(RightsDeps), nameof(Code));
+    
+    [Required]
+    [JsonPropertyName("code")]
+    public string Code
+    {
+        get => _code.GetValue();
+        set => _code.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _deps = new PropertyValue<List<string>>(nameof(RightsDeps), nameof(Deps), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("deps")]
+    public List<string> Deps
+    {
+        get => _deps.GetValue();
+        set => _deps.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _code.SetAccessPath(path, validateHasBeenSet);
+        _deps.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

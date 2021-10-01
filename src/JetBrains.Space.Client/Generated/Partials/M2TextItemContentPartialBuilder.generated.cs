@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2TextItemContentPartialBuilder
+namespace JetBrains.Space.Client.M2TextItemContentPartialBuilder;
+
+public static class M2TextItemContentPartialExtensions
 {
-    public static class M2TextItemContentPartialExtensions
-    {
-        public static Partial<M2TextItemContent> WithIsMarkdown(this Partial<M2TextItemContent> it)
-            => it.AddFieldName("markdown");
-        
-    }
+    public static Partial<M2TextItemContent> WithIsMarkdown(this Partial<M2TextItemContent> it)
+        => it.AddFieldName("markdown");
     
 }
+

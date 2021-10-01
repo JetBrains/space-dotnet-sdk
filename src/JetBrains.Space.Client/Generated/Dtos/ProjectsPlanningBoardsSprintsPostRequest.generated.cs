@@ -27,82 +27,81 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsPlanningBoardsSprintsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsPlanningBoardsSprintsPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsPlanningBoardsSprintsPostRequest() { }
+    
+    public ProjectsPlanningBoardsSprintsPostRequest(BoardIdentifier board, string name, DateTime from, DateTime to, string? description = null)
     {
-        public ProjectsPlanningBoardsSprintsPostRequest() { }
-        
-        public ProjectsPlanningBoardsSprintsPostRequest(BoardIdentifier board, string name, DateTime from, DateTime to, string? description = null)
-        {
-            Board = board;
-            Name = name;
-            Description = description;
-            From = from;
-            To = to;
-        }
-        
-        private PropertyValue<BoardIdentifier> _board = new PropertyValue<BoardIdentifier>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(Board));
-        
-        [Required]
-        [JsonPropertyName("board")]
-        public BoardIdentifier Board
-        {
-            get => _board.GetValue();
-            set => _board.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(Description));
-        
-        [JsonPropertyName("description")]
-        public string? Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _from = new PropertyValue<DateTime>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(From));
-        
-        [Required]
-        [JsonPropertyName("from")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime From
-        {
-            get => _from.GetValue();
-            set => _from.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _to = new PropertyValue<DateTime>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(To));
-        
-        [Required]
-        [JsonPropertyName("to")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime To
-        {
-            get => _to.GetValue();
-            set => _to.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _board.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _from.SetAccessPath(path, validateHasBeenSet);
-            _to.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Board = board;
+        Name = name;
+        Description = description;
+        From = from;
+        To = to;
     }
     
+    private PropertyValue<BoardIdentifier> _board = new PropertyValue<BoardIdentifier>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(Board));
+    
+    [Required]
+    [JsonPropertyName("board")]
+    public BoardIdentifier Board
+    {
+        get => _board.GetValue();
+        set => _board.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _from = new PropertyValue<DateTime>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(From));
+    
+    [Required]
+    [JsonPropertyName("from")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime From
+    {
+        get => _from.GetValue();
+        set => _from.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _to = new PropertyValue<DateTime>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(To));
+    
+    [Required]
+    [JsonPropertyName("to")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime To
+    {
+        get => _to.GetValue();
+        set => _to.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _board.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _from.SetAccessPath(path, validateHasBeenSet);
+        _to.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

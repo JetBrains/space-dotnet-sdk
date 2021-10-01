@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum AppsOrdering
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum AppsOrdering
-    {
-        [EnumMember(Value = "NAME_A_TO_Z")]
-        NAMEATOZ,
-        
-        [EnumMember(Value = "NAME_Z_TO_A")]
-        NAMEZTOA,
-        
-    }
+    [EnumMember(Value = "NAME_A_TO_Z")]
+    NAMEATOZ,
+    
+    [EnumMember(Value = "NAME_Z_TO_A")]
+    NAMEZTOA,
     
 }
+

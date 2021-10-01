@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class QRCode
+     : IPropagatePropertyAccessPath
 {
-    public sealed class QRCode
-         : IPropagatePropertyAccessPath
+    public QRCode() { }
+    
+    public QRCode(int width, string base64Bitmap)
     {
-        public QRCode() { }
-        
-        public QRCode(int width, string base64Bitmap)
-        {
-            Width = width;
-            Base64Bitmap = base64Bitmap;
-        }
-        
-        private PropertyValue<int> _width = new PropertyValue<int>(nameof(QRCode), nameof(Width));
-        
-        [Required]
-        [JsonPropertyName("width")]
-        public int Width
-        {
-            get => _width.GetValue();
-            set => _width.SetValue(value);
-        }
-    
-        private PropertyValue<string> _base64Bitmap = new PropertyValue<string>(nameof(QRCode), nameof(Base64Bitmap));
-        
-        [Required]
-        [JsonPropertyName("base64Bitmap")]
-        public string Base64Bitmap
-        {
-            get => _base64Bitmap.GetValue();
-            set => _base64Bitmap.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _width.SetAccessPath(path, validateHasBeenSet);
-            _base64Bitmap.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Width = width;
+        Base64Bitmap = base64Bitmap;
     }
     
+    private PropertyValue<int> _width = new PropertyValue<int>(nameof(QRCode), nameof(Width));
+    
+    [Required]
+    [JsonPropertyName("width")]
+    public int Width
+    {
+        get => _width.GetValue();
+        set => _width.SetValue(value);
+    }
+
+    private PropertyValue<string> _base64Bitmap = new PropertyValue<string>(nameof(QRCode), nameof(Base64Bitmap));
+    
+    [Required]
+    [JsonPropertyName("base64Bitmap")]
+    public string Base64Bitmap
+    {
+        get => _base64Bitmap.GetValue();
+        set => _base64Bitmap.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _width.SetAccessPath(path, validateHasBeenSet);
+        _base64Bitmap.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

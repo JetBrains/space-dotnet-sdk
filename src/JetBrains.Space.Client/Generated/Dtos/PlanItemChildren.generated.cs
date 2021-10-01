@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class PlanItemChildren
+     : IPropagatePropertyAccessPath
 {
-    public sealed class PlanItemChildren
-         : IPropagatePropertyAccessPath
+    public PlanItemChildren() { }
+    
+    public PlanItemChildren(string id, List<PlanItem> children, bool archived)
     {
-        public PlanItemChildren() { }
-        
-        public PlanItemChildren(string id, List<PlanItem> children, bool archived)
-        {
-            Id = id;
-            Children = children;
-            IsArchived = archived;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(PlanItemChildren), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<List<PlanItem>> _children = new PropertyValue<List<PlanItem>>(nameof(PlanItemChildren), nameof(Children), new List<PlanItem>());
-        
-        [Required]
-        [JsonPropertyName("children")]
-        public List<PlanItem> Children
-        {
-            get => _children.GetValue();
-            set => _children.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PlanItemChildren), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _children.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Children = children;
+        IsArchived = archived;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PlanItemChildren), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<List<PlanItem>> _children = new PropertyValue<List<PlanItem>>(nameof(PlanItemChildren), nameof(Children), new List<PlanItem>());
+    
+    [Required]
+    [JsonPropertyName("children")]
+    public List<PlanItem> Children
+    {
+        get => _children.GetValue();
+        set => _children.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PlanItemChildren), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _children.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

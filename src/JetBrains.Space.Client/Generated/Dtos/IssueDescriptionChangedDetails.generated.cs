@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IssueDescriptionChangedDetails
+     : IssueChangedM2Details, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class IssueDescriptionChangedDetails
-         : IssueChangedM2Details, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "IssueDescriptionChangedDetails";
+    
+    public IssueDescriptionChangedDetails() { }
+    
+    public IssueDescriptionChangedDetails(string? oldDescription = null, string? newDescription = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "IssueDescriptionChangedDetails";
-        
-        public IssueDescriptionChangedDetails() { }
-        
-        public IssueDescriptionChangedDetails(string? oldDescription = null, string? newDescription = null)
-        {
-            OldDescription = oldDescription;
-            NewDescription = newDescription;
-        }
-        
-        private PropertyValue<string?> _oldDescription = new PropertyValue<string?>(nameof(IssueDescriptionChangedDetails), nameof(OldDescription));
-        
-        [JsonPropertyName("oldDescription")]
-        public string? OldDescription
-        {
-            get => _oldDescription.GetValue();
-            set => _oldDescription.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _newDescription = new PropertyValue<string?>(nameof(IssueDescriptionChangedDetails), nameof(NewDescription));
-        
-        [JsonPropertyName("newDescription")]
-        public string? NewDescription
-        {
-            get => _newDescription.GetValue();
-            set => _newDescription.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _oldDescription.SetAccessPath(path, validateHasBeenSet);
-            _newDescription.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        OldDescription = oldDescription;
+        NewDescription = newDescription;
     }
     
+    private PropertyValue<string?> _oldDescription = new PropertyValue<string?>(nameof(IssueDescriptionChangedDetails), nameof(OldDescription));
+    
+    [JsonPropertyName("oldDescription")]
+    public string? OldDescription
+    {
+        get => _oldDescription.GetValue();
+        set => _oldDescription.SetValue(value);
+    }
+
+    private PropertyValue<string?> _newDescription = new PropertyValue<string?>(nameof(IssueDescriptionChangedDetails), nameof(NewDescription));
+    
+    [JsonPropertyName("newDescription")]
+    public string? NewDescription
+    {
+        get => _newDescription.GetValue();
+        set => _newDescription.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _oldDescription.SetAccessPath(path, validateHasBeenSet);
+        _newDescription.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

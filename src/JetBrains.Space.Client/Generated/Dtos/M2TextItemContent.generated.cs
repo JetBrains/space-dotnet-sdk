@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2TextItemContent
+     : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2TextItemContent
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2TextItemContent";
+    
+    public M2TextItemContent() { }
+    
+    public M2TextItemContent(bool? markdown = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2TextItemContent";
-        
-        public M2TextItemContent() { }
-        
-        public M2TextItemContent(bool? markdown = null)
-        {
-            IsMarkdown = markdown;
-        }
-        
-        private PropertyValue<bool?> _markdown = new PropertyValue<bool?>(nameof(M2TextItemContent), nameof(IsMarkdown));
-        
-        [JsonPropertyName("markdown")]
-        public bool? IsMarkdown
-        {
-            get => _markdown.GetValue();
-            set => _markdown.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _markdown.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        IsMarkdown = markdown;
     }
     
+    private PropertyValue<bool?> _markdown = new PropertyValue<bool?>(nameof(M2TextItemContent), nameof(IsMarkdown));
+    
+    [JsonPropertyName("markdown")]
+    public bool? IsMarkdown
+    {
+        get => _markdown.GetValue();
+        set => _markdown.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _markdown.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

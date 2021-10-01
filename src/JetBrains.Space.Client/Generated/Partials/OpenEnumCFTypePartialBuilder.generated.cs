@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.OpenEnumCFTypePartialBuilder
+namespace JetBrains.Space.Client.OpenEnumCFTypePartialBuilder;
+
+public static class OpenEnumCFTypePartialExtensions
 {
-    public static class OpenEnumCFTypePartialExtensions
-    {
-    }
-    
 }
+

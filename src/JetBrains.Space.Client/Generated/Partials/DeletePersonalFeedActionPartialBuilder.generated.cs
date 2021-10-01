@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DeletePersonalFeedActionPartialBuilder
+namespace JetBrains.Space.Client.DeletePersonalFeedActionPartialBuilder;
+
+public static class DeletePersonalFeedActionPartialExtensions
 {
-    public static class DeletePersonalFeedActionPartialExtensions
-    {
-        public static Partial<DeletePersonalFeedAction> WithFeed(this Partial<DeletePersonalFeedAction> it)
-            => it.AddFieldName("feed");
-        
-        public static Partial<DeletePersonalFeedAction> WithFeedId(this Partial<DeletePersonalFeedAction> it)
-            => it.AddFieldName("feedId");
-        
-    }
+    public static Partial<DeletePersonalFeedAction> WithFeed(this Partial<DeletePersonalFeedAction> it)
+        => it.AddFieldName("feed");
+    
+    public static Partial<DeletePersonalFeedAction> WithFeedId(this Partial<DeletePersonalFeedAction> it)
+        => it.AddFieldName("feedId");
     
 }
+

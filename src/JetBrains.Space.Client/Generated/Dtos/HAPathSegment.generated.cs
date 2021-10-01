@@ -27,30 +27,29 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class HAPathSegment
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class HAPathSegment
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "HA_PathSegment";
+    
+    public static HAPathSegmentConst Const(string value)
+        => new HAPathSegmentConst(value: value);
+    
+    public static HAPathSegmentPrefixedVar PrefixedVar(string prefix, string name)
+        => new HAPathSegmentPrefixedVar(prefix: prefix, name: name);
+    
+    public static HAPathSegmentVar Var(string name)
+        => new HAPathSegmentVar(name: name);
+    
+    public HAPathSegment() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "HA_PathSegment";
-        
-        public static HAPathSegmentConst Const(string value)
-            => new HAPathSegmentConst(value: value);
-        
-        public static HAPathSegmentPrefixedVar PrefixedVar(string prefix, string name)
-            => new HAPathSegmentPrefixedVar(prefix: prefix, name: name);
-        
-        public static HAPathSegmentVar Var(string name)
-            => new HAPathSegmentVar(name: name);
-        
-        public HAPathSegment() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

@@ -27,49 +27,48 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingRecordPartialBuilder
+namespace JetBrains.Space.Client.MeetingRecordPartialBuilder;
+
+public static class MeetingRecordPartialExtensions
 {
-    public static class MeetingRecordPartialExtensions
-    {
-        public static Partial<MeetingRecord> WithId(this Partial<MeetingRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<MeetingRecord> WithIsArchived(this Partial<MeetingRecord> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<MeetingRecord> WithStarts(this Partial<MeetingRecord> it)
-            => it.AddFieldName("starts");
-        
-        public static Partial<MeetingRecord> WithFinishes(this Partial<MeetingRecord> it)
-            => it.AddFieldName("finishes");
-        
-        public static Partial<MeetingRecord> WithTimezone(this Partial<MeetingRecord> it)
-            => it.AddFieldName("timezone");
-        
-        public static Partial<MeetingRecord> WithTimezone(this Partial<MeetingRecord> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
-            => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
-        
-        public static Partial<MeetingRecord> WithIsAllDay(this Partial<MeetingRecord> it)
-            => it.AddFieldName("allDay");
-        
-        public static Partial<MeetingRecord> WithRooms(this Partial<MeetingRecord> it)
-            => it.AddFieldName("rooms");
-        
-        public static Partial<MeetingRecord> WithRooms(this Partial<MeetingRecord> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
-            => it.AddFieldName("rooms", partialBuilder(new Partial<TDLocation>(it)));
-        
-        public static Partial<MeetingRecord> WithParticipants(this Partial<MeetingRecord> it)
-            => it.AddFieldName("participants");
-        
-        public static Partial<MeetingRecord> WithParticipants(this Partial<MeetingRecord> it, Func<Partial<Participant>, Partial<Participant>> partialBuilder)
-            => it.AddFieldName("participants", partialBuilder(new Partial<Participant>(it)));
-        
-        public static Partial<MeetingRecord> WithArticle(this Partial<MeetingRecord> it)
-            => it.AddFieldName("article");
-        
-        public static Partial<MeetingRecord> WithArticle(this Partial<MeetingRecord> it, Func<Partial<ArticleRecord>, Partial<ArticleRecord>> partialBuilder)
-            => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecord>(it)));
-        
-    }
+    public static Partial<MeetingRecord> WithId(this Partial<MeetingRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<MeetingRecord> WithIsArchived(this Partial<MeetingRecord> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<MeetingRecord> WithStarts(this Partial<MeetingRecord> it)
+        => it.AddFieldName("starts");
+    
+    public static Partial<MeetingRecord> WithFinishes(this Partial<MeetingRecord> it)
+        => it.AddFieldName("finishes");
+    
+    public static Partial<MeetingRecord> WithTimezone(this Partial<MeetingRecord> it)
+        => it.AddFieldName("timezone");
+    
+    public static Partial<MeetingRecord> WithTimezone(this Partial<MeetingRecord> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
+        => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
+    
+    public static Partial<MeetingRecord> WithIsAllDay(this Partial<MeetingRecord> it)
+        => it.AddFieldName("allDay");
+    
+    public static Partial<MeetingRecord> WithRooms(this Partial<MeetingRecord> it)
+        => it.AddFieldName("rooms");
+    
+    public static Partial<MeetingRecord> WithRooms(this Partial<MeetingRecord> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
+        => it.AddFieldName("rooms", partialBuilder(new Partial<TDLocation>(it)));
+    
+    public static Partial<MeetingRecord> WithParticipants(this Partial<MeetingRecord> it)
+        => it.AddFieldName("participants");
+    
+    public static Partial<MeetingRecord> WithParticipants(this Partial<MeetingRecord> it, Func<Partial<Participant>, Partial<Participant>> partialBuilder)
+        => it.AddFieldName("participants", partialBuilder(new Partial<Participant>(it)));
+    
+    public static Partial<MeetingRecord> WithArticle(this Partial<MeetingRecord> it)
+        => it.AddFieldName("article");
+    
+    public static Partial<MeetingRecord> WithArticle(this Partial<MeetingRecord> it, Func<Partial<ArticleRecord>, Partial<ArticleRecord>> partialBuilder)
+        => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecord>(it)));
     
 }
+

@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PrivateFeedPartialBuilder
+namespace JetBrains.Space.Client.PrivateFeedPartialBuilder;
+
+public static class PrivateFeedPartialExtensions
 {
-    public static class PrivateFeedPartialExtensions
-    {
-        public static Partial<PrivateFeed> WithId(this Partial<PrivateFeed> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<PrivateFeed> WithName(this Partial<PrivateFeed> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<PrivateFeed> WithIcon(this Partial<PrivateFeed> it)
-            => it.AddFieldName("icon");
-        
-        public static Partial<PrivateFeed> WithColor(this Partial<PrivateFeed> it)
-            => it.AddFieldName("color");
-        
-        public static Partial<PrivateFeed> WithColor(this Partial<PrivateFeed> it, Func<Partial<PrivateFeedColor>, Partial<PrivateFeedColor>> partialBuilder)
-            => it.AddFieldName("color", partialBuilder(new Partial<PrivateFeedColor>(it)));
-        
-    }
+    public static Partial<PrivateFeed> WithId(this Partial<PrivateFeed> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<PrivateFeed> WithName(this Partial<PrivateFeed> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<PrivateFeed> WithIcon(this Partial<PrivateFeed> it)
+        => it.AddFieldName("icon");
+    
+    public static Partial<PrivateFeed> WithColor(this Partial<PrivateFeed> it)
+        => it.AddFieldName("color");
+    
+    public static Partial<PrivateFeed> WithColor(this Partial<PrivateFeed> it, Func<Partial<PrivateFeedColor>, Partial<PrivateFeedColor>> partialBuilder)
+        => it.AddFieldName("color", partialBuilder(new Partial<PrivateFeedColor>(it)));
     
 }
+

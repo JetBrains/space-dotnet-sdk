@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryProfilesForProfileVcsPasswordPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryProfilesForProfileVcsPasswordPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryProfilesForProfileVcsPasswordPatchRequest() { }
+    
+    public TeamDirectoryProfilesForProfileVcsPasswordPatchRequest(string password)
     {
-        public TeamDirectoryProfilesForProfileVcsPasswordPatchRequest() { }
-        
-        public TeamDirectoryProfilesForProfileVcsPasswordPatchRequest(string password)
-        {
-            Password = password;
-        }
-        
-        private PropertyValue<string> _password = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileVcsPasswordPatchRequest), nameof(Password));
-        
-        [Required]
-        [JsonPropertyName("password")]
-        public string Password
-        {
-            get => _password.GetValue();
-            set => _password.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _password.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Password = password;
     }
     
+    private PropertyValue<string> _password = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileVcsPasswordPatchRequest), nameof(Password));
+    
+    [Required]
+    [JsonPropertyName("password")]
+    public string Password
+    {
+        get => _password.GetValue();
+        set => _password.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _password.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

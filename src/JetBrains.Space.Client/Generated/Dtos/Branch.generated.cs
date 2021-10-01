@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class Branch
+     : IPropagatePropertyAccessPath
 {
-    public sealed class Branch
-         : IPropagatePropertyAccessPath
+    public Branch() { }
+    
+    public Branch(string branchName)
     {
-        public Branch() { }
-        
-        public Branch(string branchName)
-        {
-            BranchName = branchName;
-        }
-        
-        private PropertyValue<string> _branchName = new PropertyValue<string>(nameof(Branch), nameof(BranchName));
-        
-        [Required]
-        [JsonPropertyName("branchName")]
-        public string BranchName
-        {
-            get => _branchName.GetValue();
-            set => _branchName.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _branchName.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        BranchName = branchName;
     }
     
+    private PropertyValue<string> _branchName = new PropertyValue<string>(nameof(Branch), nameof(BranchName));
+    
+    [Required]
+    [JsonPropertyName("branchName")]
+    public string BranchName
+    {
+        get => _branchName.GetValue();
+        set => _branchName.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _branchName.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

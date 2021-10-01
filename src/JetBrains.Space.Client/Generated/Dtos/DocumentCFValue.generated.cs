@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DocumentCFValue
+     : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class DocumentCFValue
-         : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "DocumentCFValue";
+    
+    public DocumentCFValue() { }
+    
+    public DocumentCFValue(Document? document = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "DocumentCFValue";
-        
-        public DocumentCFValue() { }
-        
-        public DocumentCFValue(Document? document = null)
-        {
-            Document = document;
-        }
-        
-        private PropertyValue<Document?> _document = new PropertyValue<Document?>(nameof(DocumentCFValue), nameof(Document));
-        
-        [JsonPropertyName("document")]
-        public Document? Document
-        {
-            get => _document.GetValue();
-            set => _document.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _document.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Document = document;
     }
     
+    private PropertyValue<Document?> _document = new PropertyValue<Document?>(nameof(DocumentCFValue), nameof(Document));
+    
+    [JsonPropertyName("document")]
+    public Document? Document
+    {
+        get => _document.GetValue();
+        set => _document.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _document.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

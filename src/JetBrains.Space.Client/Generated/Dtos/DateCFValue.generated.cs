@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DateCFValue
+     : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class DateCFValue
-         : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "DateCFValue";
+    
+    public DateCFValue() { }
+    
+    public DateCFValue(DateTime? value = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "DateCFValue";
-        
-        public DateCFValue() { }
-        
-        public DateCFValue(DateTime? value = null)
-        {
-            Value = value;
-        }
-        
-        private PropertyValue<DateTime?> _value = new PropertyValue<DateTime?>(nameof(DateCFValue), nameof(Value));
-        
-        [JsonPropertyName("value")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? Value
-        {
-            get => _value.GetValue();
-            set => _value.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _value.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Value = value;
     }
     
+    private PropertyValue<DateTime?> _value = new PropertyValue<DateTime?>(nameof(DateCFValue), nameof(Value));
+    
+    [JsonPropertyName("value")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? Value
+    {
+        get => _value.GetValue();
+        set => _value.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _value.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class EndpointAuthCreateBasic
+     : EndpointAuthCreate, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class EndpointAuthCreateBasic
-         : EndpointAuthCreate, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "EndpointAuthCreate.Basic";
+    
+    public EndpointAuthCreateBasic() { }
+    
+    public EndpointAuthCreateBasic(string username, string password)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "EndpointAuthCreate.Basic";
-        
-        public EndpointAuthCreateBasic() { }
-        
-        public EndpointAuthCreateBasic(string username, string password)
-        {
-            Username = username;
-            Password = password;
-        }
-        
-        private PropertyValue<string> _username = new PropertyValue<string>(nameof(EndpointAuthCreateBasic), nameof(Username));
-        
-        [Required]
-        [JsonPropertyName("username")]
-        public string Username
-        {
-            get => _username.GetValue();
-            set => _username.SetValue(value);
-        }
-    
-        private PropertyValue<string> _password = new PropertyValue<string>(nameof(EndpointAuthCreateBasic), nameof(Password));
-        
-        [Required]
-        [JsonPropertyName("password")]
-        public string Password
-        {
-            get => _password.GetValue();
-            set => _password.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _username.SetAccessPath(path, validateHasBeenSet);
-            _password.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Username = username;
+        Password = password;
     }
     
+    private PropertyValue<string> _username = new PropertyValue<string>(nameof(EndpointAuthCreateBasic), nameof(Username));
+    
+    [Required]
+    [JsonPropertyName("username")]
+    public string Username
+    {
+        get => _username.GetValue();
+        set => _username.SetValue(value);
+    }
+
+    private PropertyValue<string> _password = new PropertyValue<string>(nameof(EndpointAuthCreateBasic), nameof(Password));
+    
+    [Required]
+    [JsonPropertyName("password")]
+    public string Password
+    {
+        get => _password.GetValue();
+        set => _password.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _username.SetAccessPath(path, validateHasBeenSet);
+        _password.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

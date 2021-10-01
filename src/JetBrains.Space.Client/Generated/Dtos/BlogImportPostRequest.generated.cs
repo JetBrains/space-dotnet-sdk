@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class BlogImportPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class BlogImportPostRequest
-         : IPropagatePropertyAccessPath
+    public BlogImportPostRequest() { }
+    
+    public BlogImportPostRequest(ImportMetadata metadata, List<ExternalArticle> articles)
     {
-        public BlogImportPostRequest() { }
-        
-        public BlogImportPostRequest(ImportMetadata metadata, List<ExternalArticle> articles)
-        {
-            Metadata = metadata;
-            Articles = articles;
-        }
-        
-        private PropertyValue<ImportMetadata> _metadata = new PropertyValue<ImportMetadata>(nameof(BlogImportPostRequest), nameof(Metadata));
-        
-        [Required]
-        [JsonPropertyName("metadata")]
-        public ImportMetadata Metadata
-        {
-            get => _metadata.GetValue();
-            set => _metadata.SetValue(value);
-        }
-    
-        private PropertyValue<List<ExternalArticle>> _articles = new PropertyValue<List<ExternalArticle>>(nameof(BlogImportPostRequest), nameof(Articles), new List<ExternalArticle>());
-        
-        [Required]
-        [JsonPropertyName("articles")]
-        public List<ExternalArticle> Articles
-        {
-            get => _articles.GetValue();
-            set => _articles.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _metadata.SetAccessPath(path, validateHasBeenSet);
-            _articles.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Metadata = metadata;
+        Articles = articles;
     }
     
+    private PropertyValue<ImportMetadata> _metadata = new PropertyValue<ImportMetadata>(nameof(BlogImportPostRequest), nameof(Metadata));
+    
+    [Required]
+    [JsonPropertyName("metadata")]
+    public ImportMetadata Metadata
+    {
+        get => _metadata.GetValue();
+        set => _metadata.SetValue(value);
+    }
+
+    private PropertyValue<List<ExternalArticle>> _articles = new PropertyValue<List<ExternalArticle>>(nameof(BlogImportPostRequest), nameof(Articles), new List<ExternalArticle>());
+    
+    [Required]
+    [JsonPropertyName("articles")]
+    public List<ExternalArticle> Articles
+    {
+        get => _articles.GetValue();
+        set => _articles.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _metadata.SetAccessPath(path, validateHasBeenSet);
+        _articles.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

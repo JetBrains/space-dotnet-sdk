@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.OverdraftsPartialBuilder
+namespace JetBrains.Space.Client.OverdraftsPartialBuilder;
+
+public static class OverdraftsPartialExtensions
 {
-    public static class OverdraftsPartialExtensions
-    {
-        public static Partial<Overdrafts> WithStorage(this Partial<Overdrafts> it)
-            => it.AddFieldName("storage");
-        
-        public static Partial<Overdrafts> WithBandwidth(this Partial<Overdrafts> it)
-            => it.AddFieldName("bandwidth");
-        
-        public static Partial<Overdrafts> WithCiCredits(this Partial<Overdrafts> it)
-            => it.AddFieldName("ciCredits");
-        
-    }
+    public static Partial<Overdrafts> WithStorage(this Partial<Overdrafts> it)
+        => it.AddFieldName("storage");
+    
+    public static Partial<Overdrafts> WithBandwidth(this Partial<Overdrafts> it)
+        => it.AddFieldName("bandwidth");
+    
+    public static Partial<Overdrafts> WithCiCredits(this Partial<Overdrafts> it)
+        => it.AddFieldName("ciCredits");
     
 }
+

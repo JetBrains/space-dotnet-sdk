@@ -27,58 +27,57 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ListCommandsPayload
+     : ApplicationPayload, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ListCommandsPayload
-         : ApplicationPayload, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ListCommandsPayload";
+    
+    public ListCommandsPayload() { }
+    
+    public ListCommandsPayload(string clientId, string? userId = null, string? verificationToken = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ListCommandsPayload";
-        
-        public ListCommandsPayload() { }
-        
-        public ListCommandsPayload(string clientId, string? userId = null, string? verificationToken = null)
-        {
-            ClientId = clientId;
-            UserId = userId;
-            VerificationToken = verificationToken;
-        }
-        
-        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ListCommandsPayload), nameof(ClientId));
-        
-        [Required]
-        [JsonPropertyName("clientId")]
-        public string ClientId
-        {
-            get => _clientId.GetValue();
-            set => _clientId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _userId = new PropertyValue<string?>(nameof(ListCommandsPayload), nameof(UserId));
-        
-        [JsonPropertyName("userId")]
-        public string? UserId
-        {
-            get => _userId.GetValue();
-            set => _userId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(ListCommandsPayload), nameof(VerificationToken));
-        
-        [JsonPropertyName("verificationToken")]
-        public string? VerificationToken
-        {
-            get => _verificationToken.GetValue();
-            set => _verificationToken.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _clientId.SetAccessPath(path, validateHasBeenSet);
-            _userId.SetAccessPath(path, validateHasBeenSet);
-            _verificationToken.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ClientId = clientId;
+        UserId = userId;
+        VerificationToken = verificationToken;
     }
     
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ListCommandsPayload), nameof(ClientId));
+    
+    [Required]
+    [JsonPropertyName("clientId")]
+    public string ClientId
+    {
+        get => _clientId.GetValue();
+        set => _clientId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _userId = new PropertyValue<string?>(nameof(ListCommandsPayload), nameof(UserId));
+    
+    [JsonPropertyName("userId")]
+    public string? UserId
+    {
+        get => _userId.GetValue();
+        set => _userId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(ListCommandsPayload), nameof(VerificationToken));
+    
+    [JsonPropertyName("verificationToken")]
+    public string? VerificationToken
+    {
+        get => _verificationToken.GetValue();
+        set => _verificationToken.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _clientId.SetAccessPath(path, validateHasBeenSet);
+        _userId.SetAccessPath(path, validateHasBeenSet);
+        _verificationToken.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

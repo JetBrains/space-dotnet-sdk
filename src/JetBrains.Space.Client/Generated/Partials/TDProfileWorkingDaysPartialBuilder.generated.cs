@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDProfileWorkingDaysPartialBuilder
+namespace JetBrains.Space.Client.TDProfileWorkingDaysPartialBuilder;
+
+public static class TDProfileWorkingDaysPartialExtensions
 {
-    public static class TDProfileWorkingDaysPartialExtensions
-    {
-        public static Partial<TDProfileWorkingDays> WithProfile(this Partial<TDProfileWorkingDays> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<TDProfileWorkingDays> WithProfile(this Partial<TDProfileWorkingDays> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<TDProfileWorkingDays> WithWorkingDays(this Partial<TDProfileWorkingDays> it)
-            => it.AddFieldName("workingDays");
-        
-        public static Partial<TDProfileWorkingDays> WithWorkingDays(this Partial<TDProfileWorkingDays> it, Func<Partial<TDWorkingDays>, Partial<TDWorkingDays>> partialBuilder)
-            => it.AddFieldName("workingDays", partialBuilder(new Partial<TDWorkingDays>(it)));
-        
-    }
+    public static Partial<TDProfileWorkingDays> WithProfile(this Partial<TDProfileWorkingDays> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<TDProfileWorkingDays> WithProfile(this Partial<TDProfileWorkingDays> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<TDProfileWorkingDays> WithWorkingDays(this Partial<TDProfileWorkingDays> it)
+        => it.AddFieldName("workingDays");
+    
+    public static Partial<TDProfileWorkingDays> WithWorkingDays(this Partial<TDProfileWorkingDays> it, Func<Partial<TDWorkingDays>, Partial<TDWorkingDays>> partialBuilder)
+        => it.AddFieldName("workingDays", partialBuilder(new Partial<TDWorkingDays>(it)));
     
 }
+

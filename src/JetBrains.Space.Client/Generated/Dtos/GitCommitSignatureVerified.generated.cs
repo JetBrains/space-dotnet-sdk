@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitCommitSignatureVerified
+     : GitCommitSignature, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class GitCommitSignatureVerified
-         : GitCommitSignature, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "GitCommitSignature.Verified";
+    
+    public GitCommitSignatureVerified() { }
+    
+    public GitCommitSignatureVerified(string description)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "GitCommitSignature.Verified";
-        
-        public GitCommitSignatureVerified() { }
-        
-        public GitCommitSignatureVerified(string description)
-        {
-            Description = description;
-        }
-        
-        private PropertyValue<string> _description = new PropertyValue<string>(nameof(GitCommitSignatureVerified), nameof(Description));
-        
-        [Required]
-        [JsonPropertyName("description")]
-        public string Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _description.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Description = description;
     }
     
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(GitCommitSignatureVerified), nameof(Description));
+    
+    [Required]
+    [JsonPropertyName("description")]
+    public string Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _description.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

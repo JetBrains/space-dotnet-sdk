@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequestPartialBuilder;
+
+public static class ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequestPartialExtensions
 {
-    public static class ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> WithName(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> WithDescription(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> WithIsPublic(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> it)
-            => it.AddFieldName("public");
-        
-        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> WithSettings(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> it)
-            => it.AddFieldName("settings");
-        
-        public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> WithSettings(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> it, Func<Partial<ESPackageRepositorySettings>, Partial<ESPackageRepositorySettings>> partialBuilder)
-            => it.AddFieldName("settings", partialBuilder(new Partial<ESPackageRepositorySettings>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> WithName(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> WithDescription(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> WithIsPublic(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> it)
+        => it.AddFieldName("public");
+    
+    public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> WithSettings(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> it)
+        => it.AddFieldName("settings");
+    
+    public static Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> WithSettings(this Partial<ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest> it, Func<Partial<ESPackageRepositorySettings>, Partial<ESPackageRepositorySettings>> partialBuilder)
+        => it.AddFieldName("settings", partialBuilder(new Partial<ESPackageRepositorySettings>(it)));
     
 }
+

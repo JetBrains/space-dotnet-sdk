@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageActionPartialBuilder
+namespace JetBrains.Space.Client.MessageActionPartialBuilder;
+
+public static class MessageActionPartialExtensions
 {
-    public static class MessageActionPartialExtensions
-    {
-    }
-    
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsApplicationPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsApplicationPartialBuilder;
+
+public static class UnfurlDetailsApplicationPartialExtensions
 {
-    public static class UnfurlDetailsApplicationPartialExtensions
-    {
-        public static Partial<UnfurlDetailsApplication> WithApp(this Partial<UnfurlDetailsApplication> it)
-            => it.AddFieldName("app");
-        
-        public static Partial<UnfurlDetailsApplication> WithApp(this Partial<UnfurlDetailsApplication> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
-            => it.AddFieldName("app", partialBuilder(new Partial<ESApp>(it)));
-        
-    }
+    public static Partial<UnfurlDetailsApplication> WithApp(this Partial<UnfurlDetailsApplication> it)
+        => it.AddFieldName("app");
+    
+    public static Partial<UnfurlDetailsApplication> WithApp(this Partial<UnfurlDetailsApplication> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
+        => it.AddFieldName("app", partialBuilder(new Partial<ESApp>(it)));
     
 }
+

@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MessageText
+     : MessageElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MessageText
-         : MessageElement, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MessageText";
+    
+    public MessageText() { }
+    
+    public MessageText(string content, MessageAccessoryElement? accessory = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MessageText";
-        
-        public MessageText() { }
-        
-        public MessageText(string content, MessageAccessoryElement? accessory = null)
-        {
-            Accessory = accessory;
-            Content = content;
-        }
-        
-        private PropertyValue<MessageAccessoryElement?> _accessory = new PropertyValue<MessageAccessoryElement?>(nameof(MessageText), nameof(Accessory));
-        
-        [JsonPropertyName("accessory")]
-        public MessageAccessoryElement? Accessory
-        {
-            get => _accessory.GetValue();
-            set => _accessory.SetValue(value);
-        }
-    
-        private PropertyValue<string> _content = new PropertyValue<string>(nameof(MessageText), nameof(Content));
-        
-        [Required]
-        [JsonPropertyName("content")]
-        public string Content
-        {
-            get => _content.GetValue();
-            set => _content.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _accessory.SetAccessPath(path, validateHasBeenSet);
-            _content.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Accessory = accessory;
+        Content = content;
     }
     
+    private PropertyValue<MessageAccessoryElement?> _accessory = new PropertyValue<MessageAccessoryElement?>(nameof(MessageText), nameof(Accessory));
+    
+    [JsonPropertyName("accessory")]
+    public MessageAccessoryElement? Accessory
+    {
+        get => _accessory.GetValue();
+        set => _accessory.SetValue(value);
+    }
+
+    private PropertyValue<string> _content = new PropertyValue<string>(nameof(MessageText), nameof(Content));
+    
+    [Required]
+    [JsonPropertyName("content")]
+    public string Content
+    {
+        get => _content.GetValue();
+        set => _content.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _accessory.SetAccessPath(path, validateHasBeenSet);
+        _content.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

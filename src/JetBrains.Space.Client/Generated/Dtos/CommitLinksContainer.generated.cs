@@ -27,14 +27,13 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface CommitLinksContainer
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface CommitLinksContainer
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static IssueCommits IssueCommits(string id)
-            => new IssueCommits(id: id);
-        
-    }
+    public static IssueCommits IssueCommits(string id)
+        => new IssueCommits(id: id);
     
 }
+

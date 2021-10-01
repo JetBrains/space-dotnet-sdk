@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChannelMessageMenuActionContextPartialBuilder
+namespace JetBrains.Space.Client.ChannelMessageMenuActionContextPartialBuilder;
+
+public static class ChannelMessageMenuActionContextPartialExtensions
 {
-    public static class ChannelMessageMenuActionContextPartialExtensions
-    {
-        public static Partial<ChannelMessageMenuActionContext> WithMenuId(this Partial<ChannelMessageMenuActionContext> it)
-            => it.AddFieldName("menuId");
-        
-        public static Partial<ChannelMessageMenuActionContext> WithChannelId(this Partial<ChannelMessageMenuActionContext> it)
-            => it.AddFieldName("channelId");
-        
-        public static Partial<ChannelMessageMenuActionContext> WithMessageId(this Partial<ChannelMessageMenuActionContext> it)
-            => it.AddFieldName("messageId");
-        
-    }
+    public static Partial<ChannelMessageMenuActionContext> WithMenuId(this Partial<ChannelMessageMenuActionContext> it)
+        => it.AddFieldName("menuId");
+    
+    public static Partial<ChannelMessageMenuActionContext> WithChannelId(this Partial<ChannelMessageMenuActionContext> it)
+        => it.AddFieldName("channelId");
+    
+    public static Partial<ChannelMessageMenuActionContext> WithMessageId(this Partial<ChannelMessageMenuActionContext> it)
+        => it.AddFieldName("messageId");
     
 }
+

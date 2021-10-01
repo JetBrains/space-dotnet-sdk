@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitMergeResultHttpPartialBuilder
+namespace JetBrains.Space.Client.GitMergeResultHttpPartialBuilder;
+
+public static class GitMergeResultHttpPartialExtensions
 {
-    public static class GitMergeResultHttpPartialExtensions
-    {
-        public static Partial<GitMergeResultHttp> WithStatus(this Partial<GitMergeResultHttp> it)
-            => it.AddFieldName("status");
-        
-        public static Partial<GitMergeResultHttp> WithStatus(this Partial<GitMergeResultHttp> it, Func<Partial<GitMergeStatusHttp>, Partial<GitMergeStatusHttp>> partialBuilder)
-            => it.AddFieldName("status", partialBuilder(new Partial<GitMergeStatusHttp>(it)));
-        
-        public static Partial<GitMergeResultHttp> WithResultCommitId(this Partial<GitMergeResultHttp> it)
-            => it.AddFieldName("resultCommitId");
-        
-    }
+    public static Partial<GitMergeResultHttp> WithStatus(this Partial<GitMergeResultHttp> it)
+        => it.AddFieldName("status");
+    
+    public static Partial<GitMergeResultHttp> WithStatus(this Partial<GitMergeResultHttp> it, Func<Partial<GitMergeStatusHttp>, Partial<GitMergeStatusHttp>> partialBuilder)
+        => it.AddFieldName("status", partialBuilder(new Partial<GitMergeStatusHttp>(it)));
+    
+    public static Partial<GitMergeResultHttp> WithResultCommitId(this Partial<GitMergeResultHttp> it)
+        => it.AddFieldName("resultCommitId");
     
 }
+

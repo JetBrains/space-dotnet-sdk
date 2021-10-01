@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RightType
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RightType
-         : IPropagatePropertyAccessPath
+    public RightType() { }
+    
+    public RightType(string typeCode, string title)
     {
-        public RightType() { }
-        
-        public RightType(string typeCode, string title)
-        {
-            TypeCode = typeCode;
-            Title = title;
-        }
-        
-        private PropertyValue<string> _typeCode = new PropertyValue<string>(nameof(RightType), nameof(TypeCode));
-        
-        [Required]
-        [JsonPropertyName("typeCode")]
-        public string TypeCode
-        {
-            get => _typeCode.GetValue();
-            set => _typeCode.SetValue(value);
-        }
-    
-        private PropertyValue<string> _title = new PropertyValue<string>(nameof(RightType), nameof(Title));
-        
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title
-        {
-            get => _title.GetValue();
-            set => _title.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _typeCode.SetAccessPath(path, validateHasBeenSet);
-            _title.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        TypeCode = typeCode;
+        Title = title;
     }
     
+    private PropertyValue<string> _typeCode = new PropertyValue<string>(nameof(RightType), nameof(TypeCode));
+    
+    [Required]
+    [JsonPropertyName("typeCode")]
+    public string TypeCode
+    {
+        get => _typeCode.GetValue();
+        set => _typeCode.SetValue(value);
+    }
+
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(RightType), nameof(Title));
+    
+    [Required]
+    [JsonPropertyName("title")]
+    public string Title
+    {
+        get => _title.GetValue();
+        set => _title.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _typeCode.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

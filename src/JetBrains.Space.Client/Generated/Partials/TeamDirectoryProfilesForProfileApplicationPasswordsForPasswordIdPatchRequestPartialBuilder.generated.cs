@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest> WithName(this Partial<TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest> WithScope(this Partial<TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest> it)
-            => it.AddFieldName("scope");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest> WithName(this Partial<TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest> WithScope(this Partial<TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest> it)
+        => it.AddFieldName("scope");
     
 }
+

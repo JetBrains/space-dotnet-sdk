@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContentApplicationPartialBuilder
+namespace JetBrains.Space.Client.M2ChannelContentApplicationPartialBuilder;
+
+public static class M2ChannelContentApplicationPartialExtensions
 {
-    public static class M2ChannelContentApplicationPartialExtensions
-    {
-        public static Partial<M2ChannelContentApplication> WithApp(this Partial<M2ChannelContentApplication> it)
-            => it.AddFieldName("app");
-        
-        public static Partial<M2ChannelContentApplication> WithApp(this Partial<M2ChannelContentApplication> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
-            => it.AddFieldName("app", partialBuilder(new Partial<ESApp>(it)));
-        
-        public static Partial<M2ChannelContentApplication> WithNotificationDefaults(this Partial<M2ChannelContentApplication> it)
-            => it.AddFieldName("notificationDefaults");
-        
-        public static Partial<M2ChannelContentApplication> WithNotificationDefaults(this Partial<M2ChannelContentApplication> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
-        
-    }
+    public static Partial<M2ChannelContentApplication> WithApp(this Partial<M2ChannelContentApplication> it)
+        => it.AddFieldName("app");
+    
+    public static Partial<M2ChannelContentApplication> WithApp(this Partial<M2ChannelContentApplication> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
+        => it.AddFieldName("app", partialBuilder(new Partial<ESApp>(it)));
+    
+    public static Partial<M2ChannelContentApplication> WithNotificationDefaults(this Partial<M2ChannelContentApplication> it)
+        => it.AddFieldName("notificationDefaults");
+    
+    public static Partial<M2ChannelContentApplication> WithNotificationDefaults(this Partial<M2ChannelContentApplication> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
+        => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
     
 }
+

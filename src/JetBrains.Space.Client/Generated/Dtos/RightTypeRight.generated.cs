@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RightTypeRight
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RightTypeRight
-         : IPropagatePropertyAccessPath
+    public RightTypeRight() { }
+    
+    public RightTypeRight(RightType rightType, List<FullRightWithoutType> rights)
     {
-        public RightTypeRight() { }
-        
-        public RightTypeRight(RightType rightType, List<FullRightWithoutType> rights)
-        {
-            RightType = rightType;
-            Rights = rights;
-        }
-        
-        private PropertyValue<RightType> _rightType = new PropertyValue<RightType>(nameof(RightTypeRight), nameof(RightType));
-        
-        [Required]
-        [JsonPropertyName("rightType")]
-        public RightType RightType
-        {
-            get => _rightType.GetValue();
-            set => _rightType.SetValue(value);
-        }
-    
-        private PropertyValue<List<FullRightWithoutType>> _rights = new PropertyValue<List<FullRightWithoutType>>(nameof(RightTypeRight), nameof(Rights), new List<FullRightWithoutType>());
-        
-        [Required]
-        [JsonPropertyName("rights")]
-        public List<FullRightWithoutType> Rights
-        {
-            get => _rights.GetValue();
-            set => _rights.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _rightType.SetAccessPath(path, validateHasBeenSet);
-            _rights.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        RightType = rightType;
+        Rights = rights;
     }
     
+    private PropertyValue<RightType> _rightType = new PropertyValue<RightType>(nameof(RightTypeRight), nameof(RightType));
+    
+    [Required]
+    [JsonPropertyName("rightType")]
+    public RightType RightType
+    {
+        get => _rightType.GetValue();
+        set => _rightType.SetValue(value);
+    }
+
+    private PropertyValue<List<FullRightWithoutType>> _rights = new PropertyValue<List<FullRightWithoutType>>(nameof(RightTypeRight), nameof(Rights), new List<FullRightWithoutType>());
+    
+    [Required]
+    [JsonPropertyName("rights")]
+    public List<FullRightWithoutType> Rights
+    {
+        get => _rights.GetValue();
+        set => _rights.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _rightType.SetAccessPath(path, validateHasBeenSet);
+        _rights.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

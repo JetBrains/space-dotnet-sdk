@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum GitGraphEdgeLineStyle
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum GitGraphEdgeLineStyle
-    {
-        [EnumMember(Value = "SOLID")]
-        SOLID,
-        
-        [EnumMember(Value = "DASHED")]
-        DASHED,
-        
-        [EnumMember(Value = "DOTTED")]
-        DOTTED,
-        
-    }
+    [EnumMember(Value = "SOLID")]
+    SOLID,
+    
+    [EnumMember(Value = "DASHED")]
+    DASHED,
+    
+    [EnumMember(Value = "DOTTED")]
+    DOTTED,
     
 }
+

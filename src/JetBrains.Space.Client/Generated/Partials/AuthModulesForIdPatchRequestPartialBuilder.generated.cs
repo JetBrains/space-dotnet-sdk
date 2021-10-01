@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AuthModulesForIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.AuthModulesForIdPatchRequestPartialBuilder;
+
+public static class AuthModulesForIdPatchRequestPartialExtensions
 {
-    public static class AuthModulesForIdPatchRequestPartialExtensions
-    {
-        public static Partial<AuthModulesForIdPatchRequest> WithKey(this Partial<AuthModulesForIdPatchRequest> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<AuthModulesForIdPatchRequest> WithName(this Partial<AuthModulesForIdPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<AuthModulesForIdPatchRequest> WithIsEnabled(this Partial<AuthModulesForIdPatchRequest> it)
-            => it.AddFieldName("enabled");
-        
-        public static Partial<AuthModulesForIdPatchRequest> WithSettings(this Partial<AuthModulesForIdPatchRequest> it)
-            => it.AddFieldName("settings");
-        
-        public static Partial<AuthModulesForIdPatchRequest> WithSettings(this Partial<AuthModulesForIdPatchRequest> it, Func<Partial<ESAuthModuleSettings>, Partial<ESAuthModuleSettings>> partialBuilder)
-            => it.AddFieldName("settings", partialBuilder(new Partial<ESAuthModuleSettings>(it)));
-        
-    }
+    public static Partial<AuthModulesForIdPatchRequest> WithKey(this Partial<AuthModulesForIdPatchRequest> it)
+        => it.AddFieldName("key");
+    
+    public static Partial<AuthModulesForIdPatchRequest> WithName(this Partial<AuthModulesForIdPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<AuthModulesForIdPatchRequest> WithIsEnabled(this Partial<AuthModulesForIdPatchRequest> it)
+        => it.AddFieldName("enabled");
+    
+    public static Partial<AuthModulesForIdPatchRequest> WithSettings(this Partial<AuthModulesForIdPatchRequest> it)
+        => it.AddFieldName("settings");
+    
+    public static Partial<AuthModulesForIdPatchRequest> WithSettings(this Partial<AuthModulesForIdPatchRequest> it, Func<Partial<ESAuthModuleSettings>, Partial<ESAuthModuleSettings>> partialBuilder)
+        => it.AddFieldName("settings", partialBuilder(new Partial<ESAuthModuleSettings>(it)));
     
 }
+

@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BooleanCFValue
+     : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class BooleanCFValue
-         : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "BooleanCFValue";
+    
+    public BooleanCFValue() { }
+    
+    public BooleanCFValue(bool? value = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "BooleanCFValue";
-        
-        public BooleanCFValue() { }
-        
-        public BooleanCFValue(bool? value = null)
-        {
-            IsValue = value;
-        }
-        
-        private PropertyValue<bool?> _value = new PropertyValue<bool?>(nameof(BooleanCFValue), nameof(IsValue));
-        
-        [JsonPropertyName("value")]
-        public bool? IsValue
-        {
-            get => _value.GetValue();
-            set => _value.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _value.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        IsValue = value;
     }
     
+    private PropertyValue<bool?> _value = new PropertyValue<bool?>(nameof(BooleanCFValue), nameof(IsValue));
+    
+    [JsonPropertyName("value")]
+    public bool? IsValue
+    {
+        get => _value.GetValue();
+        set => _value.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _value.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

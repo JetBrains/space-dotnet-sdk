@@ -27,29 +27,28 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum JobTriggerType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum JobTriggerType
-    {
-        [EnumMember(Value = "MANUAL")]
-        MANUAL,
-        
-        [EnumMember(Value = "GIT_PUSH")]
-        GITPUSH,
-        
-        [EnumMember(Value = "SCHEDULE")]
-        SCHEDULE,
-        
-        [EnumMember(Value = "GIT_BRANCH_DELETED")]
-        GITBRANCHDELETED,
-        
-        [EnumMember(Value = "CODE_REVIEW_OPENED")]
-        CODEREVIEWOPENED,
-        
-        [EnumMember(Value = "CODE_REVIEW_CLOSED")]
-        CODEREVIEWCLOSED,
-        
-    }
+    [EnumMember(Value = "MANUAL")]
+    MANUAL,
+    
+    [EnumMember(Value = "GIT_PUSH")]
+    GITPUSH,
+    
+    [EnumMember(Value = "SCHEDULE")]
+    SCHEDULE,
+    
+    [EnumMember(Value = "GIT_BRANCH_DELETED")]
+    GITBRANCHDELETED,
+    
+    [EnumMember(Value = "CODE_REVIEW_OPENED")]
+    CODEREVIEWOPENED,
+    
+    [EnumMember(Value = "CODE_REVIEW_CLOSED")]
+    CODEREVIEWCLOSED,
     
 }
+

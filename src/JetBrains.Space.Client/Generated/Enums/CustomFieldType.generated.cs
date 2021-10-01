@@ -27,56 +27,55 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum CustomFieldType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum CustomFieldType
-    {
-        [EnumMember(Value = "AUTONUMBER")]
-        AUTONUMBER,
-        
-        [EnumMember(Value = "BOOLEAN")]
-        BOOLEAN,
-        
-        [EnumMember(Value = "DATE")]
-        DATE,
-        
-        [EnumMember(Value = "DATE_TIME")]
-        DATETIME,
-        
-        [EnumMember(Value = "ENUM")]
-        ENUM,
-        
-        [EnumMember(Value = "INTEGER")]
-        INTEGER,
-        
-        [EnumMember(Value = "ISSUE")]
-        ISSUE,
-        
-        [EnumMember(Value = "LOCATION")]
-        LOCATION,
-        
-        [EnumMember(Value = "OPEN_ENUM")]
-        OPENENUM,
-        
-        [EnumMember(Value = "PERCENTAGE")]
-        PERCENTAGE,
-        
-        [EnumMember(Value = "PROFILE")]
-        PROFILE,
-        
-        [EnumMember(Value = "PROJECT")]
-        PROJECT,
-        
-        [EnumMember(Value = "STRING")]
-        STRING,
-        
-        [EnumMember(Value = "TEAM")]
-        TEAM,
-        
-        [EnumMember(Value = "URL")]
-        URL,
-        
-    }
+    [EnumMember(Value = "AUTONUMBER")]
+    AUTONUMBER,
+    
+    [EnumMember(Value = "BOOLEAN")]
+    BOOLEAN,
+    
+    [EnumMember(Value = "DATE")]
+    DATE,
+    
+    [EnumMember(Value = "DATE_TIME")]
+    DATETIME,
+    
+    [EnumMember(Value = "ENUM")]
+    ENUM,
+    
+    [EnumMember(Value = "INTEGER")]
+    INTEGER,
+    
+    [EnumMember(Value = "ISSUE")]
+    ISSUE,
+    
+    [EnumMember(Value = "LOCATION")]
+    LOCATION,
+    
+    [EnumMember(Value = "OPEN_ENUM")]
+    OPENENUM,
+    
+    [EnumMember(Value = "PERCENTAGE")]
+    PERCENTAGE,
+    
+    [EnumMember(Value = "PROFILE")]
+    PROFILE,
+    
+    [EnumMember(Value = "PROJECT")]
+    PROJECT,
+    
+    [EnumMember(Value = "STRING")]
+    STRING,
+    
+    [EnumMember(Value = "TEAM")]
+    TEAM,
+    
+    [EnumMember(Value = "URL")]
+    URL,
     
 }
+

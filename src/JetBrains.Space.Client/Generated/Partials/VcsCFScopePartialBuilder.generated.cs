@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.VcsCFScopePartialBuilder
+namespace JetBrains.Space.Client.VcsCFScopePartialBuilder;
+
+public static class VcsCFScopePartialExtensions
 {
-    public static class VcsCFScopePartialExtensions
-    {
-    }
-    
 }
+

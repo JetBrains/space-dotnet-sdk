@@ -27,68 +27,67 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ChatsMessagesEditMessagePostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ChatsMessagesEditMessagePostRequest
-         : IPropagatePropertyAccessPath
+    public ChatsMessagesEditMessagePostRequest() { }
+    
+    public ChatsMessagesEditMessagePostRequest(string channel, ChatMessageIdentifier message, ChatMessage content, bool? unfurlLinks = null)
     {
-        public ChatsMessagesEditMessagePostRequest() { }
-        
-        public ChatsMessagesEditMessagePostRequest(string channel, ChatMessageIdentifier message, ChatMessage content, bool? unfurlLinks = null)
-        {
-            Channel = channel;
-            Message = message;
-            Content = content;
-            IsUnfurlLinks = unfurlLinks;
-        }
-        
-        private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Channel));
-        
-        [Required]
-        [JsonPropertyName("channel")]
-        public string Channel
-        {
-            get => _channel.GetValue();
-            set => _channel.SetValue(value);
-        }
-    
-        private PropertyValue<ChatMessageIdentifier> _message = new PropertyValue<ChatMessageIdentifier>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Message));
-        
-        [Required]
-        [JsonPropertyName("message")]
-        public ChatMessageIdentifier Message
-        {
-            get => _message.GetValue();
-            set => _message.SetValue(value);
-        }
-    
-        private PropertyValue<ChatMessage> _content = new PropertyValue<ChatMessage>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Content));
-        
-        [Required]
-        [JsonPropertyName("content")]
-        public ChatMessage Content
-        {
-            get => _content.GetValue();
-            set => _content.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesEditMessagePostRequest), nameof(IsUnfurlLinks));
-        
-        [JsonPropertyName("unfurlLinks")]
-        public bool? IsUnfurlLinks
-        {
-            get => _unfurlLinks.GetValue();
-            set => _unfurlLinks.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _channel.SetAccessPath(path, validateHasBeenSet);
-            _message.SetAccessPath(path, validateHasBeenSet);
-            _content.SetAccessPath(path, validateHasBeenSet);
-            _unfurlLinks.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Channel = channel;
+        Message = message;
+        Content = content;
+        IsUnfurlLinks = unfurlLinks;
     }
     
+    private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Channel));
+    
+    [Required]
+    [JsonPropertyName("channel")]
+    public string Channel
+    {
+        get => _channel.GetValue();
+        set => _channel.SetValue(value);
+    }
+
+    private PropertyValue<ChatMessageIdentifier> _message = new PropertyValue<ChatMessageIdentifier>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Message));
+    
+    [Required]
+    [JsonPropertyName("message")]
+    public ChatMessageIdentifier Message
+    {
+        get => _message.GetValue();
+        set => _message.SetValue(value);
+    }
+
+    private PropertyValue<ChatMessage> _content = new PropertyValue<ChatMessage>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Content));
+    
+    [Required]
+    [JsonPropertyName("content")]
+    public ChatMessage Content
+    {
+        get => _content.GetValue();
+        set => _content.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesEditMessagePostRequest), nameof(IsUnfurlLinks));
+    
+    [JsonPropertyName("unfurlLinks")]
+    public bool? IsUnfurlLinks
+    {
+        get => _unfurlLinks.GetValue();
+        set => _unfurlLinks.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _channel.SetAccessPath(path, validateHasBeenSet);
+        _message.SetAccessPath(path, validateHasBeenSet);
+        _content.SetAccessPath(path, validateHasBeenSet);
+        _unfurlLinks.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

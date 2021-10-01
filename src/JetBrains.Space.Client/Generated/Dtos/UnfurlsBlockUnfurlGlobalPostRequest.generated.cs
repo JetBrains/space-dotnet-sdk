@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class UnfurlsBlockUnfurlGlobalPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class UnfurlsBlockUnfurlGlobalPostRequest
-         : IPropagatePropertyAccessPath
+    public UnfurlsBlockUnfurlGlobalPostRequest() { }
+    
+    public UnfurlsBlockUnfurlGlobalPostRequest(string link, bool wholeHost)
     {
-        public UnfurlsBlockUnfurlGlobalPostRequest() { }
-        
-        public UnfurlsBlockUnfurlGlobalPostRequest(string link, bool wholeHost)
-        {
-            Link = link;
-            IsWholeHost = wholeHost;
-        }
-        
-        private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlsBlockUnfurlGlobalPostRequest), nameof(Link));
-        
-        [Required]
-        [JsonPropertyName("link")]
-        public string Link
-        {
-            get => _link.GetValue();
-            set => _link.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _wholeHost = new PropertyValue<bool>(nameof(UnfurlsBlockUnfurlGlobalPostRequest), nameof(IsWholeHost));
-        
-        [Required]
-        [JsonPropertyName("wholeHost")]
-        public bool IsWholeHost
-        {
-            get => _wholeHost.GetValue();
-            set => _wholeHost.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _link.SetAccessPath(path, validateHasBeenSet);
-            _wholeHost.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Link = link;
+        IsWholeHost = wholeHost;
     }
     
+    private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlsBlockUnfurlGlobalPostRequest), nameof(Link));
+    
+    [Required]
+    [JsonPropertyName("link")]
+    public string Link
+    {
+        get => _link.GetValue();
+        set => _link.SetValue(value);
+    }
+
+    private PropertyValue<bool> _wholeHost = new PropertyValue<bool>(nameof(UnfurlsBlockUnfurlGlobalPostRequest), nameof(IsWholeHost));
+    
+    [Required]
+    [JsonPropertyName("wholeHost")]
+    public bool IsWholeHost
+    {
+        get => _wholeHost.GetValue();
+        set => _wholeHost.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _link.SetAccessPath(path, validateHasBeenSet);
+        _wholeHost.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class StringListCFValue
+     : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class StringListCFValue
-         : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "StringListCFValue";
+    
+    public StringListCFValue() { }
+    
+    public StringListCFValue(List<string> values)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "StringListCFValue";
-        
-        public StringListCFValue() { }
-        
-        public StringListCFValue(List<string> values)
-        {
-            Values = values;
-        }
-        
-        private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(StringListCFValue), nameof(Values), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("values")]
-        public List<string> Values
-        {
-            get => _values.GetValue();
-            set => _values.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _values.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Values = values;
     }
     
+    private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(StringListCFValue), nameof(Values), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("values")]
+    public List<string> Values
+    {
+        get => _values.GetValue();
+        set => _values.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _values.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

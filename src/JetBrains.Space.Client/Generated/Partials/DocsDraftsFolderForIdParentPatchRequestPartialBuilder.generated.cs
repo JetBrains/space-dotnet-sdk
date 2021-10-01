@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocsDraftsFolderForIdParentPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.DocsDraftsFolderForIdParentPatchRequestPartialBuilder;
+
+public static class DocsDraftsFolderForIdParentPatchRequestPartialExtensions
 {
-    public static class DocsDraftsFolderForIdParentPatchRequestPartialExtensions
-    {
-        public static Partial<DocsDraftsFolderForIdParentPatchRequest> WithParentFolderId(this Partial<DocsDraftsFolderForIdParentPatchRequest> it)
-            => it.AddFieldName("parentFolderId");
-        
-    }
+    public static Partial<DocsDraftsFolderForIdParentPatchRequest> WithParentFolderId(this Partial<DocsDraftsFolderForIdParentPatchRequest> it)
+        => it.AddFieldName("parentFolderId");
     
 }
+

@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDStatsPartialBuilder
+namespace JetBrains.Space.Client.TDStatsPartialBuilder;
+
+public static class TDStatsPartialExtensions
 {
-    public static class TDStatsPartialExtensions
-    {
-        public static Partial<TDStats> WithTotalMembers(this Partial<TDStats> it)
-            => it.AddFieldName("totalMembers");
-        
-        public static Partial<TDStats> WithTeams(this Partial<TDStats> it)
-            => it.AddFieldName("teams");
-        
-        public static Partial<TDStats> WithTeams(this Partial<TDStats> it, Func<Partial<Pair<TDTeam, int>>, Partial<Pair<TDTeam, int>>> partialBuilder)
-            => it.AddFieldName("teams", partialBuilder(new Partial<Pair<TDTeam, int>>(it)));
-        
-        public static Partial<TDStats> WithRoles(this Partial<TDStats> it)
-            => it.AddFieldName("roles");
-        
-        public static Partial<TDStats> WithRoles(this Partial<TDStats> it, Func<Partial<Pair<TDRole, int>>, Partial<Pair<TDRole, int>>> partialBuilder)
-            => it.AddFieldName("roles", partialBuilder(new Partial<Pair<TDRole, int>>(it)));
-        
-        public static Partial<TDStats> WithLocations(this Partial<TDStats> it)
-            => it.AddFieldName("locations");
-        
-        public static Partial<TDStats> WithLocations(this Partial<TDStats> it, Func<Partial<Pair<TDLocation, int>>, Partial<Pair<TDLocation, int>>> partialBuilder)
-            => it.AddFieldName("locations", partialBuilder(new Partial<Pair<TDLocation, int>>(it)));
-        
-    }
+    public static Partial<TDStats> WithTotalMembers(this Partial<TDStats> it)
+        => it.AddFieldName("totalMembers");
+    
+    public static Partial<TDStats> WithTeams(this Partial<TDStats> it)
+        => it.AddFieldName("teams");
+    
+    public static Partial<TDStats> WithTeams(this Partial<TDStats> it, Func<Partial<Pair<TDTeam, int>>, Partial<Pair<TDTeam, int>>> partialBuilder)
+        => it.AddFieldName("teams", partialBuilder(new Partial<Pair<TDTeam, int>>(it)));
+    
+    public static Partial<TDStats> WithRoles(this Partial<TDStats> it)
+        => it.AddFieldName("roles");
+    
+    public static Partial<TDStats> WithRoles(this Partial<TDStats> it, Func<Partial<Pair<TDRole, int>>, Partial<Pair<TDRole, int>>> partialBuilder)
+        => it.AddFieldName("roles", partialBuilder(new Partial<Pair<TDRole, int>>(it)));
+    
+    public static Partial<TDStats> WithLocations(this Partial<TDStats> it)
+        => it.AddFieldName("locations");
+    
+    public static Partial<TDStats> WithLocations(this Partial<TDStats> it, Func<Partial<Pair<TDLocation, int>>, Partial<Pair<TDLocation, int>>> partialBuilder)
+        => it.AddFieldName("locations", partialBuilder(new Partial<Pair<TDLocation, int>>(it)));
     
 }
+

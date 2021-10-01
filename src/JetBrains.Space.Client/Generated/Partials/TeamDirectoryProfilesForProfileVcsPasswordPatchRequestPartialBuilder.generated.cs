@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileVcsPasswordPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileVcsPasswordPatchRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfileVcsPasswordPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfileVcsPasswordPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfileVcsPasswordPatchRequest> WithPassword(this Partial<TeamDirectoryProfilesForProfileVcsPasswordPatchRequest> it)
-            => it.AddFieldName("password");
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfileVcsPasswordPatchRequest> WithPassword(this Partial<TeamDirectoryProfilesForProfileVcsPasswordPatchRequest> it)
+        => it.AddFieldName("password");
     
 }
+

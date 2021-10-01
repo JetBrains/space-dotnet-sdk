@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MCElementPartialBuilder
+namespace JetBrains.Space.Client.MCElementPartialBuilder;
+
+public static class MCElementPartialExtensions
 {
-    public static class MCElementPartialExtensions
-    {
-        public static Partial<MCElement> WithDefaultText(this Partial<MCElement> it)
-            => it.AddFieldName("defaultText");
-        
-        public static Partial<MCElement> WithDetails(this Partial<MCElement> it)
-            => it.AddFieldName("details");
-        
-        public static Partial<MCElement> WithDetails(this Partial<MCElement> it, Func<Partial<MCElementDetails>, Partial<MCElementDetails>> partialBuilder)
-            => it.AddFieldName("details", partialBuilder(new Partial<MCElementDetails>(it)));
-        
-    }
+    public static Partial<MCElement> WithDefaultText(this Partial<MCElement> it)
+        => it.AddFieldName("defaultText");
+    
+    public static Partial<MCElement> WithDetails(this Partial<MCElement> it)
+        => it.AddFieldName("details");
+    
+    public static Partial<MCElement> WithDetails(this Partial<MCElement> it, Func<Partial<MCElementDetails>, Partial<MCElementDetails>> partialBuilder)
+        => it.AddFieldName("details", partialBuilder(new Partial<MCElementDetails>(it)));
     
 }
+

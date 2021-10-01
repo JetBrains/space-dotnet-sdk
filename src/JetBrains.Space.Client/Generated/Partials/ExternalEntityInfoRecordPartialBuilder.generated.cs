@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ExternalEntityInfoRecordPartialBuilder
+namespace JetBrains.Space.Client.ExternalEntityInfoRecordPartialBuilder;
+
+public static class ExternalEntityInfoRecordPartialExtensions
 {
-    public static class ExternalEntityInfoRecordPartialExtensions
-    {
-        public static Partial<ExternalEntityInfoRecord> WithId(this Partial<ExternalEntityInfoRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ExternalEntityInfoRecord> WithIsArchived(this Partial<ExternalEntityInfoRecord> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<ExternalEntityInfoRecord> WithExternalId(this Partial<ExternalEntityInfoRecord> it)
-            => it.AddFieldName("externalId");
-        
-        public static Partial<ExternalEntityInfoRecord> WithExternalName(this Partial<ExternalEntityInfoRecord> it)
-            => it.AddFieldName("externalName");
-        
-        public static Partial<ExternalEntityInfoRecord> WithExternalUrl(this Partial<ExternalEntityInfoRecord> it)
-            => it.AddFieldName("externalUrl");
-        
-        public static Partial<ExternalEntityInfoRecord> WithTransaction(this Partial<ExternalEntityInfoRecord> it)
-            => it.AddFieldName("transaction");
-        
-        public static Partial<ExternalEntityInfoRecord> WithTransaction(this Partial<ExternalEntityInfoRecord> it, Func<Partial<ImportTransactionRecord>, Partial<ImportTransactionRecord>> partialBuilder)
-            => it.AddFieldName("transaction", partialBuilder(new Partial<ImportTransactionRecord>(it)));
-        
-    }
+    public static Partial<ExternalEntityInfoRecord> WithId(this Partial<ExternalEntityInfoRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<ExternalEntityInfoRecord> WithIsArchived(this Partial<ExternalEntityInfoRecord> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<ExternalEntityInfoRecord> WithExternalId(this Partial<ExternalEntityInfoRecord> it)
+        => it.AddFieldName("externalId");
+    
+    public static Partial<ExternalEntityInfoRecord> WithExternalName(this Partial<ExternalEntityInfoRecord> it)
+        => it.AddFieldName("externalName");
+    
+    public static Partial<ExternalEntityInfoRecord> WithExternalUrl(this Partial<ExternalEntityInfoRecord> it)
+        => it.AddFieldName("externalUrl");
+    
+    public static Partial<ExternalEntityInfoRecord> WithTransaction(this Partial<ExternalEntityInfoRecord> it)
+        => it.AddFieldName("transaction");
+    
+    public static Partial<ExternalEntityInfoRecord> WithTransaction(this Partial<ExternalEntityInfoRecord> it, Func<Partial<ImportTransactionRecord>, Partial<ImportTransactionRecord>> partialBuilder)
+        => it.AddFieldName("transaction", partialBuilder(new Partial<ImportTransactionRecord>(it)));
     
 }
+

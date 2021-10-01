@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TestFailedPartialBuilder
+namespace JetBrains.Space.Client.TestFailedPartialBuilder;
+
+public static class TestFailedPartialExtensions
 {
-    public static class TestFailedPartialExtensions
-    {
-    }
-    
 }
+

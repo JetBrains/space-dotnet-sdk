@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ProjectReposRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ProjectReposRecord
-         : IPropagatePropertyAccessPath
+    public ProjectReposRecord() { }
+    
+    public ProjectReposRecord(string id, List<PRRepositoryInfo> repos)
     {
-        public ProjectReposRecord() { }
-        
-        public ProjectReposRecord(string id, List<PRRepositoryInfo> repos)
-        {
-            Id = id;
-            Repos = repos;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectReposRecord), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<List<PRRepositoryInfo>> _repos = new PropertyValue<List<PRRepositoryInfo>>(nameof(ProjectReposRecord), nameof(Repos), new List<PRRepositoryInfo>());
-        
-        [Required]
-        [JsonPropertyName("repos")]
-        public List<PRRepositoryInfo> Repos
-        {
-            get => _repos.GetValue();
-            set => _repos.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _repos.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Repos = repos;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectReposRecord), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<List<PRRepositoryInfo>> _repos = new PropertyValue<List<PRRepositoryInfo>>(nameof(ProjectReposRecord), nameof(Repos), new List<PRRepositoryInfo>());
+    
+    [Required]
+    [JsonPropertyName("repos")]
+    public List<PRRepositoryInfo> Repos
+    {
+        get => _repos.GetValue();
+        set => _repos.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _repos.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContactArticlePartialBuilder
+namespace JetBrains.Space.Client.M2ChannelContactArticlePartialBuilder;
+
+public static class M2ChannelContactArticlePartialExtensions
 {
-    public static class M2ChannelContactArticlePartialExtensions
-    {
-        public static Partial<M2ChannelContactArticle> WithArticle(this Partial<M2ChannelContactArticle> it)
-            => it.AddFieldName("article");
-        
-        public static Partial<M2ChannelContactArticle> WithArticle(this Partial<M2ChannelContactArticle> it, Func<Partial<ArticleRecord>, Partial<ArticleRecord>> partialBuilder)
-            => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecord>(it)));
-        
-        public static Partial<M2ChannelContactArticle> WithNotificationDefaults(this Partial<M2ChannelContactArticle> it)
-            => it.AddFieldName("notificationDefaults");
-        
-        public static Partial<M2ChannelContactArticle> WithNotificationDefaults(this Partial<M2ChannelContactArticle> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
-        
-    }
+    public static Partial<M2ChannelContactArticle> WithArticle(this Partial<M2ChannelContactArticle> it)
+        => it.AddFieldName("article");
+    
+    public static Partial<M2ChannelContactArticle> WithArticle(this Partial<M2ChannelContactArticle> it, Func<Partial<ArticleRecord>, Partial<ArticleRecord>> partialBuilder)
+        => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecord>(it)));
+    
+    public static Partial<M2ChannelContactArticle> WithNotificationDefaults(this Partial<M2ChannelContactArticle> it)
+        => it.AddFieldName("notificationDefaults");
+    
+    public static Partial<M2ChannelContactArticle> WithNotificationDefaults(this Partial<M2ChannelContactArticle> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
+        => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
     
 }
+

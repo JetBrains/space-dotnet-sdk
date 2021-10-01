@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public abstract class ESPackageRepositorySettings
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public abstract class ESPackageRepositorySettings
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "ES_PackageRepositorySettings";
+    
+    public static ESContainerRegistrySettings ESContainerRegistrySettings(bool immutableTags, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
+        => new ESContainerRegistrySettings(immutableTags: immutableTags, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    
+    public static ESMavenRepositorySettings ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
+        => new ESMavenRepositorySettings(enableSnapshots: enableSnapshots, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    
+    public static ESNpmRegistrySettings ESNpmRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
+        => new ESNpmRegistrySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    
+    public static ESNuGetFeedSettings ESNuGetFeedSettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
+        => new ESNuGetFeedSettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "ES_PackageRepositorySettings";
-        
-        public static ESContainerRegistrySettings ESContainerRegistrySettings(bool immutableTags, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-            => new ESContainerRegistrySettings(immutableTags: immutableTags, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
-        
-        public static ESMavenRepositorySettings ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-            => new ESMavenRepositorySettings(enableSnapshots: enableSnapshots, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
-        
-        public static ESNpmRegistrySettings ESNpmRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-            => new ESNpmRegistrySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
-        
-        public static ESNuGetFeedSettings ESNuGetFeedSettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-            => new ESNuGetFeedSettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

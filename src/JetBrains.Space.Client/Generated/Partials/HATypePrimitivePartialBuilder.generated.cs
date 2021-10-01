@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HATypePrimitivePartialBuilder
+namespace JetBrains.Space.Client.HATypePrimitivePartialBuilder;
+
+public static class HATypePrimitivePartialExtensions
 {
-    public static class HATypePrimitivePartialExtensions
-    {
-        public static Partial<HATypePrimitive> WithPrimitive(this Partial<HATypePrimitive> it)
-            => it.AddFieldName("primitive");
-        
-        public static Partial<HATypePrimitive> WithPrimitive(this Partial<HATypePrimitive> it, Func<Partial<HAPrimitive>, Partial<HAPrimitive>> partialBuilder)
-            => it.AddFieldName("primitive", partialBuilder(new Partial<HAPrimitive>(it)));
-        
-        public static Partial<HATypePrimitive> WithIsNullable(this Partial<HATypePrimitive> it)
-            => it.AddFieldName("nullable");
-        
-        public static Partial<HATypePrimitive> WithTags(this Partial<HATypePrimitive> it)
-            => it.AddFieldName("tags");
-        
-    }
+    public static Partial<HATypePrimitive> WithPrimitive(this Partial<HATypePrimitive> it)
+        => it.AddFieldName("primitive");
+    
+    public static Partial<HATypePrimitive> WithPrimitive(this Partial<HATypePrimitive> it, Func<Partial<HAPrimitive>, Partial<HAPrimitive>> partialBuilder)
+        => it.AddFieldName("primitive", partialBuilder(new Partial<HAPrimitive>(it)));
+    
+    public static Partial<HATypePrimitive> WithIsNullable(this Partial<HATypePrimitive> it)
+        => it.AddFieldName("nullable");
+    
+    public static Partial<HATypePrimitive> WithTags(this Partial<HATypePrimitive> it)
+        => it.AddFieldName("tags");
     
 }
+

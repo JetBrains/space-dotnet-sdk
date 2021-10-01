@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HADefaultValueMapPartialBuilder
+namespace JetBrains.Space.Client.HADefaultValueMapPartialBuilder;
+
+public static class HADefaultValueMapPartialExtensions
 {
-    public static class HADefaultValueMapPartialExtensions
-    {
-        public static Partial<HADefaultValueMap> WithElements(this Partial<HADefaultValueMap> it)
-            => it.AddFieldName("elements");
-        
-        public static Partial<HADefaultValueMap> WithElements(this Partial<HADefaultValueMap> it, Func<Partial<HADefaultValue>, Partial<HADefaultValue>> partialBuilder)
-            => it.AddFieldName("elements", partialBuilder(new Partial<HADefaultValue>(it)));
-        
-    }
+    public static Partial<HADefaultValueMap> WithElements(this Partial<HADefaultValueMap> it)
+        => it.AddFieldName("elements");
+    
+    public static Partial<HADefaultValueMap> WithElements(this Partial<HADefaultValueMap> it, Func<Partial<HADefaultValue>, Partial<HADefaultValue>> partialBuilder)
+        => it.AddFieldName("elements", partialBuilder(new Partial<HADefaultValue>(it)));
     
 }
+

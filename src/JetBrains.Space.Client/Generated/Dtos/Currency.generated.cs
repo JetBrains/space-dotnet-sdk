@@ -27,68 +27,67 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class Currency
+     : IPropagatePropertyAccessPath
 {
-    public sealed class Currency
-         : IPropagatePropertyAccessPath
+    public Currency() { }
+    
+    public Currency(string code, bool signAsPrefix, bool hasCents, string? sign = null)
     {
-        public Currency() { }
-        
-        public Currency(string code, bool signAsPrefix, bool hasCents, string? sign = null)
-        {
-            Code = code;
-            Sign = sign;
-            IsSignAsPrefix = signAsPrefix;
-            IsHasCents = hasCents;
-        }
-        
-        private PropertyValue<string> _code = new PropertyValue<string>(nameof(Currency), nameof(Code));
-        
-        [Required]
-        [JsonPropertyName("code")]
-        public string Code
-        {
-            get => _code.GetValue();
-            set => _code.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _sign = new PropertyValue<string?>(nameof(Currency), nameof(Sign));
-        
-        [JsonPropertyName("sign")]
-        public string? Sign
-        {
-            get => _sign.GetValue();
-            set => _sign.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _signAsPrefix = new PropertyValue<bool>(nameof(Currency), nameof(IsSignAsPrefix));
-        
-        [Required]
-        [JsonPropertyName("signAsPrefix")]
-        public bool IsSignAsPrefix
-        {
-            get => _signAsPrefix.GetValue();
-            set => _signAsPrefix.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _hasCents = new PropertyValue<bool>(nameof(Currency), nameof(IsHasCents));
-        
-        [Required]
-        [JsonPropertyName("hasCents")]
-        public bool IsHasCents
-        {
-            get => _hasCents.GetValue();
-            set => _hasCents.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _code.SetAccessPath(path, validateHasBeenSet);
-            _sign.SetAccessPath(path, validateHasBeenSet);
-            _signAsPrefix.SetAccessPath(path, validateHasBeenSet);
-            _hasCents.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Code = code;
+        Sign = sign;
+        IsSignAsPrefix = signAsPrefix;
+        IsHasCents = hasCents;
     }
     
+    private PropertyValue<string> _code = new PropertyValue<string>(nameof(Currency), nameof(Code));
+    
+    [Required]
+    [JsonPropertyName("code")]
+    public string Code
+    {
+        get => _code.GetValue();
+        set => _code.SetValue(value);
+    }
+
+    private PropertyValue<string?> _sign = new PropertyValue<string?>(nameof(Currency), nameof(Sign));
+    
+    [JsonPropertyName("sign")]
+    public string? Sign
+    {
+        get => _sign.GetValue();
+        set => _sign.SetValue(value);
+    }
+
+    private PropertyValue<bool> _signAsPrefix = new PropertyValue<bool>(nameof(Currency), nameof(IsSignAsPrefix));
+    
+    [Required]
+    [JsonPropertyName("signAsPrefix")]
+    public bool IsSignAsPrefix
+    {
+        get => _signAsPrefix.GetValue();
+        set => _signAsPrefix.SetValue(value);
+    }
+
+    private PropertyValue<bool> _hasCents = new PropertyValue<bool>(nameof(Currency), nameof(IsHasCents));
+    
+    [Required]
+    [JsonPropertyName("hasCents")]
+    public bool IsHasCents
+    {
+        get => _hasCents.GetValue();
+        set => _hasCents.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _code.SetAccessPath(path, validateHasBeenSet);
+        _sign.SetAccessPath(path, validateHasBeenSet);
+        _signAsPrefix.SetAccessPath(path, validateHasBeenSet);
+        _hasCents.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

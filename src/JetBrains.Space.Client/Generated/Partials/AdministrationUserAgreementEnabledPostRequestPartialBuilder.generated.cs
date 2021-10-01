@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AdministrationUserAgreementEnabledPostRequestPartialBuilder
+namespace JetBrains.Space.Client.AdministrationUserAgreementEnabledPostRequestPartialBuilder;
+
+public static class AdministrationUserAgreementEnabledPostRequestPartialExtensions
 {
-    public static class AdministrationUserAgreementEnabledPostRequestPartialExtensions
-    {
-        public static Partial<AdministrationUserAgreementEnabledPostRequest> WithIsEnabled(this Partial<AdministrationUserAgreementEnabledPostRequest> it)
-            => it.AddFieldName("enabled");
-        
-    }
+    public static Partial<AdministrationUserAgreementEnabledPostRequest> WithIsEnabled(this Partial<AdministrationUserAgreementEnabledPostRequest> it)
+        => it.AddFieldName("enabled");
     
 }
+

@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BookContainerInfo
+     : DocumentContainerInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class BookContainerInfo
-         : DocumentContainerInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "BookContainerInfo";
+    
+    public BookContainerInfo() { }
+    
+    public BookContainerInfo(KBBook book)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "BookContainerInfo";
-        
-        public BookContainerInfo() { }
-        
-        public BookContainerInfo(KBBook book)
-        {
-            Book = book;
-        }
-        
-        private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(BookContainerInfo), nameof(Book));
-        
-        [Required]
-        [JsonPropertyName("book")]
-        public KBBook Book
-        {
-            get => _book.GetValue();
-            set => _book.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _book.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Book = book;
     }
     
+    private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(BookContainerInfo), nameof(Book));
+    
+    [Required]
+    [JsonPropertyName("book")]
+    public KBBook Book
+    {
+        get => _book.GetValue();
+        set => _book.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _book.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest() { }
+    
+    public TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest(string? name = null, string? description = null)
     {
-        public TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest() { }
-        
-        public TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest(string? name = null, string? description = null)
-        {
-            Name = (name ?? string.Empty);
-            Description = description;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest), nameof(Name), string.Empty);
-        
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest), nameof(Description));
-        
-        [JsonPropertyName("description")]
-        public string? Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = (name ?? string.Empty);
+        Description = description;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest), nameof(Name), string.Empty);
+    
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

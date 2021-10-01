@@ -27,14 +27,13 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface MessageControlElement
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface MessageControlElement
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static MessageButton MessageButton(string text, MessageButtonStyle style, MessageAction action, bool? disabled = null)
-            => new MessageButton(text: text, style: style, action: action, disabled: disabled);
-        
-    }
+    public static MessageButton MessageButton(string text, MessageButtonStyle style, MessageAction action, bool? disabled = null)
+        => new MessageButton(text: text, style: style, action: action, disabled: disabled);
     
 }
+

@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageTextPartialBuilder
+namespace JetBrains.Space.Client.MessageTextPartialBuilder;
+
+public static class MessageTextPartialExtensions
 {
-    public static class MessageTextPartialExtensions
-    {
-        public static Partial<MessageText> WithAccessory(this Partial<MessageText> it)
-            => it.AddFieldName("accessory");
-        
-        public static Partial<MessageText> WithAccessory(this Partial<MessageText> it, Func<Partial<MessageAccessoryElement>, Partial<MessageAccessoryElement>> partialBuilder)
-            => it.AddFieldName("accessory", partialBuilder(new Partial<MessageAccessoryElement>(it)));
-        
-        public static Partial<MessageText> WithContent(this Partial<MessageText> it)
-            => it.AddFieldName("content");
-        
-    }
+    public static Partial<MessageText> WithAccessory(this Partial<MessageText> it)
+        => it.AddFieldName("accessory");
+    
+    public static Partial<MessageText> WithAccessory(this Partial<MessageText> it, Func<Partial<MessageAccessoryElement>, Partial<MessageAccessoryElement>> partialBuilder)
+        => it.AddFieldName("accessory", partialBuilder(new Partial<MessageAccessoryElement>(it)));
+    
+    public static Partial<MessageText> WithContent(this Partial<MessageText> it)
+        => it.AddFieldName("content");
     
 }
+

@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest() { }
+    
+    public ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest(List<ReviewIdentifier> codeReviewIds)
     {
-        public ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest() { }
-        
-        public ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest(List<ReviewIdentifier> codeReviewIds)
-        {
-            CodeReviewIds = codeReviewIds;
-        }
-        
-        private PropertyValue<List<ReviewIdentifier>> _codeReviewIds = new PropertyValue<List<ReviewIdentifier>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest), nameof(CodeReviewIds), new List<ReviewIdentifier>());
-        
-        [Required]
-        [JsonPropertyName("codeReviewIds")]
-        public List<ReviewIdentifier> CodeReviewIds
-        {
-            get => _codeReviewIds.GetValue();
-            set => _codeReviewIds.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _codeReviewIds.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        CodeReviewIds = codeReviewIds;
     }
     
+    private PropertyValue<List<ReviewIdentifier>> _codeReviewIds = new PropertyValue<List<ReviewIdentifier>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest), nameof(CodeReviewIds), new List<ReviewIdentifier>());
+    
+    [Required]
+    [JsonPropertyName("codeReviewIds")]
+    public List<ReviewIdentifier> CodeReviewIds
+    {
+        get => _codeReviewIds.GetValue();
+        set => _codeReviewIds.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _codeReviewIds.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

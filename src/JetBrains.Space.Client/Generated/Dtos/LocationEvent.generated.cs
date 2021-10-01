@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class LocationEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class LocationEvent
-         : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "LocationEvent";
+    
+    public LocationEvent() { }
+    
+    public LocationEvent(KMetaMod meta, TDLocation location)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "LocationEvent";
-        
-        public LocationEvent() { }
-        
-        public LocationEvent(KMetaMod meta, TDLocation location)
-        {
-            Meta = meta;
-            Location = location;
-        }
-        
-        private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(LocationEvent), nameof(Meta));
-        
-        [Required]
-        [JsonPropertyName("meta")]
-        public KMetaMod Meta
-        {
-            get => _meta.GetValue();
-            set => _meta.SetValue(value);
-        }
-    
-        private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(LocationEvent), nameof(Location));
-        
-        [Required]
-        [JsonPropertyName("location")]
-        public TDLocation Location
-        {
-            get => _location.GetValue();
-            set => _location.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _meta.SetAccessPath(path, validateHasBeenSet);
-            _location.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Meta = meta;
+        Location = location;
     }
     
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(LocationEvent), nameof(Meta));
+    
+    [Required]
+    [JsonPropertyName("meta")]
+    public KMetaMod Meta
+    {
+        get => _meta.GetValue();
+        set => _meta.SetValue(value);
+    }
+
+    private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(LocationEvent), nameof(Location));
+    
+    [Required]
+    [JsonPropertyName("location")]
+    public TDLocation Location
+    {
+        get => _location.GetValue();
+        set => _location.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _meta.SetAccessPath(path, validateHasBeenSet);
+        _location.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

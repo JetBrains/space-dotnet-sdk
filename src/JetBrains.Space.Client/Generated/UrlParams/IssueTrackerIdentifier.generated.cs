@@ -27,43 +27,42 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class IssueTrackerIdentifier : IUrlParameter
 {
-    [JsonConverter(typeof(UrlParameterConverter))]
-    public abstract class IssueTrackerIdentifier : IUrlParameter
+    public static IssueTrackerIdentifier DefaultProjectTracker(ProjectIdentifier project)
+        => new IssueTrackerIdentifierDefaultProjectTracker(project);
+    
+    public static IssueTrackerIdentifier Id(string id)
+        => new IssueTrackerIdentifierId(id);
+    
+    private class IssueTrackerIdentifierDefaultProjectTracker : IssueTrackerIdentifier
     {
-        public static IssueTrackerIdentifier DefaultProjectTracker(ProjectIdentifier project)
-            => new IssueTrackerIdentifierDefaultProjectTracker(project);
+        private readonly ProjectIdentifier _project;
         
-        public static IssueTrackerIdentifier Id(string id)
-            => new IssueTrackerIdentifierId(id);
-        
-        private class IssueTrackerIdentifierDefaultProjectTracker : IssueTrackerIdentifier
+        public IssueTrackerIdentifierDefaultProjectTracker(ProjectIdentifier project)
         {
-            private readonly ProjectIdentifier _project;
-            
-            public IssueTrackerIdentifierDefaultProjectTracker(ProjectIdentifier project)
-            {
-                _project = project;
-            }
-            
-            public override string ToString()
-                => $"project:{_project}";
+            _project = project;
         }
         
-        private class IssueTrackerIdentifierId : IssueTrackerIdentifier
+        public override string ToString()
+            => $"project:{_project}";
+    }
+    
+    private class IssueTrackerIdentifierId : IssueTrackerIdentifier
+    {
+        private readonly string _id;
+        
+        public IssueTrackerIdentifierId(string id)
         {
-            private readonly string _id;
-            
-            public IssueTrackerIdentifierId(string id)
-            {
-                _id = id;
-            }
-            
-            public override string ToString()
-                => $"id:{_id}";
+            _id = id;
         }
         
+        public override string ToString()
+            => $"id:{_id}";
     }
     
 }
+

@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2BlogItemContentPartialBuilder
+namespace JetBrains.Space.Client.M2BlogItemContentPartialBuilder;
+
+public static class M2BlogItemContentPartialExtensions
 {
-    public static class M2BlogItemContentPartialExtensions
-    {
-        public static Partial<M2BlogItemContent> WithArticle(this Partial<M2BlogItemContent> it)
-            => it.AddFieldName("article");
-        
-        public static Partial<M2BlogItemContent> WithArticle(this Partial<M2BlogItemContent> it, Func<Partial<ArticleRecord>, Partial<ArticleRecord>> partialBuilder)
-            => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecord>(it)));
-        
-        public static Partial<M2BlogItemContent> WithArticleContent(this Partial<M2BlogItemContent> it)
-            => it.AddFieldName("articleContent");
-        
-        public static Partial<M2BlogItemContent> WithArticleContent(this Partial<M2BlogItemContent> it, Func<Partial<ArticleContentRecord>, Partial<ArticleContentRecord>> partialBuilder)
-            => it.AddFieldName("articleContent", partialBuilder(new Partial<ArticleContentRecord>(it)));
-        
-        public static Partial<M2BlogItemContent> WithArticleDetails(this Partial<M2BlogItemContent> it)
-            => it.AddFieldName("articleDetails");
-        
-        public static Partial<M2BlogItemContent> WithArticleDetails(this Partial<M2BlogItemContent> it, Func<Partial<ArticleDetailsRecord>, Partial<ArticleDetailsRecord>> partialBuilder)
-            => it.AddFieldName("articleDetails", partialBuilder(new Partial<ArticleDetailsRecord>(it)));
-        
-        public static Partial<M2BlogItemContent> WithArticleChannel(this Partial<M2BlogItemContent> it)
-            => it.AddFieldName("articleChannel");
-        
-        public static Partial<M2BlogItemContent> WithArticleChannel(this Partial<M2BlogItemContent> it, Func<Partial<ArticleChannelRecord>, Partial<ArticleChannelRecord>> partialBuilder)
-            => it.AddFieldName("articleChannel", partialBuilder(new Partial<ArticleChannelRecord>(it)));
-        
-    }
+    public static Partial<M2BlogItemContent> WithArticle(this Partial<M2BlogItemContent> it)
+        => it.AddFieldName("article");
+    
+    public static Partial<M2BlogItemContent> WithArticle(this Partial<M2BlogItemContent> it, Func<Partial<ArticleRecord>, Partial<ArticleRecord>> partialBuilder)
+        => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecord>(it)));
+    
+    public static Partial<M2BlogItemContent> WithArticleContent(this Partial<M2BlogItemContent> it)
+        => it.AddFieldName("articleContent");
+    
+    public static Partial<M2BlogItemContent> WithArticleContent(this Partial<M2BlogItemContent> it, Func<Partial<ArticleContentRecord>, Partial<ArticleContentRecord>> partialBuilder)
+        => it.AddFieldName("articleContent", partialBuilder(new Partial<ArticleContentRecord>(it)));
+    
+    public static Partial<M2BlogItemContent> WithArticleDetails(this Partial<M2BlogItemContent> it)
+        => it.AddFieldName("articleDetails");
+    
+    public static Partial<M2BlogItemContent> WithArticleDetails(this Partial<M2BlogItemContent> it, Func<Partial<ArticleDetailsRecord>, Partial<ArticleDetailsRecord>> partialBuilder)
+        => it.AddFieldName("articleDetails", partialBuilder(new Partial<ArticleDetailsRecord>(it)));
+    
+    public static Partial<M2BlogItemContent> WithArticleChannel(this Partial<M2BlogItemContent> it)
+        => it.AddFieldName("articleChannel");
+    
+    public static Partial<M2BlogItemContent> WithArticleChannel(this Partial<M2BlogItemContent> it, Func<Partial<ArticleChannelRecord>, Partial<ArticleChannelRecord>> partialBuilder)
+        => it.AddFieldName("articleChannel", partialBuilder(new Partial<ArticleChannelRecord>(it)));
     
 }
+

@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum PackageRepositoryCredentials
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum PackageRepositoryCredentials
-    {
-        [EnumMember(Value = "ANONYMOUS")]
-        ANONYMOUS,
-        
-        [EnumMember(Value = "PASSWORD")]
-        PASSWORD,
-        
-        [EnumMember(Value = "TOKEN")]
-        TOKEN,
-        
-        [EnumMember(Value = "HEADER")]
-        HEADER,
-        
-    }
+    [EnumMember(Value = "ANONYMOUS")]
+    ANONYMOUS,
+    
+    [EnumMember(Value = "PASSWORD")]
+    PASSWORD,
+    
+    [EnumMember(Value = "TOKEN")]
+    TOKEN,
+    
+    [EnumMember(Value = "HEADER")]
+    HEADER,
     
 }
+

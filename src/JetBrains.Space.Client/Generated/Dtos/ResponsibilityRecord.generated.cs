@@ -27,68 +27,67 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ResponsibilityRecord
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ResponsibilityRecord
-         : IPropagatePropertyAccessPath
+    public ResponsibilityRecord() { }
+    
+    public ResponsibilityRecord(string responsibilityId, string summary, List<AssignedPerson> assignedPeople, string? notes = null)
     {
-        public ResponsibilityRecord() { }
-        
-        public ResponsibilityRecord(string responsibilityId, string summary, List<AssignedPerson> assignedPeople, string? notes = null)
-        {
-            ResponsibilityId = responsibilityId;
-            Summary = summary;
-            Notes = notes;
-            AssignedPeople = assignedPeople;
-        }
-        
-        private PropertyValue<string> _responsibilityId = new PropertyValue<string>(nameof(ResponsibilityRecord), nameof(ResponsibilityId));
-        
-        [Required]
-        [JsonPropertyName("responsibilityId")]
-        public string ResponsibilityId
-        {
-            get => _responsibilityId.GetValue();
-            set => _responsibilityId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ResponsibilityRecord), nameof(Summary));
-        
-        [Required]
-        [JsonPropertyName("summary")]
-        public string Summary
-        {
-            get => _summary.GetValue();
-            set => _summary.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(ResponsibilityRecord), nameof(Notes));
-        
-        [JsonPropertyName("notes")]
-        public string? Notes
-        {
-            get => _notes.GetValue();
-            set => _notes.SetValue(value);
-        }
-    
-        private PropertyValue<List<AssignedPerson>> _assignedPeople = new PropertyValue<List<AssignedPerson>>(nameof(ResponsibilityRecord), nameof(AssignedPeople), new List<AssignedPerson>());
-        
-        [Required]
-        [JsonPropertyName("assignedPeople")]
-        public List<AssignedPerson> AssignedPeople
-        {
-            get => _assignedPeople.GetValue();
-            set => _assignedPeople.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _responsibilityId.SetAccessPath(path, validateHasBeenSet);
-            _summary.SetAccessPath(path, validateHasBeenSet);
-            _notes.SetAccessPath(path, validateHasBeenSet);
-            _assignedPeople.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ResponsibilityId = responsibilityId;
+        Summary = summary;
+        Notes = notes;
+        AssignedPeople = assignedPeople;
     }
     
+    private PropertyValue<string> _responsibilityId = new PropertyValue<string>(nameof(ResponsibilityRecord), nameof(ResponsibilityId));
+    
+    [Required]
+    [JsonPropertyName("responsibilityId")]
+    public string ResponsibilityId
+    {
+        get => _responsibilityId.GetValue();
+        set => _responsibilityId.SetValue(value);
+    }
+
+    private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ResponsibilityRecord), nameof(Summary));
+    
+    [Required]
+    [JsonPropertyName("summary")]
+    public string Summary
+    {
+        get => _summary.GetValue();
+        set => _summary.SetValue(value);
+    }
+
+    private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(ResponsibilityRecord), nameof(Notes));
+    
+    [JsonPropertyName("notes")]
+    public string? Notes
+    {
+        get => _notes.GetValue();
+        set => _notes.SetValue(value);
+    }
+
+    private PropertyValue<List<AssignedPerson>> _assignedPeople = new PropertyValue<List<AssignedPerson>>(nameof(ResponsibilityRecord), nameof(AssignedPeople), new List<AssignedPerson>());
+    
+    [Required]
+    [JsonPropertyName("assignedPeople")]
+    public List<AssignedPerson> AssignedPeople
+    {
+        get => _assignedPeople.GetValue();
+        set => _assignedPeople.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _responsibilityId.SetAccessPath(path, validateHasBeenSet);
+        _summary.SetAccessPath(path, validateHasBeenSet);
+        _notes.SetAccessPath(path, validateHasBeenSet);
+        _assignedPeople.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

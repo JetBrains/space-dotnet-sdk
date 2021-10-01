@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.WebhookDeliveryStatusPartialBuilder
+namespace JetBrains.Space.Client.WebhookDeliveryStatusPartialBuilder;
+
+public static class WebhookDeliveryStatusPartialExtensions
 {
-    public static class WebhookDeliveryStatusPartialExtensions
-    {
-    }
-    
 }
+

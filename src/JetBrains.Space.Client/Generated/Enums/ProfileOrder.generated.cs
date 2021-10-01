@@ -27,17 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum ProfileOrder
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ProfileOrder
-    {
-        [EnumMember(Value = "DEFAULT")]
-        DEFAULT,
-        
-        [EnumMember(Value = "FULL_NAME")]
-        FULLNAME,
-        
-    }
+    [EnumMember(Value = "DEFAULT")]
+    DEFAULT,
+    
+    [EnumMember(Value = "FULL_NAME")]
+    FULLNAME,
     
 }
+

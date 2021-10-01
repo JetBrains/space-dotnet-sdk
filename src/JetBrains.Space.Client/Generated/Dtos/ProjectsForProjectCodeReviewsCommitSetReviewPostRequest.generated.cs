@@ -27,67 +27,66 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectCodeReviewsCommitSetReviewPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectCodeReviewsCommitSetReviewPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectCodeReviewsCommitSetReviewPostRequest() { }
+    
+    public ProjectsForProjectCodeReviewsCommitSetReviewPostRequest(string repository, List<string> revisions, string? title = null, List<string>? authorProfileIds = null)
     {
-        public ProjectsForProjectCodeReviewsCommitSetReviewPostRequest() { }
-        
-        public ProjectsForProjectCodeReviewsCommitSetReviewPostRequest(string repository, List<string> revisions, string? title = null, List<string>? authorProfileIds = null)
-        {
-            Repository = repository;
-            Revisions = revisions;
-            Title = title;
-            AuthorProfileIds = authorProfileIds;
-        }
-        
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Repository));
-        
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
-        {
-            get => _repository.GetValue();
-            set => _repository.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _revisions = new PropertyValue<List<string>>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Revisions), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("revisions")]
-        public List<string> Revisions
-        {
-            get => _revisions.GetValue();
-            set => _revisions.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Title));
-        
-        [JsonPropertyName("title")]
-        public string? Title
-        {
-            get => _title.GetValue();
-            set => _title.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>?> _authorProfileIds = new PropertyValue<List<string>?>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(AuthorProfileIds));
-        
-        [JsonPropertyName("authorProfileIds")]
-        public List<string>? AuthorProfileIds
-        {
-            get => _authorProfileIds.GetValue();
-            set => _authorProfileIds.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _revisions.SetAccessPath(path, validateHasBeenSet);
-            _title.SetAccessPath(path, validateHasBeenSet);
-            _authorProfileIds.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Repository = repository;
+        Revisions = revisions;
+        Title = title;
+        AuthorProfileIds = authorProfileIds;
     }
     
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Repository));
+    
+    [Required]
+    [JsonPropertyName("repository")]
+    public string Repository
+    {
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _revisions = new PropertyValue<List<string>>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Revisions), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("revisions")]
+    public List<string> Revisions
+    {
+        get => _revisions.GetValue();
+        set => _revisions.SetValue(value);
+    }
+
+    private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Title));
+    
+    [JsonPropertyName("title")]
+    public string? Title
+    {
+        get => _title.GetValue();
+        set => _title.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _authorProfileIds = new PropertyValue<List<string>?>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(AuthorProfileIds));
+    
+    [JsonPropertyName("authorProfileIds")]
+    public List<string>? AuthorProfileIds
+    {
+        get => _authorProfileIds.GetValue();
+        set => _authorProfileIds.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _revisions.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(path, validateHasBeenSet);
+        _authorProfileIds.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

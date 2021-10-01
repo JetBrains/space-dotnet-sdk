@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest() { }
+    
+    public TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest(int code)
     {
-        public TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest() { }
-        
-        public TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest(int code)
-        {
-            Code = code;
-        }
-        
-        private PropertyValue<int> _code = new PropertyValue<int>(nameof(TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest), nameof(Code));
-        
-        [Required]
-        [JsonPropertyName("code")]
-        public int Code
-        {
-            get => _code.GetValue();
-            set => _code.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _code.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Code = code;
     }
     
+    private PropertyValue<int> _code = new PropertyValue<int>(nameof(TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest), nameof(Code));
+    
+    [Required]
+    [JsonPropertyName("code")]
+    public int Code
+    {
+        get => _code.GetValue();
+        set => _code.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _code.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,27 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class DiffSide
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class DiffSide
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "DiffSide";
+    
+    public static DiffSideEmpty Empty(string revision)
+        => new DiffSideEmpty(revision: revision);
+    
+    public static DiffSideNonEmpty NonEmpty(string revision, string path)
+        => new DiffSideNonEmpty(revision: revision, path: path);
+    
+    public DiffSide() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "DiffSide";
-        
-        public static DiffSideEmpty Empty(string revision)
-            => new DiffSideEmpty(revision: revision);
-        
-        public static DiffSideNonEmpty NonEmpty(string revision, string path)
-            => new DiffSideNonEmpty(revision: revision, path: path);
-        
-        public DiffSide() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

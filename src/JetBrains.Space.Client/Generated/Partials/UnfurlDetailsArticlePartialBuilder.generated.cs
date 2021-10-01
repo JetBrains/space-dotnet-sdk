@@ -27,34 +27,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsArticlePartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsArticlePartialBuilder;
+
+public static class UnfurlDetailsArticlePartialExtensions
 {
-    public static class UnfurlDetailsArticlePartialExtensions
-    {
-        public static Partial<UnfurlDetailsArticle> WithArticle(this Partial<UnfurlDetailsArticle> it)
-            => it.AddFieldName("article");
-        
-        public static Partial<UnfurlDetailsArticle> WithArticle(this Partial<UnfurlDetailsArticle> it, Func<Partial<ArticleRecord>, Partial<ArticleRecord>> partialBuilder)
-            => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecord>(it)));
-        
-        public static Partial<UnfurlDetailsArticle> WithContent(this Partial<UnfurlDetailsArticle> it)
-            => it.AddFieldName("content");
-        
-        public static Partial<UnfurlDetailsArticle> WithContent(this Partial<UnfurlDetailsArticle> it, Func<Partial<ArticleContentRecord>, Partial<ArticleContentRecord>> partialBuilder)
-            => it.AddFieldName("content", partialBuilder(new Partial<ArticleContentRecord>(it)));
-        
-        public static Partial<UnfurlDetailsArticle> WithChannel(this Partial<UnfurlDetailsArticle> it)
-            => it.AddFieldName("channel");
-        
-        public static Partial<UnfurlDetailsArticle> WithChannel(this Partial<UnfurlDetailsArticle> it, Func<Partial<ArticleChannelRecord>, Partial<ArticleChannelRecord>> partialBuilder)
-            => it.AddFieldName("channel", partialBuilder(new Partial<ArticleChannelRecord>(it)));
-        
-        public static Partial<UnfurlDetailsArticle> WithDetails(this Partial<UnfurlDetailsArticle> it)
-            => it.AddFieldName("details");
-        
-        public static Partial<UnfurlDetailsArticle> WithDetails(this Partial<UnfurlDetailsArticle> it, Func<Partial<ArticleDetailsRecord>, Partial<ArticleDetailsRecord>> partialBuilder)
-            => it.AddFieldName("details", partialBuilder(new Partial<ArticleDetailsRecord>(it)));
-        
-    }
+    public static Partial<UnfurlDetailsArticle> WithArticle(this Partial<UnfurlDetailsArticle> it)
+        => it.AddFieldName("article");
+    
+    public static Partial<UnfurlDetailsArticle> WithArticle(this Partial<UnfurlDetailsArticle> it, Func<Partial<ArticleRecord>, Partial<ArticleRecord>> partialBuilder)
+        => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecord>(it)));
+    
+    public static Partial<UnfurlDetailsArticle> WithContent(this Partial<UnfurlDetailsArticle> it)
+        => it.AddFieldName("content");
+    
+    public static Partial<UnfurlDetailsArticle> WithContent(this Partial<UnfurlDetailsArticle> it, Func<Partial<ArticleContentRecord>, Partial<ArticleContentRecord>> partialBuilder)
+        => it.AddFieldName("content", partialBuilder(new Partial<ArticleContentRecord>(it)));
+    
+    public static Partial<UnfurlDetailsArticle> WithChannel(this Partial<UnfurlDetailsArticle> it)
+        => it.AddFieldName("channel");
+    
+    public static Partial<UnfurlDetailsArticle> WithChannel(this Partial<UnfurlDetailsArticle> it, Func<Partial<ArticleChannelRecord>, Partial<ArticleChannelRecord>> partialBuilder)
+        => it.AddFieldName("channel", partialBuilder(new Partial<ArticleChannelRecord>(it)));
+    
+    public static Partial<UnfurlDetailsArticle> WithDetails(this Partial<UnfurlDetailsArticle> it)
+        => it.AddFieldName("details");
+    
+    public static Partial<UnfurlDetailsArticle> WithDetails(this Partial<UnfurlDetailsArticle> it, Func<Partial<ArticleDetailsRecord>, Partial<ArticleDetailsRecord>> partialBuilder)
+        => it.AddFieldName("details", partialBuilder(new Partial<ArticleDetailsRecord>(it)));
     
 }
+

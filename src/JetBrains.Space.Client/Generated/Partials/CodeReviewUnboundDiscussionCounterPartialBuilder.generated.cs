@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewUnboundDiscussionCounterPartialBuilder
+namespace JetBrains.Space.Client.CodeReviewUnboundDiscussionCounterPartialBuilder;
+
+public static class CodeReviewUnboundDiscussionCounterPartialExtensions
 {
-    public static class CodeReviewUnboundDiscussionCounterPartialExtensions
-    {
-        public static Partial<CodeReviewUnboundDiscussionCounter> WithId(this Partial<CodeReviewUnboundDiscussionCounter> it)
-            => it.AddFieldName("id");
-        
-    }
+    public static Partial<CodeReviewUnboundDiscussionCounter> WithId(this Partial<CodeReviewUnboundDiscussionCounter> it)
+        => it.AddFieldName("id");
     
 }
+

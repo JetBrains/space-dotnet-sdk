@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NotificationsPersonalCustomSubscriptionsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.NotificationsPersonalCustomSubscriptionsPostRequestPartialBuilder;
+
+public static class NotificationsPersonalCustomSubscriptionsPostRequestPartialExtensions
 {
-    public static class NotificationsPersonalCustomSubscriptionsPostRequestPartialExtensions
-    {
-        public static Partial<NotificationsPersonalCustomSubscriptionsPostRequest> WithProfile(this Partial<NotificationsPersonalCustomSubscriptionsPostRequest> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<NotificationsPersonalCustomSubscriptionsPostRequest> WithProfile(this Partial<NotificationsPersonalCustomSubscriptionsPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
-        
-        public static Partial<NotificationsPersonalCustomSubscriptionsPostRequest> WithName(this Partial<NotificationsPersonalCustomSubscriptionsPostRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<NotificationsPersonalCustomSubscriptionsPostRequest> WithFeed(this Partial<NotificationsPersonalCustomSubscriptionsPostRequest> it)
-            => it.AddFieldName("feed");
-        
-        public static Partial<NotificationsPersonalCustomSubscriptionsPostRequest> WithSubscription(this Partial<NotificationsPersonalCustomSubscriptionsPostRequest> it)
-            => it.AddFieldName("subscription");
-        
-        public static Partial<NotificationsPersonalCustomSubscriptionsPostRequest> WithSubscription(this Partial<NotificationsPersonalCustomSubscriptionsPostRequest> it, Func<Partial<CustomGenericSubscriptionIn>, Partial<CustomGenericSubscriptionIn>> partialBuilder)
-            => it.AddFieldName("subscription", partialBuilder(new Partial<CustomGenericSubscriptionIn>(it)));
-        
-    }
+    public static Partial<NotificationsPersonalCustomSubscriptionsPostRequest> WithProfile(this Partial<NotificationsPersonalCustomSubscriptionsPostRequest> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<NotificationsPersonalCustomSubscriptionsPostRequest> WithProfile(this Partial<NotificationsPersonalCustomSubscriptionsPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
+    
+    public static Partial<NotificationsPersonalCustomSubscriptionsPostRequest> WithName(this Partial<NotificationsPersonalCustomSubscriptionsPostRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<NotificationsPersonalCustomSubscriptionsPostRequest> WithFeed(this Partial<NotificationsPersonalCustomSubscriptionsPostRequest> it)
+        => it.AddFieldName("feed");
+    
+    public static Partial<NotificationsPersonalCustomSubscriptionsPostRequest> WithSubscription(this Partial<NotificationsPersonalCustomSubscriptionsPostRequest> it)
+        => it.AddFieldName("subscription");
+    
+    public static Partial<NotificationsPersonalCustomSubscriptionsPostRequest> WithSubscription(this Partial<NotificationsPersonalCustomSubscriptionsPostRequest> it, Func<Partial<CustomGenericSubscriptionIn>, Partial<CustomGenericSubscriptionIn>> partialBuilder)
+        => it.AddFieldName("subscription", partialBuilder(new Partial<CustomGenericSubscriptionIn>(it)));
     
 }
+

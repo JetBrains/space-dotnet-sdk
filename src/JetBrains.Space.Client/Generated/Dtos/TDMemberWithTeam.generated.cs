@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TDMemberWithTeam
+     : IPropagatePropertyAccessPath
 {
-    public sealed class TDMemberWithTeam
-         : IPropagatePropertyAccessPath
+    public TDMemberWithTeam() { }
+    
+    public TDMemberWithTeam(TDMemberProfile profile, List<TDTeam> teams)
     {
-        public TDMemberWithTeam() { }
-        
-        public TDMemberWithTeam(TDMemberProfile profile, List<TDTeam> teams)
-        {
-            Profile = profile;
-            Teams = teams;
-        }
-        
-        private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(TDMemberWithTeam), nameof(Profile));
-        
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfile Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(TDMemberWithTeam), nameof(Teams), new List<TDTeam>());
-        
-        [Required]
-        [JsonPropertyName("teams")]
-        public List<TDTeam> Teams
-        {
-            get => _teams.GetValue();
-            set => _teams.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-            _teams.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
+        Teams = teams;
     }
     
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(TDMemberWithTeam), nameof(Profile));
+    
+    [Required]
+    [JsonPropertyName("profile")]
+    public TDMemberProfile Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(TDMemberWithTeam), nameof(Teams), new List<TDTeam>());
+    
+    [Required]
+    [JsonPropertyName("teams")]
+    public List<TDTeam> Teams
+    {
+        get => _teams.GetValue();
+        set => _teams.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+        _teams.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

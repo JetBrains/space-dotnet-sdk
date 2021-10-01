@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryLocationMapMemberPointsPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryLocationMapMemberPointsPostRequestPartialBuilder;
+
+public static class TeamDirectoryLocationMapMemberPointsPostRequestPartialExtensions
 {
-    public static class TeamDirectoryLocationMapMemberPointsPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryLocationMapMemberPointsPostRequest> WithMemberLocationId(this Partial<TeamDirectoryLocationMapMemberPointsPostRequest> it)
-            => it.AddFieldName("memberLocationId");
-        
-        public static Partial<TeamDirectoryLocationMapMemberPointsPostRequest> WithX(this Partial<TeamDirectoryLocationMapMemberPointsPostRequest> it)
-            => it.AddFieldName("x");
-        
-        public static Partial<TeamDirectoryLocationMapMemberPointsPostRequest> WithY(this Partial<TeamDirectoryLocationMapMemberPointsPostRequest> it)
-            => it.AddFieldName("y");
-        
-        public static Partial<TeamDirectoryLocationMapMemberPointsPostRequest> WithMapId(this Partial<TeamDirectoryLocationMapMemberPointsPostRequest> it)
-            => it.AddFieldName("mapId");
-        
-    }
+    public static Partial<TeamDirectoryLocationMapMemberPointsPostRequest> WithMemberLocationId(this Partial<TeamDirectoryLocationMapMemberPointsPostRequest> it)
+        => it.AddFieldName("memberLocationId");
+    
+    public static Partial<TeamDirectoryLocationMapMemberPointsPostRequest> WithX(this Partial<TeamDirectoryLocationMapMemberPointsPostRequest> it)
+        => it.AddFieldName("x");
+    
+    public static Partial<TeamDirectoryLocationMapMemberPointsPostRequest> WithY(this Partial<TeamDirectoryLocationMapMemberPointsPostRequest> it)
+        => it.AddFieldName("y");
+    
+    public static Partial<TeamDirectoryLocationMapMemberPointsPostRequest> WithMapId(this Partial<TeamDirectoryLocationMapMemberPointsPostRequest> it)
+        => it.AddFieldName("mapId");
     
 }
+

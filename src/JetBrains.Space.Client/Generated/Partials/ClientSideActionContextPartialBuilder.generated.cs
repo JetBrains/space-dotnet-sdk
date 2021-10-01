@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ClientSideActionContextPartialBuilder
+namespace JetBrains.Space.Client.ClientSideActionContextPartialBuilder;
+
+public static class ClientSideActionContextPartialExtensions
 {
-    public static class ClientSideActionContextPartialExtensions
-    {
-    }
-    
 }
+

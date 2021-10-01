@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DiffPartialBuilder
+namespace JetBrains.Space.Client.DiffPartialBuilder;
+
+public static class DiffPartialExtensions
 {
-    public static class DiffPartialExtensions
-    {
-        public static Partial<Diff> WithAdded(this Partial<Diff> it)
-            => it.AddFieldName("added");
-        
-        public static Partial<Diff> WithRemoved(this Partial<Diff> it)
-            => it.AddFieldName("removed");
-        
-        public static Partial<Diff> WithIsRemoveAll(this Partial<Diff> it)
-            => it.AddFieldName("removeAll");
-        
-    }
+    public static Partial<Diff> WithAdded(this Partial<Diff> it)
+        => it.AddFieldName("added");
+    
+    public static Partial<Diff> WithRemoved(this Partial<Diff> it)
+        => it.AddFieldName("removed");
+    
+    public static Partial<Diff> WithIsRemoveAll(this Partial<Diff> it)
+        => it.AddFieldName("removeAll");
     
 }
+

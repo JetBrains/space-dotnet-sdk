@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BoardTeamOwners
+     : IPropagatePropertyAccessPath
 {
-    public sealed class BoardTeamOwners
-         : IPropagatePropertyAccessPath
+    public BoardTeamOwners() { }
+    
+    public BoardTeamOwners(List<TDTeam> teams)
     {
-        public BoardTeamOwners() { }
-        
-        public BoardTeamOwners(List<TDTeam> teams)
-        {
-            Teams = teams;
-        }
-        
-        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(BoardTeamOwners), nameof(Teams), new List<TDTeam>());
-        
-        [Required]
-        [JsonPropertyName("teams")]
-        public List<TDTeam> Teams
-        {
-            get => _teams.GetValue();
-            set => _teams.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _teams.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Teams = teams;
     }
     
+    private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(BoardTeamOwners), nameof(Teams), new List<TDTeam>());
+    
+    [Required]
+    [JsonPropertyName("teams")]
+    public List<TDTeam> Teams
+    {
+        get => _teams.GetValue();
+        set => _teams.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _teams.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

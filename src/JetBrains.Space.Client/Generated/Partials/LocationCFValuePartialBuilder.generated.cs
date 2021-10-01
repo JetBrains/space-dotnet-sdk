@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.LocationCFValuePartialBuilder
+namespace JetBrains.Space.Client.LocationCFValuePartialBuilder;
+
+public static class LocationCFValuePartialExtensions
 {
-    public static class LocationCFValuePartialExtensions
-    {
-        public static Partial<LocationCFValue> WithLocation(this Partial<LocationCFValue> it)
-            => it.AddFieldName("location");
-        
-        public static Partial<LocationCFValue> WithLocation(this Partial<LocationCFValue> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
-            => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
-        
-    }
+    public static Partial<LocationCFValue> WithLocation(this Partial<LocationCFValue> it)
+        => it.AddFieldName("location");
+    
+    public static Partial<LocationCFValue> WithLocation(this Partial<LocationCFValue> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
+        => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
     
 }
+

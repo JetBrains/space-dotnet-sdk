@@ -27,101 +27,100 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ExternalIssue
+     : IPropagatePropertyAccessPath
 {
-    public sealed class ExternalIssue
-         : IPropagatePropertyAccessPath
+    public ExternalIssue() { }
+    
+    public ExternalIssue(string summary, string status, string externalId, string? description = null, string? assignee = null, string? externalName = null, string? externalUrl = null)
     {
-        public ExternalIssue() { }
-        
-        public ExternalIssue(string summary, string status, string externalId, string? description = null, string? assignee = null, string? externalName = null, string? externalUrl = null)
-        {
-            Summary = summary;
-            Description = description;
-            Status = status;
-            Assignee = assignee;
-            ExternalId = externalId;
-            ExternalName = externalName;
-            ExternalUrl = externalUrl;
-        }
-        
-        private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ExternalIssue), nameof(Summary));
-        
-        [Required]
-        [JsonPropertyName("summary")]
-        public string Summary
-        {
-            get => _summary.GetValue();
-            set => _summary.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ExternalIssue), nameof(Description));
-        
-        [JsonPropertyName("description")]
-        public string? Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<string> _status = new PropertyValue<string>(nameof(ExternalIssue), nameof(Status));
-        
-        [Required]
-        [JsonPropertyName("status")]
-        public string Status
-        {
-            get => _status.GetValue();
-            set => _status.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _assignee = new PropertyValue<string?>(nameof(ExternalIssue), nameof(Assignee));
-        
-        [JsonPropertyName("assignee")]
-        public string? Assignee
-        {
-            get => _assignee.GetValue();
-            set => _assignee.SetValue(value);
-        }
-    
-        private PropertyValue<string> _externalId = new PropertyValue<string>(nameof(ExternalIssue), nameof(ExternalId));
-        
-        [Required]
-        [JsonPropertyName("externalId")]
-        public string ExternalId
-        {
-            get => _externalId.GetValue();
-            set => _externalId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _externalName = new PropertyValue<string?>(nameof(ExternalIssue), nameof(ExternalName));
-        
-        [JsonPropertyName("externalName")]
-        public string? ExternalName
-        {
-            get => _externalName.GetValue();
-            set => _externalName.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ExternalIssue), nameof(ExternalUrl));
-        
-        [JsonPropertyName("externalUrl")]
-        public string? ExternalUrl
-        {
-            get => _externalUrl.GetValue();
-            set => _externalUrl.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _summary.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _status.SetAccessPath(path, validateHasBeenSet);
-            _assignee.SetAccessPath(path, validateHasBeenSet);
-            _externalId.SetAccessPath(path, validateHasBeenSet);
-            _externalName.SetAccessPath(path, validateHasBeenSet);
-            _externalUrl.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Summary = summary;
+        Description = description;
+        Status = status;
+        Assignee = assignee;
+        ExternalId = externalId;
+        ExternalName = externalName;
+        ExternalUrl = externalUrl;
     }
     
+    private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ExternalIssue), nameof(Summary));
+    
+    [Required]
+    [JsonPropertyName("summary")]
+    public string Summary
+    {
+        get => _summary.GetValue();
+        set => _summary.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ExternalIssue), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<string> _status = new PropertyValue<string>(nameof(ExternalIssue), nameof(Status));
+    
+    [Required]
+    [JsonPropertyName("status")]
+    public string Status
+    {
+        get => _status.GetValue();
+        set => _status.SetValue(value);
+    }
+
+    private PropertyValue<string?> _assignee = new PropertyValue<string?>(nameof(ExternalIssue), nameof(Assignee));
+    
+    [JsonPropertyName("assignee")]
+    public string? Assignee
+    {
+        get => _assignee.GetValue();
+        set => _assignee.SetValue(value);
+    }
+
+    private PropertyValue<string> _externalId = new PropertyValue<string>(nameof(ExternalIssue), nameof(ExternalId));
+    
+    [Required]
+    [JsonPropertyName("externalId")]
+    public string ExternalId
+    {
+        get => _externalId.GetValue();
+        set => _externalId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _externalName = new PropertyValue<string?>(nameof(ExternalIssue), nameof(ExternalName));
+    
+    [JsonPropertyName("externalName")]
+    public string? ExternalName
+    {
+        get => _externalName.GetValue();
+        set => _externalName.SetValue(value);
+    }
+
+    private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ExternalIssue), nameof(ExternalUrl));
+    
+    [JsonPropertyName("externalUrl")]
+    public string? ExternalUrl
+    {
+        get => _externalUrl.GetValue();
+        set => _externalUrl.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _summary.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _status.SetAccessPath(path, validateHasBeenSet);
+        _assignee.SetAccessPath(path, validateHasBeenSet);
+        _externalId.SetAccessPath(path, validateHasBeenSet);
+        _externalName.SetAccessPath(path, validateHasBeenSet);
+        _externalUrl.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

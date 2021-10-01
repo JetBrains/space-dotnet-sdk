@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESGithubAuthModuleSettingsPartialBuilder
+namespace JetBrains.Space.Client.ESGithubAuthModuleSettingsPartialBuilder;
+
+public static class ESGithubAuthModuleSettingsPartialExtensions
 {
-    public static class ESGithubAuthModuleSettingsPartialExtensions
-    {
-        public static Partial<ESGithubAuthModuleSettings> WithGithubUrl(this Partial<ESGithubAuthModuleSettings> it)
-            => it.AddFieldName("githubUrl");
-        
-        public static Partial<ESGithubAuthModuleSettings> WithClientId(this Partial<ESGithubAuthModuleSettings> it)
-            => it.AddFieldName("clientId");
-        
-        public static Partial<ESGithubAuthModuleSettings> WithClientSecret(this Partial<ESGithubAuthModuleSettings> it)
-            => it.AddFieldName("clientSecret");
-        
-        public static Partial<ESGithubAuthModuleSettings> WithIsRegisterNewUsers(this Partial<ESGithubAuthModuleSettings> it)
-            => it.AddFieldName("registerNewUsers");
-        
-        public static Partial<ESGithubAuthModuleSettings> WithOrganizations(this Partial<ESGithubAuthModuleSettings> it)
-            => it.AddFieldName("organizations");
-        
-    }
+    public static Partial<ESGithubAuthModuleSettings> WithGithubUrl(this Partial<ESGithubAuthModuleSettings> it)
+        => it.AddFieldName("githubUrl");
+    
+    public static Partial<ESGithubAuthModuleSettings> WithClientId(this Partial<ESGithubAuthModuleSettings> it)
+        => it.AddFieldName("clientId");
+    
+    public static Partial<ESGithubAuthModuleSettings> WithClientSecret(this Partial<ESGithubAuthModuleSettings> it)
+        => it.AddFieldName("clientSecret");
+    
+    public static Partial<ESGithubAuthModuleSettings> WithIsRegisterNewUsers(this Partial<ESGithubAuthModuleSettings> it)
+        => it.AddFieldName("registerNewUsers");
+    
+    public static Partial<ESGithubAuthModuleSettings> WithOrganizations(this Partial<ESGithubAuthModuleSettings> it)
+        => it.AddFieldName("organizations");
     
 }
+

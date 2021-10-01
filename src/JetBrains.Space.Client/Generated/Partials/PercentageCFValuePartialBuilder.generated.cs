@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PercentageCFValuePartialBuilder
+namespace JetBrains.Space.Client.PercentageCFValuePartialBuilder;
+
+public static class PercentageCFValuePartialExtensions
 {
-    public static class PercentageCFValuePartialExtensions
-    {
-        public static Partial<PercentageCFValue> WithValue(this Partial<PercentageCFValue> it)
-            => it.AddFieldName("value");
-        
-    }
+    public static Partial<PercentageCFValue> WithValue(this Partial<PercentageCFValue> it)
+        => it.AddFieldName("value");
     
 }
+

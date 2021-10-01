@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class M2PackageDeletedDetails
+     : M2PackageContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class M2PackageDeletedDetails
-         : M2PackageContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "M2PackageDeletedDetails";
+    
+    public M2PackageDeletedDetails() { }
+    
+    public M2PackageDeletedDetails(PackageVersionInfo pkg)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "M2PackageDeletedDetails";
-        
-        public M2PackageDeletedDetails() { }
-        
-        public M2PackageDeletedDetails(PackageVersionInfo pkg)
-        {
-            Pkg = pkg;
-        }
-        
-        private PropertyValue<PackageVersionInfo> _pkg = new PropertyValue<PackageVersionInfo>(nameof(M2PackageDeletedDetails), nameof(Pkg));
-        
-        [Required]
-        [JsonPropertyName("pkg")]
-        public PackageVersionInfo Pkg
-        {
-            get => _pkg.GetValue();
-            set => _pkg.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _pkg.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Pkg = pkg;
     }
     
+    private PropertyValue<PackageVersionInfo> _pkg = new PropertyValue<PackageVersionInfo>(nameof(M2PackageDeletedDetails), nameof(Pkg));
+    
+    [Required]
+    [JsonPropertyName("pkg")]
+    public PackageVersionInfo Pkg
+    {
+        get => _pkg.GetValue();
+        set => _pkg.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _pkg.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

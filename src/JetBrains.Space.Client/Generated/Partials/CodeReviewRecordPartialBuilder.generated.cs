@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewRecordPartialBuilder
+namespace JetBrains.Space.Client.CodeReviewRecordPartialBuilder;
+
+public static class CodeReviewRecordPartialExtensions
 {
-    public static class CodeReviewRecordPartialExtensions
-    {
-        public static Partial<CodeReviewRecord> WithId(this Partial<CodeReviewRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<CodeReviewRecord> WithAuthors(this Partial<CodeReviewRecord> it)
-            => it.AddFieldName("authors");
-        
-        public static Partial<CodeReviewRecord> WithAuthors(this Partial<CodeReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
-            => it.AddFieldName("authors", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
-        
-        public static Partial<CodeReviewRecord> WithDiscussionCounter(this Partial<CodeReviewRecord> it)
-            => it.AddFieldName("discussionCounter");
-        
-        public static Partial<CodeReviewRecord> WithDiscussionCounter(this Partial<CodeReviewRecord> it, Func<Partial<Counter>, Partial<Counter>> partialBuilder)
-            => it.AddFieldName("discussionCounter", partialBuilder(new Partial<Counter>(it)));
-        
-        public static Partial<CodeReviewRecord> WithIssueIds(this Partial<CodeReviewRecord> it)
-            => it.AddFieldName("issueIds");
-        
-        public static Partial<CodeReviewRecord> WithParticipants(this Partial<CodeReviewRecord> it)
-            => it.AddFieldName("participants");
-        
-        public static Partial<CodeReviewRecord> WithParticipants(this Partial<CodeReviewRecord> it, Func<Partial<CodeReviewParticipant>, Partial<CodeReviewParticipant>> partialBuilder)
-            => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipant>(it)));
-        
-        public static Partial<CodeReviewRecord> WithReviewers(this Partial<CodeReviewRecord> it)
-            => it.AddFieldName("reviewers");
-        
-        public static Partial<CodeReviewRecord> WithReviewers(this Partial<CodeReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
-            => it.AddFieldName("reviewers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
-        
-        public static Partial<CodeReviewRecord> WithWatchers(this Partial<CodeReviewRecord> it)
-            => it.AddFieldName("watchers");
-        
-        public static Partial<CodeReviewRecord> WithWatchers(this Partial<CodeReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
-            => it.AddFieldName("watchers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
-        
-    }
+    public static Partial<CodeReviewRecord> WithId(this Partial<CodeReviewRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<CodeReviewRecord> WithAuthors(this Partial<CodeReviewRecord> it)
+        => it.AddFieldName("authors");
+    
+    public static Partial<CodeReviewRecord> WithAuthors(this Partial<CodeReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
+        => it.AddFieldName("authors", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
+    
+    public static Partial<CodeReviewRecord> WithDiscussionCounter(this Partial<CodeReviewRecord> it)
+        => it.AddFieldName("discussionCounter");
+    
+    public static Partial<CodeReviewRecord> WithDiscussionCounter(this Partial<CodeReviewRecord> it, Func<Partial<Counter>, Partial<Counter>> partialBuilder)
+        => it.AddFieldName("discussionCounter", partialBuilder(new Partial<Counter>(it)));
+    
+    public static Partial<CodeReviewRecord> WithIssueIds(this Partial<CodeReviewRecord> it)
+        => it.AddFieldName("issueIds");
+    
+    public static Partial<CodeReviewRecord> WithParticipants(this Partial<CodeReviewRecord> it)
+        => it.AddFieldName("participants");
+    
+    public static Partial<CodeReviewRecord> WithParticipants(this Partial<CodeReviewRecord> it, Func<Partial<CodeReviewParticipant>, Partial<CodeReviewParticipant>> partialBuilder)
+        => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipant>(it)));
+    
+    public static Partial<CodeReviewRecord> WithReviewers(this Partial<CodeReviewRecord> it)
+        => it.AddFieldName("reviewers");
+    
+    public static Partial<CodeReviewRecord> WithReviewers(this Partial<CodeReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
+        => it.AddFieldName("reviewers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
+    
+    public static Partial<CodeReviewRecord> WithWatchers(this Partial<CodeReviewRecord> it)
+        => it.AddFieldName("watchers");
+    
+    public static Partial<CodeReviewRecord> WithWatchers(this Partial<CodeReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
+        => it.AddFieldName("watchers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
     
 }
+

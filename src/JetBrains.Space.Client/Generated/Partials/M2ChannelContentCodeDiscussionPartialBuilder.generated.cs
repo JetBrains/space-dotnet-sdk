@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContentCodeDiscussionPartialBuilder
+namespace JetBrains.Space.Client.M2ChannelContentCodeDiscussionPartialBuilder;
+
+public static class M2ChannelContentCodeDiscussionPartialExtensions
 {
-    public static class M2ChannelContentCodeDiscussionPartialExtensions
-    {
-        public static Partial<M2ChannelContentCodeDiscussion> WithCodeDiscussionId(this Partial<M2ChannelContentCodeDiscussion> it)
-            => it.AddFieldName("codeDiscussionId");
-        
-        public static Partial<M2ChannelContentCodeDiscussion> WithNotificationDefaults(this Partial<M2ChannelContentCodeDiscussion> it)
-            => it.AddFieldName("notificationDefaults");
-        
-        public static Partial<M2ChannelContentCodeDiscussion> WithNotificationDefaults(this Partial<M2ChannelContentCodeDiscussion> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
-        
-        public static Partial<M2ChannelContentCodeDiscussion> WithCodeDiscussion(this Partial<M2ChannelContentCodeDiscussion> it)
-            => it.AddFieldName("codeDiscussion");
-        
-        public static Partial<M2ChannelContentCodeDiscussion> WithCodeDiscussion(this Partial<M2ChannelContentCodeDiscussion> it, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>> partialBuilder)
-            => it.AddFieldName("codeDiscussion", partialBuilder(new Partial<CodeDiscussionRecord>(it)));
-        
-    }
+    public static Partial<M2ChannelContentCodeDiscussion> WithCodeDiscussionId(this Partial<M2ChannelContentCodeDiscussion> it)
+        => it.AddFieldName("codeDiscussionId");
+    
+    public static Partial<M2ChannelContentCodeDiscussion> WithNotificationDefaults(this Partial<M2ChannelContentCodeDiscussion> it)
+        => it.AddFieldName("notificationDefaults");
+    
+    public static Partial<M2ChannelContentCodeDiscussion> WithNotificationDefaults(this Partial<M2ChannelContentCodeDiscussion> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
+        => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
+    
+    public static Partial<M2ChannelContentCodeDiscussion> WithCodeDiscussion(this Partial<M2ChannelContentCodeDiscussion> it)
+        => it.AddFieldName("codeDiscussion");
+    
+    public static Partial<M2ChannelContentCodeDiscussion> WithCodeDiscussion(this Partial<M2ChannelContentCodeDiscussion> it, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>> partialBuilder)
+        => it.AddFieldName("codeDiscussion", partialBuilder(new Partial<CodeDiscussionRecord>(it)));
     
 }
+

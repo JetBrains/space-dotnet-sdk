@@ -27,21 +27,20 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public abstract class ESExternalPasswordAuthModuleSettings
+     : ESPasswordAuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public abstract class ESExternalPasswordAuthModuleSettings
-         : ESPasswordAuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ES_ExternalPasswordAuthModuleSettings";
+    
+    public static ESLdapAuthModuleSettings ESLdapAuthModuleSettings(LdapModuleType type, bool registerNewUsers, string serverUrl, int connectionTimeout, int readTimeout, List<ESTeamMapping> teamMappings, bool referralIgnored, string filter, string bindUserDN, string bindUserPassword, ESLdapAttributeNames attributeNames, SSLKeystore? sslKeystore = null)
+        => new ESLdapAuthModuleSettings(type: type, registerNewUsers: registerNewUsers, serverUrl: serverUrl, connectionTimeout: connectionTimeout, readTimeout: readTimeout, teamMappings: teamMappings, referralIgnored: referralIgnored, filter: filter, bindUserDN: bindUserDN, bindUserPassword: bindUserPassword, attributeNames: attributeNames, sslKeystore: sslKeystore);
+    
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ES_ExternalPasswordAuthModuleSettings";
-        
-        public static ESLdapAuthModuleSettings ESLdapAuthModuleSettings(LdapModuleType type, bool registerNewUsers, string serverUrl, int connectionTimeout, int readTimeout, List<ESTeamMapping> teamMappings, bool referralIgnored, string filter, string bindUserDN, string bindUserPassword, ESLdapAttributeNames attributeNames, SSLKeystore? sslKeystore = null)
-            => new ESLdapAuthModuleSettings(type: type, registerNewUsers: registerNewUsers, serverUrl: serverUrl, connectionTimeout: connectionTimeout, readTimeout: readTimeout, teamMappings: teamMappings, referralIgnored: referralIgnored, filter: filter, bindUserDN: bindUserDN, bindUserPassword: bindUserPassword, attributeNames: attributeNames, sslKeystore: sslKeystore);
-        
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

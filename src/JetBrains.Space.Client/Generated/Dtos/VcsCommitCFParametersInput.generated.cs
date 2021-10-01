@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class VcsCommitCFParametersInput
+     : CFCreateParameters, CFUpdateParameters, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class VcsCommitCFParametersInput
-         : CFCreateParameters, CFUpdateParameters, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "VcsCommitCFParametersInput";
+    
+    public VcsCommitCFParametersInput() { }
+    
+    public VcsCommitCFParametersInput(VcsCFScopeInput vcsCFScope)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "VcsCommitCFParametersInput";
-        
-        public VcsCommitCFParametersInput() { }
-        
-        public VcsCommitCFParametersInput(VcsCFScopeInput vcsCFScope)
-        {
-            VcsCFScope = vcsCFScope;
-        }
-        
-        private PropertyValue<VcsCFScopeInput> _vcsCFScope = new PropertyValue<VcsCFScopeInput>(nameof(VcsCommitCFParametersInput), nameof(VcsCFScope));
-        
-        [Required]
-        [JsonPropertyName("vcsCFScope")]
-        public VcsCFScopeInput VcsCFScope
-        {
-            get => _vcsCFScope.GetValue();
-            set => _vcsCFScope.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _vcsCFScope.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        VcsCFScope = vcsCFScope;
     }
     
+    private PropertyValue<VcsCFScopeInput> _vcsCFScope = new PropertyValue<VcsCFScopeInput>(nameof(VcsCommitCFParametersInput), nameof(VcsCFScope));
+    
+    [Required]
+    [JsonPropertyName("vcsCFScope")]
+    public VcsCFScopeInput VcsCFScope
+    {
+        get => _vcsCFScope.GetValue();
+        set => _vcsCFScope.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _vcsCFScope.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

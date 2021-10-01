@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContentNamedPrivateChannelPartialBuilder
+namespace JetBrains.Space.Client.M2ChannelContentNamedPrivateChannelPartialBuilder;
+
+public static class M2ChannelContentNamedPrivateChannelPartialExtensions
 {
-    public static class M2ChannelContentNamedPrivateChannelPartialExtensions
-    {
-        public static Partial<M2ChannelContentNamedPrivateChannel> WithName(this Partial<M2ChannelContentNamedPrivateChannel> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<M2ChannelContentNamedPrivateChannel> WithNotificationDefaults(this Partial<M2ChannelContentNamedPrivateChannel> it)
-            => it.AddFieldName("notificationDefaults");
-        
-        public static Partial<M2ChannelContentNamedPrivateChannel> WithNotificationDefaults(this Partial<M2ChannelContentNamedPrivateChannel> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
-        
-        public static Partial<M2ChannelContentNamedPrivateChannel> WithCanHaveThreads(this Partial<M2ChannelContentNamedPrivateChannel> it)
-            => it.AddFieldName("canHaveThreads");
-        
-        public static Partial<M2ChannelContentNamedPrivateChannel> WithColor(this Partial<M2ChannelContentNamedPrivateChannel> it)
-            => it.AddFieldName("color");
-        
-        public static Partial<M2ChannelContentNamedPrivateChannel> WithColor(this Partial<M2ChannelContentNamedPrivateChannel> it, Func<Partial<PrivateFeedColor>, Partial<PrivateFeedColor>> partialBuilder)
-            => it.AddFieldName("color", partialBuilder(new Partial<PrivateFeedColor>(it)));
-        
-        public static Partial<M2ChannelContentNamedPrivateChannel> WithIcon(this Partial<M2ChannelContentNamedPrivateChannel> it)
-            => it.AddFieldName("icon");
-        
-    }
+    public static Partial<M2ChannelContentNamedPrivateChannel> WithName(this Partial<M2ChannelContentNamedPrivateChannel> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<M2ChannelContentNamedPrivateChannel> WithNotificationDefaults(this Partial<M2ChannelContentNamedPrivateChannel> it)
+        => it.AddFieldName("notificationDefaults");
+    
+    public static Partial<M2ChannelContentNamedPrivateChannel> WithNotificationDefaults(this Partial<M2ChannelContentNamedPrivateChannel> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
+        => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
+    
+    public static Partial<M2ChannelContentNamedPrivateChannel> WithCanHaveThreads(this Partial<M2ChannelContentNamedPrivateChannel> it)
+        => it.AddFieldName("canHaveThreads");
+    
+    public static Partial<M2ChannelContentNamedPrivateChannel> WithColor(this Partial<M2ChannelContentNamedPrivateChannel> it)
+        => it.AddFieldName("color");
+    
+    public static Partial<M2ChannelContentNamedPrivateChannel> WithColor(this Partial<M2ChannelContentNamedPrivateChannel> it, Func<Partial<PrivateFeedColor>, Partial<PrivateFeedColor>> partialBuilder)
+        => it.AddFieldName("color", partialBuilder(new Partial<PrivateFeedColor>(it)));
+    
+    public static Partial<M2ChannelContentNamedPrivateChannel> WithIcon(this Partial<M2ChannelContentNamedPrivateChannel> it)
+        => it.AddFieldName("icon");
     
 }
+

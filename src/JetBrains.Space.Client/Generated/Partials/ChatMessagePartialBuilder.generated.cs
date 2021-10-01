@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChatMessagePartialBuilder
+namespace JetBrains.Space.Client.ChatMessagePartialBuilder;
+
+public static class ChatMessagePartialExtensions
 {
-    public static class ChatMessagePartialExtensions
-    {
-    }
-    
 }
+

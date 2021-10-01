@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsPlanningBoardsSprintsForSprintLaunchPostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsPlanningBoardsSprintsForSprintLaunchPostRequestPartialBuilder;
+
+public static class ProjectsPlanningBoardsSprintsForSprintLaunchPostRequestPartialExtensions
 {
-    public static class ProjectsPlanningBoardsSprintsForSprintLaunchPostRequestPartialExtensions
-    {
-        public static Partial<ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest> WithIsMoveUnresolvedIssuesFromCurrentSprint(this Partial<ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest> it)
-            => it.AddFieldName("moveUnresolvedIssuesFromCurrentSprint");
-        
-    }
+    public static Partial<ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest> WithIsMoveUnresolvedIssuesFromCurrentSprint(this Partial<ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest> it)
+        => it.AddFieldName("moveUnresolvedIssuesFromCurrentSprint");
     
 }
+

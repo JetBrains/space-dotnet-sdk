@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface PackageType
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface PackageType
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static ContainerPackageType Container(string id)
-            => new ContainerPackageType(id: id);
-        
-        public static MavenPackageType Maven(string id)
-            => new MavenPackageType(id: id);
-        
-        public static NpmPackageType Npm(string id)
-            => new NpmPackageType(id: id);
-        
-        public static NuGetPackageType NuGet(string id)
-            => new NuGetPackageType(id: id);
-        
-    }
+    public static ContainerPackageType Container(string id)
+        => new ContainerPackageType(id: id);
+    
+    public static MavenPackageType Maven(string id)
+        => new MavenPackageType(id: id);
+    
+    public static NpmPackageType Npm(string id)
+        => new NpmPackageType(id: id);
+    
+    public static NuGetPackageType NuGet(string id)
+        => new NuGetPackageType(id: id);
     
 }
+

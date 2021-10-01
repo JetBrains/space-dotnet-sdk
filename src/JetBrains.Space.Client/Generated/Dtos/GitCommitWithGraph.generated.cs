@@ -27,92 +27,91 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitCommitWithGraph
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GitCommitWithGraph
-         : IPropagatePropertyAccessPath
+    public GitCommitWithGraph() { }
+    
+    public GitCommitWithGraph(string repositoryName, GitCommitInfo commit, List<CodeReviewRecord> reviews, List<string> issueIds, bool unreachable, GitGraphLayoutLine? layout = null)
     {
-        public GitCommitWithGraph() { }
-        
-        public GitCommitWithGraph(string repositoryName, GitCommitInfo commit, List<CodeReviewRecord> reviews, List<string> issueIds, bool unreachable, GitGraphLayoutLine? layout = null)
-        {
-            RepositoryName = repositoryName;
-            Commit = commit;
-            Reviews = reviews;
-            IssueIds = issueIds;
-            Layout = layout;
-            IsUnreachable = unreachable;
-        }
-        
-        private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(GitCommitWithGraph), nameof(RepositoryName));
-        
-        [Required]
-        [JsonPropertyName("repositoryName")]
-        public string RepositoryName
-        {
-            get => _repositoryName.GetValue();
-            set => _repositoryName.SetValue(value);
-        }
-    
-        private PropertyValue<GitCommitInfo> _commit = new PropertyValue<GitCommitInfo>(nameof(GitCommitWithGraph), nameof(Commit));
-        
-        [Required]
-        [JsonPropertyName("commit")]
-        public GitCommitInfo Commit
-        {
-            get => _commit.GetValue();
-            set => _commit.SetValue(value);
-        }
-    
-        private PropertyValue<List<CodeReviewRecord>> _reviews = new PropertyValue<List<CodeReviewRecord>>(nameof(GitCommitWithGraph), nameof(Reviews), new List<CodeReviewRecord>());
-        
-        [Required]
-        [JsonPropertyName("reviews")]
-        public List<CodeReviewRecord> Reviews
-        {
-            get => _reviews.GetValue();
-            set => _reviews.SetValue(value);
-        }
-    
-        private PropertyValue<List<string>> _issueIds = new PropertyValue<List<string>>(nameof(GitCommitWithGraph), nameof(IssueIds), new List<string>());
-        
-        [Required]
-        [JsonPropertyName("issueIds")]
-        public List<string> IssueIds
-        {
-            get => _issueIds.GetValue();
-            set => _issueIds.SetValue(value);
-        }
-    
-        private PropertyValue<GitGraphLayoutLine?> _layout = new PropertyValue<GitGraphLayoutLine?>(nameof(GitCommitWithGraph), nameof(Layout));
-        
-        [JsonPropertyName("layout")]
-        public GitGraphLayoutLine? Layout
-        {
-            get => _layout.GetValue();
-            set => _layout.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _unreachable = new PropertyValue<bool>(nameof(GitCommitWithGraph), nameof(IsUnreachable));
-        
-        [Required]
-        [JsonPropertyName("unreachable")]
-        public bool IsUnreachable
-        {
-            get => _unreachable.GetValue();
-            set => _unreachable.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _repositoryName.SetAccessPath(path, validateHasBeenSet);
-            _commit.SetAccessPath(path, validateHasBeenSet);
-            _reviews.SetAccessPath(path, validateHasBeenSet);
-            _issueIds.SetAccessPath(path, validateHasBeenSet);
-            _layout.SetAccessPath(path, validateHasBeenSet);
-            _unreachable.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        RepositoryName = repositoryName;
+        Commit = commit;
+        Reviews = reviews;
+        IssueIds = issueIds;
+        Layout = layout;
+        IsUnreachable = unreachable;
     }
     
+    private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(GitCommitWithGraph), nameof(RepositoryName));
+    
+    [Required]
+    [JsonPropertyName("repositoryName")]
+    public string RepositoryName
+    {
+        get => _repositoryName.GetValue();
+        set => _repositoryName.SetValue(value);
+    }
+
+    private PropertyValue<GitCommitInfo> _commit = new PropertyValue<GitCommitInfo>(nameof(GitCommitWithGraph), nameof(Commit));
+    
+    [Required]
+    [JsonPropertyName("commit")]
+    public GitCommitInfo Commit
+    {
+        get => _commit.GetValue();
+        set => _commit.SetValue(value);
+    }
+
+    private PropertyValue<List<CodeReviewRecord>> _reviews = new PropertyValue<List<CodeReviewRecord>>(nameof(GitCommitWithGraph), nameof(Reviews), new List<CodeReviewRecord>());
+    
+    [Required]
+    [JsonPropertyName("reviews")]
+    public List<CodeReviewRecord> Reviews
+    {
+        get => _reviews.GetValue();
+        set => _reviews.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _issueIds = new PropertyValue<List<string>>(nameof(GitCommitWithGraph), nameof(IssueIds), new List<string>());
+    
+    [Required]
+    [JsonPropertyName("issueIds")]
+    public List<string> IssueIds
+    {
+        get => _issueIds.GetValue();
+        set => _issueIds.SetValue(value);
+    }
+
+    private PropertyValue<GitGraphLayoutLine?> _layout = new PropertyValue<GitGraphLayoutLine?>(nameof(GitCommitWithGraph), nameof(Layout));
+    
+    [JsonPropertyName("layout")]
+    public GitGraphLayoutLine? Layout
+    {
+        get => _layout.GetValue();
+        set => _layout.SetValue(value);
+    }
+
+    private PropertyValue<bool> _unreachable = new PropertyValue<bool>(nameof(GitCommitWithGraph), nameof(IsUnreachable));
+    
+    [Required]
+    [JsonPropertyName("unreachable")]
+    public bool IsUnreachable
+    {
+        get => _unreachable.GetValue();
+        set => _unreachable.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _repositoryName.SetAccessPath(path, validateHasBeenSet);
+        _commit.SetAccessPath(path, validateHasBeenSet);
+        _reviews.SetAccessPath(path, validateHasBeenSet);
+        _issueIds.SetAccessPath(path, validateHasBeenSet);
+        _layout.SetAccessPath(path, validateHasBeenSet);
+        _unreachable.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

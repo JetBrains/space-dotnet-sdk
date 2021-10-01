@@ -27,35 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ProfileCFValue
+     : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ProfileCFValue
-         : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ProfileCFValue";
+    
+    public ProfileCFValue() { }
+    
+    public ProfileCFValue(TDMemberProfile? profile = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ProfileCFValue";
-        
-        public ProfileCFValue() { }
-        
-        public ProfileCFValue(TDMemberProfile? profile = null)
-        {
-            Profile = profile;
-        }
-        
-        private PropertyValue<TDMemberProfile?> _profile = new PropertyValue<TDMemberProfile?>(nameof(ProfileCFValue), nameof(Profile));
-        
-        [JsonPropertyName("profile")]
-        public TDMemberProfile? Profile
-        {
-            get => _profile.GetValue();
-            set => _profile.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _profile.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Profile = profile;
     }
     
+    private PropertyValue<TDMemberProfile?> _profile = new PropertyValue<TDMemberProfile?>(nameof(ProfileCFValue), nameof(Profile));
+    
+    [JsonPropertyName("profile")]
+    public TDMemberProfile? Profile
+    {
+        get => _profile.GetValue();
+        set => _profile.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _profile.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

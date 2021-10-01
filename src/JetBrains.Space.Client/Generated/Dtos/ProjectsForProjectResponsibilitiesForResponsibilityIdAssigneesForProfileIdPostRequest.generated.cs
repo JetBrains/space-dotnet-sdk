@@ -27,32 +27,31 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest() { }
+    
+    public ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest(string? role = null)
     {
-        public ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest() { }
-        
-        public ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest(string? role = null)
-        {
-            Role = role;
-        }
-        
-        private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest), nameof(Role));
-        
-        [JsonPropertyName("role")]
-        public string? Role
-        {
-            get => _role.GetValue();
-            set => _role.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _role.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Role = role;
     }
     
+    private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest), nameof(Role));
+    
+    [JsonPropertyName("role")]
+    public string? Role
+    {
+        get => _role.GetValue();
+        set => _role.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _role.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

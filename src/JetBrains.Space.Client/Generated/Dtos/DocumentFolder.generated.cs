@@ -27,152 +27,151 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DocumentFolder
+     : IPropagatePropertyAccessPath
 {
-    public sealed class DocumentFolder
-         : IPropagatePropertyAccessPath
+    public DocumentFolder() { }
+    
+    public DocumentFolder(string id, bool archived, DocumentContainerInfo containerInfo, string name, DateTime created, DateTime updated, List<Document> documents, List<DocumentFolder> subfolders, DocumentFolder? parent = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
     {
-        public DocumentFolder() { }
-        
-        public DocumentFolder(string id, bool archived, DocumentContainerInfo containerInfo, string name, DateTime created, DateTime updated, List<Document> documents, List<DocumentFolder> subfolders, DocumentFolder? parent = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
-        {
-            Id = id;
-            IsArchived = archived;
-            ContainerInfo = containerInfo;
-            Parent = parent;
-            Name = name;
-            Created = created;
-            CreatedBy = createdBy;
-            Updated = updated;
-            UpdatedBy = updatedBy;
-            Documents = documents;
-            Subfolders = subfolders;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(DocumentFolder), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(DocumentFolder), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(DocumentFolder), nameof(ContainerInfo));
-        
-        [Required]
-        [JsonPropertyName("containerInfo")]
-        public DocumentContainerInfo ContainerInfo
-        {
-            get => _containerInfo.GetValue();
-            set => _containerInfo.SetValue(value);
-        }
-    
-        private PropertyValue<DocumentFolder?> _parent = new PropertyValue<DocumentFolder?>(nameof(DocumentFolder), nameof(Parent));
-        
-        [JsonPropertyName("parent")]
-        public DocumentFolder? Parent
-        {
-            get => _parent.GetValue();
-            set => _parent.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(DocumentFolder), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(DocumentFolder), nameof(Created));
-        
-        [Required]
-        [JsonPropertyName("created")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Created
-        {
-            get => _created.GetValue();
-            set => _created.SetValue(value);
-        }
-    
-        private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(DocumentFolder), nameof(CreatedBy));
-        
-        [JsonPropertyName("createdBy")]
-        public CPrincipal? CreatedBy
-        {
-            get => _createdBy.GetValue();
-            set => _createdBy.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(DocumentFolder), nameof(Updated));
-        
-        [Required]
-        [JsonPropertyName("updated")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Updated
-        {
-            get => _updated.GetValue();
-            set => _updated.SetValue(value);
-        }
-    
-        private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(DocumentFolder), nameof(UpdatedBy));
-        
-        [JsonPropertyName("updatedBy")]
-        public CPrincipal? UpdatedBy
-        {
-            get => _updatedBy.GetValue();
-            set => _updatedBy.SetValue(value);
-        }
-    
-        private PropertyValue<List<Document>> _documents = new PropertyValue<List<Document>>(nameof(DocumentFolder), nameof(Documents), new List<Document>());
-        
-        [Required]
-        [JsonPropertyName("documents")]
-        public List<Document> Documents
-        {
-            get => _documents.GetValue();
-            set => _documents.SetValue(value);
-        }
-    
-        private PropertyValue<List<DocumentFolder>> _subfolders = new PropertyValue<List<DocumentFolder>>(nameof(DocumentFolder), nameof(Subfolders), new List<DocumentFolder>());
-        
-        [Required]
-        [JsonPropertyName("subfolders")]
-        public List<DocumentFolder> Subfolders
-        {
-            get => _subfolders.GetValue();
-            set => _subfolders.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-            _containerInfo.SetAccessPath(path, validateHasBeenSet);
-            _parent.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _created.SetAccessPath(path, validateHasBeenSet);
-            _createdBy.SetAccessPath(path, validateHasBeenSet);
-            _updated.SetAccessPath(path, validateHasBeenSet);
-            _updatedBy.SetAccessPath(path, validateHasBeenSet);
-            _documents.SetAccessPath(path, validateHasBeenSet);
-            _subfolders.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        IsArchived = archived;
+        ContainerInfo = containerInfo;
+        Parent = parent;
+        Name = name;
+        Created = created;
+        CreatedBy = createdBy;
+        Updated = updated;
+        UpdatedBy = updatedBy;
+        Documents = documents;
+        Subfolders = subfolders;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(DocumentFolder), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(DocumentFolder), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(DocumentFolder), nameof(ContainerInfo));
+    
+    [Required]
+    [JsonPropertyName("containerInfo")]
+    public DocumentContainerInfo ContainerInfo
+    {
+        get => _containerInfo.GetValue();
+        set => _containerInfo.SetValue(value);
+    }
+
+    private PropertyValue<DocumentFolder?> _parent = new PropertyValue<DocumentFolder?>(nameof(DocumentFolder), nameof(Parent));
+    
+    [JsonPropertyName("parent")]
+    public DocumentFolder? Parent
+    {
+        get => _parent.GetValue();
+        set => _parent.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(DocumentFolder), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(DocumentFolder), nameof(Created));
+    
+    [Required]
+    [JsonPropertyName("created")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Created
+    {
+        get => _created.GetValue();
+        set => _created.SetValue(value);
+    }
+
+    private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(DocumentFolder), nameof(CreatedBy));
+    
+    [JsonPropertyName("createdBy")]
+    public CPrincipal? CreatedBy
+    {
+        get => _createdBy.GetValue();
+        set => _createdBy.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(DocumentFolder), nameof(Updated));
+    
+    [Required]
+    [JsonPropertyName("updated")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Updated
+    {
+        get => _updated.GetValue();
+        set => _updated.SetValue(value);
+    }
+
+    private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(DocumentFolder), nameof(UpdatedBy));
+    
+    [JsonPropertyName("updatedBy")]
+    public CPrincipal? UpdatedBy
+    {
+        get => _updatedBy.GetValue();
+        set => _updatedBy.SetValue(value);
+    }
+
+    private PropertyValue<List<Document>> _documents = new PropertyValue<List<Document>>(nameof(DocumentFolder), nameof(Documents), new List<Document>());
+    
+    [Required]
+    [JsonPropertyName("documents")]
+    public List<Document> Documents
+    {
+        get => _documents.GetValue();
+        set => _documents.SetValue(value);
+    }
+
+    private PropertyValue<List<DocumentFolder>> _subfolders = new PropertyValue<List<DocumentFolder>>(nameof(DocumentFolder), nameof(Subfolders), new List<DocumentFolder>());
+    
+    [Required]
+    [JsonPropertyName("subfolders")]
+    public List<DocumentFolder> Subfolders
+    {
+        get => _subfolders.GetValue();
+        set => _subfolders.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _containerInfo.SetAccessPath(path, validateHasBeenSet);
+        _parent.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _created.SetAccessPath(path, validateHasBeenSet);
+        _createdBy.SetAccessPath(path, validateHasBeenSet);
+        _updated.SetAccessPath(path, validateHasBeenSet);
+        _updatedBy.SetAccessPath(path, validateHasBeenSet);
+        _documents.SetAccessPath(path, validateHasBeenSet);
+        _subfolders.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

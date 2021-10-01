@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TrustedCertificatesForIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TrustedCertificatesForIdPatchRequestPartialBuilder;
+
+public static class TrustedCertificatesForIdPatchRequestPartialExtensions
 {
-    public static class TrustedCertificatesForIdPatchRequestPartialExtensions
-    {
-        public static Partial<TrustedCertificatesForIdPatchRequest> WithAlias(this Partial<TrustedCertificatesForIdPatchRequest> it)
-            => it.AddFieldName("alias");
-        
-        public static Partial<TrustedCertificatesForIdPatchRequest> WithData(this Partial<TrustedCertificatesForIdPatchRequest> it)
-            => it.AddFieldName("data");
-        
-        public static Partial<TrustedCertificatesForIdPatchRequest> WithIsArchived(this Partial<TrustedCertificatesForIdPatchRequest> it)
-            => it.AddFieldName("archived");
-        
-    }
+    public static Partial<TrustedCertificatesForIdPatchRequest> WithAlias(this Partial<TrustedCertificatesForIdPatchRequest> it)
+        => it.AddFieldName("alias");
+    
+    public static Partial<TrustedCertificatesForIdPatchRequest> WithData(this Partial<TrustedCertificatesForIdPatchRequest> it)
+        => it.AddFieldName("data");
+    
+    public static Partial<TrustedCertificatesForIdPatchRequest> WithIsArchived(this Partial<TrustedCertificatesForIdPatchRequest> it)
+        => it.AddFieldName("archived");
     
 }
+

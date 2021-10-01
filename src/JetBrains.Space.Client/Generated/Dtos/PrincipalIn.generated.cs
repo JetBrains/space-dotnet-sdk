@@ -27,27 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class PrincipalIn
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class PrincipalIn
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "PrincipalIn";
+    
+    public static PrincipalInApplication Application(string application)
+        => new PrincipalInApplication(application: application);
+    
+    public static PrincipalInProfile Profile(ProfileIdentifier profile)
+        => new PrincipalInProfile(profile: profile);
+    
+    public PrincipalIn() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "PrincipalIn";
-        
-        public static PrincipalInApplication Application(string application)
-            => new PrincipalInApplication(application: application);
-        
-        public static PrincipalInProfile Profile(ProfileIdentifier profile)
-            => new PrincipalInProfile(profile: profile);
-        
-        public PrincipalIn() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

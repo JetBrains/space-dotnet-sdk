@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class Participant
+     : IPropagatePropertyAccessPath
 {
-    public sealed class Participant
-         : IPropagatePropertyAccessPath
+    public Participant() { }
+    
+    public Participant(TDMemberProfile user, EventParticipationStatus status)
     {
-        public Participant() { }
-        
-        public Participant(TDMemberProfile user, EventParticipationStatus status)
-        {
-            User = user;
-            Status = status;
-        }
-        
-        private PropertyValue<TDMemberProfile> _user = new PropertyValue<TDMemberProfile>(nameof(Participant), nameof(User));
-        
-        [Required]
-        [JsonPropertyName("user")]
-        public TDMemberProfile User
-        {
-            get => _user.GetValue();
-            set => _user.SetValue(value);
-        }
-    
-        private PropertyValue<EventParticipationStatus> _status = new PropertyValue<EventParticipationStatus>(nameof(Participant), nameof(Status));
-        
-        [Required]
-        [JsonPropertyName("status")]
-        public EventParticipationStatus Status
-        {
-            get => _status.GetValue();
-            set => _status.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _user.SetAccessPath(path, validateHasBeenSet);
-            _status.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        User = user;
+        Status = status;
     }
     
+    private PropertyValue<TDMemberProfile> _user = new PropertyValue<TDMemberProfile>(nameof(Participant), nameof(User));
+    
+    [Required]
+    [JsonPropertyName("user")]
+    public TDMemberProfile User
+    {
+        get => _user.GetValue();
+        set => _user.SetValue(value);
+    }
+
+    private PropertyValue<EventParticipationStatus> _status = new PropertyValue<EventParticipationStatus>(nameof(Participant), nameof(Status));
+    
+    [Required]
+    [JsonPropertyName("status")]
+    public EventParticipationStatus Status
+    {
+        get => _status.GetValue();
+        set => _status.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _user.SetAccessPath(path, validateHasBeenSet);
+        _status.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

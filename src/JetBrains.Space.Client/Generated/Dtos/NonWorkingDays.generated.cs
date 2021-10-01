@@ -27,71 +27,70 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class NonWorkingDays
+     : IPropagatePropertyAccessPath
 {
-    public sealed class NonWorkingDays
-         : IPropagatePropertyAccessPath
+    public NonWorkingDays() { }
+    
+    public NonWorkingDays(DateTime since, DateTime till, bool startsEarlier, bool endsLater)
     {
-        public NonWorkingDays() { }
-        
-        public NonWorkingDays(DateTime since, DateTime till, bool startsEarlier, bool endsLater)
-        {
-            Since = since;
-            Till = till;
-            IsStartsEarlier = startsEarlier;
-            IsEndsLater = endsLater;
-        }
-        
-        private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(NonWorkingDays), nameof(Since));
-        
-        [Required]
-        [JsonPropertyName("since")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime Since
-        {
-            get => _since.GetValue();
-            set => _since.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(NonWorkingDays), nameof(Till));
-        
-        [Required]
-        [JsonPropertyName("till")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime Till
-        {
-            get => _till.GetValue();
-            set => _till.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _startsEarlier = new PropertyValue<bool>(nameof(NonWorkingDays), nameof(IsStartsEarlier));
-        
-        [Required]
-        [JsonPropertyName("startsEarlier")]
-        public bool IsStartsEarlier
-        {
-            get => _startsEarlier.GetValue();
-            set => _startsEarlier.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _endsLater = new PropertyValue<bool>(nameof(NonWorkingDays), nameof(IsEndsLater));
-        
-        [Required]
-        [JsonPropertyName("endsLater")]
-        public bool IsEndsLater
-        {
-            get => _endsLater.GetValue();
-            set => _endsLater.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _since.SetAccessPath(path, validateHasBeenSet);
-            _till.SetAccessPath(path, validateHasBeenSet);
-            _startsEarlier.SetAccessPath(path, validateHasBeenSet);
-            _endsLater.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Since = since;
+        Till = till;
+        IsStartsEarlier = startsEarlier;
+        IsEndsLater = endsLater;
     }
     
+    private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(NonWorkingDays), nameof(Since));
+    
+    [Required]
+    [JsonPropertyName("since")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime Since
+    {
+        get => _since.GetValue();
+        set => _since.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(NonWorkingDays), nameof(Till));
+    
+    [Required]
+    [JsonPropertyName("till")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime Till
+    {
+        get => _till.GetValue();
+        set => _till.SetValue(value);
+    }
+
+    private PropertyValue<bool> _startsEarlier = new PropertyValue<bool>(nameof(NonWorkingDays), nameof(IsStartsEarlier));
+    
+    [Required]
+    [JsonPropertyName("startsEarlier")]
+    public bool IsStartsEarlier
+    {
+        get => _startsEarlier.GetValue();
+        set => _startsEarlier.SetValue(value);
+    }
+
+    private PropertyValue<bool> _endsLater = new PropertyValue<bool>(nameof(NonWorkingDays), nameof(IsEndsLater));
+    
+    [Required]
+    [JsonPropertyName("endsLater")]
+    public bool IsEndsLater
+    {
+        get => _endsLater.GetValue();
+        set => _endsLater.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _since.SetAccessPath(path, validateHasBeenSet);
+        _till.SetAccessPath(path, validateHasBeenSet);
+        _startsEarlier.SetAccessPath(path, validateHasBeenSet);
+        _endsLater.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

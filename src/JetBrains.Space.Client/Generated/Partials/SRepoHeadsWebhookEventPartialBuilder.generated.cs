@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SRepoHeadsWebhookEventPartialBuilder
+namespace JetBrains.Space.Client.SRepoHeadsWebhookEventPartialBuilder;
+
+public static class SRepoHeadsWebhookEventPartialExtensions
 {
-    public static class SRepoHeadsWebhookEventPartialExtensions
-    {
-        public static Partial<SRepoHeadsWebhookEvent> WithProjectKey(this Partial<SRepoHeadsWebhookEvent> it)
-            => it.AddFieldName("projectKey");
-        
-        public static Partial<SRepoHeadsWebhookEvent> WithProjectKey(this Partial<SRepoHeadsWebhookEvent> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
-            => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
-        
-        public static Partial<SRepoHeadsWebhookEvent> WithRepository(this Partial<SRepoHeadsWebhookEvent> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<SRepoHeadsWebhookEvent> WithChanges(this Partial<SRepoHeadsWebhookEvent> it)
-            => it.AddFieldName("changes");
-        
-        public static Partial<SRepoHeadsWebhookEvent> WithChanges(this Partial<SRepoHeadsWebhookEvent> it, Func<Partial<RepoChanges>, Partial<RepoChanges>> partialBuilder)
-            => it.AddFieldName("changes", partialBuilder(new Partial<RepoChanges>(it)));
-        
-    }
+    public static Partial<SRepoHeadsWebhookEvent> WithProjectKey(this Partial<SRepoHeadsWebhookEvent> it)
+        => it.AddFieldName("projectKey");
+    
+    public static Partial<SRepoHeadsWebhookEvent> WithProjectKey(this Partial<SRepoHeadsWebhookEvent> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
+        => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
+    
+    public static Partial<SRepoHeadsWebhookEvent> WithRepository(this Partial<SRepoHeadsWebhookEvent> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<SRepoHeadsWebhookEvent> WithChanges(this Partial<SRepoHeadsWebhookEvent> it)
+        => it.AddFieldName("changes");
+    
+    public static Partial<SRepoHeadsWebhookEvent> WithChanges(this Partial<SRepoHeadsWebhookEvent> it, Func<Partial<RepoChanges>, Partial<RepoChanges>> partialBuilder)
+        => it.AddFieldName("changes", partialBuilder(new Partial<RepoChanges>(it)));
     
 }
+

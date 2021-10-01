@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AbsencesForIdApprovePostRequestPartialBuilder
+namespace JetBrains.Space.Client.AbsencesForIdApprovePostRequestPartialBuilder;
+
+public static class AbsencesForIdApprovePostRequestPartialExtensions
 {
-    public static class AbsencesForIdApprovePostRequestPartialExtensions
-    {
-        public static Partial<AbsencesForIdApprovePostRequest> WithIsApprove(this Partial<AbsencesForIdApprovePostRequest> it)
-            => it.AddFieldName("approve");
-        
-    }
+    public static Partial<AbsencesForIdApprovePostRequest> WithIsApprove(this Partial<AbsencesForIdApprovePostRequest> it)
+        => it.AddFieldName("approve");
     
 }
+

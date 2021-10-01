@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PackageVersionInfoPartialBuilder
+namespace JetBrains.Space.Client.PackageVersionInfoPartialBuilder;
+
+public static class PackageVersionInfoPartialExtensions
 {
-    public static class PackageVersionInfoPartialExtensions
-    {
-        public static Partial<PackageVersionInfo> WithType(this Partial<PackageVersionInfo> it)
-            => it.AddFieldName("type");
-        
-        public static Partial<PackageVersionInfo> WithType(this Partial<PackageVersionInfo> it, Func<Partial<PackageType>, Partial<PackageType>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<PackageType>(it)));
-        
-        public static Partial<PackageVersionInfo> WithRepository(this Partial<PackageVersionInfo> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<PackageVersionInfo> WithName(this Partial<PackageVersionInfo> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<PackageVersionInfo> WithVersion(this Partial<PackageVersionInfo> it)
-            => it.AddFieldName("version");
-        
-        public static Partial<PackageVersionInfo> WithTags(this Partial<PackageVersionInfo> it)
-            => it.AddFieldName("tags");
-        
-    }
+    public static Partial<PackageVersionInfo> WithType(this Partial<PackageVersionInfo> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<PackageVersionInfo> WithType(this Partial<PackageVersionInfo> it, Func<Partial<PackageType>, Partial<PackageType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<PackageType>(it)));
+    
+    public static Partial<PackageVersionInfo> WithRepository(this Partial<PackageVersionInfo> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<PackageVersionInfo> WithName(this Partial<PackageVersionInfo> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<PackageVersionInfo> WithVersion(this Partial<PackageVersionInfo> it)
+        => it.AddFieldName("version");
+    
+    public static Partial<PackageVersionInfo> WithTags(this Partial<PackageVersionInfo> it)
+        => it.AddFieldName("tags");
     
 }
+

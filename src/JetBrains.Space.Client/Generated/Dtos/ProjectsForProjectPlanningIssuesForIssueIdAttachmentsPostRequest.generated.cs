@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest() { }
+    
+    public ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest(List<AttachmentIn> attachments)
     {
-        public ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest() { }
-        
-        public ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest(List<AttachmentIn> attachments)
-        {
-            Attachments = attachments;
-        }
-        
-        private PropertyValue<List<AttachmentIn>> _attachments = new PropertyValue<List<AttachmentIn>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest), nameof(Attachments), new List<AttachmentIn>());
-        
-        [Required]
-        [JsonPropertyName("attachments")]
-        public List<AttachmentIn> Attachments
-        {
-            get => _attachments.GetValue();
-            set => _attachments.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _attachments.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Attachments = attachments;
     }
     
+    private PropertyValue<List<AttachmentIn>> _attachments = new PropertyValue<List<AttachmentIn>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest), nameof(Attachments), new List<AttachmentIn>());
+    
+    [Required]
+    [JsonPropertyName("attachments")]
+    public List<AttachmentIn> Attachments
+    {
+        get => _attachments.GetValue();
+        set => _attachments.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _attachments.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

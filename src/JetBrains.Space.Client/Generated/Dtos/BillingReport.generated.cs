@@ -27,93 +27,92 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BillingReport
+     : IPropagatePropertyAccessPath
 {
-    public sealed class BillingReport
-         : IPropagatePropertyAccessPath
+    public BillingReport() { }
+    
+    public BillingReport(List<PurchasedBillingPlan> plans, List<BillingReportDay> reportDays, DateTime serverToday, DateTime earliestBillingDate, long? bandwidthAllocation = null, long? ciAllocation = null)
     {
-        public BillingReport() { }
-        
-        public BillingReport(List<PurchasedBillingPlan> plans, List<BillingReportDay> reportDays, DateTime serverToday, DateTime earliestBillingDate, long? bandwidthAllocation = null, long? ciAllocation = null)
-        {
-            Plans = plans;
-            ReportDays = reportDays;
-            BandwidthAllocation = bandwidthAllocation;
-            CiAllocation = ciAllocation;
-            ServerToday = serverToday;
-            EarliestBillingDate = earliestBillingDate;
-        }
-        
-        private PropertyValue<List<PurchasedBillingPlan>> _plans = new PropertyValue<List<PurchasedBillingPlan>>(nameof(BillingReport), nameof(Plans), new List<PurchasedBillingPlan>());
-        
-        [Required]
-        [JsonPropertyName("plans")]
-        public List<PurchasedBillingPlan> Plans
-        {
-            get => _plans.GetValue();
-            set => _plans.SetValue(value);
-        }
-    
-        private PropertyValue<List<BillingReportDay>> _reportDays = new PropertyValue<List<BillingReportDay>>(nameof(BillingReport), nameof(ReportDays), new List<BillingReportDay>());
-        
-        [Required]
-        [JsonPropertyName("reportDays")]
-        public List<BillingReportDay> ReportDays
-        {
-            get => _reportDays.GetValue();
-            set => _reportDays.SetValue(value);
-        }
-    
-        private PropertyValue<long?> _bandwidthAllocation = new PropertyValue<long?>(nameof(BillingReport), nameof(BandwidthAllocation));
-        
-        [JsonPropertyName("bandwidthAllocation")]
-        public long? BandwidthAllocation
-        {
-            get => _bandwidthAllocation.GetValue();
-            set => _bandwidthAllocation.SetValue(value);
-        }
-    
-        private PropertyValue<long?> _ciAllocation = new PropertyValue<long?>(nameof(BillingReport), nameof(CiAllocation));
-        
-        [JsonPropertyName("ciAllocation")]
-        public long? CiAllocation
-        {
-            get => _ciAllocation.GetValue();
-            set => _ciAllocation.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _serverToday = new PropertyValue<DateTime>(nameof(BillingReport), nameof(ServerToday));
-        
-        [Required]
-        [JsonPropertyName("serverToday")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime ServerToday
-        {
-            get => _serverToday.GetValue();
-            set => _serverToday.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _earliestBillingDate = new PropertyValue<DateTime>(nameof(BillingReport), nameof(EarliestBillingDate));
-        
-        [Required]
-        [JsonPropertyName("earliestBillingDate")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime EarliestBillingDate
-        {
-            get => _earliestBillingDate.GetValue();
-            set => _earliestBillingDate.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _plans.SetAccessPath(path, validateHasBeenSet);
-            _reportDays.SetAccessPath(path, validateHasBeenSet);
-            _bandwidthAllocation.SetAccessPath(path, validateHasBeenSet);
-            _ciAllocation.SetAccessPath(path, validateHasBeenSet);
-            _serverToday.SetAccessPath(path, validateHasBeenSet);
-            _earliestBillingDate.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Plans = plans;
+        ReportDays = reportDays;
+        BandwidthAllocation = bandwidthAllocation;
+        CiAllocation = ciAllocation;
+        ServerToday = serverToday;
+        EarliestBillingDate = earliestBillingDate;
     }
     
+    private PropertyValue<List<PurchasedBillingPlan>> _plans = new PropertyValue<List<PurchasedBillingPlan>>(nameof(BillingReport), nameof(Plans), new List<PurchasedBillingPlan>());
+    
+    [Required]
+    [JsonPropertyName("plans")]
+    public List<PurchasedBillingPlan> Plans
+    {
+        get => _plans.GetValue();
+        set => _plans.SetValue(value);
+    }
+
+    private PropertyValue<List<BillingReportDay>> _reportDays = new PropertyValue<List<BillingReportDay>>(nameof(BillingReport), nameof(ReportDays), new List<BillingReportDay>());
+    
+    [Required]
+    [JsonPropertyName("reportDays")]
+    public List<BillingReportDay> ReportDays
+    {
+        get => _reportDays.GetValue();
+        set => _reportDays.SetValue(value);
+    }
+
+    private PropertyValue<long?> _bandwidthAllocation = new PropertyValue<long?>(nameof(BillingReport), nameof(BandwidthAllocation));
+    
+    [JsonPropertyName("bandwidthAllocation")]
+    public long? BandwidthAllocation
+    {
+        get => _bandwidthAllocation.GetValue();
+        set => _bandwidthAllocation.SetValue(value);
+    }
+
+    private PropertyValue<long?> _ciAllocation = new PropertyValue<long?>(nameof(BillingReport), nameof(CiAllocation));
+    
+    [JsonPropertyName("ciAllocation")]
+    public long? CiAllocation
+    {
+        get => _ciAllocation.GetValue();
+        set => _ciAllocation.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _serverToday = new PropertyValue<DateTime>(nameof(BillingReport), nameof(ServerToday));
+    
+    [Required]
+    [JsonPropertyName("serverToday")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime ServerToday
+    {
+        get => _serverToday.GetValue();
+        set => _serverToday.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _earliestBillingDate = new PropertyValue<DateTime>(nameof(BillingReport), nameof(EarliestBillingDate));
+    
+    [Required]
+    [JsonPropertyName("earliestBillingDate")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime EarliestBillingDate
+    {
+        get => _earliestBillingDate.GetValue();
+        set => _earliestBillingDate.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _plans.SetAccessPath(path, validateHasBeenSet);
+        _reportDays.SetAccessPath(path, validateHasBeenSet);
+        _bandwidthAllocation.SetAccessPath(path, validateHasBeenSet);
+        _ciAllocation.SetAccessPath(path, validateHasBeenSet);
+        _serverToday.SetAccessPath(path, validateHasBeenSet);
+        _earliestBillingDate.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

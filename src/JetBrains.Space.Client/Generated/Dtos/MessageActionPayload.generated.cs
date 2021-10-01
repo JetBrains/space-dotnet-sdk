@@ -27,95 +27,94 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MessageActionPayload
+     : ApplicationPayload, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MessageActionPayload
-         : ApplicationPayload, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MessageActionPayload";
+    
+    public MessageActionPayload() { }
+    
+    public MessageActionPayload(string actionId, string actionValue, MessageContext message, string clientId, string userId, string? verificationToken = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MessageActionPayload";
-        
-        public MessageActionPayload() { }
-        
-        public MessageActionPayload(string actionId, string actionValue, MessageContext message, string clientId, string userId, string? verificationToken = null)
-        {
-            ActionId = actionId;
-            ActionValue = actionValue;
-            Message = message;
-            ClientId = clientId;
-            UserId = userId;
-            VerificationToken = verificationToken;
-        }
-        
-        private PropertyValue<string> _actionId = new PropertyValue<string>(nameof(MessageActionPayload), nameof(ActionId));
-        
-        [Required]
-        [JsonPropertyName("actionId")]
-        public string ActionId
-        {
-            get => _actionId.GetValue();
-            set => _actionId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _actionValue = new PropertyValue<string>(nameof(MessageActionPayload), nameof(ActionValue));
-        
-        [Required]
-        [JsonPropertyName("actionValue")]
-        public string ActionValue
-        {
-            get => _actionValue.GetValue();
-            set => _actionValue.SetValue(value);
-        }
-    
-        private PropertyValue<MessageContext> _message = new PropertyValue<MessageContext>(nameof(MessageActionPayload), nameof(Message));
-        
-        [Required]
-        [JsonPropertyName("message")]
-        public MessageContext Message
-        {
-            get => _message.GetValue();
-            set => _message.SetValue(value);
-        }
-    
-        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(MessageActionPayload), nameof(ClientId));
-        
-        [Required]
-        [JsonPropertyName("clientId")]
-        public string ClientId
-        {
-            get => _clientId.GetValue();
-            set => _clientId.SetValue(value);
-        }
-    
-        private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MessageActionPayload), nameof(UserId));
-        
-        [Required]
-        [JsonPropertyName("userId")]
-        public string UserId
-        {
-            get => _userId.GetValue();
-            set => _userId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(MessageActionPayload), nameof(VerificationToken));
-        
-        [JsonPropertyName("verificationToken")]
-        public string? VerificationToken
-        {
-            get => _verificationToken.GetValue();
-            set => _verificationToken.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _actionId.SetAccessPath(path, validateHasBeenSet);
-            _actionValue.SetAccessPath(path, validateHasBeenSet);
-            _message.SetAccessPath(path, validateHasBeenSet);
-            _clientId.SetAccessPath(path, validateHasBeenSet);
-            _userId.SetAccessPath(path, validateHasBeenSet);
-            _verificationToken.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ActionId = actionId;
+        ActionValue = actionValue;
+        Message = message;
+        ClientId = clientId;
+        UserId = userId;
+        VerificationToken = verificationToken;
     }
     
+    private PropertyValue<string> _actionId = new PropertyValue<string>(nameof(MessageActionPayload), nameof(ActionId));
+    
+    [Required]
+    [JsonPropertyName("actionId")]
+    public string ActionId
+    {
+        get => _actionId.GetValue();
+        set => _actionId.SetValue(value);
+    }
+
+    private PropertyValue<string> _actionValue = new PropertyValue<string>(nameof(MessageActionPayload), nameof(ActionValue));
+    
+    [Required]
+    [JsonPropertyName("actionValue")]
+    public string ActionValue
+    {
+        get => _actionValue.GetValue();
+        set => _actionValue.SetValue(value);
+    }
+
+    private PropertyValue<MessageContext> _message = new PropertyValue<MessageContext>(nameof(MessageActionPayload), nameof(Message));
+    
+    [Required]
+    [JsonPropertyName("message")]
+    public MessageContext Message
+    {
+        get => _message.GetValue();
+        set => _message.SetValue(value);
+    }
+
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(MessageActionPayload), nameof(ClientId));
+    
+    [Required]
+    [JsonPropertyName("clientId")]
+    public string ClientId
+    {
+        get => _clientId.GetValue();
+        set => _clientId.SetValue(value);
+    }
+
+    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MessageActionPayload), nameof(UserId));
+    
+    [Required]
+    [JsonPropertyName("userId")]
+    public string UserId
+    {
+        get => _userId.GetValue();
+        set => _userId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(MessageActionPayload), nameof(VerificationToken));
+    
+    [JsonPropertyName("verificationToken")]
+    public string? VerificationToken
+    {
+        get => _verificationToken.GetValue();
+        set => _verificationToken.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _actionId.SetAccessPath(path, validateHasBeenSet);
+        _actionValue.SetAccessPath(path, validateHasBeenSet);
+        _message.SetAccessPath(path, validateHasBeenSet);
+        _clientId.SetAccessPath(path, validateHasBeenSet);
+        _userId.SetAccessPath(path, validateHasBeenSet);
+        _verificationToken.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

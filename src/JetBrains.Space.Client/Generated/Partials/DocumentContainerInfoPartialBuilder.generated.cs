@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentContainerInfoPartialBuilder
+namespace JetBrains.Space.Client.DocumentContainerInfoPartialBuilder;
+
+public static class DocumentContainerInfoPartialExtensions
 {
-    public static class DocumentContainerInfoPartialExtensions
-    {
-    }
-    
 }
+

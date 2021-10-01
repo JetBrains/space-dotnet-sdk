@@ -27,20 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum ChecklistSorting
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum ChecklistSorting
-    {
-        [EnumMember(Value = "UPDATED")]
-        UPDATED,
-        
-        [EnumMember(Value = "TITLE")]
-        TITLE,
-        
-        [EnumMember(Value = "FAV_TITLE")]
-        FAVTITLE,
-        
-    }
+    [EnumMember(Value = "UPDATED")]
+    UPDATED,
+    
+    [EnumMember(Value = "TITLE")]
+    TITLE,
+    
+    [EnumMember(Value = "FAV_TITLE")]
+    FAVTITLE,
     
 }
+

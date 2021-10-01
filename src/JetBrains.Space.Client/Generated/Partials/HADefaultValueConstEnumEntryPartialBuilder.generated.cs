@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HADefaultValueConstEnumEntryPartialBuilder
+namespace JetBrains.Space.Client.HADefaultValueConstEnumEntryPartialBuilder;
+
+public static class HADefaultValueConstEnumEntryPartialExtensions
 {
-    public static class HADefaultValueConstEnumEntryPartialExtensions
-    {
-        public static Partial<HADefaultValueConstEnumEntry> WithEntryName(this Partial<HADefaultValueConstEnumEntry> it)
-            => it.AddFieldName("entryName");
-        
-    }
+    public static Partial<HADefaultValueConstEnumEntry> WithEntryName(this Partial<HADefaultValueConstEnumEntry> it)
+        => it.AddFieldName("entryName");
     
 }
+

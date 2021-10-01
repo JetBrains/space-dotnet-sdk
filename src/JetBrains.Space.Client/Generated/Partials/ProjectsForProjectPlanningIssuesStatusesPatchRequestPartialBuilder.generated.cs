@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesStatusesPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsForProjectPlanningIssuesStatusesPatchRequestPartialBuilder;
+
+public static class ProjectsForProjectPlanningIssuesStatusesPatchRequestPartialExtensions
 {
-    public static class ProjectsForProjectPlanningIssuesStatusesPatchRequestPartialExtensions
-    {
-        public static Partial<ProjectsForProjectPlanningIssuesStatusesPatchRequest> WithStatuses(this Partial<ProjectsForProjectPlanningIssuesStatusesPatchRequest> it)
-            => it.AddFieldName("statuses");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesStatusesPatchRequest> WithStatuses(this Partial<ProjectsForProjectPlanningIssuesStatusesPatchRequest> it, Func<Partial<IssueStatusData>, Partial<IssueStatusData>> partialBuilder)
-            => it.AddFieldName("statuses", partialBuilder(new Partial<IssueStatusData>(it)));
-        
-    }
+    public static Partial<ProjectsForProjectPlanningIssuesStatusesPatchRequest> WithStatuses(this Partial<ProjectsForProjectPlanningIssuesStatusesPatchRequest> it)
+        => it.AddFieldName("statuses");
+    
+    public static Partial<ProjectsForProjectPlanningIssuesStatusesPatchRequest> WithStatuses(this Partial<ProjectsForProjectPlanningIssuesStatusesPatchRequest> it, Func<Partial<IssueStatusData>, Partial<IssueStatusData>> partialBuilder)
+        => it.AddFieldName("statuses", partialBuilder(new Partial<IssueStatusData>(it)));
     
 }
+

@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RightsGroupPartialBuilder
+namespace JetBrains.Space.Client.RightsGroupPartialBuilder;
+
+public static class RightsGroupPartialExtensions
 {
-    public static class RightsGroupPartialExtensions
-    {
-        public static Partial<RightsGroup> WithTitle(this Partial<RightsGroup> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<RightsGroup> WithPriority(this Partial<RightsGroup> it)
-            => it.AddFieldName("priority");
-        
-        public static Partial<RightsGroup> WithRights(this Partial<RightsGroup> it)
-            => it.AddFieldName("rights");
-        
-        public static Partial<RightsGroup> WithRights(this Partial<RightsGroup> it, Func<Partial<Right>, Partial<Right>> partialBuilder)
-            => it.AddFieldName("rights", partialBuilder(new Partial<Right>(it)));
-        
-    }
+    public static Partial<RightsGroup> WithTitle(this Partial<RightsGroup> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<RightsGroup> WithPriority(this Partial<RightsGroup> it)
+        => it.AddFieldName("priority");
+    
+    public static Partial<RightsGroup> WithRights(this Partial<RightsGroup> it)
+        => it.AddFieldName("rights");
+    
+    public static Partial<RightsGroup> WithRights(this Partial<RightsGroup> it, Func<Partial<Right>, Partial<Right>> partialBuilder)
+        => it.AddFieldName("rights", partialBuilder(new Partial<Right>(it)));
     
 }
+

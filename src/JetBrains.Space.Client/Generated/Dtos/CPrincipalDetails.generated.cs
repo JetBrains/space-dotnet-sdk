@@ -27,26 +27,25 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public interface CPrincipalDetails
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public interface CPrincipalDetails
-         : IClassNameConvertible, IPropagatePropertyAccessPath
-    {
-        public static CApplicationPrincipalDetails CApplicationPrincipalDetails(ESApp app)
-            => new CApplicationPrincipalDetails(app: app);
-        
-        public static CAutomationTaskPrincipalDetails CAutomationTaskPrincipalDetails(PRProject project, string name, string id)
-            => new CAutomationTaskPrincipalDetails(project: project, name: name, id: id);
-        
-        public static CBuiltInServicePrincipalDetails CBuiltInServicePrincipalDetails(string name)
-            => new CBuiltInServicePrincipalDetails(name: name);
-        
-        public static CUserPrincipalDetails CUserPrincipalDetails(TDMemberProfile user)
-            => new CUserPrincipalDetails(user: user);
-        
-        public static CUserWithEmailPrincipalDetails CUserWithEmailPrincipalDetails(string name, string email)
-            => new CUserWithEmailPrincipalDetails(name: name, email: email);
-        
-    }
+    public static CApplicationPrincipalDetails CApplicationPrincipalDetails(ESApp app)
+        => new CApplicationPrincipalDetails(app: app);
+    
+    public static CAutomationTaskPrincipalDetails CAutomationTaskPrincipalDetails(PRProject project, string name, string id)
+        => new CAutomationTaskPrincipalDetails(project: project, name: name, id: id);
+    
+    public static CBuiltInServicePrincipalDetails CBuiltInServicePrincipalDetails(string name)
+        => new CBuiltInServicePrincipalDetails(name: name);
+    
+    public static CUserPrincipalDetails CUserPrincipalDetails(TDMemberProfile user)
+        => new CUserPrincipalDetails(user: user);
+    
+    public static CUserWithEmailPrincipalDetails CUserWithEmailPrincipalDetails(string name, string email)
+        => new CUserWithEmailPrincipalDetails(name: name, email: email);
     
 }
+

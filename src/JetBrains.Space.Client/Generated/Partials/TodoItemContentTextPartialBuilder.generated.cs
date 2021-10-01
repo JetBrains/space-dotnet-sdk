@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TodoItemContentTextPartialBuilder
+namespace JetBrains.Space.Client.TodoItemContentTextPartialBuilder;
+
+public static class TodoItemContentTextPartialExtensions
 {
-    public static class TodoItemContentTextPartialExtensions
-    {
-        public static Partial<TodoItemContentText> WithText(this Partial<TodoItemContentText> it)
-            => it.AddFieldName("text");
-        
-    }
+    public static Partial<TodoItemContentText> WithText(this Partial<TodoItemContentText> it)
+        => it.AddFieldName("text");
     
 }
+

@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESDefaultProfileLoginDetailsPartialBuilder
+namespace JetBrains.Space.Client.ESDefaultProfileLoginDetailsPartialBuilder;
+
+public static class ESDefaultProfileLoginDetailsPartialExtensions
 {
-    public static class ESDefaultProfileLoginDetailsPartialExtensions
-    {
-        public static Partial<ESDefaultProfileLoginDetails> WithLogin(this Partial<ESDefaultProfileLoginDetails> it)
-            => it.AddFieldName("login");
-        
-        public static Partial<ESDefaultProfileLoginDetails> WithFirstName(this Partial<ESDefaultProfileLoginDetails> it)
-            => it.AddFieldName("firstName");
-        
-        public static Partial<ESDefaultProfileLoginDetails> WithLastName(this Partial<ESDefaultProfileLoginDetails> it)
-            => it.AddFieldName("lastName");
-        
-        public static Partial<ESDefaultProfileLoginDetails> WithEmail(this Partial<ESDefaultProfileLoginDetails> it)
-            => it.AddFieldName("email");
-        
-        public static Partial<ESDefaultProfileLoginDetails> WithIsEmailVerified(this Partial<ESDefaultProfileLoginDetails> it)
-            => it.AddFieldName("emailVerified");
-        
-        public static Partial<ESDefaultProfileLoginDetails> WithAvatarUrl(this Partial<ESDefaultProfileLoginDetails> it)
-            => it.AddFieldName("avatarUrl");
-        
-    }
+    public static Partial<ESDefaultProfileLoginDetails> WithLogin(this Partial<ESDefaultProfileLoginDetails> it)
+        => it.AddFieldName("login");
+    
+    public static Partial<ESDefaultProfileLoginDetails> WithFirstName(this Partial<ESDefaultProfileLoginDetails> it)
+        => it.AddFieldName("firstName");
+    
+    public static Partial<ESDefaultProfileLoginDetails> WithLastName(this Partial<ESDefaultProfileLoginDetails> it)
+        => it.AddFieldName("lastName");
+    
+    public static Partial<ESDefaultProfileLoginDetails> WithEmail(this Partial<ESDefaultProfileLoginDetails> it)
+        => it.AddFieldName("email");
+    
+    public static Partial<ESDefaultProfileLoginDetails> WithIsEmailVerified(this Partial<ESDefaultProfileLoginDetails> it)
+        => it.AddFieldName("emailVerified");
+    
+    public static Partial<ESDefaultProfileLoginDetails> WithAvatarUrl(this Partial<ESDefaultProfileLoginDetails> it)
+        => it.AddFieldName("avatarUrl");
     
 }
+

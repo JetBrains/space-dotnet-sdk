@@ -27,91 +27,90 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class FeatureFlag
+     : IPropagatePropertyAccessPath
 {
-    public sealed class FeatureFlag
-         : IPropagatePropertyAccessPath
+    public FeatureFlag() { }
+    
+    public FeatureFlag(string name, string description, FeatureFlagStatus status, string owner, FeatureFlagDate? since = null, int? issueNumber = null)
     {
-        public FeatureFlag() { }
-        
-        public FeatureFlag(string name, string description, FeatureFlagStatus status, string owner, FeatureFlagDate? since = null, int? issueNumber = null)
-        {
-            Name = name;
-            Description = description;
-            Status = status;
-            Owner = owner;
-            Since = since;
-            IssueNumber = issueNumber;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(FeatureFlag), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _description = new PropertyValue<string>(nameof(FeatureFlag), nameof(Description));
-        
-        [Required]
-        [JsonPropertyName("description")]
-        public string Description
-        {
-            get => _description.GetValue();
-            set => _description.SetValue(value);
-        }
-    
-        private PropertyValue<FeatureFlagStatus> _status = new PropertyValue<FeatureFlagStatus>(nameof(FeatureFlag), nameof(Status));
-        
-        [Required]
-        [JsonPropertyName("status")]
-        public FeatureFlagStatus Status
-        {
-            get => _status.GetValue();
-            set => _status.SetValue(value);
-        }
-    
-        private PropertyValue<string> _owner = new PropertyValue<string>(nameof(FeatureFlag), nameof(Owner));
-        
-        [Required]
-        [JsonPropertyName("owner")]
-        public string Owner
-        {
-            get => _owner.GetValue();
-            set => _owner.SetValue(value);
-        }
-    
-        private PropertyValue<FeatureFlagDate?> _since = new PropertyValue<FeatureFlagDate?>(nameof(FeatureFlag), nameof(Since));
-        
-        [JsonPropertyName("since")]
-        public FeatureFlagDate? Since
-        {
-            get => _since.GetValue();
-            set => _since.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _issueNumber = new PropertyValue<int?>(nameof(FeatureFlag), nameof(IssueNumber));
-        
-        [JsonPropertyName("issueNumber")]
-        public int? IssueNumber
-        {
-            get => _issueNumber.GetValue();
-            set => _issueNumber.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _description.SetAccessPath(path, validateHasBeenSet);
-            _status.SetAccessPath(path, validateHasBeenSet);
-            _owner.SetAccessPath(path, validateHasBeenSet);
-            _since.SetAccessPath(path, validateHasBeenSet);
-            _issueNumber.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Description = description;
+        Status = status;
+        Owner = owner;
+        Since = since;
+        IssueNumber = issueNumber;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(FeatureFlag), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(FeatureFlag), nameof(Description));
+    
+    [Required]
+    [JsonPropertyName("description")]
+    public string Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<FeatureFlagStatus> _status = new PropertyValue<FeatureFlagStatus>(nameof(FeatureFlag), nameof(Status));
+    
+    [Required]
+    [JsonPropertyName("status")]
+    public FeatureFlagStatus Status
+    {
+        get => _status.GetValue();
+        set => _status.SetValue(value);
+    }
+
+    private PropertyValue<string> _owner = new PropertyValue<string>(nameof(FeatureFlag), nameof(Owner));
+    
+    [Required]
+    [JsonPropertyName("owner")]
+    public string Owner
+    {
+        get => _owner.GetValue();
+        set => _owner.SetValue(value);
+    }
+
+    private PropertyValue<FeatureFlagDate?> _since = new PropertyValue<FeatureFlagDate?>(nameof(FeatureFlag), nameof(Since));
+    
+    [JsonPropertyName("since")]
+    public FeatureFlagDate? Since
+    {
+        get => _since.GetValue();
+        set => _since.SetValue(value);
+    }
+
+    private PropertyValue<int?> _issueNumber = new PropertyValue<int?>(nameof(FeatureFlag), nameof(IssueNumber));
+    
+    [JsonPropertyName("issueNumber")]
+    public int? IssueNumber
+    {
+        get => _issueNumber.GetValue();
+        set => _issueNumber.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _status.SetAccessPath(path, validateHasBeenSet);
+        _owner.SetAccessPath(path, validateHasBeenSet);
+        _since.SetAccessPath(path, validateHasBeenSet);
+        _issueNumber.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

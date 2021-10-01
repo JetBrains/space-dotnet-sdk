@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FailureConditionPartialBuilder
+namespace JetBrains.Space.Client.FailureConditionPartialBuilder;
+
+public static class FailureConditionPartialExtensions
 {
-    public static class FailureConditionPartialExtensions
-    {
-    }
-    
 }
+

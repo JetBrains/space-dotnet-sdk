@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RepoCommitsSubscriptionFilterSpecPartialBuilder
+namespace JetBrains.Space.Client.RepoCommitsSubscriptionFilterSpecPartialBuilder;
+
+public static class RepoCommitsSubscriptionFilterSpecPartialExtensions
 {
-    public static class RepoCommitsSubscriptionFilterSpecPartialExtensions
-    {
-        public static Partial<RepoCommitsSubscriptionFilterSpec> WithAuthors(this Partial<RepoCommitsSubscriptionFilterSpec> it)
-            => it.AddFieldName("authors");
-        
-        public static Partial<RepoCommitsSubscriptionFilterSpec> WithCommitters(this Partial<RepoCommitsSubscriptionFilterSpec> it)
-            => it.AddFieldName("committers");
-        
-        public static Partial<RepoCommitsSubscriptionFilterSpec> WithBranchSpec(this Partial<RepoCommitsSubscriptionFilterSpec> it)
-            => it.AddFieldName("branchSpec");
-        
-        public static Partial<RepoCommitsSubscriptionFilterSpec> WithPathSpec(this Partial<RepoCommitsSubscriptionFilterSpec> it)
-            => it.AddFieldName("pathSpec");
-        
-        public static Partial<RepoCommitsSubscriptionFilterSpec> WithMessageRegex(this Partial<RepoCommitsSubscriptionFilterSpec> it)
-            => it.AddFieldName("messageRegex");
-        
-    }
+    public static Partial<RepoCommitsSubscriptionFilterSpec> WithAuthors(this Partial<RepoCommitsSubscriptionFilterSpec> it)
+        => it.AddFieldName("authors");
+    
+    public static Partial<RepoCommitsSubscriptionFilterSpec> WithCommitters(this Partial<RepoCommitsSubscriptionFilterSpec> it)
+        => it.AddFieldName("committers");
+    
+    public static Partial<RepoCommitsSubscriptionFilterSpec> WithBranchSpec(this Partial<RepoCommitsSubscriptionFilterSpec> it)
+        => it.AddFieldName("branchSpec");
+    
+    public static Partial<RepoCommitsSubscriptionFilterSpec> WithPathSpec(this Partial<RepoCommitsSubscriptionFilterSpec> it)
+        => it.AddFieldName("pathSpec");
+    
+    public static Partial<RepoCommitsSubscriptionFilterSpec> WithMessageRegex(this Partial<RepoCommitsSubscriptionFilterSpec> it)
+        => it.AddFieldName("messageRegex");
     
 }
+

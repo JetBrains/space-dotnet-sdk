@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsParamsForIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsParamsForIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsParamsForIdPatchRequest() { }
+    
+    public ProjectsParamsForIdPatchRequest(string value)
     {
-        public ProjectsParamsForIdPatchRequest() { }
-        
-        public ProjectsParamsForIdPatchRequest(string value)
-        {
-            Value = value;
-        }
-        
-        private PropertyValue<string> _value = new PropertyValue<string>(nameof(ProjectsParamsForIdPatchRequest), nameof(Value));
-        
-        [Required]
-        [JsonPropertyName("value")]
-        public string Value
-        {
-            get => _value.GetValue();
-            set => _value.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _value.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Value = value;
     }
     
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(ProjectsParamsForIdPatchRequest), nameof(Value));
+    
+    [Required]
+    [JsonPropertyName("value")]
+    public string Value
+    {
+        get => _value.GetValue();
+        set => _value.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _value.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

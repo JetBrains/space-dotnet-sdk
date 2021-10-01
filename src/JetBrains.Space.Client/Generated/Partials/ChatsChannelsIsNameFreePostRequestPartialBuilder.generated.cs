@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChatsChannelsIsNameFreePostRequestPartialBuilder
+namespace JetBrains.Space.Client.ChatsChannelsIsNameFreePostRequestPartialBuilder;
+
+public static class ChatsChannelsIsNameFreePostRequestPartialExtensions
 {
-    public static class ChatsChannelsIsNameFreePostRequestPartialExtensions
-    {
-        public static Partial<ChatsChannelsIsNameFreePostRequest> WithName(this Partial<ChatsChannelsIsNameFreePostRequest> it)
-            => it.AddFieldName("name");
-        
-    }
+    public static Partial<ChatsChannelsIsNameFreePostRequest> WithName(this Partial<ChatsChannelsIsNameFreePostRequest> it)
+        => it.AddFieldName("name");
     
 }
+

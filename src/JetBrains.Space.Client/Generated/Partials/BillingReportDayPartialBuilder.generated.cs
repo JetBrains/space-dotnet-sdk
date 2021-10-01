@@ -27,97 +27,96 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BillingReportDayPartialBuilder
+namespace JetBrains.Space.Client.BillingReportDayPartialBuilder;
+
+public static class BillingReportDayPartialExtensions
 {
-    public static class BillingReportDayPartialExtensions
-    {
-        public static Partial<BillingReportDay> WithDate(this Partial<BillingReportDay> it)
-            => it.AddFieldName("date");
-        
-        public static Partial<BillingReportDay> WithActiveUsers(this Partial<BillingReportDay> it)
-            => it.AddFieldName("activeUsers");
-        
-        public static Partial<BillingReportDay> WithUserUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("userUsage");
-        
-        public static Partial<BillingReportDay> WithUserCost(this Partial<BillingReportDay> it)
-            => it.AddFieldName("userCost");
-        
-        public static Partial<BillingReportDay> WithStorageAllocationB(this Partial<BillingReportDay> it)
-            => it.AddFieldName("storageAllocationB");
-        
-        public static Partial<BillingReportDay> WithStorageTotalUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("storageTotalUsage");
-        
-        public static Partial<BillingReportDay> WithStorageFilesUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("storageFilesUsage");
-        
-        public static Partial<BillingReportDay> WithStorageGitUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("storageGitUsage");
-        
-        public static Partial<BillingReportDay> WithStoragePackagesUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("storagePackagesUsage");
-        
-        public static Partial<BillingReportDay> WithStorageCost(this Partial<BillingReportDay> it)
-            => it.AddFieldName("storageCost");
-        
-        public static Partial<BillingReportDay> WithBandwidthTotalUsageDelta(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthTotalUsageDelta");
-        
-        public static Partial<BillingReportDay> WithBandwidthTotalUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthTotalUsage");
-        
-        public static Partial<BillingReportDay> WithBandwidthFilesUsageDelta(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthFilesUsageDelta");
-        
-        public static Partial<BillingReportDay> WithBandwidthFilesUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthFilesUsage");
-        
-        public static Partial<BillingReportDay> WithBandwidthGitUsageDelta(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthGitUsageDelta");
-        
-        public static Partial<BillingReportDay> WithBandwidthGitUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthGitUsage");
-        
-        public static Partial<BillingReportDay> WithBandwidthPackagesUsageDelta(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthPackagesUsageDelta");
-        
-        public static Partial<BillingReportDay> WithBandwidthPackagesUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthPackagesUsage");
-        
-        public static Partial<BillingReportDay> WithBandwidthAutomationExternalTrafficUsageDelta(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthAutomationExternalTrafficUsageDelta");
-        
-        public static Partial<BillingReportDay> WithBandwidthAutomationExternalTrafficUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthAutomationExternalTrafficUsage");
-        
-        public static Partial<BillingReportDay> WithBandwidthAutomationInternalUsageDelta(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthAutomationInternalUsageDelta");
-        
-        public static Partial<BillingReportDay> WithBandwidthAutomationInternalUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthAutomationInternalUsage");
-        
-        public static Partial<BillingReportDay> WithBandwidthCost(this Partial<BillingReportDay> it)
-            => it.AddFieldName("bandwidthCost");
-        
-        public static Partial<BillingReportDay> WithCiUsageDelta(this Partial<BillingReportDay> it)
-            => it.AddFieldName("ciUsageDelta");
-        
-        public static Partial<BillingReportDay> WithCiUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("ciUsage");
-        
-        public static Partial<BillingReportDay> WithCiCost(this Partial<BillingReportDay> it)
-            => it.AddFieldName("ciCost");
-        
-        public static Partial<BillingReportDay> WithAppUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("appUsage");
-        
-        public static Partial<BillingReportDay> WithChatUsage(this Partial<BillingReportDay> it)
-            => it.AddFieldName("chatUsage");
-        
-        public static Partial<BillingReportDay> WithTotalCost(this Partial<BillingReportDay> it)
-            => it.AddFieldName("totalCost");
-        
-    }
+    public static Partial<BillingReportDay> WithDate(this Partial<BillingReportDay> it)
+        => it.AddFieldName("date");
+    
+    public static Partial<BillingReportDay> WithActiveUsers(this Partial<BillingReportDay> it)
+        => it.AddFieldName("activeUsers");
+    
+    public static Partial<BillingReportDay> WithUserUsage(this Partial<BillingReportDay> it)
+        => it.AddFieldName("userUsage");
+    
+    public static Partial<BillingReportDay> WithUserCost(this Partial<BillingReportDay> it)
+        => it.AddFieldName("userCost");
+    
+    public static Partial<BillingReportDay> WithStorageAllocationB(this Partial<BillingReportDay> it)
+        => it.AddFieldName("storageAllocationB");
+    
+    public static Partial<BillingReportDay> WithStorageTotalUsage(this Partial<BillingReportDay> it)
+        => it.AddFieldName("storageTotalUsage");
+    
+    public static Partial<BillingReportDay> WithStorageFilesUsage(this Partial<BillingReportDay> it)
+        => it.AddFieldName("storageFilesUsage");
+    
+    public static Partial<BillingReportDay> WithStorageGitUsage(this Partial<BillingReportDay> it)
+        => it.AddFieldName("storageGitUsage");
+    
+    public static Partial<BillingReportDay> WithStoragePackagesUsage(this Partial<BillingReportDay> it)
+        => it.AddFieldName("storagePackagesUsage");
+    
+    public static Partial<BillingReportDay> WithStorageCost(this Partial<BillingReportDay> it)
+        => it.AddFieldName("storageCost");
+    
+    public static Partial<BillingReportDay> WithBandwidthTotalUsageDelta(this Partial<BillingReportDay> it)
+        => it.AddFieldName("bandwidthTotalUsageDelta");
+    
+    public static Partial<BillingReportDay> WithBandwidthTotalUsage(this Partial<BillingReportDay> it)
+        => it.AddFieldName("bandwidthTotalUsage");
+    
+    public static Partial<BillingReportDay> WithBandwidthFilesUsageDelta(this Partial<BillingReportDay> it)
+        => it.AddFieldName("bandwidthFilesUsageDelta");
+    
+    public static Partial<BillingReportDay> WithBandwidthFilesUsage(this Partial<BillingReportDay> it)
+        => it.AddFieldName("bandwidthFilesUsage");
+    
+    public static Partial<BillingReportDay> WithBandwidthGitUsageDelta(this Partial<BillingReportDay> it)
+        => it.AddFieldName("bandwidthGitUsageDelta");
+    
+    public static Partial<BillingReportDay> WithBandwidthGitUsage(this Partial<BillingReportDay> it)
+        => it.AddFieldName("bandwidthGitUsage");
+    
+    public static Partial<BillingReportDay> WithBandwidthPackagesUsageDelta(this Partial<BillingReportDay> it)
+        => it.AddFieldName("bandwidthPackagesUsageDelta");
+    
+    public static Partial<BillingReportDay> WithBandwidthPackagesUsage(this Partial<BillingReportDay> it)
+        => it.AddFieldName("bandwidthPackagesUsage");
+    
+    public static Partial<BillingReportDay> WithBandwidthAutomationExternalTrafficUsageDelta(this Partial<BillingReportDay> it)
+        => it.AddFieldName("bandwidthAutomationExternalTrafficUsageDelta");
+    
+    public static Partial<BillingReportDay> WithBandwidthAutomationExternalTrafficUsage(this Partial<BillingReportDay> it)
+        => it.AddFieldName("bandwidthAutomationExternalTrafficUsage");
+    
+    public static Partial<BillingReportDay> WithBandwidthAutomationInternalUsageDelta(this Partial<BillingReportDay> it)
+        => it.AddFieldName("bandwidthAutomationInternalUsageDelta");
+    
+    public static Partial<BillingReportDay> WithBandwidthAutomationInternalUsage(this Partial<BillingReportDay> it)
+        => it.AddFieldName("bandwidthAutomationInternalUsage");
+    
+    public static Partial<BillingReportDay> WithBandwidthCost(this Partial<BillingReportDay> it)
+        => it.AddFieldName("bandwidthCost");
+    
+    public static Partial<BillingReportDay> WithCiUsageDelta(this Partial<BillingReportDay> it)
+        => it.AddFieldName("ciUsageDelta");
+    
+    public static Partial<BillingReportDay> WithCiUsage(this Partial<BillingReportDay> it)
+        => it.AddFieldName("ciUsage");
+    
+    public static Partial<BillingReportDay> WithCiCost(this Partial<BillingReportDay> it)
+        => it.AddFieldName("ciCost");
+    
+    public static Partial<BillingReportDay> WithAppUsage(this Partial<BillingReportDay> it)
+        => it.AddFieldName("appUsage");
+    
+    public static Partial<BillingReportDay> WithChatUsage(this Partial<BillingReportDay> it)
+        => it.AddFieldName("chatUsage");
+    
+    public static Partial<BillingReportDay> WithTotalCost(this Partial<BillingReportDay> it)
+        => it.AddFieldName("totalCost");
     
 }
+

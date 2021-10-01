@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RecurrenceRuleFreqDailyPartialBuilder
+namespace JetBrains.Space.Client.RecurrenceRuleFreqDailyPartialBuilder;
+
+public static class RecurrenceRuleFreqDailyPartialExtensions
 {
-    public static class RecurrenceRuleFreqDailyPartialExtensions
-    {
-        public static Partial<RecurrenceRuleFreqDaily> WithInterval(this Partial<RecurrenceRuleFreqDaily> it)
-            => it.AddFieldName("interval");
-        
-    }
+    public static Partial<RecurrenceRuleFreqDaily> WithInterval(this Partial<RecurrenceRuleFreqDaily> it)
+        => it.AddFieldName("interval");
     
 }
+

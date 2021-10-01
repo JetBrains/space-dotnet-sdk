@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MeetingOccurrenceTime
+     : IPropagatePropertyAccessPath
 {
-    public sealed class MeetingOccurrenceTime
-         : IPropagatePropertyAccessPath
+    public MeetingOccurrenceTime() { }
+    
+    public MeetingOccurrenceTime(DateTime start, DateTime end)
     {
-        public MeetingOccurrenceTime() { }
-        
-        public MeetingOccurrenceTime(DateTime start, DateTime end)
-        {
-            Start = start;
-            End = end;
-        }
-        
-        private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(MeetingOccurrenceTime), nameof(Start));
-        
-        [Required]
-        [JsonPropertyName("start")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Start
-        {
-            get => _start.GetValue();
-            set => _start.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _end = new PropertyValue<DateTime>(nameof(MeetingOccurrenceTime), nameof(End));
-        
-        [Required]
-        [JsonPropertyName("end")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime End
-        {
-            get => _end.GetValue();
-            set => _end.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _start.SetAccessPath(path, validateHasBeenSet);
-            _end.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Start = start;
+        End = end;
     }
     
+    private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(MeetingOccurrenceTime), nameof(Start));
+    
+    [Required]
+    [JsonPropertyName("start")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Start
+    {
+        get => _start.GetValue();
+        set => _start.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _end = new PropertyValue<DateTime>(nameof(MeetingOccurrenceTime), nameof(End));
+    
+    [Required]
+    [JsonPropertyName("end")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime End
+    {
+        get => _end.GetValue();
+        set => _end.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _start.SetAccessPath(path, validateHasBeenSet);
+        _end.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

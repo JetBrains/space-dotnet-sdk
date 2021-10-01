@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ChatMessageText
+     : ChatMessage, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ChatMessageText
-         : ChatMessage, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ChatMessage.Text";
+    
+    public ChatMessageText() { }
+    
+    public ChatMessageText(string text)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ChatMessage.Text";
-        
-        public ChatMessageText() { }
-        
-        public ChatMessageText(string text)
-        {
-            Text = text;
-        }
-        
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatMessageText), nameof(Text));
-        
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text
-        {
-            get => _text.GetValue();
-            set => _text.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _text.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Text = text;
     }
     
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatMessageText), nameof(Text));
+    
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
+    {
+        get => _text.GetValue();
+        set => _text.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _text.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

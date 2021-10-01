@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TDLocationWithTimeZone
+     : IPropagatePropertyAccessPath
 {
-    public sealed class TDLocationWithTimeZone
-         : IPropagatePropertyAccessPath
+    public TDLocationWithTimeZone() { }
+    
+    public TDLocationWithTimeZone(string id, string name, ATimeZoneWithOffset timezone)
     {
-        public TDLocationWithTimeZone() { }
-        
-        public TDLocationWithTimeZone(string id, string name, ATimeZoneWithOffset timezone)
-        {
-            Id = id;
-            Name = name;
-            Timezone = timezone;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationWithTimeZone), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDLocationWithTimeZone), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<ATimeZoneWithOffset> _timezone = new PropertyValue<ATimeZoneWithOffset>(nameof(TDLocationWithTimeZone), nameof(Timezone));
-        
-        [Required]
-        [JsonPropertyName("timezone")]
-        public ATimeZoneWithOffset Timezone
-        {
-            get => _timezone.GetValue();
-            set => _timezone.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _timezone.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
+        Name = name;
+        Timezone = timezone;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationWithTimeZone), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDLocationWithTimeZone), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<ATimeZoneWithOffset> _timezone = new PropertyValue<ATimeZoneWithOffset>(nameof(TDLocationWithTimeZone), nameof(Timezone));
+    
+    [Required]
+    [JsonPropertyName("timezone")]
+    public ATimeZoneWithOffset Timezone
+    {
+        get => _timezone.GetValue();
+        set => _timezone.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _timezone.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentFolderWithChildrenPartialBuilder
+namespace JetBrains.Space.Client.DocumentFolderWithChildrenPartialBuilder;
+
+public static class DocumentFolderWithChildrenPartialExtensions
 {
-    public static class DocumentFolderWithChildrenPartialExtensions
-    {
-        public static Partial<DocumentFolderWithChildren> WithId(this Partial<DocumentFolderWithChildren> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<DocumentFolderWithChildren> WithIsArchived(this Partial<DocumentFolderWithChildren> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<DocumentFolderWithChildren> WithContainerLinkId(this Partial<DocumentFolderWithChildren> it)
-            => it.AddFieldName("containerLinkId");
-        
-        public static Partial<DocumentFolderWithChildren> WithContainerInfo(this Partial<DocumentFolderWithChildren> it)
-            => it.AddFieldName("containerInfo");
-        
-        public static Partial<DocumentFolderWithChildren> WithContainerInfo(this Partial<DocumentFolderWithChildren> it, Func<Partial<DocumentContainerInfo>, Partial<DocumentContainerInfo>> partialBuilder)
-            => it.AddFieldName("containerInfo", partialBuilder(new Partial<DocumentContainerInfo>(it)));
-        
-        public static Partial<DocumentFolderWithChildren> WithSubfolders(this Partial<DocumentFolderWithChildren> it)
-            => it.AddFieldName("subfolders");
-        
-        public static Partial<DocumentFolderWithChildren> WithSubfoldersRecursive(this Partial<DocumentFolderWithChildren> it)
-            => it.AddFieldName("subfolders!");
-        
-        public static Partial<DocumentFolderWithChildren> WithSubfolders(this Partial<DocumentFolderWithChildren> it, Func<Partial<DocumentFolderWithChildren>, Partial<DocumentFolderWithChildren>> partialBuilder)
-            => it.AddFieldName("subfolders", partialBuilder(new Partial<DocumentFolderWithChildren>(it)));
-        
-        public static Partial<DocumentFolderWithChildren> WithDocuments(this Partial<DocumentFolderWithChildren> it)
-            => it.AddFieldName("documents");
-        
-        public static Partial<DocumentFolderWithChildren> WithDocuments(this Partial<DocumentFolderWithChildren> it, Func<Partial<Document>, Partial<Document>> partialBuilder)
-            => it.AddFieldName("documents", partialBuilder(new Partial<Document>(it)));
-        
-    }
+    public static Partial<DocumentFolderWithChildren> WithId(this Partial<DocumentFolderWithChildren> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<DocumentFolderWithChildren> WithIsArchived(this Partial<DocumentFolderWithChildren> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<DocumentFolderWithChildren> WithContainerLinkId(this Partial<DocumentFolderWithChildren> it)
+        => it.AddFieldName("containerLinkId");
+    
+    public static Partial<DocumentFolderWithChildren> WithContainerInfo(this Partial<DocumentFolderWithChildren> it)
+        => it.AddFieldName("containerInfo");
+    
+    public static Partial<DocumentFolderWithChildren> WithContainerInfo(this Partial<DocumentFolderWithChildren> it, Func<Partial<DocumentContainerInfo>, Partial<DocumentContainerInfo>> partialBuilder)
+        => it.AddFieldName("containerInfo", partialBuilder(new Partial<DocumentContainerInfo>(it)));
+    
+    public static Partial<DocumentFolderWithChildren> WithSubfolders(this Partial<DocumentFolderWithChildren> it)
+        => it.AddFieldName("subfolders");
+    
+    public static Partial<DocumentFolderWithChildren> WithSubfoldersRecursive(this Partial<DocumentFolderWithChildren> it)
+        => it.AddFieldName("subfolders!");
+    
+    public static Partial<DocumentFolderWithChildren> WithSubfolders(this Partial<DocumentFolderWithChildren> it, Func<Partial<DocumentFolderWithChildren>, Partial<DocumentFolderWithChildren>> partialBuilder)
+        => it.AddFieldName("subfolders", partialBuilder(new Partial<DocumentFolderWithChildren>(it)));
+    
+    public static Partial<DocumentFolderWithChildren> WithDocuments(this Partial<DocumentFolderWithChildren> it)
+        => it.AddFieldName("documents");
+    
+    public static Partial<DocumentFolderWithChildren> WithDocuments(this Partial<DocumentFolderWithChildren> it, Func<Partial<Document>, Partial<Document>> partialBuilder)
+        => it.AddFieldName("documents", partialBuilder(new Partial<Document>(it)));
     
 }
+

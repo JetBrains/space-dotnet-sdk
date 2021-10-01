@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESTeamMappingPartialBuilder
+namespace JetBrains.Space.Client.ESTeamMappingPartialBuilder;
+
+public static class ESTeamMappingPartialExtensions
 {
-    public static class ESTeamMappingPartialExtensions
-    {
-        public static Partial<ESTeamMapping> WithTeamId(this Partial<ESTeamMapping> it)
-            => it.AddFieldName("teamId");
-        
-        public static Partial<ESTeamMapping> WithExternalGroupName(this Partial<ESTeamMapping> it)
-            => it.AddFieldName("externalGroupName");
-        
-    }
+    public static Partial<ESTeamMapping> WithTeamId(this Partial<ESTeamMapping> it)
+        => it.AddFieldName("teamId");
+    
+    public static Partial<ESTeamMapping> WithExternalGroupName(this Partial<ESTeamMapping> it)
+        => it.AddFieldName("externalGroupName");
     
 }
+

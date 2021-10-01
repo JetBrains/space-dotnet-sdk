@@ -27,27 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class PackagesExecutionResult
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class PackagesExecutionResult
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "PackagesExecutionResult";
+    
+    public static PackagesExecutionResultFailure Failure(string error)
+        => new PackagesExecutionResultFailure(error: error);
+    
+    public static PackagesExecutionResultSuccess Success()
+        => new PackagesExecutionResultSuccess();
+    
+    public PackagesExecutionResult() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "PackagesExecutionResult";
-        
-        public static PackagesExecutionResultFailure Failure(string error)
-            => new PackagesExecutionResultFailure(error: error);
-        
-        public static PackagesExecutionResultSuccess Success()
-            => new PackagesExecutionResultSuccess();
-        
-        public PackagesExecutionResult() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

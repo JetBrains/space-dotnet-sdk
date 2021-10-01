@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FractionPartialBuilder
+namespace JetBrains.Space.Client.FractionPartialBuilder;
+
+public static class FractionPartialExtensions
 {
-    public static class FractionPartialExtensions
-    {
-        public static Partial<Fraction> WithNumerator(this Partial<Fraction> it)
-            => it.AddFieldName("numerator");
-        
-        public static Partial<Fraction> WithDenominator(this Partial<Fraction> it)
-            => it.AddFieldName("denominator");
-        
-    }
+    public static Partial<Fraction> WithNumerator(this Partial<Fraction> it)
+        => it.AddFieldName("numerator");
+    
+    public static Partial<Fraction> WithDenominator(this Partial<Fraction> it)
+        => it.AddFieldName("denominator");
     
 }
+

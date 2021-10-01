@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class IssueStatusWithUsages
+     : IPropagatePropertyAccessPath
 {
-    public sealed class IssueStatusWithUsages
-         : IPropagatePropertyAccessPath
+    public IssueStatusWithUsages() { }
+    
+    public IssueStatusWithUsages(IssueStatus status, int usages)
     {
-        public IssueStatusWithUsages() { }
-        
-        public IssueStatusWithUsages(IssueStatus status, int usages)
-        {
-            Status = status;
-            Usages = usages;
-        }
-        
-        private PropertyValue<IssueStatus> _status = new PropertyValue<IssueStatus>(nameof(IssueStatusWithUsages), nameof(Status));
-        
-        [Required]
-        [JsonPropertyName("status")]
-        public IssueStatus Status
-        {
-            get => _status.GetValue();
-            set => _status.SetValue(value);
-        }
-    
-        private PropertyValue<int> _usages = new PropertyValue<int>(nameof(IssueStatusWithUsages), nameof(Usages));
-        
-        [Required]
-        [JsonPropertyName("usages")]
-        public int Usages
-        {
-            get => _usages.GetValue();
-            set => _usages.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _status.SetAccessPath(path, validateHasBeenSet);
-            _usages.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Status = status;
+        Usages = usages;
     }
     
+    private PropertyValue<IssueStatus> _status = new PropertyValue<IssueStatus>(nameof(IssueStatusWithUsages), nameof(Status));
+    
+    [Required]
+    [JsonPropertyName("status")]
+    public IssueStatus Status
+    {
+        get => _status.GetValue();
+        set => _status.SetValue(value);
+    }
+
+    private PropertyValue<int> _usages = new PropertyValue<int>(nameof(IssueStatusWithUsages), nameof(Usages));
+    
+    [Required]
+    [JsonPropertyName("usages")]
+    public int Usages
+    {
+        get => _usages.GetValue();
+        set => _usages.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _status.SetAccessPath(path, validateHasBeenSet);
+        _usages.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

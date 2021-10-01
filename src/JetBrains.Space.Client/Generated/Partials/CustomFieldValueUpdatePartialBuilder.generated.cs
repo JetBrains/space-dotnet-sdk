@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomFieldValueUpdatePartialBuilder
+namespace JetBrains.Space.Client.CustomFieldValueUpdatePartialBuilder;
+
+public static class CustomFieldValueUpdatePartialExtensions
 {
-    public static class CustomFieldValueUpdatePartialExtensions
-    {
-        public static Partial<CustomFieldValueUpdate> WithField(this Partial<CustomFieldValueUpdate> it)
-            => it.AddFieldName("field");
-        
-        public static Partial<CustomFieldValueUpdate> WithField(this Partial<CustomFieldValueUpdate> it, Func<Partial<CFIdentifier>, Partial<CFIdentifier>> partialBuilder)
-            => it.AddFieldName("field", partialBuilder(new Partial<CFIdentifier>(it)));
-        
-        public static Partial<CustomFieldValueUpdate> WithNewValue(this Partial<CustomFieldValueUpdate> it)
-            => it.AddFieldName("newValue");
-        
-        public static Partial<CustomFieldValueUpdate> WithNewValue(this Partial<CustomFieldValueUpdate> it, Func<Partial<CFInputValue>, Partial<CFInputValue>> partialBuilder)
-            => it.AddFieldName("newValue", partialBuilder(new Partial<CFInputValue>(it)));
-        
-    }
+    public static Partial<CustomFieldValueUpdate> WithField(this Partial<CustomFieldValueUpdate> it)
+        => it.AddFieldName("field");
+    
+    public static Partial<CustomFieldValueUpdate> WithField(this Partial<CustomFieldValueUpdate> it, Func<Partial<CFIdentifier>, Partial<CFIdentifier>> partialBuilder)
+        => it.AddFieldName("field", partialBuilder(new Partial<CFIdentifier>(it)));
+    
+    public static Partial<CustomFieldValueUpdate> WithNewValue(this Partial<CustomFieldValueUpdate> it)
+        => it.AddFieldName("newValue");
+    
+    public static Partial<CustomFieldValueUpdate> WithNewValue(this Partial<CustomFieldValueUpdate> it, Func<Partial<CFInputValue>, Partial<CFInputValue>> partialBuilder)
+        => it.AddFieldName("newValue", partialBuilder(new Partial<CFInputValue>(it)));
     
 }
+

@@ -27,30 +27,29 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class CFEnumValueModification
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class CFEnumValueModification
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "CFEnumValueModification";
+    
+    public static CFEnumValueModificationCreate Create(string name)
+        => new CFEnumValueModificationCreate(name: name);
+    
+    public static CFEnumValueModificationRemove Remove(CFEnumValueIdentifier valueIdentifier)
+        => new CFEnumValueModificationRemove(valueIdentifier: valueIdentifier);
+    
+    public static CFEnumValueModificationUpdate Update(CFEnumValueIdentifier valueIdentifier, string newName)
+        => new CFEnumValueModificationUpdate(valueIdentifier: valueIdentifier, newName: newName);
+    
+    public CFEnumValueModification() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "CFEnumValueModification";
-        
-        public static CFEnumValueModificationCreate Create(string name)
-            => new CFEnumValueModificationCreate(name: name);
-        
-        public static CFEnumValueModificationRemove Remove(CFEnumValueIdentifier valueIdentifier)
-            => new CFEnumValueModificationRemove(valueIdentifier: valueIdentifier);
-        
-        public static CFEnumValueModificationUpdate Update(CFEnumValueIdentifier valueIdentifier, string newName)
-            => new CFEnumValueModificationUpdate(valueIdentifier: valueIdentifier, newName: newName);
-        
-        public CFEnumValueModification() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

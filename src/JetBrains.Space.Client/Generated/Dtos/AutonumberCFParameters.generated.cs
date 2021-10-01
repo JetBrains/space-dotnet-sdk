@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class AutonumberCFParameters
+     : CFCreateParameters, CFParameters, CFUpdateParameters, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class AutonumberCFParameters
-         : CFCreateParameters, CFParameters, CFUpdateParameters, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "AutonumberCFParameters";
+    
+    public AutonumberCFParameters() { }
+    
+    public AutonumberCFParameters(string prefix, string suffix)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "AutonumberCFParameters";
-        
-        public AutonumberCFParameters() { }
-        
-        public AutonumberCFParameters(string prefix, string suffix)
-        {
-            Prefix = prefix;
-            Suffix = suffix;
-        }
-        
-        private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(AutonumberCFParameters), nameof(Prefix));
-        
-        [Required]
-        [JsonPropertyName("prefix")]
-        public string Prefix
-        {
-            get => _prefix.GetValue();
-            set => _prefix.SetValue(value);
-        }
-    
-        private PropertyValue<string> _suffix = new PropertyValue<string>(nameof(AutonumberCFParameters), nameof(Suffix));
-        
-        [Required]
-        [JsonPropertyName("suffix")]
-        public string Suffix
-        {
-            get => _suffix.GetValue();
-            set => _suffix.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _prefix.SetAccessPath(path, validateHasBeenSet);
-            _suffix.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Prefix = prefix;
+        Suffix = suffix;
     }
     
+    private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(AutonumberCFParameters), nameof(Prefix));
+    
+    [Required]
+    [JsonPropertyName("prefix")]
+    public string Prefix
+    {
+        get => _prefix.GetValue();
+        set => _prefix.SetValue(value);
+    }
+
+    private PropertyValue<string> _suffix = new PropertyValue<string>(nameof(AutonumberCFParameters), nameof(Suffix));
+    
+    [Required]
+    [JsonPropertyName("suffix")]
+    public string Suffix
+    {
+        get => _suffix.GetValue();
+        set => _suffix.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _prefix.SetAccessPath(path, validateHasBeenSet);
+        _suffix.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

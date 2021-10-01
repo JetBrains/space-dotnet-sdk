@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContentCodeDiscussionInReviewPartialBuilder
+namespace JetBrains.Space.Client.M2ChannelContentCodeDiscussionInReviewPartialBuilder;
+
+public static class M2ChannelContentCodeDiscussionInReviewPartialExtensions
 {
-    public static class M2ChannelContentCodeDiscussionInReviewPartialExtensions
-    {
-        public static Partial<M2ChannelContentCodeDiscussionInReview> WithNotificationDefaults(this Partial<M2ChannelContentCodeDiscussionInReview> it)
-            => it.AddFieldName("notificationDefaults");
-        
-        public static Partial<M2ChannelContentCodeDiscussionInReview> WithNotificationDefaults(this Partial<M2ChannelContentCodeDiscussionInReview> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
-        
-        public static Partial<M2ChannelContentCodeDiscussionInReview> WithCodeDiscussion(this Partial<M2ChannelContentCodeDiscussionInReview> it)
-            => it.AddFieldName("codeDiscussion");
-        
-        public static Partial<M2ChannelContentCodeDiscussionInReview> WithCodeDiscussion(this Partial<M2ChannelContentCodeDiscussionInReview> it, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>> partialBuilder)
-            => it.AddFieldName("codeDiscussion", partialBuilder(new Partial<CodeDiscussionRecord>(it)));
-        
-        public static Partial<M2ChannelContentCodeDiscussionInReview> WithParent(this Partial<M2ChannelContentCodeDiscussionInReview> it)
-            => it.AddFieldName("parent");
-        
-        public static Partial<M2ChannelContentCodeDiscussionInReview> WithParent(this Partial<M2ChannelContentCodeDiscussionInReview> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
-            => it.AddFieldName("parent", partialBuilder(new Partial<M2ChannelRecord>(it)));
-        
-        public static Partial<M2ChannelContentCodeDiscussionInReview> WithMessageId(this Partial<M2ChannelContentCodeDiscussionInReview> it)
-            => it.AddFieldName("messageId");
-        
-    }
+    public static Partial<M2ChannelContentCodeDiscussionInReview> WithNotificationDefaults(this Partial<M2ChannelContentCodeDiscussionInReview> it)
+        => it.AddFieldName("notificationDefaults");
+    
+    public static Partial<M2ChannelContentCodeDiscussionInReview> WithNotificationDefaults(this Partial<M2ChannelContentCodeDiscussionInReview> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
+        => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
+    
+    public static Partial<M2ChannelContentCodeDiscussionInReview> WithCodeDiscussion(this Partial<M2ChannelContentCodeDiscussionInReview> it)
+        => it.AddFieldName("codeDiscussion");
+    
+    public static Partial<M2ChannelContentCodeDiscussionInReview> WithCodeDiscussion(this Partial<M2ChannelContentCodeDiscussionInReview> it, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>> partialBuilder)
+        => it.AddFieldName("codeDiscussion", partialBuilder(new Partial<CodeDiscussionRecord>(it)));
+    
+    public static Partial<M2ChannelContentCodeDiscussionInReview> WithParent(this Partial<M2ChannelContentCodeDiscussionInReview> it)
+        => it.AddFieldName("parent");
+    
+    public static Partial<M2ChannelContentCodeDiscussionInReview> WithParent(this Partial<M2ChannelContentCodeDiscussionInReview> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
+        => it.AddFieldName("parent", partialBuilder(new Partial<M2ChannelRecord>(it)));
+    
+    public static Partial<M2ChannelContentCodeDiscussionInReview> WithMessageId(this Partial<M2ChannelContentCodeDiscussionInReview> it)
+        => it.AddFieldName("messageId");
     
 }
+

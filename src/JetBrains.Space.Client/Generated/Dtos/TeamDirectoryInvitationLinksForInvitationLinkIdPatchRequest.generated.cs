@@ -27,77 +27,76 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest() { }
+    
+    public TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest(string? name = null, DateTime? expiresAt = null, int? inviteeLimit = null, string? team = null, string? position = null)
     {
-        public TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest() { }
-        
-        public TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest(string? name = null, DateTime? expiresAt = null, int? inviteeLimit = null, string? team = null, string? position = null)
-        {
-            Name = name;
-            ExpiresAt = expiresAt;
-            InviteeLimit = inviteeLimit;
-            Team = team;
-            Position = position;
-        }
-        
-        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(Name));
-        
-        [JsonPropertyName("name")]
-        public string? Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _expiresAt = new PropertyValue<DateTime?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(ExpiresAt));
-        
-        [JsonPropertyName("expiresAt")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? ExpiresAt
-        {
-            get => _expiresAt.GetValue();
-            set => _expiresAt.SetValue(value);
-        }
-    
-        private PropertyValue<int?> _inviteeLimit = new PropertyValue<int?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(InviteeLimit));
-        
-        [JsonPropertyName("inviteeLimit")]
-        public int? InviteeLimit
-        {
-            get => _inviteeLimit.GetValue();
-            set => _inviteeLimit.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(Team));
-        
-        [JsonPropertyName("team")]
-        public string? Team
-        {
-            get => _team.GetValue();
-            set => _team.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _position = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(Position));
-        
-        [JsonPropertyName("position")]
-        public string? Position
-        {
-            get => _position.GetValue();
-            set => _position.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _expiresAt.SetAccessPath(path, validateHasBeenSet);
-            _inviteeLimit.SetAccessPath(path, validateHasBeenSet);
-            _team.SetAccessPath(path, validateHasBeenSet);
-            _position.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        ExpiresAt = expiresAt;
+        InviteeLimit = inviteeLimit;
+        Team = team;
+        Position = position;
     }
     
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(Name));
+    
+    [JsonPropertyName("name")]
+    public string? Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _expiresAt = new PropertyValue<DateTime?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(ExpiresAt));
+    
+    [JsonPropertyName("expiresAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? ExpiresAt
+    {
+        get => _expiresAt.GetValue();
+        set => _expiresAt.SetValue(value);
+    }
+
+    private PropertyValue<int?> _inviteeLimit = new PropertyValue<int?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(InviteeLimit));
+    
+    [JsonPropertyName("inviteeLimit")]
+    public int? InviteeLimit
+    {
+        get => _inviteeLimit.GetValue();
+        set => _inviteeLimit.SetValue(value);
+    }
+
+    private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(Team));
+    
+    [JsonPropertyName("team")]
+    public string? Team
+    {
+        get => _team.GetValue();
+        set => _team.SetValue(value);
+    }
+
+    private PropertyValue<string?> _position = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(Position));
+    
+    [JsonPropertyName("position")]
+    public string? Position
+    {
+        get => _position.GetValue();
+        set => _position.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _expiresAt.SetAccessPath(path, validateHasBeenSet);
+        _inviteeLimit.SetAccessPath(path, validateHasBeenSet);
+        _team.SetAccessPath(path, validateHasBeenSet);
+        _position.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

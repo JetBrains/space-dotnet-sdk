@@ -27,68 +27,67 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MavenPackageDependency
+     : IPropagatePropertyAccessPath
 {
-    public sealed class MavenPackageDependency
-         : IPropagatePropertyAccessPath
+    public MavenPackageDependency() { }
+    
+    public MavenPackageDependency(string scope, string group, string artifact, string? version = null)
     {
-        public MavenPackageDependency() { }
-        
-        public MavenPackageDependency(string scope, string group, string artifact, string? version = null)
-        {
-            Scope = scope;
-            Group = group;
-            Artifact = artifact;
-            Version = version;
-        }
-        
-        private PropertyValue<string> _scope = new PropertyValue<string>(nameof(MavenPackageDependency), nameof(Scope));
-        
-        [Required]
-        [JsonPropertyName("scope")]
-        public string Scope
-        {
-            get => _scope.GetValue();
-            set => _scope.SetValue(value);
-        }
-    
-        private PropertyValue<string> _group = new PropertyValue<string>(nameof(MavenPackageDependency), nameof(Group));
-        
-        [Required]
-        [JsonPropertyName("group")]
-        public string Group
-        {
-            get => _group.GetValue();
-            set => _group.SetValue(value);
-        }
-    
-        private PropertyValue<string> _artifact = new PropertyValue<string>(nameof(MavenPackageDependency), nameof(Artifact));
-        
-        [Required]
-        [JsonPropertyName("artifact")]
-        public string Artifact
-        {
-            get => _artifact.GetValue();
-            set => _artifact.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(MavenPackageDependency), nameof(Version));
-        
-        [JsonPropertyName("version")]
-        public string? Version
-        {
-            get => _version.GetValue();
-            set => _version.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _scope.SetAccessPath(path, validateHasBeenSet);
-            _group.SetAccessPath(path, validateHasBeenSet);
-            _artifact.SetAccessPath(path, validateHasBeenSet);
-            _version.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Scope = scope;
+        Group = group;
+        Artifact = artifact;
+        Version = version;
     }
     
+    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(MavenPackageDependency), nameof(Scope));
+    
+    [Required]
+    [JsonPropertyName("scope")]
+    public string Scope
+    {
+        get => _scope.GetValue();
+        set => _scope.SetValue(value);
+    }
+
+    private PropertyValue<string> _group = new PropertyValue<string>(nameof(MavenPackageDependency), nameof(Group));
+    
+    [Required]
+    [JsonPropertyName("group")]
+    public string Group
+    {
+        get => _group.GetValue();
+        set => _group.SetValue(value);
+    }
+
+    private PropertyValue<string> _artifact = new PropertyValue<string>(nameof(MavenPackageDependency), nameof(Artifact));
+    
+    [Required]
+    [JsonPropertyName("artifact")]
+    public string Artifact
+    {
+        get => _artifact.GetValue();
+        set => _artifact.SetValue(value);
+    }
+
+    private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(MavenPackageDependency), nameof(Version));
+    
+    [JsonPropertyName("version")]
+    public string? Version
+    {
+        get => _version.GetValue();
+        set => _version.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _scope.SetAccessPath(path, validateHasBeenSet);
+        _group.SetAccessPath(path, validateHasBeenSet);
+        _artifact.SetAccessPath(path, validateHasBeenSet);
+        _version.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

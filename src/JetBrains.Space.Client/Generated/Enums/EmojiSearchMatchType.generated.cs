@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum EmojiSearchMatchType
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum EmojiSearchMatchType
-    {
-        [EnumMember(Value = "Name")]
-        Name,
-        
-        [EnumMember(Value = "OtherName")]
-        OtherName,
-        
-        [EnumMember(Value = "Emoticon")]
-        Emoticon,
-        
-        [EnumMember(Value = "Unicode")]
-        Unicode,
-        
-    }
+    [EnumMember(Value = "Name")]
+    Name,
+    
+    [EnumMember(Value = "OtherName")]
+    OtherName,
+    
+    [EnumMember(Value = "Emoticon")]
+    Emoticon,
+    
+    [EnumMember(Value = "Unicode")]
+    Unicode,
     
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageFieldsPartialBuilder
+namespace JetBrains.Space.Client.MessageFieldsPartialBuilder;
+
+public static class MessageFieldsPartialExtensions
 {
-    public static class MessageFieldsPartialExtensions
-    {
-        public static Partial<MessageFields> WithFields(this Partial<MessageFields> it)
-            => it.AddFieldName("fields");
-        
-        public static Partial<MessageFields> WithFields(this Partial<MessageFields> it, Func<Partial<MessageFieldElement>, Partial<MessageFieldElement>> partialBuilder)
-            => it.AddFieldName("fields", partialBuilder(new Partial<MessageFieldElement>(it)));
-        
-    }
+    public static Partial<MessageFields> WithFields(this Partial<MessageFields> it)
+        => it.AddFieldName("fields");
+    
+    public static Partial<MessageFields> WithFields(this Partial<MessageFields> it, Func<Partial<MessageFieldElement>, Partial<MessageFieldElement>> partialBuilder)
+        => it.AddFieldName("fields", partialBuilder(new Partial<MessageFieldElement>(it)));
     
 }
+

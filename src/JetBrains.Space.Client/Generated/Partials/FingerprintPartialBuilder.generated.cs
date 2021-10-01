@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FingerprintPartialBuilder
+namespace JetBrains.Space.Client.FingerprintPartialBuilder;
+
+public static class FingerprintPartialExtensions
 {
-    public static class FingerprintPartialExtensions
-    {
-        public static Partial<Fingerprint> WithMd5(this Partial<Fingerprint> it)
-            => it.AddFieldName("md5");
-        
-        public static Partial<Fingerprint> WithSha1(this Partial<Fingerprint> it)
-            => it.AddFieldName("sha1");
-        
-        public static Partial<Fingerprint> WithSha256(this Partial<Fingerprint> it)
-            => it.AddFieldName("sha256");
-        
-        public static Partial<Fingerprint> WithSha384(this Partial<Fingerprint> it)
-            => it.AddFieldName("sha384");
-        
-        public static Partial<Fingerprint> WithSha512(this Partial<Fingerprint> it)
-            => it.AddFieldName("sha512");
-        
-    }
+    public static Partial<Fingerprint> WithMd5(this Partial<Fingerprint> it)
+        => it.AddFieldName("md5");
+    
+    public static Partial<Fingerprint> WithSha1(this Partial<Fingerprint> it)
+        => it.AddFieldName("sha1");
+    
+    public static Partial<Fingerprint> WithSha256(this Partial<Fingerprint> it)
+        => it.AddFieldName("sha256");
+    
+    public static Partial<Fingerprint> WithSha384(this Partial<Fingerprint> it)
+        => it.AddFieldName("sha384");
+    
+    public static Partial<Fingerprint> WithSha512(this Partial<Fingerprint> it)
+        => it.AddFieldName("sha512");
     
 }
+

@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SRepoCommitsWebhookEventPartialBuilder
+namespace JetBrains.Space.Client.SRepoCommitsWebhookEventPartialBuilder;
+
+public static class SRepoCommitsWebhookEventPartialExtensions
 {
-    public static class SRepoCommitsWebhookEventPartialExtensions
-    {
-        public static Partial<SRepoCommitsWebhookEvent> WithProjectKey(this Partial<SRepoCommitsWebhookEvent> it)
-            => it.AddFieldName("projectKey");
-        
-        public static Partial<SRepoCommitsWebhookEvent> WithProjectKey(this Partial<SRepoCommitsWebhookEvent> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
-            => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
-        
-        public static Partial<SRepoCommitsWebhookEvent> WithRepository(this Partial<SRepoCommitsWebhookEvent> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<SRepoCommitsWebhookEvent> WithCommit(this Partial<SRepoCommitsWebhookEvent> it)
-            => it.AddFieldName("commit");
-        
-        public static Partial<SRepoCommitsWebhookEvent> WithCommit(this Partial<SRepoCommitsWebhookEvent> it, Func<Partial<GitCommitInfoWithChanges>, Partial<GitCommitInfoWithChanges>> partialBuilder)
-            => it.AddFieldName("commit", partialBuilder(new Partial<GitCommitInfoWithChanges>(it)));
-        
-    }
+    public static Partial<SRepoCommitsWebhookEvent> WithProjectKey(this Partial<SRepoCommitsWebhookEvent> it)
+        => it.AddFieldName("projectKey");
+    
+    public static Partial<SRepoCommitsWebhookEvent> WithProjectKey(this Partial<SRepoCommitsWebhookEvent> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
+        => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
+    
+    public static Partial<SRepoCommitsWebhookEvent> WithRepository(this Partial<SRepoCommitsWebhookEvent> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<SRepoCommitsWebhookEvent> WithCommit(this Partial<SRepoCommitsWebhookEvent> it)
+        => it.AddFieldName("commit");
+    
+    public static Partial<SRepoCommitsWebhookEvent> WithCommit(this Partial<SRepoCommitsWebhookEvent> it, Func<Partial<GitCommitInfoWithChanges>, Partial<GitCommitInfoWithChanges>> partialBuilder)
+        => it.AddFieldName("commit", partialBuilder(new Partial<GitCommitInfoWithChanges>(it)));
     
 }
+

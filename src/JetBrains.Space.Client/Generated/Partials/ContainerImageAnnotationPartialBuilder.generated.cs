@@ -27,31 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ContainerImageAnnotationPartialBuilder
+namespace JetBrains.Space.Client.ContainerImageAnnotationPartialBuilder;
+
+public static class ContainerImageAnnotationPartialExtensions
 {
-    public static class ContainerImageAnnotationPartialExtensions
-    {
-        public static Partial<ContainerImageAnnotation> WithCreated(this Partial<ContainerImageAnnotation> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<ContainerImageAnnotation> WithBuildName(this Partial<ContainerImageAnnotation> it)
-            => it.AddFieldName("buildName");
-        
-        public static Partial<ContainerImageAnnotation> WithBuildUrl(this Partial<ContainerImageAnnotation> it)
-            => it.AddFieldName("buildUrl");
-        
-        public static Partial<ContainerImageAnnotation> WithRevision(this Partial<ContainerImageAnnotation> it)
-            => it.AddFieldName("revision");
-        
-        public static Partial<ContainerImageAnnotation> WithVendor(this Partial<ContainerImageAnnotation> it)
-            => it.AddFieldName("vendor");
-        
-        public static Partial<ContainerImageAnnotation> WithDocumentationUrl(this Partial<ContainerImageAnnotation> it)
-            => it.AddFieldName("documentationUrl");
-        
-        public static Partial<ContainerImageAnnotation> WithLicenses(this Partial<ContainerImageAnnotation> it)
-            => it.AddFieldName("licenses");
-        
-    }
+    public static Partial<ContainerImageAnnotation> WithCreated(this Partial<ContainerImageAnnotation> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<ContainerImageAnnotation> WithBuildName(this Partial<ContainerImageAnnotation> it)
+        => it.AddFieldName("buildName");
+    
+    public static Partial<ContainerImageAnnotation> WithBuildUrl(this Partial<ContainerImageAnnotation> it)
+        => it.AddFieldName("buildUrl");
+    
+    public static Partial<ContainerImageAnnotation> WithRevision(this Partial<ContainerImageAnnotation> it)
+        => it.AddFieldName("revision");
+    
+    public static Partial<ContainerImageAnnotation> WithVendor(this Partial<ContainerImageAnnotation> it)
+        => it.AddFieldName("vendor");
+    
+    public static Partial<ContainerImageAnnotation> WithDocumentationUrl(this Partial<ContainerImageAnnotation> it)
+        => it.AddFieldName("documentationUrl");
+    
+    public static Partial<ContainerImageAnnotation> WithLicenses(this Partial<ContainerImageAnnotation> it)
+        => it.AddFieldName("licenses");
     
 }
+

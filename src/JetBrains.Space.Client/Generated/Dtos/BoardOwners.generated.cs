@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class BoardOwners
+     : IPropagatePropertyAccessPath
 {
-    public sealed class BoardOwners
-         : IPropagatePropertyAccessPath
+    public BoardOwners() { }
+    
+    public BoardOwners(BoardMemberOwners members, BoardTeamOwners teams)
     {
-        public BoardOwners() { }
-        
-        public BoardOwners(BoardMemberOwners members, BoardTeamOwners teams)
-        {
-            Members = members;
-            Teams = teams;
-        }
-        
-        private PropertyValue<BoardMemberOwners> _members = new PropertyValue<BoardMemberOwners>(nameof(BoardOwners), nameof(Members));
-        
-        [Required]
-        [JsonPropertyName("members")]
-        public BoardMemberOwners Members
-        {
-            get => _members.GetValue();
-            set => _members.SetValue(value);
-        }
-    
-        private PropertyValue<BoardTeamOwners> _teams = new PropertyValue<BoardTeamOwners>(nameof(BoardOwners), nameof(Teams));
-        
-        [Required]
-        [JsonPropertyName("teams")]
-        public BoardTeamOwners Teams
-        {
-            get => _teams.GetValue();
-            set => _teams.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _members.SetAccessPath(path, validateHasBeenSet);
-            _teams.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Members = members;
+        Teams = teams;
     }
     
+    private PropertyValue<BoardMemberOwners> _members = new PropertyValue<BoardMemberOwners>(nameof(BoardOwners), nameof(Members));
+    
+    [Required]
+    [JsonPropertyName("members")]
+    public BoardMemberOwners Members
+    {
+        get => _members.GetValue();
+        set => _members.SetValue(value);
+    }
+
+    private PropertyValue<BoardTeamOwners> _teams = new PropertyValue<BoardTeamOwners>(nameof(BoardOwners), nameof(Teams));
+    
+    [Required]
+    [JsonPropertyName("teams")]
+    public BoardTeamOwners Teams
+    {
+        get => _teams.GetValue();
+        set => _teams.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _members.SetAccessPath(path, validateHasBeenSet);
+        _teams.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

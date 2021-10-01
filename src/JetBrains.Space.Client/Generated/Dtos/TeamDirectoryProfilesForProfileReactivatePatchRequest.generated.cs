@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class TeamDirectoryProfilesForProfileReactivatePatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class TeamDirectoryProfilesForProfileReactivatePatchRequest
-         : IPropagatePropertyAccessPath
+    public TeamDirectoryProfilesForProfileReactivatePatchRequest() { }
+    
+    public TeamDirectoryProfilesForProfileReactivatePatchRequest(DateTime? joined = null)
     {
-        public TeamDirectoryProfilesForProfileReactivatePatchRequest() { }
-        
-        public TeamDirectoryProfilesForProfileReactivatePatchRequest(DateTime? joined = null)
-        {
-            Joined = joined;
-        }
-        
-        private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileReactivatePatchRequest), nameof(Joined));
-        
-        [JsonPropertyName("joined")]
-        [JsonConverter(typeof(SpaceDateConverter))]
-        public DateTime? Joined
-        {
-            get => _joined.GetValue();
-            set => _joined.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _joined.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Joined = joined;
     }
     
+    private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileReactivatePatchRequest), nameof(Joined));
+    
+    [JsonPropertyName("joined")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? Joined
+    {
+        get => _joined.GetValue();
+        set => _joined.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _joined.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

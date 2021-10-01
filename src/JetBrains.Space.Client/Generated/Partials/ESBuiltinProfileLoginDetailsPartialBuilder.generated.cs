@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESBuiltinProfileLoginDetailsPartialBuilder
+namespace JetBrains.Space.Client.ESBuiltinProfileLoginDetailsPartialBuilder;
+
+public static class ESBuiltinProfileLoginDetailsPartialExtensions
 {
-    public static class ESBuiltinProfileLoginDetailsPartialExtensions
-    {
-        public static Partial<ESBuiltinProfileLoginDetails> WithPasswordChangeRequest(this Partial<ESBuiltinProfileLoginDetails> it)
-            => it.AddFieldName("passwordChangeRequest");
-        
-    }
+    public static Partial<ESBuiltinProfileLoginDetails> WithPasswordChangeRequest(this Partial<ESBuiltinProfileLoginDetails> it)
+        => it.AddFieldName("passwordChangeRequest");
     
 }
+

@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RightsGroup
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RightsGroup
-         : IPropagatePropertyAccessPath
+    public RightsGroup() { }
+    
+    public RightsGroup(string title, int priority, List<Right> rights)
     {
-        public RightsGroup() { }
-        
-        public RightsGroup(string title, int priority, List<Right> rights)
-        {
-            Title = title;
-            Priority = priority;
-            Rights = rights;
-        }
-        
-        private PropertyValue<string> _title = new PropertyValue<string>(nameof(RightsGroup), nameof(Title));
-        
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title
-        {
-            get => _title.GetValue();
-            set => _title.SetValue(value);
-        }
-    
-        private PropertyValue<int> _priority = new PropertyValue<int>(nameof(RightsGroup), nameof(Priority));
-        
-        [Required]
-        [JsonPropertyName("priority")]
-        public int Priority
-        {
-            get => _priority.GetValue();
-            set => _priority.SetValue(value);
-        }
-    
-        private PropertyValue<List<Right>> _rights = new PropertyValue<List<Right>>(nameof(RightsGroup), nameof(Rights), new List<Right>());
-        
-        [Required]
-        [JsonPropertyName("rights")]
-        public List<Right> Rights
-        {
-            get => _rights.GetValue();
-            set => _rights.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _title.SetAccessPath(path, validateHasBeenSet);
-            _priority.SetAccessPath(path, validateHasBeenSet);
-            _rights.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Title = title;
+        Priority = priority;
+        Rights = rights;
     }
     
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(RightsGroup), nameof(Title));
+    
+    [Required]
+    [JsonPropertyName("title")]
+    public string Title
+    {
+        get => _title.GetValue();
+        set => _title.SetValue(value);
+    }
+
+    private PropertyValue<int> _priority = new PropertyValue<int>(nameof(RightsGroup), nameof(Priority));
+    
+    [Required]
+    [JsonPropertyName("priority")]
+    public int Priority
+    {
+        get => _priority.GetValue();
+        set => _priority.SetValue(value);
+    }
+
+    private PropertyValue<List<Right>> _rights = new PropertyValue<List<Right>>(nameof(RightsGroup), nameof(Rights), new List<Right>());
+    
+    [Required]
+    [JsonPropertyName("rights")]
+    public List<Right> Rights
+    {
+        get => _rights.GetValue();
+        set => _rights.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _title.SetAccessPath(path, validateHasBeenSet);
+        _priority.SetAccessPath(path, validateHasBeenSet);
+        _rights.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

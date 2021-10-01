@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2MaintenanceActionContentPartialBuilder
+namespace JetBrains.Space.Client.M2MaintenanceActionContentPartialBuilder;
+
+public static class M2MaintenanceActionContentPartialExtensions
 {
-    public static class M2MaintenanceActionContentPartialExtensions
-    {
-        public static Partial<M2MaintenanceActionContent> WithAction(this Partial<M2MaintenanceActionContent> it)
-            => it.AddFieldName("action");
-        
-        public static Partial<M2MaintenanceActionContent> WithIsSuccess(this Partial<M2MaintenanceActionContent> it)
-            => it.AddFieldName("success");
-        
-        public static Partial<M2MaintenanceActionContent> WithDetails(this Partial<M2MaintenanceActionContent> it)
-            => it.AddFieldName("details");
-        
-    }
+    public static Partial<M2MaintenanceActionContent> WithAction(this Partial<M2MaintenanceActionContent> it)
+        => it.AddFieldName("action");
+    
+    public static Partial<M2MaintenanceActionContent> WithIsSuccess(this Partial<M2MaintenanceActionContent> it)
+        => it.AddFieldName("success");
+    
+    public static Partial<M2MaintenanceActionContent> WithDetails(this Partial<M2MaintenanceActionContent> it)
+        => it.AddFieldName("details");
     
 }
+

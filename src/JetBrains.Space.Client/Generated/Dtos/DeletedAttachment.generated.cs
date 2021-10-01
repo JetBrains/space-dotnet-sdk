@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DeletedAttachment
+     : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class DeletedAttachment
-         : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "DeletedAttachment";
+    
+    public DeletedAttachment() { }
+    
+    public DeletedAttachment(string deletedIdentity)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "DeletedAttachment";
-        
-        public DeletedAttachment() { }
-        
-        public DeletedAttachment(string deletedIdentity)
-        {
-            DeletedIdentity = deletedIdentity;
-        }
-        
-        private PropertyValue<string> _deletedIdentity = new PropertyValue<string>(nameof(DeletedAttachment), nameof(DeletedIdentity));
-        
-        [Required]
-        [JsonPropertyName("deletedIdentity")]
-        public string DeletedIdentity
-        {
-            get => _deletedIdentity.GetValue();
-            set => _deletedIdentity.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _deletedIdentity.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        DeletedIdentity = deletedIdentity;
     }
     
+    private PropertyValue<string> _deletedIdentity = new PropertyValue<string>(nameof(DeletedAttachment), nameof(DeletedIdentity));
+    
+    [Required]
+    [JsonPropertyName("deletedIdentity")]
+    public string DeletedIdentity
+    {
+        get => _deletedIdentity.GetValue();
+        set => _deletedIdentity.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _deletedIdentity.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

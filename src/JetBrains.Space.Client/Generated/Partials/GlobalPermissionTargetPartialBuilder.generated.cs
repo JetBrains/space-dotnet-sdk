@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GlobalPermissionTargetPartialBuilder
+namespace JetBrains.Space.Client.GlobalPermissionTargetPartialBuilder;
+
+public static class GlobalPermissionTargetPartialExtensions
 {
-    public static class GlobalPermissionTargetPartialExtensions
-    {
-    }
-    
 }
+

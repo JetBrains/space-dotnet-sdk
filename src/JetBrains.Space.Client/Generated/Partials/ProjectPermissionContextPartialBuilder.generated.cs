@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectPermissionContextPartialBuilder
+namespace JetBrains.Space.Client.ProjectPermissionContextPartialBuilder;
+
+public static class ProjectPermissionContextPartialExtensions
 {
-    public static class ProjectPermissionContextPartialExtensions
-    {
-        public static Partial<ProjectPermissionContext> WithProject(this Partial<ProjectPermissionContext> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<ProjectPermissionContext> WithProject(this Partial<ProjectPermissionContext> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
-    }
+    public static Partial<ProjectPermissionContext> WithProject(this Partial<ProjectPermissionContext> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<ProjectPermissionContext> WithProject(this Partial<ProjectPermissionContext> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
     
 }
+

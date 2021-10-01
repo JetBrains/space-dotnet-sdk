@@ -27,37 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TodoContentPartialBuilder
+namespace JetBrains.Space.Client.TodoContentPartialBuilder;
+
+public static class TodoContentPartialExtensions
 {
-    public static class TodoContentPartialExtensions
-    {
-        public static Partial<TodoContent> WithOriginalText(this Partial<TodoContent> it)
-            => it.AddFieldName("originalText");
-        
-        public static Partial<TodoContent> WithLink(this Partial<TodoContent> it)
-            => it.AddFieldName("link");
-        
-        public static Partial<TodoContent> WithKind(this Partial<TodoContent> it)
-            => it.AddFieldName("kind");
-        
-        public static Partial<TodoContent> WithKind(this Partial<TodoContent> it, Func<Partial<TodoItemContentKind>, Partial<TodoItemContentKind>> partialBuilder)
-            => it.AddFieldName("kind", partialBuilder(new Partial<TodoItemContentKind>(it)));
-        
-        public static Partial<TodoContent> WithPrincipal(this Partial<TodoContent> it)
-            => it.AddFieldName("principal");
-        
-        public static Partial<TodoContent> WithPrincipal(this Partial<TodoContent> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<TodoContent> WithTime(this Partial<TodoContent> it)
-            => it.AddFieldName("time");
-        
-        public static Partial<TodoContent> WithText(this Partial<TodoContent> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<TodoContent> WithExtId(this Partial<TodoContent> it)
-            => it.AddFieldName("extId");
-        
-    }
+    public static Partial<TodoContent> WithOriginalText(this Partial<TodoContent> it)
+        => it.AddFieldName("originalText");
+    
+    public static Partial<TodoContent> WithLink(this Partial<TodoContent> it)
+        => it.AddFieldName("link");
+    
+    public static Partial<TodoContent> WithKind(this Partial<TodoContent> it)
+        => it.AddFieldName("kind");
+    
+    public static Partial<TodoContent> WithKind(this Partial<TodoContent> it, Func<Partial<TodoItemContentKind>, Partial<TodoItemContentKind>> partialBuilder)
+        => it.AddFieldName("kind", partialBuilder(new Partial<TodoItemContentKind>(it)));
+    
+    public static Partial<TodoContent> WithPrincipal(this Partial<TodoContent> it)
+        => it.AddFieldName("principal");
+    
+    public static Partial<TodoContent> WithPrincipal(this Partial<TodoContent> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<TodoContent> WithTime(this Partial<TodoContent> it)
+        => it.AddFieldName("time");
+    
+    public static Partial<TodoContent> WithText(this Partial<TodoContent> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<TodoContent> WithExtId(this Partial<TodoContent> it)
+        => it.AddFieldName("extId");
     
 }
+

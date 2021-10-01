@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class VcsHostingPassword
+     : IPropagatePropertyAccessPath
 {
-    public sealed class VcsHostingPassword
-         : IPropagatePropertyAccessPath
+    public VcsHostingPassword() { }
+    
+    public VcsHostingPassword(string fingerprint, DateTime? lastUsed = null)
     {
-        public VcsHostingPassword() { }
-        
-        public VcsHostingPassword(string fingerprint, DateTime? lastUsed = null)
-        {
-            Fingerprint = fingerprint;
-            LastUsed = lastUsed;
-        }
-        
-        private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(VcsHostingPassword), nameof(Fingerprint));
-        
-        [Required]
-        [JsonPropertyName("fingerprint")]
-        public string Fingerprint
-        {
-            get => _fingerprint.GetValue();
-            set => _fingerprint.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _lastUsed = new PropertyValue<DateTime?>(nameof(VcsHostingPassword), nameof(LastUsed));
-        
-        [JsonPropertyName("lastUsed")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? LastUsed
-        {
-            get => _lastUsed.GetValue();
-            set => _lastUsed.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _fingerprint.SetAccessPath(path, validateHasBeenSet);
-            _lastUsed.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Fingerprint = fingerprint;
+        LastUsed = lastUsed;
     }
     
+    private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(VcsHostingPassword), nameof(Fingerprint));
+    
+    [Required]
+    [JsonPropertyName("fingerprint")]
+    public string Fingerprint
+    {
+        get => _fingerprint.GetValue();
+        set => _fingerprint.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _lastUsed = new PropertyValue<DateTime?>(nameof(VcsHostingPassword), nameof(LastUsed));
+    
+    [JsonPropertyName("lastUsed")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? LastUsed
+    {
+        get => _lastUsed.GetValue();
+        set => _lastUsed.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _fingerprint.SetAccessPath(path, validateHasBeenSet);
+        _lastUsed.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

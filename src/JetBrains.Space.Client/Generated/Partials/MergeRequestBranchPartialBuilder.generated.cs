@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MergeRequestBranchPartialBuilder
+namespace JetBrains.Space.Client.MergeRequestBranchPartialBuilder;
+
+public static class MergeRequestBranchPartialExtensions
 {
-    public static class MergeRequestBranchPartialExtensions
-    {
-        public static Partial<MergeRequestBranch> WithDisplayName(this Partial<MergeRequestBranch> it)
-            => it.AddFieldName("displayName");
-        
-        public static Partial<MergeRequestBranch> WithRef(this Partial<MergeRequestBranch> it)
-            => it.AddFieldName("ref");
-        
-        public static Partial<MergeRequestBranch> WithIsDeleted(this Partial<MergeRequestBranch> it)
-            => it.AddFieldName("deleted");
-        
-        public static Partial<MergeRequestBranch> WithHead(this Partial<MergeRequestBranch> it)
-            => it.AddFieldName("head");
-        
-    }
+    public static Partial<MergeRequestBranch> WithDisplayName(this Partial<MergeRequestBranch> it)
+        => it.AddFieldName("displayName");
+    
+    public static Partial<MergeRequestBranch> WithRef(this Partial<MergeRequestBranch> it)
+        => it.AddFieldName("ref");
+    
+    public static Partial<MergeRequestBranch> WithIsDeleted(this Partial<MergeRequestBranch> it)
+        => it.AddFieldName("deleted");
+    
+    public static Partial<MergeRequestBranch> WithHead(this Partial<MergeRequestBranch> it)
+        => it.AddFieldName("head");
     
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AutomationServiceMetadataPartialBuilder
+namespace JetBrains.Space.Client.AutomationServiceMetadataPartialBuilder;
+
+public static class AutomationServiceMetadataPartialExtensions
 {
-    public static class AutomationServiceMetadataPartialExtensions
-    {
-        public static Partial<AutomationServiceMetadata> WithProject(this Partial<AutomationServiceMetadata> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<AutomationServiceMetadata> WithProject(this Partial<AutomationServiceMetadata> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
-    }
+    public static Partial<AutomationServiceMetadata> WithProject(this Partial<AutomationServiceMetadata> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<AutomationServiceMetadata> WithProject(this Partial<AutomationServiceMetadata> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
     
 }
+

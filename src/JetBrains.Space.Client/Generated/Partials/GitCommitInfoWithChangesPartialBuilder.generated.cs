@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.GitCommitInfoWithChangesPartialBuilder
+namespace JetBrains.Space.Client.GitCommitInfoWithChangesPartialBuilder;
+
+public static class GitCommitInfoWithChangesPartialExtensions
 {
-    public static class GitCommitInfoWithChangesPartialExtensions
-    {
-        public static Partial<GitCommitInfoWithChanges> WithCommit(this Partial<GitCommitInfoWithChanges> it)
-            => it.AddFieldName("commit");
-        
-        public static Partial<GitCommitInfoWithChanges> WithCommit(this Partial<GitCommitInfoWithChanges> it, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>> partialBuilder)
-            => it.AddFieldName("commit", partialBuilder(new Partial<GitCommitInfo>(it)));
-        
-        public static Partial<GitCommitInfoWithChanges> WithChanges(this Partial<GitCommitInfoWithChanges> it)
-            => it.AddFieldName("changes");
-        
-        public static Partial<GitCommitInfoWithChanges> WithChanges(this Partial<GitCommitInfoWithChanges> it, Func<Partial<GitCommitChanges>, Partial<GitCommitChanges>> partialBuilder)
-            => it.AddFieldName("changes", partialBuilder(new Partial<GitCommitChanges>(it)));
-        
-    }
+    public static Partial<GitCommitInfoWithChanges> WithCommit(this Partial<GitCommitInfoWithChanges> it)
+        => it.AddFieldName("commit");
+    
+    public static Partial<GitCommitInfoWithChanges> WithCommit(this Partial<GitCommitInfoWithChanges> it, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>> partialBuilder)
+        => it.AddFieldName("commit", partialBuilder(new Partial<GitCommitInfo>(it)));
+    
+    public static Partial<GitCommitInfoWithChanges> WithChanges(this Partial<GitCommitInfoWithChanges> it)
+        => it.AddFieldName("changes");
+    
+    public static Partial<GitCommitInfoWithChanges> WithChanges(this Partial<GitCommitInfoWithChanges> it, Func<Partial<GitCommitChanges>, Partial<GitCommitChanges>> partialBuilder)
+        => it.AddFieldName("changes", partialBuilder(new Partial<GitCommitChanges>(it)));
     
 }
+

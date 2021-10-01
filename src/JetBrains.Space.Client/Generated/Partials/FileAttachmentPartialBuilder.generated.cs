@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FileAttachmentPartialBuilder
+namespace JetBrains.Space.Client.FileAttachmentPartialBuilder;
+
+public static class FileAttachmentPartialExtensions
 {
-    public static class FileAttachmentPartialExtensions
-    {
-        public static Partial<FileAttachment> WithId(this Partial<FileAttachment> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<FileAttachment> WithSizeBytes(this Partial<FileAttachment> it)
-            => it.AddFieldName("sizeBytes");
-        
-        public static Partial<FileAttachment> WithFilename(this Partial<FileAttachment> it)
-            => it.AddFieldName("filename");
-        
-    }
+    public static Partial<FileAttachment> WithId(this Partial<FileAttachment> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<FileAttachment> WithSizeBytes(this Partial<FileAttachment> it)
+        => it.AddFieldName("sizeBytes");
+    
+    public static Partial<FileAttachment> WithFilename(this Partial<FileAttachment> it)
+        => it.AddFieldName("filename");
     
 }
+

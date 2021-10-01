@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class TDContactKind
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class TDContactKind
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "TD_ContactKind";
+    
+    public static TDContactKindEmail Email()
+        => new TDContactKindEmail();
+    
+    public static TDContactKindLink Link()
+        => new TDContactKindLink();
+    
+    public static TDContactKindMessenger Messenger(string messenger)
+        => new TDContactKindMessenger(messenger: messenger);
+    
+    public static TDContactKindPhoneNumber PhoneNumber(string type)
+        => new TDContactKindPhoneNumber(type: type);
+    
+    public TDContactKind() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "TD_ContactKind";
-        
-        public static TDContactKindEmail Email()
-            => new TDContactKindEmail();
-        
-        public static TDContactKindLink Link()
-            => new TDContactKindLink();
-        
-        public static TDContactKindMessenger Messenger(string messenger)
-            => new TDContactKindMessenger(messenger: messenger);
-        
-        public static TDContactKindPhoneNumber PhoneNumber(string type)
-            => new TDContactKindPhoneNumber(type: type);
-        
-        public TDContactKind() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

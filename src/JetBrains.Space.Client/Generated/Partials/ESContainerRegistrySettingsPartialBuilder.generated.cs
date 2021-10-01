@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ESContainerRegistrySettingsPartialBuilder
+namespace JetBrains.Space.Client.ESContainerRegistrySettingsPartialBuilder;
+
+public static class ESContainerRegistrySettingsPartialExtensions
 {
-    public static class ESContainerRegistrySettingsPartialExtensions
-    {
-        public static Partial<ESContainerRegistrySettings> WithIsImmutableTags(this Partial<ESContainerRegistrySettings> it)
-            => it.AddFieldName("immutableTags");
-        
-        public static Partial<ESContainerRegistrySettings> WithRetentionPolicyParams(this Partial<ESContainerRegistrySettings> it)
-            => it.AddFieldName("retentionPolicyParams");
-        
-        public static Partial<ESContainerRegistrySettings> WithRetentionPolicyParams(this Partial<ESContainerRegistrySettings> it, Func<Partial<RetentionPolicyParams>, Partial<RetentionPolicyParams>> partialBuilder)
-            => it.AddFieldName("retentionPolicyParams", partialBuilder(new Partial<RetentionPolicyParams>(it)));
-        
-        public static Partial<ESContainerRegistrySettings> WithIsImmutablePackageVersions(this Partial<ESContainerRegistrySettings> it)
-            => it.AddFieldName("immutablePackageVersions");
-        
-    }
+    public static Partial<ESContainerRegistrySettings> WithIsImmutableTags(this Partial<ESContainerRegistrySettings> it)
+        => it.AddFieldName("immutableTags");
+    
+    public static Partial<ESContainerRegistrySettings> WithRetentionPolicyParams(this Partial<ESContainerRegistrySettings> it)
+        => it.AddFieldName("retentionPolicyParams");
+    
+    public static Partial<ESContainerRegistrySettings> WithRetentionPolicyParams(this Partial<ESContainerRegistrySettings> it, Func<Partial<RetentionPolicyParams>, Partial<RetentionPolicyParams>> partialBuilder)
+        => it.AddFieldName("retentionPolicyParams", partialBuilder(new Partial<RetentionPolicyParams>(it)));
+    
+    public static Partial<ESContainerRegistrySettings> WithIsImmutablePackageVersions(this Partial<ESContainerRegistrySettings> it)
+        => it.AddFieldName("immutablePackageVersions");
     
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContactQuickInfoDefaultPartialBuilder
+namespace JetBrains.Space.Client.M2ChannelContactQuickInfoDefaultPartialBuilder;
+
+public static class M2ChannelContactQuickInfoDefaultPartialExtensions
 {
-    public static class M2ChannelContactQuickInfoDefaultPartialExtensions
-    {
-        public static Partial<M2ChannelContactQuickInfoDefault> WithName(this Partial<M2ChannelContactQuickInfoDefault> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<M2ChannelContactQuickInfoDefault> WithKey(this Partial<M2ChannelContactQuickInfoDefault> it)
-            => it.AddFieldName("key");
-        
-    }
+    public static Partial<M2ChannelContactQuickInfoDefault> WithName(this Partial<M2ChannelContactQuickInfoDefault> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<M2ChannelContactQuickInfoDefault> WithKey(this Partial<M2ChannelContactQuickInfoDefault> it)
+        => it.AddFieldName("key");
     
 }
+

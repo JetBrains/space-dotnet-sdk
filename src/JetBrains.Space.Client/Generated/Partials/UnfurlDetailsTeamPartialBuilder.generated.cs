@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsTeamPartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsTeamPartialBuilder;
+
+public static class UnfurlDetailsTeamPartialExtensions
 {
-    public static class UnfurlDetailsTeamPartialExtensions
-    {
-        public static Partial<UnfurlDetailsTeam> WithTeam(this Partial<UnfurlDetailsTeam> it)
-            => it.AddFieldName("team");
-        
-        public static Partial<UnfurlDetailsTeam> WithTeam(this Partial<UnfurlDetailsTeam> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-            => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
-        
-        public static Partial<UnfurlDetailsTeam> WithIsStrikeThrough(this Partial<UnfurlDetailsTeam> it)
-            => it.AddFieldName("strikeThrough");
-        
-    }
+    public static Partial<UnfurlDetailsTeam> WithTeam(this Partial<UnfurlDetailsTeam> it)
+        => it.AddFieldName("team");
+    
+    public static Partial<UnfurlDetailsTeam> WithTeam(this Partial<UnfurlDetailsTeam> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+        => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
+    
+    public static Partial<UnfurlDetailsTeam> WithIsStrikeThrough(this Partial<UnfurlDetailsTeam> it)
+        => it.AddFieldName("strikeThrough");
     
 }
+

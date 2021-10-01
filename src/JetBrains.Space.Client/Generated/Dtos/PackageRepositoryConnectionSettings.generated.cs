@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public abstract class PackageRepositoryConnectionSettings
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public abstract class PackageRepositoryConnectionSettings
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "PackageRepositoryConnectionSettings";
+    
+    public static MavenRepositoryConnectionSettings MavenRepositoryConnectionSettings(NexusStagingProfile? nexusStagingProfile = null)
+        => new MavenRepositoryConnectionSettings(nexusStagingProfile: nexusStagingProfile);
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "PackageRepositoryConnectionSettings";
-        
-        public static MavenRepositoryConnectionSettings MavenRepositoryConnectionSettings(NexusStagingProfile? nexusStagingProfile = null)
-            => new MavenRepositoryConnectionSettings(nexusStagingProfile: nexusStagingProfile);
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

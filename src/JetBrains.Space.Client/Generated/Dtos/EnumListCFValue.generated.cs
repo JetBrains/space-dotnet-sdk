@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class EnumListCFValue
+     : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class EnumListCFValue
-         : CFValue, CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "EnumListCFValue";
+    
+    public EnumListCFValue() { }
+    
+    public EnumListCFValue(List<EnumValueData> values)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "EnumListCFValue";
-        
-        public EnumListCFValue() { }
-        
-        public EnumListCFValue(List<EnumValueData> values)
-        {
-            Values = values;
-        }
-        
-        private PropertyValue<List<EnumValueData>> _values = new PropertyValue<List<EnumValueData>>(nameof(EnumListCFValue), nameof(Values), new List<EnumValueData>());
-        
-        [Required]
-        [JsonPropertyName("values")]
-        public List<EnumValueData> Values
-        {
-            get => _values.GetValue();
-            set => _values.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _values.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Values = values;
     }
     
+    private PropertyValue<List<EnumValueData>> _values = new PropertyValue<List<EnumValueData>>(nameof(EnumListCFValue), nameof(Values), new List<EnumValueData>());
+    
+    [Required]
+    [JsonPropertyName("values")]
+    public List<EnumValueData> Values
+    {
+        get => _values.GetValue();
+        set => _values.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _values.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

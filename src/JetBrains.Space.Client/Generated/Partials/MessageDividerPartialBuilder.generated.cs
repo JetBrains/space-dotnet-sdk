@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageDividerPartialBuilder
+namespace JetBrains.Space.Client.MessageDividerPartialBuilder;
+
+public static class MessageDividerPartialExtensions
 {
-    public static class MessageDividerPartialExtensions
-    {
-    }
-    
 }
+

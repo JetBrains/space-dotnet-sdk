@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContentCodeReviewDiscussionPartialBuilder
+namespace JetBrains.Space.Client.M2ChannelContentCodeReviewDiscussionPartialBuilder;
+
+public static class M2ChannelContentCodeReviewDiscussionPartialExtensions
 {
-    public static class M2ChannelContentCodeReviewDiscussionPartialExtensions
-    {
-        public static Partial<M2ChannelContentCodeReviewDiscussion> WithCodeReviewDiscussion(this Partial<M2ChannelContentCodeReviewDiscussion> it)
-            => it.AddFieldName("codeReviewDiscussion");
-        
-        public static Partial<M2ChannelContentCodeReviewDiscussion> WithNotificationDefaults(this Partial<M2ChannelContentCodeReviewDiscussion> it)
-            => it.AddFieldName("notificationDefaults");
-        
-        public static Partial<M2ChannelContentCodeReviewDiscussion> WithNotificationDefaults(this Partial<M2ChannelContentCodeReviewDiscussion> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
-        
-    }
+    public static Partial<M2ChannelContentCodeReviewDiscussion> WithCodeReviewDiscussion(this Partial<M2ChannelContentCodeReviewDiscussion> it)
+        => it.AddFieldName("codeReviewDiscussion");
+    
+    public static Partial<M2ChannelContentCodeReviewDiscussion> WithNotificationDefaults(this Partial<M2ChannelContentCodeReviewDiscussion> it)
+        => it.AddFieldName("notificationDefaults");
+    
+    public static Partial<M2ChannelContentCodeReviewDiscussion> WithNotificationDefaults(this Partial<M2ChannelContentCodeReviewDiscussion> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
+        => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
     
 }
+

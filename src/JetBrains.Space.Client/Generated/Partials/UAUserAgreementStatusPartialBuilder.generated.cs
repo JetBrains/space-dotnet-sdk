@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UAUserAgreementStatusPartialBuilder
+namespace JetBrains.Space.Client.UAUserAgreementStatusPartialBuilder;
+
+public static class UAUserAgreementStatusPartialExtensions
 {
-    public static class UAUserAgreementStatusPartialExtensions
-    {
-    }
-    
 }
+

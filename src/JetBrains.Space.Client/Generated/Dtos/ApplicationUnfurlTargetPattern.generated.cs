@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ApplicationUnfurlTargetPattern
+     : ApplicationUnfurlTarget, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ApplicationUnfurlTargetPattern
-         : ApplicationUnfurlTarget, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ApplicationUnfurlTarget.Pattern";
+    
+    public ApplicationUnfurlTargetPattern() { }
+    
+    public ApplicationUnfurlTargetPattern(string pattern)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ApplicationUnfurlTarget.Pattern";
-        
-        public ApplicationUnfurlTargetPattern() { }
-        
-        public ApplicationUnfurlTargetPattern(string pattern)
-        {
-            Pattern = pattern;
-        }
-        
-        private PropertyValue<string> _pattern = new PropertyValue<string>(nameof(ApplicationUnfurlTargetPattern), nameof(Pattern));
-        
-        [Required]
-        [JsonPropertyName("pattern")]
-        public string Pattern
-        {
-            get => _pattern.GetValue();
-            set => _pattern.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _pattern.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Pattern = pattern;
     }
     
+    private PropertyValue<string> _pattern = new PropertyValue<string>(nameof(ApplicationUnfurlTargetPattern), nameof(Pattern));
+    
+    [Required]
+    [JsonPropertyName("pattern")]
+    public string Pattern
+    {
+        get => _pattern.GetValue();
+        set => _pattern.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _pattern.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

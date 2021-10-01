@@ -27,46 +27,45 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ESHiddenAuthModuleSettings
+     : ESAuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ESHiddenAuthModuleSettings
-         : ESAuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ES_HiddenAuthModuleSettings";
+    
+    public ESHiddenAuthModuleSettings() { }
+    
+    public ESHiddenAuthModuleSettings(bool? passwordModule = null, bool? federatedModule = null)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "ES_HiddenAuthModuleSettings";
-        
-        public ESHiddenAuthModuleSettings() { }
-        
-        public ESHiddenAuthModuleSettings(bool? passwordModule = null, bool? federatedModule = null)
-        {
-            IsPasswordModule = passwordModule;
-            IsFederatedModule = federatedModule;
-        }
-        
-        private PropertyValue<bool?> _passwordModule = new PropertyValue<bool?>(nameof(ESHiddenAuthModuleSettings), nameof(IsPasswordModule));
-        
-        [JsonPropertyName("passwordModule")]
-        public bool? IsPasswordModule
-        {
-            get => _passwordModule.GetValue();
-            set => _passwordModule.SetValue(value);
-        }
-    
-        private PropertyValue<bool?> _federatedModule = new PropertyValue<bool?>(nameof(ESHiddenAuthModuleSettings), nameof(IsFederatedModule));
-        
-        [JsonPropertyName("federatedModule")]
-        public bool? IsFederatedModule
-        {
-            get => _federatedModule.GetValue();
-            set => _federatedModule.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _passwordModule.SetAccessPath(path, validateHasBeenSet);
-            _federatedModule.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        IsPasswordModule = passwordModule;
+        IsFederatedModule = federatedModule;
     }
     
+    private PropertyValue<bool?> _passwordModule = new PropertyValue<bool?>(nameof(ESHiddenAuthModuleSettings), nameof(IsPasswordModule));
+    
+    [JsonPropertyName("passwordModule")]
+    public bool? IsPasswordModule
+    {
+        get => _passwordModule.GetValue();
+        set => _passwordModule.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _federatedModule = new PropertyValue<bool?>(nameof(ESHiddenAuthModuleSettings), nameof(IsFederatedModule));
+    
+    [JsonPropertyName("federatedModule")]
+    public bool? IsFederatedModule
+    {
+        get => _federatedModule.GetValue();
+        set => _federatedModule.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _passwordModule.SetAccessPath(path, validateHasBeenSet);
+        _federatedModule.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewWebhookEventPartialBuilder
+namespace JetBrains.Space.Client.CodeReviewWebhookEventPartialBuilder;
+
+public static class CodeReviewWebhookEventPartialExtensions
 {
-    public static class CodeReviewWebhookEventPartialExtensions
-    {
-        public static Partial<CodeReviewWebhookEvent> WithProjectKey(this Partial<CodeReviewWebhookEvent> it)
-            => it.AddFieldName("projectKey");
-        
-        public static Partial<CodeReviewWebhookEvent> WithProjectKey(this Partial<CodeReviewWebhookEvent> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
-            => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
-        
-        public static Partial<CodeReviewWebhookEvent> WithRepository(this Partial<CodeReviewWebhookEvent> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<CodeReviewWebhookEvent> WithReviewId(this Partial<CodeReviewWebhookEvent> it)
-            => it.AddFieldName("reviewId");
-        
-        public static Partial<CodeReviewWebhookEvent> WithTitle(this Partial<CodeReviewWebhookEvent> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<CodeReviewWebhookEvent> WithIsMergeRequest(this Partial<CodeReviewWebhookEvent> it)
-            => it.AddFieldName("isMergeRequest");
-        
-    }
+    public static Partial<CodeReviewWebhookEvent> WithProjectKey(this Partial<CodeReviewWebhookEvent> it)
+        => it.AddFieldName("projectKey");
+    
+    public static Partial<CodeReviewWebhookEvent> WithProjectKey(this Partial<CodeReviewWebhookEvent> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
+        => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
+    
+    public static Partial<CodeReviewWebhookEvent> WithRepository(this Partial<CodeReviewWebhookEvent> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<CodeReviewWebhookEvent> WithReviewId(this Partial<CodeReviewWebhookEvent> it)
+        => it.AddFieldName("reviewId");
+    
+    public static Partial<CodeReviewWebhookEvent> WithTitle(this Partial<CodeReviewWebhookEvent> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<CodeReviewWebhookEvent> WithIsMergeRequest(this Partial<CodeReviewWebhookEvent> it)
+        => it.AddFieldName("isMergeRequest");
     
 }
+

@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDWorkingDaysPartialBuilder
+namespace JetBrains.Space.Client.TDWorkingDaysPartialBuilder;
+
+public static class TDWorkingDaysPartialExtensions
 {
-    public static class TDWorkingDaysPartialExtensions
-    {
-        public static Partial<TDWorkingDays> WithId(this Partial<TDWorkingDays> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<TDWorkingDays> WithDateStart(this Partial<TDWorkingDays> it)
-            => it.AddFieldName("dateStart");
-        
-        public static Partial<TDWorkingDays> WithDateEnd(this Partial<TDWorkingDays> it)
-            => it.AddFieldName("dateEnd");
-        
-        public static Partial<TDWorkingDays> WithWorkingDaysSpec(this Partial<TDWorkingDays> it)
-            => it.AddFieldName("workingDaysSpec");
-        
-        public static Partial<TDWorkingDays> WithWorkingDaysSpec(this Partial<TDWorkingDays> it, Func<Partial<WorkingDaysSpec>, Partial<WorkingDaysSpec>> partialBuilder)
-            => it.AddFieldName("workingDaysSpec", partialBuilder(new Partial<WorkingDaysSpec>(it)));
-        
-    }
+    public static Partial<TDWorkingDays> WithId(this Partial<TDWorkingDays> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<TDWorkingDays> WithDateStart(this Partial<TDWorkingDays> it)
+        => it.AddFieldName("dateStart");
+    
+    public static Partial<TDWorkingDays> WithDateEnd(this Partial<TDWorkingDays> it)
+        => it.AddFieldName("dateEnd");
+    
+    public static Partial<TDWorkingDays> WithWorkingDaysSpec(this Partial<TDWorkingDays> it)
+        => it.AddFieldName("workingDaysSpec");
+    
+    public static Partial<TDWorkingDays> WithWorkingDaysSpec(this Partial<TDWorkingDays> it, Func<Partial<WorkingDaysSpec>, Partial<WorkingDaysSpec>> partialBuilder)
+        => it.AddFieldName("workingDaysSpec", partialBuilder(new Partial<WorkingDaysSpec>(it)));
     
 }
+

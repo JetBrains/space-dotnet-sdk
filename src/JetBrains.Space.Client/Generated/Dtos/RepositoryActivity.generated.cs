@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RepositoryActivity
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RepositoryActivity
-         : IPropagatePropertyAccessPath
+    public RepositoryActivity() { }
+    
+    public RepositoryActivity(List<Pair<DateTime, int>> lastActivity)
     {
-        public RepositoryActivity() { }
-        
-        public RepositoryActivity(List<Pair<DateTime, int>> lastActivity)
-        {
-            LastActivity = lastActivity;
-        }
-        
-        private PropertyValue<List<Pair<DateTime, int>>> _lastActivity = new PropertyValue<List<Pair<DateTime, int>>>(nameof(RepositoryActivity), nameof(LastActivity), new List<Pair<DateTime, int>>());
-        
-        [Required]
-        [JsonPropertyName("lastActivity")]
-        public List<Pair<DateTime, int>> LastActivity
-        {
-            get => _lastActivity.GetValue();
-            set => _lastActivity.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _lastActivity.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        LastActivity = lastActivity;
     }
     
+    private PropertyValue<List<Pair<DateTime, int>>> _lastActivity = new PropertyValue<List<Pair<DateTime, int>>>(nameof(RepositoryActivity), nameof(LastActivity), new List<Pair<DateTime, int>>());
+    
+    [Required]
+    [JsonPropertyName("lastActivity")]
+    public List<Pair<DateTime, int>> LastActivity
+    {
+        get => _lastActivity.GetValue();
+        set => _lastActivity.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _lastActivity.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UAUserAgreementStatusNotAcceptedPartialBuilder
+namespace JetBrains.Space.Client.UAUserAgreementStatusNotAcceptedPartialBuilder;
+
+public static class UAUserAgreementStatusNotAcceptedPartialExtensions
 {
-    public static class UAUserAgreementStatusNotAcceptedPartialExtensions
-    {
-        public static Partial<UAUserAgreementStatusNotAccepted> WithProfile(this Partial<UAUserAgreementStatusNotAccepted> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<UAUserAgreementStatusNotAccepted> WithProfile(this Partial<UAUserAgreementStatusNotAccepted> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<UAUserAgreementStatusNotAccepted> WithProfile(this Partial<UAUserAgreementStatusNotAccepted> it)
+        => it.AddFieldName("profile");
+    
+    public static Partial<UAUserAgreementStatusNotAccepted> WithProfile(this Partial<UAUserAgreementStatusNotAccepted> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

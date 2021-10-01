@@ -27,13 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CFCommitIdentifierCommitHashPartialBuilder
+namespace JetBrains.Space.Client.CFCommitIdentifierCommitHashPartialBuilder;
+
+public static class CFCommitIdentifierCommitHashPartialExtensions
 {
-    public static class CFCommitIdentifierCommitHashPartialExtensions
-    {
-        public static Partial<CFCommitIdentifierCommitHash> WithCommitHash(this Partial<CFCommitIdentifierCommitHash> it)
-            => it.AddFieldName("commitHash");
-        
-    }
+    public static Partial<CFCommitIdentifierCommitHash> WithCommitHash(this Partial<CFCommitIdentifierCommitHash> it)
+        => it.AddFieldName("commitHash");
     
 }
+

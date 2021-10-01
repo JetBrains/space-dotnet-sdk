@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsRolePartialBuilder
+namespace JetBrains.Space.Client.UnfurlDetailsRolePartialBuilder;
+
+public static class UnfurlDetailsRolePartialExtensions
 {
-    public static class UnfurlDetailsRolePartialExtensions
-    {
-        public static Partial<UnfurlDetailsRole> WithRole(this Partial<UnfurlDetailsRole> it)
-            => it.AddFieldName("role");
-        
-        public static Partial<UnfurlDetailsRole> WithRole(this Partial<UnfurlDetailsRole> it, Func<Partial<TDRole>, Partial<TDRole>> partialBuilder)
-            => it.AddFieldName("role", partialBuilder(new Partial<TDRole>(it)));
-        
-    }
+    public static Partial<UnfurlDetailsRole> WithRole(this Partial<UnfurlDetailsRole> it)
+        => it.AddFieldName("role");
+    
+    public static Partial<UnfurlDetailsRole> WithRole(this Partial<UnfurlDetailsRole> it, Func<Partial<TDRole>, Partial<TDRole>> partialBuilder)
+        => it.AddFieldName("role", partialBuilder(new Partial<TDRole>(it)));
     
 }
+

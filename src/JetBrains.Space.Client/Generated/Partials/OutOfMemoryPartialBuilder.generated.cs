@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.OutOfMemoryPartialBuilder
+namespace JetBrains.Space.Client.OutOfMemoryPartialBuilder;
+
+public static class OutOfMemoryPartialExtensions
 {
-    public static class OutOfMemoryPartialExtensions
-    {
-    }
-    
 }
+

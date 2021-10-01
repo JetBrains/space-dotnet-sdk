@@ -27,10 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TodoItemContentPartialBuilder
+namespace JetBrains.Space.Client.TodoItemContentPartialBuilder;
+
+public static class TodoItemContentPartialExtensions
 {
-    public static class TodoItemContentPartialExtensions
-    {
-    }
-    
 }
+

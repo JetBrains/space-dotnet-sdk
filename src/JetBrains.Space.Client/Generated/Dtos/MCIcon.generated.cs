@@ -27,48 +27,47 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MCIcon
+     : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MCIcon
-         : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MCIcon";
+    
+    public MCIcon() { }
+    
+    public MCIcon(string name, string style)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MCIcon";
-        
-        public MCIcon() { }
-        
-        public MCIcon(string name, string style)
-        {
-            Name = name;
-            Style = style;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(MCIcon), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCIcon), nameof(Style));
-        
-        [Required]
-        [JsonPropertyName("style")]
-        public string Style
-        {
-            get => _style.GetValue();
-            set => _style.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _style.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Style = style;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(MCIcon), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCIcon), nameof(Style));
+    
+    [Required]
+    [JsonPropertyName("style")]
+    public string Style
+    {
+        get => _style.GetValue();
+        set => _style.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _style.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

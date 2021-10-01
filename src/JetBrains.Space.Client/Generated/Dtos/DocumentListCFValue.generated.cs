@@ -27,36 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class DocumentListCFValue
+     : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class DocumentListCFValue
-         : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public override string? ClassName => "DocumentListCFValue";
+    
+    public DocumentListCFValue() { }
+    
+    public DocumentListCFValue(List<Document> documents)
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "DocumentListCFValue";
-        
-        public DocumentListCFValue() { }
-        
-        public DocumentListCFValue(List<Document> documents)
-        {
-            Documents = documents;
-        }
-        
-        private PropertyValue<List<Document>> _documents = new PropertyValue<List<Document>>(nameof(DocumentListCFValue), nameof(Documents), new List<Document>());
-        
-        [Required]
-        [JsonPropertyName("documents")]
-        public List<Document> Documents
-        {
-            get => _documents.GetValue();
-            set => _documents.SetValue(value);
-        }
-    
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _documents.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Documents = documents;
     }
     
+    private PropertyValue<List<Document>> _documents = new PropertyValue<List<Document>>(nameof(DocumentListCFValue), nameof(Documents), new List<Document>());
+    
+    [Required]
+    [JsonPropertyName("documents")]
+    public List<Document> Documents
+    {
+        get => _documents.GetValue();
+        set => _documents.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _documents.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

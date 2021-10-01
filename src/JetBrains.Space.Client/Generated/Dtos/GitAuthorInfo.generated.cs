@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GitAuthorInfo
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GitAuthorInfo
-         : IPropagatePropertyAccessPath
+    public GitAuthorInfo() { }
+    
+    public GitAuthorInfo(string name, string email)
     {
-        public GitAuthorInfo() { }
-        
-        public GitAuthorInfo(string name, string email)
-        {
-            Name = name;
-            Email = email;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(GitAuthorInfo), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<string> _email = new PropertyValue<string>(nameof(GitAuthorInfo), nameof(Email));
-        
-        [Required]
-        [JsonPropertyName("email")]
-        public string Email
-        {
-            get => _email.GetValue();
-            set => _email.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _email.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        Email = email;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(GitAuthorInfo), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string> _email = new PropertyValue<string>(nameof(GitAuthorInfo), nameof(Email));
+    
+    [Required]
+    [JsonPropertyName("email")]
+    public string Email
+    {
+        get => _email.GetValue();
+        set => _email.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _email.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

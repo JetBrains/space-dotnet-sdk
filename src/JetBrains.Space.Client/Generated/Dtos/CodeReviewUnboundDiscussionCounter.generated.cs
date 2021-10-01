@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class CodeReviewUnboundDiscussionCounter
+     : IPropagatePropertyAccessPath
 {
-    public sealed class CodeReviewUnboundDiscussionCounter
-         : IPropagatePropertyAccessPath
+    public CodeReviewUnboundDiscussionCounter() { }
+    
+    public CodeReviewUnboundDiscussionCounter(string id)
     {
-        public CodeReviewUnboundDiscussionCounter() { }
-        
-        public CodeReviewUnboundDiscussionCounter(string id)
-        {
-            Id = id;
-        }
-        
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewUnboundDiscussionCounter), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get => _id.GetValue();
-            set => _id.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _id.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Id = id;
     }
     
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewUnboundDiscussionCounter), nameof(Id));
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue();
+        set => _id.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

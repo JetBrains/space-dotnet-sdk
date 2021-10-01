@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProfileOrganizationEventPartialBuilder
+namespace JetBrains.Space.Client.ProfileOrganizationEventPartialBuilder;
+
+public static class ProfileOrganizationEventPartialExtensions
 {
-    public static class ProfileOrganizationEventPartialExtensions
-    {
-        public static Partial<ProfileOrganizationEvent> WithMeta(this Partial<ProfileOrganizationEvent> it)
-            => it.AddFieldName("meta");
-        
-        public static Partial<ProfileOrganizationEvent> WithMeta(this Partial<ProfileOrganizationEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-            => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
-        
-        public static Partial<ProfileOrganizationEvent> WithMember(this Partial<ProfileOrganizationEvent> it)
-            => it.AddFieldName("member");
-        
-        public static Partial<ProfileOrganizationEvent> WithMember(this Partial<ProfileOrganizationEvent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("member", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<ProfileOrganizationEvent> WithIsJoinedOrganization(this Partial<ProfileOrganizationEvent> it)
-            => it.AddFieldName("joinedOrganization");
-        
-        public static Partial<ProfileOrganizationEvent> WithIsLeftOrganization(this Partial<ProfileOrganizationEvent> it)
-            => it.AddFieldName("leftOrganization");
-        
-    }
+    public static Partial<ProfileOrganizationEvent> WithMeta(this Partial<ProfileOrganizationEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<ProfileOrganizationEvent> WithMeta(this Partial<ProfileOrganizationEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<ProfileOrganizationEvent> WithMember(this Partial<ProfileOrganizationEvent> it)
+        => it.AddFieldName("member");
+    
+    public static Partial<ProfileOrganizationEvent> WithMember(this Partial<ProfileOrganizationEvent> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("member", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<ProfileOrganizationEvent> WithIsJoinedOrganization(this Partial<ProfileOrganizationEvent> it)
+        => it.AddFieldName("joinedOrganization");
+    
+    public static Partial<ProfileOrganizationEvent> WithIsLeftOrganization(this Partial<ProfileOrganizationEvent> it)
+        => it.AddFieldName("leftOrganization");
     
 }
+

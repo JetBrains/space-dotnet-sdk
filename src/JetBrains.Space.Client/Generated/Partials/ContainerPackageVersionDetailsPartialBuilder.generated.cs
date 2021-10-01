@@ -27,91 +27,90 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ContainerPackageVersionDetailsPartialBuilder
+namespace JetBrains.Space.Client.ContainerPackageVersionDetailsPartialBuilder;
+
+public static class ContainerPackageVersionDetailsPartialExtensions
 {
-    public static class ContainerPackageVersionDetailsPartialExtensions
-    {
-        public static Partial<ContainerPackageVersionDetails> WithType(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("type");
-        
-        public static Partial<ContainerPackageVersionDetails> WithType(this Partial<ContainerPackageVersionDetails> it, Func<Partial<PackageType>, Partial<PackageType>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<PackageType>(it)));
-        
-        public static Partial<ContainerPackageVersionDetails> WithRepository(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<ContainerPackageVersionDetails> WithName(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ContainerPackageVersionDetails> WithVersion(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("version");
-        
-        public static Partial<ContainerPackageVersionDetails> WithTags(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("tags");
-        
-        public static Partial<ContainerPackageVersionDetails> WithCreated(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<ContainerPackageVersionDetails> WithAccessed(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("accessed");
-        
-        public static Partial<ContainerPackageVersionDetails> WithDownloads(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("downloads");
-        
-        public static Partial<ContainerPackageVersionDetails> WithIsPinned(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("pinned");
-        
-        public static Partial<ContainerPackageVersionDetails> WithComment(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("comment");
-        
-        public static Partial<ContainerPackageVersionDetails> WithDiskSize(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("diskSize");
-        
-        public static Partial<ContainerPackageVersionDetails> WithAuthor(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("author");
-        
-        public static Partial<ContainerPackageVersionDetails> WithAuthor(this Partial<ContainerPackageVersionDetails> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("author", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<ContainerPackageVersionDetails> WithAuthors(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("authors");
-        
-        public static Partial<ContainerPackageVersionDetails> WithAuthors(this Partial<ContainerPackageVersionDetails> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("authors", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<ContainerPackageVersionDetails> WithOrigin(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("origin");
-        
-        public static Partial<ContainerPackageVersionDetails> WithOrigin(this Partial<ContainerPackageVersionDetails> it, Func<Partial<PackageOrigin>, Partial<PackageOrigin>> partialBuilder)
-            => it.AddFieldName("origin", partialBuilder(new Partial<PackageOrigin>(it)));
-        
-        public static Partial<ContainerPackageVersionDetails> WithMetadata(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("metadata");
-        
-        public static Partial<ContainerPackageVersionDetails> WithMetadata(this Partial<ContainerPackageVersionDetails> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("metadata", partialBuilder(new Partial<string>(it)));
-        
-        public static Partial<ContainerPackageVersionDetails> WithSchemaVersion(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("schemaVersion");
-        
-        public static Partial<ContainerPackageVersionDetails> WithMediaType(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("mediaType");
-        
-        public static Partial<ContainerPackageVersionDetails> WithManifestType(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("manifestType");
-        
-        public static Partial<ContainerPackageVersionDetails> WithImage(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("image");
-        
-        public static Partial<ContainerPackageVersionDetails> WithImage(this Partial<ContainerPackageVersionDetails> it, Func<Partial<ContainerImage>, Partial<ContainerImage>> partialBuilder)
-            => it.AddFieldName("image", partialBuilder(new Partial<ContainerImage>(it)));
-        
-        public static Partial<ContainerPackageVersionDetails> WithChart(this Partial<ContainerPackageVersionDetails> it)
-            => it.AddFieldName("chart");
-        
-        public static Partial<ContainerPackageVersionDetails> WithChart(this Partial<ContainerPackageVersionDetails> it, Func<Partial<ContainerHelmChart>, Partial<ContainerHelmChart>> partialBuilder)
-            => it.AddFieldName("chart", partialBuilder(new Partial<ContainerHelmChart>(it)));
-        
-    }
+    public static Partial<ContainerPackageVersionDetails> WithType(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<ContainerPackageVersionDetails> WithType(this Partial<ContainerPackageVersionDetails> it, Func<Partial<PackageType>, Partial<PackageType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<PackageType>(it)));
+    
+    public static Partial<ContainerPackageVersionDetails> WithRepository(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<ContainerPackageVersionDetails> WithName(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ContainerPackageVersionDetails> WithVersion(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("version");
+    
+    public static Partial<ContainerPackageVersionDetails> WithTags(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("tags");
+    
+    public static Partial<ContainerPackageVersionDetails> WithCreated(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<ContainerPackageVersionDetails> WithAccessed(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("accessed");
+    
+    public static Partial<ContainerPackageVersionDetails> WithDownloads(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("downloads");
+    
+    public static Partial<ContainerPackageVersionDetails> WithIsPinned(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("pinned");
+    
+    public static Partial<ContainerPackageVersionDetails> WithComment(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("comment");
+    
+    public static Partial<ContainerPackageVersionDetails> WithDiskSize(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("diskSize");
+    
+    public static Partial<ContainerPackageVersionDetails> WithAuthor(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("author");
+    
+    public static Partial<ContainerPackageVersionDetails> WithAuthor(this Partial<ContainerPackageVersionDetails> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("author", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<ContainerPackageVersionDetails> WithAuthors(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("authors");
+    
+    public static Partial<ContainerPackageVersionDetails> WithAuthors(this Partial<ContainerPackageVersionDetails> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("authors", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<ContainerPackageVersionDetails> WithOrigin(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("origin");
+    
+    public static Partial<ContainerPackageVersionDetails> WithOrigin(this Partial<ContainerPackageVersionDetails> it, Func<Partial<PackageOrigin>, Partial<PackageOrigin>> partialBuilder)
+        => it.AddFieldName("origin", partialBuilder(new Partial<PackageOrigin>(it)));
+    
+    public static Partial<ContainerPackageVersionDetails> WithMetadata(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("metadata");
+    
+    public static Partial<ContainerPackageVersionDetails> WithMetadata(this Partial<ContainerPackageVersionDetails> it, Func<Partial<string>, Partial<string>> partialBuilder)
+        => it.AddFieldName("metadata", partialBuilder(new Partial<string>(it)));
+    
+    public static Partial<ContainerPackageVersionDetails> WithSchemaVersion(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("schemaVersion");
+    
+    public static Partial<ContainerPackageVersionDetails> WithMediaType(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("mediaType");
+    
+    public static Partial<ContainerPackageVersionDetails> WithManifestType(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("manifestType");
+    
+    public static Partial<ContainerPackageVersionDetails> WithImage(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("image");
+    
+    public static Partial<ContainerPackageVersionDetails> WithImage(this Partial<ContainerPackageVersionDetails> it, Func<Partial<ContainerImage>, Partial<ContainerImage>> partialBuilder)
+        => it.AddFieldName("image", partialBuilder(new Partial<ContainerImage>(it)));
+    
+    public static Partial<ContainerPackageVersionDetails> WithChart(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("chart");
+    
+    public static Partial<ContainerPackageVersionDetails> WithChart(this Partial<ContainerPackageVersionDetails> it, Func<Partial<ContainerHelmChart>, Partial<ContainerHelmChart>> partialBuilder)
+        => it.AddFieldName("chart", partialBuilder(new Partial<ContainerHelmChart>(it)));
     
 }
+

@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class EmojisAddPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class EmojisAddPostRequest
-         : IPropagatePropertyAccessPath
+    public EmojisAddPostRequest() { }
+    
+    public EmojisAddPostRequest(string emoji, string attachmentId)
     {
-        public EmojisAddPostRequest() { }
-        
-        public EmojisAddPostRequest(string emoji, string attachmentId)
-        {
-            Emoji = emoji;
-            AttachmentId = attachmentId;
-        }
-        
-        private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojisAddPostRequest), nameof(Emoji));
-        
-        [Required]
-        [JsonPropertyName("emoji")]
-        public string Emoji
-        {
-            get => _emoji.GetValue();
-            set => _emoji.SetValue(value);
-        }
-    
-        private PropertyValue<string> _attachmentId = new PropertyValue<string>(nameof(EmojisAddPostRequest), nameof(AttachmentId));
-        
-        [Required]
-        [JsonPropertyName("attachmentId")]
-        public string AttachmentId
-        {
-            get => _attachmentId.GetValue();
-            set => _attachmentId.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _emoji.SetAccessPath(path, validateHasBeenSet);
-            _attachmentId.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Emoji = emoji;
+        AttachmentId = attachmentId;
     }
     
+    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojisAddPostRequest), nameof(Emoji));
+    
+    [Required]
+    [JsonPropertyName("emoji")]
+    public string Emoji
+    {
+        get => _emoji.GetValue();
+        set => _emoji.SetValue(value);
+    }
+
+    private PropertyValue<string> _attachmentId = new PropertyValue<string>(nameof(EmojisAddPostRequest), nameof(AttachmentId));
+    
+    [Required]
+    [JsonPropertyName("attachmentId")]
+    public string AttachmentId
+    {
+        get => _attachmentId.GetValue();
+        set => _attachmentId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _emoji.SetAccessPath(path, validateHasBeenSet);
+        _attachmentId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

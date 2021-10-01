@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamMenuActionContextPartialBuilder
+namespace JetBrains.Space.Client.TeamMenuActionContextPartialBuilder;
+
+public static class TeamMenuActionContextPartialExtensions
 {
-    public static class TeamMenuActionContextPartialExtensions
-    {
-        public static Partial<TeamMenuActionContext> WithMenuId(this Partial<TeamMenuActionContext> it)
-            => it.AddFieldName("menuId");
-        
-        public static Partial<TeamMenuActionContext> WithTeam(this Partial<TeamMenuActionContext> it)
-            => it.AddFieldName("team");
-        
-        public static Partial<TeamMenuActionContext> WithTeam(this Partial<TeamMenuActionContext> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-            => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
-        
-    }
+    public static Partial<TeamMenuActionContext> WithMenuId(this Partial<TeamMenuActionContext> it)
+        => it.AddFieldName("menuId");
+    
+    public static Partial<TeamMenuActionContext> WithTeam(this Partial<TeamMenuActionContext> it)
+        => it.AddFieldName("team");
+    
+    public static Partial<TeamMenuActionContext> WithTeam(this Partial<TeamMenuActionContext> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+        => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
     
 }
+

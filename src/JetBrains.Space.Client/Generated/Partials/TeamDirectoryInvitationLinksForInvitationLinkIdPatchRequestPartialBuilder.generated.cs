@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequestPartialBuilder;
+
+public static class TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> WithName(this Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> WithExpiresAt(this Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> it)
-            => it.AddFieldName("expiresAt");
-        
-        public static Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> WithInviteeLimit(this Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> it)
-            => it.AddFieldName("inviteeLimit");
-        
-        public static Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> WithTeam(this Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> it)
-            => it.AddFieldName("team");
-        
-        public static Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> WithPosition(this Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> it)
-            => it.AddFieldName("position");
-        
-    }
+    public static Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> WithName(this Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> WithExpiresAt(this Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> it)
+        => it.AddFieldName("expiresAt");
+    
+    public static Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> WithInviteeLimit(this Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> it)
+        => it.AddFieldName("inviteeLimit");
+    
+    public static Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> WithTeam(this Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> it)
+        => it.AddFieldName("team");
+    
+    public static Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> WithPosition(this Partial<TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest> it)
+        => it.AddFieldName("position");
     
 }
+

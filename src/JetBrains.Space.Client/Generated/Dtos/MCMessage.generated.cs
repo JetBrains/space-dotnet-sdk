@@ -27,92 +27,91 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MCMessage
+     : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class MCMessage
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "MCMessage";
+    
+    public MCMessage() { }
+    
+    public MCMessage(string style, List<MCElement> content, MCOutline? outline = null, string? serviceId = null, string? supplementaryData = null, M2ItemContentDetails? extension = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MCMessage";
-        
-        public MCMessage() { }
-        
-        public MCMessage(string style, List<MCElement> content, MCOutline? outline = null, string? serviceId = null, string? supplementaryData = null, M2ItemContentDetails? extension = null)
-        {
-            Style = style;
-            Outline = outline;
-            Content = content;
-            ServiceId = serviceId;
-            SupplementaryData = supplementaryData;
-            Extension = extension;
-        }
-        
-        private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCMessage), nameof(Style));
-        
-        [Required]
-        [JsonPropertyName("style")]
-        public string Style
-        {
-            get => _style.GetValue();
-            set => _style.SetValue(value);
-        }
-    
-        private PropertyValue<MCOutline?> _outline = new PropertyValue<MCOutline?>(nameof(MCMessage), nameof(Outline));
-        
-        [JsonPropertyName("outline")]
-        public MCOutline? Outline
-        {
-            get => _outline.GetValue();
-            set => _outline.SetValue(value);
-        }
-    
-        private PropertyValue<List<MCElement>> _content = new PropertyValue<List<MCElement>>(nameof(MCMessage), nameof(Content), new List<MCElement>());
-        
-        [Required]
-        [JsonPropertyName("content")]
-        public List<MCElement> Content
-        {
-            get => _content.GetValue();
-            set => _content.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _serviceId = new PropertyValue<string?>(nameof(MCMessage), nameof(ServiceId));
-        
-        [JsonPropertyName("serviceId")]
-        public string? ServiceId
-        {
-            get => _serviceId.GetValue();
-            set => _serviceId.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _supplementaryData = new PropertyValue<string?>(nameof(MCMessage), nameof(SupplementaryData));
-        
-        [JsonPropertyName("supplementaryData")]
-        public string? SupplementaryData
-        {
-            get => _supplementaryData.GetValue();
-            set => _supplementaryData.SetValue(value);
-        }
-    
-        private PropertyValue<M2ItemContentDetails?> _extension = new PropertyValue<M2ItemContentDetails?>(nameof(MCMessage), nameof(Extension));
-        
-        [JsonPropertyName("extension")]
-        public M2ItemContentDetails? Extension
-        {
-            get => _extension.GetValue();
-            set => _extension.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _style.SetAccessPath(path, validateHasBeenSet);
-            _outline.SetAccessPath(path, validateHasBeenSet);
-            _content.SetAccessPath(path, validateHasBeenSet);
-            _serviceId.SetAccessPath(path, validateHasBeenSet);
-            _supplementaryData.SetAccessPath(path, validateHasBeenSet);
-            _extension.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Style = style;
+        Outline = outline;
+        Content = content;
+        ServiceId = serviceId;
+        SupplementaryData = supplementaryData;
+        Extension = extension;
     }
     
+    private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCMessage), nameof(Style));
+    
+    [Required]
+    [JsonPropertyName("style")]
+    public string Style
+    {
+        get => _style.GetValue();
+        set => _style.SetValue(value);
+    }
+
+    private PropertyValue<MCOutline?> _outline = new PropertyValue<MCOutline?>(nameof(MCMessage), nameof(Outline));
+    
+    [JsonPropertyName("outline")]
+    public MCOutline? Outline
+    {
+        get => _outline.GetValue();
+        set => _outline.SetValue(value);
+    }
+
+    private PropertyValue<List<MCElement>> _content = new PropertyValue<List<MCElement>>(nameof(MCMessage), nameof(Content), new List<MCElement>());
+    
+    [Required]
+    [JsonPropertyName("content")]
+    public List<MCElement> Content
+    {
+        get => _content.GetValue();
+        set => _content.SetValue(value);
+    }
+
+    private PropertyValue<string?> _serviceId = new PropertyValue<string?>(nameof(MCMessage), nameof(ServiceId));
+    
+    [JsonPropertyName("serviceId")]
+    public string? ServiceId
+    {
+        get => _serviceId.GetValue();
+        set => _serviceId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _supplementaryData = new PropertyValue<string?>(nameof(MCMessage), nameof(SupplementaryData));
+    
+    [JsonPropertyName("supplementaryData")]
+    public string? SupplementaryData
+    {
+        get => _supplementaryData.GetValue();
+        set => _supplementaryData.SetValue(value);
+    }
+
+    private PropertyValue<M2ItemContentDetails?> _extension = new PropertyValue<M2ItemContentDetails?>(nameof(MCMessage), nameof(Extension));
+    
+    [JsonPropertyName("extension")]
+    public M2ItemContentDetails? Extension
+    {
+        get => _extension.GetValue();
+        set => _extension.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _style.SetAccessPath(path, validateHasBeenSet);
+        _outline.SetAccessPath(path, validateHasBeenSet);
+        _content.SetAccessPath(path, validateHasBeenSet);
+        _serviceId.SetAccessPath(path, validateHasBeenSet);
+        _supplementaryData.SetAccessPath(path, validateHasBeenSet);
+        _extension.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

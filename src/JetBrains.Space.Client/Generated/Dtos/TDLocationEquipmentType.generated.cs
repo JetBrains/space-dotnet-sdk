@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class TDLocationEquipmentType
+     : IPropagatePropertyAccessPath
 {
-    public sealed class TDLocationEquipmentType
-         : IPropagatePropertyAccessPath
+    public TDLocationEquipmentType() { }
+    
+    public TDLocationEquipmentType(string name, bool archived)
     {
-        public TDLocationEquipmentType() { }
-        
-        public TDLocationEquipmentType(string name, bool archived)
-        {
-            Name = name;
-            IsArchived = archived;
-        }
-        
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDLocationEquipmentType), nameof(Name));
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name
-        {
-            get => _name.GetValue();
-            set => _name.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDLocationEquipmentType), nameof(IsArchived));
-        
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool IsArchived
-        {
-            get => _archived.GetValue();
-            set => _archived.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _archived.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Name = name;
+        IsArchived = archived;
     }
     
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDLocationEquipmentType), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDLocationEquipmentType), nameof(IsArchived));
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

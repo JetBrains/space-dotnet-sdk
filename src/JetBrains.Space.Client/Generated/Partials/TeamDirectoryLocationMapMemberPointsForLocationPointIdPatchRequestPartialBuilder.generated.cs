@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequestPartialBuilder;
+
+public static class TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest> WithX(this Partial<TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest> it)
-            => it.AddFieldName("x");
-        
-        public static Partial<TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest> WithY(this Partial<TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest> it)
-            => it.AddFieldName("y");
-        
-    }
+    public static Partial<TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest> WithX(this Partial<TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest> it)
+        => it.AddFieldName("x");
+    
+    public static Partial<TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest> WithY(this Partial<TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest> it)
+        => it.AddFieldName("y");
     
 }
+

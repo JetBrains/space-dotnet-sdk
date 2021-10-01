@@ -27,57 +27,56 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class RepoChanges
+     : IPropagatePropertyAccessPath
 {
-    public sealed class RepoChanges
-         : IPropagatePropertyAccessPath
+    public RepoChanges() { }
+    
+    public RepoChanges(List<RepoHeadsChange> heads, List<GitCommitInfoWithChanges> commits, int totalNewCommits)
     {
-        public RepoChanges() { }
-        
-        public RepoChanges(List<RepoHeadsChange> heads, List<GitCommitInfoWithChanges> commits, int totalNewCommits)
-        {
-            Heads = heads;
-            Commits = commits;
-            TotalNewCommits = totalNewCommits;
-        }
-        
-        private PropertyValue<List<RepoHeadsChange>> _heads = new PropertyValue<List<RepoHeadsChange>>(nameof(RepoChanges), nameof(Heads), new List<RepoHeadsChange>());
-        
-        [Required]
-        [JsonPropertyName("heads")]
-        public List<RepoHeadsChange> Heads
-        {
-            get => _heads.GetValue();
-            set => _heads.SetValue(value);
-        }
-    
-        private PropertyValue<List<GitCommitInfoWithChanges>> _commits = new PropertyValue<List<GitCommitInfoWithChanges>>(nameof(RepoChanges), nameof(Commits), new List<GitCommitInfoWithChanges>());
-        
-        [Required]
-        [JsonPropertyName("commits")]
-        public List<GitCommitInfoWithChanges> Commits
-        {
-            get => _commits.GetValue();
-            set => _commits.SetValue(value);
-        }
-    
-        private PropertyValue<int> _totalNewCommits = new PropertyValue<int>(nameof(RepoChanges), nameof(TotalNewCommits));
-        
-        [Required]
-        [JsonPropertyName("totalNewCommits")]
-        public int TotalNewCommits
-        {
-            get => _totalNewCommits.GetValue();
-            set => _totalNewCommits.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _heads.SetAccessPath(path, validateHasBeenSet);
-            _commits.SetAccessPath(path, validateHasBeenSet);
-            _totalNewCommits.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Heads = heads;
+        Commits = commits;
+        TotalNewCommits = totalNewCommits;
     }
     
+    private PropertyValue<List<RepoHeadsChange>> _heads = new PropertyValue<List<RepoHeadsChange>>(nameof(RepoChanges), nameof(Heads), new List<RepoHeadsChange>());
+    
+    [Required]
+    [JsonPropertyName("heads")]
+    public List<RepoHeadsChange> Heads
+    {
+        get => _heads.GetValue();
+        set => _heads.SetValue(value);
+    }
+
+    private PropertyValue<List<GitCommitInfoWithChanges>> _commits = new PropertyValue<List<GitCommitInfoWithChanges>>(nameof(RepoChanges), nameof(Commits), new List<GitCommitInfoWithChanges>());
+    
+    [Required]
+    [JsonPropertyName("commits")]
+    public List<GitCommitInfoWithChanges> Commits
+    {
+        get => _commits.GetValue();
+        set => _commits.SetValue(value);
+    }
+
+    private PropertyValue<int> _totalNewCommits = new PropertyValue<int>(nameof(RepoChanges), nameof(TotalNewCommits));
+    
+    [Required]
+    [JsonPropertyName("totalNewCommits")]
+    public int TotalNewCommits
+    {
+        get => _totalNewCommits.GetValue();
+        set => _totalNewCommits.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _heads.SetAccessPath(path, validateHasBeenSet);
+        _commits.SetAccessPath(path, validateHasBeenSet);
+        _totalNewCommits.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

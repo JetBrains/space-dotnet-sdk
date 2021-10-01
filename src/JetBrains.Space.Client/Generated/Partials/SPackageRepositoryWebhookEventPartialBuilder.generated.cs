@@ -27,37 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SPackageRepositoryWebhookEventPartialBuilder
+namespace JetBrains.Space.Client.SPackageRepositoryWebhookEventPartialBuilder;
+
+public static class SPackageRepositoryWebhookEventPartialExtensions
 {
-    public static class SPackageRepositoryWebhookEventPartialExtensions
-    {
-        public static Partial<SPackageRepositoryWebhookEvent> WithProjectKey(this Partial<SPackageRepositoryWebhookEvent> it)
-            => it.AddFieldName("projectKey");
-        
-        public static Partial<SPackageRepositoryWebhookEvent> WithProjectKey(this Partial<SPackageRepositoryWebhookEvent> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
-            => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
-        
-        public static Partial<SPackageRepositoryWebhookEvent> WithRepository(this Partial<SPackageRepositoryWebhookEvent> it)
-            => it.AddFieldName("repository");
-        
-        public static Partial<SPackageRepositoryWebhookEvent> WithRepositoryType(this Partial<SPackageRepositoryWebhookEvent> it)
-            => it.AddFieldName("repositoryType");
-        
-        public static Partial<SPackageRepositoryWebhookEvent> WithRepositoryType(this Partial<SPackageRepositoryWebhookEvent> it, Func<Partial<PackageType>, Partial<PackageType>> partialBuilder)
-            => it.AddFieldName("repositoryType", partialBuilder(new Partial<PackageType>(it)));
-        
-        public static Partial<SPackageRepositoryWebhookEvent> WithAction(this Partial<SPackageRepositoryWebhookEvent> it)
-            => it.AddFieldName("action");
-        
-        public static Partial<SPackageRepositoryWebhookEvent> WithAction(this Partial<SPackageRepositoryWebhookEvent> it, Func<Partial<PackageRepositoryEventAction>, Partial<PackageRepositoryEventAction>> partialBuilder)
-            => it.AddFieldName("action", partialBuilder(new Partial<PackageRepositoryEventAction>(it)));
-        
-        public static Partial<SPackageRepositoryWebhookEvent> WithPackageInfo(this Partial<SPackageRepositoryWebhookEvent> it)
-            => it.AddFieldName("packageInfo");
-        
-        public static Partial<SPackageRepositoryWebhookEvent> WithPackageInfo(this Partial<SPackageRepositoryWebhookEvent> it, Func<Partial<PackageVersionRef>, Partial<PackageVersionRef>> partialBuilder)
-            => it.AddFieldName("packageInfo", partialBuilder(new Partial<PackageVersionRef>(it)));
-        
-    }
+    public static Partial<SPackageRepositoryWebhookEvent> WithProjectKey(this Partial<SPackageRepositoryWebhookEvent> it)
+        => it.AddFieldName("projectKey");
+    
+    public static Partial<SPackageRepositoryWebhookEvent> WithProjectKey(this Partial<SPackageRepositoryWebhookEvent> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
+        => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
+    
+    public static Partial<SPackageRepositoryWebhookEvent> WithRepository(this Partial<SPackageRepositoryWebhookEvent> it)
+        => it.AddFieldName("repository");
+    
+    public static Partial<SPackageRepositoryWebhookEvent> WithRepositoryType(this Partial<SPackageRepositoryWebhookEvent> it)
+        => it.AddFieldName("repositoryType");
+    
+    public static Partial<SPackageRepositoryWebhookEvent> WithRepositoryType(this Partial<SPackageRepositoryWebhookEvent> it, Func<Partial<PackageType>, Partial<PackageType>> partialBuilder)
+        => it.AddFieldName("repositoryType", partialBuilder(new Partial<PackageType>(it)));
+    
+    public static Partial<SPackageRepositoryWebhookEvent> WithAction(this Partial<SPackageRepositoryWebhookEvent> it)
+        => it.AddFieldName("action");
+    
+    public static Partial<SPackageRepositoryWebhookEvent> WithAction(this Partial<SPackageRepositoryWebhookEvent> it, Func<Partial<PackageRepositoryEventAction>, Partial<PackageRepositoryEventAction>> partialBuilder)
+        => it.AddFieldName("action", partialBuilder(new Partial<PackageRepositoryEventAction>(it)));
+    
+    public static Partial<SPackageRepositoryWebhookEvent> WithPackageInfo(this Partial<SPackageRepositoryWebhookEvent> it)
+        => it.AddFieldName("packageInfo");
+    
+    public static Partial<SPackageRepositoryWebhookEvent> WithPackageInfo(this Partial<SPackageRepositoryWebhookEvent> it, Func<Partial<PackageVersionRef>, Partial<PackageVersionRef>> partialBuilder)
+        => it.AddFieldName("packageInfo", partialBuilder(new Partial<PackageVersionRef>(it)));
     
 }
+

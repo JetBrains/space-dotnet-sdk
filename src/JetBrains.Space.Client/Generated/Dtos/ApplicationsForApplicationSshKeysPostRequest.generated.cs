@@ -27,45 +27,44 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ApplicationsForApplicationSshKeysPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ApplicationsForApplicationSshKeysPostRequest
-         : IPropagatePropertyAccessPath
+    public ApplicationsForApplicationSshKeysPostRequest() { }
+    
+    public ApplicationsForApplicationSshKeysPostRequest(string publicKey, string comment)
     {
-        public ApplicationsForApplicationSshKeysPostRequest() { }
-        
-        public ApplicationsForApplicationSshKeysPostRequest(string publicKey, string comment)
-        {
-            PublicKey = publicKey;
-            Comment = comment;
-        }
-        
-        private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(ApplicationsForApplicationSshKeysPostRequest), nameof(PublicKey));
-        
-        [Required]
-        [JsonPropertyName("publicKey")]
-        public string PublicKey
-        {
-            get => _publicKey.GetValue();
-            set => _publicKey.SetValue(value);
-        }
-    
-        private PropertyValue<string> _comment = new PropertyValue<string>(nameof(ApplicationsForApplicationSshKeysPostRequest), nameof(Comment));
-        
-        [Required]
-        [JsonPropertyName("comment")]
-        public string Comment
-        {
-            get => _comment.GetValue();
-            set => _comment.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _publicKey.SetAccessPath(path, validateHasBeenSet);
-            _comment.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        PublicKey = publicKey;
+        Comment = comment;
     }
     
+    private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(ApplicationsForApplicationSshKeysPostRequest), nameof(PublicKey));
+    
+    [Required]
+    [JsonPropertyName("publicKey")]
+    public string PublicKey
+    {
+        get => _publicKey.GetValue();
+        set => _publicKey.SetValue(value);
+    }
+
+    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(ApplicationsForApplicationSshKeysPostRequest), nameof(Comment));
+    
+    [Required]
+    [JsonPropertyName("comment")]
+    public string Comment
+    {
+        get => _comment.GetValue();
+        set => _comment.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _publicKey.SetAccessPath(path, validateHasBeenSet);
+        _comment.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

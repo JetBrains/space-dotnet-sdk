@@ -27,109 +27,108 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DRDraftPartialBuilder
+namespace JetBrains.Space.Client.DRDraftPartialBuilder;
+
+public static class DRDraftPartialExtensions
 {
-    public static class DRDraftPartialExtensions
-    {
-        public static Partial<DRDraft> WithId(this Partial<DRDraft> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<DRDraft> WithTitle(this Partial<DRDraft> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<DRDraft> WithModified(this Partial<DRDraft> it)
-            => it.AddFieldName("modified");
-        
-        public static Partial<DRDraft> WithCreated(this Partial<DRDraft> it)
-            => it.AddFieldName("created");
-        
-        public static Partial<DRDraft> WithModifiedBy(this Partial<DRDraft> it)
-            => it.AddFieldName("modifiedBy");
-        
-        public static Partial<DRDraft> WithModifiedBy(this Partial<DRDraft> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("modifiedBy", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<DRDraft> WithIsShared(this Partial<DRDraft> it)
-            => it.AddFieldName("shared");
-        
-        public static Partial<DRDraft> WithIsDeleted(this Partial<DRDraft> it)
-            => it.AddFieldName("deleted");
-        
-        public static Partial<DRDraft> WithArchivedBy(this Partial<DRDraft> it)
-            => it.AddFieldName("archivedBy");
-        
-        public static Partial<DRDraft> WithArchivedBy(this Partial<DRDraft> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("archivedBy", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<DRDraft> WithArchivedAt(this Partial<DRDraft> it)
-            => it.AddFieldName("archivedAt");
-        
-        public static Partial<DRDraft> WithPublicationDetails2(this Partial<DRDraft> it)
-            => it.AddFieldName("publicationDetails2");
-        
-        public static Partial<DRDraft> WithPublicationDetails2(this Partial<DRDraft> it, Func<Partial<PublicationDetails>, Partial<PublicationDetails>> partialBuilder)
-            => it.AddFieldName("publicationDetails2", partialBuilder(new Partial<PublicationDetails>(it)));
-        
-        public static Partial<DRDraft> WithAuthor(this Partial<DRDraft> it)
-            => it.AddFieldName("author");
-        
-        public static Partial<DRDraft> WithAuthor(this Partial<DRDraft> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<DRDraft> WithCreatedBy(this Partial<DRDraft> it)
-            => it.AddFieldName("createdBy");
-        
-        public static Partial<DRDraft> WithCreatedBy(this Partial<DRDraft> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-            => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
-        
-        public static Partial<DRDraft> WithIsPublished(this Partial<DRDraft> it)
-            => it.AddFieldName("published");
-        
-        public static Partial<DRDraft> WithFolder(this Partial<DRDraft> it)
-            => it.AddFieldName("folder");
-        
-        public static Partial<DRDraft> WithFolder(this Partial<DRDraft> it, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>> partialBuilder)
-            => it.AddFieldName("folder", partialBuilder(new Partial<DocumentFolderRecord>(it)));
-        
-        public static Partial<DRDraft> WithFolderRef(this Partial<DRDraft> it)
-            => it.AddFieldName("folderRef");
-        
-        public static Partial<DRDraft> WithFolderRef(this Partial<DRDraft> it, Func<Partial<DocumentFolder>, Partial<DocumentFolder>> partialBuilder)
-            => it.AddFieldName("folderRef", partialBuilder(new Partial<DocumentFolder>(it)));
-        
-        public static Partial<DRDraft> WithContainerInfo(this Partial<DRDraft> it)
-            => it.AddFieldName("containerInfo");
-        
-        public static Partial<DRDraft> WithContainerInfo(this Partial<DRDraft> it, Func<Partial<DocumentContainerInfo>, Partial<DocumentContainerInfo>> partialBuilder)
-            => it.AddFieldName("containerInfo", partialBuilder(new Partial<DocumentContainerInfo>(it)));
-        
-        public static Partial<DRDraft> WithAccessOrdinal(this Partial<DRDraft> it)
-            => it.AddFieldName("accessOrdinal");
-        
-        public static Partial<DRDraft> WithEditors(this Partial<DRDraft> it)
-            => it.AddFieldName("editors");
-        
-        public static Partial<DRDraft> WithEditors(this Partial<DRDraft> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("editors", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-        public static Partial<DRDraft> WithEditorsTeams(this Partial<DRDraft> it)
-            => it.AddFieldName("editorsTeams");
-        
-        public static Partial<DRDraft> WithEditorsTeams(this Partial<DRDraft> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-            => it.AddFieldName("editorsTeams", partialBuilder(new Partial<TDTeam>(it)));
-        
-        public static Partial<DRDraft> WithDocumentBody(this Partial<DRDraft> it)
-            => it.AddFieldName("documentBody");
-        
-        public static Partial<DRDraft> WithDocumentBody(this Partial<DRDraft> it, Func<Partial<DocumentBody>, Partial<DocumentBody>> partialBuilder)
-            => it.AddFieldName("documentBody", partialBuilder(new Partial<DocumentBody>(it)));
-        
-        public static Partial<DRDraft> WithBodyType(this Partial<DRDraft> it)
-            => it.AddFieldName("bodyType");
-        
-        public static Partial<DRDraft> WithBodyType(this Partial<DRDraft> it, Func<Partial<DocumentBodyType>, Partial<DocumentBodyType>> partialBuilder)
-            => it.AddFieldName("bodyType", partialBuilder(new Partial<DocumentBodyType>(it)));
-        
-    }
+    public static Partial<DRDraft> WithId(this Partial<DRDraft> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<DRDraft> WithTitle(this Partial<DRDraft> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<DRDraft> WithModified(this Partial<DRDraft> it)
+        => it.AddFieldName("modified");
+    
+    public static Partial<DRDraft> WithCreated(this Partial<DRDraft> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<DRDraft> WithModifiedBy(this Partial<DRDraft> it)
+        => it.AddFieldName("modifiedBy");
+    
+    public static Partial<DRDraft> WithModifiedBy(this Partial<DRDraft> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("modifiedBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<DRDraft> WithIsShared(this Partial<DRDraft> it)
+        => it.AddFieldName("shared");
+    
+    public static Partial<DRDraft> WithIsDeleted(this Partial<DRDraft> it)
+        => it.AddFieldName("deleted");
+    
+    public static Partial<DRDraft> WithArchivedBy(this Partial<DRDraft> it)
+        => it.AddFieldName("archivedBy");
+    
+    public static Partial<DRDraft> WithArchivedBy(this Partial<DRDraft> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("archivedBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<DRDraft> WithArchivedAt(this Partial<DRDraft> it)
+        => it.AddFieldName("archivedAt");
+    
+    public static Partial<DRDraft> WithPublicationDetails2(this Partial<DRDraft> it)
+        => it.AddFieldName("publicationDetails2");
+    
+    public static Partial<DRDraft> WithPublicationDetails2(this Partial<DRDraft> it, Func<Partial<PublicationDetails>, Partial<PublicationDetails>> partialBuilder)
+        => it.AddFieldName("publicationDetails2", partialBuilder(new Partial<PublicationDetails>(it)));
+    
+    public static Partial<DRDraft> WithAuthor(this Partial<DRDraft> it)
+        => it.AddFieldName("author");
+    
+    public static Partial<DRDraft> WithAuthor(this Partial<DRDraft> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<DRDraft> WithCreatedBy(this Partial<DRDraft> it)
+        => it.AddFieldName("createdBy");
+    
+    public static Partial<DRDraft> WithCreatedBy(this Partial<DRDraft> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<DRDraft> WithIsPublished(this Partial<DRDraft> it)
+        => it.AddFieldName("published");
+    
+    public static Partial<DRDraft> WithFolder(this Partial<DRDraft> it)
+        => it.AddFieldName("folder");
+    
+    public static Partial<DRDraft> WithFolder(this Partial<DRDraft> it, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>> partialBuilder)
+        => it.AddFieldName("folder", partialBuilder(new Partial<DocumentFolderRecord>(it)));
+    
+    public static Partial<DRDraft> WithFolderRef(this Partial<DRDraft> it)
+        => it.AddFieldName("folderRef");
+    
+    public static Partial<DRDraft> WithFolderRef(this Partial<DRDraft> it, Func<Partial<DocumentFolder>, Partial<DocumentFolder>> partialBuilder)
+        => it.AddFieldName("folderRef", partialBuilder(new Partial<DocumentFolder>(it)));
+    
+    public static Partial<DRDraft> WithContainerInfo(this Partial<DRDraft> it)
+        => it.AddFieldName("containerInfo");
+    
+    public static Partial<DRDraft> WithContainerInfo(this Partial<DRDraft> it, Func<Partial<DocumentContainerInfo>, Partial<DocumentContainerInfo>> partialBuilder)
+        => it.AddFieldName("containerInfo", partialBuilder(new Partial<DocumentContainerInfo>(it)));
+    
+    public static Partial<DRDraft> WithAccessOrdinal(this Partial<DRDraft> it)
+        => it.AddFieldName("accessOrdinal");
+    
+    public static Partial<DRDraft> WithEditors(this Partial<DRDraft> it)
+        => it.AddFieldName("editors");
+    
+    public static Partial<DRDraft> WithEditors(this Partial<DRDraft> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("editors", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<DRDraft> WithEditorsTeams(this Partial<DRDraft> it)
+        => it.AddFieldName("editorsTeams");
+    
+    public static Partial<DRDraft> WithEditorsTeams(this Partial<DRDraft> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+        => it.AddFieldName("editorsTeams", partialBuilder(new Partial<TDTeam>(it)));
+    
+    public static Partial<DRDraft> WithDocumentBody(this Partial<DRDraft> it)
+        => it.AddFieldName("documentBody");
+    
+    public static Partial<DRDraft> WithDocumentBody(this Partial<DRDraft> it, Func<Partial<DocumentBody>, Partial<DocumentBody>> partialBuilder)
+        => it.AddFieldName("documentBody", partialBuilder(new Partial<DocumentBody>(it)));
+    
+    public static Partial<DRDraft> WithBodyType(this Partial<DRDraft> it)
+        => it.AddFieldName("bodyType");
+    
+    public static Partial<DRDraft> WithBodyType(this Partial<DRDraft> it, Func<Partial<DocumentBodyType>, Partial<DocumentBodyType>> partialBuilder)
+        => it.AddFieldName("bodyType", partialBuilder(new Partial<DocumentBodyType>(it)));
     
 }
+

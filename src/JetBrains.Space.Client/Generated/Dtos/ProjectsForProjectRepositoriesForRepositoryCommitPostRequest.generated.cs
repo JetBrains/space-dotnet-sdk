@@ -27,69 +27,68 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsForProjectRepositoriesForRepositoryCommitPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsForProjectRepositoriesForRepositoryCommitPostRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsForProjectRepositoriesForRepositoryCommitPostRequest() { }
+    
+    public ProjectsForProjectRepositoriesForRepositoryCommitPostRequest(string baseCommit, string targetBranch, string commitMessage, List<GitCommitFileRequest> files)
     {
-        public ProjectsForProjectRepositoriesForRepositoryCommitPostRequest() { }
-        
-        public ProjectsForProjectRepositoriesForRepositoryCommitPostRequest(string baseCommit, string targetBranch, string commitMessage, List<GitCommitFileRequest> files)
-        {
-            BaseCommit = baseCommit;
-            TargetBranch = targetBranch;
-            CommitMessage = commitMessage;
-            Files = files;
-        }
-        
-        private PropertyValue<string> _baseCommit = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(BaseCommit));
-        
-        [Required]
-        [JsonPropertyName("baseCommit")]
-        public string BaseCommit
-        {
-            get => _baseCommit.GetValue();
-            set => _baseCommit.SetValue(value);
-        }
-    
-        private PropertyValue<string> _targetBranch = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(TargetBranch));
-        
-        [Required]
-        [JsonPropertyName("targetBranch")]
-        public string TargetBranch
-        {
-            get => _targetBranch.GetValue();
-            set => _targetBranch.SetValue(value);
-        }
-    
-        private PropertyValue<string> _commitMessage = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(CommitMessage));
-        
-        [Required]
-        [JsonPropertyName("commitMessage")]
-        public string CommitMessage
-        {
-            get => _commitMessage.GetValue();
-            set => _commitMessage.SetValue(value);
-        }
-    
-        private PropertyValue<List<GitCommitFileRequest>> _files = new PropertyValue<List<GitCommitFileRequest>>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(Files), new List<GitCommitFileRequest>());
-        
-        [Required]
-        [JsonPropertyName("files")]
-        public List<GitCommitFileRequest> Files
-        {
-            get => _files.GetValue();
-            set => _files.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _baseCommit.SetAccessPath(path, validateHasBeenSet);
-            _targetBranch.SetAccessPath(path, validateHasBeenSet);
-            _commitMessage.SetAccessPath(path, validateHasBeenSet);
-            _files.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        BaseCommit = baseCommit;
+        TargetBranch = targetBranch;
+        CommitMessage = commitMessage;
+        Files = files;
     }
     
+    private PropertyValue<string> _baseCommit = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(BaseCommit));
+    
+    [Required]
+    [JsonPropertyName("baseCommit")]
+    public string BaseCommit
+    {
+        get => _baseCommit.GetValue();
+        set => _baseCommit.SetValue(value);
+    }
+
+    private PropertyValue<string> _targetBranch = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(TargetBranch));
+    
+    [Required]
+    [JsonPropertyName("targetBranch")]
+    public string TargetBranch
+    {
+        get => _targetBranch.GetValue();
+        set => _targetBranch.SetValue(value);
+    }
+
+    private PropertyValue<string> _commitMessage = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(CommitMessage));
+    
+    [Required]
+    [JsonPropertyName("commitMessage")]
+    public string CommitMessage
+    {
+        get => _commitMessage.GetValue();
+        set => _commitMessage.SetValue(value);
+    }
+
+    private PropertyValue<List<GitCommitFileRequest>> _files = new PropertyValue<List<GitCommitFileRequest>>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(Files), new List<GitCommitFileRequest>());
+    
+    [Required]
+    [JsonPropertyName("files")]
+    public List<GitCommitFileRequest> Files
+    {
+        get => _files.GetValue();
+        set => _files.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _baseCommit.SetAccessPath(path, validateHasBeenSet);
+        _targetBranch.SetAccessPath(path, validateHasBeenSet);
+        _commitMessage.SetAccessPath(path, validateHasBeenSet);
+        _files.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class MCElement
+     : IPropagatePropertyAccessPath
 {
-    public sealed class MCElement
-         : IPropagatePropertyAccessPath
+    public MCElement() { }
+    
+    public MCElement(string defaultText, MCElementDetails? details = null)
     {
-        public MCElement() { }
-        
-        public MCElement(string defaultText, MCElementDetails? details = null)
-        {
-            DefaultText = defaultText;
-            Details = details;
-        }
-        
-        private PropertyValue<string> _defaultText = new PropertyValue<string>(nameof(MCElement), nameof(DefaultText));
-        
-        [Required]
-        [JsonPropertyName("defaultText")]
-        public string DefaultText
-        {
-            get => _defaultText.GetValue();
-            set => _defaultText.SetValue(value);
-        }
-    
-        private PropertyValue<MCElementDetails?> _details = new PropertyValue<MCElementDetails?>(nameof(MCElement), nameof(Details));
-        
-        [JsonPropertyName("details")]
-        public MCElementDetails? Details
-        {
-            get => _details.GetValue();
-            set => _details.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _defaultText.SetAccessPath(path, validateHasBeenSet);
-            _details.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        DefaultText = defaultText;
+        Details = details;
     }
     
+    private PropertyValue<string> _defaultText = new PropertyValue<string>(nameof(MCElement), nameof(DefaultText));
+    
+    [Required]
+    [JsonPropertyName("defaultText")]
+    public string DefaultText
+    {
+        get => _defaultText.GetValue();
+        set => _defaultText.SetValue(value);
+    }
+
+    private PropertyValue<MCElementDetails?> _details = new PropertyValue<MCElementDetails?>(nameof(MCElement), nameof(Details));
+    
+    [JsonPropertyName("details")]
+    public MCElementDetails? Details
+    {
+        get => _details.GetValue();
+        set => _details.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _defaultText.SetAccessPath(path, validateHasBeenSet);
+        _details.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

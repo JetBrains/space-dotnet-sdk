@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RepositoryActivityPartialBuilder
+namespace JetBrains.Space.Client.RepositoryActivityPartialBuilder;
+
+public static class RepositoryActivityPartialExtensions
 {
-    public static class RepositoryActivityPartialExtensions
-    {
-        public static Partial<RepositoryActivity> WithLastActivity(this Partial<RepositoryActivity> it)
-            => it.AddFieldName("lastActivity");
-        
-        public static Partial<RepositoryActivity> WithLastActivity(this Partial<RepositoryActivity> it, Func<Partial<Pair<DateTime, int>>, Partial<Pair<DateTime, int>>> partialBuilder)
-            => it.AddFieldName("lastActivity", partialBuilder(new Partial<Pair<DateTime, int>>(it)));
-        
-    }
+    public static Partial<RepositoryActivity> WithLastActivity(this Partial<RepositoryActivity> it)
+        => it.AddFieldName("lastActivity");
+    
+    public static Partial<RepositoryActivity> WithLastActivity(this Partial<RepositoryActivity> it, Func<Partial<Pair<DateTime, int>>, Partial<Pair<DateTime, int>>> partialBuilder)
+        => it.AddFieldName("lastActivity", partialBuilder(new Partial<Pair<DateTime, int>>(it)));
     
 }
+

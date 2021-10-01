@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class OrgThrottlingStatus
+     : IPropagatePropertyAccessPath
 {
-    public sealed class OrgThrottlingStatus
-         : IPropagatePropertyAccessPath
+    public OrgThrottlingStatus() { }
+    
+    public OrgThrottlingStatus(DateTime? throttledUntil = null)
     {
-        public OrgThrottlingStatus() { }
-        
-        public OrgThrottlingStatus(DateTime? throttledUntil = null)
-        {
-            ThrottledUntil = throttledUntil;
-        }
-        
-        private PropertyValue<DateTime?> _throttledUntil = new PropertyValue<DateTime?>(nameof(OrgThrottlingStatus), nameof(ThrottledUntil));
-        
-        [JsonPropertyName("throttledUntil")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? ThrottledUntil
-        {
-            get => _throttledUntil.GetValue();
-            set => _throttledUntil.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _throttledUntil.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        ThrottledUntil = throttledUntil;
     }
     
+    private PropertyValue<DateTime?> _throttledUntil = new PropertyValue<DateTime?>(nameof(OrgThrottlingStatus), nameof(ThrottledUntil));
+    
+    [JsonPropertyName("throttledUntil")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? ThrottledUntil
+    {
+        get => _throttledUntil.GetValue();
+        set => _throttledUntil.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _throttledUntil.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

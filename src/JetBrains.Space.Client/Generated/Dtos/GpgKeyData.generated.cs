@@ -27,142 +27,141 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class GpgKeyData
+     : IPropagatePropertyAccessPath
 {
-    public sealed class GpgKeyData
-         : IPropagatePropertyAccessPath
+    public GpgKeyData() { }
+    
+    public GpgKeyData(string fingerprint, string publicKey, string userId, bool verified, string comment, DateTime created, DateTime added, bool revoked, DateTime? expires = null, string? revokeComment = null)
     {
-        public GpgKeyData() { }
-        
-        public GpgKeyData(string fingerprint, string publicKey, string userId, bool verified, string comment, DateTime created, DateTime added, bool revoked, DateTime? expires = null, string? revokeComment = null)
-        {
-            Fingerprint = fingerprint;
-            PublicKey = publicKey;
-            UserId = userId;
-            IsVerified = verified;
-            Comment = comment;
-            Created = created;
-            Added = added;
-            Expires = expires;
-            IsRevoked = revoked;
-            RevokeComment = revokeComment;
-        }
-        
-        private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(GpgKeyData), nameof(Fingerprint));
-        
-        [Required]
-        [JsonPropertyName("fingerprint")]
-        public string Fingerprint
-        {
-            get => _fingerprint.GetValue();
-            set => _fingerprint.SetValue(value);
-        }
-    
-        private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(GpgKeyData), nameof(PublicKey));
-        
-        [Required]
-        [JsonPropertyName("publicKey")]
-        public string PublicKey
-        {
-            get => _publicKey.GetValue();
-            set => _publicKey.SetValue(value);
-        }
-    
-        private PropertyValue<string> _userId = new PropertyValue<string>(nameof(GpgKeyData), nameof(UserId));
-        
-        [Required]
-        [JsonPropertyName("userId")]
-        public string UserId
-        {
-            get => _userId.GetValue();
-            set => _userId.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _verified = new PropertyValue<bool>(nameof(GpgKeyData), nameof(IsVerified));
-        
-        [Required]
-        [JsonPropertyName("verified")]
-        public bool IsVerified
-        {
-            get => _verified.GetValue();
-            set => _verified.SetValue(value);
-        }
-    
-        private PropertyValue<string> _comment = new PropertyValue<string>(nameof(GpgKeyData), nameof(Comment));
-        
-        [Required]
-        [JsonPropertyName("comment")]
-        public string Comment
-        {
-            get => _comment.GetValue();
-            set => _comment.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(GpgKeyData), nameof(Created));
-        
-        [Required]
-        [JsonPropertyName("created")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Created
-        {
-            get => _created.GetValue();
-            set => _created.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime> _added = new PropertyValue<DateTime>(nameof(GpgKeyData), nameof(Added));
-        
-        [Required]
-        [JsonPropertyName("added")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime Added
-        {
-            get => _added.GetValue();
-            set => _added.SetValue(value);
-        }
-    
-        private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(GpgKeyData), nameof(Expires));
-        
-        [JsonPropertyName("expires")]
-        [JsonConverter(typeof(SpaceDateTimeConverter))]
-        public DateTime? Expires
-        {
-            get => _expires.GetValue();
-            set => _expires.SetValue(value);
-        }
-    
-        private PropertyValue<bool> _revoked = new PropertyValue<bool>(nameof(GpgKeyData), nameof(IsRevoked));
-        
-        [Required]
-        [JsonPropertyName("revoked")]
-        public bool IsRevoked
-        {
-            get => _revoked.GetValue();
-            set => _revoked.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _revokeComment = new PropertyValue<string?>(nameof(GpgKeyData), nameof(RevokeComment));
-        
-        [JsonPropertyName("revokeComment")]
-        public string? RevokeComment
-        {
-            get => _revokeComment.GetValue();
-            set => _revokeComment.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _fingerprint.SetAccessPath(path, validateHasBeenSet);
-            _publicKey.SetAccessPath(path, validateHasBeenSet);
-            _userId.SetAccessPath(path, validateHasBeenSet);
-            _verified.SetAccessPath(path, validateHasBeenSet);
-            _comment.SetAccessPath(path, validateHasBeenSet);
-            _created.SetAccessPath(path, validateHasBeenSet);
-            _added.SetAccessPath(path, validateHasBeenSet);
-            _expires.SetAccessPath(path, validateHasBeenSet);
-            _revoked.SetAccessPath(path, validateHasBeenSet);
-            _revokeComment.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Fingerprint = fingerprint;
+        PublicKey = publicKey;
+        UserId = userId;
+        IsVerified = verified;
+        Comment = comment;
+        Created = created;
+        Added = added;
+        Expires = expires;
+        IsRevoked = revoked;
+        RevokeComment = revokeComment;
     }
     
+    private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(GpgKeyData), nameof(Fingerprint));
+    
+    [Required]
+    [JsonPropertyName("fingerprint")]
+    public string Fingerprint
+    {
+        get => _fingerprint.GetValue();
+        set => _fingerprint.SetValue(value);
+    }
+
+    private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(GpgKeyData), nameof(PublicKey));
+    
+    [Required]
+    [JsonPropertyName("publicKey")]
+    public string PublicKey
+    {
+        get => _publicKey.GetValue();
+        set => _publicKey.SetValue(value);
+    }
+
+    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(GpgKeyData), nameof(UserId));
+    
+    [Required]
+    [JsonPropertyName("userId")]
+    public string UserId
+    {
+        get => _userId.GetValue();
+        set => _userId.SetValue(value);
+    }
+
+    private PropertyValue<bool> _verified = new PropertyValue<bool>(nameof(GpgKeyData), nameof(IsVerified));
+    
+    [Required]
+    [JsonPropertyName("verified")]
+    public bool IsVerified
+    {
+        get => _verified.GetValue();
+        set => _verified.SetValue(value);
+    }
+
+    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(GpgKeyData), nameof(Comment));
+    
+    [Required]
+    [JsonPropertyName("comment")]
+    public string Comment
+    {
+        get => _comment.GetValue();
+        set => _comment.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(GpgKeyData), nameof(Created));
+    
+    [Required]
+    [JsonPropertyName("created")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Created
+    {
+        get => _created.GetValue();
+        set => _created.SetValue(value);
+    }
+
+    private PropertyValue<DateTime> _added = new PropertyValue<DateTime>(nameof(GpgKeyData), nameof(Added));
+    
+    [Required]
+    [JsonPropertyName("added")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime Added
+    {
+        get => _added.GetValue();
+        set => _added.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(GpgKeyData), nameof(Expires));
+    
+    [JsonPropertyName("expires")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? Expires
+    {
+        get => _expires.GetValue();
+        set => _expires.SetValue(value);
+    }
+
+    private PropertyValue<bool> _revoked = new PropertyValue<bool>(nameof(GpgKeyData), nameof(IsRevoked));
+    
+    [Required]
+    [JsonPropertyName("revoked")]
+    public bool IsRevoked
+    {
+        get => _revoked.GetValue();
+        set => _revoked.SetValue(value);
+    }
+
+    private PropertyValue<string?> _revokeComment = new PropertyValue<string?>(nameof(GpgKeyData), nameof(RevokeComment));
+    
+    [JsonPropertyName("revokeComment")]
+    public string? RevokeComment
+    {
+        get => _revokeComment.GetValue();
+        set => _revokeComment.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _fingerprint.SetAccessPath(path, validateHasBeenSet);
+        _publicKey.SetAccessPath(path, validateHasBeenSet);
+        _userId.SetAccessPath(path, validateHasBeenSet);
+        _verified.SetAccessPath(path, validateHasBeenSet);
+        _comment.SetAccessPath(path, validateHasBeenSet);
+        _created.SetAccessPath(path, validateHasBeenSet);
+        _added.SetAccessPath(path, validateHasBeenSet);
+        _expires.SetAccessPath(path, validateHasBeenSet);
+        _revoked.SetAccessPath(path, validateHasBeenSet);
+        _revokeComment.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

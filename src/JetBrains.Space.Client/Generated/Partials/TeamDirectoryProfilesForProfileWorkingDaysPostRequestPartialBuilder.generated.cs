@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileWorkingDaysPostRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileWorkingDaysPostRequestPartialBuilder;
+
+public static class TeamDirectoryProfilesForProfileWorkingDaysPostRequestPartialExtensions
 {
-    public static class TeamDirectoryProfilesForProfileWorkingDaysPostRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> WithDateStart(this Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> it)
-            => it.AddFieldName("dateStart");
-        
-        public static Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> WithDateEnd(this Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> it)
-            => it.AddFieldName("dateEnd");
-        
-        public static Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> WithWorkingDaysSpec(this Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> it)
-            => it.AddFieldName("workingDaysSpec");
-        
-        public static Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> WithWorkingDaysSpec(this Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> it, Func<Partial<WorkingDaysSpec>, Partial<WorkingDaysSpec>> partialBuilder)
-            => it.AddFieldName("workingDaysSpec", partialBuilder(new Partial<WorkingDaysSpec>(it)));
-        
-    }
+    public static Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> WithDateStart(this Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> it)
+        => it.AddFieldName("dateStart");
+    
+    public static Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> WithDateEnd(this Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> it)
+        => it.AddFieldName("dateEnd");
+    
+    public static Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> WithWorkingDaysSpec(this Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> it)
+        => it.AddFieldName("workingDaysSpec");
+    
+    public static Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> WithWorkingDaysSpec(this Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> it, Func<Partial<WorkingDaysSpec>, Partial<WorkingDaysSpec>> partialBuilder)
+        => it.AddFieldName("workingDaysSpec", partialBuilder(new Partial<WorkingDaysSpec>(it)));
     
 }
+

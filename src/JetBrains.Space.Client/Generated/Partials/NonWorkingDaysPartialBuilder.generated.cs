@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NonWorkingDaysPartialBuilder
+namespace JetBrains.Space.Client.NonWorkingDaysPartialBuilder;
+
+public static class NonWorkingDaysPartialExtensions
 {
-    public static class NonWorkingDaysPartialExtensions
-    {
-        public static Partial<NonWorkingDays> WithSince(this Partial<NonWorkingDays> it)
-            => it.AddFieldName("since");
-        
-        public static Partial<NonWorkingDays> WithTill(this Partial<NonWorkingDays> it)
-            => it.AddFieldName("till");
-        
-        public static Partial<NonWorkingDays> WithIsStartsEarlier(this Partial<NonWorkingDays> it)
-            => it.AddFieldName("startsEarlier");
-        
-        public static Partial<NonWorkingDays> WithIsEndsLater(this Partial<NonWorkingDays> it)
-            => it.AddFieldName("endsLater");
-        
-    }
+    public static Partial<NonWorkingDays> WithSince(this Partial<NonWorkingDays> it)
+        => it.AddFieldName("since");
+    
+    public static Partial<NonWorkingDays> WithTill(this Partial<NonWorkingDays> it)
+        => it.AddFieldName("till");
+    
+    public static Partial<NonWorkingDays> WithIsStartsEarlier(this Partial<NonWorkingDays> it)
+        => it.AddFieldName("startsEarlier");
+    
+    public static Partial<NonWorkingDays> WithIsEndsLater(this Partial<NonWorkingDays> it)
+        => it.AddFieldName("endsLater");
     
 }
+

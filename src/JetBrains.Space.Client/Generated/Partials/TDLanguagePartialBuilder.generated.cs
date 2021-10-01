@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TDLanguagePartialBuilder
+namespace JetBrains.Space.Client.TDLanguagePartialBuilder;
+
+public static class TDLanguagePartialExtensions
 {
-    public static class TDLanguagePartialExtensions
-    {
-        public static Partial<TDLanguage> WithId(this Partial<TDLanguage> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<TDLanguage> WithCode(this Partial<TDLanguage> it)
-            => it.AddFieldName("code");
-        
-        public static Partial<TDLanguage> WithName(this Partial<TDLanguage> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<TDLanguage> WithNativeName(this Partial<TDLanguage> it)
-            => it.AddFieldName("nativeName");
-        
-        public static Partial<TDLanguage> WithFirstNameTitle(this Partial<TDLanguage> it)
-            => it.AddFieldName("firstNameTitle");
-        
-        public static Partial<TDLanguage> WithLastNameTitle(this Partial<TDLanguage> it)
-            => it.AddFieldName("lastNameTitle");
-        
-    }
+    public static Partial<TDLanguage> WithId(this Partial<TDLanguage> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<TDLanguage> WithCode(this Partial<TDLanguage> it)
+        => it.AddFieldName("code");
+    
+    public static Partial<TDLanguage> WithName(this Partial<TDLanguage> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<TDLanguage> WithNativeName(this Partial<TDLanguage> it)
+        => it.AddFieldName("nativeName");
+    
+    public static Partial<TDLanguage> WithFirstNameTitle(this Partial<TDLanguage> it)
+        => it.AddFieldName("firstNameTitle");
+    
+    public static Partial<TDLanguage> WithLastNameTitle(this Partial<TDLanguage> it)
+        => it.AddFieldName("lastNameTitle");
     
 }
+

@@ -27,27 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class CodeDiscussionSnippet
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class CodeDiscussionSnippet
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "CodeDiscussionSnippet";
+    
+    public static CodeDiscussionSnippetInlineDiffSnippet InlineDiffSnippet(List<InlineDiffLine> lines)
+        => new CodeDiscussionSnippetInlineDiffSnippet(lines: lines);
+    
+    public static CodeDiscussionSnippetPlainSnippet PlainSnippet(List<CodeLine> lines)
+        => new CodeDiscussionSnippetPlainSnippet(lines: lines);
+    
+    public CodeDiscussionSnippet() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "CodeDiscussionSnippet";
-        
-        public static CodeDiscussionSnippetInlineDiffSnippet InlineDiffSnippet(List<InlineDiffLine> lines)
-            => new CodeDiscussionSnippetInlineDiffSnippet(lines: lines);
-        
-        public static CodeDiscussionSnippetPlainSnippet PlainSnippet(List<CodeLine> lines)
-            => new CodeDiscussionSnippetPlainSnippet(lines: lines);
-        
-        public CodeDiscussionSnippet() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

@@ -27,23 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(EnumStringConverter))]
+public enum PasswordStrength
 {
-    [JsonConverter(typeof(EnumStringConverter))]
-    public enum PasswordStrength
-    {
-        [EnumMember(Value = "NO_POLICY")]
-        NOPOLICY,
-        
-        [EnumMember(Value = "FAIR")]
-        FAIR,
-        
-        [EnumMember(Value = "GOOD")]
-        GOOD,
-        
-        [EnumMember(Value = "STRONG")]
-        STRONG,
-        
-    }
+    [EnumMember(Value = "NO_POLICY")]
+    NOPOLICY,
+    
+    [EnumMember(Value = "FAIR")]
+    FAIR,
+    
+    [EnumMember(Value = "GOOD")]
+    GOOD,
+    
+    [EnumMember(Value = "STRONG")]
+    STRONG,
     
 }
+

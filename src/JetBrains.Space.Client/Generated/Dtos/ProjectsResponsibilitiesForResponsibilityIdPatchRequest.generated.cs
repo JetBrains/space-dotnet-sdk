@@ -27,44 +27,43 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public class ProjectsResponsibilitiesForResponsibilityIdPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public class ProjectsResponsibilitiesForResponsibilityIdPatchRequest
-         : IPropagatePropertyAccessPath
+    public ProjectsResponsibilitiesForResponsibilityIdPatchRequest() { }
+    
+    public ProjectsResponsibilitiesForResponsibilityIdPatchRequest(string summary, string? notes = null)
     {
-        public ProjectsResponsibilitiesForResponsibilityIdPatchRequest() { }
-        
-        public ProjectsResponsibilitiesForResponsibilityIdPatchRequest(string summary, string? notes = null)
-        {
-            Summary = summary;
-            Notes = notes;
-        }
-        
-        private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ProjectsResponsibilitiesForResponsibilityIdPatchRequest), nameof(Summary));
-        
-        [Required]
-        [JsonPropertyName("summary")]
-        public string Summary
-        {
-            get => _summary.GetValue();
-            set => _summary.SetValue(value);
-        }
-    
-        private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(ProjectsResponsibilitiesForResponsibilityIdPatchRequest), nameof(Notes));
-        
-        [JsonPropertyName("notes")]
-        public string? Notes
-        {
-            get => _notes.GetValue();
-            set => _notes.SetValue(value);
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _summary.SetAccessPath(path, validateHasBeenSet);
-            _notes.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Summary = summary;
+        Notes = notes;
     }
     
+    private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ProjectsResponsibilitiesForResponsibilityIdPatchRequest), nameof(Summary));
+    
+    [Required]
+    [JsonPropertyName("summary")]
+    public string Summary
+    {
+        get => _summary.GetValue();
+        set => _summary.SetValue(value);
+    }
+
+    private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(ProjectsResponsibilitiesForResponsibilityIdPatchRequest), nameof(Notes));
+    
+    [JsonPropertyName("notes")]
+    public string? Notes
+    {
+        get => _notes.GetValue();
+        set => _notes.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _summary.SetAccessPath(path, validateHasBeenSet);
+        _notes.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

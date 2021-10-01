@@ -27,33 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class HAPath
+     : IPropagatePropertyAccessPath
 {
-    public sealed class HAPath
-         : IPropagatePropertyAccessPath
+    public HAPath() { }
+    
+    public HAPath(List<HAPathSegment> segments)
     {
-        public HAPath() { }
-        
-        public HAPath(List<HAPathSegment> segments)
-        {
-            Segments = segments;
-        }
-        
-        private PropertyValue<List<HAPathSegment>> _segments = new PropertyValue<List<HAPathSegment>>(nameof(HAPath), nameof(Segments), new List<HAPathSegment>());
-        
-        [Required]
-        [JsonPropertyName("segments")]
-        public List<HAPathSegment> Segments
-        {
-            get => _segments.GetValue();
-            set => _segments.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _segments.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        Segments = segments;
     }
     
+    private PropertyValue<List<HAPathSegment>> _segments = new PropertyValue<List<HAPathSegment>>(nameof(HAPath), nameof(Segments), new List<HAPathSegment>());
+    
+    [Required]
+    [JsonPropertyName("segments")]
+    public List<HAPathSegment> Segments
+    {
+        get => _segments.GetValue();
+        set => _segments.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _segments.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

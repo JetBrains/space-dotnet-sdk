@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DateTimeViewParamsPartialBuilder
+namespace JetBrains.Space.Client.DateTimeViewParamsPartialBuilder;
+
+public static class DateTimeViewParamsPartialExtensions
 {
-    public static class DateTimeViewParamsPartialExtensions
-    {
-        public static Partial<DateTimeViewParams> WithFormat(this Partial<DateTimeViewParams> it)
-            => it.AddFieldName("format");
-        
-        public static Partial<DateTimeViewParams> WithFormat(this Partial<DateTimeViewParams> it, Func<Partial<UnfurlDateTimeFormat>, Partial<UnfurlDateTimeFormat>> partialBuilder)
-            => it.AddFieldName("format", partialBuilder(new Partial<UnfurlDateTimeFormat>(it)));
-        
-        public static Partial<DateTimeViewParams> WithStyle(this Partial<DateTimeViewParams> it)
-            => it.AddFieldName("style");
-        
-        public static Partial<DateTimeViewParams> WithStyle(this Partial<DateTimeViewParams> it, Func<Partial<UnfurlDateTimeStyle>, Partial<UnfurlDateTimeStyle>> partialBuilder)
-            => it.AddFieldName("style", partialBuilder(new Partial<UnfurlDateTimeStyle>(it)));
-        
-        public static Partial<DateTimeViewParams> WithTemplate(this Partial<DateTimeViewParams> it)
-            => it.AddFieldName("template");
-        
-    }
+    public static Partial<DateTimeViewParams> WithFormat(this Partial<DateTimeViewParams> it)
+        => it.AddFieldName("format");
+    
+    public static Partial<DateTimeViewParams> WithFormat(this Partial<DateTimeViewParams> it, Func<Partial<UnfurlDateTimeFormat>, Partial<UnfurlDateTimeFormat>> partialBuilder)
+        => it.AddFieldName("format", partialBuilder(new Partial<UnfurlDateTimeFormat>(it)));
+    
+    public static Partial<DateTimeViewParams> WithStyle(this Partial<DateTimeViewParams> it)
+        => it.AddFieldName("style");
+    
+    public static Partial<DateTimeViewParams> WithStyle(this Partial<DateTimeViewParams> it, Func<Partial<UnfurlDateTimeStyle>, Partial<UnfurlDateTimeStyle>> partialBuilder)
+        => it.AddFieldName("style", partialBuilder(new Partial<UnfurlDateTimeStyle>(it)));
+    
+    public static Partial<DateTimeViewParams> WithTemplate(this Partial<DateTimeViewParams> it)
+        => it.AddFieldName("template");
     
 }
+

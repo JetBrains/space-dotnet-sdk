@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PlainParameterRecordPartialBuilder
+namespace JetBrains.Space.Client.PlainParameterRecordPartialBuilder;
+
+public static class PlainParameterRecordPartialExtensions
 {
-    public static class PlainParameterRecordPartialExtensions
-    {
-        public static Partial<PlainParameterRecord> WithId(this Partial<PlainParameterRecord> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<PlainParameterRecord> WithIsArchived(this Partial<PlainParameterRecord> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<PlainParameterRecord> WithBundleId(this Partial<PlainParameterRecord> it)
-            => it.AddFieldName("bundleId");
-        
-        public static Partial<PlainParameterRecord> WithKey(this Partial<PlainParameterRecord> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<PlainParameterRecord> WithValue(this Partial<PlainParameterRecord> it)
-            => it.AddFieldName("value");
-        
-    }
+    public static Partial<PlainParameterRecord> WithId(this Partial<PlainParameterRecord> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<PlainParameterRecord> WithIsArchived(this Partial<PlainParameterRecord> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<PlainParameterRecord> WithBundleId(this Partial<PlainParameterRecord> it)
+        => it.AddFieldName("bundleId");
+    
+    public static Partial<PlainParameterRecord> WithKey(this Partial<PlainParameterRecord> it)
+        => it.AddFieldName("key");
+    
+    public static Partial<PlainParameterRecord> WithValue(this Partial<PlainParameterRecord> it)
+        => it.AddFieldName("value");
     
 }
+

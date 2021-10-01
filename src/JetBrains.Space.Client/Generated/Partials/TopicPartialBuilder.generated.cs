@@ -27,40 +27,39 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TopicPartialBuilder
+namespace JetBrains.Space.Client.TopicPartialBuilder;
+
+public static class TopicPartialExtensions
 {
-    public static class TopicPartialExtensions
-    {
-        public static Partial<Topic> WithId(this Partial<Topic> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<Topic> WithIsArchived(this Partial<Topic> it)
-            => it.AddFieldName("archived");
-        
-        public static Partial<Topic> WithName(this Partial<Topic> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<Topic> WithParent(this Partial<Topic> it)
-            => it.AddFieldName("parent");
-        
-        public static Partial<Topic> WithParentRecursive(this Partial<Topic> it)
-            => it.AddFieldName("parent!");
-        
-        public static Partial<Topic> WithParent(this Partial<Topic> it, Func<Partial<Topic>, Partial<Topic>> partialBuilder)
-            => it.AddFieldName("parent", partialBuilder(new Partial<Topic>(it)));
-        
-        public static Partial<Topic> WithProject(this Partial<Topic> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<Topic> WithProject(this Partial<Topic> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
-        
-        public static Partial<Topic> WithResponsible(this Partial<Topic> it)
-            => it.AddFieldName("responsible");
-        
-        public static Partial<Topic> WithResponsible(this Partial<Topic> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("responsible", partialBuilder(new Partial<TDMemberProfile>(it)));
-        
-    }
+    public static Partial<Topic> WithId(this Partial<Topic> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<Topic> WithIsArchived(this Partial<Topic> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<Topic> WithName(this Partial<Topic> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<Topic> WithParent(this Partial<Topic> it)
+        => it.AddFieldName("parent");
+    
+    public static Partial<Topic> WithParentRecursive(this Partial<Topic> it)
+        => it.AddFieldName("parent!");
+    
+    public static Partial<Topic> WithParent(this Partial<Topic> it, Func<Partial<Topic>, Partial<Topic>> partialBuilder)
+        => it.AddFieldName("parent", partialBuilder(new Partial<Topic>(it)));
+    
+    public static Partial<Topic> WithProject(this Partial<Topic> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<Topic> WithProject(this Partial<Topic> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+    
+    public static Partial<Topic> WithResponsible(this Partial<Topic> it)
+        => it.AddFieldName("responsible");
+    
+    public static Partial<Topic> WithResponsible(this Partial<Topic> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("responsible", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
+

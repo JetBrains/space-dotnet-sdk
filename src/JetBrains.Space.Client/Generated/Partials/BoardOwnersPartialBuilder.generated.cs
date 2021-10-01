@@ -27,22 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BoardOwnersPartialBuilder
+namespace JetBrains.Space.Client.BoardOwnersPartialBuilder;
+
+public static class BoardOwnersPartialExtensions
 {
-    public static class BoardOwnersPartialExtensions
-    {
-        public static Partial<BoardOwners> WithMembers(this Partial<BoardOwners> it)
-            => it.AddFieldName("members");
-        
-        public static Partial<BoardOwners> WithMembers(this Partial<BoardOwners> it, Func<Partial<BoardMemberOwners>, Partial<BoardMemberOwners>> partialBuilder)
-            => it.AddFieldName("members", partialBuilder(new Partial<BoardMemberOwners>(it)));
-        
-        public static Partial<BoardOwners> WithTeams(this Partial<BoardOwners> it)
-            => it.AddFieldName("teams");
-        
-        public static Partial<BoardOwners> WithTeams(this Partial<BoardOwners> it, Func<Partial<BoardTeamOwners>, Partial<BoardTeamOwners>> partialBuilder)
-            => it.AddFieldName("teams", partialBuilder(new Partial<BoardTeamOwners>(it)));
-        
-    }
+    public static Partial<BoardOwners> WithMembers(this Partial<BoardOwners> it)
+        => it.AddFieldName("members");
+    
+    public static Partial<BoardOwners> WithMembers(this Partial<BoardOwners> it, Func<Partial<BoardMemberOwners>, Partial<BoardMemberOwners>> partialBuilder)
+        => it.AddFieldName("members", partialBuilder(new Partial<BoardMemberOwners>(it)));
+    
+    public static Partial<BoardOwners> WithTeams(this Partial<BoardOwners> it)
+        => it.AddFieldName("teams");
+    
+    public static Partial<BoardOwners> WithTeams(this Partial<BoardOwners> it, Func<Partial<BoardTeamOwners>, Partial<BoardTeamOwners>> partialBuilder)
+        => it.AddFieldName("teams", partialBuilder(new Partial<BoardTeamOwners>(it)));
     
 }
+

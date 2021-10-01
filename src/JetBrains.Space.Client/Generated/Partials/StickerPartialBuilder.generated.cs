@@ -27,37 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.StickerPartialBuilder
+namespace JetBrains.Space.Client.StickerPartialBuilder;
+
+public static class StickerPartialExtensions
 {
-    public static class StickerPartialExtensions
-    {
-        public static Partial<Sticker> WithId(this Partial<Sticker> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<Sticker> WithSymbol(this Partial<Sticker> it)
-            => it.AddFieldName("symbol");
-        
-        public static Partial<Sticker> WithAttachmentId(this Partial<Sticker> it)
-            => it.AddFieldName("attachmentId");
-        
-        public static Partial<Sticker> WithWidth(this Partial<Sticker> it)
-            => it.AddFieldName("width");
-        
-        public static Partial<Sticker> WithHeight(this Partial<Sticker> it)
-            => it.AddFieldName("height");
-        
-        public static Partial<Sticker> WithVariants(this Partial<Sticker> it)
-            => it.AddFieldName("variants");
-        
-        public static Partial<Sticker> WithVariants(this Partial<Sticker> it, Func<Partial<StickerVariant>, Partial<StickerVariant>> partialBuilder)
-            => it.AddFieldName("variants", partialBuilder(new Partial<StickerVariant>(it)));
-        
-        public static Partial<Sticker> WithIsAnimated(this Partial<Sticker> it)
-            => it.AddFieldName("animated");
-        
-        public static Partial<Sticker> WithIsArchived(this Partial<Sticker> it)
-            => it.AddFieldName("archived");
-        
-    }
+    public static Partial<Sticker> WithId(this Partial<Sticker> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<Sticker> WithSymbol(this Partial<Sticker> it)
+        => it.AddFieldName("symbol");
+    
+    public static Partial<Sticker> WithAttachmentId(this Partial<Sticker> it)
+        => it.AddFieldName("attachmentId");
+    
+    public static Partial<Sticker> WithWidth(this Partial<Sticker> it)
+        => it.AddFieldName("width");
+    
+    public static Partial<Sticker> WithHeight(this Partial<Sticker> it)
+        => it.AddFieldName("height");
+    
+    public static Partial<Sticker> WithVariants(this Partial<Sticker> it)
+        => it.AddFieldName("variants");
+    
+    public static Partial<Sticker> WithVariants(this Partial<Sticker> it, Func<Partial<StickerVariant>, Partial<StickerVariant>> partialBuilder)
+        => it.AddFieldName("variants", partialBuilder(new Partial<StickerVariant>(it)));
+    
+    public static Partial<Sticker> WithIsAnimated(this Partial<Sticker> it)
+        => it.AddFieldName("animated");
+    
+    public static Partial<Sticker> WithIsArchived(this Partial<Sticker> it)
+        => it.AddFieldName("archived");
     
 }
+

@@ -27,47 +27,46 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+public sealed class ReviewStateChangedEvent
+     : FeedEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public sealed class ReviewStateChangedEvent
-         : FeedEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ReviewStateChangedEvent";
+    
+    public ReviewStateChangedEvent() { }
+    
+    public ReviewStateChangedEvent(CodeReviewState state, CodeReviewRecord? review = null)
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "ReviewStateChangedEvent";
-        
-        public ReviewStateChangedEvent() { }
-        
-        public ReviewStateChangedEvent(CodeReviewState state, CodeReviewRecord? review = null)
-        {
-            State = state;
-            Review = review;
-        }
-        
-        private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(ReviewStateChangedEvent), nameof(State));
-        
-        [Required]
-        [JsonPropertyName("state")]
-        public CodeReviewState State
-        {
-            get => _state.GetValue();
-            set => _state.SetValue(value);
-        }
-    
-        private PropertyValue<CodeReviewRecord?> _review = new PropertyValue<CodeReviewRecord?>(nameof(ReviewStateChangedEvent), nameof(Review));
-        
-        [JsonPropertyName("review")]
-        public CodeReviewRecord? Review
-        {
-            get => _review.GetValue();
-            set => _review.SetValue(value);
-        }
-    
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _state.SetAccessPath(path, validateHasBeenSet);
-            _review.SetAccessPath(path, validateHasBeenSet);
-        }
-    
+        State = state;
+        Review = review;
     }
     
+    private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(ReviewStateChangedEvent), nameof(State));
+    
+    [Required]
+    [JsonPropertyName("state")]
+    public CodeReviewState State
+    {
+        get => _state.GetValue();
+        set => _state.SetValue(value);
+    }
+
+    private PropertyValue<CodeReviewRecord?> _review = new PropertyValue<CodeReviewRecord?>(nameof(ReviewStateChangedEvent), nameof(Review));
+    
+    [JsonPropertyName("review")]
+    public CodeReviewRecord? Review
+    {
+        get => _review.GetValue();
+        set => _review.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _state.SetAccessPath(path, validateHasBeenSet);
+        _review.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
+

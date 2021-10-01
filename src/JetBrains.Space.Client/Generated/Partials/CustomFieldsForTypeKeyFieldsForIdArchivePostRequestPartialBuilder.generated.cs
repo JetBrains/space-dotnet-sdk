@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CustomFieldsForTypeKeyFieldsForIdArchivePostRequestPartialBuilder
+namespace JetBrains.Space.Client.CustomFieldsForTypeKeyFieldsForIdArchivePostRequestPartialBuilder;
+
+public static class CustomFieldsForTypeKeyFieldsForIdArchivePostRequestPartialExtensions
 {
-    public static class CustomFieldsForTypeKeyFieldsForIdArchivePostRequestPartialExtensions
-    {
-        public static Partial<CustomFieldsForTypeKeyFieldsForIdArchivePostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsForIdArchivePostRequest> it)
-            => it.AddFieldName("scope");
-        
-        public static Partial<CustomFieldsForTypeKeyFieldsForIdArchivePostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsForIdArchivePostRequest> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
-            => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
-        
-    }
+    public static Partial<CustomFieldsForTypeKeyFieldsForIdArchivePostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsForIdArchivePostRequest> it)
+        => it.AddFieldName("scope");
+    
+    public static Partial<CustomFieldsForTypeKeyFieldsForIdArchivePostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsForIdArchivePostRequest> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
+        => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
     
 }
+

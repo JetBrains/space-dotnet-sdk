@@ -27,39 +27,38 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client
+namespace JetBrains.Space.Client;
+
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class JobExecutionTrigger
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class JobExecutionTrigger
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "JobExecutionTrigger";
+    
+    public static JobExecutionTriggerCodeReviewClosed CodeReviewClosed(string reviewId)
+        => new JobExecutionTriggerCodeReviewClosed(reviewId: reviewId);
+    
+    public static JobExecutionTriggerCodeReviewOpened CodeReviewOpened(string reviewId)
+        => new JobExecutionTriggerCodeReviewOpened(reviewId: reviewId);
+    
+    public static JobExecutionTriggerGitBranchDeleted GitBranchDeleted(List<string> branches)
+        => new JobExecutionTriggerGitBranchDeleted(branches: branches);
+    
+    public static JobExecutionTriggerGitPush GitPush(string commit)
+        => new JobExecutionTriggerGitPush(commit: commit);
+    
+    public static JobExecutionTriggerManual Manual(CPrincipal principal)
+        => new JobExecutionTriggerManual(principal: principal);
+    
+    public static JobExecutionTriggerSchedule Schedule()
+        => new JobExecutionTriggerSchedule();
+    
+    public JobExecutionTrigger() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "JobExecutionTrigger";
-        
-        public static JobExecutionTriggerCodeReviewClosed CodeReviewClosed(string reviewId)
-            => new JobExecutionTriggerCodeReviewClosed(reviewId: reviewId);
-        
-        public static JobExecutionTriggerCodeReviewOpened CodeReviewOpened(string reviewId)
-            => new JobExecutionTriggerCodeReviewOpened(reviewId: reviewId);
-        
-        public static JobExecutionTriggerGitBranchDeleted GitBranchDeleted(List<string> branches)
-            => new JobExecutionTriggerGitBranchDeleted(branches: branches);
-        
-        public static JobExecutionTriggerGitPush GitPush(string commit)
-            => new JobExecutionTriggerGitPush(commit: commit);
-        
-        public static JobExecutionTriggerManual Manual(CPrincipal principal)
-            => new JobExecutionTriggerManual(principal: principal);
-        
-        public static JobExecutionTriggerSchedule Schedule()
-            => new JobExecutionTriggerSchedule();
-        
-        public JobExecutionTrigger() { }
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
-    
+
 }
+

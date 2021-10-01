@@ -27,25 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsSecretsDefaultBundlePostRequestPartialBuilder
+namespace JetBrains.Space.Client.ProjectsSecretsDefaultBundlePostRequestPartialBuilder;
+
+public static class ProjectsSecretsDefaultBundlePostRequestPartialExtensions
 {
-    public static class ProjectsSecretsDefaultBundlePostRequestPartialExtensions
-    {
-        public static Partial<ProjectsSecretsDefaultBundlePostRequest> WithProject(this Partial<ProjectsSecretsDefaultBundlePostRequest> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<ProjectsSecretsDefaultBundlePostRequest> WithProject(this Partial<ProjectsSecretsDefaultBundlePostRequest> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<ProjectIdentifier>(it)));
-        
-        public static Partial<ProjectsSecretsDefaultBundlePostRequest> WithKey(this Partial<ProjectsSecretsDefaultBundlePostRequest> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<ProjectsSecretsDefaultBundlePostRequest> WithValueBase64(this Partial<ProjectsSecretsDefaultBundlePostRequest> it)
-            => it.AddFieldName("valueBase64");
-        
-        public static Partial<ProjectsSecretsDefaultBundlePostRequest> WithPublicKeyId(this Partial<ProjectsSecretsDefaultBundlePostRequest> it)
-            => it.AddFieldName("publicKeyId");
-        
-    }
+    public static Partial<ProjectsSecretsDefaultBundlePostRequest> WithProject(this Partial<ProjectsSecretsDefaultBundlePostRequest> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<ProjectsSecretsDefaultBundlePostRequest> WithProject(this Partial<ProjectsSecretsDefaultBundlePostRequest> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<ProjectIdentifier>(it)));
+    
+    public static Partial<ProjectsSecretsDefaultBundlePostRequest> WithKey(this Partial<ProjectsSecretsDefaultBundlePostRequest> it)
+        => it.AddFieldName("key");
+    
+    public static Partial<ProjectsSecretsDefaultBundlePostRequest> WithValueBase64(this Partial<ProjectsSecretsDefaultBundlePostRequest> it)
+        => it.AddFieldName("valueBase64");
+    
+    public static Partial<ProjectsSecretsDefaultBundlePostRequest> WithPublicKeyId(this Partial<ProjectsSecretsDefaultBundlePostRequest> it)
+        => it.AddFieldName("publicKeyId");
     
 }
+

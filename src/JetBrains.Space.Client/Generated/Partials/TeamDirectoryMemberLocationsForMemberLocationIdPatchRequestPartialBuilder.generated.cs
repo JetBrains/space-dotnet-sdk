@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryMemberLocationsForMemberLocationIdPatchRequestPartialBuilder
+namespace JetBrains.Space.Client.TeamDirectoryMemberLocationsForMemberLocationIdPatchRequestPartialBuilder;
+
+public static class TeamDirectoryMemberLocationsForMemberLocationIdPatchRequestPartialExtensions
 {
-    public static class TeamDirectoryMemberLocationsForMemberLocationIdPatchRequestPartialExtensions
-    {
-        public static Partial<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest> WithLocation(this Partial<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest> it)
-            => it.AddFieldName("location");
-        
-        public static Partial<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest> WithSince(this Partial<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest> it)
-            => it.AddFieldName("since");
-        
-        public static Partial<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest> WithTill(this Partial<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest> it)
-            => it.AddFieldName("till");
-        
-    }
+    public static Partial<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest> WithLocation(this Partial<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest> it)
+        => it.AddFieldName("location");
+    
+    public static Partial<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest> WithSince(this Partial<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest> it)
+        => it.AddFieldName("since");
+    
+    public static Partial<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest> WithTill(this Partial<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest> it)
+        => it.AddFieldName("till");
     
 }
+

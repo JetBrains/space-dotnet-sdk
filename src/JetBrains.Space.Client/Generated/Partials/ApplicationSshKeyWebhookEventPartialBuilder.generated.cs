@@ -27,28 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationSshKeyWebhookEventPartialBuilder
+namespace JetBrains.Space.Client.ApplicationSshKeyWebhookEventPartialBuilder;
+
+public static class ApplicationSshKeyWebhookEventPartialExtensions
 {
-    public static class ApplicationSshKeyWebhookEventPartialExtensions
-    {
-        public static Partial<ApplicationSshKeyWebhookEvent> WithMeta(this Partial<ApplicationSshKeyWebhookEvent> it)
-            => it.AddFieldName("meta");
-        
-        public static Partial<ApplicationSshKeyWebhookEvent> WithMeta(this Partial<ApplicationSshKeyWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-            => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
-        
-        public static Partial<ApplicationSshKeyWebhookEvent> WithApplication(this Partial<ApplicationSshKeyWebhookEvent> it)
-            => it.AddFieldName("application");
-        
-        public static Partial<ApplicationSshKeyWebhookEvent> WithApplication(this Partial<ApplicationSshKeyWebhookEvent> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
-            => it.AddFieldName("application", partialBuilder(new Partial<ESApp>(it)));
-        
-        public static Partial<ApplicationSshKeyWebhookEvent> WithFingerprint(this Partial<ApplicationSshKeyWebhookEvent> it)
-            => it.AddFieldName("fingerprint");
-        
-        public static Partial<ApplicationSshKeyWebhookEvent> WithComment(this Partial<ApplicationSshKeyWebhookEvent> it)
-            => it.AddFieldName("comment");
-        
-    }
+    public static Partial<ApplicationSshKeyWebhookEvent> WithMeta(this Partial<ApplicationSshKeyWebhookEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<ApplicationSshKeyWebhookEvent> WithMeta(this Partial<ApplicationSshKeyWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<ApplicationSshKeyWebhookEvent> WithApplication(this Partial<ApplicationSshKeyWebhookEvent> it)
+        => it.AddFieldName("application");
+    
+    public static Partial<ApplicationSshKeyWebhookEvent> WithApplication(this Partial<ApplicationSshKeyWebhookEvent> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
+        => it.AddFieldName("application", partialBuilder(new Partial<ESApp>(it)));
+    
+    public static Partial<ApplicationSshKeyWebhookEvent> WithFingerprint(this Partial<ApplicationSshKeyWebhookEvent> it)
+        => it.AddFieldName("fingerprint");
+    
+    public static Partial<ApplicationSshKeyWebhookEvent> WithComment(this Partial<ApplicationSshKeyWebhookEvent> it)
+        => it.AddFieldName("comment");
     
 }
+
