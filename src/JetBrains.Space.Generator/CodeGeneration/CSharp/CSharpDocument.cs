@@ -48,16 +48,10 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
             builder.AppendLine($"{indent}using JetBrains.Space.Common.Json.Serialization.Polymorphism;");
             builder.AppendLine($"{indent}using JetBrains.Space.Common.Types;");
             builder.AppendLine($"{indent}");
-            builder.AppendLine($"{indent}namespace JetBrains.Space.Client{(!string.IsNullOrEmpty(_namespaceSuffix) ? "." + _namespaceSuffix : "")}");
-            builder.AppendLine($"{indent}{{");
+            builder.AppendLine($"{indent}namespace JetBrains.Space.Client{(!string.IsNullOrEmpty(_namespaceSuffix) ? "." + _namespaceSuffix : "")};");
+            builder.AppendLine($"{indent}");
             
-            indent.Increment();
-
             builder.Append(indent.Wrap(_builder.ToString()));
-            
-            indent.Decrement();
-            
-            builder.AppendLine($"{indent}}}");
 
             return builder.ToString();
         }
