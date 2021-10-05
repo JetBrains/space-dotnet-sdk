@@ -34,7 +34,7 @@ public class DocsDraftsPostRequest
 {
     public DocsDraftsPostRequest() { }
     
-    public DocsDraftsPostRequest(DraftDocumentType type = DraftDocumentType.WYSIWYG, string? title = null, string? text = null, long? textVersion = null, string? folder = null, PublicationDetails? publicationDetails2 = null)
+    public DocsDraftsPostRequest(DraftDocumentType type = DraftDocumentType.RICHTEXT, string? title = null, string? text = null, long? textVersion = null, string? folder = null, PublicationDetails? publicationDetails2 = null)
     {
         Title = title;
         Text = text;
@@ -71,7 +71,7 @@ public class DocsDraftsPostRequest
         set => _textVersion.SetValue(value);
     }
 
-    private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(DocsDraftsPostRequest), nameof(Type), DraftDocumentType.WYSIWYG);
+    private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(DocsDraftsPostRequest), nameof(Type), DraftDocumentType.RICHTEXT);
     
     [JsonPropertyName("type")]
     public DraftDocumentType Type

@@ -49,7 +49,8 @@ public partial class DocClient : ISpaceClient
             _connection = connection;
         }
         
-        public async Task<DRDraft> CreateDraftAsync(DraftDocumentType type = DraftDocumentType.WYSIWYG, string? title = null, string? text = null, long? textVersion = null, string? folder = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
+        [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
+        public async Task<DRDraft> CreateDraftAsync(DraftDocumentType type = DraftDocumentType.RICHTEXT, string? title = null, string? text = null, long? textVersion = null, string? folder = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default()).ToString());
@@ -67,6 +68,7 @@ public partial class DocClient : ISpaceClient
         }
         
     
+        [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
         public async Task<DRDraft> GetDraftAsync(string id, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -76,6 +78,7 @@ public partial class DocClient : ISpaceClient
         }
         
     
+        [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
         public async Task<DRDraft> UpdateDraftAsync(string id, string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, string? folder = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -94,6 +97,7 @@ public partial class DocClient : ISpaceClient
         }
         
     
+        [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
         public async Task DeleteDraftAsync(string id, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -113,6 +117,7 @@ public partial class DocClient : ISpaceClient
                 _connection = connection;
             }
             
+            [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
             public async Task<DocumentFolderRecord> CreateFolderAsync(string name, string? parentId = null, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -127,6 +132,7 @@ public partial class DocClient : ISpaceClient
             }
             
         
+            [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
             public async Task<DocumentFolderRecord> GetFolderByAliasAsync(string alias, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -136,6 +142,7 @@ public partial class DocClient : ISpaceClient
             }
             
         
+            [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
             public async Task DeleteFolderAsync(string id, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -155,6 +162,7 @@ public partial class DocClient : ISpaceClient
                     _connection = connection;
                 }
                 
+                [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
                 public async Task UpdateNameAsync(string id, string name, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -180,6 +188,7 @@ public partial class DocClient : ISpaceClient
                     _connection = connection;
                 }
                 
+                [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
                 public async Task<DocumentFolderRecord> UpdateParentAsync(string id, string parentFolderId, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -219,6 +228,7 @@ public partial class DocClient : ISpaceClient
                     _connection = connection;
                 }
                 
+                [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
                 public async Task CreateProfileAsync(string id, string editorId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -231,6 +241,7 @@ public partial class DocClient : ISpaceClient
                 }
                 
             
+                [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
                 public async Task<List<TDMemberProfile>> GetAllProfilesAsync(string id, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -240,6 +251,7 @@ public partial class DocClient : ISpaceClient
                 }
                 
             
+                [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
                 public async Task DeleteProfileAsync(string id, string editorId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -261,6 +273,7 @@ public partial class DocClient : ISpaceClient
                     _connection = connection;
                 }
                 
+                [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
                 public async Task CreateTeamAsync(string id, string teamId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -273,6 +286,7 @@ public partial class DocClient : ISpaceClient
                 }
                 
             
+                [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
                 public async Task<List<TDTeam>> GetAllTeamsAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -282,6 +296,7 @@ public partial class DocClient : ISpaceClient
                 }
                 
             
+                [Obsolete("Use endpoint 'projects/{project}/documents' for accessing project documents and 'team-directory/profiles/{profile}/documents' - for personal (since 2021-10-01) (will be removed in a future version)")]
                 public async Task DeleteTeamAsync(string id, string teamId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();

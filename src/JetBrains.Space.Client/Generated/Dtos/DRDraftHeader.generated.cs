@@ -34,7 +34,7 @@ public sealed class DRDraftHeader
 {
     public DRDraftHeader() { }
     
-    public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
+    public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
     {
         Id = id;
         Title = title;
@@ -44,6 +44,7 @@ public sealed class DRDraftHeader
         Created = created;
         ModifiedBy = modifiedBy;
         IsShared = shared;
+        PublicationDetails = publicationDetails;
         PublicationDetails2 = publicationDetails2;
         IsDeleted = deleted;
         ArchivedBy = archivedBy;
@@ -133,6 +134,15 @@ public sealed class DRDraftHeader
         set => _shared.SetValue(value);
     }
 
+    private PropertyValue<PublicationDetails?> _publicationDetails = new PropertyValue<PublicationDetails?>(nameof(DRDraftHeader), nameof(PublicationDetails));
+    
+    [JsonPropertyName("publicationDetails")]
+    public PublicationDetails? PublicationDetails
+    {
+        get => _publicationDetails.GetValue();
+        set => _publicationDetails.SetValue(value);
+    }
+
     private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DRDraftHeader), nameof(PublicationDetails2));
     
     [JsonPropertyName("publicationDetails2")]
@@ -218,6 +228,7 @@ public sealed class DRDraftHeader
         _created.SetAccessPath(path, validateHasBeenSet);
         _modifiedBy.SetAccessPath(path, validateHasBeenSet);
         _shared.SetAccessPath(path, validateHasBeenSet);
+        _publicationDetails.SetAccessPath(path, validateHasBeenSet);
         _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
         _deleted.SetAccessPath(path, validateHasBeenSet);
         _archivedBy.SetAccessPath(path, validateHasBeenSet);

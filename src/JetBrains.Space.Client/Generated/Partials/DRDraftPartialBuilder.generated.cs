@@ -64,6 +64,12 @@ public static class DRDraftPartialExtensions
     public static Partial<DRDraft> WithArchivedAt(this Partial<DRDraft> it)
         => it.AddFieldName("archivedAt");
     
+    public static Partial<DRDraft> WithPublicationDetails(this Partial<DRDraft> it)
+        => it.AddFieldName("publicationDetails");
+    
+    public static Partial<DRDraft> WithPublicationDetails(this Partial<DRDraft> it, Func<Partial<PublicationDetails>, Partial<PublicationDetails>> partialBuilder)
+        => it.AddFieldName("publicationDetails", partialBuilder(new Partial<PublicationDetails>(it)));
+    
     public static Partial<DRDraft> WithPublicationDetails2(this Partial<DRDraft> it)
         => it.AddFieldName("publicationDetails2");
     

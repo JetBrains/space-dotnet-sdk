@@ -29,52 +29,53 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class NuGetDependency
+public sealed class ChangeInReview
      : IPropagatePropertyAccessPath
 {
-    public NuGetDependency() { }
+    public ChangeInReview() { }
     
-    public NuGetDependency(string id, string range, string? targetFramework = null)
+    public ChangeInReview(string repository, GitCommitChange change, bool read)
     {
-        TargetFramework = targetFramework;
-        Id = id;
-        Range = range;
+        Repository = repository;
+        Change = change;
+        IsRead = read;
     }
     
-    private PropertyValue<string?> _targetFramework = new PropertyValue<string?>(nameof(NuGetDependency), nameof(TargetFramework));
-    
-    [JsonPropertyName("targetFramework")]
-    public string? TargetFramework
-    {
-        get => _targetFramework.GetValue();
-        set => _targetFramework.SetValue(value);
-    }
-
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(NuGetDependency), nameof(Id));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ChangeInReview), nameof(Repository));
     
     [Required]
-    [JsonPropertyName("id")]
-    public string Id
+    [JsonPropertyName("repository")]
+    public string Repository
     {
-        get => _id.GetValue();
-        set => _id.SetValue(value);
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _range = new PropertyValue<string>(nameof(NuGetDependency), nameof(Range));
+    private PropertyValue<GitCommitChange> _change = new PropertyValue<GitCommitChange>(nameof(ChangeInReview), nameof(Change));
     
     [Required]
-    [JsonPropertyName("range")]
-    public string Range
+    [JsonPropertyName("change")]
+    public GitCommitChange Change
     {
-        get => _range.GetValue();
-        set => _range.SetValue(value);
+        get => _change.GetValue();
+        set => _change.SetValue(value);
+    }
+
+    private PropertyValue<bool> _read = new PropertyValue<bool>(nameof(ChangeInReview), nameof(IsRead));
+    
+    [Required]
+    [JsonPropertyName("read")]
+    public bool IsRead
+    {
+        get => _read.GetValue();
+        set => _read.SetValue(value);
     }
 
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        _targetFramework.SetAccessPath(path, validateHasBeenSet);
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _range.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _change.SetAccessPath(path, validateHasBeenSet);
+        _read.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

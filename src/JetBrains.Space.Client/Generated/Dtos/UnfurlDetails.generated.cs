@@ -80,6 +80,9 @@ public interface UnfurlDetails
     public static UnfurlDetailsDraft Draft(string draft, string title, bool? strikeThrough = null)
         => new UnfurlDetailsDraft(draft: draft, title: title, strikeThrough: strikeThrough);
     
+    public static UnfurlDetailsImage Image(string title, UnfurlDetailsImageSource image, string? icon = null)
+        => new UnfurlDetailsImage(title: title, image: image, icon: icon);
+    
     public static UnfurlDetailsInlineMarkdown InlineMarkdown(string markdown)
         => new UnfurlDetailsInlineMarkdown(markdown: markdown);
     

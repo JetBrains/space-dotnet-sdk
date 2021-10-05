@@ -27,18 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NuGetDependencyPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class NuGetDependencyPartialExtensions
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class UnfurlDetailsImageSource
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static Partial<NuGetDependency> WithTargetFramework(this Partial<NuGetDependency> it)
-        => it.AddFieldName("targetFramework");
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "UnfurlDetailsImageSource";
     
-    public static Partial<NuGetDependency> WithId(this Partial<NuGetDependency> it)
-        => it.AddFieldName("id");
+    public static UnfurlDetailsImageSourceAttachment Attachment(ImageAttachment attachment)
+        => new UnfurlDetailsImageSourceAttachment(attachment: attachment);
     
-    public static Partial<NuGetDependency> WithRange(this Partial<NuGetDependency> it)
-        => it.AddFieldName("range");
+    public static UnfurlDetailsImageSourceUrl Url(string url)
+        => new UnfurlDetailsImageSourceUrl(url: url);
     
+    public UnfurlDetailsImageSource() { }
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+    }
+
 }
 

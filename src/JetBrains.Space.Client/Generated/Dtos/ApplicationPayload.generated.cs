@@ -56,6 +56,9 @@ public interface ApplicationPayload
     public static MessagePayload MessagePayload(MessageContext message, string clientId, string userId, string? verificationToken = null)
         => new MessagePayload(message: message, clientId: clientId, userId: userId, verificationToken: verificationToken);
     
+    public static NewUnfurlQueueItemsPayload NewUnfurlQueueItemsPayload(string clientId, string? verificationToken = null)
+        => new NewUnfurlQueueItemsPayload(clientId: clientId, verificationToken: verificationToken);
+    
     public static WebhookRequestPayload WebhookRequestPayload(string clientId, string webhookId, WebhookEvent payload, string? verificationToken = null)
         => new WebhookRequestPayload(clientId: clientId, webhookId: webhookId, payload: payload, verificationToken: verificationToken);
     

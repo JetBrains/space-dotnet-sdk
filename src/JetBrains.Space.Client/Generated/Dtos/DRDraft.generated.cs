@@ -34,7 +34,7 @@ public sealed class DRDraft
 {
     public DRDraft() { }
     
-    public DRDraft(string id, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBody documentBody, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, CPrincipal? createdBy = null, bool? published = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
+    public DRDraft(string id, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBody documentBody, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, CPrincipal? createdBy = null, bool? published = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
     {
         Id = id;
         Title = title;
@@ -45,6 +45,7 @@ public sealed class DRDraft
         IsDeleted = deleted;
         ArchivedBy = archivedBy;
         ArchivedAt = archivedAt;
+        PublicationDetails = publicationDetails;
         PublicationDetails2 = publicationDetails2;
         Author = author;
         CreatedBy = createdBy;
@@ -145,6 +146,15 @@ public sealed class DRDraft
     {
         get => _archivedAt.GetValue();
         set => _archivedAt.SetValue(value);
+    }
+
+    private PropertyValue<PublicationDetails?> _publicationDetails = new PropertyValue<PublicationDetails?>(nameof(DRDraft), nameof(PublicationDetails));
+    
+    [JsonPropertyName("publicationDetails")]
+    public PublicationDetails? PublicationDetails
+    {
+        get => _publicationDetails.GetValue();
+        set => _publicationDetails.SetValue(value);
     }
 
     private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DRDraft), nameof(PublicationDetails2));
@@ -272,6 +282,7 @@ public sealed class DRDraft
         _deleted.SetAccessPath(path, validateHasBeenSet);
         _archivedBy.SetAccessPath(path, validateHasBeenSet);
         _archivedAt.SetAccessPath(path, validateHasBeenSet);
+        _publicationDetails.SetAccessPath(path, validateHasBeenSet);
         _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
         _author.SetAccessPath(path, validateHasBeenSet);
         _createdBy.SetAccessPath(path, validateHasBeenSet);

@@ -34,23 +34,23 @@ public sealed class ApplicationUnfurlPattern
 {
     public ApplicationUnfurlPattern() { }
     
-    public ApplicationUnfurlPattern(string pattern, string linkReplacement, RightStatus status, CPrincipal? modificationAuthor = null, DateTime? modificationTimestamp = null)
+    public ApplicationUnfurlPattern(string prefix, string linkReplacement, RightStatus status, CPrincipal? modificationAuthor = null, DateTime? modificationTimestamp = null)
     {
-        Pattern = pattern;
+        Prefix = prefix;
         LinkReplacement = linkReplacement;
         Status = status;
         ModificationAuthor = modificationAuthor;
         ModificationTimestamp = modificationTimestamp;
     }
     
-    private PropertyValue<string> _pattern = new PropertyValue<string>(nameof(ApplicationUnfurlPattern), nameof(Pattern));
+    private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(ApplicationUnfurlPattern), nameof(Prefix));
     
     [Required]
-    [JsonPropertyName("pattern")]
-    public string Pattern
+    [JsonPropertyName("prefix")]
+    public string Prefix
     {
-        get => _pattern.GetValue();
-        set => _pattern.SetValue(value);
+        get => _prefix.GetValue();
+        set => _prefix.SetValue(value);
     }
 
     private PropertyValue<string> _linkReplacement = new PropertyValue<string>(nameof(ApplicationUnfurlPattern), nameof(LinkReplacement));
@@ -94,7 +94,7 @@ public sealed class ApplicationUnfurlPattern
 
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        _pattern.SetAccessPath(path, validateHasBeenSet);
+        _prefix.SetAccessPath(path, validateHasBeenSet);
         _linkReplacement.SetAccessPath(path, validateHasBeenSet);
         _status.SetAccessPath(path, validateHasBeenSet);
         _modificationAuthor.SetAccessPath(path, validateHasBeenSet);

@@ -34,7 +34,7 @@ public sealed class DocumentInContainer
 {
     public DocumentInContainer() { }
     
-    public DocumentInContainer(string id, bool archived, string containerLinkId, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, bool deleted, int accessOrdinal, DocumentBody documentBody, TDMemberProfile? author = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, bool? published = null)
+    public DocumentInContainer(string id, bool archived, string containerLinkId, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, bool deleted, int accessOrdinal, DocumentBody documentBody, TDMemberProfile? author = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, bool? published = null)
     {
         Id = id;
         IsArchived = archived;
@@ -46,6 +46,7 @@ public sealed class DocumentInContainer
         Created = created;
         ModifiedBy = modifiedBy;
         IsShared = shared;
+        PublicationDetails = publicationDetails;
         PublicationDetails2 = publicationDetails2;
         FolderRef = folderRef;
         ContainerInfo = containerInfo;
@@ -156,6 +157,15 @@ public sealed class DocumentInContainer
         set => _shared.SetValue(value);
     }
 
+    private PropertyValue<PublicationDetails?> _publicationDetails = new PropertyValue<PublicationDetails?>(nameof(DocumentInContainer), nameof(PublicationDetails));
+    
+    [JsonPropertyName("publicationDetails")]
+    public PublicationDetails? PublicationDetails
+    {
+        get => _publicationDetails.GetValue();
+        set => _publicationDetails.SetValue(value);
+    }
+
     private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DocumentInContainer), nameof(PublicationDetails2));
     
     [JsonPropertyName("publicationDetails2")]
@@ -264,6 +274,7 @@ public sealed class DocumentInContainer
         _created.SetAccessPath(path, validateHasBeenSet);
         _modifiedBy.SetAccessPath(path, validateHasBeenSet);
         _shared.SetAccessPath(path, validateHasBeenSet);
+        _publicationDetails.SetAccessPath(path, validateHasBeenSet);
         _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
         _folderRef.SetAccessPath(path, validateHasBeenSet);
         _containerInfo.SetAccessPath(path, validateHasBeenSet);

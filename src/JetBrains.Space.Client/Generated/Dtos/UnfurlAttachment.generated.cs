@@ -37,10 +37,11 @@ public sealed class UnfurlAttachment
     
     public UnfurlAttachment() { }
     
-    public UnfurlAttachment(Unfurl unfurl, string id)
+    public UnfurlAttachment(Unfurl unfurl, string id, bool onlyVisibleToYou)
     {
         Unfurl = unfurl;
         Id = id;
+        IsOnlyVisibleToYou = onlyVisibleToYou;
     }
     
     private PropertyValue<Unfurl> _unfurl = new PropertyValue<Unfurl>(nameof(UnfurlAttachment), nameof(Unfurl));
@@ -63,10 +64,21 @@ public sealed class UnfurlAttachment
         set => _id.SetValue(value);
     }
 
+    private PropertyValue<bool> _onlyVisibleToYou = new PropertyValue<bool>(nameof(UnfurlAttachment), nameof(IsOnlyVisibleToYou));
+    
+    [Required]
+    [JsonPropertyName("onlyVisibleToYou")]
+    public bool IsOnlyVisibleToYou
+    {
+        get => _onlyVisibleToYou.GetValue();
+        set => _onlyVisibleToYou.SetValue(value);
+    }
+
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _unfurl.SetAccessPath(path, validateHasBeenSet);
         _id.SetAccessPath(path, validateHasBeenSet);
+        _onlyVisibleToYou.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

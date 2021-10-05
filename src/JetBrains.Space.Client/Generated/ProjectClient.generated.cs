@@ -90,6 +90,26 @@ public partial class ProjectClient : ISpaceClient
         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsAsync(top: top, term: term, tag: tag, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
 
     /// <summary>
+    /// Get all projects in which given user is a collaborator
+    /// </summary>
+    public async Task<Batch<PRProject>> GetAllProjectsByCollaboratorAsync(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        if (skip != null) queryParameters.Append("$skip", skip);
+        if (top != null) queryParameters.Append("$top", top?.ToString());
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/collaborator:{profile}{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+    
+    /// <summary>
+    /// Get all projects in which given user is a collaborator
+    /// </summary>
+    public IAsyncEnumerable<PRProject> GetAllProjectsByCollaboratorAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsByCollaboratorAsync(profile: profile, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
+
+    /// <summary>
     /// Get all projects for a member
     /// </summary>
     public async Task<Batch<PRProject>> GetAllProjectsByMemberAsync(ProfileIdentifier member, string? skip = null, int? top = 100, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
@@ -3208,6 +3228,34 @@ public partial class ProjectClient : ISpaceClient
             return await _connection.RequestResourceAsync<CodeReviewDetailedInfo>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/details{queryParameters.ToQueryString()}", cancellationToken);
         }
         
+    
+        public async Task<Batch<ChangeInReview>> GetTheModifiedFilesInCodeReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, string? skip = null, int? top = 100, Func<Partial<Batch<ChangeInReview>>, Partial<Batch<ChangeInReview>>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChangeInReview>>()) : Partial<Batch<ChangeInReview>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<ChangeInReview>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/files{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+        
+        public IAsyncEnumerable<ChangeInReview> GetTheModifiedFilesInCodeReviewAsyncEnumerable(ProjectIdentifier project, ReviewIdentifier reviewId, string? skip = null, int? top = 100, Func<Partial<ChangeInReview>, Partial<ChangeInReview>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetTheModifiedFilesInCodeReviewAsync(project: project, reviewId: reviewId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ChangeInReview>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ChangeInReview>.Default())), skip, cancellationToken);
+    
+        public async Task<Batch<GitMergedFile>> GetTheMergeRequestFilesAsync(ProjectIdentifier project, ReviewIdentifier reviewId, string? skip = null, int? top = 100, Func<Partial<Batch<GitMergedFile>>, Partial<Batch<GitMergedFile>>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<GitMergedFile>>()) : Partial<Batch<GitMergedFile>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<GitMergedFile>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/merge-files{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+        
+        public IAsyncEnumerable<GitMergedFile> GetTheMergeRequestFilesAsyncEnumerable(ProjectIdentifier project, ReviewIdentifier reviewId, string? skip = null, int? top = 100, Func<Partial<GitMergedFile>, Partial<GitMergedFile>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetTheMergeRequestFilesAsync(project: project, reviewId: reviewId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitMergedFile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitMergedFile>.Default())), skip, cancellationToken);
     
         public async Task<List<TDMemberProfile>> GetSuggestedReviewersAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
         {

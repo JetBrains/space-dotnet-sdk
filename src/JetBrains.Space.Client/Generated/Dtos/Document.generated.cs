@@ -34,12 +34,11 @@ public sealed class Document
 {
     public Document() { }
     
-    public Document(string id, DocumentContainerInfo containerInfo, string title, DocumentBodyType bodyType, bool archived, DateTime modified, DocumentBody documentBody, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null)
+    public Document(string id, string title, DocumentBodyType bodyType, bool archived, DateTime modified, DocumentBody documentBody, PublicationDetails? publicationDetails = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null)
     {
         Id = id;
-        ContainerInfo = containerInfo;
         Title = title;
-        PublicationDetails2 = publicationDetails2;
+        PublicationDetails = publicationDetails;
         FolderRef = folderRef;
         BodyType = bodyType;
         IsArchived = archived;
@@ -62,16 +61,6 @@ public sealed class Document
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(Document), nameof(ContainerInfo));
-    
-    [Required]
-    [JsonPropertyName("containerInfo")]
-    public DocumentContainerInfo ContainerInfo
-    {
-        get => _containerInfo.GetValue();
-        set => _containerInfo.SetValue(value);
-    }
-
     private PropertyValue<string> _title = new PropertyValue<string>(nameof(Document), nameof(Title));
     
     [Required]
@@ -82,13 +71,13 @@ public sealed class Document
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(Document), nameof(PublicationDetails2));
+    private PropertyValue<PublicationDetails?> _publicationDetails = new PropertyValue<PublicationDetails?>(nameof(Document), nameof(PublicationDetails));
     
-    [JsonPropertyName("publicationDetails2")]
-    public PublicationDetails? PublicationDetails2
+    [JsonPropertyName("publicationDetails")]
+    public PublicationDetails? PublicationDetails
     {
-        get => _publicationDetails2.GetValue();
-        set => _publicationDetails2.SetValue(value);
+        get => _publicationDetails.GetValue();
+        set => _publicationDetails.SetValue(value);
     }
 
     private PropertyValue<DocumentFolder?> _folderRef = new PropertyValue<DocumentFolder?>(nameof(Document), nameof(FolderRef));
@@ -191,9 +180,8 @@ public sealed class Document
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _id.SetAccessPath(path, validateHasBeenSet);
-        _containerInfo.SetAccessPath(path, validateHasBeenSet);
         _title.SetAccessPath(path, validateHasBeenSet);
-        _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
+        _publicationDetails.SetAccessPath(path, validateHasBeenSet);
         _folderRef.SetAccessPath(path, validateHasBeenSet);
         _bodyType.SetAccessPath(path, validateHasBeenSet);
         _archived.SetAccessPath(path, validateHasBeenSet);

@@ -27,18 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NuGetDependencyPartialBuilder;
+namespace JetBrains.Space.Client.NavigateUrlActionPartialBuilder;
 
-public static class NuGetDependencyPartialExtensions
+public static class NavigateUrlActionPartialExtensions
 {
-    public static Partial<NuGetDependency> WithTargetFramework(this Partial<NuGetDependency> it)
-        => it.AddFieldName("targetFramework");
+    public static Partial<NavigateUrlAction> WithUrl(this Partial<NavigateUrlAction> it)
+        => it.AddFieldName("url");
     
-    public static Partial<NuGetDependency> WithId(this Partial<NuGetDependency> it)
-        => it.AddFieldName("id");
+    public static Partial<NavigateUrlAction> WithIsWithBackUrl(this Partial<NavigateUrlAction> it)
+        => it.AddFieldName("withBackUrl");
     
-    public static Partial<NuGetDependency> WithRange(this Partial<NuGetDependency> it)
-        => it.AddFieldName("range");
+    public static Partial<NavigateUrlAction> WithIsOpenInNewTab(this Partial<NavigateUrlAction> it)
+        => it.AddFieldName("openInNewTab");
     
 }
 

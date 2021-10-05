@@ -27,18 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NuGetDependencyPartialBuilder;
+namespace JetBrains.Space.Client.ChangeInReviewPartialBuilder;
 
-public static class NuGetDependencyPartialExtensions
+public static class ChangeInReviewPartialExtensions
 {
-    public static Partial<NuGetDependency> WithTargetFramework(this Partial<NuGetDependency> it)
-        => it.AddFieldName("targetFramework");
+    public static Partial<ChangeInReview> WithRepository(this Partial<ChangeInReview> it)
+        => it.AddFieldName("repository");
     
-    public static Partial<NuGetDependency> WithId(this Partial<NuGetDependency> it)
-        => it.AddFieldName("id");
+    public static Partial<ChangeInReview> WithChange(this Partial<ChangeInReview> it)
+        => it.AddFieldName("change");
     
-    public static Partial<NuGetDependency> WithRange(this Partial<NuGetDependency> it)
-        => it.AddFieldName("range");
+    public static Partial<ChangeInReview> WithChange(this Partial<ChangeInReview> it, Func<Partial<GitCommitChange>, Partial<GitCommitChange>> partialBuilder)
+        => it.AddFieldName("change", partialBuilder(new Partial<GitCommitChange>(it)));
+    
+    public static Partial<ChangeInReview> WithIsRead(this Partial<ChangeInReview> it)
+        => it.AddFieldName("read");
     
 }
 

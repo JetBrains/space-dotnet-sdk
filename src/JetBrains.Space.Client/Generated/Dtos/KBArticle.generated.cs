@@ -34,7 +34,7 @@ public sealed class KBArticle
 {
     public KBArticle() { }
     
-    public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, string documentId, DateTime created, DateTime updated, string alias, DocumentInContainer? document = null, Document? documentRef = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
+    public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, string documentId, Document documentRef, DateTime created, DateTime updated, string alias, DocumentInContainer? document = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
     {
         Id = id;
         IsArchived = archived;
@@ -120,10 +120,11 @@ public sealed class KBArticle
         set => _document.SetValue(value);
     }
 
-    private PropertyValue<Document?> _documentRef = new PropertyValue<Document?>(nameof(KBArticle), nameof(DocumentRef));
+    private PropertyValue<Document> _documentRef = new PropertyValue<Document>(nameof(KBArticle), nameof(DocumentRef));
     
+    [Required]
     [JsonPropertyName("documentRef")]
-    public Document? DocumentRef
+    public Document DocumentRef
     {
         get => _documentRef.GetValue();
         set => _documentRef.SetValue(value);

@@ -38,6 +38,9 @@ public interface ClientSideActionContext
     public static DeletePersonalFeedAction DeletePersonalFeedAction(string feed, string? feedId = null)
         => new DeletePersonalFeedAction(feed: feed, feedId: feedId);
     
+    public static NavigateUrlActionContext NavigateUrlActionContext(string url, bool withBackUrl, bool openInNewTab)
+        => new NavigateUrlActionContext(url: url, withBackUrl: withBackUrl, openInNewTab: openInNewTab);
+    
     public static NewMergeRequestFromIssueActionContext NewMergeRequestFromIssueActionContext(ProjectKey projectKey, string repository, string commitId, int issueNumber, ProjectReposRecord projectRepos, CommitLinksContainer issueCommitsRef)
         => new NewMergeRequestFromIssueActionContext(projectKey: projectKey, repository: repository, commitId: commitId, issueNumber: issueNumber, projectRepos: projectRepos, issueCommitsRef: issueCommitsRef);
     

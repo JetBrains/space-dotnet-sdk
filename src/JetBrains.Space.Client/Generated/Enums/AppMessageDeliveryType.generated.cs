@@ -59,6 +59,9 @@ public enum AppMessageDeliveryType
     [EnumMember(Value = "ChangeClientSecretPayload")]
     ChangeClientSecretPayload,
     
+    [EnumMember(Value = "NewUnfurlQueueItemsPayload")]
+    NewUnfurlQueueItemsPayload,
+    
     [EnumMember(Value = "Unknown")]
     Unknown,
     

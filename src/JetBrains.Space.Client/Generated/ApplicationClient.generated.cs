@@ -454,7 +454,7 @@ public partial class ApplicationClient : ISpaceClient
             }
             
             /// <summary>
-            /// List required rights for an application
+            /// List required permissions for an application
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -474,7 +474,7 @@ public partial class ApplicationClient : ISpaceClient
             
         
             /// <summary>
-            /// Update list of required rights for an application
+            /// Update list of required permissions for an application
             /// </summary>
             /// <remarks>
             /// Required permissions:

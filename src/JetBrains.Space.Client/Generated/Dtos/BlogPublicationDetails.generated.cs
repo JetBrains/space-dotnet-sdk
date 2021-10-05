@@ -37,25 +37,14 @@ public sealed class BlogPublicationDetails
     
     public BlogPublicationDetails() { }
     
-    public BlogPublicationDetails(TDTeam? teamId = null, List<TDTeam>? teams = null, TDLocation? locationId = null, List<TDLocation>? locations = null, CalendarEvent? @event = null, ArticleRecord? article = null)
+    public BlogPublicationDetails(List<TDTeam>? teams = null, List<TDLocation>? locations = null, CalendarEvent? @event = null, ArticleRecord? article = null)
     {
-        TeamId = teamId;
         Teams = teams;
-        LocationId = locationId;
         Locations = locations;
         Event = @event;
         Article = article;
     }
     
-    private PropertyValue<TDTeam?> _teamId = new PropertyValue<TDTeam?>(nameof(BlogPublicationDetails), nameof(TeamId));
-    
-    [JsonPropertyName("teamId")]
-    public TDTeam? TeamId
-    {
-        get => _teamId.GetValue();
-        set => _teamId.SetValue(value);
-    }
-
     private PropertyValue<List<TDTeam>?> _teams = new PropertyValue<List<TDTeam>?>(nameof(BlogPublicationDetails), nameof(Teams));
     
     [JsonPropertyName("teams")]
@@ -63,15 +52,6 @@ public sealed class BlogPublicationDetails
     {
         get => _teams.GetValue();
         set => _teams.SetValue(value);
-    }
-
-    private PropertyValue<TDLocation?> _locationId = new PropertyValue<TDLocation?>(nameof(BlogPublicationDetails), nameof(LocationId));
-    
-    [JsonPropertyName("locationId")]
-    public TDLocation? LocationId
-    {
-        get => _locationId.GetValue();
-        set => _locationId.SetValue(value);
     }
 
     private PropertyValue<List<TDLocation>?> _locations = new PropertyValue<List<TDLocation>?>(nameof(BlogPublicationDetails), nameof(Locations));
@@ -103,9 +83,7 @@ public sealed class BlogPublicationDetails
 
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        _teamId.SetAccessPath(path, validateHasBeenSet);
         _teams.SetAccessPath(path, validateHasBeenSet);
-        _locationId.SetAccessPath(path, validateHasBeenSet);
         _locations.SetAccessPath(path, validateHasBeenSet);
         _event.SetAccessPath(path, validateHasBeenSet);
         _article.SetAccessPath(path, validateHasBeenSet);

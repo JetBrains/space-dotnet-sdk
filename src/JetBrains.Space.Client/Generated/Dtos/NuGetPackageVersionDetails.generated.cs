@@ -37,7 +37,7 @@ public sealed class NuGetPackageVersionDetails
     
     public NuGetPackageVersionDetails() { }
     
-    public NuGetPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, bool pinned, long diskSize, string verbatimVersion, List<NuGetDependencyGroup> dependencies, List<string>? tags = null, long? accessed = null, string? comment = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, string? description = null, string? projectUrl = null, string? license = null, string? licenseUrl = null, string? icon = null, string? title = null)
+    public NuGetPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, bool pinned, long diskSize, string verbatimVersion, List<NuGetDependency> dependencies, List<string>? tags = null, long? accessed = null, string? comment = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, string? description = null, string? projectUrl = null, string? license = null, string? licenseUrl = null, string? icon = null, string? title = null)
     {
         Type = type;
         Repository = repository;
@@ -271,11 +271,11 @@ public sealed class NuGetPackageVersionDetails
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<List<NuGetDependencyGroup>> _dependencies = new PropertyValue<List<NuGetDependencyGroup>>(nameof(NuGetPackageVersionDetails), nameof(Dependencies), new List<NuGetDependencyGroup>());
+    private PropertyValue<List<NuGetDependency>> _dependencies = new PropertyValue<List<NuGetDependency>>(nameof(NuGetPackageVersionDetails), nameof(Dependencies), new List<NuGetDependency>());
     
     [Required]
     [JsonPropertyName("dependencies")]
-    public List<NuGetDependencyGroup> Dependencies
+    public List<NuGetDependency> Dependencies
     {
         get => _dependencies.GetValue();
         set => _dependencies.SetValue(value);

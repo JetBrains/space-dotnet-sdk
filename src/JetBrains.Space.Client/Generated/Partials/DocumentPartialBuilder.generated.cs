@@ -34,20 +34,14 @@ public static class DocumentPartialExtensions
     public static Partial<Document> WithId(this Partial<Document> it)
         => it.AddFieldName("id");
     
-    public static Partial<Document> WithContainerInfo(this Partial<Document> it)
-        => it.AddFieldName("containerInfo");
-    
-    public static Partial<Document> WithContainerInfo(this Partial<Document> it, Func<Partial<DocumentContainerInfo>, Partial<DocumentContainerInfo>> partialBuilder)
-        => it.AddFieldName("containerInfo", partialBuilder(new Partial<DocumentContainerInfo>(it)));
-    
     public static Partial<Document> WithTitle(this Partial<Document> it)
         => it.AddFieldName("title");
     
-    public static Partial<Document> WithPublicationDetails2(this Partial<Document> it)
-        => it.AddFieldName("publicationDetails2");
+    public static Partial<Document> WithPublicationDetails(this Partial<Document> it)
+        => it.AddFieldName("publicationDetails");
     
-    public static Partial<Document> WithPublicationDetails2(this Partial<Document> it, Func<Partial<PublicationDetails>, Partial<PublicationDetails>> partialBuilder)
-        => it.AddFieldName("publicationDetails2", partialBuilder(new Partial<PublicationDetails>(it)));
+    public static Partial<Document> WithPublicationDetails(this Partial<Document> it, Func<Partial<PublicationDetails>, Partial<PublicationDetails>> partialBuilder)
+        => it.AddFieldName("publicationDetails", partialBuilder(new Partial<PublicationDetails>(it)));
     
     public static Partial<Document> WithFolderRef(this Partial<Document> it)
         => it.AddFieldName("folderRef");

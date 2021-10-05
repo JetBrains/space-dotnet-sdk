@@ -32,8 +32,8 @@ namespace JetBrains.Space.Client;
 public interface PublicationDetails
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static BlogPublicationDetails Blog(TDTeam? teamId = null, List<TDTeam>? teams = null, TDLocation? locationId = null, List<TDLocation>? locations = null, CalendarEvent? @event = null, ArticleRecord? article = null)
-        => new BlogPublicationDetails(teamId: teamId, teams: teams, locationId: locationId, locations: locations, @event: @event, article: article);
+    public static BlogPublicationDetails Blog(List<TDTeam>? teams = null, List<TDLocation>? locations = null, CalendarEvent? @event = null, ArticleRecord? article = null)
+        => new BlogPublicationDetails(teams: teams, locations: locations, @event: @event, article: article);
     
     public static KbPublicationDetails Kb(KBBook? book = null, KBFolder? folder = null, KBArticle? articleId = null)
         => new KbPublicationDetails(book: book, folder: folder, articleId: articleId);

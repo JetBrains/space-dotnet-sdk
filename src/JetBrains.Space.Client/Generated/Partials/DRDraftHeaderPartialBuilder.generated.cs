@@ -64,6 +64,12 @@ public static class DRDraftHeaderPartialExtensions
     public static Partial<DRDraftHeader> WithIsShared(this Partial<DRDraftHeader> it)
         => it.AddFieldName("shared");
     
+    public static Partial<DRDraftHeader> WithPublicationDetails(this Partial<DRDraftHeader> it)
+        => it.AddFieldName("publicationDetails");
+    
+    public static Partial<DRDraftHeader> WithPublicationDetails(this Partial<DRDraftHeader> it, Func<Partial<PublicationDetails>, Partial<PublicationDetails>> partialBuilder)
+        => it.AddFieldName("publicationDetails", partialBuilder(new Partial<PublicationDetails>(it)));
+    
     public static Partial<DRDraftHeader> WithPublicationDetails2(this Partial<DRDraftHeader> it)
         => it.AddFieldName("publicationDetails2");
     

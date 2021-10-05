@@ -27,18 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NuGetDependencyPartialBuilder;
+namespace JetBrains.Space.Client.UnfurlDetailsImageSourceUrlPartialBuilder;
 
-public static class NuGetDependencyPartialExtensions
+public static class UnfurlDetailsImageSourceUrlPartialExtensions
 {
-    public static Partial<NuGetDependency> WithTargetFramework(this Partial<NuGetDependency> it)
-        => it.AddFieldName("targetFramework");
-    
-    public static Partial<NuGetDependency> WithId(this Partial<NuGetDependency> it)
-        => it.AddFieldName("id");
-    
-    public static Partial<NuGetDependency> WithRange(this Partial<NuGetDependency> it)
-        => it.AddFieldName("range");
+    public static Partial<UnfurlDetailsImageSourceUrl> WithUrl(this Partial<UnfurlDetailsImageSourceUrl> it)
+        => it.AddFieldName("url");
     
 }
 

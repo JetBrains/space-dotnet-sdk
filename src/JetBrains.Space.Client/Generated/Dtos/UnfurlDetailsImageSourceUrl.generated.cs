@@ -27,18 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NuGetDependencyPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class NuGetDependencyPartialExtensions
+public sealed class UnfurlDetailsImageSourceUrl
+     : UnfurlDetailsImageSource, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static Partial<NuGetDependency> WithTargetFramework(this Partial<NuGetDependency> it)
-        => it.AddFieldName("targetFramework");
+    [JsonPropertyName("className")]
+    public override string? ClassName => "UnfurlDetailsImageSource.Url";
     
-    public static Partial<NuGetDependency> WithId(this Partial<NuGetDependency> it)
-        => it.AddFieldName("id");
+    public UnfurlDetailsImageSourceUrl() { }
     
-    public static Partial<NuGetDependency> WithRange(this Partial<NuGetDependency> it)
-        => it.AddFieldName("range");
+    public UnfurlDetailsImageSourceUrl(string url)
+    {
+        Url = url;
+    }
     
+    private PropertyValue<string> _url = new PropertyValue<string>(nameof(UnfurlDetailsImageSourceUrl), nameof(Url));
+    
+    [Required]
+    [JsonPropertyName("url")]
+    public string Url
+    {
+        get => _url.GetValue();
+        set => _url.SetValue(value);
+    }
+
+    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _url.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
 

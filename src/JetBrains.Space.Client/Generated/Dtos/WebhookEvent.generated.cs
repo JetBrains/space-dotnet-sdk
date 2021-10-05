@@ -44,6 +44,9 @@ public interface WebhookEvent
     public static ApplicationSshKeyWebhookEvent ApplicationSshKey(KMetaMod meta, ESApp application, Modification<string>? fingerprint = null, Modification<string>? comment = null)
         => new ApplicationSshKeyWebhookEvent(meta: meta, application: application, fingerprint: fingerprint, comment: comment);
     
+    public static ApplicationUnfurlQueueItemsCreatedEvent ApplicationUnfurlQueueItemsCreatedEvent()
+        => new ApplicationUnfurlQueueItemsCreatedEvent();
+    
     public static ApplicationUnfurlTargetsRequestedEvent ApplicationUnfurlTargetsRequestedEvent(KMetaMod meta, ESApp application, ApplicationUnfurlTarget target)
         => new ApplicationUnfurlTargetsRequestedEvent(meta: meta, application: application, target: target);
     

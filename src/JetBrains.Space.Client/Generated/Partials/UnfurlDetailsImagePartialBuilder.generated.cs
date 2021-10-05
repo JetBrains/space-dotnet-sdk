@@ -27,18 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NuGetDependencyPartialBuilder;
+namespace JetBrains.Space.Client.UnfurlDetailsImagePartialBuilder;
 
-public static class NuGetDependencyPartialExtensions
+public static class UnfurlDetailsImagePartialExtensions
 {
-    public static Partial<NuGetDependency> WithTargetFramework(this Partial<NuGetDependency> it)
-        => it.AddFieldName("targetFramework");
+    public static Partial<UnfurlDetailsImage> WithIcon(this Partial<UnfurlDetailsImage> it)
+        => it.AddFieldName("icon");
     
-    public static Partial<NuGetDependency> WithId(this Partial<NuGetDependency> it)
-        => it.AddFieldName("id");
+    public static Partial<UnfurlDetailsImage> WithTitle(this Partial<UnfurlDetailsImage> it)
+        => it.AddFieldName("title");
     
-    public static Partial<NuGetDependency> WithRange(this Partial<NuGetDependency> it)
-        => it.AddFieldName("range");
+    public static Partial<UnfurlDetailsImage> WithImage(this Partial<UnfurlDetailsImage> it)
+        => it.AddFieldName("image");
+    
+    public static Partial<UnfurlDetailsImage> WithImage(this Partial<UnfurlDetailsImage> it, Func<Partial<UnfurlDetailsImageSource>, Partial<UnfurlDetailsImageSource>> partialBuilder)
+        => it.AddFieldName("image", partialBuilder(new Partial<UnfurlDetailsImageSource>(it)));
     
 }
 

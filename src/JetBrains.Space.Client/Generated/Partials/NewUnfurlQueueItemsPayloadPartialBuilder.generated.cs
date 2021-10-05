@@ -27,18 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NuGetDependencyGroupPartialBuilder;
+namespace JetBrains.Space.Client.NewUnfurlQueueItemsPayloadPartialBuilder;
 
-public static class NuGetDependencyGroupPartialExtensions
+public static class NewUnfurlQueueItemsPayloadPartialExtensions
 {
-    public static Partial<NuGetDependencyGroup> WithTargetFramework(this Partial<NuGetDependencyGroup> it)
-        => it.AddFieldName("targetFramework");
+    public static Partial<NewUnfurlQueueItemsPayload> WithClientId(this Partial<NewUnfurlQueueItemsPayload> it)
+        => it.AddFieldName("clientId");
     
-    public static Partial<NuGetDependencyGroup> WithDependencies(this Partial<NuGetDependencyGroup> it)
-        => it.AddFieldName("dependencies");
-    
-    public static Partial<NuGetDependencyGroup> WithDependencies(this Partial<NuGetDependencyGroup> it, Func<Partial<NuGetDependency>, Partial<NuGetDependency>> partialBuilder)
-        => it.AddFieldName("dependencies", partialBuilder(new Partial<NuGetDependency>(it)));
+    public static Partial<NewUnfurlQueueItemsPayload> WithVerificationToken(this Partial<NewUnfurlQueueItemsPayload> it)
+        => it.AddFieldName("verificationToken");
     
 }
 

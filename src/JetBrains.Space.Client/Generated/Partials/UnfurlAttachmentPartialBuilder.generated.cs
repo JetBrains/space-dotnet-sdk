@@ -40,5 +40,8 @@ public static class UnfurlAttachmentPartialExtensions
     public static Partial<UnfurlAttachment> WithId(this Partial<UnfurlAttachment> it)
         => it.AddFieldName("id");
     
+    public static Partial<UnfurlAttachment> WithIsOnlyVisibleToYou(this Partial<UnfurlAttachment> it)
+        => it.AddFieldName("onlyVisibleToYou");
+    
 }
 

@@ -70,6 +70,12 @@ public static class DocumentInContainerPartialExtensions
     public static Partial<DocumentInContainer> WithIsShared(this Partial<DocumentInContainer> it)
         => it.AddFieldName("shared");
     
+    public static Partial<DocumentInContainer> WithPublicationDetails(this Partial<DocumentInContainer> it)
+        => it.AddFieldName("publicationDetails");
+    
+    public static Partial<DocumentInContainer> WithPublicationDetails(this Partial<DocumentInContainer> it, Func<Partial<PublicationDetails>, Partial<PublicationDetails>> partialBuilder)
+        => it.AddFieldName("publicationDetails", partialBuilder(new Partial<PublicationDetails>(it)));
+    
     public static Partial<DocumentInContainer> WithPublicationDetails2(this Partial<DocumentInContainer> it)
         => it.AddFieldName("publicationDetails2");
     

@@ -115,8 +115,8 @@ public static class NuGetPackageVersionDetailsPartialExtensions
     public static Partial<NuGetPackageVersionDetails> WithDependencies(this Partial<NuGetPackageVersionDetails> it)
         => it.AddFieldName("dependencies");
     
-    public static Partial<NuGetPackageVersionDetails> WithDependencies(this Partial<NuGetPackageVersionDetails> it, Func<Partial<NuGetDependencyGroup>, Partial<NuGetDependencyGroup>> partialBuilder)
-        => it.AddFieldName("dependencies", partialBuilder(new Partial<NuGetDependencyGroup>(it)));
+    public static Partial<NuGetPackageVersionDetails> WithDependencies(this Partial<NuGetPackageVersionDetails> it, Func<Partial<NuGetDependency>, Partial<NuGetDependency>> partialBuilder)
+        => it.AddFieldName("dependencies", partialBuilder(new Partial<NuGetDependency>(it)));
     
 }
 

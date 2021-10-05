@@ -31,8 +31,8 @@ namespace JetBrains.Space.Client.ApplicationUnfurlPatternPartialBuilder;
 
 public static class ApplicationUnfurlPatternPartialExtensions
 {
-    public static Partial<ApplicationUnfurlPattern> WithPattern(this Partial<ApplicationUnfurlPattern> it)
-        => it.AddFieldName("pattern");
+    public static Partial<ApplicationUnfurlPattern> WithPrefix(this Partial<ApplicationUnfurlPattern> it)
+        => it.AddFieldName("prefix");
     
     public static Partial<ApplicationUnfurlPattern> WithLinkReplacement(this Partial<ApplicationUnfurlPattern> it)
         => it.AddFieldName("linkReplacement");

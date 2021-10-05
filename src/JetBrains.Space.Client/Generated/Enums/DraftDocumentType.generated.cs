@@ -35,6 +35,9 @@ public enum DraftDocumentType
     [EnumMember(Value = "WYSIWYG")]
     WYSIWYG,
     
+    [EnumMember(Value = "RICH_TEXT")]
+    RICHTEXT,
+    
     [EnumMember(Value = "MARKDOWN")]
     MARKDOWN,
     

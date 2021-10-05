@@ -32,6 +32,9 @@ namespace JetBrains.Space.Client;
 public interface MessageAction
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
+    public static NavigateUrlAction NavigateUrlAction(string url, bool withBackUrl, bool openInNewTab)
+        => new NavigateUrlAction(url: url, withBackUrl: withBackUrl, openInNewTab: openInNewTab);
+    
     public static PostMessageAction Post(string actionId, string payload)
         => new PostMessageAction(actionId: actionId, payload: payload);
     

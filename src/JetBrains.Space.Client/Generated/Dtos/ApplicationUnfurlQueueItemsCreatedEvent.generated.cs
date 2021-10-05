@@ -27,18 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.NuGetDependencyPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class NuGetDependencyPartialExtensions
+public sealed class ApplicationUnfurlQueueItemsCreatedEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static Partial<NuGetDependency> WithTargetFramework(this Partial<NuGetDependency> it)
-        => it.AddFieldName("targetFramework");
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ApplicationUnfurlQueueItemsCreatedEvent";
     
-    public static Partial<NuGetDependency> WithId(this Partial<NuGetDependency> it)
-        => it.AddFieldName("id");
+    public ApplicationUnfurlQueueItemsCreatedEvent() { }
     
-    public static Partial<NuGetDependency> WithRange(this Partial<NuGetDependency> it)
-        => it.AddFieldName("range");
-    
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+    }
+
 }
 
