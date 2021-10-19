@@ -43,11 +43,9 @@ public class CSharpApiModelDtoGenerator
         };
         
         var dtoHierarchy = new List<string>();
-        var dtoHierarchyFieldNames = new List<string>();
         if (apiDto.Extends != null && _codeGenerationContext.TryGetDto(apiDto.Extends.Id, out var apiDtoExtends))
         {
             dtoHierarchy.Add(apiDtoExtends!.ToCSharpClassName());
-            dtoHierarchyFieldNames.AddRange(apiDtoExtends!.Fields.Select(it => it.Field.Name));
         }
 
         foreach (var dtoImplements in apiDto.Implements)
