@@ -1470,7 +1470,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? location = null, bool? external = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? external = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
@@ -1495,6 +1495,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                     PictureAttachmentId = pictureAttachmentId,
                     AvatarCropSquare = avatarCropSquare,
                     CustomFieldValues = (customFieldValues ?? new List<CustomFieldInputValue>()),
+                    ExternalId = externalId,
                     Location = location,
                     IsExternal = external,
                 }, cancellationToken);
@@ -1609,7 +1610,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<TDMemberProfile> UpdateProfileAsync(ProfileIdentifier profile, string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, DateTime? birthday = null, string? about = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, List<CustomFieldInputValue>? customFieldValues = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<TDMemberProfile> UpdateProfileAsync(ProfileIdentifier profile, string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, DateTime? birthday = null, string? about = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
@@ -1634,6 +1635,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                     PictureAttachmentId = pictureAttachmentId,
                     AvatarCropSquare = avatarCropSquare,
                     CustomFieldValues = customFieldValues,
+                    ExternalId = externalId,
                 }, cancellationToken);
         }
         
@@ -2001,7 +2003,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <summary>
                 /// Get two-factor authentication status for a given profile ID. The response indicates whether two-factor authentication is active, not active, or not set up yet.
                 /// </summary>
-                public async Task<TwoFactorAuthenticationStatus> TwofactorAuthenticationStatusAsync(ProfileIdentifier profile, Func<Partial<TwoFactorAuthenticationStatus>, Partial<TwoFactorAuthenticationStatus>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<TwoFactorAuthenticationStatus> TwoFactorAuthenticationStatusAsync(ProfileIdentifier profile, Func<Partial<TwoFactorAuthenticationStatus>, Partial<TwoFactorAuthenticationStatus>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<TwoFactorAuthenticationStatus>()) : Partial<TwoFactorAuthenticationStatus>.Default()).ToString());
@@ -2026,7 +2028,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <summary>
                 /// Set up two-factor authentication using TOTP (Time-based One-time Password) for a given profile ID. The response will return a QR code (base64 encoded) that can be scanned with an app to setup two-factor authentication. The code that the app generates has to be confirmed in Space to enable TOTP.
                 /// </summary>
-                public async Task<TwoFactorAuthenticationSecret> SetUpTotpTwofactorAuthenticationAsync(ProfileIdentifier profile, Func<Partial<TwoFactorAuthenticationSecret>, Partial<TwoFactorAuthenticationSecret>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<TwoFactorAuthenticationSecret> SetUpTotpTwoFactorAuthenticationAsync(ProfileIdentifier profile, Func<Partial<TwoFactorAuthenticationSecret>, Partial<TwoFactorAuthenticationSecret>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<TwoFactorAuthenticationSecret>()) : Partial<TwoFactorAuthenticationSecret>.Default()).ToString());
@@ -2038,7 +2040,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <summary>
                 /// Confirm two-factor authentication for a given profile ID using a TOTP (Time-based One-time Password) code from an app.
                 /// </summary>
-                public async Task ConfirmTotpTwofactorAuthenticationSettingsAsync(ProfileIdentifier profile, int code, CancellationToken cancellationToken = default)
+                public async Task ConfirmTotpTwoFactorAuthenticationSettingsAsync(ProfileIdentifier profile, int code, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -2053,7 +2055,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <summary>
                 /// Enable/disable two-factor authentication settings for a given profile ID
                 /// </summary>
-                public async Task UpdateTotpTwofactorAuthenticationSettingsAsync(ProfileIdentifier profile, bool enabled, CancellationToken cancellationToken = default)
+                public async Task UpdateTotpTwoFactorAuthenticationSettingsAsync(ProfileIdentifier profile, bool enabled, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -2068,7 +2070,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <summary>
                 /// Remove two-factor authentication settings for a given profile ID. Previously generated TOTP (Time-based One-time Password) are rendered invalid.
                 /// </summary>
-                public async Task DeleteCurrentTotpTwofactorAuthenticationSettingsAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
+                public async Task DeleteCurrentTotpTwoFactorAuthenticationSettingsAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -3229,7 +3231,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<TDTeam> GetTeamAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<TDTeam> GetTeamAsync(TeamIdentifier id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());

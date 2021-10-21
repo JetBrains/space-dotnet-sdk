@@ -32,6 +32,9 @@ namespace JetBrains.Space.Client;
 [JsonConverter(typeof(UrlParameterConverter))]
 public abstract class ProfileIdentifier : IUrlParameter
 {
+    public static ProfileIdentifier ExternalId(string externalId)
+        => new ProfileIdentifierExternalId(externalId);
+    
     public static ProfileIdentifier Id(string id)
         => new ProfileIdentifierId(id);
     
@@ -40,6 +43,19 @@ public abstract class ProfileIdentifier : IUrlParameter
     
     public static ProfileIdentifier Username(string username)
         => new ProfileIdentifierUsername(username);
+    
+    private class ProfileIdentifierExternalId : ProfileIdentifier
+    {
+        private readonly string _externalId;
+        
+        public ProfileIdentifierExternalId(string externalId)
+        {
+            _externalId = externalId;
+        }
+        
+        public override string ToString()
+            => $"externalId:{_externalId}";
+    }
     
     private class ProfileIdentifierId : ProfileIdentifier
     {

@@ -46,8 +46,17 @@ public static class UnfurlDetailsCommitPartialExtensions
     public static Partial<UnfurlDetailsCommit> WithMessage(this Partial<UnfurlDetailsCommit> it)
         => it.AddFieldName("message");
     
+    public static Partial<UnfurlDetailsCommit> WithMessageUnfurls(this Partial<UnfurlDetailsCommit> it)
+        => it.AddFieldName("messageUnfurls");
+    
+    public static Partial<UnfurlDetailsCommit> WithMessageUnfurls(this Partial<UnfurlDetailsCommit> it, Func<Partial<CommitMessageUnfurlsRecord>, Partial<CommitMessageUnfurlsRecord>> partialBuilder)
+        => it.AddFieldName("messageUnfurls", partialBuilder(new Partial<CommitMessageUnfurlsRecord>(it)));
+    
     public static Partial<UnfurlDetailsCommit> WithCommitDate(this Partial<UnfurlDetailsCommit> it)
         => it.AddFieldName("commitDate");
+    
+    public static Partial<UnfurlDetailsCommit> WithAuthorDate(this Partial<UnfurlDetailsCommit> it)
+        => it.AddFieldName("authorDate");
     
     public static Partial<UnfurlDetailsCommit> WithAuthor(this Partial<UnfurlDetailsCommit> it)
         => it.AddFieldName("author");

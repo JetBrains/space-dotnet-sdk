@@ -88,5 +88,8 @@ public static class TeamDirectoryProfilesForProfilePatchRequestPartialExtensions
     public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
         => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
     
+    public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithExternalId(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it)
+        => it.AddFieldName("externalId");
+    
 }
 

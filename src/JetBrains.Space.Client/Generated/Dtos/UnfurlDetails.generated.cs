@@ -38,6 +38,9 @@ public interface UnfurlDetails
     public static AutomationJobUnfurlDetails AutomationJob(string jobId, string jobName, PRProject projectRef, string repoName, JobExecutionDisplayStatus? jobExecutionDisplayStatusFilter = null, JobTriggerType? jobTriggerFilter = null, Branch? branch = null)
         => new AutomationJobUnfurlDetails(jobId: jobId, jobName: jobName, projectRef: projectRef, repoName: repoName, jobExecutionDisplayStatusFilter: jobExecutionDisplayStatusFilter, jobTriggerFilter: jobTriggerFilter, branch: branch);
     
+    public static CallSessionUnfurlDetails CallSession(CallSession session)
+        => new CallSessionUnfurlDetails(session: session);
+    
     public static ChannelItemSnapshot ChannelItemSnapshot(string id, string text, CPrincipal author, DateTime created, long time, string? channelId = null, M2ItemContentDetails? details = null, List<AttachmentInfo>? attachments = null)
         => new ChannelItemSnapshot(id: id, text: text, author: author, created: created, time: time, channelId: channelId, details: details, attachments: attachments);
     
@@ -68,8 +71,8 @@ public interface UnfurlDetails
     public static UnfurlDetailsCodeSnippet CodeSnippet(CodeSnippetAnchor anchor, List<CodeLine> lines)
         => new UnfurlDetailsCodeSnippet(anchor: anchor, lines: lines);
     
-    public static UnfurlDetailsCommit Commit(PRProject project, string repository, string commitId, string message, DateTime commitDate, GitAuthorInfo author, TDMemberProfile? authorProfile = null, bool? hideAuthorAndDate = null, bool? withBranchTags = null)
-        => new UnfurlDetailsCommit(project: project, repository: repository, commitId: commitId, message: message, commitDate: commitDate, author: author, authorProfile: authorProfile, hideAuthorAndDate: hideAuthorAndDate, withBranchTags: withBranchTags);
+    public static UnfurlDetailsCommit Commit(PRProject project, string repository, string commitId, string message, DateTime commitDate, GitAuthorInfo author, CommitMessageUnfurlsRecord? messageUnfurls = null, DateTime? authorDate = null, TDMemberProfile? authorProfile = null, bool? hideAuthorAndDate = null, bool? withBranchTags = null)
+        => new UnfurlDetailsCommit(project: project, repository: repository, commitId: commitId, message: message, commitDate: commitDate, author: author, messageUnfurls: messageUnfurls, authorDate: authorDate, authorProfile: authorProfile, hideAuthorAndDate: hideAuthorAndDate, withBranchTags: withBranchTags);
     
     public static UnfurlDetailsDateTime DateTime(long utcMilliseconds, DateTimeViewParams? @params = null)
         => new UnfurlDetailsDateTime(utcMilliseconds: utcMilliseconds, @params: @params);
@@ -79,6 +82,9 @@ public interface UnfurlDetails
     
     public static UnfurlDetailsDraft Draft(string draft, string title, bool? strikeThrough = null)
         => new UnfurlDetailsDraft(draft: draft, title: title, strikeThrough: strikeThrough);
+    
+    public static UnfurlDetailsFolder Folder(string name, bool root)
+        => new UnfurlDetailsFolder(name: name, root: root);
     
     public static UnfurlDetailsImage Image(string title, UnfurlDetailsImageSource image, string? icon = null)
         => new UnfurlDetailsImage(title: title, image: image, icon: icon);

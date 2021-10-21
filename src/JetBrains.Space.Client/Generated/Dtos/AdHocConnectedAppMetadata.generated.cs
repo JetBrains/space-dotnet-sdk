@@ -37,9 +37,10 @@ public sealed class AdHocConnectedAppMetadata
     
     public AdHocConnectedAppMetadata() { }
     
-    public AdHocConnectedAppMetadata(string? lastSentServerUrl = null)
+    public AdHocConnectedAppMetadata(string? lastSentServerUrl = null, AppConnectionStatus? connectionStatus = null)
     {
         LastSentServerUrl = lastSentServerUrl;
+        ConnectionStatus = connectionStatus;
     }
     
     private PropertyValue<string?> _lastSentServerUrl = new PropertyValue<string?>(nameof(AdHocConnectedAppMetadata), nameof(LastSentServerUrl));
@@ -51,9 +52,19 @@ public sealed class AdHocConnectedAppMetadata
         set => _lastSentServerUrl.SetValue(value);
     }
 
+    private PropertyValue<AppConnectionStatus?> _connectionStatus = new PropertyValue<AppConnectionStatus?>(nameof(AdHocConnectedAppMetadata), nameof(ConnectionStatus));
+    
+    [JsonPropertyName("connectionStatus")]
+    public AppConnectionStatus? ConnectionStatus
+    {
+        get => _connectionStatus.GetValue();
+        set => _connectionStatus.SetValue(value);
+    }
+
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _lastSentServerUrl.SetAccessPath(path, validateHasBeenSet);
+        _connectionStatus.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

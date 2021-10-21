@@ -27,18 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProfileAbsencesRecordPartialBuilder;
+namespace JetBrains.Space.Client.UnfurlDetailsFolderPartialBuilder;
 
-public static class ProfileAbsencesRecordPartialExtensions
+public static class UnfurlDetailsFolderPartialExtensions
 {
-    public static Partial<ProfileAbsencesRecord> WithId(this Partial<ProfileAbsencesRecord> it)
-        => it.AddFieldName("id");
+    public static Partial<UnfurlDetailsFolder> WithName(this Partial<UnfurlDetailsFolder> it)
+        => it.AddFieldName("name");
     
-    public static Partial<ProfileAbsencesRecord> WithAbsences(this Partial<ProfileAbsencesRecord> it)
-        => it.AddFieldName("absences");
-    
-    public static Partial<ProfileAbsencesRecord> WithAbsences(this Partial<ProfileAbsencesRecord> it, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>> partialBuilder)
-        => it.AddFieldName("absences", partialBuilder(new Partial<AbsenceRecord>(it)));
+    public static Partial<UnfurlDetailsFolder> WithIsRoot(this Partial<UnfurlDetailsFolder> it)
+        => it.AddFieldName("root");
     
 }
 

@@ -37,5 +37,11 @@ public static class MarketplaceAppMetadataPartialExtensions
     public static Partial<MarketplaceAppMetadata> WithLastSentServerUrl(this Partial<MarketplaceAppMetadata> it)
         => it.AddFieldName("lastSentServerUrl");
     
+    public static Partial<MarketplaceAppMetadata> WithConnectionStatus(this Partial<MarketplaceAppMetadata> it)
+        => it.AddFieldName("connectionStatus");
+    
+    public static Partial<MarketplaceAppMetadata> WithConnectionStatus(this Partial<MarketplaceAppMetadata> it, Func<Partial<AppConnectionStatus>, Partial<AppConnectionStatus>> partialBuilder)
+        => it.AddFieldName("connectionStatus", partialBuilder(new Partial<AppConnectionStatus>(it)));
+    
 }
 

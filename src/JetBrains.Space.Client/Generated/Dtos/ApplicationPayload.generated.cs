@@ -32,6 +32,9 @@ namespace JetBrains.Space.Client;
 public interface ApplicationPayload
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
+    public static AppPublicationCheckPayload AppPublicationCheckPayload()
+        => new AppPublicationCheckPayload();
+    
     public static ChangeClientSecretPayload ChangeClientSecretPayload(string newClientSecret, string clientId, string? userId = null, string? verificationToken = null)
         => new ChangeClientSecretPayload(newClientSecret: newClientSecret, clientId: clientId, userId: userId, verificationToken: verificationToken);
     

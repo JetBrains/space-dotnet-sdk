@@ -37,13 +37,15 @@ public sealed class UnfurlDetailsCommit
     
     public UnfurlDetailsCommit() { }
     
-    public UnfurlDetailsCommit(PRProject project, string repository, string commitId, string message, DateTime commitDate, GitAuthorInfo author, TDMemberProfile? authorProfile = null, bool? hideAuthorAndDate = null, bool? withBranchTags = null)
+    public UnfurlDetailsCommit(PRProject project, string repository, string commitId, string message, DateTime commitDate, GitAuthorInfo author, CommitMessageUnfurlsRecord? messageUnfurls = null, DateTime? authorDate = null, TDMemberProfile? authorProfile = null, bool? hideAuthorAndDate = null, bool? withBranchTags = null)
     {
         Project = project;
         Repository = repository;
         CommitId = commitId;
         Message = message;
+        MessageUnfurls = messageUnfurls;
         CommitDate = commitDate;
+        AuthorDate = authorDate;
         Author = author;
         AuthorProfile = authorProfile;
         IsHideAuthorAndDate = hideAuthorAndDate;
@@ -90,6 +92,15 @@ public sealed class UnfurlDetailsCommit
         set => _message.SetValue(value);
     }
 
+    private PropertyValue<CommitMessageUnfurlsRecord?> _messageUnfurls = new PropertyValue<CommitMessageUnfurlsRecord?>(nameof(UnfurlDetailsCommit), nameof(MessageUnfurls));
+    
+    [JsonPropertyName("messageUnfurls")]
+    public CommitMessageUnfurlsRecord? MessageUnfurls
+    {
+        get => _messageUnfurls.GetValue();
+        set => _messageUnfurls.SetValue(value);
+    }
+
     private PropertyValue<DateTime> _commitDate = new PropertyValue<DateTime>(nameof(UnfurlDetailsCommit), nameof(CommitDate));
     
     [Required]
@@ -99,6 +110,16 @@ public sealed class UnfurlDetailsCommit
     {
         get => _commitDate.GetValue();
         set => _commitDate.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _authorDate = new PropertyValue<DateTime?>(nameof(UnfurlDetailsCommit), nameof(AuthorDate));
+    
+    [JsonPropertyName("authorDate")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? AuthorDate
+    {
+        get => _authorDate.GetValue();
+        set => _authorDate.SetValue(value);
     }
 
     private PropertyValue<GitAuthorInfo> _author = new PropertyValue<GitAuthorInfo>(nameof(UnfurlDetailsCommit), nameof(Author));
@@ -144,7 +165,9 @@ public sealed class UnfurlDetailsCommit
         _repository.SetAccessPath(path, validateHasBeenSet);
         _commitId.SetAccessPath(path, validateHasBeenSet);
         _message.SetAccessPath(path, validateHasBeenSet);
+        _messageUnfurls.SetAccessPath(path, validateHasBeenSet);
         _commitDate.SetAccessPath(path, validateHasBeenSet);
+        _authorDate.SetAccessPath(path, validateHasBeenSet);
         _author.SetAccessPath(path, validateHasBeenSet);
         _authorProfile.SetAccessPath(path, validateHasBeenSet);
         _hideAuthorAndDate.SetAccessPath(path, validateHasBeenSet);

@@ -59,6 +59,9 @@ public enum ExecutionStatus
     [EnumMember(Value = "HIBERNATED")]
     HIBERNATED,
     
+    [EnumMember(Value = "RESTARTING")]
+    RESTARTING,
+    
     [EnumMember(Value = "FAILED")]
     FAILED,
     

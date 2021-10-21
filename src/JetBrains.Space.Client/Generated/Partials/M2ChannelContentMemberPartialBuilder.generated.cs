@@ -43,12 +43,6 @@ public static class M2ChannelContentMemberPartialExtensions
     public static Partial<M2ChannelContentMember> WithNotificationDefaults(this Partial<M2ChannelContentMember> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
         => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
     
-    public static Partial<M2ChannelContentMember> WithMemberAbsences(this Partial<M2ChannelContentMember> it)
-        => it.AddFieldName("memberAbsences");
-    
-    public static Partial<M2ChannelContentMember> WithMemberAbsences(this Partial<M2ChannelContentMember> it, Func<Partial<ProfileAbsencesRecord>, Partial<ProfileAbsencesRecord>> partialBuilder)
-        => it.AddFieldName("memberAbsences", partialBuilder(new Partial<ProfileAbsencesRecord>(it)));
-    
     public static Partial<M2ChannelContentMember> WithMemberTeams(this Partial<M2ChannelContentMember> it)
         => it.AddFieldName("memberTeams");
     

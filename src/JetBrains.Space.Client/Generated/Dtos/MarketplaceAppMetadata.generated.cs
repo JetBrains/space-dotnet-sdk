@@ -37,35 +37,48 @@ public sealed class MarketplaceAppMetadata
     
     public MarketplaceAppMetadata() { }
     
-    public MarketplaceAppMetadata(string marketplaceAppId, string? lastSentServerUrl = null)
+    public MarketplaceAppMetadata(int marketplaceAppId, string lastSentServerUrl, AppConnectionStatus connectionStatus)
     {
         MarketplaceAppId = marketplaceAppId;
         LastSentServerUrl = lastSentServerUrl;
+        ConnectionStatus = connectionStatus;
     }
     
-    private PropertyValue<string> _marketplaceAppId = new PropertyValue<string>(nameof(MarketplaceAppMetadata), nameof(MarketplaceAppId));
+    private PropertyValue<int> _marketplaceAppId = new PropertyValue<int>(nameof(MarketplaceAppMetadata), nameof(MarketplaceAppId));
     
     [Required]
     [JsonPropertyName("marketplaceAppId")]
-    public string MarketplaceAppId
+    public int MarketplaceAppId
     {
         get => _marketplaceAppId.GetValue();
         set => _marketplaceAppId.SetValue(value);
     }
 
-    private PropertyValue<string?> _lastSentServerUrl = new PropertyValue<string?>(nameof(MarketplaceAppMetadata), nameof(LastSentServerUrl));
+    private PropertyValue<string> _lastSentServerUrl = new PropertyValue<string>(nameof(MarketplaceAppMetadata), nameof(LastSentServerUrl));
     
+    [Required]
     [JsonPropertyName("lastSentServerUrl")]
-    public string? LastSentServerUrl
+    public string LastSentServerUrl
     {
         get => _lastSentServerUrl.GetValue();
         set => _lastSentServerUrl.SetValue(value);
+    }
+
+    private PropertyValue<AppConnectionStatus> _connectionStatus = new PropertyValue<AppConnectionStatus>(nameof(MarketplaceAppMetadata), nameof(ConnectionStatus));
+    
+    [Required]
+    [JsonPropertyName("connectionStatus")]
+    public AppConnectionStatus ConnectionStatus
+    {
+        get => _connectionStatus.GetValue();
+        set => _connectionStatus.SetValue(value);
     }
 
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _marketplaceAppId.SetAccessPath(path, validateHasBeenSet);
         _lastSentServerUrl.SetAccessPath(path, validateHasBeenSet);
+        _connectionStatus.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

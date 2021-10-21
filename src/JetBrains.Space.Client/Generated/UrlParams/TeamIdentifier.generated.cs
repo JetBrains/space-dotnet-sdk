@@ -32,11 +32,27 @@ namespace JetBrains.Space.Client;
 [JsonConverter(typeof(UrlParameterConverter))]
 public abstract class TeamIdentifier : IUrlParameter
 {
+    public static TeamIdentifier ExternalId(string externalId)
+        => new TeamIdentifierExternalId(externalId);
+    
     public static TeamIdentifier Id(string id)
         => new TeamIdentifierId(id);
     
     public static TeamIdentifier Name(string name)
         => new TeamIdentifierName(name);
+    
+    private class TeamIdentifierExternalId : TeamIdentifier
+    {
+        private readonly string _externalId;
+        
+        public TeamIdentifierExternalId(string externalId)
+        {
+            _externalId = externalId;
+        }
+        
+        public override string ToString()
+            => $"externalId:{_externalId}";
+    }
     
     private class TeamIdentifierId : TeamIdentifier
     {

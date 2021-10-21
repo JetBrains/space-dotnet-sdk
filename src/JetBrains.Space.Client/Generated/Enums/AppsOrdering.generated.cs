@@ -38,5 +38,8 @@ public enum AppsOrdering
     [EnumMember(Value = "NAME_Z_TO_A")]
     NAMEZTOA,
     
+    [EnumMember(Value = "LAST_EDITED")]
+    LASTEDITED,
+    
 }
 

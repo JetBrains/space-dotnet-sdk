@@ -34,5 +34,11 @@ public static class AdHocConnectedAppMetadataPartialExtensions
     public static Partial<AdHocConnectedAppMetadata> WithLastSentServerUrl(this Partial<AdHocConnectedAppMetadata> it)
         => it.AddFieldName("lastSentServerUrl");
     
+    public static Partial<AdHocConnectedAppMetadata> WithConnectionStatus(this Partial<AdHocConnectedAppMetadata> it)
+        => it.AddFieldName("connectionStatus");
+    
+    public static Partial<AdHocConnectedAppMetadata> WithConnectionStatus(this Partial<AdHocConnectedAppMetadata> it, Func<Partial<AppConnectionStatus>, Partial<AppConnectionStatus>> partialBuilder)
+        => it.AddFieldName("connectionStatus", partialBuilder(new Partial<AppConnectionStatus>(it)));
+    
 }
 

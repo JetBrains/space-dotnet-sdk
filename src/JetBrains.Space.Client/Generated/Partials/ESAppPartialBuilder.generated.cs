@@ -40,6 +40,15 @@ public static class ESAppPartialExtensions
     public static Partial<ESApp> WithOwner(this Partial<ESApp> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
         => it.AddFieldName("owner", partialBuilder(new Partial<TDMemberProfile>(it)));
     
+    public static Partial<ESApp> WithOwnerApp(this Partial<ESApp> it)
+        => it.AddFieldName("ownerApp");
+    
+    public static Partial<ESApp> WithOwnerAppRecursive(this Partial<ESApp> it)
+        => it.AddFieldName("ownerApp!");
+    
+    public static Partial<ESApp> WithOwnerApp(this Partial<ESApp> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
+        => it.AddFieldName("ownerApp", partialBuilder(new Partial<ESApp>(it)));
+    
     public static Partial<ESApp> WithClientId(this Partial<ESApp> it)
         => it.AddFieldName("clientId");
     

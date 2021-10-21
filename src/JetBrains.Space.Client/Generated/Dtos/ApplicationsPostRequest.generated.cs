@@ -34,7 +34,7 @@ public class ApplicationsPostRequest
 {
     public ApplicationsPostRequest() { }
     
-    public ApplicationsPostRequest(string name, bool endpointSslVerification = true, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null)
+    public ApplicationsPostRequest(string name, bool endpointSslVerification = true, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null)
     {
         Name = name;
         PictureAttachmentId = pictureAttachmentId;
@@ -57,6 +57,8 @@ public class ApplicationsPostRequest
         BasicAuthUsername = basicAuthUsername;
         BasicAuthPassword = basicAuthPassword;
         BearerAuthToken = bearerAuthToken;
+        IsConnectToSpace = connectToSpace;
+        State = state;
     }
     
     private PropertyValue<string> _name = new PropertyValue<string>(nameof(ApplicationsPostRequest), nameof(Name));
@@ -255,6 +257,24 @@ public class ApplicationsPostRequest
         set => _bearerAuthToken.SetValue(value);
     }
 
+    private PropertyValue<bool?> _connectToSpace = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsConnectToSpace));
+    
+    [JsonPropertyName("connectToSpace")]
+    public bool? IsConnectToSpace
+    {
+        get => _connectToSpace.GetValue();
+        set => _connectToSpace.SetValue(value);
+    }
+
+    private PropertyValue<string?> _state = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(State));
+    
+    [JsonPropertyName("state")]
+    public string? State
+    {
+        get => _state.GetValue();
+        set => _state.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _name.SetAccessPath(path, validateHasBeenSet);
@@ -278,6 +298,8 @@ public class ApplicationsPostRequest
         _basicAuthUsername.SetAccessPath(path, validateHasBeenSet);
         _basicAuthPassword.SetAccessPath(path, validateHasBeenSet);
         _bearerAuthToken.SetAccessPath(path, validateHasBeenSet);
+        _connectToSpace.SetAccessPath(path, validateHasBeenSet);
+        _state.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

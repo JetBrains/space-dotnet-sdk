@@ -29,18 +29,20 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ProfileAbsencesRecord
+public sealed class Room
      : IPropagatePropertyAccessPath
 {
-    public ProfileAbsencesRecord() { }
+    public Room() { }
     
-    public ProfileAbsencesRecord(string id, List<AbsenceRecord> absences)
+    public Room(string id, bool archived, string name, M2ChannelRecord channel)
     {
         Id = id;
-        Absences = absences;
+        IsArchived = archived;
+        Name = name;
+        Channel = channel;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProfileAbsencesRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Room), nameof(Id));
     
     [Required]
     [JsonPropertyName("id")]
@@ -50,20 +52,42 @@ public sealed class ProfileAbsencesRecord
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<List<AbsenceRecord>> _absences = new PropertyValue<List<AbsenceRecord>>(nameof(ProfileAbsencesRecord), nameof(Absences), new List<AbsenceRecord>());
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Room), nameof(IsArchived));
     
     [Required]
-    [JsonPropertyName("absences")]
-    public List<AbsenceRecord> Absences
+    [JsonPropertyName("archived")]
+    public bool IsArchived
     {
-        get => _absences.GetValue();
-        set => _absences.SetValue(value);
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(Room), nameof(Name));
+    
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name
+    {
+        get => _name.GetValue();
+        set => _name.SetValue(value);
+    }
+
+    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(Room), nameof(Channel));
+    
+    [Required]
+    [JsonPropertyName("channel")]
+    public M2ChannelRecord Channel
+    {
+        get => _channel.GetValue();
+        set => _channel.SetValue(value);
     }
 
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _id.SetAccessPath(path, validateHasBeenSet);
-        _absences.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(path, validateHasBeenSet);
+        _channel.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

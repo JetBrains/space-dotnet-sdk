@@ -34,12 +34,13 @@ public sealed class CodeDiscussionRecord
 {
     public CodeDiscussionRecord() { }
     
-    public CodeDiscussionRecord(string id, string projectId, CodeDiscussionAnchor anchor, DateTime created, M2ChannelRecord channel, bool resolved, bool archived, PRProject? project = null, bool? resolvable = null, CodeDiscussionSnippet? snippet = null, CPrincipal? resolvedBy = null, bool? pending = null, CodeReviewRecord? review = null, string? feedItemId = null, List<CodeReviewRecord>? reviews = null)
+    public CodeDiscussionRecord(string id, string projectId, CodeDiscussionAnchor anchor, DateTime created, M2ChannelRecord channel, bool resolved, bool archived, PRProject? project = null, CodeDiscussionAnchor? endAnchor = null, bool? resolvable = null, CodeDiscussionSnippet? snippet = null, CPrincipal? resolvedBy = null, bool? pending = null, CodeReviewRecord? review = null, string? feedItemId = null, List<CodeReviewRecord>? reviews = null)
     {
         Id = id;
         ProjectId = projectId;
         Project = project;
         Anchor = anchor;
+        EndAnchor = endAnchor;
         Created = created;
         Channel = channel;
         IsResolvable = resolvable;
@@ -91,6 +92,15 @@ public sealed class CodeDiscussionRecord
     {
         get => _anchor.GetValue();
         set => _anchor.SetValue(value);
+    }
+
+    private PropertyValue<CodeDiscussionAnchor?> _endAnchor = new PropertyValue<CodeDiscussionAnchor?>(nameof(CodeDiscussionRecord), nameof(EndAnchor));
+    
+    [JsonPropertyName("endAnchor")]
+    public CodeDiscussionAnchor? EndAnchor
+    {
+        get => _endAnchor.GetValue();
+        set => _endAnchor.SetValue(value);
     }
 
     private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(CodeDiscussionRecord), nameof(Created));
@@ -203,6 +213,7 @@ public sealed class CodeDiscussionRecord
         _projectId.SetAccessPath(path, validateHasBeenSet);
         _project.SetAccessPath(path, validateHasBeenSet);
         _anchor.SetAccessPath(path, validateHasBeenSet);
+        _endAnchor.SetAccessPath(path, validateHasBeenSet);
         _created.SetAccessPath(path, validateHasBeenSet);
         _channel.SetAccessPath(path, validateHasBeenSet);
         _resolvable.SetAccessPath(path, validateHasBeenSet);

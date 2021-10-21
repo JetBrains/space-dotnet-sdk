@@ -34,10 +34,11 @@ public sealed class ESApp
 {
     public ESApp() { }
     
-    public ESApp(string id, string clientId, string name, bool archived, List<ApplicationUnfurlDomain> domains, List<ApplicationUnfurlPattern> patterns, ESAppSettings settings, TDMemberProfile? owner = null, string? picture = null, string? defaultExternalPicture = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null)
+    public ESApp(string id, string clientId, string name, bool archived, List<ApplicationUnfurlDomain> domains, List<ApplicationUnfurlPattern> patterns, ESAppSettings settings, TDMemberProfile? owner = null, ESApp? ownerApp = null, string? picture = null, string? defaultExternalPicture = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null)
     {
         Id = id;
         Owner = owner;
+        OwnerApp = ownerApp;
         ClientId = clientId;
         Name = name;
         Picture = picture;
@@ -84,6 +85,15 @@ public sealed class ESApp
     {
         get => _owner.GetValue();
         set => _owner.SetValue(value);
+    }
+
+    private PropertyValue<ESApp?> _ownerApp = new PropertyValue<ESApp?>(nameof(ESApp), nameof(OwnerApp));
+    
+    [JsonPropertyName("ownerApp")]
+    public ESApp? OwnerApp
+    {
+        get => _ownerApp.GetValue();
+        set => _ownerApp.SetValue(value);
     }
 
     private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESApp), nameof(ClientId));
@@ -354,6 +364,7 @@ public sealed class ESApp
     {
         _id.SetAccessPath(path, validateHasBeenSet);
         _owner.SetAccessPath(path, validateHasBeenSet);
+        _ownerApp.SetAccessPath(path, validateHasBeenSet);
         _clientId.SetAccessPath(path, validateHasBeenSet);
         _name.SetAccessPath(path, validateHasBeenSet);
         _picture.SetAccessPath(path, validateHasBeenSet);

@@ -36,6 +36,9 @@ public class WebhookDeliveryStatus
     [JsonPropertyName("className")]
     public virtual string? ClassName => "WebhookDeliveryStatus";
     
+    public static WebhookDeliveryStatusDTOExpectedHttpClientError DTOExpectedHttpClientError(AppMessageDeliveryDTOClientError clientError, string deliveryId, DateTime sentTime)
+        => new WebhookDeliveryStatusDTOExpectedHttpClientError(clientError: clientError, deliveryId: deliveryId, sentTime: sentTime);
+    
     public static WebhookDeliveryStatusDTOFailedDelivery DTOFailedDelivery(string deliveryId, int responseCode, string message, DateTime sentTime)
         => new WebhookDeliveryStatusDTOFailedDelivery(deliveryId: deliveryId, responseCode: responseCode, message: message, sentTime: sentTime);
     

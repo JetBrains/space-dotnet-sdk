@@ -88,6 +88,9 @@ public static class TeamDirectoryProfilesPostRequestPartialExtensions
     public static Partial<TeamDirectoryProfilesPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryProfilesPostRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
         => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldInputValue>(it)));
     
+    public static Partial<TeamDirectoryProfilesPostRequest> WithExternalId(this Partial<TeamDirectoryProfilesPostRequest> it)
+        => it.AddFieldName("externalId");
+    
     public static Partial<TeamDirectoryProfilesPostRequest> WithLocation(this Partial<TeamDirectoryProfilesPostRequest> it)
         => it.AddFieldName("location");
     

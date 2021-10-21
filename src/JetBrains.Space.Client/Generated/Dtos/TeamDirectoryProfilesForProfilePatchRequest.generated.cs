@@ -34,7 +34,7 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 {
     public TeamDirectoryProfilesForProfilePatchRequest() { }
     
-    public TeamDirectoryProfilesForProfilePatchRequest(string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, DateTime? birthday = null, string? about = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, List<CustomFieldInputValue>? customFieldValues = null)
+    public TeamDirectoryProfilesForProfilePatchRequest(string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, DateTime? birthday = null, string? about = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null)
     {
         Username = username;
         FirstName = firstName;
@@ -53,6 +53,7 @@ public class TeamDirectoryProfilesForProfilePatchRequest
         PictureAttachmentId = pictureAttachmentId;
         AvatarCropSquare = avatarCropSquare;
         CustomFieldValues = customFieldValues;
+        ExternalId = externalId;
     }
     
     private PropertyValue<string?> _username = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(Username));
@@ -212,6 +213,15 @@ public class TeamDirectoryProfilesForProfilePatchRequest
         set => _customFieldValues.SetValue(value);
     }
 
+    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(ExternalId));
+    
+    [JsonPropertyName("externalId")]
+    public string? ExternalId
+    {
+        get => _externalId.GetValue();
+        set => _externalId.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _username.SetAccessPath(path, validateHasBeenSet);
@@ -231,6 +241,7 @@ public class TeamDirectoryProfilesForProfilePatchRequest
         _pictureAttachmentId.SetAccessPath(path, validateHasBeenSet);
         _avatarCropSquare.SetAccessPath(path, validateHasBeenSet);
         _customFieldValues.SetAccessPath(path, validateHasBeenSet);
+        _externalId.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

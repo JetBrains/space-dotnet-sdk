@@ -34,10 +34,11 @@ public sealed class GitCommitWithGraph
 {
     public GitCommitWithGraph() { }
     
-    public GitCommitWithGraph(string repositoryName, GitCommitInfo commit, List<CodeReviewRecord> reviews, List<string> issueIds, bool unreachable, GitGraphLayoutLine? layout = null)
+    public GitCommitWithGraph(string repositoryName, GitCommitInfo commit, List<Unfurl> commitMessageUnfurls, List<CodeReviewRecord> reviews, List<string> issueIds, bool unreachable, GitGraphLayoutLine? layout = null)
     {
         RepositoryName = repositoryName;
         Commit = commit;
+        CommitMessageUnfurls = commitMessageUnfurls;
         Reviews = reviews;
         IssueIds = issueIds;
         Layout = layout;
@@ -62,6 +63,16 @@ public sealed class GitCommitWithGraph
     {
         get => _commit.GetValue();
         set => _commit.SetValue(value);
+    }
+
+    private PropertyValue<List<Unfurl>> _commitMessageUnfurls = new PropertyValue<List<Unfurl>>(nameof(GitCommitWithGraph), nameof(CommitMessageUnfurls), new List<Unfurl>());
+    
+    [Required]
+    [JsonPropertyName("commitMessageUnfurls")]
+    public List<Unfurl> CommitMessageUnfurls
+    {
+        get => _commitMessageUnfurls.GetValue();
+        set => _commitMessageUnfurls.SetValue(value);
     }
 
     private PropertyValue<List<CodeReviewRecord>> _reviews = new PropertyValue<List<CodeReviewRecord>>(nameof(GitCommitWithGraph), nameof(Reviews), new List<CodeReviewRecord>());
@@ -107,6 +118,7 @@ public sealed class GitCommitWithGraph
     {
         _repositoryName.SetAccessPath(path, validateHasBeenSet);
         _commit.SetAccessPath(path, validateHasBeenSet);
+        _commitMessageUnfurls.SetAccessPath(path, validateHasBeenSet);
         _reviews.SetAccessPath(path, validateHasBeenSet);
         _issueIds.SetAccessPath(path, validateHasBeenSet);
         _layout.SetAccessPath(path, validateHasBeenSet);

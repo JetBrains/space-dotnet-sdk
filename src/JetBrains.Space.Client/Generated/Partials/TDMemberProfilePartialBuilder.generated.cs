@@ -109,6 +109,9 @@ public static class TDMemberProfilePartialExtensions
     public static Partial<TDMemberProfile> WithEmails(this Partial<TDMemberProfile> it, Func<Partial<TDProfileEmail>, Partial<TDProfileEmail>> partialBuilder)
         => it.AddFieldName("emails", partialBuilder(new Partial<TDProfileEmail>(it)));
     
+    public static Partial<TDMemberProfile> WithExternalId(this Partial<TDMemberProfile> it)
+        => it.AddFieldName("externalId");
+    
     public static Partial<TDMemberProfile> WithFolder(this Partial<TDMemberProfile> it)
         => it.AddFieldName("folder");
     

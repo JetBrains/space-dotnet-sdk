@@ -37,11 +37,10 @@ public sealed class M2ChannelContentMember
     
     public M2ChannelContentMember() { }
     
-    public M2ChannelContentMember(TDMemberProfile member, ChannelSpecificDefaults notificationDefaults, ProfileAbsencesRecord? memberAbsences = null, ProfileMembershipRecord? memberTeams = null)
+    public M2ChannelContentMember(TDMemberProfile member, ChannelSpecificDefaults notificationDefaults, ProfileMembershipRecord? memberTeams = null)
     {
         Member = member;
         NotificationDefaults = notificationDefaults;
-        MemberAbsences = memberAbsences;
         MemberTeams = memberTeams;
     }
     
@@ -65,15 +64,6 @@ public sealed class M2ChannelContentMember
         set => _notificationDefaults.SetValue(value);
     }
 
-    private PropertyValue<ProfileAbsencesRecord?> _memberAbsences = new PropertyValue<ProfileAbsencesRecord?>(nameof(M2ChannelContentMember), nameof(MemberAbsences));
-    
-    [JsonPropertyName("memberAbsences")]
-    public ProfileAbsencesRecord? MemberAbsences
-    {
-        get => _memberAbsences.GetValue();
-        set => _memberAbsences.SetValue(value);
-    }
-
     private PropertyValue<ProfileMembershipRecord?> _memberTeams = new PropertyValue<ProfileMembershipRecord?>(nameof(M2ChannelContentMember), nameof(MemberTeams));
     
     [JsonPropertyName("memberTeams")]
@@ -87,7 +77,6 @@ public sealed class M2ChannelContentMember
     {
         _member.SetAccessPath(path, validateHasBeenSet);
         _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-        _memberAbsences.SetAccessPath(path, validateHasBeenSet);
         _memberTeams.SetAccessPath(path, validateHasBeenSet);
     }
 

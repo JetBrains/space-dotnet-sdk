@@ -49,7 +49,7 @@ public partial class ToDoItemClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<TodoItemRecord> CreateTodoItemAsync(string text, DateTime? dueDate = null, Func<Partial<TodoItemRecord>, Partial<TodoItemRecord>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<TodoItemRecord> CreateToDoItemAsync(string text, DateTime? dueDate = null, Func<Partial<TodoItemRecord>, Partial<TodoItemRecord>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<TodoItemRecord>()) : Partial<TodoItemRecord>.Default()).ToString());
@@ -74,7 +74,7 @@ public partial class ToDoItemClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<Batch<TodoItemRecord>> GetAllTodoItemsAsync(string? skip = null, int? top = 100, bool? open = null, DateTime? from = null, DateTime? till = null, Func<Partial<Batch<TodoItemRecord>>, Partial<Batch<TodoItemRecord>>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<Batch<TodoItemRecord>> GetAllToDoItemsAsync(string? skip = null, int? top = 100, bool? open = null, DateTime? from = null, DateTime? till = null, Func<Partial<Batch<TodoItemRecord>>, Partial<Batch<TodoItemRecord>>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         if (skip != null) queryParameters.Append("$skip", skip);
@@ -99,8 +99,8 @@ public partial class ToDoItemClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public IAsyncEnumerable<TodoItemRecord> GetAllTodoItemsAsyncEnumerable(string? skip = null, int? top = 100, bool? open = null, DateTime? from = null, DateTime? till = null, Func<Partial<TodoItemRecord>, Partial<TodoItemRecord>>? partial = null, CancellationToken cancellationToken = default)
-        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllTodoItemsAsync(top: top, open: open, from: from, till: till, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TodoItemRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TodoItemRecord>.Default())), skip, cancellationToken);
+    public IAsyncEnumerable<TodoItemRecord> GetAllToDoItemsAsyncEnumerable(string? skip = null, int? top = 100, bool? open = null, DateTime? from = null, DateTime? till = null, Func<Partial<TodoItemRecord>, Partial<TodoItemRecord>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllToDoItemsAsync(top: top, open: open, from: from, till: till, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TodoItemRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TodoItemRecord>.Default())), skip, cancellationToken);
 
     /// <summary>
     /// Update an existing To-Do item. Optional parameters will be ignored when not specified and updated otherwise.
@@ -113,7 +113,7 @@ public partial class ToDoItemClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task UpdateTodoItemAsync(string id, string? text = null, DateTime? dueDate = null, bool? open = null, CancellationToken cancellationToken = default)
+    public async Task UpdateToDoItemAsync(string id, string? text = null, DateTime? dueDate = null, bool? open = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -138,7 +138,7 @@ public partial class ToDoItemClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task DeleteTodoItemAsync(string id, CancellationToken cancellationToken = default)
+    public async Task DeleteToDoItemAsync(string id, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         

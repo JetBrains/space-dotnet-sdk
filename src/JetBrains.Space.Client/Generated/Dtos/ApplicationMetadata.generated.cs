@@ -32,14 +32,14 @@ namespace JetBrains.Space.Client;
 public interface ApplicationMetadata
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static AdHocConnectedAppMetadata AdHocConnectedAppMetadata(string? lastSentServerUrl = null)
-        => new AdHocConnectedAppMetadata(lastSentServerUrl: lastSentServerUrl);
+    public static AdHocConnectedAppMetadata AdHocConnectedAppMetadata(string? lastSentServerUrl = null, AppConnectionStatus? connectionStatus = null)
+        => new AdHocConnectedAppMetadata(lastSentServerUrl: lastSentServerUrl, connectionStatus: connectionStatus);
     
     public static AutomationServiceMetadata AutomationServiceMetadata(PRProject project)
         => new AutomationServiceMetadata(project: project);
     
-    public static MarketplaceAppMetadata MarketplaceAppMetadata(string marketplaceAppId, string? lastSentServerUrl = null)
-        => new MarketplaceAppMetadata(marketplaceAppId: marketplaceAppId, lastSentServerUrl: lastSentServerUrl);
+    public static MarketplaceAppMetadata MarketplaceAppMetadata(int marketplaceAppId, string lastSentServerUrl, AppConnectionStatus connectionStatus)
+        => new MarketplaceAppMetadata(marketplaceAppId: marketplaceAppId, lastSentServerUrl: lastSentServerUrl, connectionStatus: connectionStatus);
     
     public static SubscriptionMetadata SubscriptionMetadata(M2ChannelRecord channel, string subscription, string subscriptionName)
         => new SubscriptionMetadata(channel: channel, subscription: subscription, subscriptionName: subscriptionName);

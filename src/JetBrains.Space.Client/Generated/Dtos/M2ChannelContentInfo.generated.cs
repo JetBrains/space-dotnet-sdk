@@ -59,8 +59,8 @@ public interface M2ChannelContentInfo
     public static M2ChannelContentLocation M2ChannelContentLocation(TDLocation location, ChannelSpecificDefaults notificationDefaults)
         => new M2ChannelContentLocation(location: location, notificationDefaults: notificationDefaults);
     
-    public static M2ChannelContentMember M2ChannelContentMember(TDMemberProfile member, ChannelSpecificDefaults notificationDefaults, ProfileAbsencesRecord? memberAbsences = null, ProfileMembershipRecord? memberTeams = null)
-        => new M2ChannelContentMember(member: member, notificationDefaults: notificationDefaults, memberAbsences: memberAbsences, memberTeams: memberTeams);
+    public static M2ChannelContentMember M2ChannelContentMember(TDMemberProfile member, ChannelSpecificDefaults notificationDefaults, ProfileMembershipRecord? memberTeams = null)
+        => new M2ChannelContentMember(member: member, notificationDefaults: notificationDefaults, memberTeams: memberTeams);
     
     public static M2ChannelContentMembership M2ChannelContentMembership()
         => new M2ChannelContentMembership();

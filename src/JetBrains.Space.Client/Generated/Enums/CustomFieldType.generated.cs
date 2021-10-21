@@ -44,6 +44,9 @@ public enum CustomFieldType
     [EnumMember(Value = "DATE_TIME")]
     DATETIME,
     
+    [EnumMember(Value = "DOCUMENT")]
+    DOCUMENT,
+    
     [EnumMember(Value = "ENUM")]
     ENUM,
     
@@ -76,6 +79,9 @@ public enum CustomFieldType
     
     [EnumMember(Value = "URL")]
     URL,
+    
+    [EnumMember(Value = "COMMIT")]
+    COMMIT,
     
 }
 

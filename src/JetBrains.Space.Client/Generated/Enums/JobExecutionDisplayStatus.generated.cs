@@ -38,6 +38,9 @@ public enum JobExecutionDisplayStatus
     [EnumMember(Value = "Running")]
     Running,
     
+    [EnumMember(Value = "Restarting")]
+    Restarting,
+    
     [EnumMember(Value = "Finishing")]
     Finishing,
     

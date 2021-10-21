@@ -34,7 +34,7 @@ public class TeamDirectoryProfilesPostRequest
 {
     public TeamDirectoryProfilesPostRequest() { }
     
-    public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? location = null, bool? external = null)
+    public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? external = null)
     {
         Username = username;
         FirstName = firstName;
@@ -53,6 +53,7 @@ public class TeamDirectoryProfilesPostRequest
         PictureAttachmentId = pictureAttachmentId;
         AvatarCropSquare = avatarCropSquare;
         CustomFieldValues = (customFieldValues ?? new List<CustomFieldInputValue>());
+        ExternalId = externalId;
         Location = location;
         IsExternal = external;
     }
@@ -217,6 +218,15 @@ public class TeamDirectoryProfilesPostRequest
         set => _customFieldValues.SetValue(value);
     }
 
+    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(ExternalId));
+    
+    [JsonPropertyName("externalId")]
+    public string? ExternalId
+    {
+        get => _externalId.GetValue();
+        set => _externalId.SetValue(value);
+    }
+
     private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Location));
     
     [JsonPropertyName("location")]
@@ -254,6 +264,7 @@ public class TeamDirectoryProfilesPostRequest
         _pictureAttachmentId.SetAccessPath(path, validateHasBeenSet);
         _avatarCropSquare.SetAccessPath(path, validateHasBeenSet);
         _customFieldValues.SetAccessPath(path, validateHasBeenSet);
+        _externalId.SetAccessPath(path, validateHasBeenSet);
         _location.SetAccessPath(path, validateHasBeenSet);
         _external.SetAccessPath(path, validateHasBeenSet);
     }

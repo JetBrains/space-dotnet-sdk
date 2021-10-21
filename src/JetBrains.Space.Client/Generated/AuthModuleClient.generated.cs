@@ -211,7 +211,7 @@ public partial class AuthModuleClient : ISpaceClient
         /// <summary>
         /// For a username/password combination, test built-in authentication with updated settings
         /// </summary>
-        public async Task<TDMemberProfile> TestBuiltinSettingsAsync(ESBuiltinAuthModuleSettings settings, string username, string password, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<TDMemberProfile> TestBuiltInSettingsAsync(ESBuiltinAuthModuleSettings settings, string username, string password, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());

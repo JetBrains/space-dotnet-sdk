@@ -40,6 +40,12 @@ public static class GitCommitWithGraphPartialExtensions
     public static Partial<GitCommitWithGraph> WithCommit(this Partial<GitCommitWithGraph> it, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>> partialBuilder)
         => it.AddFieldName("commit", partialBuilder(new Partial<GitCommitInfo>(it)));
     
+    public static Partial<GitCommitWithGraph> WithCommitMessageUnfurls(this Partial<GitCommitWithGraph> it)
+        => it.AddFieldName("commitMessageUnfurls");
+    
+    public static Partial<GitCommitWithGraph> WithCommitMessageUnfurls(this Partial<GitCommitWithGraph> it, Func<Partial<Unfurl>, Partial<Unfurl>> partialBuilder)
+        => it.AddFieldName("commitMessageUnfurls", partialBuilder(new Partial<Unfurl>(it)));
+    
     public static Partial<GitCommitWithGraph> WithReviews(this Partial<GitCommitWithGraph> it)
         => it.AddFieldName("reviews");
     

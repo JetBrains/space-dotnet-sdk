@@ -97,5 +97,11 @@ public static class ApplicationsPostRequestPartialExtensions
     public static Partial<ApplicationsPostRequest> WithBearerAuthToken(this Partial<ApplicationsPostRequest> it)
         => it.AddFieldName("bearerAuthToken");
     
+    public static Partial<ApplicationsPostRequest> WithIsConnectToSpace(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("connectToSpace");
+    
+    public static Partial<ApplicationsPostRequest> WithState(this Partial<ApplicationsPostRequest> it)
+        => it.AddFieldName("state");
+    
 }
 

@@ -85,5 +85,11 @@ public static class AppMessageDeliveryPartialExtensions
     public static Partial<AppMessageDelivery> WithResponseBody(this Partial<AppMessageDelivery> it)
         => it.AddFieldName("responseBody");
     
+    public static Partial<AppMessageDelivery> WithHttpClientError(this Partial<AppMessageDelivery> it)
+        => it.AddFieldName("httpClientError");
+    
+    public static Partial<AppMessageDelivery> WithHttpClientError(this Partial<AppMessageDelivery> it, Func<Partial<AppMessageDeliveryDTOClientError>, Partial<AppMessageDeliveryDTOClientError>> partialBuilder)
+        => it.AddFieldName("httpClientError", partialBuilder(new Partial<AppMessageDeliveryDTOClientError>(it)));
+    
 }
 

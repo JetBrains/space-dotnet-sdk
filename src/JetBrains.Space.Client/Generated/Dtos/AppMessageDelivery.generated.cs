@@ -34,7 +34,7 @@ public sealed class AppMessageDelivery
 {
     public AppMessageDelivery() { }
     
-    public AppMessageDelivery(string id, AppMessageDeliveryType messageType, bool successful, DateTime sentAt, string duration, string method, WebhookRecord? webhook = null, string? deliveryId = null, string? url = null, List<HttpHeader>? requestHeaders = null, string? requestBody = null, int? responseStatusCode = null, List<HttpHeader>? responseHeaders = null, string? responseBody = null)
+    public AppMessageDelivery(string id, AppMessageDeliveryType messageType, bool successful, DateTime sentAt, string duration, string method, WebhookRecord? webhook = null, string? deliveryId = null, string? url = null, List<HttpHeader>? requestHeaders = null, string? requestBody = null, int? responseStatusCode = null, List<HttpHeader>? responseHeaders = null, string? responseBody = null, AppMessageDeliveryDTOClientError? httpClientError = null)
     {
         Id = id;
         MessageType = messageType;
@@ -50,6 +50,7 @@ public sealed class AppMessageDelivery
         ResponseStatusCode = responseStatusCode;
         ResponseHeaders = responseHeaders;
         ResponseBody = responseBody;
+        HttpClientError = httpClientError;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(AppMessageDelivery), nameof(Id));
@@ -185,6 +186,15 @@ public sealed class AppMessageDelivery
         set => _responseBody.SetValue(value);
     }
 
+    private PropertyValue<AppMessageDeliveryDTOClientError?> _httpClientError = new PropertyValue<AppMessageDeliveryDTOClientError?>(nameof(AppMessageDelivery), nameof(HttpClientError));
+    
+    [JsonPropertyName("httpClientError")]
+    public AppMessageDeliveryDTOClientError? HttpClientError
+    {
+        get => _httpClientError.GetValue();
+        set => _httpClientError.SetValue(value);
+    }
+
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _id.SetAccessPath(path, validateHasBeenSet);
@@ -201,6 +211,7 @@ public sealed class AppMessageDelivery
         _responseStatusCode.SetAccessPath(path, validateHasBeenSet);
         _responseHeaders.SetAccessPath(path, validateHasBeenSet);
         _responseBody.SetAccessPath(path, validateHasBeenSet);
+        _httpClientError.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

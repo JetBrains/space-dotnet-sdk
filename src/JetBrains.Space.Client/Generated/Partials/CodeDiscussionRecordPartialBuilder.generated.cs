@@ -49,6 +49,12 @@ public static class CodeDiscussionRecordPartialExtensions
     public static Partial<CodeDiscussionRecord> WithAnchor(this Partial<CodeDiscussionRecord> it, Func<Partial<CodeDiscussionAnchor>, Partial<CodeDiscussionAnchor>> partialBuilder)
         => it.AddFieldName("anchor", partialBuilder(new Partial<CodeDiscussionAnchor>(it)));
     
+    public static Partial<CodeDiscussionRecord> WithEndAnchor(this Partial<CodeDiscussionRecord> it)
+        => it.AddFieldName("endAnchor");
+    
+    public static Partial<CodeDiscussionRecord> WithEndAnchor(this Partial<CodeDiscussionRecord> it, Func<Partial<CodeDiscussionAnchor>, Partial<CodeDiscussionAnchor>> partialBuilder)
+        => it.AddFieldName("endAnchor", partialBuilder(new Partial<CodeDiscussionAnchor>(it)));
+    
     public static Partial<CodeDiscussionRecord> WithCreated(this Partial<CodeDiscussionRecord> it)
         => it.AddFieldName("created");
     
