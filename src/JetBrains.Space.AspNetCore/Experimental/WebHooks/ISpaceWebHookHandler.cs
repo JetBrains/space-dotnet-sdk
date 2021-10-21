@@ -50,6 +50,13 @@ public interface ISpaceWebHookHandler
     /// <param name="payload">The <see cref="WebhookRequestPayload"/>.</param>
     /// <returns>The result of executing this action. The result message will be displayed in the Space user interface.</returns>
     Task<ApplicationExecutionResult> HandleWebhookRequestAsync(WebhookRequestPayload payload);
+    
+    /// <summary>
+    /// Handle event when new unfurl requests are available.
+    /// </summary>
+    /// <param name="payload">The <see cref="NewUnfurlQueueItemsPayload"/>.</param>
+    /// <returns>The result of executing this action.</returns>
+    Task<ApplicationExecutionResult> HandleNewUnfurlQueueItemsAsync(NewUnfurlQueueItemsPayload payload);
 
     /// <summary>
     /// Handle application initialization event.
@@ -71,4 +78,11 @@ public interface ISpaceWebHookHandler
     /// <param name="payload">The <see cref="ChangeServerUrlPayload"/>.</param>
     /// <returns>The result of executing this action.</returns>
     Task<ApplicationExecutionResult> HandleChangeServerUrlAsync(ChangeServerUrlPayload payload);
+
+    /// <summary>
+    /// Handle event that checks the application.
+    /// </summary>
+    /// <param name="payload">The <see cref="AppPublicationCheckPayload"/>.</param>
+    /// <returns>The result of executing this action.</returns>
+    Task<ApplicationExecutionResult> HandleAppPublicationCheckAsync(AppPublicationCheckPayload payload);
 }

@@ -107,6 +107,12 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
                 await WriteApplicationExecutionResultAsync(context.Response, webhookActionResult);
                 return;
                 
+            // New unfurl requests are available?
+            case NewUnfurlQueueItemsPayload unfurlRequestPayload:
+                var unfurlActionResult = await handler.HandleNewUnfurlQueueItemsAsync(unfurlRequestPayload);
+                await WriteApplicationExecutionResultAsync(context.Response, unfurlActionResult);
+                return;
+            
             // Application initialized in in Space organization?
             case InitPayload initPayload:
                 var initActionResult = await handler.HandleInitAsync(initPayload);
@@ -123,6 +129,12 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
             case ChangeServerUrlPayload changeServerUrlPayload:
                 var changeServerUrlActionResult = await handler.HandleChangeServerUrlAsync(changeServerUrlPayload);
                 await WriteApplicationExecutionResultAsync(context.Response, changeServerUrlActionResult);
+                return;
+                
+            // Publication check?
+            case AppPublicationCheckPayload publicationCheckPayload:
+                var publicationCheckPayloadActionResult = await handler.HandleAppPublicationCheckAsync(publicationCheckPayload);
+                await WriteApplicationExecutionResultAsync(context.Response, publicationCheckPayloadActionResult);
                 return;
         }
 

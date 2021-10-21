@@ -31,6 +31,10 @@ public abstract class SpaceWebHookHandler
     /// <inheritdoc/>
     public virtual Task<ApplicationExecutionResult> HandleWebhookRequestAsync(WebhookRequestPayload payload)
         => Task.FromResult(new ApplicationExecutionResult());
+
+    /// <inheritdoc/>
+    public virtual Task<ApplicationExecutionResult> HandleNewUnfurlQueueItemsAsync(NewUnfurlQueueItemsPayload payload)
+        => Task.FromResult(new ApplicationExecutionResult());
         
     /// <inheritdoc/>
     public virtual Task<ApplicationExecutionResult> HandleInitAsync(InitPayload payload)
@@ -41,6 +45,10 @@ public abstract class SpaceWebHookHandler
         => Task.FromResult(new ApplicationExecutionResult());
         
     /// <inheritdoc/>
-    public virtual  Task<ApplicationExecutionResult> HandleChangeServerUrlAsync(ChangeServerUrlPayload payload)
+    public virtual Task<ApplicationExecutionResult> HandleChangeServerUrlAsync(ChangeServerUrlPayload payload)
+        => Task.FromResult(new ApplicationExecutionResult());
+
+    /// <inheritdoc/>
+    public virtual Task<ApplicationExecutionResult> HandleAppPublicationCheckAsync(AppPublicationCheckPayload payload)
         => Task.FromResult(new ApplicationExecutionResult());
 }
