@@ -32,14 +32,17 @@ namespace JetBrains.Space.Client;
 [JsonConverter(typeof(EnumStringConverter))]
 public enum DraftDocumentType
 {
-    [EnumMember(Value = "WYSIWYG")]
-    WYSIWYG,
-    
     [EnumMember(Value = "RICH_TEXT")]
     RICHTEXT,
     
+    [EnumMember(Value = "WYSIWYG")]
+    WYSIWYG,
+    
     [EnumMember(Value = "MARKDOWN")]
     MARKDOWN,
+    
+    [EnumMember(Value = "NEW_RICH_TEXT")]
+    NEWRICHTEXT,
     
 }
 

@@ -27,15 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequestPartialBuilder;
+namespace JetBrains.Space.Client.ReviewCommitPartialBuilder;
 
-public static class ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequestPartialExtensions
+public static class ReviewCommitPartialExtensions
 {
-    public static Partial<ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest> WithRevisions(this Partial<ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest> it)
-        => it.AddFieldName("revisions");
+    public static Partial<ReviewCommit> WithRepositoryId(this Partial<ReviewCommit> it)
+        => it.AddFieldName("repositoryId");
     
-    public static Partial<ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest> WithRevisions(this Partial<ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest> it, Func<Partial<ReviewCommitIn>, Partial<ReviewCommitIn>> partialBuilder)
-        => it.AddFieldName("revisions", partialBuilder(new Partial<ReviewCommitIn>(it)));
+    public static Partial<ReviewCommit> WithCommitId(this Partial<ReviewCommit> it)
+        => it.AddFieldName("commitId");
     
 }
 

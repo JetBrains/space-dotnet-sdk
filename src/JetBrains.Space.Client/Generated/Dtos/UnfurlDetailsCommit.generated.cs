@@ -37,10 +37,11 @@ public sealed class UnfurlDetailsCommit
     
     public UnfurlDetailsCommit() { }
     
-    public UnfurlDetailsCommit(PRProject project, string repository, string commitId, string message, DateTime commitDate, GitAuthorInfo author, CommitMessageUnfurlsRecord? messageUnfurls = null, DateTime? authorDate = null, TDMemberProfile? authorProfile = null, bool? hideAuthorAndDate = null, bool? withBranchTags = null)
+    public UnfurlDetailsCommit(PRProject project, string repository, string commitId, string message, DateTime commitDate, GitAuthorInfo author, string? repositoryId = null, CommitMessageUnfurlsRecord? messageUnfurls = null, DateTime? authorDate = null, TDMemberProfile? authorProfile = null, bool? hideAuthorAndDate = null, bool? withBranchTags = null, string? reviewId = null)
     {
         Project = project;
         Repository = repository;
+        RepositoryId = repositoryId;
         CommitId = commitId;
         Message = message;
         MessageUnfurls = messageUnfurls;
@@ -50,6 +51,7 @@ public sealed class UnfurlDetailsCommit
         AuthorProfile = authorProfile;
         IsHideAuthorAndDate = hideAuthorAndDate;
         IsWithBranchTags = withBranchTags;
+        ReviewId = reviewId;
     }
     
     private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsCommit), nameof(Project));
@@ -70,6 +72,15 @@ public sealed class UnfurlDetailsCommit
     {
         get => _repository.GetValue();
         set => _repository.SetValue(value);
+    }
+
+    private PropertyValue<string?> _repositoryId = new PropertyValue<string?>(nameof(UnfurlDetailsCommit), nameof(RepositoryId));
+    
+    [JsonPropertyName("repositoryId")]
+    public string? RepositoryId
+    {
+        get => _repositoryId.GetValue();
+        set => _repositoryId.SetValue(value);
     }
 
     private PropertyValue<string> _commitId = new PropertyValue<string>(nameof(UnfurlDetailsCommit), nameof(CommitId));
@@ -159,10 +170,20 @@ public sealed class UnfurlDetailsCommit
         set => _withBranchTags.SetValue(value);
     }
 
+    private PropertyValue<string?> _reviewId = new PropertyValue<string?>(nameof(UnfurlDetailsCommit), nameof(ReviewId));
+    
+    [JsonPropertyName("reviewId")]
+    public string? ReviewId
+    {
+        get => _reviewId.GetValue();
+        set => _reviewId.SetValue(value);
+    }
+
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _project.SetAccessPath(path, validateHasBeenSet);
         _repository.SetAccessPath(path, validateHasBeenSet);
+        _repositoryId.SetAccessPath(path, validateHasBeenSet);
         _commitId.SetAccessPath(path, validateHasBeenSet);
         _message.SetAccessPath(path, validateHasBeenSet);
         _messageUnfurls.SetAccessPath(path, validateHasBeenSet);
@@ -172,6 +193,7 @@ public sealed class UnfurlDetailsCommit
         _authorProfile.SetAccessPath(path, validateHasBeenSet);
         _hideAuthorAndDate.SetAccessPath(path, validateHasBeenSet);
         _withBranchTags.SetAccessPath(path, validateHasBeenSet);
+        _reviewId.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

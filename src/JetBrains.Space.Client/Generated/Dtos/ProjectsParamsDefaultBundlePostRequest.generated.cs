@@ -34,11 +34,12 @@ public class ProjectsParamsDefaultBundlePostRequest
 {
     public ProjectsParamsDefaultBundlePostRequest() { }
     
-    public ProjectsParamsDefaultBundlePostRequest(ProjectIdentifier project, string key, string value)
+    public ProjectsParamsDefaultBundlePostRequest(ProjectIdentifier project, string key, string value, string? description = null)
     {
         Project = project;
         Key = key;
         Value = value;
+        Description = description;
     }
     
     private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(ProjectsParamsDefaultBundlePostRequest), nameof(Project));
@@ -71,11 +72,21 @@ public class ProjectsParamsDefaultBundlePostRequest
         set => _value.SetValue(value);
     }
 
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsParamsDefaultBundlePostRequest), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _project.SetAccessPath(path, validateHasBeenSet);
         _key.SetAccessPath(path, validateHasBeenSet);
         _value.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

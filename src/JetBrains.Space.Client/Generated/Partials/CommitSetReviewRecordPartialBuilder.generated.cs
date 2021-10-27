@@ -82,6 +82,12 @@ public static class CommitSetReviewRecordPartialExtensions
     public static Partial<CommitSetReviewRecord> WithAuthors(this Partial<CommitSetReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
         => it.AddFieldName("authors", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
     
+    public static Partial<CommitSetReviewRecord> WithCommits(this Partial<CommitSetReviewRecord> it)
+        => it.AddFieldName("commits");
+    
+    public static Partial<CommitSetReviewRecord> WithCommits(this Partial<CommitSetReviewRecord> it, Func<Partial<ReviewCommit>, Partial<ReviewCommit>> partialBuilder)
+        => it.AddFieldName("commits", partialBuilder(new Partial<ReviewCommit>(it)));
+    
     public static Partial<CommitSetReviewRecord> WithDiscussionCounter(this Partial<CommitSetReviewRecord> it)
         => it.AddFieldName("discussionCounter");
     

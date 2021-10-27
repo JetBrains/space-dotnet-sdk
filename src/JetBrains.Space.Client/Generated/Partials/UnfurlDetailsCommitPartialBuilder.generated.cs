@@ -40,6 +40,9 @@ public static class UnfurlDetailsCommitPartialExtensions
     public static Partial<UnfurlDetailsCommit> WithRepository(this Partial<UnfurlDetailsCommit> it)
         => it.AddFieldName("repository");
     
+    public static Partial<UnfurlDetailsCommit> WithRepositoryId(this Partial<UnfurlDetailsCommit> it)
+        => it.AddFieldName("repositoryId");
+    
     public static Partial<UnfurlDetailsCommit> WithCommitId(this Partial<UnfurlDetailsCommit> it)
         => it.AddFieldName("commitId");
     
@@ -75,6 +78,9 @@ public static class UnfurlDetailsCommitPartialExtensions
     
     public static Partial<UnfurlDetailsCommit> WithIsWithBranchTags(this Partial<UnfurlDetailsCommit> it)
         => it.AddFieldName("withBranchTags");
+    
+    public static Partial<UnfurlDetailsCommit> WithReviewId(this Partial<UnfurlDetailsCommit> it)
+        => it.AddFieldName("reviewId");
     
 }
 

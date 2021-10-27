@@ -34,7 +34,7 @@ public sealed class DocumentInContainer
 {
     public DocumentInContainer() { }
     
-    public DocumentInContainer(string id, bool archived, string containerLinkId, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, bool deleted, int accessOrdinal, DocumentBody documentBody, TDMemberProfile? author = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, bool? published = null)
+    public DocumentInContainer(string id, bool archived, string containerLinkId, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, bool deleted, int accessOrdinal, DocumentBody documentBody, TDMemberProfile? author = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null)
     {
         Id = id;
         IsArchived = archived;
@@ -54,7 +54,6 @@ public sealed class DocumentInContainer
         IsDeleted = deleted;
         ArchivedBy = archivedBy;
         ArchivedAt = archivedAt;
-        IsPublished = published;
         AccessOrdinal = accessOrdinal;
         DocumentBody = documentBody;
     }
@@ -233,15 +232,6 @@ public sealed class DocumentInContainer
         set => _archivedAt.SetValue(value);
     }
 
-    private PropertyValue<bool?> _published = new PropertyValue<bool?>(nameof(DocumentInContainer), nameof(IsPublished));
-    
-    [JsonPropertyName("published")]
-    public bool? IsPublished
-    {
-        get => _published.GetValue();
-        set => _published.SetValue(value);
-    }
-
     private PropertyValue<int> _accessOrdinal = new PropertyValue<int>(nameof(DocumentInContainer), nameof(AccessOrdinal));
     
     [Required]
@@ -282,7 +272,6 @@ public sealed class DocumentInContainer
         _deleted.SetAccessPath(path, validateHasBeenSet);
         _archivedBy.SetAccessPath(path, validateHasBeenSet);
         _archivedAt.SetAccessPath(path, validateHasBeenSet);
-        _published.SetAccessPath(path, validateHasBeenSet);
         _accessOrdinal.SetAccessPath(path, validateHasBeenSet);
         _documentBody.SetAccessPath(path, validateHasBeenSet);
     }

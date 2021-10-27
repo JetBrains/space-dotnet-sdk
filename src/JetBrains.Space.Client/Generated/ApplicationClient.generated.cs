@@ -137,7 +137,7 @@ public partial class ApplicationClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<Batch<ESApp>> GetAllApplicationsAsync(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, AppsOrdering? ordering = null, Func<Partial<Batch<ESApp>>, Partial<Batch<ESApp>>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<Batch<ESApp>> GetAllApplicationsAsync(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, bool? withManaged = true, AppsOrdering? ordering = null, Func<Partial<Batch<ESApp>>, Partial<Batch<ESApp>>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         if (skip != null) queryParameters.Append("$skip", skip);
@@ -145,6 +145,7 @@ public partial class ApplicationClient : ISpaceClient
         if (name != null) queryParameters.Append("name", name);
         if (owner != null) queryParameters.Append("owner", owner.Select(it => it.ToString()));
         if (withArchived != null) queryParameters.Append("withArchived", withArchived?.ToString("l"));
+        if (withManaged != null) queryParameters.Append("withManaged", withManaged?.ToString("l"));
         queryParameters.Append("ordering", ordering.ToEnumString());
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESApp>>()) : Partial<Batch<ESApp>>.Default()).ToString());
         
@@ -160,8 +161,8 @@ public partial class ApplicationClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public IAsyncEnumerable<ESApp> GetAllApplicationsAsyncEnumerable(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, AppsOrdering? ordering = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
-        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllApplicationsAsync(top: top, name: name, owner: owner, withArchived: withArchived, ordering: ordering, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApp>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApp>.Default())), skip, cancellationToken);
+    public IAsyncEnumerable<ESApp> GetAllApplicationsAsyncEnumerable(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, bool? withManaged = true, AppsOrdering? ordering = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllApplicationsAsync(top: top, name: name, owner: owner, withArchived: withArchived, withManaged: withManaged, ordering: ordering, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApp>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApp>.Default())), skip, cancellationToken);
 
     /// <remarks>
     /// Required permissions:

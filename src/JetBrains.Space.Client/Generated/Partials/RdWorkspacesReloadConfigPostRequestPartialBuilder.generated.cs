@@ -27,15 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RevisionInReviewPartialBuilder;
+namespace JetBrains.Space.Client.RdWorkspacesReloadConfigPostRequestPartialBuilder;
 
-public static class RevisionInReviewPartialExtensions
+public static class RdWorkspacesReloadConfigPostRequestPartialExtensions
 {
-    public static Partial<RevisionInReview> WithRepository(this Partial<RevisionInReview> it)
-        => it.AddFieldName("repository");
+    public static Partial<RdWorkspacesReloadConfigPostRequest> WithWorkspace(this Partial<RdWorkspacesReloadConfigPostRequest> it)
+        => it.AddFieldName("workspace");
     
-    public static Partial<RevisionInReview> WithCommit(this Partial<RevisionInReview> it)
-        => it.AddFieldName("commit");
+    public static Partial<RdWorkspacesReloadConfigPostRequest> WithWorkspace(this Partial<RdWorkspacesReloadConfigPostRequest> it, Func<Partial<WorkspaceIdentifier>, Partial<WorkspaceIdentifier>> partialBuilder)
+        => it.AddFieldName("workspace", partialBuilder(new Partial<WorkspaceIdentifier>(it)));
     
 }
 

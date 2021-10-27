@@ -37,5 +37,8 @@ public static class ProjectsSecretsForIdPatchRequestPartialExtensions
     public static Partial<ProjectsSecretsForIdPatchRequest> WithPublicKeyId(this Partial<ProjectsSecretsForIdPatchRequest> it)
         => it.AddFieldName("publicKeyId");
     
+    public static Partial<ProjectsSecretsForIdPatchRequest> WithDescription(this Partial<ProjectsSecretsForIdPatchRequest> it)
+        => it.AddFieldName("description");
+    
 }
 

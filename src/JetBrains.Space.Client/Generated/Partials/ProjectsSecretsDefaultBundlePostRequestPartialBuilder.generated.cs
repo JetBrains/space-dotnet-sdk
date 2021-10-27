@@ -46,5 +46,8 @@ public static class ProjectsSecretsDefaultBundlePostRequestPartialExtensions
     public static Partial<ProjectsSecretsDefaultBundlePostRequest> WithPublicKeyId(this Partial<ProjectsSecretsDefaultBundlePostRequest> it)
         => it.AddFieldName("publicKeyId");
     
+    public static Partial<ProjectsSecretsDefaultBundlePostRequest> WithDescription(this Partial<ProjectsSecretsDefaultBundlePostRequest> it)
+        => it.AddFieldName("description");
+    
 }
 

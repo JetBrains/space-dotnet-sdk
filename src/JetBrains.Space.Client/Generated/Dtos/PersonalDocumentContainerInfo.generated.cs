@@ -37,10 +37,9 @@ public sealed class PersonalDocumentContainerInfo
     
     public PersonalDocumentContainerInfo() { }
     
-    public PersonalDocumentContainerInfo(TDMemberProfile owner, DocumentFolderRecord? folder = null)
+    public PersonalDocumentContainerInfo(TDMemberProfile owner)
     {
         Owner = owner;
-        Folder = folder;
     }
     
     private PropertyValue<TDMemberProfile> _owner = new PropertyValue<TDMemberProfile>(nameof(PersonalDocumentContainerInfo), nameof(Owner));
@@ -53,19 +52,9 @@ public sealed class PersonalDocumentContainerInfo
         set => _owner.SetValue(value);
     }
 
-    private PropertyValue<DocumentFolderRecord?> _folder = new PropertyValue<DocumentFolderRecord?>(nameof(PersonalDocumentContainerInfo), nameof(Folder));
-    
-    [JsonPropertyName("folder")]
-    public DocumentFolderRecord? Folder
-    {
-        get => _folder.GetValue();
-        set => _folder.SetValue(value);
-    }
-
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _owner.SetAccessPath(path, validateHasBeenSet);
-        _folder.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

@@ -88,6 +88,12 @@ public static class MergeRequestRecordPartialExtensions
     public static Partial<MergeRequestRecord> WithAuthors(this Partial<MergeRequestRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
         => it.AddFieldName("authors", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
     
+    public static Partial<MergeRequestRecord> WithCommits(this Partial<MergeRequestRecord> it)
+        => it.AddFieldName("commits");
+    
+    public static Partial<MergeRequestRecord> WithCommits(this Partial<MergeRequestRecord> it, Func<Partial<ReviewCommit>, Partial<ReviewCommit>> partialBuilder)
+        => it.AddFieldName("commits", partialBuilder(new Partial<ReviewCommit>(it)));
+    
     public static Partial<MergeRequestRecord> WithDiscussionCounter(this Partial<MergeRequestRecord> it)
         => it.AddFieldName("discussionCounter");
     

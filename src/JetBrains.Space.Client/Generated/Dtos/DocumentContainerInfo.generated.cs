@@ -41,8 +41,8 @@ public interface DocumentContainerInfo
     public static KbDocumentContainerInfo Kb(KBBook book, KBArticle article)
         => new KbDocumentContainerInfo(book: book, article: article);
     
-    public static PersonalDocumentContainerInfo Personal(TDMemberProfile owner, DocumentFolderRecord? folder = null)
-        => new PersonalDocumentContainerInfo(owner: owner, folder: folder);
+    public static PersonalDocumentContainerInfo Personal(TDMemberProfile owner)
+        => new PersonalDocumentContainerInfo(owner: owner);
     
 }
 

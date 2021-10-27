@@ -40,6 +40,12 @@ public static class CodeReviewRecordPartialExtensions
     public static Partial<CodeReviewRecord> WithAuthors(this Partial<CodeReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
         => it.AddFieldName("authors", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
     
+    public static Partial<CodeReviewRecord> WithCommits(this Partial<CodeReviewRecord> it)
+        => it.AddFieldName("commits");
+    
+    public static Partial<CodeReviewRecord> WithCommits(this Partial<CodeReviewRecord> it, Func<Partial<ReviewCommit>, Partial<ReviewCommit>> partialBuilder)
+        => it.AddFieldName("commits", partialBuilder(new Partial<ReviewCommit>(it)));
+    
     public static Partial<CodeReviewRecord> WithDiscussionCounter(this Partial<CodeReviewRecord> it)
         => it.AddFieldName("discussionCounter");
     

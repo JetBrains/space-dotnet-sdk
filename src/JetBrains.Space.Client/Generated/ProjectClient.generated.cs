@@ -200,9 +200,17 @@ public partial class ProjectClient : ISpaceClient
     
 
     /// <summary>
-    /// Archive a project
+    /// Delete a project
     /// </summary>
-    public async Task ArchiveProjectAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Change permissions for the project</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task DeleteProjectAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -525,7 +533,7 @@ public partial class ProjectClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task UpdateParamAsync(string id, string value, CancellationToken cancellationToken = default)
+        public async Task UpdateParamAsync(string id, string value, string? description = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -533,6 +541,7 @@ public partial class ProjectClient : ISpaceClient
                 new ProjectsParamsForIdPatchRequest
                 { 
                     Value = value,
+                    Description = description,
                 }, cancellationToken);
         }
         
@@ -580,7 +589,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<string> CreateDefaultBundleAsync(ProjectIdentifier project, string key, string value, CancellationToken cancellationToken = default)
+            public async Task<string> CreateDefaultBundleAsync(ProjectIdentifier project, string key, string value, string? description = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -590,6 +599,7 @@ public partial class ProjectClient : ISpaceClient
                         Project = project,
                         Key = key,
                         Value = value,
+                        Description = description,
                     }, cancellationToken);
             }
             
@@ -737,6 +747,27 @@ public partial class ProjectClient : ISpaceClient
                 _connection = connection;
             }
             
+            /// <summary>
+            /// Get a board by identifier
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View boards</term>
+            /// <description>View issue boards</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<BoardRecord> GetBoardAsync(BoardIdentifier board, Func<Partial<BoardRecord>, Partial<BoardRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<BoardRecord>()) : Partial<BoardRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<BoardRecord>("GET", $"api/http/projects/planning/boards/{board}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
             /// <summary>
             /// Update an existing board. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
             /// </summary>
@@ -1451,7 +1482,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null, List<IssueIdentifier>? parents = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<SprintIdentifier>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null, List<IssueIdentifier>? parents = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
@@ -1466,7 +1497,7 @@ public partial class ProjectClient : ISpaceClient
                         DueDate = dueDate,
                         Tags = (tags ?? new List<string>()),
                         Checklists = (checklists ?? new List<string>()),
-                        Sprints = (sprints ?? new List<string>()),
+                        Sprints = (sprints ?? new List<SprintIdentifier>()),
                         Attachments = (attachments ?? new List<AttachmentIn>()),
                         FromMessage = fromMessage,
                         CustomFields = customFields,
@@ -2496,7 +2527,7 @@ public partial class ProjectClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task UpdateSecretAsync(string id, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
+        public async Task UpdateSecretAsync(string id, string valueBase64, string? publicKeyId = null, string? description = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -2505,6 +2536,7 @@ public partial class ProjectClient : ISpaceClient
                 { 
                     ValueBase64 = valueBase64,
                     PublicKeyId = publicKeyId,
+                    Description = description,
                 }, cancellationToken);
         }
         
@@ -2552,7 +2584,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<string> CreateDefaultBundleAsync(ProjectIdentifier project, string key, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
+            public async Task<string> CreateDefaultBundleAsync(ProjectIdentifier project, string key, string valueBase64, string? publicKeyId = null, string? description = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -2563,6 +2595,7 @@ public partial class ProjectClient : ISpaceClient
                         Key = key,
                         ValueBase64 = valueBase64,
                         PublicKeyId = publicKeyId,
+                        Description = description,
                     }, cancellationToken);
             }
             
@@ -3266,12 +3299,12 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
-        public async Task<List<RevisionInReview>> GetUnreadRevisionsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<RevisionInReview>, Partial<RevisionInReview>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<ReviewCommitIn>> GetUnreadRevisionsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<ReviewCommitIn>, Partial<ReviewCommitIn>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<RevisionInReview>()) : Partial<RevisionInReview>.Default()).ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ReviewCommitIn>()) : Partial<ReviewCommitIn>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<RevisionInReview>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/unread-revisions{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<ReviewCommitIn>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/unread-revisions{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     
@@ -3374,7 +3407,7 @@ public partial class ProjectClient : ISpaceClient
                 _connection = connection;
             }
             
-            public async Task AddRevisionsToReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, List<RevisionInReview> revisions, CancellationToken cancellationToken = default)
+            public async Task AddRevisionsToReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, List<ReviewCommitIn> revisions, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 

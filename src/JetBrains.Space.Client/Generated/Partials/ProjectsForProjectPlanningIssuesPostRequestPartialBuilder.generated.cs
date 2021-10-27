@@ -58,6 +58,9 @@ public static class ProjectsForProjectPlanningIssuesPostRequestPartialExtensions
     public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithSprints(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
         => it.AddFieldName("sprints");
     
+    public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithSprints(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<SprintIdentifier>, Partial<SprintIdentifier>> partialBuilder)
+        => it.AddFieldName("sprints", partialBuilder(new Partial<SprintIdentifier>(it)));
+    
     public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
         => it.AddFieldName("attachments");
     

@@ -37,9 +37,10 @@ public sealed class SpaceNewsFeedChannel
     
     public SpaceNewsFeedChannel() { }
     
-    public SpaceNewsFeedChannel(ChannelSpecificDefaults? notificationDefaults = null)
+    public SpaceNewsFeedChannel(ChannelSpecificDefaults? notificationDefaults = null, bool? supportReplies = null)
     {
         NotificationDefaults = notificationDefaults;
+        IsSupportReplies = supportReplies;
     }
     
     private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(SpaceNewsFeedChannel), nameof(NotificationDefaults));
@@ -51,9 +52,19 @@ public sealed class SpaceNewsFeedChannel
         set => _notificationDefaults.SetValue(value);
     }
 
+    private PropertyValue<bool?> _supportReplies = new PropertyValue<bool?>(nameof(SpaceNewsFeedChannel), nameof(IsSupportReplies));
+    
+    [JsonPropertyName("supportReplies")]
+    public bool? IsSupportReplies
+    {
+        get => _supportReplies.GetValue();
+        set => _supportReplies.SetValue(value);
+    }
+
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+        _supportReplies.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

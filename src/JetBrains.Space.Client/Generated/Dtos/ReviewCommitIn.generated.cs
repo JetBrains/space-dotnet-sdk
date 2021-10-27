@@ -29,29 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest
+public sealed class ReviewCommitIn
      : IPropagatePropertyAccessPath
 {
-    public ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest() { }
+    public ReviewCommitIn() { }
     
-    public ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest(List<ReviewCommitIn> revisions)
+    public ReviewCommitIn(string repository, string commit)
     {
-        Revisions = revisions;
+        Repository = repository;
+        Commit = commit;
     }
     
-    private PropertyValue<List<ReviewCommitIn>> _revisions = new PropertyValue<List<ReviewCommitIn>>(nameof(ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest), nameof(Revisions), new List<ReviewCommitIn>());
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ReviewCommitIn), nameof(Repository));
     
     [Required]
-    [JsonPropertyName("revisions")]
-    public List<ReviewCommitIn> Revisions
+    [JsonPropertyName("repository")]
+    public string Repository
     {
-        get => _revisions.GetValue();
-        set => _revisions.SetValue(value);
+        get => _repository.GetValue();
+        set => _repository.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    private PropertyValue<string> _commit = new PropertyValue<string>(nameof(ReviewCommitIn), nameof(Commit));
+    
+    [Required]
+    [JsonPropertyName("commit")]
+    public string Commit
     {
-        _revisions.SetAccessPath(path, validateHasBeenSet);
+        get => _commit.GetValue();
+        set => _commit.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _repository.SetAccessPath(path, validateHasBeenSet);
+        _commit.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

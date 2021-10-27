@@ -34,7 +34,7 @@ public sealed class TDMemberProfile
 {
     public TDMemberProfile() { }
     
-    public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, List<PublicHoliday> holidays, List<string> links, List<TDMemberLocation> locationHistory, List<TDMemberLocation> locations, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, List<Topic> topics, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? external = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, string? externalId = null, DocumentFolderRecord? folder = null, DocumentFolderWithChildren? folderWithChildren = null, Gender? gender = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, List<TDMembership>? unapprovedMemberships = null)
+    public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, List<PublicHoliday> holidays, List<string> links, List<TDMemberLocation> locationHistory, List<TDMemberLocation> locations, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, List<Topic> topics, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? external = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, string? externalId = null, DocumentFolderWithChildren? folderWithChildren = null, Gender? gender = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, List<TDMembership>? unapprovedMemberships = null)
     {
         Id = id;
         Username = username;
@@ -57,7 +57,6 @@ public sealed class TDMemberProfile
         CustomFields = customFields;
         Emails = emails;
         ExternalId = externalId;
-        Folder = folder;
         FolderWithChildren = folderWithChildren;
         Gender = gender;
         Holidays = holidays;
@@ -280,15 +279,6 @@ public sealed class TDMemberProfile
         set => _externalId.SetValue(value);
     }
 
-    private PropertyValue<DocumentFolderRecord?> _folder = new PropertyValue<DocumentFolderRecord?>(nameof(TDMemberProfile), nameof(Folder));
-    
-    [JsonPropertyName("folder")]
-    public DocumentFolderRecord? Folder
-    {
-        get => _folder.GetValue();
-        set => _folder.SetValue(value);
-    }
-
     private PropertyValue<DocumentFolderWithChildren?> _folderWithChildren = new PropertyValue<DocumentFolderWithChildren?>(nameof(TDMemberProfile), nameof(FolderWithChildren));
     
     [JsonPropertyName("folderWithChildren")]
@@ -476,7 +466,6 @@ public sealed class TDMemberProfile
         _customFields.SetAccessPath(path, validateHasBeenSet);
         _emails.SetAccessPath(path, validateHasBeenSet);
         _externalId.SetAccessPath(path, validateHasBeenSet);
-        _folder.SetAccessPath(path, validateHasBeenSet);
         _folderWithChildren.SetAccessPath(path, validateHasBeenSet);
         _gender.SetAccessPath(path, validateHasBeenSet);
         _holidays.SetAccessPath(path, validateHasBeenSet);

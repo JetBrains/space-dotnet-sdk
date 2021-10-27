@@ -34,5 +34,8 @@ public static class ProjectsParamsForIdPatchRequestPartialExtensions
     public static Partial<ProjectsParamsForIdPatchRequest> WithValue(this Partial<ProjectsParamsForIdPatchRequest> it)
         => it.AddFieldName("value");
     
+    public static Partial<ProjectsParamsForIdPatchRequest> WithDescription(this Partial<ProjectsParamsForIdPatchRequest> it)
+        => it.AddFieldName("description");
+    
 }
 

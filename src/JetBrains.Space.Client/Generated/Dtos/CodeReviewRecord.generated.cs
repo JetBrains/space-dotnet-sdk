@@ -63,6 +63,16 @@ public abstract class CodeReviewRecord
         set => _authors.SetValue(value);
     }
 
+    private PropertyValue<List<ReviewCommit>> _commits = new PropertyValue<List<ReviewCommit>>(nameof(CodeReviewRecord), nameof(Commits), new List<ReviewCommit>());
+    
+    [Required]
+    [JsonPropertyName("commits")]
+    public List<ReviewCommit> Commits
+    {
+        get => _commits.GetValue();
+        set => _commits.SetValue(value);
+    }
+
     private PropertyValue<Counter> _discussionCounter = new PropertyValue<Counter>(nameof(CodeReviewRecord), nameof(DiscussionCounter));
     
     [Required]
@@ -118,6 +128,7 @@ public abstract class CodeReviewRecord
     {
         _id.SetAccessPath(path, validateHasBeenSet);
         _authors.SetAccessPath(path, validateHasBeenSet);
+        _commits.SetAccessPath(path, validateHasBeenSet);
         _discussionCounter.SetAccessPath(path, validateHasBeenSet);
         _issueIds.SetAccessPath(path, validateHasBeenSet);
         _participants.SetAccessPath(path, validateHasBeenSet);

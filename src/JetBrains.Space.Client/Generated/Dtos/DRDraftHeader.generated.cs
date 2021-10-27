@@ -34,7 +34,7 @@ public sealed class DRDraftHeader
 {
     public DRDraftHeader() { }
     
-    public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
+    public DRDraftHeader(string id, string title, CPrincipal createdBy, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, TDMemberProfile? author = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, DocumentFolder? folderRef = null)
     {
         Id = id;
         Title = title;
@@ -49,7 +49,6 @@ public sealed class DRDraftHeader
         IsDeleted = deleted;
         ArchivedBy = archivedBy;
         ArchivedAt = archivedAt;
-        Folder = folder;
         FolderRef = folderRef;
         ContainerInfo = containerInfo;
         BodyType = bodyType;
@@ -75,20 +74,20 @@ public sealed class DRDraftHeader
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile> _author = new PropertyValue<TDMemberProfile>(nameof(DRDraftHeader), nameof(Author));
+    private PropertyValue<TDMemberProfile?> _author = new PropertyValue<TDMemberProfile?>(nameof(DRDraftHeader), nameof(Author));
     
-    [Required]
     [JsonPropertyName("author")]
-    public TDMemberProfile Author
+    public TDMemberProfile? Author
     {
         get => _author.GetValue();
         set => _author.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(DRDraftHeader), nameof(CreatedBy));
+    private PropertyValue<CPrincipal> _createdBy = new PropertyValue<CPrincipal>(nameof(DRDraftHeader), nameof(CreatedBy));
     
+    [Required]
     [JsonPropertyName("createdBy")]
-    public CPrincipal? CreatedBy
+    public CPrincipal CreatedBy
     {
         get => _createdBy.GetValue();
         set => _createdBy.SetValue(value);
@@ -180,15 +179,6 @@ public sealed class DRDraftHeader
         set => _archivedAt.SetValue(value);
     }
 
-    private PropertyValue<DocumentFolderRecord?> _folder = new PropertyValue<DocumentFolderRecord?>(nameof(DRDraftHeader), nameof(Folder));
-    
-    [JsonPropertyName("folder")]
-    public DocumentFolderRecord? Folder
-    {
-        get => _folder.GetValue();
-        set => _folder.SetValue(value);
-    }
-
     private PropertyValue<DocumentFolder?> _folderRef = new PropertyValue<DocumentFolder?>(nameof(DRDraftHeader), nameof(FolderRef));
     
     [JsonPropertyName("folderRef")]
@@ -233,7 +223,6 @@ public sealed class DRDraftHeader
         _deleted.SetAccessPath(path, validateHasBeenSet);
         _archivedBy.SetAccessPath(path, validateHasBeenSet);
         _archivedAt.SetAccessPath(path, validateHasBeenSet);
-        _folder.SetAccessPath(path, validateHasBeenSet);
         _folderRef.SetAccessPath(path, validateHasBeenSet);
         _containerInfo.SetAccessPath(path, validateHasBeenSet);
         _bodyType.SetAccessPath(path, validateHasBeenSet);

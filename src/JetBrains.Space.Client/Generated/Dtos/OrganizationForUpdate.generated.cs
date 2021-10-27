@@ -94,6 +94,7 @@ public sealed class OrganizationForUpdate
 
     private PropertyValue<string?> _slackWorkspace = new PropertyValue<string?>(nameof(OrganizationForUpdate), nameof(SlackWorkspace));
     
+    [Obsolete("Is no longer supported (since 2021-10-13) (will be removed in a future version)")]
     [JsonPropertyName("slackWorkspace")]
     public string? SlackWorkspace
     {

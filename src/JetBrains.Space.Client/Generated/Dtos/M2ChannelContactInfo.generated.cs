@@ -86,8 +86,8 @@ public interface M2ChannelContactInfo
     public static M2SharedChannelContent M2SharedChannelContent(string name, string group, M2Access access, string description, ChannelSpecificDefaults notificationDefaults, string? iconId = null, List<TDTeam>? teams = null, bool? canEdit = null, PRProject? project = null)
         => new M2SharedChannelContent(name: name, group: group, access: access, description: description, notificationDefaults: notificationDefaults, iconId: iconId, teams: teams, canEdit: canEdit, project: project);
     
-    public static SpaceNewsFeedChannel SpaceNewsFeedChannel(ChannelSpecificDefaults? notificationDefaults = null)
-        => new SpaceNewsFeedChannel(notificationDefaults: notificationDefaults);
+    public static SpaceNewsFeedChannel SpaceNewsFeedChannel(ChannelSpecificDefaults? notificationDefaults = null, bool? supportReplies = null)
+        => new SpaceNewsFeedChannel(notificationDefaults: notificationDefaults, supportReplies: supportReplies);
     
 }
 

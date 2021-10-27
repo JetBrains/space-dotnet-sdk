@@ -34,9 +34,10 @@ public class ProjectsParamsForIdPatchRequest
 {
     public ProjectsParamsForIdPatchRequest() { }
     
-    public ProjectsParamsForIdPatchRequest(string value)
+    public ProjectsParamsForIdPatchRequest(string value, string? description = null)
     {
         Value = value;
+        Description = description;
     }
     
     private PropertyValue<string> _value = new PropertyValue<string>(nameof(ProjectsParamsForIdPatchRequest), nameof(Value));
@@ -49,9 +50,19 @@ public class ProjectsParamsForIdPatchRequest
         set => _value.SetValue(value);
     }
 
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsParamsForIdPatchRequest), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _value.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

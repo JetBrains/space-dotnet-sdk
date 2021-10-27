@@ -43,5 +43,26 @@ public static class SecretParameterRecordPartialExtensions
     public static Partial<SecretParameterRecord> WithKey(this Partial<SecretParameterRecord> it)
         => it.AddFieldName("key");
     
+    public static Partial<SecretParameterRecord> WithDescription(this Partial<SecretParameterRecord> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<SecretParameterRecord> WithCreatedAt(this Partial<SecretParameterRecord> it)
+        => it.AddFieldName("createdAt");
+    
+    public static Partial<SecretParameterRecord> WithCreatedBy(this Partial<SecretParameterRecord> it)
+        => it.AddFieldName("createdBy");
+    
+    public static Partial<SecretParameterRecord> WithCreatedBy(this Partial<SecretParameterRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<SecretParameterRecord> WithUpdatedAt(this Partial<SecretParameterRecord> it)
+        => it.AddFieldName("updatedAt");
+    
+    public static Partial<SecretParameterRecord> WithUpdatedBy(this Partial<SecretParameterRecord> it)
+        => it.AddFieldName("updatedBy");
+    
+    public static Partial<SecretParameterRecord> WithUpdatedBy(this Partial<SecretParameterRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("updatedBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
 }
 

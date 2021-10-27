@@ -112,9 +112,6 @@ public static class DocumentInContainerPartialExtensions
     public static Partial<DocumentInContainer> WithArchivedAt(this Partial<DocumentInContainer> it)
         => it.AddFieldName("archivedAt");
     
-    public static Partial<DocumentInContainer> WithIsPublished(this Partial<DocumentInContainer> it)
-        => it.AddFieldName("published");
-    
     public static Partial<DocumentInContainer> WithAccessOrdinal(this Partial<DocumentInContainer> it)
         => it.AddFieldName("accessOrdinal");
     

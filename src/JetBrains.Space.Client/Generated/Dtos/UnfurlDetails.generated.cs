@@ -71,8 +71,8 @@ public interface UnfurlDetails
     public static UnfurlDetailsCodeSnippet CodeSnippet(CodeSnippetAnchor anchor, List<CodeLine> lines)
         => new UnfurlDetailsCodeSnippet(anchor: anchor, lines: lines);
     
-    public static UnfurlDetailsCommit Commit(PRProject project, string repository, string commitId, string message, DateTime commitDate, GitAuthorInfo author, CommitMessageUnfurlsRecord? messageUnfurls = null, DateTime? authorDate = null, TDMemberProfile? authorProfile = null, bool? hideAuthorAndDate = null, bool? withBranchTags = null)
-        => new UnfurlDetailsCommit(project: project, repository: repository, commitId: commitId, message: message, commitDate: commitDate, author: author, messageUnfurls: messageUnfurls, authorDate: authorDate, authorProfile: authorProfile, hideAuthorAndDate: hideAuthorAndDate, withBranchTags: withBranchTags);
+    public static UnfurlDetailsCommit Commit(PRProject project, string repository, string commitId, string message, DateTime commitDate, GitAuthorInfo author, string? repositoryId = null, CommitMessageUnfurlsRecord? messageUnfurls = null, DateTime? authorDate = null, TDMemberProfile? authorProfile = null, bool? hideAuthorAndDate = null, bool? withBranchTags = null, string? reviewId = null)
+        => new UnfurlDetailsCommit(project: project, repository: repository, commitId: commitId, message: message, commitDate: commitDate, author: author, repositoryId: repositoryId, messageUnfurls: messageUnfurls, authorDate: authorDate, authorProfile: authorProfile, hideAuthorAndDate: hideAuthorAndDate, withBranchTags: withBranchTags, reviewId: reviewId);
     
     public static UnfurlDetailsDateTime DateTime(long utcMilliseconds, DateTimeViewParams? @params = null)
         => new UnfurlDetailsDateTime(utcMilliseconds: utcMilliseconds, @params: @params);

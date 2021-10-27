@@ -43,6 +43,27 @@ public static class PlainParameterRecordPartialExtensions
     public static Partial<PlainParameterRecord> WithKey(this Partial<PlainParameterRecord> it)
         => it.AddFieldName("key");
     
+    public static Partial<PlainParameterRecord> WithDescription(this Partial<PlainParameterRecord> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<PlainParameterRecord> WithCreatedAt(this Partial<PlainParameterRecord> it)
+        => it.AddFieldName("createdAt");
+    
+    public static Partial<PlainParameterRecord> WithCreatedBy(this Partial<PlainParameterRecord> it)
+        => it.AddFieldName("createdBy");
+    
+    public static Partial<PlainParameterRecord> WithCreatedBy(this Partial<PlainParameterRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<PlainParameterRecord> WithUpdatedAt(this Partial<PlainParameterRecord> it)
+        => it.AddFieldName("updatedAt");
+    
+    public static Partial<PlainParameterRecord> WithUpdatedBy(this Partial<PlainParameterRecord> it)
+        => it.AddFieldName("updatedBy");
+    
+    public static Partial<PlainParameterRecord> WithUpdatedBy(this Partial<PlainParameterRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("updatedBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
     public static Partial<PlainParameterRecord> WithValue(this Partial<PlainParameterRecord> it)
         => it.AddFieldName("value");
     

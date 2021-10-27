@@ -88,15 +88,6 @@ public static class DRDraftPartialExtensions
     public static Partial<DRDraft> WithCreatedBy(this Partial<DRDraft> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
         => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
     
-    public static Partial<DRDraft> WithIsPublished(this Partial<DRDraft> it)
-        => it.AddFieldName("published");
-    
-    public static Partial<DRDraft> WithFolder(this Partial<DRDraft> it)
-        => it.AddFieldName("folder");
-    
-    public static Partial<DRDraft> WithFolder(this Partial<DRDraft> it, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>> partialBuilder)
-        => it.AddFieldName("folder", partialBuilder(new Partial<DocumentFolderRecord>(it)));
-    
     public static Partial<DRDraft> WithFolderRef(this Partial<DRDraft> it)
         => it.AddFieldName("folderRef");
     

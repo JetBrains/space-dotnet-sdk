@@ -88,12 +88,6 @@ public static class DRDraftHeaderPartialExtensions
     public static Partial<DRDraftHeader> WithArchivedAt(this Partial<DRDraftHeader> it)
         => it.AddFieldName("archivedAt");
     
-    public static Partial<DRDraftHeader> WithFolder(this Partial<DRDraftHeader> it)
-        => it.AddFieldName("folder");
-    
-    public static Partial<DRDraftHeader> WithFolder(this Partial<DRDraftHeader> it, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>> partialBuilder)
-        => it.AddFieldName("folder", partialBuilder(new Partial<DocumentFolderRecord>(it)));
-    
     public static Partial<DRDraftHeader> WithFolderRef(this Partial<DRDraftHeader> it)
         => it.AddFieldName("folderRef");
     

@@ -34,7 +34,7 @@ public class ProjectsForProjectPlanningIssuesPostRequest
 {
     public ProjectsForProjectPlanningIssuesPostRequest() { }
     
-    public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null, List<IssueIdentifier>? parents = null)
+    public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<SprintIdentifier>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null, List<IssueIdentifier>? parents = null)
     {
         Title = title;
         Description = description;
@@ -43,7 +43,7 @@ public class ProjectsForProjectPlanningIssuesPostRequest
         DueDate = dueDate;
         Tags = (tags ?? new List<string>());
         Checklists = (checklists ?? new List<string>());
-        Sprints = (sprints ?? new List<string>());
+        Sprints = (sprints ?? new List<SprintIdentifier>());
         Attachments = (attachments ?? new List<AttachmentIn>());
         FromMessage = fromMessage;
         CustomFields = customFields;
@@ -117,10 +117,10 @@ public class ProjectsForProjectPlanningIssuesPostRequest
         set => _checklists.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _sprints = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Sprints), new List<string>());
+    private PropertyValue<List<SprintIdentifier>> _sprints = new PropertyValue<List<SprintIdentifier>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Sprints), new List<SprintIdentifier>());
     
     [JsonPropertyName("sprints")]
-    public List<string> Sprints
+    public List<SprintIdentifier> Sprints
     {
         get => _sprints.GetValue();
         set => _sprints.SetValue(value);

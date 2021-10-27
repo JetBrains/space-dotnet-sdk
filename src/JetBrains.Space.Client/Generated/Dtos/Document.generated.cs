@@ -34,10 +34,11 @@ public sealed class Document
 {
     public Document() { }
     
-    public Document(string id, string title, DocumentBodyType bodyType, bool archived, DateTime modified, DocumentBody documentBody, PublicationDetails? publicationDetails = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null)
+    public Document(string id, string title, DocumentBodyType bodyType, bool archived, DateTime modified, DocumentBody documentBody, string? alias = null, PublicationDetails? publicationDetails = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null)
     {
         Id = id;
         Title = title;
+        Alias = alias;
         PublicationDetails = publicationDetails;
         FolderRef = folderRef;
         BodyType = bodyType;
@@ -69,6 +70,15 @@ public sealed class Document
     {
         get => _title.GetValue();
         set => _title.SetValue(value);
+    }
+
+    private PropertyValue<string?> _alias = new PropertyValue<string?>(nameof(Document), nameof(Alias));
+    
+    [JsonPropertyName("alias")]
+    public string? Alias
+    {
+        get => _alias.GetValue();
+        set => _alias.SetValue(value);
     }
 
     private PropertyValue<PublicationDetails?> _publicationDetails = new PropertyValue<PublicationDetails?>(nameof(Document), nameof(PublicationDetails));
@@ -181,6 +191,7 @@ public sealed class Document
     {
         _id.SetAccessPath(path, validateHasBeenSet);
         _title.SetAccessPath(path, validateHasBeenSet);
+        _alias.SetAccessPath(path, validateHasBeenSet);
         _publicationDetails.SetAccessPath(path, validateHasBeenSet);
         _folderRef.SetAccessPath(path, validateHasBeenSet);
         _bodyType.SetAccessPath(path, validateHasBeenSet);

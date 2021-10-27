@@ -112,12 +112,6 @@ public static class TDMemberProfilePartialExtensions
     public static Partial<TDMemberProfile> WithExternalId(this Partial<TDMemberProfile> it)
         => it.AddFieldName("externalId");
     
-    public static Partial<TDMemberProfile> WithFolder(this Partial<TDMemberProfile> it)
-        => it.AddFieldName("folder");
-    
-    public static Partial<TDMemberProfile> WithFolder(this Partial<TDMemberProfile> it, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>> partialBuilder)
-        => it.AddFieldName("folder", partialBuilder(new Partial<DocumentFolderRecord>(it)));
-    
     public static Partial<TDMemberProfile> WithFolderWithChildren(this Partial<TDMemberProfile> it)
         => it.AddFieldName("folderWithChildren");
     

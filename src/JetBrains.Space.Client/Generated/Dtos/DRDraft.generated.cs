@@ -34,7 +34,7 @@ public sealed class DRDraft
 {
     public DRDraft() { }
     
-    public DRDraft(string id, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBody documentBody, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, CPrincipal? createdBy = null, bool? published = null, DocumentFolderRecord? folder = null, DocumentFolder? folderRef = null)
+    public DRDraft(string id, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBody documentBody, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, CPrincipal? createdBy = null, DocumentFolder? folderRef = null)
     {
         Id = id;
         Title = title;
@@ -49,8 +49,6 @@ public sealed class DRDraft
         PublicationDetails2 = publicationDetails2;
         Author = author;
         CreatedBy = createdBy;
-        IsPublished = published;
-        Folder = folder;
         FolderRef = folderRef;
         ContainerInfo = containerInfo;
         AccessOrdinal = accessOrdinal;
@@ -184,24 +182,6 @@ public sealed class DRDraft
         set => _createdBy.SetValue(value);
     }
 
-    private PropertyValue<bool?> _published = new PropertyValue<bool?>(nameof(DRDraft), nameof(IsPublished));
-    
-    [JsonPropertyName("published")]
-    public bool? IsPublished
-    {
-        get => _published.GetValue();
-        set => _published.SetValue(value);
-    }
-
-    private PropertyValue<DocumentFolderRecord?> _folder = new PropertyValue<DocumentFolderRecord?>(nameof(DRDraft), nameof(Folder));
-    
-    [JsonPropertyName("folder")]
-    public DocumentFolderRecord? Folder
-    {
-        get => _folder.GetValue();
-        set => _folder.SetValue(value);
-    }
-
     private PropertyValue<DocumentFolder?> _folderRef = new PropertyValue<DocumentFolder?>(nameof(DRDraft), nameof(FolderRef));
     
     [JsonPropertyName("folderRef")]
@@ -286,8 +266,6 @@ public sealed class DRDraft
         _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
         _author.SetAccessPath(path, validateHasBeenSet);
         _createdBy.SetAccessPath(path, validateHasBeenSet);
-        _published.SetAccessPath(path, validateHasBeenSet);
-        _folder.SetAccessPath(path, validateHasBeenSet);
         _folderRef.SetAccessPath(path, validateHasBeenSet);
         _containerInfo.SetAccessPath(path, validateHasBeenSet);
         _accessOrdinal.SetAccessPath(path, validateHasBeenSet);

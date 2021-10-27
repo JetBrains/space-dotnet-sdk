@@ -37,6 +37,9 @@ public static class DocumentPartialExtensions
     public static Partial<Document> WithTitle(this Partial<Document> it)
         => it.AddFieldName("title");
     
+    public static Partial<Document> WithAlias(this Partial<Document> it)
+        => it.AddFieldName("alias");
+    
     public static Partial<Document> WithPublicationDetails(this Partial<Document> it)
         => it.AddFieldName("publicationDetails");
     

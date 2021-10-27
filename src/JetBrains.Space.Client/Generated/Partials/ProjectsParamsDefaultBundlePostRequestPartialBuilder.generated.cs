@@ -43,5 +43,8 @@ public static class ProjectsParamsDefaultBundlePostRequestPartialExtensions
     public static Partial<ProjectsParamsDefaultBundlePostRequest> WithValue(this Partial<ProjectsParamsDefaultBundlePostRequest> it)
         => it.AddFieldName("value");
     
+    public static Partial<ProjectsParamsDefaultBundlePostRequest> WithDescription(this Partial<ProjectsParamsDefaultBundlePostRequest> it)
+        => it.AddFieldName("description");
+    
 }
 

@@ -34,12 +34,17 @@ public sealed class PlainParameterRecord
 {
     public PlainParameterRecord() { }
     
-    public PlainParameterRecord(string id, bool archived, string bundleId, string key, string value)
+    public PlainParameterRecord(string id, bool archived, string bundleId, string key, string value, string? description = null, DateTime? createdAt = null, CPrincipal? createdBy = null, DateTime? updatedAt = null, CPrincipal? updatedBy = null)
     {
         Id = id;
         IsArchived = archived;
         BundleId = bundleId;
         Key = key;
+        Description = description;
+        CreatedAt = createdAt;
+        CreatedBy = createdBy;
+        UpdatedAt = updatedAt;
+        UpdatedBy = updatedBy;
         Value = value;
     }
     
@@ -83,6 +88,53 @@ public sealed class PlainParameterRecord
         set => _key.SetValue(value);
     }
 
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(PlainParameterRecord), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _createdAt = new PropertyValue<DateTime?>(nameof(PlainParameterRecord), nameof(CreatedAt));
+    
+    [JsonPropertyName("createdAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? CreatedAt
+    {
+        get => _createdAt.GetValue();
+        set => _createdAt.SetValue(value);
+    }
+
+    private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(PlainParameterRecord), nameof(CreatedBy));
+    
+    [JsonPropertyName("createdBy")]
+    public CPrincipal? CreatedBy
+    {
+        get => _createdBy.GetValue();
+        set => _createdBy.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _updatedAt = new PropertyValue<DateTime?>(nameof(PlainParameterRecord), nameof(UpdatedAt));
+    
+    [JsonPropertyName("updatedAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? UpdatedAt
+    {
+        get => _updatedAt.GetValue();
+        set => _updatedAt.SetValue(value);
+    }
+
+    private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(PlainParameterRecord), nameof(UpdatedBy));
+    
+    [JsonPropertyName("updatedBy")]
+    public CPrincipal? UpdatedBy
+    {
+        get => _updatedBy.GetValue();
+        set => _updatedBy.SetValue(value);
+    }
+
     private PropertyValue<string> _value = new PropertyValue<string>(nameof(PlainParameterRecord), nameof(Value));
     
     [Required]
@@ -99,6 +151,11 @@ public sealed class PlainParameterRecord
         _archived.SetAccessPath(path, validateHasBeenSet);
         _bundleId.SetAccessPath(path, validateHasBeenSet);
         _key.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
+        _createdAt.SetAccessPath(path, validateHasBeenSet);
+        _createdBy.SetAccessPath(path, validateHasBeenSet);
+        _updatedAt.SetAccessPath(path, validateHasBeenSet);
+        _updatedBy.SetAccessPath(path, validateHasBeenSet);
         _value.SetAccessPath(path, validateHasBeenSet);
     }
 

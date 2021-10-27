@@ -37,5 +37,8 @@ public static class SpaceNewsFeedChannelPartialExtensions
     public static Partial<SpaceNewsFeedChannel> WithNotificationDefaults(this Partial<SpaceNewsFeedChannel> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
         => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
     
+    public static Partial<SpaceNewsFeedChannel> WithIsSupportReplies(this Partial<SpaceNewsFeedChannel> it)
+        => it.AddFieldName("supportReplies");
+    
 }
 

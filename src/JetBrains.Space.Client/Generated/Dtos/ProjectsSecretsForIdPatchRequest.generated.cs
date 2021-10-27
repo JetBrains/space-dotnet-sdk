@@ -34,10 +34,11 @@ public class ProjectsSecretsForIdPatchRequest
 {
     public ProjectsSecretsForIdPatchRequest() { }
     
-    public ProjectsSecretsForIdPatchRequest(string valueBase64, string? publicKeyId = null)
+    public ProjectsSecretsForIdPatchRequest(string valueBase64, string? publicKeyId = null, string? description = null)
     {
         ValueBase64 = valueBase64;
         PublicKeyId = publicKeyId;
+        Description = description;
     }
     
     private PropertyValue<string> _valueBase64 = new PropertyValue<string>(nameof(ProjectsSecretsForIdPatchRequest), nameof(ValueBase64));
@@ -59,10 +60,20 @@ public class ProjectsSecretsForIdPatchRequest
         set => _publicKeyId.SetValue(value);
     }
 
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsSecretsForIdPatchRequest), nameof(Description));
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue();
+        set => _description.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _valueBase64.SetAccessPath(path, validateHasBeenSet);
         _publicKeyId.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(path, validateHasBeenSet);
     }
 
 }
