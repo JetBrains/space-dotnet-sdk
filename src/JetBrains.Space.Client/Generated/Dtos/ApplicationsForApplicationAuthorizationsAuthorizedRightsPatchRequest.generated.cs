@@ -34,7 +34,7 @@ public class ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchReques
 {
     public ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest() { }
     
-    public ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest(PermissionContextIdentifier contextIdentifier, List<RightUpdate> updates)
+    public ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest(PermissionContextIdentifier contextIdentifier, List<RightUpdateDTO> updates)
     {
         ContextIdentifier = contextIdentifier;
         Updates = updates;
@@ -50,11 +50,11 @@ public class ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchReques
         set => _contextIdentifier.SetValue(value);
     }
 
-    private PropertyValue<List<RightUpdate>> _updates = new PropertyValue<List<RightUpdate>>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest), nameof(Updates), new List<RightUpdate>());
+    private PropertyValue<List<RightUpdateDTO>> _updates = new PropertyValue<List<RightUpdateDTO>>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest), nameof(Updates), new List<RightUpdateDTO>());
     
     [Required]
     [JsonPropertyName("updates")]
-    public List<RightUpdate> Updates
+    public List<RightUpdateDTO> Updates
     {
         get => _updates.GetValue();
         set => _updates.SetValue(value);

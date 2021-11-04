@@ -31,41 +31,17 @@ namespace JetBrains.Space.Client.SubscriptionPartialBuilder;
 
 public static class SubscriptionPartialExtensions
 {
-    public static Partial<Subscription> WithId(this Partial<Subscription> it)
-        => it.AddFieldName("id");
+    public static Partial<Subscription> WithSubjectCode(this Partial<Subscription> it)
+        => it.AddFieldName("subjectCode");
     
-    public static Partial<Subscription> WithName(this Partial<Subscription> it)
-        => it.AddFieldName("name");
+    public static Partial<Subscription> WithFilters(this Partial<Subscription> it)
+        => it.AddFieldName("filters");
     
-    public static Partial<Subscription> WithIsEnabled(this Partial<Subscription> it)
-        => it.AddFieldName("enabled");
+    public static Partial<Subscription> WithFilters(this Partial<Subscription> it, Func<Partial<SubscriptionFilter>, Partial<SubscriptionFilter>> partialBuilder)
+        => it.AddFieldName("filters", partialBuilder(new Partial<SubscriptionFilter>(it)));
     
-    public static Partial<Subscription> WithSubscriptionItem(this Partial<Subscription> it)
-        => it.AddFieldName("subscription");
-    
-    public static Partial<Subscription> WithSubscriptionItemRecursive(this Partial<Subscription> it)
-        => it.AddFieldName("subscription!");
-    
-    public static Partial<Subscription> WithSubscriptionItem(this Partial<Subscription> it, Func<Partial<Subscription>, Partial<Subscription>> partialBuilder)
-        => it.AddFieldName("subscription", partialBuilder(new Partial<Subscription>(it)));
-    
-    public static Partial<Subscription> WithPrivateFeed(this Partial<Subscription> it)
-        => it.AddFieldName("privateFeed");
-    
-    public static Partial<Subscription> WithPrivateFeed(this Partial<Subscription> it, Func<Partial<PrivateFeed>, Partial<PrivateFeed>> partialBuilder)
-        => it.AddFieldName("privateFeed", partialBuilder(new Partial<PrivateFeed>(it)));
-    
-    public static Partial<Subscription> WithApplication(this Partial<Subscription> it)
-        => it.AddFieldName("application");
-    
-    public static Partial<Subscription> WithApplication(this Partial<Subscription> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
-        => it.AddFieldName("application", partialBuilder(new Partial<ESApp>(it)));
-    
-    public static Partial<Subscription> WithRequestedAuthentication(this Partial<Subscription> it)
-        => it.AddFieldName("requestedAuthentication");
-    
-    public static Partial<Subscription> WithRequestedAuthentication(this Partial<Subscription> it, Func<Partial<SubscriptionRequestedAuthorizations>, Partial<SubscriptionRequestedAuthorizations>> partialBuilder)
-        => it.AddFieldName("requestedAuthentication", partialBuilder(new Partial<SubscriptionRequestedAuthorizations>(it)));
+    public static Partial<Subscription> WithEventTypeCodes(this Partial<Subscription> it)
+        => it.AddFieldName("eventTypeCodes");
     
 }
 

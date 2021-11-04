@@ -34,16 +34,16 @@ public class OrganizationPatchRequest
 {
     public OrganizationPatchRequest() { }
     
-    public OrganizationPatchRequest(OrganizationForUpdate orgData)
+    public OrganizationPatchRequest(OrganizationForUpdateDTO orgData)
     {
         OrgData = orgData;
     }
     
-    private PropertyValue<OrganizationForUpdate> _orgData = new PropertyValue<OrganizationForUpdate>(nameof(OrganizationPatchRequest), nameof(OrgData));
+    private PropertyValue<OrganizationForUpdateDTO> _orgData = new PropertyValue<OrganizationForUpdateDTO>(nameof(OrganizationPatchRequest), nameof(OrgData));
     
     [Required]
     [JsonPropertyName("orgData")]
-    public OrganizationForUpdate OrgData
+    public OrganizationForUpdateDTO OrgData
     {
         get => _orgData.GetValue();
         set => _orgData.SetValue(value);

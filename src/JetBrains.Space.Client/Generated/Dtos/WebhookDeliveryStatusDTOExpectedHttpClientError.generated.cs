@@ -30,25 +30,25 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class WebhookDeliveryStatusDTOExpectedHttpClientError
-     : WebhookDeliveryStatus, IClassNameConvertible, IPropagatePropertyAccessPath
+     : WebhookDeliveryStatusDTO, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public override string? ClassName => "WebhookDeliveryStatusDTO.ExpectedHttpClientError";
     
     public WebhookDeliveryStatusDTOExpectedHttpClientError() { }
     
-    public WebhookDeliveryStatusDTOExpectedHttpClientError(AppMessageDeliveryDTOClientError clientError, string deliveryId, DateTime sentTime)
+    public WebhookDeliveryStatusDTOExpectedHttpClientError(AppMessageDeliveryDTOClientErrorDTO clientError, string deliveryId, DateTime sentTime)
     {
         ClientError = clientError;
         DeliveryId = deliveryId;
         SentTime = sentTime;
     }
     
-    private PropertyValue<AppMessageDeliveryDTOClientError> _clientError = new PropertyValue<AppMessageDeliveryDTOClientError>(nameof(WebhookDeliveryStatusDTOExpectedHttpClientError), nameof(ClientError));
+    private PropertyValue<AppMessageDeliveryDTOClientErrorDTO> _clientError = new PropertyValue<AppMessageDeliveryDTOClientErrorDTO>(nameof(WebhookDeliveryStatusDTOExpectedHttpClientError), nameof(ClientError));
     
     [Required]
     [JsonPropertyName("clientError")]
-    public AppMessageDeliveryDTOClientError ClientError
+    public AppMessageDeliveryDTOClientErrorDTO ClientError
     {
         get => _clientError.GetValue();
         set => _clientError.SetValue(value);

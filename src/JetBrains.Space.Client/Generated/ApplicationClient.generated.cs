@@ -214,19 +214,19 @@ public partial class ApplicationClient : ISpaceClient
     }
     
 
-    public async Task<Batch<AppMessageDelivery>> LatestMessageDeliveriesAsync(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<Batch<AppMessageDelivery>>, Partial<Batch<AppMessageDelivery>>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<Batch<AppMessageDeliveryDTO>> LatestMessageDeliveriesAsync(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<Batch<AppMessageDeliveryDTO>>, Partial<Batch<AppMessageDeliveryDTO>>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         if (skip != null) queryParameters.Append("$skip", skip);
         if (top != null) queryParameters.Append("$top", top?.ToString());
-        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AppMessageDelivery>>()) : Partial<Batch<AppMessageDelivery>>.Default()).ToString());
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AppMessageDeliveryDTO>>()) : Partial<Batch<AppMessageDeliveryDTO>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<AppMessageDelivery>>("GET", $"api/http/applications/{application}/latest-messages-deliveries{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<AppMessageDeliveryDTO>>("GET", $"api/http/applications/{application}/latest-messages-deliveries{queryParameters.ToQueryString()}", cancellationToken);
     }
     
     
-    public IAsyncEnumerable<AppMessageDelivery> LatestMessageDeliveriesAsyncEnumerable(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<AppMessageDelivery>, Partial<AppMessageDelivery>>? partial = null, CancellationToken cancellationToken = default)
-        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => LatestMessageDeliveriesAsync(application: application, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AppMessageDelivery>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AppMessageDelivery>.Default())), skip, cancellationToken);
+    public IAsyncEnumerable<AppMessageDeliveryDTO> LatestMessageDeliveriesAsyncEnumerable(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<AppMessageDeliveryDTO>, Partial<AppMessageDeliveryDTO>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => LatestMessageDeliveriesAsync(application: application, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AppMessageDeliveryDTO>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AppMessageDeliveryDTO>.Default())), skip, cancellationToken);
 
     /// <summary>
     /// Returns list of public keys in JWKS format. If message signature is successfully verified with any of the returned public keys, the message can be considered authentic.
@@ -381,20 +381,20 @@ public partial class ApplicationClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<List<Right>> GetAllAuthorizedRightsAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, Func<Partial<Right>, Partial<Right>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<RightDTO>> GetAllAuthorizedRightsAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, Func<Partial<RightDTO>, Partial<RightDTO>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Right>()) : Partial<Right>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<RightDTO>()) : Partial<RightDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<Right>>("GET", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<List<RightDTO>>("GET", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
             /// <summary>
             /// Generic method for editing authorized right status in given context.
             /// </summary>
-            public async Task UpdateAuthorizedRightAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, List<RightUpdate> updates, CancellationToken cancellationToken = default)
+            public async Task UpdateAuthorizedRightAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, List<RightUpdateDTO> updates, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -467,12 +467,12 @@ public partial class ApplicationClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<List<Right>> GetAllRequiredRightsAsync(ApplicationIdentifier application, Func<Partial<Right>, Partial<Right>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<RightDTO>> GetAllRequiredRightsAsync(ApplicationIdentifier application, Func<Partial<RightDTO>, Partial<RightDTO>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Right>()) : Partial<Right>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<RightDTO>()) : Partial<RightDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<Right>>("GET", $"api/http/applications/{application}/authorizations/required-rights{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<List<RightDTO>>("GET", $"api/http/applications/{application}/authorizations/required-rights{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -872,7 +872,7 @@ public partial class ApplicationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<WebhookRecord> CreateWebhookAsync(ApplicationIdentifier application, string name, List<int> acceptedHttpResponseCodes, bool enabled = true, bool doRetries = true, string? description = null, EndpointCreate? endpoint = null, EndpointAuthCreate? endpointAuth = null, Func<Partial<WebhookRecord>, Partial<WebhookRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<WebhookRecord> CreateWebhookAsync(ApplicationIdentifier application, string name, List<int> acceptedHttpResponseCodes, bool enabled = true, bool doRetries = true, string? description = null, EndpointCreateDTO? endpoint = null, EndpointAuthCreateDTO? endpointAuth = null, Func<Partial<WebhookRecord>, Partial<WebhookRecord>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<WebhookRecord>()) : Partial<WebhookRecord>.Default()).ToString());
@@ -959,7 +959,7 @@ public partial class ApplicationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task UpdateWebhookAsync(ApplicationIdentifier application, string webhookId, bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? name = null, string? description = null, ExternalEndpointUpdate? endpoint = null, EndpointAuthUpdate? endpointAuth = null, CancellationToken cancellationToken = default)
+        public async Task UpdateWebhookAsync(ApplicationIdentifier application, string webhookId, bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? name = null, string? description = null, ExternalEndpointUpdateDTO? endpoint = null, EndpointAuthUpdateDTO? endpointAuth = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -1015,7 +1015,7 @@ public partial class ApplicationClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task PostCustomHeaderAsync(ApplicationIdentifier application, string webhookId, List<CustomHttpHeader> headers, CancellationToken cancellationToken = default)
+            public async Task PostCustomHeaderAsync(ApplicationIdentifier application, string webhookId, List<CustomHttpHeaderDTO> headers, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -1035,12 +1035,12 @@ public partial class ApplicationClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<List<CustomHttpHeader>> GetCustomHeaderAsync(ApplicationIdentifier application, string webhookId, Func<Partial<CustomHttpHeader>, Partial<CustomHttpHeader>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<CustomHttpHeaderDTO>> GetCustomHeaderAsync(ApplicationIdentifier application, string webhookId, Func<Partial<CustomHttpHeaderDTO>, Partial<CustomHttpHeaderDTO>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomHttpHeader>()) : Partial<CustomHttpHeader>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomHttpHeaderDTO>()) : Partial<CustomHttpHeaderDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<CustomHttpHeader>>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/custom-headers{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<List<CustomHttpHeaderDTO>>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/custom-headers{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -1113,12 +1113,12 @@ public partial class ApplicationClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Subscription> CreateSubscriptionAsync(ApplicationIdentifier application, string webhookId, string name, CustomGenericSubscriptionIn subscription, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<SubscriptionDTO> CreateSubscriptionAsync(ApplicationIdentifier application, string webhookId, string name, CustomGenericSubscriptionIn subscription, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Subscription>()) : Partial<Subscription>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsPostRequest, Subscription>("POST", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions{queryParameters.ToQueryString()}", 
+                return await _connection.RequestResourceAsync<ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsPostRequest, SubscriptionDTO>("POST", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions{queryParameters.ToQueryString()}", 
                     new ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsPostRequest
                     { 
                         Name = name,
@@ -1149,12 +1149,12 @@ public partial class ApplicationClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<List<Subscription>> GetAllSubscriptionsAsync(ApplicationIdentifier application, string webhookId, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<SubscriptionDTO>> GetAllSubscriptionsAsync(ApplicationIdentifier application, string webhookId, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Subscription>()) : Partial<Subscription>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<Subscription>>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<List<SubscriptionDTO>>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -1169,12 +1169,12 @@ public partial class ApplicationClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Subscription> UpdateSubscriptionAsync(ApplicationIdentifier application, string webhookId, string subscriptionId, bool enabled, CustomGenericSubscriptionIn subscription, string? name = null, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<SubscriptionDTO> UpdateSubscriptionAsync(ApplicationIdentifier application, string webhookId, string subscriptionId, bool enabled, CustomGenericSubscriptionIn subscription, string? name = null, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Subscription>()) : Partial<Subscription>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdPatchRequest, Subscription>("PATCH", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions/{subscriptionId}{queryParameters.ToQueryString()}", 
+                return await _connection.RequestResourceAsync<ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdPatchRequest, SubscriptionDTO>("PATCH", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions/{subscriptionId}{queryParameters.ToQueryString()}", 
                     new ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdPatchRequest
                     { 
                         Name = (name ?? string.Empty),

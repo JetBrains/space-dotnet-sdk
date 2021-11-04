@@ -52,14 +52,14 @@ public static class ESAppSettingsPartialExtensions
     public static Partial<ESAppSettings> WithEndpoint(this Partial<ESAppSettings> it)
         => it.AddFieldName("endpoint");
     
-    public static Partial<ESAppSettings> WithEndpoint(this Partial<ESAppSettings> it, Func<Partial<Endpoint>, Partial<Endpoint>> partialBuilder)
-        => it.AddFieldName("endpoint", partialBuilder(new Partial<Endpoint>(it)));
+    public static Partial<ESAppSettings> WithEndpoint(this Partial<ESAppSettings> it, Func<Partial<EndpointDTO>, Partial<EndpointDTO>> partialBuilder)
+        => it.AddFieldName("endpoint", partialBuilder(new Partial<EndpointDTO>(it)));
     
     public static Partial<ESAppSettings> WithEndpointAuth(this Partial<ESAppSettings> it)
         => it.AddFieldName("endpointAuth");
     
-    public static Partial<ESAppSettings> WithEndpointAuth(this Partial<ESAppSettings> it, Func<Partial<EndpointAuth>, Partial<EndpointAuth>> partialBuilder)
-        => it.AddFieldName("endpointAuth", partialBuilder(new Partial<EndpointAuth>(it)));
+    public static Partial<ESAppSettings> WithEndpointAuth(this Partial<ESAppSettings> it, Func<Partial<EndpointAuthDTO>, Partial<EndpointAuthDTO>> partialBuilder)
+        => it.AddFieldName("endpointAuth", partialBuilder(new Partial<EndpointAuthDTO>(it)));
     
 }
 

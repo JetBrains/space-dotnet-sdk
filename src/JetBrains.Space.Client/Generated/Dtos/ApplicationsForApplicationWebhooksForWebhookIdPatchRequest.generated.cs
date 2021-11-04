@@ -34,7 +34,7 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
 {
     public ApplicationsForApplicationWebhooksForWebhookIdPatchRequest() { }
     
-    public ApplicationsForApplicationWebhooksForWebhookIdPatchRequest(bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? name = null, string? description = null, ExternalEndpointUpdate? endpoint = null, EndpointAuthUpdate? endpointAuth = null)
+    public ApplicationsForApplicationWebhooksForWebhookIdPatchRequest(bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? name = null, string? description = null, ExternalEndpointUpdateDTO? endpoint = null, EndpointAuthUpdateDTO? endpointAuth = null)
     {
         Name = (name ?? string.Empty);
         Description = description;
@@ -72,19 +72,19 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
         set => _enabled.SetValue(value);
     }
 
-    private PropertyValue<ExternalEndpointUpdate?> _endpoint = new PropertyValue<ExternalEndpointUpdate?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(Endpoint));
+    private PropertyValue<ExternalEndpointUpdateDTO?> _endpoint = new PropertyValue<ExternalEndpointUpdateDTO?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(Endpoint));
     
     [JsonPropertyName("endpoint")]
-    public ExternalEndpointUpdate? Endpoint
+    public ExternalEndpointUpdateDTO? Endpoint
     {
         get => _endpoint.GetValue();
         set => _endpoint.SetValue(value);
     }
 
-    private PropertyValue<EndpointAuthUpdate?> _endpointAuth = new PropertyValue<EndpointAuthUpdate?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(EndpointAuth));
+    private PropertyValue<EndpointAuthUpdateDTO?> _endpointAuth = new PropertyValue<EndpointAuthUpdateDTO?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(EndpointAuth));
     
     [JsonPropertyName("endpointAuth")]
-    public EndpointAuthUpdate? EndpointAuth
+    public EndpointAuthUpdateDTO? EndpointAuth
     {
         get => _endpointAuth.GetValue();
         set => _endpointAuth.SetValue(value);

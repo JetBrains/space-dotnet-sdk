@@ -60,12 +60,12 @@ public partial class AdministrationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<SupportProfile> CreateSupportAsync(Func<Partial<SupportProfile>, Partial<SupportProfile>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<SupportProfileDTO> CreateSupportAsync(Func<Partial<SupportProfileDTO>, Partial<SupportProfileDTO>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<SupportProfile>()) : Partial<SupportProfile>.Default()).ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<SupportProfileDTO>()) : Partial<SupportProfileDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<SupportProfile>("POST", $"api/http/administration/support{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<SupportProfileDTO>("POST", $"api/http/administration/support{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     

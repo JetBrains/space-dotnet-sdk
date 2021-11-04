@@ -31,20 +31,5 @@ namespace JetBrains.Space.Client.EndpointAuthCreatePartialBuilder;
 
 public static class EndpointAuthCreatePartialExtensions
 {
-    public static Partial<EndpointAuthCreate> WithAppLevelAuth(this Partial<EndpointAuthCreate> it)
-        => it.AddFieldName("appLevelAuth");
-    
-    public static Partial<EndpointAuthCreate> WithAppLevelAuthRecursive(this Partial<EndpointAuthCreate> it)
-        => it.AddFieldName("appLevelAuth!");
-    
-    public static Partial<EndpointAuthCreate> WithAppLevelAuth(this Partial<EndpointAuthCreate> it, Func<Partial<EndpointAuthCreate>, Partial<EndpointAuthCreate>> partialBuilder)
-        => it.AddFieldName("appLevelAuth", partialBuilder(new Partial<EndpointAuthCreate>(it)));
-    
-    public static Partial<EndpointAuthCreate> WithSslKeystore(this Partial<EndpointAuthCreate> it)
-        => it.AddFieldName("sslKeystore");
-    
-    public static Partial<EndpointAuthCreate> WithSslKeystore(this Partial<EndpointAuthCreate> it, Func<Partial<SSLKeystoreEndpointAuth>, Partial<SSLKeystoreEndpointAuth>> partialBuilder)
-        => it.AddFieldName("sslKeystore", partialBuilder(new Partial<SSLKeystoreEndpointAuth>(it)));
-    
 }
 

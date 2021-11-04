@@ -29,40 +29,29 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class EndpointAuthCreate
-     : IPropagatePropertyAccessPath
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class EndpointAuthCreate
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "EndpointAuthCreate";
+    
+    public static EndpointAuthCreateBasic Basic(string username, string password)
+        => new EndpointAuthCreateBasic(username: username, password: password);
+    
+    public static EndpointAuthCreateBearer Bearer(string token)
+        => new EndpointAuthCreateBearer(token: token);
+    
+    public static EndpointAuthCreatePublicKeySignature PublicKeySignature()
+        => new EndpointAuthCreatePublicKeySignature();
+    
+    public static EndpointAuthCreateSigningKey SigningKey()
+        => new EndpointAuthCreateSigningKey();
+    
     public EndpointAuthCreate() { }
     
-    public EndpointAuthCreate(EndpointAuthCreate appLevelAuth, SSLKeystoreEndpointAuth? sslKeystore = null)
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        AppLevelAuth = appLevelAuth;
-        SslKeystore = sslKeystore;
-    }
-    
-    private PropertyValue<EndpointAuthCreate> _appLevelAuth = new PropertyValue<EndpointAuthCreate>(nameof(EndpointAuthCreate), nameof(AppLevelAuth));
-    
-    [Required]
-    [JsonPropertyName("appLevelAuth")]
-    public EndpointAuthCreate AppLevelAuth
-    {
-        get => _appLevelAuth.GetValue();
-        set => _appLevelAuth.SetValue(value);
-    }
-
-    private PropertyValue<SSLKeystoreEndpointAuth?> _sslKeystore = new PropertyValue<SSLKeystoreEndpointAuth?>(nameof(EndpointAuthCreate), nameof(SslKeystore));
-    
-    [JsonPropertyName("sslKeystore")]
-    public SSLKeystoreEndpointAuth? SslKeystore
-    {
-        get => _sslKeystore.GetValue();
-        set => _sslKeystore.SetValue(value);
-    }
-
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
-    {
-        _appLevelAuth.SetAccessPath(path, validateHasBeenSet);
-        _sslKeystore.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

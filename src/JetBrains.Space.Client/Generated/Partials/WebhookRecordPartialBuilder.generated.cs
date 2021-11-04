@@ -46,8 +46,8 @@ public static class WebhookRecordPartialExtensions
     public static Partial<WebhookRecord> WithSubscriptions(this Partial<WebhookRecord> it)
         => it.AddFieldName("subscriptions");
     
-    public static Partial<WebhookRecord> WithSubscriptions(this Partial<WebhookRecord> it, Func<Partial<Subscription>, Partial<Subscription>> partialBuilder)
-        => it.AddFieldName("subscriptions", partialBuilder(new Partial<Subscription>(it)));
+    public static Partial<WebhookRecord> WithSubscriptions(this Partial<WebhookRecord> it, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>> partialBuilder)
+        => it.AddFieldName("subscriptions", partialBuilder(new Partial<SubscriptionDTO>(it)));
     
     public static Partial<WebhookRecord> WithName(this Partial<WebhookRecord> it)
         => it.AddFieldName("name");
@@ -61,8 +61,8 @@ public static class WebhookRecordPartialExtensions
     public static Partial<WebhookRecord> WithEndpoint(this Partial<WebhookRecord> it)
         => it.AddFieldName("endpoint");
     
-    public static Partial<WebhookRecord> WithEndpoint(this Partial<WebhookRecord> it, Func<Partial<Endpoint>, Partial<Endpoint>> partialBuilder)
-        => it.AddFieldName("endpoint", partialBuilder(new Partial<Endpoint>(it)));
+    public static Partial<WebhookRecord> WithEndpoint(this Partial<WebhookRecord> it, Func<Partial<EndpointDTO>, Partial<EndpointDTO>> partialBuilder)
+        => it.AddFieldName("endpoint", partialBuilder(new Partial<EndpointDTO>(it)));
     
     public static Partial<WebhookRecord> WithIsUseAppEndpointAuth(this Partial<WebhookRecord> it)
         => it.AddFieldName("useAppEndpointAuth");
@@ -70,8 +70,8 @@ public static class WebhookRecordPartialExtensions
     public static Partial<WebhookRecord> WithEndpointAuth(this Partial<WebhookRecord> it)
         => it.AddFieldName("endpointAuth");
     
-    public static Partial<WebhookRecord> WithEndpointAuth(this Partial<WebhookRecord> it, Func<Partial<EndpointAuth>, Partial<EndpointAuth>> partialBuilder)
-        => it.AddFieldName("endpointAuth", partialBuilder(new Partial<EndpointAuth>(it)));
+    public static Partial<WebhookRecord> WithEndpointAuth(this Partial<WebhookRecord> it, Func<Partial<EndpointAuthDTO>, Partial<EndpointAuthDTO>> partialBuilder)
+        => it.AddFieldName("endpointAuth", partialBuilder(new Partial<EndpointAuthDTO>(it)));
     
     public static Partial<WebhookRecord> WithIsEnabled(this Partial<WebhookRecord> it)
         => it.AddFieldName("enabled");
@@ -85,8 +85,8 @@ public static class WebhookRecordPartialExtensions
     public static Partial<WebhookRecord> WithStatus(this Partial<WebhookRecord> it)
         => it.AddFieldName("status");
     
-    public static Partial<WebhookRecord> WithStatus(this Partial<WebhookRecord> it, Func<Partial<WebhookDeliveryStatus>, Partial<WebhookDeliveryStatus>> partialBuilder)
-        => it.AddFieldName("status", partialBuilder(new Partial<WebhookDeliveryStatus>(it)));
+    public static Partial<WebhookRecord> WithStatus(this Partial<WebhookRecord> it, Func<Partial<WebhookDeliveryStatusDTO>, Partial<WebhookDeliveryStatusDTO>> partialBuilder)
+        => it.AddFieldName("status", partialBuilder(new Partial<WebhookDeliveryStatusDTO>(it)));
     
 }
 

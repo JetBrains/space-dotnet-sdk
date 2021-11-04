@@ -41,12 +41,12 @@ public partial class NotificationClient : ISpaceClient
     /// <summary>
     /// List all subscription subjects
     /// </summary>
-    public async Task<List<EventSubjectInfo>> GetAllNotificationsAsync(Func<Partial<EventSubjectInfo>, Partial<EventSubjectInfo>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<List<EventSubjectInfoDTO>> GetAllNotificationsAsync(Func<Partial<EventSubjectInfoDTO>, Partial<EventSubjectInfoDTO>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
-        queryParameters.Append("$fields", (partial != null ? partial(new Partial<EventSubjectInfo>()) : Partial<EventSubjectInfo>.Default()).ToString());
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<EventSubjectInfoDTO>()) : Partial<EventSubjectInfoDTO>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<List<EventSubjectInfo>>("GET", $"api/http/notifications{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<List<EventSubjectInfoDTO>>("GET", $"api/http/notifications{queryParameters.ToQueryString()}", cancellationToken);
     }
     
 
@@ -64,12 +64,12 @@ public partial class NotificationClient : ISpaceClient
         /// <summary>
         /// Add subscription for a channel
         /// </summary>
-        public async Task<Subscription> CreateChannelSubscriptionAsync(ChatChannel channel, string name, CustomGenericSubscriptionIn subscription, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<SubscriptionDTO> CreateChannelSubscriptionAsync(ChatChannel channel, string name, CustomGenericSubscriptionIn subscription, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Subscription>()) : Partial<Subscription>.Default()).ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<NotificationsChannelSubscriptionsPostRequest, Subscription>("POST", $"api/http/notifications/channel-subscriptions{queryParameters.ToQueryString()}", 
+            return await _connection.RequestResourceAsync<NotificationsChannelSubscriptionsPostRequest, SubscriptionDTO>("POST", $"api/http/notifications/channel-subscriptions{queryParameters.ToQueryString()}", 
                 new NotificationsChannelSubscriptionsPostRequest
                 { 
                     Channel = channel,
@@ -93,25 +93,25 @@ public partial class NotificationClient : ISpaceClient
         /// <summary>
         /// List subscriptions for a channel
         /// </summary>
-        public async Task<List<Subscription>> GetAllChannelSubscriptionsAsync(ChatChannel channel, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<SubscriptionDTO>> GetAllChannelSubscriptionsAsync(ChatChannel channel, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("channel", channel.ToString());
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Subscription>()) : Partial<Subscription>.Default()).ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<Subscription>>("GET", $"api/http/notifications/channel-subscriptions{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<SubscriptionDTO>>("GET", $"api/http/notifications/channel-subscriptions{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     
         /// <summary>
         /// Update subscription for a channel
         /// </summary>
-        public async Task<Subscription> UpdateChannelSubscriptionAsync(string id, string? name = null, bool? enabled = null, CustomGenericSubscriptionIn? subscription = null, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<SubscriptionDTO> UpdateChannelSubscriptionAsync(string id, string? name = null, bool? enabled = null, CustomGenericSubscriptionIn? subscription = null, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Subscription>()) : Partial<Subscription>.Default()).ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<NotificationsChannelSubscriptionsForIdPatchRequest, Subscription>("PATCH", $"api/http/notifications/channel-subscriptions/{id}{queryParameters.ToQueryString()}", 
+            return await _connection.RequestResourceAsync<NotificationsChannelSubscriptionsForIdPatchRequest, SubscriptionDTO>("PATCH", $"api/http/notifications/channel-subscriptions/{id}{queryParameters.ToQueryString()}", 
                 new NotificationsChannelSubscriptionsForIdPatchRequest
                 { 
                     Name = name,
@@ -156,12 +156,12 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Subscription> CreatePersonalCustomSubscriptionAsync(ProfileIdentifier profile, string name, string feed, CustomGenericSubscriptionIn subscription, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<SubscriptionDTO> CreatePersonalCustomSubscriptionAsync(ProfileIdentifier profile, string name, string feed, CustomGenericSubscriptionIn subscription, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Subscription>()) : Partial<Subscription>.Default()).ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<NotificationsPersonalCustomSubscriptionsPostRequest, Subscription>("POST", $"api/http/notifications/personal-custom-subscriptions{queryParameters.ToQueryString()}", 
+            return await _connection.RequestResourceAsync<NotificationsPersonalCustomSubscriptionsPostRequest, SubscriptionDTO>("POST", $"api/http/notifications/personal-custom-subscriptions{queryParameters.ToQueryString()}", 
                 new NotificationsPersonalCustomSubscriptionsPostRequest
                 { 
                     Profile = profile,
@@ -183,13 +183,13 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<List<Subscription>> GetAllPersonalCustomSubscriptionsAsync(ProfileIdentifier profile, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<SubscriptionDTO>> GetAllPersonalCustomSubscriptionsAsync(ProfileIdentifier profile, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("profile", profile.ToString());
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Subscription>()) : Partial<Subscription>.Default()).ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<Subscription>>("GET", $"api/http/notifications/personal-custom-subscriptions{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<SubscriptionDTO>>("GET", $"api/http/notifications/personal-custom-subscriptions{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     
@@ -204,12 +204,12 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Subscription> UpdatePersonalCustomSubscriptionAsync(string id, string? name = null, bool? enabled = null, string? feed = null, CustomGenericSubscriptionIn? subscription = null, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<SubscriptionDTO> UpdatePersonalCustomSubscriptionAsync(string id, string? name = null, bool? enabled = null, string? feed = null, CustomGenericSubscriptionIn? subscription = null, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Subscription>()) : Partial<Subscription>.Default()).ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<NotificationsPersonalCustomSubscriptionsForIdPatchRequest, Subscription>("PATCH", $"api/http/notifications/personal-custom-subscriptions/{id}{queryParameters.ToQueryString()}", 
+            return await _connection.RequestResourceAsync<NotificationsPersonalCustomSubscriptionsForIdPatchRequest, SubscriptionDTO>("PATCH", $"api/http/notifications/personal-custom-subscriptions/{id}{queryParameters.ToQueryString()}", 
                 new NotificationsPersonalCustomSubscriptionsForIdPatchRequest
                 { 
                     Name = name,

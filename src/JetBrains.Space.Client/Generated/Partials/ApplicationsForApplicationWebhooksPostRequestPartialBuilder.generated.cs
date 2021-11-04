@@ -40,14 +40,14 @@ public static class ApplicationsForApplicationWebhooksPostRequestPartialExtensio
     public static Partial<ApplicationsForApplicationWebhooksPostRequest> WithEndpoint(this Partial<ApplicationsForApplicationWebhooksPostRequest> it)
         => it.AddFieldName("endpoint");
     
-    public static Partial<ApplicationsForApplicationWebhooksPostRequest> WithEndpoint(this Partial<ApplicationsForApplicationWebhooksPostRequest> it, Func<Partial<EndpointCreate>, Partial<EndpointCreate>> partialBuilder)
-        => it.AddFieldName("endpoint", partialBuilder(new Partial<EndpointCreate>(it)));
+    public static Partial<ApplicationsForApplicationWebhooksPostRequest> WithEndpoint(this Partial<ApplicationsForApplicationWebhooksPostRequest> it, Func<Partial<EndpointCreateDTO>, Partial<EndpointCreateDTO>> partialBuilder)
+        => it.AddFieldName("endpoint", partialBuilder(new Partial<EndpointCreateDTO>(it)));
     
     public static Partial<ApplicationsForApplicationWebhooksPostRequest> WithEndpointAuth(this Partial<ApplicationsForApplicationWebhooksPostRequest> it)
         => it.AddFieldName("endpointAuth");
     
-    public static Partial<ApplicationsForApplicationWebhooksPostRequest> WithEndpointAuth(this Partial<ApplicationsForApplicationWebhooksPostRequest> it, Func<Partial<EndpointAuthCreate>, Partial<EndpointAuthCreate>> partialBuilder)
-        => it.AddFieldName("endpointAuth", partialBuilder(new Partial<EndpointAuthCreate>(it)));
+    public static Partial<ApplicationsForApplicationWebhooksPostRequest> WithEndpointAuth(this Partial<ApplicationsForApplicationWebhooksPostRequest> it, Func<Partial<EndpointAuthCreateDTO>, Partial<EndpointAuthCreateDTO>> partialBuilder)
+        => it.AddFieldName("endpointAuth", partialBuilder(new Partial<EndpointAuthCreateDTO>(it)));
     
     public static Partial<ApplicationsForApplicationWebhooksPostRequest> WithIsEnabled(this Partial<ApplicationsForApplicationWebhooksPostRequest> it)
         => it.AddFieldName("enabled");

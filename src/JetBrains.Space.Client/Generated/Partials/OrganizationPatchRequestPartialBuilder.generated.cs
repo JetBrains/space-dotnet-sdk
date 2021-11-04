@@ -34,8 +34,8 @@ public static class OrganizationPatchRequestPartialExtensions
     public static Partial<OrganizationPatchRequest> WithOrgData(this Partial<OrganizationPatchRequest> it)
         => it.AddFieldName("orgData");
     
-    public static Partial<OrganizationPatchRequest> WithOrgData(this Partial<OrganizationPatchRequest> it, Func<Partial<OrganizationForUpdate>, Partial<OrganizationForUpdate>> partialBuilder)
-        => it.AddFieldName("orgData", partialBuilder(new Partial<OrganizationForUpdate>(it)));
+    public static Partial<OrganizationPatchRequest> WithOrgData(this Partial<OrganizationPatchRequest> it, Func<Partial<OrganizationForUpdateDTO>, Partial<OrganizationForUpdateDTO>> partialBuilder)
+        => it.AddFieldName("orgData", partialBuilder(new Partial<OrganizationForUpdateDTO>(it)));
     
 }
 

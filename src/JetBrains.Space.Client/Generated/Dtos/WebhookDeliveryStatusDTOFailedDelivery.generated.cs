@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class WebhookDeliveryStatusDTOFailedDelivery
-     : WebhookDeliveryStatus, IClassNameConvertible, IPropagatePropertyAccessPath
+     : WebhookDeliveryStatusDTO, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public override string? ClassName => "WebhookDeliveryStatusDTO.FailedDelivery";

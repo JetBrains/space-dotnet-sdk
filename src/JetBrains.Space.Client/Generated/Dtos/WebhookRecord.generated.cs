@@ -34,7 +34,7 @@ public sealed class WebhookRecord
 {
     public WebhookRecord() { }
     
-    public WebhookRecord(string id, bool archived, ESApp app, List<Subscription> subscriptions, string name, bool useAppEndpoint, Endpoint endpoint, bool useAppEndpointAuth, EndpointAuth endpointAuth, bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? description = null, WebhookDeliveryStatus? status = null)
+    public WebhookRecord(string id, bool archived, ESApp app, List<SubscriptionDTO> subscriptions, string name, bool useAppEndpoint, EndpointDTO endpoint, bool useAppEndpointAuth, EndpointAuthDTO endpointAuth, bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? description = null, WebhookDeliveryStatusDTO? status = null)
     {
         Id = id;
         IsArchived = archived;
@@ -82,11 +82,11 @@ public sealed class WebhookRecord
         set => _app.SetValue(value);
     }
 
-    private PropertyValue<List<Subscription>> _subscriptions = new PropertyValue<List<Subscription>>(nameof(WebhookRecord), nameof(Subscriptions), new List<Subscription>());
+    private PropertyValue<List<SubscriptionDTO>> _subscriptions = new PropertyValue<List<SubscriptionDTO>>(nameof(WebhookRecord), nameof(Subscriptions), new List<SubscriptionDTO>());
     
     [Required]
     [JsonPropertyName("subscriptions")]
-    public List<Subscription> Subscriptions
+    public List<SubscriptionDTO> Subscriptions
     {
         get => _subscriptions.GetValue();
         set => _subscriptions.SetValue(value);
@@ -121,11 +121,11 @@ public sealed class WebhookRecord
         set => _useAppEndpoint.SetValue(value);
     }
 
-    private PropertyValue<Endpoint> _endpoint = new PropertyValue<Endpoint>(nameof(WebhookRecord), nameof(Endpoint));
+    private PropertyValue<EndpointDTO> _endpoint = new PropertyValue<EndpointDTO>(nameof(WebhookRecord), nameof(Endpoint));
     
     [Required]
     [JsonPropertyName("endpoint")]
-    public Endpoint Endpoint
+    public EndpointDTO Endpoint
     {
         get => _endpoint.GetValue();
         set => _endpoint.SetValue(value);
@@ -141,11 +141,11 @@ public sealed class WebhookRecord
         set => _useAppEndpointAuth.SetValue(value);
     }
 
-    private PropertyValue<EndpointAuth> _endpointAuth = new PropertyValue<EndpointAuth>(nameof(WebhookRecord), nameof(EndpointAuth));
+    private PropertyValue<EndpointAuthDTO> _endpointAuth = new PropertyValue<EndpointAuthDTO>(nameof(WebhookRecord), nameof(EndpointAuth));
     
     [Required]
     [JsonPropertyName("endpointAuth")]
-    public EndpointAuth EndpointAuth
+    public EndpointAuthDTO EndpointAuth
     {
         get => _endpointAuth.GetValue();
         set => _endpointAuth.SetValue(value);
@@ -181,10 +181,10 @@ public sealed class WebhookRecord
         set => _doRetries.SetValue(value);
     }
 
-    private PropertyValue<WebhookDeliveryStatus?> _status = new PropertyValue<WebhookDeliveryStatus?>(nameof(WebhookRecord), nameof(Status));
+    private PropertyValue<WebhookDeliveryStatusDTO?> _status = new PropertyValue<WebhookDeliveryStatusDTO?>(nameof(WebhookRecord), nameof(Status));
     
     [JsonPropertyName("status")]
-    public WebhookDeliveryStatus? Status
+    public WebhookDeliveryStatusDTO? Status
     {
         get => _status.GetValue();
         set => _status.SetValue(value);

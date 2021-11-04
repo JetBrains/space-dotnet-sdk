@@ -34,93 +34,48 @@ public sealed class Subscription
 {
     public Subscription() { }
     
-    public Subscription(string id, string name, bool enabled, Subscription subscription, PrivateFeed? privateFeed = null, ESApp? application = null, SubscriptionRequestedAuthorizations? requestedAuthentication = null)
+    public Subscription(string subjectCode, List<SubscriptionFilter> filters, List<string> eventTypeCodes)
     {
-        Id = id;
-        Name = name;
-        IsEnabled = enabled;
-        SubscriptionItem = subscription;
-        PrivateFeed = privateFeed;
-        Application = application;
-        RequestedAuthentication = requestedAuthentication;
+        SubjectCode = subjectCode;
+        Filters = filters;
+        EventTypeCodes = eventTypeCodes;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Subscription), nameof(Id));
+    private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(Subscription), nameof(SubjectCode));
     
     [Required]
-    [JsonPropertyName("id")]
-    public string Id
+    [JsonPropertyName("subjectCode")]
+    public string SubjectCode
     {
-        get => _id.GetValue();
-        set => _id.SetValue(value);
+        get => _subjectCode.GetValue();
+        set => _subjectCode.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(Subscription), nameof(Name));
+    private PropertyValue<List<SubscriptionFilter>> _filters = new PropertyValue<List<SubscriptionFilter>>(nameof(Subscription), nameof(Filters), new List<SubscriptionFilter>());
     
     [Required]
-    [JsonPropertyName("name")]
-    public string Name
+    [JsonPropertyName("filters")]
+    public List<SubscriptionFilter> Filters
     {
-        get => _name.GetValue();
-        set => _name.SetValue(value);
+        get => _filters.GetValue();
+        set => _filters.SetValue(value);
     }
 
-    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(Subscription), nameof(IsEnabled));
+    private PropertyValue<List<string>> _eventTypeCodes = new PropertyValue<List<string>>(nameof(Subscription), nameof(EventTypeCodes), new List<string>());
     
     [Required]
-    [JsonPropertyName("enabled")]
-    public bool IsEnabled
+    [JsonPropertyName("eventTypeCodes")]
+    public List<string> EventTypeCodes
     {
-        get => _enabled.GetValue();
-        set => _enabled.SetValue(value);
-    }
-
-    private PropertyValue<Subscription> _subscription = new PropertyValue<Subscription>(nameof(Subscription), nameof(SubscriptionItem));
-    
-    [Required]
-    [JsonPropertyName("subscription")]
-    public Subscription SubscriptionItem
-    {
-        get => _subscription.GetValue();
-        set => _subscription.SetValue(value);
-    }
-
-    private PropertyValue<PrivateFeed?> _privateFeed = new PropertyValue<PrivateFeed?>(nameof(Subscription), nameof(PrivateFeed));
-    
-    [JsonPropertyName("privateFeed")]
-    public PrivateFeed? PrivateFeed
-    {
-        get => _privateFeed.GetValue();
-        set => _privateFeed.SetValue(value);
-    }
-
-    private PropertyValue<ESApp?> _application = new PropertyValue<ESApp?>(nameof(Subscription), nameof(Application));
-    
-    [JsonPropertyName("application")]
-    public ESApp? Application
-    {
-        get => _application.GetValue();
-        set => _application.SetValue(value);
-    }
-
-    private PropertyValue<SubscriptionRequestedAuthorizations?> _requestedAuthentication = new PropertyValue<SubscriptionRequestedAuthorizations?>(nameof(Subscription), nameof(RequestedAuthentication));
-    
-    [JsonPropertyName("requestedAuthentication")]
-    public SubscriptionRequestedAuthorizations? RequestedAuthentication
-    {
-        get => _requestedAuthentication.GetValue();
-        set => _requestedAuthentication.SetValue(value);
+        get => _eventTypeCodes.GetValue();
+        set => _eventTypeCodes.SetValue(value);
     }
 
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _enabled.SetAccessPath(path, validateHasBeenSet);
-        _subscription.SetAccessPath(path, validateHasBeenSet);
-        _privateFeed.SetAccessPath(path, validateHasBeenSet);
-        _application.SetAccessPath(path, validateHasBeenSet);
-        _requestedAuthentication.SetAccessPath(path, validateHasBeenSet);
+        _subjectCode.SetAccessPath(path, validateHasBeenSet);
+        _filters.SetAccessPath(path, validateHasBeenSet);
+        _eventTypeCodes.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

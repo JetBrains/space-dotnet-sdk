@@ -34,7 +34,7 @@ public class ApplicationsForApplicationWebhooksPostRequest
 {
     public ApplicationsForApplicationWebhooksPostRequest() { }
     
-    public ApplicationsForApplicationWebhooksPostRequest(string name, List<int> acceptedHttpResponseCodes, bool enabled = true, bool doRetries = true, string? description = null, EndpointCreate? endpoint = null, EndpointAuthCreate? endpointAuth = null)
+    public ApplicationsForApplicationWebhooksPostRequest(string name, List<int> acceptedHttpResponseCodes, bool enabled = true, bool doRetries = true, string? description = null, EndpointCreateDTO? endpoint = null, EndpointAuthCreateDTO? endpointAuth = null)
     {
         Name = name;
         Description = description;
@@ -64,19 +64,19 @@ public class ApplicationsForApplicationWebhooksPostRequest
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<EndpointCreate?> _endpoint = new PropertyValue<EndpointCreate?>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(Endpoint));
+    private PropertyValue<EndpointCreateDTO?> _endpoint = new PropertyValue<EndpointCreateDTO?>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(Endpoint));
     
     [JsonPropertyName("endpoint")]
-    public EndpointCreate? Endpoint
+    public EndpointCreateDTO? Endpoint
     {
         get => _endpoint.GetValue();
         set => _endpoint.SetValue(value);
     }
 
-    private PropertyValue<EndpointAuthCreate?> _endpointAuth = new PropertyValue<EndpointAuthCreate?>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(EndpointAuth));
+    private PropertyValue<EndpointAuthCreateDTO?> _endpointAuth = new PropertyValue<EndpointAuthCreateDTO?>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(EndpointAuth));
     
     [JsonPropertyName("endpointAuth")]
-    public EndpointAuthCreate? EndpointAuth
+    public EndpointAuthCreateDTO? EndpointAuth
     {
         get => _endpointAuth.GetValue();
         set => _endpointAuth.SetValue(value);

@@ -34,16 +34,16 @@ public class ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequ
 {
     public ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest() { }
     
-    public ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest(List<CustomHttpHeader> headers)
+    public ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest(List<CustomHttpHeaderDTO> headers)
     {
         Headers = headers;
     }
     
-    private PropertyValue<List<CustomHttpHeader>> _headers = new PropertyValue<List<CustomHttpHeader>>(nameof(ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest), nameof(Headers), new List<CustomHttpHeader>());
+    private PropertyValue<List<CustomHttpHeaderDTO>> _headers = new PropertyValue<List<CustomHttpHeaderDTO>>(nameof(ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest), nameof(Headers), new List<CustomHttpHeaderDTO>());
     
     [Required]
     [JsonPropertyName("headers")]
-    public List<CustomHttpHeader> Headers
+    public List<CustomHttpHeaderDTO> Headers
     {
         get => _headers.GetValue();
         set => _headers.SetValue(value);

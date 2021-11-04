@@ -267,12 +267,12 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<JobExecution> GetGraphExecutionAsync(string id, Func<Partial<JobExecution>, Partial<JobExecution>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<JobExecutionDTO> GetGraphExecutionAsync(string id, Func<Partial<JobExecutionDTO>, Partial<JobExecutionDTO>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<JobExecution>()) : Partial<JobExecution>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<JobExecutionDTO>()) : Partial<JobExecutionDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<JobExecution>("GET", $"api/http/projects/automation/graph-executions/{id}{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<JobExecutionDTO>("GET", $"api/http/projects/automation/graph-executions/{id}{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -297,12 +297,12 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<JobExecution> GetCurrentAsync(Func<Partial<JobExecution>, Partial<JobExecution>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<JobExecutionDTO> GetCurrentAsync(Func<Partial<JobExecutionDTO>, Partial<JobExecutionDTO>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<JobExecution>()) : Partial<JobExecution>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<JobExecutionDTO>()) : Partial<JobExecutionDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<JobExecution>("GET", $"api/http/projects/automation/job-executions/current{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<JobExecutionDTO>("GET", $"api/http/projects/automation/job-executions/current{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -327,13 +327,13 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Job> GetJobAsync(string jobId, ProjectIdentifier project, Func<Partial<Job>, Partial<Job>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<JobDTO> GetJobAsync(string jobId, ProjectIdentifier project, Func<Partial<JobDTO>, Partial<JobDTO>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("project", project.ToString());
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Job>()) : Partial<Job>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<JobDTO>()) : Partial<JobDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Job>("GET", $"api/http/projects/automation/jobs/{jobId}{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<JobDTO>("GET", $"api/http/projects/automation/jobs/{jobId}{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -372,12 +372,12 @@ public partial class ProjectClient : ISpaceClient
                         _connection = connection;
                     }
                     
-                    public async Task<List<ParameterLastUsage>> GetParamAsync(string parameterId, Func<Partial<ParameterLastUsage>, Partial<ParameterLastUsage>>? partial = null, CancellationToken cancellationToken = default)
+                    public async Task<List<ParameterLastUsageDTO>> GetParamAsync(string parameterId, Func<Partial<ParameterLastUsageDTO>, Partial<ParameterLastUsageDTO>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ParameterLastUsage>()) : Partial<ParameterLastUsage>.Default()).ToString());
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ParameterLastUsageDTO>()) : Partial<ParameterLastUsageDTO>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<List<ParameterLastUsage>>("GET", $"api/http/projects/automation/step-executions/used-parameters/param/{parameterId}{queryParameters.ToQueryString()}", cancellationToken);
+                        return await _connection.RequestResourceAsync<List<ParameterLastUsageDTO>>("GET", $"api/http/projects/automation/step-executions/used-parameters/param/{parameterId}{queryParameters.ToQueryString()}", cancellationToken);
                     }
                     
                 
@@ -394,12 +394,12 @@ public partial class ProjectClient : ISpaceClient
                         _connection = connection;
                     }
                     
-                    public async Task<List<ParameterLastUsage>> GetSecretAsync(string secretId, Func<Partial<ParameterLastUsage>, Partial<ParameterLastUsage>>? partial = null, CancellationToken cancellationToken = default)
+                    public async Task<List<ParameterLastUsageDTO>> GetSecretAsync(string secretId, Func<Partial<ParameterLastUsageDTO>, Partial<ParameterLastUsageDTO>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ParameterLastUsage>()) : Partial<ParameterLastUsage>.Default()).ToString());
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ParameterLastUsageDTO>()) : Partial<ParameterLastUsageDTO>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<List<ParameterLastUsage>>("GET", $"api/http/projects/automation/step-executions/used-parameters/secret/{secretId}{queryParameters.ToQueryString()}", cancellationToken);
+                        return await _connection.RequestResourceAsync<List<ParameterLastUsageDTO>>("GET", $"api/http/projects/automation/step-executions/used-parameters/secret/{secretId}{queryParameters.ToQueryString()}", cancellationToken);
                     }
                     
                 
@@ -467,7 +467,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Batch<JobExecution>> GetAllGraphExecutionsAsync(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, string? skip = null, int? top = 100, Func<Partial<Batch<JobExecution>>, Partial<Batch<JobExecution>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<JobExecutionDTO>> GetAllGraphExecutionsAsync(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, string? skip = null, int? top = 100, Func<Partial<Batch<JobExecutionDTO>>, Partial<Batch<JobExecutionDTO>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("jobId", jobId);
@@ -476,9 +476,9 @@ public partial class ProjectClient : ISpaceClient
                 queryParameters.Append("jobTriggerFilter", jobTriggerFilter.ToEnumString());
                 if (skip != null) queryParameters.Append("$skip", skip);
                 if (top != null) queryParameters.Append("$top", top?.ToString());
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<JobExecution>>()) : Partial<Batch<JobExecution>>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<JobExecutionDTO>>()) : Partial<Batch<JobExecutionDTO>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<JobExecution>>("GET", $"api/http/projects/{project}/automation/graph-executions{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<JobExecutionDTO>>("GET", $"api/http/projects/{project}/automation/graph-executions{queryParameters.ToQueryString()}", cancellationToken);
             }
             
             
@@ -493,8 +493,8 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public IAsyncEnumerable<JobExecution> GetAllGraphExecutionsAsyncEnumerable(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, string? skip = null, int? top = 100, Func<Partial<JobExecution>, Partial<JobExecution>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllGraphExecutionsAsync(project: project, jobId: jobId, branchFilter: branchFilter, statusFilter: statusFilter, jobTriggerFilter: jobTriggerFilter, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<JobExecution>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<JobExecution>.Default())), skip, cancellationToken);
+            public IAsyncEnumerable<JobExecutionDTO> GetAllGraphExecutionsAsyncEnumerable(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, string? skip = null, int? top = 100, Func<Partial<JobExecutionDTO>, Partial<JobExecutionDTO>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllGraphExecutionsAsync(project: project, jobId: jobId, branchFilter: branchFilter, statusFilter: statusFilter, jobTriggerFilter: jobTriggerFilter, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<JobExecutionDTO>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<JobExecutionDTO>.Default())), skip, cancellationToken);
         
         }
     
@@ -535,7 +535,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Batch<Job>> GetAllJobsAsync(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = 100, Func<Partial<Batch<Job>>, Partial<Batch<Job>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<JobDTO>> GetAllJobsAsync(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = 100, Func<Partial<Batch<JobDTO>>, Partial<Batch<JobDTO>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("repoFilter", repoFilter);
@@ -543,9 +543,9 @@ public partial class ProjectClient : ISpaceClient
                 queryParameters.Append("trigger", trigger.ToEnumString());
                 if (skip != null) queryParameters.Append("$skip", skip);
                 if (top != null) queryParameters.Append("$top", top?.ToString());
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Job>>()) : Partial<Batch<Job>>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<JobDTO>>()) : Partial<Batch<JobDTO>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<Job>>("GET", $"api/http/projects/{project}/automation/jobs{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<JobDTO>>("GET", $"api/http/projects/{project}/automation/jobs{queryParameters.ToQueryString()}", cancellationToken);
             }
             
             
@@ -560,8 +560,8 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public IAsyncEnumerable<Job> GetAllJobsAsyncEnumerable(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = 100, Func<Partial<Job>, Partial<Job>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllJobsAsync(project: project, repoFilter: repoFilter, branchFilter: branchFilter, trigger: trigger, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Job>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Job>.Default())), skip, cancellationToken);
+            public IAsyncEnumerable<JobDTO> GetAllJobsAsyncEnumerable(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = 100, Func<Partial<JobDTO>, Partial<JobDTO>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllJobsAsync(project: project, repoFilter: repoFilter, branchFilter: branchFilter, trigger: trigger, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<JobDTO>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<JobDTO>.Default())), skip, cancellationToken);
         
         }
     
@@ -4396,12 +4396,12 @@ public partial class ProjectClient : ISpaceClient
                 }
                 
             
-                public async Task<List<ExternalCheck>> GetExternalChecksForACommitAsync(ProjectIdentifier project, string repository, string revision, Func<Partial<ExternalCheck>, Partial<ExternalCheck>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<List<ExternalCheckDTO>> GetExternalChecksForACommitAsync(ProjectIdentifier project, string repository, string revision, Func<Partial<ExternalCheckDTO>, Partial<ExternalCheckDTO>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<ExternalCheck>()) : Partial<ExternalCheck>.Default()).ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<ExternalCheckDTO>()) : Partial<ExternalCheckDTO>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<List<ExternalCheck>>("GET", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks{queryParameters.ToQueryString()}", cancellationToken);
+                    return await _connection.RequestResourceAsync<List<ExternalCheckDTO>>("GET", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
             

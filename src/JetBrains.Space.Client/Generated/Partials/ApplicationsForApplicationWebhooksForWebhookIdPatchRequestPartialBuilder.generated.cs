@@ -43,14 +43,14 @@ public static class ApplicationsForApplicationWebhooksForWebhookIdPatchRequestPa
     public static Partial<ApplicationsForApplicationWebhooksForWebhookIdPatchRequest> WithEndpoint(this Partial<ApplicationsForApplicationWebhooksForWebhookIdPatchRequest> it)
         => it.AddFieldName("endpoint");
     
-    public static Partial<ApplicationsForApplicationWebhooksForWebhookIdPatchRequest> WithEndpoint(this Partial<ApplicationsForApplicationWebhooksForWebhookIdPatchRequest> it, Func<Partial<ExternalEndpointUpdate>, Partial<ExternalEndpointUpdate>> partialBuilder)
-        => it.AddFieldName("endpoint", partialBuilder(new Partial<ExternalEndpointUpdate>(it)));
+    public static Partial<ApplicationsForApplicationWebhooksForWebhookIdPatchRequest> WithEndpoint(this Partial<ApplicationsForApplicationWebhooksForWebhookIdPatchRequest> it, Func<Partial<ExternalEndpointUpdateDTO>, Partial<ExternalEndpointUpdateDTO>> partialBuilder)
+        => it.AddFieldName("endpoint", partialBuilder(new Partial<ExternalEndpointUpdateDTO>(it)));
     
     public static Partial<ApplicationsForApplicationWebhooksForWebhookIdPatchRequest> WithEndpointAuth(this Partial<ApplicationsForApplicationWebhooksForWebhookIdPatchRequest> it)
         => it.AddFieldName("endpointAuth");
     
-    public static Partial<ApplicationsForApplicationWebhooksForWebhookIdPatchRequest> WithEndpointAuth(this Partial<ApplicationsForApplicationWebhooksForWebhookIdPatchRequest> it, Func<Partial<EndpointAuthUpdate>, Partial<EndpointAuthUpdate>> partialBuilder)
-        => it.AddFieldName("endpointAuth", partialBuilder(new Partial<EndpointAuthUpdate>(it)));
+    public static Partial<ApplicationsForApplicationWebhooksForWebhookIdPatchRequest> WithEndpointAuth(this Partial<ApplicationsForApplicationWebhooksForWebhookIdPatchRequest> it, Func<Partial<EndpointAuthUpdateDTO>, Partial<EndpointAuthUpdateDTO>> partialBuilder)
+        => it.AddFieldName("endpointAuth", partialBuilder(new Partial<EndpointAuthUpdateDTO>(it)));
     
     public static Partial<ApplicationsForApplicationWebhooksForWebhookIdPatchRequest> WithAcceptedHttpResponseCodes(this Partial<ApplicationsForApplicationWebhooksForWebhookIdPatchRequest> it)
         => it.AddFieldName("acceptedHttpResponseCodes");

@@ -40,8 +40,8 @@ public static class ApplicationsForApplicationAuthorizationsAuthorizedRightsPatc
     public static Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest> WithUpdates(this Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest> it)
         => it.AddFieldName("updates");
     
-    public static Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest> WithUpdates(this Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest> it, Func<Partial<RightUpdate>, Partial<RightUpdate>> partialBuilder)
-        => it.AddFieldName("updates", partialBuilder(new Partial<RightUpdate>(it)));
+    public static Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest> WithUpdates(this Partial<ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest> it, Func<Partial<RightUpdateDTO>, Partial<RightUpdateDTO>> partialBuilder)
+        => it.AddFieldName("updates", partialBuilder(new Partial<RightUpdateDTO>(it)));
     
 }
 

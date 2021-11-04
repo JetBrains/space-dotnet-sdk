@@ -34,8 +34,8 @@ public static class ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersP
     public static Partial<ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest> WithHeaders(this Partial<ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest> it)
         => it.AddFieldName("headers");
     
-    public static Partial<ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest> WithHeaders(this Partial<ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest> it, Func<Partial<CustomHttpHeader>, Partial<CustomHttpHeader>> partialBuilder)
-        => it.AddFieldName("headers", partialBuilder(new Partial<CustomHttpHeader>(it)));
+    public static Partial<ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest> WithHeaders(this Partial<ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest> it, Func<Partial<CustomHttpHeaderDTO>, Partial<CustomHttpHeaderDTO>> partialBuilder)
+        => it.AddFieldName("headers", partialBuilder(new Partial<CustomHttpHeaderDTO>(it)));
     
 }
 

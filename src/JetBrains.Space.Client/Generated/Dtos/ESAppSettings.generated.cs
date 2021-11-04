@@ -34,7 +34,7 @@ public sealed class ESAppSettings
 {
     public ESAppSettings() { }
     
-    public ESAppSettings(Endpoint endpoint, EndpointAuth endpointAuth, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null)
+    public ESAppSettings(EndpointDTO endpoint, EndpointAuthDTO endpointAuth, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null)
     {
         IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled;
         IsCodeFlowEnabled = codeFlowEnabled;
@@ -100,21 +100,21 @@ public sealed class ESAppSettings
         set => _implicitFlowRedirectURIs.SetValue(value);
     }
 
-    private PropertyValue<Endpoint> _endpoint = new PropertyValue<Endpoint>(nameof(ESAppSettings), nameof(Endpoint));
+    private PropertyValue<EndpointDTO> _endpoint = new PropertyValue<EndpointDTO>(nameof(ESAppSettings), nameof(Endpoint));
     
     [Required]
     [JsonPropertyName("endpoint")]
-    public Endpoint Endpoint
+    public EndpointDTO Endpoint
     {
         get => _endpoint.GetValue();
         set => _endpoint.SetValue(value);
     }
 
-    private PropertyValue<EndpointAuth> _endpointAuth = new PropertyValue<EndpointAuth>(nameof(ESAppSettings), nameof(EndpointAuth));
+    private PropertyValue<EndpointAuthDTO> _endpointAuth = new PropertyValue<EndpointAuthDTO>(nameof(ESAppSettings), nameof(EndpointAuth));
     
     [Required]
     [JsonPropertyName("endpointAuth")]
-    public EndpointAuth EndpointAuth
+    public EndpointAuthDTO EndpointAuth
     {
         get => _endpointAuth.GetValue();
         set => _endpointAuth.SetValue(value);
