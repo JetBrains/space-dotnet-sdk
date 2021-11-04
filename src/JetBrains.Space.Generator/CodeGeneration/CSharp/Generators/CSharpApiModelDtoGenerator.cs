@@ -28,17 +28,18 @@ public class CSharpApiModelDtoGenerator
             builder.AppendLine(apiDto.Deprecation.ToCSharpDeprecation());
         }
                 
-        if (apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.Extends == null && apiDto.Inheritors.Count > 0)
+        if (apiDto.HierarchyRole2 != HierarchyRole2.INTERFACE && apiDto.HierarchyRole2 != HierarchyRole2.SEALED_INTERFACE && apiDto.Extends == null && apiDto.Inheritors.Count > 0)
         {
             // When extending another DTO, make sure to apply a converter
             builder.AppendLine($"{indent}[JsonConverter(typeof(ClassNameDtoTypeConverter))]");
         }
-        
-        var modifierForDto = apiDto.HierarchyRole switch
+
+        var modifierForDto = apiDto.HierarchyRole2 switch
         {
-            HierarchyRole.INTERFACE => "interface",
-            HierarchyRole.ABSTRACT => "abstract class",
-            HierarchyRole.FINAL => "sealed class",
+            HierarchyRole2.INTERFACE => "interface",
+            HierarchyRole2.SEALED_INTERFACE => "interface",
+            HierarchyRole2.ABSTRACT_CLASS => "abstract class",
+            HierarchyRole2.FINAL_CLASS => "sealed class",
             _ => "class"
         };
         
@@ -61,7 +62,7 @@ public class CSharpApiModelDtoGenerator
         }
             
         dtoHierarchy.Add(nameof(IPropagatePropertyAccessPath));
-            
+
         builder.AppendLine($"{indent}public {modifierForDto} {typeNameForDto}");
         indent.Increment();
         builder.AppendLine($"{indent} : " + string.Join(", ", dtoHierarchy));
@@ -71,10 +72,10 @@ public class CSharpApiModelDtoGenerator
         indent.Increment();
             
         // When in a hierarchy with IClassNameConvertible, make sure we can capture the class name.
-        if (dtoHierarchy.Contains(nameof(IClassNameConvertible)) && apiDto.HierarchyRole != HierarchyRole.INTERFACE)
+        if (dtoHierarchy.Contains(nameof(IClassNameConvertible)) && apiDto.HierarchyRole2 != HierarchyRole2.INTERFACE && apiDto.HierarchyRole2 != HierarchyRole2.SEALED_INTERFACE)
         {
             var modifierForClassNameProperty = apiDto.Extends == null
-                ? apiDto.HierarchyRole != HierarchyRole.FINAL
+                ? apiDto.HierarchyRole2 != HierarchyRole2.FINAL_CLASS
                     ? "virtual" // Parent
                     : ""
                 : "override";   // Inheritor
@@ -91,7 +92,7 @@ public class CSharpApiModelDtoGenerator
         foreach (var apiDtoInheritorReference in apiDto.Inheritors)
         {
             if (_codeGenerationContext.TryGetDto(apiDtoInheritorReference.Id, out var apiDtoInheritor)
-                && apiDtoInheritor!.HierarchyRole != HierarchyRole.INTERFACE && apiDtoInheritor.HierarchyRole != HierarchyRole.ABSTRACT)
+                && apiDtoInheritor!.HierarchyRole2 != HierarchyRole2.INTERFACE && apiDtoInheritor.HierarchyRole2 != HierarchyRole2.SEALED_INTERFACE && apiDtoInheritor.HierarchyRole2 != HierarchyRole2.ABSTRACT_CLASS)
             {
                 var inheritorTypeName = apiDtoInheritor.ToCSharpClassName();
                 var inheritorFactoryMethodName = apiDtoInheritor.ToCSharpFactoryMethodName(apiDto);
@@ -109,7 +110,7 @@ public class CSharpApiModelDtoGenerator
             
         // Generate constructor
         // ReSharper disable once RedundantLogicalConditionalExpressionOperand
-        if (apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.HierarchyRole != HierarchyRole.ABSTRACT)
+        if (apiDto.HierarchyRole2 != HierarchyRole2.INTERFACE && apiDto.HierarchyRole2 != HierarchyRole2.SEALED_INTERFACE && apiDto.HierarchyRole2 != HierarchyRole2.ABSTRACT_CLASS)
         {
             var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
                 .WithParametersForApiDtoFields(apiDtoFields);
@@ -148,7 +149,7 @@ public class CSharpApiModelDtoGenerator
         }
             
         // Implement IPropagatePropertyAccessPath?
-        if (dtoHierarchy.Contains(nameof(IPropagatePropertyAccessPath)) && apiDto.HierarchyRole != HierarchyRole.INTERFACE)
+        if (dtoHierarchy.Contains(nameof(IPropagatePropertyAccessPath)) && apiDto.HierarchyRole2 != HierarchyRole2.INTERFACE && apiDto.HierarchyRole2 != HierarchyRole2.SEALED_INTERFACE)
         {
             builder.AppendLine(indent.Wrap(GenerateDtoPropagatePropertyAccessPath(apiDto, apiDtoFields)));
         }
@@ -290,7 +291,7 @@ public class CSharpApiModelDtoGenerator
                 
         var modifier = apiDto.Extends != null
             ? "override" 
-            : apiDto.HierarchyRole != HierarchyRole.FINAL
+            : apiDto.HierarchyRole2 != HierarchyRole2.FINAL_CLASS
                 ? "virtual"
                 : string.Empty;
                 

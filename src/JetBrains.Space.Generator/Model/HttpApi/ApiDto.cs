@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using JetBrains.Space.Common.Types;
@@ -26,9 +27,13 @@ public class ApiDto
         
     [JsonPropertyName("inheritors")]
     public List<Reference<ApiDto>> Inheritors { get; set; } = new();
-        
+    
+    [Obsolete("Field \"hierarchyRole\" is deprecated since 20-07-2021: Use hierarchyRole2")]
     [JsonPropertyName("hierarchyRole")]
-    public HierarchyRole HierarchyRole { get; set; } = default!;
+    public HierarchyRole HierarchyRole { get; set; } = default!;    
+    
+    [JsonPropertyName("hierarchyRole2")]
+    public HierarchyRole2 HierarchyRole2 { get; set; } = default!;
 
     [JsonPropertyName("record")]
     public bool Record { get; set; }
