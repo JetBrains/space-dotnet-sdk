@@ -850,5 +850,362 @@ public partial class ApplicationClient : ISpaceClient
     
     }
 
+    public WebhookClient Webhooks => new WebhookClient(_connection);
+    
+    public partial class WebhookClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public WebhookClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Create application webhook
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<WebhookRecord> CreateWebhookAsync(ApplicationIdentifier application, string name, List<int> acceptedHttpResponseCodes, bool enabled = true, bool doRetries = true, string? description = null, EndpointCreate? endpoint = null, EndpointAuthCreate? endpointAuth = null, Func<Partial<WebhookRecord>, Partial<WebhookRecord>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<WebhookRecord>()) : Partial<WebhookRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ApplicationsForApplicationWebhooksPostRequest, WebhookRecord>("POST", $"api/http/applications/{application}/webhooks{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationWebhooksPostRequest
+                { 
+                    Name = name,
+                    Description = description,
+                    Endpoint = endpoint,
+                    EndpointAuth = endpointAuth,
+                    IsEnabled = enabled,
+                    AcceptedHttpResponseCodes = acceptedHttpResponseCodes,
+                    IsDoRetries = doRetries,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Restore archived application webhook
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task PostWebhookAsync(ApplicationIdentifier application, string webhookId, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Get application webhooks
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<List<WebhookRecord>> GetAllWebhooksAsync(ApplicationIdentifier application, bool withArchived = false, string query = "", Func<Partial<WebhookRecord>, Partial<WebhookRecord>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("withArchived", withArchived.ToString("l"));
+            queryParameters.Append("query", query);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<WebhookRecord>()) : Partial<WebhookRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<WebhookRecord>>("GET", $"api/http/applications/{application}/webhooks{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View application secrets</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<string> BearerTokenAsync(ApplicationIdentifier application, string webhookId, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/bearer-token{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Update application webhook
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task UpdateWebhookAsync(ApplicationIdentifier application, string webhookId, bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? name = null, string? description = null, ExternalEndpointUpdate? endpoint = null, EndpointAuthUpdate? endpointAuth = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/webhooks/{webhookId}{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
+                { 
+                    Name = (name ?? string.Empty),
+                    Description = description,
+                    IsEnabled = enabled,
+                    Endpoint = endpoint,
+                    EndpointAuth = endpointAuth,
+                    AcceptedHttpResponseCodes = acceptedHttpResponseCodes,
+                    IsDoRetries = doRetries,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Archive application webhook
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit application</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task DeleteWebhookAsync(ApplicationIdentifier application, string webhookId, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/webhooks/{webhookId}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public CustomHeaderClient CustomHeaders => new CustomHeaderClient(_connection);
+        
+        public partial class CustomHeaderClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public CustomHeaderClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit application</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task PostCustomHeaderAsync(ApplicationIdentifier application, string webhookId, List<CustomHttpHeader> headers, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}/custom-headers{queryParameters.ToQueryString()}", 
+                    new ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest
+                    { 
+                        Headers = headers,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View application</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<List<CustomHttpHeader>> GetCustomHeaderAsync(ApplicationIdentifier application, string webhookId, Func<Partial<CustomHttpHeader>, Partial<CustomHttpHeader>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomHttpHeader>()) : Partial<CustomHttpHeader>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<CustomHttpHeader>>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/custom-headers{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
+        public SigningKeyClient SigningKey => new SigningKeyClient(_connection);
+        
+        public partial class SigningKeyClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public SigningKeyClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit application</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task RegenerateAsync(ApplicationIdentifier application, string webhookId, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}/signing-key/regenerate{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View application secrets</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<string> GetSigningKeyAsync(ApplicationIdentifier application, string webhookId, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/signing-key{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
+        public SubscriptionClient Subscriptions => new SubscriptionClient(_connection);
+        
+        public partial class SubscriptionClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public SubscriptionClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Add webhook subscription
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit application</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Subscription> CreateSubscriptionAsync(ApplicationIdentifier application, string webhookId, string name, CustomGenericSubscriptionIn subscription, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Subscription>()) : Partial<Subscription>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsPostRequest, Subscription>("POST", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions{queryParameters.ToQueryString()}", 
+                    new ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsPostRequest
+                    { 
+                        Name = name,
+                        Subscription = subscription,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Ensures that all permissions required for this subscription are requested in the corresponding permission role
+            /// </summary>
+            public async Task RequestMissingRightsAsync(ApplicationIdentifier application, string webhookId, string subscriptionId, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions/{subscriptionId}/request-missing-rights{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Get webhook subscriptions
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View application</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<List<Subscription>> GetAllSubscriptionsAsync(ApplicationIdentifier application, string webhookId, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Subscription>()) : Partial<Subscription>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<Subscription>>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Update webhook subscription
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit application</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Subscription> UpdateSubscriptionAsync(ApplicationIdentifier application, string webhookId, string subscriptionId, bool enabled, CustomGenericSubscriptionIn subscription, string? name = null, Func<Partial<Subscription>, Partial<Subscription>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Subscription>()) : Partial<Subscription>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdPatchRequest, Subscription>("PATCH", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions/{subscriptionId}{queryParameters.ToQueryString()}", 
+                    new ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdPatchRequest
+                    { 
+                        Name = (name ?? string.Empty),
+                        IsEnabled = enabled,
+                        Subscription = subscription,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Delete webhook subscription
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit application</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task DeleteSubscriptionAsync(ApplicationIdentifier application, string webhookId, string subscriptionId, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions/{subscriptionId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
+    }
+
 }
 

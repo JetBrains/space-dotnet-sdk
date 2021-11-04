@@ -27,18 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FileDocumentBodyPartialBuilder;
+namespace JetBrains.Space.Client.ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequestPartialBuilder;
 
-public static class FileDocumentBodyPartialExtensions
+public static class ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequestPartialExtensions
 {
-    public static Partial<FileDocumentBody> WithVersionId(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("versionId");
+    public static Partial<ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest> WithHeaders(this Partial<ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest> it)
+        => it.AddFieldName("headers");
     
-    public static Partial<FileDocumentBody> WithContentType(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("contentType");
-    
-    public static Partial<FileDocumentBody> WithFileSize(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("fileSize");
+    public static Partial<ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest> WithHeaders(this Partial<ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest> it, Func<Partial<CustomHttpHeader>, Partial<CustomHttpHeader>> partialBuilder)
+        => it.AddFieldName("headers", partialBuilder(new Partial<CustomHttpHeader>(it)));
     
 }
 

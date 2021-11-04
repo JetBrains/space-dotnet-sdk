@@ -27,18 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FileDocumentBodyPartialBuilder;
+namespace JetBrains.Space.Client.ParameterLastUsagePartialBuilder;
 
-public static class FileDocumentBodyPartialExtensions
+public static class ParameterLastUsagePartialExtensions
 {
-    public static Partial<FileDocumentBody> WithVersionId(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("versionId");
+    public static Partial<ParameterLastUsage> WithJobExecutionId(this Partial<ParameterLastUsage> it)
+        => it.AddFieldName("jobExecutionId");
     
-    public static Partial<FileDocumentBody> WithContentType(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("contentType");
+    public static Partial<ParameterLastUsage> WithStepExecutionId(this Partial<ParameterLastUsage> it)
+        => it.AddFieldName("stepExecutionId");
     
-    public static Partial<FileDocumentBody> WithFileSize(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("fileSize");
+    public static Partial<ParameterLastUsage> WithJobName(this Partial<ParameterLastUsage> it)
+        => it.AddFieldName("jobName");
+    
+    public static Partial<ParameterLastUsage> WithUsedAt(this Partial<ParameterLastUsage> it)
+        => it.AddFieldName("usedAt");
     
 }
 

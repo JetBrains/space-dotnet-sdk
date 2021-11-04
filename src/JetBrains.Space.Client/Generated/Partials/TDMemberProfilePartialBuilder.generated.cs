@@ -70,9 +70,6 @@ public static class TDMemberProfilePartialExtensions
     public static Partial<TDMemberProfile> WithJoined(this Partial<TDMemberProfile> it)
         => it.AddFieldName("joined");
     
-    public static Partial<TDMemberProfile> WithLeft(this Partial<TDMemberProfile> it)
-        => it.AddFieldName("left");
-    
     public static Partial<TDMemberProfile> WithLeftAt(this Partial<TDMemberProfile> it)
         => it.AddFieldName("leftAt");
     

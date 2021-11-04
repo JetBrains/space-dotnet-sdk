@@ -29,40 +29,40 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class EndpointAuthCreate
+public sealed class EndpointCreate
      : IPropagatePropertyAccessPath
 {
-    public EndpointAuthCreate() { }
+    public EndpointCreate() { }
     
-    public EndpointAuthCreate(EndpointAuthCreate appLevelAuth, SSLKeystoreEndpointAuth? sslKeystore = null)
+    public EndpointCreate(bool sslVerification, string? url = null)
     {
-        AppLevelAuth = appLevelAuth;
-        SslKeystore = sslKeystore;
+        Url = url;
+        IsSslVerification = sslVerification;
     }
     
-    private PropertyValue<EndpointAuthCreate> _appLevelAuth = new PropertyValue<EndpointAuthCreate>(nameof(EndpointAuthCreate), nameof(AppLevelAuth));
+    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(EndpointCreate), nameof(Url));
     
-    [Required]
-    [JsonPropertyName("appLevelAuth")]
-    public EndpointAuthCreate AppLevelAuth
+    [JsonPropertyName("url")]
+    public string? Url
     {
-        get => _appLevelAuth.GetValue();
-        set => _appLevelAuth.SetValue(value);
+        get => _url.GetValue();
+        set => _url.SetValue(value);
     }
 
-    private PropertyValue<SSLKeystoreEndpointAuth?> _sslKeystore = new PropertyValue<SSLKeystoreEndpointAuth?>(nameof(EndpointAuthCreate), nameof(SslKeystore));
+    private PropertyValue<bool> _sslVerification = new PropertyValue<bool>(nameof(EndpointCreate), nameof(IsSslVerification));
     
-    [JsonPropertyName("sslKeystore")]
-    public SSLKeystoreEndpointAuth? SslKeystore
+    [Required]
+    [JsonPropertyName("sslVerification")]
+    public bool IsSslVerification
     {
-        get => _sslKeystore.GetValue();
-        set => _sslKeystore.SetValue(value);
+        get => _sslVerification.GetValue();
+        set => _sslVerification.SetValue(value);
     }
 
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        _appLevelAuth.SetAccessPath(path, validateHasBeenSet);
-        _sslKeystore.SetAccessPath(path, validateHasBeenSet);
+        _url.SetAccessPath(path, validateHasBeenSet);
+        _sslVerification.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

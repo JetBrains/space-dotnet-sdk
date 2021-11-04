@@ -27,18 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FileDocumentBodyPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class FileDocumentBodyPartialExtensions
+[JsonConverter(typeof(EnumStringConverter))]
+public enum CodeDiscussionSuggestedEditState
 {
-    public static Partial<FileDocumentBody> WithVersionId(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("versionId");
+    [EnumMember(Value = "Accepted")]
+    Accepted,
     
-    public static Partial<FileDocumentBody> WithContentType(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("contentType");
-    
-    public static Partial<FileDocumentBody> WithFileSize(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("fileSize");
+    [EnumMember(Value = "Rejected")]
+    Rejected,
     
 }
 

@@ -27,18 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FileDocumentBodyPartialBuilder;
+namespace JetBrains.Space.Client.CodeSuggestedEditHeadContentDetailsPartialBuilder;
 
-public static class FileDocumentBodyPartialExtensions
+public static class CodeSuggestedEditHeadContentDetailsPartialExtensions
 {
-    public static Partial<FileDocumentBody> WithVersionId(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("versionId");
+    public static Partial<CodeSuggestedEditHeadContentDetails> WithCodeDiscussion(this Partial<CodeSuggestedEditHeadContentDetails> it)
+        => it.AddFieldName("codeDiscussion");
     
-    public static Partial<FileDocumentBody> WithContentType(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("contentType");
+    public static Partial<CodeSuggestedEditHeadContentDetails> WithCodeDiscussion(this Partial<CodeSuggestedEditHeadContentDetails> it, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>> partialBuilder)
+        => it.AddFieldName("codeDiscussion", partialBuilder(new Partial<CodeDiscussionRecord>(it)));
     
-    public static Partial<FileDocumentBody> WithFileSize(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("fileSize");
+    public static Partial<CodeSuggestedEditHeadContentDetails> WithText(this Partial<CodeSuggestedEditHeadContentDetails> it)
+        => it.AddFieldName("text");
     
 }
 

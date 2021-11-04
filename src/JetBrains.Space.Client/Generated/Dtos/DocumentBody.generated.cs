@@ -35,8 +35,8 @@ public interface DocumentBody
     public static ChecklistDocumentBody Checklist(Checklist checklist, bool canConvertItemsToIssues)
         => new ChecklistDocumentBody(checklist: checklist, canConvertItemsToIssues: canConvertItemsToIssues);
     
-    public static FileDocumentBody File()
-        => new FileDocumentBody();
+    public static FileDocumentBody File(string versionId, string contentType, long fileSize)
+        => new FileDocumentBody(versionId: versionId, contentType: contentType, fileSize: fileSize);
     
     public static InaccessibleDocumentBody Inaccessible(DocumentBodyType docBodyType, string docBodyId)
         => new InaccessibleDocumentBody(docBodyType: docBodyType, docBodyId: docBodyId);

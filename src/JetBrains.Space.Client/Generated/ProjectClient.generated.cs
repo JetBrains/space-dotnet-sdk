@@ -350,6 +350,63 @@ public partial class ProjectClient : ISpaceClient
                 _connection = connection;
             }
             
+            public UsedParameterClient UsedParameters => new UsedParameterClient(_connection);
+            
+            public partial class UsedParameterClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public UsedParameterClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public ParamClient Param => new ParamClient(_connection);
+                
+                public partial class ParamClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ParamClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<List<ParameterLastUsage>> GetParamAsync(string parameterId, Func<Partial<ParameterLastUsage>, Partial<ParameterLastUsage>>? partial = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ParameterLastUsage>()) : Partial<ParameterLastUsage>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<List<ParameterLastUsage>>("GET", $"api/http/projects/automation/step-executions/used-parameters/param/{parameterId}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                
+                }
+            
+                public SecretClient Secret => new SecretClient(_connection);
+                
+                public partial class SecretClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public SecretClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<List<ParameterLastUsage>> GetSecretAsync(string secretId, Func<Partial<ParameterLastUsage>, Partial<ParameterLastUsage>>? partial = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ParameterLastUsage>()) : Partial<ParameterLastUsage>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<List<ParameterLastUsage>>("GET", $"api/http/projects/automation/step-executions/used-parameters/secret/{secretId}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                
+                }
+            
+            }
+        
             public ParameterClient Parameters => new ParameterClient(_connection);
             
             public partial class ParameterClient : ISpaceClient

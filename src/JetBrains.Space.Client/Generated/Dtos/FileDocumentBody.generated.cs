@@ -29,23 +29,56 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(ClassNameDtoTypeConverter))]
-public class FileDocumentBody
+public sealed class FileDocumentBody
      : DocumentBody, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public virtual string? ClassName => "FileDocumentBody";
-    
-    public static FileDocumentBodyBlob Blob(string versionId, string mediaType, long fileSize)
-        => new FileDocumentBodyBlob(versionId: versionId, mediaType: mediaType, fileSize: fileSize);
-    
-    public static FileDocumentBodyUpload Upload(string versionId, bool uploading, string? mediaType = null)
-        => new FileDocumentBodyUpload(versionId: versionId, uploading: uploading, mediaType: mediaType);
+    public  string? ClassName => "FileDocumentBody";
     
     public FileDocumentBody() { }
     
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public FileDocumentBody(string versionId, string contentType, long fileSize)
     {
+        VersionId = versionId;
+        ContentType = contentType;
+        FileSize = fileSize;
+    }
+    
+    private PropertyValue<string> _versionId = new PropertyValue<string>(nameof(FileDocumentBody), nameof(VersionId));
+    
+    [Required]
+    [JsonPropertyName("versionId")]
+    public string VersionId
+    {
+        get => _versionId.GetValue();
+        set => _versionId.SetValue(value);
+    }
+
+    private PropertyValue<string> _contentType = new PropertyValue<string>(nameof(FileDocumentBody), nameof(ContentType));
+    
+    [Required]
+    [JsonPropertyName("contentType")]
+    public string ContentType
+    {
+        get => _contentType.GetValue();
+        set => _contentType.SetValue(value);
+    }
+
+    private PropertyValue<long> _fileSize = new PropertyValue<long>(nameof(FileDocumentBody), nameof(FileSize));
+    
+    [Required]
+    [JsonPropertyName("fileSize")]
+    public long FileSize
+    {
+        get => _fileSize.GetValue();
+        set => _fileSize.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _versionId.SetAccessPath(path, validateHasBeenSet);
+        _contentType.SetAccessPath(path, validateHasBeenSet);
+        _fileSize.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

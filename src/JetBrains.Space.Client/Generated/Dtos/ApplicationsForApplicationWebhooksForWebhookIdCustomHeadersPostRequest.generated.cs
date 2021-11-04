@@ -27,18 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FileDocumentBodyBlobPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class FileDocumentBodyBlobPartialExtensions
+public class ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public static Partial<FileDocumentBodyBlob> WithVersionId(this Partial<FileDocumentBodyBlob> it)
-        => it.AddFieldName("versionId");
+    public ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest() { }
     
-    public static Partial<FileDocumentBodyBlob> WithMediaType(this Partial<FileDocumentBodyBlob> it)
-        => it.AddFieldName("mediaType");
+    public ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest(List<CustomHttpHeader> headers)
+    {
+        Headers = headers;
+    }
     
-    public static Partial<FileDocumentBodyBlob> WithFileSize(this Partial<FileDocumentBodyBlob> it)
-        => it.AddFieldName("fileSize");
+    private PropertyValue<List<CustomHttpHeader>> _headers = new PropertyValue<List<CustomHttpHeader>>(nameof(ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest), nameof(Headers), new List<CustomHttpHeader>());
     
+    [Required]
+    [JsonPropertyName("headers")]
+    public List<CustomHttpHeader> Headers
+    {
+        get => _headers.GetValue();
+        set => _headers.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _headers.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
 

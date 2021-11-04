@@ -43,18 +43,6 @@ public static class ArticleDetailsRecordPartialExtensions
     public static Partial<ArticleDetailsRecord> WithEvent(this Partial<ArticleDetailsRecord> it, Func<Partial<MeetingRecord>, Partial<MeetingRecord>> partialBuilder)
         => it.AddFieldName("event", partialBuilder(new Partial<MeetingRecord>(it)));
     
-    public static Partial<ArticleDetailsRecord> WithTeam(this Partial<ArticleDetailsRecord> it)
-        => it.AddFieldName("team");
-    
-    public static Partial<ArticleDetailsRecord> WithTeam(this Partial<ArticleDetailsRecord> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-        => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
-    
-    public static Partial<ArticleDetailsRecord> WithLocation(this Partial<ArticleDetailsRecord> it)
-        => it.AddFieldName("location");
-    
-    public static Partial<ArticleDetailsRecord> WithLocation(this Partial<ArticleDetailsRecord> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
-        => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
-    
     public static Partial<ArticleDetailsRecord> WithTeams(this Partial<ArticleDetailsRecord> it)
         => it.AddFieldName("teams");
     

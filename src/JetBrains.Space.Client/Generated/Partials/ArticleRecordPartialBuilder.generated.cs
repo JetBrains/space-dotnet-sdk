@@ -103,12 +103,6 @@ public static class ArticleRecordPartialExtensions
     public static Partial<ArticleRecord> WithExternalEntityInfo(this Partial<ArticleRecord> it, Func<Partial<ExternalEntityInfoRecord>, Partial<ExternalEntityInfoRecord>> partialBuilder)
         => it.AddFieldName("externalEntityInfo", partialBuilder(new Partial<ExternalEntityInfoRecord>(it)));
     
-    public static Partial<ArticleRecord> WithLocation(this Partial<ArticleRecord> it)
-        => it.AddFieldName("location");
-    
-    public static Partial<ArticleRecord> WithLocation(this Partial<ArticleRecord> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
-        => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
-    
     public static Partial<ArticleRecord> WithLocations(this Partial<ArticleRecord> it)
         => it.AddFieldName("locations");
     
@@ -135,12 +129,6 @@ public static class ArticleRecordPartialExtensions
     
     public static Partial<ArticleRecord> WithReactions(this Partial<ArticleRecord> it, Func<Partial<AllReactionsToItemRecord>, Partial<AllReactionsToItemRecord>> partialBuilder)
         => it.AddFieldName("reactions", partialBuilder(new Partial<AllReactionsToItemRecord>(it)));
-    
-    public static Partial<ArticleRecord> WithTeam(this Partial<ArticleRecord> it)
-        => it.AddFieldName("team");
-    
-    public static Partial<ArticleRecord> WithTeam(this Partial<ArticleRecord> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-        => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
     
     public static Partial<ArticleRecord> WithTeams(this Partial<ArticleRecord> it)
         => it.AddFieldName("teams");

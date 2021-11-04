@@ -34,7 +34,7 @@ public sealed class CodeDiscussionRecord
 {
     public CodeDiscussionRecord() { }
     
-    public CodeDiscussionRecord(string id, string projectId, CodeDiscussionAnchor anchor, DateTime created, M2ChannelRecord channel, bool resolved, bool archived, PRProject? project = null, CodeDiscussionAnchor? endAnchor = null, bool? resolvable = null, CodeDiscussionSnippet? snippet = null, CPrincipal? resolvedBy = null, bool? pending = null, CodeReviewRecord? review = null, string? feedItemId = null, List<CodeReviewRecord>? reviews = null)
+    public CodeDiscussionRecord(string id, string projectId, CodeDiscussionAnchor anchor, DateTime created, M2ChannelRecord channel, bool resolved, bool archived, PRProject? project = null, CodeDiscussionAnchor? endAnchor = null, bool? resolvable = null, CodeDiscussionSnippet? snippet = null, CodeDiscussionSuggestedEdit? suggestedEdit = null, CPrincipal? resolvedBy = null, bool? pending = null, CodeReviewRecord? review = null, string? feedItemId = null, List<CodeReviewRecord>? reviews = null)
     {
         Id = id;
         ProjectId = projectId;
@@ -46,6 +46,7 @@ public sealed class CodeDiscussionRecord
         IsResolvable = resolvable;
         IsResolved = resolved;
         Snippet = snippet;
+        SuggestedEdit = suggestedEdit;
         ResolvedBy = resolvedBy;
         IsPending = pending;
         Review = review;
@@ -152,6 +153,15 @@ public sealed class CodeDiscussionRecord
         set => _snippet.SetValue(value);
     }
 
+    private PropertyValue<CodeDiscussionSuggestedEdit?> _suggestedEdit = new PropertyValue<CodeDiscussionSuggestedEdit?>(nameof(CodeDiscussionRecord), nameof(SuggestedEdit));
+    
+    [JsonPropertyName("suggestedEdit")]
+    public CodeDiscussionSuggestedEdit? SuggestedEdit
+    {
+        get => _suggestedEdit.GetValue();
+        set => _suggestedEdit.SetValue(value);
+    }
+
     private PropertyValue<CPrincipal?> _resolvedBy = new PropertyValue<CPrincipal?>(nameof(CodeDiscussionRecord), nameof(ResolvedBy));
     
     [JsonPropertyName("resolvedBy")]
@@ -219,6 +229,7 @@ public sealed class CodeDiscussionRecord
         _resolvable.SetAccessPath(path, validateHasBeenSet);
         _resolved.SetAccessPath(path, validateHasBeenSet);
         _snippet.SetAccessPath(path, validateHasBeenSet);
+        _suggestedEdit.SetAccessPath(path, validateHasBeenSet);
         _resolvedBy.SetAccessPath(path, validateHasBeenSet);
         _pending.SetAccessPath(path, validateHasBeenSet);
         _review.SetAccessPath(path, validateHasBeenSet);

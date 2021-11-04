@@ -27,18 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FileDocumentBodyPartialBuilder;
+namespace JetBrains.Space.Client.CustomHttpHeaderPartialBuilder;
 
-public static class FileDocumentBodyPartialExtensions
+public static class CustomHttpHeaderPartialExtensions
 {
-    public static Partial<FileDocumentBody> WithVersionId(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("versionId");
+    public static Partial<CustomHttpHeader> WithName(this Partial<CustomHttpHeader> it)
+        => it.AddFieldName("name");
     
-    public static Partial<FileDocumentBody> WithContentType(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("contentType");
+    public static Partial<CustomHttpHeader> WithValue(this Partial<CustomHttpHeader> it)
+        => it.AddFieldName("value");
     
-    public static Partial<FileDocumentBody> WithFileSize(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("fileSize");
+    public static Partial<CustomHttpHeader> WithDescription(this Partial<CustomHttpHeader> it)
+        => it.AddFieldName("description");
     
 }
 

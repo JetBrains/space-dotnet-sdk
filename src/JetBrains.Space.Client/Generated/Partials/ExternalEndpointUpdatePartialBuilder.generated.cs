@@ -27,18 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FileDocumentBodyPartialBuilder;
+namespace JetBrains.Space.Client.ExternalEndpointUpdatePartialBuilder;
 
-public static class FileDocumentBodyPartialExtensions
+public static class ExternalEndpointUpdatePartialExtensions
 {
-    public static Partial<FileDocumentBody> WithVersionId(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("versionId");
+    public static Partial<ExternalEndpointUpdate> WithUrl(this Partial<ExternalEndpointUpdate> it)
+        => it.AddFieldName("url");
     
-    public static Partial<FileDocumentBody> WithContentType(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("contentType");
-    
-    public static Partial<FileDocumentBody> WithFileSize(this Partial<FileDocumentBody> it)
-        => it.AddFieldName("fileSize");
+    public static Partial<ExternalEndpointUpdate> WithIsSslVerification(this Partial<ExternalEndpointUpdate> it)
+        => it.AddFieldName("sslVerification");
     
 }
 

@@ -34,7 +34,7 @@ public sealed class ArticleRecord
 {
     public ArticleRecord() { }
     
-    public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, List<AttachmentInfo>? attachments = null, M2ChannelContentRecord? channelContent = null, bool? cut = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, TDLocation? location = null, List<TDLocation>? locations = null, List<AttachmentInfo>? previewAttachments = null, TDTeam? team = null, List<TDTeam>? teams = null, int? wordsNumber = null)
+    public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, List<AttachmentInfo>? attachments = null, M2ChannelContentRecord? channelContent = null, bool? cut = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, List<TDLocation>? locations = null, List<AttachmentInfo>? previewAttachments = null, List<TDTeam>? teams = null, int? wordsNumber = null)
     {
         Id = id;
         IsArchived = archived;
@@ -52,13 +52,11 @@ public sealed class ArticleRecord
         IsEditable = editable;
         Event = @event;
         ExternalEntityInfo = externalEntityInfo;
-        Location = location;
         Locations = locations;
         Preview = preview;
         PreviewAttachments = previewAttachments;
         PreviewImages = previewImages;
         Reactions = reactions;
-        Team = team;
         Teams = teams;
         WordsNumber = wordsNumber;
     }
@@ -218,15 +216,6 @@ public sealed class ArticleRecord
         set => _externalEntityInfo.SetValue(value);
     }
 
-    private PropertyValue<TDLocation?> _location = new PropertyValue<TDLocation?>(nameof(ArticleRecord), nameof(Location));
-    
-    [JsonPropertyName("location")]
-    public TDLocation? Location
-    {
-        get => _location.GetValue();
-        set => _location.SetValue(value);
-    }
-
     private PropertyValue<List<TDLocation>?> _locations = new PropertyValue<List<TDLocation>?>(nameof(ArticleRecord), nameof(Locations));
     
     [JsonPropertyName("locations")]
@@ -275,15 +264,6 @@ public sealed class ArticleRecord
         set => _reactions.SetValue(value);
     }
 
-    private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(ArticleRecord), nameof(Team));
-    
-    [JsonPropertyName("team")]
-    public TDTeam? Team
-    {
-        get => _team.GetValue();
-        set => _team.SetValue(value);
-    }
-
     private PropertyValue<List<TDTeam>?> _teams = new PropertyValue<List<TDTeam>?>(nameof(ArticleRecord), nameof(Teams));
     
     [JsonPropertyName("teams")]
@@ -320,13 +300,11 @@ public sealed class ArticleRecord
         _editable.SetAccessPath(path, validateHasBeenSet);
         _event.SetAccessPath(path, validateHasBeenSet);
         _externalEntityInfo.SetAccessPath(path, validateHasBeenSet);
-        _location.SetAccessPath(path, validateHasBeenSet);
         _locations.SetAccessPath(path, validateHasBeenSet);
         _preview.SetAccessPath(path, validateHasBeenSet);
         _previewAttachments.SetAccessPath(path, validateHasBeenSet);
         _previewImages.SetAccessPath(path, validateHasBeenSet);
         _reactions.SetAccessPath(path, validateHasBeenSet);
-        _team.SetAccessPath(path, validateHasBeenSet);
         _teams.SetAccessPath(path, validateHasBeenSet);
         _wordsNumber.SetAccessPath(path, validateHasBeenSet);
     }

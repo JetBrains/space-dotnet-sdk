@@ -76,6 +76,12 @@ public static class CodeDiscussionRecordPartialExtensions
     public static Partial<CodeDiscussionRecord> WithSnippet(this Partial<CodeDiscussionRecord> it, Func<Partial<CodeDiscussionSnippet>, Partial<CodeDiscussionSnippet>> partialBuilder)
         => it.AddFieldName("snippet", partialBuilder(new Partial<CodeDiscussionSnippet>(it)));
     
+    public static Partial<CodeDiscussionRecord> WithSuggestedEdit(this Partial<CodeDiscussionRecord> it)
+        => it.AddFieldName("suggestedEdit");
+    
+    public static Partial<CodeDiscussionRecord> WithSuggestedEdit(this Partial<CodeDiscussionRecord> it, Func<Partial<CodeDiscussionSuggestedEdit>, Partial<CodeDiscussionSuggestedEdit>> partialBuilder)
+        => it.AddFieldName("suggestedEdit", partialBuilder(new Partial<CodeDiscussionSuggestedEdit>(it)));
+    
     public static Partial<CodeDiscussionRecord> WithResolvedBy(this Partial<CodeDiscussionRecord> it)
         => it.AddFieldName("resolvedBy");
     

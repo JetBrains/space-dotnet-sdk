@@ -32,6 +32,9 @@ namespace JetBrains.Space.Client;
 public interface M2ItemContentDetails
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
+    public static CodeSuggestedEditHeadContentDetails CodeSuggestedEditHeadContentDetails(CodeDiscussionRecord codeDiscussion, string text)
+        => new CodeSuggestedEditHeadContentDetails(codeDiscussion: codeDiscussion, text: text);
+    
     public static IssueCodeChangesMCExtension IssueCodeChangesMCExtension()
         => new IssueCodeChangesMCExtension();
     
