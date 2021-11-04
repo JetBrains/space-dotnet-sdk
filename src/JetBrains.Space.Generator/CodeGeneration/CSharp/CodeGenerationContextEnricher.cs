@@ -74,7 +74,7 @@ public static class CodeGenerationContextEnricher
     }
         
     /// <summary>
-    /// Remove "DTO" from DTO names, e.g. DTO_Meeting, DTO_Right, CommitStatusDTO, ...
+    /// Remove "DTO" from DTO names, e.g. DTO_Meeting, DTO_Right, ...
     /// </summary>
     public static void RemoveDtoPrefixFromDtoNames(CodeGenerationContext context)
     {
@@ -83,11 +83,6 @@ public static class CodeGenerationContextEnricher
             if (apiDto.Name.StartsWith("DTO", StringComparison.OrdinalIgnoreCase))
             {
                 apiDto.Name = apiDto.Name[3..];
-            } 
-            else if (apiDto.Name.EndsWith("DTO", StringComparison.OrdinalIgnoreCase) &&
-                     !apiDto.Name.StartsWith("HA", StringComparison.OrdinalIgnoreCase)) // Don't update "HA*" (HTTP API models)
-            {
-                apiDto.Name = apiDto.Name[..^3];
             }
         }
     }
