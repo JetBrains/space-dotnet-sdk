@@ -21,7 +21,7 @@ public class UrlParameterConverter : JsonConverterFactory
     public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
     {
         var constructedType = _genericConverterType.MakeGenericType(typeToConvert);
-        return Activator.CreateInstance(constructedType) as JsonConverter;
+        return (Activator.CreateInstance(constructedType) as JsonConverter)!;
     }
 }
 
@@ -41,7 +41,7 @@ public class UrlParameterConverter<T> : JsonConverter<T>
     public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         JsonDocument.ParseValue(ref reader).Dispose();
-        return null;
+        return null!;
     }
 
     /// <inheritdoc />

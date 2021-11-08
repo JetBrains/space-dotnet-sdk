@@ -10,7 +10,7 @@
 
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
-        <PackageReference Include="JetBrains.Annotations" Version="2021.2.0" PrivateAssets="All" />
+        <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>
