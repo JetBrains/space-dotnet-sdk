@@ -67,9 +67,16 @@ public sealed class PropertyValue<T>
     [DebuggerHidden]
     public T GetValue()
     {
-        if (!_hasBeenSet && _validateHasBeenSet)
+        if (!_hasBeenSet)
         {
-            throw new PropertyNotRequestedException($"The property {_propertyName} was not requested in the partial builder for {_className}. Use .With{_propertyName}() to include it. Expected full path: {_accessPath}.With{_propertyName}()", _className, _propertyName);
+            if (_validateHasBeenSet)
+            {
+                throw new PropertyNotRequestedException($"The property {_propertyName} was not requested in the partial builder for {_className}. Use .With{_propertyName}() to include it. Expected full path: {_accessPath}.With{_propertyName}()", _className, _propertyName);                
+            }
+            else
+            {
+                // TODO log
+            }
         }
         return _value;
     }

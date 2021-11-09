@@ -303,7 +303,14 @@ public class CSharpApiModelDtoGenerator
         {
             var backingFieldNameForField = apiDtoField.Field.ToCSharpBackingFieldName();
 
-            builder.AppendLine($"{indent}{backingFieldNameForField}.{nameof(IPropagatePropertyAccessPath.SetAccessPath)}(path, validateHasBeenSet);");
+            if (FeatureFlags.SupportRelaxedPropertyValueAccess) 
+            {
+                builder.AppendLine($"{indent}{backingFieldNameForField}.{nameof(IPropagatePropertyAccessPath.SetAccessPath)}(path, validateHasBeenSet, {(apiDtoField.Field.Type.Nullable ? "true" : "false")});");
+            }
+            else
+            {
+                builder.AppendLine($"{indent}{backingFieldNameForField}.{nameof(IPropagatePropertyAccessPath.SetAccessPath)}(path, validateHasBeenSet);");
+            }
         }
 
         indent.Decrement();

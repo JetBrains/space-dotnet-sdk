@@ -1,5 +1,7 @@
 // ReSharper disable RedundantLogicalConditionalExpressionOperand
 
+using JetBrains.Space.Common.Types;
+
 namespace JetBrains.Space.Generator;
 
 internal static class FeatureFlags
@@ -13,4 +15,14 @@ internal static class FeatureFlags
     /// Recommended value: true
     /// </summary>
     public static bool DoNotExposeRequestObjects = true;
+
+    /// <summary>
+    /// Support relaxed <see cref="PropertyValue{T}"/> access?
+    ///
+    /// When true, getting properties will return null if the property was not requested from API.
+    /// When false, getting properties will throw if the property was not requested from API.
+    ///
+    /// Recommended value: true
+    /// </summary>
+    public static bool SupportRelaxedPropertyValueAccess = false;
 }

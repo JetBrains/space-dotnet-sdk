@@ -27,18 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewDiscussionCounterPartialBuilder;
+namespace JetBrains.Space.Client.TextDocumentRecordPartialBuilder;
 
-public static class CodeReviewDiscussionCounterPartialExtensions
+public static class TextDocumentRecordPartialExtensions
 {
-    public static Partial<CodeReviewDiscussionCounter> WithId(this Partial<CodeReviewDiscussionCounter> it)
+    public static Partial<TextDocumentRecord> WithId(this Partial<TextDocumentRecord> it)
         => it.AddFieldName("id");
     
-    public static Partial<CodeReviewDiscussionCounter> WithDiscussionCounter(this Partial<CodeReviewDiscussionCounter> it)
-        => it.AddFieldName("discussionCounter");
+    public static Partial<TextDocumentRecord> WithIsArchived(this Partial<TextDocumentRecord> it)
+        => it.AddFieldName("archived");
     
-    public static Partial<CodeReviewDiscussionCounter> WithDiscussionCounter(this Partial<CodeReviewDiscussionCounter> it, Func<Partial<DiscussionCounter>, Partial<DiscussionCounter>> partialBuilder)
-        => it.AddFieldName("discussionCounter", partialBuilder(new Partial<DiscussionCounter>(it)));
+    public static Partial<TextDocumentRecord> WithType(this Partial<TextDocumentRecord> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<TextDocumentRecord> WithType(this Partial<TextDocumentRecord> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>(it)));
     
 }
 

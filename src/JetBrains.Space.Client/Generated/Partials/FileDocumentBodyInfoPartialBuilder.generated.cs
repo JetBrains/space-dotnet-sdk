@@ -27,18 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewDiscussionCounterPartialBuilder;
+namespace JetBrains.Space.Client.FileDocumentBodyInfoPartialBuilder;
 
-public static class CodeReviewDiscussionCounterPartialExtensions
+public static class FileDocumentBodyInfoPartialExtensions
 {
-    public static Partial<CodeReviewDiscussionCounter> WithId(this Partial<CodeReviewDiscussionCounter> it)
-        => it.AddFieldName("id");
+    public static Partial<FileDocumentBodyInfo> WithFileDocument(this Partial<FileDocumentBodyInfo> it)
+        => it.AddFieldName("fileDocument");
     
-    public static Partial<CodeReviewDiscussionCounter> WithDiscussionCounter(this Partial<CodeReviewDiscussionCounter> it)
-        => it.AddFieldName("discussionCounter");
-    
-    public static Partial<CodeReviewDiscussionCounter> WithDiscussionCounter(this Partial<CodeReviewDiscussionCounter> it, Func<Partial<DiscussionCounter>, Partial<DiscussionCounter>> partialBuilder)
-        => it.AddFieldName("discussionCounter", partialBuilder(new Partial<DiscussionCounter>(it)));
+    public static Partial<FileDocumentBodyInfo> WithFileDocument(this Partial<FileDocumentBodyInfo> it, Func<Partial<FileDocumentRecord>, Partial<FileDocumentRecord>> partialBuilder)
+        => it.AddFieldName("fileDocument", partialBuilder(new Partial<FileDocumentRecord>(it)));
     
 }
 

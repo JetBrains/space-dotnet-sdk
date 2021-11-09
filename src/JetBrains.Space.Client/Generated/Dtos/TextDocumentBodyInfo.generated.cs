@@ -29,44 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class InaccessibleDocumentBody
+public sealed class TextDocumentBodyInfo
      : DocumentBodyInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public  string? ClassName => "InaccessibleDocumentBody";
+    public  string? ClassName => "TextDocumentBodyInfo";
     
-    public InaccessibleDocumentBody() { }
+    public TextDocumentBodyInfo() { }
     
-    public InaccessibleDocumentBody(DocumentBodyType docBodyType, string docBodyId)
+    public TextDocumentBodyInfo(TextDocumentRecord textDocument)
     {
-        DocBodyType = docBodyType;
-        DocBodyId = docBodyId;
+        TextDocument = textDocument;
     }
     
-    private PropertyValue<DocumentBodyType> _docBodyType = new PropertyValue<DocumentBodyType>(nameof(InaccessibleDocumentBody), nameof(DocBodyType));
+    private PropertyValue<TextDocumentRecord> _textDocument = new PropertyValue<TextDocumentRecord>(nameof(TextDocumentBodyInfo), nameof(TextDocument));
     
     [Required]
-    [JsonPropertyName("docBodyType")]
-    public DocumentBodyType DocBodyType
+    [JsonPropertyName("textDocument")]
+    public TextDocumentRecord TextDocument
     {
-        get => _docBodyType.GetValue();
-        set => _docBodyType.SetValue(value);
-    }
-
-    private PropertyValue<string> _docBodyId = new PropertyValue<string>(nameof(InaccessibleDocumentBody), nameof(DocBodyId));
-    
-    [Required]
-    [JsonPropertyName("docBodyId")]
-    public string DocBodyId
-    {
-        get => _docBodyId.GetValue();
-        set => _docBodyId.SetValue(value);
+        get => _textDocument.GetValue();
+        set => _textDocument.SetValue(value);
     }
 
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        _docBodyType.SetAccessPath(path, validateHasBeenSet);
-        _docBodyId.SetAccessPath(path, validateHasBeenSet);
+        _textDocument.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

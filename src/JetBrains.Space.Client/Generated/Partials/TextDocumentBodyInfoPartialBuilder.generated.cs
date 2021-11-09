@@ -27,15 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CounterPartialBuilder;
+namespace JetBrains.Space.Client.TextDocumentBodyInfoPartialBuilder;
 
-public static class CounterPartialExtensions
+public static class TextDocumentBodyInfoPartialExtensions
 {
-    public static Partial<Counter> WithResolved(this Partial<Counter> it)
-        => it.AddFieldName("resolved");
+    public static Partial<TextDocumentBodyInfo> WithTextDocument(this Partial<TextDocumentBodyInfo> it)
+        => it.AddFieldName("textDocument");
     
-    public static Partial<Counter> WithUnresolved(this Partial<Counter> it)
-        => it.AddFieldName("unresolved");
+    public static Partial<TextDocumentBodyInfo> WithTextDocument(this Partial<TextDocumentBodyInfo> it, Func<Partial<TextDocumentRecord>, Partial<TextDocumentRecord>> partialBuilder)
+        => it.AddFieldName("textDocument", partialBuilder(new Partial<TextDocumentRecord>(it)));
     
 }
 

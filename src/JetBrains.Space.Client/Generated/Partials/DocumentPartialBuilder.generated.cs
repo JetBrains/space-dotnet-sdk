@@ -58,6 +58,12 @@ public static class DocumentPartialExtensions
     public static Partial<Document> WithBodyType(this Partial<Document> it, Func<Partial<DocumentBodyType>, Partial<DocumentBodyType>> partialBuilder)
         => it.AddFieldName("bodyType", partialBuilder(new Partial<DocumentBodyType>(it)));
     
+    public static Partial<Document> WithBodyInfo(this Partial<Document> it)
+        => it.AddFieldName("bodyInfo");
+    
+    public static Partial<Document> WithBodyInfo(this Partial<Document> it, Func<Partial<DocumentBodyInfo>, Partial<DocumentBodyInfo>> partialBuilder)
+        => it.AddFieldName("bodyInfo", partialBuilder(new Partial<DocumentBodyInfo>(it)));
+    
     public static Partial<Document> WithIsArchived(this Partial<Document> it)
         => it.AddFieldName("archived");
     
@@ -91,8 +97,8 @@ public static class DocumentPartialExtensions
     public static Partial<Document> WithDocumentBody(this Partial<Document> it)
         => it.AddFieldName("documentBody");
     
-    public static Partial<Document> WithDocumentBody(this Partial<Document> it, Func<Partial<DocumentBody>, Partial<DocumentBody>> partialBuilder)
-        => it.AddFieldName("documentBody", partialBuilder(new Partial<DocumentBody>(it)));
+    public static Partial<Document> WithDocumentBody(this Partial<Document> it, Func<Partial<DocumentBodyInfo>, Partial<DocumentBodyInfo>> partialBuilder)
+        => it.AddFieldName("documentBody", partialBuilder(new Partial<DocumentBodyInfo>(it)));
     
 }
 

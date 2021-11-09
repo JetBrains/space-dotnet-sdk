@@ -29,41 +29,53 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class Counter
+public sealed class TextDocumentRecord
      : IPropagatePropertyAccessPath
 {
-    public Counter() { }
+    public TextDocumentRecord() { }
     
-    public Counter(int resolved, int unresolved)
+    public TextDocumentRecord(string id, bool archived, DraftDocumentType type)
     {
-        Resolved = resolved;
-        Unresolved = unresolved;
+        Id = id;
+        IsArchived = archived;
+        Type = type;
     }
     
-    private PropertyValue<int> _resolved = new PropertyValue<int>(nameof(Counter), nameof(Resolved));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TextDocumentRecord), nameof(Id));
     
     [Required]
-    [JsonPropertyName("resolved")]
-    public int Resolved
+    [JsonPropertyName("id")]
+    public string Id
     {
-        get => _resolved.GetValue();
-        set => _resolved.SetValue(value);
+        get => _id.GetValue();
+        set => _id.SetValue(value);
     }
 
-    private PropertyValue<int> _unresolved = new PropertyValue<int>(nameof(Counter), nameof(Unresolved));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TextDocumentRecord), nameof(IsArchived));
     
     [Required]
-    [JsonPropertyName("unresolved")]
-    public int Unresolved
+    [JsonPropertyName("archived")]
+    public bool IsArchived
     {
-        get => _unresolved.GetValue();
-        set => _unresolved.SetValue(value);
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(TextDocumentRecord), nameof(Type));
+    
+    [Required]
+    [JsonPropertyName("type")]
+    public DraftDocumentType Type
+    {
+        get => _type.GetValue();
+        set => _type.SetValue(value);
     }
 
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        _resolved.SetAccessPath(path, validateHasBeenSet);
-        _unresolved.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _type.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

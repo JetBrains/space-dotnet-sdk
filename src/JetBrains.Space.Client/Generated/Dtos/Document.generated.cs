@@ -34,7 +34,7 @@ public sealed class Document
 {
     public Document() { }
     
-    public Document(string id, string title, DocumentBodyType bodyType, bool archived, DateTime modified, DocumentBody documentBody, string? alias = null, PublicationDetails? publicationDetails = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null)
+    public Document(string id, string title, DocumentBodyType bodyType, bool archived, DateTime modified, DocumentBodyInfo documentBody, string? alias = null, PublicationDetails? publicationDetails = null, DocumentFolder? folderRef = null, DocumentBodyInfo? bodyInfo = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null)
     {
         Id = id;
         Title = title;
@@ -42,6 +42,7 @@ public sealed class Document
         PublicationDetails = publicationDetails;
         FolderRef = folderRef;
         BodyType = bodyType;
+        BodyInfo = bodyInfo;
         IsArchived = archived;
         ArchivedBy = archivedBy;
         ArchivedAt = archivedAt;
@@ -107,6 +108,15 @@ public sealed class Document
     {
         get => _bodyType.GetValue();
         set => _bodyType.SetValue(value);
+    }
+
+    private PropertyValue<DocumentBodyInfo?> _bodyInfo = new PropertyValue<DocumentBodyInfo?>(nameof(Document), nameof(BodyInfo));
+    
+    [JsonPropertyName("bodyInfo")]
+    public DocumentBodyInfo? BodyInfo
+    {
+        get => _bodyInfo.GetValue();
+        set => _bodyInfo.SetValue(value);
     }
 
     private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Document), nameof(IsArchived));
@@ -177,11 +187,11 @@ public sealed class Document
         set => _modified.SetValue(value);
     }
 
-    private PropertyValue<DocumentBody> _documentBody = new PropertyValue<DocumentBody>(nameof(Document), nameof(DocumentBody));
+    private PropertyValue<DocumentBodyInfo> _documentBody = new PropertyValue<DocumentBodyInfo>(nameof(Document), nameof(DocumentBody));
     
     [Required]
     [JsonPropertyName("documentBody")]
-    public DocumentBody DocumentBody
+    public DocumentBodyInfo DocumentBody
     {
         get => _documentBody.GetValue();
         set => _documentBody.SetValue(value);
@@ -195,6 +205,7 @@ public sealed class Document
         _publicationDetails.SetAccessPath(path, validateHasBeenSet);
         _folderRef.SetAccessPath(path, validateHasBeenSet);
         _bodyType.SetAccessPath(path, validateHasBeenSet);
+        _bodyInfo.SetAccessPath(path, validateHasBeenSet);
         _archived.SetAccessPath(path, validateHasBeenSet);
         _archivedBy.SetAccessPath(path, validateHasBeenSet);
         _archivedAt.SetAccessPath(path, validateHasBeenSet);

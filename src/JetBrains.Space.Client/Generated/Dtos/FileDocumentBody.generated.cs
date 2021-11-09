@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class FileDocumentBody
-     : DocumentBody, IClassNameConvertible, IPropagatePropertyAccessPath
+     : DocumentBodyInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "FileDocumentBody";

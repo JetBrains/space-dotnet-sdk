@@ -34,7 +34,7 @@ public sealed class DocumentInContainer
 {
     public DocumentInContainer() { }
     
-    public DocumentInContainer(string id, bool archived, string containerLinkId, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, bool deleted, int accessOrdinal, DocumentBody documentBody, TDMemberProfile? author = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null)
+    public DocumentInContainer(string id, bool archived, string containerLinkId, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, bool deleted, int accessOrdinal, DocumentBodyInfo documentBody, TDMemberProfile? author = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null)
     {
         Id = id;
         IsArchived = archived;
@@ -242,11 +242,11 @@ public sealed class DocumentInContainer
         set => _accessOrdinal.SetValue(value);
     }
 
-    private PropertyValue<DocumentBody> _documentBody = new PropertyValue<DocumentBody>(nameof(DocumentInContainer), nameof(DocumentBody));
+    private PropertyValue<DocumentBodyInfo> _documentBody = new PropertyValue<DocumentBodyInfo>(nameof(DocumentInContainer), nameof(DocumentBody));
     
     [Required]
     [JsonPropertyName("documentBody")]
-    public DocumentBody DocumentBody
+    public DocumentBodyInfo DocumentBody
     {
         get => _documentBody.GetValue();
         set => _documentBody.SetValue(value);

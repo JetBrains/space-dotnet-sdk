@@ -34,7 +34,7 @@ public sealed class DRDraft
 {
     public DRDraft() { }
     
-    public DRDraft(string id, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBody documentBody, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, CPrincipal? createdBy = null, DocumentFolder? folderRef = null)
+    public DRDraft(string id, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBodyInfo documentBody, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, CPrincipal? createdBy = null, DocumentFolder? folderRef = null)
     {
         Id = id;
         Title = title;
@@ -231,11 +231,11 @@ public sealed class DRDraft
         set => _editorsTeams.SetValue(value);
     }
 
-    private PropertyValue<DocumentBody> _documentBody = new PropertyValue<DocumentBody>(nameof(DRDraft), nameof(DocumentBody));
+    private PropertyValue<DocumentBodyInfo> _documentBody = new PropertyValue<DocumentBodyInfo>(nameof(DRDraft), nameof(DocumentBody));
     
     [Required]
     [JsonPropertyName("documentBody")]
-    public DocumentBody DocumentBody
+    public DocumentBodyInfo DocumentBody
     {
         get => _documentBody.GetValue();
         set => _documentBody.SetValue(value);

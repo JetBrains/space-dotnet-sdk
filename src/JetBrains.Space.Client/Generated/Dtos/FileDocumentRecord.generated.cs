@@ -29,18 +29,19 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class CodeReviewDiscussionCounter
+public sealed class FileDocumentRecord
      : IPropagatePropertyAccessPath
 {
-    public CodeReviewDiscussionCounter() { }
+    public FileDocumentRecord() { }
     
-    public CodeReviewDiscussionCounter(string id, DiscussionCounter discussionCounter)
+    public FileDocumentRecord(string id, bool archived, FileDocumentBody body)
     {
         Id = id;
-        DiscussionCounter = discussionCounter;
+        IsArchived = archived;
+        Body = body;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewDiscussionCounter), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(FileDocumentRecord), nameof(Id));
     
     [Required]
     [JsonPropertyName("id")]
@@ -50,20 +51,31 @@ public sealed class CodeReviewDiscussionCounter
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<DiscussionCounter> _discussionCounter = new PropertyValue<DiscussionCounter>(nameof(CodeReviewDiscussionCounter), nameof(DiscussionCounter));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(FileDocumentRecord), nameof(IsArchived));
     
     [Required]
-    [JsonPropertyName("discussionCounter")]
-    public DiscussionCounter DiscussionCounter
+    [JsonPropertyName("archived")]
+    public bool IsArchived
     {
-        get => _discussionCounter.GetValue();
-        set => _discussionCounter.SetValue(value);
+        get => _archived.GetValue();
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<FileDocumentBody> _body = new PropertyValue<FileDocumentBody>(nameof(FileDocumentRecord), nameof(Body));
+    
+    [Required]
+    [JsonPropertyName("body")]
+    public FileDocumentBody Body
+    {
+        get => _body.GetValue();
+        set => _body.SetValue(value);
     }
 
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _id.SetAccessPath(path, validateHasBeenSet);
-        _discussionCounter.SetAccessPath(path, validateHasBeenSet);
+        _archived.SetAccessPath(path, validateHasBeenSet);
+        _body.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

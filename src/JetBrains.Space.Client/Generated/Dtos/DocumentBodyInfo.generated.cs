@@ -29,20 +29,26 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface DocumentBody
+public interface DocumentBodyInfo
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static ChecklistDocumentBody Checklist(Checklist checklist, bool canConvertItemsToIssues)
+    public static ChecklistDocumentBody ChecklistDocumentBody(Checklist checklist, bool canConvertItemsToIssues)
         => new ChecklistDocumentBody(checklist: checklist, canConvertItemsToIssues: canConvertItemsToIssues);
     
-    public static FileDocumentBody File(string versionId, string contentType, long fileSize)
+    public static FileDocumentBody FileDocumentBody(string versionId, string contentType, long fileSize)
         => new FileDocumentBody(versionId: versionId, contentType: contentType, fileSize: fileSize);
     
-    public static InaccessibleDocumentBody Inaccessible(DocumentBodyType docBodyType, string docBodyId)
+    public static FileDocumentBodyInfo File(FileDocumentRecord fileDocument)
+        => new FileDocumentBodyInfo(fileDocument: fileDocument);
+    
+    public static InaccessibleDocumentBody InaccessibleDocumentBody(DocumentBodyType docBodyType, string docBodyId)
         => new InaccessibleDocumentBody(docBodyType: docBodyType, docBodyId: docBodyId);
     
     public static TextDocument TextDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null, string? model = null, List<AttachmentInfo>? attachments = null)
         => new TextDocument(id: id, resetCounter: resetCounter, type: type, text: text, version: version, model: model, attachments: attachments);
+    
+    public static TextDocumentBodyInfo Text(TextDocumentRecord textDocument)
+        => new TextDocumentBodyInfo(textDocument: textDocument);
     
 }
 

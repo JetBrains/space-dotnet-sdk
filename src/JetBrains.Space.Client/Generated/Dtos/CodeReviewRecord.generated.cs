@@ -73,11 +73,11 @@ public abstract class CodeReviewRecord
         set => _commits.SetValue(value);
     }
 
-    private PropertyValue<Counter> _discussionCounter = new PropertyValue<Counter>(nameof(CodeReviewRecord), nameof(DiscussionCounter));
+    private PropertyValue<DiscussionCounter> _discussionCounter = new PropertyValue<DiscussionCounter>(nameof(CodeReviewRecord), nameof(DiscussionCounter));
     
     [Required]
     [JsonPropertyName("discussionCounter")]
-    public Counter DiscussionCounter
+    public DiscussionCounter DiscussionCounter
     {
         get => _discussionCounter.GetValue();
         set => _discussionCounter.SetValue(value);

@@ -118,8 +118,8 @@ public static class DocumentInContainerPartialExtensions
     public static Partial<DocumentInContainer> WithDocumentBody(this Partial<DocumentInContainer> it)
         => it.AddFieldName("documentBody");
     
-    public static Partial<DocumentInContainer> WithDocumentBody(this Partial<DocumentInContainer> it, Func<Partial<DocumentBody>, Partial<DocumentBody>> partialBuilder)
-        => it.AddFieldName("documentBody", partialBuilder(new Partial<DocumentBody>(it)));
+    public static Partial<DocumentInContainer> WithDocumentBody(this Partial<DocumentInContainer> it, Func<Partial<DocumentBodyInfo>, Partial<DocumentBodyInfo>> partialBuilder)
+        => it.AddFieldName("documentBody", partialBuilder(new Partial<DocumentBodyInfo>(it)));
     
 }
 

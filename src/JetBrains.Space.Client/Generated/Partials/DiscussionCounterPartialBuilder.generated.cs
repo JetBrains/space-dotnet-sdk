@@ -27,9 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentBodyPartialBuilder;
+namespace JetBrains.Space.Client.DiscussionCounterPartialBuilder;
 
-public static class DocumentBodyPartialExtensions
+public static class DiscussionCounterPartialExtensions
 {
+    public static Partial<DiscussionCounter> WithResolved(this Partial<DiscussionCounter> it)
+        => it.AddFieldName("resolved");
+    
+    public static Partial<DiscussionCounter> WithUnresolved(this Partial<DiscussionCounter> it)
+        => it.AddFieldName("unresolved");
+    
+    public static Partial<DiscussionCounter> WithUnresolvedSuggestedEdits(this Partial<DiscussionCounter> it)
+        => it.AddFieldName("unresolvedSuggestedEdits");
+    
+    public static Partial<DiscussionCounter> WithAcceptedSuggestedEdits(this Partial<DiscussionCounter> it)
+        => it.AddFieldName("acceptedSuggestedEdits");
+    
+    public static Partial<DiscussionCounter> WithRejectedSuggestedEdits(this Partial<DiscussionCounter> it)
+        => it.AddFieldName("rejectedSuggestedEdits");
+    
 }
 
