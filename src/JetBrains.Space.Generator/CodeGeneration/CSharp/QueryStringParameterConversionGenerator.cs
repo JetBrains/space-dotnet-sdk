@@ -147,6 +147,11 @@ public class QueryStringParameterConversionGenerator
             case ApiFieldType.Enum:
                 return ".ToEnumString()";
                 
+            case ApiFieldType.Ref:
+                return !apiFieldType.Nullable
+                    ? ".Id"
+                    : "?.Id";
+                
             default:
                 throw new ResourceException("Could not generate query string parameter type conversion for field type: " + apiFieldType.ClassName);
         }
