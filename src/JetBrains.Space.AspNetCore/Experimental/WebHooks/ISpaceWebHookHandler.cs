@@ -57,6 +57,13 @@ public interface ISpaceWebHookHandler
     /// <param name="payload">The <see cref="NewUnfurlQueueItemsPayload"/>.</param>
     /// <returns>The result of executing this action.</returns>
     Task<ApplicationExecutionResult> HandleNewUnfurlQueueItemsAsync(NewUnfurlQueueItemsPayload payload);
+    
+    /// <summary>
+    /// Handle event when an action is executed from an unfurl.
+    /// </summary>
+    /// <param name="payload">The <see cref="UnfurlActionPayload"/>.</param>
+    /// <returns>The result of executing this action.</returns>
+    Task<ApplicationExecutionResult> HandleUnfurlActionPayloadAsync(UnfurlActionPayload payload);
 
     /// <summary>
     /// Handle application initialization event.

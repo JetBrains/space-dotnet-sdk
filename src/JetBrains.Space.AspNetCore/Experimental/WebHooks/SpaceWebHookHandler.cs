@@ -35,7 +35,11 @@ public abstract class SpaceWebHookHandler
     /// <inheritdoc/>
     public virtual Task<ApplicationExecutionResult> HandleNewUnfurlQueueItemsAsync(NewUnfurlQueueItemsPayload payload)
         => Task.FromResult(new ApplicationExecutionResult());
-        
+
+    /// <inheritdoc/>
+    public virtual Task<ApplicationExecutionResult> HandleUnfurlActionPayloadAsync(UnfurlActionPayload payload)
+        => Task.FromResult(new ApplicationExecutionResult());
+
     /// <inheritdoc/>
     public virtual Task<ApplicationExecutionResult> HandleInitAsync(InitPayload payload)
         => Task.FromResult(new ApplicationExecutionResult());

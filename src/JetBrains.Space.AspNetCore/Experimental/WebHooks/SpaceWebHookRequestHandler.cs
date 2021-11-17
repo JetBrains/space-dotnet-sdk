@@ -109,7 +109,13 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
                 
             // New unfurl requests are available?
             case NewUnfurlQueueItemsPayload unfurlRequestPayload:
-                var unfurlActionResult = await handler.HandleNewUnfurlQueueItemsAsync(unfurlRequestPayload);
+                var unfurlQueueResult = await handler.HandleNewUnfurlQueueItemsAsync(unfurlRequestPayload);
+                await WriteApplicationExecutionResultAsync(context.Response, unfurlQueueResult);
+                return;
+                
+            // New unfurl requests are available?
+            case UnfurlActionPayload unfurlActionPayload:
+                var unfurlActionResult = await handler.HandleUnfurlActionPayloadAsync(unfurlActionPayload);
                 await WriteApplicationExecutionResultAsync(context.Response, unfurlActionResult);
                 return;
             

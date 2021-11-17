@@ -395,8 +395,8 @@ An application webhook handler can be created by extending the `SpaceWebHookHand
 * `HandleMessageAsync` is called when a user sends our application a chat message.
 * `HandleMessageActionAsync` is called when a user interacts with our application by clicking a button.
 * `HandleMenuActionAsync` is called when a user interacts with our application by clicking a menu item on a message.
-* `HandleWebhookRequestAsync` is called when a webhook payload is delivered from Space.
-* `HandleNewUnfurlQueueItemsAsync` is called when new unfurl requests are available in Space.
+* `HandleWebhookRequestAsync` is called when an action is executed from an unfurl.
+* `HandleUnfurlActionPayloadAsync` is called when a webhook payload is delivered from Space.
 * `HandleInitAsync` is called when an application is initialized in the Space Organization. 
 * `HandleChangeClientSecretRequestAsync` is called when the application client secret is updated in Space organization.
 * `HandleChangeServerUrlAsync` is called when the application server URL is updated.
