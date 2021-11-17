@@ -49,15 +49,6 @@ public static class StickerPackInfoPartialExtensions
     public static Partial<StickerPackInfo> WithAddedAt(this Partial<StickerPackInfo> it)
         => it.AddFieldName("addedAt");
     
-    public static Partial<StickerPackInfo> WithPack(this Partial<StickerPackInfo> it)
-        => it.AddFieldName("pack");
-    
-    public static Partial<StickerPackInfo> WithPackRecursive(this Partial<StickerPackInfo> it)
-        => it.AddFieldName("pack!");
-    
-    public static Partial<StickerPackInfo> WithPack(this Partial<StickerPackInfo> it, Func<Partial<StickerPackInfo>, Partial<StickerPackInfo>> partialBuilder)
-        => it.AddFieldName("pack", partialBuilder(new Partial<StickerPackInfo>(it)));
-    
     public static Partial<StickerPackInfo> WithStickers(this Partial<StickerPackInfo> it)
         => it.AddFieldName("stickers");
     

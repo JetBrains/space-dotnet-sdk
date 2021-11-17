@@ -27,12 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsImageSourceUrlPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class UnfurlDetailsImageSourceUrlPartialExtensions
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public abstract class HAInlineError
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static Partial<UnfurlDetailsImageSourceUrl> WithUrl(this Partial<UnfurlDetailsImageSourceUrl> it)
-        => it.AddFieldName("url");
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "HA_InlineError";
     
+    public static HAInlineErrorInaccessibleFields InaccessibleFields(List<string> fields, string message)
+        => new HAInlineErrorInaccessibleFields(fields: fields, message: message);
+    
+    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+    }
+
 }
 

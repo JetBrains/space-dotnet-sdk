@@ -27,35 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.HAInlineErrorInaccessibleFieldsPartialBuilder;
 
-public sealed class UnfurlDetailsImageSourceAttachment
-     : UnfurlDetailsImageSource, IClassNameConvertible, IPropagatePropertyAccessPath
+public static class HAInlineErrorInaccessibleFieldsPartialExtensions
 {
-    [JsonPropertyName("className")]
-    public override string? ClassName => "UnfurlDetailsImageSource.Attachment";
+    public static Partial<HAInlineErrorInaccessibleFields> WithFields(this Partial<HAInlineErrorInaccessibleFields> it)
+        => it.AddFieldName("fields");
     
-    public UnfurlDetailsImageSourceAttachment() { }
+    public static Partial<HAInlineErrorInaccessibleFields> WithMessage(this Partial<HAInlineErrorInaccessibleFields> it)
+        => it.AddFieldName("message");
     
-    public UnfurlDetailsImageSourceAttachment(ImageAttachment attachment)
-    {
-        Attachment = attachment;
-    }
-    
-    private PropertyValue<ImageAttachment> _attachment = new PropertyValue<ImageAttachment>(nameof(UnfurlDetailsImageSourceAttachment), nameof(Attachment));
-    
-    [Required]
-    [JsonPropertyName("attachment")]
-    public ImageAttachment Attachment
-    {
-        get => _attachment.GetValue();
-        set => _attachment.SetValue(value);
-    }
-
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
-    {
-        _attachment.SetAccessPath(path, validateHasBeenSet);
-    }
-
 }
 

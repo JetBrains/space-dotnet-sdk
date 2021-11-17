@@ -27,26 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.ApplicationUnfurlContextPartialBuilder;
 
-[JsonConverter(typeof(ClassNameDtoTypeConverter))]
-public class UnfurlDetailsImageSource
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class ApplicationUnfurlContextPartialExtensions
 {
-    [JsonPropertyName("className")]
-    public virtual string? ClassName => "UnfurlDetailsImageSource";
-    
-    public static UnfurlDetailsImageSourceAttachment Attachment(ImageAttachment attachment)
-        => new UnfurlDetailsImageSourceAttachment(attachment: attachment);
-    
-    public static UnfurlDetailsImageSourceUrl Url(string url)
-        => new UnfurlDetailsImageSourceUrl(url: url);
-    
-    public UnfurlDetailsImageSource() { }
-    
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-    {
-    }
-
 }
 

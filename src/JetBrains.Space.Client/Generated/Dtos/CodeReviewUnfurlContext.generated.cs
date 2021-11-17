@@ -27,15 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsImageSourceAttachmentPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class UnfurlDetailsImageSourceAttachmentPartialExtensions
+public sealed class CodeReviewUnfurlContext
+     : ApplicationUnfurlContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static Partial<UnfurlDetailsImageSourceAttachment> WithAttachment(this Partial<UnfurlDetailsImageSourceAttachment> it)
-        => it.AddFieldName("attachment");
+    [JsonPropertyName("className")]
+    public  string? ClassName => "CodeReviewUnfurlContext";
     
-    public static Partial<UnfurlDetailsImageSourceAttachment> WithAttachment(this Partial<UnfurlDetailsImageSourceAttachment> it, Func<Partial<ImageAttachment>, Partial<ImageAttachment>> partialBuilder)
-        => it.AddFieldName("attachment", partialBuilder(new Partial<ImageAttachment>(it)));
+    public CodeReviewUnfurlContext() { }
     
+    public CodeReviewUnfurlContext(string reviewId)
+    {
+        ReviewId = reviewId;
+    }
+    
+    private PropertyValue<string> _reviewId = new PropertyValue<string>(nameof(CodeReviewUnfurlContext), nameof(ReviewId));
+    
+    [Required]
+    [JsonPropertyName("reviewId")]
+    public string ReviewId
+    {
+        get => _reviewId.GetValue();
+        set => _reviewId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _reviewId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
 

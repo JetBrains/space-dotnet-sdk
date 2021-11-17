@@ -27,46 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.ArticleAppUnfurlContextPartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum AppMessageDeliveryType
+public static class ArticleAppUnfurlContextPartialExtensions
 {
-    [EnumMember(Value = "Webhook")]
-    Webhook,
-    
-    [EnumMember(Value = "Message")]
-    Message,
-    
-    [EnumMember(Value = "ListCommands")]
-    ListCommands,
-    
-    [EnumMember(Value = "ListMenuExtensions")]
-    ListMenuExtensions,
-    
-    [EnumMember(Value = "DispatchAction")]
-    DispatchAction,
-    
-    [EnumMember(Value = "DispatchMenuAction")]
-    DispatchMenuAction,
-    
-    [EnumMember(Value = "DispatchUnfurlAction")]
-    DispatchUnfurlAction,
-    
-    [EnumMember(Value = "InitPayload")]
-    InitPayload,
-    
-    [EnumMember(Value = "ChangeServerUrlPayload")]
-    ChangeServerUrlPayload,
-    
-    [EnumMember(Value = "ChangeClientSecretPayload")]
-    ChangeClientSecretPayload,
-    
-    [EnumMember(Value = "NewUnfurlQueueItemsPayload")]
-    NewUnfurlQueueItemsPayload,
-    
-    [EnumMember(Value = "Unknown")]
-    Unknown,
+    public static Partial<ArticleAppUnfurlContext> WithArticleId(this Partial<ArticleAppUnfurlContext> it)
+        => it.AddFieldName("articleId");
     
 }
 

@@ -91,5 +91,11 @@ public static class HADtoPartialExtensions
     public static Partial<HADto> WithIsRecord(this Partial<HADto> it)
         => it.AddFieldName("record");
     
+    public static Partial<HADto> WithErrorsField(this Partial<HADto> it)
+        => it.AddFieldName("errorsField");
+    
+    public static Partial<HADto> WithErrorsField(this Partial<HADto> it, Func<Partial<HAField>, Partial<HAField>> partialBuilder)
+        => it.AddFieldName("errorsField", partialBuilder(new Partial<HAField>(it)));
+    
 }
 

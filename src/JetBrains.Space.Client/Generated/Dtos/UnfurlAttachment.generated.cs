@@ -37,7 +37,7 @@ public sealed class UnfurlAttachment
     
     public UnfurlAttachment() { }
     
-    public UnfurlAttachment(Unfurl unfurl, string id, bool onlyVisibleToYou)
+    public UnfurlAttachment(Unfurl unfurl, string id, bool? onlyVisibleToYou = null)
     {
         Unfurl = unfurl;
         Id = id;
@@ -64,11 +64,10 @@ public sealed class UnfurlAttachment
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _onlyVisibleToYou = new PropertyValue<bool>(nameof(UnfurlAttachment), nameof(IsOnlyVisibleToYou));
+    private PropertyValue<bool?> _onlyVisibleToYou = new PropertyValue<bool?>(nameof(UnfurlAttachment), nameof(IsOnlyVisibleToYou));
     
-    [Required]
     [JsonPropertyName("onlyVisibleToYou")]
-    public bool IsOnlyVisibleToYou
+    public bool? IsOnlyVisibleToYou
     {
         get => _onlyVisibleToYou.GetValue();
         set => _onlyVisibleToYou.SetValue(value);

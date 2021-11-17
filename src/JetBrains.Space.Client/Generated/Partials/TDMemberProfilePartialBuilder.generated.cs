@@ -127,6 +127,9 @@ public static class TDMemberProfilePartialExtensions
     public static Partial<TDMemberProfile> WithHolidays(this Partial<TDMemberProfile> it, Func<Partial<PublicHoliday>, Partial<PublicHoliday>> partialBuilder)
         => it.AddFieldName("holidays", partialBuilder(new Partial<PublicHoliday>(it)));
     
+    public static Partial<TDMemberProfile> WithLeft(this Partial<TDMemberProfile> it)
+        => it.AddFieldName("left");
+    
     public static Partial<TDMemberProfile> WithLinks(this Partial<TDMemberProfile> it)
         => it.AddFieldName("links");
     

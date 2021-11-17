@@ -27,9 +27,35 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsImageSourcePartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class UnfurlDetailsImageSourcePartialExtensions
+public sealed class DocumentAppUnfurlContext
+     : ApplicationUnfurlContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
+    [JsonPropertyName("className")]
+    public  string? ClassName => "DocumentAppUnfurlContext";
+    
+    public DocumentAppUnfurlContext() { }
+    
+    public DocumentAppUnfurlContext(string documentId)
+    {
+        DocumentId = documentId;
+    }
+    
+    private PropertyValue<string> _documentId = new PropertyValue<string>(nameof(DocumentAppUnfurlContext), nameof(DocumentId));
+    
+    [Required]
+    [JsonPropertyName("documentId")]
+    public string DocumentId
+    {
+        get => _documentId.GetValue();
+        set => _documentId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _documentId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
 

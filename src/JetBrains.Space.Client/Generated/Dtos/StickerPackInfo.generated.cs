@@ -34,7 +34,7 @@ public sealed class StickerPackInfo
 {
     public StickerPackInfo() { }
     
-    public StickerPackInfo(string id, string name, bool favoriteByDefault, bool archived, bool @private, StickerPackInfo pack, List<Sticker> stickers, DateTime? addedAt = null)
+    public StickerPackInfo(string id, string name, bool favoriteByDefault, bool archived, bool @private, List<Sticker> stickers, DateTime? addedAt = null)
     {
         Id = id;
         Name = name;
@@ -42,7 +42,6 @@ public sealed class StickerPackInfo
         IsArchived = archived;
         IsPrivate = @private;
         AddedAt = addedAt;
-        Pack = pack;
         Stickers = stickers;
     }
     
@@ -106,16 +105,6 @@ public sealed class StickerPackInfo
         set => _addedAt.SetValue(value);
     }
 
-    private PropertyValue<StickerPackInfo> _pack = new PropertyValue<StickerPackInfo>(nameof(StickerPackInfo), nameof(Pack));
-    
-    [Required]
-    [JsonPropertyName("pack")]
-    public StickerPackInfo Pack
-    {
-        get => _pack.GetValue();
-        set => _pack.SetValue(value);
-    }
-
     private PropertyValue<List<Sticker>> _stickers = new PropertyValue<List<Sticker>>(nameof(StickerPackInfo), nameof(Stickers), new List<Sticker>());
     
     [Required]
@@ -134,7 +123,6 @@ public sealed class StickerPackInfo
         _archived.SetAccessPath(path, validateHasBeenSet);
         _private.SetAccessPath(path, validateHasBeenSet);
         _addedAt.SetAccessPath(path, validateHasBeenSet);
-        _pack.SetAccessPath(path, validateHasBeenSet);
         _stickers.SetAccessPath(path, validateHasBeenSet);
     }
 

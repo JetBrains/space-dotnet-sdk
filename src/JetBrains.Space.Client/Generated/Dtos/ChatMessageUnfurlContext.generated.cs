@@ -29,40 +29,44 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ExternalEndpointUpdateDTO
-     : IPropagatePropertyAccessPath
+public sealed class ChatMessageUnfurlContext
+     : ApplicationUnfurlContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public ExternalEndpointUpdateDTO() { }
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ChatMessageUnfurlContext";
     
-    public ExternalEndpointUpdateDTO(bool sslVerification, string? url = null)
+    public ChatMessageUnfurlContext() { }
+    
+    public ChatMessageUnfurlContext(string channel, ChatMessageIdentifier messageId)
     {
-        Url = url;
-        IsSslVerification = sslVerification;
+        Channel = channel;
+        MessageId = messageId;
     }
     
-    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(ExternalEndpointUpdateDTO), nameof(Url));
-    
-    [JsonPropertyName("url")]
-    public string? Url
-    {
-        get => _url.GetValue();
-        set => _url.SetValue(value);
-    }
-
-    private PropertyValue<bool> _sslVerification = new PropertyValue<bool>(nameof(ExternalEndpointUpdateDTO), nameof(IsSslVerification));
+    private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatMessageUnfurlContext), nameof(Channel));
     
     [Required]
-    [JsonPropertyName("sslVerification")]
-    public bool IsSslVerification
+    [JsonPropertyName("channel")]
+    public string Channel
     {
-        get => _sslVerification.GetValue();
-        set => _sslVerification.SetValue(value);
+        get => _channel.GetValue();
+        set => _channel.SetValue(value);
+    }
+
+    private PropertyValue<ChatMessageIdentifier> _messageId = new PropertyValue<ChatMessageIdentifier>(nameof(ChatMessageUnfurlContext), nameof(MessageId));
+    
+    [Required]
+    [JsonPropertyName("messageId")]
+    public ChatMessageIdentifier MessageId
+    {
+        get => _messageId.GetValue();
+        set => _messageId.SetValue(value);
     }
 
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
-        _url.SetAccessPath(path, validateHasBeenSet);
-        _sslVerification.SetAccessPath(path, validateHasBeenSet);
+        _channel.SetAccessPath(path, validateHasBeenSet);
+        _messageId.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

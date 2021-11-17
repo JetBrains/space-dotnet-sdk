@@ -86,7 +86,7 @@ public interface UnfurlDetails
     public static UnfurlDetailsFolder Folder(string name, bool root)
         => new UnfurlDetailsFolder(name: name, root: root);
     
-    public static UnfurlDetailsImage Image(string title, UnfurlDetailsImageSource image, string? icon = null)
+    public static UnfurlDetailsImage Image(string title, ImageAttachment image, string? icon = null)
         => new UnfurlDetailsImage(title: title, image: image, icon: icon);
     
     public static UnfurlDetailsInlineMarkdown InlineMarkdown(string markdown)

@@ -27,21 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsImagePartialBuilder;
+namespace JetBrains.Space.Client.HAInlineErrorPartialBuilder;
 
-public static class UnfurlDetailsImagePartialExtensions
+public static class HAInlineErrorPartialExtensions
 {
-    public static Partial<UnfurlDetailsImage> WithIcon(this Partial<UnfurlDetailsImage> it)
-        => it.AddFieldName("icon");
-    
-    public static Partial<UnfurlDetailsImage> WithTitle(this Partial<UnfurlDetailsImage> it)
-        => it.AddFieldName("title");
-    
-    public static Partial<UnfurlDetailsImage> WithImage(this Partial<UnfurlDetailsImage> it)
-        => it.AddFieldName("image");
-    
-    public static Partial<UnfurlDetailsImage> WithImage(this Partial<UnfurlDetailsImage> it, Func<Partial<ImageAttachment>, Partial<ImageAttachment>> partialBuilder)
-        => it.AddFieldName("image", partialBuilder(new Partial<ImageAttachment>(it)));
-    
 }
 

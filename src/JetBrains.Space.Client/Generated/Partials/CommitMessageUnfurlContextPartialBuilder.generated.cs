@@ -27,35 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.CommitMessageUnfurlContextPartialBuilder;
 
-public sealed class UnfurlDetailsImageSourceUrl
-     : UnfurlDetailsImageSource, IClassNameConvertible, IPropagatePropertyAccessPath
+public static class CommitMessageUnfurlContextPartialExtensions
 {
-    [JsonPropertyName("className")]
-    public override string? ClassName => "UnfurlDetailsImageSource.Url";
+    public static Partial<CommitMessageUnfurlContext> WithProjectId(this Partial<CommitMessageUnfurlContext> it)
+        => it.AddFieldName("projectId");
     
-    public UnfurlDetailsImageSourceUrl() { }
+    public static Partial<CommitMessageUnfurlContext> WithRepo(this Partial<CommitMessageUnfurlContext> it)
+        => it.AddFieldName("repo");
     
-    public UnfurlDetailsImageSourceUrl(string url)
-    {
-        Url = url;
-    }
+    public static Partial<CommitMessageUnfurlContext> WithCommitId(this Partial<CommitMessageUnfurlContext> it)
+        => it.AddFieldName("commitId");
     
-    private PropertyValue<string> _url = new PropertyValue<string>(nameof(UnfurlDetailsImageSourceUrl), nameof(Url));
-    
-    [Required]
-    [JsonPropertyName("url")]
-    public string Url
-    {
-        get => _url.GetValue();
-        set => _url.SetValue(value);
-    }
-
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
-    {
-        _url.SetAccessPath(path, validateHasBeenSet);
-    }
-
 }
 

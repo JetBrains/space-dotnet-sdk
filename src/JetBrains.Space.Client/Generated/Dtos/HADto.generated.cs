@@ -34,7 +34,7 @@ public sealed class HADto
 {
     public HADto() { }
     
-    public HADto(string id, string name, List<HADtoField> fields, HierarchyRole hierarchyRole, HierarchyRole2 hierarchyRole2, List<HADto> implements, List<HADto> inheritors, bool record, HADto? extends = null, HADeprecation? deprecation = null)
+    public HADto(string id, string name, List<HADtoField> fields, HierarchyRole hierarchyRole, HierarchyRole2 hierarchyRole2, List<HADto> implements, List<HADto> inheritors, bool record, HADto? extends = null, HADeprecation? deprecation = null, HAField? errorsField = null)
     {
         Id = id;
         Name = name;
@@ -46,6 +46,7 @@ public sealed class HADto
         Inheritors = inheritors;
         Deprecation = deprecation;
         IsRecord = record;
+        ErrorsField = errorsField;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(HADto), nameof(Id));
@@ -147,6 +148,15 @@ public sealed class HADto
         set => _record.SetValue(value);
     }
 
+    private PropertyValue<HAField?> _errorsField = new PropertyValue<HAField?>(nameof(HADto), nameof(ErrorsField));
+    
+    [JsonPropertyName("errorsField")]
+    public HAField? ErrorsField
+    {
+        get => _errorsField.GetValue();
+        set => _errorsField.SetValue(value);
+    }
+
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _id.SetAccessPath(path, validateHasBeenSet);
@@ -159,6 +169,7 @@ public sealed class HADto
         _inheritors.SetAccessPath(path, validateHasBeenSet);
         _deprecation.SetAccessPath(path, validateHasBeenSet);
         _record.SetAccessPath(path, validateHasBeenSet);
+        _errorsField.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

@@ -27,46 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.ChatMessageUnfurlContextPartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum AppMessageDeliveryType
+public static class ChatMessageUnfurlContextPartialExtensions
 {
-    [EnumMember(Value = "Webhook")]
-    Webhook,
+    public static Partial<ChatMessageUnfurlContext> WithChannel(this Partial<ChatMessageUnfurlContext> it)
+        => it.AddFieldName("channel");
     
-    [EnumMember(Value = "Message")]
-    Message,
+    public static Partial<ChatMessageUnfurlContext> WithMessageId(this Partial<ChatMessageUnfurlContext> it)
+        => it.AddFieldName("messageId");
     
-    [EnumMember(Value = "ListCommands")]
-    ListCommands,
-    
-    [EnumMember(Value = "ListMenuExtensions")]
-    ListMenuExtensions,
-    
-    [EnumMember(Value = "DispatchAction")]
-    DispatchAction,
-    
-    [EnumMember(Value = "DispatchMenuAction")]
-    DispatchMenuAction,
-    
-    [EnumMember(Value = "DispatchUnfurlAction")]
-    DispatchUnfurlAction,
-    
-    [EnumMember(Value = "InitPayload")]
-    InitPayload,
-    
-    [EnumMember(Value = "ChangeServerUrlPayload")]
-    ChangeServerUrlPayload,
-    
-    [EnumMember(Value = "ChangeClientSecretPayload")]
-    ChangeClientSecretPayload,
-    
-    [EnumMember(Value = "NewUnfurlQueueItemsPayload")]
-    NewUnfurlQueueItemsPayload,
-    
-    [EnumMember(Value = "Unknown")]
-    Unknown,
+    public static Partial<ChatMessageUnfurlContext> WithMessageId(this Partial<ChatMessageUnfurlContext> it, Func<Partial<ChatMessageIdentifier>, Partial<ChatMessageIdentifier>> partialBuilder)
+        => it.AddFieldName("messageId", partialBuilder(new Partial<ChatMessageIdentifier>(it)));
     
 }
 

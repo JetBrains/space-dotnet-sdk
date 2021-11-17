@@ -37,7 +37,7 @@ public sealed class UnfurlDetailsImage
     
     public UnfurlDetailsImage() { }
     
-    public UnfurlDetailsImage(string title, UnfurlDetailsImageSource image, string? icon = null)
+    public UnfurlDetailsImage(string title, ImageAttachment image, string? icon = null)
     {
         Icon = icon;
         Title = title;
@@ -63,11 +63,11 @@ public sealed class UnfurlDetailsImage
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<UnfurlDetailsImageSource> _image = new PropertyValue<UnfurlDetailsImageSource>(nameof(UnfurlDetailsImage), nameof(Image));
+    private PropertyValue<ImageAttachment> _image = new PropertyValue<ImageAttachment>(nameof(UnfurlDetailsImage), nameof(Image));
     
     [Required]
     [JsonPropertyName("image")]
-    public UnfurlDetailsImageSource Image
+    public ImageAttachment Image
     {
         get => _image.GetValue();
         set => _image.SetValue(value);

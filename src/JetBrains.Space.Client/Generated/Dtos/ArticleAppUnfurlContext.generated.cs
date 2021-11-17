@@ -29,44 +29,33 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum AppMessageDeliveryType
+public sealed class ArticleAppUnfurlContext
+     : ApplicationUnfurlContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [EnumMember(Value = "Webhook")]
-    Webhook,
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ArticleAppUnfurlContext";
     
-    [EnumMember(Value = "Message")]
-    Message,
+    public ArticleAppUnfurlContext() { }
     
-    [EnumMember(Value = "ListCommands")]
-    ListCommands,
+    public ArticleAppUnfurlContext(string articleId)
+    {
+        ArticleId = articleId;
+    }
     
-    [EnumMember(Value = "ListMenuExtensions")]
-    ListMenuExtensions,
+    private PropertyValue<string> _articleId = new PropertyValue<string>(nameof(ArticleAppUnfurlContext), nameof(ArticleId));
     
-    [EnumMember(Value = "DispatchAction")]
-    DispatchAction,
-    
-    [EnumMember(Value = "DispatchMenuAction")]
-    DispatchMenuAction,
-    
-    [EnumMember(Value = "DispatchUnfurlAction")]
-    DispatchUnfurlAction,
-    
-    [EnumMember(Value = "InitPayload")]
-    InitPayload,
-    
-    [EnumMember(Value = "ChangeServerUrlPayload")]
-    ChangeServerUrlPayload,
-    
-    [EnumMember(Value = "ChangeClientSecretPayload")]
-    ChangeClientSecretPayload,
-    
-    [EnumMember(Value = "NewUnfurlQueueItemsPayload")]
-    NewUnfurlQueueItemsPayload,
-    
-    [EnumMember(Value = "Unknown")]
-    Unknown,
-    
+    [Required]
+    [JsonPropertyName("articleId")]
+    public string ArticleId
+    {
+        get => _articleId.GetValue();
+        set => _articleId.SetValue(value);
+    }
+
+    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    {
+        _articleId.SetAccessPath(path, validateHasBeenSet);
+    }
+
 }
 

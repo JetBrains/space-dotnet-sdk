@@ -38,7 +38,7 @@ public interface Attachment
     public static ProfileLinkPreview ProfileLinkPreview(TDMemberProfile profile)
         => new ProfileLinkPreview(profile: profile);
     
-    public static UnfurlAttachment Unfurl(Unfurl unfurl, string id, bool onlyVisibleToYou)
+    public static UnfurlAttachment Unfurl(Unfurl unfurl, string id, bool? onlyVisibleToYou = null)
         => new UnfurlAttachment(unfurl: unfurl, id: id, onlyVisibleToYou: onlyVisibleToYou);
     
 }

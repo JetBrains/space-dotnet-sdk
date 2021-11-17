@@ -29,44 +29,23 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum AppMessageDeliveryType
+public interface ApplicationUnfurlContext
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [EnumMember(Value = "Webhook")]
-    Webhook,
+    public static ArticleAppUnfurlContext ArticleAppUnfurlContext(string articleId)
+        => new ArticleAppUnfurlContext(articleId: articleId);
     
-    [EnumMember(Value = "Message")]
-    Message,
+    public static ChatMessageUnfurlContext ChatMessageUnfurlContext(string channel, ChatMessageIdentifier messageId)
+        => new ChatMessageUnfurlContext(channel: channel, messageId: messageId);
     
-    [EnumMember(Value = "ListCommands")]
-    ListCommands,
+    public static CodeReviewUnfurlContext CodeReviewUnfurlContext(string reviewId)
+        => new CodeReviewUnfurlContext(reviewId: reviewId);
     
-    [EnumMember(Value = "ListMenuExtensions")]
-    ListMenuExtensions,
+    public static CommitMessageUnfurlContext CommitMessageUnfurlContext(string projectId, string repo, string commitId)
+        => new CommitMessageUnfurlContext(projectId: projectId, repo: repo, commitId: commitId);
     
-    [EnumMember(Value = "DispatchAction")]
-    DispatchAction,
-    
-    [EnumMember(Value = "DispatchMenuAction")]
-    DispatchMenuAction,
-    
-    [EnumMember(Value = "DispatchUnfurlAction")]
-    DispatchUnfurlAction,
-    
-    [EnumMember(Value = "InitPayload")]
-    InitPayload,
-    
-    [EnumMember(Value = "ChangeServerUrlPayload")]
-    ChangeServerUrlPayload,
-    
-    [EnumMember(Value = "ChangeClientSecretPayload")]
-    ChangeClientSecretPayload,
-    
-    [EnumMember(Value = "NewUnfurlQueueItemsPayload")]
-    NewUnfurlQueueItemsPayload,
-    
-    [EnumMember(Value = "Unknown")]
-    Unknown,
+    public static DocumentAppUnfurlContext DocumentAppUnfurlContext(string documentId)
+        => new DocumentAppUnfurlContext(documentId: documentId);
     
 }
 
