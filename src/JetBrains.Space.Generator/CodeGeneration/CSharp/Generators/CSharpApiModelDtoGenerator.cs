@@ -229,11 +229,11 @@ public class CSharpApiModelDtoGenerator
         var initialValueForAssignment = apiField.ToCSharpDefaultValueForAssignment(_codeGenerationContext);
         if (initialValueForAssignment != null)
         {
-            builder.AppendLine($">(nameof({typeNameForDto}), nameof({propertyNameForField}), {initialValueForAssignment});");
+            builder.AppendLine($">(nameof({typeNameForDto}), nameof({propertyNameForField}), \"{apiField.Name}\", {initialValueForAssignment});");
         }
         else
         {
-            builder.AppendLine($">(nameof({typeNameForDto}), nameof({propertyNameForField}));");
+            builder.AppendLine($">(nameof({typeNameForDto}), nameof({propertyNameForField}), \"{apiField.Name}\");");
         }
         builder.AppendLine($"{indent}");
 
@@ -275,7 +275,7 @@ public class CSharpApiModelDtoGenerator
         builder.AppendLine($"{indent}{{");
         indent.Increment();
             
-        builder.AppendLine($"{indent}get => {backingFieldNameForField}.GetValue();");
+        builder.AppendLine($"{indent}get => {backingFieldNameForField}.GetValue({nameof(IPropagatePropertyAccessPath.InlineErrors)});");
         builder.AppendLine($"{indent}set => {backingFieldNameForField}.SetValue(value);");
 
         indent.Decrement();
@@ -295,7 +295,7 @@ public class CSharpApiModelDtoGenerator
                 ? "virtual"
                 : string.Empty;
                 
-        builder.AppendLine($"{indent}public {modifier} void {nameof(IPropagatePropertyAccessPath.SetAccessPath)}(string path, bool validateHasBeenSet)");
+        builder.AppendLine($"{indent}public {modifier} void {nameof(IPropagatePropertyAccessPath.SetAccessPath)}(string parentChainPath, bool validateHasBeenSet)");
         builder.AppendLine($"{indent}{{");
         indent.Increment();
 
@@ -303,18 +303,17 @@ public class CSharpApiModelDtoGenerator
         {
             var backingFieldNameForField = apiDtoField.Field.ToCSharpBackingFieldName();
 
-            if (FeatureFlags.SupportRelaxedPropertyValueAccess) 
-            {
-                builder.AppendLine($"{indent}{backingFieldNameForField}.{nameof(IPropagatePropertyAccessPath.SetAccessPath)}(path, validateHasBeenSet, {(apiDtoField.Field.Type.Nullable ? "true" : "false")});");
-            }
-            else
-            {
-                builder.AppendLine($"{indent}{backingFieldNameForField}.{nameof(IPropagatePropertyAccessPath.SetAccessPath)}(path, validateHasBeenSet);");
-            }
+            builder.AppendLine($"{indent}{backingFieldNameForField}.{nameof(IPropagatePropertyAccessPath.SetAccessPath)}(parentChainPath, validateHasBeenSet);");
         }
 
         indent.Decrement();
         builder.AppendLine($"{indent}}}");
+        
+        builder.AppendLine();
+        
+        builder.AppendLine($"{indent}/// <inheritdoc />");
+        builder.AppendLine($"{indent}[JsonPropertyName(\"$errors\")]");
+        builder.AppendLine($"{indent}public List<{nameof(ApiInlineError)}> {nameof(IPropagatePropertyAccessPath.InlineErrors)} {{ get; set; }} = new();");
 
         return builder.ToString();
     }

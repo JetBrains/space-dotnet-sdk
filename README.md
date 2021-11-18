@@ -261,6 +261,39 @@ await foreach (var issue in _projectClient.Planning.Issues.GetAllIssuesAsyncEnum
 
 We can cast these types, use `switch` expressions on their type, and more.
 
+#### Inaccessible Fields and Properties
+
+When a given property or field can not be accessed, for example when our application does not have the required permissions, a `PropertyValueInaccessibleException` may be thrown.
+
+Let's say we try to retrieve the `Username` and `Logins` properties for a profile:
+
+```csharp
+var memberProfile = await teamDirectoryClient.Profiles
+    .GetProfileAsync(ProfileIdentifier.Username("Heather.Stewart"), _ => _
+        .WithUsername()
+        .WithLogins());
+```
+
+Accessing elements in the `Logins` property will throw a `PropertyValueInaccessibleException` with additional information, in this case because `Logins` are typically not available to applications.
+
+```csharp
+try
+{
+    // This will fail...
+    foreach (var login in firstProfile.Logins)
+    {
+        Console.WriteLine($"{login.Identifier}");
+    }
+}
+catch (PropertyValueInaccessibleException e)
+{
+    // ...and we'll get a pointer about why it fails:
+    // "Could not access following fields: 'logins'.
+    //  Property Logins on TDMemberProfile is not accessible."
+    Console.WriteLine(e.Message);
+}
+```
+
 ### Batch and `IAsyncEnumerable`
 
 Many operations in the Space API return a collection of results. To guarantee performance, these responses will be paginated, and can be retrieved in batches.

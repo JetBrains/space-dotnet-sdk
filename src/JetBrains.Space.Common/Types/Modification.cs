@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using JetBrains.Annotations;
@@ -27,9 +28,13 @@ public class Modification<T>
     public T New { get; set; } = default!;
 
     /// <inheritdoc />
-    public void SetAccessPath(string path, bool validateHasBeenSet)
+    public void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{path}->With{nameof(Old)}()", validateHasBeenSet, Old);
-        PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{path}->With{nameof(New)}()", validateHasBeenSet, New);
+        PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{parentChainPath}->With{nameof(Old)}()", validateHasBeenSet, Old);
+        PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{parentChainPath}->With{nameof(New)}()", validateHasBeenSet, New);
     }
+
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 }

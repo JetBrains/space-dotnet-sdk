@@ -6,19 +6,19 @@ namespace JetBrains.Space.Common;
 
 /// <summary>
 /// Represents an exception thrown by <see cref="PropertyValue{T}" /> when
-/// accessing a property that has not been requested from the API.
+/// accessing a property that is inaccessible.
 /// </summary>
 [PublicAPI]
-public class PropertyNotRequestedException 
+public class PropertyValueInaccessibleException 
     : Exception
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="T:PropertyNotRequestedException" /> class with a specific message.
+    /// Initializes a new instance of the <see cref="T:PropertyValueInaccessibleException" /> class with a specific message.
     /// </summary>
     /// <param name="message">A message that describes the current exception.</param>
-    /// <param name="typeName">The Dto type name on which an uninitialized property was accessed.</param>
-    /// <param name="propertyName">The uninitialized property name.</param>
-    public PropertyNotRequestedException(string message, string typeName, string propertyName) 
+    /// <param name="typeName">The Dto type name on which an inaccessible property was accessed.</param>
+    /// <param name="propertyName">The inaccessible property name.</param>
+    public PropertyValueInaccessibleException(string message, string typeName, string propertyName) 
         : base(message)
     {
         TypeName = typeName;
@@ -26,12 +26,12 @@ public class PropertyNotRequestedException
     }
         
     /// <summary>
-    /// Get the Dto type name on which an uninitialized property was accessed.
+    /// Get the Dto type name on which an inaccessible property was accessed.
     /// </summary>
     public string TypeName { get; }
 
     /// <summary>
-    /// Get the uninitialized property name.
+    /// Get the inaccessible property name.
     /// </summary>
     public string PropertyName { get; }
 }

@@ -16,6 +16,11 @@ namespace JetBrains.Space.Common.Json.Serialization.Polymorphism;
 public class ClassNameDtoTypeConverter : JsonConverterFactory
 {
     /// <summary>
+    /// The namespace name containing common classes for JetBrains.Space.
+    /// </summary>
+    internal const string SpaceDotNetCommonNamespace = "JetBrains.Space.Common";
+    
+    /// <summary>
     /// The namespace name containing generated classes for JetBrains.Space.
     /// </summary>
     internal const string SpaceDotNetClientNamespace = "JetBrains.Space.Client";
@@ -49,7 +54,14 @@ public class ClassNameDtoTypeConverter<T> : JsonConverter<T>
 {
     // ReSharper disable once StaticMemberInGenericType
     private static readonly ConcurrentDictionary<string, Type> TypeMap = new(StringComparer.OrdinalIgnoreCase);
-        
+
+    static ClassNameDtoTypeConverter()
+    {
+        // Redirect HA_InlineError.* to JetBrains.Space.Common types
+        TypeMap.TryAdd("HA_InlineError", typeof(ApiInlineError));
+        TypeMap.TryAdd("HA_InlineError.InaccessibleFields", typeof(ApiInlineErrorInaccessibleFields));
+    }
+    
     /// <inheritdoc />
     public override bool CanConvert(Type objectType) 
         => typeof(IClassNameConvertible).IsAssignableFrom(objectType);

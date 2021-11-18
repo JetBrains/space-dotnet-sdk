@@ -57,10 +57,12 @@ public static class CodeGenerationContextEnricher
     /// </summary>
     public static void RemoveDtoFieldsToIgnore(CodeGenerationContext context)
     {
+        // ReSharper disable once CollectionNeverUpdated.Local
         var fieldsToIgnore = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase)
         {
-            { "TD_MemberProfile", 
-                new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "logins" } }
+            // Example:
+            // { "TD_MemberProfile", 
+            //    new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "logins" } }
         };
             
         // Remove fields to ignore

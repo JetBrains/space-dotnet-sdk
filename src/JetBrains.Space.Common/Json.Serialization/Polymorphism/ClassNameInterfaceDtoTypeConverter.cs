@@ -26,5 +26,7 @@ public class ClassNameInterfaceDtoTypeConverter : ClassNameDtoTypeConverter
 {
     /// <inheritdoc />
     public override bool CanConvert(Type objectType) 
-        => objectType.IsInterface && objectType.Namespace == SpaceDotNetClientNamespace && objectType.FullName != null;
+        => objectType.IsInterface &&
+           (objectType.Namespace == SpaceDotNetCommonNamespace || objectType.Namespace == SpaceDotNetClientNamespace) &&
+           objectType.FullName != null;
 }

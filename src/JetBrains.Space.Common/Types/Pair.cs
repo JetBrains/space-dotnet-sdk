@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using JetBrains.Annotations;
@@ -28,9 +29,13 @@ public class Pair<TFirst, TSecond>
     public TSecond Second { get; set; } = default!;
 
     /// <inheritdoc />
-    public void SetAccessPath(string path, bool validateHasBeenSet)
+    public void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{path}->With{nameof(First)}()", validateHasBeenSet, First);
-        PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{path}->With{nameof(Second)}()", validateHasBeenSet, Second);
+        PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{parentChainPath}->With{nameof(First)}()", validateHasBeenSet, First);
+        PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{parentChainPath}->With{nameof(Second)}()", validateHasBeenSet, Second);
     }
+
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 }

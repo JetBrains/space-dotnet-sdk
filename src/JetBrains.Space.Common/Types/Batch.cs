@@ -57,10 +57,14 @@ public class Batch<T>
     }
 
     /// <inheritdoc />
-    public void SetAccessPath(string path, bool validateHasBeenSet)
+    public void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{path}->With{nameof(Data)}()", validateHasBeenSet, Data);
-        PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{path}->With{nameof(Next)}()", validateHasBeenSet, Next);
-        PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{path}->With{nameof(TotalCount)}()", validateHasBeenSet, TotalCount);
+        PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{parentChainPath}->With{nameof(Data)}()", validateHasBeenSet, Data);
+        PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{parentChainPath}->With{nameof(Next)}()", validateHasBeenSet, Next);
+        PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{parentChainPath}->With{nameof(TotalCount)}()", validateHasBeenSet, TotalCount);
     }
+
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 }

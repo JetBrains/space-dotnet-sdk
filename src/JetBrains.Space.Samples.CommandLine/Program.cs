@@ -35,9 +35,13 @@ public class Program
             Console.WriteLine($"{profile.Name.FirstName} {profile.Name.LastName}");
         }
             
-        // Get profiles with their Id. Accessing another property (such as name) will throw.
+        // Get profiles with their Id and Logins.
         var firstProfile = await teamDirectoryClient.Profiles.GetAllProfilesAsyncEnumerable("", false, false, partial: _ => _
-            .WithId()).FirstAsync();
+            .WithId()
+            .WithLogins(_ => _
+                .WithAllFieldsWildcard())).FirstAsync();
+        
+        // -- Accessing another property (such as name) will throw.
         try
         {
             // This will fail...
@@ -46,6 +50,23 @@ public class Program
         catch (PropertyNotRequestedException e)
         {
             Console.WriteLine($"The Space API client tells us which partial query should be added to access {e.PropertyName}:");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(e.Message);
+            Console.ResetColor();
+        }
+            
+        // -- The Logins property is not accessible, and will throw.
+        try
+        {
+            // This will fail...
+            foreach (var login in firstProfile.Logins)
+            {
+                Console.WriteLine($"{login.Identifier}");
+            }
+        }
+        catch (PropertyValueInaccessibleException e)
+        {
+            Console.WriteLine($"The Space API client tells us when the {e.PropertyName} property is not accessible:");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(e.Message);
             Console.ResetColor();
