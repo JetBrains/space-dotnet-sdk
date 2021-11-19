@@ -34,7 +34,7 @@ public sealed class KbDocumentItem
 {
     public KbDocumentItem() { }
     
-    public KbDocumentItem(KBBook book, string articleId, string id, string name, List<string> path, string? containerLinkId = null)
+    public KbDocumentItem(KBBook book, string articleId, string id, string name, List<string> path, string containerLinkId)
     {
         Book = book;
         ArticleId = articleId;
@@ -94,10 +94,11 @@ public sealed class KbDocumentItem
         set => _path.SetValue(value);
     }
 
-    private PropertyValue<string?> _containerLinkId = new PropertyValue<string?>(nameof(KbDocumentItem), nameof(ContainerLinkId));
+    private PropertyValue<string> _containerLinkId = new PropertyValue<string>(nameof(KbDocumentItem), nameof(ContainerLinkId));
     
+    [Required]
     [JsonPropertyName("containerLinkId")]
-    public string? ContainerLinkId
+    public string ContainerLinkId
     {
         get => _containerLinkId.GetValue();
         set => _containerLinkId.SetValue(value);

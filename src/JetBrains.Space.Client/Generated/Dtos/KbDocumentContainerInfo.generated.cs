@@ -37,7 +37,7 @@ public sealed class KbDocumentContainerInfo
     
     public KbDocumentContainerInfo() { }
     
-    public KbDocumentContainerInfo(KBBook book, KBArticle article)
+    public KbDocumentContainerInfo(KBBook book, KBArticle? article = null)
     {
         Book = book;
         Article = article;
@@ -53,11 +53,10 @@ public sealed class KbDocumentContainerInfo
         set => _book.SetValue(value);
     }
 
-    private PropertyValue<KBArticle> _article = new PropertyValue<KBArticle>(nameof(KbDocumentContainerInfo), nameof(Article));
+    private PropertyValue<KBArticle?> _article = new PropertyValue<KBArticle?>(nameof(KbDocumentContainerInfo), nameof(Article));
     
-    [Required]
     [JsonPropertyName("article")]
-    public KBArticle Article
+    public KBArticle? Article
     {
         get => _article.GetValue();
         set => _article.SetValue(value);

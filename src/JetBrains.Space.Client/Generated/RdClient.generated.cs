@@ -57,6 +57,7 @@ public partial class RdClient : ISpaceClient
         /// <list type="bullet">
         /// <item>
         /// <term>Manage dev environments of all project members</term>
+        /// <description>Allows to manage the lifecycle of dev environments that the user doesn't own (users can always manage their own environments)</description>
         /// </item>
         /// </list>
         /// </remarks>

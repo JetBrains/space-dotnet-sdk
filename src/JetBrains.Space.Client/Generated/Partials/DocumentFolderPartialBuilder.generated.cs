@@ -67,5 +67,11 @@ public static class DocumentFolderPartialExtensions
     public static Partial<DocumentFolder> WithUpdatedBy(this Partial<DocumentFolder> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
         => it.AddFieldName("updatedBy", partialBuilder(new Partial<CPrincipal>(it)));
     
+    public static Partial<DocumentFolder> WithCover(this Partial<DocumentFolder> it)
+        => it.AddFieldName("cover");
+    
+    public static Partial<DocumentFolder> WithCover(this Partial<DocumentFolder> it, Func<Partial<Document>, Partial<Document>> partialBuilder)
+        => it.AddFieldName("cover", partialBuilder(new Partial<Document>(it)));
+    
 }
 

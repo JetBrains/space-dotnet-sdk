@@ -34,7 +34,7 @@ public sealed class DocumentFolder
 {
     public DocumentFolder() { }
     
-    public DocumentFolder(string id, bool archived, string name, DateTime created, DateTime updated, DocumentFolder? parent = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
+    public DocumentFolder(string id, bool archived, string name, DateTime created, DateTime updated, DocumentFolder? parent = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null, Document? cover = null)
     {
         Id = id;
         IsArchived = archived;
@@ -44,6 +44,7 @@ public sealed class DocumentFolder
         CreatedBy = createdBy;
         Updated = updated;
         UpdatedBy = updatedBy;
+        Cover = cover;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(DocumentFolder), nameof(Id));
@@ -125,6 +126,15 @@ public sealed class DocumentFolder
         set => _updatedBy.SetValue(value);
     }
 
+    private PropertyValue<Document?> _cover = new PropertyValue<Document?>(nameof(DocumentFolder), nameof(Cover));
+    
+    [JsonPropertyName("cover")]
+    public Document? Cover
+    {
+        get => _cover.GetValue();
+        set => _cover.SetValue(value);
+    }
+
     public  void SetAccessPath(string path, bool validateHasBeenSet)
     {
         _id.SetAccessPath(path, validateHasBeenSet);
@@ -135,6 +145,7 @@ public sealed class DocumentFolder
         _createdBy.SetAccessPath(path, validateHasBeenSet);
         _updated.SetAccessPath(path, validateHasBeenSet);
         _updatedBy.SetAccessPath(path, validateHasBeenSet);
+        _cover.SetAccessPath(path, validateHasBeenSet);
     }
 
 }

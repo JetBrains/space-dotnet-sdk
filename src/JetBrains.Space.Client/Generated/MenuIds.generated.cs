@@ -212,21 +212,12 @@ public sealed class MenuId
                 
             }
             
-            public static class Schedule
-            {
-                /// <summary>
-                /// Represents the "Sidebar.Profile.Schedule.Sidebar" menu.
-                /// </summary>
-                public static readonly string Root = "Sidebar.Profile.Schedule.Sidebar";
-                
-                /// <summary>
-                /// Represents the "Sidebar.Profile.Schedule.My" menu.
-                ///
-                /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
-                /// </summary>
-                public static readonly string My = "Sidebar.Profile.Schedule.My";
-                
-            }
+            /// <summary>
+            /// Represents the "Sidebar.Profile.Schedule" menu.
+            ///
+            /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
+            /// </summary>
+            public static readonly string Schedule = "Sidebar.Profile.Schedule";
             
             /// <summary>
             /// Represents the "Sidebar.Profile.Security" menu.
