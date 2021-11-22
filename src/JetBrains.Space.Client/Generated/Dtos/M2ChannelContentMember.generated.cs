@@ -44,41 +44,45 @@ public sealed class M2ChannelContentMember
         MemberTeams = memberTeams;
     }
     
-    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(M2ChannelContentMember), nameof(Member));
+    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(M2ChannelContentMember), nameof(Member), "member");
     
     [Required]
     [JsonPropertyName("member")]
     public TDMemberProfile Member
     {
-        get => _member.GetValue();
+        get => _member.GetValue(InlineErrors);
         set => _member.SetValue(value);
     }
 
-    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentMember), nameof(NotificationDefaults));
+    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentMember), nameof(NotificationDefaults), "notificationDefaults");
     
     [Required]
     [JsonPropertyName("notificationDefaults")]
     public ChannelSpecificDefaults NotificationDefaults
     {
-        get => _notificationDefaults.GetValue();
+        get => _notificationDefaults.GetValue(InlineErrors);
         set => _notificationDefaults.SetValue(value);
     }
 
-    private PropertyValue<ProfileMembershipRecord?> _memberTeams = new PropertyValue<ProfileMembershipRecord?>(nameof(M2ChannelContentMember), nameof(MemberTeams));
+    private PropertyValue<ProfileMembershipRecord?> _memberTeams = new PropertyValue<ProfileMembershipRecord?>(nameof(M2ChannelContentMember), nameof(MemberTeams), "memberTeams");
     
     [JsonPropertyName("memberTeams")]
     public ProfileMembershipRecord? MemberTeams
     {
-        get => _memberTeams.GetValue();
+        get => _memberTeams.GetValue(InlineErrors);
         set => _memberTeams.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _member.SetAccessPath(path, validateHasBeenSet);
-        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-        _memberTeams.SetAccessPath(path, validateHasBeenSet);
+        _member.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _memberTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

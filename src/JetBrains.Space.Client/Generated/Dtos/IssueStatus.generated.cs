@@ -43,64 +43,68 @@ public sealed class IssueStatus
         Color = color;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(IssueStatus), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(IssueStatus), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(IssueStatus), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(IssueStatus), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(IssueStatus), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(IssueStatus), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(IssueStatus), nameof(IsResolved));
+    private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(IssueStatus), nameof(IsResolved), "resolved");
     
     [Required]
     [JsonPropertyName("resolved")]
     public bool IsResolved
     {
-        get => _resolved.GetValue();
+        get => _resolved.GetValue(InlineErrors);
         set => _resolved.SetValue(value);
     }
 
-    private PropertyValue<string> _color = new PropertyValue<string>(nameof(IssueStatus), nameof(Color));
+    private PropertyValue<string> _color = new PropertyValue<string>(nameof(IssueStatus), nameof(Color), "color");
     
     [Required]
     [JsonPropertyName("color")]
     public string Color
     {
-        get => _color.GetValue();
+        get => _color.GetValue(InlineErrors);
         set => _color.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _resolved.SetAccessPath(path, validateHasBeenSet);
-        _color.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _resolved.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _color.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,52 +42,56 @@ public sealed class HAUrlParameter
         Deprecation = deprecation;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAUrlParameter), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAUrlParameter), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAUrlParameter), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAUrlParameter), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<List<HAUrlParameterOption>> _options = new PropertyValue<List<HAUrlParameterOption>>(nameof(HAUrlParameter), nameof(Options), new List<HAUrlParameterOption>());
+    private PropertyValue<List<HAUrlParameterOption>> _options = new PropertyValue<List<HAUrlParameterOption>>(nameof(HAUrlParameter), nameof(Options), "options", new List<HAUrlParameterOption>());
     
     [Required]
     [JsonPropertyName("options")]
     public List<HAUrlParameterOption> Options
     {
-        get => _options.GetValue();
+        get => _options.GetValue(InlineErrors);
         set => _options.SetValue(value);
     }
 
-    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAUrlParameter), nameof(Deprecation));
+    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAUrlParameter), nameof(Deprecation), "deprecation");
     
     [JsonPropertyName("deprecation")]
     public HADeprecation? Deprecation
     {
-        get => _deprecation.GetValue();
+        get => _deprecation.GetValue(InlineErrors);
         set => _deprecation.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _options.SetAccessPath(path, validateHasBeenSet);
-        _deprecation.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _options.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

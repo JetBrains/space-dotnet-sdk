@@ -41,41 +41,45 @@ public class ProjectsResponsibilitiesPostRequest
         Notes = notes;
     }
     
-    private PropertyValue<string> _subjectId = new PropertyValue<string>(nameof(ProjectsResponsibilitiesPostRequest), nameof(SubjectId));
+    private PropertyValue<string> _subjectId = new PropertyValue<string>(nameof(ProjectsResponsibilitiesPostRequest), nameof(SubjectId), "subjectId");
     
     [Required]
     [JsonPropertyName("subjectId")]
     public string SubjectId
     {
-        get => _subjectId.GetValue();
+        get => _subjectId.GetValue(InlineErrors);
         set => _subjectId.SetValue(value);
     }
 
-    private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ProjectsResponsibilitiesPostRequest), nameof(Summary));
+    private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ProjectsResponsibilitiesPostRequest), nameof(Summary), "summary");
     
     [Required]
     [JsonPropertyName("summary")]
     public string Summary
     {
-        get => _summary.GetValue();
+        get => _summary.GetValue(InlineErrors);
         set => _summary.SetValue(value);
     }
 
-    private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(ProjectsResponsibilitiesPostRequest), nameof(Notes));
+    private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(ProjectsResponsibilitiesPostRequest), nameof(Notes), "notes");
     
     [JsonPropertyName("notes")]
     public string? Notes
     {
-        get => _notes.GetValue();
+        get => _notes.GetValue(InlineErrors);
         set => _notes.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _subjectId.SetAccessPath(path, validateHasBeenSet);
-        _summary.SetAccessPath(path, validateHasBeenSet);
-        _notes.SetAccessPath(path, validateHasBeenSet);
+        _subjectId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _summary.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notes.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

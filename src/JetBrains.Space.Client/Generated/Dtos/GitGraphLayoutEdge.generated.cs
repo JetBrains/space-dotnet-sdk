@@ -44,75 +44,79 @@ public sealed class GitGraphLayoutEdge
         Color = color;
     }
     
-    private PropertyValue<int> _from = new PropertyValue<int>(nameof(GitGraphLayoutEdge), nameof(From));
+    private PropertyValue<int> _from = new PropertyValue<int>(nameof(GitGraphLayoutEdge), nameof(From), "from");
     
     [Required]
     [JsonPropertyName("from")]
     public int From
     {
-        get => _from.GetValue();
+        get => _from.GetValue(InlineErrors);
         set => _from.SetValue(value);
     }
 
-    private PropertyValue<int> _to = new PropertyValue<int>(nameof(GitGraphLayoutEdge), nameof(To));
+    private PropertyValue<int> _to = new PropertyValue<int>(nameof(GitGraphLayoutEdge), nameof(To), "to");
     
     [Required]
     [JsonPropertyName("to")]
     public int To
     {
-        get => _to.GetValue();
+        get => _to.GetValue(InlineErrors);
         set => _to.SetValue(value);
     }
 
-    private PropertyValue<GitGraphEdgeType> _type = new PropertyValue<GitGraphEdgeType>(nameof(GitGraphLayoutEdge), nameof(Type));
+    private PropertyValue<GitGraphEdgeType> _type = new PropertyValue<GitGraphEdgeType>(nameof(GitGraphLayoutEdge), nameof(Type), "type");
     
     [Required]
     [JsonPropertyName("type")]
     public GitGraphEdgeType Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<GitGraphEdgeLineStyle> _style = new PropertyValue<GitGraphEdgeLineStyle>(nameof(GitGraphLayoutEdge), nameof(Style));
+    private PropertyValue<GitGraphEdgeLineStyle> _style = new PropertyValue<GitGraphEdgeLineStyle>(nameof(GitGraphLayoutEdge), nameof(Style), "style");
     
     [Required]
     [JsonPropertyName("style")]
     public GitGraphEdgeLineStyle Style
     {
-        get => _style.GetValue();
+        get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);
     }
 
-    private PropertyValue<bool> _hasArrow = new PropertyValue<bool>(nameof(GitGraphLayoutEdge), nameof(IsHasArrow));
+    private PropertyValue<bool> _hasArrow = new PropertyValue<bool>(nameof(GitGraphLayoutEdge), nameof(IsHasArrow), "hasArrow");
     
     [Required]
     [JsonPropertyName("hasArrow")]
     public bool IsHasArrow
     {
-        get => _hasArrow.GetValue();
+        get => _hasArrow.GetValue(InlineErrors);
         set => _hasArrow.SetValue(value);
     }
 
-    private PropertyValue<int> _color = new PropertyValue<int>(nameof(GitGraphLayoutEdge), nameof(Color));
+    private PropertyValue<int> _color = new PropertyValue<int>(nameof(GitGraphLayoutEdge), nameof(Color), "color");
     
     [Required]
     [JsonPropertyName("color")]
     public int Color
     {
-        get => _color.GetValue();
+        get => _color.GetValue(InlineErrors);
         set => _color.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _from.SetAccessPath(path, validateHasBeenSet);
-        _to.SetAccessPath(path, validateHasBeenSet);
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _style.SetAccessPath(path, validateHasBeenSet);
-        _hasArrow.SetAccessPath(path, validateHasBeenSet);
-        _color.SetAccessPath(path, validateHasBeenSet);
+        _from.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _to.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _style.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hasArrow.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _color.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

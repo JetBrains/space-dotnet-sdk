@@ -42,20 +42,24 @@ public sealed class BookContainerInfo
         Book = book;
     }
     
-    private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(BookContainerInfo), nameof(Book));
+    private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(BookContainerInfo), nameof(Book), "book");
     
     [Required]
     [JsonPropertyName("book")]
     public KBBook Book
     {
-        get => _book.GetValue();
+        get => _book.GetValue(InlineErrors);
         set => _book.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _book.SetAccessPath(path, validateHasBeenSet);
+        _book.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

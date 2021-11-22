@@ -42,53 +42,57 @@ public sealed class TDStats
         Locations = locations;
     }
     
-    private PropertyValue<int> _totalMembers = new PropertyValue<int>(nameof(TDStats), nameof(TotalMembers));
+    private PropertyValue<int> _totalMembers = new PropertyValue<int>(nameof(TDStats), nameof(TotalMembers), "totalMembers");
     
     [Required]
     [JsonPropertyName("totalMembers")]
     public int TotalMembers
     {
-        get => _totalMembers.GetValue();
+        get => _totalMembers.GetValue(InlineErrors);
         set => _totalMembers.SetValue(value);
     }
 
-    private PropertyValue<List<Pair<TDTeam, int>>> _teams = new PropertyValue<List<Pair<TDTeam, int>>>(nameof(TDStats), nameof(Teams), new List<Pair<TDTeam, int>>());
+    private PropertyValue<List<Pair<TDTeam, int>>> _teams = new PropertyValue<List<Pair<TDTeam, int>>>(nameof(TDStats), nameof(Teams), "teams", new List<Pair<TDTeam, int>>());
     
     [Required]
     [JsonPropertyName("teams")]
     public List<Pair<TDTeam, int>> Teams
     {
-        get => _teams.GetValue();
+        get => _teams.GetValue(InlineErrors);
         set => _teams.SetValue(value);
     }
 
-    private PropertyValue<List<Pair<TDRole, int>>> _roles = new PropertyValue<List<Pair<TDRole, int>>>(nameof(TDStats), nameof(Roles), new List<Pair<TDRole, int>>());
+    private PropertyValue<List<Pair<TDRole, int>>> _roles = new PropertyValue<List<Pair<TDRole, int>>>(nameof(TDStats), nameof(Roles), "roles", new List<Pair<TDRole, int>>());
     
     [Required]
     [JsonPropertyName("roles")]
     public List<Pair<TDRole, int>> Roles
     {
-        get => _roles.GetValue();
+        get => _roles.GetValue(InlineErrors);
         set => _roles.SetValue(value);
     }
 
-    private PropertyValue<List<Pair<TDLocation, int>>> _locations = new PropertyValue<List<Pair<TDLocation, int>>>(nameof(TDStats), nameof(Locations), new List<Pair<TDLocation, int>>());
+    private PropertyValue<List<Pair<TDLocation, int>>> _locations = new PropertyValue<List<Pair<TDLocation, int>>>(nameof(TDStats), nameof(Locations), "locations", new List<Pair<TDLocation, int>>());
     
     [Required]
     [JsonPropertyName("locations")]
     public List<Pair<TDLocation, int>> Locations
     {
-        get => _locations.GetValue();
+        get => _locations.GetValue(InlineErrors);
         set => _locations.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _totalMembers.SetAccessPath(path, validateHasBeenSet);
-        _teams.SetAccessPath(path, validateHasBeenSet);
-        _roles.SetAccessPath(path, validateHasBeenSet);
-        _locations.SetAccessPath(path, validateHasBeenSet);
+        _totalMembers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _teams.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _roles.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _locations.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

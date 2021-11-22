@@ -43,31 +43,35 @@ public sealed class MeetingWebhookEvent
         Meeting = meeting;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(MeetingWebhookEvent), nameof(Meta));
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(MeetingWebhookEvent), nameof(Meta), "meta");
     
     [Required]
     [JsonPropertyName("meta")]
     public KMetaMod Meta
     {
-        get => _meta.GetValue();
+        get => _meta.GetValue(InlineErrors);
         set => _meta.SetValue(value);
     }
 
-    private PropertyValue<MeetingRecord> _meeting = new PropertyValue<MeetingRecord>(nameof(MeetingWebhookEvent), nameof(Meeting));
+    private PropertyValue<MeetingRecord> _meeting = new PropertyValue<MeetingRecord>(nameof(MeetingWebhookEvent), nameof(Meeting), "meeting");
     
     [Required]
     [JsonPropertyName("meeting")]
     public MeetingRecord Meeting
     {
-        get => _meeting.GetValue();
+        get => _meeting.GetValue(InlineErrors);
         set => _meeting.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meta.SetAccessPath(path, validateHasBeenSet);
-        _meeting.SetAccessPath(path, validateHasBeenSet);
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _meeting.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -39,20 +39,24 @@ public class ProjectsTagsTrackAccessPostRequest
         Tag = tag;
     }
     
-    private PropertyValue<string> _tag = new PropertyValue<string>(nameof(ProjectsTagsTrackAccessPostRequest), nameof(Tag));
+    private PropertyValue<string> _tag = new PropertyValue<string>(nameof(ProjectsTagsTrackAccessPostRequest), nameof(Tag), "tag");
     
     [Required]
     [JsonPropertyName("tag")]
     public string Tag
     {
-        get => _tag.GetValue();
+        get => _tag.GetValue(InlineErrors);
         set => _tag.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _tag.SetAccessPath(path, validateHasBeenSet);
+        _tag.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

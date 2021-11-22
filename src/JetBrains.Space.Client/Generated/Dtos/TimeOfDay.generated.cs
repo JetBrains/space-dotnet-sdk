@@ -41,41 +41,45 @@ public sealed class TimeOfDay
         Seconds = seconds;
     }
     
-    private PropertyValue<int> _hours = new PropertyValue<int>(nameof(TimeOfDay), nameof(Hours));
+    private PropertyValue<int> _hours = new PropertyValue<int>(nameof(TimeOfDay), nameof(Hours), "hours");
     
     [Required]
     [JsonPropertyName("hours")]
     public int Hours
     {
-        get => _hours.GetValue();
+        get => _hours.GetValue(InlineErrors);
         set => _hours.SetValue(value);
     }
 
-    private PropertyValue<int> _minutes = new PropertyValue<int>(nameof(TimeOfDay), nameof(Minutes));
+    private PropertyValue<int> _minutes = new PropertyValue<int>(nameof(TimeOfDay), nameof(Minutes), "minutes");
     
     [Required]
     [JsonPropertyName("minutes")]
     public int Minutes
     {
-        get => _minutes.GetValue();
+        get => _minutes.GetValue(InlineErrors);
         set => _minutes.SetValue(value);
     }
 
-    private PropertyValue<int?> _seconds = new PropertyValue<int?>(nameof(TimeOfDay), nameof(Seconds));
+    private PropertyValue<int?> _seconds = new PropertyValue<int?>(nameof(TimeOfDay), nameof(Seconds), "seconds");
     
     [JsonPropertyName("seconds")]
     public int? Seconds
     {
-        get => _seconds.GetValue();
+        get => _seconds.GetValue(InlineErrors);
         set => _seconds.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _hours.SetAccessPath(path, validateHasBeenSet);
-        _minutes.SetAccessPath(path, validateHasBeenSet);
-        _seconds.SetAccessPath(path, validateHasBeenSet);
+        _hours.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _minutes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _seconds.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

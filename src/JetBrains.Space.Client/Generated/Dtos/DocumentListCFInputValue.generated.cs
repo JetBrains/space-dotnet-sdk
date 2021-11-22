@@ -42,20 +42,24 @@ public sealed class DocumentListCFInputValue
         Documents = documents;
     }
     
-    private PropertyValue<List<string>> _documents = new PropertyValue<List<string>>(nameof(DocumentListCFInputValue), nameof(Documents), new List<string>());
+    private PropertyValue<List<string>> _documents = new PropertyValue<List<string>>(nameof(DocumentListCFInputValue), nameof(Documents), "documents", new List<string>());
     
     [Required]
     [JsonPropertyName("documents")]
     public List<string> Documents
     {
-        get => _documents.GetValue();
+        get => _documents.GetValue(InlineErrors);
         set => _documents.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _documents.SetAccessPath(path, validateHasBeenSet);
+        _documents.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

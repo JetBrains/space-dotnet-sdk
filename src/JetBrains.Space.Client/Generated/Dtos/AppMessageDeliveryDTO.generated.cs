@@ -53,166 +53,170 @@ public sealed class AppMessageDeliveryDTO
         HttpClientError = httpClientError;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(AppMessageDeliveryDTO), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(AppMessageDeliveryDTO), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<AppMessageDeliveryType> _messageType = new PropertyValue<AppMessageDeliveryType>(nameof(AppMessageDeliveryDTO), nameof(MessageType));
+    private PropertyValue<AppMessageDeliveryType> _messageType = new PropertyValue<AppMessageDeliveryType>(nameof(AppMessageDeliveryDTO), nameof(MessageType), "messageType");
     
     [Required]
     [JsonPropertyName("messageType")]
     public AppMessageDeliveryType MessageType
     {
-        get => _messageType.GetValue();
+        get => _messageType.GetValue(InlineErrors);
         set => _messageType.SetValue(value);
     }
 
-    private PropertyValue<WebhookRecord?> _webhook = new PropertyValue<WebhookRecord?>(nameof(AppMessageDeliveryDTO), nameof(Webhook));
+    private PropertyValue<WebhookRecord?> _webhook = new PropertyValue<WebhookRecord?>(nameof(AppMessageDeliveryDTO), nameof(Webhook), "webhook");
     
     [JsonPropertyName("webhook")]
     public WebhookRecord? Webhook
     {
-        get => _webhook.GetValue();
+        get => _webhook.GetValue(InlineErrors);
         set => _webhook.SetValue(value);
     }
 
-    private PropertyValue<string?> _deliveryId = new PropertyValue<string?>(nameof(AppMessageDeliveryDTO), nameof(DeliveryId));
+    private PropertyValue<string?> _deliveryId = new PropertyValue<string?>(nameof(AppMessageDeliveryDTO), nameof(DeliveryId), "deliveryId");
     
     [JsonPropertyName("deliveryId")]
     public string? DeliveryId
     {
-        get => _deliveryId.GetValue();
+        get => _deliveryId.GetValue(InlineErrors);
         set => _deliveryId.SetValue(value);
     }
 
-    private PropertyValue<bool> _successful = new PropertyValue<bool>(nameof(AppMessageDeliveryDTO), nameof(IsSuccessful));
+    private PropertyValue<bool> _successful = new PropertyValue<bool>(nameof(AppMessageDeliveryDTO), nameof(IsSuccessful), "successful");
     
     [Required]
     [JsonPropertyName("successful")]
     public bool IsSuccessful
     {
-        get => _successful.GetValue();
+        get => _successful.GetValue(InlineErrors);
         set => _successful.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _sentAt = new PropertyValue<DateTime>(nameof(AppMessageDeliveryDTO), nameof(SentAt));
+    private PropertyValue<DateTime> _sentAt = new PropertyValue<DateTime>(nameof(AppMessageDeliveryDTO), nameof(SentAt), "sentAt");
     
     [Required]
     [JsonPropertyName("sentAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime SentAt
     {
-        get => _sentAt.GetValue();
+        get => _sentAt.GetValue(InlineErrors);
         set => _sentAt.SetValue(value);
     }
 
-    private PropertyValue<string> _duration = new PropertyValue<string>(nameof(AppMessageDeliveryDTO), nameof(Duration));
+    private PropertyValue<string> _duration = new PropertyValue<string>(nameof(AppMessageDeliveryDTO), nameof(Duration), "duration");
     
     [Required]
     [JsonPropertyName("duration")]
     public string Duration
     {
-        get => _duration.GetValue();
+        get => _duration.GetValue(InlineErrors);
         set => _duration.SetValue(value);
     }
 
-    private PropertyValue<string> _method = new PropertyValue<string>(nameof(AppMessageDeliveryDTO), nameof(Method));
+    private PropertyValue<string> _method = new PropertyValue<string>(nameof(AppMessageDeliveryDTO), nameof(Method), "method");
     
     [Required]
     [JsonPropertyName("method")]
     public string Method
     {
-        get => _method.GetValue();
+        get => _method.GetValue(InlineErrors);
         set => _method.SetValue(value);
     }
 
-    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(AppMessageDeliveryDTO), nameof(Url));
+    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(AppMessageDeliveryDTO), nameof(Url), "url");
     
     [JsonPropertyName("url")]
     public string? Url
     {
-        get => _url.GetValue();
+        get => _url.GetValue(InlineErrors);
         set => _url.SetValue(value);
     }
 
-    private PropertyValue<List<HttpHeaderDTO>?> _requestHeaders = new PropertyValue<List<HttpHeaderDTO>?>(nameof(AppMessageDeliveryDTO), nameof(RequestHeaders));
+    private PropertyValue<List<HttpHeaderDTO>?> _requestHeaders = new PropertyValue<List<HttpHeaderDTO>?>(nameof(AppMessageDeliveryDTO), nameof(RequestHeaders), "requestHeaders");
     
     [JsonPropertyName("requestHeaders")]
     public List<HttpHeaderDTO>? RequestHeaders
     {
-        get => _requestHeaders.GetValue();
+        get => _requestHeaders.GetValue(InlineErrors);
         set => _requestHeaders.SetValue(value);
     }
 
-    private PropertyValue<string?> _requestBody = new PropertyValue<string?>(nameof(AppMessageDeliveryDTO), nameof(RequestBody));
+    private PropertyValue<string?> _requestBody = new PropertyValue<string?>(nameof(AppMessageDeliveryDTO), nameof(RequestBody), "requestBody");
     
     [JsonPropertyName("requestBody")]
     public string? RequestBody
     {
-        get => _requestBody.GetValue();
+        get => _requestBody.GetValue(InlineErrors);
         set => _requestBody.SetValue(value);
     }
 
-    private PropertyValue<int?> _responseStatusCode = new PropertyValue<int?>(nameof(AppMessageDeliveryDTO), nameof(ResponseStatusCode));
+    private PropertyValue<int?> _responseStatusCode = new PropertyValue<int?>(nameof(AppMessageDeliveryDTO), nameof(ResponseStatusCode), "responseStatusCode");
     
     [JsonPropertyName("responseStatusCode")]
     public int? ResponseStatusCode
     {
-        get => _responseStatusCode.GetValue();
+        get => _responseStatusCode.GetValue(InlineErrors);
         set => _responseStatusCode.SetValue(value);
     }
 
-    private PropertyValue<List<HttpHeaderDTO>?> _responseHeaders = new PropertyValue<List<HttpHeaderDTO>?>(nameof(AppMessageDeliveryDTO), nameof(ResponseHeaders));
+    private PropertyValue<List<HttpHeaderDTO>?> _responseHeaders = new PropertyValue<List<HttpHeaderDTO>?>(nameof(AppMessageDeliveryDTO), nameof(ResponseHeaders), "responseHeaders");
     
     [JsonPropertyName("responseHeaders")]
     public List<HttpHeaderDTO>? ResponseHeaders
     {
-        get => _responseHeaders.GetValue();
+        get => _responseHeaders.GetValue(InlineErrors);
         set => _responseHeaders.SetValue(value);
     }
 
-    private PropertyValue<string?> _responseBody = new PropertyValue<string?>(nameof(AppMessageDeliveryDTO), nameof(ResponseBody));
+    private PropertyValue<string?> _responseBody = new PropertyValue<string?>(nameof(AppMessageDeliveryDTO), nameof(ResponseBody), "responseBody");
     
     [JsonPropertyName("responseBody")]
     public string? ResponseBody
     {
-        get => _responseBody.GetValue();
+        get => _responseBody.GetValue(InlineErrors);
         set => _responseBody.SetValue(value);
     }
 
-    private PropertyValue<AppMessageDeliveryDTOClientErrorDTO?> _httpClientError = new PropertyValue<AppMessageDeliveryDTOClientErrorDTO?>(nameof(AppMessageDeliveryDTO), nameof(HttpClientError));
+    private PropertyValue<AppMessageDeliveryDTOClientErrorDTO?> _httpClientError = new PropertyValue<AppMessageDeliveryDTOClientErrorDTO?>(nameof(AppMessageDeliveryDTO), nameof(HttpClientError), "httpClientError");
     
     [JsonPropertyName("httpClientError")]
     public AppMessageDeliveryDTOClientErrorDTO? HttpClientError
     {
-        get => _httpClientError.GetValue();
+        get => _httpClientError.GetValue(InlineErrors);
         set => _httpClientError.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _messageType.SetAccessPath(path, validateHasBeenSet);
-        _webhook.SetAccessPath(path, validateHasBeenSet);
-        _deliveryId.SetAccessPath(path, validateHasBeenSet);
-        _successful.SetAccessPath(path, validateHasBeenSet);
-        _sentAt.SetAccessPath(path, validateHasBeenSet);
-        _duration.SetAccessPath(path, validateHasBeenSet);
-        _method.SetAccessPath(path, validateHasBeenSet);
-        _url.SetAccessPath(path, validateHasBeenSet);
-        _requestHeaders.SetAccessPath(path, validateHasBeenSet);
-        _requestBody.SetAccessPath(path, validateHasBeenSet);
-        _responseStatusCode.SetAccessPath(path, validateHasBeenSet);
-        _responseHeaders.SetAccessPath(path, validateHasBeenSet);
-        _responseBody.SetAccessPath(path, validateHasBeenSet);
-        _httpClientError.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messageType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _webhook.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deliveryId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _successful.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sentAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _duration.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _method.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _requestHeaders.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _requestBody.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _responseStatusCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _responseHeaders.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _responseBody.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _httpClientError.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

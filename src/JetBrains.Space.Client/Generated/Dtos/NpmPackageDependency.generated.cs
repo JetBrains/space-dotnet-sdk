@@ -41,41 +41,45 @@ public sealed class NpmPackageDependency
         Type = type;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(NpmPackageDependency), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(NpmPackageDependency), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _version = new PropertyValue<string>(nameof(NpmPackageDependency), nameof(Version));
+    private PropertyValue<string> _version = new PropertyValue<string>(nameof(NpmPackageDependency), nameof(Version), "version");
     
     [Required]
     [JsonPropertyName("version")]
     public string Version
     {
-        get => _version.GetValue();
+        get => _version.GetValue(InlineErrors);
         set => _version.SetValue(value);
     }
 
-    private PropertyValue<string?> _type = new PropertyValue<string?>(nameof(NpmPackageDependency), nameof(Type));
+    private PropertyValue<string?> _type = new PropertyValue<string?>(nameof(NpmPackageDependency), nameof(Type), "type");
     
     [JsonPropertyName("type")]
     public string? Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _version.SetAccessPath(path, validateHasBeenSet);
-        _type.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

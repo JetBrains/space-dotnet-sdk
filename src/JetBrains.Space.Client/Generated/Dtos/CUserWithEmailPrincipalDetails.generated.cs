@@ -43,31 +43,35 @@ public sealed class CUserWithEmailPrincipalDetails
         Email = email;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(CUserWithEmailPrincipalDetails), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(CUserWithEmailPrincipalDetails), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _email = new PropertyValue<string>(nameof(CUserWithEmailPrincipalDetails), nameof(Email));
+    private PropertyValue<string> _email = new PropertyValue<string>(nameof(CUserWithEmailPrincipalDetails), nameof(Email), "email");
     
     [Required]
     [JsonPropertyName("email")]
     public string Email
     {
-        get => _email.GetValue();
+        get => _email.GetValue(InlineErrors);
         set => _email.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _email.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _email.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

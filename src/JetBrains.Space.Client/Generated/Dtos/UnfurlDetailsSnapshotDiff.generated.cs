@@ -43,31 +43,35 @@ public sealed class UnfurlDetailsSnapshotDiff
         BaseSnapshotId = baseSnapshotId;
     }
     
-    private PropertyValue<string> _snapshotId = new PropertyValue<string>(nameof(UnfurlDetailsSnapshotDiff), nameof(SnapshotId));
+    private PropertyValue<string> _snapshotId = new PropertyValue<string>(nameof(UnfurlDetailsSnapshotDiff), nameof(SnapshotId), "snapshotId");
     
     [Required]
     [JsonPropertyName("snapshotId")]
     public string SnapshotId
     {
-        get => _snapshotId.GetValue();
+        get => _snapshotId.GetValue(InlineErrors);
         set => _snapshotId.SetValue(value);
     }
 
-    private PropertyValue<string> _baseSnapshotId = new PropertyValue<string>(nameof(UnfurlDetailsSnapshotDiff), nameof(BaseSnapshotId));
+    private PropertyValue<string> _baseSnapshotId = new PropertyValue<string>(nameof(UnfurlDetailsSnapshotDiff), nameof(BaseSnapshotId), "baseSnapshotId");
     
     [Required]
     [JsonPropertyName("baseSnapshotId")]
     public string BaseSnapshotId
     {
-        get => _baseSnapshotId.GetValue();
+        get => _baseSnapshotId.GetValue(InlineErrors);
         set => _baseSnapshotId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _snapshotId.SetAccessPath(path, validateHasBeenSet);
-        _baseSnapshotId.SetAccessPath(path, validateHasBeenSet);
+        _snapshotId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _baseSnapshotId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

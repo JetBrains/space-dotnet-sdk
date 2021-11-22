@@ -43,29 +43,33 @@ public sealed class MCOutline
         Text = text;
     }
     
-    private PropertyValue<MCElement?> _icon = new PropertyValue<MCElement?>(nameof(MCOutline), nameof(Icon));
+    private PropertyValue<MCElement?> _icon = new PropertyValue<MCElement?>(nameof(MCOutline), nameof(Icon), "icon");
     
     [JsonPropertyName("icon")]
     public MCElement? Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<MCText?> _text = new PropertyValue<MCText?>(nameof(MCOutline), nameof(Text));
+    private PropertyValue<MCText?> _text = new PropertyValue<MCText?>(nameof(MCOutline), nameof(Text), "text");
     
     [JsonPropertyName("text")]
     public MCText? Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _icon.SetAccessPath(path, validateHasBeenSet);
-        _text.SetAccessPath(path, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

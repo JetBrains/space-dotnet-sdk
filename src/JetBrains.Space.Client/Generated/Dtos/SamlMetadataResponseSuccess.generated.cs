@@ -42,20 +42,24 @@ public sealed class SamlMetadataResponseSuccess
         Metadata = metadata;
     }
     
-    private PropertyValue<string> _metadata = new PropertyValue<string>(nameof(SamlMetadataResponseSuccess), nameof(Metadata));
+    private PropertyValue<string> _metadata = new PropertyValue<string>(nameof(SamlMetadataResponseSuccess), nameof(Metadata), "metadata");
     
     [Required]
     [JsonPropertyName("metadata")]
     public string Metadata
     {
-        get => _metadata.GetValue();
+        get => _metadata.GetValue(InlineErrors);
         set => _metadata.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _metadata.SetAccessPath(path, validateHasBeenSet);
+        _metadata.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

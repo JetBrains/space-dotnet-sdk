@@ -44,41 +44,45 @@ public sealed class ChannelMessageMenuActionContext
         MessageId = messageId;
     }
     
-    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(ChannelMessageMenuActionContext), nameof(MenuId));
+    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(ChannelMessageMenuActionContext), nameof(MenuId), "menuId");
     
     [Required]
     [JsonPropertyName("menuId")]
     public string MenuId
     {
-        get => _menuId.GetValue();
+        get => _menuId.GetValue(InlineErrors);
         set => _menuId.SetValue(value);
     }
 
-    private PropertyValue<string?> _channelId = new PropertyValue<string?>(nameof(ChannelMessageMenuActionContext), nameof(ChannelId));
+    private PropertyValue<string?> _channelId = new PropertyValue<string?>(nameof(ChannelMessageMenuActionContext), nameof(ChannelId), "channelId");
     
     [JsonPropertyName("channelId")]
     public string? ChannelId
     {
-        get => _channelId.GetValue();
+        get => _channelId.GetValue(InlineErrors);
         set => _channelId.SetValue(value);
     }
 
-    private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(ChannelMessageMenuActionContext), nameof(MessageId));
+    private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(ChannelMessageMenuActionContext), nameof(MessageId), "messageId");
     
     [Required]
     [JsonPropertyName("messageId")]
     public string MessageId
     {
-        get => _messageId.GetValue();
+        get => _messageId.GetValue(InlineErrors);
         set => _messageId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _menuId.SetAccessPath(path, validateHasBeenSet);
-        _channelId.SetAccessPath(path, validateHasBeenSet);
-        _messageId.SetAccessPath(path, validateHasBeenSet);
+        _menuId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messageId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

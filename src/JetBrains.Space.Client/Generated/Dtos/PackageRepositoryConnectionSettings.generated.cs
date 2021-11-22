@@ -39,9 +39,13 @@ public abstract class PackageRepositoryConnectionSettings
     public static MavenRepositoryConnectionSettings MavenRepositoryConnectionSettings(NexusStagingProfile? nexusStagingProfile = null)
         => new MavenRepositoryConnectionSettings(nexusStagingProfile: nexusStagingProfile);
     
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -44,69 +44,73 @@ public class ProjectsForProjectPatchRequest
         Icon = icon;
     }
     
-    private PropertyValue<ProjectKey?> _key = new PropertyValue<ProjectKey?>(nameof(ProjectsForProjectPatchRequest), nameof(Key));
+    private PropertyValue<ProjectKey?> _key = new PropertyValue<ProjectKey?>(nameof(ProjectsForProjectPatchRequest), nameof(Key), "key");
     
     [JsonPropertyName("key")]
     public ProjectKey? Key
     {
-        get => _key.GetValue();
+        get => _key.GetValue(InlineErrors);
         set => _key.SetValue(value);
     }
 
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectPatchRequest), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectPatchRequest), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPatchRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPatchRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<bool?> _private = new PropertyValue<bool?>(nameof(ProjectsForProjectPatchRequest), nameof(IsPrivate));
+    private PropertyValue<bool?> _private = new PropertyValue<bool?>(nameof(ProjectsForProjectPatchRequest), nameof(IsPrivate), "private");
     
     [JsonPropertyName("private")]
     public bool? IsPrivate
     {
-        get => _private.GetValue();
+        get => _private.GetValue(InlineErrors);
         set => _private.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(ProjectsForProjectPatchRequest), nameof(Tags));
+    private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(ProjectsForProjectPatchRequest), nameof(Tags), "tags");
     
     [JsonPropertyName("tags")]
     public List<string>? Tags
     {
-        get => _tags.GetValue();
+        get => _tags.GetValue(InlineErrors);
         set => _tags.SetValue(value);
     }
 
-    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(ProjectsForProjectPatchRequest), nameof(Icon));
+    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(ProjectsForProjectPatchRequest), nameof(Icon), "icon");
     
     [JsonPropertyName("icon")]
     public string? Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _key.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _private.SetAccessPath(path, validateHasBeenSet);
-        _tags.SetAccessPath(path, validateHasBeenSet);
-        _icon.SetAccessPath(path, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _private.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

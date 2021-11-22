@@ -40,30 +40,34 @@ public sealed class HARight
         Description = description;
     }
     
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(HARight), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(HARight), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(HARight), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(HARight), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

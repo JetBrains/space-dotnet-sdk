@@ -42,19 +42,23 @@ public sealed class M2TextItemContent
         IsMarkdown = markdown;
     }
     
-    private PropertyValue<bool?> _markdown = new PropertyValue<bool?>(nameof(M2TextItemContent), nameof(IsMarkdown));
+    private PropertyValue<bool?> _markdown = new PropertyValue<bool?>(nameof(M2TextItemContent), nameof(IsMarkdown), "markdown");
     
     [JsonPropertyName("markdown")]
     public bool? IsMarkdown
     {
-        get => _markdown.GetValue();
+        get => _markdown.GetValue(InlineErrors);
         set => _markdown.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _markdown.SetAccessPath(path, validateHasBeenSet);
+        _markdown.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

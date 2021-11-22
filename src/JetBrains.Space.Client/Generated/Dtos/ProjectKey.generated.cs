@@ -39,20 +39,24 @@ public sealed class ProjectKey
         Key = key;
     }
     
-    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectKey), nameof(Key));
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectKey), nameof(Key), "key");
     
     [Required]
     [JsonPropertyName("key")]
     public string Key
     {
-        get => _key.GetValue();
+        get => _key.GetValue(InlineErrors);
         set => _key.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _key.SetAccessPath(path, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

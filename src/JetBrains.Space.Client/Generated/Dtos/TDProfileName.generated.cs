@@ -40,31 +40,35 @@ public sealed class TDProfileName
         LastName = lastName;
     }
     
-    private PropertyValue<string> _firstName = new PropertyValue<string>(nameof(TDProfileName), nameof(FirstName));
+    private PropertyValue<string> _firstName = new PropertyValue<string>(nameof(TDProfileName), nameof(FirstName), "firstName");
     
     [Required]
     [JsonPropertyName("firstName")]
     public string FirstName
     {
-        get => _firstName.GetValue();
+        get => _firstName.GetValue(InlineErrors);
         set => _firstName.SetValue(value);
     }
 
-    private PropertyValue<string> _lastName = new PropertyValue<string>(nameof(TDProfileName), nameof(LastName));
+    private PropertyValue<string> _lastName = new PropertyValue<string>(nameof(TDProfileName), nameof(LastName), "lastName");
     
     [Required]
     [JsonPropertyName("lastName")]
     public string LastName
     {
-        get => _lastName.GetValue();
+        get => _lastName.GetValue(InlineErrors);
         set => _lastName.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _firstName.SetAccessPath(path, validateHasBeenSet);
-        _lastName.SetAccessPath(path, validateHasBeenSet);
+        _firstName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastName.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

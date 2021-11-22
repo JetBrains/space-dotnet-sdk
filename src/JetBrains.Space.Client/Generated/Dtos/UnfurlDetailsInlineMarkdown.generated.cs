@@ -42,20 +42,24 @@ public sealed class UnfurlDetailsInlineMarkdown
         Markdown = markdown;
     }
     
-    private PropertyValue<string> _markdown = new PropertyValue<string>(nameof(UnfurlDetailsInlineMarkdown), nameof(Markdown));
+    private PropertyValue<string> _markdown = new PropertyValue<string>(nameof(UnfurlDetailsInlineMarkdown), nameof(Markdown), "markdown");
     
     [Required]
     [JsonPropertyName("markdown")]
     public string Markdown
     {
-        get => _markdown.GetValue();
+        get => _markdown.GetValue(InlineErrors);
         set => _markdown.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _markdown.SetAccessPath(path, validateHasBeenSet);
+        _markdown.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

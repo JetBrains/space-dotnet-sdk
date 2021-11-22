@@ -43,30 +43,34 @@ public sealed class GitFileContentText
         IsExecutable = executable;
     }
     
-    private PropertyValue<string> _value = new PropertyValue<string>(nameof(GitFileContentText), nameof(Value));
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(GitFileContentText), nameof(Value), "value");
     
     [Required]
     [JsonPropertyName("value")]
     public string Value
     {
-        get => _value.GetValue();
+        get => _value.GetValue(InlineErrors);
         set => _value.SetValue(value);
     }
 
-    private PropertyValue<bool?> _executable = new PropertyValue<bool?>(nameof(GitFileContentText), nameof(IsExecutable));
+    private PropertyValue<bool?> _executable = new PropertyValue<bool?>(nameof(GitFileContentText), nameof(IsExecutable), "executable");
     
     [JsonPropertyName("executable")]
     public bool? IsExecutable
     {
-        get => _executable.GetValue();
+        get => _executable.GetValue(InlineErrors);
         set => _executable.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _value.SetAccessPath(path, validateHasBeenSet);
-        _executable.SetAccessPath(path, validateHasBeenSet);
+        _value.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _executable.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

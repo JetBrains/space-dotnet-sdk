@@ -39,20 +39,24 @@ public class EmojisDeletePostRequest
         Emoji = emoji;
     }
     
-    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojisDeletePostRequest), nameof(Emoji));
+    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojisDeletePostRequest), nameof(Emoji), "emoji");
     
     [Required]
     [JsonPropertyName("emoji")]
     public string Emoji
     {
-        get => _emoji.GetValue();
+        get => _emoji.GetValue(InlineErrors);
         set => _emoji.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _emoji.SetAccessPath(path, validateHasBeenSet);
+        _emoji.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

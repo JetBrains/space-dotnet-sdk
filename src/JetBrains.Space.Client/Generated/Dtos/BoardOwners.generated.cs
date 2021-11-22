@@ -40,31 +40,35 @@ public sealed class BoardOwners
         Teams = teams;
     }
     
-    private PropertyValue<BoardMemberOwners> _members = new PropertyValue<BoardMemberOwners>(nameof(BoardOwners), nameof(Members));
+    private PropertyValue<BoardMemberOwners> _members = new PropertyValue<BoardMemberOwners>(nameof(BoardOwners), nameof(Members), "members");
     
     [Required]
     [JsonPropertyName("members")]
     public BoardMemberOwners Members
     {
-        get => _members.GetValue();
+        get => _members.GetValue(InlineErrors);
         set => _members.SetValue(value);
     }
 
-    private PropertyValue<BoardTeamOwners> _teams = new PropertyValue<BoardTeamOwners>(nameof(BoardOwners), nameof(Teams));
+    private PropertyValue<BoardTeamOwners> _teams = new PropertyValue<BoardTeamOwners>(nameof(BoardOwners), nameof(Teams), "teams");
     
     [Required]
     [JsonPropertyName("teams")]
     public BoardTeamOwners Teams
     {
-        get => _teams.GetValue();
+        get => _teams.GetValue(InlineErrors);
         set => _teams.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _members.SetAccessPath(path, validateHasBeenSet);
-        _teams.SetAccessPath(path, validateHasBeenSet);
+        _members.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _teams.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

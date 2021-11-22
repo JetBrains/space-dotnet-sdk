@@ -43,64 +43,68 @@ public sealed class JobDTO
         IsArchive = archive;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(JobDTO), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(JobDTO), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(JobDTO), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(JobDTO), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _repoName = new PropertyValue<string>(nameof(JobDTO), nameof(RepoName));
+    private PropertyValue<string> _repoName = new PropertyValue<string>(nameof(JobDTO), nameof(RepoName), "repoName");
     
     [Required]
     [JsonPropertyName("repoName")]
     public string RepoName
     {
-        get => _repoName.GetValue();
+        get => _repoName.GetValue(InlineErrors);
         set => _repoName.SetValue(value);
     }
 
-    private PropertyValue<RepositoryInProject> _repository = new PropertyValue<RepositoryInProject>(nameof(JobDTO), nameof(Repository));
+    private PropertyValue<RepositoryInProject> _repository = new PropertyValue<RepositoryInProject>(nameof(JobDTO), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public RepositoryInProject Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<bool> _archive = new PropertyValue<bool>(nameof(JobDTO), nameof(IsArchive));
+    private PropertyValue<bool> _archive = new PropertyValue<bool>(nameof(JobDTO), nameof(IsArchive), "archive");
     
     [Required]
     [JsonPropertyName("archive")]
     public bool IsArchive
     {
-        get => _archive.GetValue();
+        get => _archive.GetValue(InlineErrors);
         set => _archive.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _repoName.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _archive.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repoName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archive.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

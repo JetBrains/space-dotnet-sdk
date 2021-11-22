@@ -40,33 +40,37 @@ public sealed class MeetingOccurrenceTime
         End = end;
     }
     
-    private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(MeetingOccurrenceTime), nameof(Start));
+    private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(MeetingOccurrenceTime), nameof(Start), "start");
     
     [Required]
     [JsonPropertyName("start")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Start
     {
-        get => _start.GetValue();
+        get => _start.GetValue(InlineErrors);
         set => _start.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _end = new PropertyValue<DateTime>(nameof(MeetingOccurrenceTime), nameof(End));
+    private PropertyValue<DateTime> _end = new PropertyValue<DateTime>(nameof(MeetingOccurrenceTime), nameof(End), "end");
     
     [Required]
     [JsonPropertyName("end")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime End
     {
-        get => _end.GetValue();
+        get => _end.GetValue(InlineErrors);
         set => _end.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _start.SetAccessPath(path, validateHasBeenSet);
-        _end.SetAccessPath(path, validateHasBeenSet);
+        _start.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _end.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

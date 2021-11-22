@@ -41,42 +41,46 @@ public class ProjectsParamsInDefaultBundlePostRequest
         Value = value;
     }
     
-    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(ProjectsParamsInDefaultBundlePostRequest), nameof(ProjectId));
+    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(ProjectsParamsInDefaultBundlePostRequest), nameof(ProjectId), "projectId");
     
     [Required]
     [JsonPropertyName("projectId")]
     public string ProjectId
     {
-        get => _projectId.GetValue();
+        get => _projectId.GetValue(InlineErrors);
         set => _projectId.SetValue(value);
     }
 
-    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectsParamsInDefaultBundlePostRequest), nameof(Key));
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectsParamsInDefaultBundlePostRequest), nameof(Key), "key");
     
     [Required]
     [JsonPropertyName("key")]
     public string Key
     {
-        get => _key.GetValue();
+        get => _key.GetValue(InlineErrors);
         set => _key.SetValue(value);
     }
 
-    private PropertyValue<string> _value = new PropertyValue<string>(nameof(ProjectsParamsInDefaultBundlePostRequest), nameof(Value));
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(ProjectsParamsInDefaultBundlePostRequest), nameof(Value), "value");
     
     [Required]
     [JsonPropertyName("value")]
     public string Value
     {
-        get => _value.GetValue();
+        get => _value.GetValue(InlineErrors);
         set => _value.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _projectId.SetAccessPath(path, validateHasBeenSet);
-        _key.SetAccessPath(path, validateHasBeenSet);
-        _value.SetAccessPath(path, validateHasBeenSet);
+        _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _value.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

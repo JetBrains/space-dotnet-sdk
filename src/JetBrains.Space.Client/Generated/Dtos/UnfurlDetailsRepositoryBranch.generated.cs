@@ -46,63 +46,67 @@ public sealed class UnfurlDetailsRepositoryBranch
         IsDefault = isDefault;
     }
     
-    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsRepositoryBranch), nameof(Project));
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsRepositoryBranch), nameof(Project), "project");
     
     [Required]
     [JsonPropertyName("project")]
     public PRProject Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(UnfurlDetailsRepositoryBranch), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(UnfurlDetailsRepositoryBranch), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _branchHead = new PropertyValue<string>(nameof(UnfurlDetailsRepositoryBranch), nameof(BranchHead));
+    private PropertyValue<string> _branchHead = new PropertyValue<string>(nameof(UnfurlDetailsRepositoryBranch), nameof(BranchHead), "branchHead");
     
     [Required]
     [JsonPropertyName("branchHead")]
     public string BranchHead
     {
-        get => _branchHead.GetValue();
+        get => _branchHead.GetValue(InlineErrors);
         set => _branchHead.SetValue(value);
     }
 
-    private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(UnfurlDetailsRepositoryBranch), nameof(IsDeleted));
+    private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(UnfurlDetailsRepositoryBranch), nameof(IsDeleted), "deleted");
     
     [Required]
     [JsonPropertyName("deleted")]
     public bool IsDeleted
     {
-        get => _deleted.GetValue();
+        get => _deleted.GetValue(InlineErrors);
         set => _deleted.SetValue(value);
     }
 
-    private PropertyValue<bool?> _isDefault = new PropertyValue<bool?>(nameof(UnfurlDetailsRepositoryBranch), nameof(IsDefault));
+    private PropertyValue<bool?> _isDefault = new PropertyValue<bool?>(nameof(UnfurlDetailsRepositoryBranch), nameof(IsDefault), "isDefault");
     
     [JsonPropertyName("isDefault")]
     public bool? IsDefault
     {
-        get => _isDefault.GetValue();
+        get => _isDefault.GetValue(InlineErrors);
         set => _isDefault.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _branchHead.SetAccessPath(path, validateHasBeenSet);
-        _deleted.SetAccessPath(path, validateHasBeenSet);
-        _isDefault.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _branchHead.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _isDefault.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

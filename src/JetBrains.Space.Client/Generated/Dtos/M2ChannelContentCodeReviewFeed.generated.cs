@@ -47,71 +47,75 @@ public sealed class M2ChannelContentCodeReviewFeed
         Project = project;
     }
     
-    private PropertyValue<string> _codeReviewId = new PropertyValue<string>(nameof(M2ChannelContentCodeReviewFeed), nameof(CodeReviewId));
+    private PropertyValue<string> _codeReviewId = new PropertyValue<string>(nameof(M2ChannelContentCodeReviewFeed), nameof(CodeReviewId), "codeReviewId");
     
     [Required]
     [JsonPropertyName("codeReviewId")]
     public string CodeReviewId
     {
-        get => _codeReviewId.GetValue();
+        get => _codeReviewId.GetValue(InlineErrors);
         set => _codeReviewId.SetValue(value);
     }
 
-    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentCodeReviewFeed), nameof(NotificationDefaults));
+    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentCodeReviewFeed), nameof(NotificationDefaults), "notificationDefaults");
     
     [Required]
     [JsonPropertyName("notificationDefaults")]
     public ChannelSpecificDefaults NotificationDefaults
     {
-        get => _notificationDefaults.GetValue();
+        get => _notificationDefaults.GetValue(InlineErrors);
         set => _notificationDefaults.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewRecord?> _codeReview = new PropertyValue<CodeReviewRecord?>(nameof(M2ChannelContentCodeReviewFeed), nameof(CodeReview));
+    private PropertyValue<CodeReviewRecord?> _codeReview = new PropertyValue<CodeReviewRecord?>(nameof(M2ChannelContentCodeReviewFeed), nameof(CodeReview), "codeReview");
     
     [JsonPropertyName("codeReview")]
     public CodeReviewRecord? CodeReview
     {
-        get => _codeReview.GetValue();
+        get => _codeReview.GetValue(InlineErrors);
         set => _codeReview.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewParticipants?> _participants = new PropertyValue<CodeReviewParticipants?>(nameof(M2ChannelContentCodeReviewFeed), nameof(Participants));
+    private PropertyValue<CodeReviewParticipants?> _participants = new PropertyValue<CodeReviewParticipants?>(nameof(M2ChannelContentCodeReviewFeed), nameof(Participants), "participants");
     
     [JsonPropertyName("participants")]
     public CodeReviewParticipants? Participants
     {
-        get => _participants.GetValue();
+        get => _participants.GetValue(InlineErrors);
         set => _participants.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewPendingMessageCounter?> _pendingMessageCounter = new PropertyValue<CodeReviewPendingMessageCounter?>(nameof(M2ChannelContentCodeReviewFeed), nameof(PendingMessageCounter));
+    private PropertyValue<CodeReviewPendingMessageCounter?> _pendingMessageCounter = new PropertyValue<CodeReviewPendingMessageCounter?>(nameof(M2ChannelContentCodeReviewFeed), nameof(PendingMessageCounter), "pendingMessageCounter");
     
     [JsonPropertyName("pendingMessageCounter")]
     public CodeReviewPendingMessageCounter? PendingMessageCounter
     {
-        get => _pendingMessageCounter.GetValue();
+        get => _pendingMessageCounter.GetValue(InlineErrors);
         set => _pendingMessageCounter.SetValue(value);
     }
 
-    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(M2ChannelContentCodeReviewFeed), nameof(Project));
+    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(M2ChannelContentCodeReviewFeed), nameof(Project), "project");
     
     [JsonPropertyName("project")]
     public PRProject? Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _codeReviewId.SetAccessPath(path, validateHasBeenSet);
-        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-        _codeReview.SetAccessPath(path, validateHasBeenSet);
-        _participants.SetAccessPath(path, validateHasBeenSet);
-        _pendingMessageCounter.SetAccessPath(path, validateHasBeenSet);
-        _project.SetAccessPath(path, validateHasBeenSet);
+        _codeReviewId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _codeReview.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _participants.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pendingMessageCounter.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

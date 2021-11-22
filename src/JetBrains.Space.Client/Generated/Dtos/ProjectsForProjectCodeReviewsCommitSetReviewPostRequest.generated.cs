@@ -42,51 +42,55 @@ public class ProjectsForProjectCodeReviewsCommitSetReviewPostRequest
         AuthorProfileIds = authorProfileIds;
     }
     
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _revisions = new PropertyValue<List<string>>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Revisions), new List<string>());
+    private PropertyValue<List<string>> _revisions = new PropertyValue<List<string>>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Revisions), "revisions", new List<string>());
     
     [Required]
     [JsonPropertyName("revisions")]
     public List<string> Revisions
     {
-        get => _revisions.GetValue();
+        get => _revisions.GetValue(InlineErrors);
         set => _revisions.SetValue(value);
     }
 
-    private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Title));
+    private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Title), "title");
     
     [JsonPropertyName("title")]
     public string? Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _authorProfileIds = new PropertyValue<List<string>?>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(AuthorProfileIds));
+    private PropertyValue<List<string>?> _authorProfileIds = new PropertyValue<List<string>?>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(AuthorProfileIds), "authorProfileIds");
     
     [JsonPropertyName("authorProfileIds")]
     public List<string>? AuthorProfileIds
     {
-        get => _authorProfileIds.GetValue();
+        get => _authorProfileIds.GetValue(InlineErrors);
         set => _authorProfileIds.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _revisions.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _authorProfileIds.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _revisions.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authorProfileIds.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

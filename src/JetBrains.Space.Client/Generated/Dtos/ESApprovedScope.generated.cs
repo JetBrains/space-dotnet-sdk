@@ -41,42 +41,46 @@ public sealed class ESApprovedScope
         IsOfflineAllowed = offlineAllowed;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApprovedScope), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApprovedScope), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApprovedScope), nameof(Scope));
+    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApprovedScope), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
     public string Scope
     {
-        get => _scope.GetValue();
+        get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);
     }
 
-    private PropertyValue<bool> _offlineAllowed = new PropertyValue<bool>(nameof(ESApprovedScope), nameof(IsOfflineAllowed));
+    private PropertyValue<bool> _offlineAllowed = new PropertyValue<bool>(nameof(ESApprovedScope), nameof(IsOfflineAllowed), "offlineAllowed");
     
     [Required]
     [JsonPropertyName("offlineAllowed")]
     public bool IsOfflineAllowed
     {
-        get => _offlineAllowed.GetValue();
+        get => _offlineAllowed.GetValue(InlineErrors);
         set => _offlineAllowed.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _scope.SetAccessPath(path, validateHasBeenSet);
-        _offlineAllowed.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _offlineAllowed.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

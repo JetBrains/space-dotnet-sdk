@@ -43,31 +43,35 @@ public sealed class EndpointAuthCreateBasic
         Password = password;
     }
     
-    private PropertyValue<string> _username = new PropertyValue<string>(nameof(EndpointAuthCreateBasic), nameof(Username));
+    private PropertyValue<string> _username = new PropertyValue<string>(nameof(EndpointAuthCreateBasic), nameof(Username), "username");
     
     [Required]
     [JsonPropertyName("username")]
     public string Username
     {
-        get => _username.GetValue();
+        get => _username.GetValue(InlineErrors);
         set => _username.SetValue(value);
     }
 
-    private PropertyValue<string> _password = new PropertyValue<string>(nameof(EndpointAuthCreateBasic), nameof(Password));
+    private PropertyValue<string> _password = new PropertyValue<string>(nameof(EndpointAuthCreateBasic), nameof(Password), "password");
     
     [Required]
     [JsonPropertyName("password")]
     public string Password
     {
-        get => _password.GetValue();
+        get => _password.GetValue(InlineErrors);
         set => _password.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _username.SetAccessPath(path, validateHasBeenSet);
-        _password.SetAccessPath(path, validateHasBeenSet);
+        _username.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _password.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

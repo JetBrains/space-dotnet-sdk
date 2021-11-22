@@ -42,20 +42,24 @@ public sealed class PrincipalInApplication
         Application = application;
     }
     
-    private PropertyValue<string> _application = new PropertyValue<string>(nameof(PrincipalInApplication), nameof(Application));
+    private PropertyValue<string> _application = new PropertyValue<string>(nameof(PrincipalInApplication), nameof(Application), "application");
     
     [Required]
     [JsonPropertyName("application")]
     public string Application
     {
-        get => _application.GetValue();
+        get => _application.GetValue(InlineErrors);
         set => _application.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _application.SetAccessPath(path, validateHasBeenSet);
+        _application.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,52 +42,56 @@ public sealed class MavenPackageDependency
         Version = version;
     }
     
-    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(MavenPackageDependency), nameof(Scope));
+    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(MavenPackageDependency), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
     public string Scope
     {
-        get => _scope.GetValue();
+        get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);
     }
 
-    private PropertyValue<string> _group = new PropertyValue<string>(nameof(MavenPackageDependency), nameof(Group));
+    private PropertyValue<string> _group = new PropertyValue<string>(nameof(MavenPackageDependency), nameof(Group), "group");
     
     [Required]
     [JsonPropertyName("group")]
     public string Group
     {
-        get => _group.GetValue();
+        get => _group.GetValue(InlineErrors);
         set => _group.SetValue(value);
     }
 
-    private PropertyValue<string> _artifact = new PropertyValue<string>(nameof(MavenPackageDependency), nameof(Artifact));
+    private PropertyValue<string> _artifact = new PropertyValue<string>(nameof(MavenPackageDependency), nameof(Artifact), "artifact");
     
     [Required]
     [JsonPropertyName("artifact")]
     public string Artifact
     {
-        get => _artifact.GetValue();
+        get => _artifact.GetValue(InlineErrors);
         set => _artifact.SetValue(value);
     }
 
-    private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(MavenPackageDependency), nameof(Version));
+    private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(MavenPackageDependency), nameof(Version), "version");
     
     [JsonPropertyName("version")]
     public string? Version
     {
-        get => _version.GetValue();
+        get => _version.GetValue(InlineErrors);
         set => _version.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _scope.SetAccessPath(path, validateHasBeenSet);
-        _group.SetAccessPath(path, validateHasBeenSet);
-        _artifact.SetAccessPath(path, validateHasBeenSet);
-        _version.SetAccessPath(path, validateHasBeenSet);
+        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _group.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _artifact.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

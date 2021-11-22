@@ -40,31 +40,35 @@ public sealed class RepositoryInReview
         IsDeleted = deleted;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(RepositoryInReview), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(RepositoryInReview), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(RepositoryInReview), nameof(IsDeleted));
+    private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(RepositoryInReview), nameof(IsDeleted), "deleted");
     
     [Required]
     [JsonPropertyName("deleted")]
     public bool IsDeleted
     {
-        get => _deleted.GetValue();
+        get => _deleted.GetValue(InlineErrors);
         set => _deleted.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _deleted.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

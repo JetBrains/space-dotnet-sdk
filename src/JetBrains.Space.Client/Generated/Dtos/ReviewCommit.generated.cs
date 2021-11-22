@@ -40,31 +40,35 @@ public sealed class ReviewCommit
         CommitId = commitId;
     }
     
-    private PropertyValue<string> _repositoryId = new PropertyValue<string>(nameof(ReviewCommit), nameof(RepositoryId));
+    private PropertyValue<string> _repositoryId = new PropertyValue<string>(nameof(ReviewCommit), nameof(RepositoryId), "repositoryId");
     
     [Required]
     [JsonPropertyName("repositoryId")]
     public string RepositoryId
     {
-        get => _repositoryId.GetValue();
+        get => _repositoryId.GetValue(InlineErrors);
         set => _repositoryId.SetValue(value);
     }
 
-    private PropertyValue<string> _commitId = new PropertyValue<string>(nameof(ReviewCommit), nameof(CommitId));
+    private PropertyValue<string> _commitId = new PropertyValue<string>(nameof(ReviewCommit), nameof(CommitId), "commitId");
     
     [Required]
     [JsonPropertyName("commitId")]
     public string CommitId
     {
-        get => _commitId.GetValue();
+        get => _commitId.GetValue(InlineErrors);
         set => _commitId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _repositoryId.SetAccessPath(path, validateHasBeenSet);
-        _commitId.SetAccessPath(path, validateHasBeenSet);
+        _repositoryId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commitId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

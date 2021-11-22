@@ -45,79 +45,83 @@ public sealed class ContainerImageAnnotation
         Licenses = licenses;
     }
     
-    private PropertyValue<long?> _created = new PropertyValue<long?>(nameof(ContainerImageAnnotation), nameof(Created));
+    private PropertyValue<long?> _created = new PropertyValue<long?>(nameof(ContainerImageAnnotation), nameof(Created), "created");
     
     [JsonPropertyName("created")]
     public long? Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<string?> _buildName = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(BuildName));
+    private PropertyValue<string?> _buildName = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(BuildName), "buildName");
     
     [JsonPropertyName("buildName")]
     public string? BuildName
     {
-        get => _buildName.GetValue();
+        get => _buildName.GetValue(InlineErrors);
         set => _buildName.SetValue(value);
     }
 
-    private PropertyValue<string?> _buildUrl = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(BuildUrl));
+    private PropertyValue<string?> _buildUrl = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(BuildUrl), "buildUrl");
     
     [JsonPropertyName("buildUrl")]
     public string? BuildUrl
     {
-        get => _buildUrl.GetValue();
+        get => _buildUrl.GetValue(InlineErrors);
         set => _buildUrl.SetValue(value);
     }
 
-    private PropertyValue<string?> _revision = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(Revision));
+    private PropertyValue<string?> _revision = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(Revision), "revision");
     
     [JsonPropertyName("revision")]
     public string? Revision
     {
-        get => _revision.GetValue();
+        get => _revision.GetValue(InlineErrors);
         set => _revision.SetValue(value);
     }
 
-    private PropertyValue<string?> _vendor = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(Vendor));
+    private PropertyValue<string?> _vendor = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(Vendor), "vendor");
     
     [JsonPropertyName("vendor")]
     public string? Vendor
     {
-        get => _vendor.GetValue();
+        get => _vendor.GetValue(InlineErrors);
         set => _vendor.SetValue(value);
     }
 
-    private PropertyValue<string?> _documentationUrl = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(DocumentationUrl));
+    private PropertyValue<string?> _documentationUrl = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(DocumentationUrl), "documentationUrl");
     
     [JsonPropertyName("documentationUrl")]
     public string? DocumentationUrl
     {
-        get => _documentationUrl.GetValue();
+        get => _documentationUrl.GetValue(InlineErrors);
         set => _documentationUrl.SetValue(value);
     }
 
-    private PropertyValue<string?> _licenses = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(Licenses));
+    private PropertyValue<string?> _licenses = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(Licenses), "licenses");
     
     [JsonPropertyName("licenses")]
     public string? Licenses
     {
-        get => _licenses.GetValue();
+        get => _licenses.GetValue(InlineErrors);
         set => _licenses.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _buildName.SetAccessPath(path, validateHasBeenSet);
-        _buildUrl.SetAccessPath(path, validateHasBeenSet);
-        _revision.SetAccessPath(path, validateHasBeenSet);
-        _vendor.SetAccessPath(path, validateHasBeenSet);
-        _documentationUrl.SetAccessPath(path, validateHasBeenSet);
-        _licenses.SetAccessPath(path, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _buildName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _buildUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _revision.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _vendor.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _documentationUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _licenses.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

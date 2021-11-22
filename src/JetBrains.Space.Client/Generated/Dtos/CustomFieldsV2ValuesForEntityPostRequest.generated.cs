@@ -39,20 +39,24 @@ public class CustomFieldsV2ValuesForEntityPostRequest
         CustomFieldValues = customFieldValues;
     }
     
-    private PropertyValue<List<CustomFieldValueUpdate>> _customFieldValues = new PropertyValue<List<CustomFieldValueUpdate>>(nameof(CustomFieldsV2ValuesForEntityPostRequest), nameof(CustomFieldValues), new List<CustomFieldValueUpdate>());
+    private PropertyValue<List<CustomFieldValueUpdate>> _customFieldValues = new PropertyValue<List<CustomFieldValueUpdate>>(nameof(CustomFieldsV2ValuesForEntityPostRequest), nameof(CustomFieldValues), "customFieldValues", new List<CustomFieldValueUpdate>());
     
     [Required]
     [JsonPropertyName("customFieldValues")]
     public List<CustomFieldValueUpdate> CustomFieldValues
     {
-        get => _customFieldValues.GetValue();
+        get => _customFieldValues.GetValue(InlineErrors);
         set => _customFieldValues.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _customFieldValues.SetAccessPath(path, validateHasBeenSet);
+        _customFieldValues.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

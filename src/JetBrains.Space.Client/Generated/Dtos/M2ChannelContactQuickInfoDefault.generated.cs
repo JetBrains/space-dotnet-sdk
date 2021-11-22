@@ -43,31 +43,35 @@ public sealed class M2ChannelContactQuickInfoDefault
         Key = key;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2ChannelContactQuickInfoDefault), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2ChannelContactQuickInfoDefault), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _key = new PropertyValue<string>(nameof(M2ChannelContactQuickInfoDefault), nameof(Key));
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(M2ChannelContactQuickInfoDefault), nameof(Key), "key");
     
     [Required]
     [JsonPropertyName("key")]
     public string Key
     {
-        get => _key.GetValue();
+        get => _key.GetValue(InlineErrors);
         set => _key.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _key.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

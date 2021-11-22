@@ -43,30 +43,34 @@ public sealed class M2AbsenceItemContent
         By = by;
     }
     
-    private PropertyValue<AbsenceRecord> _absence = new PropertyValue<AbsenceRecord>(nameof(M2AbsenceItemContent), nameof(Absence));
+    private PropertyValue<AbsenceRecord> _absence = new PropertyValue<AbsenceRecord>(nameof(M2AbsenceItemContent), nameof(Absence), "absence");
     
     [Required]
     [JsonPropertyName("absence")]
     public AbsenceRecord Absence
     {
-        get => _absence.GetValue();
+        get => _absence.GetValue(InlineErrors);
         set => _absence.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _by = new PropertyValue<TDMemberProfile?>(nameof(M2AbsenceItemContent), nameof(By));
+    private PropertyValue<TDMemberProfile?> _by = new PropertyValue<TDMemberProfile?>(nameof(M2AbsenceItemContent), nameof(By), "by");
     
     [JsonPropertyName("by")]
     public TDMemberProfile? By
     {
-        get => _by.GetValue();
+        get => _by.GetValue(InlineErrors);
         set => _by.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _absence.SetAccessPath(path, validateHasBeenSet);
-        _by.SetAccessPath(path, validateHasBeenSet);
+        _absence.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _by.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

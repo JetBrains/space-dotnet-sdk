@@ -45,52 +45,56 @@ public sealed class MessageButton
         IsDisabled = disabled;
     }
     
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageButton), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageButton), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<MessageButtonStyle> _style = new PropertyValue<MessageButtonStyle>(nameof(MessageButton), nameof(Style));
+    private PropertyValue<MessageButtonStyle> _style = new PropertyValue<MessageButtonStyle>(nameof(MessageButton), nameof(Style), "style");
     
     [Required]
     [JsonPropertyName("style")]
     public MessageButtonStyle Style
     {
-        get => _style.GetValue();
+        get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);
     }
 
-    private PropertyValue<MessageAction> _action = new PropertyValue<MessageAction>(nameof(MessageButton), nameof(Action));
+    private PropertyValue<MessageAction> _action = new PropertyValue<MessageAction>(nameof(MessageButton), nameof(Action), "action");
     
     [Required]
     [JsonPropertyName("action")]
     public MessageAction Action
     {
-        get => _action.GetValue();
+        get => _action.GetValue(InlineErrors);
         set => _action.SetValue(value);
     }
 
-    private PropertyValue<bool?> _disabled = new PropertyValue<bool?>(nameof(MessageButton), nameof(IsDisabled));
+    private PropertyValue<bool?> _disabled = new PropertyValue<bool?>(nameof(MessageButton), nameof(IsDisabled), "disabled");
     
     [JsonPropertyName("disabled")]
     public bool? IsDisabled
     {
-        get => _disabled.GetValue();
+        get => _disabled.GetValue(InlineErrors);
         set => _disabled.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _style.SetAccessPath(path, validateHasBeenSet);
-        _action.SetAccessPath(path, validateHasBeenSet);
-        _disabled.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _style.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _action.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _disabled.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

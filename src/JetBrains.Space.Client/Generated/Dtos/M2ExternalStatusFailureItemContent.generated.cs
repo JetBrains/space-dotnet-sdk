@@ -51,114 +51,118 @@ public sealed class M2ExternalStatusFailureItemContent
         Description = description;
     }
     
-    private PropertyValue<string?> _projectId = new PropertyValue<string?>(nameof(M2ExternalStatusFailureItemContent), nameof(ProjectId));
+    private PropertyValue<string?> _projectId = new PropertyValue<string?>(nameof(M2ExternalStatusFailureItemContent), nameof(ProjectId), "projectId");
     
     [JsonPropertyName("projectId")]
     public string? ProjectId
     {
-        get => _projectId.GetValue();
+        get => _projectId.GetValue(InlineErrors);
         set => _projectId.SetValue(value);
     }
 
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContent), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContent), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _branch = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContent), nameof(Branch));
+    private PropertyValue<string> _branch = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContent), nameof(Branch), "branch");
     
     [Required]
     [JsonPropertyName("branch")]
     public string Branch
     {
-        get => _branch.GetValue();
+        get => _branch.GetValue(InlineErrors);
         set => _branch.SetValue(value);
     }
 
-    private PropertyValue<RevisionAuthorInfo?> _revisionInfo = new PropertyValue<RevisionAuthorInfo?>(nameof(M2ExternalStatusFailureItemContent), nameof(RevisionInfo));
+    private PropertyValue<RevisionAuthorInfo?> _revisionInfo = new PropertyValue<RevisionAuthorInfo?>(nameof(M2ExternalStatusFailureItemContent), nameof(RevisionInfo), "revisionInfo");
     
     [JsonPropertyName("revisionInfo")]
     public RevisionAuthorInfo? RevisionInfo
     {
-        get => _revisionInfo.GetValue();
+        get => _revisionInfo.GetValue(InlineErrors);
         set => _revisionInfo.SetValue(value);
     }
 
-    private PropertyValue<LastChanges?> _changesInfo = new PropertyValue<LastChanges?>(nameof(M2ExternalStatusFailureItemContent), nameof(ChangesInfo));
+    private PropertyValue<LastChanges?> _changesInfo = new PropertyValue<LastChanges?>(nameof(M2ExternalStatusFailureItemContent), nameof(ChangesInfo), "changesInfo");
     
     [JsonPropertyName("changesInfo")]
     public LastChanges? ChangesInfo
     {
-        get => _changesInfo.GetValue();
+        get => _changesInfo.GetValue(InlineErrors);
         set => _changesInfo.SetValue(value);
     }
 
-    private PropertyValue<string> _url = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContent), nameof(Url));
+    private PropertyValue<string> _url = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContent), nameof(Url), "url");
     
     [Required]
     [JsonPropertyName("url")]
     public string Url
     {
-        get => _url.GetValue();
+        get => _url.GetValue(InlineErrors);
         set => _url.SetValue(value);
     }
 
-    private PropertyValue<string> _externalServiceName = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContent), nameof(ExternalServiceName));
+    private PropertyValue<string> _externalServiceName = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContent), nameof(ExternalServiceName), "externalServiceName");
     
     [Required]
     [JsonPropertyName("externalServiceName")]
     public string ExternalServiceName
     {
-        get => _externalServiceName.GetValue();
+        get => _externalServiceName.GetValue(InlineErrors);
         set => _externalServiceName.SetValue(value);
     }
 
-    private PropertyValue<string> _taskName = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContent), nameof(TaskName));
+    private PropertyValue<string> _taskName = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContent), nameof(TaskName), "taskName");
     
     [Required]
     [JsonPropertyName("taskName")]
     public string TaskName
     {
-        get => _taskName.GetValue();
+        get => _taskName.GetValue(InlineErrors);
         set => _taskName.SetValue(value);
     }
 
-    private PropertyValue<long?> _timestamp = new PropertyValue<long?>(nameof(M2ExternalStatusFailureItemContent), nameof(Timestamp));
+    private PropertyValue<long?> _timestamp = new PropertyValue<long?>(nameof(M2ExternalStatusFailureItemContent), nameof(Timestamp), "timestamp");
     
     [JsonPropertyName("timestamp")]
     public long? Timestamp
     {
-        get => _timestamp.GetValue();
+        get => _timestamp.GetValue(InlineErrors);
         set => _timestamp.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(M2ExternalStatusFailureItemContent), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(M2ExternalStatusFailureItemContent), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _projectId.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _branch.SetAccessPath(path, validateHasBeenSet);
-        _revisionInfo.SetAccessPath(path, validateHasBeenSet);
-        _changesInfo.SetAccessPath(path, validateHasBeenSet);
-        _url.SetAccessPath(path, validateHasBeenSet);
-        _externalServiceName.SetAccessPath(path, validateHasBeenSet);
-        _taskName.SetAccessPath(path, validateHasBeenSet);
-        _timestamp.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
+        _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _branch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _revisionInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _changesInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalServiceName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _taskName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _timestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

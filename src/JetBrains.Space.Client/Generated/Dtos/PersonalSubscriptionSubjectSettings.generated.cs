@@ -40,31 +40,35 @@ public sealed class PersonalSubscriptionSubjectSettings
         IsEnabled = enabled;
     }
     
-    private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(PersonalSubscriptionSubjectSettings), nameof(SubjectCode));
+    private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(PersonalSubscriptionSubjectSettings), nameof(SubjectCode), "subjectCode");
     
     [Required]
     [JsonPropertyName("subjectCode")]
     public string SubjectCode
     {
-        get => _subjectCode.GetValue();
+        get => _subjectCode.GetValue(InlineErrors);
         set => _subjectCode.SetValue(value);
     }
 
-    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(PersonalSubscriptionSubjectSettings), nameof(IsEnabled));
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(PersonalSubscriptionSubjectSettings), nameof(IsEnabled), "enabled");
     
     [Required]
     [JsonPropertyName("enabled")]
     public bool IsEnabled
     {
-        get => _enabled.GetValue();
+        get => _enabled.GetValue(InlineErrors);
         set => _enabled.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _subjectCode.SetAccessPath(path, validateHasBeenSet);
-        _enabled.SetAccessPath(path, validateHasBeenSet);
+        _subjectCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

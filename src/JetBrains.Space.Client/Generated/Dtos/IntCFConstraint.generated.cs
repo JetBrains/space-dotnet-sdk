@@ -44,39 +44,43 @@ public sealed class IntCFConstraint
         Message = message;
     }
     
-    private PropertyValue<int?> _min = new PropertyValue<int?>(nameof(IntCFConstraint), nameof(Min));
+    private PropertyValue<int?> _min = new PropertyValue<int?>(nameof(IntCFConstraint), nameof(Min), "min");
     
     [JsonPropertyName("min")]
     public int? Min
     {
-        get => _min.GetValue();
+        get => _min.GetValue(InlineErrors);
         set => _min.SetValue(value);
     }
 
-    private PropertyValue<int?> _max = new PropertyValue<int?>(nameof(IntCFConstraint), nameof(Max));
+    private PropertyValue<int?> _max = new PropertyValue<int?>(nameof(IntCFConstraint), nameof(Max), "max");
     
     [JsonPropertyName("max")]
     public int? Max
     {
-        get => _max.GetValue();
+        get => _max.GetValue(InlineErrors);
         set => _max.SetValue(value);
     }
 
-    private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(IntCFConstraint), nameof(Message));
+    private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(IntCFConstraint), nameof(Message), "message");
     
     [JsonPropertyName("message")]
     public string? Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _min.SetAccessPath(path, validateHasBeenSet);
-        _max.SetAccessPath(path, validateHasBeenSet);
-        _message.SetAccessPath(path, validateHasBeenSet);
+        _min.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _max.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

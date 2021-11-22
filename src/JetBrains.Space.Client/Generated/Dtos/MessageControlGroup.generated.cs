@@ -42,20 +42,24 @@ public sealed class MessageControlGroup
         Elements = elements;
     }
     
-    private PropertyValue<List<MessageControlElement>> _elements = new PropertyValue<List<MessageControlElement>>(nameof(MessageControlGroup), nameof(Elements), new List<MessageControlElement>());
+    private PropertyValue<List<MessageControlElement>> _elements = new PropertyValue<List<MessageControlElement>>(nameof(MessageControlGroup), nameof(Elements), "elements", new List<MessageControlElement>());
     
     [Required]
     [JsonPropertyName("elements")]
     public List<MessageControlElement> Elements
     {
-        get => _elements.GetValue();
+        get => _elements.GetValue(InlineErrors);
         set => _elements.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _elements.SetAccessPath(path, validateHasBeenSet);
+        _elements.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

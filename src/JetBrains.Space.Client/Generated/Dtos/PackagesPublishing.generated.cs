@@ -45,82 +45,86 @@ public sealed class PackagesPublishing
         Principal = principal;
     }
     
-    private PropertyValue<string> _publishingId = new PropertyValue<string>(nameof(PackagesPublishing), nameof(PublishingId));
+    private PropertyValue<string> _publishingId = new PropertyValue<string>(nameof(PackagesPublishing), nameof(PublishingId), "publishingId");
     
     [Required]
     [JsonPropertyName("publishingId")]
     public string PublishingId
     {
-        get => _publishingId.GetValue();
+        get => _publishingId.GetValue(InlineErrors);
         set => _publishingId.SetValue(value);
     }
 
-    private PropertyValue<long> _created = new PropertyValue<long>(nameof(PackagesPublishing), nameof(Created));
+    private PropertyValue<long> _created = new PropertyValue<long>(nameof(PackagesPublishing), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     public long Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<long?> _started = new PropertyValue<long?>(nameof(PackagesPublishing), nameof(Started));
+    private PropertyValue<long?> _started = new PropertyValue<long?>(nameof(PackagesPublishing), nameof(Started), "started");
     
     [JsonPropertyName("started")]
     public long? Started
     {
-        get => _started.GetValue();
+        get => _started.GetValue(InlineErrors);
         set => _started.SetValue(value);
     }
 
-    private PropertyValue<long?> _completed = new PropertyValue<long?>(nameof(PackagesPublishing), nameof(Completed));
+    private PropertyValue<long?> _completed = new PropertyValue<long?>(nameof(PackagesPublishing), nameof(Completed), "completed");
     
     [JsonPropertyName("completed")]
     public long? Completed
     {
-        get => _completed.GetValue();
+        get => _completed.GetValue(InlineErrors);
         set => _completed.SetValue(value);
     }
 
-    private PropertyValue<bool> _successful = new PropertyValue<bool>(nameof(PackagesPublishing), nameof(IsSuccessful));
+    private PropertyValue<bool> _successful = new PropertyValue<bool>(nameof(PackagesPublishing), nameof(IsSuccessful), "successful");
     
     [Required]
     [JsonPropertyName("successful")]
     public bool IsSuccessful
     {
-        get => _successful.GetValue();
+        get => _successful.GetValue(InlineErrors);
         set => _successful.SetValue(value);
     }
 
-    private PropertyValue<string?> _error = new PropertyValue<string?>(nameof(PackagesPublishing), nameof(Error));
+    private PropertyValue<string?> _error = new PropertyValue<string?>(nameof(PackagesPublishing), nameof(Error), "error");
     
     [JsonPropertyName("error")]
     public string? Error
     {
-        get => _error.GetValue();
+        get => _error.GetValue(InlineErrors);
         set => _error.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _principal = new PropertyValue<CPrincipal?>(nameof(PackagesPublishing), nameof(Principal));
+    private PropertyValue<CPrincipal?> _principal = new PropertyValue<CPrincipal?>(nameof(PackagesPublishing), nameof(Principal), "principal");
     
     [JsonPropertyName("principal")]
     public CPrincipal? Principal
     {
-        get => _principal.GetValue();
+        get => _principal.GetValue(InlineErrors);
         set => _principal.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _publishingId.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _started.SetAccessPath(path, validateHasBeenSet);
-        _completed.SetAccessPath(path, validateHasBeenSet);
-        _successful.SetAccessPath(path, validateHasBeenSet);
-        _error.SetAccessPath(path, validateHasBeenSet);
-        _principal.SetAccessPath(path, validateHasBeenSet);
+        _publishingId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _started.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _completed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _successful.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _error.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _principal.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

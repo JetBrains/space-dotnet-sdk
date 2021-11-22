@@ -41,40 +41,44 @@ public sealed class RetentionPolicyParams
         IsRetainDownloadedOnce = retainDownloadedOnce;
     }
     
-    private PropertyValue<int?> _numberOfDaysToRetain = new PropertyValue<int?>(nameof(RetentionPolicyParams), nameof(NumberOfDaysToRetain));
+    private PropertyValue<int?> _numberOfDaysToRetain = new PropertyValue<int?>(nameof(RetentionPolicyParams), nameof(NumberOfDaysToRetain), "numberOfDaysToRetain");
     
     [JsonPropertyName("numberOfDaysToRetain")]
     public int? NumberOfDaysToRetain
     {
-        get => _numberOfDaysToRetain.GetValue();
+        get => _numberOfDaysToRetain.GetValue(InlineErrors);
         set => _numberOfDaysToRetain.SetValue(value);
     }
 
-    private PropertyValue<int?> _numberOfVersionsToRetain = new PropertyValue<int?>(nameof(RetentionPolicyParams), nameof(NumberOfVersionsToRetain));
+    private PropertyValue<int?> _numberOfVersionsToRetain = new PropertyValue<int?>(nameof(RetentionPolicyParams), nameof(NumberOfVersionsToRetain), "numberOfVersionsToRetain");
     
     [JsonPropertyName("numberOfVersionsToRetain")]
     public int? NumberOfVersionsToRetain
     {
-        get => _numberOfVersionsToRetain.GetValue();
+        get => _numberOfVersionsToRetain.GetValue(InlineErrors);
         set => _numberOfVersionsToRetain.SetValue(value);
     }
 
-    private PropertyValue<bool> _retainDownloadedOnce = new PropertyValue<bool>(nameof(RetentionPolicyParams), nameof(IsRetainDownloadedOnce));
+    private PropertyValue<bool> _retainDownloadedOnce = new PropertyValue<bool>(nameof(RetentionPolicyParams), nameof(IsRetainDownloadedOnce), "retainDownloadedOnce");
     
     [Required]
     [JsonPropertyName("retainDownloadedOnce")]
     public bool IsRetainDownloadedOnce
     {
-        get => _retainDownloadedOnce.GetValue();
+        get => _retainDownloadedOnce.GetValue(InlineErrors);
         set => _retainDownloadedOnce.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _numberOfDaysToRetain.SetAccessPath(path, validateHasBeenSet);
-        _numberOfVersionsToRetain.SetAccessPath(path, validateHasBeenSet);
-        _retainDownloadedOnce.SetAccessPath(path, validateHasBeenSet);
+        _numberOfDaysToRetain.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _numberOfVersionsToRetain.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _retainDownloadedOnce.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

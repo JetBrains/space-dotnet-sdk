@@ -42,20 +42,24 @@ public sealed class CodeReviewDiscussionAddedFeedEvent
         Discussion = discussion;
     }
     
-    private PropertyValue<CodeReviewDiscussionRecord> _discussion = new PropertyValue<CodeReviewDiscussionRecord>(nameof(CodeReviewDiscussionAddedFeedEvent), nameof(Discussion));
+    private PropertyValue<CodeReviewDiscussionRecord> _discussion = new PropertyValue<CodeReviewDiscussionRecord>(nameof(CodeReviewDiscussionAddedFeedEvent), nameof(Discussion), "discussion");
     
     [Required]
     [JsonPropertyName("discussion")]
     public CodeReviewDiscussionRecord Discussion
     {
-        get => _discussion.GetValue();
+        get => _discussion.GetValue(InlineErrors);
         set => _discussion.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _discussion.SetAccessPath(path, validateHasBeenSet);
+        _discussion.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

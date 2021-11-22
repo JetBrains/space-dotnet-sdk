@@ -40,31 +40,35 @@ public sealed class KotlinPlatform
         Targets = targets;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(KotlinPlatform), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(KotlinPlatform), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _targets = new PropertyValue<List<string>>(nameof(KotlinPlatform), nameof(Targets), new List<string>());
+    private PropertyValue<List<string>> _targets = new PropertyValue<List<string>>(nameof(KotlinPlatform), nameof(Targets), "targets", new List<string>());
     
     [Required]
     [JsonPropertyName("targets")]
     public List<string> Targets
     {
-        get => _targets.GetValue();
+        get => _targets.GetValue(InlineErrors);
         set => _targets.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _targets.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _targets.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

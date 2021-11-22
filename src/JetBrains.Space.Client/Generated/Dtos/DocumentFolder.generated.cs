@@ -47,106 +47,110 @@ public sealed class DocumentFolder
         Cover = cover;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(DocumentFolder), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(DocumentFolder), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(DocumentFolder), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(DocumentFolder), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<DocumentFolder?> _parent = new PropertyValue<DocumentFolder?>(nameof(DocumentFolder), nameof(Parent));
+    private PropertyValue<DocumentFolder?> _parent = new PropertyValue<DocumentFolder?>(nameof(DocumentFolder), nameof(Parent), "parent");
     
     [JsonPropertyName("parent")]
     public DocumentFolder? Parent
     {
-        get => _parent.GetValue();
+        get => _parent.GetValue(InlineErrors);
         set => _parent.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(DocumentFolder), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(DocumentFolder), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(DocumentFolder), nameof(Created));
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(DocumentFolder), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(DocumentFolder), nameof(CreatedBy));
+    private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(DocumentFolder), nameof(CreatedBy), "createdBy");
     
     [JsonPropertyName("createdBy")]
     public CPrincipal? CreatedBy
     {
-        get => _createdBy.GetValue();
+        get => _createdBy.GetValue(InlineErrors);
         set => _createdBy.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(DocumentFolder), nameof(Updated));
+    private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(DocumentFolder), nameof(Updated), "updated");
     
     [Required]
     [JsonPropertyName("updated")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Updated
     {
-        get => _updated.GetValue();
+        get => _updated.GetValue(InlineErrors);
         set => _updated.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(DocumentFolder), nameof(UpdatedBy));
+    private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(DocumentFolder), nameof(UpdatedBy), "updatedBy");
     
     [JsonPropertyName("updatedBy")]
     public CPrincipal? UpdatedBy
     {
-        get => _updatedBy.GetValue();
+        get => _updatedBy.GetValue(InlineErrors);
         set => _updatedBy.SetValue(value);
     }
 
-    private PropertyValue<Document?> _cover = new PropertyValue<Document?>(nameof(DocumentFolder), nameof(Cover));
+    private PropertyValue<Document?> _cover = new PropertyValue<Document?>(nameof(DocumentFolder), nameof(Cover), "cover");
     
     [JsonPropertyName("cover")]
     public Document? Cover
     {
-        get => _cover.GetValue();
+        get => _cover.GetValue(InlineErrors);
         set => _cover.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _parent.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _createdBy.SetAccessPath(path, validateHasBeenSet);
-        _updated.SetAccessPath(path, validateHasBeenSet);
-        _updatedBy.SetAccessPath(path, validateHasBeenSet);
-        _cover.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parent.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updated.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updatedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _cover.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

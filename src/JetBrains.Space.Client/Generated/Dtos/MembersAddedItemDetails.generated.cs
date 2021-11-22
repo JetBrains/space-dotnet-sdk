@@ -43,31 +43,35 @@ public sealed class MembersAddedItemDetails
         OthersDisplayNames = othersDisplayNames;
     }
     
-    private PropertyValue<List<CPrincipal>> _principals = new PropertyValue<List<CPrincipal>>(nameof(MembersAddedItemDetails), nameof(Principals), new List<CPrincipal>());
+    private PropertyValue<List<CPrincipal>> _principals = new PropertyValue<List<CPrincipal>>(nameof(MembersAddedItemDetails), nameof(Principals), "principals", new List<CPrincipal>());
     
     [Required]
     [JsonPropertyName("principals")]
     public List<CPrincipal> Principals
     {
-        get => _principals.GetValue();
+        get => _principals.GetValue(InlineErrors);
         set => _principals.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _othersDisplayNames = new PropertyValue<List<string>>(nameof(MembersAddedItemDetails), nameof(OthersDisplayNames), new List<string>());
+    private PropertyValue<List<string>> _othersDisplayNames = new PropertyValue<List<string>>(nameof(MembersAddedItemDetails), nameof(OthersDisplayNames), "othersDisplayNames", new List<string>());
     
     [Required]
     [JsonPropertyName("othersDisplayNames")]
     public List<string> OthersDisplayNames
     {
-        get => _othersDisplayNames.GetValue();
+        get => _othersDisplayNames.GetValue(InlineErrors);
         set => _othersDisplayNames.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _principals.SetAccessPath(path, validateHasBeenSet);
-        _othersDisplayNames.SetAccessPath(path, validateHasBeenSet);
+        _principals.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _othersDisplayNames.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

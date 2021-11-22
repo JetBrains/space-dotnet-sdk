@@ -41,42 +41,46 @@ public sealed class HADeprecation
         IsForRemoval = forRemoval;
     }
     
-    private PropertyValue<string> _message = new PropertyValue<string>(nameof(HADeprecation), nameof(Message));
+    private PropertyValue<string> _message = new PropertyValue<string>(nameof(HADeprecation), nameof(Message), "message");
     
     [Required]
     [JsonPropertyName("message")]
     public string Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    private PropertyValue<string> _since = new PropertyValue<string>(nameof(HADeprecation), nameof(Since));
+    private PropertyValue<string> _since = new PropertyValue<string>(nameof(HADeprecation), nameof(Since), "since");
     
     [Required]
     [JsonPropertyName("since")]
     public string Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<bool> _forRemoval = new PropertyValue<bool>(nameof(HADeprecation), nameof(IsForRemoval));
+    private PropertyValue<bool> _forRemoval = new PropertyValue<bool>(nameof(HADeprecation), nameof(IsForRemoval), "forRemoval");
     
     [Required]
     [JsonPropertyName("forRemoval")]
     public bool IsForRemoval
     {
-        get => _forRemoval.GetValue();
+        get => _forRemoval.GetValue(InlineErrors);
         set => _forRemoval.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _message.SetAccessPath(path, validateHasBeenSet);
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _forRemoval.SetAccessPath(path, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _forRemoval.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

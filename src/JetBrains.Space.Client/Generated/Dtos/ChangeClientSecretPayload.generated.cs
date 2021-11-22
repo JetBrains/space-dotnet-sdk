@@ -45,51 +45,55 @@ public sealed class ChangeClientSecretPayload
         VerificationToken = verificationToken;
     }
     
-    private PropertyValue<string> _newClientSecret = new PropertyValue<string>(nameof(ChangeClientSecretPayload), nameof(NewClientSecret));
+    private PropertyValue<string> _newClientSecret = new PropertyValue<string>(nameof(ChangeClientSecretPayload), nameof(NewClientSecret), "newClientSecret");
     
     [Required]
     [JsonPropertyName("newClientSecret")]
     public string NewClientSecret
     {
-        get => _newClientSecret.GetValue();
+        get => _newClientSecret.GetValue(InlineErrors);
         set => _newClientSecret.SetValue(value);
     }
 
-    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ChangeClientSecretPayload), nameof(ClientId));
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ChangeClientSecretPayload), nameof(ClientId), "clientId");
     
     [Required]
     [JsonPropertyName("clientId")]
     public string ClientId
     {
-        get => _clientId.GetValue();
+        get => _clientId.GetValue(InlineErrors);
         set => _clientId.SetValue(value);
     }
 
-    private PropertyValue<string?> _userId = new PropertyValue<string?>(nameof(ChangeClientSecretPayload), nameof(UserId));
+    private PropertyValue<string?> _userId = new PropertyValue<string?>(nameof(ChangeClientSecretPayload), nameof(UserId), "userId");
     
     [JsonPropertyName("userId")]
     public string? UserId
     {
-        get => _userId.GetValue();
+        get => _userId.GetValue(InlineErrors);
         set => _userId.SetValue(value);
     }
 
-    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(ChangeClientSecretPayload), nameof(VerificationToken));
+    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(ChangeClientSecretPayload), nameof(VerificationToken), "verificationToken");
     
     [JsonPropertyName("verificationToken")]
     public string? VerificationToken
     {
-        get => _verificationToken.GetValue();
+        get => _verificationToken.GetValue(InlineErrors);
         set => _verificationToken.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _newClientSecret.SetAccessPath(path, validateHasBeenSet);
-        _clientId.SetAccessPath(path, validateHasBeenSet);
-        _userId.SetAccessPath(path, validateHasBeenSet);
-        _verificationToken.SetAccessPath(path, validateHasBeenSet);
+        _newClientSecret.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _verificationToken.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

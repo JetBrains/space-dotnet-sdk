@@ -40,31 +40,35 @@ public sealed class BranchInfo
         Ref = @ref;
     }
     
-    private PropertyValue<string> _head = new PropertyValue<string>(nameof(BranchInfo), nameof(Head));
+    private PropertyValue<string> _head = new PropertyValue<string>(nameof(BranchInfo), nameof(Head), "head");
     
     [Required]
     [JsonPropertyName("head")]
     public string Head
     {
-        get => _head.GetValue();
+        get => _head.GetValue(InlineErrors);
         set => _head.SetValue(value);
     }
 
-    private PropertyValue<string> _ref = new PropertyValue<string>(nameof(BranchInfo), nameof(Ref));
+    private PropertyValue<string> _ref = new PropertyValue<string>(nameof(BranchInfo), nameof(Ref), "ref");
     
     [Required]
     [JsonPropertyName("ref")]
     public string Ref
     {
-        get => _ref.GetValue();
+        get => _ref.GetValue(InlineErrors);
         set => _ref.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _head.SetAccessPath(path, validateHasBeenSet);
-        _ref.SetAccessPath(path, validateHasBeenSet);
+        _head.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ref.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

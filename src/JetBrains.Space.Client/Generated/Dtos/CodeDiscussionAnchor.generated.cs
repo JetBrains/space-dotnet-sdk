@@ -45,82 +45,86 @@ public sealed class CodeDiscussionAnchor
         InterpolatedLineState = interpolatedLineState;
     }
     
-    private PropertyValue<ProjectKey> _project = new PropertyValue<ProjectKey>(nameof(CodeDiscussionAnchor), nameof(Project));
+    private PropertyValue<ProjectKey> _project = new PropertyValue<ProjectKey>(nameof(CodeDiscussionAnchor), nameof(Project), "project");
     
     [Required]
     [JsonPropertyName("project")]
     public ProjectKey Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CodeDiscussionAnchor), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CodeDiscussionAnchor), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(CodeDiscussionAnchor), nameof(Revision));
+    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(CodeDiscussionAnchor), nameof(Revision), "revision");
     
     [Required]
     [JsonPropertyName("revision")]
     public string Revision
     {
-        get => _revision.GetValue();
+        get => _revision.GetValue(InlineErrors);
         set => _revision.SetValue(value);
     }
 
-    private PropertyValue<string?> _filename = new PropertyValue<string?>(nameof(CodeDiscussionAnchor), nameof(Filename));
+    private PropertyValue<string?> _filename = new PropertyValue<string?>(nameof(CodeDiscussionAnchor), nameof(Filename), "filename");
     
     [JsonPropertyName("filename")]
     public string? Filename
     {
-        get => _filename.GetValue();
+        get => _filename.GetValue(InlineErrors);
         set => _filename.SetValue(value);
     }
 
-    private PropertyValue<int?> _line = new PropertyValue<int?>(nameof(CodeDiscussionAnchor), nameof(Line));
+    private PropertyValue<int?> _line = new PropertyValue<int?>(nameof(CodeDiscussionAnchor), nameof(Line), "line");
     
     [JsonPropertyName("line")]
     public int? Line
     {
-        get => _line.GetValue();
+        get => _line.GetValue(InlineErrors);
         set => _line.SetValue(value);
     }
 
-    private PropertyValue<int?> _oldLine = new PropertyValue<int?>(nameof(CodeDiscussionAnchor), nameof(OldLine));
+    private PropertyValue<int?> _oldLine = new PropertyValue<int?>(nameof(CodeDiscussionAnchor), nameof(OldLine), "oldLine");
     
     [JsonPropertyName("oldLine")]
     public int? OldLine
     {
-        get => _oldLine.GetValue();
+        get => _oldLine.GetValue(InlineErrors);
         set => _oldLine.SetValue(value);
     }
 
-    private PropertyValue<InterpolatedLineState?> _interpolatedLineState = new PropertyValue<InterpolatedLineState?>(nameof(CodeDiscussionAnchor), nameof(InterpolatedLineState));
+    private PropertyValue<InterpolatedLineState?> _interpolatedLineState = new PropertyValue<InterpolatedLineState?>(nameof(CodeDiscussionAnchor), nameof(InterpolatedLineState), "interpolatedLineState");
     
     [JsonPropertyName("interpolatedLineState")]
     public InterpolatedLineState? InterpolatedLineState
     {
-        get => _interpolatedLineState.GetValue();
+        get => _interpolatedLineState.GetValue(InlineErrors);
         set => _interpolatedLineState.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _revision.SetAccessPath(path, validateHasBeenSet);
-        _filename.SetAccessPath(path, validateHasBeenSet);
-        _line.SetAccessPath(path, validateHasBeenSet);
-        _oldLine.SetAccessPath(path, validateHasBeenSet);
-        _interpolatedLineState.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _revision.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _filename.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _line.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _oldLine.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _interpolatedLineState.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

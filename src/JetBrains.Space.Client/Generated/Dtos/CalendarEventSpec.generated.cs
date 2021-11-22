@@ -47,106 +47,110 @@ public sealed class CalendarEventSpec
         NextChainId = nextChainId;
     }
     
-    private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(CalendarEventSpec), nameof(Start));
+    private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(CalendarEventSpec), nameof(Start), "start");
     
     [Required]
     [JsonPropertyName("start")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Start
     {
-        get => _start.GetValue();
+        get => _start.GetValue(InlineErrors);
         set => _start.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _end = new PropertyValue<DateTime>(nameof(CalendarEventSpec), nameof(End));
+    private PropertyValue<DateTime> _end = new PropertyValue<DateTime>(nameof(CalendarEventSpec), nameof(End), "end");
     
     [Required]
     [JsonPropertyName("end")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime End
     {
-        get => _end.GetValue();
+        get => _end.GetValue(InlineErrors);
         set => _end.SetValue(value);
     }
 
-    private PropertyValue<RecurrenceRule?> _recurrenceRule = new PropertyValue<RecurrenceRule?>(nameof(CalendarEventSpec), nameof(RecurrenceRule));
+    private PropertyValue<RecurrenceRule?> _recurrenceRule = new PropertyValue<RecurrenceRule?>(nameof(CalendarEventSpec), nameof(RecurrenceRule), "recurrenceRule");
     
     [JsonPropertyName("recurrenceRule")]
     public RecurrenceRule? RecurrenceRule
     {
-        get => _recurrenceRule.GetValue();
+        get => _recurrenceRule.GetValue(InlineErrors);
         set => _recurrenceRule.SetValue(value);
     }
 
-    private PropertyValue<bool> _allDay = new PropertyValue<bool>(nameof(CalendarEventSpec), nameof(IsAllDay));
+    private PropertyValue<bool> _allDay = new PropertyValue<bool>(nameof(CalendarEventSpec), nameof(IsAllDay), "allDay");
     
     [Required]
     [JsonPropertyName("allDay")]
     public bool IsAllDay
     {
-        get => _allDay.GetValue();
+        get => _allDay.GetValue(InlineErrors);
         set => _allDay.SetValue(value);
     }
 
-    private PropertyValue<ATimeZone> _timezone = new PropertyValue<ATimeZone>(nameof(CalendarEventSpec), nameof(Timezone));
+    private PropertyValue<ATimeZone> _timezone = new PropertyValue<ATimeZone>(nameof(CalendarEventSpec), nameof(Timezone), "timezone");
     
     [Required]
     [JsonPropertyName("timezone")]
     public ATimeZone Timezone
     {
-        get => _timezone.GetValue();
+        get => _timezone.GetValue(InlineErrors);
         set => _timezone.SetValue(value);
     }
 
-    private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(CalendarEventSpec), nameof(ParentId));
+    private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(CalendarEventSpec), nameof(ParentId), "parentId");
     
     [JsonPropertyName("parentId")]
     public string? ParentId
     {
-        get => _parentId.GetValue();
+        get => _parentId.GetValue(InlineErrors);
         set => _parentId.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _initialMeetingStart = new PropertyValue<DateTime?>(nameof(CalendarEventSpec), nameof(InitialMeetingStart));
+    private PropertyValue<DateTime?> _initialMeetingStart = new PropertyValue<DateTime?>(nameof(CalendarEventSpec), nameof(InitialMeetingStart), "initialMeetingStart");
     
     [JsonPropertyName("initialMeetingStart")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? InitialMeetingStart
     {
-        get => _initialMeetingStart.GetValue();
+        get => _initialMeetingStart.GetValue(InlineErrors);
         set => _initialMeetingStart.SetValue(value);
     }
 
-    private PropertyValue<BusyStatus?> _busyStatus = new PropertyValue<BusyStatus?>(nameof(CalendarEventSpec), nameof(BusyStatus));
+    private PropertyValue<BusyStatus?> _busyStatus = new PropertyValue<BusyStatus?>(nameof(CalendarEventSpec), nameof(BusyStatus), "busyStatus");
     
     [JsonPropertyName("busyStatus")]
     public BusyStatus? BusyStatus
     {
-        get => _busyStatus.GetValue();
+        get => _busyStatus.GetValue(InlineErrors);
         set => _busyStatus.SetValue(value);
     }
 
-    private PropertyValue<string?> _nextChainId = new PropertyValue<string?>(nameof(CalendarEventSpec), nameof(NextChainId));
+    private PropertyValue<string?> _nextChainId = new PropertyValue<string?>(nameof(CalendarEventSpec), nameof(NextChainId), "nextChainId");
     
     [JsonPropertyName("nextChainId")]
     public string? NextChainId
     {
-        get => _nextChainId.GetValue();
+        get => _nextChainId.GetValue(InlineErrors);
         set => _nextChainId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _start.SetAccessPath(path, validateHasBeenSet);
-        _end.SetAccessPath(path, validateHasBeenSet);
-        _recurrenceRule.SetAccessPath(path, validateHasBeenSet);
-        _allDay.SetAccessPath(path, validateHasBeenSet);
-        _timezone.SetAccessPath(path, validateHasBeenSet);
-        _parentId.SetAccessPath(path, validateHasBeenSet);
-        _initialMeetingStart.SetAccessPath(path, validateHasBeenSet);
-        _busyStatus.SetAccessPath(path, validateHasBeenSet);
-        _nextChainId.SetAccessPath(path, validateHasBeenSet);
+        _start.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _end.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _recurrenceRule.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _allDay.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parentId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _initialMeetingStart.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _busyStatus.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _nextChainId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

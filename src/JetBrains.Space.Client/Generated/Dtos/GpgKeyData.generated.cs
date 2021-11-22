@@ -48,120 +48,124 @@ public sealed class GpgKeyData
         RevokeComment = revokeComment;
     }
     
-    private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(GpgKeyData), nameof(Fingerprint));
+    private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(GpgKeyData), nameof(Fingerprint), "fingerprint");
     
     [Required]
     [JsonPropertyName("fingerprint")]
     public string Fingerprint
     {
-        get => _fingerprint.GetValue();
+        get => _fingerprint.GetValue(InlineErrors);
         set => _fingerprint.SetValue(value);
     }
 
-    private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(GpgKeyData), nameof(PublicKey));
+    private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(GpgKeyData), nameof(PublicKey), "publicKey");
     
     [Required]
     [JsonPropertyName("publicKey")]
     public string PublicKey
     {
-        get => _publicKey.GetValue();
+        get => _publicKey.GetValue(InlineErrors);
         set => _publicKey.SetValue(value);
     }
 
-    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(GpgKeyData), nameof(UserId));
+    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(GpgKeyData), nameof(UserId), "userId");
     
     [Required]
     [JsonPropertyName("userId")]
     public string UserId
     {
-        get => _userId.GetValue();
+        get => _userId.GetValue(InlineErrors);
         set => _userId.SetValue(value);
     }
 
-    private PropertyValue<bool> _verified = new PropertyValue<bool>(nameof(GpgKeyData), nameof(IsVerified));
+    private PropertyValue<bool> _verified = new PropertyValue<bool>(nameof(GpgKeyData), nameof(IsVerified), "verified");
     
     [Required]
     [JsonPropertyName("verified")]
     public bool IsVerified
     {
-        get => _verified.GetValue();
+        get => _verified.GetValue(InlineErrors);
         set => _verified.SetValue(value);
     }
 
-    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(GpgKeyData), nameof(Comment));
+    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(GpgKeyData), nameof(Comment), "comment");
     
     [Required]
     [JsonPropertyName("comment")]
     public string Comment
     {
-        get => _comment.GetValue();
+        get => _comment.GetValue(InlineErrors);
         set => _comment.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(GpgKeyData), nameof(Created));
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(GpgKeyData), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _added = new PropertyValue<DateTime>(nameof(GpgKeyData), nameof(Added));
+    private PropertyValue<DateTime> _added = new PropertyValue<DateTime>(nameof(GpgKeyData), nameof(Added), "added");
     
     [Required]
     [JsonPropertyName("added")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Added
     {
-        get => _added.GetValue();
+        get => _added.GetValue(InlineErrors);
         set => _added.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(GpgKeyData), nameof(Expires));
+    private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(GpgKeyData), nameof(Expires), "expires");
     
     [JsonPropertyName("expires")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? Expires
     {
-        get => _expires.GetValue();
+        get => _expires.GetValue(InlineErrors);
         set => _expires.SetValue(value);
     }
 
-    private PropertyValue<bool> _revoked = new PropertyValue<bool>(nameof(GpgKeyData), nameof(IsRevoked));
+    private PropertyValue<bool> _revoked = new PropertyValue<bool>(nameof(GpgKeyData), nameof(IsRevoked), "revoked");
     
     [Required]
     [JsonPropertyName("revoked")]
     public bool IsRevoked
     {
-        get => _revoked.GetValue();
+        get => _revoked.GetValue(InlineErrors);
         set => _revoked.SetValue(value);
     }
 
-    private PropertyValue<string?> _revokeComment = new PropertyValue<string?>(nameof(GpgKeyData), nameof(RevokeComment));
+    private PropertyValue<string?> _revokeComment = new PropertyValue<string?>(nameof(GpgKeyData), nameof(RevokeComment), "revokeComment");
     
     [JsonPropertyName("revokeComment")]
     public string? RevokeComment
     {
-        get => _revokeComment.GetValue();
+        get => _revokeComment.GetValue(InlineErrors);
         set => _revokeComment.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _fingerprint.SetAccessPath(path, validateHasBeenSet);
-        _publicKey.SetAccessPath(path, validateHasBeenSet);
-        _userId.SetAccessPath(path, validateHasBeenSet);
-        _verified.SetAccessPath(path, validateHasBeenSet);
-        _comment.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _added.SetAccessPath(path, validateHasBeenSet);
-        _expires.SetAccessPath(path, validateHasBeenSet);
-        _revoked.SetAccessPath(path, validateHasBeenSet);
-        _revokeComment.SetAccessPath(path, validateHasBeenSet);
+        _fingerprint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _publicKey.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _verified.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _comment.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _added.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _expires.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _revoked.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _revokeComment.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

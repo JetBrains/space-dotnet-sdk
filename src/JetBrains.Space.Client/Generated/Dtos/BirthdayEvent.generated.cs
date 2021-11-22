@@ -40,32 +40,36 @@ public sealed class BirthdayEvent
         Birthday = birthday;
     }
     
-    private PropertyValue<TDMemberWithTeam> _profile = new PropertyValue<TDMemberWithTeam>(nameof(BirthdayEvent), nameof(Profile));
+    private PropertyValue<TDMemberWithTeam> _profile = new PropertyValue<TDMemberWithTeam>(nameof(BirthdayEvent), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public TDMemberWithTeam Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _birthday = new PropertyValue<DateTime>(nameof(BirthdayEvent), nameof(Birthday));
+    private PropertyValue<DateTime> _birthday = new PropertyValue<DateTime>(nameof(BirthdayEvent), nameof(Birthday), "birthday");
     
     [Required]
     [JsonPropertyName("birthday")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime Birthday
     {
-        get => _birthday.GetValue();
+        get => _birthday.GetValue(InlineErrors);
         set => _birthday.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _birthday.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _birthday.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

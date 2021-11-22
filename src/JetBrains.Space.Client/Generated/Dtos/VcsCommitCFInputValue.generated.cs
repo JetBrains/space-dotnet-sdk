@@ -42,19 +42,23 @@ public sealed class VcsCommitCFInputValue
         Commit = commit;
     }
     
-    private PropertyValue<CFCommitIdentifier?> _commit = new PropertyValue<CFCommitIdentifier?>(nameof(VcsCommitCFInputValue), nameof(Commit));
+    private PropertyValue<CFCommitIdentifier?> _commit = new PropertyValue<CFCommitIdentifier?>(nameof(VcsCommitCFInputValue), nameof(Commit), "commit");
     
     [JsonPropertyName("commit")]
     public CFCommitIdentifier? Commit
     {
-        get => _commit.GetValue();
+        get => _commit.GetValue(InlineErrors);
         set => _commit.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _commit.SetAccessPath(path, validateHasBeenSet);
+        _commit.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

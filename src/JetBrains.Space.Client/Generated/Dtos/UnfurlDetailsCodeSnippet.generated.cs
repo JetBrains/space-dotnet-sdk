@@ -43,31 +43,35 @@ public sealed class UnfurlDetailsCodeSnippet
         Lines = lines;
     }
     
-    private PropertyValue<CodeSnippetAnchor> _anchor = new PropertyValue<CodeSnippetAnchor>(nameof(UnfurlDetailsCodeSnippet), nameof(Anchor));
+    private PropertyValue<CodeSnippetAnchor> _anchor = new PropertyValue<CodeSnippetAnchor>(nameof(UnfurlDetailsCodeSnippet), nameof(Anchor), "anchor");
     
     [Required]
     [JsonPropertyName("anchor")]
     public CodeSnippetAnchor Anchor
     {
-        get => _anchor.GetValue();
+        get => _anchor.GetValue(InlineErrors);
         set => _anchor.SetValue(value);
     }
 
-    private PropertyValue<List<CodeLine>> _lines = new PropertyValue<List<CodeLine>>(nameof(UnfurlDetailsCodeSnippet), nameof(Lines), new List<CodeLine>());
+    private PropertyValue<List<CodeLine>> _lines = new PropertyValue<List<CodeLine>>(nameof(UnfurlDetailsCodeSnippet), nameof(Lines), "lines", new List<CodeLine>());
     
     [Required]
     [JsonPropertyName("lines")]
     public List<CodeLine> Lines
     {
-        get => _lines.GetValue();
+        get => _lines.GetValue(InlineErrors);
         set => _lines.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _anchor.SetAccessPath(path, validateHasBeenSet);
-        _lines.SetAccessPath(path, validateHasBeenSet);
+        _anchor.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lines.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

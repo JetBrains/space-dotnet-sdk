@@ -42,54 +42,58 @@ public sealed class ParameterLastUsageDTO
         UsedAt = usedAt;
     }
     
-    private PropertyValue<string> _jobExecutionId = new PropertyValue<string>(nameof(ParameterLastUsageDTO), nameof(JobExecutionId));
+    private PropertyValue<string> _jobExecutionId = new PropertyValue<string>(nameof(ParameterLastUsageDTO), nameof(JobExecutionId), "jobExecutionId");
     
     [Required]
     [JsonPropertyName("jobExecutionId")]
     public string JobExecutionId
     {
-        get => _jobExecutionId.GetValue();
+        get => _jobExecutionId.GetValue(InlineErrors);
         set => _jobExecutionId.SetValue(value);
     }
 
-    private PropertyValue<string> _stepExecutionId = new PropertyValue<string>(nameof(ParameterLastUsageDTO), nameof(StepExecutionId));
+    private PropertyValue<string> _stepExecutionId = new PropertyValue<string>(nameof(ParameterLastUsageDTO), nameof(StepExecutionId), "stepExecutionId");
     
     [Required]
     [JsonPropertyName("stepExecutionId")]
     public string StepExecutionId
     {
-        get => _stepExecutionId.GetValue();
+        get => _stepExecutionId.GetValue(InlineErrors);
         set => _stepExecutionId.SetValue(value);
     }
 
-    private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(ParameterLastUsageDTO), nameof(JobName));
+    private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(ParameterLastUsageDTO), nameof(JobName), "jobName");
     
     [Required]
     [JsonPropertyName("jobName")]
     public string JobName
     {
-        get => _jobName.GetValue();
+        get => _jobName.GetValue(InlineErrors);
         set => _jobName.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _usedAt = new PropertyValue<DateTime>(nameof(ParameterLastUsageDTO), nameof(UsedAt));
+    private PropertyValue<DateTime> _usedAt = new PropertyValue<DateTime>(nameof(ParameterLastUsageDTO), nameof(UsedAt), "usedAt");
     
     [Required]
     [JsonPropertyName("usedAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime UsedAt
     {
-        get => _usedAt.GetValue();
+        get => _usedAt.GetValue(InlineErrors);
         set => _usedAt.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _jobExecutionId.SetAccessPath(path, validateHasBeenSet);
-        _stepExecutionId.SetAccessPath(path, validateHasBeenSet);
-        _jobName.SetAccessPath(path, validateHasBeenSet);
-        _usedAt.SetAccessPath(path, validateHasBeenSet);
+        _jobExecutionId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _stepExecutionId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _jobName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _usedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

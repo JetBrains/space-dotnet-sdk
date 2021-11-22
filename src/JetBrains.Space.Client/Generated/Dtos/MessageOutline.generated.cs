@@ -40,30 +40,34 @@ public sealed class MessageOutline
         Text = text;
     }
     
-    private PropertyValue<ApiIcon?> _icon = new PropertyValue<ApiIcon?>(nameof(MessageOutline), nameof(Icon));
+    private PropertyValue<ApiIcon?> _icon = new PropertyValue<ApiIcon?>(nameof(MessageOutline), nameof(Icon), "icon");
     
     [JsonPropertyName("icon")]
     public ApiIcon? Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageOutline), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageOutline), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _icon.SetAccessPath(path, validateHasBeenSet);
-        _text.SetAccessPath(path, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

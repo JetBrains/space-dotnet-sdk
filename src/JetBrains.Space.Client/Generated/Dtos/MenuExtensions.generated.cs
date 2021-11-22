@@ -39,20 +39,24 @@ public sealed class MenuExtensions
         Extensions = extensions;
     }
     
-    private PropertyValue<List<MenuExtensionDetail>> _extensions = new PropertyValue<List<MenuExtensionDetail>>(nameof(MenuExtensions), nameof(Extensions), new List<MenuExtensionDetail>());
+    private PropertyValue<List<MenuExtensionDetail>> _extensions = new PropertyValue<List<MenuExtensionDetail>>(nameof(MenuExtensions), nameof(Extensions), "extensions", new List<MenuExtensionDetail>());
     
     [Required]
     [JsonPropertyName("extensions")]
     public List<MenuExtensionDetail> Extensions
     {
-        get => _extensions.GetValue();
+        get => _extensions.GetValue(InlineErrors);
         set => _extensions.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _extensions.SetAccessPath(path, validateHasBeenSet);
+        _extensions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

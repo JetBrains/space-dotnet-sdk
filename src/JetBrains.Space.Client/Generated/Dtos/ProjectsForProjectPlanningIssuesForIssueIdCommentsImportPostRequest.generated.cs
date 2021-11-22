@@ -39,20 +39,24 @@ public class ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest
         Comments = comments;
     }
     
-    private PropertyValue<List<MessageForImport>> _comments = new PropertyValue<List<MessageForImport>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest), nameof(Comments), new List<MessageForImport>());
+    private PropertyValue<List<MessageForImport>> _comments = new PropertyValue<List<MessageForImport>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest), nameof(Comments), "comments", new List<MessageForImport>());
     
     [Required]
     [JsonPropertyName("comments")]
     public List<MessageForImport> Comments
     {
-        get => _comments.GetValue();
+        get => _comments.GetValue(InlineErrors);
         set => _comments.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _comments.SetAccessPath(path, validateHasBeenSet);
+        _comments.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

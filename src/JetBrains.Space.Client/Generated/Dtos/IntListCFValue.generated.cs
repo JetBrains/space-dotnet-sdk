@@ -42,20 +42,24 @@ public sealed class IntListCFValue
         Values = values;
     }
     
-    private PropertyValue<List<int>> _values = new PropertyValue<List<int>>(nameof(IntListCFValue), nameof(Values), new List<int>());
+    private PropertyValue<List<int>> _values = new PropertyValue<List<int>>(nameof(IntListCFValue), nameof(Values), "values", new List<int>());
     
     [Required]
     [JsonPropertyName("values")]
     public List<int> Values
     {
-        get => _values.GetValue();
+        get => _values.GetValue(InlineErrors);
         set => _values.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _values.SetAccessPath(path, validateHasBeenSet);
+        _values.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

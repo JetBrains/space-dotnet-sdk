@@ -39,19 +39,23 @@ public class ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForPr
         Role = role;
     }
     
-    private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest), nameof(Role));
+    private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest), nameof(Role), "role");
     
     [JsonPropertyName("role")]
     public string? Role
     {
-        get => _role.GetValue();
+        get => _role.GetValue(InlineErrors);
         set => _role.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _role.SetAccessPath(path, validateHasBeenSet);
+        _role.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

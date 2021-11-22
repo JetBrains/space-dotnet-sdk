@@ -43,60 +43,64 @@ public sealed class IssueImportResult
         MissingAttributes = missingAttributes;
     }
     
-    private PropertyValue<string> _message = new PropertyValue<string>(nameof(IssueImportResult), nameof(Message));
+    private PropertyValue<string> _message = new PropertyValue<string>(nameof(IssueImportResult), nameof(Message), "message");
     
     [Required]
     [JsonPropertyName("message")]
     public string Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    private PropertyValue<List<IssueImportResultItem>?> _created = new PropertyValue<List<IssueImportResultItem>?>(nameof(IssueImportResult), nameof(Created));
+    private PropertyValue<List<IssueImportResultItem>?> _created = new PropertyValue<List<IssueImportResultItem>?>(nameof(IssueImportResult), nameof(Created), "created");
     
     [JsonPropertyName("created")]
     public List<IssueImportResultItem>? Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<List<IssueImportResultItem>?> _updated = new PropertyValue<List<IssueImportResultItem>?>(nameof(IssueImportResult), nameof(Updated));
+    private PropertyValue<List<IssueImportResultItem>?> _updated = new PropertyValue<List<IssueImportResultItem>?>(nameof(IssueImportResult), nameof(Updated), "updated");
     
     [JsonPropertyName("updated")]
     public List<IssueImportResultItem>? Updated
     {
-        get => _updated.GetValue();
+        get => _updated.GetValue(InlineErrors);
         set => _updated.SetValue(value);
     }
 
-    private PropertyValue<List<IssueImportResultItem>?> _skipped = new PropertyValue<List<IssueImportResultItem>?>(nameof(IssueImportResult), nameof(Skipped));
+    private PropertyValue<List<IssueImportResultItem>?> _skipped = new PropertyValue<List<IssueImportResultItem>?>(nameof(IssueImportResult), nameof(Skipped), "skipped");
     
     [JsonPropertyName("skipped")]
     public List<IssueImportResultItem>? Skipped
     {
-        get => _skipped.GetValue();
+        get => _skipped.GetValue(InlineErrors);
         set => _skipped.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _missingAttributes = new PropertyValue<List<string>?>(nameof(IssueImportResult), nameof(MissingAttributes));
+    private PropertyValue<List<string>?> _missingAttributes = new PropertyValue<List<string>?>(nameof(IssueImportResult), nameof(MissingAttributes), "missingAttributes");
     
     [JsonPropertyName("missingAttributes")]
     public List<string>? MissingAttributes
     {
-        get => _missingAttributes.GetValue();
+        get => _missingAttributes.GetValue(InlineErrors);
         set => _missingAttributes.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _message.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _updated.SetAccessPath(path, validateHasBeenSet);
-        _skipped.SetAccessPath(path, validateHasBeenSet);
-        _missingAttributes.SetAccessPath(path, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updated.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _skipped.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _missingAttributes.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

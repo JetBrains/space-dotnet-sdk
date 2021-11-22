@@ -39,20 +39,24 @@ public class OrganizationDomainsPatchRequest
         Domain = domain;
     }
     
-    private PropertyValue<string> _domain = new PropertyValue<string>(nameof(OrganizationDomainsPatchRequest), nameof(Domain));
+    private PropertyValue<string> _domain = new PropertyValue<string>(nameof(OrganizationDomainsPatchRequest), nameof(Domain), "domain");
     
     [Required]
     [JsonPropertyName("domain")]
     public string Domain
     {
-        get => _domain.GetValue();
+        get => _domain.GetValue(InlineErrors);
         set => _domain.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _domain.SetAccessPath(path, validateHasBeenSet);
+        _domain.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

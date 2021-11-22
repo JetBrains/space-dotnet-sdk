@@ -39,20 +39,24 @@ public class UnfurlsCheckBlockedPostRequest
         Link = link;
     }
     
-    private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlsCheckBlockedPostRequest), nameof(Link));
+    private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlsCheckBlockedPostRequest), nameof(Link), "link");
     
     [Required]
     [JsonPropertyName("link")]
     public string Link
     {
-        get => _link.GetValue();
+        get => _link.GetValue(InlineErrors);
         set => _link.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _link.SetAccessPath(path, validateHasBeenSet);
+        _link.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

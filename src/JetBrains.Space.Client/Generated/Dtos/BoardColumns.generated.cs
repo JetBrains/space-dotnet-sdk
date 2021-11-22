@@ -39,20 +39,24 @@ public sealed class BoardColumns
         Columns = columns;
     }
     
-    private PropertyValue<List<BoardColumn>> _columns = new PropertyValue<List<BoardColumn>>(nameof(BoardColumns), nameof(Columns), new List<BoardColumn>());
+    private PropertyValue<List<BoardColumn>> _columns = new PropertyValue<List<BoardColumn>>(nameof(BoardColumns), nameof(Columns), "columns", new List<BoardColumn>());
     
     [Required]
     [JsonPropertyName("columns")]
     public List<BoardColumn> Columns
     {
-        get => _columns.GetValue();
+        get => _columns.GetValue(InlineErrors);
         set => _columns.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _columns.SetAccessPath(path, validateHasBeenSet);
+        _columns.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

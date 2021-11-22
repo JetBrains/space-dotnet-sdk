@@ -44,41 +44,45 @@ public sealed class UnfurlDetailsImage
         Image = image;
     }
     
-    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(UnfurlDetailsImage), nameof(Icon));
+    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(UnfurlDetailsImage), nameof(Icon), "icon");
     
     [JsonPropertyName("icon")]
     public string? Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsImage), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsImage), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<ImageAttachment> _image = new PropertyValue<ImageAttachment>(nameof(UnfurlDetailsImage), nameof(Image));
+    private PropertyValue<ImageAttachment> _image = new PropertyValue<ImageAttachment>(nameof(UnfurlDetailsImage), nameof(Image), "image");
     
     [Required]
     [JsonPropertyName("image")]
     public ImageAttachment Image
     {
-        get => _image.GetValue();
+        get => _image.GetValue(InlineErrors);
         set => _image.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _icon.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _image.SetAccessPath(path, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _image.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

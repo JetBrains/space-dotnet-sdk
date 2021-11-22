@@ -47,70 +47,74 @@ public sealed class M2AbsenceItemUpdatedContent
         By = by;
     }
     
-    private PropertyValue<AbsenceRecord> _absence = new PropertyValue<AbsenceRecord>(nameof(M2AbsenceItemUpdatedContent), nameof(Absence));
+    private PropertyValue<AbsenceRecord> _absence = new PropertyValue<AbsenceRecord>(nameof(M2AbsenceItemUpdatedContent), nameof(Absence), "absence");
     
     [Required]
     [JsonPropertyName("absence")]
     public AbsenceRecord Absence
     {
-        get => _absence.GetValue();
+        get => _absence.GetValue(InlineErrors);
         set => _absence.SetValue(value);
     }
 
-    private PropertyValue<Modification<AbsenceReasonRecord>?> _reason = new PropertyValue<Modification<AbsenceReasonRecord>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Reason));
+    private PropertyValue<Modification<AbsenceReasonRecord>?> _reason = new PropertyValue<Modification<AbsenceReasonRecord>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Reason), "reason");
     
     [JsonPropertyName("reason")]
     public Modification<AbsenceReasonRecord>? Reason
     {
-        get => _reason.GetValue();
+        get => _reason.GetValue(InlineErrors);
         set => _reason.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _description = new PropertyValue<Modification<string>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Description));
+    private PropertyValue<Modification<string>?> _description = new PropertyValue<Modification<string>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public Modification<string>? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _since = new PropertyValue<Modification<DateTime>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Since));
+    private PropertyValue<Modification<DateTime>?> _since = new PropertyValue<Modification<DateTime>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Since), "since");
     
     [JsonPropertyName("since")]
     public Modification<DateTime>? Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _till = new PropertyValue<Modification<DateTime>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Till));
+    private PropertyValue<Modification<DateTime>?> _till = new PropertyValue<Modification<DateTime>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Till), "till");
     
     [JsonPropertyName("till")]
     public Modification<DateTime>? Till
     {
-        get => _till.GetValue();
+        get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _by = new PropertyValue<TDMemberProfile?>(nameof(M2AbsenceItemUpdatedContent), nameof(By));
+    private PropertyValue<TDMemberProfile?> _by = new PropertyValue<TDMemberProfile?>(nameof(M2AbsenceItemUpdatedContent), nameof(By), "by");
     
     [JsonPropertyName("by")]
     public TDMemberProfile? By
     {
-        get => _by.GetValue();
+        get => _by.GetValue(InlineErrors);
         set => _by.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _absence.SetAccessPath(path, validateHasBeenSet);
-        _reason.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _till.SetAccessPath(path, validateHasBeenSet);
-        _by.SetAccessPath(path, validateHasBeenSet);
+        _absence.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reason.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _till.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _by.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

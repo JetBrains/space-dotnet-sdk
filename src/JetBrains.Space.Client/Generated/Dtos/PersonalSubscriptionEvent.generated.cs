@@ -41,41 +41,45 @@ public sealed class PersonalSubscriptionEvent
         FeatureFlag = featureFlag;
     }
     
-    private PropertyValue<string> _eventCode = new PropertyValue<string>(nameof(PersonalSubscriptionEvent), nameof(EventCode));
+    private PropertyValue<string> _eventCode = new PropertyValue<string>(nameof(PersonalSubscriptionEvent), nameof(EventCode), "eventCode");
     
     [Required]
     [JsonPropertyName("eventCode")]
     public string EventCode
     {
-        get => _eventCode.GetValue();
+        get => _eventCode.GetValue(InlineErrors);
         set => _eventCode.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PersonalSubscriptionEvent), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PersonalSubscriptionEvent), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(PersonalSubscriptionEvent), nameof(FeatureFlag));
+    private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(PersonalSubscriptionEvent), nameof(FeatureFlag), "featureFlag");
     
     [JsonPropertyName("featureFlag")]
     public string? FeatureFlag
     {
-        get => _featureFlag.GetValue();
+        get => _featureFlag.GetValue(InlineErrors);
         set => _featureFlag.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _eventCode.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _featureFlag.SetAccessPath(path, validateHasBeenSet);
+        _eventCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

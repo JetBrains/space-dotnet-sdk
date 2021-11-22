@@ -45,50 +45,54 @@ public sealed class UnfurlDetailsArticle
         Details = details;
     }
     
-    private PropertyValue<ArticleRecord> _article = new PropertyValue<ArticleRecord>(nameof(UnfurlDetailsArticle), nameof(Article));
+    private PropertyValue<ArticleRecord> _article = new PropertyValue<ArticleRecord>(nameof(UnfurlDetailsArticle), nameof(Article), "article");
     
     [Required]
     [JsonPropertyName("article")]
     public ArticleRecord Article
     {
-        get => _article.GetValue();
+        get => _article.GetValue(InlineErrors);
         set => _article.SetValue(value);
     }
 
-    private PropertyValue<ArticleContentRecord?> _content = new PropertyValue<ArticleContentRecord?>(nameof(UnfurlDetailsArticle), nameof(Content));
+    private PropertyValue<ArticleContentRecord?> _content = new PropertyValue<ArticleContentRecord?>(nameof(UnfurlDetailsArticle), nameof(Content), "content");
     
     [JsonPropertyName("content")]
     public ArticleContentRecord? Content
     {
-        get => _content.GetValue();
+        get => _content.GetValue(InlineErrors);
         set => _content.SetValue(value);
     }
 
-    private PropertyValue<ArticleChannelRecord?> _channel = new PropertyValue<ArticleChannelRecord?>(nameof(UnfurlDetailsArticle), nameof(Channel));
+    private PropertyValue<ArticleChannelRecord?> _channel = new PropertyValue<ArticleChannelRecord?>(nameof(UnfurlDetailsArticle), nameof(Channel), "channel");
     
     [JsonPropertyName("channel")]
     public ArticleChannelRecord? Channel
     {
-        get => _channel.GetValue();
+        get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
     }
 
-    private PropertyValue<ArticleDetailsRecord?> _details = new PropertyValue<ArticleDetailsRecord?>(nameof(UnfurlDetailsArticle), nameof(Details));
+    private PropertyValue<ArticleDetailsRecord?> _details = new PropertyValue<ArticleDetailsRecord?>(nameof(UnfurlDetailsArticle), nameof(Details), "details");
     
     [JsonPropertyName("details")]
     public ArticleDetailsRecord? Details
     {
-        get => _details.GetValue();
+        get => _details.GetValue(InlineErrors);
         set => _details.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _article.SetAccessPath(path, validateHasBeenSet);
-        _content.SetAccessPath(path, validateHasBeenSet);
-        _channel.SetAccessPath(path, validateHasBeenSet);
-        _details.SetAccessPath(path, validateHasBeenSet);
+        _article.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _content.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _details.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -45,51 +45,55 @@ public sealed class M2ChannelContentArticle
         Channel = channel;
     }
     
-    private PropertyValue<ArticleRecord> _article = new PropertyValue<ArticleRecord>(nameof(M2ChannelContentArticle), nameof(Article));
+    private PropertyValue<ArticleRecord> _article = new PropertyValue<ArticleRecord>(nameof(M2ChannelContentArticle), nameof(Article), "article");
     
     [Required]
     [JsonPropertyName("article")]
     public ArticleRecord Article
     {
-        get => _article.GetValue();
+        get => _article.GetValue(InlineErrors);
         set => _article.SetValue(value);
     }
 
-    private PropertyValue<ArticleContentRecord> _articleContent = new PropertyValue<ArticleContentRecord>(nameof(M2ChannelContentArticle), nameof(ArticleContent));
+    private PropertyValue<ArticleContentRecord> _articleContent = new PropertyValue<ArticleContentRecord>(nameof(M2ChannelContentArticle), nameof(ArticleContent), "articleContent");
     
     [Required]
     [JsonPropertyName("articleContent")]
     public ArticleContentRecord ArticleContent
     {
-        get => _articleContent.GetValue();
+        get => _articleContent.GetValue(InlineErrors);
         set => _articleContent.SetValue(value);
     }
 
-    private PropertyValue<ArticleDetailsRecord?> _details = new PropertyValue<ArticleDetailsRecord?>(nameof(M2ChannelContentArticle), nameof(Details));
+    private PropertyValue<ArticleDetailsRecord?> _details = new PropertyValue<ArticleDetailsRecord?>(nameof(M2ChannelContentArticle), nameof(Details), "details");
     
     [JsonPropertyName("details")]
     public ArticleDetailsRecord? Details
     {
-        get => _details.GetValue();
+        get => _details.GetValue(InlineErrors);
         set => _details.SetValue(value);
     }
 
-    private PropertyValue<ArticleChannelRecord?> _channel = new PropertyValue<ArticleChannelRecord?>(nameof(M2ChannelContentArticle), nameof(Channel));
+    private PropertyValue<ArticleChannelRecord?> _channel = new PropertyValue<ArticleChannelRecord?>(nameof(M2ChannelContentArticle), nameof(Channel), "channel");
     
     [JsonPropertyName("channel")]
     public ArticleChannelRecord? Channel
     {
-        get => _channel.GetValue();
+        get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _article.SetAccessPath(path, validateHasBeenSet);
-        _articleContent.SetAccessPath(path, validateHasBeenSet);
-        _details.SetAccessPath(path, validateHasBeenSet);
-        _channel.SetAccessPath(path, validateHasBeenSet);
+        _article.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _articleContent.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _details.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

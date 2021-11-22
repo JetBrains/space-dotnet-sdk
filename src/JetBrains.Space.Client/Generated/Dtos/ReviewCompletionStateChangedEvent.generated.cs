@@ -42,20 +42,24 @@ public sealed class ReviewCompletionStateChangedEvent
         State = state;
     }
     
-    private PropertyValue<ReviewerState> _state = new PropertyValue<ReviewerState>(nameof(ReviewCompletionStateChangedEvent), nameof(State));
+    private PropertyValue<ReviewerState> _state = new PropertyValue<ReviewerState>(nameof(ReviewCompletionStateChangedEvent), nameof(State), "state");
     
     [Required]
     [JsonPropertyName("state")]
     public ReviewerState State
     {
-        get => _state.GetValue();
+        get => _state.GetValue(InlineErrors);
         set => _state.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _state.SetAccessPath(path, validateHasBeenSet);
+        _state.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

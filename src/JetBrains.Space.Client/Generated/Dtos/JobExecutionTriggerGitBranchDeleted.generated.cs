@@ -42,20 +42,24 @@ public sealed class JobExecutionTriggerGitBranchDeleted
         Branches = branches;
     }
     
-    private PropertyValue<List<string>> _branches = new PropertyValue<List<string>>(nameof(JobExecutionTriggerGitBranchDeleted), nameof(Branches), new List<string>());
+    private PropertyValue<List<string>> _branches = new PropertyValue<List<string>>(nameof(JobExecutionTriggerGitBranchDeleted), nameof(Branches), "branches", new List<string>());
     
     [Required]
     [JsonPropertyName("branches")]
     public List<string> Branches
     {
-        get => _branches.GetValue();
+        get => _branches.GetValue(InlineErrors);
         set => _branches.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _branches.SetAccessPath(path, validateHasBeenSet);
+        _branches.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

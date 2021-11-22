@@ -43,31 +43,35 @@ public sealed class IssueStatusChangedDetails
         NewStatus = newStatus;
     }
     
-    private PropertyValue<IssueStatus> _oldStatus = new PropertyValue<IssueStatus>(nameof(IssueStatusChangedDetails), nameof(OldStatus));
+    private PropertyValue<IssueStatus> _oldStatus = new PropertyValue<IssueStatus>(nameof(IssueStatusChangedDetails), nameof(OldStatus), "oldStatus");
     
     [Required]
     [JsonPropertyName("oldStatus")]
     public IssueStatus OldStatus
     {
-        get => _oldStatus.GetValue();
+        get => _oldStatus.GetValue(InlineErrors);
         set => _oldStatus.SetValue(value);
     }
 
-    private PropertyValue<IssueStatus> _newStatus = new PropertyValue<IssueStatus>(nameof(IssueStatusChangedDetails), nameof(NewStatus));
+    private PropertyValue<IssueStatus> _newStatus = new PropertyValue<IssueStatus>(nameof(IssueStatusChangedDetails), nameof(NewStatus), "newStatus");
     
     [Required]
     [JsonPropertyName("newStatus")]
     public IssueStatus NewStatus
     {
-        get => _newStatus.GetValue();
+        get => _newStatus.GetValue(InlineErrors);
         set => _newStatus.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _oldStatus.SetAccessPath(path, validateHasBeenSet);
-        _newStatus.SetAccessPath(path, validateHasBeenSet);
+        _oldStatus.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _newStatus.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

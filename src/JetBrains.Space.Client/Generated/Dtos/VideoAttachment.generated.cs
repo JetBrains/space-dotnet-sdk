@@ -47,71 +47,75 @@ public sealed class VideoAttachment
         PreviewBytes = previewBytes;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(VideoAttachment), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(VideoAttachment), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(VideoAttachment), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(VideoAttachment), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<int?> _width = new PropertyValue<int?>(nameof(VideoAttachment), nameof(Width));
+    private PropertyValue<int?> _width = new PropertyValue<int?>(nameof(VideoAttachment), nameof(Width), "width");
     
     [JsonPropertyName("width")]
     public int? Width
     {
-        get => _width.GetValue();
+        get => _width.GetValue(InlineErrors);
         set => _width.SetValue(value);
     }
 
-    private PropertyValue<int?> _height = new PropertyValue<int?>(nameof(VideoAttachment), nameof(Height));
+    private PropertyValue<int?> _height = new PropertyValue<int?>(nameof(VideoAttachment), nameof(Height), "height");
     
     [JsonPropertyName("height")]
     public int? Height
     {
-        get => _height.GetValue();
+        get => _height.GetValue(InlineErrors);
         set => _height.SetValue(value);
     }
 
-    private PropertyValue<long> _sizeBytes = new PropertyValue<long>(nameof(VideoAttachment), nameof(SizeBytes));
+    private PropertyValue<long> _sizeBytes = new PropertyValue<long>(nameof(VideoAttachment), nameof(SizeBytes), "sizeBytes");
     
     [Required]
     [JsonPropertyName("sizeBytes")]
     public long SizeBytes
     {
-        get => _sizeBytes.GetValue();
+        get => _sizeBytes.GetValue(InlineErrors);
         set => _sizeBytes.SetValue(value);
     }
 
-    private PropertyValue<string?> _previewBytes = new PropertyValue<string?>(nameof(VideoAttachment), nameof(PreviewBytes));
+    private PropertyValue<string?> _previewBytes = new PropertyValue<string?>(nameof(VideoAttachment), nameof(PreviewBytes), "previewBytes");
     
     [JsonPropertyName("previewBytes")]
     public string? PreviewBytes
     {
-        get => _previewBytes.GetValue();
+        get => _previewBytes.GetValue(InlineErrors);
         set => _previewBytes.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _width.SetAccessPath(path, validateHasBeenSet);
-        _height.SetAccessPath(path, validateHasBeenSet);
-        _sizeBytes.SetAccessPath(path, validateHasBeenSet);
-        _previewBytes.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _width.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _height.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sizeBytes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _previewBytes.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

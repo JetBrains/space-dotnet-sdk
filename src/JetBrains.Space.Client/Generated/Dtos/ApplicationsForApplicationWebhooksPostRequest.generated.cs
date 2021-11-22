@@ -45,81 +45,85 @@ public class ApplicationsForApplicationWebhooksPostRequest
         IsDoRetries = doRetries;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<EndpointCreateDTO?> _endpoint = new PropertyValue<EndpointCreateDTO?>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(Endpoint));
+    private PropertyValue<EndpointCreateDTO?> _endpoint = new PropertyValue<EndpointCreateDTO?>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(Endpoint), "endpoint");
     
     [JsonPropertyName("endpoint")]
     public EndpointCreateDTO? Endpoint
     {
-        get => _endpoint.GetValue();
+        get => _endpoint.GetValue(InlineErrors);
         set => _endpoint.SetValue(value);
     }
 
-    private PropertyValue<EndpointAuthCreateDTO?> _endpointAuth = new PropertyValue<EndpointAuthCreateDTO?>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(EndpointAuth));
+    private PropertyValue<EndpointAuthCreateDTO?> _endpointAuth = new PropertyValue<EndpointAuthCreateDTO?>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(EndpointAuth), "endpointAuth");
     
     [JsonPropertyName("endpointAuth")]
     public EndpointAuthCreateDTO? EndpointAuth
     {
-        get => _endpointAuth.GetValue();
+        get => _endpointAuth.GetValue(InlineErrors);
         set => _endpointAuth.SetValue(value);
     }
 
-    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(IsEnabled));
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(IsEnabled), "enabled");
     
     [JsonPropertyName("enabled")]
     public bool IsEnabled
     {
-        get => _enabled.GetValue();
+        get => _enabled.GetValue(InlineErrors);
         set => _enabled.SetValue(value);
     }
 
-    private PropertyValue<List<int>> _acceptedHttpResponseCodes = new PropertyValue<List<int>>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(AcceptedHttpResponseCodes), new List<int>());
+    private PropertyValue<List<int>> _acceptedHttpResponseCodes = new PropertyValue<List<int>>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(AcceptedHttpResponseCodes), "acceptedHttpResponseCodes", new List<int>());
     
     [Required]
     [JsonPropertyName("acceptedHttpResponseCodes")]
     public List<int> AcceptedHttpResponseCodes
     {
-        get => _acceptedHttpResponseCodes.GetValue();
+        get => _acceptedHttpResponseCodes.GetValue(InlineErrors);
         set => _acceptedHttpResponseCodes.SetValue(value);
     }
 
-    private PropertyValue<bool> _doRetries = new PropertyValue<bool>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(IsDoRetries));
+    private PropertyValue<bool> _doRetries = new PropertyValue<bool>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(IsDoRetries), "doRetries");
     
     [JsonPropertyName("doRetries")]
     public bool IsDoRetries
     {
-        get => _doRetries.GetValue();
+        get => _doRetries.GetValue(InlineErrors);
         set => _doRetries.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _endpoint.SetAccessPath(path, validateHasBeenSet);
-        _endpointAuth.SetAccessPath(path, validateHasBeenSet);
-        _enabled.SetAccessPath(path, validateHasBeenSet);
-        _acceptedHttpResponseCodes.SetAccessPath(path, validateHasBeenSet);
-        _doRetries.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _endpoint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _endpointAuth.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _acceptedHttpResponseCodes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _doRetries.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

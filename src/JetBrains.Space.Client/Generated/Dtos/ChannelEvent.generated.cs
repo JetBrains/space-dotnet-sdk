@@ -48,81 +48,85 @@ public sealed class ChannelEvent
         IsArchived = archived;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ChannelEvent), nameof(Meta));
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ChannelEvent), nameof(Meta), "meta");
     
     [Required]
     [JsonPropertyName("meta")]
     public KMetaMod Meta
     {
-        get => _meta.GetValue();
+        get => _meta.GetValue(InlineErrors);
         set => _meta.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(ChannelEvent), nameof(Channel));
+    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(ChannelEvent), nameof(Channel), "channel");
     
     [Required]
     [JsonPropertyName("channel")]
     public M2ChannelRecord Channel
     {
-        get => _channel.GetValue();
+        get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _name = new PropertyValue<Modification<string>?>(nameof(ChannelEvent), nameof(Name));
+    private PropertyValue<Modification<string>?> _name = new PropertyValue<Modification<string>?>(nameof(ChannelEvent), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public Modification<string>? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _description = new PropertyValue<Modification<string>?>(nameof(ChannelEvent), nameof(Description));
+    private PropertyValue<Modification<string>?> _description = new PropertyValue<Modification<string>?>(nameof(ChannelEvent), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public Modification<string>? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _icon = new PropertyValue<Modification<string>?>(nameof(ChannelEvent), nameof(Icon));
+    private PropertyValue<Modification<string>?> _icon = new PropertyValue<Modification<string>?>(nameof(ChannelEvent), nameof(Icon), "icon");
     
     [JsonPropertyName("icon")]
     public Modification<string>? Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<bool?> _restored = new PropertyValue<bool?>(nameof(ChannelEvent), nameof(IsRestored));
+    private PropertyValue<bool?> _restored = new PropertyValue<bool?>(nameof(ChannelEvent), nameof(IsRestored), "restored");
     
     [JsonPropertyName("restored")]
     public bool? IsRestored
     {
-        get => _restored.GetValue();
+        get => _restored.GetValue(InlineErrors);
         set => _restored.SetValue(value);
     }
 
-    private PropertyValue<bool?> _archived = new PropertyValue<bool?>(nameof(ChannelEvent), nameof(IsArchived));
+    private PropertyValue<bool?> _archived = new PropertyValue<bool?>(nameof(ChannelEvent), nameof(IsArchived), "archived");
     
     [JsonPropertyName("archived")]
     public bool? IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meta.SetAccessPath(path, validateHasBeenSet);
-        _channel.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _icon.SetAccessPath(path, validateHasBeenSet);
-        _restored.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _restored.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

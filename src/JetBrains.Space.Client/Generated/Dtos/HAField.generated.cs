@@ -43,62 +43,66 @@ public sealed class HAField
         Deprecation = deprecation;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAField), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAField), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<HAType> _type = new PropertyValue<HAType>(nameof(HAField), nameof(Type));
+    private PropertyValue<HAType> _type = new PropertyValue<HAType>(nameof(HAField), nameof(Type), "type");
     
     [Required]
     [JsonPropertyName("type")]
     public HAType Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<HADefaultValue?> _defaultValue = new PropertyValue<HADefaultValue?>(nameof(HAField), nameof(DefaultValue));
+    private PropertyValue<HADefaultValue?> _defaultValue = new PropertyValue<HADefaultValue?>(nameof(HAField), nameof(DefaultValue), "defaultValue");
     
     [JsonPropertyName("defaultValue")]
     public HADefaultValue? DefaultValue
     {
-        get => _defaultValue.GetValue();
+        get => _defaultValue.GetValue(InlineErrors);
         set => _defaultValue.SetValue(value);
     }
 
-    private PropertyValue<bool> _optional = new PropertyValue<bool>(nameof(HAField), nameof(IsOptional));
+    private PropertyValue<bool> _optional = new PropertyValue<bool>(nameof(HAField), nameof(IsOptional), "optional");
     
     [Required]
     [JsonPropertyName("optional")]
     public bool IsOptional
     {
-        get => _optional.GetValue();
+        get => _optional.GetValue(InlineErrors);
         set => _optional.SetValue(value);
     }
 
-    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAField), nameof(Deprecation));
+    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAField), nameof(Deprecation), "deprecation");
     
     [JsonPropertyName("deprecation")]
     public HADeprecation? Deprecation
     {
-        get => _deprecation.GetValue();
+        get => _deprecation.GetValue(InlineErrors);
         set => _deprecation.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _defaultValue.SetAccessPath(path, validateHasBeenSet);
-        _optional.SetAccessPath(path, validateHasBeenSet);
-        _deprecation.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _defaultValue.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _optional.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -63,283 +63,287 @@ public sealed class PurchasedBillingPlan
         IsHasCardVerifiedAdmin = hasCardVerifiedAdmin;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PurchasedBillingPlan), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PurchasedBillingPlan), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string?> _jetSalesId = new PropertyValue<string?>(nameof(PurchasedBillingPlan), nameof(JetSalesId));
+    private PropertyValue<string?> _jetSalesId = new PropertyValue<string?>(nameof(PurchasedBillingPlan), nameof(JetSalesId), "jetSalesId");
     
     [JsonPropertyName("jetSalesId")]
     public string? JetSalesId
     {
-        get => _jetSalesId.GetValue();
+        get => _jetSalesId.GetValue(InlineErrors);
         set => _jetSalesId.SetValue(value);
     }
 
-    private PropertyValue<string> _plan = new PropertyValue<string>(nameof(PurchasedBillingPlan), nameof(Plan));
+    private PropertyValue<string> _plan = new PropertyValue<string>(nameof(PurchasedBillingPlan), nameof(Plan), "plan");
     
     [Required]
     [JsonPropertyName("plan")]
     public string Plan
     {
-        get => _plan.GetValue();
+        get => _plan.GetValue(InlineErrors);
         set => _plan.SetValue(value);
     }
 
-    private PropertyValue<string> _billingPeriod = new PropertyValue<string>(nameof(PurchasedBillingPlan), nameof(BillingPeriod));
+    private PropertyValue<string> _billingPeriod = new PropertyValue<string>(nameof(PurchasedBillingPlan), nameof(BillingPeriod), "billingPeriod");
     
     [Required]
     [JsonPropertyName("billingPeriod")]
     public string BillingPeriod
     {
-        get => _billingPeriod.GetValue();
+        get => _billingPeriod.GetValue(InlineErrors);
         set => _billingPeriod.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(PurchasedBillingPlan), nameof(Since));
+    private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(PurchasedBillingPlan), nameof(Since), "since");
     
     [Required]
     [JsonPropertyName("since")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(PurchasedBillingPlan), nameof(Till));
+    private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(PurchasedBillingPlan), nameof(Till), "till");
     
     [Required]
     [JsonPropertyName("till")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime Till
     {
-        get => _till.GetValue();
+        get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    private PropertyValue<Currency> _currency = new PropertyValue<Currency>(nameof(PurchasedBillingPlan), nameof(Currency));
+    private PropertyValue<Currency> _currency = new PropertyValue<Currency>(nameof(PurchasedBillingPlan), nameof(Currency), "currency");
     
     [Required]
     [JsonPropertyName("currency")]
     public Currency Currency
     {
-        get => _currency.GetValue();
+        get => _currency.GetValue(InlineErrors);
         set => _currency.SetValue(value);
     }
 
-    private PropertyValue<double> _addUserPrice = new PropertyValue<double>(nameof(PurchasedBillingPlan), nameof(AddUserPrice));
+    private PropertyValue<double> _addUserPrice = new PropertyValue<double>(nameof(PurchasedBillingPlan), nameof(AddUserPrice), "addUserPrice");
     
     [Required]
     [JsonPropertyName("addUserPrice")]
     public double AddUserPrice
     {
-        get => _addUserPrice.GetValue();
+        get => _addUserPrice.GetValue(InlineErrors);
         set => _addUserPrice.SetValue(value);
     }
 
-    private PropertyValue<double> _addStoragePrice = new PropertyValue<double>(nameof(PurchasedBillingPlan), nameof(AddStoragePrice));
+    private PropertyValue<double> _addStoragePrice = new PropertyValue<double>(nameof(PurchasedBillingPlan), nameof(AddStoragePrice), "addStoragePrice");
     
     [Required]
     [JsonPropertyName("addStoragePrice")]
     public double AddStoragePrice
     {
-        get => _addStoragePrice.GetValue();
+        get => _addStoragePrice.GetValue(InlineErrors);
         set => _addStoragePrice.SetValue(value);
     }
 
-    private PropertyValue<double> _addBandwidthPrice = new PropertyValue<double>(nameof(PurchasedBillingPlan), nameof(AddBandwidthPrice));
+    private PropertyValue<double> _addBandwidthPrice = new PropertyValue<double>(nameof(PurchasedBillingPlan), nameof(AddBandwidthPrice), "addBandwidthPrice");
     
     [Required]
     [JsonPropertyName("addBandwidthPrice")]
     public double AddBandwidthPrice
     {
-        get => _addBandwidthPrice.GetValue();
+        get => _addBandwidthPrice.GetValue(InlineErrors);
         set => _addBandwidthPrice.SetValue(value);
     }
 
-    private PropertyValue<double> _addCiCreditPrice = new PropertyValue<double>(nameof(PurchasedBillingPlan), nameof(AddCiCreditPrice));
+    private PropertyValue<double> _addCiCreditPrice = new PropertyValue<double>(nameof(PurchasedBillingPlan), nameof(AddCiCreditPrice), "addCiCreditPrice");
     
     [Required]
     [JsonPropertyName("addCiCreditPrice")]
     public double AddCiCreditPrice
     {
-        get => _addCiCreditPrice.GetValue();
+        get => _addCiCreditPrice.GetValue(InlineErrors);
         set => _addCiCreditPrice.SetValue(value);
     }
 
-    private PropertyValue<int> _minActiveUsers = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(MinActiveUsers));
+    private PropertyValue<int> _minActiveUsers = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(MinActiveUsers), "minActiveUsers");
     
     [Required]
     [JsonPropertyName("minActiveUsers")]
     public int MinActiveUsers
     {
-        get => _minActiveUsers.GetValue();
+        get => _minActiveUsers.GetValue(InlineErrors);
         set => _minActiveUsers.SetValue(value);
     }
 
-    private PropertyValue<int> _prepaidUsers = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(PrepaidUsers));
+    private PropertyValue<int> _prepaidUsers = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(PrepaidUsers), "prepaidUsers");
     
     [Required]
     [JsonPropertyName("prepaidUsers")]
     public int PrepaidUsers
     {
-        get => _prepaidUsers.GetValue();
+        get => _prepaidUsers.GetValue(InlineErrors);
         set => _prepaidUsers.SetValue(value);
     }
 
-    private PropertyValue<int> _storagePerUser = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(StoragePerUser));
+    private PropertyValue<int> _storagePerUser = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(StoragePerUser), "storagePerUser");
     
     [Required]
     [JsonPropertyName("storagePerUser")]
     public int StoragePerUser
     {
-        get => _storagePerUser.GetValue();
+        get => _storagePerUser.GetValue(InlineErrors);
         set => _storagePerUser.SetValue(value);
     }
 
-    private PropertyValue<int> _storageOverall = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(StorageOverall));
+    private PropertyValue<int> _storageOverall = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(StorageOverall), "storageOverall");
     
     [Required]
     [JsonPropertyName("storageOverall")]
     public int StorageOverall
     {
-        get => _storageOverall.GetValue();
+        get => _storageOverall.GetValue(InlineErrors);
         set => _storageOverall.SetValue(value);
     }
 
-    private PropertyValue<int> _bandwidthPerUser = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(BandwidthPerUser));
+    private PropertyValue<int> _bandwidthPerUser = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(BandwidthPerUser), "bandwidthPerUser");
     
     [Required]
     [JsonPropertyName("bandwidthPerUser")]
     public int BandwidthPerUser
     {
-        get => _bandwidthPerUser.GetValue();
+        get => _bandwidthPerUser.GetValue(InlineErrors);
         set => _bandwidthPerUser.SetValue(value);
     }
 
-    private PropertyValue<int> _bandwidthOverall = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(BandwidthOverall));
+    private PropertyValue<int> _bandwidthOverall = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(BandwidthOverall), "bandwidthOverall");
     
     [Required]
     [JsonPropertyName("bandwidthOverall")]
     public int BandwidthOverall
     {
-        get => _bandwidthOverall.GetValue();
+        get => _bandwidthOverall.GetValue(InlineErrors);
         set => _bandwidthOverall.SetValue(value);
     }
 
-    private PropertyValue<int> _ciCredits = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(CiCredits));
+    private PropertyValue<int> _ciCredits = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(CiCredits), "ciCredits");
     
     [Required]
     [JsonPropertyName("ciCredits")]
     public int CiCredits
     {
-        get => _ciCredits.GetValue();
+        get => _ciCredits.GetValue(InlineErrors);
         set => _ciCredits.SetValue(value);
     }
 
-    private PropertyValue<int> _ciCreditsReserve = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(CiCreditsReserve));
+    private PropertyValue<int> _ciCreditsReserve = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(CiCreditsReserve), "ciCreditsReserve");
     
     [Required]
     [JsonPropertyName("ciCreditsReserve")]
     public int CiCreditsReserve
     {
-        get => _ciCreditsReserve.GetValue();
+        get => _ciCreditsReserve.GetValue(InlineErrors);
         set => _ciCreditsReserve.SetValue(value);
     }
 
-    private PropertyValue<double?> _ciCreditsRateForExternalWorker = new PropertyValue<double?>(nameof(PurchasedBillingPlan), nameof(CiCreditsRateForExternalWorker));
+    private PropertyValue<double?> _ciCreditsRateForExternalWorker = new PropertyValue<double?>(nameof(PurchasedBillingPlan), nameof(CiCreditsRateForExternalWorker), "ciCreditsRateForExternalWorker");
     
     [JsonPropertyName("ciCreditsRateForExternalWorker")]
     public double? CiCreditsRateForExternalWorker
     {
-        get => _ciCreditsRateForExternalWorker.GetValue();
+        get => _ciCreditsRateForExternalWorker.GetValue(InlineErrors);
         set => _ciCreditsRateForExternalWorker.SetValue(value);
     }
 
-    private PropertyValue<int> _integrations = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(Integrations));
+    private PropertyValue<int> _integrations = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(Integrations), "integrations");
     
     [Required]
     [JsonPropertyName("integrations")]
     public int Integrations
     {
-        get => _integrations.GetValue();
+        get => _integrations.GetValue(InlineErrors);
         set => _integrations.SetValue(value);
     }
 
-    private PropertyValue<int> _searchHistory = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(SearchHistory));
+    private PropertyValue<int> _searchHistory = new PropertyValue<int>(nameof(PurchasedBillingPlan), nameof(SearchHistory), "searchHistory");
     
     [Required]
     [JsonPropertyName("searchHistory")]
     public int SearchHistory
     {
-        get => _searchHistory.GetValue();
+        get => _searchHistory.GetValue(InlineErrors);
         set => _searchHistory.SetValue(value);
     }
 
-    private PropertyValue<double> _balance = new PropertyValue<double>(nameof(PurchasedBillingPlan), nameof(Balance));
+    private PropertyValue<double> _balance = new PropertyValue<double>(nameof(PurchasedBillingPlan), nameof(Balance), "balance");
     
     [Required]
     [JsonPropertyName("balance")]
     public double Balance
     {
-        get => _balance.GetValue();
+        get => _balance.GetValue(InlineErrors);
         set => _balance.SetValue(value);
     }
 
-    private PropertyValue<double> _hardLimitAmount = new PropertyValue<double>(nameof(PurchasedBillingPlan), nameof(HardLimitAmount));
+    private PropertyValue<double> _hardLimitAmount = new PropertyValue<double>(nameof(PurchasedBillingPlan), nameof(HardLimitAmount), "hardLimitAmount");
     
     [Required]
     [JsonPropertyName("hardLimitAmount")]
     public double HardLimitAmount
     {
-        get => _hardLimitAmount.GetValue();
+        get => _hardLimitAmount.GetValue(InlineErrors);
         set => _hardLimitAmount.SetValue(value);
     }
 
-    private PropertyValue<bool?> _hasCardVerifiedAdmin = new PropertyValue<bool?>(nameof(PurchasedBillingPlan), nameof(IsHasCardVerifiedAdmin));
+    private PropertyValue<bool?> _hasCardVerifiedAdmin = new PropertyValue<bool?>(nameof(PurchasedBillingPlan), nameof(IsHasCardVerifiedAdmin), "hasCardVerifiedAdmin");
     
     [JsonPropertyName("hasCardVerifiedAdmin")]
     public bool? IsHasCardVerifiedAdmin
     {
-        get => _hasCardVerifiedAdmin.GetValue();
+        get => _hasCardVerifiedAdmin.GetValue(InlineErrors);
         set => _hasCardVerifiedAdmin.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _jetSalesId.SetAccessPath(path, validateHasBeenSet);
-        _plan.SetAccessPath(path, validateHasBeenSet);
-        _billingPeriod.SetAccessPath(path, validateHasBeenSet);
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _till.SetAccessPath(path, validateHasBeenSet);
-        _currency.SetAccessPath(path, validateHasBeenSet);
-        _addUserPrice.SetAccessPath(path, validateHasBeenSet);
-        _addStoragePrice.SetAccessPath(path, validateHasBeenSet);
-        _addBandwidthPrice.SetAccessPath(path, validateHasBeenSet);
-        _addCiCreditPrice.SetAccessPath(path, validateHasBeenSet);
-        _minActiveUsers.SetAccessPath(path, validateHasBeenSet);
-        _prepaidUsers.SetAccessPath(path, validateHasBeenSet);
-        _storagePerUser.SetAccessPath(path, validateHasBeenSet);
-        _storageOverall.SetAccessPath(path, validateHasBeenSet);
-        _bandwidthPerUser.SetAccessPath(path, validateHasBeenSet);
-        _bandwidthOverall.SetAccessPath(path, validateHasBeenSet);
-        _ciCredits.SetAccessPath(path, validateHasBeenSet);
-        _ciCreditsReserve.SetAccessPath(path, validateHasBeenSet);
-        _ciCreditsRateForExternalWorker.SetAccessPath(path, validateHasBeenSet);
-        _integrations.SetAccessPath(path, validateHasBeenSet);
-        _searchHistory.SetAccessPath(path, validateHasBeenSet);
-        _balance.SetAccessPath(path, validateHasBeenSet);
-        _hardLimitAmount.SetAccessPath(path, validateHasBeenSet);
-        _hasCardVerifiedAdmin.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _jetSalesId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _plan.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _billingPeriod.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _till.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _currency.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _addUserPrice.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _addStoragePrice.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _addBandwidthPrice.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _addCiCreditPrice.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _minActiveUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _prepaidUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _storagePerUser.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _storageOverall.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bandwidthPerUser.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bandwidthOverall.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ciCredits.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ciCreditsReserve.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ciCreditsRateForExternalWorker.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _integrations.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _searchHistory.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _balance.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hardLimitAmount.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hasCardVerifiedAdmin.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

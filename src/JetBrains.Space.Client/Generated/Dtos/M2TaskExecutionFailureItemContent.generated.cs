@@ -51,119 +51,123 @@ public sealed class M2TaskExecutionFailureItemContent
         Details = details;
     }
     
-    private PropertyValue<string> _taskExecutionId = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(TaskExecutionId));
+    private PropertyValue<string> _taskExecutionId = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(TaskExecutionId), "taskExecutionId");
     
     [Required]
     [JsonPropertyName("taskExecutionId")]
     public string TaskExecutionId
     {
-        get => _taskExecutionId.GetValue();
+        get => _taskExecutionId.GetValue(InlineErrors);
         set => _taskExecutionId.SetValue(value);
     }
 
-    private PropertyValue<string> _taskExecutionName = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(TaskExecutionName));
+    private PropertyValue<string> _taskExecutionName = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(TaskExecutionName), "taskExecutionName");
     
     [Required]
     [JsonPropertyName("taskExecutionName")]
     public string TaskExecutionName
     {
-        get => _taskExecutionName.GetValue();
+        get => _taskExecutionName.GetValue(InlineErrors);
         set => _taskExecutionName.SetValue(value);
     }
 
-    private PropertyValue<string> _repoName = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(RepoName));
+    private PropertyValue<string> _repoName = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(RepoName), "repoName");
     
     [Required]
     [JsonPropertyName("repoName")]
     public string RepoName
     {
-        get => _repoName.GetValue();
+        get => _repoName.GetValue(InlineErrors);
         set => _repoName.SetValue(value);
     }
 
-    private PropertyValue<string> _branchName = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(BranchName));
+    private PropertyValue<string> _branchName = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(BranchName), "branchName");
     
     [Required]
     [JsonPropertyName("branchName")]
     public string BranchName
     {
-        get => _branchName.GetValue();
+        get => _branchName.GetValue(InlineErrors);
         set => _branchName.SetValue(value);
     }
 
-    private PropertyValue<string> _commit = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(Commit));
+    private PropertyValue<string> _commit = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(Commit), "commit");
     
     [Required]
     [JsonPropertyName("commit")]
     public string Commit
     {
-        get => _commit.GetValue();
+        get => _commit.GetValue(InlineErrors);
         set => _commit.SetValue(value);
     }
 
-    private PropertyValue<string> _shortCommitMessage = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(ShortCommitMessage));
+    private PropertyValue<string> _shortCommitMessage = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(ShortCommitMessage), "shortCommitMessage");
     
     [Required]
     [JsonPropertyName("shortCommitMessage")]
     public string ShortCommitMessage
     {
-        get => _shortCommitMessage.GetValue();
+        get => _shortCommitMessage.GetValue(InlineErrors);
         set => _shortCommitMessage.SetValue(value);
     }
 
-    private PropertyValue<ProjectKey> _project = new PropertyValue<ProjectKey>(nameof(M2TaskExecutionFailureItemContent), nameof(Project));
+    private PropertyValue<ProjectKey> _project = new PropertyValue<ProjectKey>(nameof(M2TaskExecutionFailureItemContent), nameof(Project), "project");
     
     [Required]
     [JsonPropertyName("project")]
     public ProjectKey Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<long> _finishDateTime = new PropertyValue<long>(nameof(M2TaskExecutionFailureItemContent), nameof(FinishDateTime));
+    private PropertyValue<long> _finishDateTime = new PropertyValue<long>(nameof(M2TaskExecutionFailureItemContent), nameof(FinishDateTime), "finishDateTime");
     
     [Required]
     [JsonPropertyName("finishDateTime")]
     public long FinishDateTime
     {
-        get => _finishDateTime.GetValue();
+        get => _finishDateTime.GetValue(InlineErrors);
         set => _finishDateTime.SetValue(value);
     }
 
-    private PropertyValue<string> _triggerInfo = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(TriggerInfo));
+    private PropertyValue<string> _triggerInfo = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(TriggerInfo), "triggerInfo");
     
     [Required]
     [JsonPropertyName("triggerInfo")]
     public string TriggerInfo
     {
-        get => _triggerInfo.GetValue();
+        get => _triggerInfo.GetValue(InlineErrors);
         set => _triggerInfo.SetValue(value);
     }
 
-    private PropertyValue<string> _details = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(Details));
+    private PropertyValue<string> _details = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContent), nameof(Details), "details");
     
     [Required]
     [JsonPropertyName("details")]
     public string Details
     {
-        get => _details.GetValue();
+        get => _details.GetValue(InlineErrors);
         set => _details.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _taskExecutionId.SetAccessPath(path, validateHasBeenSet);
-        _taskExecutionName.SetAccessPath(path, validateHasBeenSet);
-        _repoName.SetAccessPath(path, validateHasBeenSet);
-        _branchName.SetAccessPath(path, validateHasBeenSet);
-        _commit.SetAccessPath(path, validateHasBeenSet);
-        _shortCommitMessage.SetAccessPath(path, validateHasBeenSet);
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _finishDateTime.SetAccessPath(path, validateHasBeenSet);
-        _triggerInfo.SetAccessPath(path, validateHasBeenSet);
-        _details.SetAccessPath(path, validateHasBeenSet);
+        _taskExecutionId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _taskExecutionName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repoName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _branchName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commit.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _shortCommitMessage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _finishDateTime.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _triggerInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _details.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

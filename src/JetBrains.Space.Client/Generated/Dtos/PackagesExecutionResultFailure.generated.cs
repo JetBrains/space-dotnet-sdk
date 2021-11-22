@@ -42,20 +42,24 @@ public sealed class PackagesExecutionResultFailure
         Error = error;
     }
     
-    private PropertyValue<string> _error = new PropertyValue<string>(nameof(PackagesExecutionResultFailure), nameof(Error));
+    private PropertyValue<string> _error = new PropertyValue<string>(nameof(PackagesExecutionResultFailure), nameof(Error), "error");
     
     [Required]
     [JsonPropertyName("error")]
     public string Error
     {
-        get => _error.GetValue();
+        get => _error.GetValue(InlineErrors);
         set => _error.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _error.SetAccessPath(path, validateHasBeenSet);
+        _error.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

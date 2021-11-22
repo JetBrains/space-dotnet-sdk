@@ -46,64 +46,68 @@ public sealed class DocumentHistoryUnfurlDetails
         Preview = preview;
     }
     
-    private PropertyValue<string> _document = new PropertyValue<string>(nameof(DocumentHistoryUnfurlDetails), nameof(Document));
+    private PropertyValue<string> _document = new PropertyValue<string>(nameof(DocumentHistoryUnfurlDetails), nameof(Document), "document");
     
     [Required]
     [JsonPropertyName("document")]
     public string Document
     {
-        get => _document.GetValue();
+        get => _document.GetValue(InlineErrors);
         set => _document.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(DocumentHistoryUnfurlDetails), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(DocumentHistoryUnfurlDetails), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _version = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Version));
+    private PropertyValue<DateTime?> _version = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Version), "version");
     
     [JsonPropertyName("version")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? Version
     {
-        get => _version.GetValue();
+        get => _version.GetValue(InlineErrors);
         set => _version.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _base = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Base));
+    private PropertyValue<DateTime?> _base = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Base), "base");
     
     [JsonPropertyName("base")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? Base
     {
-        get => _base.GetValue();
+        get => _base.GetValue(InlineErrors);
         set => _base.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _preview = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Preview));
+    private PropertyValue<DateTime?> _preview = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Preview), "preview");
     
     [JsonPropertyName("preview")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? Preview
     {
-        get => _preview.GetValue();
+        get => _preview.GetValue(InlineErrors);
         set => _preview.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _document.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _version.SetAccessPath(path, validateHasBeenSet);
-        _base.SetAccessPath(path, validateHasBeenSet);
-        _preview.SetAccessPath(path, validateHasBeenSet);
+        _document.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _base.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _preview.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

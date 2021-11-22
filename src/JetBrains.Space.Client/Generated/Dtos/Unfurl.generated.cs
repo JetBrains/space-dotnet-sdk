@@ -54,172 +54,176 @@ public sealed class Unfurl
         IsAlwaysInline = alwaysInline;
     }
     
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(Unfurl), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(Unfurl), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<string> _link = new PropertyValue<string>(nameof(Unfurl), nameof(Link));
+    private PropertyValue<string> _link = new PropertyValue<string>(nameof(Unfurl), nameof(Link), "link");
     
     [Required]
     [JsonPropertyName("link")]
     public string Link
     {
-        get => _link.GetValue();
+        get => _link.GetValue(InlineErrors);
         set => _link.SetValue(value);
     }
 
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(Unfurl), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(Unfurl), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<UnfurlDetails?> _details = new PropertyValue<UnfurlDetails?>(nameof(Unfurl), nameof(Details));
+    private PropertyValue<UnfurlDetails?> _details = new PropertyValue<UnfurlDetails?>(nameof(Unfurl), nameof(Details), "details");
     
     [JsonPropertyName("details")]
     public UnfurlDetails? Details
     {
-        get => _details.GetValue();
+        get => _details.GetValue(InlineErrors);
         set => _details.SetValue(value);
     }
 
-    private PropertyValue<string?> _sitename = new PropertyValue<string?>(nameof(Unfurl), nameof(Sitename));
+    private PropertyValue<string?> _sitename = new PropertyValue<string?>(nameof(Unfurl), nameof(Sitename), "sitename");
     
     [JsonPropertyName("sitename")]
     public string? Sitename
     {
-        get => _sitename.GetValue();
+        get => _sitename.GetValue(InlineErrors);
         set => _sitename.SetValue(value);
     }
 
-    private PropertyValue<string?> _image = new PropertyValue<string?>(nameof(Unfurl), nameof(Image));
+    private PropertyValue<string?> _image = new PropertyValue<string?>(nameof(Unfurl), nameof(Image), "image");
     
     [JsonPropertyName("image")]
     public string? Image
     {
-        get => _image.GetValue();
+        get => _image.GetValue(InlineErrors);
         set => _image.SetValue(value);
     }
 
-    private PropertyValue<string?> _imageMime = new PropertyValue<string?>(nameof(Unfurl), nameof(ImageMime));
+    private PropertyValue<string?> _imageMime = new PropertyValue<string?>(nameof(Unfurl), nameof(ImageMime), "imageMime");
     
     [JsonPropertyName("imageMime")]
     public string? ImageMime
     {
-        get => _imageMime.GetValue();
+        get => _imageMime.GetValue(InlineErrors);
         set => _imageMime.SetValue(value);
     }
 
-    private PropertyValue<int?> _imageWidth = new PropertyValue<int?>(nameof(Unfurl), nameof(ImageWidth));
+    private PropertyValue<int?> _imageWidth = new PropertyValue<int?>(nameof(Unfurl), nameof(ImageWidth), "imageWidth");
     
     [JsonPropertyName("imageWidth")]
     public int? ImageWidth
     {
-        get => _imageWidth.GetValue();
+        get => _imageWidth.GetValue(InlineErrors);
         set => _imageWidth.SetValue(value);
     }
 
-    private PropertyValue<int?> _imageHeight = new PropertyValue<int?>(nameof(Unfurl), nameof(ImageHeight));
+    private PropertyValue<int?> _imageHeight = new PropertyValue<int?>(nameof(Unfurl), nameof(ImageHeight), "imageHeight");
     
     [JsonPropertyName("imageHeight")]
     public int? ImageHeight
     {
-        get => _imageHeight.GetValue();
+        get => _imageHeight.GetValue(InlineErrors);
         set => _imageHeight.SetValue(value);
     }
 
-    private PropertyValue<string?> _video = new PropertyValue<string?>(nameof(Unfurl), nameof(Video));
+    private PropertyValue<string?> _video = new PropertyValue<string?>(nameof(Unfurl), nameof(Video), "video");
     
     [JsonPropertyName("video")]
     public string? Video
     {
-        get => _video.GetValue();
+        get => _video.GetValue(InlineErrors);
         set => _video.SetValue(value);
     }
 
-    private PropertyValue<string?> _videoIFrame = new PropertyValue<string?>(nameof(Unfurl), nameof(VideoIFrame));
+    private PropertyValue<string?> _videoIFrame = new PropertyValue<string?>(nameof(Unfurl), nameof(VideoIFrame), "videoIFrame");
     
     [JsonPropertyName("videoIFrame")]
     public string? VideoIFrame
     {
-        get => _videoIFrame.GetValue();
+        get => _videoIFrame.GetValue(InlineErrors);
         set => _videoIFrame.SetValue(value);
     }
 
-    private PropertyValue<string?> _videoMime = new PropertyValue<string?>(nameof(Unfurl), nameof(VideoMime));
+    private PropertyValue<string?> _videoMime = new PropertyValue<string?>(nameof(Unfurl), nameof(VideoMime), "videoMime");
     
     [JsonPropertyName("videoMime")]
     public string? VideoMime
     {
-        get => _videoMime.GetValue();
+        get => _videoMime.GetValue(InlineErrors);
         set => _videoMime.SetValue(value);
     }
 
-    private PropertyValue<int?> _videoHeight = new PropertyValue<int?>(nameof(Unfurl), nameof(VideoHeight));
+    private PropertyValue<int?> _videoHeight = new PropertyValue<int?>(nameof(Unfurl), nameof(VideoHeight), "videoHeight");
     
     [JsonPropertyName("videoHeight")]
     public int? VideoHeight
     {
-        get => _videoHeight.GetValue();
+        get => _videoHeight.GetValue(InlineErrors);
         set => _videoHeight.SetValue(value);
     }
 
-    private PropertyValue<int?> _videoWidth = new PropertyValue<int?>(nameof(Unfurl), nameof(VideoWidth));
+    private PropertyValue<int?> _videoWidth = new PropertyValue<int?>(nameof(Unfurl), nameof(VideoWidth), "videoWidth");
     
     [JsonPropertyName("videoWidth")]
     public int? VideoWidth
     {
-        get => _videoWidth.GetValue();
+        get => _videoWidth.GetValue(InlineErrors);
         set => _videoWidth.SetValue(value);
     }
 
-    private PropertyValue<string?> _favicon = new PropertyValue<string?>(nameof(Unfurl), nameof(Favicon));
+    private PropertyValue<string?> _favicon = new PropertyValue<string?>(nameof(Unfurl), nameof(Favicon), "favicon");
     
     [JsonPropertyName("favicon")]
     public string? Favicon
     {
-        get => _favicon.GetValue();
+        get => _favicon.GetValue(InlineErrors);
         set => _favicon.SetValue(value);
     }
 
-    private PropertyValue<bool?> _alwaysInline = new PropertyValue<bool?>(nameof(Unfurl), nameof(IsAlwaysInline));
+    private PropertyValue<bool?> _alwaysInline = new PropertyValue<bool?>(nameof(Unfurl), nameof(IsAlwaysInline), "alwaysInline");
     
     [JsonPropertyName("alwaysInline")]
     public bool? IsAlwaysInline
     {
-        get => _alwaysInline.GetValue();
+        get => _alwaysInline.GetValue(InlineErrors);
         set => _alwaysInline.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _link.SetAccessPath(path, validateHasBeenSet);
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _details.SetAccessPath(path, validateHasBeenSet);
-        _sitename.SetAccessPath(path, validateHasBeenSet);
-        _image.SetAccessPath(path, validateHasBeenSet);
-        _imageMime.SetAccessPath(path, validateHasBeenSet);
-        _imageWidth.SetAccessPath(path, validateHasBeenSet);
-        _imageHeight.SetAccessPath(path, validateHasBeenSet);
-        _video.SetAccessPath(path, validateHasBeenSet);
-        _videoIFrame.SetAccessPath(path, validateHasBeenSet);
-        _videoMime.SetAccessPath(path, validateHasBeenSet);
-        _videoHeight.SetAccessPath(path, validateHasBeenSet);
-        _videoWidth.SetAccessPath(path, validateHasBeenSet);
-        _favicon.SetAccessPath(path, validateHasBeenSet);
-        _alwaysInline.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _link.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _details.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sitename.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _image.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _imageMime.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _imageWidth.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _imageHeight.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _video.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _videoIFrame.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _videoMime.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _videoHeight.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _videoWidth.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _favicon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _alwaysInline.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

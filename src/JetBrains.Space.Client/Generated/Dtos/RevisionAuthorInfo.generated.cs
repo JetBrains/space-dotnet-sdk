@@ -40,31 +40,35 @@ public sealed class RevisionAuthorInfo
         Author = author;
     }
     
-    private PropertyValue<RevisionInfo> _revisionInfo = new PropertyValue<RevisionInfo>(nameof(RevisionAuthorInfo), nameof(RevisionInfo));
+    private PropertyValue<RevisionInfo> _revisionInfo = new PropertyValue<RevisionInfo>(nameof(RevisionAuthorInfo), nameof(RevisionInfo), "revisionInfo");
     
     [Required]
     [JsonPropertyName("revisionInfo")]
     public RevisionInfo RevisionInfo
     {
-        get => _revisionInfo.GetValue();
+        get => _revisionInfo.GetValue(InlineErrors);
         set => _revisionInfo.SetValue(value);
     }
 
-    private PropertyValue<RevisionAuthor> _author = new PropertyValue<RevisionAuthor>(nameof(RevisionAuthorInfo), nameof(Author));
+    private PropertyValue<RevisionAuthor> _author = new PropertyValue<RevisionAuthor>(nameof(RevisionAuthorInfo), nameof(Author), "author");
     
     [Required]
     [JsonPropertyName("author")]
     public RevisionAuthor Author
     {
-        get => _author.GetValue();
+        get => _author.GetValue(InlineErrors);
         set => _author.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _revisionInfo.SetAccessPath(path, validateHasBeenSet);
-        _author.SetAccessPath(path, validateHasBeenSet);
+        _revisionInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _author.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

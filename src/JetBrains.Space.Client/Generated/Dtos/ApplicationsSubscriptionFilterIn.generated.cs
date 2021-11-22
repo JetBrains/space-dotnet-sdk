@@ -42,19 +42,23 @@ public sealed class ApplicationsSubscriptionFilterIn
         Application = application;
     }
     
-    private PropertyValue<string?> _application = new PropertyValue<string?>(nameof(ApplicationsSubscriptionFilterIn), nameof(Application));
+    private PropertyValue<string?> _application = new PropertyValue<string?>(nameof(ApplicationsSubscriptionFilterIn), nameof(Application), "application");
     
     [JsonPropertyName("application")]
     public string? Application
     {
-        get => _application.GetValue();
+        get => _application.GetValue(InlineErrors);
         set => _application.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _application.SetAccessPath(path, validateHasBeenSet);
+        _application.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

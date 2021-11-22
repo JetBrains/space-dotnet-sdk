@@ -43,63 +43,67 @@ public sealed class TDLocationMap
         Height = height;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationMap), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationMap), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _picture = new PropertyValue<string>(nameof(TDLocationMap), nameof(Picture));
+    private PropertyValue<string> _picture = new PropertyValue<string>(nameof(TDLocationMap), nameof(Picture), "picture");
     
     [Required]
     [JsonPropertyName("picture")]
     public string Picture
     {
-        get => _picture.GetValue();
+        get => _picture.GetValue(InlineErrors);
         set => _picture.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(TDLocationMap), nameof(Created));
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(TDLocationMap), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<int?> _width = new PropertyValue<int?>(nameof(TDLocationMap), nameof(Width));
+    private PropertyValue<int?> _width = new PropertyValue<int?>(nameof(TDLocationMap), nameof(Width), "width");
     
     [JsonPropertyName("width")]
     public int? Width
     {
-        get => _width.GetValue();
+        get => _width.GetValue(InlineErrors);
         set => _width.SetValue(value);
     }
 
-    private PropertyValue<int?> _height = new PropertyValue<int?>(nameof(TDLocationMap), nameof(Height));
+    private PropertyValue<int?> _height = new PropertyValue<int?>(nameof(TDLocationMap), nameof(Height), "height");
     
     [JsonPropertyName("height")]
     public int? Height
     {
-        get => _height.GetValue();
+        get => _height.GetValue(InlineErrors);
         set => _height.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _picture.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _width.SetAccessPath(path, validateHasBeenSet);
-        _height.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _picture.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _width.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _height.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

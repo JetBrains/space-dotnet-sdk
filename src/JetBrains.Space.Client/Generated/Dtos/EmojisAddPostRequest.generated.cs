@@ -40,31 +40,35 @@ public class EmojisAddPostRequest
         AttachmentId = attachmentId;
     }
     
-    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojisAddPostRequest), nameof(Emoji));
+    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojisAddPostRequest), nameof(Emoji), "emoji");
     
     [Required]
     [JsonPropertyName("emoji")]
     public string Emoji
     {
-        get => _emoji.GetValue();
+        get => _emoji.GetValue(InlineErrors);
         set => _emoji.SetValue(value);
     }
 
-    private PropertyValue<string> _attachmentId = new PropertyValue<string>(nameof(EmojisAddPostRequest), nameof(AttachmentId));
+    private PropertyValue<string> _attachmentId = new PropertyValue<string>(nameof(EmojisAddPostRequest), nameof(AttachmentId), "attachmentId");
     
     [Required]
     [JsonPropertyName("attachmentId")]
     public string AttachmentId
     {
-        get => _attachmentId.GetValue();
+        get => _attachmentId.GetValue(InlineErrors);
         set => _attachmentId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _emoji.SetAccessPath(path, validateHasBeenSet);
-        _attachmentId.SetAccessPath(path, validateHasBeenSet);
+        _emoji.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachmentId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

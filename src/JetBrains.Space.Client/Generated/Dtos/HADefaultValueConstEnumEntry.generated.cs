@@ -42,20 +42,24 @@ public sealed class HADefaultValueConstEnumEntry
         EntryName = entryName;
     }
     
-    private PropertyValue<string> _entryName = new PropertyValue<string>(nameof(HADefaultValueConstEnumEntry), nameof(EntryName));
+    private PropertyValue<string> _entryName = new PropertyValue<string>(nameof(HADefaultValueConstEnumEntry), nameof(EntryName), "entryName");
     
     [Required]
     [JsonPropertyName("entryName")]
     public string EntryName
     {
-        get => _entryName.GetValue();
+        get => _entryName.GetValue(InlineErrors);
         set => _entryName.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _entryName.SetAccessPath(path, validateHasBeenSet);
+        _entryName.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

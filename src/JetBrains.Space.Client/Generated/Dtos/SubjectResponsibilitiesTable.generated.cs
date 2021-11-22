@@ -42,52 +42,56 @@ public sealed class SubjectResponsibilitiesTable
         ResponsibilityRecords = responsibilityRecords;
     }
     
-    private PropertyValue<string> _subjectId = new PropertyValue<string>(nameof(SubjectResponsibilitiesTable), nameof(SubjectId));
+    private PropertyValue<string> _subjectId = new PropertyValue<string>(nameof(SubjectResponsibilitiesTable), nameof(SubjectId), "subjectId");
     
     [Required]
     [JsonPropertyName("subjectId")]
     public string SubjectId
     {
-        get => _subjectId.GetValue();
+        get => _subjectId.GetValue(InlineErrors);
         set => _subjectId.SetValue(value);
     }
 
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(SubjectResponsibilitiesTable), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(SubjectResponsibilitiesTable), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _reusedInProjects = new PropertyValue<List<string>>(nameof(SubjectResponsibilitiesTable), nameof(ReusedInProjects), new List<string>());
+    private PropertyValue<List<string>> _reusedInProjects = new PropertyValue<List<string>>(nameof(SubjectResponsibilitiesTable), nameof(ReusedInProjects), "reusedInProjects", new List<string>());
     
     [Required]
     [JsonPropertyName("reusedInProjects")]
     public List<string> ReusedInProjects
     {
-        get => _reusedInProjects.GetValue();
+        get => _reusedInProjects.GetValue(InlineErrors);
         set => _reusedInProjects.SetValue(value);
     }
 
-    private PropertyValue<List<ResponsibilityRecord>> _responsibilityRecords = new PropertyValue<List<ResponsibilityRecord>>(nameof(SubjectResponsibilitiesTable), nameof(ResponsibilityRecords), new List<ResponsibilityRecord>());
+    private PropertyValue<List<ResponsibilityRecord>> _responsibilityRecords = new PropertyValue<List<ResponsibilityRecord>>(nameof(SubjectResponsibilitiesTable), nameof(ResponsibilityRecords), "responsibilityRecords", new List<ResponsibilityRecord>());
     
     [Required]
     [JsonPropertyName("responsibilityRecords")]
     public List<ResponsibilityRecord> ResponsibilityRecords
     {
-        get => _responsibilityRecords.GetValue();
+        get => _responsibilityRecords.GetValue(InlineErrors);
         set => _responsibilityRecords.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _subjectId.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _reusedInProjects.SetAccessPath(path, validateHasBeenSet);
-        _responsibilityRecords.SetAccessPath(path, validateHasBeenSet);
+        _subjectId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reusedInProjects.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _responsibilityRecords.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

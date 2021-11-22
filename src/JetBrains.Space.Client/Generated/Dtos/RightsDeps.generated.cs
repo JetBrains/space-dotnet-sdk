@@ -40,31 +40,35 @@ public sealed class RightsDeps
         Deps = deps;
     }
     
-    private PropertyValue<string> _code = new PropertyValue<string>(nameof(RightsDeps), nameof(Code));
+    private PropertyValue<string> _code = new PropertyValue<string>(nameof(RightsDeps), nameof(Code), "code");
     
     [Required]
     [JsonPropertyName("code")]
     public string Code
     {
-        get => _code.GetValue();
+        get => _code.GetValue(InlineErrors);
         set => _code.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _deps = new PropertyValue<List<string>>(nameof(RightsDeps), nameof(Deps), new List<string>());
+    private PropertyValue<List<string>> _deps = new PropertyValue<List<string>>(nameof(RightsDeps), nameof(Deps), "deps", new List<string>());
     
     [Required]
     [JsonPropertyName("deps")]
     public List<string> Deps
     {
-        get => _deps.GetValue();
+        get => _deps.GetValue(InlineErrors);
         set => _deps.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _code.SetAccessPath(path, validateHasBeenSet);
-        _deps.SetAccessPath(path, validateHasBeenSet);
+        _code.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deps.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,20 +42,24 @@ public sealed class LaunchResultError
         Message = message;
     }
     
-    private PropertyValue<string> _message = new PropertyValue<string>(nameof(LaunchResultError), nameof(Message));
+    private PropertyValue<string> _message = new PropertyValue<string>(nameof(LaunchResultError), nameof(Message), "message");
     
     [Required]
     [JsonPropertyName("message")]
     public string Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _message.SetAccessPath(path, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

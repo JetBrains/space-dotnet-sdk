@@ -44,41 +44,45 @@ public sealed class UnfurlDetailsBlockMarkdown
         Markdown = markdown;
     }
     
-    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(UnfurlDetailsBlockMarkdown), nameof(Icon));
+    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(UnfurlDetailsBlockMarkdown), nameof(Icon), "icon");
     
     [JsonPropertyName("icon")]
     public string? Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsBlockMarkdown), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsBlockMarkdown), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<string> _markdown = new PropertyValue<string>(nameof(UnfurlDetailsBlockMarkdown), nameof(Markdown));
+    private PropertyValue<string> _markdown = new PropertyValue<string>(nameof(UnfurlDetailsBlockMarkdown), nameof(Markdown), "markdown");
     
     [Required]
     [JsonPropertyName("markdown")]
     public string Markdown
     {
-        get => _markdown.GetValue();
+        get => _markdown.GetValue(InlineErrors);
         set => _markdown.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _icon.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _markdown.SetAccessPath(path, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _markdown.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

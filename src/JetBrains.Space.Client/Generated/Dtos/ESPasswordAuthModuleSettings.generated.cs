@@ -38,9 +38,13 @@ public abstract class ESPasswordAuthModuleSettings
     public static ESBuiltinAuthModuleSettings ESBuiltinAuthModuleSettings(PasswordStrength passwordStrengthPolicy, List<string>? domains = null)
         => new ESBuiltinAuthModuleSettings(passwordStrengthPolicy: passwordStrengthPolicy, domains: domains);
     
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

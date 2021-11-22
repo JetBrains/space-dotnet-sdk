@@ -67,280 +67,284 @@ public sealed class MavenPackageVersionDetails
         Files = files;
     }
     
-    private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(MavenPackageVersionDetails), nameof(Type));
+    private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(MavenPackageVersionDetails), nameof(Type), "type");
     
     [Required]
     [JsonPropertyName("type")]
     public PackageType Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MavenPackageVersionDetails), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MavenPackageVersionDetails), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(MavenPackageVersionDetails), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(MavenPackageVersionDetails), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _version = new PropertyValue<string>(nameof(MavenPackageVersionDetails), nameof(Version));
+    private PropertyValue<string> _version = new PropertyValue<string>(nameof(MavenPackageVersionDetails), nameof(Version), "version");
     
     [Required]
     [JsonPropertyName("version")]
     public string Version
     {
-        get => _version.GetValue();
+        get => _version.GetValue(InlineErrors);
         set => _version.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(MavenPackageVersionDetails), nameof(Tags));
+    private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(MavenPackageVersionDetails), nameof(Tags), "tags");
     
     [JsonPropertyName("tags")]
     public List<string>? Tags
     {
-        get => _tags.GetValue();
+        get => _tags.GetValue(InlineErrors);
         set => _tags.SetValue(value);
     }
 
-    private PropertyValue<long> _created = new PropertyValue<long>(nameof(MavenPackageVersionDetails), nameof(Created));
+    private PropertyValue<long> _created = new PropertyValue<long>(nameof(MavenPackageVersionDetails), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     public long Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<long?> _accessed = new PropertyValue<long?>(nameof(MavenPackageVersionDetails), nameof(Accessed));
+    private PropertyValue<long?> _accessed = new PropertyValue<long?>(nameof(MavenPackageVersionDetails), nameof(Accessed), "accessed");
     
     [JsonPropertyName("accessed")]
     public long? Accessed
     {
-        get => _accessed.GetValue();
+        get => _accessed.GetValue(InlineErrors);
         set => _accessed.SetValue(value);
     }
 
-    private PropertyValue<long> _downloads = new PropertyValue<long>(nameof(MavenPackageVersionDetails), nameof(Downloads));
+    private PropertyValue<long> _downloads = new PropertyValue<long>(nameof(MavenPackageVersionDetails), nameof(Downloads), "downloads");
     
     [Required]
     [JsonPropertyName("downloads")]
     public long Downloads
     {
-        get => _downloads.GetValue();
+        get => _downloads.GetValue(InlineErrors);
         set => _downloads.SetValue(value);
     }
 
-    private PropertyValue<bool> _pinned = new PropertyValue<bool>(nameof(MavenPackageVersionDetails), nameof(IsPinned));
+    private PropertyValue<bool> _pinned = new PropertyValue<bool>(nameof(MavenPackageVersionDetails), nameof(IsPinned), "pinned");
     
     [Required]
     [JsonPropertyName("pinned")]
     public bool IsPinned
     {
-        get => _pinned.GetValue();
+        get => _pinned.GetValue(InlineErrors);
         set => _pinned.SetValue(value);
     }
 
-    private PropertyValue<string?> _comment = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(Comment));
+    private PropertyValue<string?> _comment = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(Comment), "comment");
     
     [JsonPropertyName("comment")]
     public string? Comment
     {
-        get => _comment.GetValue();
+        get => _comment.GetValue(InlineErrors);
         set => _comment.SetValue(value);
     }
 
-    private PropertyValue<long> _diskSize = new PropertyValue<long>(nameof(MavenPackageVersionDetails), nameof(DiskSize));
+    private PropertyValue<long> _diskSize = new PropertyValue<long>(nameof(MavenPackageVersionDetails), nameof(DiskSize), "diskSize");
     
     [Required]
     [JsonPropertyName("diskSize")]
     public long DiskSize
     {
-        get => _diskSize.GetValue();
+        get => _diskSize.GetValue(InlineErrors);
         set => _diskSize.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _author = new PropertyValue<CPrincipal?>(nameof(MavenPackageVersionDetails), nameof(Author));
+    private PropertyValue<CPrincipal?> _author = new PropertyValue<CPrincipal?>(nameof(MavenPackageVersionDetails), nameof(Author), "author");
     
     [JsonPropertyName("author")]
     public CPrincipal? Author
     {
-        get => _author.GetValue();
+        get => _author.GetValue(InlineErrors);
         set => _author.SetValue(value);
     }
 
-    private PropertyValue<List<CPrincipal>?> _authors = new PropertyValue<List<CPrincipal>?>(nameof(MavenPackageVersionDetails), nameof(Authors));
+    private PropertyValue<List<CPrincipal>?> _authors = new PropertyValue<List<CPrincipal>?>(nameof(MavenPackageVersionDetails), nameof(Authors), "authors");
     
     [JsonPropertyName("authors")]
     public List<CPrincipal>? Authors
     {
-        get => _authors.GetValue();
+        get => _authors.GetValue(InlineErrors);
         set => _authors.SetValue(value);
     }
 
-    private PropertyValue<PackageOrigin?> _origin = new PropertyValue<PackageOrigin?>(nameof(MavenPackageVersionDetails), nameof(Origin));
+    private PropertyValue<PackageOrigin?> _origin = new PropertyValue<PackageOrigin?>(nameof(MavenPackageVersionDetails), nameof(Origin), "origin");
     
     [JsonPropertyName("origin")]
     public PackageOrigin? Origin
     {
-        get => _origin.GetValue();
+        get => _origin.GetValue(InlineErrors);
         set => _origin.SetValue(value);
     }
 
-    private PropertyValue<Dictionary<string, string>?> _metadata = new PropertyValue<Dictionary<string, string>?>(nameof(MavenPackageVersionDetails), nameof(Metadata));
+    private PropertyValue<Dictionary<string, string>?> _metadata = new PropertyValue<Dictionary<string, string>?>(nameof(MavenPackageVersionDetails), nameof(Metadata), "metadata");
     
     [JsonPropertyName("metadata")]
     public Dictionary<string, string>? Metadata
     {
-        get => _metadata.GetValue();
+        get => _metadata.GetValue(InlineErrors);
         set => _metadata.SetValue(value);
     }
 
-    private PropertyValue<string?> _packaging = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(Packaging));
+    private PropertyValue<string?> _packaging = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(Packaging), "packaging");
     
     [JsonPropertyName("packaging")]
     public string? Packaging
     {
-        get => _packaging.GetValue();
+        get => _packaging.GetValue(InlineErrors);
         set => _packaging.SetValue(value);
     }
 
-    private PropertyValue<string?> _packageName = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(PackageName));
+    private PropertyValue<string?> _packageName = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(PackageName), "packageName");
     
     [JsonPropertyName("packageName")]
     public string? PackageName
     {
-        get => _packageName.GetValue();
+        get => _packageName.GetValue(InlineErrors);
         set => _packageName.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(Url));
+    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(Url), "url");
     
     [JsonPropertyName("url")]
     public string? Url
     {
-        get => _url.GetValue();
+        get => _url.GetValue(InlineErrors);
         set => _url.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _licenses = new PropertyValue<List<string>>(nameof(MavenPackageVersionDetails), nameof(Licenses), new List<string>());
+    private PropertyValue<List<string>> _licenses = new PropertyValue<List<string>>(nameof(MavenPackageVersionDetails), nameof(Licenses), "licenses", new List<string>());
     
     [Required]
     [JsonPropertyName("licenses")]
     public List<string> Licenses
     {
-        get => _licenses.GetValue();
+        get => _licenses.GetValue(InlineErrors);
         set => _licenses.SetValue(value);
     }
 
-    private PropertyValue<string?> _scmUrl = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(ScmUrl));
+    private PropertyValue<string?> _scmUrl = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(ScmUrl), "scmUrl");
     
     [JsonPropertyName("scmUrl")]
     public string? ScmUrl
     {
-        get => _scmUrl.GetValue();
+        get => _scmUrl.GetValue(InlineErrors);
         set => _scmUrl.SetValue(value);
     }
 
-    private PropertyValue<List<MavenPackageDependency>> _dependencies = new PropertyValue<List<MavenPackageDependency>>(nameof(MavenPackageVersionDetails), nameof(Dependencies), new List<MavenPackageDependency>());
+    private PropertyValue<List<MavenPackageDependency>> _dependencies = new PropertyValue<List<MavenPackageDependency>>(nameof(MavenPackageVersionDetails), nameof(Dependencies), "dependencies", new List<MavenPackageDependency>());
     
     [Required]
     [JsonPropertyName("dependencies")]
     public List<MavenPackageDependency> Dependencies
     {
-        get => _dependencies.GetValue();
+        get => _dependencies.GetValue(InlineErrors);
         set => _dependencies.SetValue(value);
     }
 
-    private PropertyValue<List<KotlinPlatform>?> _kotlinPlatforms = new PropertyValue<List<KotlinPlatform>?>(nameof(MavenPackageVersionDetails), nameof(KotlinPlatforms));
+    private PropertyValue<List<KotlinPlatform>?> _kotlinPlatforms = new PropertyValue<List<KotlinPlatform>?>(nameof(MavenPackageVersionDetails), nameof(KotlinPlatforms), "kotlinPlatforms");
     
     [JsonPropertyName("kotlinPlatforms")]
     public List<KotlinPlatform>? KotlinPlatforms
     {
-        get => _kotlinPlatforms.GetValue();
+        get => _kotlinPlatforms.GetValue(InlineErrors);
         set => _kotlinPlatforms.SetValue(value);
     }
 
-    private PropertyValue<MavenPackageParent?> _parent = new PropertyValue<MavenPackageParent?>(nameof(MavenPackageVersionDetails), nameof(Parent));
+    private PropertyValue<MavenPackageParent?> _parent = new PropertyValue<MavenPackageParent?>(nameof(MavenPackageVersionDetails), nameof(Parent), "parent");
     
     [JsonPropertyName("parent")]
     public MavenPackageParent? Parent
     {
-        get => _parent.GetValue();
+        get => _parent.GetValue(InlineErrors);
         set => _parent.SetValue(value);
     }
 
-    private PropertyValue<string?> _pathPrefix = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(PathPrefix));
+    private PropertyValue<string?> _pathPrefix = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(PathPrefix), "pathPrefix");
     
     [JsonPropertyName("pathPrefix")]
     public string? PathPrefix
     {
-        get => _pathPrefix.GetValue();
+        get => _pathPrefix.GetValue(InlineErrors);
         set => _pathPrefix.SetValue(value);
     }
 
-    private PropertyValue<List<MavenPackageFile>> _files = new PropertyValue<List<MavenPackageFile>>(nameof(MavenPackageVersionDetails), nameof(Files), new List<MavenPackageFile>());
+    private PropertyValue<List<MavenPackageFile>> _files = new PropertyValue<List<MavenPackageFile>>(nameof(MavenPackageVersionDetails), nameof(Files), "files", new List<MavenPackageFile>());
     
     [Required]
     [JsonPropertyName("files")]
     public List<MavenPackageFile> Files
     {
-        get => _files.GetValue();
+        get => _files.GetValue(InlineErrors);
         set => _files.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _version.SetAccessPath(path, validateHasBeenSet);
-        _tags.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _accessed.SetAccessPath(path, validateHasBeenSet);
-        _downloads.SetAccessPath(path, validateHasBeenSet);
-        _pinned.SetAccessPath(path, validateHasBeenSet);
-        _comment.SetAccessPath(path, validateHasBeenSet);
-        _diskSize.SetAccessPath(path, validateHasBeenSet);
-        _author.SetAccessPath(path, validateHasBeenSet);
-        _authors.SetAccessPath(path, validateHasBeenSet);
-        _origin.SetAccessPath(path, validateHasBeenSet);
-        _metadata.SetAccessPath(path, validateHasBeenSet);
-        _packaging.SetAccessPath(path, validateHasBeenSet);
-        _packageName.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _url.SetAccessPath(path, validateHasBeenSet);
-        _licenses.SetAccessPath(path, validateHasBeenSet);
-        _scmUrl.SetAccessPath(path, validateHasBeenSet);
-        _dependencies.SetAccessPath(path, validateHasBeenSet);
-        _kotlinPlatforms.SetAccessPath(path, validateHasBeenSet);
-        _parent.SetAccessPath(path, validateHasBeenSet);
-        _pathPrefix.SetAccessPath(path, validateHasBeenSet);
-        _files.SetAccessPath(path, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _accessed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _downloads.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pinned.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _comment.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _diskSize.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _author.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authors.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _origin.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _metadata.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _packaging.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _packageName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _licenses.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _scmUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _dependencies.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _kotlinPlatforms.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parent.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pathPrefix.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _files.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

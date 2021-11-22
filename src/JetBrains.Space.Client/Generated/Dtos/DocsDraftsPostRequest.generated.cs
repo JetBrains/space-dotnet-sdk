@@ -44,69 +44,73 @@ public class DocsDraftsPostRequest
         PublicationDetails2 = publicationDetails2;
     }
     
-    private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(DocsDraftsPostRequest), nameof(Title));
+    private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(DocsDraftsPostRequest), nameof(Title), "title");
     
     [JsonPropertyName("title")]
     public string? Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(DocsDraftsPostRequest), nameof(Text));
+    private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(DocsDraftsPostRequest), nameof(Text), "text");
     
     [JsonPropertyName("text")]
     public string? Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<long?> _textVersion = new PropertyValue<long?>(nameof(DocsDraftsPostRequest), nameof(TextVersion));
+    private PropertyValue<long?> _textVersion = new PropertyValue<long?>(nameof(DocsDraftsPostRequest), nameof(TextVersion), "textVersion");
     
     [JsonPropertyName("textVersion")]
     public long? TextVersion
     {
-        get => _textVersion.GetValue();
+        get => _textVersion.GetValue(InlineErrors);
         set => _textVersion.SetValue(value);
     }
 
-    private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(DocsDraftsPostRequest), nameof(Type), DraftDocumentType.RICHTEXT);
+    private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(DocsDraftsPostRequest), nameof(Type), "type", DraftDocumentType.RICHTEXT);
     
     [JsonPropertyName("type")]
     public DraftDocumentType Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<string?> _folder = new PropertyValue<string?>(nameof(DocsDraftsPostRequest), nameof(Folder));
+    private PropertyValue<string?> _folder = new PropertyValue<string?>(nameof(DocsDraftsPostRequest), nameof(Folder), "folder");
     
     [JsonPropertyName("folder")]
     public string? Folder
     {
-        get => _folder.GetValue();
+        get => _folder.GetValue(InlineErrors);
         set => _folder.SetValue(value);
     }
 
-    private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DocsDraftsPostRequest), nameof(PublicationDetails2));
+    private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DocsDraftsPostRequest), nameof(PublicationDetails2), "publicationDetails2");
     
     [JsonPropertyName("publicationDetails2")]
     public PublicationDetails? PublicationDetails2
     {
-        get => _publicationDetails2.GetValue();
+        get => _publicationDetails2.GetValue(InlineErrors);
         set => _publicationDetails2.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _textVersion.SetAccessPath(path, validateHasBeenSet);
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _folder.SetAccessPath(path, validateHasBeenSet);
-        _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _textVersion.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _folder.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _publicationDetails2.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

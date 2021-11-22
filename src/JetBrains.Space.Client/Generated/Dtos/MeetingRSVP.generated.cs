@@ -43,64 +43,68 @@ public sealed class MeetingRSVP
         Status = status;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(MeetingRSVP), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(MeetingRSVP), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(MeetingRSVP), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(MeetingRSVP), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(MeetingRSVP), nameof(Member));
+    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(MeetingRSVP), nameof(Member), "member");
     
     [Required]
     [JsonPropertyName("member")]
     public TDMemberProfile Member
     {
-        get => _member.GetValue();
+        get => _member.GetValue(InlineErrors);
         set => _member.SetValue(value);
     }
 
-    private PropertyValue<Meeting> _meeting = new PropertyValue<Meeting>(nameof(MeetingRSVP), nameof(Meeting));
+    private PropertyValue<Meeting> _meeting = new PropertyValue<Meeting>(nameof(MeetingRSVP), nameof(Meeting), "meeting");
     
     [Required]
     [JsonPropertyName("meeting")]
     public Meeting Meeting
     {
-        get => _meeting.GetValue();
+        get => _meeting.GetValue(InlineErrors);
         set => _meeting.SetValue(value);
     }
 
-    private PropertyValue<EventParticipationStatus> _status = new PropertyValue<EventParticipationStatus>(nameof(MeetingRSVP), nameof(Status));
+    private PropertyValue<EventParticipationStatus> _status = new PropertyValue<EventParticipationStatus>(nameof(MeetingRSVP), nameof(Status), "status");
     
     [Required]
     [JsonPropertyName("status")]
     public EventParticipationStatus Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _member.SetAccessPath(path, validateHasBeenSet);
-        _meeting.SetAccessPath(path, validateHasBeenSet);
-        _status.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _member.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _meeting.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

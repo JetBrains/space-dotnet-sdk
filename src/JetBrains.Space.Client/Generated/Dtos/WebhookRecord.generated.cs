@@ -52,161 +52,165 @@ public sealed class WebhookRecord
         Status = status;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(WebhookRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(WebhookRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(WebhookRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(WebhookRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(WebhookRecord), nameof(App));
+    private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(WebhookRecord), nameof(App), "app");
     
     [Required]
     [JsonPropertyName("app")]
     public ESApp App
     {
-        get => _app.GetValue();
+        get => _app.GetValue(InlineErrors);
         set => _app.SetValue(value);
     }
 
-    private PropertyValue<List<SubscriptionDTO>> _subscriptions = new PropertyValue<List<SubscriptionDTO>>(nameof(WebhookRecord), nameof(Subscriptions), new List<SubscriptionDTO>());
+    private PropertyValue<List<SubscriptionDTO>> _subscriptions = new PropertyValue<List<SubscriptionDTO>>(nameof(WebhookRecord), nameof(Subscriptions), "subscriptions", new List<SubscriptionDTO>());
     
     [Required]
     [JsonPropertyName("subscriptions")]
     public List<SubscriptionDTO> Subscriptions
     {
-        get => _subscriptions.GetValue();
+        get => _subscriptions.GetValue(InlineErrors);
         set => _subscriptions.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(WebhookRecord), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(WebhookRecord), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(WebhookRecord), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(WebhookRecord), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<bool> _useAppEndpoint = new PropertyValue<bool>(nameof(WebhookRecord), nameof(IsUseAppEndpoint));
+    private PropertyValue<bool> _useAppEndpoint = new PropertyValue<bool>(nameof(WebhookRecord), nameof(IsUseAppEndpoint), "useAppEndpoint");
     
     [Required]
     [JsonPropertyName("useAppEndpoint")]
     public bool IsUseAppEndpoint
     {
-        get => _useAppEndpoint.GetValue();
+        get => _useAppEndpoint.GetValue(InlineErrors);
         set => _useAppEndpoint.SetValue(value);
     }
 
-    private PropertyValue<EndpointDTO> _endpoint = new PropertyValue<EndpointDTO>(nameof(WebhookRecord), nameof(Endpoint));
+    private PropertyValue<EndpointDTO> _endpoint = new PropertyValue<EndpointDTO>(nameof(WebhookRecord), nameof(Endpoint), "endpoint");
     
     [Required]
     [JsonPropertyName("endpoint")]
     public EndpointDTO Endpoint
     {
-        get => _endpoint.GetValue();
+        get => _endpoint.GetValue(InlineErrors);
         set => _endpoint.SetValue(value);
     }
 
-    private PropertyValue<bool> _useAppEndpointAuth = new PropertyValue<bool>(nameof(WebhookRecord), nameof(IsUseAppEndpointAuth));
+    private PropertyValue<bool> _useAppEndpointAuth = new PropertyValue<bool>(nameof(WebhookRecord), nameof(IsUseAppEndpointAuth), "useAppEndpointAuth");
     
     [Required]
     [JsonPropertyName("useAppEndpointAuth")]
     public bool IsUseAppEndpointAuth
     {
-        get => _useAppEndpointAuth.GetValue();
+        get => _useAppEndpointAuth.GetValue(InlineErrors);
         set => _useAppEndpointAuth.SetValue(value);
     }
 
-    private PropertyValue<EndpointAuthDTO> _endpointAuth = new PropertyValue<EndpointAuthDTO>(nameof(WebhookRecord), nameof(EndpointAuth));
+    private PropertyValue<EndpointAuthDTO> _endpointAuth = new PropertyValue<EndpointAuthDTO>(nameof(WebhookRecord), nameof(EndpointAuth), "endpointAuth");
     
     [Required]
     [JsonPropertyName("endpointAuth")]
     public EndpointAuthDTO EndpointAuth
     {
-        get => _endpointAuth.GetValue();
+        get => _endpointAuth.GetValue(InlineErrors);
         set => _endpointAuth.SetValue(value);
     }
 
-    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(WebhookRecord), nameof(IsEnabled));
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(WebhookRecord), nameof(IsEnabled), "enabled");
     
     [Required]
     [JsonPropertyName("enabled")]
     public bool IsEnabled
     {
-        get => _enabled.GetValue();
+        get => _enabled.GetValue(InlineErrors);
         set => _enabled.SetValue(value);
     }
 
-    private PropertyValue<List<int>> _acceptedHttpResponseCodes = new PropertyValue<List<int>>(nameof(WebhookRecord), nameof(AcceptedHttpResponseCodes), new List<int>());
+    private PropertyValue<List<int>> _acceptedHttpResponseCodes = new PropertyValue<List<int>>(nameof(WebhookRecord), nameof(AcceptedHttpResponseCodes), "acceptedHttpResponseCodes", new List<int>());
     
     [Required]
     [JsonPropertyName("acceptedHttpResponseCodes")]
     public List<int> AcceptedHttpResponseCodes
     {
-        get => _acceptedHttpResponseCodes.GetValue();
+        get => _acceptedHttpResponseCodes.GetValue(InlineErrors);
         set => _acceptedHttpResponseCodes.SetValue(value);
     }
 
-    private PropertyValue<bool> _doRetries = new PropertyValue<bool>(nameof(WebhookRecord), nameof(IsDoRetries));
+    private PropertyValue<bool> _doRetries = new PropertyValue<bool>(nameof(WebhookRecord), nameof(IsDoRetries), "doRetries");
     
     [Required]
     [JsonPropertyName("doRetries")]
     public bool IsDoRetries
     {
-        get => _doRetries.GetValue();
+        get => _doRetries.GetValue(InlineErrors);
         set => _doRetries.SetValue(value);
     }
 
-    private PropertyValue<WebhookDeliveryStatusDTO?> _status = new PropertyValue<WebhookDeliveryStatusDTO?>(nameof(WebhookRecord), nameof(Status));
+    private PropertyValue<WebhookDeliveryStatusDTO?> _status = new PropertyValue<WebhookDeliveryStatusDTO?>(nameof(WebhookRecord), nameof(Status), "status");
     
     [JsonPropertyName("status")]
     public WebhookDeliveryStatusDTO? Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _app.SetAccessPath(path, validateHasBeenSet);
-        _subscriptions.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _useAppEndpoint.SetAccessPath(path, validateHasBeenSet);
-        _endpoint.SetAccessPath(path, validateHasBeenSet);
-        _useAppEndpointAuth.SetAccessPath(path, validateHasBeenSet);
-        _endpointAuth.SetAccessPath(path, validateHasBeenSet);
-        _enabled.SetAccessPath(path, validateHasBeenSet);
-        _acceptedHttpResponseCodes.SetAccessPath(path, validateHasBeenSet);
-        _doRetries.SetAccessPath(path, validateHasBeenSet);
-        _status.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _app.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subscriptions.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _useAppEndpoint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _endpoint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _useAppEndpointAuth.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _endpointAuth.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _acceptedHttpResponseCodes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _doRetries.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

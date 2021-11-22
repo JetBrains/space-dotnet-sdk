@@ -44,40 +44,44 @@ public sealed class UnfurlDetailsPackageDetails
         Version = version;
     }
     
-    private PropertyValue<ProjectPackageRepository> _repoRef = new PropertyValue<ProjectPackageRepository>(nameof(UnfurlDetailsPackageDetails), nameof(RepoRef));
+    private PropertyValue<ProjectPackageRepository> _repoRef = new PropertyValue<ProjectPackageRepository>(nameof(UnfurlDetailsPackageDetails), nameof(RepoRef), "repoRef");
     
     [Required]
     [JsonPropertyName("repoRef")]
     public ProjectPackageRepository RepoRef
     {
-        get => _repoRef.GetValue();
+        get => _repoRef.GetValue(InlineErrors);
         set => _repoRef.SetValue(value);
     }
 
-    private PropertyValue<string?> _packageName = new PropertyValue<string?>(nameof(UnfurlDetailsPackageDetails), nameof(PackageName));
+    private PropertyValue<string?> _packageName = new PropertyValue<string?>(nameof(UnfurlDetailsPackageDetails), nameof(PackageName), "packageName");
     
     [JsonPropertyName("packageName")]
     public string? PackageName
     {
-        get => _packageName.GetValue();
+        get => _packageName.GetValue(InlineErrors);
         set => _packageName.SetValue(value);
     }
 
-    private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(UnfurlDetailsPackageDetails), nameof(Version));
+    private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(UnfurlDetailsPackageDetails), nameof(Version), "version");
     
     [JsonPropertyName("version")]
     public string? Version
     {
-        get => _version.GetValue();
+        get => _version.GetValue(InlineErrors);
         set => _version.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _repoRef.SetAccessPath(path, validateHasBeenSet);
-        _packageName.SetAccessPath(path, validateHasBeenSet);
-        _version.SetAccessPath(path, validateHasBeenSet);
+        _repoRef.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _packageName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

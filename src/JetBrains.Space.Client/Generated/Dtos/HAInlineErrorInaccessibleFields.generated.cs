@@ -43,31 +43,35 @@ public sealed class HAInlineErrorInaccessibleFields
         Message = message;
     }
     
-    private PropertyValue<List<string>> _fields = new PropertyValue<List<string>>(nameof(HAInlineErrorInaccessibleFields), nameof(Fields), new List<string>());
+    private PropertyValue<List<string>> _fields = new PropertyValue<List<string>>(nameof(HAInlineErrorInaccessibleFields), nameof(Fields), "fields", new List<string>());
     
     [Required]
     [JsonPropertyName("fields")]
     public List<string> Fields
     {
-        get => _fields.GetValue();
+        get => _fields.GetValue(InlineErrors);
         set => _fields.SetValue(value);
     }
 
-    private PropertyValue<string> _message = new PropertyValue<string>(nameof(HAInlineErrorInaccessibleFields), nameof(Message));
+    private PropertyValue<string> _message = new PropertyValue<string>(nameof(HAInlineErrorInaccessibleFields), nameof(Message), "message");
     
     [Required]
     [JsonPropertyName("message")]
     public string Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _fields.SetAccessPath(path, validateHasBeenSet);
-        _message.SetAccessPath(path, validateHasBeenSet);
+        _fields.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

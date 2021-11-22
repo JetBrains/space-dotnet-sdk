@@ -42,19 +42,23 @@ public sealed class FractionCFValue
         Value = value;
     }
     
-    private PropertyValue<Fraction?> _value = new PropertyValue<Fraction?>(nameof(FractionCFValue), nameof(Value));
+    private PropertyValue<Fraction?> _value = new PropertyValue<Fraction?>(nameof(FractionCFValue), nameof(Value), "value");
     
     [JsonPropertyName("value")]
     public Fraction? Value
     {
-        get => _value.GetValue();
+        get => _value.GetValue(InlineErrors);
         set => _value.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _value.SetAccessPath(path, validateHasBeenSet);
+        _value.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

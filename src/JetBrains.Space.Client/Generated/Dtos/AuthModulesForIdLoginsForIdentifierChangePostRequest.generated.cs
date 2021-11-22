@@ -40,31 +40,35 @@ public class AuthModulesForIdLoginsForIdentifierChangePostRequest
         NewPassword = newPassword;
     }
     
-    private PropertyValue<string> _oldPassword = new PropertyValue<string>(nameof(AuthModulesForIdLoginsForIdentifierChangePostRequest), nameof(OldPassword));
+    private PropertyValue<string> _oldPassword = new PropertyValue<string>(nameof(AuthModulesForIdLoginsForIdentifierChangePostRequest), nameof(OldPassword), "oldPassword");
     
     [Required]
     [JsonPropertyName("oldPassword")]
     public string OldPassword
     {
-        get => _oldPassword.GetValue();
+        get => _oldPassword.GetValue(InlineErrors);
         set => _oldPassword.SetValue(value);
     }
 
-    private PropertyValue<string> _newPassword = new PropertyValue<string>(nameof(AuthModulesForIdLoginsForIdentifierChangePostRequest), nameof(NewPassword));
+    private PropertyValue<string> _newPassword = new PropertyValue<string>(nameof(AuthModulesForIdLoginsForIdentifierChangePostRequest), nameof(NewPassword), "newPassword");
     
     [Required]
     [JsonPropertyName("newPassword")]
     public string NewPassword
     {
-        get => _newPassword.GetValue();
+        get => _newPassword.GetValue(InlineErrors);
         set => _newPassword.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _oldPassword.SetAccessPath(path, validateHasBeenSet);
-        _newPassword.SetAccessPath(path, validateHasBeenSet);
+        _oldPassword.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _newPassword.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

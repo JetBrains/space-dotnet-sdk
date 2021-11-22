@@ -44,41 +44,45 @@ public sealed class M2ChannelContentCodeDiscussion
         CodeDiscussion = codeDiscussion;
     }
     
-    private PropertyValue<string> _codeDiscussionId = new PropertyValue<string>(nameof(M2ChannelContentCodeDiscussion), nameof(CodeDiscussionId));
+    private PropertyValue<string> _codeDiscussionId = new PropertyValue<string>(nameof(M2ChannelContentCodeDiscussion), nameof(CodeDiscussionId), "codeDiscussionId");
     
     [Required]
     [JsonPropertyName("codeDiscussionId")]
     public string CodeDiscussionId
     {
-        get => _codeDiscussionId.GetValue();
+        get => _codeDiscussionId.GetValue(InlineErrors);
         set => _codeDiscussionId.SetValue(value);
     }
 
-    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentCodeDiscussion), nameof(NotificationDefaults));
+    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentCodeDiscussion), nameof(NotificationDefaults), "notificationDefaults");
     
     [Required]
     [JsonPropertyName("notificationDefaults")]
     public ChannelSpecificDefaults NotificationDefaults
     {
-        get => _notificationDefaults.GetValue();
+        get => _notificationDefaults.GetValue(InlineErrors);
         set => _notificationDefaults.SetValue(value);
     }
 
-    private PropertyValue<CodeDiscussionRecord?> _codeDiscussion = new PropertyValue<CodeDiscussionRecord?>(nameof(M2ChannelContentCodeDiscussion), nameof(CodeDiscussion));
+    private PropertyValue<CodeDiscussionRecord?> _codeDiscussion = new PropertyValue<CodeDiscussionRecord?>(nameof(M2ChannelContentCodeDiscussion), nameof(CodeDiscussion), "codeDiscussion");
     
     [JsonPropertyName("codeDiscussion")]
     public CodeDiscussionRecord? CodeDiscussion
     {
-        get => _codeDiscussion.GetValue();
+        get => _codeDiscussion.GetValue(InlineErrors);
         set => _codeDiscussion.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _codeDiscussionId.SetAccessPath(path, validateHasBeenSet);
-        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-        _codeDiscussion.SetAccessPath(path, validateHasBeenSet);
+        _codeDiscussionId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _codeDiscussion.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

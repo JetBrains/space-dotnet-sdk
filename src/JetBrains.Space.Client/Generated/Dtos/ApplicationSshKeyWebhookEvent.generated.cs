@@ -45,51 +45,55 @@ public sealed class ApplicationSshKeyWebhookEvent
         Comment = comment;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationSshKeyWebhookEvent), nameof(Meta));
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationSshKeyWebhookEvent), nameof(Meta), "meta");
     
     [Required]
     [JsonPropertyName("meta")]
     public KMetaMod Meta
     {
-        get => _meta.GetValue();
+        get => _meta.GetValue(InlineErrors);
         set => _meta.SetValue(value);
     }
 
-    private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationSshKeyWebhookEvent), nameof(Application));
+    private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationSshKeyWebhookEvent), nameof(Application), "application");
     
     [Required]
     [JsonPropertyName("application")]
     public ESApp Application
     {
-        get => _application.GetValue();
+        get => _application.GetValue(InlineErrors);
         set => _application.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _fingerprint = new PropertyValue<Modification<string>?>(nameof(ApplicationSshKeyWebhookEvent), nameof(Fingerprint));
+    private PropertyValue<Modification<string>?> _fingerprint = new PropertyValue<Modification<string>?>(nameof(ApplicationSshKeyWebhookEvent), nameof(Fingerprint), "fingerprint");
     
     [JsonPropertyName("fingerprint")]
     public Modification<string>? Fingerprint
     {
-        get => _fingerprint.GetValue();
+        get => _fingerprint.GetValue(InlineErrors);
         set => _fingerprint.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _comment = new PropertyValue<Modification<string>?>(nameof(ApplicationSshKeyWebhookEvent), nameof(Comment));
+    private PropertyValue<Modification<string>?> _comment = new PropertyValue<Modification<string>?>(nameof(ApplicationSshKeyWebhookEvent), nameof(Comment), "comment");
     
     [JsonPropertyName("comment")]
     public Modification<string>? Comment
     {
-        get => _comment.GetValue();
+        get => _comment.GetValue(InlineErrors);
         set => _comment.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meta.SetAccessPath(path, validateHasBeenSet);
-        _application.SetAccessPath(path, validateHasBeenSet);
-        _fingerprint.SetAccessPath(path, validateHasBeenSet);
-        _comment.SetAccessPath(path, validateHasBeenSet);
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _application.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _fingerprint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _comment.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

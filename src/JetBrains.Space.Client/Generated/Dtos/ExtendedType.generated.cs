@@ -42,52 +42,56 @@ public sealed class ExtendedType
         ScopeType = scopeType;
     }
     
-    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ExtendedType), nameof(Key));
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ExtendedType), nameof(Key), "key");
     
     [Required]
     [JsonPropertyName("key")]
     public string Key
     {
-        get => _key.GetValue();
+        get => _key.GetValue(InlineErrors);
         set => _key.SetValue(value);
     }
 
-    private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(ExtendedType), nameof(DisplayName));
+    private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(ExtendedType), nameof(DisplayName), "displayName");
     
     [Required]
     [JsonPropertyName("displayName")]
     public string DisplayName
     {
-        get => _displayName.GetValue();
+        get => _displayName.GetValue(InlineErrors);
         set => _displayName.SetValue(value);
     }
 
-    private PropertyValue<string?> _apiClassName = new PropertyValue<string?>(nameof(ExtendedType), nameof(ApiClassName));
+    private PropertyValue<string?> _apiClassName = new PropertyValue<string?>(nameof(ExtendedType), nameof(ApiClassName), "apiClassName");
     
     [JsonPropertyName("apiClassName")]
     public string? ApiClassName
     {
-        get => _apiClassName.GetValue();
+        get => _apiClassName.GetValue(InlineErrors);
         set => _apiClassName.SetValue(value);
     }
 
-    private PropertyValue<ExtendedTypeScopeType> _scopeType = new PropertyValue<ExtendedTypeScopeType>(nameof(ExtendedType), nameof(ScopeType));
+    private PropertyValue<ExtendedTypeScopeType> _scopeType = new PropertyValue<ExtendedTypeScopeType>(nameof(ExtendedType), nameof(ScopeType), "scopeType");
     
     [Required]
     [JsonPropertyName("scopeType")]
     public ExtendedTypeScopeType ScopeType
     {
-        get => _scopeType.GetValue();
+        get => _scopeType.GetValue(InlineErrors);
         set => _scopeType.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _key.SetAccessPath(path, validateHasBeenSet);
-        _displayName.SetAccessPath(path, validateHasBeenSet);
-        _apiClassName.SetAccessPath(path, validateHasBeenSet);
-        _scopeType.SetAccessPath(path, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _displayName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _apiClassName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _scopeType.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

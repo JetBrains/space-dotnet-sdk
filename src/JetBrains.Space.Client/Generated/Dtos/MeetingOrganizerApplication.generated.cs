@@ -42,19 +42,23 @@ public sealed class MeetingOrganizerApplication
         ApplicationRef = applicationRef;
     }
     
-    private PropertyValue<ESApp?> _applicationRef = new PropertyValue<ESApp?>(nameof(MeetingOrganizerApplication), nameof(ApplicationRef));
+    private PropertyValue<ESApp?> _applicationRef = new PropertyValue<ESApp?>(nameof(MeetingOrganizerApplication), nameof(ApplicationRef), "applicationRef");
     
     [JsonPropertyName("applicationRef")]
     public ESApp? ApplicationRef
     {
-        get => _applicationRef.GetValue();
+        get => _applicationRef.GetValue(InlineErrors);
         set => _applicationRef.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _applicationRef.SetAccessPath(path, validateHasBeenSet);
+        _applicationRef.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -39,20 +39,24 @@ public class ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForCo
         Source = source;
     }
     
-    private PropertyValue<PublishingSource> _source = new PropertyValue<PublishingSource>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest), nameof(Source));
+    private PropertyValue<PublishingSource> _source = new PropertyValue<PublishingSource>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest), nameof(Source), "source");
     
     [Required]
     [JsonPropertyName("source")]
     public PublishingSource Source
     {
-        get => _source.GetValue();
+        get => _source.GetValue(InlineErrors);
         set => _source.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _source.SetAccessPath(path, validateHasBeenSet);
+        _source.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

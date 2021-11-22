@@ -42,20 +42,24 @@ public sealed class HADefaultValueConstPrimitive
         Expression = expression;
     }
     
-    private PropertyValue<string> _expression = new PropertyValue<string>(nameof(HADefaultValueConstPrimitive), nameof(Expression));
+    private PropertyValue<string> _expression = new PropertyValue<string>(nameof(HADefaultValueConstPrimitive), nameof(Expression), "expression");
     
     [Required]
     [JsonPropertyName("expression")]
     public string Expression
     {
-        get => _expression.GetValue();
+        get => _expression.GetValue(InlineErrors);
         set => _expression.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _expression.SetAccessPath(path, validateHasBeenSet);
+        _expression.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

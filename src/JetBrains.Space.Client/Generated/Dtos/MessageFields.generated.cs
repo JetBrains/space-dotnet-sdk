@@ -42,20 +42,24 @@ public sealed class MessageFields
         Fields = fields;
     }
     
-    private PropertyValue<List<MessageFieldElement>> _fields = new PropertyValue<List<MessageFieldElement>>(nameof(MessageFields), nameof(Fields), new List<MessageFieldElement>());
+    private PropertyValue<List<MessageFieldElement>> _fields = new PropertyValue<List<MessageFieldElement>>(nameof(MessageFields), nameof(Fields), "fields", new List<MessageFieldElement>());
     
     [Required]
     [JsonPropertyName("fields")]
     public List<MessageFieldElement> Fields
     {
-        get => _fields.GetValue();
+        get => _fields.GetValue(InlineErrors);
         set => _fields.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _fields.SetAccessPath(path, validateHasBeenSet);
+        _fields.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

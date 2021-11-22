@@ -42,20 +42,24 @@ public sealed class ProfileListCFInputValue
         Profiles = profiles;
     }
     
-    private PropertyValue<List<ProfileIdentifier>> _profiles = new PropertyValue<List<ProfileIdentifier>>(nameof(ProfileListCFInputValue), nameof(Profiles), new List<ProfileIdentifier>());
+    private PropertyValue<List<ProfileIdentifier>> _profiles = new PropertyValue<List<ProfileIdentifier>>(nameof(ProfileListCFInputValue), nameof(Profiles), "profiles", new List<ProfileIdentifier>());
     
     [Required]
     [JsonPropertyName("profiles")]
     public List<ProfileIdentifier> Profiles
     {
-        get => _profiles.GetValue();
+        get => _profiles.GetValue(InlineErrors);
         set => _profiles.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profiles.SetAccessPath(path, validateHasBeenSet);
+        _profiles.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

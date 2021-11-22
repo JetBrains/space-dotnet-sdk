@@ -42,52 +42,56 @@ public sealed class ESProfileLogin
         Access = access;
     }
     
-    private PropertyValue<string> _identifier = new PropertyValue<string>(nameof(ESProfileLogin), nameof(Identifier));
+    private PropertyValue<string> _identifier = new PropertyValue<string>(nameof(ESProfileLogin), nameof(Identifier), "identifier");
     
     [Required]
     [JsonPropertyName("identifier")]
     public string Identifier
     {
-        get => _identifier.GetValue();
+        get => _identifier.GetValue(InlineErrors);
         set => _identifier.SetValue(value);
     }
 
-    private PropertyValue<ESAuthModule> _authModule = new PropertyValue<ESAuthModule>(nameof(ESProfileLogin), nameof(AuthModule));
+    private PropertyValue<ESAuthModule> _authModule = new PropertyValue<ESAuthModule>(nameof(ESProfileLogin), nameof(AuthModule), "authModule");
     
     [Required]
     [JsonPropertyName("authModule")]
     public ESAuthModule AuthModule
     {
-        get => _authModule.GetValue();
+        get => _authModule.GetValue(InlineErrors);
         set => _authModule.SetValue(value);
     }
 
-    private PropertyValue<ESProfileLoginDetails> _details = new PropertyValue<ESProfileLoginDetails>(nameof(ESProfileLogin), nameof(Details));
+    private PropertyValue<ESProfileLoginDetails> _details = new PropertyValue<ESProfileLoginDetails>(nameof(ESProfileLogin), nameof(Details), "details");
     
     [Required]
     [JsonPropertyName("details")]
     public ESProfileLoginDetails Details
     {
-        get => _details.GetValue();
+        get => _details.GetValue(InlineErrors);
         set => _details.SetValue(value);
     }
 
-    private PropertyValue<AccessRecord?> _access = new PropertyValue<AccessRecord?>(nameof(ESProfileLogin), nameof(Access));
+    private PropertyValue<AccessRecord?> _access = new PropertyValue<AccessRecord?>(nameof(ESProfileLogin), nameof(Access), "access");
     
     [JsonPropertyName("access")]
     public AccessRecord? Access
     {
-        get => _access.GetValue();
+        get => _access.GetValue(InlineErrors);
         set => _access.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _identifier.SetAccessPath(path, validateHasBeenSet);
-        _authModule.SetAccessPath(path, validateHasBeenSet);
-        _details.SetAccessPath(path, validateHasBeenSet);
-        _access.SetAccessPath(path, validateHasBeenSet);
+        _identifier.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authModule.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _details.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _access.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

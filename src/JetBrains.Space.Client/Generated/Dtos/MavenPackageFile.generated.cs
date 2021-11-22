@@ -42,53 +42,57 @@ public sealed class MavenPackageFile
         Checksums = checksums;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(MavenPackageFile), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(MavenPackageFile), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<long> _created = new PropertyValue<long>(nameof(MavenPackageFile), nameof(Created));
+    private PropertyValue<long> _created = new PropertyValue<long>(nameof(MavenPackageFile), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     public long Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<long> _length = new PropertyValue<long>(nameof(MavenPackageFile), nameof(Length));
+    private PropertyValue<long> _length = new PropertyValue<long>(nameof(MavenPackageFile), nameof(Length), "length");
     
     [Required]
     [JsonPropertyName("length")]
     public long Length
     {
-        get => _length.GetValue();
+        get => _length.GetValue(InlineErrors);
         set => _length.SetValue(value);
     }
 
-    private PropertyValue<List<MavenChecksum>> _checksums = new PropertyValue<List<MavenChecksum>>(nameof(MavenPackageFile), nameof(Checksums), new List<MavenChecksum>());
+    private PropertyValue<List<MavenChecksum>> _checksums = new PropertyValue<List<MavenChecksum>>(nameof(MavenPackageFile), nameof(Checksums), "checksums", new List<MavenChecksum>());
     
     [Required]
     [JsonPropertyName("checksums")]
     public List<MavenChecksum> Checksums
     {
-        get => _checksums.GetValue();
+        get => _checksums.GetValue(InlineErrors);
         set => _checksums.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _length.SetAccessPath(path, validateHasBeenSet);
-        _checksums.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _length.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _checksums.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -43,31 +43,35 @@ public sealed class GitCommitSignatureRaw
         SignedDataB64 = signedDataB64;
     }
     
-    private PropertyValue<string> _signature = new PropertyValue<string>(nameof(GitCommitSignatureRaw), nameof(Signature));
+    private PropertyValue<string> _signature = new PropertyValue<string>(nameof(GitCommitSignatureRaw), nameof(Signature), "signature");
     
     [Required]
     [JsonPropertyName("signature")]
     public string Signature
     {
-        get => _signature.GetValue();
+        get => _signature.GetValue(InlineErrors);
         set => _signature.SetValue(value);
     }
 
-    private PropertyValue<string> _signedDataB64 = new PropertyValue<string>(nameof(GitCommitSignatureRaw), nameof(SignedDataB64));
+    private PropertyValue<string> _signedDataB64 = new PropertyValue<string>(nameof(GitCommitSignatureRaw), nameof(SignedDataB64), "signedDataB64");
     
     [Required]
     [JsonPropertyName("signedDataB64")]
     public string SignedDataB64
     {
-        get => _signedDataB64.GetValue();
+        get => _signedDataB64.GetValue(InlineErrors);
         set => _signedDataB64.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _signature.SetAccessPath(path, validateHasBeenSet);
-        _signedDataB64.SetAccessPath(path, validateHasBeenSet);
+        _signature.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _signedDataB64.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

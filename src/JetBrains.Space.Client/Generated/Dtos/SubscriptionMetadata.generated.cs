@@ -44,42 +44,46 @@ public sealed class SubscriptionMetadata
         SubscriptionName = subscriptionName;
     }
     
-    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(SubscriptionMetadata), nameof(Channel));
+    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(SubscriptionMetadata), nameof(Channel), "channel");
     
     [Required]
     [JsonPropertyName("channel")]
     public M2ChannelRecord Channel
     {
-        get => _channel.GetValue();
+        get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
     }
 
-    private PropertyValue<string> _subscription = new PropertyValue<string>(nameof(SubscriptionMetadata), nameof(Subscription));
+    private PropertyValue<string> _subscription = new PropertyValue<string>(nameof(SubscriptionMetadata), nameof(Subscription), "subscription");
     
     [Required]
     [JsonPropertyName("subscription")]
     public string Subscription
     {
-        get => _subscription.GetValue();
+        get => _subscription.GetValue(InlineErrors);
         set => _subscription.SetValue(value);
     }
 
-    private PropertyValue<string> _subscriptionName = new PropertyValue<string>(nameof(SubscriptionMetadata), nameof(SubscriptionName));
+    private PropertyValue<string> _subscriptionName = new PropertyValue<string>(nameof(SubscriptionMetadata), nameof(SubscriptionName), "subscriptionName");
     
     [Required]
     [JsonPropertyName("subscriptionName")]
     public string SubscriptionName
     {
-        get => _subscriptionName.GetValue();
+        get => _subscriptionName.GetValue(InlineErrors);
         set => _subscriptionName.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _channel.SetAccessPath(path, validateHasBeenSet);
-        _subscription.SetAccessPath(path, validateHasBeenSet);
-        _subscriptionName.SetAccessPath(path, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subscription.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subscriptionName.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -43,30 +43,34 @@ public sealed class UnfurlDetailsMC
         InlineUnfurls = inlineUnfurls;
     }
     
-    private PropertyValue<MCMessage> _message = new PropertyValue<MCMessage>(nameof(UnfurlDetailsMC), nameof(Message));
+    private PropertyValue<MCMessage> _message = new PropertyValue<MCMessage>(nameof(UnfurlDetailsMC), nameof(Message), "message");
     
     [Required]
     [JsonPropertyName("message")]
     public MCMessage Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    private PropertyValue<List<AttachmentInfo>?> _inlineUnfurls = new PropertyValue<List<AttachmentInfo>?>(nameof(UnfurlDetailsMC), nameof(InlineUnfurls));
+    private PropertyValue<List<AttachmentInfo>?> _inlineUnfurls = new PropertyValue<List<AttachmentInfo>?>(nameof(UnfurlDetailsMC), nameof(InlineUnfurls), "inlineUnfurls");
     
     [JsonPropertyName("inlineUnfurls")]
     public List<AttachmentInfo>? InlineUnfurls
     {
-        get => _inlineUnfurls.GetValue();
+        get => _inlineUnfurls.GetValue(InlineErrors);
         set => _inlineUnfurls.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _message.SetAccessPath(path, validateHasBeenSet);
-        _inlineUnfurls.SetAccessPath(path, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inlineUnfurls.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

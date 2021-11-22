@@ -39,20 +39,24 @@ public class ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest
         Revisions = revisions;
     }
     
-    private PropertyValue<List<ReviewCommitIn>> _revisions = new PropertyValue<List<ReviewCommitIn>>(nameof(ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest), nameof(Revisions), new List<ReviewCommitIn>());
+    private PropertyValue<List<ReviewCommitIn>> _revisions = new PropertyValue<List<ReviewCommitIn>>(nameof(ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest), nameof(Revisions), "revisions", new List<ReviewCommitIn>());
     
     [Required]
     [JsonPropertyName("revisions")]
     public List<ReviewCommitIn> Revisions
     {
-        get => _revisions.GetValue();
+        get => _revisions.GetValue(InlineErrors);
         set => _revisions.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _revisions.SetAccessPath(path, validateHasBeenSet);
+        _revisions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

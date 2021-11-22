@@ -42,20 +42,24 @@ public sealed class CodeReviewUnfurlContext
         ReviewId = reviewId;
     }
     
-    private PropertyValue<string> _reviewId = new PropertyValue<string>(nameof(CodeReviewUnfurlContext), nameof(ReviewId));
+    private PropertyValue<string> _reviewId = new PropertyValue<string>(nameof(CodeReviewUnfurlContext), nameof(ReviewId), "reviewId");
     
     [Required]
     [JsonPropertyName("reviewId")]
     public string ReviewId
     {
-        get => _reviewId.GetValue();
+        get => _reviewId.GetValue(InlineErrors);
         set => _reviewId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _reviewId.SetAccessPath(path, validateHasBeenSet);
+        _reviewId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -45,88 +45,92 @@ public sealed class TodoItemRecord
         DueDate = dueDate;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TodoItemRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TodoItemRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TodoItemRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TodoItemRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(TodoItemRecord), nameof(Created));
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(TodoItemRecord), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(TodoItemRecord), nameof(Updated));
+    private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(TodoItemRecord), nameof(Updated), "updated");
     
     [Required]
     [JsonPropertyName("updated")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Updated
     {
-        get => _updated.GetValue();
+        get => _updated.GetValue(InlineErrors);
         set => _updated.SetValue(value);
     }
 
-    private PropertyValue<TodoItemContent> _content = new PropertyValue<TodoItemContent>(nameof(TodoItemRecord), nameof(Content));
+    private PropertyValue<TodoItemContent> _content = new PropertyValue<TodoItemContent>(nameof(TodoItemRecord), nameof(Content), "content");
     
     [Required]
     [JsonPropertyName("content")]
     public TodoItemContent Content
     {
-        get => _content.GetValue();
+        get => _content.GetValue(InlineErrors);
         set => _content.SetValue(value);
     }
 
-    private PropertyValue<string> __status = new PropertyValue<string>(nameof(TodoItemRecord), nameof(Status));
+    private PropertyValue<string> __status = new PropertyValue<string>(nameof(TodoItemRecord), nameof(Status), "_status");
     
     [Required]
     [JsonPropertyName("_status")]
     public string Status
     {
-        get => __status.GetValue();
+        get => __status.GetValue(InlineErrors);
         set => __status.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoItemRecord), nameof(DueDate));
+    private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoItemRecord), nameof(DueDate), "dueDate");
     
     [JsonPropertyName("dueDate")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? DueDate
     {
-        get => _dueDate.GetValue();
+        get => _dueDate.GetValue(InlineErrors);
         set => _dueDate.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _updated.SetAccessPath(path, validateHasBeenSet);
-        _content.SetAccessPath(path, validateHasBeenSet);
-        __status.SetAccessPath(path, validateHasBeenSet);
-        _dueDate.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updated.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _content.SetAccessPath(parentChainPath, validateHasBeenSet);
+        __status.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _dueDate.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

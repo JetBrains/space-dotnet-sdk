@@ -39,20 +39,24 @@ public sealed class MdMarkup
         Unfurl = unfurl;
     }
     
-    private PropertyValue<List<Unfurl>> _unfurl = new PropertyValue<List<Unfurl>>(nameof(MdMarkup), nameof(Unfurl), new List<Unfurl>());
+    private PropertyValue<List<Unfurl>> _unfurl = new PropertyValue<List<Unfurl>>(nameof(MdMarkup), nameof(Unfurl), "unfurl", new List<Unfurl>());
     
     [Required]
     [JsonPropertyName("unfurl")]
     public List<Unfurl> Unfurl
     {
-        get => _unfurl.GetValue();
+        get => _unfurl.GetValue(InlineErrors);
         set => _unfurl.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _unfurl.SetAccessPath(path, validateHasBeenSet);
+        _unfurl.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

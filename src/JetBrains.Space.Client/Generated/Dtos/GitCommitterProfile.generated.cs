@@ -41,41 +41,45 @@ public sealed class GitCommitterProfile
         Profile = profile;
     }
     
-    private PropertyValue<string> _author = new PropertyValue<string>(nameof(GitCommitterProfile), nameof(Author));
+    private PropertyValue<string> _author = new PropertyValue<string>(nameof(GitCommitterProfile), nameof(Author), "author");
     
     [Required]
     [JsonPropertyName("author")]
     public string Author
     {
-        get => _author.GetValue();
+        get => _author.GetValue(InlineErrors);
         set => _author.SetValue(value);
     }
 
-    private PropertyValue<string> _email = new PropertyValue<string>(nameof(GitCommitterProfile), nameof(Email));
+    private PropertyValue<string> _email = new PropertyValue<string>(nameof(GitCommitterProfile), nameof(Email), "email");
     
     [Required]
     [JsonPropertyName("email")]
     public string Email
     {
-        get => _email.GetValue();
+        get => _email.GetValue(InlineErrors);
         set => _email.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _profile = new PropertyValue<TDMemberProfile?>(nameof(GitCommitterProfile), nameof(Profile));
+    private PropertyValue<TDMemberProfile?> _profile = new PropertyValue<TDMemberProfile?>(nameof(GitCommitterProfile), nameof(Profile), "profile");
     
     [JsonPropertyName("profile")]
     public TDMemberProfile? Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _author.SetAccessPath(path, validateHasBeenSet);
-        _email.SetAccessPath(path, validateHasBeenSet);
-        _profile.SetAccessPath(path, validateHasBeenSet);
+        _author.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _email.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

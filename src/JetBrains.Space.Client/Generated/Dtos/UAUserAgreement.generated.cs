@@ -42,54 +42,58 @@ public sealed class UAUserAgreement
         Updated = updated;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(UAUserAgreement), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(UAUserAgreement), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _content = new PropertyValue<string>(nameof(UAUserAgreement), nameof(Content));
+    private PropertyValue<string> _content = new PropertyValue<string>(nameof(UAUserAgreement), nameof(Content), "content");
     
     [Required]
     [JsonPropertyName("content")]
     public string Content
     {
-        get => _content.GetValue();
+        get => _content.GetValue(InlineErrors);
         set => _content.SetValue(value);
     }
 
-    private PropertyValue<UAVersion> _version = new PropertyValue<UAVersion>(nameof(UAUserAgreement), nameof(Version));
+    private PropertyValue<UAVersion> _version = new PropertyValue<UAVersion>(nameof(UAUserAgreement), nameof(Version), "version");
     
     [Required]
     [JsonPropertyName("version")]
     public UAVersion Version
     {
-        get => _version.GetValue();
+        get => _version.GetValue(InlineErrors);
         set => _version.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(UAUserAgreement), nameof(Updated));
+    private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(UAUserAgreement), nameof(Updated), "updated");
     
     [Required]
     [JsonPropertyName("updated")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Updated
     {
-        get => _updated.GetValue();
+        get => _updated.GetValue(InlineErrors);
         set => _updated.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _content.SetAccessPath(path, validateHasBeenSet);
-        _version.SetAccessPath(path, validateHasBeenSet);
-        _updated.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _content.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updated.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

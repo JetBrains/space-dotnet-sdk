@@ -34,7 +34,7 @@ public sealed class TDMemberProfile
 {
     public TDMemberProfile() { }
     
-    public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, List<PublicHoliday> holidays, List<string> links, List<TDMemberLocation> locationHistory, List<TDMemberLocation> locations, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, List<Topic> topics, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, DateTime? joined = null, DateTime? leftAt = null, bool? external = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, string? externalId = null, DocumentFolderWithChildren? folderWithChildren = null, Gender? gender = null, DateTime? left = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, List<TDMembership>? unapprovedMemberships = null)
+    public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, List<PublicHoliday> holidays, List<string> links, List<TDMemberLocation> locationHistory, List<TDMemberLocation> locations, List<ESProfileLogin> logins, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, List<Topic> topics, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, DateTime? joined = null, DateTime? leftAt = null, bool? external = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, string? externalId = null, DocumentFolderWithChildren? folderWithChildren = null, Gender? gender = null, DateTime? left = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, List<TDMembership>? unapprovedMemberships = null)
     {
         Id = id;
         Username = username;
@@ -63,6 +63,7 @@ public sealed class TDMemberProfile
         Links = links;
         LocationHistory = locationHistory;
         Locations = locations;
+        Logins = logins;
         Managers = managers;
         MembershipHistory = membershipHistory;
         Memberships = memberships;
@@ -76,414 +77,429 @@ public sealed class TDMemberProfile
         UnapprovedMemberships = unapprovedMemberships;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDMemberProfile), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDMemberProfile), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _username = new PropertyValue<string>(nameof(TDMemberProfile), nameof(Username));
+    private PropertyValue<string> _username = new PropertyValue<string>(nameof(TDMemberProfile), nameof(Username), "username");
     
     [Required]
     [JsonPropertyName("username")]
     public string Username
     {
-        get => _username.GetValue();
+        get => _username.GetValue(InlineErrors);
         set => _username.SetValue(value);
     }
 
-    private PropertyValue<TDProfileName> _name = new PropertyValue<TDProfileName>(nameof(TDMemberProfile), nameof(Name));
+    private PropertyValue<TDProfileName> _name = new PropertyValue<TDProfileName>(nameof(TDMemberProfile), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public TDProfileName Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<bool> _speaksEnglish = new PropertyValue<bool>(nameof(TDMemberProfile), nameof(IsSpeaksEnglish));
+    private PropertyValue<bool> _speaksEnglish = new PropertyValue<bool>(nameof(TDMemberProfile), nameof(IsSpeaksEnglish), "speaksEnglish");
     
     [Required]
     [JsonPropertyName("speaksEnglish")]
     public bool IsSpeaksEnglish
     {
-        get => _speaksEnglish.GetValue();
+        get => _speaksEnglish.GetValue(InlineErrors);
         set => _speaksEnglish.SetValue(value);
     }
 
-    private PropertyValue<string?> _smallAvatar = new PropertyValue<string?>(nameof(TDMemberProfile), nameof(SmallAvatar));
+    private PropertyValue<string?> _smallAvatar = new PropertyValue<string?>(nameof(TDMemberProfile), nameof(SmallAvatar), "smallAvatar");
     
     [JsonPropertyName("smallAvatar")]
     public string? SmallAvatar
     {
-        get => _smallAvatar.GetValue();
+        get => _smallAvatar.GetValue(InlineErrors);
         set => _smallAvatar.SetValue(value);
     }
 
-    private PropertyValue<string?> _avatar = new PropertyValue<string?>(nameof(TDMemberProfile), nameof(Avatar));
+    private PropertyValue<string?> _avatar = new PropertyValue<string?>(nameof(TDMemberProfile), nameof(Avatar), "avatar");
     
     [JsonPropertyName("avatar")]
     public string? Avatar
     {
-        get => _avatar.GetValue();
+        get => _avatar.GetValue(InlineErrors);
         set => _avatar.SetValue(value);
     }
 
-    private PropertyValue<string?> _profilePicture = new PropertyValue<string?>(nameof(TDMemberProfile), nameof(ProfilePicture));
+    private PropertyValue<string?> _profilePicture = new PropertyValue<string?>(nameof(TDMemberProfile), nameof(ProfilePicture), "profilePicture");
     
     [JsonPropertyName("profilePicture")]
     public string? ProfilePicture
     {
-        get => _profilePicture.GetValue();
+        get => _profilePicture.GetValue(InlineErrors);
         set => _profilePicture.SetValue(value);
     }
 
-    private PropertyValue<List<TDProfileLanguage>> _languages = new PropertyValue<List<TDProfileLanguage>>(nameof(TDMemberProfile), nameof(Languages), new List<TDProfileLanguage>());
+    private PropertyValue<List<TDProfileLanguage>> _languages = new PropertyValue<List<TDProfileLanguage>>(nameof(TDMemberProfile), nameof(Languages), "languages", new List<TDProfileLanguage>());
     
     [Required]
     [JsonPropertyName("languages")]
     public List<TDProfileLanguage> Languages
     {
-        get => _languages.GetValue();
+        get => _languages.GetValue(InlineErrors);
         set => _languages.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDMemberProfile), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDMemberProfile), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<bool> _notAMember = new PropertyValue<bool>(nameof(TDMemberProfile), nameof(IsNotAMember));
+    private PropertyValue<bool> _notAMember = new PropertyValue<bool>(nameof(TDMemberProfile), nameof(IsNotAMember), "notAMember");
     
     [Required]
     [JsonPropertyName("notAMember")]
     public bool IsNotAMember
     {
-        get => _notAMember.GetValue();
+        get => _notAMember.GetValue(InlineErrors);
         set => _notAMember.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(Joined));
+    private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(Joined), "joined");
     
     [JsonPropertyName("joined")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Joined
     {
-        get => _joined.GetValue();
+        get => _joined.GetValue(InlineErrors);
         set => _joined.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _leftAt = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(LeftAt));
+    private PropertyValue<DateTime?> _leftAt = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(LeftAt), "leftAt");
     
     [JsonPropertyName("leftAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? LeftAt
     {
-        get => _leftAt.GetValue();
+        get => _leftAt.GetValue(InlineErrors);
         set => _leftAt.SetValue(value);
     }
 
-    private PropertyValue<bool?> _external = new PropertyValue<bool?>(nameof(TDMemberProfile), nameof(IsExternal));
+    private PropertyValue<bool?> _external = new PropertyValue<bool?>(nameof(TDMemberProfile), nameof(IsExternal), "external");
     
     [JsonPropertyName("external")]
     public bool? IsExternal
     {
-        get => _external.GetValue();
+        get => _external.GetValue(InlineErrors);
         set => _external.SetValue(value);
     }
 
-    private PropertyValue<string?> _about = new PropertyValue<string?>(nameof(TDMemberProfile), nameof(About));
+    private PropertyValue<string?> _about = new PropertyValue<string?>(nameof(TDMemberProfile), nameof(About), "about");
     
     [JsonPropertyName("about")]
     public string? About
     {
-        get => _about.GetValue();
+        get => _about.GetValue(InlineErrors);
         set => _about.SetValue(value);
     }
 
-    private PropertyValue<List<AbsenceRecord>> _absences = new PropertyValue<List<AbsenceRecord>>(nameof(TDMemberProfile), nameof(Absences), new List<AbsenceRecord>());
+    private PropertyValue<List<AbsenceRecord>> _absences = new PropertyValue<List<AbsenceRecord>>(nameof(TDMemberProfile), nameof(Absences), "absences", new List<AbsenceRecord>());
     
     [Required]
     [JsonPropertyName("absences")]
     public List<AbsenceRecord> Absences
     {
-        get => _absences.GetValue();
+        get => _absences.GetValue(InlineErrors);
         set => _absences.SetValue(value);
     }
 
-    private PropertyValue<AvatarCropSquare?> _avatarCropSquare = new PropertyValue<AvatarCropSquare?>(nameof(TDMemberProfile), nameof(AvatarCropSquare));
+    private PropertyValue<AvatarCropSquare?> _avatarCropSquare = new PropertyValue<AvatarCropSquare?>(nameof(TDMemberProfile), nameof(AvatarCropSquare), "avatarCropSquare");
     
     [JsonPropertyName("avatarCropSquare")]
     public AvatarCropSquare? AvatarCropSquare
     {
-        get => _avatarCropSquare.GetValue();
+        get => _avatarCropSquare.GetValue(InlineErrors);
         set => _avatarCropSquare.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _birthday = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(Birthday));
+    private PropertyValue<DateTime?> _birthday = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(Birthday), "birthday");
     
     [JsonPropertyName("birthday")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Birthday
     {
-        get => _birthday.GetValue();
+        get => _birthday.GetValue(InlineErrors);
         set => _birthday.SetValue(value);
     }
 
-    private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(TDMemberProfile), nameof(CustomFields), new Dictionary<string, CFValue>());
+    private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(TDMemberProfile), nameof(CustomFields), "customFields", new Dictionary<string, CFValue>());
     
     [Required]
     [JsonPropertyName("customFields")]
     public Dictionary<string, CFValue> CustomFields
     {
-        get => _customFields.GetValue();
+        get => _customFields.GetValue(InlineErrors);
         set => _customFields.SetValue(value);
     }
 
-    private PropertyValue<List<TDProfileEmail>> _emails = new PropertyValue<List<TDProfileEmail>>(nameof(TDMemberProfile), nameof(Emails), new List<TDProfileEmail>());
+    private PropertyValue<List<TDProfileEmail>> _emails = new PropertyValue<List<TDProfileEmail>>(nameof(TDMemberProfile), nameof(Emails), "emails", new List<TDProfileEmail>());
     
     [Required]
     [JsonPropertyName("emails")]
     public List<TDProfileEmail> Emails
     {
-        get => _emails.GetValue();
+        get => _emails.GetValue(InlineErrors);
         set => _emails.SetValue(value);
     }
 
-    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TDMemberProfile), nameof(ExternalId));
+    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TDMemberProfile), nameof(ExternalId), "externalId");
     
     [JsonPropertyName("externalId")]
     public string? ExternalId
     {
-        get => _externalId.GetValue();
+        get => _externalId.GetValue(InlineErrors);
         set => _externalId.SetValue(value);
     }
 
-    private PropertyValue<DocumentFolderWithChildren?> _folderWithChildren = new PropertyValue<DocumentFolderWithChildren?>(nameof(TDMemberProfile), nameof(FolderWithChildren));
+    private PropertyValue<DocumentFolderWithChildren?> _folderWithChildren = new PropertyValue<DocumentFolderWithChildren?>(nameof(TDMemberProfile), nameof(FolderWithChildren), "folderWithChildren");
     
     [JsonPropertyName("folderWithChildren")]
     public DocumentFolderWithChildren? FolderWithChildren
     {
-        get => _folderWithChildren.GetValue();
+        get => _folderWithChildren.GetValue(InlineErrors);
         set => _folderWithChildren.SetValue(value);
     }
 
-    private PropertyValue<Gender?> _gender = new PropertyValue<Gender?>(nameof(TDMemberProfile), nameof(Gender));
+    private PropertyValue<Gender?> _gender = new PropertyValue<Gender?>(nameof(TDMemberProfile), nameof(Gender), "gender");
     
     [JsonPropertyName("gender")]
     public Gender? Gender
     {
-        get => _gender.GetValue();
+        get => _gender.GetValue(InlineErrors);
         set => _gender.SetValue(value);
     }
 
-    private PropertyValue<List<PublicHoliday>> _holidays = new PropertyValue<List<PublicHoliday>>(nameof(TDMemberProfile), nameof(Holidays), new List<PublicHoliday>());
+    private PropertyValue<List<PublicHoliday>> _holidays = new PropertyValue<List<PublicHoliday>>(nameof(TDMemberProfile), nameof(Holidays), "holidays", new List<PublicHoliday>());
     
     [Required]
     [JsonPropertyName("holidays")]
     public List<PublicHoliday> Holidays
     {
-        get => _holidays.GetValue();
+        get => _holidays.GetValue(InlineErrors);
         set => _holidays.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _left = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(Left));
+    private PropertyValue<DateTime?> _left = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(Left), "left");
     
     [JsonPropertyName("left")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Left
     {
-        get => _left.GetValue();
+        get => _left.GetValue(InlineErrors);
         set => _left.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _links = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Links), new List<string>());
+    private PropertyValue<List<string>> _links = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Links), "links", new List<string>());
     
     [Required]
     [JsonPropertyName("links")]
     public List<string> Links
     {
-        get => _links.GetValue();
+        get => _links.GetValue(InlineErrors);
         set => _links.SetValue(value);
     }
 
-    private PropertyValue<List<TDMemberLocation>> _locationHistory = new PropertyValue<List<TDMemberLocation>>(nameof(TDMemberProfile), nameof(LocationHistory), new List<TDMemberLocation>());
+    private PropertyValue<List<TDMemberLocation>> _locationHistory = new PropertyValue<List<TDMemberLocation>>(nameof(TDMemberProfile), nameof(LocationHistory), "locationHistory", new List<TDMemberLocation>());
     
     [Required]
     [JsonPropertyName("locationHistory")]
     public List<TDMemberLocation> LocationHistory
     {
-        get => _locationHistory.GetValue();
+        get => _locationHistory.GetValue(InlineErrors);
         set => _locationHistory.SetValue(value);
     }
 
-    private PropertyValue<List<TDMemberLocation>> _locations = new PropertyValue<List<TDMemberLocation>>(nameof(TDMemberProfile), nameof(Locations), new List<TDMemberLocation>());
+    private PropertyValue<List<TDMemberLocation>> _locations = new PropertyValue<List<TDMemberLocation>>(nameof(TDMemberProfile), nameof(Locations), "locations", new List<TDMemberLocation>());
     
     [Required]
     [JsonPropertyName("locations")]
     public List<TDMemberLocation> Locations
     {
-        get => _locations.GetValue();
+        get => _locations.GetValue(InlineErrors);
         set => _locations.SetValue(value);
     }
 
-    private PropertyValue<List<TDMemberProfile>> _managers = new PropertyValue<List<TDMemberProfile>>(nameof(TDMemberProfile), nameof(Managers), new List<TDMemberProfile>());
+    private PropertyValue<List<ESProfileLogin>> _logins = new PropertyValue<List<ESProfileLogin>>(nameof(TDMemberProfile), nameof(Logins), "logins", new List<ESProfileLogin>());
+    
+    [Required]
+    [JsonPropertyName("logins")]
+    public List<ESProfileLogin> Logins
+    {
+        get => _logins.GetValue(InlineErrors);
+        set => _logins.SetValue(value);
+    }
+
+    private PropertyValue<List<TDMemberProfile>> _managers = new PropertyValue<List<TDMemberProfile>>(nameof(TDMemberProfile), nameof(Managers), "managers", new List<TDMemberProfile>());
     
     [Required]
     [JsonPropertyName("managers")]
     public List<TDMemberProfile> Managers
     {
-        get => _managers.GetValue();
+        get => _managers.GetValue(InlineErrors);
         set => _managers.SetValue(value);
     }
 
-    private PropertyValue<List<TDMembership>> _membershipHistory = new PropertyValue<List<TDMembership>>(nameof(TDMemberProfile), nameof(MembershipHistory), new List<TDMembership>());
+    private PropertyValue<List<TDMembership>> _membershipHistory = new PropertyValue<List<TDMembership>>(nameof(TDMemberProfile), nameof(MembershipHistory), "membershipHistory", new List<TDMembership>());
     
     [Required]
     [JsonPropertyName("membershipHistory")]
     public List<TDMembership> MembershipHistory
     {
-        get => _membershipHistory.GetValue();
+        get => _membershipHistory.GetValue(InlineErrors);
         set => _membershipHistory.SetValue(value);
     }
 
-    private PropertyValue<List<TDMembership>> _memberships = new PropertyValue<List<TDMembership>>(nameof(TDMemberProfile), nameof(Memberships), new List<TDMembership>());
+    private PropertyValue<List<TDMembership>> _memberships = new PropertyValue<List<TDMembership>>(nameof(TDMemberProfile), nameof(Memberships), "memberships", new List<TDMembership>());
     
     [Required]
     [JsonPropertyName("memberships")]
     public List<TDMembership> Memberships
     {
-        get => _memberships.GetValue();
+        get => _memberships.GetValue(InlineErrors);
         set => _memberships.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _messengers = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Messengers), new List<string>());
+    private PropertyValue<List<string>> _messengers = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Messengers), "messengers", new List<string>());
     
     [Required]
     [JsonPropertyName("messengers")]
     public List<string> Messengers
     {
-        get => _messengers.GetValue();
+        get => _messengers.GetValue(InlineErrors);
         set => _messengers.SetValue(value);
     }
 
-    private PropertyValue<bool> _onboardingRequired = new PropertyValue<bool>(nameof(TDMemberProfile), nameof(IsOnboardingRequired));
+    private PropertyValue<bool> _onboardingRequired = new PropertyValue<bool>(nameof(TDMemberProfile), nameof(IsOnboardingRequired), "onboardingRequired");
     
     [Required]
     [JsonPropertyName("onboardingRequired")]
     public bool IsOnboardingRequired
     {
-        get => _onboardingRequired.GetValue();
+        get => _onboardingRequired.GetValue(InlineErrors);
         set => _onboardingRequired.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Phones), new List<string>());
+    private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Phones), "phones", new List<string>());
     
     [Required]
     [JsonPropertyName("phones")]
     public List<string> Phones
     {
-        get => _phones.GetValue();
+        get => _phones.GetValue(InlineErrors);
         set => _phones.SetValue(value);
     }
 
-    private PropertyValue<bool?> _showBannerOnLandingPage = new PropertyValue<bool?>(nameof(TDMemberProfile), nameof(IsShowBannerOnLandingPage));
+    private PropertyValue<bool?> _showBannerOnLandingPage = new PropertyValue<bool?>(nameof(TDMemberProfile), nameof(IsShowBannerOnLandingPage), "showBannerOnLandingPage");
     
     [JsonPropertyName("showBannerOnLandingPage")]
     public bool? IsShowBannerOnLandingPage
     {
-        get => _showBannerOnLandingPage.GetValue();
+        get => _showBannerOnLandingPage.GetValue(InlineErrors);
         set => _showBannerOnLandingPage.SetValue(value);
     }
 
-    private PropertyValue<bool?> _showBannerOnProjectPage = new PropertyValue<bool?>(nameof(TDMemberProfile), nameof(IsShowBannerOnProjectPage));
+    private PropertyValue<bool?> _showBannerOnProjectPage = new PropertyValue<bool?>(nameof(TDMemberProfile), nameof(IsShowBannerOnProjectPage), "showBannerOnProjectPage");
     
     [JsonPropertyName("showBannerOnProjectPage")]
     public bool? IsShowBannerOnProjectPage
     {
-        get => _showBannerOnProjectPage.GetValue();
+        get => _showBannerOnProjectPage.GetValue(InlineErrors);
         set => _showBannerOnProjectPage.SetValue(value);
     }
 
-    private PropertyValue<bool?> _showBannerOnTeamDirectoryHomePage = new PropertyValue<bool?>(nameof(TDMemberProfile), nameof(IsShowBannerOnTeamDirectoryHomePage));
+    private PropertyValue<bool?> _showBannerOnTeamDirectoryHomePage = new PropertyValue<bool?>(nameof(TDMemberProfile), nameof(IsShowBannerOnTeamDirectoryHomePage), "showBannerOnTeamDirectoryHomePage");
     
     [JsonPropertyName("showBannerOnTeamDirectoryHomePage")]
     public bool? IsShowBannerOnTeamDirectoryHomePage
     {
-        get => _showBannerOnTeamDirectoryHomePage.GetValue();
+        get => _showBannerOnTeamDirectoryHomePage.GetValue(InlineErrors);
         set => _showBannerOnTeamDirectoryHomePage.SetValue(value);
     }
 
-    private PropertyValue<List<Topic>> _topics = new PropertyValue<List<Topic>>(nameof(TDMemberProfile), nameof(Topics), new List<Topic>());
+    private PropertyValue<List<Topic>> _topics = new PropertyValue<List<Topic>>(nameof(TDMemberProfile), nameof(Topics), "topics", new List<Topic>());
     
     [Required]
     [JsonPropertyName("topics")]
     public List<Topic> Topics
     {
-        get => _topics.GetValue();
+        get => _topics.GetValue(InlineErrors);
         set => _topics.SetValue(value);
     }
 
-    private PropertyValue<List<TDMembership>?> _unapprovedMemberships = new PropertyValue<List<TDMembership>?>(nameof(TDMemberProfile), nameof(UnapprovedMemberships));
+    private PropertyValue<List<TDMembership>?> _unapprovedMemberships = new PropertyValue<List<TDMembership>?>(nameof(TDMemberProfile), nameof(UnapprovedMemberships), "unapprovedMemberships");
     
     [JsonPropertyName("unapprovedMemberships")]
     public List<TDMembership>? UnapprovedMemberships
     {
-        get => _unapprovedMemberships.GetValue();
+        get => _unapprovedMemberships.GetValue(InlineErrors);
         set => _unapprovedMemberships.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _username.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _speaksEnglish.SetAccessPath(path, validateHasBeenSet);
-        _smallAvatar.SetAccessPath(path, validateHasBeenSet);
-        _avatar.SetAccessPath(path, validateHasBeenSet);
-        _profilePicture.SetAccessPath(path, validateHasBeenSet);
-        _languages.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _notAMember.SetAccessPath(path, validateHasBeenSet);
-        _joined.SetAccessPath(path, validateHasBeenSet);
-        _leftAt.SetAccessPath(path, validateHasBeenSet);
-        _external.SetAccessPath(path, validateHasBeenSet);
-        _about.SetAccessPath(path, validateHasBeenSet);
-        _absences.SetAccessPath(path, validateHasBeenSet);
-        _avatarCropSquare.SetAccessPath(path, validateHasBeenSet);
-        _birthday.SetAccessPath(path, validateHasBeenSet);
-        _customFields.SetAccessPath(path, validateHasBeenSet);
-        _emails.SetAccessPath(path, validateHasBeenSet);
-        _externalId.SetAccessPath(path, validateHasBeenSet);
-        _folderWithChildren.SetAccessPath(path, validateHasBeenSet);
-        _gender.SetAccessPath(path, validateHasBeenSet);
-        _holidays.SetAccessPath(path, validateHasBeenSet);
-        _left.SetAccessPath(path, validateHasBeenSet);
-        _links.SetAccessPath(path, validateHasBeenSet);
-        _locationHistory.SetAccessPath(path, validateHasBeenSet);
-        _locations.SetAccessPath(path, validateHasBeenSet);
-        _managers.SetAccessPath(path, validateHasBeenSet);
-        _membershipHistory.SetAccessPath(path, validateHasBeenSet);
-        _memberships.SetAccessPath(path, validateHasBeenSet);
-        _messengers.SetAccessPath(path, validateHasBeenSet);
-        _onboardingRequired.SetAccessPath(path, validateHasBeenSet);
-        _phones.SetAccessPath(path, validateHasBeenSet);
-        _showBannerOnLandingPage.SetAccessPath(path, validateHasBeenSet);
-        _showBannerOnProjectPage.SetAccessPath(path, validateHasBeenSet);
-        _showBannerOnTeamDirectoryHomePage.SetAccessPath(path, validateHasBeenSet);
-        _topics.SetAccessPath(path, validateHasBeenSet);
-        _unapprovedMemberships.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _username.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _speaksEnglish.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _smallAvatar.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _avatar.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _profilePicture.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _languages.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notAMember.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _joined.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _leftAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _external.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _about.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _absences.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _avatarCropSquare.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _birthday.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _emails.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _folderWithChildren.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _gender.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _holidays.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _left.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _links.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _locationHistory.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _locations.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _logins.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _managers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _membershipHistory.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _memberships.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messengers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _onboardingRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _phones.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _showBannerOnLandingPage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _showBannerOnProjectPage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _showBannerOnTeamDirectoryHomePage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _topics.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unapprovedMemberships.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -44,70 +44,74 @@ public class ProjectsForProjectPlanningIssuesForIssueIdPatchRequest
         CustomFields = (customFields ?? new List<CustomFieldInputValue>());
     }
     
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Title), string.Empty);
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Title), "title", string.Empty);
     
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<string?> _assignee = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Assignee));
+    private PropertyValue<string?> _assignee = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Assignee), "assignee");
     
     [JsonPropertyName("assignee")]
     public string? Assignee
     {
-        get => _assignee.GetValue();
+        get => _assignee.GetValue(InlineErrors);
         set => _assignee.SetValue(value);
     }
 
-    private PropertyValue<string> _status = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Status), string.Empty);
+    private PropertyValue<string> _status = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Status), "status", string.Empty);
     
     [JsonPropertyName("status")]
     public string Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(DueDate));
+    private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(DueDate), "dueDate");
     
     [JsonPropertyName("dueDate")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? DueDate
     {
-        get => _dueDate.GetValue();
+        get => _dueDate.GetValue(InlineErrors);
         set => _dueDate.SetValue(value);
     }
 
-    private PropertyValue<List<CustomFieldInputValue>> _customFields = new PropertyValue<List<CustomFieldInputValue>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(CustomFields), new List<CustomFieldInputValue>());
+    private PropertyValue<List<CustomFieldInputValue>> _customFields = new PropertyValue<List<CustomFieldInputValue>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(CustomFields), "customFields", new List<CustomFieldInputValue>());
     
     [JsonPropertyName("customFields")]
     public List<CustomFieldInputValue> CustomFields
     {
-        get => _customFields.GetValue();
+        get => _customFields.GetValue(InlineErrors);
         set => _customFields.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _assignee.SetAccessPath(path, validateHasBeenSet);
-        _status.SetAccessPath(path, validateHasBeenSet);
-        _dueDate.SetAccessPath(path, validateHasBeenSet);
-        _customFields.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _assignee.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _dueDate.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

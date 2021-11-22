@@ -46,64 +46,68 @@ public sealed class UnfurlDetailsShortCommit
         IsStrikeThrough = strikeThrough;
     }
     
-    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsShortCommit), nameof(Project));
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsShortCommit), nameof(Project), "project");
     
     [Required]
     [JsonPropertyName("project")]
     public PRProject Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(UnfurlDetailsShortCommit), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(UnfurlDetailsShortCommit), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _commitId = new PropertyValue<string>(nameof(UnfurlDetailsShortCommit), nameof(CommitId));
+    private PropertyValue<string> _commitId = new PropertyValue<string>(nameof(UnfurlDetailsShortCommit), nameof(CommitId), "commitId");
     
     [Required]
     [JsonPropertyName("commitId")]
     public string CommitId
     {
-        get => _commitId.GetValue();
+        get => _commitId.GetValue(InlineErrors);
         set => _commitId.SetValue(value);
     }
 
-    private PropertyValue<string> _message = new PropertyValue<string>(nameof(UnfurlDetailsShortCommit), nameof(Message));
+    private PropertyValue<string> _message = new PropertyValue<string>(nameof(UnfurlDetailsShortCommit), nameof(Message), "message");
     
     [Required]
     [JsonPropertyName("message")]
     public string Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    private PropertyValue<bool> _strikeThrough = new PropertyValue<bool>(nameof(UnfurlDetailsShortCommit), nameof(IsStrikeThrough));
+    private PropertyValue<bool> _strikeThrough = new PropertyValue<bool>(nameof(UnfurlDetailsShortCommit), nameof(IsStrikeThrough), "strikeThrough");
     
     [Required]
     [JsonPropertyName("strikeThrough")]
     public bool IsStrikeThrough
     {
-        get => _strikeThrough.GetValue();
+        get => _strikeThrough.GetValue(InlineErrors);
         set => _strikeThrough.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _commitId.SetAccessPath(path, validateHasBeenSet);
-        _message.SetAccessPath(path, validateHasBeenSet);
-        _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commitId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _strikeThrough.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

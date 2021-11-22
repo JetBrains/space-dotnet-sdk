@@ -42,20 +42,24 @@ public sealed class FileDocumentBodyInfo
         FileDocument = fileDocument;
     }
     
-    private PropertyValue<FileDocumentRecord> _fileDocument = new PropertyValue<FileDocumentRecord>(nameof(FileDocumentBodyInfo), nameof(FileDocument));
+    private PropertyValue<FileDocumentRecord> _fileDocument = new PropertyValue<FileDocumentRecord>(nameof(FileDocumentBodyInfo), nameof(FileDocument), "fileDocument");
     
     [Required]
     [JsonPropertyName("fileDocument")]
     public FileDocumentRecord FileDocument
     {
-        get => _fileDocument.GetValue();
+        get => _fileDocument.GetValue(InlineErrors);
         set => _fileDocument.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _fileDocument.SetAccessPath(path, validateHasBeenSet);
+        _fileDocument.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

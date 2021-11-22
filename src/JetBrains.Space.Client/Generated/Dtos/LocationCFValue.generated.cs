@@ -42,19 +42,23 @@ public sealed class LocationCFValue
         Location = location;
     }
     
-    private PropertyValue<TDLocation?> _location = new PropertyValue<TDLocation?>(nameof(LocationCFValue), nameof(Location));
+    private PropertyValue<TDLocation?> _location = new PropertyValue<TDLocation?>(nameof(LocationCFValue), nameof(Location), "location");
     
     [JsonPropertyName("location")]
     public TDLocation? Location
     {
-        get => _location.GetValue();
+        get => _location.GetValue(InlineErrors);
         set => _location.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _location.SetAccessPath(path, validateHasBeenSet);
+        _location.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -46,97 +46,101 @@ public sealed class AllChannelsListEntry
         IsSubscribed = subscribed;
     }
     
-    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(AllChannelsListEntry), nameof(ChannelId));
+    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(AllChannelsListEntry), nameof(ChannelId), "channelId");
     
     [Required]
     [JsonPropertyName("channelId")]
     public string ChannelId
     {
-        get => _channelId.GetValue();
+        get => _channelId.GetValue(InlineErrors);
         set => _channelId.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(AllChannelsListEntry), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(AllChannelsListEntry), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _description = new PropertyValue<string>(nameof(AllChannelsListEntry), nameof(Description));
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(AllChannelsListEntry), nameof(Description), "description");
     
     [Required]
     [JsonPropertyName("description")]
     public string Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<M2Access> _access = new PropertyValue<M2Access>(nameof(AllChannelsListEntry), nameof(Access));
+    private PropertyValue<M2Access> _access = new PropertyValue<M2Access>(nameof(AllChannelsListEntry), nameof(Access), "access");
     
     [Required]
     [JsonPropertyName("access")]
     public M2Access Access
     {
-        get => _access.GetValue();
+        get => _access.GetValue(InlineErrors);
         set => _access.SetValue(value);
     }
 
-    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(AllChannelsListEntry), nameof(Icon));
+    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(AllChannelsListEntry), nameof(Icon), "icon");
     
     [JsonPropertyName("icon")]
     public string? Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(AllChannelsListEntry), nameof(Created));
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(AllChannelsListEntry), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<int> _subscribers = new PropertyValue<int>(nameof(AllChannelsListEntry), nameof(Subscribers));
+    private PropertyValue<int> _subscribers = new PropertyValue<int>(nameof(AllChannelsListEntry), nameof(Subscribers), "subscribers");
     
     [Required]
     [JsonPropertyName("subscribers")]
     public int Subscribers
     {
-        get => _subscribers.GetValue();
+        get => _subscribers.GetValue(InlineErrors);
         set => _subscribers.SetValue(value);
     }
 
-    private PropertyValue<bool> _subscribed = new PropertyValue<bool>(nameof(AllChannelsListEntry), nameof(IsSubscribed));
+    private PropertyValue<bool> _subscribed = new PropertyValue<bool>(nameof(AllChannelsListEntry), nameof(IsSubscribed), "subscribed");
     
     [Required]
     [JsonPropertyName("subscribed")]
     public bool IsSubscribed
     {
-        get => _subscribed.GetValue();
+        get => _subscribed.GetValue(InlineErrors);
         set => _subscribed.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _channelId.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _access.SetAccessPath(path, validateHasBeenSet);
-        _icon.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _subscribers.SetAccessPath(path, validateHasBeenSet);
-        _subscribed.SetAccessPath(path, validateHasBeenSet);
+        _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _access.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subscribers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subscribed.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

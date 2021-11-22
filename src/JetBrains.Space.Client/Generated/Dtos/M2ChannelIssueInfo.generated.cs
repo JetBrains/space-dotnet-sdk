@@ -44,41 +44,45 @@ public sealed class M2ChannelIssueInfo
         NotificationDefaults = notificationDefaults;
     }
     
-    private PropertyValue<ProjectKey?> _projectKey = new PropertyValue<ProjectKey?>(nameof(M2ChannelIssueInfo), nameof(ProjectKey));
+    private PropertyValue<ProjectKey?> _projectKey = new PropertyValue<ProjectKey?>(nameof(M2ChannelIssueInfo), nameof(ProjectKey), "projectKey");
     
     [JsonPropertyName("projectKey")]
     public ProjectKey? ProjectKey
     {
-        get => _projectKey.GetValue();
+        get => _projectKey.GetValue(InlineErrors);
         set => _projectKey.SetValue(value);
     }
 
-    private PropertyValue<Issue> _issue = new PropertyValue<Issue>(nameof(M2ChannelIssueInfo), nameof(Issue));
+    private PropertyValue<Issue> _issue = new PropertyValue<Issue>(nameof(M2ChannelIssueInfo), nameof(Issue), "issue");
     
     [Required]
     [JsonPropertyName("issue")]
     public Issue Issue
     {
-        get => _issue.GetValue();
+        get => _issue.GetValue(InlineErrors);
         set => _issue.SetValue(value);
     }
 
-    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelIssueInfo), nameof(NotificationDefaults));
+    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelIssueInfo), nameof(NotificationDefaults), "notificationDefaults");
     
     [Required]
     [JsonPropertyName("notificationDefaults")]
     public ChannelSpecificDefaults NotificationDefaults
     {
-        get => _notificationDefaults.GetValue();
+        get => _notificationDefaults.GetValue(InlineErrors);
         set => _notificationDefaults.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _projectKey.SetAccessPath(path, validateHasBeenSet);
-        _issue.SetAccessPath(path, validateHasBeenSet);
-        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+        _projectKey.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issue.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

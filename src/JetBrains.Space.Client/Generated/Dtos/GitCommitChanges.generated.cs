@@ -40,31 +40,35 @@ public sealed class GitCommitChanges
         IsOverflow = overflow;
     }
     
-    private PropertyValue<List<GitCommitChange>> _changes = new PropertyValue<List<GitCommitChange>>(nameof(GitCommitChanges), nameof(Changes), new List<GitCommitChange>());
+    private PropertyValue<List<GitCommitChange>> _changes = new PropertyValue<List<GitCommitChange>>(nameof(GitCommitChanges), nameof(Changes), "changes", new List<GitCommitChange>());
     
     [Required]
     [JsonPropertyName("changes")]
     public List<GitCommitChange> Changes
     {
-        get => _changes.GetValue();
+        get => _changes.GetValue(InlineErrors);
         set => _changes.SetValue(value);
     }
 
-    private PropertyValue<bool> _overflow = new PropertyValue<bool>(nameof(GitCommitChanges), nameof(IsOverflow));
+    private PropertyValue<bool> _overflow = new PropertyValue<bool>(nameof(GitCommitChanges), nameof(IsOverflow), "overflow");
     
     [Required]
     [JsonPropertyName("overflow")]
     public bool IsOverflow
     {
-        get => _overflow.GetValue();
+        get => _overflow.GetValue(InlineErrors);
         set => _overflow.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _changes.SetAccessPath(path, validateHasBeenSet);
-        _overflow.SetAccessPath(path, validateHasBeenSet);
+        _changes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _overflow.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

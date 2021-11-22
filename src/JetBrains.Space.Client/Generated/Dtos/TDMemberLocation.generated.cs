@@ -45,85 +45,89 @@ public sealed class TDMemberLocation
         IsArchived = archived;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDMemberLocation), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDMemberLocation), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(TDMemberLocation), nameof(Location));
+    private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(TDMemberLocation), nameof(Location), "location");
     
     [Required]
     [JsonPropertyName("location")]
     public TDLocation Location
     {
-        get => _location.GetValue();
+        get => _location.GetValue(InlineErrors);
         set => _location.SetValue(value);
     }
 
-    private PropertyValue<List<TDLocationMapPoint>?> _locationMapPoints = new PropertyValue<List<TDLocationMapPoint>?>(nameof(TDMemberLocation), nameof(LocationMapPoints));
+    private PropertyValue<List<TDLocationMapPoint>?> _locationMapPoints = new PropertyValue<List<TDLocationMapPoint>?>(nameof(TDMemberLocation), nameof(LocationMapPoints), "locationMapPoints");
     
     [JsonPropertyName("locationMapPoints")]
     public List<TDLocationMapPoint>? LocationMapPoints
     {
-        get => _locationMapPoints.GetValue();
+        get => _locationMapPoints.GetValue(InlineErrors);
         set => _locationMapPoints.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TDMemberLocation), nameof(Since));
+    private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TDMemberLocation), nameof(Since), "since");
     
     [JsonPropertyName("since")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TDMemberLocation), nameof(Till));
+    private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TDMemberLocation), nameof(Till), "till");
     
     [JsonPropertyName("till")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Till
     {
-        get => _till.GetValue();
+        get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(TDMemberLocation), nameof(Member));
+    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(TDMemberLocation), nameof(Member), "member");
     
     [Required]
     [JsonPropertyName("member")]
     public TDMemberProfile Member
     {
-        get => _member.GetValue();
+        get => _member.GetValue(InlineErrors);
         set => _member.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDMemberLocation), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDMemberLocation), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _location.SetAccessPath(path, validateHasBeenSet);
-        _locationMapPoints.SetAccessPath(path, validateHasBeenSet);
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _till.SetAccessPath(path, validateHasBeenSet);
-        _member.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _location.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _locationMapPoints.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _till.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _member.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

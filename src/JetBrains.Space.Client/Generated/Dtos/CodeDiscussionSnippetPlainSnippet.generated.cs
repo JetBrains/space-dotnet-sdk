@@ -42,20 +42,24 @@ public sealed class CodeDiscussionSnippetPlainSnippet
         Lines = lines;
     }
     
-    private PropertyValue<List<CodeLine>> _lines = new PropertyValue<List<CodeLine>>(nameof(CodeDiscussionSnippetPlainSnippet), nameof(Lines), new List<CodeLine>());
+    private PropertyValue<List<CodeLine>> _lines = new PropertyValue<List<CodeLine>>(nameof(CodeDiscussionSnippetPlainSnippet), nameof(Lines), "lines", new List<CodeLine>());
     
     [Required]
     [JsonPropertyName("lines")]
     public List<CodeLine> Lines
     {
-        get => _lines.GetValue();
+        get => _lines.GetValue(InlineErrors);
         set => _lines.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _lines.SetAccessPath(path, validateHasBeenSet);
+        _lines.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

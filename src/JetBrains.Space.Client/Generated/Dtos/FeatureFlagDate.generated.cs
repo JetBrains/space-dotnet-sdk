@@ -41,42 +41,46 @@ public sealed class FeatureFlagDate
         Day = day;
     }
     
-    private PropertyValue<int> _year = new PropertyValue<int>(nameof(FeatureFlagDate), nameof(Year));
+    private PropertyValue<int> _year = new PropertyValue<int>(nameof(FeatureFlagDate), nameof(Year), "year");
     
     [Required]
     [JsonPropertyName("year")]
     public int Year
     {
-        get => _year.GetValue();
+        get => _year.GetValue(InlineErrors);
         set => _year.SetValue(value);
     }
 
-    private PropertyValue<int> _month = new PropertyValue<int>(nameof(FeatureFlagDate), nameof(Month));
+    private PropertyValue<int> _month = new PropertyValue<int>(nameof(FeatureFlagDate), nameof(Month), "month");
     
     [Required]
     [JsonPropertyName("month")]
     public int Month
     {
-        get => _month.GetValue();
+        get => _month.GetValue(InlineErrors);
         set => _month.SetValue(value);
     }
 
-    private PropertyValue<int> _day = new PropertyValue<int>(nameof(FeatureFlagDate), nameof(Day));
+    private PropertyValue<int> _day = new PropertyValue<int>(nameof(FeatureFlagDate), nameof(Day), "day");
     
     [Required]
     [JsonPropertyName("day")]
     public int Day
     {
-        get => _day.GetValue();
+        get => _day.GetValue(InlineErrors);
         set => _day.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _year.SetAccessPath(path, validateHasBeenSet);
-        _month.SetAccessPath(path, validateHasBeenSet);
-        _day.SetAccessPath(path, validateHasBeenSet);
+        _year.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _month.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _day.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

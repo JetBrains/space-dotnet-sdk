@@ -42,20 +42,24 @@ public sealed class UnfurlDetailsIssueStatus
         Status = status;
     }
     
-    private PropertyValue<IssueStatus> _status = new PropertyValue<IssueStatus>(nameof(UnfurlDetailsIssueStatus), nameof(Status));
+    private PropertyValue<IssueStatus> _status = new PropertyValue<IssueStatus>(nameof(UnfurlDetailsIssueStatus), nameof(Status), "status");
     
     [Required]
     [JsonPropertyName("status")]
     public IssueStatus Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _status.SetAccessPath(path, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

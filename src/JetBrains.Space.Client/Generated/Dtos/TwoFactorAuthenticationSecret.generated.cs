@@ -41,42 +41,46 @@ public sealed class TwoFactorAuthenticationSecret
         ScratchCodes = scratchCodes;
     }
     
-    private PropertyValue<string> _secretKey = new PropertyValue<string>(nameof(TwoFactorAuthenticationSecret), nameof(SecretKey));
+    private PropertyValue<string> _secretKey = new PropertyValue<string>(nameof(TwoFactorAuthenticationSecret), nameof(SecretKey), "secretKey");
     
     [Required]
     [JsonPropertyName("secretKey")]
     public string SecretKey
     {
-        get => _secretKey.GetValue();
+        get => _secretKey.GetValue(InlineErrors);
         set => _secretKey.SetValue(value);
     }
 
-    private PropertyValue<QRCode> _qrCode = new PropertyValue<QRCode>(nameof(TwoFactorAuthenticationSecret), nameof(QrCode));
+    private PropertyValue<QRCode> _qrCode = new PropertyValue<QRCode>(nameof(TwoFactorAuthenticationSecret), nameof(QrCode), "qrCode");
     
     [Required]
     [JsonPropertyName("qrCode")]
     public QRCode QrCode
     {
-        get => _qrCode.GetValue();
+        get => _qrCode.GetValue(InlineErrors);
         set => _qrCode.SetValue(value);
     }
 
-    private PropertyValue<List<int>> _scratchCodes = new PropertyValue<List<int>>(nameof(TwoFactorAuthenticationSecret), nameof(ScratchCodes), new List<int>());
+    private PropertyValue<List<int>> _scratchCodes = new PropertyValue<List<int>>(nameof(TwoFactorAuthenticationSecret), nameof(ScratchCodes), "scratchCodes", new List<int>());
     
     [Required]
     [JsonPropertyName("scratchCodes")]
     public List<int> ScratchCodes
     {
-        get => _scratchCodes.GetValue();
+        get => _scratchCodes.GetValue(InlineErrors);
         set => _scratchCodes.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _secretKey.SetAccessPath(path, validateHasBeenSet);
-        _qrCode.SetAccessPath(path, validateHasBeenSet);
-        _scratchCodes.SetAccessPath(path, validateHasBeenSet);
+        _secretKey.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _qrCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _scratchCodes.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

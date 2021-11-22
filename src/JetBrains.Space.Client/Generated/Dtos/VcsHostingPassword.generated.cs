@@ -40,31 +40,35 @@ public sealed class VcsHostingPassword
         LastUsed = lastUsed;
     }
     
-    private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(VcsHostingPassword), nameof(Fingerprint));
+    private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(VcsHostingPassword), nameof(Fingerprint), "fingerprint");
     
     [Required]
     [JsonPropertyName("fingerprint")]
     public string Fingerprint
     {
-        get => _fingerprint.GetValue();
+        get => _fingerprint.GetValue(InlineErrors);
         set => _fingerprint.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _lastUsed = new PropertyValue<DateTime?>(nameof(VcsHostingPassword), nameof(LastUsed));
+    private PropertyValue<DateTime?> _lastUsed = new PropertyValue<DateTime?>(nameof(VcsHostingPassword), nameof(LastUsed), "lastUsed");
     
     [JsonPropertyName("lastUsed")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? LastUsed
     {
-        get => _lastUsed.GetValue();
+        get => _lastUsed.GetValue(InlineErrors);
         set => _lastUsed.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _fingerprint.SetAccessPath(path, validateHasBeenSet);
-        _lastUsed.SetAccessPath(path, validateHasBeenSet);
+        _fingerprint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastUsed.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

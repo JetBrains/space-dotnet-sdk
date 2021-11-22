@@ -45,86 +45,90 @@ public sealed class ESApplicationPermanentToken
         LastAccess = lastAccess;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ESApplicationPermanentToken), nameof(Application));
+    private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ESApplicationPermanentToken), nameof(Application), "application");
     
     [Required]
     [JsonPropertyName("application")]
     public ESApp Application
     {
-        get => _application.GetValue();
+        get => _application.GetValue(InlineErrors);
         set => _application.SetValue(value);
     }
 
-    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Scope));
+    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
     public string Scope
     {
-        get => _scope.GetValue();
+        get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESApplicationPermanentToken), nameof(Created));
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESApplicationPermanentToken), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(ESApplicationPermanentToken), nameof(Expires));
+    private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(ESApplicationPermanentToken), nameof(Expires), "expires");
     
     [JsonPropertyName("expires")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? Expires
     {
-        get => _expires.GetValue();
+        get => _expires.GetValue(InlineErrors);
         set => _expires.SetValue(value);
     }
 
-    private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESApplicationPermanentToken), nameof(LastAccess));
+    private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESApplicationPermanentToken), nameof(LastAccess), "lastAccess");
     
     [JsonPropertyName("lastAccess")]
     public AccessRecord? LastAccess
     {
-        get => _lastAccess.GetValue();
+        get => _lastAccess.GetValue(InlineErrors);
         set => _lastAccess.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _application.SetAccessPath(path, validateHasBeenSet);
-        _scope.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _expires.SetAccessPath(path, validateHasBeenSet);
-        _lastAccess.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _application.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _expires.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastAccess.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

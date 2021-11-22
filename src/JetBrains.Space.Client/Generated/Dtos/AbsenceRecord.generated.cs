@@ -50,139 +50,143 @@ public sealed class AbsenceRecord
         CustomFields = customFields;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(AbsenceRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(AbsenceRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(AbsenceRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(AbsenceRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(AbsenceRecord), nameof(Member));
+    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(AbsenceRecord), nameof(Member), "member");
     
     [Required]
     [JsonPropertyName("member")]
     public TDMemberProfile Member
     {
-        get => _member.GetValue();
+        get => _member.GetValue(InlineErrors);
         set => _member.SetValue(value);
     }
 
-    private PropertyValue<string> _icon = new PropertyValue<string>(nameof(AbsenceRecord), nameof(Icon));
+    private PropertyValue<string> _icon = new PropertyValue<string>(nameof(AbsenceRecord), nameof(Icon), "icon");
     
     [Required]
     [JsonPropertyName("icon")]
     public string Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<AbsenceReasonRecord?> _reason = new PropertyValue<AbsenceReasonRecord?>(nameof(AbsenceRecord), nameof(Reason));
+    private PropertyValue<AbsenceReasonRecord?> _reason = new PropertyValue<AbsenceReasonRecord?>(nameof(AbsenceRecord), nameof(Reason), "reason");
     
     [JsonPropertyName("reason")]
     public AbsenceReasonRecord? Reason
     {
-        get => _reason.GetValue();
+        get => _reason.GetValue(InlineErrors);
         set => _reason.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(AbsenceRecord), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(AbsenceRecord), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(AbsenceRecord), nameof(Since));
+    private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(AbsenceRecord), nameof(Since), "since");
     
     [Required]
     [JsonPropertyName("since")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(AbsenceRecord), nameof(Till));
+    private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(AbsenceRecord), nameof(Till), "till");
     
     [Required]
     [JsonPropertyName("till")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime Till
     {
-        get => _till.GetValue();
+        get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    private PropertyValue<TDLocation?> _location = new PropertyValue<TDLocation?>(nameof(AbsenceRecord), nameof(Location));
+    private PropertyValue<TDLocation?> _location = new PropertyValue<TDLocation?>(nameof(AbsenceRecord), nameof(Location), "location");
     
     [JsonPropertyName("location")]
     public TDLocation? Location
     {
-        get => _location.GetValue();
+        get => _location.GetValue(InlineErrors);
         set => _location.SetValue(value);
     }
 
-    private PropertyValue<bool> _available = new PropertyValue<bool>(nameof(AbsenceRecord), nameof(IsAvailable));
+    private PropertyValue<bool> _available = new PropertyValue<bool>(nameof(AbsenceRecord), nameof(IsAvailable), "available");
     
     [Required]
     [JsonPropertyName("available")]
     public bool IsAvailable
     {
-        get => _available.GetValue();
+        get => _available.GetValue(InlineErrors);
         set => _available.SetValue(value);
     }
 
-    private PropertyValue<AbsenceApproval?> _approval = new PropertyValue<AbsenceApproval?>(nameof(AbsenceRecord), nameof(Approval));
+    private PropertyValue<AbsenceApproval?> _approval = new PropertyValue<AbsenceApproval?>(nameof(AbsenceRecord), nameof(Approval), "approval");
     
     [JsonPropertyName("approval")]
     public AbsenceApproval? Approval
     {
-        get => _approval.GetValue();
+        get => _approval.GetValue(InlineErrors);
         set => _approval.SetValue(value);
     }
 
-    private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(AbsenceRecord), nameof(CustomFields), new Dictionary<string, CFValue>());
+    private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(AbsenceRecord), nameof(CustomFields), "customFields", new Dictionary<string, CFValue>());
     
     [Required]
     [JsonPropertyName("customFields")]
     public Dictionary<string, CFValue> CustomFields
     {
-        get => _customFields.GetValue();
+        get => _customFields.GetValue(InlineErrors);
         set => _customFields.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _member.SetAccessPath(path, validateHasBeenSet);
-        _icon.SetAccessPath(path, validateHasBeenSet);
-        _reason.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _till.SetAccessPath(path, validateHasBeenSet);
-        _location.SetAccessPath(path, validateHasBeenSet);
-        _available.SetAccessPath(path, validateHasBeenSet);
-        _approval.SetAccessPath(path, validateHasBeenSet);
-        _customFields.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _member.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reason.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _till.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _location.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _available.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _approval.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

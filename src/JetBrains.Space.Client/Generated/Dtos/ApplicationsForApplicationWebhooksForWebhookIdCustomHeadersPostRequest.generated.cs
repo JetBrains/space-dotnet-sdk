@@ -39,20 +39,24 @@ public class ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequ
         Headers = headers;
     }
     
-    private PropertyValue<List<CustomHttpHeaderDTO>> _headers = new PropertyValue<List<CustomHttpHeaderDTO>>(nameof(ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest), nameof(Headers), new List<CustomHttpHeaderDTO>());
+    private PropertyValue<List<CustomHttpHeaderDTO>> _headers = new PropertyValue<List<CustomHttpHeaderDTO>>(nameof(ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest), nameof(Headers), "headers", new List<CustomHttpHeaderDTO>());
     
     [Required]
     [JsonPropertyName("headers")]
     public List<CustomHttpHeaderDTO> Headers
     {
-        get => _headers.GetValue();
+        get => _headers.GetValue(InlineErrors);
         set => _headers.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _headers.SetAccessPath(path, validateHasBeenSet);
+        _headers.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

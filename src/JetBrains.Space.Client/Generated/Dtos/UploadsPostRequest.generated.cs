@@ -40,30 +40,34 @@ public class UploadsPostRequest
         MediaType = mediaType;
     }
     
-    private PropertyValue<string> _storagePrefix = new PropertyValue<string>(nameof(UploadsPostRequest), nameof(StoragePrefix));
+    private PropertyValue<string> _storagePrefix = new PropertyValue<string>(nameof(UploadsPostRequest), nameof(StoragePrefix), "storagePrefix");
     
     [Required]
     [JsonPropertyName("storagePrefix")]
     public string StoragePrefix
     {
-        get => _storagePrefix.GetValue();
+        get => _storagePrefix.GetValue(InlineErrors);
         set => _storagePrefix.SetValue(value);
     }
 
-    private PropertyValue<string?> _mediaType = new PropertyValue<string?>(nameof(UploadsPostRequest), nameof(MediaType));
+    private PropertyValue<string?> _mediaType = new PropertyValue<string?>(nameof(UploadsPostRequest), nameof(MediaType), "mediaType");
     
     [JsonPropertyName("mediaType")]
     public string? MediaType
     {
-        get => _mediaType.GetValue();
+        get => _mediaType.GetValue(InlineErrors);
         set => _mediaType.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _storagePrefix.SetAccessPath(path, validateHasBeenSet);
-        _mediaType.SetAccessPath(path, validateHasBeenSet);
+        _storagePrefix.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mediaType.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

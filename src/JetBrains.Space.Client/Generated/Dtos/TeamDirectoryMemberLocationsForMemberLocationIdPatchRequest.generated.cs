@@ -41,41 +41,45 @@ public class TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest
         Till = till;
     }
     
-    private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Location));
+    private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Location), "location");
     
     [JsonPropertyName("location")]
     public string? Location
     {
-        get => _location.GetValue();
+        get => _location.GetValue(InlineErrors);
         set => _location.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Since));
+    private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Since), "since");
     
     [JsonPropertyName("since")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Till));
+    private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Till), "till");
     
     [JsonPropertyName("till")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Till
     {
-        get => _till.GetValue();
+        get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _location.SetAccessPath(path, validateHasBeenSet);
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _till.SetAccessPath(path, validateHasBeenSet);
+        _location.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _till.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

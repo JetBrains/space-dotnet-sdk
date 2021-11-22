@@ -40,30 +40,34 @@ public sealed class IssueWebhookCustomFieldUpdate
         Mod = mod;
     }
     
-    private PropertyValue<CustomField> _customField = new PropertyValue<CustomField>(nameof(IssueWebhookCustomFieldUpdate), nameof(CustomField));
+    private PropertyValue<CustomField> _customField = new PropertyValue<CustomField>(nameof(IssueWebhookCustomFieldUpdate), nameof(CustomField), "customField");
     
     [Required]
     [JsonPropertyName("customField")]
     public CustomField CustomField
     {
-        get => _customField.GetValue();
+        get => _customField.GetValue(InlineErrors);
         set => _customField.SetValue(value);
     }
 
-    private PropertyValue<Modification<CFValue>?> _mod = new PropertyValue<Modification<CFValue>?>(nameof(IssueWebhookCustomFieldUpdate), nameof(Mod));
+    private PropertyValue<Modification<CFValue>?> _mod = new PropertyValue<Modification<CFValue>?>(nameof(IssueWebhookCustomFieldUpdate), nameof(Mod), "mod");
     
     [JsonPropertyName("mod")]
     public Modification<CFValue>? Mod
     {
-        get => _mod.GetValue();
+        get => _mod.GetValue(InlineErrors);
         set => _mod.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _customField.SetAccessPath(path, validateHasBeenSet);
-        _mod.SetAccessPath(path, validateHasBeenSet);
+        _customField.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mod.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

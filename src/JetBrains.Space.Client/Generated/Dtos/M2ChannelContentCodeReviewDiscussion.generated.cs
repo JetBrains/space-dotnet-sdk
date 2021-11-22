@@ -43,31 +43,35 @@ public sealed class M2ChannelContentCodeReviewDiscussion
         NotificationDefaults = notificationDefaults;
     }
     
-    private PropertyValue<string> _codeReviewDiscussion = new PropertyValue<string>(nameof(M2ChannelContentCodeReviewDiscussion), nameof(CodeReviewDiscussion));
+    private PropertyValue<string> _codeReviewDiscussion = new PropertyValue<string>(nameof(M2ChannelContentCodeReviewDiscussion), nameof(CodeReviewDiscussion), "codeReviewDiscussion");
     
     [Required]
     [JsonPropertyName("codeReviewDiscussion")]
     public string CodeReviewDiscussion
     {
-        get => _codeReviewDiscussion.GetValue();
+        get => _codeReviewDiscussion.GetValue(InlineErrors);
         set => _codeReviewDiscussion.SetValue(value);
     }
 
-    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentCodeReviewDiscussion), nameof(NotificationDefaults));
+    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentCodeReviewDiscussion), nameof(NotificationDefaults), "notificationDefaults");
     
     [Required]
     [JsonPropertyName("notificationDefaults")]
     public ChannelSpecificDefaults NotificationDefaults
     {
-        get => _notificationDefaults.GetValue();
+        get => _notificationDefaults.GetValue(InlineErrors);
         set => _notificationDefaults.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _codeReviewDiscussion.SetAccessPath(path, validateHasBeenSet);
-        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+        _codeReviewDiscussion.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

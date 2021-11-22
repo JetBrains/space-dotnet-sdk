@@ -40,31 +40,35 @@ public class CustomFieldsForTypeKeyForEntityIdValuesPatchRequest
         Scope = scope;
     }
     
-    private PropertyValue<List<CustomFieldInputValue>> _values = new PropertyValue<List<CustomFieldInputValue>>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Values), new List<CustomFieldInputValue>());
+    private PropertyValue<List<CustomFieldInputValue>> _values = new PropertyValue<List<CustomFieldInputValue>>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Values), "values", new List<CustomFieldInputValue>());
     
     [Required]
     [JsonPropertyName("values")]
     public List<CustomFieldInputValue> Values
     {
-        get => _values.GetValue();
+        get => _values.GetValue(InlineErrors);
         set => _values.SetValue(value);
     }
 
-    private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Scope));
+    private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
     public ExtendedTypeScope Scope
     {
-        get => _scope.GetValue();
+        get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _values.SetAccessPath(path, validateHasBeenSet);
-        _scope.SetAccessPath(path, validateHasBeenSet);
+        _values.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

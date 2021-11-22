@@ -44,41 +44,45 @@ public sealed class DateCFConstraint
         Message = message;
     }
     
-    private PropertyValue<DateTime?> _min = new PropertyValue<DateTime?>(nameof(DateCFConstraint), nameof(Min));
+    private PropertyValue<DateTime?> _min = new PropertyValue<DateTime?>(nameof(DateCFConstraint), nameof(Min), "min");
     
     [JsonPropertyName("min")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Min
     {
-        get => _min.GetValue();
+        get => _min.GetValue(InlineErrors);
         set => _min.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _max = new PropertyValue<DateTime?>(nameof(DateCFConstraint), nameof(Max));
+    private PropertyValue<DateTime?> _max = new PropertyValue<DateTime?>(nameof(DateCFConstraint), nameof(Max), "max");
     
     [JsonPropertyName("max")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Max
     {
-        get => _max.GetValue();
+        get => _max.GetValue(InlineErrors);
         set => _max.SetValue(value);
     }
 
-    private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(DateCFConstraint), nameof(Message));
+    private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(DateCFConstraint), nameof(Message), "message");
     
     [JsonPropertyName("message")]
     public string? Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _min.SetAccessPath(path, validateHasBeenSet);
-        _max.SetAccessPath(path, validateHasBeenSet);
-        _message.SetAccessPath(path, validateHasBeenSet);
+        _min.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _max.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

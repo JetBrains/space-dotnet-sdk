@@ -42,20 +42,24 @@ public sealed class CFEnumValueModificationRemove
         ValueIdentifier = valueIdentifier;
     }
     
-    private PropertyValue<CFEnumValueIdentifier> _valueIdentifier = new PropertyValue<CFEnumValueIdentifier>(nameof(CFEnumValueModificationRemove), nameof(ValueIdentifier));
+    private PropertyValue<CFEnumValueIdentifier> _valueIdentifier = new PropertyValue<CFEnumValueIdentifier>(nameof(CFEnumValueModificationRemove), nameof(ValueIdentifier), "valueIdentifier");
     
     [Required]
     [JsonPropertyName("valueIdentifier")]
     public CFEnumValueIdentifier ValueIdentifier
     {
-        get => _valueIdentifier.GetValue();
+        get => _valueIdentifier.GetValue(InlineErrors);
         set => _valueIdentifier.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _valueIdentifier.SetAccessPath(path, validateHasBeenSet);
+        _valueIdentifier.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

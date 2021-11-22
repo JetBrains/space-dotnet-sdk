@@ -41,41 +41,45 @@ public sealed class EndpointAuthDTO
         IsVerificationToken = verificationToken;
     }
     
-    private PropertyValue<EndpointAuthRead> _appLevelAuth = new PropertyValue<EndpointAuthRead>(nameof(EndpointAuthDTO), nameof(AppLevelAuth));
+    private PropertyValue<EndpointAuthRead> _appLevelAuth = new PropertyValue<EndpointAuthRead>(nameof(EndpointAuthDTO), nameof(AppLevelAuth), "appLevelAuth");
     
     [Required]
     [JsonPropertyName("appLevelAuth")]
     public EndpointAuthRead AppLevelAuth
     {
-        get => _appLevelAuth.GetValue();
+        get => _appLevelAuth.GetValue(InlineErrors);
         set => _appLevelAuth.SetValue(value);
     }
 
-    private PropertyValue<SSLKeystoreEndpointAuth?> _sslKeystore = new PropertyValue<SSLKeystoreEndpointAuth?>(nameof(EndpointAuthDTO), nameof(SslKeystore));
+    private PropertyValue<SSLKeystoreEndpointAuth?> _sslKeystore = new PropertyValue<SSLKeystoreEndpointAuth?>(nameof(EndpointAuthDTO), nameof(SslKeystore), "sslKeystore");
     
     [JsonPropertyName("sslKeystore")]
     public SSLKeystoreEndpointAuth? SslKeystore
     {
-        get => _sslKeystore.GetValue();
+        get => _sslKeystore.GetValue(InlineErrors);
         set => _sslKeystore.SetValue(value);
     }
 
-    private PropertyValue<bool> _verificationToken = new PropertyValue<bool>(nameof(EndpointAuthDTO), nameof(IsVerificationToken));
+    private PropertyValue<bool> _verificationToken = new PropertyValue<bool>(nameof(EndpointAuthDTO), nameof(IsVerificationToken), "verificationToken");
     
     [Required]
     [JsonPropertyName("verificationToken")]
     public bool IsVerificationToken
     {
-        get => _verificationToken.GetValue();
+        get => _verificationToken.GetValue(InlineErrors);
         set => _verificationToken.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _appLevelAuth.SetAccessPath(path, validateHasBeenSet);
-        _sslKeystore.SetAccessPath(path, validateHasBeenSet);
-        _verificationToken.SetAccessPath(path, validateHasBeenSet);
+        _appLevelAuth.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sslKeystore.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _verificationToken.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

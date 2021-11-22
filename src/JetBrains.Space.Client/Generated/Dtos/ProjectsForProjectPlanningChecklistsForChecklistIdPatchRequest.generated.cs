@@ -43,59 +43,63 @@ public class ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest
         Topics = topics;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Name), string.Empty);
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Name), "name", string.Empty);
     
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<string?> _owner = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Owner));
+    private PropertyValue<string?> _owner = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Owner), "owner");
     
     [JsonPropertyName("owner")]
     public string? Owner
     {
-        get => _owner.GetValue();
+        get => _owner.GetValue(InlineErrors);
         set => _owner.SetValue(value);
     }
 
-    private PropertyValue<string?> _tag = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Tag));
+    private PropertyValue<string?> _tag = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Tag), "tag");
     
     [JsonPropertyName("tag")]
     public string? Tag
     {
-        get => _tag.GetValue();
+        get => _tag.GetValue(InlineErrors);
         set => _tag.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _topics = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Topics), new List<string>());
+    private PropertyValue<List<string>> _topics = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Topics), "topics", new List<string>());
     
     [JsonPropertyName("topics")]
     public List<string> Topics
     {
-        get => _topics.GetValue();
+        get => _topics.GetValue(InlineErrors);
         set => _topics.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _owner.SetAccessPath(path, validateHasBeenSet);
-        _tag.SetAccessPath(path, validateHasBeenSet);
-        _topics.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _owner.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tag.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _topics.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

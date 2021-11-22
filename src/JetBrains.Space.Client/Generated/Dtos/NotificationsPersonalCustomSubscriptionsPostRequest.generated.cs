@@ -42,53 +42,57 @@ public class NotificationsPersonalCustomSubscriptionsPostRequest
         Subscription = subscription;
     }
     
-    private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Profile));
+    private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public ProfileIdentifier Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _feed = new PropertyValue<string>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Feed));
+    private PropertyValue<string> _feed = new PropertyValue<string>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Feed), "feed");
     
     [Required]
     [JsonPropertyName("feed")]
     public string Feed
     {
-        get => _feed.GetValue();
+        get => _feed.GetValue(InlineErrors);
         set => _feed.SetValue(value);
     }
 
-    private PropertyValue<CustomGenericSubscriptionIn> _subscription = new PropertyValue<CustomGenericSubscriptionIn>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Subscription));
+    private PropertyValue<CustomGenericSubscriptionIn> _subscription = new PropertyValue<CustomGenericSubscriptionIn>(nameof(NotificationsPersonalCustomSubscriptionsPostRequest), nameof(Subscription), "subscription");
     
     [Required]
     [JsonPropertyName("subscription")]
     public CustomGenericSubscriptionIn Subscription
     {
-        get => _subscription.GetValue();
+        get => _subscription.GetValue(InlineErrors);
         set => _subscription.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _feed.SetAccessPath(path, validateHasBeenSet);
-        _subscription.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _feed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subscription.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

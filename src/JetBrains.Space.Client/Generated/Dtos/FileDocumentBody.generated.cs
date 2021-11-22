@@ -44,42 +44,46 @@ public sealed class FileDocumentBody
         FileSize = fileSize;
     }
     
-    private PropertyValue<string> _versionId = new PropertyValue<string>(nameof(FileDocumentBody), nameof(VersionId));
+    private PropertyValue<string> _versionId = new PropertyValue<string>(nameof(FileDocumentBody), nameof(VersionId), "versionId");
     
     [Required]
     [JsonPropertyName("versionId")]
     public string VersionId
     {
-        get => _versionId.GetValue();
+        get => _versionId.GetValue(InlineErrors);
         set => _versionId.SetValue(value);
     }
 
-    private PropertyValue<string> _contentType = new PropertyValue<string>(nameof(FileDocumentBody), nameof(ContentType));
+    private PropertyValue<string> _contentType = new PropertyValue<string>(nameof(FileDocumentBody), nameof(ContentType), "contentType");
     
     [Required]
     [JsonPropertyName("contentType")]
     public string ContentType
     {
-        get => _contentType.GetValue();
+        get => _contentType.GetValue(InlineErrors);
         set => _contentType.SetValue(value);
     }
 
-    private PropertyValue<long> _fileSize = new PropertyValue<long>(nameof(FileDocumentBody), nameof(FileSize));
+    private PropertyValue<long> _fileSize = new PropertyValue<long>(nameof(FileDocumentBody), nameof(FileSize), "fileSize");
     
     [Required]
     [JsonPropertyName("fileSize")]
     public long FileSize
     {
-        get => _fileSize.GetValue();
+        get => _fileSize.GetValue(InlineErrors);
         set => _fileSize.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _versionId.SetAccessPath(path, validateHasBeenSet);
-        _contentType.SetAccessPath(path, validateHasBeenSet);
-        _fileSize.SetAccessPath(path, validateHasBeenSet);
+        _versionId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _contentType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _fileSize.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

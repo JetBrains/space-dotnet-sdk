@@ -40,31 +40,35 @@ public class CustomFieldsForTypeKeyFieldsReorderPostRequest
         Scope = scope;
     }
     
-    private PropertyValue<List<string>> _customFieldOrder = new PropertyValue<List<string>>(nameof(CustomFieldsForTypeKeyFieldsReorderPostRequest), nameof(CustomFieldOrder), new List<string>());
+    private PropertyValue<List<string>> _customFieldOrder = new PropertyValue<List<string>>(nameof(CustomFieldsForTypeKeyFieldsReorderPostRequest), nameof(CustomFieldOrder), "customFieldOrder", new List<string>());
     
     [Required]
     [JsonPropertyName("customFieldOrder")]
     public List<string> CustomFieldOrder
     {
-        get => _customFieldOrder.GetValue();
+        get => _customFieldOrder.GetValue(InlineErrors);
         set => _customFieldOrder.SetValue(value);
     }
 
-    private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyFieldsReorderPostRequest), nameof(Scope));
+    private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyFieldsReorderPostRequest), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
     public ExtendedTypeScope Scope
     {
-        get => _scope.GetValue();
+        get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _customFieldOrder.SetAccessPath(path, validateHasBeenSet);
-        _scope.SetAccessPath(path, validateHasBeenSet);
+        _customFieldOrder.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

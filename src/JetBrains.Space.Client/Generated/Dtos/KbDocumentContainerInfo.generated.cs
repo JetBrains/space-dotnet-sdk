@@ -43,30 +43,34 @@ public sealed class KbDocumentContainerInfo
         Article = article;
     }
     
-    private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(KbDocumentContainerInfo), nameof(Book));
+    private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(KbDocumentContainerInfo), nameof(Book), "book");
     
     [Required]
     [JsonPropertyName("book")]
     public KBBook Book
     {
-        get => _book.GetValue();
+        get => _book.GetValue(InlineErrors);
         set => _book.SetValue(value);
     }
 
-    private PropertyValue<KBArticle?> _article = new PropertyValue<KBArticle?>(nameof(KbDocumentContainerInfo), nameof(Article));
+    private PropertyValue<KBArticle?> _article = new PropertyValue<KBArticle?>(nameof(KbDocumentContainerInfo), nameof(Article), "article");
     
     [JsonPropertyName("article")]
     public KBArticle? Article
     {
-        get => _article.GetValue();
+        get => _article.GetValue(InlineErrors);
         set => _article.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _book.SetAccessPath(path, validateHasBeenSet);
-        _article.SetAccessPath(path, validateHasBeenSet);
+        _book.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _article.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

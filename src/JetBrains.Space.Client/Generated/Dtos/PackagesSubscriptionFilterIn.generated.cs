@@ -45,50 +45,54 @@ public sealed class PackagesSubscriptionFilterIn
         VersionPattern = versionPattern;
     }
     
-    private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(PackagesSubscriptionFilterIn), nameof(Project));
+    private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(PackagesSubscriptionFilterIn), nameof(Project), "project");
     
     [JsonPropertyName("project")]
     public string? Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<string?> _repository = new PropertyValue<string?>(nameof(PackagesSubscriptionFilterIn), nameof(Repository));
+    private PropertyValue<string?> _repository = new PropertyValue<string?>(nameof(PackagesSubscriptionFilterIn), nameof(Repository), "repository");
     
     [JsonPropertyName("repository")]
     public string? Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _namePattern = new PropertyValue<List<string>>(nameof(PackagesSubscriptionFilterIn), nameof(NamePattern), new List<string>());
+    private PropertyValue<List<string>> _namePattern = new PropertyValue<List<string>>(nameof(PackagesSubscriptionFilterIn), nameof(NamePattern), "namePattern", new List<string>());
     
     [Required]
     [JsonPropertyName("namePattern")]
     public List<string> NamePattern
     {
-        get => _namePattern.GetValue();
+        get => _namePattern.GetValue(InlineErrors);
         set => _namePattern.SetValue(value);
     }
 
-    private PropertyValue<string?> _versionPattern = new PropertyValue<string?>(nameof(PackagesSubscriptionFilterIn), nameof(VersionPattern));
+    private PropertyValue<string?> _versionPattern = new PropertyValue<string?>(nameof(PackagesSubscriptionFilterIn), nameof(VersionPattern), "versionPattern");
     
     [JsonPropertyName("versionPattern")]
     public string? VersionPattern
     {
-        get => _versionPattern.GetValue();
+        get => _versionPattern.GetValue(InlineErrors);
         set => _versionPattern.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _namePattern.SetAccessPath(path, validateHasBeenSet);
-        _versionPattern.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _namePattern.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _versionPattern.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

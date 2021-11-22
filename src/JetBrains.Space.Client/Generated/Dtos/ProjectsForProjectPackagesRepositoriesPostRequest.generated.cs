@@ -45,84 +45,88 @@ public class ProjectsForProjectPackagesRepositoriesPostRequest
         Connection = connection;
     }
     
-    private PropertyValue<string> _type = new PropertyValue<string>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Type));
+    private PropertyValue<string> _type = new PropertyValue<string>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Type), "type");
     
     [Required]
     [JsonPropertyName("type")]
     public string Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<bool> _public = new PropertyValue<bool>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(IsPublic));
+    private PropertyValue<bool> _public = new PropertyValue<bool>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(IsPublic), "public");
     
     [Required]
     [JsonPropertyName("public")]
     public bool IsPublic
     {
-        get => _public.GetValue();
+        get => _public.GetValue(InlineErrors);
         set => _public.SetValue(value);
     }
 
-    private PropertyValue<ESPackageRepositorySettings> _settings = new PropertyValue<ESPackageRepositorySettings>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Settings));
+    private PropertyValue<ESPackageRepositorySettings> _settings = new PropertyValue<ESPackageRepositorySettings>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Settings), "settings");
     
     [Required]
     [JsonPropertyName("settings")]
     public ESPackageRepositorySettings Settings
     {
-        get => _settings.GetValue();
+        get => _settings.GetValue(InlineErrors);
         set => _settings.SetValue(value);
     }
 
-    private PropertyValue<PackageRepositoryMode> _mode = new PropertyValue<PackageRepositoryMode>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Mode));
+    private PropertyValue<PackageRepositoryMode> _mode = new PropertyValue<PackageRepositoryMode>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Mode), "mode");
     
     [Required]
     [JsonPropertyName("mode")]
     public PackageRepositoryMode Mode
     {
-        get => _mode.GetValue();
+        get => _mode.GetValue(InlineErrors);
         set => _mode.SetValue(value);
     }
 
-    private PropertyValue<PackageRepositoryConnection?> _connection = new PropertyValue<PackageRepositoryConnection?>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Connection));
+    private PropertyValue<PackageRepositoryConnection?> _connection = new PropertyValue<PackageRepositoryConnection?>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Connection), "connection");
     
     [JsonPropertyName("connection")]
     public PackageRepositoryConnection? Connection
     {
-        get => _connection.GetValue();
+        get => _connection.GetValue(InlineErrors);
         set => _connection.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _public.SetAccessPath(path, validateHasBeenSet);
-        _settings.SetAccessPath(path, validateHasBeenSet);
-        _mode.SetAccessPath(path, validateHasBeenSet);
-        _connection.SetAccessPath(path, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _public.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _settings.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _connection.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -44,42 +44,46 @@ public sealed class MergeRequestBranchRestoredEvent
         BranchType = branchType;
     }
     
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MergeRequestBranchRestoredEvent), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MergeRequestBranchRestoredEvent), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _branch = new PropertyValue<string>(nameof(MergeRequestBranchRestoredEvent), nameof(Branch));
+    private PropertyValue<string> _branch = new PropertyValue<string>(nameof(MergeRequestBranchRestoredEvent), nameof(Branch), "branch");
     
     [Required]
     [JsonPropertyName("branch")]
     public string Branch
     {
-        get => _branch.GetValue();
+        get => _branch.GetValue(InlineErrors);
         set => _branch.SetValue(value);
     }
 
-    private PropertyValue<MergeRequestBranchType> _branchType = new PropertyValue<MergeRequestBranchType>(nameof(MergeRequestBranchRestoredEvent), nameof(BranchType));
+    private PropertyValue<MergeRequestBranchType> _branchType = new PropertyValue<MergeRequestBranchType>(nameof(MergeRequestBranchRestoredEvent), nameof(BranchType), "branchType");
     
     [Required]
     [JsonPropertyName("branchType")]
     public MergeRequestBranchType BranchType
     {
-        get => _branchType.GetValue();
+        get => _branchType.GetValue(InlineErrors);
         set => _branchType.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _branch.SetAccessPath(path, validateHasBeenSet);
-        _branchType.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _branch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _branchType.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

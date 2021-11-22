@@ -42,19 +42,23 @@ public sealed class OpenEnumCFValue
         Value = value;
     }
     
-    private PropertyValue<EnumValueData?> _value = new PropertyValue<EnumValueData?>(nameof(OpenEnumCFValue), nameof(Value));
+    private PropertyValue<EnumValueData?> _value = new PropertyValue<EnumValueData?>(nameof(OpenEnumCFValue), nameof(Value), "value");
     
     [JsonPropertyName("value")]
     public EnumValueData? Value
     {
-        get => _value.GetValue();
+        get => _value.GetValue(InlineErrors);
         set => _value.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _value.SetAccessPath(path, validateHasBeenSet);
+        _value.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

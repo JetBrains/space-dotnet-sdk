@@ -61,246 +61,250 @@ public class ApplicationsPostRequest
         State = state;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ApplicationsPostRequest), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ApplicationsPostRequest), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _pictureAttachmentId = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(PictureAttachmentId));
+    private PropertyValue<string?> _pictureAttachmentId = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(PictureAttachmentId), "pictureAttachmentId");
     
     [JsonPropertyName("pictureAttachmentId")]
     public string? PictureAttachmentId
     {
-        get => _pictureAttachmentId.GetValue();
+        get => _pictureAttachmentId.GetValue(InlineErrors);
         set => _pictureAttachmentId.SetValue(value);
     }
 
-    private PropertyValue<string?> _defaultExternalPicture = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(DefaultExternalPicture));
+    private PropertyValue<string?> _defaultExternalPicture = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(DefaultExternalPicture), "defaultExternalPicture");
     
     [JsonPropertyName("defaultExternalPicture")]
     public string? DefaultExternalPicture
     {
-        get => _defaultExternalPicture.GetValue();
+        get => _defaultExternalPicture.GetValue(InlineErrors);
         set => _defaultExternalPicture.SetValue(value);
     }
 
-    private PropertyValue<string?> _clientId = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(ClientId));
+    private PropertyValue<string?> _clientId = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(ClientId), "clientId");
     
     [JsonPropertyName("clientId")]
     public string? ClientId
     {
-        get => _clientId.GetValue();
+        get => _clientId.GetValue(InlineErrors);
         set => _clientId.SetValue(value);
     }
 
-    private PropertyValue<string?> _clientSecret = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(ClientSecret));
+    private PropertyValue<string?> _clientSecret = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(ClientSecret), "clientSecret");
     
     [JsonPropertyName("clientSecret")]
     public string? ClientSecret
     {
-        get => _clientSecret.GetValue();
+        get => _clientSecret.GetValue(InlineErrors);
         set => _clientSecret.SetValue(value);
     }
 
-    private PropertyValue<bool?> _clientCredentialsFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsClientCredentialsFlowEnabled));
+    private PropertyValue<bool?> _clientCredentialsFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsClientCredentialsFlowEnabled), "clientCredentialsFlowEnabled");
     
     [JsonPropertyName("clientCredentialsFlowEnabled")]
     public bool? IsClientCredentialsFlowEnabled
     {
-        get => _clientCredentialsFlowEnabled.GetValue();
+        get => _clientCredentialsFlowEnabled.GetValue(InlineErrors);
         set => _clientCredentialsFlowEnabled.SetValue(value);
     }
 
-    private PropertyValue<bool?> _codeFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsCodeFlowEnabled));
+    private PropertyValue<bool?> _codeFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsCodeFlowEnabled), "codeFlowEnabled");
     
     [JsonPropertyName("codeFlowEnabled")]
     public bool? IsCodeFlowEnabled
     {
-        get => _codeFlowEnabled.GetValue();
+        get => _codeFlowEnabled.GetValue(InlineErrors);
         set => _codeFlowEnabled.SetValue(value);
     }
 
-    private PropertyValue<string?> _codeFlowRedirectURIs = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(CodeFlowRedirectURIs));
+    private PropertyValue<string?> _codeFlowRedirectURIs = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(CodeFlowRedirectURIs), "codeFlowRedirectURIs");
     
     [JsonPropertyName("codeFlowRedirectURIs")]
     public string? CodeFlowRedirectURIs
     {
-        get => _codeFlowRedirectURIs.GetValue();
+        get => _codeFlowRedirectURIs.GetValue(InlineErrors);
         set => _codeFlowRedirectURIs.SetValue(value);
     }
 
-    private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsPkceRequired));
+    private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsPkceRequired), "pkceRequired");
     
     [JsonPropertyName("pkceRequired")]
     public bool? IsPkceRequired
     {
-        get => _pkceRequired.GetValue();
+        get => _pkceRequired.GetValue(InlineErrors);
         set => _pkceRequired.SetValue(value);
     }
 
-    private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsImplicitFlowEnabled));
+    private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsImplicitFlowEnabled), "implicitFlowEnabled");
     
     [JsonPropertyName("implicitFlowEnabled")]
     public bool? IsImplicitFlowEnabled
     {
-        get => _implicitFlowEnabled.GetValue();
+        get => _implicitFlowEnabled.GetValue(InlineErrors);
         set => _implicitFlowEnabled.SetValue(value);
     }
 
-    private PropertyValue<string?> _implicitFlowRedirectURIs = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(ImplicitFlowRedirectURIs));
+    private PropertyValue<string?> _implicitFlowRedirectURIs = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(ImplicitFlowRedirectURIs), "implicitFlowRedirectURIs");
     
     [JsonPropertyName("implicitFlowRedirectURIs")]
     public string? ImplicitFlowRedirectURIs
     {
-        get => _implicitFlowRedirectURIs.GetValue();
+        get => _implicitFlowRedirectURIs.GetValue(InlineErrors);
         set => _implicitFlowRedirectURIs.SetValue(value);
     }
 
-    private PropertyValue<string?> _endpointUri = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(EndpointUri));
+    private PropertyValue<string?> _endpointUri = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(EndpointUri), "endpointUri");
     
     [JsonPropertyName("endpointUri")]
     public string? EndpointUri
     {
-        get => _endpointUri.GetValue();
+        get => _endpointUri.GetValue(InlineErrors);
         set => _endpointUri.SetValue(value);
     }
 
-    private PropertyValue<bool> _endpointSslVerification = new PropertyValue<bool>(nameof(ApplicationsPostRequest), nameof(IsEndpointSslVerification));
+    private PropertyValue<bool> _endpointSslVerification = new PropertyValue<bool>(nameof(ApplicationsPostRequest), nameof(IsEndpointSslVerification), "endpointSslVerification");
     
     [JsonPropertyName("endpointSslVerification")]
     public bool IsEndpointSslVerification
     {
-        get => _endpointSslVerification.GetValue();
+        get => _endpointSslVerification.GetValue(InlineErrors);
         set => _endpointSslVerification.SetValue(value);
     }
 
-    private PropertyValue<EndpointAuthCreate?> _appLevelAuth = new PropertyValue<EndpointAuthCreate?>(nameof(ApplicationsPostRequest), nameof(AppLevelAuth));
+    private PropertyValue<EndpointAuthCreate?> _appLevelAuth = new PropertyValue<EndpointAuthCreate?>(nameof(ApplicationsPostRequest), nameof(AppLevelAuth), "appLevelAuth");
     
     [JsonPropertyName("appLevelAuth")]
     public EndpointAuthCreate? AppLevelAuth
     {
-        get => _appLevelAuth.GetValue();
+        get => _appLevelAuth.GetValue(InlineErrors);
         set => _appLevelAuth.SetValue(value);
     }
 
-    private PropertyValue<string?> _sslKeystoreAuth = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(SslKeystoreAuth));
+    private PropertyValue<string?> _sslKeystoreAuth = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(SslKeystoreAuth), "sslKeystoreAuth");
     
     [JsonPropertyName("sslKeystoreAuth")]
     public string? SslKeystoreAuth
     {
-        get => _sslKeystoreAuth.GetValue();
+        get => _sslKeystoreAuth.GetValue(InlineErrors);
         set => _sslKeystoreAuth.SetValue(value);
     }
 
-    private PropertyValue<bool?> _hasVerificationToken = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsHasVerificationToken));
+    private PropertyValue<bool?> _hasVerificationToken = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsHasVerificationToken), "hasVerificationToken");
     
     [Obsolete("It's an obsolete auth type - please use another one (since 2021-09-02) (will be removed in a future version)")]
     [JsonPropertyName("hasVerificationToken")]
     public bool? IsHasVerificationToken
     {
-        get => _hasVerificationToken.GetValue();
+        get => _hasVerificationToken.GetValue(InlineErrors);
         set => _hasVerificationToken.SetValue(value);
     }
 
-    private PropertyValue<bool?> _hasSigningKey = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsHasSigningKey));
+    private PropertyValue<bool?> _hasSigningKey = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsHasSigningKey), "hasSigningKey");
     
     [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     [JsonPropertyName("hasSigningKey")]
     public bool? IsHasSigningKey
     {
-        get => _hasSigningKey.GetValue();
+        get => _hasSigningKey.GetValue(InlineErrors);
         set => _hasSigningKey.SetValue(value);
     }
 
-    private PropertyValue<bool?> _hasPublicKeySignature = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsHasPublicKeySignature));
+    private PropertyValue<bool?> _hasPublicKeySignature = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsHasPublicKeySignature), "hasPublicKeySignature");
     
     [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     [JsonPropertyName("hasPublicKeySignature")]
     public bool? IsHasPublicKeySignature
     {
-        get => _hasPublicKeySignature.GetValue();
+        get => _hasPublicKeySignature.GetValue(InlineErrors);
         set => _hasPublicKeySignature.SetValue(value);
     }
 
-    private PropertyValue<string?> _basicAuthUsername = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(BasicAuthUsername));
+    private PropertyValue<string?> _basicAuthUsername = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(BasicAuthUsername), "basicAuthUsername");
     
     [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     [JsonPropertyName("basicAuthUsername")]
     public string? BasicAuthUsername
     {
-        get => _basicAuthUsername.GetValue();
+        get => _basicAuthUsername.GetValue(InlineErrors);
         set => _basicAuthUsername.SetValue(value);
     }
 
-    private PropertyValue<string?> _basicAuthPassword = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(BasicAuthPassword));
+    private PropertyValue<string?> _basicAuthPassword = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(BasicAuthPassword), "basicAuthPassword");
     
     [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     [JsonPropertyName("basicAuthPassword")]
     public string? BasicAuthPassword
     {
-        get => _basicAuthPassword.GetValue();
+        get => _basicAuthPassword.GetValue(InlineErrors);
         set => _basicAuthPassword.SetValue(value);
     }
 
-    private PropertyValue<string?> _bearerAuthToken = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(BearerAuthToken));
+    private PropertyValue<string?> _bearerAuthToken = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(BearerAuthToken), "bearerAuthToken");
     
     [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     [JsonPropertyName("bearerAuthToken")]
     public string? BearerAuthToken
     {
-        get => _bearerAuthToken.GetValue();
+        get => _bearerAuthToken.GetValue(InlineErrors);
         set => _bearerAuthToken.SetValue(value);
     }
 
-    private PropertyValue<bool?> _connectToSpace = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsConnectToSpace));
+    private PropertyValue<bool?> _connectToSpace = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsConnectToSpace), "connectToSpace");
     
     [JsonPropertyName("connectToSpace")]
     public bool? IsConnectToSpace
     {
-        get => _connectToSpace.GetValue();
+        get => _connectToSpace.GetValue(InlineErrors);
         set => _connectToSpace.SetValue(value);
     }
 
-    private PropertyValue<string?> _state = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(State));
+    private PropertyValue<string?> _state = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(State), "state");
     
     [JsonPropertyName("state")]
     public string? State
     {
-        get => _state.GetValue();
+        get => _state.GetValue(InlineErrors);
         set => _state.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _pictureAttachmentId.SetAccessPath(path, validateHasBeenSet);
-        _defaultExternalPicture.SetAccessPath(path, validateHasBeenSet);
-        _clientId.SetAccessPath(path, validateHasBeenSet);
-        _clientSecret.SetAccessPath(path, validateHasBeenSet);
-        _clientCredentialsFlowEnabled.SetAccessPath(path, validateHasBeenSet);
-        _codeFlowEnabled.SetAccessPath(path, validateHasBeenSet);
-        _codeFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
-        _pkceRequired.SetAccessPath(path, validateHasBeenSet);
-        _implicitFlowEnabled.SetAccessPath(path, validateHasBeenSet);
-        _implicitFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
-        _endpointUri.SetAccessPath(path, validateHasBeenSet);
-        _endpointSslVerification.SetAccessPath(path, validateHasBeenSet);
-        _appLevelAuth.SetAccessPath(path, validateHasBeenSet);
-        _sslKeystoreAuth.SetAccessPath(path, validateHasBeenSet);
-        _hasVerificationToken.SetAccessPath(path, validateHasBeenSet);
-        _hasSigningKey.SetAccessPath(path, validateHasBeenSet);
-        _hasPublicKeySignature.SetAccessPath(path, validateHasBeenSet);
-        _basicAuthUsername.SetAccessPath(path, validateHasBeenSet);
-        _basicAuthPassword.SetAccessPath(path, validateHasBeenSet);
-        _bearerAuthToken.SetAccessPath(path, validateHasBeenSet);
-        _connectToSpace.SetAccessPath(path, validateHasBeenSet);
-        _state.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pictureAttachmentId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _defaultExternalPicture.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _clientSecret.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _clientCredentialsFlowEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _codeFlowEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _codeFlowRedirectURIs.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pkceRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _implicitFlowEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _implicitFlowRedirectURIs.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _endpointUri.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _endpointSslVerification.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _appLevelAuth.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sslKeystoreAuth.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hasVerificationToken.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hasSigningKey.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hasPublicKeySignature.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _basicAuthUsername.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _basicAuthPassword.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bearerAuthToken.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _connectToSpace.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _state.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -46,64 +46,68 @@ public sealed class CodeReviewWebhookEvent
         IsMergeRequest = isMergeRequest;
     }
     
-    private PropertyValue<ProjectKey> _projectKey = new PropertyValue<ProjectKey>(nameof(CodeReviewWebhookEvent), nameof(ProjectKey));
+    private PropertyValue<ProjectKey> _projectKey = new PropertyValue<ProjectKey>(nameof(CodeReviewWebhookEvent), nameof(ProjectKey), "projectKey");
     
     [Required]
     [JsonPropertyName("projectKey")]
     public ProjectKey ProjectKey
     {
-        get => _projectKey.GetValue();
+        get => _projectKey.GetValue(InlineErrors);
         set => _projectKey.SetValue(value);
     }
 
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CodeReviewWebhookEvent), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CodeReviewWebhookEvent), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _reviewId = new PropertyValue<string>(nameof(CodeReviewWebhookEvent), nameof(ReviewId));
+    private PropertyValue<string> _reviewId = new PropertyValue<string>(nameof(CodeReviewWebhookEvent), nameof(ReviewId), "reviewId");
     
     [Required]
     [JsonPropertyName("reviewId")]
     public string ReviewId
     {
-        get => _reviewId.GetValue();
+        get => _reviewId.GetValue(InlineErrors);
         set => _reviewId.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(CodeReviewWebhookEvent), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(CodeReviewWebhookEvent), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<bool> _isMergeRequest = new PropertyValue<bool>(nameof(CodeReviewWebhookEvent), nameof(IsMergeRequest));
+    private PropertyValue<bool> _isMergeRequest = new PropertyValue<bool>(nameof(CodeReviewWebhookEvent), nameof(IsMergeRequest), "isMergeRequest");
     
     [Required]
     [JsonPropertyName("isMergeRequest")]
     public bool IsMergeRequest
     {
-        get => _isMergeRequest.GetValue();
+        get => _isMergeRequest.GetValue(InlineErrors);
         set => _isMergeRequest.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _projectKey.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _reviewId.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _isMergeRequest.SetAccessPath(path, validateHasBeenSet);
+        _projectKey.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviewId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _isMergeRequest.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

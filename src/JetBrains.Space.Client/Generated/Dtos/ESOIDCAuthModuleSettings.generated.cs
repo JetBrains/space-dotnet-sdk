@@ -51,118 +51,122 @@ public sealed class ESOIDCAuthModuleSettings
         Domains = domains;
     }
     
-    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(ClientId));
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(ClientId), "clientId");
     
     [Required]
     [JsonPropertyName("clientId")]
     public string ClientId
     {
-        get => _clientId.GetValue();
+        get => _clientId.GetValue(InlineErrors);
         set => _clientId.SetValue(value);
     }
 
-    private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(ClientSecret));
+    private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(ClientSecret), "clientSecret");
     
     [Required]
     [JsonPropertyName("clientSecret")]
     public string ClientSecret
     {
-        get => _clientSecret.GetValue();
+        get => _clientSecret.GetValue(InlineErrors);
         set => _clientSecret.SetValue(value);
     }
 
-    private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESOIDCAuthModuleSettings), nameof(IsRegisterNewUsers));
+    private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESOIDCAuthModuleSettings), nameof(IsRegisterNewUsers), "registerNewUsers");
     
     [Required]
     [JsonPropertyName("registerNewUsers")]
     public bool IsRegisterNewUsers
     {
-        get => _registerNewUsers.GetValue();
+        get => _registerNewUsers.GetValue(InlineErrors);
         set => _registerNewUsers.SetValue(value);
     }
 
-    private PropertyValue<string?> _discoveryUrl = new PropertyValue<string?>(nameof(ESOIDCAuthModuleSettings), nameof(DiscoveryUrl));
+    private PropertyValue<string?> _discoveryUrl = new PropertyValue<string?>(nameof(ESOIDCAuthModuleSettings), nameof(DiscoveryUrl), "discoveryUrl");
     
     [JsonPropertyName("discoveryUrl")]
     public string? DiscoveryUrl
     {
-        get => _discoveryUrl.GetValue();
+        get => _discoveryUrl.GetValue(InlineErrors);
         set => _discoveryUrl.SetValue(value);
     }
 
-    private PropertyValue<string> _issuer = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(Issuer));
+    private PropertyValue<string> _issuer = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(Issuer), "issuer");
     
     [Required]
     [JsonPropertyName("issuer")]
     public string Issuer
     {
-        get => _issuer.GetValue();
+        get => _issuer.GetValue(InlineErrors);
         set => _issuer.SetValue(value);
     }
 
-    private PropertyValue<string> _authorizationEndpoint = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(AuthorizationEndpoint));
+    private PropertyValue<string> _authorizationEndpoint = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(AuthorizationEndpoint), "authorizationEndpoint");
     
     [Required]
     [JsonPropertyName("authorizationEndpoint")]
     public string AuthorizationEndpoint
     {
-        get => _authorizationEndpoint.GetValue();
+        get => _authorizationEndpoint.GetValue(InlineErrors);
         set => _authorizationEndpoint.SetValue(value);
     }
 
-    private PropertyValue<string> _tokenEndpoint = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(TokenEndpoint));
+    private PropertyValue<string> _tokenEndpoint = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(TokenEndpoint), "tokenEndpoint");
     
     [Required]
     [JsonPropertyName("tokenEndpoint")]
     public string TokenEndpoint
     {
-        get => _tokenEndpoint.GetValue();
+        get => _tokenEndpoint.GetValue(InlineErrors);
         set => _tokenEndpoint.SetValue(value);
     }
 
-    private PropertyValue<string> _tokenKeysEndpoint = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(TokenKeysEndpoint));
+    private PropertyValue<string> _tokenKeysEndpoint = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(TokenKeysEndpoint), "tokenKeysEndpoint");
     
     [Required]
     [JsonPropertyName("tokenKeysEndpoint")]
     public string TokenKeysEndpoint
     {
-        get => _tokenKeysEndpoint.GetValue();
+        get => _tokenKeysEndpoint.GetValue(InlineErrors);
         set => _tokenKeysEndpoint.SetValue(value);
     }
 
-    private PropertyValue<string> _userInfoEndpoint = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(UserInfoEndpoint));
+    private PropertyValue<string> _userInfoEndpoint = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(UserInfoEndpoint), "userInfoEndpoint");
     
     [Required]
     [JsonPropertyName("userInfoEndpoint")]
     public string UserInfoEndpoint
     {
-        get => _userInfoEndpoint.GetValue();
+        get => _userInfoEndpoint.GetValue(InlineErrors);
         set => _userInfoEndpoint.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ESOIDCAuthModuleSettings), nameof(Domains), new List<string>());
+    private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ESOIDCAuthModuleSettings), nameof(Domains), "domains", new List<string>());
     
     [Required]
     [JsonPropertyName("domains")]
     public List<string> Domains
     {
-        get => _domains.GetValue();
+        get => _domains.GetValue(InlineErrors);
         set => _domains.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _clientId.SetAccessPath(path, validateHasBeenSet);
-        _clientSecret.SetAccessPath(path, validateHasBeenSet);
-        _registerNewUsers.SetAccessPath(path, validateHasBeenSet);
-        _discoveryUrl.SetAccessPath(path, validateHasBeenSet);
-        _issuer.SetAccessPath(path, validateHasBeenSet);
-        _authorizationEndpoint.SetAccessPath(path, validateHasBeenSet);
-        _tokenEndpoint.SetAccessPath(path, validateHasBeenSet);
-        _tokenKeysEndpoint.SetAccessPath(path, validateHasBeenSet);
-        _userInfoEndpoint.SetAccessPath(path, validateHasBeenSet);
-        _domains.SetAccessPath(path, validateHasBeenSet);
+        _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _clientSecret.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _registerNewUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _discoveryUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issuer.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authorizationEndpoint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tokenEndpoint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tokenKeysEndpoint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userInfoEndpoint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _domains.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,20 +42,24 @@ public sealed class IssueListCFInputValue
         Issues = issues;
     }
     
-    private PropertyValue<List<IssueIdentifier>> _issues = new PropertyValue<List<IssueIdentifier>>(nameof(IssueListCFInputValue), nameof(Issues), new List<IssueIdentifier>());
+    private PropertyValue<List<IssueIdentifier>> _issues = new PropertyValue<List<IssueIdentifier>>(nameof(IssueListCFInputValue), nameof(Issues), "issues", new List<IssueIdentifier>());
     
     [Required]
     [JsonPropertyName("issues")]
     public List<IssueIdentifier> Issues
     {
-        get => _issues.GetValue();
+        get => _issues.GetValue(InlineErrors);
         set => _issues.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _issues.SetAccessPath(path, validateHasBeenSet);
+        _issues.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

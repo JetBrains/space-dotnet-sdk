@@ -42,19 +42,23 @@ public sealed class M2ChannelContactObsolete
         Cause = cause;
     }
     
-    private PropertyValue<M2ObsoleteCause?> _cause = new PropertyValue<M2ObsoleteCause?>(nameof(M2ChannelContactObsolete), nameof(Cause));
+    private PropertyValue<M2ObsoleteCause?> _cause = new PropertyValue<M2ObsoleteCause?>(nameof(M2ChannelContactObsolete), nameof(Cause), "cause");
     
     [JsonPropertyName("cause")]
     public M2ObsoleteCause? Cause
     {
-        get => _cause.GetValue();
+        get => _cause.GetValue(InlineErrors);
         set => _cause.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _cause.SetAccessPath(path, validateHasBeenSet);
+        _cause.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

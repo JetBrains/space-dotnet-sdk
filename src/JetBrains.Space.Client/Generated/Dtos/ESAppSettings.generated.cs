@@ -46,91 +46,95 @@ public sealed class ESAppSettings
         EndpointAuth = endpointAuth;
     }
     
-    private PropertyValue<bool?> _clientCredentialsFlowEnabled = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsClientCredentialsFlowEnabled));
+    private PropertyValue<bool?> _clientCredentialsFlowEnabled = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsClientCredentialsFlowEnabled), "clientCredentialsFlowEnabled");
     
     [JsonPropertyName("clientCredentialsFlowEnabled")]
     public bool? IsClientCredentialsFlowEnabled
     {
-        get => _clientCredentialsFlowEnabled.GetValue();
+        get => _clientCredentialsFlowEnabled.GetValue(InlineErrors);
         set => _clientCredentialsFlowEnabled.SetValue(value);
     }
 
-    private PropertyValue<bool?> _codeFlowEnabled = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsCodeFlowEnabled));
+    private PropertyValue<bool?> _codeFlowEnabled = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsCodeFlowEnabled), "codeFlowEnabled");
     
     [JsonPropertyName("codeFlowEnabled")]
     public bool? IsCodeFlowEnabled
     {
-        get => _codeFlowEnabled.GetValue();
+        get => _codeFlowEnabled.GetValue(InlineErrors);
         set => _codeFlowEnabled.SetValue(value);
     }
 
-    private PropertyValue<string?> _codeFlowRedirectURIs = new PropertyValue<string?>(nameof(ESAppSettings), nameof(CodeFlowRedirectURIs));
+    private PropertyValue<string?> _codeFlowRedirectURIs = new PropertyValue<string?>(nameof(ESAppSettings), nameof(CodeFlowRedirectURIs), "codeFlowRedirectURIs");
     
     [JsonPropertyName("codeFlowRedirectURIs")]
     public string? CodeFlowRedirectURIs
     {
-        get => _codeFlowRedirectURIs.GetValue();
+        get => _codeFlowRedirectURIs.GetValue(InlineErrors);
         set => _codeFlowRedirectURIs.SetValue(value);
     }
 
-    private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsPkceRequired));
+    private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsPkceRequired), "pkceRequired");
     
     [JsonPropertyName("pkceRequired")]
     public bool? IsPkceRequired
     {
-        get => _pkceRequired.GetValue();
+        get => _pkceRequired.GetValue(InlineErrors);
         set => _pkceRequired.SetValue(value);
     }
 
-    private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsImplicitFlowEnabled));
+    private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsImplicitFlowEnabled), "implicitFlowEnabled");
     
     [JsonPropertyName("implicitFlowEnabled")]
     public bool? IsImplicitFlowEnabled
     {
-        get => _implicitFlowEnabled.GetValue();
+        get => _implicitFlowEnabled.GetValue(InlineErrors);
         set => _implicitFlowEnabled.SetValue(value);
     }
 
-    private PropertyValue<string?> _implicitFlowRedirectURIs = new PropertyValue<string?>(nameof(ESAppSettings), nameof(ImplicitFlowRedirectURIs));
+    private PropertyValue<string?> _implicitFlowRedirectURIs = new PropertyValue<string?>(nameof(ESAppSettings), nameof(ImplicitFlowRedirectURIs), "implicitFlowRedirectURIs");
     
     [JsonPropertyName("implicitFlowRedirectURIs")]
     public string? ImplicitFlowRedirectURIs
     {
-        get => _implicitFlowRedirectURIs.GetValue();
+        get => _implicitFlowRedirectURIs.GetValue(InlineErrors);
         set => _implicitFlowRedirectURIs.SetValue(value);
     }
 
-    private PropertyValue<EndpointDTO> _endpoint = new PropertyValue<EndpointDTO>(nameof(ESAppSettings), nameof(Endpoint));
+    private PropertyValue<EndpointDTO> _endpoint = new PropertyValue<EndpointDTO>(nameof(ESAppSettings), nameof(Endpoint), "endpoint");
     
     [Required]
     [JsonPropertyName("endpoint")]
     public EndpointDTO Endpoint
     {
-        get => _endpoint.GetValue();
+        get => _endpoint.GetValue(InlineErrors);
         set => _endpoint.SetValue(value);
     }
 
-    private PropertyValue<EndpointAuthDTO> _endpointAuth = new PropertyValue<EndpointAuthDTO>(nameof(ESAppSettings), nameof(EndpointAuth));
+    private PropertyValue<EndpointAuthDTO> _endpointAuth = new PropertyValue<EndpointAuthDTO>(nameof(ESAppSettings), nameof(EndpointAuth), "endpointAuth");
     
     [Required]
     [JsonPropertyName("endpointAuth")]
     public EndpointAuthDTO EndpointAuth
     {
-        get => _endpointAuth.GetValue();
+        get => _endpointAuth.GetValue(InlineErrors);
         set => _endpointAuth.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _clientCredentialsFlowEnabled.SetAccessPath(path, validateHasBeenSet);
-        _codeFlowEnabled.SetAccessPath(path, validateHasBeenSet);
-        _codeFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
-        _pkceRequired.SetAccessPath(path, validateHasBeenSet);
-        _implicitFlowEnabled.SetAccessPath(path, validateHasBeenSet);
-        _implicitFlowRedirectURIs.SetAccessPath(path, validateHasBeenSet);
-        _endpoint.SetAccessPath(path, validateHasBeenSet);
-        _endpointAuth.SetAccessPath(path, validateHasBeenSet);
+        _clientCredentialsFlowEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _codeFlowEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _codeFlowRedirectURIs.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pkceRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _implicitFlowEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _implicitFlowRedirectURIs.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _endpoint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _endpointAuth.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

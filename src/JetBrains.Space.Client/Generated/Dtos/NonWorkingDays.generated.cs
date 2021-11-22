@@ -42,55 +42,59 @@ public sealed class NonWorkingDays
         IsEndsLater = endsLater;
     }
     
-    private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(NonWorkingDays), nameof(Since));
+    private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(NonWorkingDays), nameof(Since), "since");
     
     [Required]
     [JsonPropertyName("since")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(NonWorkingDays), nameof(Till));
+    private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(NonWorkingDays), nameof(Till), "till");
     
     [Required]
     [JsonPropertyName("till")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime Till
     {
-        get => _till.GetValue();
+        get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    private PropertyValue<bool> _startsEarlier = new PropertyValue<bool>(nameof(NonWorkingDays), nameof(IsStartsEarlier));
+    private PropertyValue<bool> _startsEarlier = new PropertyValue<bool>(nameof(NonWorkingDays), nameof(IsStartsEarlier), "startsEarlier");
     
     [Required]
     [JsonPropertyName("startsEarlier")]
     public bool IsStartsEarlier
     {
-        get => _startsEarlier.GetValue();
+        get => _startsEarlier.GetValue(InlineErrors);
         set => _startsEarlier.SetValue(value);
     }
 
-    private PropertyValue<bool> _endsLater = new PropertyValue<bool>(nameof(NonWorkingDays), nameof(IsEndsLater));
+    private PropertyValue<bool> _endsLater = new PropertyValue<bool>(nameof(NonWorkingDays), nameof(IsEndsLater), "endsLater");
     
     [Required]
     [JsonPropertyName("endsLater")]
     public bool IsEndsLater
     {
-        get => _endsLater.GetValue();
+        get => _endsLater.GetValue(InlineErrors);
         set => _endsLater.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _till.SetAccessPath(path, validateHasBeenSet);
-        _startsEarlier.SetAccessPath(path, validateHasBeenSet);
-        _endsLater.SetAccessPath(path, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _till.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _startsEarlier.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _endsLater.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

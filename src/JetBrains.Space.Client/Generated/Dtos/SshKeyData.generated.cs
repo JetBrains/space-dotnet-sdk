@@ -43,63 +43,67 @@ public sealed class SshKeyData
         LastResource = lastResource;
     }
     
-    private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(SshKeyData), nameof(Fingerprint));
+    private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(SshKeyData), nameof(Fingerprint), "fingerprint");
     
     [Required]
     [JsonPropertyName("fingerprint")]
     public string Fingerprint
     {
-        get => _fingerprint.GetValue();
+        get => _fingerprint.GetValue(InlineErrors);
         set => _fingerprint.SetValue(value);
     }
 
-    private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(SshKeyData), nameof(PublicKey));
+    private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(SshKeyData), nameof(PublicKey), "publicKey");
     
     [Required]
     [JsonPropertyName("publicKey")]
     public string PublicKey
     {
-        get => _publicKey.GetValue();
+        get => _publicKey.GetValue(InlineErrors);
         set => _publicKey.SetValue(value);
     }
 
-    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(SshKeyData), nameof(Comment));
+    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(SshKeyData), nameof(Comment), "comment");
     
     [Required]
     [JsonPropertyName("comment")]
     public string Comment
     {
-        get => _comment.GetValue();
+        get => _comment.GetValue(InlineErrors);
         set => _comment.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _lastUsed = new PropertyValue<DateTime?>(nameof(SshKeyData), nameof(LastUsed));
+    private PropertyValue<DateTime?> _lastUsed = new PropertyValue<DateTime?>(nameof(SshKeyData), nameof(LastUsed), "lastUsed");
     
     [JsonPropertyName("lastUsed")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? LastUsed
     {
-        get => _lastUsed.GetValue();
+        get => _lastUsed.GetValue(InlineErrors);
         set => _lastUsed.SetValue(value);
     }
 
-    private PropertyValue<string?> _lastResource = new PropertyValue<string?>(nameof(SshKeyData), nameof(LastResource));
+    private PropertyValue<string?> _lastResource = new PropertyValue<string?>(nameof(SshKeyData), nameof(LastResource), "lastResource");
     
     [JsonPropertyName("lastResource")]
     public string? LastResource
     {
-        get => _lastResource.GetValue();
+        get => _lastResource.GetValue(InlineErrors);
         set => _lastResource.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _fingerprint.SetAccessPath(path, validateHasBeenSet);
-        _publicKey.SetAccessPath(path, validateHasBeenSet);
-        _comment.SetAccessPath(path, validateHasBeenSet);
-        _lastUsed.SetAccessPath(path, validateHasBeenSet);
-        _lastResource.SetAccessPath(path, validateHasBeenSet);
+        _fingerprint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _publicKey.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _comment.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastUsed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastResource.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

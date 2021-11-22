@@ -48,9 +48,13 @@ public abstract class ESProfileLoginDetails
     public static ESHubProfileLoginDetails ESHubProfileLoginDetails(bool emailVerified, string? login = null, string? hubAuthModuleLogin = null, string? firstName = null, string? lastName = null, string? email = null, string? avatarUrl = null)
         => new ESHubProfileLoginDetails(emailVerified: emailVerified, login: login, hubAuthModuleLogin: hubAuthModuleLogin, firstName: firstName, lastName: lastName, email: email, avatarUrl: avatarUrl);
     
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

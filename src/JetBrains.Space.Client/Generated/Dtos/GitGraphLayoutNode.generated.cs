@@ -40,31 +40,35 @@ public sealed class GitGraphLayoutNode
         Color = color;
     }
     
-    private PropertyValue<int> _pos = new PropertyValue<int>(nameof(GitGraphLayoutNode), nameof(Pos));
+    private PropertyValue<int> _pos = new PropertyValue<int>(nameof(GitGraphLayoutNode), nameof(Pos), "pos");
     
     [Required]
     [JsonPropertyName("pos")]
     public int Pos
     {
-        get => _pos.GetValue();
+        get => _pos.GetValue(InlineErrors);
         set => _pos.SetValue(value);
     }
 
-    private PropertyValue<int> _color = new PropertyValue<int>(nameof(GitGraphLayoutNode), nameof(Color));
+    private PropertyValue<int> _color = new PropertyValue<int>(nameof(GitGraphLayoutNode), nameof(Color), "color");
     
     [Required]
     [JsonPropertyName("color")]
     public int Color
     {
-        get => _color.GetValue();
+        get => _color.GetValue(InlineErrors);
         set => _color.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _pos.SetAccessPath(path, validateHasBeenSet);
-        _color.SetAccessPath(path, validateHasBeenSet);
+        _pos.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _color.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

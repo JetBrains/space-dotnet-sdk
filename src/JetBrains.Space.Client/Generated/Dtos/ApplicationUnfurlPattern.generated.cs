@@ -43,63 +43,67 @@ public sealed class ApplicationUnfurlPattern
         ModificationTimestamp = modificationTimestamp;
     }
     
-    private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(ApplicationUnfurlPattern), nameof(Prefix));
+    private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(ApplicationUnfurlPattern), nameof(Prefix), "prefix");
     
     [Required]
     [JsonPropertyName("prefix")]
     public string Prefix
     {
-        get => _prefix.GetValue();
+        get => _prefix.GetValue(InlineErrors);
         set => _prefix.SetValue(value);
     }
 
-    private PropertyValue<string> _linkReplacement = new PropertyValue<string>(nameof(ApplicationUnfurlPattern), nameof(LinkReplacement));
+    private PropertyValue<string> _linkReplacement = new PropertyValue<string>(nameof(ApplicationUnfurlPattern), nameof(LinkReplacement), "linkReplacement");
     
     [Required]
     [JsonPropertyName("linkReplacement")]
     public string LinkReplacement
     {
-        get => _linkReplacement.GetValue();
+        get => _linkReplacement.GetValue(InlineErrors);
         set => _linkReplacement.SetValue(value);
     }
 
-    private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(ApplicationUnfurlPattern), nameof(Status));
+    private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(ApplicationUnfurlPattern), nameof(Status), "status");
     
     [Required]
     [JsonPropertyName("status")]
     public RightStatus Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _modificationAuthor = new PropertyValue<CPrincipal?>(nameof(ApplicationUnfurlPattern), nameof(ModificationAuthor));
+    private PropertyValue<CPrincipal?> _modificationAuthor = new PropertyValue<CPrincipal?>(nameof(ApplicationUnfurlPattern), nameof(ModificationAuthor), "modificationAuthor");
     
     [JsonPropertyName("modificationAuthor")]
     public CPrincipal? ModificationAuthor
     {
-        get => _modificationAuthor.GetValue();
+        get => _modificationAuthor.GetValue(InlineErrors);
         set => _modificationAuthor.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _modificationTimestamp = new PropertyValue<DateTime?>(nameof(ApplicationUnfurlPattern), nameof(ModificationTimestamp));
+    private PropertyValue<DateTime?> _modificationTimestamp = new PropertyValue<DateTime?>(nameof(ApplicationUnfurlPattern), nameof(ModificationTimestamp), "modificationTimestamp");
     
     [JsonPropertyName("modificationTimestamp")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ModificationTimestamp
     {
-        get => _modificationTimestamp.GetValue();
+        get => _modificationTimestamp.GetValue(InlineErrors);
         set => _modificationTimestamp.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _prefix.SetAccessPath(path, validateHasBeenSet);
-        _linkReplacement.SetAccessPath(path, validateHasBeenSet);
-        _status.SetAccessPath(path, validateHasBeenSet);
-        _modificationAuthor.SetAccessPath(path, validateHasBeenSet);
-        _modificationTimestamp.SetAccessPath(path, validateHasBeenSet);
+        _prefix.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _linkReplacement.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _modificationAuthor.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _modificationTimestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

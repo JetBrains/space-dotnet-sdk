@@ -39,20 +39,24 @@ public class ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest
         IsMoveUnresolvedIssuesFromCurrentSprint = moveUnresolvedIssuesFromCurrentSprint;
     }
     
-    private PropertyValue<bool> _moveUnresolvedIssuesFromCurrentSprint = new PropertyValue<bool>(nameof(ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest), nameof(IsMoveUnresolvedIssuesFromCurrentSprint));
+    private PropertyValue<bool> _moveUnresolvedIssuesFromCurrentSprint = new PropertyValue<bool>(nameof(ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest), nameof(IsMoveUnresolvedIssuesFromCurrentSprint), "moveUnresolvedIssuesFromCurrentSprint");
     
     [Required]
     [JsonPropertyName("moveUnresolvedIssuesFromCurrentSprint")]
     public bool IsMoveUnresolvedIssuesFromCurrentSprint
     {
-        get => _moveUnresolvedIssuesFromCurrentSprint.GetValue();
+        get => _moveUnresolvedIssuesFromCurrentSprint.GetValue(InlineErrors);
         set => _moveUnresolvedIssuesFromCurrentSprint.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _moveUnresolvedIssuesFromCurrentSprint.SetAccessPath(path, validateHasBeenSet);
+        _moveUnresolvedIssuesFromCurrentSprint.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

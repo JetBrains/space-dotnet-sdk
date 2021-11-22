@@ -42,52 +42,56 @@ public sealed class ResponsibilityRecord
         AssignedPeople = assignedPeople;
     }
     
-    private PropertyValue<string> _responsibilityId = new PropertyValue<string>(nameof(ResponsibilityRecord), nameof(ResponsibilityId));
+    private PropertyValue<string> _responsibilityId = new PropertyValue<string>(nameof(ResponsibilityRecord), nameof(ResponsibilityId), "responsibilityId");
     
     [Required]
     [JsonPropertyName("responsibilityId")]
     public string ResponsibilityId
     {
-        get => _responsibilityId.GetValue();
+        get => _responsibilityId.GetValue(InlineErrors);
         set => _responsibilityId.SetValue(value);
     }
 
-    private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ResponsibilityRecord), nameof(Summary));
+    private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ResponsibilityRecord), nameof(Summary), "summary");
     
     [Required]
     [JsonPropertyName("summary")]
     public string Summary
     {
-        get => _summary.GetValue();
+        get => _summary.GetValue(InlineErrors);
         set => _summary.SetValue(value);
     }
 
-    private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(ResponsibilityRecord), nameof(Notes));
+    private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(ResponsibilityRecord), nameof(Notes), "notes");
     
     [JsonPropertyName("notes")]
     public string? Notes
     {
-        get => _notes.GetValue();
+        get => _notes.GetValue(InlineErrors);
         set => _notes.SetValue(value);
     }
 
-    private PropertyValue<List<AssignedPerson>> _assignedPeople = new PropertyValue<List<AssignedPerson>>(nameof(ResponsibilityRecord), nameof(AssignedPeople), new List<AssignedPerson>());
+    private PropertyValue<List<AssignedPerson>> _assignedPeople = new PropertyValue<List<AssignedPerson>>(nameof(ResponsibilityRecord), nameof(AssignedPeople), "assignedPeople", new List<AssignedPerson>());
     
     [Required]
     [JsonPropertyName("assignedPeople")]
     public List<AssignedPerson> AssignedPeople
     {
-        get => _assignedPeople.GetValue();
+        get => _assignedPeople.GetValue(InlineErrors);
         set => _assignedPeople.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _responsibilityId.SetAccessPath(path, validateHasBeenSet);
-        _summary.SetAccessPath(path, validateHasBeenSet);
-        _notes.SetAccessPath(path, validateHasBeenSet);
-        _assignedPeople.SetAccessPath(path, validateHasBeenSet);
+        _responsibilityId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _summary.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _assignedPeople.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

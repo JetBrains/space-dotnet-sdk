@@ -50,104 +50,108 @@ public sealed class PackageRepositoryConnectionRemote
         Settings = settings;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PackageRepositoryConnectionRemote), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PackageRepositoryConnectionRemote), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _enableCaching = new PropertyValue<bool>(nameof(PackageRepositoryConnectionRemote), nameof(IsEnableCaching));
+    private PropertyValue<bool> _enableCaching = new PropertyValue<bool>(nameof(PackageRepositoryConnectionRemote), nameof(IsEnableCaching), "enableCaching");
     
     [Required]
     [JsonPropertyName("enableCaching")]
     public bool IsEnableCaching
     {
-        get => _enableCaching.GetValue();
+        get => _enableCaching.GetValue(InlineErrors);
         set => _enableCaching.SetValue(value);
     }
 
-    private PropertyValue<bool> _enablePublishing = new PropertyValue<bool>(nameof(PackageRepositoryConnectionRemote), nameof(IsEnablePublishing));
+    private PropertyValue<bool> _enablePublishing = new PropertyValue<bool>(nameof(PackageRepositoryConnectionRemote), nameof(IsEnablePublishing), "enablePublishing");
     
     [Required]
     [JsonPropertyName("enablePublishing")]
     public bool IsEnablePublishing
     {
-        get => _enablePublishing.GetValue();
+        get => _enablePublishing.GetValue(InlineErrors);
         set => _enablePublishing.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _packageNameFilters = new PropertyValue<List<string>?>(nameof(PackageRepositoryConnectionRemote), nameof(PackageNameFilters));
+    private PropertyValue<List<string>?> _packageNameFilters = new PropertyValue<List<string>?>(nameof(PackageRepositoryConnectionRemote), nameof(PackageNameFilters), "packageNameFilters");
     
     [JsonPropertyName("packageNameFilters")]
     public List<string>? PackageNameFilters
     {
-        get => _packageNameFilters.GetValue();
+        get => _packageNameFilters.GetValue(InlineErrors);
         set => _packageNameFilters.SetValue(value);
     }
 
-    private PropertyValue<string> _url = new PropertyValue<string>(nameof(PackageRepositoryConnectionRemote), nameof(Url));
+    private PropertyValue<string> _url = new PropertyValue<string>(nameof(PackageRepositoryConnectionRemote), nameof(Url), "url");
     
     [Required]
     [JsonPropertyName("url")]
     public string Url
     {
-        get => _url.GetValue();
+        get => _url.GetValue(InlineErrors);
         set => _url.SetValue(value);
     }
 
-    private PropertyValue<PackageRepositoryCredentials> _credentials = new PropertyValue<PackageRepositoryCredentials>(nameof(PackageRepositoryConnectionRemote), nameof(Credentials));
+    private PropertyValue<PackageRepositoryCredentials> _credentials = new PropertyValue<PackageRepositoryCredentials>(nameof(PackageRepositoryConnectionRemote), nameof(Credentials), "credentials");
     
     [Required]
     [JsonPropertyName("credentials")]
     public PackageRepositoryCredentials Credentials
     {
-        get => _credentials.GetValue();
+        get => _credentials.GetValue(InlineErrors);
         set => _credentials.SetValue(value);
     }
 
-    private PropertyValue<string?> _secretId = new PropertyValue<string?>(nameof(PackageRepositoryConnectionRemote), nameof(SecretId));
+    private PropertyValue<string?> _secretId = new PropertyValue<string?>(nameof(PackageRepositoryConnectionRemote), nameof(SecretId), "secretId");
     
     [JsonPropertyName("secretId")]
     public string? SecretId
     {
-        get => _secretId.GetValue();
+        get => _secretId.GetValue(InlineErrors);
         set => _secretId.SetValue(value);
     }
 
-    private PropertyValue<string?> _secretValue = new PropertyValue<string?>(nameof(PackageRepositoryConnectionRemote), nameof(SecretValue));
+    private PropertyValue<string?> _secretValue = new PropertyValue<string?>(nameof(PackageRepositoryConnectionRemote), nameof(SecretValue), "secretValue");
     
     [JsonPropertyName("secretValue")]
     public string? SecretValue
     {
-        get => _secretValue.GetValue();
+        get => _secretValue.GetValue(InlineErrors);
         set => _secretValue.SetValue(value);
     }
 
-    private PropertyValue<PackageRepositoryConnectionSettings?> _settings = new PropertyValue<PackageRepositoryConnectionSettings?>(nameof(PackageRepositoryConnectionRemote), nameof(Settings));
+    private PropertyValue<PackageRepositoryConnectionSettings?> _settings = new PropertyValue<PackageRepositoryConnectionSettings?>(nameof(PackageRepositoryConnectionRemote), nameof(Settings), "settings");
     
     [JsonPropertyName("settings")]
     public PackageRepositoryConnectionSettings? Settings
     {
-        get => _settings.GetValue();
+        get => _settings.GetValue(InlineErrors);
         set => _settings.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _enableCaching.SetAccessPath(path, validateHasBeenSet);
-        _enablePublishing.SetAccessPath(path, validateHasBeenSet);
-        _packageNameFilters.SetAccessPath(path, validateHasBeenSet);
-        _url.SetAccessPath(path, validateHasBeenSet);
-        _credentials.SetAccessPath(path, validateHasBeenSet);
-        _secretId.SetAccessPath(path, validateHasBeenSet);
-        _secretValue.SetAccessPath(path, validateHasBeenSet);
-        _settings.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enableCaching.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enablePublishing.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _packageNameFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _credentials.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _secretId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _secretValue.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _settings.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

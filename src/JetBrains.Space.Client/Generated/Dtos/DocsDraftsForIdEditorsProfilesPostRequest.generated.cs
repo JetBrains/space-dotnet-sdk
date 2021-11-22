@@ -39,20 +39,24 @@ public class DocsDraftsForIdEditorsProfilesPostRequest
         EditorId = editorId;
     }
     
-    private PropertyValue<string> _editorId = new PropertyValue<string>(nameof(DocsDraftsForIdEditorsProfilesPostRequest), nameof(EditorId));
+    private PropertyValue<string> _editorId = new PropertyValue<string>(nameof(DocsDraftsForIdEditorsProfilesPostRequest), nameof(EditorId), "editorId");
     
     [Required]
     [JsonPropertyName("editorId")]
     public string EditorId
     {
-        get => _editorId.GetValue();
+        get => _editorId.GetValue(InlineErrors);
         set => _editorId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _editorId.SetAccessPath(path, validateHasBeenSet);
+        _editorId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -46,94 +46,98 @@ public sealed class PackageRepository
         IsArchived = archived;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PackageRepository), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PackageRepository), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(PackageRepository), nameof(Type));
+    private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(PackageRepository), nameof(Type), "type");
     
     [Required]
     [JsonPropertyName("type")]
     public PackageType Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(PackageRepository), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(PackageRepository), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(PackageRepository), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(PackageRepository), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<bool> _public = new PropertyValue<bool>(nameof(PackageRepository), nameof(IsPublic));
+    private PropertyValue<bool> _public = new PropertyValue<bool>(nameof(PackageRepository), nameof(IsPublic), "public");
     
     [Required]
     [JsonPropertyName("public")]
     public bool IsPublic
     {
-        get => _public.GetValue();
+        get => _public.GetValue(InlineErrors);
         set => _public.SetValue(value);
     }
 
-    private PropertyValue<ESPackageRepositorySettings?> _settings = new PropertyValue<ESPackageRepositorySettings?>(nameof(PackageRepository), nameof(Settings));
+    private PropertyValue<ESPackageRepositorySettings?> _settings = new PropertyValue<ESPackageRepositorySettings?>(nameof(PackageRepository), nameof(Settings), "settings");
     
     [JsonPropertyName("settings")]
     public ESPackageRepositorySettings? Settings
     {
-        get => _settings.GetValue();
+        get => _settings.GetValue(InlineErrors);
         set => _settings.SetValue(value);
     }
 
-    private PropertyValue<PackageRepositoryMode> _mode = new PropertyValue<PackageRepositoryMode>(nameof(PackageRepository), nameof(Mode));
+    private PropertyValue<PackageRepositoryMode> _mode = new PropertyValue<PackageRepositoryMode>(nameof(PackageRepository), nameof(Mode), "mode");
     
     [Required]
     [JsonPropertyName("mode")]
     public PackageRepositoryMode Mode
     {
-        get => _mode.GetValue();
+        get => _mode.GetValue(InlineErrors);
         set => _mode.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PackageRepository), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PackageRepository), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _public.SetAccessPath(path, validateHasBeenSet);
-        _settings.SetAccessPath(path, validateHasBeenSet);
-        _mode.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _public.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _settings.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,20 +42,24 @@ public sealed class MCFields
         Fields = fields;
     }
     
-    private PropertyValue<List<Pair<MCElement, MCElement>>> _fields = new PropertyValue<List<Pair<MCElement, MCElement>>>(nameof(MCFields), nameof(Fields), new List<Pair<MCElement, MCElement>>());
+    private PropertyValue<List<Pair<MCElement, MCElement>>> _fields = new PropertyValue<List<Pair<MCElement, MCElement>>>(nameof(MCFields), nameof(Fields), "fields", new List<Pair<MCElement, MCElement>>());
     
     [Required]
     [JsonPropertyName("fields")]
     public List<Pair<MCElement, MCElement>> Fields
     {
-        get => _fields.GetValue();
+        get => _fields.GetValue(InlineErrors);
         set => _fields.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _fields.SetAccessPath(path, validateHasBeenSet);
+        _fields.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

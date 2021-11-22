@@ -45,85 +45,89 @@ public sealed class GitCommitWithGraph
         IsUnreachable = unreachable;
     }
     
-    private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(GitCommitWithGraph), nameof(RepositoryName));
+    private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(GitCommitWithGraph), nameof(RepositoryName), "repositoryName");
     
     [Required]
     [JsonPropertyName("repositoryName")]
     public string RepositoryName
     {
-        get => _repositoryName.GetValue();
+        get => _repositoryName.GetValue(InlineErrors);
         set => _repositoryName.SetValue(value);
     }
 
-    private PropertyValue<GitCommitInfo> _commit = new PropertyValue<GitCommitInfo>(nameof(GitCommitWithGraph), nameof(Commit));
+    private PropertyValue<GitCommitInfo> _commit = new PropertyValue<GitCommitInfo>(nameof(GitCommitWithGraph), nameof(Commit), "commit");
     
     [Required]
     [JsonPropertyName("commit")]
     public GitCommitInfo Commit
     {
-        get => _commit.GetValue();
+        get => _commit.GetValue(InlineErrors);
         set => _commit.SetValue(value);
     }
 
-    private PropertyValue<List<Unfurl>> _commitMessageUnfurls = new PropertyValue<List<Unfurl>>(nameof(GitCommitWithGraph), nameof(CommitMessageUnfurls), new List<Unfurl>());
+    private PropertyValue<List<Unfurl>> _commitMessageUnfurls = new PropertyValue<List<Unfurl>>(nameof(GitCommitWithGraph), nameof(CommitMessageUnfurls), "commitMessageUnfurls", new List<Unfurl>());
     
     [Required]
     [JsonPropertyName("commitMessageUnfurls")]
     public List<Unfurl> CommitMessageUnfurls
     {
-        get => _commitMessageUnfurls.GetValue();
+        get => _commitMessageUnfurls.GetValue(InlineErrors);
         set => _commitMessageUnfurls.SetValue(value);
     }
 
-    private PropertyValue<List<CodeReviewRecord>> _reviews = new PropertyValue<List<CodeReviewRecord>>(nameof(GitCommitWithGraph), nameof(Reviews), new List<CodeReviewRecord>());
+    private PropertyValue<List<CodeReviewRecord>> _reviews = new PropertyValue<List<CodeReviewRecord>>(nameof(GitCommitWithGraph), nameof(Reviews), "reviews", new List<CodeReviewRecord>());
     
     [Required]
     [JsonPropertyName("reviews")]
     public List<CodeReviewRecord> Reviews
     {
-        get => _reviews.GetValue();
+        get => _reviews.GetValue(InlineErrors);
         set => _reviews.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _issueIds = new PropertyValue<List<string>>(nameof(GitCommitWithGraph), nameof(IssueIds), new List<string>());
+    private PropertyValue<List<string>> _issueIds = new PropertyValue<List<string>>(nameof(GitCommitWithGraph), nameof(IssueIds), "issueIds", new List<string>());
     
     [Required]
     [JsonPropertyName("issueIds")]
     public List<string> IssueIds
     {
-        get => _issueIds.GetValue();
+        get => _issueIds.GetValue(InlineErrors);
         set => _issueIds.SetValue(value);
     }
 
-    private PropertyValue<GitGraphLayoutLine?> _layout = new PropertyValue<GitGraphLayoutLine?>(nameof(GitCommitWithGraph), nameof(Layout));
+    private PropertyValue<GitGraphLayoutLine?> _layout = new PropertyValue<GitGraphLayoutLine?>(nameof(GitCommitWithGraph), nameof(Layout), "layout");
     
     [JsonPropertyName("layout")]
     public GitGraphLayoutLine? Layout
     {
-        get => _layout.GetValue();
+        get => _layout.GetValue(InlineErrors);
         set => _layout.SetValue(value);
     }
 
-    private PropertyValue<bool> _unreachable = new PropertyValue<bool>(nameof(GitCommitWithGraph), nameof(IsUnreachable));
+    private PropertyValue<bool> _unreachable = new PropertyValue<bool>(nameof(GitCommitWithGraph), nameof(IsUnreachable), "unreachable");
     
     [Required]
     [JsonPropertyName("unreachable")]
     public bool IsUnreachable
     {
-        get => _unreachable.GetValue();
+        get => _unreachable.GetValue(InlineErrors);
         set => _unreachable.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _repositoryName.SetAccessPath(path, validateHasBeenSet);
-        _commit.SetAccessPath(path, validateHasBeenSet);
-        _commitMessageUnfurls.SetAccessPath(path, validateHasBeenSet);
-        _reviews.SetAccessPath(path, validateHasBeenSet);
-        _issueIds.SetAccessPath(path, validateHasBeenSet);
-        _layout.SetAccessPath(path, validateHasBeenSet);
-        _unreachable.SetAccessPath(path, validateHasBeenSet);
+        _repositoryName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commit.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commitMessageUnfurls.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviews.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issueIds.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _layout.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unreachable.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

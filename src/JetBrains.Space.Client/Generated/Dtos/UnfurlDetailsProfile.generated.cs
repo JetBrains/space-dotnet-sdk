@@ -43,30 +43,34 @@ public sealed class UnfurlDetailsProfile
         IsStrikeThrough = strikeThrough;
     }
     
-    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(UnfurlDetailsProfile), nameof(Profile));
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(UnfurlDetailsProfile), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public TDMemberProfile Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsProfile), nameof(IsStrikeThrough));
+    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsProfile), nameof(IsStrikeThrough), "strikeThrough");
     
     [JsonPropertyName("strikeThrough")]
     public bool? IsStrikeThrough
     {
-        get => _strikeThrough.GetValue();
+        get => _strikeThrough.GetValue(InlineErrors);
         set => _strikeThrough.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _strikeThrough.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

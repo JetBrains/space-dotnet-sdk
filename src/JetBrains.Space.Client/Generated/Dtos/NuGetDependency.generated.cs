@@ -41,41 +41,45 @@ public sealed class NuGetDependency
         Range = range;
     }
     
-    private PropertyValue<string?> _targetFramework = new PropertyValue<string?>(nameof(NuGetDependency), nameof(TargetFramework));
+    private PropertyValue<string?> _targetFramework = new PropertyValue<string?>(nameof(NuGetDependency), nameof(TargetFramework), "targetFramework");
     
     [JsonPropertyName("targetFramework")]
     public string? TargetFramework
     {
-        get => _targetFramework.GetValue();
+        get => _targetFramework.GetValue(InlineErrors);
         set => _targetFramework.SetValue(value);
     }
 
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(NuGetDependency), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(NuGetDependency), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _range = new PropertyValue<string>(nameof(NuGetDependency), nameof(Range));
+    private PropertyValue<string> _range = new PropertyValue<string>(nameof(NuGetDependency), nameof(Range), "range");
     
     [Required]
     [JsonPropertyName("range")]
     public string Range
     {
-        get => _range.GetValue();
+        get => _range.GetValue(InlineErrors);
         set => _range.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _targetFramework.SetAccessPath(path, validateHasBeenSet);
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _range.SetAccessPath(path, validateHasBeenSet);
+        _targetFramework.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _range.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

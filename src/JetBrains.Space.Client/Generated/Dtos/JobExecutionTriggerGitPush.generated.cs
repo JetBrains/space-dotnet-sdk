@@ -42,20 +42,24 @@ public sealed class JobExecutionTriggerGitPush
         Commit = commit;
     }
     
-    private PropertyValue<string> _commit = new PropertyValue<string>(nameof(JobExecutionTriggerGitPush), nameof(Commit));
+    private PropertyValue<string> _commit = new PropertyValue<string>(nameof(JobExecutionTriggerGitPush), nameof(Commit), "commit");
     
     [Required]
     [JsonPropertyName("commit")]
     public string Commit
     {
-        get => _commit.GetValue();
+        get => _commit.GetValue(InlineErrors);
         set => _commit.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _commit.SetAccessPath(path, validateHasBeenSet);
+        _commit.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -43,31 +43,35 @@ public sealed class M2ChannelContentLocation
         NotificationDefaults = notificationDefaults;
     }
     
-    private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(M2ChannelContentLocation), nameof(Location));
+    private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(M2ChannelContentLocation), nameof(Location), "location");
     
     [Required]
     [JsonPropertyName("location")]
     public TDLocation Location
     {
-        get => _location.GetValue();
+        get => _location.GetValue(InlineErrors);
         set => _location.SetValue(value);
     }
 
-    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentLocation), nameof(NotificationDefaults));
+    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentLocation), nameof(NotificationDefaults), "notificationDefaults");
     
     [Required]
     [JsonPropertyName("notificationDefaults")]
     public ChannelSpecificDefaults NotificationDefaults
     {
-        get => _notificationDefaults.GetValue();
+        get => _notificationDefaults.GetValue(InlineErrors);
         set => _notificationDefaults.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _location.SetAccessPath(path, validateHasBeenSet);
-        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+        _location.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

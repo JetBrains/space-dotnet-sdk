@@ -43,31 +43,35 @@ public sealed class DocumentEditorsChangedEvent
         Document = document;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(DocumentEditorsChangedEvent), nameof(Meta));
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(DocumentEditorsChangedEvent), nameof(Meta), "meta");
     
     [Required]
     [JsonPropertyName("meta")]
     public KMetaMod Meta
     {
-        get => _meta.GetValue();
+        get => _meta.GetValue(InlineErrors);
         set => _meta.SetValue(value);
     }
 
-    private PropertyValue<string> _document = new PropertyValue<string>(nameof(DocumentEditorsChangedEvent), nameof(Document));
+    private PropertyValue<string> _document = new PropertyValue<string>(nameof(DocumentEditorsChangedEvent), nameof(Document), "document");
     
     [Required]
     [JsonPropertyName("document")]
     public string Document
     {
-        get => _document.GetValue();
+        get => _document.GetValue(InlineErrors);
         set => _document.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meta.SetAccessPath(path, validateHasBeenSet);
-        _document.SetAccessPath(path, validateHasBeenSet);
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _document.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

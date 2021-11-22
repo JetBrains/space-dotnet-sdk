@@ -52,126 +52,130 @@ public sealed class MergeRequestRecord
         BranchPairs = branchPairs;
     }
     
-    private PropertyValue<ProjectKey> _project = new PropertyValue<ProjectKey>(nameof(MergeRequestRecord), nameof(Project));
+    private PropertyValue<ProjectKey> _project = new PropertyValue<ProjectKey>(nameof(MergeRequestRecord), nameof(Project), "project");
     
     [Required]
     [JsonPropertyName("project")]
     public ProjectKey Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(MergeRequestRecord), nameof(ProjectId));
+    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(MergeRequestRecord), nameof(ProjectId), "projectId");
     
     [Required]
     [JsonPropertyName("projectId")]
     public string ProjectId
     {
-        get => _projectId.GetValue();
+        get => _projectId.GetValue(InlineErrors);
         set => _projectId.SetValue(value);
     }
 
-    private PropertyValue<int> _number = new PropertyValue<int>(nameof(MergeRequestRecord), nameof(Number));
+    private PropertyValue<int> _number = new PropertyValue<int>(nameof(MergeRequestRecord), nameof(Number), "number");
     
     [Required]
     [JsonPropertyName("number")]
     public int Number
     {
-        get => _number.GetValue();
+        get => _number.GetValue(InlineErrors);
         set => _number.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(MergeRequestRecord), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(MergeRequestRecord), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(MergeRequestRecord), nameof(State));
+    private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(MergeRequestRecord), nameof(State), "state");
     
     [Required]
     [JsonPropertyName("state")]
     public CodeReviewState State
     {
-        get => _state.GetValue();
+        get => _state.GetValue(InlineErrors);
         set => _state.SetValue(value);
     }
 
-    private PropertyValue<bool?> _canBeReopened = new PropertyValue<bool?>(nameof(MergeRequestRecord), nameof(CanBeReopened));
+    private PropertyValue<bool?> _canBeReopened = new PropertyValue<bool?>(nameof(MergeRequestRecord), nameof(CanBeReopened), "canBeReopened");
     
     [JsonPropertyName("canBeReopened")]
     public bool? CanBeReopened
     {
-        get => _canBeReopened.GetValue();
+        get => _canBeReopened.GetValue(InlineErrors);
         set => _canBeReopened.SetValue(value);
     }
 
-    private PropertyValue<long> _createdAt = new PropertyValue<long>(nameof(MergeRequestRecord), nameof(CreatedAt));
+    private PropertyValue<long> _createdAt = new PropertyValue<long>(nameof(MergeRequestRecord), nameof(CreatedAt), "createdAt");
     
     [Required]
     [JsonPropertyName("createdAt")]
     public long CreatedAt
     {
-        get => _createdAt.GetValue();
+        get => _createdAt.GetValue(InlineErrors);
         set => _createdAt.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _createdBy = new PropertyValue<TDMemberProfile?>(nameof(MergeRequestRecord), nameof(CreatedBy));
+    private PropertyValue<TDMemberProfile?> _createdBy = new PropertyValue<TDMemberProfile?>(nameof(MergeRequestRecord), nameof(CreatedBy), "createdBy");
     
     [JsonPropertyName("createdBy")]
     public TDMemberProfile? CreatedBy
     {
-        get => _createdBy.GetValue();
+        get => _createdBy.GetValue(InlineErrors);
         set => _createdBy.SetValue(value);
     }
 
-    private PropertyValue<bool?> _turnBased = new PropertyValue<bool?>(nameof(MergeRequestRecord), nameof(IsTurnBased));
+    private PropertyValue<bool?> _turnBased = new PropertyValue<bool?>(nameof(MergeRequestRecord), nameof(IsTurnBased), "turnBased");
     
     [JsonPropertyName("turnBased")]
     public bool? IsTurnBased
     {
-        get => _turnBased.GetValue();
+        get => _turnBased.GetValue(InlineErrors);
         set => _turnBased.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelRecord?> _feedChannel = new PropertyValue<M2ChannelRecord?>(nameof(MergeRequestRecord), nameof(FeedChannel));
+    private PropertyValue<M2ChannelRecord?> _feedChannel = new PropertyValue<M2ChannelRecord?>(nameof(MergeRequestRecord), nameof(FeedChannel), "feedChannel");
     
     [JsonPropertyName("feedChannel")]
     public M2ChannelRecord? FeedChannel
     {
-        get => _feedChannel.GetValue();
+        get => _feedChannel.GetValue(InlineErrors);
         set => _feedChannel.SetValue(value);
     }
 
-    private PropertyValue<List<MergeRequestBranchPair>> _branchPairs = new PropertyValue<List<MergeRequestBranchPair>>(nameof(MergeRequestRecord), nameof(BranchPairs), new List<MergeRequestBranchPair>());
+    private PropertyValue<List<MergeRequestBranchPair>> _branchPairs = new PropertyValue<List<MergeRequestBranchPair>>(nameof(MergeRequestRecord), nameof(BranchPairs), "branchPairs", new List<MergeRequestBranchPair>());
     
     [Required]
     [JsonPropertyName("branchPairs")]
     public List<MergeRequestBranchPair> BranchPairs
     {
-        get => _branchPairs.GetValue();
+        get => _branchPairs.GetValue(InlineErrors);
         set => _branchPairs.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _projectId.SetAccessPath(path, validateHasBeenSet);
-        _number.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _state.SetAccessPath(path, validateHasBeenSet);
-        _canBeReopened.SetAccessPath(path, validateHasBeenSet);
-        _createdAt.SetAccessPath(path, validateHasBeenSet);
-        _createdBy.SetAccessPath(path, validateHasBeenSet);
-        _turnBased.SetAccessPath(path, validateHasBeenSet);
-        _feedChannel.SetAccessPath(path, validateHasBeenSet);
-        _branchPairs.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _number.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _state.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _canBeReopened.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _turnBased.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _feedChannel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _branchPairs.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

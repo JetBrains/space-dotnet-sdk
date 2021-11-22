@@ -40,31 +40,35 @@ public sealed class NavBarMenuItem
         IsEnabled = enabled;
     }
     
-    private PropertyValue<string> _item = new PropertyValue<string>(nameof(NavBarMenuItem), nameof(Item));
+    private PropertyValue<string> _item = new PropertyValue<string>(nameof(NavBarMenuItem), nameof(Item), "item");
     
     [Required]
     [JsonPropertyName("item")]
     public string Item
     {
-        get => _item.GetValue();
+        get => _item.GetValue(InlineErrors);
         set => _item.SetValue(value);
     }
 
-    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(NavBarMenuItem), nameof(IsEnabled));
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(NavBarMenuItem), nameof(IsEnabled), "enabled");
     
     [Required]
     [JsonPropertyName("enabled")]
     public bool IsEnabled
     {
-        get => _enabled.GetValue();
+        get => _enabled.GetValue(InlineErrors);
         set => _enabled.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _item.SetAccessPath(path, validateHasBeenSet);
-        _enabled.SetAccessPath(path, validateHasBeenSet);
+        _item.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

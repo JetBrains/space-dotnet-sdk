@@ -44,39 +44,43 @@ public sealed class KbPublicationDetails
         ArticleId = articleId;
     }
     
-    private PropertyValue<KBBook?> _book = new PropertyValue<KBBook?>(nameof(KbPublicationDetails), nameof(Book));
+    private PropertyValue<KBBook?> _book = new PropertyValue<KBBook?>(nameof(KbPublicationDetails), nameof(Book), "book");
     
     [JsonPropertyName("book")]
     public KBBook? Book
     {
-        get => _book.GetValue();
+        get => _book.GetValue(InlineErrors);
         set => _book.SetValue(value);
     }
 
-    private PropertyValue<KBFolder?> _folder = new PropertyValue<KBFolder?>(nameof(KbPublicationDetails), nameof(Folder));
+    private PropertyValue<KBFolder?> _folder = new PropertyValue<KBFolder?>(nameof(KbPublicationDetails), nameof(Folder), "folder");
     
     [JsonPropertyName("folder")]
     public KBFolder? Folder
     {
-        get => _folder.GetValue();
+        get => _folder.GetValue(InlineErrors);
         set => _folder.SetValue(value);
     }
 
-    private PropertyValue<KBArticle?> _articleId = new PropertyValue<KBArticle?>(nameof(KbPublicationDetails), nameof(ArticleId));
+    private PropertyValue<KBArticle?> _articleId = new PropertyValue<KBArticle?>(nameof(KbPublicationDetails), nameof(ArticleId), "articleId");
     
     [JsonPropertyName("articleId")]
     public KBArticle? ArticleId
     {
-        get => _articleId.GetValue();
+        get => _articleId.GetValue(InlineErrors);
         set => _articleId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _book.SetAccessPath(path, validateHasBeenSet);
-        _folder.SetAccessPath(path, validateHasBeenSet);
-        _articleId.SetAccessPath(path, validateHasBeenSet);
+        _book.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _folder.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _articleId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -43,31 +43,35 @@ public sealed class HAPathSegmentPrefixedVar
         Name = name;
     }
     
-    private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVar), nameof(Prefix));
+    private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVar), nameof(Prefix), "prefix");
     
     [Required]
     [JsonPropertyName("prefix")]
     public string Prefix
     {
-        get => _prefix.GetValue();
+        get => _prefix.GetValue(InlineErrors);
         set => _prefix.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVar), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVar), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _prefix.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
+        _prefix.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -44,41 +44,45 @@ public sealed class UnfurlDetailsDraft
         IsStrikeThrough = strikeThrough;
     }
     
-    private PropertyValue<string> _draft = new PropertyValue<string>(nameof(UnfurlDetailsDraft), nameof(Draft));
+    private PropertyValue<string> _draft = new PropertyValue<string>(nameof(UnfurlDetailsDraft), nameof(Draft), "draft");
     
     [Required]
     [JsonPropertyName("draft")]
     public string Draft
     {
-        get => _draft.GetValue();
+        get => _draft.GetValue(InlineErrors);
         set => _draft.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsDraft), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsDraft), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsDraft), nameof(IsStrikeThrough));
+    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsDraft), nameof(IsStrikeThrough), "strikeThrough");
     
     [JsonPropertyName("strikeThrough")]
     public bool? IsStrikeThrough
     {
-        get => _strikeThrough.GetValue();
+        get => _strikeThrough.GetValue(InlineErrors);
         set => _strikeThrough.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _draft.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+        _draft.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _strikeThrough.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

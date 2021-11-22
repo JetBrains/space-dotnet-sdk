@@ -43,31 +43,35 @@ public sealed class EmailBouncedEvent
         Reason = reason;
     }
     
-    private PropertyValue<string> _email = new PropertyValue<string>(nameof(EmailBouncedEvent), nameof(Email));
+    private PropertyValue<string> _email = new PropertyValue<string>(nameof(EmailBouncedEvent), nameof(Email), "email");
     
     [Required]
     [JsonPropertyName("email")]
     public string Email
     {
-        get => _email.GetValue();
+        get => _email.GetValue(InlineErrors);
         set => _email.SetValue(value);
     }
 
-    private PropertyValue<string> _reason = new PropertyValue<string>(nameof(EmailBouncedEvent), nameof(Reason));
+    private PropertyValue<string> _reason = new PropertyValue<string>(nameof(EmailBouncedEvent), nameof(Reason), "reason");
     
     [Required]
     [JsonPropertyName("reason")]
     public string Reason
     {
-        get => _reason.GetValue();
+        get => _reason.GetValue(InlineErrors);
         set => _reason.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _email.SetAccessPath(path, validateHasBeenSet);
-        _reason.SetAccessPath(path, validateHasBeenSet);
+        _email.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reason.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

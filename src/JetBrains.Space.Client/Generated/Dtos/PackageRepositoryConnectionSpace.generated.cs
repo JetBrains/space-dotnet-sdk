@@ -45,52 +45,56 @@ public sealed class PackageRepositoryConnectionSpace
         Repository = repository;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PackageRepositoryConnectionSpace), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PackageRepositoryConnectionSpace), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _enableCaching = new PropertyValue<bool>(nameof(PackageRepositoryConnectionSpace), nameof(IsEnableCaching));
+    private PropertyValue<bool> _enableCaching = new PropertyValue<bool>(nameof(PackageRepositoryConnectionSpace), nameof(IsEnableCaching), "enableCaching");
     
     [Required]
     [JsonPropertyName("enableCaching")]
     public bool IsEnableCaching
     {
-        get => _enableCaching.GetValue();
+        get => _enableCaching.GetValue(InlineErrors);
         set => _enableCaching.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _packageNameFilters = new PropertyValue<List<string>?>(nameof(PackageRepositoryConnectionSpace), nameof(PackageNameFilters));
+    private PropertyValue<List<string>?> _packageNameFilters = new PropertyValue<List<string>?>(nameof(PackageRepositoryConnectionSpace), nameof(PackageNameFilters), "packageNameFilters");
     
     [JsonPropertyName("packageNameFilters")]
     public List<string>? PackageNameFilters
     {
-        get => _packageNameFilters.GetValue();
+        get => _packageNameFilters.GetValue(InlineErrors);
         set => _packageNameFilters.SetValue(value);
     }
 
-    private PropertyValue<ProjectPackageRepository> _repository = new PropertyValue<ProjectPackageRepository>(nameof(PackageRepositoryConnectionSpace), nameof(Repository));
+    private PropertyValue<ProjectPackageRepository> _repository = new PropertyValue<ProjectPackageRepository>(nameof(PackageRepositoryConnectionSpace), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public ProjectPackageRepository Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _enableCaching.SetAccessPath(path, validateHasBeenSet);
-        _packageNameFilters.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enableCaching.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _packageNameFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

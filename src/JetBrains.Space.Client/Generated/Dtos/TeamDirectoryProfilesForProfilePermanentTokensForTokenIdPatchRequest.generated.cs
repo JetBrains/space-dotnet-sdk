@@ -41,40 +41,44 @@ public class TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchReques
         Expires = expires;
     }
     
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _scope = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest), nameof(Scope));
+    private PropertyValue<string?> _scope = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest), nameof(Scope), "scope");
     
     [JsonPropertyName("scope")]
     public string? Scope
     {
-        get => _scope.GetValue();
+        get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest), nameof(Expires));
+    private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest), nameof(Expires), "expires");
     
     [JsonPropertyName("expires")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? Expires
     {
-        get => _expires.GetValue();
+        get => _expires.GetValue(InlineErrors);
         set => _expires.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _scope.SetAccessPath(path, validateHasBeenSet);
-        _expires.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _expires.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

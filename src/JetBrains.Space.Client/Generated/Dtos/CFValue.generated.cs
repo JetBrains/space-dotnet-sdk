@@ -120,9 +120,13 @@ public abstract class CFValue
     public static VcsCommitListCFValue VcsCommitList(List<CFCommitInfoBase> commits)
         => new VcsCommitListCFValue(commits: commits);
     
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

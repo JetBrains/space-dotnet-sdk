@@ -47,104 +47,108 @@ public class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExte
         Description = description;
     }
     
-    private PropertyValue<string?> _branch = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Branch));
+    private PropertyValue<string?> _branch = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Branch), "branch");
     
     [JsonPropertyName("branch")]
     public string? Branch
     {
-        get => _branch.GetValue();
+        get => _branch.GetValue(InlineErrors);
         set => _branch.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _changes = new PropertyValue<List<string>?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Changes));
+    private PropertyValue<List<string>?> _changes = new PropertyValue<List<string>?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Changes), "changes");
     
     [JsonPropertyName("changes")]
     public List<string>? Changes
     {
-        get => _changes.GetValue();
+        get => _changes.GetValue(InlineErrors);
         set => _changes.SetValue(value);
     }
 
-    private PropertyValue<CommitExecutionStatus> _executionStatus = new PropertyValue<CommitExecutionStatus>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(ExecutionStatus));
+    private PropertyValue<CommitExecutionStatus> _executionStatus = new PropertyValue<CommitExecutionStatus>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(ExecutionStatus), "executionStatus");
     
     [Required]
     [JsonPropertyName("executionStatus")]
     public CommitExecutionStatus ExecutionStatus
     {
-        get => _executionStatus.GetValue();
+        get => _executionStatus.GetValue(InlineErrors);
         set => _executionStatus.SetValue(value);
     }
 
-    private PropertyValue<string> _url = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Url));
+    private PropertyValue<string> _url = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Url), "url");
     
     [Required]
     [JsonPropertyName("url")]
     public string Url
     {
-        get => _url.GetValue();
+        get => _url.GetValue(InlineErrors);
         set => _url.SetValue(value);
     }
 
-    private PropertyValue<string> _externalServiceName = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(ExternalServiceName));
+    private PropertyValue<string> _externalServiceName = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(ExternalServiceName), "externalServiceName");
     
     [Required]
     [JsonPropertyName("externalServiceName")]
     public string ExternalServiceName
     {
-        get => _externalServiceName.GetValue();
+        get => _externalServiceName.GetValue(InlineErrors);
         set => _externalServiceName.SetValue(value);
     }
 
-    private PropertyValue<string> _taskName = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(TaskName));
+    private PropertyValue<string> _taskName = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(TaskName), "taskName");
     
     [Required]
     [JsonPropertyName("taskName")]
     public string TaskName
     {
-        get => _taskName.GetValue();
+        get => _taskName.GetValue(InlineErrors);
         set => _taskName.SetValue(value);
     }
 
-    private PropertyValue<string> _taskId = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(TaskId));
+    private PropertyValue<string> _taskId = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(TaskId), "taskId");
     
     [Required]
     [JsonPropertyName("taskId")]
     public string TaskId
     {
-        get => _taskId.GetValue();
+        get => _taskId.GetValue(InlineErrors);
         set => _taskId.SetValue(value);
     }
 
-    private PropertyValue<long?> _timestamp = new PropertyValue<long?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Timestamp));
+    private PropertyValue<long?> _timestamp = new PropertyValue<long?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Timestamp), "timestamp");
     
     [JsonPropertyName("timestamp")]
     public long? Timestamp
     {
-        get => _timestamp.GetValue();
+        get => _timestamp.GetValue(InlineErrors);
         set => _timestamp.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _branch.SetAccessPath(path, validateHasBeenSet);
-        _changes.SetAccessPath(path, validateHasBeenSet);
-        _executionStatus.SetAccessPath(path, validateHasBeenSet);
-        _url.SetAccessPath(path, validateHasBeenSet);
-        _externalServiceName.SetAccessPath(path, validateHasBeenSet);
-        _taskName.SetAccessPath(path, validateHasBeenSet);
-        _taskId.SetAccessPath(path, validateHasBeenSet);
-        _timestamp.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
+        _branch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _changes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _executionStatus.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalServiceName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _taskName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _taskId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _timestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

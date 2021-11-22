@@ -45,50 +45,54 @@ public sealed class AutomationJobSubscriptionFilter
         Jobs = jobs;
     }
     
-    private PropertyValue<List<PRProject>> _projects = new PropertyValue<List<PRProject>>(nameof(AutomationJobSubscriptionFilter), nameof(Projects), new List<PRProject>());
+    private PropertyValue<List<PRProject>> _projects = new PropertyValue<List<PRProject>>(nameof(AutomationJobSubscriptionFilter), nameof(Projects), "projects", new List<PRProject>());
     
     [Required]
     [JsonPropertyName("projects")]
     public List<PRProject> Projects
     {
-        get => _projects.GetValue();
+        get => _projects.GetValue(InlineErrors);
         set => _projects.SetValue(value);
     }
 
-    private PropertyValue<string?> _repositoryName = new PropertyValue<string?>(nameof(AutomationJobSubscriptionFilter), nameof(RepositoryName));
+    private PropertyValue<string?> _repositoryName = new PropertyValue<string?>(nameof(AutomationJobSubscriptionFilter), nameof(RepositoryName), "repositoryName");
     
     [JsonPropertyName("repositoryName")]
     public string? RepositoryName
     {
-        get => _repositoryName.GetValue();
+        get => _repositoryName.GetValue(InlineErrors);
         set => _repositoryName.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _branchSpec = new PropertyValue<List<string>?>(nameof(AutomationJobSubscriptionFilter), nameof(BranchSpec));
+    private PropertyValue<List<string>?> _branchSpec = new PropertyValue<List<string>?>(nameof(AutomationJobSubscriptionFilter), nameof(BranchSpec), "branchSpec");
     
     [JsonPropertyName("branchSpec")]
     public List<string>? BranchSpec
     {
-        get => _branchSpec.GetValue();
+        get => _branchSpec.GetValue(InlineErrors);
         set => _branchSpec.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _jobs = new PropertyValue<List<string>?>(nameof(AutomationJobSubscriptionFilter), nameof(Jobs));
+    private PropertyValue<List<string>?> _jobs = new PropertyValue<List<string>?>(nameof(AutomationJobSubscriptionFilter), nameof(Jobs), "jobs");
     
     [JsonPropertyName("jobs")]
     public List<string>? Jobs
     {
-        get => _jobs.GetValue();
+        get => _jobs.GetValue(InlineErrors);
         set => _jobs.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _projects.SetAccessPath(path, validateHasBeenSet);
-        _repositoryName.SetAccessPath(path, validateHasBeenSet);
-        _branchSpec.SetAccessPath(path, validateHasBeenSet);
-        _jobs.SetAccessPath(path, validateHasBeenSet);
+        _projects.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repositoryName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _branchSpec.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _jobs.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,32 +40,36 @@ public sealed class EstimationDTO
         PredictedDuration = predictedDuration;
     }
     
-    private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(EstimationDTO), nameof(Start));
+    private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(EstimationDTO), nameof(Start), "start");
     
     [Required]
     [JsonPropertyName("start")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Start
     {
-        get => _start.GetValue();
+        get => _start.GetValue(InlineErrors);
         set => _start.SetValue(value);
     }
 
-    private PropertyValue<long> _predictedDuration = new PropertyValue<long>(nameof(EstimationDTO), nameof(PredictedDuration));
+    private PropertyValue<long> _predictedDuration = new PropertyValue<long>(nameof(EstimationDTO), nameof(PredictedDuration), "predictedDuration");
     
     [Required]
     [JsonPropertyName("predictedDuration")]
     public long PredictedDuration
     {
-        get => _predictedDuration.GetValue();
+        get => _predictedDuration.GetValue(InlineErrors);
         set => _predictedDuration.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _start.SetAccessPath(path, validateHasBeenSet);
-        _predictedDuration.SetAccessPath(path, validateHasBeenSet);
+        _start.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _predictedDuration.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,31 +40,35 @@ public sealed class ReviewCommitIn
         Commit = commit;
     }
     
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ReviewCommitIn), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ReviewCommitIn), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _commit = new PropertyValue<string>(nameof(ReviewCommitIn), nameof(Commit));
+    private PropertyValue<string> _commit = new PropertyValue<string>(nameof(ReviewCommitIn), nameof(Commit), "commit");
     
     [Required]
     [JsonPropertyName("commit")]
     public string Commit
     {
-        get => _commit.GetValue();
+        get => _commit.GetValue(InlineErrors);
         set => _commit.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _commit.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commit.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,52 +42,56 @@ public sealed class HAEnum
         Deprecation = deprecation;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAEnum), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAEnum), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAEnum), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAEnum), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(HAEnum), nameof(Values), new List<string>());
+    private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(HAEnum), nameof(Values), "values", new List<string>());
     
     [Required]
     [JsonPropertyName("values")]
     public List<string> Values
     {
-        get => _values.GetValue();
+        get => _values.GetValue(InlineErrors);
         set => _values.SetValue(value);
     }
 
-    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAEnum), nameof(Deprecation));
+    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAEnum), nameof(Deprecation), "deprecation");
     
     [JsonPropertyName("deprecation")]
     public HADeprecation? Deprecation
     {
-        get => _deprecation.GetValue();
+        get => _deprecation.GetValue(InlineErrors);
         set => _deprecation.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _values.SetAccessPath(path, validateHasBeenSet);
-        _deprecation.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _values.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

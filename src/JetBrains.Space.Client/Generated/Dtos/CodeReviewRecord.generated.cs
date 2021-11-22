@@ -42,99 +42,103 @@ public abstract class CodeReviewRecord
     public static MergeRequestRecord MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
         => new MergeRequestRecord(project: project, projectId: projectId, number: number, title: title, state: state, createdAt: createdAt, branchPairs: branchPairs, canBeReopened: canBeReopened, createdBy: createdBy, turnBased: turnBased, feedChannel: feedChannel);
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<List<CodeReviewParticipantRecord>> _authors = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Authors), new List<CodeReviewParticipantRecord>());
+    private PropertyValue<List<CodeReviewParticipantRecord>> _authors = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Authors), "authors", new List<CodeReviewParticipantRecord>());
     
     [Required]
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     [JsonPropertyName("authors")]
     public List<CodeReviewParticipantRecord> Authors
     {
-        get => _authors.GetValue();
+        get => _authors.GetValue(InlineErrors);
         set => _authors.SetValue(value);
     }
 
-    private PropertyValue<List<ReviewCommit>> _commits = new PropertyValue<List<ReviewCommit>>(nameof(CodeReviewRecord), nameof(Commits), new List<ReviewCommit>());
+    private PropertyValue<List<ReviewCommit>> _commits = new PropertyValue<List<ReviewCommit>>(nameof(CodeReviewRecord), nameof(Commits), "commits", new List<ReviewCommit>());
     
     [Required]
     [JsonPropertyName("commits")]
     public List<ReviewCommit> Commits
     {
-        get => _commits.GetValue();
+        get => _commits.GetValue(InlineErrors);
         set => _commits.SetValue(value);
     }
 
-    private PropertyValue<DiscussionCounter> _discussionCounter = new PropertyValue<DiscussionCounter>(nameof(CodeReviewRecord), nameof(DiscussionCounter));
+    private PropertyValue<DiscussionCounter> _discussionCounter = new PropertyValue<DiscussionCounter>(nameof(CodeReviewRecord), nameof(DiscussionCounter), "discussionCounter");
     
     [Required]
     [JsonPropertyName("discussionCounter")]
     public DiscussionCounter DiscussionCounter
     {
-        get => _discussionCounter.GetValue();
+        get => _discussionCounter.GetValue(InlineErrors);
         set => _discussionCounter.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _issueIds = new PropertyValue<List<string>>(nameof(CodeReviewRecord), nameof(IssueIds), new List<string>());
+    private PropertyValue<List<string>> _issueIds = new PropertyValue<List<string>>(nameof(CodeReviewRecord), nameof(IssueIds), "issueIds", new List<string>());
     
     [Required]
     [JsonPropertyName("issueIds")]
     public List<string> IssueIds
     {
-        get => _issueIds.GetValue();
+        get => _issueIds.GetValue(InlineErrors);
         set => _issueIds.SetValue(value);
     }
 
-    private PropertyValue<List<CodeReviewParticipant>?> _participants = new PropertyValue<List<CodeReviewParticipant>?>(nameof(CodeReviewRecord), nameof(Participants));
+    private PropertyValue<List<CodeReviewParticipant>?> _participants = new PropertyValue<List<CodeReviewParticipant>?>(nameof(CodeReviewRecord), nameof(Participants), "participants");
     
     [JsonPropertyName("participants")]
     public List<CodeReviewParticipant>? Participants
     {
-        get => _participants.GetValue();
+        get => _participants.GetValue(InlineErrors);
         set => _participants.SetValue(value);
     }
 
-    private PropertyValue<List<CodeReviewParticipantRecord>> _reviewers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Reviewers), new List<CodeReviewParticipantRecord>());
+    private PropertyValue<List<CodeReviewParticipantRecord>> _reviewers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Reviewers), "reviewers", new List<CodeReviewParticipantRecord>());
     
     [Required]
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     [JsonPropertyName("reviewers")]
     public List<CodeReviewParticipantRecord> Reviewers
     {
-        get => _reviewers.GetValue();
+        get => _reviewers.GetValue(InlineErrors);
         set => _reviewers.SetValue(value);
     }
 
-    private PropertyValue<List<CodeReviewParticipantRecord>> _watchers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Watchers), new List<CodeReviewParticipantRecord>());
+    private PropertyValue<List<CodeReviewParticipantRecord>> _watchers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Watchers), "watchers", new List<CodeReviewParticipantRecord>());
     
     [Required]
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     [JsonPropertyName("watchers")]
     public List<CodeReviewParticipantRecord> Watchers
     {
-        get => _watchers.GetValue();
+        get => _watchers.GetValue(InlineErrors);
         set => _watchers.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _authors.SetAccessPath(path, validateHasBeenSet);
-        _commits.SetAccessPath(path, validateHasBeenSet);
-        _discussionCounter.SetAccessPath(path, validateHasBeenSet);
-        _issueIds.SetAccessPath(path, validateHasBeenSet);
-        _participants.SetAccessPath(path, validateHasBeenSet);
-        _reviewers.SetAccessPath(path, validateHasBeenSet);
-        _watchers.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authors.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commits.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _discussionCounter.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issueIds.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _participants.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviewers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _watchers.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

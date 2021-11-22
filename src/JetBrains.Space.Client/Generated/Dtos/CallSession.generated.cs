@@ -47,107 +47,111 @@ public sealed class CallSession
         IsResourcesPrepared = resourcesPrepared;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CallSession), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CallSession), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CallSession), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CallSession), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<Room> _room = new PropertyValue<Room>(nameof(CallSession), nameof(Room));
+    private PropertyValue<Room> _room = new PropertyValue<Room>(nameof(CallSession), nameof(Room), "room");
     
     [Required]
     [JsonPropertyName("room")]
     public Room Room
     {
-        get => _room.GetValue();
+        get => _room.GetValue(InlineErrors);
         set => _room.SetValue(value);
     }
 
-    private PropertyValue<string> _description = new PropertyValue<string>(nameof(CallSession), nameof(Description));
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(CallSession), nameof(Description), "description");
     
     [Required]
     [JsonPropertyName("description")]
     public string Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(CallSession), nameof(Start));
+    private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(CallSession), nameof(Start), "start");
     
     [Required]
     [JsonPropertyName("start")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Start
     {
-        get => _start.GetValue();
+        get => _start.GetValue(InlineErrors);
         set => _start.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _end = new PropertyValue<DateTime?>(nameof(CallSession), nameof(End));
+    private PropertyValue<DateTime?> _end = new PropertyValue<DateTime?>(nameof(CallSession), nameof(End), "end");
     
     [JsonPropertyName("end")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? End
     {
-        get => _end.GetValue();
+        get => _end.GetValue(InlineErrors);
         set => _end.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelRecord?> _channel = new PropertyValue<M2ChannelRecord?>(nameof(CallSession), nameof(Channel));
+    private PropertyValue<M2ChannelRecord?> _channel = new PropertyValue<M2ChannelRecord?>(nameof(CallSession), nameof(Channel), "channel");
     
     [JsonPropertyName("channel")]
     public M2ChannelRecord? Channel
     {
-        get => _channel.GetValue();
+        get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
     }
 
-    private PropertyValue<ConnectionTopology?> _topology = new PropertyValue<ConnectionTopology?>(nameof(CallSession), nameof(Topology));
+    private PropertyValue<ConnectionTopology?> _topology = new PropertyValue<ConnectionTopology?>(nameof(CallSession), nameof(Topology), "topology");
     
     [JsonPropertyName("topology")]
     public ConnectionTopology? Topology
     {
-        get => _topology.GetValue();
+        get => _topology.GetValue(InlineErrors);
         set => _topology.SetValue(value);
     }
 
-    private PropertyValue<bool> _resourcesPrepared = new PropertyValue<bool>(nameof(CallSession), nameof(IsResourcesPrepared));
+    private PropertyValue<bool> _resourcesPrepared = new PropertyValue<bool>(nameof(CallSession), nameof(IsResourcesPrepared), "resourcesPrepared");
     
     [Required]
     [JsonPropertyName("resourcesPrepared")]
     public bool IsResourcesPrepared
     {
-        get => _resourcesPrepared.GetValue();
+        get => _resourcesPrepared.GetValue(InlineErrors);
         set => _resourcesPrepared.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _room.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _start.SetAccessPath(path, validateHasBeenSet);
-        _end.SetAccessPath(path, validateHasBeenSet);
-        _channel.SetAccessPath(path, validateHasBeenSet);
-        _topology.SetAccessPath(path, validateHasBeenSet);
-        _resourcesPrepared.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _room.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _start.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _end.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _topology.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _resourcesPrepared.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

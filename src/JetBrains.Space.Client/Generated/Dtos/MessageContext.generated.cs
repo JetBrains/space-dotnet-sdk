@@ -45,82 +45,86 @@ public sealed class MessageContext
         CreatedTime = createdTime;
     }
     
-    private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(MessageContext), nameof(MessageId));
+    private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(MessageContext), nameof(MessageId), "messageId");
     
     [Required]
     [JsonPropertyName("messageId")]
     public string MessageId
     {
-        get => _messageId.GetValue();
+        get => _messageId.GetValue(InlineErrors);
         set => _messageId.SetValue(value);
     }
 
-    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(MessageContext), nameof(ChannelId));
+    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(MessageContext), nameof(ChannelId), "channelId");
     
     [Required]
     [JsonPropertyName("channelId")]
     public string ChannelId
     {
-        get => _channelId.GetValue();
+        get => _channelId.GetValue(InlineErrors);
         set => _channelId.SetValue(value);
     }
 
-    private PropertyValue<string?> _messageData = new PropertyValue<string?>(nameof(MessageContext), nameof(MessageData));
+    private PropertyValue<string?> _messageData = new PropertyValue<string?>(nameof(MessageContext), nameof(MessageData), "messageData");
     
     [JsonPropertyName("messageData")]
     public string? MessageData
     {
-        get => _messageData.GetValue();
+        get => _messageData.GetValue(InlineErrors);
         set => _messageData.SetValue(value);
     }
 
-    private PropertyValue<ChatMessage?> _body = new PropertyValue<ChatMessage?>(nameof(MessageContext), nameof(Body));
+    private PropertyValue<ChatMessage?> _body = new PropertyValue<ChatMessage?>(nameof(MessageContext), nameof(Body), "body");
     
     [JsonPropertyName("body")]
     public ChatMessage? Body
     {
-        get => _body.GetValue();
+        get => _body.GetValue(InlineErrors);
         set => _body.SetValue(value);
     }
 
-    private PropertyValue<List<Attachment>?> _attachments = new PropertyValue<List<Attachment>?>(nameof(MessageContext), nameof(Attachments));
+    private PropertyValue<List<Attachment>?> _attachments = new PropertyValue<List<Attachment>?>(nameof(MessageContext), nameof(Attachments), "attachments");
     
     [JsonPropertyName("attachments")]
     public List<Attachment>? Attachments
     {
-        get => _attachments.GetValue();
+        get => _attachments.GetValue(InlineErrors);
         set => _attachments.SetValue(value);
     }
 
-    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(MessageContext), nameof(ExternalId));
+    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(MessageContext), nameof(ExternalId), "externalId");
     
     [JsonPropertyName("externalId")]
     public string? ExternalId
     {
-        get => _externalId.GetValue();
+        get => _externalId.GetValue(InlineErrors);
         set => _externalId.SetValue(value);
     }
 
-    private PropertyValue<string> _createdTime = new PropertyValue<string>(nameof(MessageContext), nameof(CreatedTime));
+    private PropertyValue<string> _createdTime = new PropertyValue<string>(nameof(MessageContext), nameof(CreatedTime), "createdTime");
     
     [Required]
     [JsonPropertyName("createdTime")]
     public string CreatedTime
     {
-        get => _createdTime.GetValue();
+        get => _createdTime.GetValue(InlineErrors);
         set => _createdTime.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _messageId.SetAccessPath(path, validateHasBeenSet);
-        _channelId.SetAccessPath(path, validateHasBeenSet);
-        _messageData.SetAccessPath(path, validateHasBeenSet);
-        _body.SetAccessPath(path, validateHasBeenSet);
-        _attachments.SetAccessPath(path, validateHasBeenSet);
-        _externalId.SetAccessPath(path, validateHasBeenSet);
-        _createdTime.SetAccessPath(path, validateHasBeenSet);
+        _messageId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messageData.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _body.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdTime.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

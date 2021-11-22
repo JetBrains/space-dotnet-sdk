@@ -42,20 +42,24 @@ public sealed class DiffSideEmpty
         Revision = revision;
     }
     
-    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(DiffSideEmpty), nameof(Revision));
+    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(DiffSideEmpty), nameof(Revision), "revision");
     
     [Required]
     [JsonPropertyName("revision")]
     public string Revision
     {
-        get => _revision.GetValue();
+        get => _revision.GetValue(InlineErrors);
         set => _revision.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _revision.SetAccessPath(path, validateHasBeenSet);
+        _revision.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

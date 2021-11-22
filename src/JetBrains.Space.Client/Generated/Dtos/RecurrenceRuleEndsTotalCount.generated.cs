@@ -42,20 +42,24 @@ public sealed class RecurrenceRuleEndsTotalCount
         Count = count;
     }
     
-    private PropertyValue<int> _count = new PropertyValue<int>(nameof(RecurrenceRuleEndsTotalCount), nameof(Count));
+    private PropertyValue<int> _count = new PropertyValue<int>(nameof(RecurrenceRuleEndsTotalCount), nameof(Count), "count");
     
     [Required]
     [JsonPropertyName("count")]
     public int Count
     {
-        get => _count.GetValue();
+        get => _count.GetValue(InlineErrors);
         set => _count.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _count.SetAccessPath(path, validateHasBeenSet);
+        _count.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

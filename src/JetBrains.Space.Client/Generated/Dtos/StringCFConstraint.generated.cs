@@ -45,49 +45,53 @@ public sealed class StringCFConstraint
         Message = message;
     }
     
-    private PropertyValue<int?> _min = new PropertyValue<int?>(nameof(StringCFConstraint), nameof(Min));
+    private PropertyValue<int?> _min = new PropertyValue<int?>(nameof(StringCFConstraint), nameof(Min), "min");
     
     [JsonPropertyName("min")]
     public int? Min
     {
-        get => _min.GetValue();
+        get => _min.GetValue(InlineErrors);
         set => _min.SetValue(value);
     }
 
-    private PropertyValue<int?> _max = new PropertyValue<int?>(nameof(StringCFConstraint), nameof(Max));
+    private PropertyValue<int?> _max = new PropertyValue<int?>(nameof(StringCFConstraint), nameof(Max), "max");
     
     [JsonPropertyName("max")]
     public int? Max
     {
-        get => _max.GetValue();
+        get => _max.GetValue(InlineErrors);
         set => _max.SetValue(value);
     }
 
-    private PropertyValue<string?> _pattern = new PropertyValue<string?>(nameof(StringCFConstraint), nameof(Pattern));
+    private PropertyValue<string?> _pattern = new PropertyValue<string?>(nameof(StringCFConstraint), nameof(Pattern), "pattern");
     
     [JsonPropertyName("pattern")]
     public string? Pattern
     {
-        get => _pattern.GetValue();
+        get => _pattern.GetValue(InlineErrors);
         set => _pattern.SetValue(value);
     }
 
-    private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(StringCFConstraint), nameof(Message));
+    private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(StringCFConstraint), nameof(Message), "message");
     
     [JsonPropertyName("message")]
     public string? Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _min.SetAccessPath(path, validateHasBeenSet);
-        _max.SetAccessPath(path, validateHasBeenSet);
-        _pattern.SetAccessPath(path, validateHasBeenSet);
-        _message.SetAccessPath(path, validateHasBeenSet);
+        _min.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _max.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pattern.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -44,71 +44,75 @@ public sealed class GitCommitChange
         Path = path;
     }
     
-    private PropertyValue<GitCommitChangeType> _changeType = new PropertyValue<GitCommitChangeType>(nameof(GitCommitChange), nameof(ChangeType));
+    private PropertyValue<GitCommitChangeType> _changeType = new PropertyValue<GitCommitChangeType>(nameof(GitCommitChange), nameof(ChangeType), "changeType");
     
     [Required]
     [JsonPropertyName("changeType")]
     public GitCommitChangeType ChangeType
     {
-        get => _changeType.GetValue();
+        get => _changeType.GetValue(InlineErrors);
         set => _changeType.SetValue(value);
     }
 
-    private PropertyValue<GitFile?> _old = new PropertyValue<GitFile?>(nameof(GitCommitChange), nameof(Old));
+    private PropertyValue<GitFile?> _old = new PropertyValue<GitFile?>(nameof(GitCommitChange), nameof(Old), "old");
     
     [JsonPropertyName("old")]
     public GitFile? Old
     {
-        get => _old.GetValue();
+        get => _old.GetValue(InlineErrors);
         set => _old.SetValue(value);
     }
 
-    private PropertyValue<GitFile?> _new = new PropertyValue<GitFile?>(nameof(GitCommitChange), nameof(New));
+    private PropertyValue<GitFile?> _new = new PropertyValue<GitFile?>(nameof(GitCommitChange), nameof(New), "new");
     
     [JsonPropertyName("new")]
     public GitFile? New
     {
-        get => _new.GetValue();
+        get => _new.GetValue(InlineErrors);
         set => _new.SetValue(value);
     }
 
-    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(GitCommitChange), nameof(Revision));
+    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(GitCommitChange), nameof(Revision), "revision");
     
     [Required]
     [JsonPropertyName("revision")]
     public string Revision
     {
-        get => _revision.GetValue();
+        get => _revision.GetValue(InlineErrors);
         set => _revision.SetValue(value);
     }
 
-    private PropertyValue<GitDiffSize?> _diffSize = new PropertyValue<GitDiffSize?>(nameof(GitCommitChange), nameof(DiffSize));
+    private PropertyValue<GitDiffSize?> _diffSize = new PropertyValue<GitDiffSize?>(nameof(GitCommitChange), nameof(DiffSize), "diffSize");
     
     [JsonPropertyName("diffSize")]
     public GitDiffSize? DiffSize
     {
-        get => _diffSize.GetValue();
+        get => _diffSize.GetValue(InlineErrors);
         set => _diffSize.SetValue(value);
     }
 
-    private PropertyValue<string?> _path = new PropertyValue<string?>(nameof(GitCommitChange), nameof(Path));
+    private PropertyValue<string?> _path = new PropertyValue<string?>(nameof(GitCommitChange), nameof(Path), "path");
     
     [JsonPropertyName("path")]
     public string? Path
     {
-        get => _path.GetValue();
+        get => _path.GetValue(InlineErrors);
         set => _path.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _changeType.SetAccessPath(path, validateHasBeenSet);
-        _old.SetAccessPath(path, validateHasBeenSet);
-        _new.SetAccessPath(path, validateHasBeenSet);
-        _revision.SetAccessPath(path, validateHasBeenSet);
-        _diffSize.SetAccessPath(path, validateHasBeenSet);
-        _path.SetAccessPath(path, validateHasBeenSet);
+        _changeType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _old.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _new.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _revision.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _diffSize.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _path.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,20 +42,24 @@ public sealed class PingWebhookEvent
         WebhookName = webhookName;
     }
     
-    private PropertyValue<string> _webhookName = new PropertyValue<string>(nameof(PingWebhookEvent), nameof(WebhookName));
+    private PropertyValue<string> _webhookName = new PropertyValue<string>(nameof(PingWebhookEvent), nameof(WebhookName), "webhookName");
     
     [Required]
     [JsonPropertyName("webhookName")]
     public string WebhookName
     {
-        get => _webhookName.GetValue();
+        get => _webhookName.GetValue(InlineErrors);
         set => _webhookName.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _webhookName.SetAccessPath(path, validateHasBeenSet);
+        _webhookName.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

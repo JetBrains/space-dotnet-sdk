@@ -44,72 +44,76 @@ public sealed class ExternalEntityInfoRecord
         Transaction = transaction;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ExternalEntityInfoRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ExternalEntityInfoRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ExternalEntityInfoRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ExternalEntityInfoRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalId));
+    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalId), "externalId");
     
     [JsonPropertyName("externalId")]
     public string? ExternalId
     {
-        get => _externalId.GetValue();
+        get => _externalId.GetValue(InlineErrors);
         set => _externalId.SetValue(value);
     }
 
-    private PropertyValue<string?> _externalName = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalName));
+    private PropertyValue<string?> _externalName = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalName), "externalName");
     
     [JsonPropertyName("externalName")]
     public string? ExternalName
     {
-        get => _externalName.GetValue();
+        get => _externalName.GetValue(InlineErrors);
         set => _externalName.SetValue(value);
     }
 
-    private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalUrl));
+    private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalUrl), "externalUrl");
     
     [JsonPropertyName("externalUrl")]
     public string? ExternalUrl
     {
-        get => _externalUrl.GetValue();
+        get => _externalUrl.GetValue(InlineErrors);
         set => _externalUrl.SetValue(value);
     }
 
-    private PropertyValue<ImportTransactionRecord> _transaction = new PropertyValue<ImportTransactionRecord>(nameof(ExternalEntityInfoRecord), nameof(Transaction));
+    private PropertyValue<ImportTransactionRecord> _transaction = new PropertyValue<ImportTransactionRecord>(nameof(ExternalEntityInfoRecord), nameof(Transaction), "transaction");
     
     [Required]
     [JsonPropertyName("transaction")]
     public ImportTransactionRecord Transaction
     {
-        get => _transaction.GetValue();
+        get => _transaction.GetValue(InlineErrors);
         set => _transaction.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _externalId.SetAccessPath(path, validateHasBeenSet);
-        _externalName.SetAccessPath(path, validateHasBeenSet);
-        _externalUrl.SetAccessPath(path, validateHasBeenSet);
-        _transaction.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _transaction.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,31 +40,35 @@ public sealed class RightUpdateDTO
         Status = status;
     }
     
-    private PropertyValue<string> _rightCode = new PropertyValue<string>(nameof(RightUpdateDTO), nameof(RightCode));
+    private PropertyValue<string> _rightCode = new PropertyValue<string>(nameof(RightUpdateDTO), nameof(RightCode), "rightCode");
     
     [Required]
     [JsonPropertyName("rightCode")]
     public string RightCode
     {
-        get => _rightCode.GetValue();
+        get => _rightCode.GetValue(InlineErrors);
         set => _rightCode.SetValue(value);
     }
 
-    private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(RightUpdateDTO), nameof(Status));
+    private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(RightUpdateDTO), nameof(Status), "status");
     
     [Required]
     [JsonPropertyName("status")]
     public RightStatus Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _rightCode.SetAccessPath(path, validateHasBeenSet);
-        _status.SetAccessPath(path, validateHasBeenSet);
+        _rightCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

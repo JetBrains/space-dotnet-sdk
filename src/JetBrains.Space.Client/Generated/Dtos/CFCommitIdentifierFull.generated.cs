@@ -44,42 +44,46 @@ public sealed class CFCommitIdentifierFull
         CommitHash = commitHash;
     }
     
-    private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(CFCommitIdentifierFull), nameof(Project));
+    private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(CFCommitIdentifierFull), nameof(Project), "project");
     
     [Required]
     [JsonPropertyName("project")]
     public ProjectIdentifier Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CFCommitIdentifierFull), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CFCommitIdentifierFull), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _commitHash = new PropertyValue<string>(nameof(CFCommitIdentifierFull), nameof(CommitHash));
+    private PropertyValue<string> _commitHash = new PropertyValue<string>(nameof(CFCommitIdentifierFull), nameof(CommitHash), "commitHash");
     
     [Required]
     [JsonPropertyName("commitHash")]
     public string CommitHash
     {
-        get => _commitHash.GetValue();
+        get => _commitHash.GetValue(InlineErrors);
         set => _commitHash.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _commitHash.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commitHash.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

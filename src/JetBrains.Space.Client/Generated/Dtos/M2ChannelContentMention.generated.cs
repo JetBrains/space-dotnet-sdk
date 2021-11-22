@@ -43,31 +43,35 @@ public sealed class M2ChannelContentMention
         Parent = parent;
     }
     
-    private PropertyValue<ChannelItemRecord> _record = new PropertyValue<ChannelItemRecord>(nameof(M2ChannelContentMention), nameof(Record));
+    private PropertyValue<ChannelItemRecord> _record = new PropertyValue<ChannelItemRecord>(nameof(M2ChannelContentMention), nameof(Record), "record");
     
     [Required]
     [JsonPropertyName("record")]
     public ChannelItemRecord Record
     {
-        get => _record.GetValue();
+        get => _record.GetValue(InlineErrors);
         set => _record.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelRecord> _parent = new PropertyValue<M2ChannelRecord>(nameof(M2ChannelContentMention), nameof(Parent));
+    private PropertyValue<M2ChannelRecord> _parent = new PropertyValue<M2ChannelRecord>(nameof(M2ChannelContentMention), nameof(Parent), "parent");
     
     [Required]
     [JsonPropertyName("parent")]
     public M2ChannelRecord Parent
     {
-        get => _parent.GetValue();
+        get => _parent.GetValue(InlineErrors);
         set => _parent.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _record.SetAccessPath(path, validateHasBeenSet);
-        _parent.SetAccessPath(path, validateHasBeenSet);
+        _record.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parent.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

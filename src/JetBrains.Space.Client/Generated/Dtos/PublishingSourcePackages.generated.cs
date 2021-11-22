@@ -42,20 +42,24 @@ public sealed class PublishingSourcePackages
         Items = items;
     }
     
-    private PropertyValue<List<PackageVersionRef>> _items = new PropertyValue<List<PackageVersionRef>>(nameof(PublishingSourcePackages), nameof(Items), new List<PackageVersionRef>());
+    private PropertyValue<List<PackageVersionRef>> _items = new PropertyValue<List<PackageVersionRef>>(nameof(PublishingSourcePackages), nameof(Items), "items", new List<PackageVersionRef>());
     
     [Required]
     [JsonPropertyName("items")]
     public List<PackageVersionRef> Items
     {
-        get => _items.GetValue();
+        get => _items.GetValue(InlineErrors);
         set => _items.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _items.SetAccessPath(path, validateHasBeenSet);
+        _items.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

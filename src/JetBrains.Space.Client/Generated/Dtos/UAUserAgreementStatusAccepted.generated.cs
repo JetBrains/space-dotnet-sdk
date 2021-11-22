@@ -44,43 +44,47 @@ public sealed class UAUserAgreementStatusAccepted
         Accepted = accepted;
     }
     
-    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(UAUserAgreementStatusAccepted), nameof(Profile));
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(UAUserAgreementStatusAccepted), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public TDMemberProfile Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<UAUserAgreement> _userAgreement = new PropertyValue<UAUserAgreement>(nameof(UAUserAgreementStatusAccepted), nameof(UserAgreement));
+    private PropertyValue<UAUserAgreement> _userAgreement = new PropertyValue<UAUserAgreement>(nameof(UAUserAgreementStatusAccepted), nameof(UserAgreement), "userAgreement");
     
     [Required]
     [JsonPropertyName("userAgreement")]
     public UAUserAgreement UserAgreement
     {
-        get => _userAgreement.GetValue();
+        get => _userAgreement.GetValue(InlineErrors);
         set => _userAgreement.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _accepted = new PropertyValue<DateTime>(nameof(UAUserAgreementStatusAccepted), nameof(Accepted));
+    private PropertyValue<DateTime> _accepted = new PropertyValue<DateTime>(nameof(UAUserAgreementStatusAccepted), nameof(Accepted), "accepted");
     
     [Required]
     [JsonPropertyName("accepted")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Accepted
     {
-        get => _accepted.GetValue();
+        get => _accepted.GetValue(InlineErrors);
         set => _accepted.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _userAgreement.SetAccessPath(path, validateHasBeenSet);
-        _accepted.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userAgreement.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _accepted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

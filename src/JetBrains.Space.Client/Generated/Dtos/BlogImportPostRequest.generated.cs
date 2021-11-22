@@ -40,31 +40,35 @@ public class BlogImportPostRequest
         Articles = articles;
     }
     
-    private PropertyValue<ImportMetadata> _metadata = new PropertyValue<ImportMetadata>(nameof(BlogImportPostRequest), nameof(Metadata));
+    private PropertyValue<ImportMetadata> _metadata = new PropertyValue<ImportMetadata>(nameof(BlogImportPostRequest), nameof(Metadata), "metadata");
     
     [Required]
     [JsonPropertyName("metadata")]
     public ImportMetadata Metadata
     {
-        get => _metadata.GetValue();
+        get => _metadata.GetValue(InlineErrors);
         set => _metadata.SetValue(value);
     }
 
-    private PropertyValue<List<ExternalArticle>> _articles = new PropertyValue<List<ExternalArticle>>(nameof(BlogImportPostRequest), nameof(Articles), new List<ExternalArticle>());
+    private PropertyValue<List<ExternalArticle>> _articles = new PropertyValue<List<ExternalArticle>>(nameof(BlogImportPostRequest), nameof(Articles), "articles", new List<ExternalArticle>());
     
     [Required]
     [JsonPropertyName("articles")]
     public List<ExternalArticle> Articles
     {
-        get => _articles.GetValue();
+        get => _articles.GetValue(InlineErrors);
         set => _articles.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _metadata.SetAccessPath(path, validateHasBeenSet);
-        _articles.SetAccessPath(path, validateHasBeenSet);
+        _metadata.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _articles.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

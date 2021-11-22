@@ -41,41 +41,45 @@ public sealed class M2ChannelContact
         Ext = ext;
     }
     
-    private PropertyValue<string> _defaultName = new PropertyValue<string>(nameof(M2ChannelContact), nameof(DefaultName));
+    private PropertyValue<string> _defaultName = new PropertyValue<string>(nameof(M2ChannelContact), nameof(DefaultName), "defaultName");
     
     [Required]
     [JsonPropertyName("defaultName")]
     public string DefaultName
     {
-        get => _defaultName.GetValue();
+        get => _defaultName.GetValue(InlineErrors);
         set => _defaultName.SetValue(value);
     }
 
-    private PropertyValue<string> _key = new PropertyValue<string>(nameof(M2ChannelContact), nameof(Key));
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(M2ChannelContact), nameof(Key), "key");
     
     [Required]
     [JsonPropertyName("key")]
     public string Key
     {
-        get => _key.GetValue();
+        get => _key.GetValue(InlineErrors);
         set => _key.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelContactInfo?> _ext = new PropertyValue<M2ChannelContactInfo?>(nameof(M2ChannelContact), nameof(Ext));
+    private PropertyValue<M2ChannelContactInfo?> _ext = new PropertyValue<M2ChannelContactInfo?>(nameof(M2ChannelContact), nameof(Ext), "ext");
     
     [JsonPropertyName("ext")]
     public M2ChannelContactInfo? Ext
     {
-        get => _ext.GetValue();
+        get => _ext.GetValue(InlineErrors);
         set => _ext.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _defaultName.SetAccessPath(path, validateHasBeenSet);
-        _key.SetAccessPath(path, validateHasBeenSet);
-        _ext.SetAccessPath(path, validateHasBeenSet);
+        _defaultName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ext.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

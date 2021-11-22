@@ -40,30 +40,34 @@ public class DocsDraftsFolderPostRequest
         ParentId = parentId;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(DocsDraftsFolderPostRequest), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(DocsDraftsFolderPostRequest), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(DocsDraftsFolderPostRequest), nameof(ParentId));
+    private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(DocsDraftsFolderPostRequest), nameof(ParentId), "parentId");
     
     [JsonPropertyName("parentId")]
     public string? ParentId
     {
-        get => _parentId.GetValue();
+        get => _parentId.GetValue(InlineErrors);
         set => _parentId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _parentId.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parentId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

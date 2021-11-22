@@ -43,31 +43,35 @@ public sealed class ConfigurePermissionsAction
         Context = context;
     }
     
-    private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(ConfigurePermissionsAction), nameof(App));
+    private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(ConfigurePermissionsAction), nameof(App), "app");
     
     [Required]
     [JsonPropertyName("app")]
     public ESApp App
     {
-        get => _app.GetValue();
+        get => _app.GetValue(InlineErrors);
         set => _app.SetValue(value);
     }
 
-    private PropertyValue<PermissionContextIdentifier> _context = new PropertyValue<PermissionContextIdentifier>(nameof(ConfigurePermissionsAction), nameof(Context));
+    private PropertyValue<PermissionContextIdentifier> _context = new PropertyValue<PermissionContextIdentifier>(nameof(ConfigurePermissionsAction), nameof(Context), "context");
     
     [Required]
     [JsonPropertyName("context")]
     public PermissionContextIdentifier Context
     {
-        get => _context.GetValue();
+        get => _context.GetValue(InlineErrors);
         set => _context.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _app.SetAccessPath(path, validateHasBeenSet);
-        _context.SetAccessPath(path, validateHasBeenSet);
+        _app.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _context.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

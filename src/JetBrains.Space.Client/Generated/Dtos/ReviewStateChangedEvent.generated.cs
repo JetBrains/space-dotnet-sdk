@@ -43,30 +43,34 @@ public sealed class ReviewStateChangedEvent
         Review = review;
     }
     
-    private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(ReviewStateChangedEvent), nameof(State));
+    private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(ReviewStateChangedEvent), nameof(State), "state");
     
     [Required]
     [JsonPropertyName("state")]
     public CodeReviewState State
     {
-        get => _state.GetValue();
+        get => _state.GetValue(InlineErrors);
         set => _state.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewRecord?> _review = new PropertyValue<CodeReviewRecord?>(nameof(ReviewStateChangedEvent), nameof(Review));
+    private PropertyValue<CodeReviewRecord?> _review = new PropertyValue<CodeReviewRecord?>(nameof(ReviewStateChangedEvent), nameof(Review), "review");
     
     [JsonPropertyName("review")]
     public CodeReviewRecord? Review
     {
-        get => _review.GetValue();
+        get => _review.GetValue(InlineErrors);
         set => _review.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _state.SetAccessPath(path, validateHasBeenSet);
-        _review.SetAccessPath(path, validateHasBeenSet);
+        _state.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _review.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

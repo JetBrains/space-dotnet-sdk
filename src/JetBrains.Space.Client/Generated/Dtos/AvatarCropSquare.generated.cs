@@ -41,42 +41,46 @@ public sealed class AvatarCropSquare
         Length = length;
     }
     
-    private PropertyValue<int> _x = new PropertyValue<int>(nameof(AvatarCropSquare), nameof(X));
+    private PropertyValue<int> _x = new PropertyValue<int>(nameof(AvatarCropSquare), nameof(X), "x");
     
     [Required]
     [JsonPropertyName("x")]
     public int X
     {
-        get => _x.GetValue();
+        get => _x.GetValue(InlineErrors);
         set => _x.SetValue(value);
     }
 
-    private PropertyValue<int> _y = new PropertyValue<int>(nameof(AvatarCropSquare), nameof(Y));
+    private PropertyValue<int> _y = new PropertyValue<int>(nameof(AvatarCropSquare), nameof(Y), "y");
     
     [Required]
     [JsonPropertyName("y")]
     public int Y
     {
-        get => _y.GetValue();
+        get => _y.GetValue(InlineErrors);
         set => _y.SetValue(value);
     }
 
-    private PropertyValue<int> _length = new PropertyValue<int>(nameof(AvatarCropSquare), nameof(Length));
+    private PropertyValue<int> _length = new PropertyValue<int>(nameof(AvatarCropSquare), nameof(Length), "length");
     
     [Required]
     [JsonPropertyName("length")]
     public int Length
     {
-        get => _length.GetValue();
+        get => _length.GetValue(InlineErrors);
         set => _length.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _x.SetAccessPath(path, validateHasBeenSet);
-        _y.SetAccessPath(path, validateHasBeenSet);
-        _length.SetAccessPath(path, validateHasBeenSet);
+        _x.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _y.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _length.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

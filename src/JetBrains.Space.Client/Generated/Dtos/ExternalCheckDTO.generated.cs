@@ -47,107 +47,111 @@ public sealed class ExternalCheckDTO
         Description = description;
     }
     
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ExternalCheckDTO), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ExternalCheckDTO), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(ExternalCheckDTO), nameof(Revision));
+    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(ExternalCheckDTO), nameof(Revision), "revision");
     
     [Required]
     [JsonPropertyName("revision")]
     public string Revision
     {
-        get => _revision.GetValue();
+        get => _revision.GetValue(InlineErrors);
         set => _revision.SetValue(value);
     }
 
-    private PropertyValue<CommitExecutionStatus> _executionStatus = new PropertyValue<CommitExecutionStatus>(nameof(ExternalCheckDTO), nameof(ExecutionStatus));
+    private PropertyValue<CommitExecutionStatus> _executionStatus = new PropertyValue<CommitExecutionStatus>(nameof(ExternalCheckDTO), nameof(ExecutionStatus), "executionStatus");
     
     [Required]
     [JsonPropertyName("executionStatus")]
     public CommitExecutionStatus ExecutionStatus
     {
-        get => _executionStatus.GetValue();
+        get => _executionStatus.GetValue(InlineErrors);
         set => _executionStatus.SetValue(value);
     }
 
-    private PropertyValue<string> _url = new PropertyValue<string>(nameof(ExternalCheckDTO), nameof(Url));
+    private PropertyValue<string> _url = new PropertyValue<string>(nameof(ExternalCheckDTO), nameof(Url), "url");
     
     [Required]
     [JsonPropertyName("url")]
     public string Url
     {
-        get => _url.GetValue();
+        get => _url.GetValue(InlineErrors);
         set => _url.SetValue(value);
     }
 
-    private PropertyValue<string> _externalServiceName = new PropertyValue<string>(nameof(ExternalCheckDTO), nameof(ExternalServiceName));
+    private PropertyValue<string> _externalServiceName = new PropertyValue<string>(nameof(ExternalCheckDTO), nameof(ExternalServiceName), "externalServiceName");
     
     [Required]
     [JsonPropertyName("externalServiceName")]
     public string ExternalServiceName
     {
-        get => _externalServiceName.GetValue();
+        get => _externalServiceName.GetValue(InlineErrors);
         set => _externalServiceName.SetValue(value);
     }
 
-    private PropertyValue<string> _taskName = new PropertyValue<string>(nameof(ExternalCheckDTO), nameof(TaskName));
+    private PropertyValue<string> _taskName = new PropertyValue<string>(nameof(ExternalCheckDTO), nameof(TaskName), "taskName");
     
     [Required]
     [JsonPropertyName("taskName")]
     public string TaskName
     {
-        get => _taskName.GetValue();
+        get => _taskName.GetValue(InlineErrors);
         set => _taskName.SetValue(value);
     }
 
-    private PropertyValue<string> _taskId = new PropertyValue<string>(nameof(ExternalCheckDTO), nameof(TaskId));
+    private PropertyValue<string> _taskId = new PropertyValue<string>(nameof(ExternalCheckDTO), nameof(TaskId), "taskId");
     
     [Required]
     [JsonPropertyName("taskId")]
     public string TaskId
     {
-        get => _taskId.GetValue();
+        get => _taskId.GetValue(InlineErrors);
         set => _taskId.SetValue(value);
     }
 
-    private PropertyValue<long> _timestamp = new PropertyValue<long>(nameof(ExternalCheckDTO), nameof(Timestamp));
+    private PropertyValue<long> _timestamp = new PropertyValue<long>(nameof(ExternalCheckDTO), nameof(Timestamp), "timestamp");
     
     [Required]
     [JsonPropertyName("timestamp")]
     public long Timestamp
     {
-        get => _timestamp.GetValue();
+        get => _timestamp.GetValue(InlineErrors);
         set => _timestamp.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ExternalCheckDTO), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ExternalCheckDTO), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _revision.SetAccessPath(path, validateHasBeenSet);
-        _executionStatus.SetAccessPath(path, validateHasBeenSet);
-        _url.SetAccessPath(path, validateHasBeenSet);
-        _externalServiceName.SetAccessPath(path, validateHasBeenSet);
-        _taskName.SetAccessPath(path, validateHasBeenSet);
-        _taskId.SetAccessPath(path, validateHasBeenSet);
-        _timestamp.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _revision.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _executionStatus.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalServiceName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _taskName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _taskId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _timestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

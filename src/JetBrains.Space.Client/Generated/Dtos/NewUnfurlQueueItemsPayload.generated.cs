@@ -43,30 +43,34 @@ public sealed class NewUnfurlQueueItemsPayload
         VerificationToken = verificationToken;
     }
     
-    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(NewUnfurlQueueItemsPayload), nameof(ClientId));
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(NewUnfurlQueueItemsPayload), nameof(ClientId), "clientId");
     
     [Required]
     [JsonPropertyName("clientId")]
     public string ClientId
     {
-        get => _clientId.GetValue();
+        get => _clientId.GetValue(InlineErrors);
         set => _clientId.SetValue(value);
     }
 
-    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(NewUnfurlQueueItemsPayload), nameof(VerificationToken));
+    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(NewUnfurlQueueItemsPayload), nameof(VerificationToken), "verificationToken");
     
     [JsonPropertyName("verificationToken")]
     public string? VerificationToken
     {
-        get => _verificationToken.GetValue();
+        get => _verificationToken.GetValue(InlineErrors);
         set => _verificationToken.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _clientId.SetAccessPath(path, validateHasBeenSet);
-        _verificationToken.SetAccessPath(path, validateHasBeenSet);
+        _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _verificationToken.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

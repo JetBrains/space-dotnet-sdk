@@ -53,160 +53,164 @@ public class CalendarsMeetingsForIdPatchRequest
         ConferenceData = conferenceData;
     }
     
-    private PropertyValue<string?> _summary = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Summary));
+    private PropertyValue<string?> _summary = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Summary), "summary");
     
     [JsonPropertyName("summary")]
     public string? Summary
     {
-        get => _summary.GetValue();
+        get => _summary.GetValue(InlineErrors);
         set => _summary.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<CalendarEventSpec?> _occurrenceRule = new PropertyValue<CalendarEventSpec?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(OccurrenceRule));
+    private PropertyValue<CalendarEventSpec?> _occurrenceRule = new PropertyValue<CalendarEventSpec?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(OccurrenceRule), "occurrenceRule");
     
     [JsonPropertyName("occurrenceRule")]
     public CalendarEventSpec? OccurrenceRule
     {
-        get => _occurrenceRule.GetValue();
+        get => _occurrenceRule.GetValue(InlineErrors);
         set => _occurrenceRule.SetValue(value);
     }
 
-    private PropertyValue<Diff> _locationsDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(LocationsDiff));
+    private PropertyValue<Diff> _locationsDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(LocationsDiff), "locationsDiff");
     
     [JsonPropertyName("locationsDiff")]
     public Diff LocationsDiff
     {
-        get => _locationsDiff.GetValue();
+        get => _locationsDiff.GetValue(InlineErrors);
         set => _locationsDiff.SetValue(value);
     }
 
-    private PropertyValue<Diff> _profilesDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ProfilesDiff));
+    private PropertyValue<Diff> _profilesDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ProfilesDiff), "profilesDiff");
     
     [JsonPropertyName("profilesDiff")]
     public Diff ProfilesDiff
     {
-        get => _profilesDiff.GetValue();
+        get => _profilesDiff.GetValue(InlineErrors);
         set => _profilesDiff.SetValue(value);
     }
 
-    private PropertyValue<Diff> _externalParticipantsDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ExternalParticipantsDiff));
+    private PropertyValue<Diff> _externalParticipantsDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ExternalParticipantsDiff), "externalParticipantsDiff");
     
     [JsonPropertyName("externalParticipantsDiff")]
     public Diff ExternalParticipantsDiff
     {
-        get => _externalParticipantsDiff.GetValue();
+        get => _externalParticipantsDiff.GetValue(InlineErrors);
         set => _externalParticipantsDiff.SetValue(value);
     }
 
-    private PropertyValue<Diff> _teamsDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(TeamsDiff));
+    private PropertyValue<Diff> _teamsDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(TeamsDiff), "teamsDiff");
     
     [JsonPropertyName("teamsDiff")]
     public Diff TeamsDiff
     {
-        get => _teamsDiff.GetValue();
+        get => _teamsDiff.GetValue(InlineErrors);
         set => _teamsDiff.SetValue(value);
     }
 
-    private PropertyValue<MeetingVisibility?> _visibility = new PropertyValue<MeetingVisibility?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Visibility));
+    private PropertyValue<MeetingVisibility?> _visibility = new PropertyValue<MeetingVisibility?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Visibility), "visibility");
     
     [JsonPropertyName("visibility")]
     public MeetingVisibility? Visibility
     {
-        get => _visibility.GetValue();
+        get => _visibility.GetValue(InlineErrors);
         set => _visibility.SetValue(value);
     }
 
-    private PropertyValue<MeetingModificationPreference?> _modificationPreference = new PropertyValue<MeetingModificationPreference?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ModificationPreference));
+    private PropertyValue<MeetingModificationPreference?> _modificationPreference = new PropertyValue<MeetingModificationPreference?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ModificationPreference), "modificationPreference");
     
     [JsonPropertyName("modificationPreference")]
     public MeetingModificationPreference? ModificationPreference
     {
-        get => _modificationPreference.GetValue();
+        get => _modificationPreference.GetValue(InlineErrors);
         set => _modificationPreference.SetValue(value);
     }
 
-    private PropertyValue<MeetingJoiningPreference?> _joiningPreference = new PropertyValue<MeetingJoiningPreference?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(JoiningPreference));
+    private PropertyValue<MeetingJoiningPreference?> _joiningPreference = new PropertyValue<MeetingJoiningPreference?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(JoiningPreference), "joiningPreference");
     
     [JsonPropertyName("joiningPreference")]
     public MeetingJoiningPreference? JoiningPreference
     {
-        get => _joiningPreference.GetValue();
+        get => _joiningPreference.GetValue(InlineErrors);
         set => _joiningPreference.SetValue(value);
     }
 
-    private PropertyValue<bool> _notifyOnExport = new PropertyValue<bool>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(IsNotifyOnExport));
+    private PropertyValue<bool> _notifyOnExport = new PropertyValue<bool>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(IsNotifyOnExport), "notifyOnExport");
     
     [JsonPropertyName("notifyOnExport")]
     public bool IsNotifyOnExport
     {
-        get => _notifyOnExport.GetValue();
+        get => _notifyOnExport.GetValue(InlineErrors);
         set => _notifyOnExport.SetValue(value);
     }
 
-    private PropertyValue<string?> _organizer = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Organizer));
+    private PropertyValue<string?> _organizer = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Organizer), "organizer");
     
     [JsonPropertyName("organizer")]
     public string? Organizer
     {
-        get => _organizer.GetValue();
+        get => _organizer.GetValue(InlineErrors);
         set => _organizer.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _targetDate = new PropertyValue<DateTime?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(TargetDate));
+    private PropertyValue<DateTime?> _targetDate = new PropertyValue<DateTime?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(TargetDate), "targetDate");
     
     [JsonPropertyName("targetDate")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? TargetDate
     {
-        get => _targetDate.GetValue();
+        get => _targetDate.GetValue(InlineErrors);
         set => _targetDate.SetValue(value);
     }
 
-    private PropertyValue<RecurrentModification> _modificationKind = new PropertyValue<RecurrentModification>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ModificationKind), RecurrentModification.All);
+    private PropertyValue<RecurrentModification> _modificationKind = new PropertyValue<RecurrentModification>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ModificationKind), "modificationKind", RecurrentModification.All);
     
     [JsonPropertyName("modificationKind")]
     public RecurrentModification ModificationKind
     {
-        get => _modificationKind.GetValue();
+        get => _modificationKind.GetValue(InlineErrors);
         set => _modificationKind.SetValue(value);
     }
 
-    private PropertyValue<EventConferenceData?> _conferenceData = new PropertyValue<EventConferenceData?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ConferenceData));
+    private PropertyValue<EventConferenceData?> _conferenceData = new PropertyValue<EventConferenceData?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ConferenceData), "conferenceData");
     
     [JsonPropertyName("conferenceData")]
     public EventConferenceData? ConferenceData
     {
-        get => _conferenceData.GetValue();
+        get => _conferenceData.GetValue(InlineErrors);
         set => _conferenceData.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _summary.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _occurrenceRule.SetAccessPath(path, validateHasBeenSet);
-        _locationsDiff.SetAccessPath(path, validateHasBeenSet);
-        _profilesDiff.SetAccessPath(path, validateHasBeenSet);
-        _externalParticipantsDiff.SetAccessPath(path, validateHasBeenSet);
-        _teamsDiff.SetAccessPath(path, validateHasBeenSet);
-        _visibility.SetAccessPath(path, validateHasBeenSet);
-        _modificationPreference.SetAccessPath(path, validateHasBeenSet);
-        _joiningPreference.SetAccessPath(path, validateHasBeenSet);
-        _notifyOnExport.SetAccessPath(path, validateHasBeenSet);
-        _organizer.SetAccessPath(path, validateHasBeenSet);
-        _targetDate.SetAccessPath(path, validateHasBeenSet);
-        _modificationKind.SetAccessPath(path, validateHasBeenSet);
-        _conferenceData.SetAccessPath(path, validateHasBeenSet);
+        _summary.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _occurrenceRule.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _locationsDiff.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _profilesDiff.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalParticipantsDiff.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _teamsDiff.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _visibility.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _modificationPreference.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _joiningPreference.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notifyOnExport.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _organizer.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _targetDate.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _modificationKind.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _conferenceData.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

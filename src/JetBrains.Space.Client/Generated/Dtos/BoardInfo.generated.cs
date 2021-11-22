@@ -41,41 +41,45 @@ public sealed class BoardInfo
         Description = description;
     }
     
-    private PropertyValue<BoardOwners> _owners = new PropertyValue<BoardOwners>(nameof(BoardInfo), nameof(Owners));
+    private PropertyValue<BoardOwners> _owners = new PropertyValue<BoardOwners>(nameof(BoardInfo), nameof(Owners), "owners");
     
     [Required]
     [JsonPropertyName("owners")]
     public BoardOwners Owners
     {
-        get => _owners.GetValue();
+        get => _owners.GetValue(InlineErrors);
         set => _owners.SetValue(value);
     }
 
-    private PropertyValue<BoardColumns> _columns = new PropertyValue<BoardColumns>(nameof(BoardInfo), nameof(Columns));
+    private PropertyValue<BoardColumns> _columns = new PropertyValue<BoardColumns>(nameof(BoardInfo), nameof(Columns), "columns");
     
     [Required]
     [JsonPropertyName("columns")]
     public BoardColumns Columns
     {
-        get => _columns.GetValue();
+        get => _columns.GetValue(InlineErrors);
         set => _columns.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(BoardInfo), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(BoardInfo), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _owners.SetAccessPath(path, validateHasBeenSet);
-        _columns.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
+        _owners.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _columns.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

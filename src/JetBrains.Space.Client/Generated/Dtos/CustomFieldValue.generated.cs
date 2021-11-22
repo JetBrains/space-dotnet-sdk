@@ -40,31 +40,35 @@ public sealed class CustomFieldValue
         Value = value;
     }
     
-    private PropertyValue<CustomField> _field = new PropertyValue<CustomField>(nameof(CustomFieldValue), nameof(Field));
+    private PropertyValue<CustomField> _field = new PropertyValue<CustomField>(nameof(CustomFieldValue), nameof(Field), "field");
     
     [Required]
     [JsonPropertyName("field")]
     public CustomField Field
     {
-        get => _field.GetValue();
+        get => _field.GetValue(InlineErrors);
         set => _field.SetValue(value);
     }
 
-    private PropertyValue<CFValue> _value = new PropertyValue<CFValue>(nameof(CustomFieldValue), nameof(Value));
+    private PropertyValue<CFValue> _value = new PropertyValue<CFValue>(nameof(CustomFieldValue), nameof(Value), "value");
     
     [Required]
     [JsonPropertyName("value")]
     public CFValue Value
     {
-        get => _value.GetValue();
+        get => _value.GetValue(InlineErrors);
         set => _value.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _field.SetAccessPath(path, validateHasBeenSet);
-        _value.SetAccessPath(path, validateHasBeenSet);
+        _field.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _value.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

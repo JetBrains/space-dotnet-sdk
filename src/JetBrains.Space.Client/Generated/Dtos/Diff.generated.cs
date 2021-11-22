@@ -41,42 +41,46 @@ public sealed class Diff
         IsRemoveAll = removeAll;
     }
     
-    private PropertyValue<List<string>> _added = new PropertyValue<List<string>>(nameof(Diff), nameof(Added), new List<string>());
+    private PropertyValue<List<string>> _added = new PropertyValue<List<string>>(nameof(Diff), nameof(Added), "added", new List<string>());
     
     [Required]
     [JsonPropertyName("added")]
     public List<string> Added
     {
-        get => _added.GetValue();
+        get => _added.GetValue(InlineErrors);
         set => _added.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _removed = new PropertyValue<List<string>>(nameof(Diff), nameof(Removed), new List<string>());
+    private PropertyValue<List<string>> _removed = new PropertyValue<List<string>>(nameof(Diff), nameof(Removed), "removed", new List<string>());
     
     [Required]
     [JsonPropertyName("removed")]
     public List<string> Removed
     {
-        get => _removed.GetValue();
+        get => _removed.GetValue(InlineErrors);
         set => _removed.SetValue(value);
     }
 
-    private PropertyValue<bool> _removeAll = new PropertyValue<bool>(nameof(Diff), nameof(IsRemoveAll));
+    private PropertyValue<bool> _removeAll = new PropertyValue<bool>(nameof(Diff), nameof(IsRemoveAll), "removeAll");
     
     [Required]
     [JsonPropertyName("removeAll")]
     public bool IsRemoveAll
     {
-        get => _removeAll.GetValue();
+        get => _removeAll.GetValue(InlineErrors);
         set => _removeAll.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _added.SetAccessPath(path, validateHasBeenSet);
-        _removed.SetAccessPath(path, validateHasBeenSet);
-        _removeAll.SetAccessPath(path, validateHasBeenSet);
+        _added.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _removed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _removeAll.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

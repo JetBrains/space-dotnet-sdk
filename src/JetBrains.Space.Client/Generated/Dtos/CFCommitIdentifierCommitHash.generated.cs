@@ -42,20 +42,24 @@ public sealed class CFCommitIdentifierCommitHash
         CommitHash = commitHash;
     }
     
-    private PropertyValue<string> _commitHash = new PropertyValue<string>(nameof(CFCommitIdentifierCommitHash), nameof(CommitHash));
+    private PropertyValue<string> _commitHash = new PropertyValue<string>(nameof(CFCommitIdentifierCommitHash), nameof(CommitHash), "commitHash");
     
     [Required]
     [JsonPropertyName("commitHash")]
     public string CommitHash
     {
-        get => _commitHash.GetValue();
+        get => _commitHash.GetValue(InlineErrors);
         set => _commitHash.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _commitHash.SetAccessPath(path, validateHasBeenSet);
+        _commitHash.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

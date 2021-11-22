@@ -44,41 +44,45 @@ public sealed class MCText
         Accessory = accessory;
     }
     
-    private PropertyValue<string> _content = new PropertyValue<string>(nameof(MCText), nameof(Content));
+    private PropertyValue<string> _content = new PropertyValue<string>(nameof(MCText), nameof(Content), "content");
     
     [Required]
     [JsonPropertyName("content")]
     public string Content
     {
-        get => _content.GetValue();
+        get => _content.GetValue(InlineErrors);
         set => _content.SetValue(value);
     }
 
-    private PropertyValue<bool> _markdown = new PropertyValue<bool>(nameof(MCText), nameof(IsMarkdown));
+    private PropertyValue<bool> _markdown = new PropertyValue<bool>(nameof(MCText), nameof(IsMarkdown), "markdown");
     
     [Required]
     [JsonPropertyName("markdown")]
     public bool IsMarkdown
     {
-        get => _markdown.GetValue();
+        get => _markdown.GetValue(InlineErrors);
         set => _markdown.SetValue(value);
     }
 
-    private PropertyValue<MCElement?> _accessory = new PropertyValue<MCElement?>(nameof(MCText), nameof(Accessory));
+    private PropertyValue<MCElement?> _accessory = new PropertyValue<MCElement?>(nameof(MCText), nameof(Accessory), "accessory");
     
     [JsonPropertyName("accessory")]
     public MCElement? Accessory
     {
-        get => _accessory.GetValue();
+        get => _accessory.GetValue(InlineErrors);
         set => _accessory.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _content.SetAccessPath(path, validateHasBeenSet);
-        _markdown.SetAccessPath(path, validateHasBeenSet);
-        _accessory.SetAccessPath(path, validateHasBeenSet);
+        _content.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _markdown.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _accessory.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

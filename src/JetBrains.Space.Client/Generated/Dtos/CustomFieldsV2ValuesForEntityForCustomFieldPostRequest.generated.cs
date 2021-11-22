@@ -39,20 +39,24 @@ public class CustomFieldsV2ValuesForEntityForCustomFieldPostRequest
         NewValue = newValue;
     }
     
-    private PropertyValue<CFInputValue> _newValue = new PropertyValue<CFInputValue>(nameof(CustomFieldsV2ValuesForEntityForCustomFieldPostRequest), nameof(NewValue));
+    private PropertyValue<CFInputValue> _newValue = new PropertyValue<CFInputValue>(nameof(CustomFieldsV2ValuesForEntityForCustomFieldPostRequest), nameof(NewValue), "newValue");
     
     [Required]
     [JsonPropertyName("newValue")]
     public CFInputValue NewValue
     {
-        get => _newValue.GetValue();
+        get => _newValue.GetValue(InlineErrors);
         set => _newValue.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _newValue.SetAccessPath(path, validateHasBeenSet);
+        _newValue.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

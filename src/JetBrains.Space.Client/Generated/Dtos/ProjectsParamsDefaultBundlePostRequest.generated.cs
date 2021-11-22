@@ -42,52 +42,56 @@ public class ProjectsParamsDefaultBundlePostRequest
         Description = description;
     }
     
-    private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(ProjectsParamsDefaultBundlePostRequest), nameof(Project));
+    private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(ProjectsParamsDefaultBundlePostRequest), nameof(Project), "project");
     
     [Required]
     [JsonPropertyName("project")]
     public ProjectIdentifier Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectsParamsDefaultBundlePostRequest), nameof(Key));
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectsParamsDefaultBundlePostRequest), nameof(Key), "key");
     
     [Required]
     [JsonPropertyName("key")]
     public string Key
     {
-        get => _key.GetValue();
+        get => _key.GetValue(InlineErrors);
         set => _key.SetValue(value);
     }
 
-    private PropertyValue<string> _value = new PropertyValue<string>(nameof(ProjectsParamsDefaultBundlePostRequest), nameof(Value));
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(ProjectsParamsDefaultBundlePostRequest), nameof(Value), "value");
     
     [Required]
     [JsonPropertyName("value")]
     public string Value
     {
-        get => _value.GetValue();
+        get => _value.GetValue(InlineErrors);
         set => _value.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsParamsDefaultBundlePostRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsParamsDefaultBundlePostRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _key.SetAccessPath(path, validateHasBeenSet);
-        _value.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _value.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

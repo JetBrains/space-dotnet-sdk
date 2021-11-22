@@ -50,135 +50,139 @@ public sealed class PlanItem
         Topics = topics;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PlanItem), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PlanItem), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _checklistId = new PropertyValue<string>(nameof(PlanItem), nameof(ChecklistId));
+    private PropertyValue<string> _checklistId = new PropertyValue<string>(nameof(PlanItem), nameof(ChecklistId), "checklistId");
     
     [Required]
     [JsonPropertyName("checklistId")]
     public string ChecklistId
     {
-        get => _checklistId.GetValue();
+        get => _checklistId.GetValue(InlineErrors);
         set => _checklistId.SetValue(value);
     }
 
-    private PropertyValue<PlanningTag?> _tag = new PropertyValue<PlanningTag?>(nameof(PlanItem), nameof(Tag));
+    private PropertyValue<PlanningTag?> _tag = new PropertyValue<PlanningTag?>(nameof(PlanItem), nameof(Tag), "tag");
     
     [JsonPropertyName("tag")]
     public PlanningTag? Tag
     {
-        get => _tag.GetValue();
+        get => _tag.GetValue(InlineErrors);
         set => _tag.SetValue(value);
     }
 
-    private PropertyValue<string?> _simpleText = new PropertyValue<string?>(nameof(PlanItem), nameof(SimpleText));
+    private PropertyValue<string?> _simpleText = new PropertyValue<string?>(nameof(PlanItem), nameof(SimpleText), "simpleText");
     
     [JsonPropertyName("simpleText")]
     public string? SimpleText
     {
-        get => _simpleText.GetValue();
+        get => _simpleText.GetValue(InlineErrors);
         set => _simpleText.SetValue(value);
     }
 
-    private PropertyValue<bool?> _simpleDone = new PropertyValue<bool?>(nameof(PlanItem), nameof(IsSimpleDone));
+    private PropertyValue<bool?> _simpleDone = new PropertyValue<bool?>(nameof(PlanItem), nameof(IsSimpleDone), "simpleDone");
     
     [JsonPropertyName("simpleDone")]
     public bool? IsSimpleDone
     {
-        get => _simpleDone.GetValue();
+        get => _simpleDone.GetValue(InlineErrors);
         set => _simpleDone.SetValue(value);
     }
 
-    private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(PlanItem), nameof(Issue));
+    private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(PlanItem), nameof(Issue), "issue");
     
     [JsonPropertyName("issue")]
     public Issue? Issue
     {
-        get => _issue.GetValue();
+        get => _issue.GetValue(InlineErrors);
         set => _issue.SetValue(value);
     }
 
-    private PropertyValue<string?> _issueProblem = new PropertyValue<string?>(nameof(PlanItem), nameof(IssueProblem));
+    private PropertyValue<string?> _issueProblem = new PropertyValue<string?>(nameof(PlanItem), nameof(IssueProblem), "issueProblem");
     
     [JsonPropertyName("issueProblem")]
     public string? IssueProblem
     {
-        get => _issueProblem.GetValue();
+        get => _issueProblem.GetValue(InlineErrors);
         set => _issueProblem.SetValue(value);
     }
 
-    private PropertyValue<bool?> _canEditIssue = new PropertyValue<bool?>(nameof(PlanItem), nameof(CanEditIssue));
+    private PropertyValue<bool?> _canEditIssue = new PropertyValue<bool?>(nameof(PlanItem), nameof(CanEditIssue), "canEditIssue");
     
     [JsonPropertyName("canEditIssue")]
     public bool? CanEditIssue
     {
-        get => _canEditIssue.GetValue();
+        get => _canEditIssue.GetValue(InlineErrors);
         set => _canEditIssue.SetValue(value);
     }
 
-    private PropertyValue<bool> _hasChildren = new PropertyValue<bool>(nameof(PlanItem), nameof(IsHasChildren));
+    private PropertyValue<bool> _hasChildren = new PropertyValue<bool>(nameof(PlanItem), nameof(IsHasChildren), "hasChildren");
     
     [Required]
     [JsonPropertyName("hasChildren")]
     public bool IsHasChildren
     {
-        get => _hasChildren.GetValue();
+        get => _hasChildren.GetValue(InlineErrors);
         set => _hasChildren.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PlanItem), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PlanItem), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<List<PlanItem>> _children = new PropertyValue<List<PlanItem>>(nameof(PlanItem), nameof(Children), new List<PlanItem>());
+    private PropertyValue<List<PlanItem>> _children = new PropertyValue<List<PlanItem>>(nameof(PlanItem), nameof(Children), "children", new List<PlanItem>());
     
     [Required]
     [JsonPropertyName("children")]
     public List<PlanItem> Children
     {
-        get => _children.GetValue();
+        get => _children.GetValue(InlineErrors);
         set => _children.SetValue(value);
     }
 
-    private PropertyValue<List<Topic>> _topics = new PropertyValue<List<Topic>>(nameof(PlanItem), nameof(Topics), new List<Topic>());
+    private PropertyValue<List<Topic>> _topics = new PropertyValue<List<Topic>>(nameof(PlanItem), nameof(Topics), "topics", new List<Topic>());
     
     [Required]
     [JsonPropertyName("topics")]
     public List<Topic> Topics
     {
-        get => _topics.GetValue();
+        get => _topics.GetValue(InlineErrors);
         set => _topics.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _checklistId.SetAccessPath(path, validateHasBeenSet);
-        _tag.SetAccessPath(path, validateHasBeenSet);
-        _simpleText.SetAccessPath(path, validateHasBeenSet);
-        _simpleDone.SetAccessPath(path, validateHasBeenSet);
-        _issue.SetAccessPath(path, validateHasBeenSet);
-        _issueProblem.SetAccessPath(path, validateHasBeenSet);
-        _canEditIssue.SetAccessPath(path, validateHasBeenSet);
-        _hasChildren.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _children.SetAccessPath(path, validateHasBeenSet);
-        _topics.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _checklistId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tag.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _simpleText.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _simpleDone.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issue.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issueProblem.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _canEditIssue.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hasChildren.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _children.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _topics.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

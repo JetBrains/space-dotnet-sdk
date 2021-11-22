@@ -40,31 +40,35 @@ public sealed class PRTag
         ProjectCount = projectCount;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PRTag), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PRTag), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<int> _projectCount = new PropertyValue<int>(nameof(PRTag), nameof(ProjectCount));
+    private PropertyValue<int> _projectCount = new PropertyValue<int>(nameof(PRTag), nameof(ProjectCount), "projectCount");
     
     [Required]
     [JsonPropertyName("projectCount")]
     public int ProjectCount
     {
-        get => _projectCount.GetValue();
+        get => _projectCount.GetValue(InlineErrors);
         set => _projectCount.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _projectCount.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectCount.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

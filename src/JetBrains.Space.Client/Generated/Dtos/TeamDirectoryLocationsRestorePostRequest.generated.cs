@@ -39,20 +39,24 @@ public class TeamDirectoryLocationsRestorePostRequest
         Ids = ids;
     }
     
-    private PropertyValue<List<string>> _ids = new PropertyValue<List<string>>(nameof(TeamDirectoryLocationsRestorePostRequest), nameof(Ids), new List<string>());
+    private PropertyValue<List<string>> _ids = new PropertyValue<List<string>>(nameof(TeamDirectoryLocationsRestorePostRequest), nameof(Ids), "ids", new List<string>());
     
     [Required]
     [JsonPropertyName("ids")]
     public List<string> Ids
     {
-        get => _ids.GetValue();
+        get => _ids.GetValue(InlineErrors);
         set => _ids.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _ids.SetAccessPath(path, validateHasBeenSet);
+        _ids.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

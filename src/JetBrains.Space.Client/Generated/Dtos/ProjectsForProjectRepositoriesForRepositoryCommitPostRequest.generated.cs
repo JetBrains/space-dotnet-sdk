@@ -42,53 +42,57 @@ public class ProjectsForProjectRepositoriesForRepositoryCommitPostRequest
         Files = files;
     }
     
-    private PropertyValue<string> _baseCommit = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(BaseCommit));
+    private PropertyValue<string> _baseCommit = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(BaseCommit), "baseCommit");
     
     [Required]
     [JsonPropertyName("baseCommit")]
     public string BaseCommit
     {
-        get => _baseCommit.GetValue();
+        get => _baseCommit.GetValue(InlineErrors);
         set => _baseCommit.SetValue(value);
     }
 
-    private PropertyValue<string> _targetBranch = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(TargetBranch));
+    private PropertyValue<string> _targetBranch = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(TargetBranch), "targetBranch");
     
     [Required]
     [JsonPropertyName("targetBranch")]
     public string TargetBranch
     {
-        get => _targetBranch.GetValue();
+        get => _targetBranch.GetValue(InlineErrors);
         set => _targetBranch.SetValue(value);
     }
 
-    private PropertyValue<string> _commitMessage = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(CommitMessage));
+    private PropertyValue<string> _commitMessage = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(CommitMessage), "commitMessage");
     
     [Required]
     [JsonPropertyName("commitMessage")]
     public string CommitMessage
     {
-        get => _commitMessage.GetValue();
+        get => _commitMessage.GetValue(InlineErrors);
         set => _commitMessage.SetValue(value);
     }
 
-    private PropertyValue<List<GitCommitFileRequest>> _files = new PropertyValue<List<GitCommitFileRequest>>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(Files), new List<GitCommitFileRequest>());
+    private PropertyValue<List<GitCommitFileRequest>> _files = new PropertyValue<List<GitCommitFileRequest>>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitPostRequest), nameof(Files), "files", new List<GitCommitFileRequest>());
     
     [Required]
     [JsonPropertyName("files")]
     public List<GitCommitFileRequest> Files
     {
-        get => _files.GetValue();
+        get => _files.GetValue(InlineErrors);
         set => _files.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _baseCommit.SetAccessPath(path, validateHasBeenSet);
-        _targetBranch.SetAccessPath(path, validateHasBeenSet);
-        _commitMessage.SetAccessPath(path, validateHasBeenSet);
-        _files.SetAccessPath(path, validateHasBeenSet);
+        _baseCommit.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _targetBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commitMessage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _files.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

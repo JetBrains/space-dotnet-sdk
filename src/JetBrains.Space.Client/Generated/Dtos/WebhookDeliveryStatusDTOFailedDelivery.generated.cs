@@ -45,54 +45,58 @@ public sealed class WebhookDeliveryStatusDTOFailedDelivery
         SentTime = sentTime;
     }
     
-    private PropertyValue<string> _deliveryId = new PropertyValue<string>(nameof(WebhookDeliveryStatusDTOFailedDelivery), nameof(DeliveryId));
+    private PropertyValue<string> _deliveryId = new PropertyValue<string>(nameof(WebhookDeliveryStatusDTOFailedDelivery), nameof(DeliveryId), "deliveryId");
     
     [Required]
     [JsonPropertyName("deliveryId")]
     public string DeliveryId
     {
-        get => _deliveryId.GetValue();
+        get => _deliveryId.GetValue(InlineErrors);
         set => _deliveryId.SetValue(value);
     }
 
-    private PropertyValue<int> _responseCode = new PropertyValue<int>(nameof(WebhookDeliveryStatusDTOFailedDelivery), nameof(ResponseCode));
+    private PropertyValue<int> _responseCode = new PropertyValue<int>(nameof(WebhookDeliveryStatusDTOFailedDelivery), nameof(ResponseCode), "responseCode");
     
     [Required]
     [JsonPropertyName("responseCode")]
     public int ResponseCode
     {
-        get => _responseCode.GetValue();
+        get => _responseCode.GetValue(InlineErrors);
         set => _responseCode.SetValue(value);
     }
 
-    private PropertyValue<string> _message = new PropertyValue<string>(nameof(WebhookDeliveryStatusDTOFailedDelivery), nameof(Message));
+    private PropertyValue<string> _message = new PropertyValue<string>(nameof(WebhookDeliveryStatusDTOFailedDelivery), nameof(Message), "message");
     
     [Required]
     [JsonPropertyName("message")]
     public string Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _sentTime = new PropertyValue<DateTime>(nameof(WebhookDeliveryStatusDTOFailedDelivery), nameof(SentTime));
+    private PropertyValue<DateTime> _sentTime = new PropertyValue<DateTime>(nameof(WebhookDeliveryStatusDTOFailedDelivery), nameof(SentTime), "sentTime");
     
     [Required]
     [JsonPropertyName("sentTime")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime SentTime
     {
-        get => _sentTime.GetValue();
+        get => _sentTime.GetValue(InlineErrors);
         set => _sentTime.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _deliveryId.SetAccessPath(path, validateHasBeenSet);
-        _responseCode.SetAccessPath(path, validateHasBeenSet);
-        _message.SetAccessPath(path, validateHasBeenSet);
-        _sentTime.SetAccessPath(path, validateHasBeenSet);
+        _deliveryId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _responseCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sentTime.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

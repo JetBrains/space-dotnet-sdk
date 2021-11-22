@@ -43,30 +43,34 @@ public sealed class CodeReviewParticipantCodeOwnerSlot
         Pattern = pattern;
     }
     
-    private PropertyValue<List<string>?> _rule = new PropertyValue<List<string>?>(nameof(CodeReviewParticipantCodeOwnerSlot), nameof(Rule));
+    private PropertyValue<List<string>?> _rule = new PropertyValue<List<string>?>(nameof(CodeReviewParticipantCodeOwnerSlot), nameof(Rule), "rule");
     
     [JsonPropertyName("rule")]
     public List<string>? Rule
     {
-        get => _rule.GetValue();
+        get => _rule.GetValue(InlineErrors);
         set => _rule.SetValue(value);
     }
 
-    private PropertyValue<string> _pattern = new PropertyValue<string>(nameof(CodeReviewParticipantCodeOwnerSlot), nameof(Pattern));
+    private PropertyValue<string> _pattern = new PropertyValue<string>(nameof(CodeReviewParticipantCodeOwnerSlot), nameof(Pattern), "pattern");
     
     [Required]
     [JsonPropertyName("pattern")]
     public string Pattern
     {
-        get => _pattern.GetValue();
+        get => _pattern.GetValue(InlineErrors);
         set => _pattern.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _rule.SetAccessPath(path, validateHasBeenSet);
-        _pattern.SetAccessPath(path, validateHasBeenSet);
+        _rule.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pattern.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -41,42 +41,46 @@ public sealed class MessageLink
         MessageId = messageId;
     }
     
-    private PropertyValue<string> _channelKey = new PropertyValue<string>(nameof(MessageLink), nameof(ChannelKey));
+    private PropertyValue<string> _channelKey = new PropertyValue<string>(nameof(MessageLink), nameof(ChannelKey), "channelKey");
     
     [Required]
     [JsonPropertyName("channelKey")]
     public string ChannelKey
     {
-        get => _channelKey.GetValue();
+        get => _channelKey.GetValue(InlineErrors);
         set => _channelKey.SetValue(value);
     }
 
-    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(MessageLink), nameof(ChannelId));
+    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(MessageLink), nameof(ChannelId), "channelId");
     
     [Required]
     [JsonPropertyName("channelId")]
     public string ChannelId
     {
-        get => _channelId.GetValue();
+        get => _channelId.GetValue(InlineErrors);
         set => _channelId.SetValue(value);
     }
 
-    private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(MessageLink), nameof(MessageId));
+    private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(MessageLink), nameof(MessageId), "messageId");
     
     [Required]
     [JsonPropertyName("messageId")]
     public string MessageId
     {
-        get => _messageId.GetValue();
+        get => _messageId.GetValue(InlineErrors);
         set => _messageId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _channelKey.SetAccessPath(path, validateHasBeenSet);
-        _channelId.SetAccessPath(path, validateHasBeenSet);
-        _messageId.SetAccessPath(path, validateHasBeenSet);
+        _channelKey.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messageId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

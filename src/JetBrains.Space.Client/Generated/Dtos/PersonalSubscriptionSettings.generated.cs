@@ -41,42 +41,46 @@ public sealed class PersonalSubscriptionSettings
         EnabledCodes = enabledCodes;
     }
     
-    private PropertyValue<PrivateFeed> _feed = new PropertyValue<PrivateFeed>(nameof(PersonalSubscriptionSettings), nameof(Feed));
+    private PropertyValue<PrivateFeed> _feed = new PropertyValue<PrivateFeed>(nameof(PersonalSubscriptionSettings), nameof(Feed), "feed");
     
     [Required]
     [JsonPropertyName("feed")]
     public PrivateFeed Feed
     {
-        get => _feed.GetValue();
+        get => _feed.GetValue(InlineErrors);
         set => _feed.SetValue(value);
     }
 
-    private PropertyValue<List<PersonalSubscriptionSubjectSettings>> _subjectSettings = new PropertyValue<List<PersonalSubscriptionSubjectSettings>>(nameof(PersonalSubscriptionSettings), nameof(SubjectSettings), new List<PersonalSubscriptionSubjectSettings>());
+    private PropertyValue<List<PersonalSubscriptionSubjectSettings>> _subjectSettings = new PropertyValue<List<PersonalSubscriptionSubjectSettings>>(nameof(PersonalSubscriptionSettings), nameof(SubjectSettings), "subjectSettings", new List<PersonalSubscriptionSubjectSettings>());
     
     [Required]
     [JsonPropertyName("subjectSettings")]
     public List<PersonalSubscriptionSubjectSettings> SubjectSettings
     {
-        get => _subjectSettings.GetValue();
+        get => _subjectSettings.GetValue(InlineErrors);
         set => _subjectSettings.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _enabledCodes = new PropertyValue<List<string>>(nameof(PersonalSubscriptionSettings), nameof(EnabledCodes), new List<string>());
+    private PropertyValue<List<string>> _enabledCodes = new PropertyValue<List<string>>(nameof(PersonalSubscriptionSettings), nameof(EnabledCodes), "enabledCodes", new List<string>());
     
     [Required]
     [JsonPropertyName("enabledCodes")]
     public List<string> EnabledCodes
     {
-        get => _enabledCodes.GetValue();
+        get => _enabledCodes.GetValue(InlineErrors);
         set => _enabledCodes.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _feed.SetAccessPath(path, validateHasBeenSet);
-        _subjectSettings.SetAccessPath(path, validateHasBeenSet);
-        _enabledCodes.SetAccessPath(path, validateHasBeenSet);
+        _feed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subjectSettings.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enabledCodes.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

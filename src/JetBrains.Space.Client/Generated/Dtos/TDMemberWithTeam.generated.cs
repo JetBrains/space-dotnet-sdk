@@ -40,31 +40,35 @@ public sealed class TDMemberWithTeam
         Teams = teams;
     }
     
-    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(TDMemberWithTeam), nameof(Profile));
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(TDMemberWithTeam), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public TDMemberProfile Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(TDMemberWithTeam), nameof(Teams), new List<TDTeam>());
+    private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(TDMemberWithTeam), nameof(Teams), "teams", new List<TDTeam>());
     
     [Required]
     [JsonPropertyName("teams")]
     public List<TDTeam> Teams
     {
-        get => _teams.GetValue();
+        get => _teams.GetValue(InlineErrors);
         set => _teams.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _teams.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _teams.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

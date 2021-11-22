@@ -43,29 +43,33 @@ public sealed class SpaceNewsFeedChannel
         IsSupportReplies = supportReplies;
     }
     
-    private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(SpaceNewsFeedChannel), nameof(NotificationDefaults));
+    private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(SpaceNewsFeedChannel), nameof(NotificationDefaults), "notificationDefaults");
     
     [JsonPropertyName("notificationDefaults")]
     public ChannelSpecificDefaults? NotificationDefaults
     {
-        get => _notificationDefaults.GetValue();
+        get => _notificationDefaults.GetValue(InlineErrors);
         set => _notificationDefaults.SetValue(value);
     }
 
-    private PropertyValue<bool?> _supportReplies = new PropertyValue<bool?>(nameof(SpaceNewsFeedChannel), nameof(IsSupportReplies));
+    private PropertyValue<bool?> _supportReplies = new PropertyValue<bool?>(nameof(SpaceNewsFeedChannel), nameof(IsSupportReplies), "supportReplies");
     
     [JsonPropertyName("supportReplies")]
     public bool? IsSupportReplies
     {
-        get => _supportReplies.GetValue();
+        get => _supportReplies.GetValue(InlineErrors);
         set => _supportReplies.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-        _supportReplies.SetAccessPath(path, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _supportReplies.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

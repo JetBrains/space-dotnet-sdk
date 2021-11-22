@@ -42,20 +42,24 @@ public sealed class OpenEnumCFUpdateParameters
         Modifications = modifications;
     }
     
-    private PropertyValue<List<CFEnumValueModification>> _modifications = new PropertyValue<List<CFEnumValueModification>>(nameof(OpenEnumCFUpdateParameters), nameof(Modifications), new List<CFEnumValueModification>());
+    private PropertyValue<List<CFEnumValueModification>> _modifications = new PropertyValue<List<CFEnumValueModification>>(nameof(OpenEnumCFUpdateParameters), nameof(Modifications), "modifications", new List<CFEnumValueModification>());
     
     [Required]
     [JsonPropertyName("modifications")]
     public List<CFEnumValueModification> Modifications
     {
-        get => _modifications.GetValue();
+        get => _modifications.GetValue(InlineErrors);
         set => _modifications.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _modifications.SetAccessPath(path, validateHasBeenSet);
+        _modifications.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

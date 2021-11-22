@@ -39,20 +39,24 @@ public class ProjectsForProjectPackagesRepositoriesForRepositoryCleanupDryPostRe
         RetentionParams = retentionParams;
     }
     
-    private PropertyValue<RetentionPolicyParams> _retentionParams = new PropertyValue<RetentionPolicyParams>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryCleanupDryPostRequest), nameof(RetentionParams));
+    private PropertyValue<RetentionPolicyParams> _retentionParams = new PropertyValue<RetentionPolicyParams>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryCleanupDryPostRequest), nameof(RetentionParams), "retentionParams");
     
     [Required]
     [JsonPropertyName("retentionParams")]
     public RetentionPolicyParams RetentionParams
     {
-        get => _retentionParams.GetValue();
+        get => _retentionParams.GetValue(InlineErrors);
         set => _retentionParams.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _retentionParams.SetAccessPath(path, validateHasBeenSet);
+        _retentionParams.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

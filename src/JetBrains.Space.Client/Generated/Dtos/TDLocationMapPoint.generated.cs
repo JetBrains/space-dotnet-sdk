@@ -45,84 +45,88 @@ public sealed class TDLocationMapPoint
         IsDeleted = deleted;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationMapPoint), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationMapPoint), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string?> _mapId = new PropertyValue<string?>(nameof(TDLocationMapPoint), nameof(MapId));
+    private PropertyValue<string?> _mapId = new PropertyValue<string?>(nameof(TDLocationMapPoint), nameof(MapId), "mapId");
     
     [JsonPropertyName("mapId")]
     public string? MapId
     {
-        get => _mapId.GetValue();
+        get => _mapId.GetValue(InlineErrors);
         set => _mapId.SetValue(value);
     }
 
-    private PropertyValue<int> _x = new PropertyValue<int>(nameof(TDLocationMapPoint), nameof(X));
+    private PropertyValue<int> _x = new PropertyValue<int>(nameof(TDLocationMapPoint), nameof(X), "x");
     
     [Required]
     [JsonPropertyName("x")]
     public int X
     {
-        get => _x.GetValue();
+        get => _x.GetValue(InlineErrors);
         set => _x.SetValue(value);
     }
 
-    private PropertyValue<int> _y = new PropertyValue<int>(nameof(TDLocationMapPoint), nameof(Y));
+    private PropertyValue<int> _y = new PropertyValue<int>(nameof(TDLocationMapPoint), nameof(Y), "y");
     
     [Required]
     [JsonPropertyName("y")]
     public int Y
     {
-        get => _y.GetValue();
+        get => _y.GetValue(InlineErrors);
         set => _y.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(TDLocationMapPoint), nameof(Created));
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(TDLocationMapPoint), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<string?> _memberLocation = new PropertyValue<string?>(nameof(TDLocationMapPoint), nameof(MemberLocation));
+    private PropertyValue<string?> _memberLocation = new PropertyValue<string?>(nameof(TDLocationMapPoint), nameof(MemberLocation), "memberLocation");
     
     [JsonPropertyName("memberLocation")]
     public string? MemberLocation
     {
-        get => _memberLocation.GetValue();
+        get => _memberLocation.GetValue(InlineErrors);
         set => _memberLocation.SetValue(value);
     }
 
-    private PropertyValue<bool?> _deleted = new PropertyValue<bool?>(nameof(TDLocationMapPoint), nameof(IsDeleted));
+    private PropertyValue<bool?> _deleted = new PropertyValue<bool?>(nameof(TDLocationMapPoint), nameof(IsDeleted), "deleted");
     
     [JsonPropertyName("deleted")]
     public bool? IsDeleted
     {
-        get => _deleted.GetValue();
+        get => _deleted.GetValue(InlineErrors);
         set => _deleted.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _mapId.SetAccessPath(path, validateHasBeenSet);
-        _x.SetAccessPath(path, validateHasBeenSet);
-        _y.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _memberLocation.SetAccessPath(path, validateHasBeenSet);
-        _deleted.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mapId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _x.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _y.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _memberLocation.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

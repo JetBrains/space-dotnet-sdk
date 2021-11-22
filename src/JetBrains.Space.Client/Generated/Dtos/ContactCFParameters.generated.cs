@@ -42,19 +42,23 @@ public sealed class ContactCFParameters
         ContactKind = contactKind;
     }
     
-    private PropertyValue<TDContactKind?> _contactKind = new PropertyValue<TDContactKind?>(nameof(ContactCFParameters), nameof(ContactKind));
+    private PropertyValue<TDContactKind?> _contactKind = new PropertyValue<TDContactKind?>(nameof(ContactCFParameters), nameof(ContactKind), "contactKind");
     
     [JsonPropertyName("contactKind")]
     public TDContactKind? ContactKind
     {
-        get => _contactKind.GetValue();
+        get => _contactKind.GetValue(InlineErrors);
         set => _contactKind.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _contactKind.SetAccessPath(path, validateHasBeenSet);
+        _contactKind.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

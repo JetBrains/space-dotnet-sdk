@@ -43,31 +43,35 @@ public sealed class M2ChannelContentTeam
         NotificationDefaults = notificationDefaults;
     }
     
-    private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(M2ChannelContentTeam), nameof(Team));
+    private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(M2ChannelContentTeam), nameof(Team), "team");
     
     [Required]
     [JsonPropertyName("team")]
     public TDTeam Team
     {
-        get => _team.GetValue();
+        get => _team.GetValue(InlineErrors);
         set => _team.SetValue(value);
     }
 
-    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentTeam), nameof(NotificationDefaults));
+    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentTeam), nameof(NotificationDefaults), "notificationDefaults");
     
     [Required]
     [JsonPropertyName("notificationDefaults")]
     public ChannelSpecificDefaults NotificationDefaults
     {
-        get => _notificationDefaults.GetValue();
+        get => _notificationDefaults.GetValue(InlineErrors);
         set => _notificationDefaults.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _team.SetAccessPath(path, validateHasBeenSet);
-        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+        _team.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

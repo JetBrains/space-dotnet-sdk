@@ -42,53 +42,57 @@ public sealed class PRPrivateProject
         Admins = admins;
     }
     
-    private PropertyValue<ProjectKey> _key = new PropertyValue<ProjectKey>(nameof(PRPrivateProject), nameof(Key));
+    private PropertyValue<ProjectKey> _key = new PropertyValue<ProjectKey>(nameof(PRPrivateProject), nameof(Key), "key");
     
     [Required]
     [JsonPropertyName("key")]
     public ProjectKey Key
     {
-        get => _key.GetValue();
+        get => _key.GetValue(InlineErrors);
         set => _key.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PRPrivateProject), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PRPrivateProject), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<bool> _accessAllowed = new PropertyValue<bool>(nameof(PRPrivateProject), nameof(IsAccessAllowed));
+    private PropertyValue<bool> _accessAllowed = new PropertyValue<bool>(nameof(PRPrivateProject), nameof(IsAccessAllowed), "accessAllowed");
     
     [Required]
     [JsonPropertyName("accessAllowed")]
     public bool IsAccessAllowed
     {
-        get => _accessAllowed.GetValue();
+        get => _accessAllowed.GetValue(InlineErrors);
         set => _accessAllowed.SetValue(value);
     }
 
-    private PropertyValue<List<TDMemberProfile>> _admins = new PropertyValue<List<TDMemberProfile>>(nameof(PRPrivateProject), nameof(Admins), new List<TDMemberProfile>());
+    private PropertyValue<List<TDMemberProfile>> _admins = new PropertyValue<List<TDMemberProfile>>(nameof(PRPrivateProject), nameof(Admins), "admins", new List<TDMemberProfile>());
     
     [Required]
     [JsonPropertyName("admins")]
     public List<TDMemberProfile> Admins
     {
-        get => _admins.GetValue();
+        get => _admins.GetValue(InlineErrors);
         set => _admins.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _key.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _accessAllowed.SetAccessPath(path, validateHasBeenSet);
-        _admins.SetAccessPath(path, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _accessAllowed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _admins.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

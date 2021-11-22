@@ -40,31 +40,35 @@ public sealed class NonWorkingDaysEvent
         Days = days;
     }
     
-    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(NonWorkingDaysEvent), nameof(Profile));
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(NonWorkingDaysEvent), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public TDMemberProfile Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<List<NonWorkingDays>> _days = new PropertyValue<List<NonWorkingDays>>(nameof(NonWorkingDaysEvent), nameof(Days), new List<NonWorkingDays>());
+    private PropertyValue<List<NonWorkingDays>> _days = new PropertyValue<List<NonWorkingDays>>(nameof(NonWorkingDaysEvent), nameof(Days), "days", new List<NonWorkingDays>());
     
     [Required]
     [JsonPropertyName("days")]
     public List<NonWorkingDays> Days
     {
-        get => _days.GetValue();
+        get => _days.GetValue(InlineErrors);
         set => _days.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _days.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _days.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

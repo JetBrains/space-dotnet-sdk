@@ -42,50 +42,54 @@ public sealed class AppMessageDeliveryDTOClientErrorDTO
         CauseMessage = causeMessage;
     }
     
-    private PropertyValue<string> _className = new PropertyValue<string>(nameof(AppMessageDeliveryDTOClientErrorDTO), nameof(ClassName));
+    private PropertyValue<string> _className = new PropertyValue<string>(nameof(AppMessageDeliveryDTOClientErrorDTO), nameof(ClassName), "className");
     
     [Required]
     [JsonPropertyName("className")]
     public string ClassName
     {
-        get => _className.GetValue();
+        get => _className.GetValue(InlineErrors);
         set => _className.SetValue(value);
     }
 
-    private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(AppMessageDeliveryDTOClientErrorDTO), nameof(Message));
+    private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(AppMessageDeliveryDTOClientErrorDTO), nameof(Message), "message");
     
     [JsonPropertyName("message")]
     public string? Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    private PropertyValue<string?> _causeClassName = new PropertyValue<string?>(nameof(AppMessageDeliveryDTOClientErrorDTO), nameof(CauseClassName));
+    private PropertyValue<string?> _causeClassName = new PropertyValue<string?>(nameof(AppMessageDeliveryDTOClientErrorDTO), nameof(CauseClassName), "causeClassName");
     
     [JsonPropertyName("causeClassName")]
     public string? CauseClassName
     {
-        get => _causeClassName.GetValue();
+        get => _causeClassName.GetValue(InlineErrors);
         set => _causeClassName.SetValue(value);
     }
 
-    private PropertyValue<string?> _causeMessage = new PropertyValue<string?>(nameof(AppMessageDeliveryDTOClientErrorDTO), nameof(CauseMessage));
+    private PropertyValue<string?> _causeMessage = new PropertyValue<string?>(nameof(AppMessageDeliveryDTOClientErrorDTO), nameof(CauseMessage), "causeMessage");
     
     [JsonPropertyName("causeMessage")]
     public string? CauseMessage
     {
-        get => _causeMessage.GetValue();
+        get => _causeMessage.GetValue(InlineErrors);
         set => _causeMessage.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _className.SetAccessPath(path, validateHasBeenSet);
-        _message.SetAccessPath(path, validateHasBeenSet);
-        _causeClassName.SetAccessPath(path, validateHasBeenSet);
-        _causeMessage.SetAccessPath(path, validateHasBeenSet);
+        _className.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _causeClassName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _causeMessage.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -44,41 +44,45 @@ public sealed class UnfurlDetailsDateTimeRange
         Params = @params;
     }
     
-    private PropertyValue<long> _since = new PropertyValue<long>(nameof(UnfurlDetailsDateTimeRange), nameof(Since));
+    private PropertyValue<long> _since = new PropertyValue<long>(nameof(UnfurlDetailsDateTimeRange), nameof(Since), "since");
     
     [Required]
     [JsonPropertyName("since")]
     public long Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<long> _till = new PropertyValue<long>(nameof(UnfurlDetailsDateTimeRange), nameof(Till));
+    private PropertyValue<long> _till = new PropertyValue<long>(nameof(UnfurlDetailsDateTimeRange), nameof(Till), "till");
     
     [Required]
     [JsonPropertyName("till")]
     public long Till
     {
-        get => _till.GetValue();
+        get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    private PropertyValue<DateTimeViewParams?> _params = new PropertyValue<DateTimeViewParams?>(nameof(UnfurlDetailsDateTimeRange), nameof(Params));
+    private PropertyValue<DateTimeViewParams?> _params = new PropertyValue<DateTimeViewParams?>(nameof(UnfurlDetailsDateTimeRange), nameof(Params), "params");
     
     [JsonPropertyName("params")]
     public DateTimeViewParams? Params
     {
-        get => _params.GetValue();
+        get => _params.GetValue(InlineErrors);
         set => _params.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _till.SetAccessPath(path, validateHasBeenSet);
-        _params.SetAccessPath(path, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _till.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _params.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

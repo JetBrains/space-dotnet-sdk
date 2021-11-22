@@ -44,70 +44,74 @@ public sealed class ESSamlAttributeNames
         IsEmailVerified = emailVerified;
     }
     
-    private PropertyValue<string?> _loginAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNames), nameof(LoginAttributeName));
+    private PropertyValue<string?> _loginAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNames), nameof(LoginAttributeName), "loginAttributeName");
     
     [JsonPropertyName("loginAttributeName")]
     public string? LoginAttributeName
     {
-        get => _loginAttributeName.GetValue();
+        get => _loginAttributeName.GetValue(InlineErrors);
         set => _loginAttributeName.SetValue(value);
     }
 
-    private PropertyValue<string?> _firstNameAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNames), nameof(FirstNameAttributeName));
+    private PropertyValue<string?> _firstNameAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNames), nameof(FirstNameAttributeName), "firstNameAttributeName");
     
     [JsonPropertyName("firstNameAttributeName")]
     public string? FirstNameAttributeName
     {
-        get => _firstNameAttributeName.GetValue();
+        get => _firstNameAttributeName.GetValue(InlineErrors);
         set => _firstNameAttributeName.SetValue(value);
     }
 
-    private PropertyValue<string?> _lastNameAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNames), nameof(LastNameAttributeName));
+    private PropertyValue<string?> _lastNameAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNames), nameof(LastNameAttributeName), "lastNameAttributeName");
     
     [JsonPropertyName("lastNameAttributeName")]
     public string? LastNameAttributeName
     {
-        get => _lastNameAttributeName.GetValue();
+        get => _lastNameAttributeName.GetValue(InlineErrors);
         set => _lastNameAttributeName.SetValue(value);
     }
 
-    private PropertyValue<string?> _fullNameAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNames), nameof(FullNameAttributeName));
+    private PropertyValue<string?> _fullNameAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNames), nameof(FullNameAttributeName), "fullNameAttributeName");
     
     [JsonPropertyName("fullNameAttributeName")]
     public string? FullNameAttributeName
     {
-        get => _fullNameAttributeName.GetValue();
+        get => _fullNameAttributeName.GetValue(InlineErrors);
         set => _fullNameAttributeName.SetValue(value);
     }
 
-    private PropertyValue<string?> _emailAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNames), nameof(EmailAttributeName));
+    private PropertyValue<string?> _emailAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNames), nameof(EmailAttributeName), "emailAttributeName");
     
     [JsonPropertyName("emailAttributeName")]
     public string? EmailAttributeName
     {
-        get => _emailAttributeName.GetValue();
+        get => _emailAttributeName.GetValue(InlineErrors);
         set => _emailAttributeName.SetValue(value);
     }
 
-    private PropertyValue<bool> _emailVerified = new PropertyValue<bool>(nameof(ESSamlAttributeNames), nameof(IsEmailVerified));
+    private PropertyValue<bool> _emailVerified = new PropertyValue<bool>(nameof(ESSamlAttributeNames), nameof(IsEmailVerified), "emailVerified");
     
     [Required]
     [JsonPropertyName("emailVerified")]
     public bool IsEmailVerified
     {
-        get => _emailVerified.GetValue();
+        get => _emailVerified.GetValue(InlineErrors);
         set => _emailVerified.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _loginAttributeName.SetAccessPath(path, validateHasBeenSet);
-        _firstNameAttributeName.SetAccessPath(path, validateHasBeenSet);
-        _lastNameAttributeName.SetAccessPath(path, validateHasBeenSet);
-        _fullNameAttributeName.SetAccessPath(path, validateHasBeenSet);
-        _emailAttributeName.SetAccessPath(path, validateHasBeenSet);
-        _emailVerified.SetAccessPath(path, validateHasBeenSet);
+        _loginAttributeName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _firstNameAttributeName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastNameAttributeName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _fullNameAttributeName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _emailAttributeName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _emailVerified.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

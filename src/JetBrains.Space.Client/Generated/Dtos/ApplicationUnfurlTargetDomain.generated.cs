@@ -42,20 +42,24 @@ public sealed class ApplicationUnfurlTargetDomain
         Domain = domain;
     }
     
-    private PropertyValue<string> _domain = new PropertyValue<string>(nameof(ApplicationUnfurlTargetDomain), nameof(Domain));
+    private PropertyValue<string> _domain = new PropertyValue<string>(nameof(ApplicationUnfurlTargetDomain), nameof(Domain), "domain");
     
     [Required]
     [JsonPropertyName("domain")]
     public string Domain
     {
-        get => _domain.GetValue();
+        get => _domain.GetValue(InlineErrors);
         set => _domain.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _domain.SetAccessPath(path, validateHasBeenSet);
+        _domain.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

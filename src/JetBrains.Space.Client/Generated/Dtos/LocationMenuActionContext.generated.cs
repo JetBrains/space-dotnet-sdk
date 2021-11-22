@@ -43,31 +43,35 @@ public sealed class LocationMenuActionContext
         Location = location;
     }
     
-    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(LocationMenuActionContext), nameof(MenuId));
+    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(LocationMenuActionContext), nameof(MenuId), "menuId");
     
     [Required]
     [JsonPropertyName("menuId")]
     public string MenuId
     {
-        get => _menuId.GetValue();
+        get => _menuId.GetValue(InlineErrors);
         set => _menuId.SetValue(value);
     }
 
-    private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(LocationMenuActionContext), nameof(Location));
+    private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(LocationMenuActionContext), nameof(Location), "location");
     
     [Required]
     [JsonPropertyName("location")]
     public TDLocation Location
     {
-        get => _location.GetValue();
+        get => _location.GetValue(InlineErrors);
         set => _location.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _menuId.SetAccessPath(path, validateHasBeenSet);
-        _location.SetAccessPath(path, validateHasBeenSet);
+        _menuId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _location.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,31 +40,35 @@ public class ApplicationsForApplicationSshKeysPostRequest
         Comment = comment;
     }
     
-    private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(ApplicationsForApplicationSshKeysPostRequest), nameof(PublicKey));
+    private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(ApplicationsForApplicationSshKeysPostRequest), nameof(PublicKey), "publicKey");
     
     [Required]
     [JsonPropertyName("publicKey")]
     public string PublicKey
     {
-        get => _publicKey.GetValue();
+        get => _publicKey.GetValue(InlineErrors);
         set => _publicKey.SetValue(value);
     }
 
-    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(ApplicationsForApplicationSshKeysPostRequest), nameof(Comment));
+    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(ApplicationsForApplicationSshKeysPostRequest), nameof(Comment), "comment");
     
     [Required]
     [JsonPropertyName("comment")]
     public string Comment
     {
-        get => _comment.GetValue();
+        get => _comment.GetValue(InlineErrors);
         set => _comment.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _publicKey.SetAccessPath(path, validateHasBeenSet);
-        _comment.SetAccessPath(path, validateHasBeenSet);
+        _publicKey.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _comment.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

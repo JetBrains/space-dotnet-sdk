@@ -44,42 +44,46 @@ public sealed class HATypeRef
         Tags = tags;
     }
     
-    private PropertyValue<HADto> _dto = new PropertyValue<HADto>(nameof(HATypeRef), nameof(Dto));
+    private PropertyValue<HADto> _dto = new PropertyValue<HADto>(nameof(HATypeRef), nameof(Dto), "dto");
     
     [Required]
     [JsonPropertyName("dto")]
     public HADto Dto
     {
-        get => _dto.GetValue();
+        get => _dto.GetValue(InlineErrors);
         set => _dto.SetValue(value);
     }
 
-    private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeRef), nameof(IsNullable));
+    private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeRef), nameof(IsNullable), "nullable");
     
     [Required]
     [JsonPropertyName("nullable")]
     public bool IsNullable
     {
-        get => _nullable.GetValue();
+        get => _nullable.GetValue(InlineErrors);
         set => _nullable.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypeRef), nameof(Tags), new List<string>());
+    private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypeRef), nameof(Tags), "tags", new List<string>());
     
     [Required]
     [JsonPropertyName("tags")]
     public List<string> Tags
     {
-        get => _tags.GetValue();
+        get => _tags.GetValue(InlineErrors);
         set => _tags.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _dto.SetAccessPath(path, validateHasBeenSet);
-        _nullable.SetAccessPath(path, validateHasBeenSet);
-        _tags.SetAccessPath(path, validateHasBeenSet);
+        _dto.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _nullable.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

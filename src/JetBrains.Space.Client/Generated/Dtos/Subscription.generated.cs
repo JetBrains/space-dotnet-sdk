@@ -41,42 +41,46 @@ public sealed class Subscription
         EventTypeCodes = eventTypeCodes;
     }
     
-    private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(Subscription), nameof(SubjectCode));
+    private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(Subscription), nameof(SubjectCode), "subjectCode");
     
     [Required]
     [JsonPropertyName("subjectCode")]
     public string SubjectCode
     {
-        get => _subjectCode.GetValue();
+        get => _subjectCode.GetValue(InlineErrors);
         set => _subjectCode.SetValue(value);
     }
 
-    private PropertyValue<List<SubscriptionFilter>> _filters = new PropertyValue<List<SubscriptionFilter>>(nameof(Subscription), nameof(Filters), new List<SubscriptionFilter>());
+    private PropertyValue<List<SubscriptionFilter>> _filters = new PropertyValue<List<SubscriptionFilter>>(nameof(Subscription), nameof(Filters), "filters", new List<SubscriptionFilter>());
     
     [Required]
     [JsonPropertyName("filters")]
     public List<SubscriptionFilter> Filters
     {
-        get => _filters.GetValue();
+        get => _filters.GetValue(InlineErrors);
         set => _filters.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _eventTypeCodes = new PropertyValue<List<string>>(nameof(Subscription), nameof(EventTypeCodes), new List<string>());
+    private PropertyValue<List<string>> _eventTypeCodes = new PropertyValue<List<string>>(nameof(Subscription), nameof(EventTypeCodes), "eventTypeCodes", new List<string>());
     
     [Required]
     [JsonPropertyName("eventTypeCodes")]
     public List<string> EventTypeCodes
     {
-        get => _eventTypeCodes.GetValue();
+        get => _eventTypeCodes.GetValue(InlineErrors);
         set => _eventTypeCodes.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _subjectCode.SetAccessPath(path, validateHasBeenSet);
-        _filters.SetAccessPath(path, validateHasBeenSet);
-        _eventTypeCodes.SetAccessPath(path, validateHasBeenSet);
+        _subjectCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _filters.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _eventTypeCodes.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

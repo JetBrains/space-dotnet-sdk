@@ -43,30 +43,34 @@ public sealed class MessageText
         Content = content;
     }
     
-    private PropertyValue<MessageAccessoryElement?> _accessory = new PropertyValue<MessageAccessoryElement?>(nameof(MessageText), nameof(Accessory));
+    private PropertyValue<MessageAccessoryElement?> _accessory = new PropertyValue<MessageAccessoryElement?>(nameof(MessageText), nameof(Accessory), "accessory");
     
     [JsonPropertyName("accessory")]
     public MessageAccessoryElement? Accessory
     {
-        get => _accessory.GetValue();
+        get => _accessory.GetValue(InlineErrors);
         set => _accessory.SetValue(value);
     }
 
-    private PropertyValue<string> _content = new PropertyValue<string>(nameof(MessageText), nameof(Content));
+    private PropertyValue<string> _content = new PropertyValue<string>(nameof(MessageText), nameof(Content), "content");
     
     [Required]
     [JsonPropertyName("content")]
     public string Content
     {
-        get => _content.GetValue();
+        get => _content.GetValue(InlineErrors);
         set => _content.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _accessory.SetAccessPath(path, validateHasBeenSet);
-        _content.SetAccessPath(path, validateHasBeenSet);
+        _accessory.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _content.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

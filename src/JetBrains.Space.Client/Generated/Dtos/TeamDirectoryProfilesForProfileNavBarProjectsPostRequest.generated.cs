@@ -39,20 +39,24 @@ public class TeamDirectoryProfilesForProfileNavBarProjectsPostRequest
         Project = project;
     }
     
-    private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(TeamDirectoryProfilesForProfileNavBarProjectsPostRequest), nameof(Project));
+    private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(TeamDirectoryProfilesForProfileNavBarProjectsPostRequest), nameof(Project), "project");
     
     [Required]
     [JsonPropertyName("project")]
     public ProjectIdentifier Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

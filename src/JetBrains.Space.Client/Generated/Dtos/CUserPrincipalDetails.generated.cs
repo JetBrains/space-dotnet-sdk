@@ -42,20 +42,24 @@ public sealed class CUserPrincipalDetails
         User = user;
     }
     
-    private PropertyValue<TDMemberProfile> _user = new PropertyValue<TDMemberProfile>(nameof(CUserPrincipalDetails), nameof(User));
+    private PropertyValue<TDMemberProfile> _user = new PropertyValue<TDMemberProfile>(nameof(CUserPrincipalDetails), nameof(User), "user");
     
     [Required]
     [JsonPropertyName("user")]
     public TDMemberProfile User
     {
-        get => _user.GetValue();
+        get => _user.GetValue(InlineErrors);
         set => _user.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _user.SetAccessPath(path, validateHasBeenSet);
+        _user.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

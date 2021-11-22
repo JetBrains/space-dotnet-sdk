@@ -43,31 +43,35 @@ public sealed class MCIcon
         Style = style;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(MCIcon), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(MCIcon), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCIcon), nameof(Style));
+    private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCIcon), nameof(Style), "style");
     
     [Required]
     [JsonPropertyName("style")]
     public string Style
     {
-        get => _style.GetValue();
+        get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _style.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _style.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

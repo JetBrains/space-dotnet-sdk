@@ -54,178 +54,182 @@ public sealed class ChannelItemRecord
         Issues = issues;
     }
     
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChannelItemRecord), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChannelItemRecord), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<M2ItemContentDetails?> _details = new PropertyValue<M2ItemContentDetails?>(nameof(ChannelItemRecord), nameof(Details));
+    private PropertyValue<M2ItemContentDetails?> _details = new PropertyValue<M2ItemContentDetails?>(nameof(ChannelItemRecord), nameof(Details), "details");
     
     [JsonPropertyName("details")]
     public M2ItemContentDetails? Details
     {
-        get => _details.GetValue();
+        get => _details.GetValue(InlineErrors);
         set => _details.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal> _author = new PropertyValue<CPrincipal>(nameof(ChannelItemRecord), nameof(Author));
+    private PropertyValue<CPrincipal> _author = new PropertyValue<CPrincipal>(nameof(ChannelItemRecord), nameof(Author), "author");
     
     [Required]
     [JsonPropertyName("author")]
     public CPrincipal Author
     {
-        get => _author.GetValue();
+        get => _author.GetValue(InlineErrors);
         set => _author.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ChannelItemRecord), nameof(Created));
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ChannelItemRecord), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<long> _time = new PropertyValue<long>(nameof(ChannelItemRecord), nameof(Time));
+    private PropertyValue<long> _time = new PropertyValue<long>(nameof(ChannelItemRecord), nameof(Time), "time");
     
     [Required]
     [JsonPropertyName("time")]
     public long Time
     {
-        get => _time.GetValue();
+        get => _time.GetValue(InlineErrors);
         set => _time.SetValue(value);
     }
 
-    private PropertyValue<AllReactionsToItemRecord?> _reactions = new PropertyValue<AllReactionsToItemRecord?>(nameof(ChannelItemRecord), nameof(Reactions));
+    private PropertyValue<AllReactionsToItemRecord?> _reactions = new PropertyValue<AllReactionsToItemRecord?>(nameof(ChannelItemRecord), nameof(Reactions), "reactions");
     
     [JsonPropertyName("reactions")]
     public AllReactionsToItemRecord? Reactions
     {
-        get => _reactions.GetValue();
+        get => _reactions.GetValue(InlineErrors);
         set => _reactions.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelRecord?> _thread = new PropertyValue<M2ChannelRecord?>(nameof(ChannelItemRecord), nameof(Thread));
+    private PropertyValue<M2ChannelRecord?> _thread = new PropertyValue<M2ChannelRecord?>(nameof(ChannelItemRecord), nameof(Thread), "thread");
     
     [JsonPropertyName("thread")]
     public M2ChannelRecord? Thread
     {
-        get => _thread.GetValue();
+        get => _thread.GetValue(InlineErrors);
         set => _thread.SetValue(value);
     }
 
-    private PropertyValue<ChannelItemRecord?> _projectedItem = new PropertyValue<ChannelItemRecord?>(nameof(ChannelItemRecord), nameof(ProjectedItem));
+    private PropertyValue<ChannelItemRecord?> _projectedItem = new PropertyValue<ChannelItemRecord?>(nameof(ChannelItemRecord), nameof(ProjectedItem), "projectedItem");
     
     [JsonPropertyName("projectedItem")]
     public ChannelItemRecord? ProjectedItem
     {
-        get => _projectedItem.GetValue();
+        get => _projectedItem.GetValue(InlineErrors);
         set => _projectedItem.SetValue(value);
     }
 
-    private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ChannelItemRecord), nameof(Attachments));
+    private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ChannelItemRecord), nameof(Attachments), "attachments");
     
     [JsonPropertyName("attachments")]
     public List<AttachmentInfo>? Attachments
     {
-        get => _attachments.GetValue();
+        get => _attachments.GetValue(InlineErrors);
         set => _attachments.SetValue(value);
     }
 
-    private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(ChannelItemRecord), nameof(IsPending));
+    private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(ChannelItemRecord), nameof(IsPending), "pending");
     
     [JsonPropertyName("pending")]
     public bool? IsPending
     {
-        get => _pending.GetValue();
+        get => _pending.GetValue(InlineErrors);
         set => _pending.SetValue(value);
     }
 
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ChannelItemRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ChannelItemRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ChannelItemRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ChannelItemRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _edited = new PropertyValue<DateTime?>(nameof(ChannelItemRecord), nameof(Edited));
+    private PropertyValue<DateTime?> _edited = new PropertyValue<DateTime?>(nameof(ChannelItemRecord), nameof(Edited), "edited");
     
     [JsonPropertyName("edited")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? Edited
     {
-        get => _edited.GetValue();
+        get => _edited.GetValue(InlineErrors);
         set => _edited.SetValue(value);
     }
 
-    private PropertyValue<bool?> _pinned = new PropertyValue<bool?>(nameof(ChannelItemRecord), nameof(IsPinned));
+    private PropertyValue<bool?> _pinned = new PropertyValue<bool?>(nameof(ChannelItemRecord), nameof(IsPinned), "pinned");
     
     [JsonPropertyName("pinned")]
     public bool? IsPinned
     {
-        get => _pinned.GetValue();
+        get => _pinned.GetValue(InlineErrors);
         set => _pinned.SetValue(value);
     }
 
-    private PropertyValue<List<CPrincipal>?> _suggestedParticipants = new PropertyValue<List<CPrincipal>?>(nameof(ChannelItemRecord), nameof(SuggestedParticipants));
+    private PropertyValue<List<CPrincipal>?> _suggestedParticipants = new PropertyValue<List<CPrincipal>?>(nameof(ChannelItemRecord), nameof(SuggestedParticipants), "suggestedParticipants");
     
     [JsonPropertyName("suggestedParticipants")]
     public List<CPrincipal>? SuggestedParticipants
     {
-        get => _suggestedParticipants.GetValue();
+        get => _suggestedParticipants.GetValue(InlineErrors);
         set => _suggestedParticipants.SetValue(value);
     }
 
-    private PropertyValue<List<Issue>> _issues = new PropertyValue<List<Issue>>(nameof(ChannelItemRecord), nameof(Issues), new List<Issue>());
+    private PropertyValue<List<Issue>> _issues = new PropertyValue<List<Issue>>(nameof(ChannelItemRecord), nameof(Issues), "issues", new List<Issue>());
     
     [Required]
     [JsonPropertyName("issues")]
     public List<Issue> Issues
     {
-        get => _issues.GetValue();
+        get => _issues.GetValue(InlineErrors);
         set => _issues.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _details.SetAccessPath(path, validateHasBeenSet);
-        _author.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _time.SetAccessPath(path, validateHasBeenSet);
-        _reactions.SetAccessPath(path, validateHasBeenSet);
-        _thread.SetAccessPath(path, validateHasBeenSet);
-        _projectedItem.SetAccessPath(path, validateHasBeenSet);
-        _attachments.SetAccessPath(path, validateHasBeenSet);
-        _pending.SetAccessPath(path, validateHasBeenSet);
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _edited.SetAccessPath(path, validateHasBeenSet);
-        _pinned.SetAccessPath(path, validateHasBeenSet);
-        _suggestedParticipants.SetAccessPath(path, validateHasBeenSet);
-        _issues.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _details.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _author.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _time.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reactions.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _thread.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectedItem.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pending.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _edited.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pinned.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _suggestedParticipants.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issues.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

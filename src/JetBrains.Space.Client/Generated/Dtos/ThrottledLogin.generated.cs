@@ -40,32 +40,36 @@ public sealed class ThrottledLogin
         ThrottledUntil = throttledUntil;
     }
     
-    private PropertyValue<string> _login = new PropertyValue<string>(nameof(ThrottledLogin), nameof(Login));
+    private PropertyValue<string> _login = new PropertyValue<string>(nameof(ThrottledLogin), nameof(Login), "login");
     
     [Required]
     [JsonPropertyName("login")]
     public string Login
     {
-        get => _login.GetValue();
+        get => _login.GetValue(InlineErrors);
         set => _login.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _throttledUntil = new PropertyValue<DateTime>(nameof(ThrottledLogin), nameof(ThrottledUntil));
+    private PropertyValue<DateTime> _throttledUntil = new PropertyValue<DateTime>(nameof(ThrottledLogin), nameof(ThrottledUntil), "throttledUntil");
     
     [Required]
     [JsonPropertyName("throttledUntil")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime ThrottledUntil
     {
-        get => _throttledUntil.GetValue();
+        get => _throttledUntil.GetValue(InlineErrors);
         set => _throttledUntil.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _login.SetAccessPath(path, validateHasBeenSet);
-        _throttledUntil.SetAccessPath(path, validateHasBeenSet);
+        _login.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _throttledUntil.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

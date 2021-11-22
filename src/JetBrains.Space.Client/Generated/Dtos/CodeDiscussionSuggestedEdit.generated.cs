@@ -45,84 +45,88 @@ public sealed class CodeDiscussionSuggestedEdit
         EndLineIndexInclusive = endLineIndexInclusive;
     }
     
-    private PropertyValue<string> _suggestionCommitId = new PropertyValue<string>(nameof(CodeDiscussionSuggestedEdit), nameof(SuggestionCommitId));
+    private PropertyValue<string> _suggestionCommitId = new PropertyValue<string>(nameof(CodeDiscussionSuggestedEdit), nameof(SuggestionCommitId), "suggestionCommitId");
     
     [Required]
     [JsonPropertyName("suggestionCommitId")]
     public string SuggestionCommitId
     {
-        get => _suggestionCommitId.GetValue();
+        get => _suggestionCommitId.GetValue(InlineErrors);
         set => _suggestionCommitId.SetValue(value);
     }
 
-    private PropertyValue<CodeDiscussionSuggestedEditState?> _status = new PropertyValue<CodeDiscussionSuggestedEditState?>(nameof(CodeDiscussionSuggestedEdit), nameof(Status));
+    private PropertyValue<CodeDiscussionSuggestedEditState?> _status = new PropertyValue<CodeDiscussionSuggestedEditState?>(nameof(CodeDiscussionSuggestedEdit), nameof(Status), "status");
     
     [JsonPropertyName("status")]
     public CodeDiscussionSuggestedEditState? Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _resolvedBy = new PropertyValue<CPrincipal?>(nameof(CodeDiscussionSuggestedEdit), nameof(ResolvedBy));
+    private PropertyValue<CPrincipal?> _resolvedBy = new PropertyValue<CPrincipal?>(nameof(CodeDiscussionSuggestedEdit), nameof(ResolvedBy), "resolvedBy");
     
     [JsonPropertyName("resolvedBy")]
     public CPrincipal? ResolvedBy
     {
-        get => _resolvedBy.GetValue();
+        get => _resolvedBy.GetValue(InlineErrors);
         set => _resolvedBy.SetValue(value);
     }
 
-    private PropertyValue<string> _filePath = new PropertyValue<string>(nameof(CodeDiscussionSuggestedEdit), nameof(FilePath));
+    private PropertyValue<string> _filePath = new PropertyValue<string>(nameof(CodeDiscussionSuggestedEdit), nameof(FilePath), "filePath");
     
     [Required]
     [JsonPropertyName("filePath")]
     public string FilePath
     {
-        get => _filePath.GetValue();
+        get => _filePath.GetValue(InlineErrors);
         set => _filePath.SetValue(value);
     }
 
-    private PropertyValue<bool> _hasConflicts = new PropertyValue<bool>(nameof(CodeDiscussionSuggestedEdit), nameof(IsHasConflicts));
+    private PropertyValue<bool> _hasConflicts = new PropertyValue<bool>(nameof(CodeDiscussionSuggestedEdit), nameof(IsHasConflicts), "hasConflicts");
     
     [Required]
     [JsonPropertyName("hasConflicts")]
     public bool IsHasConflicts
     {
-        get => _hasConflicts.GetValue();
+        get => _hasConflicts.GetValue(InlineErrors);
         set => _hasConflicts.SetValue(value);
     }
 
-    private PropertyValue<int> _startLineIndex = new PropertyValue<int>(nameof(CodeDiscussionSuggestedEdit), nameof(StartLineIndex));
+    private PropertyValue<int> _startLineIndex = new PropertyValue<int>(nameof(CodeDiscussionSuggestedEdit), nameof(StartLineIndex), "startLineIndex");
     
     [Required]
     [JsonPropertyName("startLineIndex")]
     public int StartLineIndex
     {
-        get => _startLineIndex.GetValue();
+        get => _startLineIndex.GetValue(InlineErrors);
         set => _startLineIndex.SetValue(value);
     }
 
-    private PropertyValue<int> _endLineIndexInclusive = new PropertyValue<int>(nameof(CodeDiscussionSuggestedEdit), nameof(EndLineIndexInclusive));
+    private PropertyValue<int> _endLineIndexInclusive = new PropertyValue<int>(nameof(CodeDiscussionSuggestedEdit), nameof(EndLineIndexInclusive), "endLineIndexInclusive");
     
     [Required]
     [JsonPropertyName("endLineIndexInclusive")]
     public int EndLineIndexInclusive
     {
-        get => _endLineIndexInclusive.GetValue();
+        get => _endLineIndexInclusive.GetValue(InlineErrors);
         set => _endLineIndexInclusive.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _suggestionCommitId.SetAccessPath(path, validateHasBeenSet);
-        _status.SetAccessPath(path, validateHasBeenSet);
-        _resolvedBy.SetAccessPath(path, validateHasBeenSet);
-        _filePath.SetAccessPath(path, validateHasBeenSet);
-        _hasConflicts.SetAccessPath(path, validateHasBeenSet);
-        _startLineIndex.SetAccessPath(path, validateHasBeenSet);
-        _endLineIndexInclusive.SetAccessPath(path, validateHasBeenSet);
+        _suggestionCommitId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _resolvedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _filePath.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hasConflicts.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _startLineIndex.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _endLineIndexInclusive.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -39,20 +39,24 @@ public class TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest
         Code = code;
     }
     
-    private PropertyValue<int> _code = new PropertyValue<int>(nameof(TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest), nameof(Code));
+    private PropertyValue<int> _code = new PropertyValue<int>(nameof(TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest), nameof(Code), "code");
     
     [Required]
     [JsonPropertyName("code")]
     public int Code
     {
-        get => _code.GetValue();
+        get => _code.GetValue(InlineErrors);
         set => _code.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _code.SetAccessPath(path, validateHasBeenSet);
+        _code.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

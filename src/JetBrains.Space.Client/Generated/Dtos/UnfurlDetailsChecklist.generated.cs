@@ -42,20 +42,24 @@ public sealed class UnfurlDetailsChecklist
         Checklist = checklist;
     }
     
-    private PropertyValue<Checklist> _checklist = new PropertyValue<Checklist>(nameof(UnfurlDetailsChecklist), nameof(Checklist));
+    private PropertyValue<Checklist> _checklist = new PropertyValue<Checklist>(nameof(UnfurlDetailsChecklist), nameof(Checklist), "checklist");
     
     [Required]
     [JsonPropertyName("checklist")]
     public Checklist Checklist
     {
-        get => _checklist.GetValue();
+        get => _checklist.GetValue(InlineErrors);
         set => _checklist.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _checklist.SetAccessPath(path, validateHasBeenSet);
+        _checklist.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,31 +40,35 @@ public sealed class Fraction
         Denominator = denominator;
     }
     
-    private PropertyValue<int> _numerator = new PropertyValue<int>(nameof(Fraction), nameof(Numerator));
+    private PropertyValue<int> _numerator = new PropertyValue<int>(nameof(Fraction), nameof(Numerator), "numerator");
     
     [Required]
     [JsonPropertyName("numerator")]
     public int Numerator
     {
-        get => _numerator.GetValue();
+        get => _numerator.GetValue(InlineErrors);
         set => _numerator.SetValue(value);
     }
 
-    private PropertyValue<int> _denominator = new PropertyValue<int>(nameof(Fraction), nameof(Denominator));
+    private PropertyValue<int> _denominator = new PropertyValue<int>(nameof(Fraction), nameof(Denominator), "denominator");
     
     [Required]
     [JsonPropertyName("denominator")]
     public int Denominator
     {
-        get => _denominator.GetValue();
+        get => _denominator.GetValue(InlineErrors);
         set => _denominator.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _numerator.SetAccessPath(path, validateHasBeenSet);
-        _denominator.SetAccessPath(path, validateHasBeenSet);
+        _numerator.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _denominator.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

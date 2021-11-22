@@ -43,59 +43,63 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
         TeamOwners = teamOwners;
     }
     
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<BoardColumns?> _columns = new PropertyValue<BoardColumns?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Columns));
+    private PropertyValue<BoardColumns?> _columns = new PropertyValue<BoardColumns?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Columns), "columns");
     
     [JsonPropertyName("columns")]
     public BoardColumns? Columns
     {
-        get => _columns.GetValue();
+        get => _columns.GetValue(InlineErrors);
         set => _columns.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _memberOwners = new PropertyValue<List<string>?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(MemberOwners));
+    private PropertyValue<List<string>?> _memberOwners = new PropertyValue<List<string>?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(MemberOwners), "memberOwners");
     
     [JsonPropertyName("memberOwners")]
     public List<string>? MemberOwners
     {
-        get => _memberOwners.GetValue();
+        get => _memberOwners.GetValue(InlineErrors);
         set => _memberOwners.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _teamOwners = new PropertyValue<List<string>?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(TeamOwners));
+    private PropertyValue<List<string>?> _teamOwners = new PropertyValue<List<string>?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(TeamOwners), "teamOwners");
     
     [JsonPropertyName("teamOwners")]
     public List<string>? TeamOwners
     {
-        get => _teamOwners.GetValue();
+        get => _teamOwners.GetValue(InlineErrors);
         set => _teamOwners.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _columns.SetAccessPath(path, validateHasBeenSet);
-        _memberOwners.SetAccessPath(path, validateHasBeenSet);
-        _teamOwners.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _columns.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _memberOwners.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _teamOwners.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

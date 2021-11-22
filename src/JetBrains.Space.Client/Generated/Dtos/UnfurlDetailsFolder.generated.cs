@@ -43,31 +43,35 @@ public sealed class UnfurlDetailsFolder
         IsRoot = root;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(UnfurlDetailsFolder), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(UnfurlDetailsFolder), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<bool> _root = new PropertyValue<bool>(nameof(UnfurlDetailsFolder), nameof(IsRoot));
+    private PropertyValue<bool> _root = new PropertyValue<bool>(nameof(UnfurlDetailsFolder), nameof(IsRoot), "root");
     
     [Required]
     [JsonPropertyName("root")]
     public bool IsRoot
     {
-        get => _root.GetValue();
+        get => _root.GetValue(InlineErrors);
         set => _root.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _root.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _root.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,31 +40,35 @@ public class UnfurlsUnblockUnfurlGlobalPostRequest
         IsWholeHost = wholeHost;
     }
     
-    private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlsUnblockUnfurlGlobalPostRequest), nameof(Link));
+    private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlsUnblockUnfurlGlobalPostRequest), nameof(Link), "link");
     
     [Required]
     [JsonPropertyName("link")]
     public string Link
     {
-        get => _link.GetValue();
+        get => _link.GetValue(InlineErrors);
         set => _link.SetValue(value);
     }
 
-    private PropertyValue<bool> _wholeHost = new PropertyValue<bool>(nameof(UnfurlsUnblockUnfurlGlobalPostRequest), nameof(IsWholeHost));
+    private PropertyValue<bool> _wholeHost = new PropertyValue<bool>(nameof(UnfurlsUnblockUnfurlGlobalPostRequest), nameof(IsWholeHost), "wholeHost");
     
     [Required]
     [JsonPropertyName("wholeHost")]
     public bool IsWholeHost
     {
-        get => _wholeHost.GetValue();
+        get => _wholeHost.GetValue(InlineErrors);
         set => _wholeHost.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _link.SetAccessPath(path, validateHasBeenSet);
-        _wholeHost.SetAccessPath(path, validateHasBeenSet);
+        _link.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _wholeHost.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

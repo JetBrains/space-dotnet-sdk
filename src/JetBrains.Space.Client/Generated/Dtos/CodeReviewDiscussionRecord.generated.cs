@@ -44,74 +44,78 @@ public sealed class CodeReviewDiscussionRecord
         IsArchived = archived;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewDiscussionRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewDiscussionRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewRecord> _review = new PropertyValue<CodeReviewRecord>(nameof(CodeReviewDiscussionRecord), nameof(Review));
+    private PropertyValue<CodeReviewRecord> _review = new PropertyValue<CodeReviewRecord>(nameof(CodeReviewDiscussionRecord), nameof(Review), "review");
     
     [Required]
     [JsonPropertyName("review")]
     public CodeReviewRecord Review
     {
-        get => _review.GetValue();
+        get => _review.GetValue(InlineErrors);
         set => _review.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(CodeReviewDiscussionRecord), nameof(Created));
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(CodeReviewDiscussionRecord), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelRecord?> _channel = new PropertyValue<M2ChannelRecord?>(nameof(CodeReviewDiscussionRecord), nameof(Channel));
+    private PropertyValue<M2ChannelRecord?> _channel = new PropertyValue<M2ChannelRecord?>(nameof(CodeReviewDiscussionRecord), nameof(Channel), "channel");
     
     [JsonPropertyName("channel")]
     public M2ChannelRecord? Channel
     {
-        get => _channel.GetValue();
+        get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
     }
 
-    private PropertyValue<bool?> _resolved = new PropertyValue<bool?>(nameof(CodeReviewDiscussionRecord), nameof(IsResolved));
+    private PropertyValue<bool?> _resolved = new PropertyValue<bool?>(nameof(CodeReviewDiscussionRecord), nameof(IsResolved), "resolved");
     
     [JsonPropertyName("resolved")]
     public bool? IsResolved
     {
-        get => _resolved.GetValue();
+        get => _resolved.GetValue(InlineErrors);
         set => _resolved.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeReviewDiscussionRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeReviewDiscussionRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _review.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _channel.SetAccessPath(path, validateHasBeenSet);
-        _resolved.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _review.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _resolved.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

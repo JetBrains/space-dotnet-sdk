@@ -40,31 +40,35 @@ public sealed class IntelliJSharedIndexUploadUrl
         Method = method;
     }
     
-    private PropertyValue<string> _url = new PropertyValue<string>(nameof(IntelliJSharedIndexUploadUrl), nameof(Url));
+    private PropertyValue<string> _url = new PropertyValue<string>(nameof(IntelliJSharedIndexUploadUrl), nameof(Url), "url");
     
     [Required]
     [JsonPropertyName("url")]
     public string Url
     {
-        get => _url.GetValue();
+        get => _url.GetValue(InlineErrors);
         set => _url.SetValue(value);
     }
 
-    private PropertyValue<string> _method = new PropertyValue<string>(nameof(IntelliJSharedIndexUploadUrl), nameof(Method));
+    private PropertyValue<string> _method = new PropertyValue<string>(nameof(IntelliJSharedIndexUploadUrl), nameof(Method), "method");
     
     [Required]
     [JsonPropertyName("method")]
     public string Method
     {
-        get => _method.GetValue();
+        get => _method.GetValue(InlineErrors);
         set => _method.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _url.SetAccessPath(path, validateHasBeenSet);
-        _method.SetAccessPath(path, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _method.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

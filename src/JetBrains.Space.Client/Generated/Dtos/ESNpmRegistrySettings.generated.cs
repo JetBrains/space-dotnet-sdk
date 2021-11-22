@@ -43,29 +43,33 @@ public sealed class ESNpmRegistrySettings
         IsImmutablePackageVersions = immutablePackageVersions;
     }
     
-    private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESNpmRegistrySettings), nameof(RetentionPolicyParams));
+    private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESNpmRegistrySettings), nameof(RetentionPolicyParams), "retentionPolicyParams");
     
     [JsonPropertyName("retentionPolicyParams")]
     public RetentionPolicyParams? RetentionPolicyParams
     {
-        get => _retentionPolicyParams.GetValue();
+        get => _retentionPolicyParams.GetValue(InlineErrors);
         set => _retentionPolicyParams.SetValue(value);
     }
 
-    private PropertyValue<bool?> _immutablePackageVersions = new PropertyValue<bool?>(nameof(ESNpmRegistrySettings), nameof(IsImmutablePackageVersions));
+    private PropertyValue<bool?> _immutablePackageVersions = new PropertyValue<bool?>(nameof(ESNpmRegistrySettings), nameof(IsImmutablePackageVersions), "immutablePackageVersions");
     
     [JsonPropertyName("immutablePackageVersions")]
     public bool? IsImmutablePackageVersions
     {
-        get => _immutablePackageVersions.GetValue();
+        get => _immutablePackageVersions.GetValue(InlineErrors);
         set => _immutablePackageVersions.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _retentionPolicyParams.SetAccessPath(path, validateHasBeenSet);
-        _immutablePackageVersions.SetAccessPath(path, validateHasBeenSet);
+        _retentionPolicyParams.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _immutablePackageVersions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

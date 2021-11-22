@@ -42,20 +42,24 @@ public sealed class CallSessionUnfurlDetails
         Session = session;
     }
     
-    private PropertyValue<CallSession> _session = new PropertyValue<CallSession>(nameof(CallSessionUnfurlDetails), nameof(Session));
+    private PropertyValue<CallSession> _session = new PropertyValue<CallSession>(nameof(CallSessionUnfurlDetails), nameof(Session), "session");
     
     [Required]
     [JsonPropertyName("session")]
     public CallSession Session
     {
-        get => _session.GetValue();
+        get => _session.GetValue(InlineErrors);
         set => _session.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _session.SetAccessPath(path, validateHasBeenSet);
+        _session.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,20 +42,24 @@ public sealed class TDContactKindPhoneNumber
         Type = type;
     }
     
-    private PropertyValue<string> _type = new PropertyValue<string>(nameof(TDContactKindPhoneNumber), nameof(Type));
+    private PropertyValue<string> _type = new PropertyValue<string>(nameof(TDContactKindPhoneNumber), nameof(Type), "type");
     
     [Required]
     [JsonPropertyName("type")]
     public string Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _type.SetAccessPath(path, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -43,31 +43,35 @@ public sealed class ChecklistDocumentBody
         CanConvertItemsToIssues = canConvertItemsToIssues;
     }
     
-    private PropertyValue<Checklist> _checklist = new PropertyValue<Checklist>(nameof(ChecklistDocumentBody), nameof(Checklist));
+    private PropertyValue<Checklist> _checklist = new PropertyValue<Checklist>(nameof(ChecklistDocumentBody), nameof(Checklist), "checklist");
     
     [Required]
     [JsonPropertyName("checklist")]
     public Checklist Checklist
     {
-        get => _checklist.GetValue();
+        get => _checklist.GetValue(InlineErrors);
         set => _checklist.SetValue(value);
     }
 
-    private PropertyValue<bool> _canConvertItemsToIssues = new PropertyValue<bool>(nameof(ChecklistDocumentBody), nameof(CanConvertItemsToIssues));
+    private PropertyValue<bool> _canConvertItemsToIssues = new PropertyValue<bool>(nameof(ChecklistDocumentBody), nameof(CanConvertItemsToIssues), "canConvertItemsToIssues");
     
     [Required]
     [JsonPropertyName("canConvertItemsToIssues")]
     public bool CanConvertItemsToIssues
     {
-        get => _canConvertItemsToIssues.GetValue();
+        get => _canConvertItemsToIssues.GetValue(InlineErrors);
         set => _canConvertItemsToIssues.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _checklist.SetAccessPath(path, validateHasBeenSet);
-        _canConvertItemsToIssues.SetAccessPath(path, validateHasBeenSet);
+        _checklist.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _canConvertItemsToIssues.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

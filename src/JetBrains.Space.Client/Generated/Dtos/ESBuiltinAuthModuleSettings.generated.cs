@@ -43,30 +43,34 @@ public sealed class ESBuiltinAuthModuleSettings
         Domains = domains;
     }
     
-    private PropertyValue<PasswordStrength> _passwordStrengthPolicy = new PropertyValue<PasswordStrength>(nameof(ESBuiltinAuthModuleSettings), nameof(PasswordStrengthPolicy));
+    private PropertyValue<PasswordStrength> _passwordStrengthPolicy = new PropertyValue<PasswordStrength>(nameof(ESBuiltinAuthModuleSettings), nameof(PasswordStrengthPolicy), "passwordStrengthPolicy");
     
     [Required]
     [JsonPropertyName("passwordStrengthPolicy")]
     public PasswordStrength PasswordStrengthPolicy
     {
-        get => _passwordStrengthPolicy.GetValue();
+        get => _passwordStrengthPolicy.GetValue(InlineErrors);
         set => _passwordStrengthPolicy.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _domains = new PropertyValue<List<string>?>(nameof(ESBuiltinAuthModuleSettings), nameof(Domains));
+    private PropertyValue<List<string>?> _domains = new PropertyValue<List<string>?>(nameof(ESBuiltinAuthModuleSettings), nameof(Domains), "domains");
     
     [JsonPropertyName("domains")]
     public List<string>? Domains
     {
-        get => _domains.GetValue();
+        get => _domains.GetValue(InlineErrors);
         set => _domains.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _passwordStrengthPolicy.SetAccessPath(path, validateHasBeenSet);
-        _domains.SetAccessPath(path, validateHasBeenSet);
+        _passwordStrengthPolicy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _domains.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

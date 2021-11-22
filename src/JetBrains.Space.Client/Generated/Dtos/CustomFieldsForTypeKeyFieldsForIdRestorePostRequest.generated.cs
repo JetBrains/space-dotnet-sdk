@@ -39,20 +39,24 @@ public class CustomFieldsForTypeKeyFieldsForIdRestorePostRequest
         Scope = scope;
     }
     
-    private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyFieldsForIdRestorePostRequest), nameof(Scope));
+    private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyFieldsForIdRestorePostRequest), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
     public ExtendedTypeScope Scope
     {
-        get => _scope.GetValue();
+        get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _scope.SetAccessPath(path, validateHasBeenSet);
+        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -41,43 +41,47 @@ public sealed class AbsenceApproval
         ApprovedAt = approvedAt;
     }
     
-    private PropertyValue<bool> _approved = new PropertyValue<bool>(nameof(AbsenceApproval), nameof(IsApproved));
+    private PropertyValue<bool> _approved = new PropertyValue<bool>(nameof(AbsenceApproval), nameof(IsApproved), "approved");
     
     [Required]
     [JsonPropertyName("approved")]
     public bool IsApproved
     {
-        get => _approved.GetValue();
+        get => _approved.GetValue(InlineErrors);
         set => _approved.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile> _approvedBy = new PropertyValue<TDMemberProfile>(nameof(AbsenceApproval), nameof(ApprovedBy));
+    private PropertyValue<TDMemberProfile> _approvedBy = new PropertyValue<TDMemberProfile>(nameof(AbsenceApproval), nameof(ApprovedBy), "approvedBy");
     
     [Required]
     [JsonPropertyName("approvedBy")]
     public TDMemberProfile ApprovedBy
     {
-        get => _approvedBy.GetValue();
+        get => _approvedBy.GetValue(InlineErrors);
         set => _approvedBy.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _approvedAt = new PropertyValue<DateTime>(nameof(AbsenceApproval), nameof(ApprovedAt));
+    private PropertyValue<DateTime> _approvedAt = new PropertyValue<DateTime>(nameof(AbsenceApproval), nameof(ApprovedAt), "approvedAt");
     
     [Required]
     [JsonPropertyName("approvedAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime ApprovedAt
     {
-        get => _approvedAt.GetValue();
+        get => _approvedAt.GetValue(InlineErrors);
         set => _approvedAt.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _approved.SetAccessPath(path, validateHasBeenSet);
-        _approvedBy.SetAccessPath(path, validateHasBeenSet);
-        _approvedAt.SetAccessPath(path, validateHasBeenSet);
+        _approved.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _approvedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _approvedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

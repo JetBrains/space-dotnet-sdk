@@ -44,75 +44,79 @@ public sealed class BoardRecord
         To = to;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(BoardRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(BoardRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(BoardRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(BoardRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(BoardRecord), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(BoardRecord), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _from = new PropertyValue<DateTime?>(nameof(BoardRecord), nameof(From));
+    private PropertyValue<DateTime?> _from = new PropertyValue<DateTime?>(nameof(BoardRecord), nameof(From), "from");
     
     [JsonPropertyName("from")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? From
     {
-        get => _from.GetValue();
+        get => _from.GetValue(InlineErrors);
         set => _from.SetValue(value);
     }
 
-    private PropertyValue<BoardInfo> _info = new PropertyValue<BoardInfo>(nameof(BoardRecord), nameof(Info));
+    private PropertyValue<BoardInfo> _info = new PropertyValue<BoardInfo>(nameof(BoardRecord), nameof(Info), "info");
     
     [Required]
     [JsonPropertyName("info")]
     public BoardInfo Info
     {
-        get => _info.GetValue();
+        get => _info.GetValue(InlineErrors);
         set => _info.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _to = new PropertyValue<DateTime?>(nameof(BoardRecord), nameof(To));
+    private PropertyValue<DateTime?> _to = new PropertyValue<DateTime?>(nameof(BoardRecord), nameof(To), "to");
     
     [JsonPropertyName("to")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? To
     {
-        get => _to.GetValue();
+        get => _to.GetValue(InlineErrors);
         set => _to.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _from.SetAccessPath(path, validateHasBeenSet);
-        _info.SetAccessPath(path, validateHasBeenSet);
-        _to.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _from.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _info.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _to.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

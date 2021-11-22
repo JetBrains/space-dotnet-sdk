@@ -39,20 +39,24 @@ public sealed class BoardTeamOwners
         Teams = teams;
     }
     
-    private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(BoardTeamOwners), nameof(Teams), new List<TDTeam>());
+    private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(BoardTeamOwners), nameof(Teams), "teams", new List<TDTeam>());
     
     [Required]
     [JsonPropertyName("teams")]
     public List<TDTeam> Teams
     {
-        get => _teams.GetValue();
+        get => _teams.GetValue(InlineErrors);
         set => _teams.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _teams.SetAccessPath(path, validateHasBeenSet);
+        _teams.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

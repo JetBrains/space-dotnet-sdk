@@ -41,42 +41,46 @@ public sealed class FileDocumentRecord
         Body = body;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(FileDocumentRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(FileDocumentRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(FileDocumentRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(FileDocumentRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<FileDocumentBody> _body = new PropertyValue<FileDocumentBody>(nameof(FileDocumentRecord), nameof(Body));
+    private PropertyValue<FileDocumentBody> _body = new PropertyValue<FileDocumentBody>(nameof(FileDocumentRecord), nameof(Body), "body");
     
     [Required]
     [JsonPropertyName("body")]
     public FileDocumentBody Body
     {
-        get => _body.GetValue();
+        get => _body.GetValue(InlineErrors);
         set => _body.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _body.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _body.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

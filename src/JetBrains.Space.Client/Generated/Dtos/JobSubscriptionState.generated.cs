@@ -41,42 +41,46 @@ public sealed class JobSubscriptionState
         IsRunByMe = runByMe;
     }
     
-    private PropertyValue<JobSubscriptionType> _type = new PropertyValue<JobSubscriptionType>(nameof(JobSubscriptionState), nameof(Type));
+    private PropertyValue<JobSubscriptionType> _type = new PropertyValue<JobSubscriptionType>(nameof(JobSubscriptionState), nameof(Type), "type");
     
     [Required]
     [JsonPropertyName("type")]
     public JobSubscriptionType Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<bool> _containsMyCommit = new PropertyValue<bool>(nameof(JobSubscriptionState), nameof(IsContainsMyCommit));
+    private PropertyValue<bool> _containsMyCommit = new PropertyValue<bool>(nameof(JobSubscriptionState), nameof(IsContainsMyCommit), "containsMyCommit");
     
     [Required]
     [JsonPropertyName("containsMyCommit")]
     public bool IsContainsMyCommit
     {
-        get => _containsMyCommit.GetValue();
+        get => _containsMyCommit.GetValue(InlineErrors);
         set => _containsMyCommit.SetValue(value);
     }
 
-    private PropertyValue<bool> _runByMe = new PropertyValue<bool>(nameof(JobSubscriptionState), nameof(IsRunByMe));
+    private PropertyValue<bool> _runByMe = new PropertyValue<bool>(nameof(JobSubscriptionState), nameof(IsRunByMe), "runByMe");
     
     [Required]
     [JsonPropertyName("runByMe")]
     public bool IsRunByMe
     {
-        get => _runByMe.GetValue();
+        get => _runByMe.GetValue(InlineErrors);
         set => _runByMe.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _containsMyCommit.SetAccessPath(path, validateHasBeenSet);
-        _runByMe.SetAccessPath(path, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _containsMyCommit.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _runByMe.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

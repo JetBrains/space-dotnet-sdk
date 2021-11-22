@@ -39,20 +39,24 @@ public class EmojisRecordUsagePostRequest
         Emojis = emojis;
     }
     
-    private PropertyValue<List<string>> _emojis = new PropertyValue<List<string>>(nameof(EmojisRecordUsagePostRequest), nameof(Emojis), new List<string>());
+    private PropertyValue<List<string>> _emojis = new PropertyValue<List<string>>(nameof(EmojisRecordUsagePostRequest), nameof(Emojis), "emojis", new List<string>());
     
     [Required]
     [JsonPropertyName("emojis")]
     public List<string> Emojis
     {
-        get => _emojis.GetValue();
+        get => _emojis.GetValue(InlineErrors);
         set => _emojis.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _emojis.SetAccessPath(path, validateHasBeenSet);
+        _emojis.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

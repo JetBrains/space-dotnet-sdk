@@ -44,41 +44,45 @@ public sealed class HAUrlParameterOptionConst
         Deprecation = deprecation;
     }
     
-    private PropertyValue<string> _value = new PropertyValue<string>(nameof(HAUrlParameterOptionConst), nameof(Value));
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(HAUrlParameterOptionConst), nameof(Value), "value");
     
     [Required]
     [JsonPropertyName("value")]
     public string Value
     {
-        get => _value.GetValue();
+        get => _value.GetValue(InlineErrors);
         set => _value.SetValue(value);
     }
 
-    private PropertyValue<string> _optionName = new PropertyValue<string>(nameof(HAUrlParameterOptionConst), nameof(OptionName));
+    private PropertyValue<string> _optionName = new PropertyValue<string>(nameof(HAUrlParameterOptionConst), nameof(OptionName), "optionName");
     
     [Required]
     [JsonPropertyName("optionName")]
     public string OptionName
     {
-        get => _optionName.GetValue();
+        get => _optionName.GetValue(InlineErrors);
         set => _optionName.SetValue(value);
     }
 
-    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAUrlParameterOptionConst), nameof(Deprecation));
+    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAUrlParameterOptionConst), nameof(Deprecation), "deprecation");
     
     [JsonPropertyName("deprecation")]
     public HADeprecation? Deprecation
     {
-        get => _deprecation.GetValue();
+        get => _deprecation.GetValue(InlineErrors);
         set => _deprecation.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _value.SetAccessPath(path, validateHasBeenSet);
-        _optionName.SetAccessPath(path, validateHasBeenSet);
-        _deprecation.SetAccessPath(path, validateHasBeenSet);
+        _value.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _optionName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

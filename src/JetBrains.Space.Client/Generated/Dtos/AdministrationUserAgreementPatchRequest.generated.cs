@@ -40,31 +40,35 @@ public class AdministrationUserAgreementPatchRequest
         IsInvalidate = invalidate;
     }
     
-    private PropertyValue<string> _newContent = new PropertyValue<string>(nameof(AdministrationUserAgreementPatchRequest), nameof(NewContent));
+    private PropertyValue<string> _newContent = new PropertyValue<string>(nameof(AdministrationUserAgreementPatchRequest), nameof(NewContent), "newContent");
     
     [Required]
     [JsonPropertyName("newContent")]
     public string NewContent
     {
-        get => _newContent.GetValue();
+        get => _newContent.GetValue(InlineErrors);
         set => _newContent.SetValue(value);
     }
 
-    private PropertyValue<bool> _invalidate = new PropertyValue<bool>(nameof(AdministrationUserAgreementPatchRequest), nameof(IsInvalidate));
+    private PropertyValue<bool> _invalidate = new PropertyValue<bool>(nameof(AdministrationUserAgreementPatchRequest), nameof(IsInvalidate), "invalidate");
     
     [Required]
     [JsonPropertyName("invalidate")]
     public bool IsInvalidate
     {
-        get => _invalidate.GetValue();
+        get => _invalidate.GetValue(InlineErrors);
         set => _invalidate.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _newContent.SetAccessPath(path, validateHasBeenSet);
-        _invalidate.SetAccessPath(path, validateHasBeenSet);
+        _newContent.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _invalidate.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

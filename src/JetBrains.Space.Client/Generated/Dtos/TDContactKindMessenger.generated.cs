@@ -42,20 +42,24 @@ public sealed class TDContactKindMessenger
         Messenger = messenger;
     }
     
-    private PropertyValue<string> _messenger = new PropertyValue<string>(nameof(TDContactKindMessenger), nameof(Messenger));
+    private PropertyValue<string> _messenger = new PropertyValue<string>(nameof(TDContactKindMessenger), nameof(Messenger), "messenger");
     
     [Required]
     [JsonPropertyName("messenger")]
     public string Messenger
     {
-        get => _messenger.GetValue();
+        get => _messenger.GetValue(InlineErrors);
         set => _messenger.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _messenger.SetAccessPath(path, validateHasBeenSet);
+        _messenger.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

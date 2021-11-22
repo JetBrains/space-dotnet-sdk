@@ -47,75 +47,79 @@ public sealed class NewMergeRequestFromIssueActionContext
         IssueCommitsRef = issueCommitsRef;
     }
     
-    private PropertyValue<ProjectKey> _projectKey = new PropertyValue<ProjectKey>(nameof(NewMergeRequestFromIssueActionContext), nameof(ProjectKey));
+    private PropertyValue<ProjectKey> _projectKey = new PropertyValue<ProjectKey>(nameof(NewMergeRequestFromIssueActionContext), nameof(ProjectKey), "projectKey");
     
     [Required]
     [JsonPropertyName("projectKey")]
     public ProjectKey ProjectKey
     {
-        get => _projectKey.GetValue();
+        get => _projectKey.GetValue(InlineErrors);
         set => _projectKey.SetValue(value);
     }
 
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(NewMergeRequestFromIssueActionContext), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(NewMergeRequestFromIssueActionContext), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _commitId = new PropertyValue<string>(nameof(NewMergeRequestFromIssueActionContext), nameof(CommitId));
+    private PropertyValue<string> _commitId = new PropertyValue<string>(nameof(NewMergeRequestFromIssueActionContext), nameof(CommitId), "commitId");
     
     [Required]
     [JsonPropertyName("commitId")]
     public string CommitId
     {
-        get => _commitId.GetValue();
+        get => _commitId.GetValue(InlineErrors);
         set => _commitId.SetValue(value);
     }
 
-    private PropertyValue<int> _issueNumber = new PropertyValue<int>(nameof(NewMergeRequestFromIssueActionContext), nameof(IssueNumber));
+    private PropertyValue<int> _issueNumber = new PropertyValue<int>(nameof(NewMergeRequestFromIssueActionContext), nameof(IssueNumber), "issueNumber");
     
     [Required]
     [JsonPropertyName("issueNumber")]
     public int IssueNumber
     {
-        get => _issueNumber.GetValue();
+        get => _issueNumber.GetValue(InlineErrors);
         set => _issueNumber.SetValue(value);
     }
 
-    private PropertyValue<ProjectReposRecord> _projectRepos = new PropertyValue<ProjectReposRecord>(nameof(NewMergeRequestFromIssueActionContext), nameof(ProjectRepos));
+    private PropertyValue<ProjectReposRecord> _projectRepos = new PropertyValue<ProjectReposRecord>(nameof(NewMergeRequestFromIssueActionContext), nameof(ProjectRepos), "projectRepos");
     
     [Required]
     [JsonPropertyName("projectRepos")]
     public ProjectReposRecord ProjectRepos
     {
-        get => _projectRepos.GetValue();
+        get => _projectRepos.GetValue(InlineErrors);
         set => _projectRepos.SetValue(value);
     }
 
-    private PropertyValue<CommitLinksContainer> _issueCommitsRef = new PropertyValue<CommitLinksContainer>(nameof(NewMergeRequestFromIssueActionContext), nameof(IssueCommitsRef));
+    private PropertyValue<CommitLinksContainer> _issueCommitsRef = new PropertyValue<CommitLinksContainer>(nameof(NewMergeRequestFromIssueActionContext), nameof(IssueCommitsRef), "issueCommitsRef");
     
     [Required]
     [JsonPropertyName("issueCommitsRef")]
     public CommitLinksContainer IssueCommitsRef
     {
-        get => _issueCommitsRef.GetValue();
+        get => _issueCommitsRef.GetValue(InlineErrors);
         set => _issueCommitsRef.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _projectKey.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _commitId.SetAccessPath(path, validateHasBeenSet);
-        _issueNumber.SetAccessPath(path, validateHasBeenSet);
-        _projectRepos.SetAccessPath(path, validateHasBeenSet);
-        _issueCommitsRef.SetAccessPath(path, validateHasBeenSet);
+        _projectKey.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commitId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issueNumber.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectRepos.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issueCommitsRef.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,20 +42,24 @@ public sealed class PrivateChannelPermissionContext
         ChannelId = channelId;
     }
     
-    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(PrivateChannelPermissionContext), nameof(ChannelId));
+    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(PrivateChannelPermissionContext), nameof(ChannelId), "channelId");
     
     [Required]
     [JsonPropertyName("channelId")]
     public string ChannelId
     {
-        get => _channelId.GetValue();
+        get => _channelId.GetValue(InlineErrors);
         set => _channelId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _channelId.SetAccessPath(path, validateHasBeenSet);
+        _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -41,42 +41,46 @@ public sealed class RepoHeadsChange
         NewId = newId;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(RepoHeadsChange), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(RepoHeadsChange), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _oldId = new PropertyValue<string>(nameof(RepoHeadsChange), nameof(OldId));
+    private PropertyValue<string> _oldId = new PropertyValue<string>(nameof(RepoHeadsChange), nameof(OldId), "oldId");
     
     [Required]
     [JsonPropertyName("oldId")]
     public string OldId
     {
-        get => _oldId.GetValue();
+        get => _oldId.GetValue(InlineErrors);
         set => _oldId.SetValue(value);
     }
 
-    private PropertyValue<string> _newId = new PropertyValue<string>(nameof(RepoHeadsChange), nameof(NewId));
+    private PropertyValue<string> _newId = new PropertyValue<string>(nameof(RepoHeadsChange), nameof(NewId), "newId");
     
     [Required]
     [JsonPropertyName("newId")]
     public string NewId
     {
-        get => _newId.GetValue();
+        get => _newId.GetValue(InlineErrors);
         set => _newId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _oldId.SetAccessPath(path, validateHasBeenSet);
-        _newId.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _oldId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _newId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

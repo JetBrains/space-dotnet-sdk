@@ -41,40 +41,44 @@ public class ProjectsSecretsForIdPatchRequest
         Description = description;
     }
     
-    private PropertyValue<string> _valueBase64 = new PropertyValue<string>(nameof(ProjectsSecretsForIdPatchRequest), nameof(ValueBase64));
+    private PropertyValue<string> _valueBase64 = new PropertyValue<string>(nameof(ProjectsSecretsForIdPatchRequest), nameof(ValueBase64), "valueBase64");
     
     [Required]
     [JsonPropertyName("valueBase64")]
     public string ValueBase64
     {
-        get => _valueBase64.GetValue();
+        get => _valueBase64.GetValue(InlineErrors);
         set => _valueBase64.SetValue(value);
     }
 
-    private PropertyValue<string?> _publicKeyId = new PropertyValue<string?>(nameof(ProjectsSecretsForIdPatchRequest), nameof(PublicKeyId));
+    private PropertyValue<string?> _publicKeyId = new PropertyValue<string?>(nameof(ProjectsSecretsForIdPatchRequest), nameof(PublicKeyId), "publicKeyId");
     
     [JsonPropertyName("publicKeyId")]
     public string? PublicKeyId
     {
-        get => _publicKeyId.GetValue();
+        get => _publicKeyId.GetValue(InlineErrors);
         set => _publicKeyId.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsSecretsForIdPatchRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsSecretsForIdPatchRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _valueBase64.SetAccessPath(path, validateHasBeenSet);
-        _publicKeyId.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
+        _valueBase64.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _publicKeyId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

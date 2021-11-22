@@ -44,75 +44,79 @@ public sealed class EmojiReactionRecord
         Order = order;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(EmojiReactionRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(EmojiReactionRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _itemId = new PropertyValue<string>(nameof(EmojiReactionRecord), nameof(ItemId));
+    private PropertyValue<string> _itemId = new PropertyValue<string>(nameof(EmojiReactionRecord), nameof(ItemId), "itemId");
     
     [Required]
     [JsonPropertyName("itemId")]
     public string ItemId
     {
-        get => _itemId.GetValue();
+        get => _itemId.GetValue(InlineErrors);
         set => _itemId.SetValue(value);
     }
 
-    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojiReactionRecord), nameof(Emoji));
+    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojiReactionRecord), nameof(Emoji), "emoji");
     
     [Required]
     [JsonPropertyName("emoji")]
     public string Emoji
     {
-        get => _emoji.GetValue();
+        get => _emoji.GetValue(InlineErrors);
         set => _emoji.SetValue(value);
     }
 
-    private PropertyValue<int> _count = new PropertyValue<int>(nameof(EmojiReactionRecord), nameof(Count));
+    private PropertyValue<int> _count = new PropertyValue<int>(nameof(EmojiReactionRecord), nameof(Count), "count");
     
     [Required]
     [JsonPropertyName("count")]
     public int Count
     {
-        get => _count.GetValue();
+        get => _count.GetValue(InlineErrors);
         set => _count.SetValue(value);
     }
 
-    private PropertyValue<bool> _meReacted = new PropertyValue<bool>(nameof(EmojiReactionRecord), nameof(IsMeReacted));
+    private PropertyValue<bool> _meReacted = new PropertyValue<bool>(nameof(EmojiReactionRecord), nameof(IsMeReacted), "meReacted");
     
     [Required]
     [JsonPropertyName("meReacted")]
     public bool IsMeReacted
     {
-        get => _meReacted.GetValue();
+        get => _meReacted.GetValue(InlineErrors);
         set => _meReacted.SetValue(value);
     }
 
-    private PropertyValue<long> _order = new PropertyValue<long>(nameof(EmojiReactionRecord), nameof(Order));
+    private PropertyValue<long> _order = new PropertyValue<long>(nameof(EmojiReactionRecord), nameof(Order), "order");
     
     [Required]
     [JsonPropertyName("order")]
     public long Order
     {
-        get => _order.GetValue();
+        get => _order.GetValue(InlineErrors);
         set => _order.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _itemId.SetAccessPath(path, validateHasBeenSet);
-        _emoji.SetAccessPath(path, validateHasBeenSet);
-        _count.SetAccessPath(path, validateHasBeenSet);
-        _meReacted.SetAccessPath(path, validateHasBeenSet);
-        _order.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _itemId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _emoji.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _count.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _meReacted.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _order.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

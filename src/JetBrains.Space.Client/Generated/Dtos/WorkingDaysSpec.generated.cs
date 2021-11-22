@@ -42,51 +42,55 @@ public sealed class WorkingDaysSpec
         Timezone = timezone;
     }
     
-    private PropertyValue<List<Workday>> _days = new PropertyValue<List<Workday>>(nameof(WorkingDaysSpec), nameof(Days), new List<Workday>());
+    private PropertyValue<List<Workday>> _days = new PropertyValue<List<Workday>>(nameof(WorkingDaysSpec), nameof(Days), "days", new List<Workday>());
     
     [Required]
     [Obsolete("Use workingHours and notificationHours instead (since 2020-11-10)")]
     [JsonPropertyName("days")]
     public List<Workday> Days
     {
-        get => _days.GetValue();
+        get => _days.GetValue(InlineErrors);
         set => _days.SetValue(value);
     }
 
-    private PropertyValue<List<WeekDayTimeInterval>?> _workingHours = new PropertyValue<List<WeekDayTimeInterval>?>(nameof(WorkingDaysSpec), nameof(WorkingHours));
+    private PropertyValue<List<WeekDayTimeInterval>?> _workingHours = new PropertyValue<List<WeekDayTimeInterval>?>(nameof(WorkingDaysSpec), nameof(WorkingHours), "workingHours");
     
     [JsonPropertyName("workingHours")]
     public List<WeekDayTimeInterval>? WorkingHours
     {
-        get => _workingHours.GetValue();
+        get => _workingHours.GetValue(InlineErrors);
         set => _workingHours.SetValue(value);
     }
 
-    private PropertyValue<List<WeekDayTimeInterval>?> _notificationHours = new PropertyValue<List<WeekDayTimeInterval>?>(nameof(WorkingDaysSpec), nameof(NotificationHours));
+    private PropertyValue<List<WeekDayTimeInterval>?> _notificationHours = new PropertyValue<List<WeekDayTimeInterval>?>(nameof(WorkingDaysSpec), nameof(NotificationHours), "notificationHours");
     
     [JsonPropertyName("notificationHours")]
     public List<WeekDayTimeInterval>? NotificationHours
     {
-        get => _notificationHours.GetValue();
+        get => _notificationHours.GetValue(InlineErrors);
         set => _notificationHours.SetValue(value);
     }
 
-    private PropertyValue<ATimeZone?> _timezone = new PropertyValue<ATimeZone?>(nameof(WorkingDaysSpec), nameof(Timezone));
+    private PropertyValue<ATimeZone?> _timezone = new PropertyValue<ATimeZone?>(nameof(WorkingDaysSpec), nameof(Timezone), "timezone");
     
     [JsonPropertyName("timezone")]
     public ATimeZone? Timezone
     {
-        get => _timezone.GetValue();
+        get => _timezone.GetValue(InlineErrors);
         set => _timezone.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _days.SetAccessPath(path, validateHasBeenSet);
-        _workingHours.SetAccessPath(path, validateHasBeenSet);
-        _notificationHours.SetAccessPath(path, validateHasBeenSet);
-        _timezone.SetAccessPath(path, validateHasBeenSet);
+        _days.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _workingHours.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationHours.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

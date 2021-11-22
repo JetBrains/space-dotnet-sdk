@@ -48,85 +48,89 @@ public sealed class UnfurlActionPayload
         VerificationToken = verificationToken;
     }
     
-    private PropertyValue<string> _actionId = new PropertyValue<string>(nameof(UnfurlActionPayload), nameof(ActionId));
+    private PropertyValue<string> _actionId = new PropertyValue<string>(nameof(UnfurlActionPayload), nameof(ActionId), "actionId");
     
     [Required]
     [JsonPropertyName("actionId")]
     public string ActionId
     {
-        get => _actionId.GetValue();
+        get => _actionId.GetValue(InlineErrors);
         set => _actionId.SetValue(value);
     }
 
-    private PropertyValue<string> _actionValue = new PropertyValue<string>(nameof(UnfurlActionPayload), nameof(ActionValue));
+    private PropertyValue<string> _actionValue = new PropertyValue<string>(nameof(UnfurlActionPayload), nameof(ActionValue), "actionValue");
     
     [Required]
     [JsonPropertyName("actionValue")]
     public string ActionValue
     {
-        get => _actionValue.GetValue();
+        get => _actionValue.GetValue(InlineErrors);
         set => _actionValue.SetValue(value);
     }
 
-    private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlActionPayload), nameof(Link));
+    private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlActionPayload), nameof(Link), "link");
     
     [Required]
     [JsonPropertyName("link")]
     public string Link
     {
-        get => _link.GetValue();
+        get => _link.GetValue(InlineErrors);
         set => _link.SetValue(value);
     }
 
-    private PropertyValue<ApplicationUnfurlContext> _context = new PropertyValue<ApplicationUnfurlContext>(nameof(UnfurlActionPayload), nameof(Context));
+    private PropertyValue<ApplicationUnfurlContext> _context = new PropertyValue<ApplicationUnfurlContext>(nameof(UnfurlActionPayload), nameof(Context), "context");
     
     [Required]
     [JsonPropertyName("context")]
     public ApplicationUnfurlContext Context
     {
-        get => _context.GetValue();
+        get => _context.GetValue(InlineErrors);
         set => _context.SetValue(value);
     }
 
-    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(UnfurlActionPayload), nameof(ClientId));
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(UnfurlActionPayload), nameof(ClientId), "clientId");
     
     [Required]
     [JsonPropertyName("clientId")]
     public string ClientId
     {
-        get => _clientId.GetValue();
+        get => _clientId.GetValue(InlineErrors);
         set => _clientId.SetValue(value);
     }
 
-    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(UnfurlActionPayload), nameof(UserId));
+    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(UnfurlActionPayload), nameof(UserId), "userId");
     
     [Required]
     [JsonPropertyName("userId")]
     public string UserId
     {
-        get => _userId.GetValue();
+        get => _userId.GetValue(InlineErrors);
         set => _userId.SetValue(value);
     }
 
-    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(UnfurlActionPayload), nameof(VerificationToken));
+    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(UnfurlActionPayload), nameof(VerificationToken), "verificationToken");
     
     [JsonPropertyName("verificationToken")]
     public string? VerificationToken
     {
-        get => _verificationToken.GetValue();
+        get => _verificationToken.GetValue(InlineErrors);
         set => _verificationToken.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _actionId.SetAccessPath(path, validateHasBeenSet);
-        _actionValue.SetAccessPath(path, validateHasBeenSet);
-        _link.SetAccessPath(path, validateHasBeenSet);
-        _context.SetAccessPath(path, validateHasBeenSet);
-        _clientId.SetAccessPath(path, validateHasBeenSet);
-        _userId.SetAccessPath(path, validateHasBeenSet);
-        _verificationToken.SetAccessPath(path, validateHasBeenSet);
+        _actionId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _actionValue.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _link.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _context.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _verificationToken.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,53 +42,57 @@ public sealed class GitFile
         Type = type;
     }
     
-    private PropertyValue<string> _commit = new PropertyValue<string>(nameof(GitFile), nameof(Commit));
+    private PropertyValue<string> _commit = new PropertyValue<string>(nameof(GitFile), nameof(Commit), "commit");
     
     [Required]
     [JsonPropertyName("commit")]
     public string Commit
     {
-        get => _commit.GetValue();
+        get => _commit.GetValue(InlineErrors);
         set => _commit.SetValue(value);
     }
 
-    private PropertyValue<string> _path = new PropertyValue<string>(nameof(GitFile), nameof(Path));
+    private PropertyValue<string> _path = new PropertyValue<string>(nameof(GitFile), nameof(Path), "path");
     
     [Required]
     [JsonPropertyName("path")]
     public string Path
     {
-        get => _path.GetValue();
+        get => _path.GetValue(InlineErrors);
         set => _path.SetValue(value);
     }
 
-    private PropertyValue<string> _blob = new PropertyValue<string>(nameof(GitFile), nameof(Blob));
+    private PropertyValue<string> _blob = new PropertyValue<string>(nameof(GitFile), nameof(Blob), "blob");
     
     [Required]
     [JsonPropertyName("blob")]
     public string Blob
     {
-        get => _blob.GetValue();
+        get => _blob.GetValue(InlineErrors);
         set => _blob.SetValue(value);
     }
 
-    private PropertyValue<GitEntryType> _type = new PropertyValue<GitEntryType>(nameof(GitFile), nameof(Type));
+    private PropertyValue<GitEntryType> _type = new PropertyValue<GitEntryType>(nameof(GitFile), nameof(Type), "type");
     
     [Required]
     [JsonPropertyName("type")]
     public GitEntryType Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _commit.SetAccessPath(path, validateHasBeenSet);
-        _path.SetAccessPath(path, validateHasBeenSet);
-        _blob.SetAccessPath(path, validateHasBeenSet);
-        _type.SetAccessPath(path, validateHasBeenSet);
+        _commit.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _path.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _blob.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

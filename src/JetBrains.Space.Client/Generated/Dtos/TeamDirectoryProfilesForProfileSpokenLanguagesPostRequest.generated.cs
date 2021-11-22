@@ -41,40 +41,44 @@ public class TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest
         LastName = lastName;
     }
     
-    private PropertyValue<string> _language = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest), nameof(Language));
+    private PropertyValue<string> _language = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest), nameof(Language), "language");
     
     [Required]
     [JsonPropertyName("language")]
     public string Language
     {
-        get => _language.GetValue();
+        get => _language.GetValue(InlineErrors);
         set => _language.SetValue(value);
     }
 
-    private PropertyValue<string?> _firstName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest), nameof(FirstName));
+    private PropertyValue<string?> _firstName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest), nameof(FirstName), "firstName");
     
     [JsonPropertyName("firstName")]
     public string? FirstName
     {
-        get => _firstName.GetValue();
+        get => _firstName.GetValue(InlineErrors);
         set => _firstName.SetValue(value);
     }
 
-    private PropertyValue<string?> _lastName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest), nameof(LastName));
+    private PropertyValue<string?> _lastName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest), nameof(LastName), "lastName");
     
     [JsonPropertyName("lastName")]
     public string? LastName
     {
-        get => _lastName.GetValue();
+        get => _lastName.GetValue(InlineErrors);
         set => _lastName.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _language.SetAccessPath(path, validateHasBeenSet);
-        _firstName.SetAccessPath(path, validateHasBeenSet);
-        _lastName.SetAccessPath(path, validateHasBeenSet);
+        _language.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _firstName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastName.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

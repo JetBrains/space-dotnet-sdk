@@ -42,54 +42,58 @@ public sealed class ESSshKey
         LastUsedAt = lastUsedAt;
     }
     
-    private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(ESSshKey), nameof(Fingerprint));
+    private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(ESSshKey), nameof(Fingerprint), "fingerprint");
     
     [Required]
     [JsonPropertyName("fingerprint")]
     public string Fingerprint
     {
-        get => _fingerprint.GetValue();
+        get => _fingerprint.GetValue(InlineErrors);
         set => _fingerprint.SetValue(value);
     }
 
-    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(ESSshKey), nameof(Comment));
+    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(ESSshKey), nameof(Comment), "comment");
     
     [Required]
     [JsonPropertyName("comment")]
     public string Comment
     {
-        get => _comment.GetValue();
+        get => _comment.GetValue(InlineErrors);
         set => _comment.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _createdAt = new PropertyValue<DateTime>(nameof(ESSshKey), nameof(CreatedAt));
+    private PropertyValue<DateTime> _createdAt = new PropertyValue<DateTime>(nameof(ESSshKey), nameof(CreatedAt), "createdAt");
     
     [Required]
     [JsonPropertyName("createdAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime CreatedAt
     {
-        get => _createdAt.GetValue();
+        get => _createdAt.GetValue(InlineErrors);
         set => _createdAt.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _lastUsedAt = new PropertyValue<DateTime?>(nameof(ESSshKey), nameof(LastUsedAt));
+    private PropertyValue<DateTime?> _lastUsedAt = new PropertyValue<DateTime?>(nameof(ESSshKey), nameof(LastUsedAt), "lastUsedAt");
     
     [JsonPropertyName("lastUsedAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? LastUsedAt
     {
-        get => _lastUsedAt.GetValue();
+        get => _lastUsedAt.GetValue(InlineErrors);
         set => _lastUsedAt.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _fingerprint.SetAccessPath(path, validateHasBeenSet);
-        _comment.SetAccessPath(path, validateHasBeenSet);
-        _createdAt.SetAccessPath(path, validateHasBeenSet);
-        _lastUsedAt.SetAccessPath(path, validateHasBeenSet);
+        _fingerprint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _comment.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastUsedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

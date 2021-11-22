@@ -44,73 +44,77 @@ public sealed class FeatureFlag
         IssueNumber = issueNumber;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(FeatureFlag), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(FeatureFlag), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _description = new PropertyValue<string>(nameof(FeatureFlag), nameof(Description));
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(FeatureFlag), nameof(Description), "description");
     
     [Required]
     [JsonPropertyName("description")]
     public string Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<FeatureFlagStatus> _status = new PropertyValue<FeatureFlagStatus>(nameof(FeatureFlag), nameof(Status));
+    private PropertyValue<FeatureFlagStatus> _status = new PropertyValue<FeatureFlagStatus>(nameof(FeatureFlag), nameof(Status), "status");
     
     [Required]
     [JsonPropertyName("status")]
     public FeatureFlagStatus Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    private PropertyValue<string> _owner = new PropertyValue<string>(nameof(FeatureFlag), nameof(Owner));
+    private PropertyValue<string> _owner = new PropertyValue<string>(nameof(FeatureFlag), nameof(Owner), "owner");
     
     [Required]
     [JsonPropertyName("owner")]
     public string Owner
     {
-        get => _owner.GetValue();
+        get => _owner.GetValue(InlineErrors);
         set => _owner.SetValue(value);
     }
 
-    private PropertyValue<FeatureFlagDate?> _since = new PropertyValue<FeatureFlagDate?>(nameof(FeatureFlag), nameof(Since));
+    private PropertyValue<FeatureFlagDate?> _since = new PropertyValue<FeatureFlagDate?>(nameof(FeatureFlag), nameof(Since), "since");
     
     [JsonPropertyName("since")]
     public FeatureFlagDate? Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<int?> _issueNumber = new PropertyValue<int?>(nameof(FeatureFlag), nameof(IssueNumber));
+    private PropertyValue<int?> _issueNumber = new PropertyValue<int?>(nameof(FeatureFlag), nameof(IssueNumber), "issueNumber");
     
     [JsonPropertyName("issueNumber")]
     public int? IssueNumber
     {
-        get => _issueNumber.GetValue();
+        get => _issueNumber.GetValue(InlineErrors);
         set => _issueNumber.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _status.SetAccessPath(path, validateHasBeenSet);
-        _owner.SetAccessPath(path, validateHasBeenSet);
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _issueNumber.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _owner.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issueNumber.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

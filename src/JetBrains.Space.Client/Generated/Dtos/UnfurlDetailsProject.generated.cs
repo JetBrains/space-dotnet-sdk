@@ -43,30 +43,34 @@ public sealed class UnfurlDetailsProject
         IsStrikeThrough = strikeThrough;
     }
     
-    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsProject), nameof(Project));
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsProject), nameof(Project), "project");
     
     [Required]
     [JsonPropertyName("project")]
     public PRProject Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsProject), nameof(IsStrikeThrough));
+    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsProject), nameof(IsStrikeThrough), "strikeThrough");
     
     [JsonPropertyName("strikeThrough")]
     public bool? IsStrikeThrough
     {
-        get => _strikeThrough.GetValue();
+        get => _strikeThrough.GetValue(InlineErrors);
         set => _strikeThrough.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _strikeThrough.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

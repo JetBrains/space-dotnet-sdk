@@ -42,49 +42,53 @@ public class ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest
         Settings = settings;
     }
     
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<bool?> _public = new PropertyValue<bool?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(IsPublic));
+    private PropertyValue<bool?> _public = new PropertyValue<bool?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(IsPublic), "public");
     
     [JsonPropertyName("public")]
     public bool? IsPublic
     {
-        get => _public.GetValue();
+        get => _public.GetValue(InlineErrors);
         set => _public.SetValue(value);
     }
 
-    private PropertyValue<ESPackageRepositorySettings?> _settings = new PropertyValue<ESPackageRepositorySettings?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Settings));
+    private PropertyValue<ESPackageRepositorySettings?> _settings = new PropertyValue<ESPackageRepositorySettings?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Settings), "settings");
     
     [JsonPropertyName("settings")]
     public ESPackageRepositorySettings? Settings
     {
-        get => _settings.GetValue();
+        get => _settings.GetValue(InlineErrors);
         set => _settings.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _public.SetAccessPath(path, validateHasBeenSet);
-        _settings.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _public.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _settings.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

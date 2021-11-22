@@ -49,121 +49,125 @@ public sealed class ContainerImage
         Annotation = annotation;
     }
     
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ContainerImage), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ContainerImage), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ContainerImage), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ContainerImage), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(ContainerImage), nameof(Tags));
+    private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(ContainerImage), nameof(Tags), "tags");
     
     [JsonPropertyName("tags")]
     public List<string>? Tags
     {
-        get => _tags.GetValue();
+        get => _tags.GetValue(InlineErrors);
         set => _tags.SetValue(value);
     }
 
-    private PropertyValue<string?> _projectUrl = new PropertyValue<string?>(nameof(ContainerImage), nameof(ProjectUrl));
+    private PropertyValue<string?> _projectUrl = new PropertyValue<string?>(nameof(ContainerImage), nameof(ProjectUrl), "projectUrl");
     
     [JsonPropertyName("projectUrl")]
     public string? ProjectUrl
     {
-        get => _projectUrl.GetValue();
+        get => _projectUrl.GetValue(InlineErrors);
         set => _projectUrl.SetValue(value);
     }
 
-    private PropertyValue<string?> _sourceUrl = new PropertyValue<string?>(nameof(ContainerImage), nameof(SourceUrl));
+    private PropertyValue<string?> _sourceUrl = new PropertyValue<string?>(nameof(ContainerImage), nameof(SourceUrl), "sourceUrl");
     
     [JsonPropertyName("sourceUrl")]
     public string? SourceUrl
     {
-        get => _sourceUrl.GetValue();
+        get => _sourceUrl.GetValue(InlineErrors);
         set => _sourceUrl.SetValue(value);
     }
 
-    private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(ContainerImage), nameof(Version));
+    private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(ContainerImage), nameof(Version), "version");
     
     [JsonPropertyName("version")]
     public string? Version
     {
-        get => _version.GetValue();
+        get => _version.GetValue(InlineErrors);
         set => _version.SetValue(value);
     }
 
-    private PropertyValue<ContainerImagePlatform?> _platform = new PropertyValue<ContainerImagePlatform?>(nameof(ContainerImage), nameof(Platform));
+    private PropertyValue<ContainerImagePlatform?> _platform = new PropertyValue<ContainerImagePlatform?>(nameof(ContainerImage), nameof(Platform), "platform");
     
     [JsonPropertyName("platform")]
     public ContainerImagePlatform? Platform
     {
-        get => _platform.GetValue();
+        get => _platform.GetValue(InlineErrors);
         set => _platform.SetValue(value);
     }
 
-    private PropertyValue<List<ContainerImageLayer>> _history = new PropertyValue<List<ContainerImageLayer>>(nameof(ContainerImage), nameof(History), new List<ContainerImageLayer>());
+    private PropertyValue<List<ContainerImageLayer>> _history = new PropertyValue<List<ContainerImageLayer>>(nameof(ContainerImage), nameof(History), "history", new List<ContainerImageLayer>());
     
     [Required]
     [JsonPropertyName("history")]
     public List<ContainerImageLayer> History
     {
-        get => _history.GetValue();
+        get => _history.GetValue(InlineErrors);
         set => _history.SetValue(value);
     }
 
-    private PropertyValue<List<ContainerManifest>> _children = new PropertyValue<List<ContainerManifest>>(nameof(ContainerImage), nameof(Children), new List<ContainerManifest>());
+    private PropertyValue<List<ContainerManifest>> _children = new PropertyValue<List<ContainerManifest>>(nameof(ContainerImage), nameof(Children), "children", new List<ContainerManifest>());
     
     [Required]
     [JsonPropertyName("children")]
     public List<ContainerManifest> Children
     {
-        get => _children.GetValue();
+        get => _children.GetValue(InlineErrors);
         set => _children.SetValue(value);
     }
 
-    private PropertyValue<ContainerImageConfig?> _config = new PropertyValue<ContainerImageConfig?>(nameof(ContainerImage), nameof(Config));
+    private PropertyValue<ContainerImageConfig?> _config = new PropertyValue<ContainerImageConfig?>(nameof(ContainerImage), nameof(Config), "config");
     
     [JsonPropertyName("config")]
     public ContainerImageConfig? Config
     {
-        get => _config.GetValue();
+        get => _config.GetValue(InlineErrors);
         set => _config.SetValue(value);
     }
 
-    private PropertyValue<ContainerImageAnnotation?> _annotation = new PropertyValue<ContainerImageAnnotation?>(nameof(ContainerImage), nameof(Annotation));
+    private PropertyValue<ContainerImageAnnotation?> _annotation = new PropertyValue<ContainerImageAnnotation?>(nameof(ContainerImage), nameof(Annotation), "annotation");
     
     [JsonPropertyName("annotation")]
     public ContainerImageAnnotation? Annotation
     {
-        get => _annotation.GetValue();
+        get => _annotation.GetValue(InlineErrors);
         set => _annotation.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _tags.SetAccessPath(path, validateHasBeenSet);
-        _projectUrl.SetAccessPath(path, validateHasBeenSet);
-        _sourceUrl.SetAccessPath(path, validateHasBeenSet);
-        _version.SetAccessPath(path, validateHasBeenSet);
-        _platform.SetAccessPath(path, validateHasBeenSet);
-        _history.SetAccessPath(path, validateHasBeenSet);
-        _children.SetAccessPath(path, validateHasBeenSet);
-        _config.SetAccessPath(path, validateHasBeenSet);
-        _annotation.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sourceUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _platform.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _history.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _children.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _config.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _annotation.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

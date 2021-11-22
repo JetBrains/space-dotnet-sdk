@@ -40,31 +40,35 @@ public sealed class LastChanges
         TotalChanges = totalChanges;
     }
     
-    private PropertyValue<List<RevisionInfo>> _lastChanges = new PropertyValue<List<RevisionInfo>>(nameof(LastChanges), nameof(LastChangesItems), new List<RevisionInfo>());
+    private PropertyValue<List<RevisionInfo>> _lastChanges = new PropertyValue<List<RevisionInfo>>(nameof(LastChanges), nameof(LastChangesItems), "lastChanges", new List<RevisionInfo>());
     
     [Required]
     [JsonPropertyName("lastChanges")]
     public List<RevisionInfo> LastChangesItems
     {
-        get => _lastChanges.GetValue();
+        get => _lastChanges.GetValue(InlineErrors);
         set => _lastChanges.SetValue(value);
     }
 
-    private PropertyValue<int> _totalChanges = new PropertyValue<int>(nameof(LastChanges), nameof(TotalChanges));
+    private PropertyValue<int> _totalChanges = new PropertyValue<int>(nameof(LastChanges), nameof(TotalChanges), "totalChanges");
     
     [Required]
     [JsonPropertyName("totalChanges")]
     public int TotalChanges
     {
-        get => _totalChanges.GetValue();
+        get => _totalChanges.GetValue(InlineErrors);
         set => _totalChanges.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _lastChanges.SetAccessPath(path, validateHasBeenSet);
-        _totalChanges.SetAccessPath(path, validateHasBeenSet);
+        _lastChanges.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _totalChanges.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

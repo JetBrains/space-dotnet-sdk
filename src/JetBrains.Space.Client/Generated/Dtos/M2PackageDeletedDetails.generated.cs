@@ -42,20 +42,24 @@ public sealed class M2PackageDeletedDetails
         Pkg = pkg;
     }
     
-    private PropertyValue<PackageVersionInfo> _pkg = new PropertyValue<PackageVersionInfo>(nameof(M2PackageDeletedDetails), nameof(Pkg));
+    private PropertyValue<PackageVersionInfo> _pkg = new PropertyValue<PackageVersionInfo>(nameof(M2PackageDeletedDetails), nameof(Pkg), "pkg");
     
     [Required]
     [JsonPropertyName("pkg")]
     public PackageVersionInfo Pkg
     {
-        get => _pkg.GetValue();
+        get => _pkg.GetValue(InlineErrors);
         set => _pkg.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _pkg.SetAccessPath(path, validateHasBeenSet);
+        _pkg.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

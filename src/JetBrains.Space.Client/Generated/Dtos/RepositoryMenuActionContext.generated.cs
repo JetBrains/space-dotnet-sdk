@@ -44,42 +44,46 @@ public sealed class RepositoryMenuActionContext
         Repo = repo;
     }
     
-    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(RepositoryMenuActionContext), nameof(MenuId));
+    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(RepositoryMenuActionContext), nameof(MenuId), "menuId");
     
     [Required]
     [JsonPropertyName("menuId")]
     public string MenuId
     {
-        get => _menuId.GetValue();
+        get => _menuId.GetValue(InlineErrors);
         set => _menuId.SetValue(value);
     }
 
-    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(RepositoryMenuActionContext), nameof(Project));
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(RepositoryMenuActionContext), nameof(Project), "project");
     
     [Required]
     [JsonPropertyName("project")]
     public PRProject Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<string> _repo = new PropertyValue<string>(nameof(RepositoryMenuActionContext), nameof(Repo));
+    private PropertyValue<string> _repo = new PropertyValue<string>(nameof(RepositoryMenuActionContext), nameof(Repo), "repo");
     
     [Required]
     [JsonPropertyName("repo")]
     public string Repo
     {
-        get => _repo.GetValue();
+        get => _repo.GetValue(InlineErrors);
         set => _repo.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _menuId.SetAccessPath(path, validateHasBeenSet);
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _repo.SetAccessPath(path, validateHasBeenSet);
+        _menuId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repo.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,20 +42,24 @@ public sealed class CBuiltInServicePrincipalDetails
         Name = name;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(CBuiltInServicePrincipalDetails), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(CBuiltInServicePrincipalDetails), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -39,20 +39,24 @@ public class ProjectsForProjectPlanningIssuesStatusesPatchRequest
         Statuses = statuses;
     }
     
-    private PropertyValue<List<IssueStatusData>> _statuses = new PropertyValue<List<IssueStatusData>>(nameof(ProjectsForProjectPlanningIssuesStatusesPatchRequest), nameof(Statuses), new List<IssueStatusData>());
+    private PropertyValue<List<IssueStatusData>> _statuses = new PropertyValue<List<IssueStatusData>>(nameof(ProjectsForProjectPlanningIssuesStatusesPatchRequest), nameof(Statuses), "statuses", new List<IssueStatusData>());
     
     [Required]
     [JsonPropertyName("statuses")]
     public List<IssueStatusData> Statuses
     {
-        get => _statuses.GetValue();
+        get => _statuses.GetValue(InlineErrors);
         set => _statuses.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _statuses.SetAccessPath(path, validateHasBeenSet);
+        _statuses.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

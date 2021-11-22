@@ -47,70 +47,74 @@ public sealed class M2ChannelContactThread
         Attachments = attachments;
     }
     
-    private PropertyValue<M2ChannelRecord> _parent = new PropertyValue<M2ChannelRecord>(nameof(M2ChannelContactThread), nameof(Parent));
+    private PropertyValue<M2ChannelRecord> _parent = new PropertyValue<M2ChannelRecord>(nameof(M2ChannelContactThread), nameof(Parent), "parent");
     
     [Required]
     [JsonPropertyName("parent")]
     public M2ChannelRecord Parent
     {
-        get => _parent.GetValue();
+        get => _parent.GetValue(InlineErrors);
         set => _parent.SetValue(value);
     }
 
-    private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(M2ChannelContactThread), nameof(Text));
+    private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(M2ChannelContactThread), nameof(Text), "text");
     
     [JsonPropertyName("text")]
     public string? Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<string?> _messageId = new PropertyValue<string?>(nameof(M2ChannelContactThread), nameof(MessageId));
+    private PropertyValue<string?> _messageId = new PropertyValue<string?>(nameof(M2ChannelContactThread), nameof(MessageId), "messageId");
     
     [JsonPropertyName("messageId")]
     public string? MessageId
     {
-        get => _messageId.GetValue();
+        get => _messageId.GetValue(InlineErrors);
         set => _messageId.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _author = new PropertyValue<TDMemberProfile?>(nameof(M2ChannelContactThread), nameof(Author));
+    private PropertyValue<TDMemberProfile?> _author = new PropertyValue<TDMemberProfile?>(nameof(M2ChannelContactThread), nameof(Author), "author");
     
     [JsonPropertyName("author")]
     public TDMemberProfile? Author
     {
-        get => _author.GetValue();
+        get => _author.GetValue(InlineErrors);
         set => _author.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _messageAuthor = new PropertyValue<CPrincipal?>(nameof(M2ChannelContactThread), nameof(MessageAuthor));
+    private PropertyValue<CPrincipal?> _messageAuthor = new PropertyValue<CPrincipal?>(nameof(M2ChannelContactThread), nameof(MessageAuthor), "messageAuthor");
     
     [JsonPropertyName("messageAuthor")]
     public CPrincipal? MessageAuthor
     {
-        get => _messageAuthor.GetValue();
+        get => _messageAuthor.GetValue(InlineErrors);
         set => _messageAuthor.SetValue(value);
     }
 
-    private PropertyValue<string?> _attachments = new PropertyValue<string?>(nameof(M2ChannelContactThread), nameof(Attachments));
+    private PropertyValue<string?> _attachments = new PropertyValue<string?>(nameof(M2ChannelContactThread), nameof(Attachments), "attachments");
     
     [JsonPropertyName("attachments")]
     public string? Attachments
     {
-        get => _attachments.GetValue();
+        get => _attachments.GetValue(InlineErrors);
         set => _attachments.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _parent.SetAccessPath(path, validateHasBeenSet);
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _messageId.SetAccessPath(path, validateHasBeenSet);
-        _author.SetAccessPath(path, validateHasBeenSet);
-        _messageAuthor.SetAccessPath(path, validateHasBeenSet);
-        _attachments.SetAccessPath(path, validateHasBeenSet);
+        _parent.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messageId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _author.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messageAuthor.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

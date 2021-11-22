@@ -41,42 +41,46 @@ public sealed class WeekDayTimeInterval
         Interval = interval;
     }
     
-    private PropertyValue<int> _day = new PropertyValue<int>(nameof(WeekDayTimeInterval), nameof(Day));
+    private PropertyValue<int> _day = new PropertyValue<int>(nameof(WeekDayTimeInterval), nameof(Day), "day");
     
     [Required]
     [JsonPropertyName("day")]
     public int Day
     {
-        get => _day.GetValue();
+        get => _day.GetValue(InlineErrors);
         set => _day.SetValue(value);
     }
 
-    private PropertyValue<bool> _checked = new PropertyValue<bool>(nameof(WeekDayTimeInterval), nameof(IsChecked));
+    private PropertyValue<bool> _checked = new PropertyValue<bool>(nameof(WeekDayTimeInterval), nameof(IsChecked), "checked");
     
     [Required]
     [JsonPropertyName("checked")]
     public bool IsChecked
     {
-        get => _checked.GetValue();
+        get => _checked.GetValue(InlineErrors);
         set => _checked.SetValue(value);
     }
 
-    private PropertyValue<TimeInterval> _interval = new PropertyValue<TimeInterval>(nameof(WeekDayTimeInterval), nameof(Interval));
+    private PropertyValue<TimeInterval> _interval = new PropertyValue<TimeInterval>(nameof(WeekDayTimeInterval), nameof(Interval), "interval");
     
     [Required]
     [JsonPropertyName("interval")]
     public TimeInterval Interval
     {
-        get => _interval.GetValue();
+        get => _interval.GetValue(InlineErrors);
         set => _interval.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _day.SetAccessPath(path, validateHasBeenSet);
-        _checked.SetAccessPath(path, validateHasBeenSet);
-        _interval.SetAccessPath(path, validateHasBeenSet);
+        _day.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _checked.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _interval.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

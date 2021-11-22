@@ -45,50 +45,54 @@ public sealed class ChatMessageBlock
         MessageData = messageData;
     }
     
-    private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(ChatMessageBlock), nameof(Style));
+    private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(ChatMessageBlock), nameof(Style), "style");
     
     [JsonPropertyName("style")]
     public MessageStyle? Style
     {
-        get => _style.GetValue();
+        get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);
     }
 
-    private PropertyValue<MessageOutline?> _outline = new PropertyValue<MessageOutline?>(nameof(ChatMessageBlock), nameof(Outline));
+    private PropertyValue<MessageOutline?> _outline = new PropertyValue<MessageOutline?>(nameof(ChatMessageBlock), nameof(Outline), "outline");
     
     [JsonPropertyName("outline")]
     public MessageOutline? Outline
     {
-        get => _outline.GetValue();
+        get => _outline.GetValue(InlineErrors);
         set => _outline.SetValue(value);
     }
 
-    private PropertyValue<List<MessageSectionElement>> _sections = new PropertyValue<List<MessageSectionElement>>(nameof(ChatMessageBlock), nameof(Sections), new List<MessageSectionElement>());
+    private PropertyValue<List<MessageSectionElement>> _sections = new PropertyValue<List<MessageSectionElement>>(nameof(ChatMessageBlock), nameof(Sections), "sections", new List<MessageSectionElement>());
     
     [Required]
     [JsonPropertyName("sections")]
     public List<MessageSectionElement> Sections
     {
-        get => _sections.GetValue();
+        get => _sections.GetValue(InlineErrors);
         set => _sections.SetValue(value);
     }
 
-    private PropertyValue<string?> _messageData = new PropertyValue<string?>(nameof(ChatMessageBlock), nameof(MessageData));
+    private PropertyValue<string?> _messageData = new PropertyValue<string?>(nameof(ChatMessageBlock), nameof(MessageData), "messageData");
     
     [JsonPropertyName("messageData")]
     public string? MessageData
     {
-        get => _messageData.GetValue();
+        get => _messageData.GetValue(InlineErrors);
         set => _messageData.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _style.SetAccessPath(path, validateHasBeenSet);
-        _outline.SetAccessPath(path, validateHasBeenSet);
-        _sections.SetAccessPath(path, validateHasBeenSet);
-        _messageData.SetAccessPath(path, validateHasBeenSet);
+        _style.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _outline.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sections.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messageData.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

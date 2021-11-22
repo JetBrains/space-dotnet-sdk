@@ -42,19 +42,23 @@ public sealed class ESBuiltinProfileLoginDetails
         PasswordChangeRequest = passwordChangeRequest;
     }
     
-    private PropertyValue<string?> _passwordChangeRequest = new PropertyValue<string?>(nameof(ESBuiltinProfileLoginDetails), nameof(PasswordChangeRequest));
+    private PropertyValue<string?> _passwordChangeRequest = new PropertyValue<string?>(nameof(ESBuiltinProfileLoginDetails), nameof(PasswordChangeRequest), "passwordChangeRequest");
     
     [JsonPropertyName("passwordChangeRequest")]
     public string? PasswordChangeRequest
     {
-        get => _passwordChangeRequest.GetValue();
+        get => _passwordChangeRequest.GetValue(InlineErrors);
         set => _passwordChangeRequest.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _passwordChangeRequest.SetAccessPath(path, validateHasBeenSet);
+        _passwordChangeRequest.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

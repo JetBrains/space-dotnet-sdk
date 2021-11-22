@@ -48,118 +48,122 @@ public sealed class RightDTO
         Dependencies = dependencies;
     }
     
-    private PropertyValue<string> _rightCode = new PropertyValue<string>(nameof(RightDTO), nameof(RightCode));
+    private PropertyValue<string> _rightCode = new PropertyValue<string>(nameof(RightDTO), nameof(RightCode), "rightCode");
     
     [Required]
     [JsonPropertyName("rightCode")]
     public string RightCode
     {
-        get => _rightCode.GetValue();
+        get => _rightCode.GetValue(InlineErrors);
         set => _rightCode.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(RightDTO), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(RightDTO), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _group = new PropertyValue<string>(nameof(RightDTO), nameof(Group));
+    private PropertyValue<string> _group = new PropertyValue<string>(nameof(RightDTO), nameof(Group), "group");
     
     [Required]
     [JsonPropertyName("group")]
     public string Group
     {
-        get => _group.GetValue();
+        get => _group.GetValue(InlineErrors);
         set => _group.SetValue(value);
     }
 
-    private PropertyValue<string> _description = new PropertyValue<string>(nameof(RightDTO), nameof(Description));
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(RightDTO), nameof(Description), "description");
     
     [Required]
     [JsonPropertyName("description")]
     public string Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<string> _targetName = new PropertyValue<string>(nameof(RightDTO), nameof(TargetName));
+    private PropertyValue<string> _targetName = new PropertyValue<string>(nameof(RightDTO), nameof(TargetName), "targetName");
     
     [Required]
     [JsonPropertyName("targetName")]
     public string TargetName
     {
-        get => _targetName.GetValue();
+        get => _targetName.GetValue(InlineErrors);
         set => _targetName.SetValue(value);
     }
 
-    private PropertyValue<bool> _editable = new PropertyValue<bool>(nameof(RightDTO), nameof(IsEditable));
+    private PropertyValue<bool> _editable = new PropertyValue<bool>(nameof(RightDTO), nameof(IsEditable), "editable");
     
     [Required]
     [JsonPropertyName("editable")]
     public bool IsEditable
     {
-        get => _editable.GetValue();
+        get => _editable.GetValue(InlineErrors);
         set => _editable.SetValue(value);
     }
 
-    private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(RightDTO), nameof(Status));
+    private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(RightDTO), nameof(Status), "status");
     
     [Required]
     [JsonPropertyName("status")]
     public RightStatus Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _modificationAuthor = new PropertyValue<CPrincipal?>(nameof(RightDTO), nameof(ModificationAuthor));
+    private PropertyValue<CPrincipal?> _modificationAuthor = new PropertyValue<CPrincipal?>(nameof(RightDTO), nameof(ModificationAuthor), "modificationAuthor");
     
     [JsonPropertyName("modificationAuthor")]
     public CPrincipal? ModificationAuthor
     {
-        get => _modificationAuthor.GetValue();
+        get => _modificationAuthor.GetValue(InlineErrors);
         set => _modificationAuthor.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _modificationTimestamp = new PropertyValue<DateTime?>(nameof(RightDTO), nameof(ModificationTimestamp));
+    private PropertyValue<DateTime?> _modificationTimestamp = new PropertyValue<DateTime?>(nameof(RightDTO), nameof(ModificationTimestamp), "modificationTimestamp");
     
     [JsonPropertyName("modificationTimestamp")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ModificationTimestamp
     {
-        get => _modificationTimestamp.GetValue();
+        get => _modificationTimestamp.GetValue(InlineErrors);
         set => _modificationTimestamp.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _dependencies = new PropertyValue<List<string>>(nameof(RightDTO), nameof(Dependencies), new List<string>());
+    private PropertyValue<List<string>> _dependencies = new PropertyValue<List<string>>(nameof(RightDTO), nameof(Dependencies), "dependencies", new List<string>());
     
     [Required]
     [JsonPropertyName("dependencies")]
     public List<string> Dependencies
     {
-        get => _dependencies.GetValue();
+        get => _dependencies.GetValue(InlineErrors);
         set => _dependencies.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _rightCode.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _group.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _targetName.SetAccessPath(path, validateHasBeenSet);
-        _editable.SetAccessPath(path, validateHasBeenSet);
-        _status.SetAccessPath(path, validateHasBeenSet);
-        _modificationAuthor.SetAccessPath(path, validateHasBeenSet);
-        _modificationTimestamp.SetAccessPath(path, validateHasBeenSet);
-        _dependencies.SetAccessPath(path, validateHasBeenSet);
+        _rightCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _group.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _targetName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _editable.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _modificationAuthor.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _modificationTimestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _dependencies.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

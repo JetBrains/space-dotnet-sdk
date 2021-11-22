@@ -46,66 +46,70 @@ public sealed class DocumentWebhookEvent
         Base = @base;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(DocumentWebhookEvent), nameof(Meta));
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(DocumentWebhookEvent), nameof(Meta), "meta");
     
     [Required]
     [JsonPropertyName("meta")]
     public KMetaMod Meta
     {
-        get => _meta.GetValue();
+        get => _meta.GetValue(InlineErrors);
         set => _meta.SetValue(value);
     }
 
-    private PropertyValue<string> _document = new PropertyValue<string>(nameof(DocumentWebhookEvent), nameof(Document));
+    private PropertyValue<string> _document = new PropertyValue<string>(nameof(DocumentWebhookEvent), nameof(Document), "document");
     
     [Required]
     [JsonPropertyName("document")]
     public string Document
     {
-        get => _document.GetValue();
+        get => _document.GetValue(InlineErrors);
         set => _document.SetValue(value);
     }
 
-    private PropertyValue<List<CPrincipal>> _changeAuthors = new PropertyValue<List<CPrincipal>>(nameof(DocumentWebhookEvent), nameof(ChangeAuthors), new List<CPrincipal>());
+    private PropertyValue<List<CPrincipal>> _changeAuthors = new PropertyValue<List<CPrincipal>>(nameof(DocumentWebhookEvent), nameof(ChangeAuthors), "changeAuthors", new List<CPrincipal>());
     
     [Required]
     [JsonPropertyName("changeAuthors")]
     public List<CPrincipal> ChangeAuthors
     {
-        get => _changeAuthors.GetValue();
+        get => _changeAuthors.GetValue(InlineErrors);
         set => _changeAuthors.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _version = new PropertyValue<DateTime>(nameof(DocumentWebhookEvent), nameof(Version));
+    private PropertyValue<DateTime> _version = new PropertyValue<DateTime>(nameof(DocumentWebhookEvent), nameof(Version), "version");
     
     [Required]
     [JsonPropertyName("version")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Version
     {
-        get => _version.GetValue();
+        get => _version.GetValue(InlineErrors);
         set => _version.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _base = new PropertyValue<DateTime>(nameof(DocumentWebhookEvent), nameof(Base));
+    private PropertyValue<DateTime> _base = new PropertyValue<DateTime>(nameof(DocumentWebhookEvent), nameof(Base), "base");
     
     [Required]
     [JsonPropertyName("base")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Base
     {
-        get => _base.GetValue();
+        get => _base.GetValue(InlineErrors);
         set => _base.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meta.SetAccessPath(path, validateHasBeenSet);
-        _document.SetAccessPath(path, validateHasBeenSet);
-        _changeAuthors.SetAccessPath(path, validateHasBeenSet);
-        _version.SetAccessPath(path, validateHasBeenSet);
-        _base.SetAccessPath(path, validateHasBeenSet);
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _document.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _changeAuthors.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _base.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

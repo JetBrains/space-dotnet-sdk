@@ -40,31 +40,35 @@ public sealed class GitDiffSize
         Deleted = deleted;
     }
     
-    private PropertyValue<int> _added = new PropertyValue<int>(nameof(GitDiffSize), nameof(Added));
+    private PropertyValue<int> _added = new PropertyValue<int>(nameof(GitDiffSize), nameof(Added), "added");
     
     [Required]
     [JsonPropertyName("added")]
     public int Added
     {
-        get => _added.GetValue();
+        get => _added.GetValue(InlineErrors);
         set => _added.SetValue(value);
     }
 
-    private PropertyValue<int> _deleted = new PropertyValue<int>(nameof(GitDiffSize), nameof(Deleted));
+    private PropertyValue<int> _deleted = new PropertyValue<int>(nameof(GitDiffSize), nameof(Deleted), "deleted");
     
     [Required]
     [JsonPropertyName("deleted")]
     public int Deleted
     {
-        get => _deleted.GetValue();
+        get => _deleted.GetValue(InlineErrors);
         set => _deleted.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _added.SetAccessPath(path, validateHasBeenSet);
-        _deleted.SetAccessPath(path, validateHasBeenSet);
+        _added.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

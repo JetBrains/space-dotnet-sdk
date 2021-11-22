@@ -39,20 +39,24 @@ public class TeamDirectoryCalendarEventsMeetingParticipationsForIdPatchRequest
         NewStatus = newStatus;
     }
     
-    private PropertyValue<EventParticipationStatus> _newStatus = new PropertyValue<EventParticipationStatus>(nameof(TeamDirectoryCalendarEventsMeetingParticipationsForIdPatchRequest), nameof(NewStatus));
+    private PropertyValue<EventParticipationStatus> _newStatus = new PropertyValue<EventParticipationStatus>(nameof(TeamDirectoryCalendarEventsMeetingParticipationsForIdPatchRequest), nameof(NewStatus), "newStatus");
     
     [Required]
     [JsonPropertyName("newStatus")]
     public EventParticipationStatus NewStatus
     {
-        get => _newStatus.GetValue();
+        get => _newStatus.GetValue(InlineErrors);
         set => _newStatus.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _newStatus.SetAccessPath(path, validateHasBeenSet);
+        _newStatus.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

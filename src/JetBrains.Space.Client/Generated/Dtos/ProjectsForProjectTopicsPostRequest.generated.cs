@@ -40,30 +40,34 @@ public class ProjectsForProjectTopicsPostRequest
         ParentTopicId = parentTopicId;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectTopicsPostRequest), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectTopicsPostRequest), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _parentTopicId = new PropertyValue<string?>(nameof(ProjectsForProjectTopicsPostRequest), nameof(ParentTopicId));
+    private PropertyValue<string?> _parentTopicId = new PropertyValue<string?>(nameof(ProjectsForProjectTopicsPostRequest), nameof(ParentTopicId), "parentTopicId");
     
     [JsonPropertyName("parentTopicId")]
     public string? ParentTopicId
     {
-        get => _parentTopicId.GetValue();
+        get => _parentTopicId.GetValue(InlineErrors);
         set => _parentTopicId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _parentTopicId.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parentTopicId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

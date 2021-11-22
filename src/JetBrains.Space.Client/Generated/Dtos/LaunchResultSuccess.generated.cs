@@ -42,20 +42,24 @@ public sealed class LaunchResultSuccess
         ExecutionId = executionId;
     }
     
-    private PropertyValue<string> _executionId = new PropertyValue<string>(nameof(LaunchResultSuccess), nameof(ExecutionId));
+    private PropertyValue<string> _executionId = new PropertyValue<string>(nameof(LaunchResultSuccess), nameof(ExecutionId), "executionId");
     
     [Required]
     [JsonPropertyName("executionId")]
     public string ExecutionId
     {
-        get => _executionId.GetValue();
+        get => _executionId.GetValue(InlineErrors);
         set => _executionId.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _executionId.SetAccessPath(path, validateHasBeenSet);
+        _executionId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -49,128 +49,132 @@ public sealed class HADto
         ErrorsField = errorsField;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(HADto), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(HADto), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HADto), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HADto), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<List<HADtoField>> _fields = new PropertyValue<List<HADtoField>>(nameof(HADto), nameof(Fields), new List<HADtoField>());
+    private PropertyValue<List<HADtoField>> _fields = new PropertyValue<List<HADtoField>>(nameof(HADto), nameof(Fields), "fields", new List<HADtoField>());
     
     [Required]
     [JsonPropertyName("fields")]
     public List<HADtoField> Fields
     {
-        get => _fields.GetValue();
+        get => _fields.GetValue(InlineErrors);
         set => _fields.SetValue(value);
     }
 
-    private PropertyValue<HierarchyRole> _hierarchyRole = new PropertyValue<HierarchyRole>(nameof(HADto), nameof(HierarchyRole));
+    private PropertyValue<HierarchyRole> _hierarchyRole = new PropertyValue<HierarchyRole>(nameof(HADto), nameof(HierarchyRole), "hierarchyRole");
     
     [Required]
     [Obsolete("Use hierarchyRole2 (since 20-07-2021)")]
     [JsonPropertyName("hierarchyRole")]
     public HierarchyRole HierarchyRole
     {
-        get => _hierarchyRole.GetValue();
+        get => _hierarchyRole.GetValue(InlineErrors);
         set => _hierarchyRole.SetValue(value);
     }
 
-    private PropertyValue<HierarchyRole2> _hierarchyRole2 = new PropertyValue<HierarchyRole2>(nameof(HADto), nameof(HierarchyRole2));
+    private PropertyValue<HierarchyRole2> _hierarchyRole2 = new PropertyValue<HierarchyRole2>(nameof(HADto), nameof(HierarchyRole2), "hierarchyRole2");
     
     [Required]
     [JsonPropertyName("hierarchyRole2")]
     public HierarchyRole2 HierarchyRole2
     {
-        get => _hierarchyRole2.GetValue();
+        get => _hierarchyRole2.GetValue(InlineErrors);
         set => _hierarchyRole2.SetValue(value);
     }
 
-    private PropertyValue<HADto?> _extends = new PropertyValue<HADto?>(nameof(HADto), nameof(Extends));
+    private PropertyValue<HADto?> _extends = new PropertyValue<HADto?>(nameof(HADto), nameof(Extends), "extends");
     
     [JsonPropertyName("extends")]
     public HADto? Extends
     {
-        get => _extends.GetValue();
+        get => _extends.GetValue(InlineErrors);
         set => _extends.SetValue(value);
     }
 
-    private PropertyValue<List<HADto>> _implements = new PropertyValue<List<HADto>>(nameof(HADto), nameof(Implements), new List<HADto>());
+    private PropertyValue<List<HADto>> _implements = new PropertyValue<List<HADto>>(nameof(HADto), nameof(Implements), "implements", new List<HADto>());
     
     [Required]
     [JsonPropertyName("implements")]
     public List<HADto> Implements
     {
-        get => _implements.GetValue();
+        get => _implements.GetValue(InlineErrors);
         set => _implements.SetValue(value);
     }
 
-    private PropertyValue<List<HADto>> _inheritors = new PropertyValue<List<HADto>>(nameof(HADto), nameof(Inheritors), new List<HADto>());
+    private PropertyValue<List<HADto>> _inheritors = new PropertyValue<List<HADto>>(nameof(HADto), nameof(Inheritors), "inheritors", new List<HADto>());
     
     [Required]
     [JsonPropertyName("inheritors")]
     public List<HADto> Inheritors
     {
-        get => _inheritors.GetValue();
+        get => _inheritors.GetValue(InlineErrors);
         set => _inheritors.SetValue(value);
     }
 
-    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HADto), nameof(Deprecation));
+    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HADto), nameof(Deprecation), "deprecation");
     
     [JsonPropertyName("deprecation")]
     public HADeprecation? Deprecation
     {
-        get => _deprecation.GetValue();
+        get => _deprecation.GetValue(InlineErrors);
         set => _deprecation.SetValue(value);
     }
 
-    private PropertyValue<bool> _record = new PropertyValue<bool>(nameof(HADto), nameof(IsRecord));
+    private PropertyValue<bool> _record = new PropertyValue<bool>(nameof(HADto), nameof(IsRecord), "record");
     
     [Required]
     [JsonPropertyName("record")]
     public bool IsRecord
     {
-        get => _record.GetValue();
+        get => _record.GetValue(InlineErrors);
         set => _record.SetValue(value);
     }
 
-    private PropertyValue<HAField?> _errorsField = new PropertyValue<HAField?>(nameof(HADto), nameof(ErrorsField));
+    private PropertyValue<HAField?> _errorsField = new PropertyValue<HAField?>(nameof(HADto), nameof(ErrorsField), "errorsField");
     
     [JsonPropertyName("errorsField")]
     public HAField? ErrorsField
     {
-        get => _errorsField.GetValue();
+        get => _errorsField.GetValue(InlineErrors);
         set => _errorsField.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _fields.SetAccessPath(path, validateHasBeenSet);
-        _hierarchyRole.SetAccessPath(path, validateHasBeenSet);
-        _hierarchyRole2.SetAccessPath(path, validateHasBeenSet);
-        _extends.SetAccessPath(path, validateHasBeenSet);
-        _implements.SetAccessPath(path, validateHasBeenSet);
-        _inheritors.SetAccessPath(path, validateHasBeenSet);
-        _deprecation.SetAccessPath(path, validateHasBeenSet);
-        _record.SetAccessPath(path, validateHasBeenSet);
-        _errorsField.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _fields.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hierarchyRole.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hierarchyRole2.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _extends.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _implements.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inheritors.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _record.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _errorsField.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

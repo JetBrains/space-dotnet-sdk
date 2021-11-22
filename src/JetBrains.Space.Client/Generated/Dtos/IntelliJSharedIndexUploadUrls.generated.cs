@@ -39,20 +39,24 @@ public sealed class IntelliJSharedIndexUploadUrls
         Urls = urls;
     }
     
-    private PropertyValue<List<IntelliJSharedIndexNamedUploadUrl>> _urls = new PropertyValue<List<IntelliJSharedIndexNamedUploadUrl>>(nameof(IntelliJSharedIndexUploadUrls), nameof(Urls), new List<IntelliJSharedIndexNamedUploadUrl>());
+    private PropertyValue<List<IntelliJSharedIndexNamedUploadUrl>> _urls = new PropertyValue<List<IntelliJSharedIndexNamedUploadUrl>>(nameof(IntelliJSharedIndexUploadUrls), nameof(Urls), "urls", new List<IntelliJSharedIndexNamedUploadUrl>());
     
     [Required]
     [JsonPropertyName("urls")]
     public List<IntelliJSharedIndexNamedUploadUrl> Urls
     {
-        get => _urls.GetValue();
+        get => _urls.GetValue(InlineErrors);
         set => _urls.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _urls.SetAccessPath(path, validateHasBeenSet);
+        _urls.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -43,30 +43,34 @@ public sealed class GitCommitSignatureRevokedKey
         RevokeComment = revokeComment;
     }
     
-    private PropertyValue<string> _description = new PropertyValue<string>(nameof(GitCommitSignatureRevokedKey), nameof(Description));
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(GitCommitSignatureRevokedKey), nameof(Description), "description");
     
     [Required]
     [JsonPropertyName("description")]
     public string Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<string?> _revokeComment = new PropertyValue<string?>(nameof(GitCommitSignatureRevokedKey), nameof(RevokeComment));
+    private PropertyValue<string?> _revokeComment = new PropertyValue<string?>(nameof(GitCommitSignatureRevokedKey), nameof(RevokeComment), "revokeComment");
     
     [JsonPropertyName("revokeComment")]
     public string? RevokeComment
     {
-        get => _revokeComment.GetValue();
+        get => _revokeComment.GetValue(InlineErrors);
         set => _revokeComment.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _revokeComment.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _revokeComment.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

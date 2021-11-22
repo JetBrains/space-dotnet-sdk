@@ -45,86 +45,90 @@ public sealed class PublicHolidayCalendarRecord
         Location = location;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PublicHolidayCalendarRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PublicHolidayCalendarRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PublicHolidayCalendarRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PublicHolidayCalendarRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PublicHolidayCalendarRecord), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PublicHolidayCalendarRecord), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _firstDate = new PropertyValue<DateTime?>(nameof(PublicHolidayCalendarRecord), nameof(FirstDate));
+    private PropertyValue<DateTime?> _firstDate = new PropertyValue<DateTime?>(nameof(PublicHolidayCalendarRecord), nameof(FirstDate), "firstDate");
     
     [JsonPropertyName("firstDate")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? FirstDate
     {
-        get => _firstDate.GetValue();
+        get => _firstDate.GetValue(InlineErrors);
         set => _firstDate.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _lastDate = new PropertyValue<DateTime?>(nameof(PublicHolidayCalendarRecord), nameof(LastDate));
+    private PropertyValue<DateTime?> _lastDate = new PropertyValue<DateTime?>(nameof(PublicHolidayCalendarRecord), nameof(LastDate), "lastDate");
     
     [JsonPropertyName("lastDate")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? LastDate
     {
-        get => _lastDate.GetValue();
+        get => _lastDate.GetValue(InlineErrors);
         set => _lastDate.SetValue(value);
     }
 
-    private PropertyValue<int> _eventsCount = new PropertyValue<int>(nameof(PublicHolidayCalendarRecord), nameof(EventsCount));
+    private PropertyValue<int> _eventsCount = new PropertyValue<int>(nameof(PublicHolidayCalendarRecord), nameof(EventsCount), "eventsCount");
     
     [Required]
     [JsonPropertyName("eventsCount")]
     public int EventsCount
     {
-        get => _eventsCount.GetValue();
+        get => _eventsCount.GetValue(InlineErrors);
         set => _eventsCount.SetValue(value);
     }
 
-    private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(PublicHolidayCalendarRecord), nameof(Location));
+    private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(PublicHolidayCalendarRecord), nameof(Location), "location");
     
     [Required]
     [JsonPropertyName("location")]
     public TDLocation Location
     {
-        get => _location.GetValue();
+        get => _location.GetValue(InlineErrors);
         set => _location.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _firstDate.SetAccessPath(path, validateHasBeenSet);
-        _lastDate.SetAccessPath(path, validateHasBeenSet);
-        _eventsCount.SetAccessPath(path, validateHasBeenSet);
-        _location.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _firstDate.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastDate.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _eventsCount.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _location.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

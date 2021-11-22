@@ -43,62 +43,66 @@ public sealed class ChannelSpecificDefaults
         IsThreadsSubscribed = threadsSubscribed;
     }
     
-    private PropertyValue<bool?> _subscribed = new PropertyValue<bool?>(nameof(ChannelSpecificDefaults), nameof(IsSubscribed));
+    private PropertyValue<bool?> _subscribed = new PropertyValue<bool?>(nameof(ChannelSpecificDefaults), nameof(IsSubscribed), "subscribed");
     
     [JsonPropertyName("subscribed")]
     public bool? IsSubscribed
     {
-        get => _subscribed.GetValue();
+        get => _subscribed.GetValue(InlineErrors);
         set => _subscribed.SetValue(value);
     }
 
-    private PropertyValue<NotificationFilter> _filter = new PropertyValue<NotificationFilter>(nameof(ChannelSpecificDefaults), nameof(Filter));
+    private PropertyValue<NotificationFilter> _filter = new PropertyValue<NotificationFilter>(nameof(ChannelSpecificDefaults), nameof(Filter), "filter");
     
     [Required]
     [JsonPropertyName("filter")]
     public NotificationFilter Filter
     {
-        get => _filter.GetValue();
+        get => _filter.GetValue(InlineErrors);
         set => _filter.SetValue(value);
     }
 
-    private PropertyValue<bool> _push = new PropertyValue<bool>(nameof(ChannelSpecificDefaults), nameof(IsPush));
+    private PropertyValue<bool> _push = new PropertyValue<bool>(nameof(ChannelSpecificDefaults), nameof(IsPush), "push");
     
     [Required]
     [JsonPropertyName("push")]
     public bool IsPush
     {
-        get => _push.GetValue();
+        get => _push.GetValue(InlineErrors);
         set => _push.SetValue(value);
     }
 
-    private PropertyValue<M2EmailNotificationType> _email = new PropertyValue<M2EmailNotificationType>(nameof(ChannelSpecificDefaults), nameof(Email));
+    private PropertyValue<M2EmailNotificationType> _email = new PropertyValue<M2EmailNotificationType>(nameof(ChannelSpecificDefaults), nameof(Email), "email");
     
     [Required]
     [JsonPropertyName("email")]
     public M2EmailNotificationType Email
     {
-        get => _email.GetValue();
+        get => _email.GetValue(InlineErrors);
         set => _email.SetValue(value);
     }
 
-    private PropertyValue<bool?> _threadsSubscribed = new PropertyValue<bool?>(nameof(ChannelSpecificDefaults), nameof(IsThreadsSubscribed));
+    private PropertyValue<bool?> _threadsSubscribed = new PropertyValue<bool?>(nameof(ChannelSpecificDefaults), nameof(IsThreadsSubscribed), "threadsSubscribed");
     
     [JsonPropertyName("threadsSubscribed")]
     public bool? IsThreadsSubscribed
     {
-        get => _threadsSubscribed.GetValue();
+        get => _threadsSubscribed.GetValue(InlineErrors);
         set => _threadsSubscribed.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _subscribed.SetAccessPath(path, validateHasBeenSet);
-        _filter.SetAccessPath(path, validateHasBeenSet);
-        _push.SetAccessPath(path, validateHasBeenSet);
-        _email.SetAccessPath(path, validateHasBeenSet);
-        _threadsSubscribed.SetAccessPath(path, validateHasBeenSet);
+        _subscribed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _filter.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _push.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _email.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _threadsSubscribed.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

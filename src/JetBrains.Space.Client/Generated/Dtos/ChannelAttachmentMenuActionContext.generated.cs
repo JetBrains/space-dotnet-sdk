@@ -43,31 +43,35 @@ public sealed class ChannelAttachmentMenuActionContext
         ChannelId = channelId;
     }
     
-    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(ChannelAttachmentMenuActionContext), nameof(MenuId));
+    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(ChannelAttachmentMenuActionContext), nameof(MenuId), "menuId");
     
     [Required]
     [JsonPropertyName("menuId")]
     public string MenuId
     {
-        get => _menuId.GetValue();
+        get => _menuId.GetValue(InlineErrors);
         set => _menuId.SetValue(value);
     }
 
-    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(ChannelAttachmentMenuActionContext), nameof(ChannelId));
+    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(ChannelAttachmentMenuActionContext), nameof(ChannelId), "channelId");
     
     [Required]
     [JsonPropertyName("channelId")]
     public string ChannelId
     {
-        get => _channelId.GetValue();
+        get => _channelId.GetValue(InlineErrors);
         set => _channelId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _menuId.SetAccessPath(path, validateHasBeenSet);
-        _channelId.SetAccessPath(path, validateHasBeenSet);
+        _menuId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

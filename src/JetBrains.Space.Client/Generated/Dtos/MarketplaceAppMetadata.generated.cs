@@ -44,42 +44,46 @@ public sealed class MarketplaceAppMetadata
         ConnectionStatus = connectionStatus;
     }
     
-    private PropertyValue<int> _marketplaceAppId = new PropertyValue<int>(nameof(MarketplaceAppMetadata), nameof(MarketplaceAppId));
+    private PropertyValue<int> _marketplaceAppId = new PropertyValue<int>(nameof(MarketplaceAppMetadata), nameof(MarketplaceAppId), "marketplaceAppId");
     
     [Required]
     [JsonPropertyName("marketplaceAppId")]
     public int MarketplaceAppId
     {
-        get => _marketplaceAppId.GetValue();
+        get => _marketplaceAppId.GetValue(InlineErrors);
         set => _marketplaceAppId.SetValue(value);
     }
 
-    private PropertyValue<string> _lastSentServerUrl = new PropertyValue<string>(nameof(MarketplaceAppMetadata), nameof(LastSentServerUrl));
+    private PropertyValue<string> _lastSentServerUrl = new PropertyValue<string>(nameof(MarketplaceAppMetadata), nameof(LastSentServerUrl), "lastSentServerUrl");
     
     [Required]
     [JsonPropertyName("lastSentServerUrl")]
     public string LastSentServerUrl
     {
-        get => _lastSentServerUrl.GetValue();
+        get => _lastSentServerUrl.GetValue(InlineErrors);
         set => _lastSentServerUrl.SetValue(value);
     }
 
-    private PropertyValue<AppConnectionStatus> _connectionStatus = new PropertyValue<AppConnectionStatus>(nameof(MarketplaceAppMetadata), nameof(ConnectionStatus));
+    private PropertyValue<AppConnectionStatus> _connectionStatus = new PropertyValue<AppConnectionStatus>(nameof(MarketplaceAppMetadata), nameof(ConnectionStatus), "connectionStatus");
     
     [Required]
     [JsonPropertyName("connectionStatus")]
     public AppConnectionStatus ConnectionStatus
     {
-        get => _connectionStatus.GetValue();
+        get => _connectionStatus.GetValue(InlineErrors);
         set => _connectionStatus.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _marketplaceAppId.SetAccessPath(path, validateHasBeenSet);
-        _lastSentServerUrl.SetAccessPath(path, validateHasBeenSet);
-        _connectionStatus.SetAccessPath(path, validateHasBeenSet);
+        _marketplaceAppId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastSentServerUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _connectionStatus.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

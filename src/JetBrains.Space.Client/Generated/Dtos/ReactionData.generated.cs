@@ -41,42 +41,46 @@ public sealed class ReactionData
         Emoji = emoji;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ReactionData), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ReactionData), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _symbol = new PropertyValue<string>(nameof(ReactionData), nameof(Symbol));
+    private PropertyValue<string> _symbol = new PropertyValue<string>(nameof(ReactionData), nameof(Symbol), "symbol");
     
     [Required]
     [JsonPropertyName("symbol")]
     public string Symbol
     {
-        get => _symbol.GetValue();
+        get => _symbol.GetValue(InlineErrors);
         set => _symbol.SetValue(value);
     }
 
-    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(ReactionData), nameof(Emoji));
+    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(ReactionData), nameof(Emoji), "emoji");
     
     [Required]
     [JsonPropertyName("emoji")]
     public string Emoji
     {
-        get => _emoji.GetValue();
+        get => _emoji.GetValue(InlineErrors);
         set => _emoji.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _symbol.SetAccessPath(path, validateHasBeenSet);
-        _emoji.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _symbol.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _emoji.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

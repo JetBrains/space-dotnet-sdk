@@ -41,42 +41,46 @@ public class AuthModulesTestLdapPostRequest
         Password = password;
     }
     
-    private PropertyValue<ESLdapAuthModuleSettings> _settings = new PropertyValue<ESLdapAuthModuleSettings>(nameof(AuthModulesTestLdapPostRequest), nameof(Settings));
+    private PropertyValue<ESLdapAuthModuleSettings> _settings = new PropertyValue<ESLdapAuthModuleSettings>(nameof(AuthModulesTestLdapPostRequest), nameof(Settings), "settings");
     
     [Required]
     [JsonPropertyName("settings")]
     public ESLdapAuthModuleSettings Settings
     {
-        get => _settings.GetValue();
+        get => _settings.GetValue(InlineErrors);
         set => _settings.SetValue(value);
     }
 
-    private PropertyValue<string> _username = new PropertyValue<string>(nameof(AuthModulesTestLdapPostRequest), nameof(Username));
+    private PropertyValue<string> _username = new PropertyValue<string>(nameof(AuthModulesTestLdapPostRequest), nameof(Username), "username");
     
     [Required]
     [JsonPropertyName("username")]
     public string Username
     {
-        get => _username.GetValue();
+        get => _username.GetValue(InlineErrors);
         set => _username.SetValue(value);
     }
 
-    private PropertyValue<string> _password = new PropertyValue<string>(nameof(AuthModulesTestLdapPostRequest), nameof(Password));
+    private PropertyValue<string> _password = new PropertyValue<string>(nameof(AuthModulesTestLdapPostRequest), nameof(Password), "password");
     
     [Required]
     [JsonPropertyName("password")]
     public string Password
     {
-        get => _password.GetValue();
+        get => _password.GetValue(InlineErrors);
         set => _password.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _settings.SetAccessPath(path, validateHasBeenSet);
-        _username.SetAccessPath(path, validateHasBeenSet);
-        _password.SetAccessPath(path, validateHasBeenSet);
+        _settings.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _username.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _password.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

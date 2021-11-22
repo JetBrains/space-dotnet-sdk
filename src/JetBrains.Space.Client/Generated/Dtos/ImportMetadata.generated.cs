@@ -39,20 +39,24 @@ public sealed class ImportMetadata
         ImportSource = importSource;
     }
     
-    private PropertyValue<string> _importSource = new PropertyValue<string>(nameof(ImportMetadata), nameof(ImportSource));
+    private PropertyValue<string> _importSource = new PropertyValue<string>(nameof(ImportMetadata), nameof(ImportSource), "importSource");
     
     [Required]
     [JsonPropertyName("importSource")]
     public string ImportSource
     {
-        get => _importSource.GetValue();
+        get => _importSource.GetValue(InlineErrors);
         set => _importSource.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _importSource.SetAccessPath(path, validateHasBeenSet);
+        _importSource.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

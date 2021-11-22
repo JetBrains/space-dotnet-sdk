@@ -41,40 +41,44 @@ public sealed class ContainerImagePlatform
         Arch = arch;
     }
     
-    private PropertyValue<string> _os = new PropertyValue<string>(nameof(ContainerImagePlatform), nameof(Os));
+    private PropertyValue<string> _os = new PropertyValue<string>(nameof(ContainerImagePlatform), nameof(Os), "os");
     
     [Required]
     [JsonPropertyName("os")]
     public string Os
     {
-        get => _os.GetValue();
+        get => _os.GetValue(InlineErrors);
         set => _os.SetValue(value);
     }
 
-    private PropertyValue<string?> _osVersion = new PropertyValue<string?>(nameof(ContainerImagePlatform), nameof(OsVersion));
+    private PropertyValue<string?> _osVersion = new PropertyValue<string?>(nameof(ContainerImagePlatform), nameof(OsVersion), "osVersion");
     
     [JsonPropertyName("osVersion")]
     public string? OsVersion
     {
-        get => _osVersion.GetValue();
+        get => _osVersion.GetValue(InlineErrors);
         set => _osVersion.SetValue(value);
     }
 
-    private PropertyValue<string?> _arch = new PropertyValue<string?>(nameof(ContainerImagePlatform), nameof(Arch));
+    private PropertyValue<string?> _arch = new PropertyValue<string?>(nameof(ContainerImagePlatform), nameof(Arch), "arch");
     
     [JsonPropertyName("arch")]
     public string? Arch
     {
-        get => _arch.GetValue();
+        get => _arch.GetValue(InlineErrors);
         set => _arch.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _os.SetAccessPath(path, validateHasBeenSet);
-        _osVersion.SetAccessPath(path, validateHasBeenSet);
-        _arch.SetAccessPath(path, validateHasBeenSet);
+        _os.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _osVersion.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _arch.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

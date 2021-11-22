@@ -40,31 +40,35 @@ public sealed class IssueStatusWithUsages
         Usages = usages;
     }
     
-    private PropertyValue<IssueStatus> _status = new PropertyValue<IssueStatus>(nameof(IssueStatusWithUsages), nameof(Status));
+    private PropertyValue<IssueStatus> _status = new PropertyValue<IssueStatus>(nameof(IssueStatusWithUsages), nameof(Status), "status");
     
     [Required]
     [JsonPropertyName("status")]
     public IssueStatus Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    private PropertyValue<int> _usages = new PropertyValue<int>(nameof(IssueStatusWithUsages), nameof(Usages));
+    private PropertyValue<int> _usages = new PropertyValue<int>(nameof(IssueStatusWithUsages), nameof(Usages), "usages");
     
     [Required]
     [JsonPropertyName("usages")]
     public int Usages
     {
-        get => _usages.GetValue();
+        get => _usages.GetValue(InlineErrors);
         set => _usages.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _status.SetAccessPath(path, validateHasBeenSet);
-        _usages.SetAccessPath(path, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _usages.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

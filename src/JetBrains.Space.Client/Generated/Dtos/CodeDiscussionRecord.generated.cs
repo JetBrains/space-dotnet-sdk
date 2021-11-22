@@ -55,188 +55,192 @@ public sealed class CodeDiscussionRecord
         IsArchived = archived;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeDiscussionRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeDiscussionRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CodeDiscussionRecord), nameof(ProjectId));
+    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CodeDiscussionRecord), nameof(ProjectId), "projectId");
     
     [Required]
     [Obsolete("Use project instead (since 2020-01-18)")]
     [JsonPropertyName("projectId")]
     public string ProjectId
     {
-        get => _projectId.GetValue();
+        get => _projectId.GetValue(InlineErrors);
         set => _projectId.SetValue(value);
     }
 
-    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(CodeDiscussionRecord), nameof(Project));
+    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(CodeDiscussionRecord), nameof(Project), "project");
     
     [JsonPropertyName("project")]
     public PRProject? Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<CodeDiscussionAnchor> _anchor = new PropertyValue<CodeDiscussionAnchor>(nameof(CodeDiscussionRecord), nameof(Anchor));
+    private PropertyValue<CodeDiscussionAnchor> _anchor = new PropertyValue<CodeDiscussionAnchor>(nameof(CodeDiscussionRecord), nameof(Anchor), "anchor");
     
     [Required]
     [JsonPropertyName("anchor")]
     public CodeDiscussionAnchor Anchor
     {
-        get => _anchor.GetValue();
+        get => _anchor.GetValue(InlineErrors);
         set => _anchor.SetValue(value);
     }
 
-    private PropertyValue<CodeDiscussionAnchor?> _endAnchor = new PropertyValue<CodeDiscussionAnchor?>(nameof(CodeDiscussionRecord), nameof(EndAnchor));
+    private PropertyValue<CodeDiscussionAnchor?> _endAnchor = new PropertyValue<CodeDiscussionAnchor?>(nameof(CodeDiscussionRecord), nameof(EndAnchor), "endAnchor");
     
     [JsonPropertyName("endAnchor")]
     public CodeDiscussionAnchor? EndAnchor
     {
-        get => _endAnchor.GetValue();
+        get => _endAnchor.GetValue(InlineErrors);
         set => _endAnchor.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(CodeDiscussionRecord), nameof(Created));
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(CodeDiscussionRecord), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(CodeDiscussionRecord), nameof(Channel));
+    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(CodeDiscussionRecord), nameof(Channel), "channel");
     
     [Required]
     [JsonPropertyName("channel")]
     public M2ChannelRecord Channel
     {
-        get => _channel.GetValue();
+        get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
     }
 
-    private PropertyValue<bool?> _resolvable = new PropertyValue<bool?>(nameof(CodeDiscussionRecord), nameof(IsResolvable));
+    private PropertyValue<bool?> _resolvable = new PropertyValue<bool?>(nameof(CodeDiscussionRecord), nameof(IsResolvable), "resolvable");
     
     [JsonPropertyName("resolvable")]
     public bool? IsResolvable
     {
-        get => _resolvable.GetValue();
+        get => _resolvable.GetValue(InlineErrors);
         set => _resolvable.SetValue(value);
     }
 
-    private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(CodeDiscussionRecord), nameof(IsResolved));
+    private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(CodeDiscussionRecord), nameof(IsResolved), "resolved");
     
     [Required]
     [JsonPropertyName("resolved")]
     public bool IsResolved
     {
-        get => _resolved.GetValue();
+        get => _resolved.GetValue(InlineErrors);
         set => _resolved.SetValue(value);
     }
 
-    private PropertyValue<CodeDiscussionSnippet?> _snippet = new PropertyValue<CodeDiscussionSnippet?>(nameof(CodeDiscussionRecord), nameof(Snippet));
+    private PropertyValue<CodeDiscussionSnippet?> _snippet = new PropertyValue<CodeDiscussionSnippet?>(nameof(CodeDiscussionRecord), nameof(Snippet), "snippet");
     
     [JsonPropertyName("snippet")]
     public CodeDiscussionSnippet? Snippet
     {
-        get => _snippet.GetValue();
+        get => _snippet.GetValue(InlineErrors);
         set => _snippet.SetValue(value);
     }
 
-    private PropertyValue<CodeDiscussionSuggestedEdit?> _suggestedEdit = new PropertyValue<CodeDiscussionSuggestedEdit?>(nameof(CodeDiscussionRecord), nameof(SuggestedEdit));
+    private PropertyValue<CodeDiscussionSuggestedEdit?> _suggestedEdit = new PropertyValue<CodeDiscussionSuggestedEdit?>(nameof(CodeDiscussionRecord), nameof(SuggestedEdit), "suggestedEdit");
     
     [JsonPropertyName("suggestedEdit")]
     public CodeDiscussionSuggestedEdit? SuggestedEdit
     {
-        get => _suggestedEdit.GetValue();
+        get => _suggestedEdit.GetValue(InlineErrors);
         set => _suggestedEdit.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _resolvedBy = new PropertyValue<CPrincipal?>(nameof(CodeDiscussionRecord), nameof(ResolvedBy));
+    private PropertyValue<CPrincipal?> _resolvedBy = new PropertyValue<CPrincipal?>(nameof(CodeDiscussionRecord), nameof(ResolvedBy), "resolvedBy");
     
     [JsonPropertyName("resolvedBy")]
     public CPrincipal? ResolvedBy
     {
-        get => _resolvedBy.GetValue();
+        get => _resolvedBy.GetValue(InlineErrors);
         set => _resolvedBy.SetValue(value);
     }
 
-    private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(CodeDiscussionRecord), nameof(IsPending));
+    private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(CodeDiscussionRecord), nameof(IsPending), "pending");
     
     [JsonPropertyName("pending")]
     public bool? IsPending
     {
-        get => _pending.GetValue();
+        get => _pending.GetValue(InlineErrors);
         set => _pending.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewRecord?> _review = new PropertyValue<CodeReviewRecord?>(nameof(CodeDiscussionRecord), nameof(Review));
+    private PropertyValue<CodeReviewRecord?> _review = new PropertyValue<CodeReviewRecord?>(nameof(CodeDiscussionRecord), nameof(Review), "review");
     
     [JsonPropertyName("review")]
     public CodeReviewRecord? Review
     {
-        get => _review.GetValue();
+        get => _review.GetValue(InlineErrors);
         set => _review.SetValue(value);
     }
 
-    private PropertyValue<string?> _feedItemId = new PropertyValue<string?>(nameof(CodeDiscussionRecord), nameof(FeedItemId));
+    private PropertyValue<string?> _feedItemId = new PropertyValue<string?>(nameof(CodeDiscussionRecord), nameof(FeedItemId), "feedItemId");
     
     [JsonPropertyName("feedItemId")]
     public string? FeedItemId
     {
-        get => _feedItemId.GetValue();
+        get => _feedItemId.GetValue(InlineErrors);
         set => _feedItemId.SetValue(value);
     }
 
-    private PropertyValue<List<CodeReviewRecord>?> _reviews = new PropertyValue<List<CodeReviewRecord>?>(nameof(CodeDiscussionRecord), nameof(Reviews));
+    private PropertyValue<List<CodeReviewRecord>?> _reviews = new PropertyValue<List<CodeReviewRecord>?>(nameof(CodeDiscussionRecord), nameof(Reviews), "reviews");
     
     [JsonPropertyName("reviews")]
     public List<CodeReviewRecord>? Reviews
     {
-        get => _reviews.GetValue();
+        get => _reviews.GetValue(InlineErrors);
         set => _reviews.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeDiscussionRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeDiscussionRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _projectId.SetAccessPath(path, validateHasBeenSet);
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _anchor.SetAccessPath(path, validateHasBeenSet);
-        _endAnchor.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _channel.SetAccessPath(path, validateHasBeenSet);
-        _resolvable.SetAccessPath(path, validateHasBeenSet);
-        _resolved.SetAccessPath(path, validateHasBeenSet);
-        _snippet.SetAccessPath(path, validateHasBeenSet);
-        _suggestedEdit.SetAccessPath(path, validateHasBeenSet);
-        _resolvedBy.SetAccessPath(path, validateHasBeenSet);
-        _pending.SetAccessPath(path, validateHasBeenSet);
-        _review.SetAccessPath(path, validateHasBeenSet);
-        _feedItemId.SetAccessPath(path, validateHasBeenSet);
-        _reviews.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _anchor.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _endAnchor.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _resolvable.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _resolved.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _snippet.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _suggestedEdit.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _resolvedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pending.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _review.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _feedItemId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviews.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

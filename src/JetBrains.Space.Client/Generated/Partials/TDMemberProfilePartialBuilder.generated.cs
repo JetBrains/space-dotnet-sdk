@@ -145,6 +145,12 @@ public static class TDMemberProfilePartialExtensions
     public static Partial<TDMemberProfile> WithLocations(this Partial<TDMemberProfile> it, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>> partialBuilder)
         => it.AddFieldName("locations", partialBuilder(new Partial<TDMemberLocation>(it)));
     
+    public static Partial<TDMemberProfile> WithLogins(this Partial<TDMemberProfile> it)
+        => it.AddFieldName("logins");
+    
+    public static Partial<TDMemberProfile> WithLogins(this Partial<TDMemberProfile> it, Func<Partial<ESProfileLogin>, Partial<ESProfileLogin>> partialBuilder)
+        => it.AddFieldName("logins", partialBuilder(new Partial<ESProfileLogin>(it)));
+    
     public static Partial<TDMemberProfile> WithManagers(this Partial<TDMemberProfile> it)
         => it.AddFieldName("managers");
     

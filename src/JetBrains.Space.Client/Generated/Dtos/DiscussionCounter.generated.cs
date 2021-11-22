@@ -43,64 +43,68 @@ public sealed class DiscussionCounter
         RejectedSuggestedEdits = rejectedSuggestedEdits;
     }
     
-    private PropertyValue<int> _resolved = new PropertyValue<int>(nameof(DiscussionCounter), nameof(Resolved));
+    private PropertyValue<int> _resolved = new PropertyValue<int>(nameof(DiscussionCounter), nameof(Resolved), "resolved");
     
     [Required]
     [JsonPropertyName("resolved")]
     public int Resolved
     {
-        get => _resolved.GetValue();
+        get => _resolved.GetValue(InlineErrors);
         set => _resolved.SetValue(value);
     }
 
-    private PropertyValue<int> _unresolved = new PropertyValue<int>(nameof(DiscussionCounter), nameof(Unresolved));
+    private PropertyValue<int> _unresolved = new PropertyValue<int>(nameof(DiscussionCounter), nameof(Unresolved), "unresolved");
     
     [Required]
     [JsonPropertyName("unresolved")]
     public int Unresolved
     {
-        get => _unresolved.GetValue();
+        get => _unresolved.GetValue(InlineErrors);
         set => _unresolved.SetValue(value);
     }
 
-    private PropertyValue<int> _unresolvedSuggestedEdits = new PropertyValue<int>(nameof(DiscussionCounter), nameof(UnresolvedSuggestedEdits));
+    private PropertyValue<int> _unresolvedSuggestedEdits = new PropertyValue<int>(nameof(DiscussionCounter), nameof(UnresolvedSuggestedEdits), "unresolvedSuggestedEdits");
     
     [Required]
     [JsonPropertyName("unresolvedSuggestedEdits")]
     public int UnresolvedSuggestedEdits
     {
-        get => _unresolvedSuggestedEdits.GetValue();
+        get => _unresolvedSuggestedEdits.GetValue(InlineErrors);
         set => _unresolvedSuggestedEdits.SetValue(value);
     }
 
-    private PropertyValue<int> _acceptedSuggestedEdits = new PropertyValue<int>(nameof(DiscussionCounter), nameof(AcceptedSuggestedEdits));
+    private PropertyValue<int> _acceptedSuggestedEdits = new PropertyValue<int>(nameof(DiscussionCounter), nameof(AcceptedSuggestedEdits), "acceptedSuggestedEdits");
     
     [Required]
     [JsonPropertyName("acceptedSuggestedEdits")]
     public int AcceptedSuggestedEdits
     {
-        get => _acceptedSuggestedEdits.GetValue();
+        get => _acceptedSuggestedEdits.GetValue(InlineErrors);
         set => _acceptedSuggestedEdits.SetValue(value);
     }
 
-    private PropertyValue<int> _rejectedSuggestedEdits = new PropertyValue<int>(nameof(DiscussionCounter), nameof(RejectedSuggestedEdits));
+    private PropertyValue<int> _rejectedSuggestedEdits = new PropertyValue<int>(nameof(DiscussionCounter), nameof(RejectedSuggestedEdits), "rejectedSuggestedEdits");
     
     [Required]
     [JsonPropertyName("rejectedSuggestedEdits")]
     public int RejectedSuggestedEdits
     {
-        get => _rejectedSuggestedEdits.GetValue();
+        get => _rejectedSuggestedEdits.GetValue(InlineErrors);
         set => _rejectedSuggestedEdits.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _resolved.SetAccessPath(path, validateHasBeenSet);
-        _unresolved.SetAccessPath(path, validateHasBeenSet);
-        _unresolvedSuggestedEdits.SetAccessPath(path, validateHasBeenSet);
-        _acceptedSuggestedEdits.SetAccessPath(path, validateHasBeenSet);
-        _rejectedSuggestedEdits.SetAccessPath(path, validateHasBeenSet);
+        _resolved.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unresolved.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unresolvedSuggestedEdits.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _acceptedSuggestedEdits.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rejectedSuggestedEdits.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

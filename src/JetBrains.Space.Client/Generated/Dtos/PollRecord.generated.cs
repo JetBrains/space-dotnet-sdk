@@ -50,141 +50,145 @@ public sealed class PollRecord
         Votes = votes;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PollRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PollRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile> _owner = new PropertyValue<TDMemberProfile>(nameof(PollRecord), nameof(Owner));
+    private PropertyValue<TDMemberProfile> _owner = new PropertyValue<TDMemberProfile>(nameof(PollRecord), nameof(Owner), "owner");
     
     [Required]
     [JsonPropertyName("owner")]
     public TDMemberProfile Owner
     {
-        get => _owner.GetValue();
+        get => _owner.GetValue(InlineErrors);
         set => _owner.SetValue(value);
     }
 
-    private PropertyValue<string> _question = new PropertyValue<string>(nameof(PollRecord), nameof(Question));
+    private PropertyValue<string> _question = new PropertyValue<string>(nameof(PollRecord), nameof(Question), "question");
     
     [Required]
     [JsonPropertyName("question")]
     public string Question
     {
-        get => _question.GetValue();
+        get => _question.GetValue(InlineErrors);
         set => _question.SetValue(value);
     }
 
-    private PropertyValue<bool> _meVote = new PropertyValue<bool>(nameof(PollRecord), nameof(IsMeVote));
+    private PropertyValue<bool> _meVote = new PropertyValue<bool>(nameof(PollRecord), nameof(IsMeVote), "meVote");
     
     [Required]
     [JsonPropertyName("meVote")]
     public bool IsMeVote
     {
-        get => _meVote.GetValue();
+        get => _meVote.GetValue(InlineErrors);
         set => _meVote.SetValue(value);
     }
 
-    private PropertyValue<int> _countPeople = new PropertyValue<int>(nameof(PollRecord), nameof(CountPeople));
+    private PropertyValue<int> _countPeople = new PropertyValue<int>(nameof(PollRecord), nameof(CountPeople), "countPeople");
     
     [Required]
     [JsonPropertyName("countPeople")]
     public int CountPeople
     {
-        get => _countPeople.GetValue();
+        get => _countPeople.GetValue(InlineErrors);
         set => _countPeople.SetValue(value);
     }
 
-    private PropertyValue<bool> _anonymous = new PropertyValue<bool>(nameof(PollRecord), nameof(IsAnonymous));
+    private PropertyValue<bool> _anonymous = new PropertyValue<bool>(nameof(PollRecord), nameof(IsAnonymous), "anonymous");
     
     [Required]
     [JsonPropertyName("anonymous")]
     public bool IsAnonymous
     {
-        get => _anonymous.GetValue();
+        get => _anonymous.GetValue(InlineErrors);
         set => _anonymous.SetValue(value);
     }
 
-    private PropertyValue<bool> _closed = new PropertyValue<bool>(nameof(PollRecord), nameof(IsClosed));
+    private PropertyValue<bool> _closed = new PropertyValue<bool>(nameof(PollRecord), nameof(IsClosed), "closed");
     
     [Required]
     [JsonPropertyName("closed")]
     public bool IsClosed
     {
-        get => _closed.GetValue();
+        get => _closed.GetValue(InlineErrors);
         set => _closed.SetValue(value);
     }
 
-    private PropertyValue<bool> _extendable = new PropertyValue<bool>(nameof(PollRecord), nameof(IsExtendable));
+    private PropertyValue<bool> _extendable = new PropertyValue<bool>(nameof(PollRecord), nameof(IsExtendable), "extendable");
     
     [Required]
     [JsonPropertyName("extendable")]
     public bool IsExtendable
     {
-        get => _extendable.GetValue();
+        get => _extendable.GetValue(InlineErrors);
         set => _extendable.SetValue(value);
     }
 
-    private PropertyValue<bool> _multiChoice = new PropertyValue<bool>(nameof(PollRecord), nameof(IsMultiChoice));
+    private PropertyValue<bool> _multiChoice = new PropertyValue<bool>(nameof(PollRecord), nameof(IsMultiChoice), "multiChoice");
     
     [Required]
     [JsonPropertyName("multiChoice")]
     public bool IsMultiChoice
     {
-        get => _multiChoice.GetValue();
+        get => _multiChoice.GetValue(InlineErrors);
         set => _multiChoice.SetValue(value);
     }
 
-    private PropertyValue<bool> _ended = new PropertyValue<bool>(nameof(PollRecord), nameof(IsEnded));
+    private PropertyValue<bool> _ended = new PropertyValue<bool>(nameof(PollRecord), nameof(IsEnded), "ended");
     
     [Required]
     [JsonPropertyName("ended")]
     public bool IsEnded
     {
-        get => _ended.GetValue();
+        get => _ended.GetValue(InlineErrors);
         set => _ended.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _expirationTime = new PropertyValue<DateTime?>(nameof(PollRecord), nameof(ExpirationTime));
+    private PropertyValue<DateTime?> _expirationTime = new PropertyValue<DateTime?>(nameof(PollRecord), nameof(ExpirationTime), "expirationTime");
     
     [JsonPropertyName("expirationTime")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ExpirationTime
     {
-        get => _expirationTime.GetValue();
+        get => _expirationTime.GetValue(InlineErrors);
         set => _expirationTime.SetValue(value);
     }
 
-    private PropertyValue<List<VoteGroup>> _votes = new PropertyValue<List<VoteGroup>>(nameof(PollRecord), nameof(Votes), new List<VoteGroup>());
+    private PropertyValue<List<VoteGroup>> _votes = new PropertyValue<List<VoteGroup>>(nameof(PollRecord), nameof(Votes), "votes", new List<VoteGroup>());
     
     [Required]
     [JsonPropertyName("votes")]
     public List<VoteGroup> Votes
     {
-        get => _votes.GetValue();
+        get => _votes.GetValue(InlineErrors);
         set => _votes.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _owner.SetAccessPath(path, validateHasBeenSet);
-        _question.SetAccessPath(path, validateHasBeenSet);
-        _meVote.SetAccessPath(path, validateHasBeenSet);
-        _countPeople.SetAccessPath(path, validateHasBeenSet);
-        _anonymous.SetAccessPath(path, validateHasBeenSet);
-        _closed.SetAccessPath(path, validateHasBeenSet);
-        _extendable.SetAccessPath(path, validateHasBeenSet);
-        _multiChoice.SetAccessPath(path, validateHasBeenSet);
-        _ended.SetAccessPath(path, validateHasBeenSet);
-        _expirationTime.SetAccessPath(path, validateHasBeenSet);
-        _votes.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _owner.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _question.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _meVote.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _countPeople.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _anonymous.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _closed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _extendable.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _multiChoice.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ended.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _expirationTime.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _votes.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -47,110 +47,114 @@ public sealed class CertificateInfo
         Fingerprint = fingerprint;
     }
     
-    private PropertyValue<string> _certificateType = new PropertyValue<string>(nameof(CertificateInfo), nameof(CertificateType));
+    private PropertyValue<string> _certificateType = new PropertyValue<string>(nameof(CertificateInfo), nameof(CertificateType), "certificateType");
     
     [Required]
     [JsonPropertyName("certificateType")]
     public string CertificateType
     {
-        get => _certificateType.GetValue();
+        get => _certificateType.GetValue(InlineErrors);
         set => _certificateType.SetValue(value);
     }
 
-    private PropertyValue<int> _version = new PropertyValue<int>(nameof(CertificateInfo), nameof(Version));
+    private PropertyValue<int> _version = new PropertyValue<int>(nameof(CertificateInfo), nameof(Version), "version");
     
     [Required]
     [JsonPropertyName("version")]
     public int Version
     {
-        get => _version.GetValue();
+        get => _version.GetValue(InlineErrors);
         set => _version.SetValue(value);
     }
 
-    private PropertyValue<string> _serialNumber = new PropertyValue<string>(nameof(CertificateInfo), nameof(SerialNumber));
+    private PropertyValue<string> _serialNumber = new PropertyValue<string>(nameof(CertificateInfo), nameof(SerialNumber), "serialNumber");
     
     [Required]
     [JsonPropertyName("serialNumber")]
     public string SerialNumber
     {
-        get => _serialNumber.GetValue();
+        get => _serialNumber.GetValue(InlineErrors);
         set => _serialNumber.SetValue(value);
     }
 
-    private PropertyValue<string> _issuedBy = new PropertyValue<string>(nameof(CertificateInfo), nameof(IssuedBy));
+    private PropertyValue<string> _issuedBy = new PropertyValue<string>(nameof(CertificateInfo), nameof(IssuedBy), "issuedBy");
     
     [Required]
     [JsonPropertyName("issuedBy")]
     public string IssuedBy
     {
-        get => _issuedBy.GetValue();
+        get => _issuedBy.GetValue(InlineErrors);
         set => _issuedBy.SetValue(value);
     }
 
-    private PropertyValue<string> _issuedTo = new PropertyValue<string>(nameof(CertificateInfo), nameof(IssuedTo));
+    private PropertyValue<string> _issuedTo = new PropertyValue<string>(nameof(CertificateInfo), nameof(IssuedTo), "issuedTo");
     
     [Required]
     [JsonPropertyName("issuedTo")]
     public string IssuedTo
     {
-        get => _issuedTo.GetValue();
+        get => _issuedTo.GetValue(InlineErrors);
         set => _issuedTo.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _validFrom = new PropertyValue<DateTime>(nameof(CertificateInfo), nameof(ValidFrom));
+    private PropertyValue<DateTime> _validFrom = new PropertyValue<DateTime>(nameof(CertificateInfo), nameof(ValidFrom), "validFrom");
     
     [Required]
     [JsonPropertyName("validFrom")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime ValidFrom
     {
-        get => _validFrom.GetValue();
+        get => _validFrom.GetValue(InlineErrors);
         set => _validFrom.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _validTo = new PropertyValue<DateTime>(nameof(CertificateInfo), nameof(ValidTo));
+    private PropertyValue<DateTime> _validTo = new PropertyValue<DateTime>(nameof(CertificateInfo), nameof(ValidTo), "validTo");
     
     [Required]
     [JsonPropertyName("validTo")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime ValidTo
     {
-        get => _validTo.GetValue();
+        get => _validTo.GetValue(InlineErrors);
         set => _validTo.SetValue(value);
     }
 
-    private PropertyValue<string> _algorithm = new PropertyValue<string>(nameof(CertificateInfo), nameof(Algorithm));
+    private PropertyValue<string> _algorithm = new PropertyValue<string>(nameof(CertificateInfo), nameof(Algorithm), "algorithm");
     
     [Required]
     [JsonPropertyName("algorithm")]
     public string Algorithm
     {
-        get => _algorithm.GetValue();
+        get => _algorithm.GetValue(InlineErrors);
         set => _algorithm.SetValue(value);
     }
 
-    private PropertyValue<Fingerprint> _fingerprint = new PropertyValue<Fingerprint>(nameof(CertificateInfo), nameof(Fingerprint));
+    private PropertyValue<Fingerprint> _fingerprint = new PropertyValue<Fingerprint>(nameof(CertificateInfo), nameof(Fingerprint), "fingerprint");
     
     [Required]
     [JsonPropertyName("fingerprint")]
     public Fingerprint Fingerprint
     {
-        get => _fingerprint.GetValue();
+        get => _fingerprint.GetValue(InlineErrors);
         set => _fingerprint.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _certificateType.SetAccessPath(path, validateHasBeenSet);
-        _version.SetAccessPath(path, validateHasBeenSet);
-        _serialNumber.SetAccessPath(path, validateHasBeenSet);
-        _issuedBy.SetAccessPath(path, validateHasBeenSet);
-        _issuedTo.SetAccessPath(path, validateHasBeenSet);
-        _validFrom.SetAccessPath(path, validateHasBeenSet);
-        _validTo.SetAccessPath(path, validateHasBeenSet);
-        _algorithm.SetAccessPath(path, validateHasBeenSet);
-        _fingerprint.SetAccessPath(path, validateHasBeenSet);
+        _certificateType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _serialNumber.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issuedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issuedTo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _validFrom.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _validTo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _algorithm.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _fingerprint.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -41,40 +41,44 @@ public class TodoForIdPatchRequest
         IsOpen = open;
     }
     
-    private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(TodoForIdPatchRequest), nameof(Text));
+    private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(TodoForIdPatchRequest), nameof(Text), "text");
     
     [JsonPropertyName("text")]
     public string? Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoForIdPatchRequest), nameof(DueDate));
+    private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoForIdPatchRequest), nameof(DueDate), "dueDate");
     
     [JsonPropertyName("dueDate")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? DueDate
     {
-        get => _dueDate.GetValue();
+        get => _dueDate.GetValue(InlineErrors);
         set => _dueDate.SetValue(value);
     }
 
-    private PropertyValue<bool?> _open = new PropertyValue<bool?>(nameof(TodoForIdPatchRequest), nameof(IsOpen));
+    private PropertyValue<bool?> _open = new PropertyValue<bool?>(nameof(TodoForIdPatchRequest), nameof(IsOpen), "open");
     
     [JsonPropertyName("open")]
     public bool? IsOpen
     {
-        get => _open.GetValue();
+        get => _open.GetValue(InlineErrors);
         set => _open.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _dueDate.SetAccessPath(path, validateHasBeenSet);
-        _open.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _dueDate.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _open.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

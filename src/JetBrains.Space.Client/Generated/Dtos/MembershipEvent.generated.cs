@@ -40,31 +40,35 @@ public sealed class MembershipEvent
         Membership = membership;
     }
     
-    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(MembershipEvent), nameof(Profile));
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(MembershipEvent), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public TDMemberProfile Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<List<TDMembership>> _membership = new PropertyValue<List<TDMembership>>(nameof(MembershipEvent), nameof(Membership), new List<TDMembership>());
+    private PropertyValue<List<TDMembership>> _membership = new PropertyValue<List<TDMembership>>(nameof(MembershipEvent), nameof(Membership), "membership", new List<TDMembership>());
     
     [Required]
     [JsonPropertyName("membership")]
     public List<TDMembership> Membership
     {
-        get => _membership.GetValue();
+        get => _membership.GetValue(InlineErrors);
         set => _membership.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _membership.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _membership.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,20 +42,24 @@ public sealed class OpenEnumListCFInputValue
         EnumValueIdentifiers = enumValueIdentifiers;
     }
     
-    private PropertyValue<List<CFEnumValueIdentifier>> _enumValueIdentifiers = new PropertyValue<List<CFEnumValueIdentifier>>(nameof(OpenEnumListCFInputValue), nameof(EnumValueIdentifiers), new List<CFEnumValueIdentifier>());
+    private PropertyValue<List<CFEnumValueIdentifier>> _enumValueIdentifiers = new PropertyValue<List<CFEnumValueIdentifier>>(nameof(OpenEnumListCFInputValue), nameof(EnumValueIdentifiers), "enumValueIdentifiers", new List<CFEnumValueIdentifier>());
     
     [Required]
     [JsonPropertyName("enumValueIdentifiers")]
     public List<CFEnumValueIdentifier> EnumValueIdentifiers
     {
-        get => _enumValueIdentifiers.GetValue();
+        get => _enumValueIdentifiers.GetValue(InlineErrors);
         set => _enumValueIdentifiers.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _enumValueIdentifiers.SetAccessPath(path, validateHasBeenSet);
+        _enumValueIdentifiers.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

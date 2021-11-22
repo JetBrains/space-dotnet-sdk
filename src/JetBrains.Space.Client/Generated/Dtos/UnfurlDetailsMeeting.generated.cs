@@ -43,30 +43,34 @@ public sealed class UnfurlDetailsMeeting
         IsCompact = compact;
     }
     
-    private PropertyValue<Meeting> _meeting = new PropertyValue<Meeting>(nameof(UnfurlDetailsMeeting), nameof(Meeting));
+    private PropertyValue<Meeting> _meeting = new PropertyValue<Meeting>(nameof(UnfurlDetailsMeeting), nameof(Meeting), "meeting");
     
     [Required]
     [JsonPropertyName("meeting")]
     public Meeting Meeting
     {
-        get => _meeting.GetValue();
+        get => _meeting.GetValue(InlineErrors);
         set => _meeting.SetValue(value);
     }
 
-    private PropertyValue<bool?> _compact = new PropertyValue<bool?>(nameof(UnfurlDetailsMeeting), nameof(IsCompact));
+    private PropertyValue<bool?> _compact = new PropertyValue<bool?>(nameof(UnfurlDetailsMeeting), nameof(IsCompact), "compact");
     
     [JsonPropertyName("compact")]
     public bool? IsCompact
     {
-        get => _compact.GetValue();
+        get => _compact.GetValue(InlineErrors);
         set => _compact.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meeting.SetAccessPath(path, validateHasBeenSet);
-        _compact.SetAccessPath(path, validateHasBeenSet);
+        _meeting.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _compact.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

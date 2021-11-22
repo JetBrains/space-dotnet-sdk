@@ -40,30 +40,34 @@ public sealed class EventConferenceData
         Url = url;
     }
     
-    private PropertyValue<EventConferenceKind> _kind = new PropertyValue<EventConferenceKind>(nameof(EventConferenceData), nameof(Kind));
+    private PropertyValue<EventConferenceKind> _kind = new PropertyValue<EventConferenceKind>(nameof(EventConferenceData), nameof(Kind), "kind");
     
     [Required]
     [JsonPropertyName("kind")]
     public EventConferenceKind Kind
     {
-        get => _kind.GetValue();
+        get => _kind.GetValue(InlineErrors);
         set => _kind.SetValue(value);
     }
 
-    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(EventConferenceData), nameof(Url));
+    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(EventConferenceData), nameof(Url), "url");
     
     [JsonPropertyName("url")]
     public string? Url
     {
-        get => _url.GetValue();
+        get => _url.GetValue(InlineErrors);
         set => _url.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _kind.SetAccessPath(path, validateHasBeenSet);
-        _url.SetAccessPath(path, validateHasBeenSet);
+        _kind.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

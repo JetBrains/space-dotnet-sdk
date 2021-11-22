@@ -42,49 +42,53 @@ public sealed class ESLdapAttributeNames
         GroupsAttributeName = groupsAttributeName;
     }
     
-    private PropertyValue<string?> _fullNameAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNames), nameof(FullNameAttributeName));
+    private PropertyValue<string?> _fullNameAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNames), nameof(FullNameAttributeName), "fullNameAttributeName");
     
     [JsonPropertyName("fullNameAttributeName")]
     public string? FullNameAttributeName
     {
-        get => _fullNameAttributeName.GetValue();
+        get => _fullNameAttributeName.GetValue(InlineErrors);
         set => _fullNameAttributeName.SetValue(value);
     }
 
-    private PropertyValue<string?> _usernameAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNames), nameof(UsernameAttributeName));
+    private PropertyValue<string?> _usernameAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNames), nameof(UsernameAttributeName), "usernameAttributeName");
     
     [JsonPropertyName("usernameAttributeName")]
     public string? UsernameAttributeName
     {
-        get => _usernameAttributeName.GetValue();
+        get => _usernameAttributeName.GetValue(InlineErrors);
         set => _usernameAttributeName.SetValue(value);
     }
 
-    private PropertyValue<string?> _emailAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNames), nameof(EmailAttributeName));
+    private PropertyValue<string?> _emailAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNames), nameof(EmailAttributeName), "emailAttributeName");
     
     [JsonPropertyName("emailAttributeName")]
     public string? EmailAttributeName
     {
-        get => _emailAttributeName.GetValue();
+        get => _emailAttributeName.GetValue(InlineErrors);
         set => _emailAttributeName.SetValue(value);
     }
 
-    private PropertyValue<string?> _groupsAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNames), nameof(GroupsAttributeName));
+    private PropertyValue<string?> _groupsAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNames), nameof(GroupsAttributeName), "groupsAttributeName");
     
     [JsonPropertyName("groupsAttributeName")]
     public string? GroupsAttributeName
     {
-        get => _groupsAttributeName.GetValue();
+        get => _groupsAttributeName.GetValue(InlineErrors);
         set => _groupsAttributeName.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _fullNameAttributeName.SetAccessPath(path, validateHasBeenSet);
-        _usernameAttributeName.SetAccessPath(path, validateHasBeenSet);
-        _emailAttributeName.SetAccessPath(path, validateHasBeenSet);
-        _groupsAttributeName.SetAccessPath(path, validateHasBeenSet);
+        _fullNameAttributeName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _usernameAttributeName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _emailAttributeName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _groupsAttributeName.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

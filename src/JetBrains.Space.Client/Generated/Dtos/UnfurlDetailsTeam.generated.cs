@@ -43,30 +43,34 @@ public sealed class UnfurlDetailsTeam
         IsStrikeThrough = strikeThrough;
     }
     
-    private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(UnfurlDetailsTeam), nameof(Team));
+    private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(UnfurlDetailsTeam), nameof(Team), "team");
     
     [Required]
     [JsonPropertyName("team")]
     public TDTeam Team
     {
-        get => _team.GetValue();
+        get => _team.GetValue(InlineErrors);
         set => _team.SetValue(value);
     }
 
-    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsTeam), nameof(IsStrikeThrough));
+    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsTeam), nameof(IsStrikeThrough), "strikeThrough");
     
     [JsonPropertyName("strikeThrough")]
     public bool? IsStrikeThrough
     {
-        get => _strikeThrough.GetValue();
+        get => _strikeThrough.GetValue(InlineErrors);
         set => _strikeThrough.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _team.SetAccessPath(path, validateHasBeenSet);
-        _strikeThrough.SetAccessPath(path, validateHasBeenSet);
+        _team.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _strikeThrough.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

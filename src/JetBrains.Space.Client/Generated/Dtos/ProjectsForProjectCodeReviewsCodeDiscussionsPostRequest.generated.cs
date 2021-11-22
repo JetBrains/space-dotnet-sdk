@@ -47,102 +47,106 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
         ReviewId = reviewId;
     }
     
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<DiffContext?> _diffContext = new PropertyValue<DiffContext?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(DiffContext));
+    private PropertyValue<DiffContext?> _diffContext = new PropertyValue<DiffContext?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(DiffContext), "diffContext");
     
     [JsonPropertyName("diffContext")]
     public DiffContext? DiffContext
     {
-        get => _diffContext.GetValue();
+        get => _diffContext.GetValue(InlineErrors);
         set => _diffContext.SetValue(value);
     }
 
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Revision));
+    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Revision), "revision");
     
     [Required]
     [JsonPropertyName("revision")]
     public string Revision
     {
-        get => _revision.GetValue();
+        get => _revision.GetValue(InlineErrors);
         set => _revision.SetValue(value);
     }
 
-    private PropertyValue<string?> _filename = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Filename));
+    private PropertyValue<string?> _filename = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Filename), "filename");
     
     [JsonPropertyName("filename")]
     public string? Filename
     {
-        get => _filename.GetValue();
+        get => _filename.GetValue(InlineErrors);
         set => _filename.SetValue(value);
     }
 
-    private PropertyValue<int?> _line = new PropertyValue<int?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Line));
+    private PropertyValue<int?> _line = new PropertyValue<int?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Line), "line");
     
     [JsonPropertyName("line")]
     public int? Line
     {
-        get => _line.GetValue();
+        get => _line.GetValue(InlineErrors);
         set => _line.SetValue(value);
     }
 
-    private PropertyValue<int?> _oldLine = new PropertyValue<int?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(OldLine));
+    private PropertyValue<int?> _oldLine = new PropertyValue<int?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(OldLine), "oldLine");
     
     [JsonPropertyName("oldLine")]
     public int? OldLine
     {
-        get => _oldLine.GetValue();
+        get => _oldLine.GetValue(InlineErrors);
         set => _oldLine.SetValue(value);
     }
 
-    private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(IsPending));
+    private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(IsPending), "pending");
     
     [JsonPropertyName("pending")]
     public bool IsPending
     {
-        get => _pending.GetValue();
+        get => _pending.GetValue(InlineErrors);
         set => _pending.SetValue(value);
     }
 
-    private PropertyValue<ReviewIdentifier?> _reviewId = new PropertyValue<ReviewIdentifier?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(ReviewId));
+    private PropertyValue<ReviewIdentifier?> _reviewId = new PropertyValue<ReviewIdentifier?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(ReviewId), "reviewId");
     
     [JsonPropertyName("reviewId")]
     public ReviewIdentifier? ReviewId
     {
-        get => _reviewId.GetValue();
+        get => _reviewId.GetValue(InlineErrors);
         set => _reviewId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _diffContext.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _revision.SetAccessPath(path, validateHasBeenSet);
-        _filename.SetAccessPath(path, validateHasBeenSet);
-        _line.SetAccessPath(path, validateHasBeenSet);
-        _oldLine.SetAccessPath(path, validateHasBeenSet);
-        _pending.SetAccessPath(path, validateHasBeenSet);
-        _reviewId.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _diffContext.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _revision.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _filename.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _line.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _oldLine.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pending.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviewId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

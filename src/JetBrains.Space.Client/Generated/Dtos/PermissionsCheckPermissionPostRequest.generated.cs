@@ -41,42 +41,46 @@ public class PermissionsCheckPermissionPostRequest
         Target = target;
     }
     
-    private PropertyValue<PrincipalIn> _principal = new PropertyValue<PrincipalIn>(nameof(PermissionsCheckPermissionPostRequest), nameof(Principal));
+    private PropertyValue<PrincipalIn> _principal = new PropertyValue<PrincipalIn>(nameof(PermissionsCheckPermissionPostRequest), nameof(Principal), "principal");
     
     [Required]
     [JsonPropertyName("principal")]
     public PrincipalIn Principal
     {
-        get => _principal.GetValue();
+        get => _principal.GetValue(InlineErrors);
         set => _principal.SetValue(value);
     }
 
-    private PropertyValue<string> _uniqueRightCode = new PropertyValue<string>(nameof(PermissionsCheckPermissionPostRequest), nameof(UniqueRightCode));
+    private PropertyValue<string> _uniqueRightCode = new PropertyValue<string>(nameof(PermissionsCheckPermissionPostRequest), nameof(UniqueRightCode), "uniqueRightCode");
     
     [Required]
     [JsonPropertyName("uniqueRightCode")]
     public string UniqueRightCode
     {
-        get => _uniqueRightCode.GetValue();
+        get => _uniqueRightCode.GetValue(InlineErrors);
         set => _uniqueRightCode.SetValue(value);
     }
 
-    private PropertyValue<PermissionTarget> _target = new PropertyValue<PermissionTarget>(nameof(PermissionsCheckPermissionPostRequest), nameof(Target));
+    private PropertyValue<PermissionTarget> _target = new PropertyValue<PermissionTarget>(nameof(PermissionsCheckPermissionPostRequest), nameof(Target), "target");
     
     [Required]
     [JsonPropertyName("target")]
     public PermissionTarget Target
     {
-        get => _target.GetValue();
+        get => _target.GetValue(InlineErrors);
         set => _target.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _principal.SetAccessPath(path, validateHasBeenSet);
-        _uniqueRightCode.SetAccessPath(path, validateHasBeenSet);
-        _target.SetAccessPath(path, validateHasBeenSet);
+        _principal.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _uniqueRightCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _target.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

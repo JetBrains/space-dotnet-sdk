@@ -43,60 +43,64 @@ public class PublicHolidaysHolidaysForIdPatchRequest
         IsHalfDay = halfDay;
     }
     
-    private PropertyValue<string?> _calendar = new PropertyValue<string?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(Calendar));
+    private PropertyValue<string?> _calendar = new PropertyValue<string?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(Calendar), "calendar");
     
     [JsonPropertyName("calendar")]
     public string? Calendar
     {
-        get => _calendar.GetValue();
+        get => _calendar.GetValue(InlineErrors);
         set => _calendar.SetValue(value);
     }
 
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _date = new PropertyValue<DateTime?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(Date));
+    private PropertyValue<DateTime?> _date = new PropertyValue<DateTime?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(Date), "date");
     
     [JsonPropertyName("date")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Date
     {
-        get => _date.GetValue();
+        get => _date.GetValue(InlineErrors);
         set => _date.SetValue(value);
     }
 
-    private PropertyValue<bool?> _workingDay = new PropertyValue<bool?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(IsWorkingDay));
+    private PropertyValue<bool?> _workingDay = new PropertyValue<bool?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(IsWorkingDay), "workingDay");
     
     [JsonPropertyName("workingDay")]
     public bool? IsWorkingDay
     {
-        get => _workingDay.GetValue();
+        get => _workingDay.GetValue(InlineErrors);
         set => _workingDay.SetValue(value);
     }
 
-    private PropertyValue<bool?> _halfDay = new PropertyValue<bool?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(IsHalfDay));
+    private PropertyValue<bool?> _halfDay = new PropertyValue<bool?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(IsHalfDay), "halfDay");
     
     [JsonPropertyName("halfDay")]
     public bool? IsHalfDay
     {
-        get => _halfDay.GetValue();
+        get => _halfDay.GetValue(InlineErrors);
         set => _halfDay.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _calendar.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _date.SetAccessPath(path, validateHasBeenSet);
-        _workingDay.SetAccessPath(path, validateHasBeenSet);
-        _halfDay.SetAccessPath(path, validateHasBeenSet);
+        _calendar.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _date.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _workingDay.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _halfDay.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

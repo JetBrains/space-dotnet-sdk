@@ -43,31 +43,35 @@ public sealed class CodeDiscussionAddedFeedEvent
         CodeReview = codeReview;
     }
     
-    private PropertyValue<CodeDiscussionRecord> _codeDiscussion = new PropertyValue<CodeDiscussionRecord>(nameof(CodeDiscussionAddedFeedEvent), nameof(CodeDiscussion));
+    private PropertyValue<CodeDiscussionRecord> _codeDiscussion = new PropertyValue<CodeDiscussionRecord>(nameof(CodeDiscussionAddedFeedEvent), nameof(CodeDiscussion), "codeDiscussion");
     
     [Required]
     [JsonPropertyName("codeDiscussion")]
     public CodeDiscussionRecord CodeDiscussion
     {
-        get => _codeDiscussion.GetValue();
+        get => _codeDiscussion.GetValue(InlineErrors);
         set => _codeDiscussion.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewRecord> _codeReview = new PropertyValue<CodeReviewRecord>(nameof(CodeDiscussionAddedFeedEvent), nameof(CodeReview));
+    private PropertyValue<CodeReviewRecord> _codeReview = new PropertyValue<CodeReviewRecord>(nameof(CodeDiscussionAddedFeedEvent), nameof(CodeReview), "codeReview");
     
     [Required]
     [JsonPropertyName("codeReview")]
     public CodeReviewRecord CodeReview
     {
-        get => _codeReview.GetValue();
+        get => _codeReview.GetValue(InlineErrors);
         set => _codeReview.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _codeDiscussion.SetAccessPath(path, validateHasBeenSet);
-        _codeReview.SetAccessPath(path, validateHasBeenSet);
+        _codeDiscussion.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _codeReview.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

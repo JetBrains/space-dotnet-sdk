@@ -40,31 +40,35 @@ public sealed class QRCode
         Base64Bitmap = base64Bitmap;
     }
     
-    private PropertyValue<int> _width = new PropertyValue<int>(nameof(QRCode), nameof(Width));
+    private PropertyValue<int> _width = new PropertyValue<int>(nameof(QRCode), nameof(Width), "width");
     
     [Required]
     [JsonPropertyName("width")]
     public int Width
     {
-        get => _width.GetValue();
+        get => _width.GetValue(InlineErrors);
         set => _width.SetValue(value);
     }
 
-    private PropertyValue<string> _base64Bitmap = new PropertyValue<string>(nameof(QRCode), nameof(Base64Bitmap));
+    private PropertyValue<string> _base64Bitmap = new PropertyValue<string>(nameof(QRCode), nameof(Base64Bitmap), "base64Bitmap");
     
     [Required]
     [JsonPropertyName("base64Bitmap")]
     public string Base64Bitmap
     {
-        get => _base64Bitmap.GetValue();
+        get => _base64Bitmap.GetValue(InlineErrors);
         set => _base64Bitmap.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _width.SetAccessPath(path, validateHasBeenSet);
-        _base64Bitmap.SetAccessPath(path, validateHasBeenSet);
+        _width.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _base64Bitmap.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

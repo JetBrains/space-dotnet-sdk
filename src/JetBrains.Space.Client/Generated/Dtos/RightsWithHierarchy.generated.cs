@@ -41,42 +41,46 @@ public sealed class RightsWithHierarchy
         Deps = deps;
     }
     
-    private PropertyValue<List<RightTypeRight>> _rights = new PropertyValue<List<RightTypeRight>>(nameof(RightsWithHierarchy), nameof(Rights), new List<RightTypeRight>());
+    private PropertyValue<List<RightTypeRight>> _rights = new PropertyValue<List<RightTypeRight>>(nameof(RightsWithHierarchy), nameof(Rights), "rights", new List<RightTypeRight>());
     
     [Required]
     [JsonPropertyName("rights")]
     public List<RightTypeRight> Rights
     {
-        get => _rights.GetValue();
+        get => _rights.GetValue(InlineErrors);
         set => _rights.SetValue(value);
     }
 
-    private PropertyValue<List<RightsGroup>> _rightsGroups = new PropertyValue<List<RightsGroup>>(nameof(RightsWithHierarchy), nameof(RightsGroups), new List<RightsGroup>());
+    private PropertyValue<List<RightsGroup>> _rightsGroups = new PropertyValue<List<RightsGroup>>(nameof(RightsWithHierarchy), nameof(RightsGroups), "rightsGroups", new List<RightsGroup>());
     
     [Required]
     [JsonPropertyName("rightsGroups")]
     public List<RightsGroup> RightsGroups
     {
-        get => _rightsGroups.GetValue();
+        get => _rightsGroups.GetValue(InlineErrors);
         set => _rightsGroups.SetValue(value);
     }
 
-    private PropertyValue<List<RightsDeps>> _deps = new PropertyValue<List<RightsDeps>>(nameof(RightsWithHierarchy), nameof(Deps), new List<RightsDeps>());
+    private PropertyValue<List<RightsDeps>> _deps = new PropertyValue<List<RightsDeps>>(nameof(RightsWithHierarchy), nameof(Deps), "deps", new List<RightsDeps>());
     
     [Required]
     [JsonPropertyName("deps")]
     public List<RightsDeps> Deps
     {
-        get => _deps.GetValue();
+        get => _deps.GetValue(InlineErrors);
         set => _deps.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _rights.SetAccessPath(path, validateHasBeenSet);
-        _rightsGroups.SetAccessPath(path, validateHasBeenSet);
-        _deps.SetAccessPath(path, validateHasBeenSet);
+        _rights.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rightsGroups.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deps.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

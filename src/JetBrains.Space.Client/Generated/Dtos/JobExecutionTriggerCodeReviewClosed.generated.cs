@@ -42,20 +42,24 @@ public sealed class JobExecutionTriggerCodeReviewClosed
         ReviewId = reviewId;
     }
     
-    private PropertyValue<string> _reviewId = new PropertyValue<string>(nameof(JobExecutionTriggerCodeReviewClosed), nameof(ReviewId));
+    private PropertyValue<string> _reviewId = new PropertyValue<string>(nameof(JobExecutionTriggerCodeReviewClosed), nameof(ReviewId), "reviewId");
     
     [Required]
     [JsonPropertyName("reviewId")]
     public string ReviewId
     {
-        get => _reviewId.GetValue();
+        get => _reviewId.GetValue(InlineErrors);
         set => _reviewId.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _reviewId.SetAccessPath(path, validateHasBeenSet);
+        _reviewId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

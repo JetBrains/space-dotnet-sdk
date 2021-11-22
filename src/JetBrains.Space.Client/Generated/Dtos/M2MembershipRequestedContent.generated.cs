@@ -43,31 +43,35 @@ public sealed class M2MembershipRequestedContent
         IsLeave = leave;
     }
     
-    private PropertyValue<TDMembership> _membership = new PropertyValue<TDMembership>(nameof(M2MembershipRequestedContent), nameof(Membership));
+    private PropertyValue<TDMembership> _membership = new PropertyValue<TDMembership>(nameof(M2MembershipRequestedContent), nameof(Membership), "membership");
     
     [Required]
     [JsonPropertyName("membership")]
     public TDMembership Membership
     {
-        get => _membership.GetValue();
+        get => _membership.GetValue(InlineErrors);
         set => _membership.SetValue(value);
     }
 
-    private PropertyValue<bool> _leave = new PropertyValue<bool>(nameof(M2MembershipRequestedContent), nameof(IsLeave));
+    private PropertyValue<bool> _leave = new PropertyValue<bool>(nameof(M2MembershipRequestedContent), nameof(IsLeave), "leave");
     
     [Required]
     [JsonPropertyName("leave")]
     public bool IsLeave
     {
-        get => _leave.GetValue();
+        get => _leave.GetValue(InlineErrors);
         set => _leave.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _membership.SetAccessPath(path, validateHasBeenSet);
-        _leave.SetAccessPath(path, validateHasBeenSet);
+        _membership.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _leave.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

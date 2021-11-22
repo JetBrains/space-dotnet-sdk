@@ -44,42 +44,46 @@ public sealed class SRepoCommitsWebhookEvent
         Commit = commit;
     }
     
-    private PropertyValue<ProjectKey> _projectKey = new PropertyValue<ProjectKey>(nameof(SRepoCommitsWebhookEvent), nameof(ProjectKey));
+    private PropertyValue<ProjectKey> _projectKey = new PropertyValue<ProjectKey>(nameof(SRepoCommitsWebhookEvent), nameof(ProjectKey), "projectKey");
     
     [Required]
     [JsonPropertyName("projectKey")]
     public ProjectKey ProjectKey
     {
-        get => _projectKey.GetValue();
+        get => _projectKey.GetValue(InlineErrors);
         set => _projectKey.SetValue(value);
     }
 
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(SRepoCommitsWebhookEvent), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(SRepoCommitsWebhookEvent), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<GitCommitInfoWithChanges> _commit = new PropertyValue<GitCommitInfoWithChanges>(nameof(SRepoCommitsWebhookEvent), nameof(Commit));
+    private PropertyValue<GitCommitInfoWithChanges> _commit = new PropertyValue<GitCommitInfoWithChanges>(nameof(SRepoCommitsWebhookEvent), nameof(Commit), "commit");
     
     [Required]
     [JsonPropertyName("commit")]
     public GitCommitInfoWithChanges Commit
     {
-        get => _commit.GetValue();
+        get => _commit.GetValue(InlineErrors);
         set => _commit.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _projectKey.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _commit.SetAccessPath(path, validateHasBeenSet);
+        _projectKey.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commit.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

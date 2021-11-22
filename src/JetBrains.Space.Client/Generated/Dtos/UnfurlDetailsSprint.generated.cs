@@ -43,31 +43,35 @@ public sealed class UnfurlDetailsSprint
         Sprint = sprint;
     }
     
-    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsSprint), nameof(Project));
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsSprint), nameof(Project), "project");
     
     [Required]
     [JsonPropertyName("project")]
     public PRProject Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<SprintRecord> _sprint = new PropertyValue<SprintRecord>(nameof(UnfurlDetailsSprint), nameof(Sprint));
+    private PropertyValue<SprintRecord> _sprint = new PropertyValue<SprintRecord>(nameof(UnfurlDetailsSprint), nameof(Sprint), "sprint");
     
     [Required]
     [JsonPropertyName("sprint")]
     public SprintRecord Sprint
     {
-        get => _sprint.GetValue();
+        get => _sprint.GetValue(InlineErrors);
         set => _sprint.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _sprint.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sprint.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

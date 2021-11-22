@@ -39,20 +39,24 @@ public class AbsencesForIdApprovePostRequest
         IsApprove = approve;
     }
     
-    private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(AbsencesForIdApprovePostRequest), nameof(IsApprove));
+    private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(AbsencesForIdApprovePostRequest), nameof(IsApprove), "approve");
     
     [Required]
     [JsonPropertyName("approve")]
     public bool IsApprove
     {
-        get => _approve.GetValue();
+        get => _approve.GetValue(InlineErrors);
         set => _approve.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _approve.SetAccessPath(path, validateHasBeenSet);
+        _approve.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

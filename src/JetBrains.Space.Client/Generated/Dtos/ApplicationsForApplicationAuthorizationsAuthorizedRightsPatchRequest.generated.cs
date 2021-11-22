@@ -40,31 +40,35 @@ public class ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchReques
         Updates = updates;
     }
     
-    private PropertyValue<PermissionContextIdentifier> _contextIdentifier = new PropertyValue<PermissionContextIdentifier>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest), nameof(ContextIdentifier));
+    private PropertyValue<PermissionContextIdentifier> _contextIdentifier = new PropertyValue<PermissionContextIdentifier>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest), nameof(ContextIdentifier), "contextIdentifier");
     
     [Required]
     [JsonPropertyName("contextIdentifier")]
     public PermissionContextIdentifier ContextIdentifier
     {
-        get => _contextIdentifier.GetValue();
+        get => _contextIdentifier.GetValue(InlineErrors);
         set => _contextIdentifier.SetValue(value);
     }
 
-    private PropertyValue<List<RightUpdateDTO>> _updates = new PropertyValue<List<RightUpdateDTO>>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest), nameof(Updates), new List<RightUpdateDTO>());
+    private PropertyValue<List<RightUpdateDTO>> _updates = new PropertyValue<List<RightUpdateDTO>>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest), nameof(Updates), "updates", new List<RightUpdateDTO>());
     
     [Required]
     [JsonPropertyName("updates")]
     public List<RightUpdateDTO> Updates
     {
-        get => _updates.GetValue();
+        get => _updates.GetValue(InlineErrors);
         set => _updates.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _contextIdentifier.SetAccessPath(path, validateHasBeenSet);
-        _updates.SetAccessPath(path, validateHasBeenSet);
+        _contextIdentifier.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updates.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

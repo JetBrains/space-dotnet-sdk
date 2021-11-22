@@ -44,76 +44,80 @@ public sealed class ESAuthenticationSession
         IsCurrent = current;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESAuthenticationSession), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESAuthenticationSession), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(ESAuthenticationSession), nameof(Profile));
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(ESAuthenticationSession), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public TDMemberProfile Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESAuthenticationSession), nameof(Created));
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESAuthenticationSession), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _expires = new PropertyValue<DateTime>(nameof(ESAuthenticationSession), nameof(Expires));
+    private PropertyValue<DateTime> _expires = new PropertyValue<DateTime>(nameof(ESAuthenticationSession), nameof(Expires), "expires");
     
     [Required]
     [JsonPropertyName("expires")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Expires
     {
-        get => _expires.GetValue();
+        get => _expires.GetValue(InlineErrors);
         set => _expires.SetValue(value);
     }
 
-    private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESAuthenticationSession), nameof(LastAccess));
+    private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESAuthenticationSession), nameof(LastAccess), "lastAccess");
     
     [JsonPropertyName("lastAccess")]
     public AccessRecord? LastAccess
     {
-        get => _lastAccess.GetValue();
+        get => _lastAccess.GetValue(InlineErrors);
         set => _lastAccess.SetValue(value);
     }
 
-    private PropertyValue<bool> _current = new PropertyValue<bool>(nameof(ESAuthenticationSession), nameof(IsCurrent));
+    private PropertyValue<bool> _current = new PropertyValue<bool>(nameof(ESAuthenticationSession), nameof(IsCurrent), "current");
     
     [Required]
     [JsonPropertyName("current")]
     public bool IsCurrent
     {
-        get => _current.GetValue();
+        get => _current.GetValue(InlineErrors);
         set => _current.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _expires.SetAccessPath(path, validateHasBeenSet);
-        _lastAccess.SetAccessPath(path, validateHasBeenSet);
-        _current.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _expires.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastAccess.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _current.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

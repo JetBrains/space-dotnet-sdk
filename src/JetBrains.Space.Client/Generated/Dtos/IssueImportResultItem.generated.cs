@@ -41,39 +41,43 @@ public sealed class IssueImportResultItem
         Error = error;
     }
     
-    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(IssueImportResultItem), nameof(ExternalId));
+    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(IssueImportResultItem), nameof(ExternalId), "externalId");
     
     [JsonPropertyName("externalId")]
     public string? ExternalId
     {
-        get => _externalId.GetValue();
+        get => _externalId.GetValue(InlineErrors);
         set => _externalId.SetValue(value);
     }
 
-    private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(IssueImportResultItem), nameof(Issue));
+    private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(IssueImportResultItem), nameof(Issue), "issue");
     
     [JsonPropertyName("issue")]
     public Issue? Issue
     {
-        get => _issue.GetValue();
+        get => _issue.GetValue(InlineErrors);
         set => _issue.SetValue(value);
     }
 
-    private PropertyValue<string?> _error = new PropertyValue<string?>(nameof(IssueImportResultItem), nameof(Error));
+    private PropertyValue<string?> _error = new PropertyValue<string?>(nameof(IssueImportResultItem), nameof(Error), "error");
     
     [JsonPropertyName("error")]
     public string? Error
     {
-        get => _error.GetValue();
+        get => _error.GetValue(InlineErrors);
         set => _error.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _externalId.SetAccessPath(path, validateHasBeenSet);
-        _issue.SetAccessPath(path, validateHasBeenSet);
-        _error.SetAccessPath(path, validateHasBeenSet);
+        _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issue.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _error.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

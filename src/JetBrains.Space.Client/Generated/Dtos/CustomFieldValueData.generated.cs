@@ -40,31 +40,35 @@ public sealed class CustomFieldValueData
         Value = value;
     }
     
-    private PropertyValue<CustomFieldData> _customField = new PropertyValue<CustomFieldData>(nameof(CustomFieldValueData), nameof(CustomField));
+    private PropertyValue<CustomFieldData> _customField = new PropertyValue<CustomFieldData>(nameof(CustomFieldValueData), nameof(CustomField), "customField");
     
     [Required]
     [JsonPropertyName("customField")]
     public CustomFieldData CustomField
     {
-        get => _customField.GetValue();
+        get => _customField.GetValue(InlineErrors);
         set => _customField.SetValue(value);
     }
 
-    private PropertyValue<CFValue> _value = new PropertyValue<CFValue>(nameof(CustomFieldValueData), nameof(Value));
+    private PropertyValue<CFValue> _value = new PropertyValue<CFValue>(nameof(CustomFieldValueData), nameof(Value), "value");
     
     [Required]
     [JsonPropertyName("value")]
     public CFValue Value
     {
-        get => _value.GetValue();
+        get => _value.GetValue(InlineErrors);
         set => _value.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _customField.SetAccessPath(path, validateHasBeenSet);
-        _value.SetAccessPath(path, validateHasBeenSet);
+        _customField.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _value.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

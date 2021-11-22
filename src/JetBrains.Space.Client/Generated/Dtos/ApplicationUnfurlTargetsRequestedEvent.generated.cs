@@ -44,42 +44,46 @@ public sealed class ApplicationUnfurlTargetsRequestedEvent
         Target = target;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Meta));
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Meta), "meta");
     
     [Required]
     [JsonPropertyName("meta")]
     public KMetaMod Meta
     {
-        get => _meta.GetValue();
+        get => _meta.GetValue(InlineErrors);
         set => _meta.SetValue(value);
     }
 
-    private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Application));
+    private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Application), "application");
     
     [Required]
     [JsonPropertyName("application")]
     public ESApp Application
     {
-        get => _application.GetValue();
+        get => _application.GetValue(InlineErrors);
         set => _application.SetValue(value);
     }
 
-    private PropertyValue<ApplicationUnfurlTarget> _target = new PropertyValue<ApplicationUnfurlTarget>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Target));
+    private PropertyValue<ApplicationUnfurlTarget> _target = new PropertyValue<ApplicationUnfurlTarget>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Target), "target");
     
     [Required]
     [JsonPropertyName("target")]
     public ApplicationUnfurlTarget Target
     {
-        get => _target.GetValue();
+        get => _target.GetValue(InlineErrors);
         set => _target.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meta.SetAccessPath(path, validateHasBeenSet);
-        _application.SetAccessPath(path, validateHasBeenSet);
-        _target.SetAccessPath(path, validateHasBeenSet);
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _application.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _target.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

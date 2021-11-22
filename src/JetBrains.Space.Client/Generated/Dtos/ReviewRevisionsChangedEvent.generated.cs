@@ -45,51 +45,55 @@ public sealed class ReviewRevisionsChangedEvent
         Review = review;
     }
     
-    private PropertyValue<List<RepositoryCommitRecord>> _commits = new PropertyValue<List<RepositoryCommitRecord>>(nameof(ReviewRevisionsChangedEvent), nameof(Commits), new List<RepositoryCommitRecord>());
+    private PropertyValue<List<RepositoryCommitRecord>> _commits = new PropertyValue<List<RepositoryCommitRecord>>(nameof(ReviewRevisionsChangedEvent), nameof(Commits), "commits", new List<RepositoryCommitRecord>());
     
     [Required]
     [JsonPropertyName("commits")]
     public List<RepositoryCommitRecord> Commits
     {
-        get => _commits.GetValue();
+        get => _commits.GetValue(InlineErrors);
         set => _commits.SetValue(value);
     }
 
-    private PropertyValue<ReviewRevisionsChangedType> _changeType = new PropertyValue<ReviewRevisionsChangedType>(nameof(ReviewRevisionsChangedEvent), nameof(ChangeType));
+    private PropertyValue<ReviewRevisionsChangedType> _changeType = new PropertyValue<ReviewRevisionsChangedType>(nameof(ReviewRevisionsChangedEvent), nameof(ChangeType), "changeType");
     
     [Required]
     [JsonPropertyName("changeType")]
     public ReviewRevisionsChangedType ChangeType
     {
-        get => _changeType.GetValue();
+        get => _changeType.GetValue(InlineErrors);
         set => _changeType.SetValue(value);
     }
 
-    private PropertyValue<string?> _projectKey = new PropertyValue<string?>(nameof(ReviewRevisionsChangedEvent), nameof(ProjectKey));
+    private PropertyValue<string?> _projectKey = new PropertyValue<string?>(nameof(ReviewRevisionsChangedEvent), nameof(ProjectKey), "projectKey");
     
     [JsonPropertyName("projectKey")]
     public string? ProjectKey
     {
-        get => _projectKey.GetValue();
+        get => _projectKey.GetValue(InlineErrors);
         set => _projectKey.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewRecord?> _review = new PropertyValue<CodeReviewRecord?>(nameof(ReviewRevisionsChangedEvent), nameof(Review));
+    private PropertyValue<CodeReviewRecord?> _review = new PropertyValue<CodeReviewRecord?>(nameof(ReviewRevisionsChangedEvent), nameof(Review), "review");
     
     [JsonPropertyName("review")]
     public CodeReviewRecord? Review
     {
-        get => _review.GetValue();
+        get => _review.GetValue(InlineErrors);
         set => _review.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _commits.SetAccessPath(path, validateHasBeenSet);
-        _changeType.SetAccessPath(path, validateHasBeenSet);
-        _projectKey.SetAccessPath(path, validateHasBeenSet);
-        _review.SetAccessPath(path, validateHasBeenSet);
+        _commits.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _changeType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectKey.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _review.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

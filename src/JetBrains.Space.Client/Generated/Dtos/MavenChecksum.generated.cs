@@ -40,31 +40,35 @@ public sealed class MavenChecksum
         Value = value;
     }
     
-    private PropertyValue<string> _algorithm = new PropertyValue<string>(nameof(MavenChecksum), nameof(Algorithm));
+    private PropertyValue<string> _algorithm = new PropertyValue<string>(nameof(MavenChecksum), nameof(Algorithm), "algorithm");
     
     [Required]
     [JsonPropertyName("algorithm")]
     public string Algorithm
     {
-        get => _algorithm.GetValue();
+        get => _algorithm.GetValue(InlineErrors);
         set => _algorithm.SetValue(value);
     }
 
-    private PropertyValue<string> _value = new PropertyValue<string>(nameof(MavenChecksum), nameof(Value));
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(MavenChecksum), nameof(Value), "value");
     
     [Required]
     [JsonPropertyName("value")]
     public string Value
     {
-        get => _value.GetValue();
+        get => _value.GetValue(InlineErrors);
         set => _value.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _algorithm.SetAccessPath(path, validateHasBeenSet);
-        _value.SetAccessPath(path, validateHasBeenSet);
+        _algorithm.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _value.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

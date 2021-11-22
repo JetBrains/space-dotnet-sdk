@@ -42,20 +42,24 @@ public sealed class ChatMessageText
         Text = text;
     }
     
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatMessageText), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatMessageText), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _text.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

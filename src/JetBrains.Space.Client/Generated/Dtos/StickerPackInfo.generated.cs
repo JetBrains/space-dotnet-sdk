@@ -45,86 +45,90 @@ public sealed class StickerPackInfo
         Stickers = stickers;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(StickerPackInfo), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(StickerPackInfo), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(StickerPackInfo), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(StickerPackInfo), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<bool> _favoriteByDefault = new PropertyValue<bool>(nameof(StickerPackInfo), nameof(IsFavoriteByDefault));
+    private PropertyValue<bool> _favoriteByDefault = new PropertyValue<bool>(nameof(StickerPackInfo), nameof(IsFavoriteByDefault), "favoriteByDefault");
     
     [Required]
     [JsonPropertyName("favoriteByDefault")]
     public bool IsFavoriteByDefault
     {
-        get => _favoriteByDefault.GetValue();
+        get => _favoriteByDefault.GetValue(InlineErrors);
         set => _favoriteByDefault.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(StickerPackInfo), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(StickerPackInfo), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(StickerPackInfo), nameof(IsPrivate));
+    private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(StickerPackInfo), nameof(IsPrivate), "private");
     
     [Required]
     [JsonPropertyName("private")]
     public bool IsPrivate
     {
-        get => _private.GetValue();
+        get => _private.GetValue(InlineErrors);
         set => _private.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _addedAt = new PropertyValue<DateTime?>(nameof(StickerPackInfo), nameof(AddedAt));
+    private PropertyValue<DateTime?> _addedAt = new PropertyValue<DateTime?>(nameof(StickerPackInfo), nameof(AddedAt), "addedAt");
     
     [JsonPropertyName("addedAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? AddedAt
     {
-        get => _addedAt.GetValue();
+        get => _addedAt.GetValue(InlineErrors);
         set => _addedAt.SetValue(value);
     }
 
-    private PropertyValue<List<Sticker>> _stickers = new PropertyValue<List<Sticker>>(nameof(StickerPackInfo), nameof(Stickers), new List<Sticker>());
+    private PropertyValue<List<Sticker>> _stickers = new PropertyValue<List<Sticker>>(nameof(StickerPackInfo), nameof(Stickers), "stickers", new List<Sticker>());
     
     [Required]
     [JsonPropertyName("stickers")]
     public List<Sticker> Stickers
     {
-        get => _stickers.GetValue();
+        get => _stickers.GetValue(InlineErrors);
         set => _stickers.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _favoriteByDefault.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _private.SetAccessPath(path, validateHasBeenSet);
-        _addedAt.SetAccessPath(path, validateHasBeenSet);
-        _stickers.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _favoriteByDefault.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _private.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _addedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _stickers.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

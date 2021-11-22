@@ -39,19 +39,23 @@ public sealed class AttachmentInfo
         Details = details;
     }
     
-    private PropertyValue<Attachment?> _details = new PropertyValue<Attachment?>(nameof(AttachmentInfo), nameof(Details));
+    private PropertyValue<Attachment?> _details = new PropertyValue<Attachment?>(nameof(AttachmentInfo), nameof(Details), "details");
     
     [JsonPropertyName("details")]
     public Attachment? Details
     {
-        get => _details.GetValue();
+        get => _details.GetValue(InlineErrors);
         set => _details.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _details.SetAccessPath(path, validateHasBeenSet);
+        _details.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

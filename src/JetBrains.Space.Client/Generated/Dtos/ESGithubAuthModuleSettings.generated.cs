@@ -46,64 +46,68 @@ public sealed class ESGithubAuthModuleSettings
         Organizations = organizations;
     }
     
-    private PropertyValue<string> _githubUrl = new PropertyValue<string>(nameof(ESGithubAuthModuleSettings), nameof(GithubUrl));
+    private PropertyValue<string> _githubUrl = new PropertyValue<string>(nameof(ESGithubAuthModuleSettings), nameof(GithubUrl), "githubUrl");
     
     [Required]
     [JsonPropertyName("githubUrl")]
     public string GithubUrl
     {
-        get => _githubUrl.GetValue();
+        get => _githubUrl.GetValue(InlineErrors);
         set => _githubUrl.SetValue(value);
     }
 
-    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESGithubAuthModuleSettings), nameof(ClientId));
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESGithubAuthModuleSettings), nameof(ClientId), "clientId");
     
     [Required]
     [JsonPropertyName("clientId")]
     public string ClientId
     {
-        get => _clientId.GetValue();
+        get => _clientId.GetValue(InlineErrors);
         set => _clientId.SetValue(value);
     }
 
-    private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESGithubAuthModuleSettings), nameof(ClientSecret));
+    private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESGithubAuthModuleSettings), nameof(ClientSecret), "clientSecret");
     
     [Required]
     [JsonPropertyName("clientSecret")]
     public string ClientSecret
     {
-        get => _clientSecret.GetValue();
+        get => _clientSecret.GetValue(InlineErrors);
         set => _clientSecret.SetValue(value);
     }
 
-    private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESGithubAuthModuleSettings), nameof(IsRegisterNewUsers));
+    private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESGithubAuthModuleSettings), nameof(IsRegisterNewUsers), "registerNewUsers");
     
     [Required]
     [JsonPropertyName("registerNewUsers")]
     public bool IsRegisterNewUsers
     {
-        get => _registerNewUsers.GetValue();
+        get => _registerNewUsers.GetValue(InlineErrors);
         set => _registerNewUsers.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _organizations = new PropertyValue<List<string>>(nameof(ESGithubAuthModuleSettings), nameof(Organizations), new List<string>());
+    private PropertyValue<List<string>> _organizations = new PropertyValue<List<string>>(nameof(ESGithubAuthModuleSettings), nameof(Organizations), "organizations", new List<string>());
     
     [Required]
     [JsonPropertyName("organizations")]
     public List<string> Organizations
     {
-        get => _organizations.GetValue();
+        get => _organizations.GetValue(InlineErrors);
         set => _organizations.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _githubUrl.SetAccessPath(path, validateHasBeenSet);
-        _clientId.SetAccessPath(path, validateHasBeenSet);
-        _clientSecret.SetAccessPath(path, validateHasBeenSet);
-        _registerNewUsers.SetAccessPath(path, validateHasBeenSet);
-        _organizations.SetAccessPath(path, validateHasBeenSet);
+        _githubUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _clientSecret.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _registerNewUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _organizations.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

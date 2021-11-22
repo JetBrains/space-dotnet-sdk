@@ -48,81 +48,85 @@ public sealed class TodoContent
         ExtId = extId;
     }
     
-    private PropertyValue<string> _originalText = new PropertyValue<string>(nameof(TodoContent), nameof(OriginalText));
+    private PropertyValue<string> _originalText = new PropertyValue<string>(nameof(TodoContent), nameof(OriginalText), "originalText");
     
     [Required]
     [JsonPropertyName("originalText")]
     public string OriginalText
     {
-        get => _originalText.GetValue();
+        get => _originalText.GetValue(InlineErrors);
         set => _originalText.SetValue(value);
     }
 
-    private PropertyValue<string?> _link = new PropertyValue<string?>(nameof(TodoContent), nameof(Link));
+    private PropertyValue<string?> _link = new PropertyValue<string?>(nameof(TodoContent), nameof(Link), "link");
     
     [JsonPropertyName("link")]
     public string? Link
     {
-        get => _link.GetValue();
+        get => _link.GetValue(InlineErrors);
         set => _link.SetValue(value);
     }
 
-    private PropertyValue<TodoItemContentKind?> _kind = new PropertyValue<TodoItemContentKind?>(nameof(TodoContent), nameof(Kind));
+    private PropertyValue<TodoItemContentKind?> _kind = new PropertyValue<TodoItemContentKind?>(nameof(TodoContent), nameof(Kind), "kind");
     
     [JsonPropertyName("kind")]
     public TodoItemContentKind? Kind
     {
-        get => _kind.GetValue();
+        get => _kind.GetValue(InlineErrors);
         set => _kind.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _principal = new PropertyValue<CPrincipal?>(nameof(TodoContent), nameof(Principal));
+    private PropertyValue<CPrincipal?> _principal = new PropertyValue<CPrincipal?>(nameof(TodoContent), nameof(Principal), "principal");
     
     [JsonPropertyName("principal")]
     public CPrincipal? Principal
     {
-        get => _principal.GetValue();
+        get => _principal.GetValue(InlineErrors);
         set => _principal.SetValue(value);
     }
 
-    private PropertyValue<long?> _time = new PropertyValue<long?>(nameof(TodoContent), nameof(Time));
+    private PropertyValue<long?> _time = new PropertyValue<long?>(nameof(TodoContent), nameof(Time), "time");
     
     [JsonPropertyName("time")]
     public long? Time
     {
-        get => _time.GetValue();
+        get => _time.GetValue(InlineErrors);
         set => _time.SetValue(value);
     }
 
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoContent), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoContent), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<string?> _extId = new PropertyValue<string?>(nameof(TodoContent), nameof(ExtId));
+    private PropertyValue<string?> _extId = new PropertyValue<string?>(nameof(TodoContent), nameof(ExtId), "extId");
     
     [JsonPropertyName("extId")]
     public string? ExtId
     {
-        get => _extId.GetValue();
+        get => _extId.GetValue(InlineErrors);
         set => _extId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _originalText.SetAccessPath(path, validateHasBeenSet);
-        _link.SetAccessPath(path, validateHasBeenSet);
-        _kind.SetAccessPath(path, validateHasBeenSet);
-        _principal.SetAccessPath(path, validateHasBeenSet);
-        _time.SetAccessPath(path, validateHasBeenSet);
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _extId.SetAccessPath(path, validateHasBeenSet);
+        _originalText.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _link.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _kind.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _principal.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _time.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _extId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

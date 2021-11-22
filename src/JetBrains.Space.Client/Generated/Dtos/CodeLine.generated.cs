@@ -42,51 +42,55 @@ public sealed class CodeLine
         Syntax = syntax;
     }
     
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(CodeLine), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(CodeLine), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<int?> _index = new PropertyValue<int?>(nameof(CodeLine), nameof(Index));
+    private PropertyValue<int?> _index = new PropertyValue<int?>(nameof(CodeLine), nameof(Index), "index");
     
     [JsonPropertyName("index")]
     public int? Index
     {
-        get => _index.GetValue();
+        get => _index.GetValue(InlineErrors);
         set => _index.SetValue(value);
     }
 
-    private PropertyValue<int> _offset = new PropertyValue<int>(nameof(CodeLine), nameof(Offset));
+    private PropertyValue<int> _offset = new PropertyValue<int>(nameof(CodeLine), nameof(Offset), "offset");
     
     [Required]
     [JsonPropertyName("offset")]
     public int Offset
     {
-        get => _offset.GetValue();
+        get => _offset.GetValue(InlineErrors);
         set => _offset.SetValue(value);
     }
 
-    private PropertyValue<List<SyntaxMarkup>?> _syntax = new PropertyValue<List<SyntaxMarkup>?>(nameof(CodeLine), nameof(Syntax));
+    private PropertyValue<List<SyntaxMarkup>?> _syntax = new PropertyValue<List<SyntaxMarkup>?>(nameof(CodeLine), nameof(Syntax), "syntax");
     
     [JsonPropertyName("syntax")]
     public List<SyntaxMarkup>? Syntax
     {
-        get => _syntax.GetValue();
+        get => _syntax.GetValue(InlineErrors);
         set => _syntax.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _index.SetAccessPath(path, validateHasBeenSet);
-        _offset.SetAccessPath(path, validateHasBeenSet);
-        _syntax.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _index.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _offset.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _syntax.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

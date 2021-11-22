@@ -44,42 +44,46 @@ public sealed class RecurrenceRuleFreqMonthlyOnFirstWeekday
         Interval = interval;
     }
     
-    private PropertyValue<Weekday> _weekday = new PropertyValue<Weekday>(nameof(RecurrenceRuleFreqMonthlyOnFirstWeekday), nameof(Weekday));
+    private PropertyValue<Weekday> _weekday = new PropertyValue<Weekday>(nameof(RecurrenceRuleFreqMonthlyOnFirstWeekday), nameof(Weekday), "weekday");
     
     [Required]
     [JsonPropertyName("weekday")]
     public Weekday Weekday
     {
-        get => _weekday.GetValue();
+        get => _weekday.GetValue(InlineErrors);
         set => _weekday.SetValue(value);
     }
 
-    private PropertyValue<int> _shift = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnFirstWeekday), nameof(Shift));
+    private PropertyValue<int> _shift = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnFirstWeekday), nameof(Shift), "shift");
     
     [Required]
     [JsonPropertyName("shift")]
     public int Shift
     {
-        get => _shift.GetValue();
+        get => _shift.GetValue(InlineErrors);
         set => _shift.SetValue(value);
     }
 
-    private PropertyValue<int> _interval = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnFirstWeekday), nameof(Interval));
+    private PropertyValue<int> _interval = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnFirstWeekday), nameof(Interval), "interval");
     
     [Required]
     [JsonPropertyName("interval")]
     public int Interval
     {
-        get => _interval.GetValue();
+        get => _interval.GetValue(InlineErrors);
         set => _interval.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _weekday.SetAccessPath(path, validateHasBeenSet);
-        _shift.SetAccessPath(path, validateHasBeenSet);
-        _interval.SetAccessPath(path, validateHasBeenSet);
+        _weekday.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _shift.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _interval.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

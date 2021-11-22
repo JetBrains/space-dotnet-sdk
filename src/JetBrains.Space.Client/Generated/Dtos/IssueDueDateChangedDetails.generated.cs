@@ -43,31 +43,35 @@ public sealed class IssueDueDateChangedDetails
         NewDueDate = newDueDate;
     }
     
-    private PropertyValue<DateTime?> _oldDueDate = new PropertyValue<DateTime?>(nameof(IssueDueDateChangedDetails), nameof(OldDueDate));
+    private PropertyValue<DateTime?> _oldDueDate = new PropertyValue<DateTime?>(nameof(IssueDueDateChangedDetails), nameof(OldDueDate), "oldDueDate");
     
     [JsonPropertyName("oldDueDate")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? OldDueDate
     {
-        get => _oldDueDate.GetValue();
+        get => _oldDueDate.GetValue(InlineErrors);
         set => _oldDueDate.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _newDueDate = new PropertyValue<DateTime?>(nameof(IssueDueDateChangedDetails), nameof(NewDueDate));
+    private PropertyValue<DateTime?> _newDueDate = new PropertyValue<DateTime?>(nameof(IssueDueDateChangedDetails), nameof(NewDueDate), "newDueDate");
     
     [JsonPropertyName("newDueDate")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? NewDueDate
     {
-        get => _newDueDate.GetValue();
+        get => _newDueDate.GetValue(InlineErrors);
         set => _newDueDate.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _oldDueDate.SetAccessPath(path, validateHasBeenSet);
-        _newDueDate.SetAccessPath(path, validateHasBeenSet);
+        _oldDueDate.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _newDueDate.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

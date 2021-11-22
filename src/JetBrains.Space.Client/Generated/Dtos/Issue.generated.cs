@@ -60,246 +60,250 @@ public sealed class Issue
         Topics = topics;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Issue), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Issue), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Issue), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Issue), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(Issue), nameof(ProjectId));
+    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(Issue), nameof(ProjectId), "projectId");
     
     [Required]
     [JsonPropertyName("projectId")]
     public string ProjectId
     {
-        get => _projectId.GetValue();
+        get => _projectId.GetValue(InlineErrors);
         set => _projectId.SetValue(value);
     }
 
-    private PropertyValue<PRProject?> _projectRef = new PropertyValue<PRProject?>(nameof(Issue), nameof(ProjectRef));
+    private PropertyValue<PRProject?> _projectRef = new PropertyValue<PRProject?>(nameof(Issue), nameof(ProjectRef), "projectRef");
     
     [JsonPropertyName("projectRef")]
     public PRProject? ProjectRef
     {
-        get => _projectRef.GetValue();
+        get => _projectRef.GetValue(InlineErrors);
         set => _projectRef.SetValue(value);
     }
 
-    private PropertyValue<IssueTracker?> _trackerRef = new PropertyValue<IssueTracker?>(nameof(Issue), nameof(TrackerRef));
+    private PropertyValue<IssueTracker?> _trackerRef = new PropertyValue<IssueTracker?>(nameof(Issue), nameof(TrackerRef), "trackerRef");
     
     [JsonPropertyName("trackerRef")]
     public IssueTracker? TrackerRef
     {
-        get => _trackerRef.GetValue();
+        get => _trackerRef.GetValue(InlineErrors);
         set => _trackerRef.SetValue(value);
     }
 
-    private PropertyValue<int> _number = new PropertyValue<int>(nameof(Issue), nameof(Number));
+    private PropertyValue<int> _number = new PropertyValue<int>(nameof(Issue), nameof(Number), "number");
     
     [Required]
     [JsonPropertyName("number")]
     public int Number
     {
-        get => _number.GetValue();
+        get => _number.GetValue(InlineErrors);
         set => _number.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal> _createdBy = new PropertyValue<CPrincipal>(nameof(Issue), nameof(CreatedBy));
+    private PropertyValue<CPrincipal> _createdBy = new PropertyValue<CPrincipal>(nameof(Issue), nameof(CreatedBy), "createdBy");
     
     [Required]
     [JsonPropertyName("createdBy")]
     public CPrincipal CreatedBy
     {
-        get => _createdBy.GetValue();
+        get => _createdBy.GetValue(InlineErrors);
         set => _createdBy.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _creationTime = new PropertyValue<DateTime>(nameof(Issue), nameof(CreationTime));
+    private PropertyValue<DateTime> _creationTime = new PropertyValue<DateTime>(nameof(Issue), nameof(CreationTime), "creationTime");
     
     [Required]
     [JsonPropertyName("creationTime")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime CreationTime
     {
-        get => _creationTime.GetValue();
+        get => _creationTime.GetValue(InlineErrors);
         set => _creationTime.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _assignee = new PropertyValue<TDMemberProfile?>(nameof(Issue), nameof(Assignee));
+    private PropertyValue<TDMemberProfile?> _assignee = new PropertyValue<TDMemberProfile?>(nameof(Issue), nameof(Assignee), "assignee");
     
     [JsonPropertyName("assignee")]
     public TDMemberProfile? Assignee
     {
-        get => _assignee.GetValue();
+        get => _assignee.GetValue(InlineErrors);
         set => _assignee.SetValue(value);
     }
 
-    private PropertyValue<IssueStatus> _status = new PropertyValue<IssueStatus>(nameof(Issue), nameof(Status));
+    private PropertyValue<IssueStatus> _status = new PropertyValue<IssueStatus>(nameof(Issue), nameof(Status), "status");
     
     [Required]
     [JsonPropertyName("status")]
     public IssueStatus Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(Issue), nameof(DueDate));
+    private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(Issue), nameof(DueDate), "dueDate");
     
     [JsonPropertyName("dueDate")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? DueDate
     {
-        get => _dueDate.GetValue();
+        get => _dueDate.GetValue(InlineErrors);
         set => _dueDate.SetValue(value);
     }
 
-    private PropertyValue<ExternalEntityInfoRecord?> _externalEntityInfo = new PropertyValue<ExternalEntityInfoRecord?>(nameof(Issue), nameof(ExternalEntityInfo));
+    private PropertyValue<ExternalEntityInfoRecord?> _externalEntityInfo = new PropertyValue<ExternalEntityInfoRecord?>(nameof(Issue), nameof(ExternalEntityInfo), "externalEntityInfo");
     
     [JsonPropertyName("externalEntityInfo")]
     public ExternalEntityInfoRecord? ExternalEntityInfo
     {
-        get => _externalEntityInfo.GetValue();
+        get => _externalEntityInfo.GetValue(InlineErrors);
         set => _externalEntityInfo.SetValue(value);
     }
 
-    private PropertyValue<List<PlanningTag>> _tags = new PropertyValue<List<PlanningTag>>(nameof(Issue), nameof(Tags), new List<PlanningTag>());
+    private PropertyValue<List<PlanningTag>> _tags = new PropertyValue<List<PlanningTag>>(nameof(Issue), nameof(Tags), "tags", new List<PlanningTag>());
     
     [Required]
     [JsonPropertyName("tags")]
     public List<PlanningTag> Tags
     {
-        get => _tags.GetValue();
+        get => _tags.GetValue(InlineErrors);
         set => _tags.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(Issue), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(Issue), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<int?> _attachmentsCount = new PropertyValue<int?>(nameof(Issue), nameof(AttachmentsCount));
+    private PropertyValue<int?> _attachmentsCount = new PropertyValue<int?>(nameof(Issue), nameof(AttachmentsCount), "attachmentsCount");
     
     [JsonPropertyName("attachmentsCount")]
     public int? AttachmentsCount
     {
-        get => _attachmentsCount.GetValue();
+        get => _attachmentsCount.GetValue(InlineErrors);
         set => _attachmentsCount.SetValue(value);
     }
 
-    private PropertyValue<List<AttachmentInfo>> _attachments = new PropertyValue<List<AttachmentInfo>>(nameof(Issue), nameof(Attachments), new List<AttachmentInfo>());
+    private PropertyValue<List<AttachmentInfo>> _attachments = new PropertyValue<List<AttachmentInfo>>(nameof(Issue), nameof(Attachments), "attachments", new List<AttachmentInfo>());
     
     [Required]
     [JsonPropertyName("attachments")]
     public List<AttachmentInfo> Attachments
     {
-        get => _attachments.GetValue();
+        get => _attachments.GetValue(InlineErrors);
         set => _attachments.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(Issue), nameof(Channel));
+    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(Issue), nameof(Channel), "channel");
     
     [Required]
     [JsonPropertyName("channel")]
     public M2ChannelRecord Channel
     {
-        get => _channel.GetValue();
+        get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
     }
 
-    private PropertyValue<List<Checklist>> _checklists = new PropertyValue<List<Checklist>>(nameof(Issue), nameof(Checklists), new List<Checklist>());
+    private PropertyValue<List<Checklist>> _checklists = new PropertyValue<List<Checklist>>(nameof(Issue), nameof(Checklists), "checklists", new List<Checklist>());
     
     [Required]
     [JsonPropertyName("checklists")]
     public List<Checklist> Checklists
     {
-        get => _checklists.GetValue();
+        get => _checklists.GetValue(InlineErrors);
         set => _checklists.SetValue(value);
     }
 
-    private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(Issue), nameof(CustomFields), new Dictionary<string, CFValue>());
+    private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(Issue), nameof(CustomFields), "customFields", new Dictionary<string, CFValue>());
     
     [Required]
     [JsonPropertyName("customFields")]
     public Dictionary<string, CFValue> CustomFields
     {
-        get => _customFields.GetValue();
+        get => _customFields.GetValue(InlineErrors);
         set => _customFields.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(Issue), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(Issue), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<List<SprintRecord>> _sprints = new PropertyValue<List<SprintRecord>>(nameof(Issue), nameof(Sprints), new List<SprintRecord>());
+    private PropertyValue<List<SprintRecord>> _sprints = new PropertyValue<List<SprintRecord>>(nameof(Issue), nameof(Sprints), "sprints", new List<SprintRecord>());
     
     [Required]
     [JsonPropertyName("sprints")]
     public List<SprintRecord> Sprints
     {
-        get => _sprints.GetValue();
+        get => _sprints.GetValue(InlineErrors);
         set => _sprints.SetValue(value);
     }
 
-    private PropertyValue<List<Topic>> _topics = new PropertyValue<List<Topic>>(nameof(Issue), nameof(Topics), new List<Topic>());
+    private PropertyValue<List<Topic>> _topics = new PropertyValue<List<Topic>>(nameof(Issue), nameof(Topics), "topics", new List<Topic>());
     
     [Required]
     [JsonPropertyName("topics")]
     public List<Topic> Topics
     {
-        get => _topics.GetValue();
+        get => _topics.GetValue(InlineErrors);
         set => _topics.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _projectId.SetAccessPath(path, validateHasBeenSet);
-        _projectRef.SetAccessPath(path, validateHasBeenSet);
-        _trackerRef.SetAccessPath(path, validateHasBeenSet);
-        _number.SetAccessPath(path, validateHasBeenSet);
-        _createdBy.SetAccessPath(path, validateHasBeenSet);
-        _creationTime.SetAccessPath(path, validateHasBeenSet);
-        _assignee.SetAccessPath(path, validateHasBeenSet);
-        _status.SetAccessPath(path, validateHasBeenSet);
-        _dueDate.SetAccessPath(path, validateHasBeenSet);
-        _externalEntityInfo.SetAccessPath(path, validateHasBeenSet);
-        _tags.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _attachmentsCount.SetAccessPath(path, validateHasBeenSet);
-        _attachments.SetAccessPath(path, validateHasBeenSet);
-        _channel.SetAccessPath(path, validateHasBeenSet);
-        _checklists.SetAccessPath(path, validateHasBeenSet);
-        _customFields.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _sprints.SetAccessPath(path, validateHasBeenSet);
-        _topics.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectRef.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _trackerRef.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _number.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _creationTime.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _assignee.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _dueDate.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalEntityInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachmentsCount.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _checklists.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sprints.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _topics.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -44,42 +44,46 @@ public sealed class CommitMessageUnfurlContext
         CommitId = commitId;
     }
     
-    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CommitMessageUnfurlContext), nameof(ProjectId));
+    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CommitMessageUnfurlContext), nameof(ProjectId), "projectId");
     
     [Required]
     [JsonPropertyName("projectId")]
     public string ProjectId
     {
-        get => _projectId.GetValue();
+        get => _projectId.GetValue(InlineErrors);
         set => _projectId.SetValue(value);
     }
 
-    private PropertyValue<string> _repo = new PropertyValue<string>(nameof(CommitMessageUnfurlContext), nameof(Repo));
+    private PropertyValue<string> _repo = new PropertyValue<string>(nameof(CommitMessageUnfurlContext), nameof(Repo), "repo");
     
     [Required]
     [JsonPropertyName("repo")]
     public string Repo
     {
-        get => _repo.GetValue();
+        get => _repo.GetValue(InlineErrors);
         set => _repo.SetValue(value);
     }
 
-    private PropertyValue<string> _commitId = new PropertyValue<string>(nameof(CommitMessageUnfurlContext), nameof(CommitId));
+    private PropertyValue<string> _commitId = new PropertyValue<string>(nameof(CommitMessageUnfurlContext), nameof(CommitId), "commitId");
     
     [Required]
     [JsonPropertyName("commitId")]
     public string CommitId
     {
-        get => _commitId.GetValue();
+        get => _commitId.GetValue(InlineErrors);
         set => _commitId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _projectId.SetAccessPath(path, validateHasBeenSet);
-        _repo.SetAccessPath(path, validateHasBeenSet);
-        _commitId.SetAccessPath(path, validateHasBeenSet);
+        _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commitId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

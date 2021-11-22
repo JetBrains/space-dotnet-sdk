@@ -43,29 +43,33 @@ public sealed class IssueDescriptionChangedDetails
         NewDescription = newDescription;
     }
     
-    private PropertyValue<string?> _oldDescription = new PropertyValue<string?>(nameof(IssueDescriptionChangedDetails), nameof(OldDescription));
+    private PropertyValue<string?> _oldDescription = new PropertyValue<string?>(nameof(IssueDescriptionChangedDetails), nameof(OldDescription), "oldDescription");
     
     [JsonPropertyName("oldDescription")]
     public string? OldDescription
     {
-        get => _oldDescription.GetValue();
+        get => _oldDescription.GetValue(InlineErrors);
         set => _oldDescription.SetValue(value);
     }
 
-    private PropertyValue<string?> _newDescription = new PropertyValue<string?>(nameof(IssueDescriptionChangedDetails), nameof(NewDescription));
+    private PropertyValue<string?> _newDescription = new PropertyValue<string?>(nameof(IssueDescriptionChangedDetails), nameof(NewDescription), "newDescription");
     
     [JsonPropertyName("newDescription")]
     public string? NewDescription
     {
-        get => _newDescription.GetValue();
+        get => _newDescription.GetValue(InlineErrors);
         set => _newDescription.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _oldDescription.SetAccessPath(path, validateHasBeenSet);
-        _newDescription.SetAccessPath(path, validateHasBeenSet);
+        _oldDescription.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _newDescription.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -44,42 +44,46 @@ public sealed class FileAttachment
         Filename = filename;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(FileAttachment), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(FileAttachment), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<long> _sizeBytes = new PropertyValue<long>(nameof(FileAttachment), nameof(SizeBytes));
+    private PropertyValue<long> _sizeBytes = new PropertyValue<long>(nameof(FileAttachment), nameof(SizeBytes), "sizeBytes");
     
     [Required]
     [JsonPropertyName("sizeBytes")]
     public long SizeBytes
     {
-        get => _sizeBytes.GetValue();
+        get => _sizeBytes.GetValue(InlineErrors);
         set => _sizeBytes.SetValue(value);
     }
 
-    private PropertyValue<string> _filename = new PropertyValue<string>(nameof(FileAttachment), nameof(Filename));
+    private PropertyValue<string> _filename = new PropertyValue<string>(nameof(FileAttachment), nameof(Filename), "filename");
     
     [Required]
     [JsonPropertyName("filename")]
     public string Filename
     {
-        get => _filename.GetValue();
+        get => _filename.GetValue(InlineErrors);
         set => _filename.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _sizeBytes.SetAccessPath(path, validateHasBeenSet);
-        _filename.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sizeBytes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _filename.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

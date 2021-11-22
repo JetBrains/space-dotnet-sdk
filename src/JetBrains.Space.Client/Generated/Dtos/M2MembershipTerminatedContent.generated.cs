@@ -42,20 +42,24 @@ public sealed class M2MembershipTerminatedContent
         Membership = membership;
     }
     
-    private PropertyValue<TDMembership> _membership = new PropertyValue<TDMembership>(nameof(M2MembershipTerminatedContent), nameof(Membership));
+    private PropertyValue<TDMembership> _membership = new PropertyValue<TDMembership>(nameof(M2MembershipTerminatedContent), nameof(Membership), "membership");
     
     [Required]
     [JsonPropertyName("membership")]
     public TDMembership Membership
     {
-        get => _membership.GetValue();
+        get => _membership.GetValue(InlineErrors);
         set => _membership.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _membership.SetAccessPath(path, validateHasBeenSet);
+        _membership.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

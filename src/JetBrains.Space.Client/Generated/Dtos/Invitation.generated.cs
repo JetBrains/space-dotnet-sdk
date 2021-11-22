@@ -50,135 +50,139 @@ public sealed class Invitation
         IsRevoked = revoked;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Invitation), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Invitation), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _expiresAt = new PropertyValue<DateTime>(nameof(Invitation), nameof(ExpiresAt));
+    private PropertyValue<DateTime> _expiresAt = new PropertyValue<DateTime>(nameof(Invitation), nameof(ExpiresAt), "expiresAt");
     
     [Required]
     [JsonPropertyName("expiresAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime ExpiresAt
     {
-        get => _expiresAt.GetValue();
+        get => _expiresAt.GetValue(InlineErrors);
         set => _expiresAt.SetValue(value);
     }
 
-    private PropertyValue<string> _inviteeEmail = new PropertyValue<string>(nameof(Invitation), nameof(InviteeEmail));
+    private PropertyValue<string> _inviteeEmail = new PropertyValue<string>(nameof(Invitation), nameof(InviteeEmail), "inviteeEmail");
     
     [Required]
     [JsonPropertyName("inviteeEmail")]
     public string InviteeEmail
     {
-        get => _inviteeEmail.GetValue();
+        get => _inviteeEmail.GetValue(InlineErrors);
         set => _inviteeEmail.SetValue(value);
     }
 
-    private PropertyValue<bool> _inviteeEmailBlocked = new PropertyValue<bool>(nameof(Invitation), nameof(IsInviteeEmailBlocked));
+    private PropertyValue<bool> _inviteeEmailBlocked = new PropertyValue<bool>(nameof(Invitation), nameof(IsInviteeEmailBlocked), "inviteeEmailBlocked");
     
     [Required]
     [JsonPropertyName("inviteeEmailBlocked")]
     public bool IsInviteeEmailBlocked
     {
-        get => _inviteeEmailBlocked.GetValue();
+        get => _inviteeEmailBlocked.GetValue(InlineErrors);
         set => _inviteeEmailBlocked.SetValue(value);
     }
 
-    private PropertyValue<string?> _inviteeEmailBlockedReason = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeEmailBlockedReason));
+    private PropertyValue<string?> _inviteeEmailBlockedReason = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeEmailBlockedReason), "inviteeEmailBlockedReason");
     
     [JsonPropertyName("inviteeEmailBlockedReason")]
     public string? InviteeEmailBlockedReason
     {
-        get => _inviteeEmailBlockedReason.GetValue();
+        get => _inviteeEmailBlockedReason.GetValue(InlineErrors);
         set => _inviteeEmailBlockedReason.SetValue(value);
     }
 
-    private PropertyValue<string?> _inviteeFirstName = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeFirstName));
+    private PropertyValue<string?> _inviteeFirstName = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeFirstName), "inviteeFirstName");
     
     [JsonPropertyName("inviteeFirstName")]
     public string? InviteeFirstName
     {
-        get => _inviteeFirstName.GetValue();
+        get => _inviteeFirstName.GetValue(InlineErrors);
         set => _inviteeFirstName.SetValue(value);
     }
 
-    private PropertyValue<string?> _inviteeLastName = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeLastName));
+    private PropertyValue<string?> _inviteeLastName = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeLastName), "inviteeLastName");
     
     [JsonPropertyName("inviteeLastName")]
     public string? InviteeLastName
     {
-        get => _inviteeLastName.GetValue();
+        get => _inviteeLastName.GetValue(InlineErrors);
         set => _inviteeLastName.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _invitee = new PropertyValue<TDMemberProfile?>(nameof(Invitation), nameof(Invitee));
+    private PropertyValue<TDMemberProfile?> _invitee = new PropertyValue<TDMemberProfile?>(nameof(Invitation), nameof(Invitee), "invitee");
     
     [JsonPropertyName("invitee")]
     public TDMemberProfile? Invitee
     {
-        get => _invitee.GetValue();
+        get => _invitee.GetValue(InlineErrors);
         set => _invitee.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal> _inviter = new PropertyValue<CPrincipal>(nameof(Invitation), nameof(Inviter));
+    private PropertyValue<CPrincipal> _inviter = new PropertyValue<CPrincipal>(nameof(Invitation), nameof(Inviter), "inviter");
     
     [Required]
     [JsonPropertyName("inviter")]
     public CPrincipal Inviter
     {
-        get => _inviter.GetValue();
+        get => _inviter.GetValue(InlineErrors);
         set => _inviter.SetValue(value);
     }
 
-    private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(Invitation), nameof(Team));
+    private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(Invitation), nameof(Team), "team");
     
     [JsonPropertyName("team")]
     public TDTeam? Team
     {
-        get => _team.GetValue();
+        get => _team.GetValue(InlineErrors);
         set => _team.SetValue(value);
     }
 
-    private PropertyValue<TDRole?> _role = new PropertyValue<TDRole?>(nameof(Invitation), nameof(Role));
+    private PropertyValue<TDRole?> _role = new PropertyValue<TDRole?>(nameof(Invitation), nameof(Role), "role");
     
     [JsonPropertyName("role")]
     public TDRole? Role
     {
-        get => _role.GetValue();
+        get => _role.GetValue(InlineErrors);
         set => _role.SetValue(value);
     }
 
-    private PropertyValue<bool?> _revoked = new PropertyValue<bool?>(nameof(Invitation), nameof(IsRevoked));
+    private PropertyValue<bool?> _revoked = new PropertyValue<bool?>(nameof(Invitation), nameof(IsRevoked), "revoked");
     
     [JsonPropertyName("revoked")]
     public bool? IsRevoked
     {
-        get => _revoked.GetValue();
+        get => _revoked.GetValue(InlineErrors);
         set => _revoked.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _expiresAt.SetAccessPath(path, validateHasBeenSet);
-        _inviteeEmail.SetAccessPath(path, validateHasBeenSet);
-        _inviteeEmailBlocked.SetAccessPath(path, validateHasBeenSet);
-        _inviteeEmailBlockedReason.SetAccessPath(path, validateHasBeenSet);
-        _inviteeFirstName.SetAccessPath(path, validateHasBeenSet);
-        _inviteeLastName.SetAccessPath(path, validateHasBeenSet);
-        _invitee.SetAccessPath(path, validateHasBeenSet);
-        _inviter.SetAccessPath(path, validateHasBeenSet);
-        _team.SetAccessPath(path, validateHasBeenSet);
-        _role.SetAccessPath(path, validateHasBeenSet);
-        _revoked.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _expiresAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inviteeEmail.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inviteeEmailBlocked.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inviteeEmailBlockedReason.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inviteeFirstName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inviteeLastName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _invitee.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inviter.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _team.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _role.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _revoked.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

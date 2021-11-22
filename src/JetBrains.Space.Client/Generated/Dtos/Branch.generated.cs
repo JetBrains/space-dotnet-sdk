@@ -39,20 +39,24 @@ public sealed class Branch
         BranchName = branchName;
     }
     
-    private PropertyValue<string> _branchName = new PropertyValue<string>(nameof(Branch), nameof(BranchName));
+    private PropertyValue<string> _branchName = new PropertyValue<string>(nameof(Branch), nameof(BranchName), "branchName");
     
     [Required]
     [JsonPropertyName("branchName")]
     public string BranchName
     {
-        get => _branchName.GetValue();
+        get => _branchName.GetValue(InlineErrors);
         set => _branchName.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _branchName.SetAccessPath(path, validateHasBeenSet);
+        _branchName.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

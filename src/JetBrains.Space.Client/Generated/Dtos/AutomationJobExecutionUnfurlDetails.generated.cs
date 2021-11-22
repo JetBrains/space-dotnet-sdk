@@ -44,42 +44,46 @@ public sealed class AutomationJobExecutionUnfurlDetails
         RepoName = repoName;
     }
     
-    private PropertyValue<string> _jobExecutionId = new PropertyValue<string>(nameof(AutomationJobExecutionUnfurlDetails), nameof(JobExecutionId));
+    private PropertyValue<string> _jobExecutionId = new PropertyValue<string>(nameof(AutomationJobExecutionUnfurlDetails), nameof(JobExecutionId), "jobExecutionId");
     
     [Required]
     [JsonPropertyName("jobExecutionId")]
     public string JobExecutionId
     {
-        get => _jobExecutionId.GetValue();
+        get => _jobExecutionId.GetValue(InlineErrors);
         set => _jobExecutionId.SetValue(value);
     }
 
-    private PropertyValue<PRProject> _projectRef = new PropertyValue<PRProject>(nameof(AutomationJobExecutionUnfurlDetails), nameof(ProjectRef));
+    private PropertyValue<PRProject> _projectRef = new PropertyValue<PRProject>(nameof(AutomationJobExecutionUnfurlDetails), nameof(ProjectRef), "projectRef");
     
     [Required]
     [JsonPropertyName("projectRef")]
     public PRProject ProjectRef
     {
-        get => _projectRef.GetValue();
+        get => _projectRef.GetValue(InlineErrors);
         set => _projectRef.SetValue(value);
     }
 
-    private PropertyValue<string> _repoName = new PropertyValue<string>(nameof(AutomationJobExecutionUnfurlDetails), nameof(RepoName));
+    private PropertyValue<string> _repoName = new PropertyValue<string>(nameof(AutomationJobExecutionUnfurlDetails), nameof(RepoName), "repoName");
     
     [Required]
     [JsonPropertyName("repoName")]
     public string RepoName
     {
-        get => _repoName.GetValue();
+        get => _repoName.GetValue(InlineErrors);
         set => _repoName.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _jobExecutionId.SetAccessPath(path, validateHasBeenSet);
-        _projectRef.SetAccessPath(path, validateHasBeenSet);
-        _repoName.SetAccessPath(path, validateHasBeenSet);
+        _jobExecutionId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectRef.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repoName.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

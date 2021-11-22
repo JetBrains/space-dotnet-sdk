@@ -49,95 +49,99 @@ public sealed class ChannelItemSnapshot
         Attachments = attachments;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ChannelItemSnapshot), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ChannelItemSnapshot), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string?> _channelId = new PropertyValue<string?>(nameof(ChannelItemSnapshot), nameof(ChannelId));
+    private PropertyValue<string?> _channelId = new PropertyValue<string?>(nameof(ChannelItemSnapshot), nameof(ChannelId), "channelId");
     
     [JsonPropertyName("channelId")]
     public string? ChannelId
     {
-        get => _channelId.GetValue();
+        get => _channelId.GetValue(InlineErrors);
         set => _channelId.SetValue(value);
     }
 
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChannelItemSnapshot), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChannelItemSnapshot), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<M2ItemContentDetails?> _details = new PropertyValue<M2ItemContentDetails?>(nameof(ChannelItemSnapshot), nameof(Details));
+    private PropertyValue<M2ItemContentDetails?> _details = new PropertyValue<M2ItemContentDetails?>(nameof(ChannelItemSnapshot), nameof(Details), "details");
     
     [JsonPropertyName("details")]
     public M2ItemContentDetails? Details
     {
-        get => _details.GetValue();
+        get => _details.GetValue(InlineErrors);
         set => _details.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal> _author = new PropertyValue<CPrincipal>(nameof(ChannelItemSnapshot), nameof(Author));
+    private PropertyValue<CPrincipal> _author = new PropertyValue<CPrincipal>(nameof(ChannelItemSnapshot), nameof(Author), "author");
     
     [Required]
     [JsonPropertyName("author")]
     public CPrincipal Author
     {
-        get => _author.GetValue();
+        get => _author.GetValue(InlineErrors);
         set => _author.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ChannelItemSnapshot), nameof(Created));
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ChannelItemSnapshot), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<long> _time = new PropertyValue<long>(nameof(ChannelItemSnapshot), nameof(Time));
+    private PropertyValue<long> _time = new PropertyValue<long>(nameof(ChannelItemSnapshot), nameof(Time), "time");
     
     [Required]
     [JsonPropertyName("time")]
     public long Time
     {
-        get => _time.GetValue();
+        get => _time.GetValue(InlineErrors);
         set => _time.SetValue(value);
     }
 
-    private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ChannelItemSnapshot), nameof(Attachments));
+    private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ChannelItemSnapshot), nameof(Attachments), "attachments");
     
     [JsonPropertyName("attachments")]
     public List<AttachmentInfo>? Attachments
     {
-        get => _attachments.GetValue();
+        get => _attachments.GetValue(InlineErrors);
         set => _attachments.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _channelId.SetAccessPath(path, validateHasBeenSet);
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _details.SetAccessPath(path, validateHasBeenSet);
-        _author.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _time.SetAccessPath(path, validateHasBeenSet);
-        _attachments.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _details.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _author.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _time.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

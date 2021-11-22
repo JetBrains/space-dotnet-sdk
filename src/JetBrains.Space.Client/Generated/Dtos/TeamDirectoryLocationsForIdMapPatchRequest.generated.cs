@@ -39,20 +39,24 @@ public class TeamDirectoryLocationsForIdMapPatchRequest
         MapPictureId = mapPictureId;
     }
     
-    private PropertyValue<string> _mapPictureId = new PropertyValue<string>(nameof(TeamDirectoryLocationsForIdMapPatchRequest), nameof(MapPictureId));
+    private PropertyValue<string> _mapPictureId = new PropertyValue<string>(nameof(TeamDirectoryLocationsForIdMapPatchRequest), nameof(MapPictureId), "mapPictureId");
     
     [Required]
     [JsonPropertyName("mapPictureId")]
     public string MapPictureId
     {
-        get => _mapPictureId.GetValue();
+        get => _mapPictureId.GetValue(InlineErrors);
         set => _mapPictureId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _mapPictureId.SetAccessPath(path, validateHasBeenSet);
+        _mapPictureId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

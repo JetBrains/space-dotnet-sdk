@@ -43,59 +43,63 @@ public class BlogForIdPatchRequest
         Event = @event;
     }
     
-    private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(BlogForIdPatchRequest), nameof(Title));
+    private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(BlogForIdPatchRequest), nameof(Title), "title");
     
     [JsonPropertyName("title")]
     public string? Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<string?> _content = new PropertyValue<string?>(nameof(BlogForIdPatchRequest), nameof(Content));
+    private PropertyValue<string?> _content = new PropertyValue<string?>(nameof(BlogForIdPatchRequest), nameof(Content), "content");
     
     [JsonPropertyName("content")]
     public string? Content
     {
-        get => _content.GetValue();
+        get => _content.GetValue(InlineErrors);
         set => _content.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _locations = new PropertyValue<List<string>?>(nameof(BlogForIdPatchRequest), nameof(Locations));
+    private PropertyValue<List<string>?> _locations = new PropertyValue<List<string>?>(nameof(BlogForIdPatchRequest), nameof(Locations), "locations");
     
     [JsonPropertyName("locations")]
     public List<string>? Locations
     {
-        get => _locations.GetValue();
+        get => _locations.GetValue(InlineErrors);
         set => _locations.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _teams = new PropertyValue<List<string>?>(nameof(BlogForIdPatchRequest), nameof(Teams));
+    private PropertyValue<List<string>?> _teams = new PropertyValue<List<string>?>(nameof(BlogForIdPatchRequest), nameof(Teams), "teams");
     
     [JsonPropertyName("teams")]
     public List<string>? Teams
     {
-        get => _teams.GetValue();
+        get => _teams.GetValue(InlineErrors);
         set => _teams.SetValue(value);
     }
 
-    private PropertyValue<BlogCalendarEvent?> _event = new PropertyValue<BlogCalendarEvent?>(nameof(BlogForIdPatchRequest), nameof(Event));
+    private PropertyValue<BlogCalendarEvent?> _event = new PropertyValue<BlogCalendarEvent?>(nameof(BlogForIdPatchRequest), nameof(Event), "event");
     
     [JsonPropertyName("event")]
     public BlogCalendarEvent? Event
     {
-        get => _event.GetValue();
+        get => _event.GetValue(InlineErrors);
         set => _event.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _content.SetAccessPath(path, validateHasBeenSet);
-        _locations.SetAccessPath(path, validateHasBeenSet);
-        _teams.SetAccessPath(path, validateHasBeenSet);
-        _event.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _content.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _locations.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _teams.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _event.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

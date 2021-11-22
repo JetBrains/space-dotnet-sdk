@@ -44,41 +44,45 @@ public sealed class OpenPersonalFeedSettingsAction
         FeedId = feedId;
     }
     
-    private PropertyValue<string> _tab = new PropertyValue<string>(nameof(OpenPersonalFeedSettingsAction), nameof(Tab));
+    private PropertyValue<string> _tab = new PropertyValue<string>(nameof(OpenPersonalFeedSettingsAction), nameof(Tab), "tab");
     
     [Required]
     [JsonPropertyName("tab")]
     public string Tab
     {
-        get => _tab.GetValue();
+        get => _tab.GetValue(InlineErrors);
         set => _tab.SetValue(value);
     }
 
-    private PropertyValue<string> _feed = new PropertyValue<string>(nameof(OpenPersonalFeedSettingsAction), nameof(Feed));
+    private PropertyValue<string> _feed = new PropertyValue<string>(nameof(OpenPersonalFeedSettingsAction), nameof(Feed), "feed");
     
     [Required]
     [JsonPropertyName("feed")]
     public string Feed
     {
-        get => _feed.GetValue();
+        get => _feed.GetValue(InlineErrors);
         set => _feed.SetValue(value);
     }
 
-    private PropertyValue<string?> _feedId = new PropertyValue<string?>(nameof(OpenPersonalFeedSettingsAction), nameof(FeedId));
+    private PropertyValue<string?> _feedId = new PropertyValue<string?>(nameof(OpenPersonalFeedSettingsAction), nameof(FeedId), "feedId");
     
     [JsonPropertyName("feedId")]
     public string? FeedId
     {
-        get => _feedId.GetValue();
+        get => _feedId.GetValue(InlineErrors);
         set => _feedId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _tab.SetAccessPath(path, validateHasBeenSet);
-        _feed.SetAccessPath(path, validateHasBeenSet);
-        _feedId.SetAccessPath(path, validateHasBeenSet);
+        _tab.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _feed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _feedId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

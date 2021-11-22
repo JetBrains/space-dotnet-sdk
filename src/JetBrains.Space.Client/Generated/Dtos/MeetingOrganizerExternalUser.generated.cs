@@ -42,20 +42,24 @@ public sealed class MeetingOrganizerExternalUser
         Email = email;
     }
     
-    private PropertyValue<string> _email = new PropertyValue<string>(nameof(MeetingOrganizerExternalUser), nameof(Email));
+    private PropertyValue<string> _email = new PropertyValue<string>(nameof(MeetingOrganizerExternalUser), nameof(Email), "email");
     
     [Required]
     [JsonPropertyName("email")]
     public string Email
     {
-        get => _email.GetValue();
+        get => _email.GetValue(InlineErrors);
         set => _email.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _email.SetAccessPath(path, validateHasBeenSet);
+        _email.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,31 +40,35 @@ public sealed class HAMenuId
         Context = context;
     }
     
-    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(HAMenuId), nameof(MenuId));
+    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(HAMenuId), nameof(MenuId), "menuId");
     
     [Required]
     [JsonPropertyName("menuId")]
     public string MenuId
     {
-        get => _menuId.GetValue();
+        get => _menuId.GetValue(InlineErrors);
         set => _menuId.SetValue(value);
     }
 
-    private PropertyValue<HADto> _context = new PropertyValue<HADto>(nameof(HAMenuId), nameof(Context));
+    private PropertyValue<HADto> _context = new PropertyValue<HADto>(nameof(HAMenuId), nameof(Context), "context");
     
     [Required]
     [JsonPropertyName("context")]
     public HADto Context
     {
-        get => _context.GetValue();
+        get => _context.GetValue(InlineErrors);
         set => _context.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _menuId.SetAccessPath(path, validateHasBeenSet);
-        _context.SetAccessPath(path, validateHasBeenSet);
+        _menuId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _context.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

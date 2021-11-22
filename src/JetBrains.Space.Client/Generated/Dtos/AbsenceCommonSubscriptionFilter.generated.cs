@@ -42,20 +42,24 @@ public sealed class AbsenceCommonSubscriptionFilter
         Reasons = reasons;
     }
     
-    private PropertyValue<List<AbsenceReasonRecord>> _reasons = new PropertyValue<List<AbsenceReasonRecord>>(nameof(AbsenceCommonSubscriptionFilter), nameof(Reasons), new List<AbsenceReasonRecord>());
+    private PropertyValue<List<AbsenceReasonRecord>> _reasons = new PropertyValue<List<AbsenceReasonRecord>>(nameof(AbsenceCommonSubscriptionFilter), nameof(Reasons), "reasons", new List<AbsenceReasonRecord>());
     
     [Required]
     [JsonPropertyName("reasons")]
     public List<AbsenceReasonRecord> Reasons
     {
-        get => _reasons.GetValue();
+        get => _reasons.GetValue(InlineErrors);
         set => _reasons.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _reasons.SetAccessPath(path, validateHasBeenSet);
+        _reasons.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

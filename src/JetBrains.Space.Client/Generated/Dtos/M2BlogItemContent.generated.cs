@@ -45,53 +45,57 @@ public sealed class M2BlogItemContent
         ArticleChannel = articleChannel;
     }
     
-    private PropertyValue<ArticleRecord> _article = new PropertyValue<ArticleRecord>(nameof(M2BlogItemContent), nameof(Article));
+    private PropertyValue<ArticleRecord> _article = new PropertyValue<ArticleRecord>(nameof(M2BlogItemContent), nameof(Article), "article");
     
     [Required]
     [JsonPropertyName("article")]
     public ArticleRecord Article
     {
-        get => _article.GetValue();
+        get => _article.GetValue(InlineErrors);
         set => _article.SetValue(value);
     }
 
-    private PropertyValue<ArticleContentRecord> _articleContent = new PropertyValue<ArticleContentRecord>(nameof(M2BlogItemContent), nameof(ArticleContent));
+    private PropertyValue<ArticleContentRecord> _articleContent = new PropertyValue<ArticleContentRecord>(nameof(M2BlogItemContent), nameof(ArticleContent), "articleContent");
     
     [Required]
     [JsonPropertyName("articleContent")]
     public ArticleContentRecord ArticleContent
     {
-        get => _articleContent.GetValue();
+        get => _articleContent.GetValue(InlineErrors);
         set => _articleContent.SetValue(value);
     }
 
-    private PropertyValue<ArticleDetailsRecord> _articleDetails = new PropertyValue<ArticleDetailsRecord>(nameof(M2BlogItemContent), nameof(ArticleDetails));
+    private PropertyValue<ArticleDetailsRecord> _articleDetails = new PropertyValue<ArticleDetailsRecord>(nameof(M2BlogItemContent), nameof(ArticleDetails), "articleDetails");
     
     [Required]
     [JsonPropertyName("articleDetails")]
     public ArticleDetailsRecord ArticleDetails
     {
-        get => _articleDetails.GetValue();
+        get => _articleDetails.GetValue(InlineErrors);
         set => _articleDetails.SetValue(value);
     }
 
-    private PropertyValue<ArticleChannelRecord> _articleChannel = new PropertyValue<ArticleChannelRecord>(nameof(M2BlogItemContent), nameof(ArticleChannel));
+    private PropertyValue<ArticleChannelRecord> _articleChannel = new PropertyValue<ArticleChannelRecord>(nameof(M2BlogItemContent), nameof(ArticleChannel), "articleChannel");
     
     [Required]
     [JsonPropertyName("articleChannel")]
     public ArticleChannelRecord ArticleChannel
     {
-        get => _articleChannel.GetValue();
+        get => _articleChannel.GetValue(InlineErrors);
         set => _articleChannel.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _article.SetAccessPath(path, validateHasBeenSet);
-        _articleContent.SetAccessPath(path, validateHasBeenSet);
-        _articleDetails.SetAccessPath(path, validateHasBeenSet);
-        _articleChannel.SetAccessPath(path, validateHasBeenSet);
+        _article.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _articleContent.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _articleDetails.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _articleChannel.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

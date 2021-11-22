@@ -42,20 +42,24 @@ public sealed class VcsCommitCFParametersInput
         VcsCFScope = vcsCFScope;
     }
     
-    private PropertyValue<VcsCFScopeInput> _vcsCFScope = new PropertyValue<VcsCFScopeInput>(nameof(VcsCommitCFParametersInput), nameof(VcsCFScope));
+    private PropertyValue<VcsCFScopeInput> _vcsCFScope = new PropertyValue<VcsCFScopeInput>(nameof(VcsCommitCFParametersInput), nameof(VcsCFScope), "vcsCFScope");
     
     [Required]
     [JsonPropertyName("vcsCFScope")]
     public VcsCFScopeInput VcsCFScope
     {
-        get => _vcsCFScope.GetValue();
+        get => _vcsCFScope.GetValue(InlineErrors);
         set => _vcsCFScope.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _vcsCFScope.SetAccessPath(path, validateHasBeenSet);
+        _vcsCFScope.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

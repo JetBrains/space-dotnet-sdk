@@ -40,31 +40,35 @@ public sealed class RecurrenceRule
         Ends = ends;
     }
     
-    private PropertyValue<RecurrenceRuleFreq> _freq = new PropertyValue<RecurrenceRuleFreq>(nameof(RecurrenceRule), nameof(Freq));
+    private PropertyValue<RecurrenceRuleFreq> _freq = new PropertyValue<RecurrenceRuleFreq>(nameof(RecurrenceRule), nameof(Freq), "freq");
     
     [Required]
     [JsonPropertyName("freq")]
     public RecurrenceRuleFreq Freq
     {
-        get => _freq.GetValue();
+        get => _freq.GetValue(InlineErrors);
         set => _freq.SetValue(value);
     }
 
-    private PropertyValue<RecurrenceRuleEnds> _ends = new PropertyValue<RecurrenceRuleEnds>(nameof(RecurrenceRule), nameof(Ends));
+    private PropertyValue<RecurrenceRuleEnds> _ends = new PropertyValue<RecurrenceRuleEnds>(nameof(RecurrenceRule), nameof(Ends), "ends");
     
     [Required]
     [JsonPropertyName("ends")]
     public RecurrenceRuleEnds Ends
     {
-        get => _ends.GetValue();
+        get => _ends.GetValue(InlineErrors);
         set => _ends.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _freq.SetAccessPath(path, validateHasBeenSet);
-        _ends.SetAccessPath(path, validateHasBeenSet);
+        _freq.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ends.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -39,20 +39,24 @@ public class ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest
         Title = title;
     }
     
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _title.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

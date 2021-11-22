@@ -41,42 +41,46 @@ public class BillingAdminOverdraftsPutRequest
         CiCredits = ciCredits;
     }
     
-    private PropertyValue<int> _storage = new PropertyValue<int>(nameof(BillingAdminOverdraftsPutRequest), nameof(Storage));
+    private PropertyValue<int> _storage = new PropertyValue<int>(nameof(BillingAdminOverdraftsPutRequest), nameof(Storage), "storage");
     
     [Required]
     [JsonPropertyName("storage")]
     public int Storage
     {
-        get => _storage.GetValue();
+        get => _storage.GetValue(InlineErrors);
         set => _storage.SetValue(value);
     }
 
-    private PropertyValue<int> _bandwidth = new PropertyValue<int>(nameof(BillingAdminOverdraftsPutRequest), nameof(Bandwidth));
+    private PropertyValue<int> _bandwidth = new PropertyValue<int>(nameof(BillingAdminOverdraftsPutRequest), nameof(Bandwidth), "bandwidth");
     
     [Required]
     [JsonPropertyName("bandwidth")]
     public int Bandwidth
     {
-        get => _bandwidth.GetValue();
+        get => _bandwidth.GetValue(InlineErrors);
         set => _bandwidth.SetValue(value);
     }
 
-    private PropertyValue<int> _ciCredits = new PropertyValue<int>(nameof(BillingAdminOverdraftsPutRequest), nameof(CiCredits));
+    private PropertyValue<int> _ciCredits = new PropertyValue<int>(nameof(BillingAdminOverdraftsPutRequest), nameof(CiCredits), "ciCredits");
     
     [Required]
     [JsonPropertyName("ciCredits")]
     public int CiCredits
     {
-        get => _ciCredits.GetValue();
+        get => _ciCredits.GetValue(InlineErrors);
         set => _ciCredits.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _storage.SetAccessPath(path, validateHasBeenSet);
-        _bandwidth.SetAccessPath(path, validateHasBeenSet);
-        _ciCredits.SetAccessPath(path, validateHasBeenSet);
+        _storage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bandwidth.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ciCredits.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

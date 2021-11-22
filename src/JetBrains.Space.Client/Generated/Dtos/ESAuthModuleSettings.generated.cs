@@ -39,9 +39,13 @@ public abstract class ESAuthModuleSettings
     public static ESHiddenAuthModuleSettings ESHiddenAuthModuleSettings(bool? passwordModule = null, bool? federatedModule = null)
         => new ESHiddenAuthModuleSettings(passwordModule: passwordModule, federatedModule: federatedModule);
     
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

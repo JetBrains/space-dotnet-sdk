@@ -46,91 +46,95 @@ public sealed class OrganizationForUpdateDTO
         Timezone = timezone;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(OrganizationForUpdateDTO), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(OrganizationForUpdateDTO), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _slogan = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(Slogan));
+    private PropertyValue<string?> _slogan = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(Slogan), "slogan");
     
     [JsonPropertyName("slogan")]
     public string? Slogan
     {
-        get => _slogan.GetValue();
+        get => _slogan.GetValue(InlineErrors);
         set => _slogan.SetValue(value);
     }
 
-    private PropertyValue<string?> _logoSmall = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(LogoSmall));
+    private PropertyValue<string?> _logoSmall = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(LogoSmall), "logoSmall");
     
     [JsonPropertyName("logoSmall")]
     public string? LogoSmall
     {
-        get => _logoSmall.GetValue();
+        get => _logoSmall.GetValue(InlineErrors);
         set => _logoSmall.SetValue(value);
     }
 
-    private PropertyValue<string?> _logo = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(Logo));
+    private PropertyValue<string?> _logo = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(Logo), "logo");
     
     [JsonPropertyName("logo")]
     public string? Logo
     {
-        get => _logo.GetValue();
+        get => _logo.GetValue(InlineErrors);
         set => _logo.SetValue(value);
     }
 
-    private PropertyValue<string?> _logoId = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(LogoId));
+    private PropertyValue<string?> _logoId = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(LogoId), "logoId");
     
     [JsonPropertyName("logoId")]
     public string? LogoId
     {
-        get => _logoId.GetValue();
+        get => _logoId.GetValue(InlineErrors);
         set => _logoId.SetValue(value);
     }
 
-    private PropertyValue<string?> _slackWorkspace = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(SlackWorkspace));
+    private PropertyValue<string?> _slackWorkspace = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(SlackWorkspace), "slackWorkspace");
     
     [Obsolete("Is no longer supported (since 2021-10-13) (will be removed in a future version)")]
     [JsonPropertyName("slackWorkspace")]
     public string? SlackWorkspace
     {
-        get => _slackWorkspace.GetValue();
+        get => _slackWorkspace.GetValue(InlineErrors);
         set => _slackWorkspace.SetValue(value);
     }
 
-    private PropertyValue<bool?> _onboardingRequired = new PropertyValue<bool?>(nameof(OrganizationForUpdateDTO), nameof(IsOnboardingRequired));
+    private PropertyValue<bool?> _onboardingRequired = new PropertyValue<bool?>(nameof(OrganizationForUpdateDTO), nameof(IsOnboardingRequired), "onboardingRequired");
     
     [JsonPropertyName("onboardingRequired")]
     public bool? IsOnboardingRequired
     {
-        get => _onboardingRequired.GetValue();
+        get => _onboardingRequired.GetValue(InlineErrors);
         set => _onboardingRequired.SetValue(value);
     }
 
-    private PropertyValue<ATimeZone?> _timezone = new PropertyValue<ATimeZone?>(nameof(OrganizationForUpdateDTO), nameof(Timezone));
+    private PropertyValue<ATimeZone?> _timezone = new PropertyValue<ATimeZone?>(nameof(OrganizationForUpdateDTO), nameof(Timezone), "timezone");
     
     [JsonPropertyName("timezone")]
     public ATimeZone? Timezone
     {
-        get => _timezone.GetValue();
+        get => _timezone.GetValue(InlineErrors);
         set => _timezone.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _slogan.SetAccessPath(path, validateHasBeenSet);
-        _logoSmall.SetAccessPath(path, validateHasBeenSet);
-        _logo.SetAccessPath(path, validateHasBeenSet);
-        _logoId.SetAccessPath(path, validateHasBeenSet);
-        _slackWorkspace.SetAccessPath(path, validateHasBeenSet);
-        _onboardingRequired.SetAccessPath(path, validateHasBeenSet);
-        _timezone.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _slogan.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _logoSmall.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _logo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _logoId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _slackWorkspace.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _onboardingRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

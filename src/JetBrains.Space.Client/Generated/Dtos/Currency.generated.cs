@@ -42,52 +42,56 @@ public sealed class Currency
         IsHasCents = hasCents;
     }
     
-    private PropertyValue<string> _code = new PropertyValue<string>(nameof(Currency), nameof(Code));
+    private PropertyValue<string> _code = new PropertyValue<string>(nameof(Currency), nameof(Code), "code");
     
     [Required]
     [JsonPropertyName("code")]
     public string Code
     {
-        get => _code.GetValue();
+        get => _code.GetValue(InlineErrors);
         set => _code.SetValue(value);
     }
 
-    private PropertyValue<string?> _sign = new PropertyValue<string?>(nameof(Currency), nameof(Sign));
+    private PropertyValue<string?> _sign = new PropertyValue<string?>(nameof(Currency), nameof(Sign), "sign");
     
     [JsonPropertyName("sign")]
     public string? Sign
     {
-        get => _sign.GetValue();
+        get => _sign.GetValue(InlineErrors);
         set => _sign.SetValue(value);
     }
 
-    private PropertyValue<bool> _signAsPrefix = new PropertyValue<bool>(nameof(Currency), nameof(IsSignAsPrefix));
+    private PropertyValue<bool> _signAsPrefix = new PropertyValue<bool>(nameof(Currency), nameof(IsSignAsPrefix), "signAsPrefix");
     
     [Required]
     [JsonPropertyName("signAsPrefix")]
     public bool IsSignAsPrefix
     {
-        get => _signAsPrefix.GetValue();
+        get => _signAsPrefix.GetValue(InlineErrors);
         set => _signAsPrefix.SetValue(value);
     }
 
-    private PropertyValue<bool> _hasCents = new PropertyValue<bool>(nameof(Currency), nameof(IsHasCents));
+    private PropertyValue<bool> _hasCents = new PropertyValue<bool>(nameof(Currency), nameof(IsHasCents), "hasCents");
     
     [Required]
     [JsonPropertyName("hasCents")]
     public bool IsHasCents
     {
-        get => _hasCents.GetValue();
+        get => _hasCents.GetValue(InlineErrors);
         set => _hasCents.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _code.SetAccessPath(path, validateHasBeenSet);
-        _sign.SetAccessPath(path, validateHasBeenSet);
-        _signAsPrefix.SetAccessPath(path, validateHasBeenSet);
-        _hasCents.SetAccessPath(path, validateHasBeenSet);
+        _code.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sign.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _signAsPrefix.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hasCents.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

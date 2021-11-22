@@ -45,52 +45,56 @@ public sealed class M2ChannelAutomationJobFeedInfo
         NotificationDefaults = notificationDefaults;
     }
     
-    private PropertyValue<JobSubscription> _jobSubscription = new PropertyValue<JobSubscription>(nameof(M2ChannelAutomationJobFeedInfo), nameof(JobSubscription));
+    private PropertyValue<JobSubscription> _jobSubscription = new PropertyValue<JobSubscription>(nameof(M2ChannelAutomationJobFeedInfo), nameof(JobSubscription), "jobSubscription");
     
     [Required]
     [JsonPropertyName("jobSubscription")]
     public JobSubscription JobSubscription
     {
-        get => _jobSubscription.GetValue();
+        get => _jobSubscription.GetValue(InlineErrors);
         set => _jobSubscription.SetValue(value);
     }
 
-    private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(M2ChannelAutomationJobFeedInfo), nameof(JobName));
+    private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(M2ChannelAutomationJobFeedInfo), nameof(JobName), "jobName");
     
     [Required]
     [JsonPropertyName("jobName")]
     public string JobName
     {
-        get => _jobName.GetValue();
+        get => _jobName.GetValue(InlineErrors);
         set => _jobName.SetValue(value);
     }
 
-    private PropertyValue<string?> _repoName = new PropertyValue<string?>(nameof(M2ChannelAutomationJobFeedInfo), nameof(RepoName));
+    private PropertyValue<string?> _repoName = new PropertyValue<string?>(nameof(M2ChannelAutomationJobFeedInfo), nameof(RepoName), "repoName");
     
     [JsonPropertyName("repoName")]
     public string? RepoName
     {
-        get => _repoName.GetValue();
+        get => _repoName.GetValue(InlineErrors);
         set => _repoName.SetValue(value);
     }
 
-    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelAutomationJobFeedInfo), nameof(NotificationDefaults));
+    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelAutomationJobFeedInfo), nameof(NotificationDefaults), "notificationDefaults");
     
     [Required]
     [JsonPropertyName("notificationDefaults")]
     public ChannelSpecificDefaults NotificationDefaults
     {
-        get => _notificationDefaults.GetValue();
+        get => _notificationDefaults.GetValue(InlineErrors);
         set => _notificationDefaults.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _jobSubscription.SetAccessPath(path, validateHasBeenSet);
-        _jobName.SetAccessPath(path, validateHasBeenSet);
-        _repoName.SetAccessPath(path, validateHasBeenSet);
-        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+        _jobSubscription.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _jobName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repoName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

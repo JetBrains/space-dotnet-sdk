@@ -43,59 +43,63 @@ public sealed class MeetingAttachment
         Source = source;
     }
     
-    private PropertyValue<string?> _fileUrl = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(FileUrl));
+    private PropertyValue<string?> _fileUrl = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(FileUrl), "fileUrl");
     
     [JsonPropertyName("fileUrl")]
     public string? FileUrl
     {
-        get => _fileUrl.GetValue();
+        get => _fileUrl.GetValue(InlineErrors);
         set => _fileUrl.SetValue(value);
     }
 
-    private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(Title));
+    private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(Title), "title");
     
     [JsonPropertyName("title")]
     public string? Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<string?> _mimeType = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(MimeType));
+    private PropertyValue<string?> _mimeType = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(MimeType), "mimeType");
     
     [JsonPropertyName("mimeType")]
     public string? MimeType
     {
-        get => _mimeType.GetValue();
+        get => _mimeType.GetValue(InlineErrors);
         set => _mimeType.SetValue(value);
     }
 
-    private PropertyValue<string?> _fileId = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(FileId));
+    private PropertyValue<string?> _fileId = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(FileId), "fileId");
     
     [JsonPropertyName("fileId")]
     public string? FileId
     {
-        get => _fileId.GetValue();
+        get => _fileId.GetValue(InlineErrors);
         set => _fileId.SetValue(value);
     }
 
-    private PropertyValue<string?> _source = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(Source));
+    private PropertyValue<string?> _source = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(Source), "source");
     
     [JsonPropertyName("source")]
     public string? Source
     {
-        get => _source.GetValue();
+        get => _source.GetValue(InlineErrors);
         set => _source.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _fileUrl.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _mimeType.SetAccessPath(path, validateHasBeenSet);
-        _fileId.SetAccessPath(path, validateHasBeenSet);
-        _source.SetAccessPath(path, validateHasBeenSet);
+        _fileUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mimeType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _fileId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _source.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

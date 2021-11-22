@@ -42,20 +42,24 @@ public sealed class PackageOriginUrl
         Url = url;
     }
     
-    private PropertyValue<string> _url = new PropertyValue<string>(nameof(PackageOriginUrl), nameof(Url));
+    private PropertyValue<string> _url = new PropertyValue<string>(nameof(PackageOriginUrl), nameof(Url), "url");
     
     [Required]
     [JsonPropertyName("url")]
     public string Url
     {
-        get => _url.GetValue();
+        get => _url.GetValue(InlineErrors);
         set => _url.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _url.SetAccessPath(path, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

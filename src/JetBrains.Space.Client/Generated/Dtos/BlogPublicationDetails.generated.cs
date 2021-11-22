@@ -45,49 +45,53 @@ public sealed class BlogPublicationDetails
         Article = article;
     }
     
-    private PropertyValue<List<TDTeam>?> _teams = new PropertyValue<List<TDTeam>?>(nameof(BlogPublicationDetails), nameof(Teams));
+    private PropertyValue<List<TDTeam>?> _teams = new PropertyValue<List<TDTeam>?>(nameof(BlogPublicationDetails), nameof(Teams), "teams");
     
     [JsonPropertyName("teams")]
     public List<TDTeam>? Teams
     {
-        get => _teams.GetValue();
+        get => _teams.GetValue(InlineErrors);
         set => _teams.SetValue(value);
     }
 
-    private PropertyValue<List<TDLocation>?> _locations = new PropertyValue<List<TDLocation>?>(nameof(BlogPublicationDetails), nameof(Locations));
+    private PropertyValue<List<TDLocation>?> _locations = new PropertyValue<List<TDLocation>?>(nameof(BlogPublicationDetails), nameof(Locations), "locations");
     
     [JsonPropertyName("locations")]
     public List<TDLocation>? Locations
     {
-        get => _locations.GetValue();
+        get => _locations.GetValue(InlineErrors);
         set => _locations.SetValue(value);
     }
 
-    private PropertyValue<CalendarEvent?> _event = new PropertyValue<CalendarEvent?>(nameof(BlogPublicationDetails), nameof(Event));
+    private PropertyValue<CalendarEvent?> _event = new PropertyValue<CalendarEvent?>(nameof(BlogPublicationDetails), nameof(Event), "event");
     
     [JsonPropertyName("event")]
     public CalendarEvent? Event
     {
-        get => _event.GetValue();
+        get => _event.GetValue(InlineErrors);
         set => _event.SetValue(value);
     }
 
-    private PropertyValue<ArticleRecord?> _article = new PropertyValue<ArticleRecord?>(nameof(BlogPublicationDetails), nameof(Article));
+    private PropertyValue<ArticleRecord?> _article = new PropertyValue<ArticleRecord?>(nameof(BlogPublicationDetails), nameof(Article), "article");
     
     [JsonPropertyName("article")]
     public ArticleRecord? Article
     {
-        get => _article.GetValue();
+        get => _article.GetValue(InlineErrors);
         set => _article.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _teams.SetAccessPath(path, validateHasBeenSet);
-        _locations.SetAccessPath(path, validateHasBeenSet);
-        _event.SetAccessPath(path, validateHasBeenSet);
-        _article.SetAccessPath(path, validateHasBeenSet);
+        _teams.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _locations.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _event.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _article.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

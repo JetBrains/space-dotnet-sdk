@@ -46,92 +46,96 @@ public sealed class GitMergedFile
         IsConflicting = conflicting;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(GitMergedFile), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(GitMergedFile), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _oldName = new PropertyValue<string?>(nameof(GitMergedFile), nameof(OldName));
+    private PropertyValue<string?> _oldName = new PropertyValue<string?>(nameof(GitMergedFile), nameof(OldName), "oldName");
     
     [JsonPropertyName("oldName")]
     public string? OldName
     {
-        get => _oldName.GetValue();
+        get => _oldName.GetValue(InlineErrors);
         set => _oldName.SetValue(value);
     }
 
-    private PropertyValue<string?> _baseId = new PropertyValue<string?>(nameof(GitMergedFile), nameof(BaseId));
+    private PropertyValue<string?> _baseId = new PropertyValue<string?>(nameof(GitMergedFile), nameof(BaseId), "baseId");
     
     [JsonPropertyName("baseId")]
     public string? BaseId
     {
-        get => _baseId.GetValue();
+        get => _baseId.GetValue(InlineErrors);
         set => _baseId.SetValue(value);
     }
 
-    private PropertyValue<string?> _sourceId = new PropertyValue<string?>(nameof(GitMergedFile), nameof(SourceId));
+    private PropertyValue<string?> _sourceId = new PropertyValue<string?>(nameof(GitMergedFile), nameof(SourceId), "sourceId");
     
     [JsonPropertyName("sourceId")]
     public string? SourceId
     {
-        get => _sourceId.GetValue();
+        get => _sourceId.GetValue(InlineErrors);
         set => _sourceId.SetValue(value);
     }
 
-    private PropertyValue<string?> _targetId = new PropertyValue<string?>(nameof(GitMergedFile), nameof(TargetId));
+    private PropertyValue<string?> _targetId = new PropertyValue<string?>(nameof(GitMergedFile), nameof(TargetId), "targetId");
     
     [JsonPropertyName("targetId")]
     public string? TargetId
     {
-        get => _targetId.GetValue();
+        get => _targetId.GetValue(InlineErrors);
         set => _targetId.SetValue(value);
     }
 
-    private PropertyValue<GitDiffSize?> _diffSize = new PropertyValue<GitDiffSize?>(nameof(GitMergedFile), nameof(DiffSize));
+    private PropertyValue<GitDiffSize?> _diffSize = new PropertyValue<GitDiffSize?>(nameof(GitMergedFile), nameof(DiffSize), "diffSize");
     
     [JsonPropertyName("diffSize")]
     public GitDiffSize? DiffSize
     {
-        get => _diffSize.GetValue();
+        get => _diffSize.GetValue(InlineErrors);
         set => _diffSize.SetValue(value);
     }
 
-    private PropertyValue<GitEntryType> _entryType = new PropertyValue<GitEntryType>(nameof(GitMergedFile), nameof(EntryType));
+    private PropertyValue<GitEntryType> _entryType = new PropertyValue<GitEntryType>(nameof(GitMergedFile), nameof(EntryType), "entryType");
     
     [Required]
     [JsonPropertyName("entryType")]
     public GitEntryType EntryType
     {
-        get => _entryType.GetValue();
+        get => _entryType.GetValue(InlineErrors);
         set => _entryType.SetValue(value);
     }
 
-    private PropertyValue<bool> _conflicting = new PropertyValue<bool>(nameof(GitMergedFile), nameof(IsConflicting));
+    private PropertyValue<bool> _conflicting = new PropertyValue<bool>(nameof(GitMergedFile), nameof(IsConflicting), "conflicting");
     
     [Required]
     [JsonPropertyName("conflicting")]
     public bool IsConflicting
     {
-        get => _conflicting.GetValue();
+        get => _conflicting.GetValue(InlineErrors);
         set => _conflicting.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _oldName.SetAccessPath(path, validateHasBeenSet);
-        _baseId.SetAccessPath(path, validateHasBeenSet);
-        _sourceId.SetAccessPath(path, validateHasBeenSet);
-        _targetId.SetAccessPath(path, validateHasBeenSet);
-        _diffSize.SetAccessPath(path, validateHasBeenSet);
-        _entryType.SetAccessPath(path, validateHasBeenSet);
-        _conflicting.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _oldName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _baseId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sourceId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _targetId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _diffSize.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _entryType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _conflicting.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

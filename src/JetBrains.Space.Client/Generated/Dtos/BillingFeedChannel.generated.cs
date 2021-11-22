@@ -42,19 +42,23 @@ public sealed class BillingFeedChannel
         NotificationDefaults = notificationDefaults;
     }
     
-    private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(BillingFeedChannel), nameof(NotificationDefaults));
+    private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(BillingFeedChannel), nameof(NotificationDefaults), "notificationDefaults");
     
     [JsonPropertyName("notificationDefaults")]
     public ChannelSpecificDefaults? NotificationDefaults
     {
-        get => _notificationDefaults.GetValue();
+        get => _notificationDefaults.GetValue(InlineErrors);
         set => _notificationDefaults.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

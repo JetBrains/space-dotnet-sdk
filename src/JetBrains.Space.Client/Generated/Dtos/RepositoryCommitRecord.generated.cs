@@ -49,125 +49,129 @@ public sealed class RepositoryCommitRecord
         AuthorProfile = authorProfile;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(RepositoryCommitRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(RepositoryCommitRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _repositoryId = new PropertyValue<string>(nameof(RepositoryCommitRecord), nameof(RepositoryId));
+    private PropertyValue<string> _repositoryId = new PropertyValue<string>(nameof(RepositoryCommitRecord), nameof(RepositoryId), "repositoryId");
     
     [Required]
     [JsonPropertyName("repositoryId")]
     public string RepositoryId
     {
-        get => _repositoryId.GetValue();
+        get => _repositoryId.GetValue(InlineErrors);
         set => _repositoryId.SetValue(value);
     }
 
-    private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(RepositoryCommitRecord), nameof(RepositoryName));
+    private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(RepositoryCommitRecord), nameof(RepositoryName), "repositoryName");
     
     [Required]
     [JsonPropertyName("repositoryName")]
     public string RepositoryName
     {
-        get => _repositoryName.GetValue();
+        get => _repositoryName.GetValue(InlineErrors);
         set => _repositoryName.SetValue(value);
     }
 
-    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(RepositoryCommitRecord), nameof(Revision));
+    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(RepositoryCommitRecord), nameof(Revision), "revision");
     
     [Required]
     [JsonPropertyName("revision")]
     public string Revision
     {
-        get => _revision.GetValue();
+        get => _revision.GetValue(InlineErrors);
         set => _revision.SetValue(value);
     }
 
-    private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(Message));
+    private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(Message), "message");
     
     [JsonPropertyName("message")]
     public string? Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _date = new PropertyValue<DateTime>(nameof(RepositoryCommitRecord), nameof(Date));
+    private PropertyValue<DateTime> _date = new PropertyValue<DateTime>(nameof(RepositoryCommitRecord), nameof(Date), "date");
     
     [Required]
     [JsonPropertyName("date")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Date
     {
-        get => _date.GetValue();
+        get => _date.GetValue(InlineErrors);
         set => _date.SetValue(value);
     }
 
-    private PropertyValue<string?> _authorName = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(AuthorName));
+    private PropertyValue<string?> _authorName = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(AuthorName), "authorName");
     
     [JsonPropertyName("authorName")]
     public string? AuthorName
     {
-        get => _authorName.GetValue();
+        get => _authorName.GetValue(InlineErrors);
         set => _authorName.SetValue(value);
     }
 
-    private PropertyValue<string?> _authorEmail = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(AuthorEmail));
+    private PropertyValue<string?> _authorEmail = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(AuthorEmail), "authorEmail");
     
     [JsonPropertyName("authorEmail")]
     public string? AuthorEmail
     {
-        get => _authorEmail.GetValue();
+        get => _authorEmail.GetValue(InlineErrors);
         set => _authorEmail.SetValue(value);
     }
 
-    private PropertyValue<string?> _committerName = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(CommitterName));
+    private PropertyValue<string?> _committerName = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(CommitterName), "committerName");
     
     [JsonPropertyName("committerName")]
     public string? CommitterName
     {
-        get => _committerName.GetValue();
+        get => _committerName.GetValue(InlineErrors);
         set => _committerName.SetValue(value);
     }
 
-    private PropertyValue<string?> _committerEmail = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(CommitterEmail));
+    private PropertyValue<string?> _committerEmail = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(CommitterEmail), "committerEmail");
     
     [JsonPropertyName("committerEmail")]
     public string? CommitterEmail
     {
-        get => _committerEmail.GetValue();
+        get => _committerEmail.GetValue(InlineErrors);
         set => _committerEmail.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _authorProfile = new PropertyValue<TDMemberProfile?>(nameof(RepositoryCommitRecord), nameof(AuthorProfile));
+    private PropertyValue<TDMemberProfile?> _authorProfile = new PropertyValue<TDMemberProfile?>(nameof(RepositoryCommitRecord), nameof(AuthorProfile), "authorProfile");
     
     [JsonPropertyName("authorProfile")]
     public TDMemberProfile? AuthorProfile
     {
-        get => _authorProfile.GetValue();
+        get => _authorProfile.GetValue(InlineErrors);
         set => _authorProfile.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _repositoryId.SetAccessPath(path, validateHasBeenSet);
-        _repositoryName.SetAccessPath(path, validateHasBeenSet);
-        _revision.SetAccessPath(path, validateHasBeenSet);
-        _message.SetAccessPath(path, validateHasBeenSet);
-        _date.SetAccessPath(path, validateHasBeenSet);
-        _authorName.SetAccessPath(path, validateHasBeenSet);
-        _authorEmail.SetAccessPath(path, validateHasBeenSet);
-        _committerName.SetAccessPath(path, validateHasBeenSet);
-        _committerEmail.SetAccessPath(path, validateHasBeenSet);
-        _authorProfile.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repositoryId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repositoryName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _revision.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _date.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authorName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authorEmail.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _committerName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _committerEmail.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authorProfile.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,53 +42,57 @@ public sealed class PrivateFeed
         Color = color;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PrivateFeed), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(PrivateFeed), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PrivateFeed), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PrivateFeed), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _icon = new PropertyValue<string>(nameof(PrivateFeed), nameof(Icon));
+    private PropertyValue<string> _icon = new PropertyValue<string>(nameof(PrivateFeed), nameof(Icon), "icon");
     
     [Required]
     [JsonPropertyName("icon")]
     public string Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<PrivateFeedColor> _color = new PropertyValue<PrivateFeedColor>(nameof(PrivateFeed), nameof(Color));
+    private PropertyValue<PrivateFeedColor> _color = new PropertyValue<PrivateFeedColor>(nameof(PrivateFeed), nameof(Color), "color");
     
     [Required]
     [JsonPropertyName("color")]
     public PrivateFeedColor Color
     {
-        get => _color.GetValue();
+        get => _color.GetValue(InlineErrors);
         set => _color.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _icon.SetAccessPath(path, validateHasBeenSet);
-        _color.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _color.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

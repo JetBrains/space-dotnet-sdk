@@ -44,42 +44,46 @@ public sealed class ApplicationAuthorizationRequestedEvent
         Scope = scope;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationAuthorizationRequestedEvent), nameof(Meta));
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationAuthorizationRequestedEvent), nameof(Meta), "meta");
     
     [Required]
     [JsonPropertyName("meta")]
     public KMetaMod Meta
     {
-        get => _meta.GetValue();
+        get => _meta.GetValue(InlineErrors);
         set => _meta.SetValue(value);
     }
 
-    private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationAuthorizationRequestedEvent), nameof(Application));
+    private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationAuthorizationRequestedEvent), nameof(Application), "application");
     
     [Required]
     [JsonPropertyName("application")]
     public ESApp Application
     {
-        get => _application.GetValue();
+        get => _application.GetValue(InlineErrors);
         set => _application.SetValue(value);
     }
 
-    private PropertyValue<AuthScope> _scope = new PropertyValue<AuthScope>(nameof(ApplicationAuthorizationRequestedEvent), nameof(Scope));
+    private PropertyValue<AuthScope> _scope = new PropertyValue<AuthScope>(nameof(ApplicationAuthorizationRequestedEvent), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
     public AuthScope Scope
     {
-        get => _scope.GetValue();
+        get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meta.SetAccessPath(path, validateHasBeenSet);
-        _application.SetAccessPath(path, validateHasBeenSet);
-        _scope.SetAccessPath(path, validateHasBeenSet);
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _application.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

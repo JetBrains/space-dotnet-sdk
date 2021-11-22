@@ -40,30 +40,34 @@ public sealed class RevisionAuthor
         Profile = profile;
     }
     
-    private PropertyValue<string> _authorName = new PropertyValue<string>(nameof(RevisionAuthor), nameof(AuthorName));
+    private PropertyValue<string> _authorName = new PropertyValue<string>(nameof(RevisionAuthor), nameof(AuthorName), "authorName");
     
     [Required]
     [JsonPropertyName("authorName")]
     public string AuthorName
     {
-        get => _authorName.GetValue();
+        get => _authorName.GetValue(InlineErrors);
         set => _authorName.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _profile = new PropertyValue<TDMemberProfile?>(nameof(RevisionAuthor), nameof(Profile));
+    private PropertyValue<TDMemberProfile?> _profile = new PropertyValue<TDMemberProfile?>(nameof(RevisionAuthor), nameof(Profile), "profile");
     
     [JsonPropertyName("profile")]
     public TDMemberProfile? Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _authorName.SetAccessPath(path, validateHasBeenSet);
-        _profile.SetAccessPath(path, validateHasBeenSet);
+        _authorName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

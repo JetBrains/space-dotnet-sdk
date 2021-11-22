@@ -41,41 +41,45 @@ public sealed class ChannelParticipant
         PendingMessageCount = pendingMessageCount;
     }
     
-    private PropertyValue<CPrincipal> _principal = new PropertyValue<CPrincipal>(nameof(ChannelParticipant), nameof(Principal));
+    private PropertyValue<CPrincipal> _principal = new PropertyValue<CPrincipal>(nameof(ChannelParticipant), nameof(Principal), "principal");
     
     [Required]
     [JsonPropertyName("principal")]
     public CPrincipal Principal
     {
-        get => _principal.GetValue();
+        get => _principal.GetValue(InlineErrors);
         set => _principal.SetValue(value);
     }
 
-    private PropertyValue<int> _messageCount = new PropertyValue<int>(nameof(ChannelParticipant), nameof(MessageCount));
+    private PropertyValue<int> _messageCount = new PropertyValue<int>(nameof(ChannelParticipant), nameof(MessageCount), "messageCount");
     
     [Required]
     [JsonPropertyName("messageCount")]
     public int MessageCount
     {
-        get => _messageCount.GetValue();
+        get => _messageCount.GetValue(InlineErrors);
         set => _messageCount.SetValue(value);
     }
 
-    private PropertyValue<int?> _pendingMessageCount = new PropertyValue<int?>(nameof(ChannelParticipant), nameof(PendingMessageCount));
+    private PropertyValue<int?> _pendingMessageCount = new PropertyValue<int?>(nameof(ChannelParticipant), nameof(PendingMessageCount), "pendingMessageCount");
     
     [JsonPropertyName("pendingMessageCount")]
     public int? PendingMessageCount
     {
-        get => _pendingMessageCount.GetValue();
+        get => _pendingMessageCount.GetValue(InlineErrors);
         set => _pendingMessageCount.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _principal.SetAccessPath(path, validateHasBeenSet);
-        _messageCount.SetAccessPath(path, validateHasBeenSet);
-        _pendingMessageCount.SetAccessPath(path, validateHasBeenSet);
+        _principal.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messageCount.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pendingMessageCount.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

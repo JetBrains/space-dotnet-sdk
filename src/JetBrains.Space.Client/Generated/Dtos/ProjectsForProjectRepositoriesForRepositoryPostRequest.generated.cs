@@ -42,49 +42,53 @@ public class ProjectsForProjectRepositoriesForRepositoryPostRequest
         IsDefaultSetup = defaultSetup;
     }
     
-    private PropertyValue<string> _description = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(Description));
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<string?> _defaultBranch = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(DefaultBranch));
+    private PropertyValue<string?> _defaultBranch = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(DefaultBranch), "defaultBranch");
     
     [JsonPropertyName("defaultBranch")]
     public string? DefaultBranch
     {
-        get => _defaultBranch.GetValue();
+        get => _defaultBranch.GetValue(InlineErrors);
         set => _defaultBranch.SetValue(value);
     }
 
-    private PropertyValue<bool> _initialize = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(IsInitialize));
+    private PropertyValue<bool> _initialize = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(IsInitialize), "initialize");
     
     [JsonPropertyName("initialize")]
     public bool IsInitialize
     {
-        get => _initialize.GetValue();
+        get => _initialize.GetValue(InlineErrors);
         set => _initialize.SetValue(value);
     }
 
-    private PropertyValue<bool> _defaultSetup = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(IsDefaultSetup));
+    private PropertyValue<bool> _defaultSetup = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(IsDefaultSetup), "defaultSetup");
     
     [JsonPropertyName("defaultSetup")]
     public bool IsDefaultSetup
     {
-        get => _defaultSetup.GetValue();
+        get => _defaultSetup.GetValue(InlineErrors);
         set => _defaultSetup.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _defaultBranch.SetAccessPath(path, validateHasBeenSet);
-        _initialize.SetAccessPath(path, validateHasBeenSet);
-        _defaultSetup.SetAccessPath(path, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _defaultBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _initialize.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _defaultSetup.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

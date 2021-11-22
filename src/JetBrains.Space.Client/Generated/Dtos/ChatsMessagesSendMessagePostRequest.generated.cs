@@ -45,81 +45,85 @@ public class ChatsMessagesSendMessagePostRequest
         IsPending = pending;
     }
     
-    private PropertyValue<MessageRecipient> _recipient = new PropertyValue<MessageRecipient>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Recipient));
+    private PropertyValue<MessageRecipient> _recipient = new PropertyValue<MessageRecipient>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Recipient), "recipient");
     
     [Required]
     [JsonPropertyName("recipient")]
     public MessageRecipient Recipient
     {
-        get => _recipient.GetValue();
+        get => _recipient.GetValue(InlineErrors);
         set => _recipient.SetValue(value);
     }
 
-    private PropertyValue<ChatMessage> _content = new PropertyValue<ChatMessage>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Content));
+    private PropertyValue<ChatMessage> _content = new PropertyValue<ChatMessage>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Content), "content");
     
     [Required]
     [JsonPropertyName("content")]
     public ChatMessage Content
     {
-        get => _content.GetValue();
+        get => _content.GetValue(InlineErrors);
         set => _content.SetValue(value);
     }
 
-    private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsUnfurlLinks));
+    private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsUnfurlLinks), "unfurlLinks");
     
     [JsonPropertyName("unfurlLinks")]
     public bool? IsUnfurlLinks
     {
-        get => _unfurlLinks.GetValue();
+        get => _unfurlLinks.GetValue(InlineErrors);
         set => _unfurlLinks.SetValue(value);
     }
 
-    private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Attachments));
+    private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Attachments), "attachments");
     
     [JsonPropertyName("attachments")]
     public List<AttachmentIn>? Attachments
     {
-        get => _attachments.GetValue();
+        get => _attachments.GetValue(InlineErrors);
         set => _attachments.SetValue(value);
     }
 
-    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(ExternalId));
+    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(ExternalId), "externalId");
     
     [JsonPropertyName("externalId")]
     public string? ExternalId
     {
-        get => _externalId.GetValue();
+        get => _externalId.GetValue(InlineErrors);
         set => _externalId.SetValue(value);
     }
 
-    private PropertyValue<bool?> _resolveNames = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsResolveNames));
+    private PropertyValue<bool?> _resolveNames = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsResolveNames), "resolveNames");
     
     [JsonPropertyName("resolveNames")]
     public bool? IsResolveNames
     {
-        get => _resolveNames.GetValue();
+        get => _resolveNames.GetValue(InlineErrors);
         set => _resolveNames.SetValue(value);
     }
 
-    private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsPending));
+    private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsPending), "pending");
     
     [JsonPropertyName("pending")]
     public bool? IsPending
     {
-        get => _pending.GetValue();
+        get => _pending.GetValue(InlineErrors);
         set => _pending.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _recipient.SetAccessPath(path, validateHasBeenSet);
-        _content.SetAccessPath(path, validateHasBeenSet);
-        _unfurlLinks.SetAccessPath(path, validateHasBeenSet);
-        _attachments.SetAccessPath(path, validateHasBeenSet);
-        _externalId.SetAccessPath(path, validateHasBeenSet);
-        _resolveNames.SetAccessPath(path, validateHasBeenSet);
-        _pending.SetAccessPath(path, validateHasBeenSet);
+        _recipient.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _content.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unfurlLinks.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _resolveNames.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pending.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

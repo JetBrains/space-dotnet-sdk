@@ -43,63 +43,67 @@ public sealed class CodeReviewDetailedInfo
         Branches = branches;
     }
     
-    private PropertyValue<CodeReviewRecord> _shortInfo = new PropertyValue<CodeReviewRecord>(nameof(CodeReviewDetailedInfo), nameof(ShortInfo));
+    private PropertyValue<CodeReviewRecord> _shortInfo = new PropertyValue<CodeReviewRecord>(nameof(CodeReviewDetailedInfo), nameof(ShortInfo), "shortInfo");
     
     [Required]
     [JsonPropertyName("shortInfo")]
     public CodeReviewRecord ShortInfo
     {
-        get => _shortInfo.GetValue();
+        get => _shortInfo.GetValue(InlineErrors);
         set => _shortInfo.SetValue(value);
     }
 
-    private PropertyValue<List<RevisionsInReview>> _commits = new PropertyValue<List<RevisionsInReview>>(nameof(CodeReviewDetailedInfo), nameof(Commits), new List<RevisionsInReview>());
+    private PropertyValue<List<RevisionsInReview>> _commits = new PropertyValue<List<RevisionsInReview>>(nameof(CodeReviewDetailedInfo), nameof(Commits), "commits", new List<RevisionsInReview>());
     
     [Required]
     [JsonPropertyName("commits")]
     public List<RevisionsInReview> Commits
     {
-        get => _commits.GetValue();
+        get => _commits.GetValue(InlineErrors);
         set => _commits.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewDiscussionCounter> _discussionCounter = new PropertyValue<CodeReviewDiscussionCounter>(nameof(CodeReviewDetailedInfo), nameof(DiscussionCounter));
+    private PropertyValue<CodeReviewDiscussionCounter> _discussionCounter = new PropertyValue<CodeReviewDiscussionCounter>(nameof(CodeReviewDetailedInfo), nameof(DiscussionCounter), "discussionCounter");
     
     [Required]
     [JsonPropertyName("discussionCounter")]
     public CodeReviewDiscussionCounter DiscussionCounter
     {
-        get => _discussionCounter.GetValue();
+        get => _discussionCounter.GetValue(InlineErrors);
         set => _discussionCounter.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewUnboundDiscussionCounter?> _unboundDiscussionCounter = new PropertyValue<CodeReviewUnboundDiscussionCounter?>(nameof(CodeReviewDetailedInfo), nameof(UnboundDiscussionCounter));
+    private PropertyValue<CodeReviewUnboundDiscussionCounter?> _unboundDiscussionCounter = new PropertyValue<CodeReviewUnboundDiscussionCounter?>(nameof(CodeReviewDetailedInfo), nameof(UnboundDiscussionCounter), "unboundDiscussionCounter");
     
     [JsonPropertyName("unboundDiscussionCounter")]
     public CodeReviewUnboundDiscussionCounter? UnboundDiscussionCounter
     {
-        get => _unboundDiscussionCounter.GetValue();
+        get => _unboundDiscussionCounter.GetValue(InlineErrors);
         set => _unboundDiscussionCounter.SetValue(value);
     }
 
-    private PropertyValue<List<TrackedBranchesInReview>> _branches = new PropertyValue<List<TrackedBranchesInReview>>(nameof(CodeReviewDetailedInfo), nameof(Branches), new List<TrackedBranchesInReview>());
+    private PropertyValue<List<TrackedBranchesInReview>> _branches = new PropertyValue<List<TrackedBranchesInReview>>(nameof(CodeReviewDetailedInfo), nameof(Branches), "branches", new List<TrackedBranchesInReview>());
     
     [Required]
     [JsonPropertyName("branches")]
     public List<TrackedBranchesInReview> Branches
     {
-        get => _branches.GetValue();
+        get => _branches.GetValue(InlineErrors);
         set => _branches.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _shortInfo.SetAccessPath(path, validateHasBeenSet);
-        _commits.SetAccessPath(path, validateHasBeenSet);
-        _discussionCounter.SetAccessPath(path, validateHasBeenSet);
-        _unboundDiscussionCounter.SetAccessPath(path, validateHasBeenSet);
-        _branches.SetAccessPath(path, validateHasBeenSet);
+        _shortInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commits.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _discussionCounter.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unboundDiscussionCounter.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _branches.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

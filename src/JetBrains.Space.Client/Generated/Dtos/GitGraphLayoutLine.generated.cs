@@ -40,31 +40,35 @@ public sealed class GitGraphLayoutLine
         Edges = edges;
     }
     
-    private PropertyValue<List<GitGraphLayoutNode>> _nodes = new PropertyValue<List<GitGraphLayoutNode>>(nameof(GitGraphLayoutLine), nameof(Nodes), new List<GitGraphLayoutNode>());
+    private PropertyValue<List<GitGraphLayoutNode>> _nodes = new PropertyValue<List<GitGraphLayoutNode>>(nameof(GitGraphLayoutLine), nameof(Nodes), "nodes", new List<GitGraphLayoutNode>());
     
     [Required]
     [JsonPropertyName("nodes")]
     public List<GitGraphLayoutNode> Nodes
     {
-        get => _nodes.GetValue();
+        get => _nodes.GetValue(InlineErrors);
         set => _nodes.SetValue(value);
     }
 
-    private PropertyValue<List<GitGraphLayoutEdge>> _edges = new PropertyValue<List<GitGraphLayoutEdge>>(nameof(GitGraphLayoutLine), nameof(Edges), new List<GitGraphLayoutEdge>());
+    private PropertyValue<List<GitGraphLayoutEdge>> _edges = new PropertyValue<List<GitGraphLayoutEdge>>(nameof(GitGraphLayoutLine), nameof(Edges), "edges", new List<GitGraphLayoutEdge>());
     
     [Required]
     [JsonPropertyName("edges")]
     public List<GitGraphLayoutEdge> Edges
     {
-        get => _edges.GetValue();
+        get => _edges.GetValue(InlineErrors);
         set => _edges.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _nodes.SetAccessPath(path, validateHasBeenSet);
-        _edges.SetAccessPath(path, validateHasBeenSet);
+        _nodes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _edges.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

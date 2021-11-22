@@ -42,20 +42,24 @@ public sealed class EndpointAuthReadBasic
         Username = username;
     }
     
-    private PropertyValue<string> _username = new PropertyValue<string>(nameof(EndpointAuthReadBasic), nameof(Username));
+    private PropertyValue<string> _username = new PropertyValue<string>(nameof(EndpointAuthReadBasic), nameof(Username), "username");
     
     [Required]
     [JsonPropertyName("username")]
     public string Username
     {
-        get => _username.GetValue();
+        get => _username.GetValue(InlineErrors);
         set => _username.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _username.SetAccessPath(path, validateHasBeenSet);
+        _username.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

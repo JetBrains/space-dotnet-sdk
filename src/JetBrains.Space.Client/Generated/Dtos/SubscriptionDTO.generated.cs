@@ -45,83 +45,87 @@ public sealed class SubscriptionDTO
         RequestedAuthentication = requestedAuthentication;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(SubscriptionDTO), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(SubscriptionDTO), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(SubscriptionDTO), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(SubscriptionDTO), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(SubscriptionDTO), nameof(IsEnabled));
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(SubscriptionDTO), nameof(IsEnabled), "enabled");
     
     [Required]
     [JsonPropertyName("enabled")]
     public bool IsEnabled
     {
-        get => _enabled.GetValue();
+        get => _enabled.GetValue(InlineErrors);
         set => _enabled.SetValue(value);
     }
 
-    private PropertyValue<Subscription> _subscription = new PropertyValue<Subscription>(nameof(SubscriptionDTO), nameof(Subscription));
+    private PropertyValue<Subscription> _subscription = new PropertyValue<Subscription>(nameof(SubscriptionDTO), nameof(Subscription), "subscription");
     
     [Required]
     [JsonPropertyName("subscription")]
     public Subscription Subscription
     {
-        get => _subscription.GetValue();
+        get => _subscription.GetValue(InlineErrors);
         set => _subscription.SetValue(value);
     }
 
-    private PropertyValue<PrivateFeed?> _privateFeed = new PropertyValue<PrivateFeed?>(nameof(SubscriptionDTO), nameof(PrivateFeed));
+    private PropertyValue<PrivateFeed?> _privateFeed = new PropertyValue<PrivateFeed?>(nameof(SubscriptionDTO), nameof(PrivateFeed), "privateFeed");
     
     [JsonPropertyName("privateFeed")]
     public PrivateFeed? PrivateFeed
     {
-        get => _privateFeed.GetValue();
+        get => _privateFeed.GetValue(InlineErrors);
         set => _privateFeed.SetValue(value);
     }
 
-    private PropertyValue<ESApp?> _application = new PropertyValue<ESApp?>(nameof(SubscriptionDTO), nameof(Application));
+    private PropertyValue<ESApp?> _application = new PropertyValue<ESApp?>(nameof(SubscriptionDTO), nameof(Application), "application");
     
     [JsonPropertyName("application")]
     public ESApp? Application
     {
-        get => _application.GetValue();
+        get => _application.GetValue(InlineErrors);
         set => _application.SetValue(value);
     }
 
-    private PropertyValue<SubscriptionRequestedAuthorizations?> _requestedAuthentication = new PropertyValue<SubscriptionRequestedAuthorizations?>(nameof(SubscriptionDTO), nameof(RequestedAuthentication));
+    private PropertyValue<SubscriptionRequestedAuthorizations?> _requestedAuthentication = new PropertyValue<SubscriptionRequestedAuthorizations?>(nameof(SubscriptionDTO), nameof(RequestedAuthentication), "requestedAuthentication");
     
     [JsonPropertyName("requestedAuthentication")]
     public SubscriptionRequestedAuthorizations? RequestedAuthentication
     {
-        get => _requestedAuthentication.GetValue();
+        get => _requestedAuthentication.GetValue(InlineErrors);
         set => _requestedAuthentication.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _enabled.SetAccessPath(path, validateHasBeenSet);
-        _subscription.SetAccessPath(path, validateHasBeenSet);
-        _privateFeed.SetAccessPath(path, validateHasBeenSet);
-        _application.SetAccessPath(path, validateHasBeenSet);
-        _requestedAuthentication.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subscription.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _privateFeed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _application.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _requestedAuthentication.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

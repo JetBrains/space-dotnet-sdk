@@ -41,39 +41,43 @@ public class TrustedCertificatesForIdPatchRequest
         IsArchived = archived;
     }
     
-    private PropertyValue<string?> _alias = new PropertyValue<string?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(Alias));
+    private PropertyValue<string?> _alias = new PropertyValue<string?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(Alias), "alias");
     
     [JsonPropertyName("alias")]
     public string? Alias
     {
-        get => _alias.GetValue();
+        get => _alias.GetValue(InlineErrors);
         set => _alias.SetValue(value);
     }
 
-    private PropertyValue<string?> _data = new PropertyValue<string?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(Data));
+    private PropertyValue<string?> _data = new PropertyValue<string?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(Data), "data");
     
     [JsonPropertyName("data")]
     public string? Data
     {
-        get => _data.GetValue();
+        get => _data.GetValue(InlineErrors);
         set => _data.SetValue(value);
     }
 
-    private PropertyValue<bool?> _archived = new PropertyValue<bool?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(IsArchived));
+    private PropertyValue<bool?> _archived = new PropertyValue<bool?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(IsArchived), "archived");
     
     [JsonPropertyName("archived")]
     public bool? IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _alias.SetAccessPath(path, validateHasBeenSet);
-        _data.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
+        _alias.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _data.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

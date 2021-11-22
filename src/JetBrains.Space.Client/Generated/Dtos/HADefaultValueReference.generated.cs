@@ -42,20 +42,24 @@ public sealed class HADefaultValueReference
         ParamName = paramName;
     }
     
-    private PropertyValue<string> _paramName = new PropertyValue<string>(nameof(HADefaultValueReference), nameof(ParamName));
+    private PropertyValue<string> _paramName = new PropertyValue<string>(nameof(HADefaultValueReference), nameof(ParamName), "paramName");
     
     [Required]
     [JsonPropertyName("paramName")]
     public string ParamName
     {
-        get => _paramName.GetValue();
+        get => _paramName.GetValue(InlineErrors);
         set => _paramName.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _paramName.SetAccessPath(path, validateHasBeenSet);
+        _paramName.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

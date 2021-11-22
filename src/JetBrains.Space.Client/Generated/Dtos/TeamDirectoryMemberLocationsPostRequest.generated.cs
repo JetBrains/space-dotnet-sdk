@@ -43,63 +43,67 @@ public class TeamDirectoryMemberLocationsPostRequest
         PreviousLocation = previousLocation;
     }
     
-    private PropertyValue<ProfileIdentifier> _member = new PropertyValue<ProfileIdentifier>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Member));
+    private PropertyValue<ProfileIdentifier> _member = new PropertyValue<ProfileIdentifier>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Member), "member");
     
     [Required]
     [JsonPropertyName("member")]
     public ProfileIdentifier Member
     {
-        get => _member.GetValue();
+        get => _member.GetValue(InlineErrors);
         set => _member.SetValue(value);
     }
 
-    private PropertyValue<string> _location = new PropertyValue<string>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Location));
+    private PropertyValue<string> _location = new PropertyValue<string>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Location), "location");
     
     [Required]
     [JsonPropertyName("location")]
     public string Location
     {
-        get => _location.GetValue();
+        get => _location.GetValue(InlineErrors);
         set => _location.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Since));
+    private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Since), "since");
     
     [JsonPropertyName("since")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Till));
+    private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Till), "till");
     
     [JsonPropertyName("till")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Till
     {
-        get => _till.GetValue();
+        get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    private PropertyValue<string?> _previousLocation = new PropertyValue<string?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(PreviousLocation));
+    private PropertyValue<string?> _previousLocation = new PropertyValue<string?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(PreviousLocation), "previousLocation");
     
     [JsonPropertyName("previousLocation")]
     public string? PreviousLocation
     {
-        get => _previousLocation.GetValue();
+        get => _previousLocation.GetValue(InlineErrors);
         set => _previousLocation.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _member.SetAccessPath(path, validateHasBeenSet);
-        _location.SetAccessPath(path, validateHasBeenSet);
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _till.SetAccessPath(path, validateHasBeenSet);
-        _previousLocation.SetAccessPath(path, validateHasBeenSet);
+        _member.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _location.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _till.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _previousLocation.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

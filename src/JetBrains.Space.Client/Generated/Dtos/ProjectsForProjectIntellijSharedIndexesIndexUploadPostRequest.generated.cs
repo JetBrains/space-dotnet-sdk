@@ -39,20 +39,24 @@ public class ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest
         FileNames = fileNames;
     }
     
-    private PropertyValue<List<string>> _fileNames = new PropertyValue<List<string>>(nameof(ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest), nameof(FileNames), new List<string>());
+    private PropertyValue<List<string>> _fileNames = new PropertyValue<List<string>>(nameof(ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest), nameof(FileNames), "fileNames", new List<string>());
     
     [Required]
     [JsonPropertyName("fileNames")]
     public List<string> FileNames
     {
-        get => _fileNames.GetValue();
+        get => _fileNames.GetValue(InlineErrors);
         set => _fileNames.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _fileNames.SetAccessPath(path, validateHasBeenSet);
+        _fileNames.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,31 +40,35 @@ public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchReque
         NewName = newName;
     }
     
-    private PropertyValue<CFEnumValueIdentifier> _enumValueToUpdate = new PropertyValue<CFEnumValueIdentifier>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest), nameof(EnumValueToUpdate));
+    private PropertyValue<CFEnumValueIdentifier> _enumValueToUpdate = new PropertyValue<CFEnumValueIdentifier>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest), nameof(EnumValueToUpdate), "enumValueToUpdate");
     
     [Required]
     [JsonPropertyName("enumValueToUpdate")]
     public CFEnumValueIdentifier EnumValueToUpdate
     {
-        get => _enumValueToUpdate.GetValue();
+        get => _enumValueToUpdate.GetValue(InlineErrors);
         set => _enumValueToUpdate.SetValue(value);
     }
 
-    private PropertyValue<string> _newName = new PropertyValue<string>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest), nameof(NewName));
+    private PropertyValue<string> _newName = new PropertyValue<string>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPatchRequest), nameof(NewName), "newName");
     
     [Required]
     [JsonPropertyName("newName")]
     public string NewName
     {
-        get => _newName.GetValue();
+        get => _newName.GetValue(InlineErrors);
         set => _newName.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _enumValueToUpdate.SetAccessPath(path, validateHasBeenSet);
-        _newName.SetAccessPath(path, validateHasBeenSet);
+        _enumValueToUpdate.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _newName.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

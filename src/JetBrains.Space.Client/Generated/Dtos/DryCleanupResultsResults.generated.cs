@@ -43,31 +43,35 @@ public sealed class DryCleanupResultsResults
         PackageVersions = packageVersions;
     }
     
-    private PropertyValue<long> _totalSize = new PropertyValue<long>(nameof(DryCleanupResultsResults), nameof(TotalSize));
+    private PropertyValue<long> _totalSize = new PropertyValue<long>(nameof(DryCleanupResultsResults), nameof(TotalSize), "totalSize");
     
     [Required]
     [JsonPropertyName("totalSize")]
     public long TotalSize
     {
-        get => _totalSize.GetValue();
+        get => _totalSize.GetValue(InlineErrors);
         set => _totalSize.SetValue(value);
     }
 
-    private PropertyValue<List<PackageVersionRef>> _packageVersions = new PropertyValue<List<PackageVersionRef>>(nameof(DryCleanupResultsResults), nameof(PackageVersions), new List<PackageVersionRef>());
+    private PropertyValue<List<PackageVersionRef>> _packageVersions = new PropertyValue<List<PackageVersionRef>>(nameof(DryCleanupResultsResults), nameof(PackageVersions), "packageVersions", new List<PackageVersionRef>());
     
     [Required]
     [JsonPropertyName("packageVersions")]
     public List<PackageVersionRef> PackageVersions
     {
-        get => _packageVersions.GetValue();
+        get => _packageVersions.GetValue(InlineErrors);
         set => _packageVersions.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _totalSize.SetAccessPath(path, validateHasBeenSet);
-        _packageVersions.SetAccessPath(path, validateHasBeenSet);
+        _totalSize.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _packageVersions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

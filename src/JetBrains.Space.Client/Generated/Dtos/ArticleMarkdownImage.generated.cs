@@ -40,31 +40,35 @@ public sealed class ArticleMarkdownImage
         Src = src;
     }
     
-    private PropertyValue<string> _alt = new PropertyValue<string>(nameof(ArticleMarkdownImage), nameof(Alt));
+    private PropertyValue<string> _alt = new PropertyValue<string>(nameof(ArticleMarkdownImage), nameof(Alt), "alt");
     
     [Required]
     [JsonPropertyName("alt")]
     public string Alt
     {
-        get => _alt.GetValue();
+        get => _alt.GetValue(InlineErrors);
         set => _alt.SetValue(value);
     }
 
-    private PropertyValue<string> _src = new PropertyValue<string>(nameof(ArticleMarkdownImage), nameof(Src));
+    private PropertyValue<string> _src = new PropertyValue<string>(nameof(ArticleMarkdownImage), nameof(Src), "src");
     
     [Required]
     [JsonPropertyName("src")]
     public string Src
     {
-        get => _src.GetValue();
+        get => _src.GetValue(InlineErrors);
         set => _src.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _alt.SetAccessPath(path, validateHasBeenSet);
-        _src.SetAccessPath(path, validateHasBeenSet);
+        _alt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _src.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

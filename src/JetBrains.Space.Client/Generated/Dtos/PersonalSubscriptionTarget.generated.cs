@@ -43,63 +43,67 @@ public sealed class PersonalSubscriptionTarget
         FeatureFlag = featureFlag;
     }
     
-    private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(PersonalSubscriptionTarget), nameof(SubjectCode));
+    private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(PersonalSubscriptionTarget), nameof(SubjectCode), "subjectCode");
     
     [Required]
     [JsonPropertyName("subjectCode")]
     public string SubjectCode
     {
-        get => _subjectCode.GetValue();
+        get => _subjectCode.GetValue(InlineErrors);
         set => _subjectCode.SetValue(value);
     }
 
-    private PropertyValue<string> _targetCode = new PropertyValue<string>(nameof(PersonalSubscriptionTarget), nameof(TargetCode));
+    private PropertyValue<string> _targetCode = new PropertyValue<string>(nameof(PersonalSubscriptionTarget), nameof(TargetCode), "targetCode");
     
     [Required]
     [JsonPropertyName("targetCode")]
     public string TargetCode
     {
-        get => _targetCode.GetValue();
+        get => _targetCode.GetValue(InlineErrors);
         set => _targetCode.SetValue(value);
     }
 
-    private PropertyValue<string> _description = new PropertyValue<string>(nameof(PersonalSubscriptionTarget), nameof(Description));
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(PersonalSubscriptionTarget), nameof(Description), "description");
     
     [Required]
     [JsonPropertyName("description")]
     public string Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<List<PersonalSubscriptionEvent>> _events = new PropertyValue<List<PersonalSubscriptionEvent>>(nameof(PersonalSubscriptionTarget), nameof(Events), new List<PersonalSubscriptionEvent>());
+    private PropertyValue<List<PersonalSubscriptionEvent>> _events = new PropertyValue<List<PersonalSubscriptionEvent>>(nameof(PersonalSubscriptionTarget), nameof(Events), "events", new List<PersonalSubscriptionEvent>());
     
     [Required]
     [JsonPropertyName("events")]
     public List<PersonalSubscriptionEvent> Events
     {
-        get => _events.GetValue();
+        get => _events.GetValue(InlineErrors);
         set => _events.SetValue(value);
     }
 
-    private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(PersonalSubscriptionTarget), nameof(FeatureFlag));
+    private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(PersonalSubscriptionTarget), nameof(FeatureFlag), "featureFlag");
     
     [JsonPropertyName("featureFlag")]
     public string? FeatureFlag
     {
-        get => _featureFlag.GetValue();
+        get => _featureFlag.GetValue(InlineErrors);
         set => _featureFlag.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _subjectCode.SetAccessPath(path, validateHasBeenSet);
-        _targetCode.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _events.SetAccessPath(path, validateHasBeenSet);
-        _featureFlag.SetAccessPath(path, validateHasBeenSet);
+        _subjectCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _targetCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _events.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -45,86 +45,90 @@ public sealed class AbsenceReasonRecord
         Icon = icon;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(AbsenceReasonRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(AbsenceReasonRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(AbsenceReasonRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(AbsenceReasonRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(AbsenceReasonRecord), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(AbsenceReasonRecord), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _description = new PropertyValue<string>(nameof(AbsenceReasonRecord), nameof(Description));
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(AbsenceReasonRecord), nameof(Description), "description");
     
     [Required]
     [JsonPropertyName("description")]
     public string Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<bool> _defaultAvailability = new PropertyValue<bool>(nameof(AbsenceReasonRecord), nameof(IsDefaultAvailability));
+    private PropertyValue<bool> _defaultAvailability = new PropertyValue<bool>(nameof(AbsenceReasonRecord), nameof(IsDefaultAvailability), "defaultAvailability");
     
     [Required]
     [JsonPropertyName("defaultAvailability")]
     public bool IsDefaultAvailability
     {
-        get => _defaultAvailability.GetValue();
+        get => _defaultAvailability.GetValue(InlineErrors);
         set => _defaultAvailability.SetValue(value);
     }
 
-    private PropertyValue<bool> _approvalRequired = new PropertyValue<bool>(nameof(AbsenceReasonRecord), nameof(IsApprovalRequired));
+    private PropertyValue<bool> _approvalRequired = new PropertyValue<bool>(nameof(AbsenceReasonRecord), nameof(IsApprovalRequired), "approvalRequired");
     
     [Required]
     [JsonPropertyName("approvalRequired")]
     public bool IsApprovalRequired
     {
-        get => _approvalRequired.GetValue();
+        get => _approvalRequired.GetValue(InlineErrors);
         set => _approvalRequired.SetValue(value);
     }
 
-    private PropertyValue<string> _icon = new PropertyValue<string>(nameof(AbsenceReasonRecord), nameof(Icon));
+    private PropertyValue<string> _icon = new PropertyValue<string>(nameof(AbsenceReasonRecord), nameof(Icon), "icon");
     
     [Required]
     [JsonPropertyName("icon")]
     public string Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _defaultAvailability.SetAccessPath(path, validateHasBeenSet);
-        _approvalRequired.SetAccessPath(path, validateHasBeenSet);
-        _icon.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _defaultAvailability.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _approvalRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

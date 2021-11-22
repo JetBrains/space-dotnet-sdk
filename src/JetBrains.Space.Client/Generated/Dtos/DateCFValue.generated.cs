@@ -42,20 +42,24 @@ public sealed class DateCFValue
         Value = value;
     }
     
-    private PropertyValue<DateTime?> _value = new PropertyValue<DateTime?>(nameof(DateCFValue), nameof(Value));
+    private PropertyValue<DateTime?> _value = new PropertyValue<DateTime?>(nameof(DateCFValue), nameof(Value), "value");
     
     [JsonPropertyName("value")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Value
     {
-        get => _value.GetValue();
+        get => _value.GetValue(InlineErrors);
         set => _value.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _value.SetAccessPath(path, validateHasBeenSet);
+        _value.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

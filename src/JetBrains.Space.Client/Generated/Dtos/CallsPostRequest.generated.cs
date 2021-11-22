@@ -42,51 +42,55 @@ public class CallsPostRequest
         Description = description;
     }
     
-    private PropertyValue<List<ProfileIdentifier>> _participants = new PropertyValue<List<ProfileIdentifier>>(nameof(CallsPostRequest), nameof(Participants), new List<ProfileIdentifier>());
+    private PropertyValue<List<ProfileIdentifier>> _participants = new PropertyValue<List<ProfileIdentifier>>(nameof(CallsPostRequest), nameof(Participants), "participants", new List<ProfileIdentifier>());
     
     [Required]
     [JsonPropertyName("participants")]
     public List<ProfileIdentifier> Participants
     {
-        get => _participants.GetValue();
+        get => _participants.GetValue(InlineErrors);
         set => _participants.SetValue(value);
     }
 
-    private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(CallsPostRequest), nameof(IsPrivate));
+    private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(CallsPostRequest), nameof(IsPrivate), "private");
     
     [Required]
     [JsonPropertyName("private")]
     public bool IsPrivate
     {
-        get => _private.GetValue();
+        get => _private.GetValue(InlineErrors);
         set => _private.SetValue(value);
     }
 
-    private PropertyValue<string?> _channelId = new PropertyValue<string?>(nameof(CallsPostRequest), nameof(ChannelId));
+    private PropertyValue<string?> _channelId = new PropertyValue<string?>(nameof(CallsPostRequest), nameof(ChannelId), "channelId");
     
     [JsonPropertyName("channelId")]
     public string? ChannelId
     {
-        get => _channelId.GetValue();
+        get => _channelId.GetValue(InlineErrors);
         set => _channelId.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CallsPostRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CallsPostRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _participants.SetAccessPath(path, validateHasBeenSet);
-        _private.SetAccessPath(path, validateHasBeenSet);
-        _channelId.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
+        _participants.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _private.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

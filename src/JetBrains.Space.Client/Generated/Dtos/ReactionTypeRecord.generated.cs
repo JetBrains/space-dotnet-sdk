@@ -44,75 +44,79 @@ public sealed class ReactionTypeRecord
         Order = order;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ReactionTypeRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ReactionTypeRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ReactionTypeRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ReactionTypeRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<ReactionData> _data = new PropertyValue<ReactionData>(nameof(ReactionTypeRecord), nameof(Data));
+    private PropertyValue<ReactionData> _data = new PropertyValue<ReactionData>(nameof(ReactionTypeRecord), nameof(Data), "data");
     
     [Required]
     [JsonPropertyName("data")]
     public ReactionData Data
     {
-        get => _data.GetValue();
+        get => _data.GetValue(InlineErrors);
         set => _data.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal> _provider = new PropertyValue<CPrincipal>(nameof(ReactionTypeRecord), nameof(Provider));
+    private PropertyValue<CPrincipal> _provider = new PropertyValue<CPrincipal>(nameof(ReactionTypeRecord), nameof(Provider), "provider");
     
     [Required]
     [JsonPropertyName("provider")]
     public CPrincipal Provider
     {
-        get => _provider.GetValue();
+        get => _provider.GetValue(InlineErrors);
         set => _provider.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _addedAt = new PropertyValue<DateTime>(nameof(ReactionTypeRecord), nameof(AddedAt));
+    private PropertyValue<DateTime> _addedAt = new PropertyValue<DateTime>(nameof(ReactionTypeRecord), nameof(AddedAt), "addedAt");
     
     [Required]
     [JsonPropertyName("addedAt")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime AddedAt
     {
-        get => _addedAt.GetValue();
+        get => _addedAt.GetValue(InlineErrors);
         set => _addedAt.SetValue(value);
     }
 
-    private PropertyValue<int?> _order = new PropertyValue<int?>(nameof(ReactionTypeRecord), nameof(Order));
+    private PropertyValue<int?> _order = new PropertyValue<int?>(nameof(ReactionTypeRecord), nameof(Order), "order");
     
     [JsonPropertyName("order")]
     public int? Order
     {
-        get => _order.GetValue();
+        get => _order.GetValue(InlineErrors);
         set => _order.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _data.SetAccessPath(path, validateHasBeenSet);
-        _provider.SetAccessPath(path, validateHasBeenSet);
-        _addedAt.SetAccessPath(path, validateHasBeenSet);
-        _order.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _data.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _provider.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _addedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _order.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

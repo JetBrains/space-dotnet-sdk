@@ -51,112 +51,116 @@ public sealed class AbsenceWebhookEvent
         Available = available;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(AbsenceWebhookEvent), nameof(Meta));
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(AbsenceWebhookEvent), nameof(Meta), "meta");
     
     [Required]
     [JsonPropertyName("meta")]
     public KMetaMod Meta
     {
-        get => _meta.GetValue();
+        get => _meta.GetValue(InlineErrors);
         set => _meta.SetValue(value);
     }
 
-    private PropertyValue<AbsenceRecord> _absence = new PropertyValue<AbsenceRecord>(nameof(AbsenceWebhookEvent), nameof(Absence));
+    private PropertyValue<AbsenceRecord> _absence = new PropertyValue<AbsenceRecord>(nameof(AbsenceWebhookEvent), nameof(Absence), "absence");
     
     [Required]
     [JsonPropertyName("absence")]
     public AbsenceRecord Absence
     {
-        get => _absence.GetValue();
+        get => _absence.GetValue(InlineErrors);
         set => _absence.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(AbsenceWebhookEvent), nameof(Member));
+    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(AbsenceWebhookEvent), nameof(Member), "member");
     
     [Required]
     [JsonPropertyName("member")]
     public TDMemberProfile Member
     {
-        get => _member.GetValue();
+        get => _member.GetValue(InlineErrors);
         set => _member.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _icon = new PropertyValue<Modification<string>?>(nameof(AbsenceWebhookEvent), nameof(Icon));
+    private PropertyValue<Modification<string>?> _icon = new PropertyValue<Modification<string>?>(nameof(AbsenceWebhookEvent), nameof(Icon), "icon");
     
     [JsonPropertyName("icon")]
     public Modification<string>? Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<Modification<AbsenceReasonRecord>?> _reason = new PropertyValue<Modification<AbsenceReasonRecord>?>(nameof(AbsenceWebhookEvent), nameof(Reason));
+    private PropertyValue<Modification<AbsenceReasonRecord>?> _reason = new PropertyValue<Modification<AbsenceReasonRecord>?>(nameof(AbsenceWebhookEvent), nameof(Reason), "reason");
     
     [JsonPropertyName("reason")]
     public Modification<AbsenceReasonRecord>? Reason
     {
-        get => _reason.GetValue();
+        get => _reason.GetValue(InlineErrors);
         set => _reason.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _description = new PropertyValue<Modification<string>?>(nameof(AbsenceWebhookEvent), nameof(Description));
+    private PropertyValue<Modification<string>?> _description = new PropertyValue<Modification<string>?>(nameof(AbsenceWebhookEvent), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public Modification<string>? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _since = new PropertyValue<Modification<DateTime>?>(nameof(AbsenceWebhookEvent), nameof(Since));
+    private PropertyValue<Modification<DateTime>?> _since = new PropertyValue<Modification<DateTime>?>(nameof(AbsenceWebhookEvent), nameof(Since), "since");
     
     [JsonPropertyName("since")]
     public Modification<DateTime>? Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _till = new PropertyValue<Modification<DateTime>?>(nameof(AbsenceWebhookEvent), nameof(Till));
+    private PropertyValue<Modification<DateTime>?> _till = new PropertyValue<Modification<DateTime>?>(nameof(AbsenceWebhookEvent), nameof(Till), "till");
     
     [JsonPropertyName("till")]
     public Modification<DateTime>? Till
     {
-        get => _till.GetValue();
+        get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    private PropertyValue<Modification<TDLocation>?> _location = new PropertyValue<Modification<TDLocation>?>(nameof(AbsenceWebhookEvent), nameof(Location));
+    private PropertyValue<Modification<TDLocation>?> _location = new PropertyValue<Modification<TDLocation>?>(nameof(AbsenceWebhookEvent), nameof(Location), "location");
     
     [JsonPropertyName("location")]
     public Modification<TDLocation>? Location
     {
-        get => _location.GetValue();
+        get => _location.GetValue(InlineErrors);
         set => _location.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _available = new PropertyValue<Modification<bool>?>(nameof(AbsenceWebhookEvent), nameof(Available));
+    private PropertyValue<Modification<bool>?> _available = new PropertyValue<Modification<bool>?>(nameof(AbsenceWebhookEvent), nameof(Available), "available");
     
     [JsonPropertyName("available")]
     public Modification<bool>? Available
     {
-        get => _available.GetValue();
+        get => _available.GetValue(InlineErrors);
         set => _available.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meta.SetAccessPath(path, validateHasBeenSet);
-        _absence.SetAccessPath(path, validateHasBeenSet);
-        _member.SetAccessPath(path, validateHasBeenSet);
-        _icon.SetAccessPath(path, validateHasBeenSet);
-        _reason.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _till.SetAccessPath(path, validateHasBeenSet);
-        _location.SetAccessPath(path, validateHasBeenSet);
-        _available.SetAccessPath(path, validateHasBeenSet);
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _absence.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _member.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reason.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _till.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _location.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _available.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

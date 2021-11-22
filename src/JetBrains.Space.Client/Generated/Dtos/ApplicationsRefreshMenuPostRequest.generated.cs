@@ -39,19 +39,23 @@ public class ApplicationsRefreshMenuPostRequest
         AppId = appId;
     }
     
-    private PropertyValue<string?> _appId = new PropertyValue<string?>(nameof(ApplicationsRefreshMenuPostRequest), nameof(AppId));
+    private PropertyValue<string?> _appId = new PropertyValue<string?>(nameof(ApplicationsRefreshMenuPostRequest), nameof(AppId), "appId");
     
     [JsonPropertyName("appId")]
     public string? AppId
     {
-        get => _appId.GetValue();
+        get => _appId.GetValue(InlineErrors);
         set => _appId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _appId.SetAccessPath(path, validateHasBeenSet);
+        _appId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

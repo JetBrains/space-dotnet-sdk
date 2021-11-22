@@ -40,31 +40,35 @@ public sealed class RightTypeRight
         Rights = rights;
     }
     
-    private PropertyValue<RightType> _rightType = new PropertyValue<RightType>(nameof(RightTypeRight), nameof(RightType));
+    private PropertyValue<RightType> _rightType = new PropertyValue<RightType>(nameof(RightTypeRight), nameof(RightType), "rightType");
     
     [Required]
     [JsonPropertyName("rightType")]
     public RightType RightType
     {
-        get => _rightType.GetValue();
+        get => _rightType.GetValue(InlineErrors);
         set => _rightType.SetValue(value);
     }
 
-    private PropertyValue<List<FullRightWithoutType>> _rights = new PropertyValue<List<FullRightWithoutType>>(nameof(RightTypeRight), nameof(Rights), new List<FullRightWithoutType>());
+    private PropertyValue<List<FullRightWithoutType>> _rights = new PropertyValue<List<FullRightWithoutType>>(nameof(RightTypeRight), nameof(Rights), "rights", new List<FullRightWithoutType>());
     
     [Required]
     [JsonPropertyName("rights")]
     public List<FullRightWithoutType> Rights
     {
-        get => _rights.GetValue();
+        get => _rights.GetValue(InlineErrors);
         set => _rights.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _rightType.SetAccessPath(path, validateHasBeenSet);
-        _rights.SetAccessPath(path, validateHasBeenSet);
+        _rightType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rights.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,31 +40,35 @@ public sealed class TextRange
         Length = length;
     }
     
-    private PropertyValue<int> _start = new PropertyValue<int>(nameof(TextRange), nameof(Start));
+    private PropertyValue<int> _start = new PropertyValue<int>(nameof(TextRange), nameof(Start), "start");
     
     [Required]
     [JsonPropertyName("start")]
     public int Start
     {
-        get => _start.GetValue();
+        get => _start.GetValue(InlineErrors);
         set => _start.SetValue(value);
     }
 
-    private PropertyValue<int> _length = new PropertyValue<int>(nameof(TextRange), nameof(Length));
+    private PropertyValue<int> _length = new PropertyValue<int>(nameof(TextRange), nameof(Length), "length");
     
     [Required]
     [JsonPropertyName("length")]
     public int Length
     {
-        get => _length.GetValue();
+        get => _length.GetValue(InlineErrors);
         set => _length.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _start.SetAccessPath(path, validateHasBeenSet);
-        _length.SetAccessPath(path, validateHasBeenSet);
+        _start.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _length.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

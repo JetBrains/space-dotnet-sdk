@@ -45,51 +45,55 @@ public sealed class ProfileOrganizationEvent
         IsLeftOrganization = leftOrganization;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ProfileOrganizationEvent), nameof(Meta));
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ProfileOrganizationEvent), nameof(Meta), "meta");
     
     [Required]
     [JsonPropertyName("meta")]
     public KMetaMod Meta
     {
-        get => _meta.GetValue();
+        get => _meta.GetValue(InlineErrors);
         set => _meta.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(ProfileOrganizationEvent), nameof(Member));
+    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(ProfileOrganizationEvent), nameof(Member), "member");
     
     [Required]
     [JsonPropertyName("member")]
     public TDMemberProfile Member
     {
-        get => _member.GetValue();
+        get => _member.GetValue(InlineErrors);
         set => _member.SetValue(value);
     }
 
-    private PropertyValue<bool?> _joinedOrganization = new PropertyValue<bool?>(nameof(ProfileOrganizationEvent), nameof(IsJoinedOrganization));
+    private PropertyValue<bool?> _joinedOrganization = new PropertyValue<bool?>(nameof(ProfileOrganizationEvent), nameof(IsJoinedOrganization), "joinedOrganization");
     
     [JsonPropertyName("joinedOrganization")]
     public bool? IsJoinedOrganization
     {
-        get => _joinedOrganization.GetValue();
+        get => _joinedOrganization.GetValue(InlineErrors);
         set => _joinedOrganization.SetValue(value);
     }
 
-    private PropertyValue<bool?> _leftOrganization = new PropertyValue<bool?>(nameof(ProfileOrganizationEvent), nameof(IsLeftOrganization));
+    private PropertyValue<bool?> _leftOrganization = new PropertyValue<bool?>(nameof(ProfileOrganizationEvent), nameof(IsLeftOrganization), "leftOrganization");
     
     [JsonPropertyName("leftOrganization")]
     public bool? IsLeftOrganization
     {
-        get => _leftOrganization.GetValue();
+        get => _leftOrganization.GetValue(InlineErrors);
         set => _leftOrganization.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meta.SetAccessPath(path, validateHasBeenSet);
-        _member.SetAccessPath(path, validateHasBeenSet);
-        _joinedOrganization.SetAccessPath(path, validateHasBeenSet);
-        _leftOrganization.SetAccessPath(path, validateHasBeenSet);
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _member.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _joinedOrganization.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _leftOrganization.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -44,75 +44,79 @@ public sealed class ProjectTeamMemberRecord
         IsArchived = archived;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectTeamMemberRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectTeamMemberRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(ProjectTeamMemberRecord), nameof(Project));
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(ProjectTeamMemberRecord), nameof(Project), "project");
     
     [Required]
     [JsonPropertyName("project")]
     public PRProject Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(ProjectTeamMemberRecord), nameof(Profile));
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(ProjectTeamMemberRecord), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public TDMemberProfile Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<TDRole?> _position = new PropertyValue<TDRole?>(nameof(ProjectTeamMemberRecord), nameof(Position));
+    private PropertyValue<TDRole?> _position = new PropertyValue<TDRole?>(nameof(ProjectTeamMemberRecord), nameof(Position), "position");
     
     [JsonPropertyName("position")]
     public TDRole? Position
     {
-        get => _position.GetValue();
+        get => _position.GetValue(InlineErrors);
         set => _position.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(ProjectTeamMemberRecord), nameof(Since));
+    private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(ProjectTeamMemberRecord), nameof(Since), "since");
     
     [Required]
     [JsonPropertyName("since")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ProjectTeamMemberRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ProjectTeamMemberRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _position.SetAccessPath(path, validateHasBeenSet);
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _position.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

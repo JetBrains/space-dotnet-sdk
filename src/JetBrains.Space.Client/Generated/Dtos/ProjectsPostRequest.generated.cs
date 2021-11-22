@@ -43,61 +43,65 @@ public class ProjectsPostRequest
         Tags = (tags ?? new List<string>());
     }
     
-    private PropertyValue<ProjectKey> _key = new PropertyValue<ProjectKey>(nameof(ProjectsPostRequest), nameof(Key));
+    private PropertyValue<ProjectKey> _key = new PropertyValue<ProjectKey>(nameof(ProjectsPostRequest), nameof(Key), "key");
     
     [Required]
     [JsonPropertyName("key")]
     public ProjectKey Key
     {
-        get => _key.GetValue();
+        get => _key.GetValue(InlineErrors);
         set => _key.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsPostRequest), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsPostRequest), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPostRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPostRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(ProjectsPostRequest), nameof(IsPrivate));
+    private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(ProjectsPostRequest), nameof(IsPrivate), "private");
     
     [JsonPropertyName("private")]
     public bool IsPrivate
     {
-        get => _private.GetValue();
+        get => _private.GetValue(InlineErrors);
         set => _private.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ProjectsPostRequest), nameof(Tags), new List<string>());
+    private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ProjectsPostRequest), nameof(Tags), "tags", new List<string>());
     
     [JsonPropertyName("tags")]
     public List<string> Tags
     {
-        get => _tags.GetValue();
+        get => _tags.GetValue(InlineErrors);
         set => _tags.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _key.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _private.SetAccessPath(path, validateHasBeenSet);
-        _tags.SetAccessPath(path, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _private.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

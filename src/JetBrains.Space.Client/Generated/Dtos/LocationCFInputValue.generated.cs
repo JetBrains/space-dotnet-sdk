@@ -42,19 +42,23 @@ public sealed class LocationCFInputValue
         Location = location;
     }
     
-    private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(LocationCFInputValue), nameof(Location));
+    private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(LocationCFInputValue), nameof(Location), "location");
     
     [JsonPropertyName("location")]
     public string? Location
     {
-        get => _location.GetValue();
+        get => _location.GetValue(InlineErrors);
         set => _location.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _location.SetAccessPath(path, validateHasBeenSet);
+        _location.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,20 +42,24 @@ public sealed class ArticleAppUnfurlContext
         ArticleId = articleId;
     }
     
-    private PropertyValue<string> _articleId = new PropertyValue<string>(nameof(ArticleAppUnfurlContext), nameof(ArticleId));
+    private PropertyValue<string> _articleId = new PropertyValue<string>(nameof(ArticleAppUnfurlContext), nameof(ArticleId), "articleId");
     
     [Required]
     [JsonPropertyName("articleId")]
     public string ArticleId
     {
-        get => _articleId.GetValue();
+        get => _articleId.GetValue(InlineErrors);
         set => _articleId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _articleId.SetAccessPath(path, validateHasBeenSet);
+        _articleId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

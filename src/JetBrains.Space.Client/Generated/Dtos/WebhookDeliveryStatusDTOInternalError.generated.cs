@@ -43,32 +43,36 @@ public sealed class WebhookDeliveryStatusDTOInternalError
         SentTime = sentTime;
     }
     
-    private PropertyValue<string> _deliveryId = new PropertyValue<string>(nameof(WebhookDeliveryStatusDTOInternalError), nameof(DeliveryId));
+    private PropertyValue<string> _deliveryId = new PropertyValue<string>(nameof(WebhookDeliveryStatusDTOInternalError), nameof(DeliveryId), "deliveryId");
     
     [Required]
     [JsonPropertyName("deliveryId")]
     public string DeliveryId
     {
-        get => _deliveryId.GetValue();
+        get => _deliveryId.GetValue(InlineErrors);
         set => _deliveryId.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _sentTime = new PropertyValue<DateTime>(nameof(WebhookDeliveryStatusDTOInternalError), nameof(SentTime));
+    private PropertyValue<DateTime> _sentTime = new PropertyValue<DateTime>(nameof(WebhookDeliveryStatusDTOInternalError), nameof(SentTime), "sentTime");
     
     [Required]
     [JsonPropertyName("sentTime")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime SentTime
     {
-        get => _sentTime.GetValue();
+        get => _sentTime.GetValue(InlineErrors);
         set => _sentTime.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _deliveryId.SetAccessPath(path, validateHasBeenSet);
-        _sentTime.SetAccessPath(path, validateHasBeenSet);
+        _deliveryId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sentTime.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

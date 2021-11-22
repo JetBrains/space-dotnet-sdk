@@ -40,31 +40,35 @@ public sealed class GitCommitInfoWithChanges
         Changes = changes;
     }
     
-    private PropertyValue<GitCommitInfo> _commit = new PropertyValue<GitCommitInfo>(nameof(GitCommitInfoWithChanges), nameof(Commit));
+    private PropertyValue<GitCommitInfo> _commit = new PropertyValue<GitCommitInfo>(nameof(GitCommitInfoWithChanges), nameof(Commit), "commit");
     
     [Required]
     [JsonPropertyName("commit")]
     public GitCommitInfo Commit
     {
-        get => _commit.GetValue();
+        get => _commit.GetValue(InlineErrors);
         set => _commit.SetValue(value);
     }
 
-    private PropertyValue<GitCommitChanges> _changes = new PropertyValue<GitCommitChanges>(nameof(GitCommitInfoWithChanges), nameof(Changes));
+    private PropertyValue<GitCommitChanges> _changes = new PropertyValue<GitCommitChanges>(nameof(GitCommitInfoWithChanges), nameof(Changes), "changes");
     
     [Required]
     [JsonPropertyName("changes")]
     public GitCommitChanges Changes
     {
-        get => _changes.GetValue();
+        get => _changes.GetValue(InlineErrors);
         set => _changes.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _commit.SetAccessPath(path, validateHasBeenSet);
-        _changes.SetAccessPath(path, validateHasBeenSet);
+        _commit.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _changes.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

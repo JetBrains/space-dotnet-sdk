@@ -43,29 +43,33 @@ public sealed class IssueTagsChangedDetails
         RemovedTags = removedTags;
     }
     
-    private PropertyValue<List<PlanningTag>?> _addedTags = new PropertyValue<List<PlanningTag>?>(nameof(IssueTagsChangedDetails), nameof(AddedTags));
+    private PropertyValue<List<PlanningTag>?> _addedTags = new PropertyValue<List<PlanningTag>?>(nameof(IssueTagsChangedDetails), nameof(AddedTags), "addedTags");
     
     [JsonPropertyName("addedTags")]
     public List<PlanningTag>? AddedTags
     {
-        get => _addedTags.GetValue();
+        get => _addedTags.GetValue(InlineErrors);
         set => _addedTags.SetValue(value);
     }
 
-    private PropertyValue<List<PlanningTag>?> _removedTags = new PropertyValue<List<PlanningTag>?>(nameof(IssueTagsChangedDetails), nameof(RemovedTags));
+    private PropertyValue<List<PlanningTag>?> _removedTags = new PropertyValue<List<PlanningTag>?>(nameof(IssueTagsChangedDetails), nameof(RemovedTags), "removedTags");
     
     [JsonPropertyName("removedTags")]
     public List<PlanningTag>? RemovedTags
     {
-        get => _removedTags.GetValue();
+        get => _removedTags.GetValue(InlineErrors);
         set => _removedTags.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _addedTags.SetAccessPath(path, validateHasBeenSet);
-        _removedTags.SetAccessPath(path, validateHasBeenSet);
+        _addedTags.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _removedTags.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

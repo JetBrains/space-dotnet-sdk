@@ -43,65 +43,69 @@ public sealed class ImportTransactionRecord
         Imported = imported;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ImportTransactionRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ImportTransactionRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ImportTransactionRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ImportTransactionRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal> _importer = new PropertyValue<CPrincipal>(nameof(ImportTransactionRecord), nameof(Importer));
+    private PropertyValue<CPrincipal> _importer = new PropertyValue<CPrincipal>(nameof(ImportTransactionRecord), nameof(Importer), "importer");
     
     [Required]
     [JsonPropertyName("importer")]
     public CPrincipal Importer
     {
-        get => _importer.GetValue();
+        get => _importer.GetValue(InlineErrors);
         set => _importer.SetValue(value);
     }
 
-    private PropertyValue<string> _externalSource = new PropertyValue<string>(nameof(ImportTransactionRecord), nameof(ExternalSource));
+    private PropertyValue<string> _externalSource = new PropertyValue<string>(nameof(ImportTransactionRecord), nameof(ExternalSource), "externalSource");
     
     [Required]
     [JsonPropertyName("externalSource")]
     public string ExternalSource
     {
-        get => _externalSource.GetValue();
+        get => _externalSource.GetValue(InlineErrors);
         set => _externalSource.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _imported = new PropertyValue<DateTime>(nameof(ImportTransactionRecord), nameof(Imported));
+    private PropertyValue<DateTime> _imported = new PropertyValue<DateTime>(nameof(ImportTransactionRecord), nameof(Imported), "imported");
     
     [Required]
     [JsonPropertyName("imported")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Imported
     {
-        get => _imported.GetValue();
+        get => _imported.GetValue(InlineErrors);
         set => _imported.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _importer.SetAccessPath(path, validateHasBeenSet);
-        _externalSource.SetAccessPath(path, validateHasBeenSet);
-        _imported.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _importer.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalSource.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _imported.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

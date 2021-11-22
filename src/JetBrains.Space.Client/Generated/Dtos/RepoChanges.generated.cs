@@ -41,42 +41,46 @@ public sealed class RepoChanges
         TotalNewCommits = totalNewCommits;
     }
     
-    private PropertyValue<List<RepoHeadsChange>> _heads = new PropertyValue<List<RepoHeadsChange>>(nameof(RepoChanges), nameof(Heads), new List<RepoHeadsChange>());
+    private PropertyValue<List<RepoHeadsChange>> _heads = new PropertyValue<List<RepoHeadsChange>>(nameof(RepoChanges), nameof(Heads), "heads", new List<RepoHeadsChange>());
     
     [Required]
     [JsonPropertyName("heads")]
     public List<RepoHeadsChange> Heads
     {
-        get => _heads.GetValue();
+        get => _heads.GetValue(InlineErrors);
         set => _heads.SetValue(value);
     }
 
-    private PropertyValue<List<GitCommitInfoWithChanges>> _commits = new PropertyValue<List<GitCommitInfoWithChanges>>(nameof(RepoChanges), nameof(Commits), new List<GitCommitInfoWithChanges>());
+    private PropertyValue<List<GitCommitInfoWithChanges>> _commits = new PropertyValue<List<GitCommitInfoWithChanges>>(nameof(RepoChanges), nameof(Commits), "commits", new List<GitCommitInfoWithChanges>());
     
     [Required]
     [JsonPropertyName("commits")]
     public List<GitCommitInfoWithChanges> Commits
     {
-        get => _commits.GetValue();
+        get => _commits.GetValue(InlineErrors);
         set => _commits.SetValue(value);
     }
 
-    private PropertyValue<int> _totalNewCommits = new PropertyValue<int>(nameof(RepoChanges), nameof(TotalNewCommits));
+    private PropertyValue<int> _totalNewCommits = new PropertyValue<int>(nameof(RepoChanges), nameof(TotalNewCommits), "totalNewCommits");
     
     [Required]
     [JsonPropertyName("totalNewCommits")]
     public int TotalNewCommits
     {
-        get => _totalNewCommits.GetValue();
+        get => _totalNewCommits.GetValue(InlineErrors);
         set => _totalNewCommits.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _heads.SetAccessPath(path, validateHasBeenSet);
-        _commits.SetAccessPath(path, validateHasBeenSet);
-        _totalNewCommits.SetAccessPath(path, validateHasBeenSet);
+        _heads.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commits.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _totalNewCommits.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

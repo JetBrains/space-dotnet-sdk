@@ -47,73 +47,77 @@ public sealed class InitPayload
         VerificationToken = verificationToken;
     }
     
-    private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(InitPayload), nameof(ClientSecret));
+    private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(InitPayload), nameof(ClientSecret), "clientSecret");
     
     [Required]
     [JsonPropertyName("clientSecret")]
     public string ClientSecret
     {
-        get => _clientSecret.GetValue();
+        get => _clientSecret.GetValue(InlineErrors);
         set => _clientSecret.SetValue(value);
     }
 
-    private PropertyValue<string> _serverUrl = new PropertyValue<string>(nameof(InitPayload), nameof(ServerUrl));
+    private PropertyValue<string> _serverUrl = new PropertyValue<string>(nameof(InitPayload), nameof(ServerUrl), "serverUrl");
     
     [Required]
     [JsonPropertyName("serverUrl")]
     public string ServerUrl
     {
-        get => _serverUrl.GetValue();
+        get => _serverUrl.GetValue(InlineErrors);
         set => _serverUrl.SetValue(value);
     }
 
-    private PropertyValue<string?> _state = new PropertyValue<string?>(nameof(InitPayload), nameof(State));
+    private PropertyValue<string?> _state = new PropertyValue<string?>(nameof(InitPayload), nameof(State), "state");
     
     [JsonPropertyName("state")]
     public string? State
     {
-        get => _state.GetValue();
+        get => _state.GetValue(InlineErrors);
         set => _state.SetValue(value);
     }
 
-    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(InitPayload), nameof(ClientId));
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(InitPayload), nameof(ClientId), "clientId");
     
     [Required]
     [JsonPropertyName("clientId")]
     public string ClientId
     {
-        get => _clientId.GetValue();
+        get => _clientId.GetValue(InlineErrors);
         set => _clientId.SetValue(value);
     }
 
-    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(InitPayload), nameof(UserId));
+    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(InitPayload), nameof(UserId), "userId");
     
     [Required]
     [JsonPropertyName("userId")]
     public string UserId
     {
-        get => _userId.GetValue();
+        get => _userId.GetValue(InlineErrors);
         set => _userId.SetValue(value);
     }
 
-    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(InitPayload), nameof(VerificationToken));
+    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(InitPayload), nameof(VerificationToken), "verificationToken");
     
     [JsonPropertyName("verificationToken")]
     public string? VerificationToken
     {
-        get => _verificationToken.GetValue();
+        get => _verificationToken.GetValue(InlineErrors);
         set => _verificationToken.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _clientSecret.SetAccessPath(path, validateHasBeenSet);
-        _serverUrl.SetAccessPath(path, validateHasBeenSet);
-        _state.SetAccessPath(path, validateHasBeenSet);
-        _clientId.SetAccessPath(path, validateHasBeenSet);
-        _userId.SetAccessPath(path, validateHasBeenSet);
-        _verificationToken.SetAccessPath(path, validateHasBeenSet);
+        _clientSecret.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _serverUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _state.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _verificationToken.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

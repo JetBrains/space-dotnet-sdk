@@ -40,31 +40,35 @@ public sealed class Participant
         Status = status;
     }
     
-    private PropertyValue<TDMemberProfile> _user = new PropertyValue<TDMemberProfile>(nameof(Participant), nameof(User));
+    private PropertyValue<TDMemberProfile> _user = new PropertyValue<TDMemberProfile>(nameof(Participant), nameof(User), "user");
     
     [Required]
     [JsonPropertyName("user")]
     public TDMemberProfile User
     {
-        get => _user.GetValue();
+        get => _user.GetValue(InlineErrors);
         set => _user.SetValue(value);
     }
 
-    private PropertyValue<EventParticipationStatus> _status = new PropertyValue<EventParticipationStatus>(nameof(Participant), nameof(Status));
+    private PropertyValue<EventParticipationStatus> _status = new PropertyValue<EventParticipationStatus>(nameof(Participant), nameof(Status), "status");
     
     [Required]
     [JsonPropertyName("status")]
     public EventParticipationStatus Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _user.SetAccessPath(path, validateHasBeenSet);
-        _status.SetAccessPath(path, validateHasBeenSet);
+        _user.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

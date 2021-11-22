@@ -39,19 +39,23 @@ public sealed class MCClientSideAction
         Context = context;
     }
     
-    private PropertyValue<ClientSideActionContext?> _context = new PropertyValue<ClientSideActionContext?>(nameof(MCClientSideAction), nameof(Context));
+    private PropertyValue<ClientSideActionContext?> _context = new PropertyValue<ClientSideActionContext?>(nameof(MCClientSideAction), nameof(Context), "context");
     
     [JsonPropertyName("context")]
     public ClientSideActionContext? Context
     {
-        get => _context.GetValue();
+        get => _context.GetValue(InlineErrors);
         set => _context.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _context.SetAccessPath(path, validateHasBeenSet);
+        _context.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

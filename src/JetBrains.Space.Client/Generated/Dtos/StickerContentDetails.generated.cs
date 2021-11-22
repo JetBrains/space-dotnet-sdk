@@ -43,30 +43,34 @@ public sealed class StickerContentDetails
         Pack = pack;
     }
     
-    private PropertyValue<Sticker> _sticker = new PropertyValue<Sticker>(nameof(StickerContentDetails), nameof(Sticker));
+    private PropertyValue<Sticker> _sticker = new PropertyValue<Sticker>(nameof(StickerContentDetails), nameof(Sticker), "sticker");
     
     [Required]
     [JsonPropertyName("sticker")]
     public Sticker Sticker
     {
-        get => _sticker.GetValue();
+        get => _sticker.GetValue(InlineErrors);
         set => _sticker.SetValue(value);
     }
 
-    private PropertyValue<StickerPackInfo?> _pack = new PropertyValue<StickerPackInfo?>(nameof(StickerContentDetails), nameof(Pack));
+    private PropertyValue<StickerPackInfo?> _pack = new PropertyValue<StickerPackInfo?>(nameof(StickerContentDetails), nameof(Pack), "pack");
     
     [JsonPropertyName("pack")]
     public StickerPackInfo? Pack
     {
-        get => _pack.GetValue();
+        get => _pack.GetValue(InlineErrors);
         set => _pack.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _sticker.SetAccessPath(path, validateHasBeenSet);
-        _pack.SetAccessPath(path, validateHasBeenSet);
+        _sticker.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pack.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

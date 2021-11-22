@@ -42,20 +42,24 @@ public sealed class EnumCFParameters
         Values = values;
     }
     
-    private PropertyValue<List<CFEnumValue>> _values = new PropertyValue<List<CFEnumValue>>(nameof(EnumCFParameters), nameof(Values), new List<CFEnumValue>());
+    private PropertyValue<List<CFEnumValue>> _values = new PropertyValue<List<CFEnumValue>>(nameof(EnumCFParameters), nameof(Values), "values", new List<CFEnumValue>());
     
     [Required]
     [JsonPropertyName("values")]
     public List<CFEnumValue> Values
     {
-        get => _values.GetValue();
+        get => _values.GetValue(InlineErrors);
         set => _values.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _values.SetAccessPath(path, validateHasBeenSet);
+        _values.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

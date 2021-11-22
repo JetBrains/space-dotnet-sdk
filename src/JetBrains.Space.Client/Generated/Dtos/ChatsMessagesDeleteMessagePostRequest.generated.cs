@@ -40,31 +40,35 @@ public class ChatsMessagesDeleteMessagePostRequest
         Id = id;
     }
     
-    private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesDeleteMessagePostRequest), nameof(Channel));
+    private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesDeleteMessagePostRequest), nameof(Channel), "channel");
     
     [Required]
     [JsonPropertyName("channel")]
     public string Channel
     {
-        get => _channel.GetValue();
+        get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
     }
 
-    private PropertyValue<ChatMessageIdentifier> _id = new PropertyValue<ChatMessageIdentifier>(nameof(ChatsMessagesDeleteMessagePostRequest), nameof(Id));
+    private PropertyValue<ChatMessageIdentifier> _id = new PropertyValue<ChatMessageIdentifier>(nameof(ChatsMessagesDeleteMessagePostRequest), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public ChatMessageIdentifier Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _channel.SetAccessPath(path, validateHasBeenSet);
-        _id.SetAccessPath(path, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

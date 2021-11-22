@@ -43,64 +43,68 @@ public sealed class TrustedCertificate
         IsArchived = archived;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TrustedCertificate), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TrustedCertificate), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _alias = new PropertyValue<string>(nameof(TrustedCertificate), nameof(Alias));
+    private PropertyValue<string> _alias = new PropertyValue<string>(nameof(TrustedCertificate), nameof(Alias), "alias");
     
     [Required]
     [JsonPropertyName("alias")]
     public string Alias
     {
-        get => _alias.GetValue();
+        get => _alias.GetValue(InlineErrors);
         set => _alias.SetValue(value);
     }
 
-    private PropertyValue<string> _data = new PropertyValue<string>(nameof(TrustedCertificate), nameof(Data));
+    private PropertyValue<string> _data = new PropertyValue<string>(nameof(TrustedCertificate), nameof(Data), "data");
     
     [Required]
     [JsonPropertyName("data")]
     public string Data
     {
-        get => _data.GetValue();
+        get => _data.GetValue(InlineErrors);
         set => _data.SetValue(value);
     }
 
-    private PropertyValue<CertificateInfo> _info = new PropertyValue<CertificateInfo>(nameof(TrustedCertificate), nameof(Info));
+    private PropertyValue<CertificateInfo> _info = new PropertyValue<CertificateInfo>(nameof(TrustedCertificate), nameof(Info), "info");
     
     [Required]
     [JsonPropertyName("info")]
     public CertificateInfo Info
     {
-        get => _info.GetValue();
+        get => _info.GetValue(InlineErrors);
         set => _info.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TrustedCertificate), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TrustedCertificate), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _alias.SetAccessPath(path, validateHasBeenSet);
-        _data.SetAccessPath(path, validateHasBeenSet);
-        _info.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _alias.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _data.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _info.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

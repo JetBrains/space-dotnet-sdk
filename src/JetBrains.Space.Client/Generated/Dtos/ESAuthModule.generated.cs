@@ -45,85 +45,89 @@ public sealed class ESAuthModule
         Settings = settings;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESAuthModule), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESAuthModule), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ESAuthModule), nameof(Key));
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ESAuthModule), nameof(Key), "key");
     
     [Required]
     [JsonPropertyName("key")]
     public string Key
     {
-        get => _key.GetValue();
+        get => _key.GetValue(InlineErrors);
         set => _key.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESAuthModule), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESAuthModule), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<int> _ordinal = new PropertyValue<int>(nameof(ESAuthModule), nameof(Ordinal));
+    private PropertyValue<int> _ordinal = new PropertyValue<int>(nameof(ESAuthModule), nameof(Ordinal), "ordinal");
     
     [Required]
     [JsonPropertyName("ordinal")]
     public int Ordinal
     {
-        get => _ordinal.GetValue();
+        get => _ordinal.GetValue(InlineErrors);
         set => _ordinal.SetValue(value);
     }
 
-    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(ESAuthModule), nameof(IsEnabled));
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(ESAuthModule), nameof(IsEnabled), "enabled");
     
     [Required]
     [JsonPropertyName("enabled")]
     public bool IsEnabled
     {
-        get => _enabled.GetValue();
+        get => _enabled.GetValue(InlineErrors);
         set => _enabled.SetValue(value);
     }
 
-    private PropertyValue<string?> _iconDataURI = new PropertyValue<string?>(nameof(ESAuthModule), nameof(IconDataURI));
+    private PropertyValue<string?> _iconDataURI = new PropertyValue<string?>(nameof(ESAuthModule), nameof(IconDataURI), "iconDataURI");
     
     [JsonPropertyName("iconDataURI")]
     public string? IconDataURI
     {
-        get => _iconDataURI.GetValue();
+        get => _iconDataURI.GetValue(InlineErrors);
         set => _iconDataURI.SetValue(value);
     }
 
-    private PropertyValue<ESAuthModuleSettings> _settings = new PropertyValue<ESAuthModuleSettings>(nameof(ESAuthModule), nameof(Settings));
+    private PropertyValue<ESAuthModuleSettings> _settings = new PropertyValue<ESAuthModuleSettings>(nameof(ESAuthModule), nameof(Settings), "settings");
     
     [Required]
     [JsonPropertyName("settings")]
     public ESAuthModuleSettings Settings
     {
-        get => _settings.GetValue();
+        get => _settings.GetValue(InlineErrors);
         set => _settings.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _key.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _ordinal.SetAccessPath(path, validateHasBeenSet);
-        _enabled.SetAccessPath(path, validateHasBeenSet);
-        _iconDataURI.SetAccessPath(path, validateHasBeenSet);
-        _settings.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ordinal.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _iconDataURI.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _settings.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

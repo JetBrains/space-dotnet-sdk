@@ -39,20 +39,24 @@ public class ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest
         IsResolved = resolved;
     }
     
-    private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest), nameof(IsResolved));
+    private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest), nameof(IsResolved), "resolved");
     
     [Required]
     [JsonPropertyName("resolved")]
     public bool IsResolved
     {
-        get => _resolved.GetValue();
+        get => _resolved.GetValue(InlineErrors);
         set => _resolved.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _resolved.SetAccessPath(path, validateHasBeenSet);
+        _resolved.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,53 +42,57 @@ public sealed class KbFolderItem
         Path = path;
     }
     
-    private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(KbFolderItem), nameof(Book));
+    private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(KbFolderItem), nameof(Book), "book");
     
     [Required]
     [JsonPropertyName("book")]
     public KBBook Book
     {
-        get => _book.GetValue();
+        get => _book.GetValue(InlineErrors);
         set => _book.SetValue(value);
     }
 
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(KbFolderItem), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(KbFolderItem), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(KbFolderItem), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(KbFolderItem), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _path = new PropertyValue<List<string>>(nameof(KbFolderItem), nameof(Path), new List<string>());
+    private PropertyValue<List<string>> _path = new PropertyValue<List<string>>(nameof(KbFolderItem), nameof(Path), "path", new List<string>());
     
     [Required]
     [JsonPropertyName("path")]
     public List<string> Path
     {
-        get => _path.GetValue();
+        get => _path.GetValue(InlineErrors);
         set => _path.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _book.SetAccessPath(path, validateHasBeenSet);
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _path.SetAccessPath(path, validateHasBeenSet);
+        _book.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _path.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

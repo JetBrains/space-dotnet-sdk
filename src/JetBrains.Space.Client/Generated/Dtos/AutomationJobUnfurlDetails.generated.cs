@@ -48,83 +48,87 @@ public sealed class AutomationJobUnfurlDetails
         Branch = branch;
     }
     
-    private PropertyValue<string> _jobId = new PropertyValue<string>(nameof(AutomationJobUnfurlDetails), nameof(JobId));
+    private PropertyValue<string> _jobId = new PropertyValue<string>(nameof(AutomationJobUnfurlDetails), nameof(JobId), "jobId");
     
     [Required]
     [JsonPropertyName("jobId")]
     public string JobId
     {
-        get => _jobId.GetValue();
+        get => _jobId.GetValue(InlineErrors);
         set => _jobId.SetValue(value);
     }
 
-    private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(AutomationJobUnfurlDetails), nameof(JobName));
+    private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(AutomationJobUnfurlDetails), nameof(JobName), "jobName");
     
     [Required]
     [JsonPropertyName("jobName")]
     public string JobName
     {
-        get => _jobName.GetValue();
+        get => _jobName.GetValue(InlineErrors);
         set => _jobName.SetValue(value);
     }
 
-    private PropertyValue<PRProject> _projectRef = new PropertyValue<PRProject>(nameof(AutomationJobUnfurlDetails), nameof(ProjectRef));
+    private PropertyValue<PRProject> _projectRef = new PropertyValue<PRProject>(nameof(AutomationJobUnfurlDetails), nameof(ProjectRef), "projectRef");
     
     [Required]
     [JsonPropertyName("projectRef")]
     public PRProject ProjectRef
     {
-        get => _projectRef.GetValue();
+        get => _projectRef.GetValue(InlineErrors);
         set => _projectRef.SetValue(value);
     }
 
-    private PropertyValue<string> _repoName = new PropertyValue<string>(nameof(AutomationJobUnfurlDetails), nameof(RepoName));
+    private PropertyValue<string> _repoName = new PropertyValue<string>(nameof(AutomationJobUnfurlDetails), nameof(RepoName), "repoName");
     
     [Required]
     [JsonPropertyName("repoName")]
     public string RepoName
     {
-        get => _repoName.GetValue();
+        get => _repoName.GetValue(InlineErrors);
         set => _repoName.SetValue(value);
     }
 
-    private PropertyValue<JobExecutionDisplayStatus?> _jobExecutionDisplayStatusFilter = new PropertyValue<JobExecutionDisplayStatus?>(nameof(AutomationJobUnfurlDetails), nameof(JobExecutionDisplayStatusFilter));
+    private PropertyValue<JobExecutionDisplayStatus?> _jobExecutionDisplayStatusFilter = new PropertyValue<JobExecutionDisplayStatus?>(nameof(AutomationJobUnfurlDetails), nameof(JobExecutionDisplayStatusFilter), "jobExecutionDisplayStatusFilter");
     
     [JsonPropertyName("jobExecutionDisplayStatusFilter")]
     public JobExecutionDisplayStatus? JobExecutionDisplayStatusFilter
     {
-        get => _jobExecutionDisplayStatusFilter.GetValue();
+        get => _jobExecutionDisplayStatusFilter.GetValue(InlineErrors);
         set => _jobExecutionDisplayStatusFilter.SetValue(value);
     }
 
-    private PropertyValue<JobTriggerType?> _jobTriggerFilter = new PropertyValue<JobTriggerType?>(nameof(AutomationJobUnfurlDetails), nameof(JobTriggerFilter));
+    private PropertyValue<JobTriggerType?> _jobTriggerFilter = new PropertyValue<JobTriggerType?>(nameof(AutomationJobUnfurlDetails), nameof(JobTriggerFilter), "jobTriggerFilter");
     
     [JsonPropertyName("jobTriggerFilter")]
     public JobTriggerType? JobTriggerFilter
     {
-        get => _jobTriggerFilter.GetValue();
+        get => _jobTriggerFilter.GetValue(InlineErrors);
         set => _jobTriggerFilter.SetValue(value);
     }
 
-    private PropertyValue<Branch?> _branch = new PropertyValue<Branch?>(nameof(AutomationJobUnfurlDetails), nameof(Branch));
+    private PropertyValue<Branch?> _branch = new PropertyValue<Branch?>(nameof(AutomationJobUnfurlDetails), nameof(Branch), "branch");
     
     [JsonPropertyName("branch")]
     public Branch? Branch
     {
-        get => _branch.GetValue();
+        get => _branch.GetValue(InlineErrors);
         set => _branch.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _jobId.SetAccessPath(path, validateHasBeenSet);
-        _jobName.SetAccessPath(path, validateHasBeenSet);
-        _projectRef.SetAccessPath(path, validateHasBeenSet);
-        _repoName.SetAccessPath(path, validateHasBeenSet);
-        _jobExecutionDisplayStatusFilter.SetAccessPath(path, validateHasBeenSet);
-        _jobTriggerFilter.SetAccessPath(path, validateHasBeenSet);
-        _branch.SetAccessPath(path, validateHasBeenSet);
+        _jobId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _jobName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectRef.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repoName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _jobExecutionDisplayStatusFilter.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _jobTriggerFilter.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _branch.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

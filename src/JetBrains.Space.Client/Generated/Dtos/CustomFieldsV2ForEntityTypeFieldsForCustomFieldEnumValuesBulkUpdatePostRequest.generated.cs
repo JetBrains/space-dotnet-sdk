@@ -39,20 +39,24 @@ public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdate
         EnumValueModifications = enumValueModifications;
     }
     
-    private PropertyValue<List<CFEnumValueModification>> _enumValueModifications = new PropertyValue<List<CFEnumValueModification>>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest), nameof(EnumValueModifications), new List<CFEnumValueModification>());
+    private PropertyValue<List<CFEnumValueModification>> _enumValueModifications = new PropertyValue<List<CFEnumValueModification>>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest), nameof(EnumValueModifications), "enumValueModifications", new List<CFEnumValueModification>());
     
     [Required]
     [JsonPropertyName("enumValueModifications")]
     public List<CFEnumValueModification> EnumValueModifications
     {
-        get => _enumValueModifications.GetValue();
+        get => _enumValueModifications.GetValue(InlineErrors);
         set => _enumValueModifications.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _enumValueModifications.SetAccessPath(path, validateHasBeenSet);
+        _enumValueModifications.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

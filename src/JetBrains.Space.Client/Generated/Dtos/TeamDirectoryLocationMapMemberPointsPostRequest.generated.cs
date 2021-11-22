@@ -42,53 +42,57 @@ public class TeamDirectoryLocationMapMemberPointsPostRequest
         MapId = mapId;
     }
     
-    private PropertyValue<string> _memberLocationId = new PropertyValue<string>(nameof(TeamDirectoryLocationMapMemberPointsPostRequest), nameof(MemberLocationId));
+    private PropertyValue<string> _memberLocationId = new PropertyValue<string>(nameof(TeamDirectoryLocationMapMemberPointsPostRequest), nameof(MemberLocationId), "memberLocationId");
     
     [Required]
     [JsonPropertyName("memberLocationId")]
     public string MemberLocationId
     {
-        get => _memberLocationId.GetValue();
+        get => _memberLocationId.GetValue(InlineErrors);
         set => _memberLocationId.SetValue(value);
     }
 
-    private PropertyValue<int> _x = new PropertyValue<int>(nameof(TeamDirectoryLocationMapMemberPointsPostRequest), nameof(X));
+    private PropertyValue<int> _x = new PropertyValue<int>(nameof(TeamDirectoryLocationMapMemberPointsPostRequest), nameof(X), "x");
     
     [Required]
     [JsonPropertyName("x")]
     public int X
     {
-        get => _x.GetValue();
+        get => _x.GetValue(InlineErrors);
         set => _x.SetValue(value);
     }
 
-    private PropertyValue<int> _y = new PropertyValue<int>(nameof(TeamDirectoryLocationMapMemberPointsPostRequest), nameof(Y));
+    private PropertyValue<int> _y = new PropertyValue<int>(nameof(TeamDirectoryLocationMapMemberPointsPostRequest), nameof(Y), "y");
     
     [Required]
     [JsonPropertyName("y")]
     public int Y
     {
-        get => _y.GetValue();
+        get => _y.GetValue(InlineErrors);
         set => _y.SetValue(value);
     }
 
-    private PropertyValue<string> _mapId = new PropertyValue<string>(nameof(TeamDirectoryLocationMapMemberPointsPostRequest), nameof(MapId));
+    private PropertyValue<string> _mapId = new PropertyValue<string>(nameof(TeamDirectoryLocationMapMemberPointsPostRequest), nameof(MapId), "mapId");
     
     [Required]
     [JsonPropertyName("mapId")]
     public string MapId
     {
-        get => _mapId.GetValue();
+        get => _mapId.GetValue(InlineErrors);
         set => _mapId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _memberLocationId.SetAccessPath(path, validateHasBeenSet);
-        _x.SetAccessPath(path, validateHasBeenSet);
-        _y.SetAccessPath(path, validateHasBeenSet);
-        _mapId.SetAccessPath(path, validateHasBeenSet);
+        _memberLocationId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _x.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _y.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mapId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,31 +40,35 @@ public sealed class RightType
         Title = title;
     }
     
-    private PropertyValue<string> _typeCode = new PropertyValue<string>(nameof(RightType), nameof(TypeCode));
+    private PropertyValue<string> _typeCode = new PropertyValue<string>(nameof(RightType), nameof(TypeCode), "typeCode");
     
     [Required]
     [JsonPropertyName("typeCode")]
     public string TypeCode
     {
-        get => _typeCode.GetValue();
+        get => _typeCode.GetValue(InlineErrors);
         set => _typeCode.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(RightType), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(RightType), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _typeCode.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
+        _typeCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

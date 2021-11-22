@@ -43,29 +43,33 @@ public sealed class IssueAttachmentsChangedDetails
         RemovedNames = removedNames;
     }
     
-    private PropertyValue<List<string>?> _addedNames = new PropertyValue<List<string>?>(nameof(IssueAttachmentsChangedDetails), nameof(AddedNames));
+    private PropertyValue<List<string>?> _addedNames = new PropertyValue<List<string>?>(nameof(IssueAttachmentsChangedDetails), nameof(AddedNames), "addedNames");
     
     [JsonPropertyName("addedNames")]
     public List<string>? AddedNames
     {
-        get => _addedNames.GetValue();
+        get => _addedNames.GetValue(InlineErrors);
         set => _addedNames.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _removedNames = new PropertyValue<List<string>?>(nameof(IssueAttachmentsChangedDetails), nameof(RemovedNames));
+    private PropertyValue<List<string>?> _removedNames = new PropertyValue<List<string>?>(nameof(IssueAttachmentsChangedDetails), nameof(RemovedNames), "removedNames");
     
     [JsonPropertyName("removedNames")]
     public List<string>? RemovedNames
     {
-        get => _removedNames.GetValue();
+        get => _removedNames.GetValue(InlineErrors);
         set => _removedNames.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _addedNames.SetAccessPath(path, validateHasBeenSet);
-        _removedNames.SetAccessPath(path, validateHasBeenSet);
+        _addedNames.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _removedNames.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

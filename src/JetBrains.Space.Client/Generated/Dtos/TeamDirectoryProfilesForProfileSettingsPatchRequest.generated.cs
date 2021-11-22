@@ -49,121 +49,125 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
         DefaultProject = defaultProject;
     }
     
-    private PropertyValue<DarkTheme?> _darkTheme = new PropertyValue<DarkTheme?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(DarkTheme));
+    private PropertyValue<DarkTheme?> _darkTheme = new PropertyValue<DarkTheme?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(DarkTheme), "darkTheme");
     
     [JsonPropertyName("darkTheme")]
     public DarkTheme? DarkTheme
     {
-        get => _darkTheme.GetValue();
+        get => _darkTheme.GetValue(InlineErrors);
         set => _darkTheme.SetValue(value);
     }
 
-    private PropertyValue<string?> _themeName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(ThemeName));
+    private PropertyValue<string?> _themeName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(ThemeName), "themeName");
     
     [JsonPropertyName("themeName")]
     public string? ThemeName
     {
-        get => _themeName.GetValue();
+        get => _themeName.GetValue(InlineErrors);
         set => _themeName.SetValue(value);
     }
 
-    private PropertyValue<Weekday?> _firstDayOfWeek = new PropertyValue<Weekday?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(FirstDayOfWeek));
+    private PropertyValue<Weekday?> _firstDayOfWeek = new PropertyValue<Weekday?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(FirstDayOfWeek), "firstDayOfWeek");
     
     [JsonPropertyName("firstDayOfWeek")]
     public Weekday? FirstDayOfWeek
     {
-        get => _firstDayOfWeek.GetValue();
+        get => _firstDayOfWeek.GetValue(InlineErrors);
         set => _firstDayOfWeek.SetValue(value);
     }
 
-    private PropertyValue<DraftDocumentType?> _draftType = new PropertyValue<DraftDocumentType?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(DraftType));
+    private PropertyValue<DraftDocumentType?> _draftType = new PropertyValue<DraftDocumentType?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(DraftType), "draftType");
     
     [JsonPropertyName("draftType")]
     public DraftDocumentType? DraftType
     {
-        get => _draftType.GetValue();
+        get => _draftType.GetValue(InlineErrors);
         set => _draftType.SetValue(value);
     }
 
-    private PropertyValue<bool?> _fontLigaturesEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(IsFontLigaturesEnabled));
+    private PropertyValue<bool?> _fontLigaturesEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(IsFontLigaturesEnabled), "fontLigaturesEnabled");
     
     [JsonPropertyName("fontLigaturesEnabled")]
     public bool? IsFontLigaturesEnabled
     {
-        get => _fontLigaturesEnabled.GetValue();
+        get => _fontLigaturesEnabled.GetValue(InlineErrors);
         set => _fontLigaturesEnabled.SetValue(value);
     }
 
-    private PropertyValue<bool?> _todoFilters = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(IsTodoFilters));
+    private PropertyValue<bool?> _todoFilters = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(IsTodoFilters), "todoFilters");
     
     [JsonPropertyName("todoFilters")]
     public bool? IsTodoFilters
     {
-        get => _todoFilters.GetValue();
+        get => _todoFilters.GetValue(InlineErrors);
         set => _todoFilters.SetValue(value);
     }
 
-    private PropertyValue<string?> _calendarView = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(CalendarView));
+    private PropertyValue<string?> _calendarView = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(CalendarView), "calendarView");
     
     [JsonPropertyName("calendarView")]
     public string? CalendarView
     {
-        get => _calendarView.GetValue();
+        get => _calendarView.GetValue(InlineErrors);
         set => _calendarView.SetValue(value);
     }
 
-    private PropertyValue<bool?> _emailNotificationsEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(IsEmailNotificationsEnabled));
+    private PropertyValue<bool?> _emailNotificationsEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(IsEmailNotificationsEnabled), "emailNotificationsEnabled");
     
     [Obsolete("Use notification-settings (since 24 Feb 2021) (will be removed in a future version)")]
     [JsonPropertyName("emailNotificationsEnabled")]
     public bool? IsEmailNotificationsEnabled
     {
-        get => _emailNotificationsEnabled.GetValue();
+        get => _emailNotificationsEnabled.GetValue(InlineErrors);
         set => _emailNotificationsEnabled.SetValue(value);
     }
 
-    private PropertyValue<string?> _notificationEmail = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(NotificationEmail));
+    private PropertyValue<string?> _notificationEmail = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(NotificationEmail), "notificationEmail");
     
     [Obsolete("Use notification-settings (since 24 Feb 2021) (will be removed in a future version)")]
     [JsonPropertyName("notificationEmail")]
     public string? NotificationEmail
     {
-        get => _notificationEmail.GetValue();
+        get => _notificationEmail.GetValue(InlineErrors);
         set => _notificationEmail.SetValue(value);
     }
 
-    private PropertyValue<string?> _preferredLanguage = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(PreferredLanguage));
+    private PropertyValue<string?> _preferredLanguage = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(PreferredLanguage), "preferredLanguage");
     
     [JsonPropertyName("preferredLanguage")]
     public string? PreferredLanguage
     {
-        get => _preferredLanguage.GetValue();
+        get => _preferredLanguage.GetValue(InlineErrors);
         set => _preferredLanguage.SetValue(value);
     }
 
-    private PropertyValue<ProjectIdentifier?> _defaultProject = new PropertyValue<ProjectIdentifier?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(DefaultProject));
+    private PropertyValue<ProjectIdentifier?> _defaultProject = new PropertyValue<ProjectIdentifier?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(DefaultProject), "defaultProject");
     
     [JsonPropertyName("defaultProject")]
     public ProjectIdentifier? DefaultProject
     {
-        get => _defaultProject.GetValue();
+        get => _defaultProject.GetValue(InlineErrors);
         set => _defaultProject.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _darkTheme.SetAccessPath(path, validateHasBeenSet);
-        _themeName.SetAccessPath(path, validateHasBeenSet);
-        _firstDayOfWeek.SetAccessPath(path, validateHasBeenSet);
-        _draftType.SetAccessPath(path, validateHasBeenSet);
-        _fontLigaturesEnabled.SetAccessPath(path, validateHasBeenSet);
-        _todoFilters.SetAccessPath(path, validateHasBeenSet);
-        _calendarView.SetAccessPath(path, validateHasBeenSet);
-        _emailNotificationsEnabled.SetAccessPath(path, validateHasBeenSet);
-        _notificationEmail.SetAccessPath(path, validateHasBeenSet);
-        _preferredLanguage.SetAccessPath(path, validateHasBeenSet);
-        _defaultProject.SetAccessPath(path, validateHasBeenSet);
+        _darkTheme.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _themeName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _firstDayOfWeek.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _draftType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _fontLigaturesEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _todoFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _calendarView.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _emailNotificationsEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationEmail.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _preferredLanguage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _defaultProject.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

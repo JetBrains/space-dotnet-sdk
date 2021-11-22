@@ -39,19 +39,23 @@ public class ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMer
         StatusId = statusId;
     }
     
-    private PropertyValue<string?> _statusId = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest), nameof(StatusId));
+    private PropertyValue<string?> _statusId = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest), nameof(StatusId), "statusId");
     
     [JsonPropertyName("statusId")]
     public string? StatusId
     {
-        get => _statusId.GetValue();
+        get => _statusId.GetValue(InlineErrors);
         set => _statusId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _statusId.SetAccessPath(path, validateHasBeenSet);
+        _statusId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

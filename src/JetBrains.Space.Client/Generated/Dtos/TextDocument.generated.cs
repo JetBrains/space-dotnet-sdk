@@ -48,83 +48,87 @@ public sealed class TextDocument
         Attachments = attachments;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TextDocument), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TextDocument), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<long> _resetCounter = new PropertyValue<long>(nameof(TextDocument), nameof(ResetCounter));
+    private PropertyValue<long> _resetCounter = new PropertyValue<long>(nameof(TextDocument), nameof(ResetCounter), "resetCounter");
     
     [Required]
     [JsonPropertyName("resetCounter")]
     public long ResetCounter
     {
-        get => _resetCounter.GetValue();
+        get => _resetCounter.GetValue(InlineErrors);
         set => _resetCounter.SetValue(value);
     }
 
-    private PropertyValue<long?> _version = new PropertyValue<long?>(nameof(TextDocument), nameof(Version));
+    private PropertyValue<long?> _version = new PropertyValue<long?>(nameof(TextDocument), nameof(Version), "version");
     
     [JsonPropertyName("version")]
     public long? Version
     {
-        get => _version.GetValue();
+        get => _version.GetValue(InlineErrors);
         set => _version.SetValue(value);
     }
 
-    private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(TextDocument), nameof(Type));
+    private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(TextDocument), nameof(Type), "type");
     
     [Required]
     [JsonPropertyName("type")]
     public DraftDocumentType Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(TextDocument), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(TextDocument), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<string?> _model = new PropertyValue<string?>(nameof(TextDocument), nameof(Model));
+    private PropertyValue<string?> _model = new PropertyValue<string?>(nameof(TextDocument), nameof(Model), "model");
     
     [JsonPropertyName("model")]
     public string? Model
     {
-        get => _model.GetValue();
+        get => _model.GetValue(InlineErrors);
         set => _model.SetValue(value);
     }
 
-    private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(TextDocument), nameof(Attachments));
+    private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(TextDocument), nameof(Attachments), "attachments");
     
     [JsonPropertyName("attachments")]
     public List<AttachmentInfo>? Attachments
     {
-        get => _attachments.GetValue();
+        get => _attachments.GetValue(InlineErrors);
         set => _attachments.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _resetCounter.SetAccessPath(path, validateHasBeenSet);
-        _version.SetAccessPath(path, validateHasBeenSet);
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _model.SetAccessPath(path, validateHasBeenSet);
-        _attachments.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _resetCounter.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _model.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

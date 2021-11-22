@@ -43,29 +43,33 @@ public sealed class ESHiddenAuthModuleSettings
         IsFederatedModule = federatedModule;
     }
     
-    private PropertyValue<bool?> _passwordModule = new PropertyValue<bool?>(nameof(ESHiddenAuthModuleSettings), nameof(IsPasswordModule));
+    private PropertyValue<bool?> _passwordModule = new PropertyValue<bool?>(nameof(ESHiddenAuthModuleSettings), nameof(IsPasswordModule), "passwordModule");
     
     [JsonPropertyName("passwordModule")]
     public bool? IsPasswordModule
     {
-        get => _passwordModule.GetValue();
+        get => _passwordModule.GetValue(InlineErrors);
         set => _passwordModule.SetValue(value);
     }
 
-    private PropertyValue<bool?> _federatedModule = new PropertyValue<bool?>(nameof(ESHiddenAuthModuleSettings), nameof(IsFederatedModule));
+    private PropertyValue<bool?> _federatedModule = new PropertyValue<bool?>(nameof(ESHiddenAuthModuleSettings), nameof(IsFederatedModule), "federatedModule");
     
     [JsonPropertyName("federatedModule")]
     public bool? IsFederatedModule
     {
-        get => _federatedModule.GetValue();
+        get => _federatedModule.GetValue(InlineErrors);
         set => _federatedModule.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _passwordModule.SetAccessPath(path, validateHasBeenSet);
-        _federatedModule.SetAccessPath(path, validateHasBeenSet);
+        _passwordModule.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _federatedModule.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

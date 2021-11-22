@@ -40,31 +40,35 @@ public sealed class CommitMessageUnfurlsRecord
         Unfurls = unfurls;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CommitMessageUnfurlsRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CommitMessageUnfurlsRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<List<Unfurl>> _unfurls = new PropertyValue<List<Unfurl>>(nameof(CommitMessageUnfurlsRecord), nameof(Unfurls), new List<Unfurl>());
+    private PropertyValue<List<Unfurl>> _unfurls = new PropertyValue<List<Unfurl>>(nameof(CommitMessageUnfurlsRecord), nameof(Unfurls), "unfurls", new List<Unfurl>());
     
     [Required]
     [JsonPropertyName("unfurls")]
     public List<Unfurl> Unfurls
     {
-        get => _unfurls.GetValue();
+        get => _unfurls.GetValue(InlineErrors);
         set => _unfurls.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _unfurls.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unfurls.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,19 +42,23 @@ public sealed class ProjectCommonSubscriptionFilterIn
         Project = project;
     }
     
-    private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(ProjectCommonSubscriptionFilterIn), nameof(Project));
+    private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(ProjectCommonSubscriptionFilterIn), nameof(Project), "project");
     
     [JsonPropertyName("project")]
     public string? Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

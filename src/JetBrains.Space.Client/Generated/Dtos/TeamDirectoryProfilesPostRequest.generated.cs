@@ -58,216 +58,220 @@ public class TeamDirectoryProfilesPostRequest
         IsExternal = external;
     }
     
-    private PropertyValue<string> _username = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(Username));
+    private PropertyValue<string> _username = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(Username), "username");
     
     [Required]
     [JsonPropertyName("username")]
     public string Username
     {
-        get => _username.GetValue();
+        get => _username.GetValue(InlineErrors);
         set => _username.SetValue(value);
     }
 
-    private PropertyValue<string> _firstName = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(FirstName));
+    private PropertyValue<string> _firstName = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(FirstName), "firstName");
     
     [Required]
     [JsonPropertyName("firstName")]
     public string FirstName
     {
-        get => _firstName.GetValue();
+        get => _firstName.GetValue(InlineErrors);
         set => _firstName.SetValue(value);
     }
 
-    private PropertyValue<string> _lastName = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(LastName));
+    private PropertyValue<string> _lastName = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(LastName), "lastName");
     
     [Required]
     [JsonPropertyName("lastName")]
     public string LastName
     {
-        get => _lastName.GetValue();
+        get => _lastName.GetValue(InlineErrors);
         set => _lastName.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _emails = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Emails), new List<string>());
+    private PropertyValue<List<string>> _emails = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Emails), "emails", new List<string>());
     
     [JsonPropertyName("emails")]
     public List<string> Emails
     {
-        get => _emails.GetValue();
+        get => _emails.GetValue(InlineErrors);
         set => _emails.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Phones), new List<string>());
+    private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Phones), "phones", new List<string>());
     
     [JsonPropertyName("phones")]
     public List<string> Phones
     {
-        get => _phones.GetValue();
+        get => _phones.GetValue(InlineErrors);
         set => _phones.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _birthday = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Birthday));
+    private PropertyValue<DateTime?> _birthday = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Birthday), "birthday");
     
     [JsonPropertyName("birthday")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Birthday
     {
-        get => _birthday.GetValue();
+        get => _birthday.GetValue(InlineErrors);
         set => _birthday.SetValue(value);
     }
 
-    private PropertyValue<string?> _about = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(About));
+    private PropertyValue<string?> _about = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(About), "about");
     
     [JsonPropertyName("about")]
     public string? About
     {
-        get => _about.GetValue();
+        get => _about.GetValue(InlineErrors);
         set => _about.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _messengers = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Messengers), new List<string>());
+    private PropertyValue<List<string>> _messengers = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Messengers), "messengers", new List<string>());
     
     [JsonPropertyName("messengers")]
     public List<string> Messengers
     {
-        get => _messengers.GetValue();
+        get => _messengers.GetValue(InlineErrors);
         set => _messengers.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _links = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Links), new List<string>());
+    private PropertyValue<List<string>> _links = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Links), "links", new List<string>());
     
     [JsonPropertyName("links")]
     public List<string> Links
     {
-        get => _links.GetValue();
+        get => _links.GetValue(InlineErrors);
         set => _links.SetValue(value);
     }
 
-    private PropertyValue<bool> _notAMember = new PropertyValue<bool>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsNotAMember));
+    private PropertyValue<bool> _notAMember = new PropertyValue<bool>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsNotAMember), "notAMember");
     
     [JsonPropertyName("notAMember")]
     public bool IsNotAMember
     {
-        get => _notAMember.GetValue();
+        get => _notAMember.GetValue(InlineErrors);
         set => _notAMember.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Joined));
+    private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Joined), "joined");
     
     [JsonPropertyName("joined")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Joined
     {
-        get => _joined.GetValue();
+        get => _joined.GetValue(InlineErrors);
         set => _joined.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _left = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Left));
+    private PropertyValue<DateTime?> _left = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Left), "left");
     
     [JsonPropertyName("left")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Left
     {
-        get => _left.GetValue();
+        get => _left.GetValue(InlineErrors);
         set => _left.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _leftAt = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(LeftAt));
+    private PropertyValue<DateTime?> _leftAt = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(LeftAt), "leftAt");
     
     [JsonPropertyName("leftAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? LeftAt
     {
-        get => _leftAt.GetValue();
+        get => _leftAt.GetValue(InlineErrors);
         set => _leftAt.SetValue(value);
     }
 
-    private PropertyValue<bool?> _speaksEnglish = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsSpeaksEnglish));
+    private PropertyValue<bool?> _speaksEnglish = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsSpeaksEnglish), "speaksEnglish");
     
     [JsonPropertyName("speaksEnglish")]
     public bool? IsSpeaksEnglish
     {
-        get => _speaksEnglish.GetValue();
+        get => _speaksEnglish.GetValue(InlineErrors);
         set => _speaksEnglish.SetValue(value);
     }
 
-    private PropertyValue<string?> _pictureAttachmentId = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(PictureAttachmentId));
+    private PropertyValue<string?> _pictureAttachmentId = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(PictureAttachmentId), "pictureAttachmentId");
     
     [JsonPropertyName("pictureAttachmentId")]
     public string? PictureAttachmentId
     {
-        get => _pictureAttachmentId.GetValue();
+        get => _pictureAttachmentId.GetValue(InlineErrors);
         set => _pictureAttachmentId.SetValue(value);
     }
 
-    private PropertyValue<AvatarCropSquare?> _avatarCropSquare = new PropertyValue<AvatarCropSquare?>(nameof(TeamDirectoryProfilesPostRequest), nameof(AvatarCropSquare));
+    private PropertyValue<AvatarCropSquare?> _avatarCropSquare = new PropertyValue<AvatarCropSquare?>(nameof(TeamDirectoryProfilesPostRequest), nameof(AvatarCropSquare), "avatarCropSquare");
     
     [JsonPropertyName("avatarCropSquare")]
     public AvatarCropSquare? AvatarCropSquare
     {
-        get => _avatarCropSquare.GetValue();
+        get => _avatarCropSquare.GetValue(InlineErrors);
         set => _avatarCropSquare.SetValue(value);
     }
 
-    private PropertyValue<List<CustomFieldInputValue>> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>>(nameof(TeamDirectoryProfilesPostRequest), nameof(CustomFieldValues), new List<CustomFieldInputValue>());
+    private PropertyValue<List<CustomFieldInputValue>> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>>(nameof(TeamDirectoryProfilesPostRequest), nameof(CustomFieldValues), "customFieldValues", new List<CustomFieldInputValue>());
     
     [JsonPropertyName("customFieldValues")]
     public List<CustomFieldInputValue> CustomFieldValues
     {
-        get => _customFieldValues.GetValue();
+        get => _customFieldValues.GetValue(InlineErrors);
         set => _customFieldValues.SetValue(value);
     }
 
-    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(ExternalId));
+    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(ExternalId), "externalId");
     
     [JsonPropertyName("externalId")]
     public string? ExternalId
     {
-        get => _externalId.GetValue();
+        get => _externalId.GetValue(InlineErrors);
         set => _externalId.SetValue(value);
     }
 
-    private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Location));
+    private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Location), "location");
     
     [JsonPropertyName("location")]
     public string? Location
     {
-        get => _location.GetValue();
+        get => _location.GetValue(InlineErrors);
         set => _location.SetValue(value);
     }
 
-    private PropertyValue<bool?> _external = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsExternal));
+    private PropertyValue<bool?> _external = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsExternal), "external");
     
     [JsonPropertyName("external")]
     public bool? IsExternal
     {
-        get => _external.GetValue();
+        get => _external.GetValue(InlineErrors);
         set => _external.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _username.SetAccessPath(path, validateHasBeenSet);
-        _firstName.SetAccessPath(path, validateHasBeenSet);
-        _lastName.SetAccessPath(path, validateHasBeenSet);
-        _emails.SetAccessPath(path, validateHasBeenSet);
-        _phones.SetAccessPath(path, validateHasBeenSet);
-        _birthday.SetAccessPath(path, validateHasBeenSet);
-        _about.SetAccessPath(path, validateHasBeenSet);
-        _messengers.SetAccessPath(path, validateHasBeenSet);
-        _links.SetAccessPath(path, validateHasBeenSet);
-        _notAMember.SetAccessPath(path, validateHasBeenSet);
-        _joined.SetAccessPath(path, validateHasBeenSet);
-        _left.SetAccessPath(path, validateHasBeenSet);
-        _leftAt.SetAccessPath(path, validateHasBeenSet);
-        _speaksEnglish.SetAccessPath(path, validateHasBeenSet);
-        _pictureAttachmentId.SetAccessPath(path, validateHasBeenSet);
-        _avatarCropSquare.SetAccessPath(path, validateHasBeenSet);
-        _customFieldValues.SetAccessPath(path, validateHasBeenSet);
-        _externalId.SetAccessPath(path, validateHasBeenSet);
-        _location.SetAccessPath(path, validateHasBeenSet);
-        _external.SetAccessPath(path, validateHasBeenSet);
+        _username.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _firstName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _emails.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _phones.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _birthday.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _about.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messengers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _links.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notAMember.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _joined.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _left.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _leftAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _speaksEnglish.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pictureAttachmentId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _avatarCropSquare.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _customFieldValues.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _location.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _external.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

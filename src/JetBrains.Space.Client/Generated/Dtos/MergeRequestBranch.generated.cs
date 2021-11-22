@@ -42,52 +42,56 @@ public sealed class MergeRequestBranch
         Head = head;
     }
     
-    private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(MergeRequestBranch), nameof(DisplayName));
+    private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(MergeRequestBranch), nameof(DisplayName), "displayName");
     
     [Required]
     [JsonPropertyName("displayName")]
     public string DisplayName
     {
-        get => _displayName.GetValue();
+        get => _displayName.GetValue(InlineErrors);
         set => _displayName.SetValue(value);
     }
 
-    private PropertyValue<string> _ref = new PropertyValue<string>(nameof(MergeRequestBranch), nameof(Ref));
+    private PropertyValue<string> _ref = new PropertyValue<string>(nameof(MergeRequestBranch), nameof(Ref), "ref");
     
     [Required]
     [JsonPropertyName("ref")]
     public string Ref
     {
-        get => _ref.GetValue();
+        get => _ref.GetValue(InlineErrors);
         set => _ref.SetValue(value);
     }
 
-    private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(MergeRequestBranch), nameof(IsDeleted));
+    private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(MergeRequestBranch), nameof(IsDeleted), "deleted");
     
     [Required]
     [JsonPropertyName("deleted")]
     public bool IsDeleted
     {
-        get => _deleted.GetValue();
+        get => _deleted.GetValue(InlineErrors);
         set => _deleted.SetValue(value);
     }
 
-    private PropertyValue<string?> _head = new PropertyValue<string?>(nameof(MergeRequestBranch), nameof(Head));
+    private PropertyValue<string?> _head = new PropertyValue<string?>(nameof(MergeRequestBranch), nameof(Head), "head");
     
     [JsonPropertyName("head")]
     public string? Head
     {
-        get => _head.GetValue();
+        get => _head.GetValue(InlineErrors);
         set => _head.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _displayName.SetAccessPath(path, validateHasBeenSet);
-        _ref.SetAccessPath(path, validateHasBeenSet);
-        _deleted.SetAccessPath(path, validateHasBeenSet);
-        _head.SetAccessPath(path, validateHasBeenSet);
+        _displayName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ref.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _head.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -41,39 +41,43 @@ public class NotificationsChannelSubscriptionsForIdPatchRequest
         Subscription = subscription;
     }
     
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(NotificationsChannelSubscriptionsForIdPatchRequest), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(NotificationsChannelSubscriptionsForIdPatchRequest), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<bool?> _enabled = new PropertyValue<bool?>(nameof(NotificationsChannelSubscriptionsForIdPatchRequest), nameof(IsEnabled));
+    private PropertyValue<bool?> _enabled = new PropertyValue<bool?>(nameof(NotificationsChannelSubscriptionsForIdPatchRequest), nameof(IsEnabled), "enabled");
     
     [JsonPropertyName("enabled")]
     public bool? IsEnabled
     {
-        get => _enabled.GetValue();
+        get => _enabled.GetValue(InlineErrors);
         set => _enabled.SetValue(value);
     }
 
-    private PropertyValue<CustomGenericSubscriptionIn?> _subscription = new PropertyValue<CustomGenericSubscriptionIn?>(nameof(NotificationsChannelSubscriptionsForIdPatchRequest), nameof(Subscription));
+    private PropertyValue<CustomGenericSubscriptionIn?> _subscription = new PropertyValue<CustomGenericSubscriptionIn?>(nameof(NotificationsChannelSubscriptionsForIdPatchRequest), nameof(Subscription), "subscription");
     
     [JsonPropertyName("subscription")]
     public CustomGenericSubscriptionIn? Subscription
     {
-        get => _subscription.GetValue();
+        get => _subscription.GetValue(InlineErrors);
         set => _subscription.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _enabled.SetAccessPath(path, validateHasBeenSet);
-        _subscription.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subscription.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,31 +40,35 @@ public sealed class TDProfileEmail
         Email = email;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDProfileEmail), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDProfileEmail), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _email = new PropertyValue<string>(nameof(TDProfileEmail), nameof(Email));
+    private PropertyValue<string> _email = new PropertyValue<string>(nameof(TDProfileEmail), nameof(Email), "email");
     
     [Required]
     [JsonPropertyName("email")]
     public string Email
     {
-        get => _email.GetValue();
+        get => _email.GetValue(InlineErrors);
         set => _email.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _email.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _email.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

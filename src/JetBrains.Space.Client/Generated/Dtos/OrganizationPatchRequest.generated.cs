@@ -39,20 +39,24 @@ public class OrganizationPatchRequest
         OrgData = orgData;
     }
     
-    private PropertyValue<OrganizationForUpdateDTO> _orgData = new PropertyValue<OrganizationForUpdateDTO>(nameof(OrganizationPatchRequest), nameof(OrgData));
+    private PropertyValue<OrganizationForUpdateDTO> _orgData = new PropertyValue<OrganizationForUpdateDTO>(nameof(OrganizationPatchRequest), nameof(OrgData), "orgData");
     
     [Required]
     [JsonPropertyName("orgData")]
     public OrganizationForUpdateDTO OrgData
     {
-        get => _orgData.GetValue();
+        get => _orgData.GetValue(InlineErrors);
         set => _orgData.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _orgData.SetAccessPath(path, validateHasBeenSet);
+        _orgData.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

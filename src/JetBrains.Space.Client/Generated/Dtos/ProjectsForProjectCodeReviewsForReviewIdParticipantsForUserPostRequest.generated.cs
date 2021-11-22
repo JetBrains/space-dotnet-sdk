@@ -39,20 +39,24 @@ public class ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequ
         Role = role;
     }
     
-    private PropertyValue<CodeReviewParticipantRole> _role = new PropertyValue<CodeReviewParticipantRole>(nameof(ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest), nameof(Role));
+    private PropertyValue<CodeReviewParticipantRole> _role = new PropertyValue<CodeReviewParticipantRole>(nameof(ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest), nameof(Role), "role");
     
     [Required]
     [JsonPropertyName("role")]
     public CodeReviewParticipantRole Role
     {
-        get => _role.GetValue();
+        get => _role.GetValue(InlineErrors);
         set => _role.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _role.SetAccessPath(path, validateHasBeenSet);
+        _role.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

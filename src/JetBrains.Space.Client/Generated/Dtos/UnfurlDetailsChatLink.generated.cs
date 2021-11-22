@@ -43,31 +43,35 @@ public sealed class UnfurlDetailsChatLink
         Title = title;
     }
     
-    private PropertyValue<string> _contactKey = new PropertyValue<string>(nameof(UnfurlDetailsChatLink), nameof(ContactKey));
+    private PropertyValue<string> _contactKey = new PropertyValue<string>(nameof(UnfurlDetailsChatLink), nameof(ContactKey), "contactKey");
     
     [Required]
     [JsonPropertyName("contactKey")]
     public string ContactKey
     {
-        get => _contactKey.GetValue();
+        get => _contactKey.GetValue(InlineErrors);
         set => _contactKey.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsChatLink), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsChatLink), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _contactKey.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
+        _contactKey.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

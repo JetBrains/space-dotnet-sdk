@@ -43,30 +43,34 @@ public sealed class DeletePersonalFeedAction
         FeedId = feedId;
     }
     
-    private PropertyValue<string> _feed = new PropertyValue<string>(nameof(DeletePersonalFeedAction), nameof(Feed));
+    private PropertyValue<string> _feed = new PropertyValue<string>(nameof(DeletePersonalFeedAction), nameof(Feed), "feed");
     
     [Required]
     [JsonPropertyName("feed")]
     public string Feed
     {
-        get => _feed.GetValue();
+        get => _feed.GetValue(InlineErrors);
         set => _feed.SetValue(value);
     }
 
-    private PropertyValue<string?> _feedId = new PropertyValue<string?>(nameof(DeletePersonalFeedAction), nameof(FeedId));
+    private PropertyValue<string?> _feedId = new PropertyValue<string?>(nameof(DeletePersonalFeedAction), nameof(FeedId), "feedId");
     
     [JsonPropertyName("feedId")]
     public string? FeedId
     {
-        get => _feedId.GetValue();
+        get => _feedId.GetValue(InlineErrors);
         set => _feedId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _feed.SetAccessPath(path, validateHasBeenSet);
-        _feedId.SetAccessPath(path, validateHasBeenSet);
+        _feed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _feedId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

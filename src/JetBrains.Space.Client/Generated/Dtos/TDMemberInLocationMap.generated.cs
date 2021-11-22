@@ -41,41 +41,45 @@ public sealed class TDMemberInLocationMap
         LocationMapPoint = locationMapPoint;
     }
     
-    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(TDMemberInLocationMap), nameof(Profile));
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(TDMemberInLocationMap), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public TDMemberProfile Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<TDMemberLocation> _memberLocation = new PropertyValue<TDMemberLocation>(nameof(TDMemberInLocationMap), nameof(MemberLocation));
+    private PropertyValue<TDMemberLocation> _memberLocation = new PropertyValue<TDMemberLocation>(nameof(TDMemberInLocationMap), nameof(MemberLocation), "memberLocation");
     
     [Required]
     [JsonPropertyName("memberLocation")]
     public TDMemberLocation MemberLocation
     {
-        get => _memberLocation.GetValue();
+        get => _memberLocation.GetValue(InlineErrors);
         set => _memberLocation.SetValue(value);
     }
 
-    private PropertyValue<TDLocationMapPoint?> _locationMapPoint = new PropertyValue<TDLocationMapPoint?>(nameof(TDMemberInLocationMap), nameof(LocationMapPoint));
+    private PropertyValue<TDLocationMapPoint?> _locationMapPoint = new PropertyValue<TDLocationMapPoint?>(nameof(TDMemberInLocationMap), nameof(LocationMapPoint), "locationMapPoint");
     
     [JsonPropertyName("locationMapPoint")]
     public TDLocationMapPoint? LocationMapPoint
     {
-        get => _locationMapPoint.GetValue();
+        get => _locationMapPoint.GetValue(InlineErrors);
         set => _locationMapPoint.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _memberLocation.SetAccessPath(path, validateHasBeenSet);
-        _locationMapPoint.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _memberLocation.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _locationMapPoint.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

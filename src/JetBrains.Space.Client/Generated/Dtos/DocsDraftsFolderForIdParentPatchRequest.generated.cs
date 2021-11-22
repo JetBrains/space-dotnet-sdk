@@ -39,20 +39,24 @@ public class DocsDraftsFolderForIdParentPatchRequest
         ParentFolderId = parentFolderId;
     }
     
-    private PropertyValue<string> _parentFolderId = new PropertyValue<string>(nameof(DocsDraftsFolderForIdParentPatchRequest), nameof(ParentFolderId));
+    private PropertyValue<string> _parentFolderId = new PropertyValue<string>(nameof(DocsDraftsFolderForIdParentPatchRequest), nameof(ParentFolderId), "parentFolderId");
     
     [Required]
     [JsonPropertyName("parentFolderId")]
     public string ParentFolderId
     {
-        get => _parentFolderId.GetValue();
+        get => _parentFolderId.GetValue(InlineErrors);
         set => _parentFolderId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _parentFolderId.SetAccessPath(path, validateHasBeenSet);
+        _parentFolderId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

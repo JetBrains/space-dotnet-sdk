@@ -40,31 +40,35 @@ public class CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest
         Scope = scope;
     }
     
-    private PropertyValue<List<EnumValueData>> _valuesToAdd = new PropertyValue<List<EnumValueData>>(nameof(CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest), nameof(ValuesToAdd), new List<EnumValueData>());
+    private PropertyValue<List<EnumValueData>> _valuesToAdd = new PropertyValue<List<EnumValueData>>(nameof(CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest), nameof(ValuesToAdd), "valuesToAdd", new List<EnumValueData>());
     
     [Required]
     [JsonPropertyName("valuesToAdd")]
     public List<EnumValueData> ValuesToAdd
     {
-        get => _valuesToAdd.GetValue();
+        get => _valuesToAdd.GetValue(InlineErrors);
         set => _valuesToAdd.SetValue(value);
     }
 
-    private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest), nameof(Scope));
+    private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
     public ExtendedTypeScope Scope
     {
-        get => _scope.GetValue();
+        get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _valuesToAdd.SetAccessPath(path, validateHasBeenSet);
-        _scope.SetAccessPath(path, validateHasBeenSet);
+        _valuesToAdd.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

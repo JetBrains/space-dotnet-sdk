@@ -44,73 +44,77 @@ public class AuthModulesForIdSamlMetadataPostRequest
         ContactProfileId = contactProfileId;
     }
     
-    private PropertyValue<string> _idpUrl = new PropertyValue<string>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(IdpUrl));
+    private PropertyValue<string> _idpUrl = new PropertyValue<string>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(IdpUrl), "idpUrl");
     
     [Required]
     [JsonPropertyName("idpUrl")]
     public string IdpUrl
     {
-        get => _idpUrl.GetValue();
+        get => _idpUrl.GetValue(InlineErrors);
         set => _idpUrl.SetValue(value);
     }
 
-    private PropertyValue<string> _idpEntityId = new PropertyValue<string>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(IdpEntityId));
+    private PropertyValue<string> _idpEntityId = new PropertyValue<string>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(IdpEntityId), "idpEntityId");
     
     [Required]
     [JsonPropertyName("idpEntityId")]
     public string IdpEntityId
     {
-        get => _idpEntityId.GetValue();
+        get => _idpEntityId.GetValue(InlineErrors);
         set => _idpEntityId.SetValue(value);
     }
 
-    private PropertyValue<string> _idpCertificateSHA256 = new PropertyValue<string>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(IdpCertificateSHA256));
+    private PropertyValue<string> _idpCertificateSHA256 = new PropertyValue<string>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(IdpCertificateSHA256), "idpCertificateSHA256");
     
     [Required]
     [JsonPropertyName("idpCertificateSHA256")]
     public string IdpCertificateSHA256
     {
-        get => _idpCertificateSHA256.GetValue();
+        get => _idpCertificateSHA256.GetValue(InlineErrors);
         set => _idpCertificateSHA256.SetValue(value);
     }
 
-    private PropertyValue<string> _spEntityId = new PropertyValue<string>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(SpEntityId));
+    private PropertyValue<string> _spEntityId = new PropertyValue<string>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(SpEntityId), "spEntityId");
     
     [Required]
     [JsonPropertyName("spEntityId")]
     public string SpEntityId
     {
-        get => _spEntityId.GetValue();
+        get => _spEntityId.GetValue(InlineErrors);
         set => _spEntityId.SetValue(value);
     }
 
-    private PropertyValue<SSLKeystore?> _sslKeystore = new PropertyValue<SSLKeystore?>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(SslKeystore));
+    private PropertyValue<SSLKeystore?> _sslKeystore = new PropertyValue<SSLKeystore?>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(SslKeystore), "sslKeystore");
     
     [JsonPropertyName("sslKeystore")]
     public SSLKeystore? SslKeystore
     {
-        get => _sslKeystore.GetValue();
+        get => _sslKeystore.GetValue(InlineErrors);
         set => _sslKeystore.SetValue(value);
     }
 
-    private PropertyValue<string?> _contactProfileId = new PropertyValue<string?>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(ContactProfileId));
+    private PropertyValue<string?> _contactProfileId = new PropertyValue<string?>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(ContactProfileId), "contactProfileId");
     
     [JsonPropertyName("contactProfileId")]
     public string? ContactProfileId
     {
-        get => _contactProfileId.GetValue();
+        get => _contactProfileId.GetValue(InlineErrors);
         set => _contactProfileId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _idpUrl.SetAccessPath(path, validateHasBeenSet);
-        _idpEntityId.SetAccessPath(path, validateHasBeenSet);
-        _idpCertificateSHA256.SetAccessPath(path, validateHasBeenSet);
-        _spEntityId.SetAccessPath(path, validateHasBeenSet);
-        _sslKeystore.SetAccessPath(path, validateHasBeenSet);
-        _contactProfileId.SetAccessPath(path, validateHasBeenSet);
+        _idpUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _idpEntityId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _idpCertificateSHA256.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _spEntityId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sslKeystore.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _contactProfileId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

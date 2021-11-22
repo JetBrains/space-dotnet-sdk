@@ -43,61 +43,65 @@ public sealed class GitCommitResult
         ResultCommitId = resultCommitId;
     }
     
-    private PropertyValue<string?> _fromHead = new PropertyValue<string?>(nameof(GitCommitResult), nameof(FromHead));
+    private PropertyValue<string?> _fromHead = new PropertyValue<string?>(nameof(GitCommitResult), nameof(FromHead), "fromHead");
     
     [JsonPropertyName("fromHead")]
     public string? FromHead
     {
-        get => _fromHead.GetValue();
+        get => _fromHead.GetValue(InlineErrors);
         set => _fromHead.SetValue(value);
     }
 
-    private PropertyValue<string?> _toHead = new PropertyValue<string?>(nameof(GitCommitResult), nameof(ToHead));
+    private PropertyValue<string?> _toHead = new PropertyValue<string?>(nameof(GitCommitResult), nameof(ToHead), "toHead");
     
     [JsonPropertyName("toHead")]
     public string? ToHead
     {
-        get => _toHead.GetValue();
+        get => _toHead.GetValue(InlineErrors);
         set => _toHead.SetValue(value);
     }
 
-    private PropertyValue<bool> _success = new PropertyValue<bool>(nameof(GitCommitResult), nameof(IsSuccess));
+    private PropertyValue<bool> _success = new PropertyValue<bool>(nameof(GitCommitResult), nameof(IsSuccess), "success");
     
     [Required]
     [JsonPropertyName("success")]
     public bool IsSuccess
     {
-        get => _success.GetValue();
+        get => _success.GetValue(InlineErrors);
         set => _success.SetValue(value);
     }
 
-    private PropertyValue<string> _message = new PropertyValue<string>(nameof(GitCommitResult), nameof(Message));
+    private PropertyValue<string> _message = new PropertyValue<string>(nameof(GitCommitResult), nameof(Message), "message");
     
     [Required]
     [JsonPropertyName("message")]
     public string Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    private PropertyValue<string?> _resultCommitId = new PropertyValue<string?>(nameof(GitCommitResult), nameof(ResultCommitId));
+    private PropertyValue<string?> _resultCommitId = new PropertyValue<string?>(nameof(GitCommitResult), nameof(ResultCommitId), "resultCommitId");
     
     [JsonPropertyName("resultCommitId")]
     public string? ResultCommitId
     {
-        get => _resultCommitId.GetValue();
+        get => _resultCommitId.GetValue(InlineErrors);
         set => _resultCommitId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _fromHead.SetAccessPath(path, validateHasBeenSet);
-        _toHead.SetAccessPath(path, validateHasBeenSet);
-        _success.SetAccessPath(path, validateHasBeenSet);
-        _message.SetAccessPath(path, validateHasBeenSet);
-        _resultCommitId.SetAccessPath(path, validateHasBeenSet);
+        _fromHead.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _toHead.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _success.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _resultCommitId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -39,20 +39,24 @@ public class ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest
         Attachments = attachments;
     }
     
-    private PropertyValue<List<AttachmentIn>> _attachments = new PropertyValue<List<AttachmentIn>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest), nameof(Attachments), new List<AttachmentIn>());
+    private PropertyValue<List<AttachmentIn>> _attachments = new PropertyValue<List<AttachmentIn>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest), nameof(Attachments), "attachments", new List<AttachmentIn>());
     
     [Required]
     [JsonPropertyName("attachments")]
     public List<AttachmentIn> Attachments
     {
-        get => _attachments.GetValue();
+        get => _attachments.GetValue(InlineErrors);
         set => _attachments.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _attachments.SetAccessPath(path, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

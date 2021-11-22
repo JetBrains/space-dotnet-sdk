@@ -42,53 +42,57 @@ public sealed class CodeReviewWithCount
         Participants = participants;
     }
     
-    private PropertyValue<CodeReviewRecord> _review = new PropertyValue<CodeReviewRecord>(nameof(CodeReviewWithCount), nameof(Review));
+    private PropertyValue<CodeReviewRecord> _review = new PropertyValue<CodeReviewRecord>(nameof(CodeReviewWithCount), nameof(Review), "review");
     
     [Required]
     [JsonPropertyName("review")]
     public CodeReviewRecord Review
     {
-        get => _review.GetValue();
+        get => _review.GetValue(InlineErrors);
         set => _review.SetValue(value);
     }
 
-    private PropertyValue<int> _messagesCount = new PropertyValue<int>(nameof(CodeReviewWithCount), nameof(MessagesCount));
+    private PropertyValue<int> _messagesCount = new PropertyValue<int>(nameof(CodeReviewWithCount), nameof(MessagesCount), "messagesCount");
     
     [Required]
     [JsonPropertyName("messagesCount")]
     public int MessagesCount
     {
-        get => _messagesCount.GetValue();
+        get => _messagesCount.GetValue(InlineErrors);
         set => _messagesCount.SetValue(value);
     }
 
-    private PropertyValue<List<GitCommitterProfile>> _authors = new PropertyValue<List<GitCommitterProfile>>(nameof(CodeReviewWithCount), nameof(Authors), new List<GitCommitterProfile>());
+    private PropertyValue<List<GitCommitterProfile>> _authors = new PropertyValue<List<GitCommitterProfile>>(nameof(CodeReviewWithCount), nameof(Authors), "authors", new List<GitCommitterProfile>());
     
     [Required]
     [JsonPropertyName("authors")]
     public List<GitCommitterProfile> Authors
     {
-        get => _authors.GetValue();
+        get => _authors.GetValue(InlineErrors);
         set => _authors.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewParticipants> _participants = new PropertyValue<CodeReviewParticipants>(nameof(CodeReviewWithCount), nameof(Participants));
+    private PropertyValue<CodeReviewParticipants> _participants = new PropertyValue<CodeReviewParticipants>(nameof(CodeReviewWithCount), nameof(Participants), "participants");
     
     [Required]
     [JsonPropertyName("participants")]
     public CodeReviewParticipants Participants
     {
-        get => _participants.GetValue();
+        get => _participants.GetValue(InlineErrors);
         set => _participants.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _review.SetAccessPath(path, validateHasBeenSet);
-        _messagesCount.SetAccessPath(path, validateHasBeenSet);
-        _authors.SetAccessPath(path, validateHasBeenSet);
-        _participants.SetAccessPath(path, validateHasBeenSet);
+        _review.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messagesCount.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authors.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _participants.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

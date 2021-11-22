@@ -39,20 +39,24 @@ public class ChatsChannelsForChannelImportPostRequest
         Messages = messages;
     }
     
-    private PropertyValue<List<MessageForImport>> _messages = new PropertyValue<List<MessageForImport>>(nameof(ChatsChannelsForChannelImportPostRequest), nameof(Messages), new List<MessageForImport>());
+    private PropertyValue<List<MessageForImport>> _messages = new PropertyValue<List<MessageForImport>>(nameof(ChatsChannelsForChannelImportPostRequest), nameof(Messages), "messages", new List<MessageForImport>());
     
     [Required]
     [JsonPropertyName("messages")]
     public List<MessageForImport> Messages
     {
-        get => _messages.GetValue();
+        get => _messages.GetValue(InlineErrors);
         set => _messages.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _messages.SetAccessPath(path, validateHasBeenSet);
+        _messages.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

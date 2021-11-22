@@ -43,29 +43,33 @@ public sealed class IssueChecklistsChangedDetails
         RemovedChecklists = removedChecklists;
     }
     
-    private PropertyValue<List<Checklist>?> _addedChecklists = new PropertyValue<List<Checklist>?>(nameof(IssueChecklistsChangedDetails), nameof(AddedChecklists));
+    private PropertyValue<List<Checklist>?> _addedChecklists = new PropertyValue<List<Checklist>?>(nameof(IssueChecklistsChangedDetails), nameof(AddedChecklists), "addedChecklists");
     
     [JsonPropertyName("addedChecklists")]
     public List<Checklist>? AddedChecklists
     {
-        get => _addedChecklists.GetValue();
+        get => _addedChecklists.GetValue(InlineErrors);
         set => _addedChecklists.SetValue(value);
     }
 
-    private PropertyValue<List<Checklist>?> _removedChecklists = new PropertyValue<List<Checklist>?>(nameof(IssueChecklistsChangedDetails), nameof(RemovedChecklists));
+    private PropertyValue<List<Checklist>?> _removedChecklists = new PropertyValue<List<Checklist>?>(nameof(IssueChecklistsChangedDetails), nameof(RemovedChecklists), "removedChecklists");
     
     [JsonPropertyName("removedChecklists")]
     public List<Checklist>? RemovedChecklists
     {
-        get => _removedChecklists.GetValue();
+        get => _removedChecklists.GetValue(InlineErrors);
         set => _removedChecklists.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _addedChecklists.SetAccessPath(path, validateHasBeenSet);
-        _removedChecklists.SetAccessPath(path, validateHasBeenSet);
+        _addedChecklists.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _removedChecklists.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

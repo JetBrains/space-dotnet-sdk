@@ -44,42 +44,46 @@ public sealed class HATypePrimitive
         Tags = tags;
     }
     
-    private PropertyValue<HAPrimitive> _primitive = new PropertyValue<HAPrimitive>(nameof(HATypePrimitive), nameof(Primitive));
+    private PropertyValue<HAPrimitive> _primitive = new PropertyValue<HAPrimitive>(nameof(HATypePrimitive), nameof(Primitive), "primitive");
     
     [Required]
     [JsonPropertyName("primitive")]
     public HAPrimitive Primitive
     {
-        get => _primitive.GetValue();
+        get => _primitive.GetValue(InlineErrors);
         set => _primitive.SetValue(value);
     }
 
-    private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypePrimitive), nameof(IsNullable));
+    private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypePrimitive), nameof(IsNullable), "nullable");
     
     [Required]
     [JsonPropertyName("nullable")]
     public bool IsNullable
     {
-        get => _nullable.GetValue();
+        get => _nullable.GetValue(InlineErrors);
         set => _nullable.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypePrimitive), nameof(Tags), new List<string>());
+    private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypePrimitive), nameof(Tags), "tags", new List<string>());
     
     [Required]
     [JsonPropertyName("tags")]
     public List<string> Tags
     {
-        get => _tags.GetValue();
+        get => _tags.GetValue(InlineErrors);
         set => _tags.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _primitive.SetAccessPath(path, validateHasBeenSet);
-        _nullable.SetAccessPath(path, validateHasBeenSet);
-        _tags.SetAccessPath(path, validateHasBeenSet);
+        _primitive.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _nullable.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

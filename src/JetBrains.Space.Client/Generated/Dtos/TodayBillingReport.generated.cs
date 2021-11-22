@@ -52,162 +52,166 @@ public sealed class TodayBillingReport
         TotalCost = totalCost;
     }
     
-    private PropertyValue<PurchasedBillingPlan> _plan = new PropertyValue<PurchasedBillingPlan>(nameof(TodayBillingReport), nameof(Plan));
+    private PropertyValue<PurchasedBillingPlan> _plan = new PropertyValue<PurchasedBillingPlan>(nameof(TodayBillingReport), nameof(Plan), "plan");
     
     [Required]
     [JsonPropertyName("plan")]
     public PurchasedBillingPlan Plan
     {
-        get => _plan.GetValue();
+        get => _plan.GetValue(InlineErrors);
         set => _plan.SetValue(value);
     }
 
-    private PropertyValue<int> _activeUsers = new PropertyValue<int>(nameof(TodayBillingReport), nameof(ActiveUsers));
+    private PropertyValue<int> _activeUsers = new PropertyValue<int>(nameof(TodayBillingReport), nameof(ActiveUsers), "activeUsers");
     
     [Required]
     [JsonPropertyName("activeUsers")]
     public int ActiveUsers
     {
-        get => _activeUsers.GetValue();
+        get => _activeUsers.GetValue(InlineErrors);
         set => _activeUsers.SetValue(value);
     }
 
-    private PropertyValue<int> _userUsage = new PropertyValue<int>(nameof(TodayBillingReport), nameof(UserUsage));
+    private PropertyValue<int> _userUsage = new PropertyValue<int>(nameof(TodayBillingReport), nameof(UserUsage), "userUsage");
     
     [Required]
     [JsonPropertyName("userUsage")]
     public int UserUsage
     {
-        get => _userUsage.GetValue();
+        get => _userUsage.GetValue(InlineErrors);
         set => _userUsage.SetValue(value);
     }
 
-    private PropertyValue<double> _userCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(UserCost));
+    private PropertyValue<double> _userCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(UserCost), "userCost");
     
     [Required]
     [JsonPropertyName("userCost")]
     public double UserCost
     {
-        get => _userCost.GetValue();
+        get => _userCost.GetValue(InlineErrors);
         set => _userCost.SetValue(value);
     }
 
-    private PropertyValue<long?> _storageAllocationB = new PropertyValue<long?>(nameof(TodayBillingReport), nameof(StorageAllocationB));
+    private PropertyValue<long?> _storageAllocationB = new PropertyValue<long?>(nameof(TodayBillingReport), nameof(StorageAllocationB), "storageAllocationB");
     
     [JsonPropertyName("storageAllocationB")]
     public long? StorageAllocationB
     {
-        get => _storageAllocationB.GetValue();
+        get => _storageAllocationB.GetValue(InlineErrors);
         set => _storageAllocationB.SetValue(value);
     }
 
-    private PropertyValue<long> _storageTotalUsage = new PropertyValue<long>(nameof(TodayBillingReport), nameof(StorageTotalUsage));
+    private PropertyValue<long> _storageTotalUsage = new PropertyValue<long>(nameof(TodayBillingReport), nameof(StorageTotalUsage), "storageTotalUsage");
     
     [Required]
     [JsonPropertyName("storageTotalUsage")]
     public long StorageTotalUsage
     {
-        get => _storageTotalUsage.GetValue();
+        get => _storageTotalUsage.GetValue(InlineErrors);
         set => _storageTotalUsage.SetValue(value);
     }
 
-    private PropertyValue<double> _storageCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(StorageCost));
+    private PropertyValue<double> _storageCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(StorageCost), "storageCost");
     
     [Required]
     [JsonPropertyName("storageCost")]
     public double StorageCost
     {
-        get => _storageCost.GetValue();
+        get => _storageCost.GetValue(InlineErrors);
         set => _storageCost.SetValue(value);
     }
 
-    private PropertyValue<long> _bandwidthTotalUsage = new PropertyValue<long>(nameof(TodayBillingReport), nameof(BandwidthTotalUsage));
+    private PropertyValue<long> _bandwidthTotalUsage = new PropertyValue<long>(nameof(TodayBillingReport), nameof(BandwidthTotalUsage), "bandwidthTotalUsage");
     
     [Required]
     [JsonPropertyName("bandwidthTotalUsage")]
     public long BandwidthTotalUsage
     {
-        get => _bandwidthTotalUsage.GetValue();
+        get => _bandwidthTotalUsage.GetValue(InlineErrors);
         set => _bandwidthTotalUsage.SetValue(value);
     }
 
-    private PropertyValue<double> _bandwidthCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(BandwidthCost));
+    private PropertyValue<double> _bandwidthCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(BandwidthCost), "bandwidthCost");
     
     [Required]
     [JsonPropertyName("bandwidthCost")]
     public double BandwidthCost
     {
-        get => _bandwidthCost.GetValue();
+        get => _bandwidthCost.GetValue(InlineErrors);
         set => _bandwidthCost.SetValue(value);
     }
 
-    private PropertyValue<long> _ciUsage = new PropertyValue<long>(nameof(TodayBillingReport), nameof(CiUsage));
+    private PropertyValue<long> _ciUsage = new PropertyValue<long>(nameof(TodayBillingReport), nameof(CiUsage), "ciUsage");
     
     [Required]
     [JsonPropertyName("ciUsage")]
     public long CiUsage
     {
-        get => _ciUsage.GetValue();
+        get => _ciUsage.GetValue(InlineErrors);
         set => _ciUsage.SetValue(value);
     }
 
-    private PropertyValue<double> _ciCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(CiCost));
+    private PropertyValue<double> _ciCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(CiCost), "ciCost");
     
     [Required]
     [JsonPropertyName("ciCost")]
     public double CiCost
     {
-        get => _ciCost.GetValue();
+        get => _ciCost.GetValue(InlineErrors);
         set => _ciCost.SetValue(value);
     }
 
-    private PropertyValue<long> _appUsage = new PropertyValue<long>(nameof(TodayBillingReport), nameof(AppUsage));
+    private PropertyValue<long> _appUsage = new PropertyValue<long>(nameof(TodayBillingReport), nameof(AppUsage), "appUsage");
     
     [Required]
     [JsonPropertyName("appUsage")]
     public long AppUsage
     {
-        get => _appUsage.GetValue();
+        get => _appUsage.GetValue(InlineErrors);
         set => _appUsage.SetValue(value);
     }
 
-    private PropertyValue<long> _chatUsage = new PropertyValue<long>(nameof(TodayBillingReport), nameof(ChatUsage));
+    private PropertyValue<long> _chatUsage = new PropertyValue<long>(nameof(TodayBillingReport), nameof(ChatUsage), "chatUsage");
     
     [Required]
     [JsonPropertyName("chatUsage")]
     public long ChatUsage
     {
-        get => _chatUsage.GetValue();
+        get => _chatUsage.GetValue(InlineErrors);
         set => _chatUsage.SetValue(value);
     }
 
-    private PropertyValue<double> _totalCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(TotalCost));
+    private PropertyValue<double> _totalCost = new PropertyValue<double>(nameof(TodayBillingReport), nameof(TotalCost), "totalCost");
     
     [Required]
     [JsonPropertyName("totalCost")]
     public double TotalCost
     {
-        get => _totalCost.GetValue();
+        get => _totalCost.GetValue(InlineErrors);
         set => _totalCost.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _plan.SetAccessPath(path, validateHasBeenSet);
-        _activeUsers.SetAccessPath(path, validateHasBeenSet);
-        _userUsage.SetAccessPath(path, validateHasBeenSet);
-        _userCost.SetAccessPath(path, validateHasBeenSet);
-        _storageAllocationB.SetAccessPath(path, validateHasBeenSet);
-        _storageTotalUsage.SetAccessPath(path, validateHasBeenSet);
-        _storageCost.SetAccessPath(path, validateHasBeenSet);
-        _bandwidthTotalUsage.SetAccessPath(path, validateHasBeenSet);
-        _bandwidthCost.SetAccessPath(path, validateHasBeenSet);
-        _ciUsage.SetAccessPath(path, validateHasBeenSet);
-        _ciCost.SetAccessPath(path, validateHasBeenSet);
-        _appUsage.SetAccessPath(path, validateHasBeenSet);
-        _chatUsage.SetAccessPath(path, validateHasBeenSet);
-        _totalCost.SetAccessPath(path, validateHasBeenSet);
+        _plan.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _activeUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userCost.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _storageAllocationB.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _storageTotalUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _storageCost.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bandwidthTotalUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bandwidthCost.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ciUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ciCost.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _appUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _chatUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _totalCost.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

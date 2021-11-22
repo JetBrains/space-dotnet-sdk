@@ -47,107 +47,111 @@ public class AbsencesPostRequest
         CustomFieldValues = customFieldValues;
     }
     
-    private PropertyValue<string> _member = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Member));
+    private PropertyValue<string> _member = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Member), "member");
     
     [Required]
     [JsonPropertyName("member")]
     public string Member
     {
-        get => _member.GetValue();
+        get => _member.GetValue(InlineErrors);
         set => _member.SetValue(value);
     }
 
-    private PropertyValue<string> _reason = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Reason));
+    private PropertyValue<string> _reason = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Reason), "reason");
     
     [Required]
     [JsonPropertyName("reason")]
     public string Reason
     {
-        get => _reason.GetValue();
+        get => _reason.GetValue(InlineErrors);
         set => _reason.SetValue(value);
     }
 
-    private PropertyValue<string> _description = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Description));
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Description), "description");
     
     [Required]
     [JsonPropertyName("description")]
     public string Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(AbsencesPostRequest), nameof(Location));
+    private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(AbsencesPostRequest), nameof(Location), "location");
     
     [JsonPropertyName("location")]
     public string? Location
     {
-        get => _location.GetValue();
+        get => _location.GetValue(InlineErrors);
         set => _location.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(AbsencesPostRequest), nameof(Since));
+    private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(AbsencesPostRequest), nameof(Since), "since");
     
     [Required]
     [JsonPropertyName("since")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(AbsencesPostRequest), nameof(Till));
+    private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(AbsencesPostRequest), nameof(Till), "till");
     
     [Required]
     [JsonPropertyName("till")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime Till
     {
-        get => _till.GetValue();
+        get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    private PropertyValue<bool> _available = new PropertyValue<bool>(nameof(AbsencesPostRequest), nameof(IsAvailable));
+    private PropertyValue<bool> _available = new PropertyValue<bool>(nameof(AbsencesPostRequest), nameof(IsAvailable), "available");
     
     [JsonPropertyName("available")]
     public bool IsAvailable
     {
-        get => _available.GetValue();
+        get => _available.GetValue(InlineErrors);
         set => _available.SetValue(value);
     }
 
-    private PropertyValue<string> _icon = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Icon));
+    private PropertyValue<string> _icon = new PropertyValue<string>(nameof(AbsencesPostRequest), nameof(Icon), "icon");
     
     [Required]
     [JsonPropertyName("icon")]
     public string Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(AbsencesPostRequest), nameof(CustomFieldValues));
+    private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(AbsencesPostRequest), nameof(CustomFieldValues), "customFieldValues");
     
     [JsonPropertyName("customFieldValues")]
     public List<CustomFieldInputValue>? CustomFieldValues
     {
-        get => _customFieldValues.GetValue();
+        get => _customFieldValues.GetValue(InlineErrors);
         set => _customFieldValues.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _member.SetAccessPath(path, validateHasBeenSet);
-        _reason.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _location.SetAccessPath(path, validateHasBeenSet);
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _till.SetAccessPath(path, validateHasBeenSet);
-        _available.SetAccessPath(path, validateHasBeenSet);
-        _icon.SetAccessPath(path, validateHasBeenSet);
-        _customFieldValues.SetAccessPath(path, validateHasBeenSet);
+        _member.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reason.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _location.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _till.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _available.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _customFieldValues.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

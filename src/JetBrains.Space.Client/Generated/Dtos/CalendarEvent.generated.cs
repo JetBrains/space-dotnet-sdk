@@ -44,71 +44,75 @@ public sealed class CalendarEvent
         IsAllDay = allDay;
     }
     
-    private PropertyValue<bool?> _calendarEvent = new PropertyValue<bool?>(nameof(CalendarEvent), nameof(IsCalendarEvent));
+    private PropertyValue<bool?> _calendarEvent = new PropertyValue<bool?>(nameof(CalendarEvent), nameof(IsCalendarEvent), "calendarEvent");
     
     [JsonPropertyName("calendarEvent")]
     public bool? IsCalendarEvent
     {
-        get => _calendarEvent.GetValue();
+        get => _calendarEvent.GetValue(InlineErrors);
         set => _calendarEvent.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _starts = new PropertyValue<DateTime?>(nameof(CalendarEvent), nameof(Starts));
+    private PropertyValue<DateTime?> _starts = new PropertyValue<DateTime?>(nameof(CalendarEvent), nameof(Starts), "starts");
     
     [JsonPropertyName("starts")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? Starts
     {
-        get => _starts.GetValue();
+        get => _starts.GetValue(InlineErrors);
         set => _starts.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _ends = new PropertyValue<DateTime?>(nameof(CalendarEvent), nameof(Ends));
+    private PropertyValue<DateTime?> _ends = new PropertyValue<DateTime?>(nameof(CalendarEvent), nameof(Ends), "ends");
     
     [JsonPropertyName("ends")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? Ends
     {
-        get => _ends.GetValue();
+        get => _ends.GetValue(InlineErrors);
         set => _ends.SetValue(value);
     }
 
-    private PropertyValue<ATimeZone?> _timezone = new PropertyValue<ATimeZone?>(nameof(CalendarEvent), nameof(Timezone));
+    private PropertyValue<ATimeZone?> _timezone = new PropertyValue<ATimeZone?>(nameof(CalendarEvent), nameof(Timezone), "timezone");
     
     [JsonPropertyName("timezone")]
     public ATimeZone? Timezone
     {
-        get => _timezone.GetValue();
+        get => _timezone.GetValue(InlineErrors);
         set => _timezone.SetValue(value);
     }
 
-    private PropertyValue<List<TDLocation>?> _rooms = new PropertyValue<List<TDLocation>?>(nameof(CalendarEvent), nameof(Rooms));
+    private PropertyValue<List<TDLocation>?> _rooms = new PropertyValue<List<TDLocation>?>(nameof(CalendarEvent), nameof(Rooms), "rooms");
     
     [JsonPropertyName("rooms")]
     public List<TDLocation>? Rooms
     {
-        get => _rooms.GetValue();
+        get => _rooms.GetValue(InlineErrors);
         set => _rooms.SetValue(value);
     }
 
-    private PropertyValue<bool?> _allDay = new PropertyValue<bool?>(nameof(CalendarEvent), nameof(IsAllDay));
+    private PropertyValue<bool?> _allDay = new PropertyValue<bool?>(nameof(CalendarEvent), nameof(IsAllDay), "allDay");
     
     [JsonPropertyName("allDay")]
     public bool? IsAllDay
     {
-        get => _allDay.GetValue();
+        get => _allDay.GetValue(InlineErrors);
         set => _allDay.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _calendarEvent.SetAccessPath(path, validateHasBeenSet);
-        _starts.SetAccessPath(path, validateHasBeenSet);
-        _ends.SetAccessPath(path, validateHasBeenSet);
-        _timezone.SetAccessPath(path, validateHasBeenSet);
-        _rooms.SetAccessPath(path, validateHasBeenSet);
-        _allDay.SetAccessPath(path, validateHasBeenSet);
+        _calendarEvent.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _starts.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ends.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rooms.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _allDay.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

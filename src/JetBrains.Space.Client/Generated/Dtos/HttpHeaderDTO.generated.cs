@@ -41,42 +41,46 @@ public sealed class HttpHeaderDTO
         Values = values;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HttpHeaderDTO), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(HttpHeaderDTO), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<bool> _maskedValue = new PropertyValue<bool>(nameof(HttpHeaderDTO), nameof(IsMaskedValue));
+    private PropertyValue<bool> _maskedValue = new PropertyValue<bool>(nameof(HttpHeaderDTO), nameof(IsMaskedValue), "maskedValue");
     
     [Required]
     [JsonPropertyName("maskedValue")]
     public bool IsMaskedValue
     {
-        get => _maskedValue.GetValue();
+        get => _maskedValue.GetValue(InlineErrors);
         set => _maskedValue.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(HttpHeaderDTO), nameof(Values), new List<string>());
+    private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(HttpHeaderDTO), nameof(Values), "values", new List<string>());
     
     [Required]
     [JsonPropertyName("values")]
     public List<string> Values
     {
-        get => _values.GetValue();
+        get => _values.GetValue(InlineErrors);
         set => _values.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _maskedValue.SetAccessPath(path, validateHasBeenSet);
-        _values.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _maskedValue.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _values.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

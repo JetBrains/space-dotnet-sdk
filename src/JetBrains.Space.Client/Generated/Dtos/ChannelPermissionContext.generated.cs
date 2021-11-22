@@ -42,20 +42,24 @@ public sealed class ChannelPermissionContext
         Channel = channel;
     }
     
-    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(ChannelPermissionContext), nameof(Channel));
+    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(ChannelPermissionContext), nameof(Channel), "channel");
     
     [Required]
     [JsonPropertyName("channel")]
     public M2ChannelRecord Channel
     {
-        get => _channel.GetValue();
+        get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _channel.SetAccessPath(path, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

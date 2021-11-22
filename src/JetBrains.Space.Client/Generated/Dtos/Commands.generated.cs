@@ -39,20 +39,24 @@ public sealed class Commands
         CommandsItems = commands;
     }
     
-    private PropertyValue<List<CommandDetail>> _commands = new PropertyValue<List<CommandDetail>>(nameof(Commands), nameof(CommandsItems), new List<CommandDetail>());
+    private PropertyValue<List<CommandDetail>> _commands = new PropertyValue<List<CommandDetail>>(nameof(Commands), nameof(CommandsItems), "commands", new List<CommandDetail>());
     
     [Required]
     [JsonPropertyName("commands")]
     public List<CommandDetail> CommandsItems
     {
-        get => _commands.GetValue();
+        get => _commands.GetValue(InlineErrors);
         set => _commands.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _commands.SetAccessPath(path, validateHasBeenSet);
+        _commands.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

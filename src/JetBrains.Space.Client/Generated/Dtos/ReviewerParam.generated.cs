@@ -40,30 +40,34 @@ public sealed class ReviewerParam
         QualityGateSlot = qualityGateSlot;
     }
     
-    private PropertyValue<string> _profileId = new PropertyValue<string>(nameof(ReviewerParam), nameof(ProfileId));
+    private PropertyValue<string> _profileId = new PropertyValue<string>(nameof(ReviewerParam), nameof(ProfileId), "profileId");
     
     [Required]
     [JsonPropertyName("profileId")]
     public string ProfileId
     {
-        get => _profileId.GetValue();
+        get => _profileId.GetValue(InlineErrors);
         set => _profileId.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewParticipantSlotBase?> _qualityGateSlot = new PropertyValue<CodeReviewParticipantSlotBase?>(nameof(ReviewerParam), nameof(QualityGateSlot));
+    private PropertyValue<CodeReviewParticipantSlotBase?> _qualityGateSlot = new PropertyValue<CodeReviewParticipantSlotBase?>(nameof(ReviewerParam), nameof(QualityGateSlot), "qualityGateSlot");
     
     [JsonPropertyName("qualityGateSlot")]
     public CodeReviewParticipantSlotBase? QualityGateSlot
     {
-        get => _qualityGateSlot.GetValue();
+        get => _qualityGateSlot.GetValue(InlineErrors);
         set => _qualityGateSlot.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profileId.SetAccessPath(path, validateHasBeenSet);
-        _qualityGateSlot.SetAccessPath(path, validateHasBeenSet);
+        _profileId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _qualityGateSlot.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -39,20 +39,24 @@ public class TeamDirectoryProfilesForProfileVcsPasswordPatchRequest
         Password = password;
     }
     
-    private PropertyValue<string> _password = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileVcsPasswordPatchRequest), nameof(Password));
+    private PropertyValue<string> _password = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileVcsPasswordPatchRequest), nameof(Password), "password");
     
     [Required]
     [JsonPropertyName("password")]
     public string Password
     {
-        get => _password.GetValue();
+        get => _password.GetValue(InlineErrors);
         set => _password.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _password.SetAccessPath(path, validateHasBeenSet);
+        _password.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

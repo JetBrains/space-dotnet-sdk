@@ -41,42 +41,46 @@ public class TeamDirectoryProfilesForProfileWorkingDaysPostRequest
         WorkingDaysSpec = workingDaysSpec;
     }
     
-    private PropertyValue<DateTime?> _dateStart = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileWorkingDaysPostRequest), nameof(DateStart));
+    private PropertyValue<DateTime?> _dateStart = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileWorkingDaysPostRequest), nameof(DateStart), "dateStart");
     
     [JsonPropertyName("dateStart")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? DateStart
     {
-        get => _dateStart.GetValue();
+        get => _dateStart.GetValue(InlineErrors);
         set => _dateStart.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _dateEnd = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileWorkingDaysPostRequest), nameof(DateEnd));
+    private PropertyValue<DateTime?> _dateEnd = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileWorkingDaysPostRequest), nameof(DateEnd), "dateEnd");
     
     [JsonPropertyName("dateEnd")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? DateEnd
     {
-        get => _dateEnd.GetValue();
+        get => _dateEnd.GetValue(InlineErrors);
         set => _dateEnd.SetValue(value);
     }
 
-    private PropertyValue<WorkingDaysSpec> _workingDaysSpec = new PropertyValue<WorkingDaysSpec>(nameof(TeamDirectoryProfilesForProfileWorkingDaysPostRequest), nameof(WorkingDaysSpec));
+    private PropertyValue<WorkingDaysSpec> _workingDaysSpec = new PropertyValue<WorkingDaysSpec>(nameof(TeamDirectoryProfilesForProfileWorkingDaysPostRequest), nameof(WorkingDaysSpec), "workingDaysSpec");
     
     [Required]
     [JsonPropertyName("workingDaysSpec")]
     public WorkingDaysSpec WorkingDaysSpec
     {
-        get => _workingDaysSpec.GetValue();
+        get => _workingDaysSpec.GetValue(InlineErrors);
         set => _workingDaysSpec.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _dateStart.SetAccessPath(path, validateHasBeenSet);
-        _dateEnd.SetAccessPath(path, validateHasBeenSet);
-        _workingDaysSpec.SetAccessPath(path, validateHasBeenSet);
+        _dateStart.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _dateEnd.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _workingDaysSpec.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

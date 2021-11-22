@@ -42,19 +42,23 @@ public sealed class TeamCFValue
         Team = team;
     }
     
-    private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(TeamCFValue), nameof(Team));
+    private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(TeamCFValue), nameof(Team), "team");
     
     [JsonPropertyName("team")]
     public TDTeam? Team
     {
-        get => _team.GetValue();
+        get => _team.GetValue(InlineErrors);
         set => _team.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _team.SetAccessPath(path, validateHasBeenSet);
+        _team.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

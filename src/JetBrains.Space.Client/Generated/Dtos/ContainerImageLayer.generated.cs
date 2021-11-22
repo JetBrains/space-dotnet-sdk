@@ -43,62 +43,66 @@ public sealed class ContainerImageLayer
         Size = size;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ContainerImageLayer), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ContainerImageLayer), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<long?> _created = new PropertyValue<long?>(nameof(ContainerImageLayer), nameof(Created));
+    private PropertyValue<long?> _created = new PropertyValue<long?>(nameof(ContainerImageLayer), nameof(Created), "created");
     
     [JsonPropertyName("created")]
     public long? Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<string> _statement = new PropertyValue<string>(nameof(ContainerImageLayer), nameof(Statement));
+    private PropertyValue<string> _statement = new PropertyValue<string>(nameof(ContainerImageLayer), nameof(Statement), "statement");
     
     [Required]
     [JsonPropertyName("statement")]
     public string Statement
     {
-        get => _statement.GetValue();
+        get => _statement.GetValue(InlineErrors);
         set => _statement.SetValue(value);
     }
 
-    private PropertyValue<string> _command = new PropertyValue<string>(nameof(ContainerImageLayer), nameof(Command));
+    private PropertyValue<string> _command = new PropertyValue<string>(nameof(ContainerImageLayer), nameof(Command), "command");
     
     [Required]
     [JsonPropertyName("command")]
     public string Command
     {
-        get => _command.GetValue();
+        get => _command.GetValue(InlineErrors);
         set => _command.SetValue(value);
     }
 
-    private PropertyValue<long?> _size = new PropertyValue<long?>(nameof(ContainerImageLayer), nameof(Size));
+    private PropertyValue<long?> _size = new PropertyValue<long?>(nameof(ContainerImageLayer), nameof(Size), "size");
     
     [JsonPropertyName("size")]
     public long? Size
     {
-        get => _size.GetValue();
+        get => _size.GetValue(InlineErrors);
         set => _size.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _statement.SetAccessPath(path, validateHasBeenSet);
-        _command.SetAccessPath(path, validateHasBeenSet);
-        _size.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _statement.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _command.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _size.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

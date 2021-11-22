@@ -42,20 +42,24 @@ public sealed class HADefaultValueCollection
         Elements = elements;
     }
     
-    private PropertyValue<List<HADefaultValue>> _elements = new PropertyValue<List<HADefaultValue>>(nameof(HADefaultValueCollection), nameof(Elements), new List<HADefaultValue>());
+    private PropertyValue<List<HADefaultValue>> _elements = new PropertyValue<List<HADefaultValue>>(nameof(HADefaultValueCollection), nameof(Elements), "elements", new List<HADefaultValue>());
     
     [Required]
     [JsonPropertyName("elements")]
     public List<HADefaultValue> Elements
     {
-        get => _elements.GetValue();
+        get => _elements.GetValue(InlineErrors);
         set => _elements.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _elements.SetAccessPath(path, validateHasBeenSet);
+        _elements.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

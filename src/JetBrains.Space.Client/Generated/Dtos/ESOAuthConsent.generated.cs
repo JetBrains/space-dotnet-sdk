@@ -41,42 +41,46 @@ public sealed class ESOAuthConsent
         RefreshTokens = refreshTokens;
     }
     
-    private PropertyValue<ESApp> _clientApplication = new PropertyValue<ESApp>(nameof(ESOAuthConsent), nameof(ClientApplication));
+    private PropertyValue<ESApp> _clientApplication = new PropertyValue<ESApp>(nameof(ESOAuthConsent), nameof(ClientApplication), "clientApplication");
     
     [Required]
     [JsonPropertyName("clientApplication")]
     public ESApp ClientApplication
     {
-        get => _clientApplication.GetValue();
+        get => _clientApplication.GetValue(InlineErrors);
         set => _clientApplication.SetValue(value);
     }
 
-    private PropertyValue<List<ESApprovedScope>> _approvedScopes = new PropertyValue<List<ESApprovedScope>>(nameof(ESOAuthConsent), nameof(ApprovedScopes), new List<ESApprovedScope>());
+    private PropertyValue<List<ESApprovedScope>> _approvedScopes = new PropertyValue<List<ESApprovedScope>>(nameof(ESOAuthConsent), nameof(ApprovedScopes), "approvedScopes", new List<ESApprovedScope>());
     
     [Required]
     [JsonPropertyName("approvedScopes")]
     public List<ESApprovedScope> ApprovedScopes
     {
-        get => _approvedScopes.GetValue();
+        get => _approvedScopes.GetValue(InlineErrors);
         set => _approvedScopes.SetValue(value);
     }
 
-    private PropertyValue<List<ESRefreshToken>> _refreshTokens = new PropertyValue<List<ESRefreshToken>>(nameof(ESOAuthConsent), nameof(RefreshTokens), new List<ESRefreshToken>());
+    private PropertyValue<List<ESRefreshToken>> _refreshTokens = new PropertyValue<List<ESRefreshToken>>(nameof(ESOAuthConsent), nameof(RefreshTokens), "refreshTokens", new List<ESRefreshToken>());
     
     [Required]
     [JsonPropertyName("refreshTokens")]
     public List<ESRefreshToken> RefreshTokens
     {
-        get => _refreshTokens.GetValue();
+        get => _refreshTokens.GetValue(InlineErrors);
         set => _refreshTokens.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _clientApplication.SetAccessPath(path, validateHasBeenSet);
-        _approvedScopes.SetAccessPath(path, validateHasBeenSet);
-        _refreshTokens.SetAccessPath(path, validateHasBeenSet);
+        _clientApplication.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _approvedScopes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _refreshTokens.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -41,43 +41,47 @@ public sealed class KMetaMod
         Method = method;
     }
     
-    private PropertyValue<CPrincipal> _principal = new PropertyValue<CPrincipal>(nameof(KMetaMod), nameof(Principal));
+    private PropertyValue<CPrincipal> _principal = new PropertyValue<CPrincipal>(nameof(KMetaMod), nameof(Principal), "principal");
     
     [Required]
     [JsonPropertyName("principal")]
     public CPrincipal Principal
     {
-        get => _principal.GetValue();
+        get => _principal.GetValue(InlineErrors);
         set => _principal.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _timestamp = new PropertyValue<DateTime>(nameof(KMetaMod), nameof(Timestamp));
+    private PropertyValue<DateTime> _timestamp = new PropertyValue<DateTime>(nameof(KMetaMod), nameof(Timestamp), "timestamp");
     
     [Required]
     [JsonPropertyName("timestamp")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Timestamp
     {
-        get => _timestamp.GetValue();
+        get => _timestamp.GetValue(InlineErrors);
         set => _timestamp.SetValue(value);
     }
 
-    private PropertyValue<string> _method = new PropertyValue<string>(nameof(KMetaMod), nameof(Method));
+    private PropertyValue<string> _method = new PropertyValue<string>(nameof(KMetaMod), nameof(Method), "method");
     
     [Required]
     [JsonPropertyName("method")]
     public string Method
     {
-        get => _method.GetValue();
+        get => _method.GetValue(InlineErrors);
         set => _method.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _principal.SetAccessPath(path, validateHasBeenSet);
-        _timestamp.SetAccessPath(path, validateHasBeenSet);
-        _method.SetAccessPath(path, validateHasBeenSet);
+        _principal.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _timestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _method.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,20 +42,24 @@ public sealed class CApplicationPrincipalDetails
         App = app;
     }
     
-    private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(CApplicationPrincipalDetails), nameof(App));
+    private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(CApplicationPrincipalDetails), nameof(App), "app");
     
     [Required]
     [JsonPropertyName("app")]
     public ESApp App
     {
-        get => _app.GetValue();
+        get => _app.GetValue(InlineErrors);
         set => _app.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _app.SetAccessPath(path, validateHasBeenSet);
+        _app.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

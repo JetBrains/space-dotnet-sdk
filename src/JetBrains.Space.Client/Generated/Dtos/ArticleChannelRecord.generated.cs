@@ -43,63 +43,67 @@ public sealed class ArticleChannelRecord
         Reactions = reactions;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticleChannelRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticleChannelRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ArticleChannelRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ArticleChannelRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(ArticleChannelRecord), nameof(Channel));
+    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(ArticleChannelRecord), nameof(Channel), "channel");
     
     [Required]
     [JsonPropertyName("channel")]
     public M2ChannelRecord Channel
     {
-        get => _channel.GetValue();
+        get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelContentRecord?> _channelContent = new PropertyValue<M2ChannelContentRecord?>(nameof(ArticleChannelRecord), nameof(ChannelContent));
+    private PropertyValue<M2ChannelContentRecord?> _channelContent = new PropertyValue<M2ChannelContentRecord?>(nameof(ArticleChannelRecord), nameof(ChannelContent), "channelContent");
     
     [JsonPropertyName("channelContent")]
     public M2ChannelContentRecord? ChannelContent
     {
-        get => _channelContent.GetValue();
+        get => _channelContent.GetValue(InlineErrors);
         set => _channelContent.SetValue(value);
     }
 
-    private PropertyValue<AllReactionsToItemRecord> _reactions = new PropertyValue<AllReactionsToItemRecord>(nameof(ArticleChannelRecord), nameof(Reactions));
+    private PropertyValue<AllReactionsToItemRecord> _reactions = new PropertyValue<AllReactionsToItemRecord>(nameof(ArticleChannelRecord), nameof(Reactions), "reactions");
     
     [Required]
     [JsonPropertyName("reactions")]
     public AllReactionsToItemRecord Reactions
     {
-        get => _reactions.GetValue();
+        get => _reactions.GetValue(InlineErrors);
         set => _reactions.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _channel.SetAccessPath(path, validateHasBeenSet);
-        _channelContent.SetAccessPath(path, validateHasBeenSet);
-        _reactions.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channelContent.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reactions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

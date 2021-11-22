@@ -42,52 +42,56 @@ public sealed class SubscriptionRequestedAuthorizations
         Projects = projects;
     }
     
-    private PropertyValue<List<Right>> _rights = new PropertyValue<List<Right>>(nameof(SubscriptionRequestedAuthorizations), nameof(Rights), new List<Right>());
+    private PropertyValue<List<Right>> _rights = new PropertyValue<List<Right>>(nameof(SubscriptionRequestedAuthorizations), nameof(Rights), "rights", new List<Right>());
     
     [Required]
     [JsonPropertyName("rights")]
     public List<Right> Rights
     {
-        get => _rights.GetValue();
+        get => _rights.GetValue(InlineErrors);
         set => _rights.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _rightCodes = new PropertyValue<List<string>>(nameof(SubscriptionRequestedAuthorizations), nameof(RightCodes), new List<string>());
+    private PropertyValue<List<string>> _rightCodes = new PropertyValue<List<string>>(nameof(SubscriptionRequestedAuthorizations), nameof(RightCodes), "rightCodes", new List<string>());
     
     [Required]
     [JsonPropertyName("rightCodes")]
     public List<string> RightCodes
     {
-        get => _rightCodes.GetValue();
+        get => _rightCodes.GetValue(InlineErrors);
         set => _rightCodes.SetValue(value);
     }
 
-    private PropertyValue<PermissionContextApi?> _permissionContext = new PropertyValue<PermissionContextApi?>(nameof(SubscriptionRequestedAuthorizations), nameof(PermissionContext));
+    private PropertyValue<PermissionContextApi?> _permissionContext = new PropertyValue<PermissionContextApi?>(nameof(SubscriptionRequestedAuthorizations), nameof(PermissionContext), "permissionContext");
     
     [JsonPropertyName("permissionContext")]
     public PermissionContextApi? PermissionContext
     {
-        get => _permissionContext.GetValue();
+        get => _permissionContext.GetValue(InlineErrors);
         set => _permissionContext.SetValue(value);
     }
 
-    private PropertyValue<List<PRProject>> _projects = new PropertyValue<List<PRProject>>(nameof(SubscriptionRequestedAuthorizations), nameof(Projects), new List<PRProject>());
+    private PropertyValue<List<PRProject>> _projects = new PropertyValue<List<PRProject>>(nameof(SubscriptionRequestedAuthorizations), nameof(Projects), "projects", new List<PRProject>());
     
     [Required]
     [JsonPropertyName("projects")]
     public List<PRProject> Projects
     {
-        get => _projects.GetValue();
+        get => _projects.GetValue(InlineErrors);
         set => _projects.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _rights.SetAccessPath(path, validateHasBeenSet);
-        _rightCodes.SetAccessPath(path, validateHasBeenSet);
-        _permissionContext.SetAccessPath(path, validateHasBeenSet);
-        _projects.SetAccessPath(path, validateHasBeenSet);
+        _rights.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rightCodes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _permissionContext.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projects.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

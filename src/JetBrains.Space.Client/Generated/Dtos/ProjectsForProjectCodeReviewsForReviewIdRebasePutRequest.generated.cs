@@ -42,52 +42,56 @@ public class ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest
         SquashedCommitMessage = squashedCommitMessage;
     }
     
-    private PropertyValue<bool> _deleteSourceBranch = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest), nameof(IsDeleteSourceBranch));
+    private PropertyValue<bool> _deleteSourceBranch = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest), nameof(IsDeleteSourceBranch), "deleteSourceBranch");
     
     [Required]
     [JsonPropertyName("deleteSourceBranch")]
     public bool IsDeleteSourceBranch
     {
-        get => _deleteSourceBranch.GetValue();
+        get => _deleteSourceBranch.GetValue(InlineErrors);
         set => _deleteSourceBranch.SetValue(value);
     }
 
-    private PropertyValue<GitRebaseMode> _rebaseMode = new PropertyValue<GitRebaseMode>(nameof(ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest), nameof(RebaseMode));
+    private PropertyValue<GitRebaseMode> _rebaseMode = new PropertyValue<GitRebaseMode>(nameof(ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest), nameof(RebaseMode), "rebaseMode");
     
     [Required]
     [JsonPropertyName("rebaseMode")]
     public GitRebaseMode RebaseMode
     {
-        get => _rebaseMode.GetValue();
+        get => _rebaseMode.GetValue(InlineErrors);
         set => _rebaseMode.SetValue(value);
     }
 
-    private PropertyValue<bool> _squash = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest), nameof(IsSquash));
+    private PropertyValue<bool> _squash = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest), nameof(IsSquash), "squash");
     
     [Required]
     [JsonPropertyName("squash")]
     public bool IsSquash
     {
-        get => _squash.GetValue();
+        get => _squash.GetValue(InlineErrors);
         set => _squash.SetValue(value);
     }
 
-    private PropertyValue<string?> _squashedCommitMessage = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest), nameof(SquashedCommitMessage));
+    private PropertyValue<string?> _squashedCommitMessage = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest), nameof(SquashedCommitMessage), "squashedCommitMessage");
     
     [JsonPropertyName("squashedCommitMessage")]
     public string? SquashedCommitMessage
     {
-        get => _squashedCommitMessage.GetValue();
+        get => _squashedCommitMessage.GetValue(InlineErrors);
         set => _squashedCommitMessage.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _deleteSourceBranch.SetAccessPath(path, validateHasBeenSet);
-        _rebaseMode.SetAccessPath(path, validateHasBeenSet);
-        _squash.SetAccessPath(path, validateHasBeenSet);
-        _squashedCommitMessage.SetAccessPath(path, validateHasBeenSet);
+        _deleteSourceBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rebaseMode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _squash.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _squashedCommitMessage.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

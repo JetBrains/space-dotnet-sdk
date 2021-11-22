@@ -51,151 +51,155 @@ public sealed class KBArticle
         Alias = alias;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(KBArticle), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(KBArticle), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(KBArticle), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(KBArticle), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(KBArticle), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(KBArticle), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(KBArticle), nameof(Book));
+    private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(KBArticle), nameof(Book), "book");
     
     [Required]
     [JsonPropertyName("book")]
     public KBBook Book
     {
-        get => _book.GetValue();
+        get => _book.GetValue(InlineErrors);
         set => _book.SetValue(value);
     }
 
-    private PropertyValue<KBFolder> _folder = new PropertyValue<KBFolder>(nameof(KBArticle), nameof(Folder));
+    private PropertyValue<KBFolder> _folder = new PropertyValue<KBFolder>(nameof(KBArticle), nameof(Folder), "folder");
     
     [Required]
     [JsonPropertyName("folder")]
     public KBFolder Folder
     {
-        get => _folder.GetValue();
+        get => _folder.GetValue(InlineErrors);
         set => _folder.SetValue(value);
     }
 
-    private PropertyValue<string> _documentId = new PropertyValue<string>(nameof(KBArticle), nameof(DocumentId));
+    private PropertyValue<string> _documentId = new PropertyValue<string>(nameof(KBArticle), nameof(DocumentId), "documentId");
     
     [Required]
     [JsonPropertyName("documentId")]
     public string DocumentId
     {
-        get => _documentId.GetValue();
+        get => _documentId.GetValue(InlineErrors);
         set => _documentId.SetValue(value);
     }
 
-    private PropertyValue<DocumentInContainer?> _document = new PropertyValue<DocumentInContainer?>(nameof(KBArticle), nameof(Document));
+    private PropertyValue<DocumentInContainer?> _document = new PropertyValue<DocumentInContainer?>(nameof(KBArticle), nameof(Document), "document");
     
     [JsonPropertyName("document")]
     public DocumentInContainer? Document
     {
-        get => _document.GetValue();
+        get => _document.GetValue(InlineErrors);
         set => _document.SetValue(value);
     }
 
-    private PropertyValue<Document> _documentRef = new PropertyValue<Document>(nameof(KBArticle), nameof(DocumentRef));
+    private PropertyValue<Document> _documentRef = new PropertyValue<Document>(nameof(KBArticle), nameof(DocumentRef), "documentRef");
     
     [Required]
     [JsonPropertyName("documentRef")]
     public Document DocumentRef
     {
-        get => _documentRef.GetValue();
+        get => _documentRef.GetValue(InlineErrors);
         set => _documentRef.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(KBArticle), nameof(Created));
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(KBArticle), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(KBArticle), nameof(CreatedBy));
+    private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(KBArticle), nameof(CreatedBy), "createdBy");
     
     [JsonPropertyName("createdBy")]
     public CPrincipal? CreatedBy
     {
-        get => _createdBy.GetValue();
+        get => _createdBy.GetValue(InlineErrors);
         set => _createdBy.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(KBArticle), nameof(Updated));
+    private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(KBArticle), nameof(Updated), "updated");
     
     [Required]
     [JsonPropertyName("updated")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Updated
     {
-        get => _updated.GetValue();
+        get => _updated.GetValue(InlineErrors);
         set => _updated.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(KBArticle), nameof(UpdatedBy));
+    private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(KBArticle), nameof(UpdatedBy), "updatedBy");
     
     [JsonPropertyName("updatedBy")]
     public CPrincipal? UpdatedBy
     {
-        get => _updatedBy.GetValue();
+        get => _updatedBy.GetValue(InlineErrors);
         set => _updatedBy.SetValue(value);
     }
 
-    private PropertyValue<string> _alias = new PropertyValue<string>(nameof(KBArticle), nameof(Alias));
+    private PropertyValue<string> _alias = new PropertyValue<string>(nameof(KBArticle), nameof(Alias), "alias");
     
     [Required]
     [JsonPropertyName("alias")]
     public string Alias
     {
-        get => _alias.GetValue();
+        get => _alias.GetValue(InlineErrors);
         set => _alias.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _book.SetAccessPath(path, validateHasBeenSet);
-        _folder.SetAccessPath(path, validateHasBeenSet);
-        _documentId.SetAccessPath(path, validateHasBeenSet);
-        _document.SetAccessPath(path, validateHasBeenSet);
-        _documentRef.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _createdBy.SetAccessPath(path, validateHasBeenSet);
-        _updated.SetAccessPath(path, validateHasBeenSet);
-        _updatedBy.SetAccessPath(path, validateHasBeenSet);
-        _alias.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _book.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _folder.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _documentId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _document.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _documentRef.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updated.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updatedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _alias.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

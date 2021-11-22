@@ -40,30 +40,34 @@ public sealed class GitMergeResultHttp
         ResultCommitId = resultCommitId;
     }
     
-    private PropertyValue<GitMergeStatusHttp> _status = new PropertyValue<GitMergeStatusHttp>(nameof(GitMergeResultHttp), nameof(Status));
+    private PropertyValue<GitMergeStatusHttp> _status = new PropertyValue<GitMergeStatusHttp>(nameof(GitMergeResultHttp), nameof(Status), "status");
     
     [Required]
     [JsonPropertyName("status")]
     public GitMergeStatusHttp Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    private PropertyValue<string?> _resultCommitId = new PropertyValue<string?>(nameof(GitMergeResultHttp), nameof(ResultCommitId));
+    private PropertyValue<string?> _resultCommitId = new PropertyValue<string?>(nameof(GitMergeResultHttp), nameof(ResultCommitId), "resultCommitId");
     
     [JsonPropertyName("resultCommitId")]
     public string? ResultCommitId
     {
-        get => _resultCommitId.GetValue();
+        get => _resultCommitId.GetValue(InlineErrors);
         set => _resultCommitId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _status.SetAccessPath(path, validateHasBeenSet);
-        _resultCommitId.SetAccessPath(path, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _resultCommitId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

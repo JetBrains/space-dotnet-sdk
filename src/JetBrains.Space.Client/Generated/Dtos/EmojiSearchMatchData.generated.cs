@@ -41,41 +41,45 @@ public sealed class EmojiSearchMatchData
         MatchType = matchType;
     }
     
-    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojiSearchMatchData), nameof(Emoji));
+    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojiSearchMatchData), nameof(Emoji), "emoji");
     
     [Required]
     [JsonPropertyName("emoji")]
     public string Emoji
     {
-        get => _emoji.GetValue();
+        get => _emoji.GetValue(InlineErrors);
         set => _emoji.SetValue(value);
     }
 
-    private PropertyValue<string?> _matched = new PropertyValue<string?>(nameof(EmojiSearchMatchData), nameof(Matched));
+    private PropertyValue<string?> _matched = new PropertyValue<string?>(nameof(EmojiSearchMatchData), nameof(Matched), "matched");
     
     [JsonPropertyName("matched")]
     public string? Matched
     {
-        get => _matched.GetValue();
+        get => _matched.GetValue(InlineErrors);
         set => _matched.SetValue(value);
     }
 
-    private PropertyValue<EmojiSearchMatchType> _matchType = new PropertyValue<EmojiSearchMatchType>(nameof(EmojiSearchMatchData), nameof(MatchType));
+    private PropertyValue<EmojiSearchMatchType> _matchType = new PropertyValue<EmojiSearchMatchType>(nameof(EmojiSearchMatchData), nameof(MatchType), "matchType");
     
     [Required]
     [JsonPropertyName("matchType")]
     public EmojiSearchMatchType MatchType
     {
-        get => _matchType.GetValue();
+        get => _matchType.GetValue(InlineErrors);
         set => _matchType.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _emoji.SetAccessPath(path, validateHasBeenSet);
-        _matched.SetAccessPath(path, validateHasBeenSet);
-        _matchType.SetAccessPath(path, validateHasBeenSet);
+        _emoji.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _matched.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _matchType.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

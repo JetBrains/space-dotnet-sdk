@@ -43,62 +43,66 @@ public sealed class OIDCDiscovery
         JwksUri = jwksUri;
     }
     
-    private PropertyValue<string> _issuer = new PropertyValue<string>(nameof(OIDCDiscovery), nameof(Issuer));
+    private PropertyValue<string> _issuer = new PropertyValue<string>(nameof(OIDCDiscovery), nameof(Issuer), "issuer");
     
     [Required]
     [JsonPropertyName("issuer")]
     public string Issuer
     {
-        get => _issuer.GetValue();
+        get => _issuer.GetValue(InlineErrors);
         set => _issuer.SetValue(value);
     }
 
-    private PropertyValue<string> _authorizationEndpoint = new PropertyValue<string>(nameof(OIDCDiscovery), nameof(AuthorizationEndpoint));
+    private PropertyValue<string> _authorizationEndpoint = new PropertyValue<string>(nameof(OIDCDiscovery), nameof(AuthorizationEndpoint), "authorizationEndpoint");
     
     [Required]
     [JsonPropertyName("authorizationEndpoint")]
     public string AuthorizationEndpoint
     {
-        get => _authorizationEndpoint.GetValue();
+        get => _authorizationEndpoint.GetValue(InlineErrors);
         set => _authorizationEndpoint.SetValue(value);
     }
 
-    private PropertyValue<string?> _tokenEndpoint = new PropertyValue<string?>(nameof(OIDCDiscovery), nameof(TokenEndpoint));
+    private PropertyValue<string?> _tokenEndpoint = new PropertyValue<string?>(nameof(OIDCDiscovery), nameof(TokenEndpoint), "tokenEndpoint");
     
     [JsonPropertyName("tokenEndpoint")]
     public string? TokenEndpoint
     {
-        get => _tokenEndpoint.GetValue();
+        get => _tokenEndpoint.GetValue(InlineErrors);
         set => _tokenEndpoint.SetValue(value);
     }
 
-    private PropertyValue<string?> _userinfoEndpoint = new PropertyValue<string?>(nameof(OIDCDiscovery), nameof(UserinfoEndpoint));
+    private PropertyValue<string?> _userinfoEndpoint = new PropertyValue<string?>(nameof(OIDCDiscovery), nameof(UserinfoEndpoint), "userinfoEndpoint");
     
     [JsonPropertyName("userinfoEndpoint")]
     public string? UserinfoEndpoint
     {
-        get => _userinfoEndpoint.GetValue();
+        get => _userinfoEndpoint.GetValue(InlineErrors);
         set => _userinfoEndpoint.SetValue(value);
     }
 
-    private PropertyValue<string> _jwksUri = new PropertyValue<string>(nameof(OIDCDiscovery), nameof(JwksUri));
+    private PropertyValue<string> _jwksUri = new PropertyValue<string>(nameof(OIDCDiscovery), nameof(JwksUri), "jwksUri");
     
     [Required]
     [JsonPropertyName("jwksUri")]
     public string JwksUri
     {
-        get => _jwksUri.GetValue();
+        get => _jwksUri.GetValue(InlineErrors);
         set => _jwksUri.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _issuer.SetAccessPath(path, validateHasBeenSet);
-        _authorizationEndpoint.SetAccessPath(path, validateHasBeenSet);
-        _tokenEndpoint.SetAccessPath(path, validateHasBeenSet);
-        _userinfoEndpoint.SetAccessPath(path, validateHasBeenSet);
-        _jwksUri.SetAccessPath(path, validateHasBeenSet);
+        _issuer.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authorizationEndpoint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tokenEndpoint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userinfoEndpoint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _jwksUri.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

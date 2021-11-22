@@ -40,31 +40,35 @@ public sealed class AuthModuleUsage
         Profiles = profiles;
     }
     
-    private PropertyValue<ESAuthModule> _authModule = new PropertyValue<ESAuthModule>(nameof(AuthModuleUsage), nameof(AuthModule));
+    private PropertyValue<ESAuthModule> _authModule = new PropertyValue<ESAuthModule>(nameof(AuthModuleUsage), nameof(AuthModule), "authModule");
     
     [Required]
     [JsonPropertyName("authModule")]
     public ESAuthModule AuthModule
     {
-        get => _authModule.GetValue();
+        get => _authModule.GetValue(InlineErrors);
         set => _authModule.SetValue(value);
     }
 
-    private PropertyValue<int> _profiles = new PropertyValue<int>(nameof(AuthModuleUsage), nameof(Profiles));
+    private PropertyValue<int> _profiles = new PropertyValue<int>(nameof(AuthModuleUsage), nameof(Profiles), "profiles");
     
     [Required]
     [JsonPropertyName("profiles")]
     public int Profiles
     {
-        get => _profiles.GetValue();
+        get => _profiles.GetValue(InlineErrors);
         set => _profiles.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _authModule.SetAccessPath(path, validateHasBeenSet);
-        _profiles.SetAccessPath(path, validateHasBeenSet);
+        _authModule.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _profiles.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

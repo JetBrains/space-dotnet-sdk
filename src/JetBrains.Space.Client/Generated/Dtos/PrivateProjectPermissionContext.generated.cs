@@ -42,20 +42,24 @@ public sealed class PrivateProjectPermissionContext
         ProjectId = projectId;
     }
     
-    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(PrivateProjectPermissionContext), nameof(ProjectId));
+    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(PrivateProjectPermissionContext), nameof(ProjectId), "projectId");
     
     [Required]
     [JsonPropertyName("projectId")]
     public string ProjectId
     {
-        get => _projectId.GetValue();
+        get => _projectId.GetValue(InlineErrors);
         set => _projectId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _projectId.SetAccessPath(path, validateHasBeenSet);
+        _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -45,53 +45,57 @@ public sealed class HATypeObject
         Tags = tags;
     }
     
-    private PropertyValue<List<HAField>> _fields = new PropertyValue<List<HAField>>(nameof(HATypeObject), nameof(Fields), new List<HAField>());
+    private PropertyValue<List<HAField>> _fields = new PropertyValue<List<HAField>>(nameof(HATypeObject), nameof(Fields), "fields", new List<HAField>());
     
     [Required]
     [JsonPropertyName("fields")]
     public List<HAField> Fields
     {
-        get => _fields.GetValue();
+        get => _fields.GetValue(InlineErrors);
         set => _fields.SetValue(value);
     }
 
-    private PropertyValue<HATypeObjectKind> _kind = new PropertyValue<HATypeObjectKind>(nameof(HATypeObject), nameof(Kind));
+    private PropertyValue<HATypeObjectKind> _kind = new PropertyValue<HATypeObjectKind>(nameof(HATypeObject), nameof(Kind), "kind");
     
     [Required]
     [JsonPropertyName("kind")]
     public HATypeObjectKind Kind
     {
-        get => _kind.GetValue();
+        get => _kind.GetValue(InlineErrors);
         set => _kind.SetValue(value);
     }
 
-    private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeObject), nameof(IsNullable));
+    private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeObject), nameof(IsNullable), "nullable");
     
     [Required]
     [JsonPropertyName("nullable")]
     public bool IsNullable
     {
-        get => _nullable.GetValue();
+        get => _nullable.GetValue(InlineErrors);
         set => _nullable.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypeObject), nameof(Tags), new List<string>());
+    private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(HATypeObject), nameof(Tags), "tags", new List<string>());
     
     [Required]
     [JsonPropertyName("tags")]
     public List<string> Tags
     {
-        get => _tags.GetValue();
+        get => _tags.GetValue(InlineErrors);
         set => _tags.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _fields.SetAccessPath(path, validateHasBeenSet);
-        _kind.SetAccessPath(path, validateHasBeenSet);
-        _nullable.SetAccessPath(path, validateHasBeenSet);
-        _tags.SetAccessPath(path, validateHasBeenSet);
+        _fields.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _kind.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _nullable.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

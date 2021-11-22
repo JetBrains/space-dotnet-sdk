@@ -41,42 +41,46 @@ public sealed class RevisionInfo
         Message = message;
     }
     
-    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(RevisionInfo), nameof(Revision));
+    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(RevisionInfo), nameof(Revision), "revision");
     
     [Required]
     [JsonPropertyName("revision")]
     public string Revision
     {
-        get => _revision.GetValue();
+        get => _revision.GetValue(InlineErrors);
         set => _revision.SetValue(value);
     }
 
-    private PropertyValue<long> _date = new PropertyValue<long>(nameof(RevisionInfo), nameof(Date));
+    private PropertyValue<long> _date = new PropertyValue<long>(nameof(RevisionInfo), nameof(Date), "date");
     
     [Required]
     [JsonPropertyName("date")]
     public long Date
     {
-        get => _date.GetValue();
+        get => _date.GetValue(InlineErrors);
         set => _date.SetValue(value);
     }
 
-    private PropertyValue<string> _message = new PropertyValue<string>(nameof(RevisionInfo), nameof(Message));
+    private PropertyValue<string> _message = new PropertyValue<string>(nameof(RevisionInfo), nameof(Message), "message");
     
     [Required]
     [JsonPropertyName("message")]
     public string Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _revision.SetAccessPath(path, validateHasBeenSet);
-        _date.SetAccessPath(path, validateHasBeenSet);
-        _message.SetAccessPath(path, validateHasBeenSet);
+        _revision.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _date.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -44,42 +44,46 @@ public sealed class M2ChannelRdWsTimelineInfo
         WorkspaceName = workspaceName;
     }
     
-    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelRdWsTimelineInfo), nameof(NotificationDefaults));
+    private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelRdWsTimelineInfo), nameof(NotificationDefaults), "notificationDefaults");
     
     [Required]
     [JsonPropertyName("notificationDefaults")]
     public ChannelSpecificDefaults NotificationDefaults
     {
-        get => _notificationDefaults.GetValue();
+        get => _notificationDefaults.GetValue(InlineErrors);
         set => _notificationDefaults.SetValue(value);
     }
 
-    private PropertyValue<string> _workspaceId = new PropertyValue<string>(nameof(M2ChannelRdWsTimelineInfo), nameof(WorkspaceId));
+    private PropertyValue<string> _workspaceId = new PropertyValue<string>(nameof(M2ChannelRdWsTimelineInfo), nameof(WorkspaceId), "workspaceId");
     
     [Required]
     [JsonPropertyName("workspaceId")]
     public string WorkspaceId
     {
-        get => _workspaceId.GetValue();
+        get => _workspaceId.GetValue(InlineErrors);
         set => _workspaceId.SetValue(value);
     }
 
-    private PropertyValue<string> _workspaceName = new PropertyValue<string>(nameof(M2ChannelRdWsTimelineInfo), nameof(WorkspaceName));
+    private PropertyValue<string> _workspaceName = new PropertyValue<string>(nameof(M2ChannelRdWsTimelineInfo), nameof(WorkspaceName), "workspaceName");
     
     [Required]
     [JsonPropertyName("workspaceName")]
     public string WorkspaceName
     {
-        get => _workspaceName.GetValue();
+        get => _workspaceName.GetValue(InlineErrors);
         set => _workspaceName.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-        _workspaceId.SetAccessPath(path, validateHasBeenSet);
-        _workspaceName.SetAccessPath(path, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _workspaceId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _workspaceName.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

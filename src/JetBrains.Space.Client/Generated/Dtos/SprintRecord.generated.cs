@@ -46,98 +46,102 @@ public sealed class SprintRecord
         Description = description;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(SprintRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(SprintRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(SprintRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(SprintRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<BoardRecord> _board = new PropertyValue<BoardRecord>(nameof(SprintRecord), nameof(Board));
+    private PropertyValue<BoardRecord> _board = new PropertyValue<BoardRecord>(nameof(SprintRecord), nameof(Board), "board");
     
     [Required]
     [JsonPropertyName("board")]
     public BoardRecord Board
     {
-        get => _board.GetValue();
+        get => _board.GetValue(InlineErrors);
         set => _board.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(SprintRecord), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(SprintRecord), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<SprintState> _state = new PropertyValue<SprintState>(nameof(SprintRecord), nameof(State));
+    private PropertyValue<SprintState> _state = new PropertyValue<SprintState>(nameof(SprintRecord), nameof(State), "state");
     
     [Required]
     [JsonPropertyName("state")]
     public SprintState State
     {
-        get => _state.GetValue();
+        get => _state.GetValue(InlineErrors);
         set => _state.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _from = new PropertyValue<DateTime>(nameof(SprintRecord), nameof(From));
+    private PropertyValue<DateTime> _from = new PropertyValue<DateTime>(nameof(SprintRecord), nameof(From), "from");
     
     [Required]
     [JsonPropertyName("from")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime From
     {
-        get => _from.GetValue();
+        get => _from.GetValue(InlineErrors);
         set => _from.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _to = new PropertyValue<DateTime>(nameof(SprintRecord), nameof(To));
+    private PropertyValue<DateTime> _to = new PropertyValue<DateTime>(nameof(SprintRecord), nameof(To), "to");
     
     [Required]
     [JsonPropertyName("to")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime To
     {
-        get => _to.GetValue();
+        get => _to.GetValue(InlineErrors);
         set => _to.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(SprintRecord), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(SprintRecord), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _board.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _state.SetAccessPath(path, validateHasBeenSet);
-        _from.SetAccessPath(path, validateHasBeenSet);
-        _to.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _board.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _state.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _from.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _to.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -44,75 +44,79 @@ public sealed class DocumentFolderWithChildren
         Documents = documents;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(DocumentFolderWithChildren), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(DocumentFolderWithChildren), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(DocumentFolderWithChildren), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(DocumentFolderWithChildren), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<string> _containerLinkId = new PropertyValue<string>(nameof(DocumentFolderWithChildren), nameof(ContainerLinkId));
+    private PropertyValue<string> _containerLinkId = new PropertyValue<string>(nameof(DocumentFolderWithChildren), nameof(ContainerLinkId), "containerLinkId");
     
     [Required]
     [JsonPropertyName("containerLinkId")]
     public string ContainerLinkId
     {
-        get => _containerLinkId.GetValue();
+        get => _containerLinkId.GetValue(InlineErrors);
         set => _containerLinkId.SetValue(value);
     }
 
-    private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(DocumentFolderWithChildren), nameof(ContainerInfo));
+    private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(DocumentFolderWithChildren), nameof(ContainerInfo), "containerInfo");
     
     [Required]
     [JsonPropertyName("containerInfo")]
     public DocumentContainerInfo ContainerInfo
     {
-        get => _containerInfo.GetValue();
+        get => _containerInfo.GetValue(InlineErrors);
         set => _containerInfo.SetValue(value);
     }
 
-    private PropertyValue<List<DocumentFolderWithChildren>> _subfolders = new PropertyValue<List<DocumentFolderWithChildren>>(nameof(DocumentFolderWithChildren), nameof(Subfolders), new List<DocumentFolderWithChildren>());
+    private PropertyValue<List<DocumentFolderWithChildren>> _subfolders = new PropertyValue<List<DocumentFolderWithChildren>>(nameof(DocumentFolderWithChildren), nameof(Subfolders), "subfolders", new List<DocumentFolderWithChildren>());
     
     [Required]
     [JsonPropertyName("subfolders")]
     public List<DocumentFolderWithChildren> Subfolders
     {
-        get => _subfolders.GetValue();
+        get => _subfolders.GetValue(InlineErrors);
         set => _subfolders.SetValue(value);
     }
 
-    private PropertyValue<List<Document>> _documents = new PropertyValue<List<Document>>(nameof(DocumentFolderWithChildren), nameof(Documents), new List<Document>());
+    private PropertyValue<List<Document>> _documents = new PropertyValue<List<Document>>(nameof(DocumentFolderWithChildren), nameof(Documents), "documents", new List<Document>());
     
     [Required]
     [JsonPropertyName("documents")]
     public List<Document> Documents
     {
-        get => _documents.GetValue();
+        get => _documents.GetValue(InlineErrors);
         set => _documents.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _containerLinkId.SetAccessPath(path, validateHasBeenSet);
-        _containerInfo.SetAccessPath(path, validateHasBeenSet);
-        _subfolders.SetAccessPath(path, validateHasBeenSet);
-        _documents.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _containerLinkId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _containerInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subfolders.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _documents.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

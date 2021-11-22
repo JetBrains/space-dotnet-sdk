@@ -47,103 +47,107 @@ public sealed class M2ChannelRecord
         PinnedMessages = pinnedMessages;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2ChannelRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2ChannelRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelContact> _contact = new PropertyValue<M2ChannelContact>(nameof(M2ChannelRecord), nameof(Contact));
+    private PropertyValue<M2ChannelContact> _contact = new PropertyValue<M2ChannelContact>(nameof(M2ChannelRecord), nameof(Contact), "contact");
     
     [Required]
     [JsonPropertyName("contact")]
     public M2ChannelContact Contact
     {
-        get => _contact.GetValue();
+        get => _contact.GetValue(InlineErrors);
         set => _contact.SetValue(value);
     }
 
-    private PropertyValue<int> _totalMessages = new PropertyValue<int>(nameof(M2ChannelRecord), nameof(TotalMessages));
+    private PropertyValue<int> _totalMessages = new PropertyValue<int>(nameof(M2ChannelRecord), nameof(TotalMessages), "totalMessages");
     
     [Required]
     [JsonPropertyName("totalMessages")]
     public int TotalMessages
     {
-        get => _totalMessages.GetValue();
+        get => _totalMessages.GetValue(InlineErrors);
         set => _totalMessages.SetValue(value);
     }
 
-    private PropertyValue<MessageInfo?> _lastMessage = new PropertyValue<MessageInfo?>(nameof(M2ChannelRecord), nameof(LastMessage));
+    private PropertyValue<MessageInfo?> _lastMessage = new PropertyValue<MessageInfo?>(nameof(M2ChannelRecord), nameof(LastMessage), "lastMessage");
     
     [JsonPropertyName("lastMessage")]
     public MessageInfo? LastMessage
     {
-        get => _lastMessage.GetValue();
+        get => _lastMessage.GetValue(InlineErrors);
         set => _lastMessage.SetValue(value);
     }
 
-    private PropertyValue<List<ChannelParticipant>?> _participants = new PropertyValue<List<ChannelParticipant>?>(nameof(M2ChannelRecord), nameof(Participants));
+    private PropertyValue<List<ChannelParticipant>?> _participants = new PropertyValue<List<ChannelParticipant>?>(nameof(M2ChannelRecord), nameof(Participants), "participants");
     
     [JsonPropertyName("participants")]
     public List<ChannelParticipant>? Participants
     {
-        get => _participants.GetValue();
+        get => _participants.GetValue(InlineErrors);
         set => _participants.SetValue(value);
     }
 
-    private PropertyValue<bool?> _channelArchived = new PropertyValue<bool?>(nameof(M2ChannelRecord), nameof(IsChannelArchived));
+    private PropertyValue<bool?> _channelArchived = new PropertyValue<bool?>(nameof(M2ChannelRecord), nameof(IsChannelArchived), "channelArchived");
     
     [JsonPropertyName("channelArchived")]
     public bool? IsChannelArchived
     {
-        get => _channelArchived.GetValue();
+        get => _channelArchived.GetValue(InlineErrors);
         set => _channelArchived.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(M2ChannelRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(M2ChannelRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelContentInfo?> _content = new PropertyValue<M2ChannelContentInfo?>(nameof(M2ChannelRecord), nameof(Content));
+    private PropertyValue<M2ChannelContentInfo?> _content = new PropertyValue<M2ChannelContentInfo?>(nameof(M2ChannelRecord), nameof(Content), "content");
     
     [JsonPropertyName("content")]
     public M2ChannelContentInfo? Content
     {
-        get => _content.GetValue();
+        get => _content.GetValue(InlineErrors);
         set => _content.SetValue(value);
     }
 
-    private PropertyValue<List<ChannelItemRecord>?> _pinnedMessages = new PropertyValue<List<ChannelItemRecord>?>(nameof(M2ChannelRecord), nameof(PinnedMessages));
+    private PropertyValue<List<ChannelItemRecord>?> _pinnedMessages = new PropertyValue<List<ChannelItemRecord>?>(nameof(M2ChannelRecord), nameof(PinnedMessages), "pinnedMessages");
     
     [JsonPropertyName("pinnedMessages")]
     public List<ChannelItemRecord>? PinnedMessages
     {
-        get => _pinnedMessages.GetValue();
+        get => _pinnedMessages.GetValue(InlineErrors);
         set => _pinnedMessages.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _contact.SetAccessPath(path, validateHasBeenSet);
-        _totalMessages.SetAccessPath(path, validateHasBeenSet);
-        _lastMessage.SetAccessPath(path, validateHasBeenSet);
-        _participants.SetAccessPath(path, validateHasBeenSet);
-        _channelArchived.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _content.SetAccessPath(path, validateHasBeenSet);
-        _pinnedMessages.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _contact.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _totalMessages.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastMessage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _participants.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channelArchived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _content.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pinnedMessages.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

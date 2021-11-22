@@ -42,20 +42,24 @@ public sealed class EndpointAuthCreateBearer
         Token = token;
     }
     
-    private PropertyValue<string> _token = new PropertyValue<string>(nameof(EndpointAuthCreateBearer), nameof(Token));
+    private PropertyValue<string> _token = new PropertyValue<string>(nameof(EndpointAuthCreateBearer), nameof(Token), "token");
     
     [Required]
     [JsonPropertyName("token")]
     public string Token
     {
-        get => _token.GetValue();
+        get => _token.GetValue(InlineErrors);
         set => _token.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _token.SetAccessPath(path, validateHasBeenSet);
+        _token.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

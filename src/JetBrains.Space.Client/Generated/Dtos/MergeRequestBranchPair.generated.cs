@@ -45,83 +45,87 @@ public sealed class MergeRequestBranchPair
         IsMerged = isMerged;
     }
     
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MergeRequestBranchPair), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MergeRequestBranchPair), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _sourceBranch = new PropertyValue<string>(nameof(MergeRequestBranchPair), nameof(SourceBranch));
+    private PropertyValue<string> _sourceBranch = new PropertyValue<string>(nameof(MergeRequestBranchPair), nameof(SourceBranch), "sourceBranch");
     
     [Required]
     [JsonPropertyName("sourceBranch")]
     public string SourceBranch
     {
-        get => _sourceBranch.GetValue();
+        get => _sourceBranch.GetValue(InlineErrors);
         set => _sourceBranch.SetValue(value);
     }
 
-    private PropertyValue<string> _targetBranch = new PropertyValue<string>(nameof(MergeRequestBranchPair), nameof(TargetBranch));
+    private PropertyValue<string> _targetBranch = new PropertyValue<string>(nameof(MergeRequestBranchPair), nameof(TargetBranch), "targetBranch");
     
     [Required]
     [JsonPropertyName("targetBranch")]
     public string TargetBranch
     {
-        get => _targetBranch.GetValue();
+        get => _targetBranch.GetValue(InlineErrors);
         set => _targetBranch.SetValue(value);
     }
 
-    private PropertyValue<string> _sourceBranchRef = new PropertyValue<string>(nameof(MergeRequestBranchPair), nameof(SourceBranchRef));
+    private PropertyValue<string> _sourceBranchRef = new PropertyValue<string>(nameof(MergeRequestBranchPair), nameof(SourceBranchRef), "sourceBranchRef");
     
     [Required]
     [JsonPropertyName("sourceBranchRef")]
     public string SourceBranchRef
     {
-        get => _sourceBranchRef.GetValue();
+        get => _sourceBranchRef.GetValue(InlineErrors);
         set => _sourceBranchRef.SetValue(value);
     }
 
-    private PropertyValue<MergeRequestBranch?> _sourceBranchInfo = new PropertyValue<MergeRequestBranch?>(nameof(MergeRequestBranchPair), nameof(SourceBranchInfo));
+    private PropertyValue<MergeRequestBranch?> _sourceBranchInfo = new PropertyValue<MergeRequestBranch?>(nameof(MergeRequestBranchPair), nameof(SourceBranchInfo), "sourceBranchInfo");
     
     [JsonPropertyName("sourceBranchInfo")]
     public MergeRequestBranch? SourceBranchInfo
     {
-        get => _sourceBranchInfo.GetValue();
+        get => _sourceBranchInfo.GetValue(InlineErrors);
         set => _sourceBranchInfo.SetValue(value);
     }
 
-    private PropertyValue<MergeRequestBranch?> _targetBranchInfo = new PropertyValue<MergeRequestBranch?>(nameof(MergeRequestBranchPair), nameof(TargetBranchInfo));
+    private PropertyValue<MergeRequestBranch?> _targetBranchInfo = new PropertyValue<MergeRequestBranch?>(nameof(MergeRequestBranchPair), nameof(TargetBranchInfo), "targetBranchInfo");
     
     [JsonPropertyName("targetBranchInfo")]
     public MergeRequestBranch? TargetBranchInfo
     {
-        get => _targetBranchInfo.GetValue();
+        get => _targetBranchInfo.GetValue(InlineErrors);
         set => _targetBranchInfo.SetValue(value);
     }
 
-    private PropertyValue<bool?> _isMerged = new PropertyValue<bool?>(nameof(MergeRequestBranchPair), nameof(IsMerged));
+    private PropertyValue<bool?> _isMerged = new PropertyValue<bool?>(nameof(MergeRequestBranchPair), nameof(IsMerged), "isMerged");
     
     [JsonPropertyName("isMerged")]
     public bool? IsMerged
     {
-        get => _isMerged.GetValue();
+        get => _isMerged.GetValue(InlineErrors);
         set => _isMerged.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _sourceBranch.SetAccessPath(path, validateHasBeenSet);
-        _targetBranch.SetAccessPath(path, validateHasBeenSet);
-        _sourceBranchRef.SetAccessPath(path, validateHasBeenSet);
-        _sourceBranchInfo.SetAccessPath(path, validateHasBeenSet);
-        _targetBranchInfo.SetAccessPath(path, validateHasBeenSet);
-        _isMerged.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sourceBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _targetBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sourceBranchRef.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sourceBranchInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _targetBranchInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _isMerged.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

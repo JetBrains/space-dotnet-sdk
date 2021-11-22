@@ -47,71 +47,75 @@ public sealed class MCMessage
         Extension = extension;
     }
     
-    private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCMessage), nameof(Style));
+    private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCMessage), nameof(Style), "style");
     
     [Required]
     [JsonPropertyName("style")]
     public string Style
     {
-        get => _style.GetValue();
+        get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);
     }
 
-    private PropertyValue<MCOutline?> _outline = new PropertyValue<MCOutline?>(nameof(MCMessage), nameof(Outline));
+    private PropertyValue<MCOutline?> _outline = new PropertyValue<MCOutline?>(nameof(MCMessage), nameof(Outline), "outline");
     
     [JsonPropertyName("outline")]
     public MCOutline? Outline
     {
-        get => _outline.GetValue();
+        get => _outline.GetValue(InlineErrors);
         set => _outline.SetValue(value);
     }
 
-    private PropertyValue<List<MCElement>> _content = new PropertyValue<List<MCElement>>(nameof(MCMessage), nameof(Content), new List<MCElement>());
+    private PropertyValue<List<MCElement>> _content = new PropertyValue<List<MCElement>>(nameof(MCMessage), nameof(Content), "content", new List<MCElement>());
     
     [Required]
     [JsonPropertyName("content")]
     public List<MCElement> Content
     {
-        get => _content.GetValue();
+        get => _content.GetValue(InlineErrors);
         set => _content.SetValue(value);
     }
 
-    private PropertyValue<string?> _serviceId = new PropertyValue<string?>(nameof(MCMessage), nameof(ServiceId));
+    private PropertyValue<string?> _serviceId = new PropertyValue<string?>(nameof(MCMessage), nameof(ServiceId), "serviceId");
     
     [JsonPropertyName("serviceId")]
     public string? ServiceId
     {
-        get => _serviceId.GetValue();
+        get => _serviceId.GetValue(InlineErrors);
         set => _serviceId.SetValue(value);
     }
 
-    private PropertyValue<string?> _supplementaryData = new PropertyValue<string?>(nameof(MCMessage), nameof(SupplementaryData));
+    private PropertyValue<string?> _supplementaryData = new PropertyValue<string?>(nameof(MCMessage), nameof(SupplementaryData), "supplementaryData");
     
     [JsonPropertyName("supplementaryData")]
     public string? SupplementaryData
     {
-        get => _supplementaryData.GetValue();
+        get => _supplementaryData.GetValue(InlineErrors);
         set => _supplementaryData.SetValue(value);
     }
 
-    private PropertyValue<M2ItemContentDetails?> _extension = new PropertyValue<M2ItemContentDetails?>(nameof(MCMessage), nameof(Extension));
+    private PropertyValue<M2ItemContentDetails?> _extension = new PropertyValue<M2ItemContentDetails?>(nameof(MCMessage), nameof(Extension), "extension");
     
     [JsonPropertyName("extension")]
     public M2ItemContentDetails? Extension
     {
-        get => _extension.GetValue();
+        get => _extension.GetValue(InlineErrors);
         set => _extension.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _style.SetAccessPath(path, validateHasBeenSet);
-        _outline.SetAccessPath(path, validateHasBeenSet);
-        _content.SetAccessPath(path, validateHasBeenSet);
-        _serviceId.SetAccessPath(path, validateHasBeenSet);
-        _supplementaryData.SetAccessPath(path, validateHasBeenSet);
-        _extension.SetAccessPath(path, validateHasBeenSet);
+        _style.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _outline.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _content.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _serviceId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _supplementaryData.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _extension.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

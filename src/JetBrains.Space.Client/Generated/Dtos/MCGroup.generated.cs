@@ -42,20 +42,24 @@ public sealed class MCGroup
         Elements = elements;
     }
     
-    private PropertyValue<List<MCElement>> _elements = new PropertyValue<List<MCElement>>(nameof(MCGroup), nameof(Elements), new List<MCElement>());
+    private PropertyValue<List<MCElement>> _elements = new PropertyValue<List<MCElement>>(nameof(MCGroup), nameof(Elements), "elements", new List<MCElement>());
     
     [Required]
     [JsonPropertyName("elements")]
     public List<MCElement> Elements
     {
-        get => _elements.GetValue();
+        get => _elements.GetValue(InlineErrors);
         set => _elements.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _elements.SetAccessPath(path, validateHasBeenSet);
+        _elements.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

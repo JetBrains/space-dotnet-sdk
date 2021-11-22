@@ -42,20 +42,24 @@ public sealed class MeetingOrganizerUser
         ProfileRef = profileRef;
     }
     
-    private PropertyValue<TDMemberProfile> _profileRef = new PropertyValue<TDMemberProfile>(nameof(MeetingOrganizerUser), nameof(ProfileRef));
+    private PropertyValue<TDMemberProfile> _profileRef = new PropertyValue<TDMemberProfile>(nameof(MeetingOrganizerUser), nameof(ProfileRef), "profileRef");
     
     [Required]
     [JsonPropertyName("profileRef")]
     public TDMemberProfile ProfileRef
     {
-        get => _profileRef.GetValue();
+        get => _profileRef.GetValue(InlineErrors);
         set => _profileRef.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profileRef.SetAccessPath(path, validateHasBeenSet);
+        _profileRef.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

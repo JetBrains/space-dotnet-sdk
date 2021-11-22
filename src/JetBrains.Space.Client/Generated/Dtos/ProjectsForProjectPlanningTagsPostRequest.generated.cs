@@ -40,30 +40,34 @@ public class ProjectsForProjectPlanningTagsPostRequest
         Path = path;
     }
     
-    private PropertyValue<string?> _parentTagId = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningTagsPostRequest), nameof(ParentTagId));
+    private PropertyValue<string?> _parentTagId = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningTagsPostRequest), nameof(ParentTagId), "parentTagId");
     
     [JsonPropertyName("parentTagId")]
     public string? ParentTagId
     {
-        get => _parentTagId.GetValue();
+        get => _parentTagId.GetValue(InlineErrors);
         set => _parentTagId.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _path = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningTagsPostRequest), nameof(Path), new List<string>());
+    private PropertyValue<List<string>> _path = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningTagsPostRequest), nameof(Path), "path", new List<string>());
     
     [Required]
     [JsonPropertyName("path")]
     public List<string> Path
     {
-        get => _path.GetValue();
+        get => _path.GetValue(InlineErrors);
         set => _path.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _parentTagId.SetAccessPath(path, validateHasBeenSet);
-        _path.SetAccessPath(path, validateHasBeenSet);
+        _parentTagId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _path.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

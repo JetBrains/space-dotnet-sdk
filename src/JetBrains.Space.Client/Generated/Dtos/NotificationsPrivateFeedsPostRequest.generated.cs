@@ -42,53 +42,57 @@ public class NotificationsPrivateFeedsPostRequest
         Color = color;
     }
     
-    private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Profile));
+    private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public ProfileIdentifier Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _icon = new PropertyValue<string>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Icon));
+    private PropertyValue<string> _icon = new PropertyValue<string>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Icon), "icon");
     
     [Required]
     [JsonPropertyName("icon")]
     public string Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<PrivateFeedColor> _color = new PropertyValue<PrivateFeedColor>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Color));
+    private PropertyValue<PrivateFeedColor> _color = new PropertyValue<PrivateFeedColor>(nameof(NotificationsPrivateFeedsPostRequest), nameof(Color), "color");
     
     [Required]
     [JsonPropertyName("color")]
     public PrivateFeedColor Color
     {
-        get => _color.GetValue();
+        get => _color.GetValue(InlineErrors);
         set => _color.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _icon.SetAccessPath(path, validateHasBeenSet);
-        _color.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _color.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

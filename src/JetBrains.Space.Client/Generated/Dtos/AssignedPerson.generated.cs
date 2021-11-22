@@ -40,29 +40,33 @@ public sealed class AssignedPerson
         Role = role;
     }
     
-    private PropertyValue<TDMemberProfile?> _profile = new PropertyValue<TDMemberProfile?>(nameof(AssignedPerson), nameof(Profile));
+    private PropertyValue<TDMemberProfile?> _profile = new PropertyValue<TDMemberProfile?>(nameof(AssignedPerson), nameof(Profile), "profile");
     
     [JsonPropertyName("profile")]
     public TDMemberProfile? Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(AssignedPerson), nameof(Role));
+    private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(AssignedPerson), nameof(Role), "role");
     
     [JsonPropertyName("role")]
     public string? Role
     {
-        get => _role.GetValue();
+        get => _role.GetValue(InlineErrors);
         set => _role.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _role.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _role.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

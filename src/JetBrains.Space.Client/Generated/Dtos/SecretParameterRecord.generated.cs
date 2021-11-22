@@ -47,105 +47,109 @@ public sealed class SecretParameterRecord
         UpdatedBy = updatedBy;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(SecretParameterRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(SecretParameterRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(SecretParameterRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(SecretParameterRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<string> _bundleId = new PropertyValue<string>(nameof(SecretParameterRecord), nameof(BundleId));
+    private PropertyValue<string> _bundleId = new PropertyValue<string>(nameof(SecretParameterRecord), nameof(BundleId), "bundleId");
     
     [Required]
     [JsonPropertyName("bundleId")]
     public string BundleId
     {
-        get => _bundleId.GetValue();
+        get => _bundleId.GetValue(InlineErrors);
         set => _bundleId.SetValue(value);
     }
 
-    private PropertyValue<string> _key = new PropertyValue<string>(nameof(SecretParameterRecord), nameof(Key));
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(SecretParameterRecord), nameof(Key), "key");
     
     [Required]
     [JsonPropertyName("key")]
     public string Key
     {
-        get => _key.GetValue();
+        get => _key.GetValue(InlineErrors);
         set => _key.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(SecretParameterRecord), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(SecretParameterRecord), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _createdAt = new PropertyValue<DateTime?>(nameof(SecretParameterRecord), nameof(CreatedAt));
+    private PropertyValue<DateTime?> _createdAt = new PropertyValue<DateTime?>(nameof(SecretParameterRecord), nameof(CreatedAt), "createdAt");
     
     [JsonPropertyName("createdAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? CreatedAt
     {
-        get => _createdAt.GetValue();
+        get => _createdAt.GetValue(InlineErrors);
         set => _createdAt.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(SecretParameterRecord), nameof(CreatedBy));
+    private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(SecretParameterRecord), nameof(CreatedBy), "createdBy");
     
     [JsonPropertyName("createdBy")]
     public CPrincipal? CreatedBy
     {
-        get => _createdBy.GetValue();
+        get => _createdBy.GetValue(InlineErrors);
         set => _createdBy.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _updatedAt = new PropertyValue<DateTime?>(nameof(SecretParameterRecord), nameof(UpdatedAt));
+    private PropertyValue<DateTime?> _updatedAt = new PropertyValue<DateTime?>(nameof(SecretParameterRecord), nameof(UpdatedAt), "updatedAt");
     
     [JsonPropertyName("updatedAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? UpdatedAt
     {
-        get => _updatedAt.GetValue();
+        get => _updatedAt.GetValue(InlineErrors);
         set => _updatedAt.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(SecretParameterRecord), nameof(UpdatedBy));
+    private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(SecretParameterRecord), nameof(UpdatedBy), "updatedBy");
     
     [JsonPropertyName("updatedBy")]
     public CPrincipal? UpdatedBy
     {
-        get => _updatedBy.GetValue();
+        get => _updatedBy.GetValue(InlineErrors);
         set => _updatedBy.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _bundleId.SetAccessPath(path, validateHasBeenSet);
-        _key.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _createdAt.SetAccessPath(path, validateHasBeenSet);
-        _createdBy.SetAccessPath(path, validateHasBeenSet);
-        _updatedAt.SetAccessPath(path, validateHasBeenSet);
-        _updatedBy.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bundleId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updatedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updatedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -39,20 +39,24 @@ public sealed class SSLKeystoreEndpointAuth
         SslKeystore = sslKeystore;
     }
     
-    private PropertyValue<string> _sslKeystore = new PropertyValue<string>(nameof(SSLKeystoreEndpointAuth), nameof(SslKeystore));
+    private PropertyValue<string> _sslKeystore = new PropertyValue<string>(nameof(SSLKeystoreEndpointAuth), nameof(SslKeystore), "sslKeystore");
     
     [Required]
     [JsonPropertyName("sslKeystore")]
     public string SslKeystore
     {
-        get => _sslKeystore.GetValue();
+        get => _sslKeystore.GetValue(InlineErrors);
         set => _sslKeystore.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _sslKeystore.SetAccessPath(path, validateHasBeenSet);
+        _sslKeystore.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

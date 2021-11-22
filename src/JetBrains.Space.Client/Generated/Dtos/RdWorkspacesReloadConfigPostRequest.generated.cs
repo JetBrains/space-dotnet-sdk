@@ -39,20 +39,24 @@ public class RdWorkspacesReloadConfigPostRequest
         Workspace = workspace;
     }
     
-    private PropertyValue<WorkspaceIdentifier> _workspace = new PropertyValue<WorkspaceIdentifier>(nameof(RdWorkspacesReloadConfigPostRequest), nameof(Workspace));
+    private PropertyValue<WorkspaceIdentifier> _workspace = new PropertyValue<WorkspaceIdentifier>(nameof(RdWorkspacesReloadConfigPostRequest), nameof(Workspace), "workspace");
     
     [Required]
     [JsonPropertyName("workspace")]
     public WorkspaceIdentifier Workspace
     {
-        get => _workspace.GetValue();
+        get => _workspace.GetValue(InlineErrors);
         set => _workspace.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _workspace.SetAccessPath(path, validateHasBeenSet);
+        _workspace.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

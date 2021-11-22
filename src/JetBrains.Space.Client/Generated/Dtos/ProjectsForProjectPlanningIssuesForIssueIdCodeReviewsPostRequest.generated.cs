@@ -39,20 +39,24 @@ public class ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest
         CodeReviewIds = codeReviewIds;
     }
     
-    private PropertyValue<List<ReviewIdentifier>> _codeReviewIds = new PropertyValue<List<ReviewIdentifier>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest), nameof(CodeReviewIds), new List<ReviewIdentifier>());
+    private PropertyValue<List<ReviewIdentifier>> _codeReviewIds = new PropertyValue<List<ReviewIdentifier>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest), nameof(CodeReviewIds), "codeReviewIds", new List<ReviewIdentifier>());
     
     [Required]
     [JsonPropertyName("codeReviewIds")]
     public List<ReviewIdentifier> CodeReviewIds
     {
-        get => _codeReviewIds.GetValue();
+        get => _codeReviewIds.GetValue(InlineErrors);
         set => _codeReviewIds.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _codeReviewIds.SetAccessPath(path, validateHasBeenSet);
+        _codeReviewIds.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

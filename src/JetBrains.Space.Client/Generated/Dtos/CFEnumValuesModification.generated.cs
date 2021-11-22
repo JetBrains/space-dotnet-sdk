@@ -41,42 +41,46 @@ public sealed class CFEnumValuesModification
         ValuesToDelete = valuesToDelete;
     }
     
-    private PropertyValue<List<EnumValueData>> _valuesToAdd = new PropertyValue<List<EnumValueData>>(nameof(CFEnumValuesModification), nameof(ValuesToAdd), new List<EnumValueData>());
+    private PropertyValue<List<EnumValueData>> _valuesToAdd = new PropertyValue<List<EnumValueData>>(nameof(CFEnumValuesModification), nameof(ValuesToAdd), "valuesToAdd", new List<EnumValueData>());
     
     [Required]
     [JsonPropertyName("valuesToAdd")]
     public List<EnumValueData> ValuesToAdd
     {
-        get => _valuesToAdd.GetValue();
+        get => _valuesToAdd.GetValue(InlineErrors);
         set => _valuesToAdd.SetValue(value);
     }
 
-    private PropertyValue<List<EnumValueData>> _valuesToUpdate = new PropertyValue<List<EnumValueData>>(nameof(CFEnumValuesModification), nameof(ValuesToUpdate), new List<EnumValueData>());
+    private PropertyValue<List<EnumValueData>> _valuesToUpdate = new PropertyValue<List<EnumValueData>>(nameof(CFEnumValuesModification), nameof(ValuesToUpdate), "valuesToUpdate", new List<EnumValueData>());
     
     [Required]
     [JsonPropertyName("valuesToUpdate")]
     public List<EnumValueData> ValuesToUpdate
     {
-        get => _valuesToUpdate.GetValue();
+        get => _valuesToUpdate.GetValue(InlineErrors);
         set => _valuesToUpdate.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _valuesToDelete = new PropertyValue<List<string>>(nameof(CFEnumValuesModification), nameof(ValuesToDelete), new List<string>());
+    private PropertyValue<List<string>> _valuesToDelete = new PropertyValue<List<string>>(nameof(CFEnumValuesModification), nameof(ValuesToDelete), "valuesToDelete", new List<string>());
     
     [Required]
     [JsonPropertyName("valuesToDelete")]
     public List<string> ValuesToDelete
     {
-        get => _valuesToDelete.GetValue();
+        get => _valuesToDelete.GetValue(InlineErrors);
         set => _valuesToDelete.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _valuesToAdd.SetAccessPath(path, validateHasBeenSet);
-        _valuesToUpdate.SetAccessPath(path, validateHasBeenSet);
-        _valuesToDelete.SetAccessPath(path, validateHasBeenSet);
+        _valuesToAdd.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _valuesToUpdate.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _valuesToDelete.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

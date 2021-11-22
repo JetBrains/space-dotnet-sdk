@@ -43,29 +43,33 @@ public sealed class IssueCreatedDetails
         OriginMessage = originMessage;
     }
     
-    private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(IssueCreatedDetails), nameof(Issue));
+    private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(IssueCreatedDetails), nameof(Issue), "issue");
     
     [JsonPropertyName("issue")]
     public Issue? Issue
     {
-        get => _issue.GetValue();
+        get => _issue.GetValue(InlineErrors);
         set => _issue.SetValue(value);
     }
 
-    private PropertyValue<MessageLink?> _originMessage = new PropertyValue<MessageLink?>(nameof(IssueCreatedDetails), nameof(OriginMessage));
+    private PropertyValue<MessageLink?> _originMessage = new PropertyValue<MessageLink?>(nameof(IssueCreatedDetails), nameof(OriginMessage), "originMessage");
     
     [JsonPropertyName("originMessage")]
     public MessageLink? OriginMessage
     {
-        get => _originMessage.GetValue();
+        get => _originMessage.GetValue(InlineErrors);
         set => _originMessage.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _issue.SetAccessPath(path, validateHasBeenSet);
-        _originMessage.SetAccessPath(path, validateHasBeenSet);
+        _issue.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _originMessage.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

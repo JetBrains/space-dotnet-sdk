@@ -42,52 +42,56 @@ public class ChatsMessagesEditMessagePostRequest
         IsUnfurlLinks = unfurlLinks;
     }
     
-    private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Channel));
+    private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Channel), "channel");
     
     [Required]
     [JsonPropertyName("channel")]
     public string Channel
     {
-        get => _channel.GetValue();
+        get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
     }
 
-    private PropertyValue<ChatMessageIdentifier> _message = new PropertyValue<ChatMessageIdentifier>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Message));
+    private PropertyValue<ChatMessageIdentifier> _message = new PropertyValue<ChatMessageIdentifier>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Message), "message");
     
     [Required]
     [JsonPropertyName("message")]
     public ChatMessageIdentifier Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    private PropertyValue<ChatMessage> _content = new PropertyValue<ChatMessage>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Content));
+    private PropertyValue<ChatMessage> _content = new PropertyValue<ChatMessage>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Content), "content");
     
     [Required]
     [JsonPropertyName("content")]
     public ChatMessage Content
     {
-        get => _content.GetValue();
+        get => _content.GetValue(InlineErrors);
         set => _content.SetValue(value);
     }
 
-    private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesEditMessagePostRequest), nameof(IsUnfurlLinks));
+    private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesEditMessagePostRequest), nameof(IsUnfurlLinks), "unfurlLinks");
     
     [JsonPropertyName("unfurlLinks")]
     public bool? IsUnfurlLinks
     {
-        get => _unfurlLinks.GetValue();
+        get => _unfurlLinks.GetValue(InlineErrors);
         set => _unfurlLinks.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _channel.SetAccessPath(path, validateHasBeenSet);
-        _message.SetAccessPath(path, validateHasBeenSet);
-        _content.SetAccessPath(path, validateHasBeenSet);
-        _unfurlLinks.SetAccessPath(path, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _content.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unfurlLinks.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

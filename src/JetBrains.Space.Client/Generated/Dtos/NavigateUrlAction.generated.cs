@@ -44,42 +44,46 @@ public sealed class NavigateUrlAction
         IsOpenInNewTab = openInNewTab;
     }
     
-    private PropertyValue<string> _url = new PropertyValue<string>(nameof(NavigateUrlAction), nameof(Url));
+    private PropertyValue<string> _url = new PropertyValue<string>(nameof(NavigateUrlAction), nameof(Url), "url");
     
     [Required]
     [JsonPropertyName("url")]
     public string Url
     {
-        get => _url.GetValue();
+        get => _url.GetValue(InlineErrors);
         set => _url.SetValue(value);
     }
 
-    private PropertyValue<bool> _withBackUrl = new PropertyValue<bool>(nameof(NavigateUrlAction), nameof(IsWithBackUrl));
+    private PropertyValue<bool> _withBackUrl = new PropertyValue<bool>(nameof(NavigateUrlAction), nameof(IsWithBackUrl), "withBackUrl");
     
     [Required]
     [JsonPropertyName("withBackUrl")]
     public bool IsWithBackUrl
     {
-        get => _withBackUrl.GetValue();
+        get => _withBackUrl.GetValue(InlineErrors);
         set => _withBackUrl.SetValue(value);
     }
 
-    private PropertyValue<bool> _openInNewTab = new PropertyValue<bool>(nameof(NavigateUrlAction), nameof(IsOpenInNewTab));
+    private PropertyValue<bool> _openInNewTab = new PropertyValue<bool>(nameof(NavigateUrlAction), nameof(IsOpenInNewTab), "openInNewTab");
     
     [Required]
     [JsonPropertyName("openInNewTab")]
     public bool IsOpenInNewTab
     {
-        get => _openInNewTab.GetValue();
+        get => _openInNewTab.GetValue(InlineErrors);
         set => _openInNewTab.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _url.SetAccessPath(path, validateHasBeenSet);
-        _withBackUrl.SetAccessPath(path, validateHasBeenSet);
-        _openInNewTab.SetAccessPath(path, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _withBackUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _openInNewTab.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,31 +40,35 @@ public sealed class GitCommitFileRequest
         Content = content;
     }
     
-    private PropertyValue<string> _path = new PropertyValue<string>(nameof(GitCommitFileRequest), nameof(Path));
+    private PropertyValue<string> _path = new PropertyValue<string>(nameof(GitCommitFileRequest), nameof(Path), "path");
     
     [Required]
     [JsonPropertyName("path")]
     public string Path
     {
-        get => _path.GetValue();
+        get => _path.GetValue(InlineErrors);
         set => _path.SetValue(value);
     }
 
-    private PropertyValue<GitFileContent> _content = new PropertyValue<GitFileContent>(nameof(GitCommitFileRequest), nameof(Content));
+    private PropertyValue<GitFileContent> _content = new PropertyValue<GitFileContent>(nameof(GitCommitFileRequest), nameof(Content), "content");
     
     [Required]
     [JsonPropertyName("content")]
     public GitFileContent Content
     {
-        get => _content.GetValue();
+        get => _content.GetValue(InlineErrors);
         set => _content.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _path.SetAccessPath(path, validateHasBeenSet);
-        _content.SetAccessPath(path, validateHasBeenSet);
+        _path.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _content.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

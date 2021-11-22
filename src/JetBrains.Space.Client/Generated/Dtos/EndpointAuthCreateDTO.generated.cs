@@ -40,30 +40,34 @@ public sealed class EndpointAuthCreateDTO
         SslKeystore = sslKeystore;
     }
     
-    private PropertyValue<EndpointAuthCreate> _appLevelAuth = new PropertyValue<EndpointAuthCreate>(nameof(EndpointAuthCreateDTO), nameof(AppLevelAuth));
+    private PropertyValue<EndpointAuthCreate> _appLevelAuth = new PropertyValue<EndpointAuthCreate>(nameof(EndpointAuthCreateDTO), nameof(AppLevelAuth), "appLevelAuth");
     
     [Required]
     [JsonPropertyName("appLevelAuth")]
     public EndpointAuthCreate AppLevelAuth
     {
-        get => _appLevelAuth.GetValue();
+        get => _appLevelAuth.GetValue(InlineErrors);
         set => _appLevelAuth.SetValue(value);
     }
 
-    private PropertyValue<SSLKeystoreEndpointAuth?> _sslKeystore = new PropertyValue<SSLKeystoreEndpointAuth?>(nameof(EndpointAuthCreateDTO), nameof(SslKeystore));
+    private PropertyValue<SSLKeystoreEndpointAuth?> _sslKeystore = new PropertyValue<SSLKeystoreEndpointAuth?>(nameof(EndpointAuthCreateDTO), nameof(SslKeystore), "sslKeystore");
     
     [JsonPropertyName("sslKeystore")]
     public SSLKeystoreEndpointAuth? SslKeystore
     {
-        get => _sslKeystore.GetValue();
+        get => _sslKeystore.GetValue(InlineErrors);
         set => _sslKeystore.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _appLevelAuth.SetAccessPath(path, validateHasBeenSet);
-        _sslKeystore.SetAccessPath(path, validateHasBeenSet);
+        _appLevelAuth.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sslKeystore.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

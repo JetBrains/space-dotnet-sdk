@@ -41,40 +41,44 @@ public sealed class TDProfileLanguage
         LanguageCode = languageCode;
     }
     
-    private PropertyValue<TDProfileName?> _name = new PropertyValue<TDProfileName?>(nameof(TDProfileLanguage), nameof(Name));
+    private PropertyValue<TDProfileName?> _name = new PropertyValue<TDProfileName?>(nameof(TDProfileLanguage), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public TDProfileName? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<TDLanguage> _language = new PropertyValue<TDLanguage>(nameof(TDProfileLanguage), nameof(Language));
+    private PropertyValue<TDLanguage> _language = new PropertyValue<TDLanguage>(nameof(TDProfileLanguage), nameof(Language), "language");
     
     [Required]
     [JsonPropertyName("language")]
     public TDLanguage Language
     {
-        get => _language.GetValue();
+        get => _language.GetValue(InlineErrors);
         set => _language.SetValue(value);
     }
 
-    private PropertyValue<string?> _languageCode = new PropertyValue<string?>(nameof(TDProfileLanguage), nameof(LanguageCode));
+    private PropertyValue<string?> _languageCode = new PropertyValue<string?>(nameof(TDProfileLanguage), nameof(LanguageCode), "languageCode");
     
     [JsonPropertyName("languageCode")]
     public string? LanguageCode
     {
-        get => _languageCode.GetValue();
+        get => _languageCode.GetValue(InlineErrors);
         set => _languageCode.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _language.SetAccessPath(path, validateHasBeenSet);
-        _languageCode.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _language.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _languageCode.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

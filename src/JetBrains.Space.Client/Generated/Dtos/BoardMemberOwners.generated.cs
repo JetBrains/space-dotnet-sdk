@@ -39,20 +39,24 @@ public sealed class BoardMemberOwners
         Members = members;
     }
     
-    private PropertyValue<List<TDMemberProfile>> _members = new PropertyValue<List<TDMemberProfile>>(nameof(BoardMemberOwners), nameof(Members), new List<TDMemberProfile>());
+    private PropertyValue<List<TDMemberProfile>> _members = new PropertyValue<List<TDMemberProfile>>(nameof(BoardMemberOwners), nameof(Members), "members", new List<TDMemberProfile>());
     
     [Required]
     [JsonPropertyName("members")]
     public List<TDMemberProfile> Members
     {
-        get => _members.GetValue();
+        get => _members.GetValue(InlineErrors);
         set => _members.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _members.SetAccessPath(path, validateHasBeenSet);
+        _members.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

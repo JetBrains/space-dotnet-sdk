@@ -44,40 +44,44 @@ public sealed class UnfurlDetailsIssue
         IsCompact = compact;
     }
     
-    private PropertyValue<Issue> _issue = new PropertyValue<Issue>(nameof(UnfurlDetailsIssue), nameof(Issue));
+    private PropertyValue<Issue> _issue = new PropertyValue<Issue>(nameof(UnfurlDetailsIssue), nameof(Issue), "issue");
     
     [Required]
     [JsonPropertyName("issue")]
     public Issue Issue
     {
-        get => _issue.GetValue();
+        get => _issue.GetValue(InlineErrors);
         set => _issue.SetValue(value);
     }
 
-    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsIssue), nameof(IsStrikeThrough));
+    private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsIssue), nameof(IsStrikeThrough), "strikeThrough");
     
     [JsonPropertyName("strikeThrough")]
     public bool? IsStrikeThrough
     {
-        get => _strikeThrough.GetValue();
+        get => _strikeThrough.GetValue(InlineErrors);
         set => _strikeThrough.SetValue(value);
     }
 
-    private PropertyValue<bool?> _compact = new PropertyValue<bool?>(nameof(UnfurlDetailsIssue), nameof(IsCompact));
+    private PropertyValue<bool?> _compact = new PropertyValue<bool?>(nameof(UnfurlDetailsIssue), nameof(IsCompact), "compact");
     
     [JsonPropertyName("compact")]
     public bool? IsCompact
     {
-        get => _compact.GetValue();
+        get => _compact.GetValue(InlineErrors);
         set => _compact.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _issue.SetAccessPath(path, validateHasBeenSet);
-        _strikeThrough.SetAccessPath(path, validateHasBeenSet);
-        _compact.SetAccessPath(path, validateHasBeenSet);
+        _issue.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _strikeThrough.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _compact.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

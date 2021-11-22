@@ -43,31 +43,35 @@ public sealed class M2DraftEditorAddedItemContent
         Title = title;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2DraftEditorAddedItemContent), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2DraftEditorAddedItemContent), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(M2DraftEditorAddedItemContent), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(M2DraftEditorAddedItemContent), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

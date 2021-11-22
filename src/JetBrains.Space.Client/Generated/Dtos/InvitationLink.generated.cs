@@ -48,118 +48,122 @@ public sealed class InvitationLink
         IsDeleted = deleted;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(InvitationLink), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(InvitationLink), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(InvitationLink), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(InvitationLink), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal> _createdBy = new PropertyValue<CPrincipal>(nameof(InvitationLink), nameof(CreatedBy));
+    private PropertyValue<CPrincipal> _createdBy = new PropertyValue<CPrincipal>(nameof(InvitationLink), nameof(CreatedBy), "createdBy");
     
     [Required]
     [JsonPropertyName("createdBy")]
     public CPrincipal CreatedBy
     {
-        get => _createdBy.GetValue();
+        get => _createdBy.GetValue(InlineErrors);
         set => _createdBy.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _createdAt = new PropertyValue<DateTime>(nameof(InvitationLink), nameof(CreatedAt));
+    private PropertyValue<DateTime> _createdAt = new PropertyValue<DateTime>(nameof(InvitationLink), nameof(CreatedAt), "createdAt");
     
     [Required]
     [JsonPropertyName("createdAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime CreatedAt
     {
-        get => _createdAt.GetValue();
+        get => _createdAt.GetValue(InlineErrors);
         set => _createdAt.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _expiresAt = new PropertyValue<DateTime?>(nameof(InvitationLink), nameof(ExpiresAt));
+    private PropertyValue<DateTime?> _expiresAt = new PropertyValue<DateTime?>(nameof(InvitationLink), nameof(ExpiresAt), "expiresAt");
     
     [JsonPropertyName("expiresAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ExpiresAt
     {
-        get => _expiresAt.GetValue();
+        get => _expiresAt.GetValue(InlineErrors);
         set => _expiresAt.SetValue(value);
     }
 
-    private PropertyValue<int> _inviteeLimit = new PropertyValue<int>(nameof(InvitationLink), nameof(InviteeLimit));
+    private PropertyValue<int> _inviteeLimit = new PropertyValue<int>(nameof(InvitationLink), nameof(InviteeLimit), "inviteeLimit");
     
     [Required]
     [JsonPropertyName("inviteeLimit")]
     public int InviteeLimit
     {
-        get => _inviteeLimit.GetValue();
+        get => _inviteeLimit.GetValue(InlineErrors);
         set => _inviteeLimit.SetValue(value);
     }
 
-    private PropertyValue<int> _inviteeUsage = new PropertyValue<int>(nameof(InvitationLink), nameof(InviteeUsage));
+    private PropertyValue<int> _inviteeUsage = new PropertyValue<int>(nameof(InvitationLink), nameof(InviteeUsage), "inviteeUsage");
     
     [Required]
     [JsonPropertyName("inviteeUsage")]
     public int InviteeUsage
     {
-        get => _inviteeUsage.GetValue();
+        get => _inviteeUsage.GetValue(InlineErrors);
         set => _inviteeUsage.SetValue(value);
     }
 
-    private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(InvitationLink), nameof(Team));
+    private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(InvitationLink), nameof(Team), "team");
     
     [JsonPropertyName("team")]
     public TDTeam? Team
     {
-        get => _team.GetValue();
+        get => _team.GetValue(InlineErrors);
         set => _team.SetValue(value);
     }
 
-    private PropertyValue<TDRole?> _position = new PropertyValue<TDRole?>(nameof(InvitationLink), nameof(Position));
+    private PropertyValue<TDRole?> _position = new PropertyValue<TDRole?>(nameof(InvitationLink), nameof(Position), "position");
     
     [JsonPropertyName("position")]
     public TDRole? Position
     {
-        get => _position.GetValue();
+        get => _position.GetValue(InlineErrors);
         set => _position.SetValue(value);
     }
 
-    private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(InvitationLink), nameof(IsDeleted));
+    private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(InvitationLink), nameof(IsDeleted), "deleted");
     
     [Required]
     [JsonPropertyName("deleted")]
     public bool IsDeleted
     {
-        get => _deleted.GetValue();
+        get => _deleted.GetValue(InlineErrors);
         set => _deleted.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _createdBy.SetAccessPath(path, validateHasBeenSet);
-        _createdAt.SetAccessPath(path, validateHasBeenSet);
-        _expiresAt.SetAccessPath(path, validateHasBeenSet);
-        _inviteeLimit.SetAccessPath(path, validateHasBeenSet);
-        _inviteeUsage.SetAccessPath(path, validateHasBeenSet);
-        _team.SetAccessPath(path, validateHasBeenSet);
-        _position.SetAccessPath(path, validateHasBeenSet);
-        _deleted.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _expiresAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inviteeLimit.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inviteeUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _team.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _position.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

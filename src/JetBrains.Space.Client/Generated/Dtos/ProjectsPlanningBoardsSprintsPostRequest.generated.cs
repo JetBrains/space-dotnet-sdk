@@ -43,65 +43,69 @@ public class ProjectsPlanningBoardsSprintsPostRequest
         To = to;
     }
     
-    private PropertyValue<BoardIdentifier> _board = new PropertyValue<BoardIdentifier>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(Board));
+    private PropertyValue<BoardIdentifier> _board = new PropertyValue<BoardIdentifier>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(Board), "board");
     
     [Required]
     [JsonPropertyName("board")]
     public BoardIdentifier Board
     {
-        get => _board.GetValue();
+        get => _board.GetValue(InlineErrors);
         set => _board.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _from = new PropertyValue<DateTime>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(From));
+    private PropertyValue<DateTime> _from = new PropertyValue<DateTime>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(From), "from");
     
     [Required]
     [JsonPropertyName("from")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime From
     {
-        get => _from.GetValue();
+        get => _from.GetValue(InlineErrors);
         set => _from.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _to = new PropertyValue<DateTime>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(To));
+    private PropertyValue<DateTime> _to = new PropertyValue<DateTime>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(To), "to");
     
     [Required]
     [JsonPropertyName("to")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime To
     {
-        get => _to.GetValue();
+        get => _to.GetValue(InlineErrors);
         set => _to.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _board.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _from.SetAccessPath(path, validateHasBeenSet);
-        _to.SetAccessPath(path, validateHasBeenSet);
+        _board.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _from.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _to.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

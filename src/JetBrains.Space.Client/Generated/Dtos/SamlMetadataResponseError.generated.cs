@@ -42,20 +42,24 @@ public sealed class SamlMetadataResponseError
         Messages = messages;
     }
     
-    private PropertyValue<List<string>> _messages = new PropertyValue<List<string>>(nameof(SamlMetadataResponseError), nameof(Messages), new List<string>());
+    private PropertyValue<List<string>> _messages = new PropertyValue<List<string>>(nameof(SamlMetadataResponseError), nameof(Messages), "messages", new List<string>());
     
     [Required]
     [JsonPropertyName("messages")]
     public List<string> Messages
     {
-        get => _messages.GetValue();
+        get => _messages.GetValue(InlineErrors);
         set => _messages.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _messages.SetAccessPath(path, validateHasBeenSet);
+        _messages.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

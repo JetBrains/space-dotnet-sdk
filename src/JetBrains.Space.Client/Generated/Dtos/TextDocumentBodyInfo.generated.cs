@@ -42,20 +42,24 @@ public sealed class TextDocumentBodyInfo
         TextDocument = textDocument;
     }
     
-    private PropertyValue<TextDocumentRecord> _textDocument = new PropertyValue<TextDocumentRecord>(nameof(TextDocumentBodyInfo), nameof(TextDocument));
+    private PropertyValue<TextDocumentRecord> _textDocument = new PropertyValue<TextDocumentRecord>(nameof(TextDocumentBodyInfo), nameof(TextDocument), "textDocument");
     
     [Required]
     [JsonPropertyName("textDocument")]
     public TextDocumentRecord TextDocument
     {
-        get => _textDocument.GetValue();
+        get => _textDocument.GetValue(InlineErrors);
         set => _textDocument.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _textDocument.SetAccessPath(path, validateHasBeenSet);
+        _textDocument.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

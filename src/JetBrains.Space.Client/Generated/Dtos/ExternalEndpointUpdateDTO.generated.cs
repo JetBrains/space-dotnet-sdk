@@ -40,30 +40,34 @@ public sealed class ExternalEndpointUpdateDTO
         IsSslVerification = sslVerification;
     }
     
-    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(ExternalEndpointUpdateDTO), nameof(Url));
+    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(ExternalEndpointUpdateDTO), nameof(Url), "url");
     
     [JsonPropertyName("url")]
     public string? Url
     {
-        get => _url.GetValue();
+        get => _url.GetValue(InlineErrors);
         set => _url.SetValue(value);
     }
 
-    private PropertyValue<bool> _sslVerification = new PropertyValue<bool>(nameof(ExternalEndpointUpdateDTO), nameof(IsSslVerification));
+    private PropertyValue<bool> _sslVerification = new PropertyValue<bool>(nameof(ExternalEndpointUpdateDTO), nameof(IsSslVerification), "sslVerification");
     
     [Required]
     [JsonPropertyName("sslVerification")]
     public bool IsSslVerification
     {
-        get => _sslVerification.GetValue();
+        get => _sslVerification.GetValue(InlineErrors);
         set => _sslVerification.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _url.SetAccessPath(path, validateHasBeenSet);
-        _sslVerification.SetAccessPath(path, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sslVerification.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

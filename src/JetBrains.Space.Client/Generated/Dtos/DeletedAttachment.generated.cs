@@ -42,20 +42,24 @@ public sealed class DeletedAttachment
         DeletedIdentity = deletedIdentity;
     }
     
-    private PropertyValue<string> _deletedIdentity = new PropertyValue<string>(nameof(DeletedAttachment), nameof(DeletedIdentity));
+    private PropertyValue<string> _deletedIdentity = new PropertyValue<string>(nameof(DeletedAttachment), nameof(DeletedIdentity), "deletedIdentity");
     
     [Required]
     [JsonPropertyName("deletedIdentity")]
     public string DeletedIdentity
     {
-        get => _deletedIdentity.GetValue();
+        get => _deletedIdentity.GetValue(InlineErrors);
         set => _deletedIdentity.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _deletedIdentity.SetAccessPath(path, validateHasBeenSet);
+        _deletedIdentity.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

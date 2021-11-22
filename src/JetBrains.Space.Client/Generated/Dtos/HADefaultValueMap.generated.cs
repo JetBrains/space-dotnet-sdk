@@ -42,20 +42,24 @@ public sealed class HADefaultValueMap
         Elements = elements;
     }
     
-    private PropertyValue<Dictionary<string, HADefaultValue>> _elements = new PropertyValue<Dictionary<string, HADefaultValue>>(nameof(HADefaultValueMap), nameof(Elements), new Dictionary<string, HADefaultValue>());
+    private PropertyValue<Dictionary<string, HADefaultValue>> _elements = new PropertyValue<Dictionary<string, HADefaultValue>>(nameof(HADefaultValueMap), nameof(Elements), "elements", new Dictionary<string, HADefaultValue>());
     
     [Required]
     [JsonPropertyName("elements")]
     public Dictionary<string, HADefaultValue> Elements
     {
-        get => _elements.GetValue();
+        get => _elements.GetValue(InlineErrors);
         set => _elements.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _elements.SetAccessPath(path, validateHasBeenSet);
+        _elements.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -43,31 +43,35 @@ public sealed class RecurrenceRuleFreqWeekly
         Interval = interval;
     }
     
-    private PropertyValue<List<Weekday>> _weekdays = new PropertyValue<List<Weekday>>(nameof(RecurrenceRuleFreqWeekly), nameof(Weekdays), new List<Weekday>());
+    private PropertyValue<List<Weekday>> _weekdays = new PropertyValue<List<Weekday>>(nameof(RecurrenceRuleFreqWeekly), nameof(Weekdays), "weekdays", new List<Weekday>());
     
     [Required]
     [JsonPropertyName("weekdays")]
     public List<Weekday> Weekdays
     {
-        get => _weekdays.GetValue();
+        get => _weekdays.GetValue(InlineErrors);
         set => _weekdays.SetValue(value);
     }
 
-    private PropertyValue<int> _interval = new PropertyValue<int>(nameof(RecurrenceRuleFreqWeekly), nameof(Interval));
+    private PropertyValue<int> _interval = new PropertyValue<int>(nameof(RecurrenceRuleFreqWeekly), nameof(Interval), "interval");
     
     [Required]
     [JsonPropertyName("interval")]
     public int Interval
     {
-        get => _interval.GetValue();
+        get => _interval.GetValue(InlineErrors);
         set => _interval.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _weekdays.SetAccessPath(path, validateHasBeenSet);
-        _interval.SetAccessPath(path, validateHasBeenSet);
+        _weekdays.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _interval.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

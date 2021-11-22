@@ -39,20 +39,24 @@ public class TeamDirectoryProfilesForProfileReactivatePatchRequest
         Joined = joined;
     }
     
-    private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileReactivatePatchRequest), nameof(Joined));
+    private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileReactivatePatchRequest), nameof(Joined), "joined");
     
     [JsonPropertyName("joined")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Joined
     {
-        get => _joined.GetValue();
+        get => _joined.GetValue(InlineErrors);
         set => _joined.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _joined.SetAccessPath(path, validateHasBeenSet);
+        _joined.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

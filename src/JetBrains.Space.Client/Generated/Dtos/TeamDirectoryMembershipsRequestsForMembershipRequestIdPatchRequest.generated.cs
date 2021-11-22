@@ -39,20 +39,24 @@ public class TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest
         IsApproved = approved;
     }
     
-    private PropertyValue<bool> _approved = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest), nameof(IsApproved));
+    private PropertyValue<bool> _approved = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest), nameof(IsApproved), "approved");
     
     [Required]
     [JsonPropertyName("approved")]
     public bool IsApproved
     {
-        get => _approved.GetValue();
+        get => _approved.GetValue(InlineErrors);
         set => _approved.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _approved.SetAccessPath(path, validateHasBeenSet);
+        _approved.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

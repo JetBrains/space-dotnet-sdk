@@ -43,30 +43,34 @@ public sealed class UnfurlDetailsDateTime
         Params = @params;
     }
     
-    private PropertyValue<long> _utcMilliseconds = new PropertyValue<long>(nameof(UnfurlDetailsDateTime), nameof(UtcMilliseconds));
+    private PropertyValue<long> _utcMilliseconds = new PropertyValue<long>(nameof(UnfurlDetailsDateTime), nameof(UtcMilliseconds), "utcMilliseconds");
     
     [Required]
     [JsonPropertyName("utcMilliseconds")]
     public long UtcMilliseconds
     {
-        get => _utcMilliseconds.GetValue();
+        get => _utcMilliseconds.GetValue(InlineErrors);
         set => _utcMilliseconds.SetValue(value);
     }
 
-    private PropertyValue<DateTimeViewParams?> _params = new PropertyValue<DateTimeViewParams?>(nameof(UnfurlDetailsDateTime), nameof(Params));
+    private PropertyValue<DateTimeViewParams?> _params = new PropertyValue<DateTimeViewParams?>(nameof(UnfurlDetailsDateTime), nameof(Params), "params");
     
     [JsonPropertyName("params")]
     public DateTimeViewParams? Params
     {
-        get => _params.GetValue();
+        get => _params.GetValue(InlineErrors);
         set => _params.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _utcMilliseconds.SetAccessPath(path, validateHasBeenSet);
-        _params.SetAccessPath(path, validateHasBeenSet);
+        _utcMilliseconds.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _params.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

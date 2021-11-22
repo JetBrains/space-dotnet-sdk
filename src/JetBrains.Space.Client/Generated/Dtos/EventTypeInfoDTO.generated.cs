@@ -44,74 +44,78 @@ public sealed class EventTypeInfoDTO
         SortOrder = sortOrder;
     }
     
-    private PropertyValue<string> _code = new PropertyValue<string>(nameof(EventTypeInfoDTO), nameof(Code));
+    private PropertyValue<string> _code = new PropertyValue<string>(nameof(EventTypeInfoDTO), nameof(Code), "code");
     
     [Required]
     [JsonPropertyName("code")]
     public string Code
     {
-        get => _code.GetValue();
+        get => _code.GetValue(InlineErrors);
         set => _code.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(EventTypeInfoDTO), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(EventTypeInfoDTO), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _description = new PropertyValue<string>(nameof(EventTypeInfoDTO), nameof(Description));
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(EventTypeInfoDTO), nameof(Description), "description");
     
     [Required]
     [JsonPropertyName("description")]
     public string Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<List<CRight>> _rights = new PropertyValue<List<CRight>>(nameof(EventTypeInfoDTO), nameof(Rights), new List<CRight>());
+    private PropertyValue<List<CRight>> _rights = new PropertyValue<List<CRight>>(nameof(EventTypeInfoDTO), nameof(Rights), "rights", new List<CRight>());
     
     [Required]
     [JsonPropertyName("rights")]
     public List<CRight> Rights
     {
-        get => _rights.GetValue();
+        get => _rights.GetValue(InlineErrors);
         set => _rights.SetValue(value);
     }
 
-    private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(EventTypeInfoDTO), nameof(FeatureFlag));
+    private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(EventTypeInfoDTO), nameof(FeatureFlag), "featureFlag");
     
     [JsonPropertyName("featureFlag")]
     public string? FeatureFlag
     {
-        get => _featureFlag.GetValue();
+        get => _featureFlag.GetValue(InlineErrors);
         set => _featureFlag.SetValue(value);
     }
 
-    private PropertyValue<int> _sortOrder = new PropertyValue<int>(nameof(EventTypeInfoDTO), nameof(SortOrder));
+    private PropertyValue<int> _sortOrder = new PropertyValue<int>(nameof(EventTypeInfoDTO), nameof(SortOrder), "sortOrder");
     
     [Required]
     [JsonPropertyName("sortOrder")]
     public int SortOrder
     {
-        get => _sortOrder.GetValue();
+        get => _sortOrder.GetValue(InlineErrors);
         set => _sortOrder.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _code.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _rights.SetAccessPath(path, validateHasBeenSet);
-        _featureFlag.SetAccessPath(path, validateHasBeenSet);
-        _sortOrder.SetAccessPath(path, validateHasBeenSet);
+        _code.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rights.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sortOrder.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -41,39 +41,43 @@ public class NotificationsPrivateFeedsForIdPatchRequest
         Color = color;
     }
     
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(NotificationsPrivateFeedsForIdPatchRequest), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(NotificationsPrivateFeedsForIdPatchRequest), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(NotificationsPrivateFeedsForIdPatchRequest), nameof(Icon));
+    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(NotificationsPrivateFeedsForIdPatchRequest), nameof(Icon), "icon");
     
     [JsonPropertyName("icon")]
     public string? Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<PrivateFeedColor?> _color = new PropertyValue<PrivateFeedColor?>(nameof(NotificationsPrivateFeedsForIdPatchRequest), nameof(Color));
+    private PropertyValue<PrivateFeedColor?> _color = new PropertyValue<PrivateFeedColor?>(nameof(NotificationsPrivateFeedsForIdPatchRequest), nameof(Color), "color");
     
     [JsonPropertyName("color")]
     public PrivateFeedColor? Color
     {
-        get => _color.GetValue();
+        get => _color.GetValue(InlineErrors);
         set => _color.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _icon.SetAccessPath(path, validateHasBeenSet);
-        _color.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _color.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

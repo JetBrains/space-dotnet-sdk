@@ -44,41 +44,45 @@ public sealed class MemberCommonSubscriptionFilterIn
         Profiles = profiles;
     }
     
-    private PropertyValue<List<string>> _teams = new PropertyValue<List<string>>(nameof(MemberCommonSubscriptionFilterIn), nameof(Teams), new List<string>());
+    private PropertyValue<List<string>> _teams = new PropertyValue<List<string>>(nameof(MemberCommonSubscriptionFilterIn), nameof(Teams), "teams", new List<string>());
     
     [Required]
     [JsonPropertyName("teams")]
     public List<string> Teams
     {
-        get => _teams.GetValue();
+        get => _teams.GetValue(InlineErrors);
         set => _teams.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _locations = new PropertyValue<List<string>>(nameof(MemberCommonSubscriptionFilterIn), nameof(Locations), new List<string>());
+    private PropertyValue<List<string>> _locations = new PropertyValue<List<string>>(nameof(MemberCommonSubscriptionFilterIn), nameof(Locations), "locations", new List<string>());
     
     [Required]
     [JsonPropertyName("locations")]
     public List<string> Locations
     {
-        get => _locations.GetValue();
+        get => _locations.GetValue(InlineErrors);
         set => _locations.SetValue(value);
     }
 
-    private PropertyValue<List<ProfileIdentifier>?> _profiles = new PropertyValue<List<ProfileIdentifier>?>(nameof(MemberCommonSubscriptionFilterIn), nameof(Profiles));
+    private PropertyValue<List<ProfileIdentifier>?> _profiles = new PropertyValue<List<ProfileIdentifier>?>(nameof(MemberCommonSubscriptionFilterIn), nameof(Profiles), "profiles");
     
     [JsonPropertyName("profiles")]
     public List<ProfileIdentifier>? Profiles
     {
-        get => _profiles.GetValue();
+        get => _profiles.GetValue(InlineErrors);
         set => _profiles.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _teams.SetAccessPath(path, validateHasBeenSet);
-        _locations.SetAccessPath(path, validateHasBeenSet);
-        _profiles.SetAccessPath(path, validateHasBeenSet);
+        _teams.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _locations.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _profiles.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

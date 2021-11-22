@@ -40,31 +40,35 @@ public class ProjectsForProjectCodeReviewsForReviewIdMergePutRequest
         MergeMode = mergeMode;
     }
     
-    private PropertyValue<bool> _deleteSourceBranch = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsForReviewIdMergePutRequest), nameof(IsDeleteSourceBranch));
+    private PropertyValue<bool> _deleteSourceBranch = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsForReviewIdMergePutRequest), nameof(IsDeleteSourceBranch), "deleteSourceBranch");
     
     [Required]
     [JsonPropertyName("deleteSourceBranch")]
     public bool IsDeleteSourceBranch
     {
-        get => _deleteSourceBranch.GetValue();
+        get => _deleteSourceBranch.GetValue(InlineErrors);
         set => _deleteSourceBranch.SetValue(value);
     }
 
-    private PropertyValue<GitMergeMode> _mergeMode = new PropertyValue<GitMergeMode>(nameof(ProjectsForProjectCodeReviewsForReviewIdMergePutRequest), nameof(MergeMode));
+    private PropertyValue<GitMergeMode> _mergeMode = new PropertyValue<GitMergeMode>(nameof(ProjectsForProjectCodeReviewsForReviewIdMergePutRequest), nameof(MergeMode), "mergeMode");
     
     [Required]
     [JsonPropertyName("mergeMode")]
     public GitMergeMode MergeMode
     {
-        get => _mergeMode.GetValue();
+        get => _mergeMode.GetValue(InlineErrors);
         set => _mergeMode.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _deleteSourceBranch.SetAccessPath(path, validateHasBeenSet);
-        _mergeMode.SetAccessPath(path, validateHasBeenSet);
+        _deleteSourceBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mergeMode.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

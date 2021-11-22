@@ -42,20 +42,24 @@ public sealed class DocumentCFParametersInput
         DocumentScope = documentScope;
     }
     
-    private PropertyValue<DocumentCFScopeInput> _documentScope = new PropertyValue<DocumentCFScopeInput>(nameof(DocumentCFParametersInput), nameof(DocumentScope));
+    private PropertyValue<DocumentCFScopeInput> _documentScope = new PropertyValue<DocumentCFScopeInput>(nameof(DocumentCFParametersInput), nameof(DocumentScope), "documentScope");
     
     [Required]
     [JsonPropertyName("documentScope")]
     public DocumentCFScopeInput DocumentScope
     {
-        get => _documentScope.GetValue();
+        get => _documentScope.GetValue(InlineErrors);
         set => _documentScope.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _documentScope.SetAccessPath(path, validateHasBeenSet);
+        _documentScope.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

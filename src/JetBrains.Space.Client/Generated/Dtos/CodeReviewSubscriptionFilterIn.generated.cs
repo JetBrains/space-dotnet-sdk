@@ -48,84 +48,88 @@ public sealed class CodeReviewSubscriptionFilterIn
         TitleRegex = titleRegex;
     }
     
-    private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(CodeReviewSubscriptionFilterIn), nameof(Project));
+    private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(CodeReviewSubscriptionFilterIn), nameof(Project), "project");
     
     [JsonPropertyName("project")]
     public string? Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<string?> _repository = new PropertyValue<string?>(nameof(CodeReviewSubscriptionFilterIn), nameof(Repository));
+    private PropertyValue<string?> _repository = new PropertyValue<string?>(nameof(CodeReviewSubscriptionFilterIn), nameof(Repository), "repository");
     
     [JsonPropertyName("repository")]
     public string? Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _authors = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(Authors), new List<string>());
+    private PropertyValue<List<string>> _authors = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(Authors), "authors", new List<string>());
     
     [Required]
     [JsonPropertyName("authors")]
     public List<string> Authors
     {
-        get => _authors.GetValue();
+        get => _authors.GetValue(InlineErrors);
         set => _authors.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _participants = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(Participants), new List<string>());
+    private PropertyValue<List<string>> _participants = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(Participants), "participants", new List<string>());
     
     [Required]
     [JsonPropertyName("participants")]
     public List<string> Participants
     {
-        get => _participants.GetValue();
+        get => _participants.GetValue(InlineErrors);
         set => _participants.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _branchSpec = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(BranchSpec), new List<string>());
+    private PropertyValue<List<string>> _branchSpec = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(BranchSpec), "branchSpec", new List<string>());
     
     [Required]
     [JsonPropertyName("branchSpec")]
     public List<string> BranchSpec
     {
-        get => _branchSpec.GetValue();
+        get => _branchSpec.GetValue(InlineErrors);
         set => _branchSpec.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _pathSpec = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(PathSpec), new List<string>());
+    private PropertyValue<List<string>> _pathSpec = new PropertyValue<List<string>>(nameof(CodeReviewSubscriptionFilterIn), nameof(PathSpec), "pathSpec", new List<string>());
     
     [Required]
     [JsonPropertyName("pathSpec")]
     public List<string> PathSpec
     {
-        get => _pathSpec.GetValue();
+        get => _pathSpec.GetValue(InlineErrors);
         set => _pathSpec.SetValue(value);
     }
 
-    private PropertyValue<string> _titleRegex = new PropertyValue<string>(nameof(CodeReviewSubscriptionFilterIn), nameof(TitleRegex));
+    private PropertyValue<string> _titleRegex = new PropertyValue<string>(nameof(CodeReviewSubscriptionFilterIn), nameof(TitleRegex), "titleRegex");
     
     [Required]
     [JsonPropertyName("titleRegex")]
     public string TitleRegex
     {
-        get => _titleRegex.GetValue();
+        get => _titleRegex.GetValue(InlineErrors);
         set => _titleRegex.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _authors.SetAccessPath(path, validateHasBeenSet);
-        _participants.SetAccessPath(path, validateHasBeenSet);
-        _branchSpec.SetAccessPath(path, validateHasBeenSet);
-        _pathSpec.SetAccessPath(path, validateHasBeenSet);
-        _titleRegex.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authors.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _participants.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _branchSpec.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pathSpec.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _titleRegex.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

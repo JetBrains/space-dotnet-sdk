@@ -46,63 +46,67 @@ public sealed class MenuActionPayload
         VerificationToken = verificationToken;
     }
     
-    private PropertyValue<string> _extensionName = new PropertyValue<string>(nameof(MenuActionPayload), nameof(ExtensionName));
+    private PropertyValue<string> _extensionName = new PropertyValue<string>(nameof(MenuActionPayload), nameof(ExtensionName), "extensionName");
     
     [Required]
     [JsonPropertyName("extensionName")]
     public string ExtensionName
     {
-        get => _extensionName.GetValue();
+        get => _extensionName.GetValue(InlineErrors);
         set => _extensionName.SetValue(value);
     }
 
-    private PropertyValue<MenuActionContext> _context = new PropertyValue<MenuActionContext>(nameof(MenuActionPayload), nameof(Context));
+    private PropertyValue<MenuActionContext> _context = new PropertyValue<MenuActionContext>(nameof(MenuActionPayload), nameof(Context), "context");
     
     [Required]
     [JsonPropertyName("context")]
     public MenuActionContext Context
     {
-        get => _context.GetValue();
+        get => _context.GetValue(InlineErrors);
         set => _context.SetValue(value);
     }
 
-    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(MenuActionPayload), nameof(ClientId));
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(MenuActionPayload), nameof(ClientId), "clientId");
     
     [Required]
     [JsonPropertyName("clientId")]
     public string ClientId
     {
-        get => _clientId.GetValue();
+        get => _clientId.GetValue(InlineErrors);
         set => _clientId.SetValue(value);
     }
 
-    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MenuActionPayload), nameof(UserId));
+    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MenuActionPayload), nameof(UserId), "userId");
     
     [Required]
     [JsonPropertyName("userId")]
     public string UserId
     {
-        get => _userId.GetValue();
+        get => _userId.GetValue(InlineErrors);
         set => _userId.SetValue(value);
     }
 
-    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(MenuActionPayload), nameof(VerificationToken));
+    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(MenuActionPayload), nameof(VerificationToken), "verificationToken");
     
     [JsonPropertyName("verificationToken")]
     public string? VerificationToken
     {
-        get => _verificationToken.GetValue();
+        get => _verificationToken.GetValue(InlineErrors);
         set => _verificationToken.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _extensionName.SetAccessPath(path, validateHasBeenSet);
-        _context.SetAccessPath(path, validateHasBeenSet);
-        _clientId.SetAccessPath(path, validateHasBeenSet);
-        _userId.SetAccessPath(path, validateHasBeenSet);
-        _verificationToken.SetAccessPath(path, validateHasBeenSet);
+        _extensionName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _context.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _verificationToken.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -44,72 +44,76 @@ public class ProjectsForProjectPlanningIssuesImportPostRequest
         IsDryRun = dryRun;
     }
     
-    private PropertyValue<ImportMetadata> _metadata = new PropertyValue<ImportMetadata>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(Metadata));
+    private PropertyValue<ImportMetadata> _metadata = new PropertyValue<ImportMetadata>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(Metadata), "metadata");
     
     [Required]
     [JsonPropertyName("metadata")]
     public ImportMetadata Metadata
     {
-        get => _metadata.GetValue();
+        get => _metadata.GetValue(InlineErrors);
         set => _metadata.SetValue(value);
     }
 
-    private PropertyValue<List<ExternalIssue>> _issues = new PropertyValue<List<ExternalIssue>>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(Issues), new List<ExternalIssue>());
+    private PropertyValue<List<ExternalIssue>> _issues = new PropertyValue<List<ExternalIssue>>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(Issues), "issues", new List<ExternalIssue>());
     
     [Required]
     [JsonPropertyName("issues")]
     public List<ExternalIssue> Issues
     {
-        get => _issues.GetValue();
+        get => _issues.GetValue(InlineErrors);
         set => _issues.SetValue(value);
     }
 
-    private PropertyValue<ImportMissingPolicy> _assigneeMissingPolicy = new PropertyValue<ImportMissingPolicy>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(AssigneeMissingPolicy));
+    private PropertyValue<ImportMissingPolicy> _assigneeMissingPolicy = new PropertyValue<ImportMissingPolicy>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(AssigneeMissingPolicy), "assigneeMissingPolicy");
     
     [JsonPropertyName("assigneeMissingPolicy")]
     public ImportMissingPolicy AssigneeMissingPolicy
     {
-        get => _assigneeMissingPolicy.GetValue();
+        get => _assigneeMissingPolicy.GetValue(InlineErrors);
         set => _assigneeMissingPolicy.SetValue(value);
     }
 
-    private PropertyValue<ImportMissingPolicy> _statusMissingPolicy = new PropertyValue<ImportMissingPolicy>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(StatusMissingPolicy));
+    private PropertyValue<ImportMissingPolicy> _statusMissingPolicy = new PropertyValue<ImportMissingPolicy>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(StatusMissingPolicy), "statusMissingPolicy");
     
     [JsonPropertyName("statusMissingPolicy")]
     public ImportMissingPolicy StatusMissingPolicy
     {
-        get => _statusMissingPolicy.GetValue();
+        get => _statusMissingPolicy.GetValue(InlineErrors);
         set => _statusMissingPolicy.SetValue(value);
     }
 
-    private PropertyValue<ImportExistsPolicy> _onExistsPolicy = new PropertyValue<ImportExistsPolicy>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(OnExistsPolicy));
+    private PropertyValue<ImportExistsPolicy> _onExistsPolicy = new PropertyValue<ImportExistsPolicy>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(OnExistsPolicy), "onExistsPolicy");
     
     [JsonPropertyName("onExistsPolicy")]
     public ImportExistsPolicy OnExistsPolicy
     {
-        get => _onExistsPolicy.GetValue();
+        get => _onExistsPolicy.GetValue(InlineErrors);
         set => _onExistsPolicy.SetValue(value);
     }
 
-    private PropertyValue<bool> _dryRun = new PropertyValue<bool>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(IsDryRun));
+    private PropertyValue<bool> _dryRun = new PropertyValue<bool>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(IsDryRun), "dryRun");
     
     [Required]
     [JsonPropertyName("dryRun")]
     public bool IsDryRun
     {
-        get => _dryRun.GetValue();
+        get => _dryRun.GetValue(InlineErrors);
         set => _dryRun.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _metadata.SetAccessPath(path, validateHasBeenSet);
-        _issues.SetAccessPath(path, validateHasBeenSet);
-        _assigneeMissingPolicy.SetAccessPath(path, validateHasBeenSet);
-        _statusMissingPolicy.SetAccessPath(path, validateHasBeenSet);
-        _onExistsPolicy.SetAccessPath(path, validateHasBeenSet);
-        _dryRun.SetAccessPath(path, validateHasBeenSet);
+        _metadata.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issues.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _assigneeMissingPolicy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _statusMissingPolicy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _onExistsPolicy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _dryRun.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,20 +42,24 @@ public sealed class KbPersonalContext
         Owner = owner;
     }
     
-    private PropertyValue<TDMemberProfile> _owner = new PropertyValue<TDMemberProfile>(nameof(KbPersonalContext), nameof(Owner));
+    private PropertyValue<TDMemberProfile> _owner = new PropertyValue<TDMemberProfile>(nameof(KbPersonalContext), nameof(Owner), "owner");
     
     [Required]
     [JsonPropertyName("owner")]
     public TDMemberProfile Owner
     {
-        get => _owner.GetValue();
+        get => _owner.GetValue(InlineErrors);
         set => _owner.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _owner.SetAccessPath(path, validateHasBeenSet);
+        _owner.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

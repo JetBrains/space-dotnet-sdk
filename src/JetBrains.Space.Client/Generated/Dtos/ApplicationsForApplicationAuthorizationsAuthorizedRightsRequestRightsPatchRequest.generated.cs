@@ -40,31 +40,35 @@ public class ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRigh
         RightCodes = rightCodes;
     }
     
-    private PropertyValue<PermissionContextIdentifier> _contextIdentifier = new PropertyValue<PermissionContextIdentifier>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest), nameof(ContextIdentifier));
+    private PropertyValue<PermissionContextIdentifier> _contextIdentifier = new PropertyValue<PermissionContextIdentifier>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest), nameof(ContextIdentifier), "contextIdentifier");
     
     [Required]
     [JsonPropertyName("contextIdentifier")]
     public PermissionContextIdentifier ContextIdentifier
     {
-        get => _contextIdentifier.GetValue();
+        get => _contextIdentifier.GetValue(InlineErrors);
         set => _contextIdentifier.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _rightCodes = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest), nameof(RightCodes), new List<string>());
+    private PropertyValue<List<string>> _rightCodes = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest), nameof(RightCodes), "rightCodes", new List<string>());
     
     [Required]
     [JsonPropertyName("rightCodes")]
     public List<string> RightCodes
     {
-        get => _rightCodes.GetValue();
+        get => _rightCodes.GetValue(InlineErrors);
         set => _rightCodes.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _contextIdentifier.SetAccessPath(path, validateHasBeenSet);
-        _rightCodes.SetAccessPath(path, validateHasBeenSet);
+        _contextIdentifier.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rightCodes.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

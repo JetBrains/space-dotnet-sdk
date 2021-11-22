@@ -39,20 +39,24 @@ public class ProjectsForProjectAccessCollaboratorsTeamsPostRequest
         TeamId = teamId;
     }
     
-    private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(ProjectsForProjectAccessCollaboratorsTeamsPostRequest), nameof(TeamId));
+    private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(ProjectsForProjectAccessCollaboratorsTeamsPostRequest), nameof(TeamId), "teamId");
     
     [Required]
     [JsonPropertyName("teamId")]
     public string TeamId
     {
-        get => _teamId.GetValue();
+        get => _teamId.GetValue(InlineErrors);
         set => _teamId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _teamId.SetAccessPath(path, validateHasBeenSet);
+        _teamId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

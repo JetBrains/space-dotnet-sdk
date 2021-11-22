@@ -39,20 +39,24 @@ public class ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchR
         Value = value;
     }
     
-    private PropertyValue<string> _value = new PropertyValue<string>(nameof(ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequest), nameof(Value));
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequest), nameof(Value), "value");
     
     [Required]
     [JsonPropertyName("value")]
     public string Value
     {
-        get => _value.GetValue();
+        get => _value.GetValue(InlineErrors);
         set => _value.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _value.SetAccessPath(path, validateHasBeenSet);
+        _value.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

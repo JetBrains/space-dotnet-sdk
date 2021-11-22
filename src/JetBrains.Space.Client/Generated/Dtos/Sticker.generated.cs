@@ -46,91 +46,95 @@ public sealed class Sticker
         IsArchived = archived;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Sticker), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Sticker), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string?> _symbol = new PropertyValue<string?>(nameof(Sticker), nameof(Symbol));
+    private PropertyValue<string?> _symbol = new PropertyValue<string?>(nameof(Sticker), nameof(Symbol), "symbol");
     
     [JsonPropertyName("symbol")]
     public string? Symbol
     {
-        get => _symbol.GetValue();
+        get => _symbol.GetValue(InlineErrors);
         set => _symbol.SetValue(value);
     }
 
-    private PropertyValue<string?> _attachmentId = new PropertyValue<string?>(nameof(Sticker), nameof(AttachmentId));
+    private PropertyValue<string?> _attachmentId = new PropertyValue<string?>(nameof(Sticker), nameof(AttachmentId), "attachmentId");
     
     [JsonPropertyName("attachmentId")]
     public string? AttachmentId
     {
-        get => _attachmentId.GetValue();
+        get => _attachmentId.GetValue(InlineErrors);
         set => _attachmentId.SetValue(value);
     }
 
-    private PropertyValue<int?> _width = new PropertyValue<int?>(nameof(Sticker), nameof(Width));
+    private PropertyValue<int?> _width = new PropertyValue<int?>(nameof(Sticker), nameof(Width), "width");
     
     [JsonPropertyName("width")]
     public int? Width
     {
-        get => _width.GetValue();
+        get => _width.GetValue(InlineErrors);
         set => _width.SetValue(value);
     }
 
-    private PropertyValue<int?> _height = new PropertyValue<int?>(nameof(Sticker), nameof(Height));
+    private PropertyValue<int?> _height = new PropertyValue<int?>(nameof(Sticker), nameof(Height), "height");
     
     [JsonPropertyName("height")]
     public int? Height
     {
-        get => _height.GetValue();
+        get => _height.GetValue(InlineErrors);
         set => _height.SetValue(value);
     }
 
-    private PropertyValue<List<StickerVariant>?> _variants = new PropertyValue<List<StickerVariant>?>(nameof(Sticker), nameof(Variants));
+    private PropertyValue<List<StickerVariant>?> _variants = new PropertyValue<List<StickerVariant>?>(nameof(Sticker), nameof(Variants), "variants");
     
     [JsonPropertyName("variants")]
     public List<StickerVariant>? Variants
     {
-        get => _variants.GetValue();
+        get => _variants.GetValue(InlineErrors);
         set => _variants.SetValue(value);
     }
 
-    private PropertyValue<bool?> _animated = new PropertyValue<bool?>(nameof(Sticker), nameof(IsAnimated));
+    private PropertyValue<bool?> _animated = new PropertyValue<bool?>(nameof(Sticker), nameof(IsAnimated), "animated");
     
     [JsonPropertyName("animated")]
     public bool? IsAnimated
     {
-        get => _animated.GetValue();
+        get => _animated.GetValue(InlineErrors);
         set => _animated.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Sticker), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Sticker), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _symbol.SetAccessPath(path, validateHasBeenSet);
-        _attachmentId.SetAccessPath(path, validateHasBeenSet);
-        _width.SetAccessPath(path, validateHasBeenSet);
-        _height.SetAccessPath(path, validateHasBeenSet);
-        _variants.SetAccessPath(path, validateHasBeenSet);
-        _animated.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _symbol.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachmentId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _width.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _height.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _variants.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _animated.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

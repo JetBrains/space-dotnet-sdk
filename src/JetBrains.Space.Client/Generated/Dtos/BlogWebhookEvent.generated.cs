@@ -52,122 +52,126 @@ public sealed class BlogWebhookEvent
         ExternalEntityInfo = externalEntityInfo;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(BlogWebhookEvent), nameof(Meta));
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(BlogWebhookEvent), nameof(Meta), "meta");
     
     [Required]
     [JsonPropertyName("meta")]
     public KMetaMod Meta
     {
-        get => _meta.GetValue();
+        get => _meta.GetValue(InlineErrors);
         set => _meta.SetValue(value);
     }
 
-    private PropertyValue<ArticleRecord> _article = new PropertyValue<ArticleRecord>(nameof(BlogWebhookEvent), nameof(Article));
+    private PropertyValue<ArticleRecord> _article = new PropertyValue<ArticleRecord>(nameof(BlogWebhookEvent), nameof(Article), "article");
     
     [Required]
     [JsonPropertyName("article")]
     public ArticleRecord Article
     {
-        get => _article.GetValue();
+        get => _article.GetValue(InlineErrors);
         set => _article.SetValue(value);
     }
 
-    private PropertyValue<string?> _action = new PropertyValue<string?>(nameof(BlogWebhookEvent), nameof(Action));
+    private PropertyValue<string?> _action = new PropertyValue<string?>(nameof(BlogWebhookEvent), nameof(Action), "action");
     
     [JsonPropertyName("action")]
     public string? Action
     {
-        get => _action.GetValue();
+        get => _action.GetValue(InlineErrors);
         set => _action.SetValue(value);
     }
 
-    private PropertyValue<Modification<TDMemberProfile>?> _author = new PropertyValue<Modification<TDMemberProfile>?>(nameof(BlogWebhookEvent), nameof(Author));
+    private PropertyValue<Modification<TDMemberProfile>?> _author = new PropertyValue<Modification<TDMemberProfile>?>(nameof(BlogWebhookEvent), nameof(Author), "author");
     
     [JsonPropertyName("author")]
     public Modification<TDMemberProfile>? Author
     {
-        get => _author.GetValue();
+        get => _author.GetValue(InlineErrors);
         set => _author.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _created = new PropertyValue<Modification<DateTime>?>(nameof(BlogWebhookEvent), nameof(Created));
+    private PropertyValue<Modification<DateTime>?> _created = new PropertyValue<Modification<DateTime>?>(nameof(BlogWebhookEvent), nameof(Created), "created");
     
     [JsonPropertyName("created")]
     public Modification<DateTime>? Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _title = new PropertyValue<Modification<string>?>(nameof(BlogWebhookEvent), nameof(Title));
+    private PropertyValue<Modification<string>?> _title = new PropertyValue<Modification<string>?>(nameof(BlogWebhookEvent), nameof(Title), "title");
     
     [JsonPropertyName("title")]
     public Modification<string>? Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<bool> _textChanged = new PropertyValue<bool>(nameof(BlogWebhookEvent), nameof(IsTextChanged));
+    private PropertyValue<bool> _textChanged = new PropertyValue<bool>(nameof(BlogWebhookEvent), nameof(IsTextChanged), "textChanged");
     
     [Required]
     [JsonPropertyName("textChanged")]
     public bool IsTextChanged
     {
-        get => _textChanged.GetValue();
+        get => _textChanged.GetValue(InlineErrors);
         set => _textChanged.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _unpublished = new PropertyValue<Modification<bool>?>(nameof(BlogWebhookEvent), nameof(Unpublished));
+    private PropertyValue<Modification<bool>?> _unpublished = new PropertyValue<Modification<bool>?>(nameof(BlogWebhookEvent), nameof(Unpublished), "unpublished");
     
     [JsonPropertyName("unpublished")]
     public Modification<bool>? Unpublished
     {
-        get => _unpublished.GetValue();
+        get => _unpublished.GetValue(InlineErrors);
         set => _unpublished.SetValue(value);
     }
 
-    private PropertyValue<Modification<List<TDMemberProfile>>?> _teams = new PropertyValue<Modification<List<TDMemberProfile>>?>(nameof(BlogWebhookEvent), nameof(Teams));
+    private PropertyValue<Modification<List<TDMemberProfile>>?> _teams = new PropertyValue<Modification<List<TDMemberProfile>>?>(nameof(BlogWebhookEvent), nameof(Teams), "teams");
     
     [JsonPropertyName("teams")]
     public Modification<List<TDMemberProfile>>? Teams
     {
-        get => _teams.GetValue();
+        get => _teams.GetValue(InlineErrors);
         set => _teams.SetValue(value);
     }
 
-    private PropertyValue<Modification<List<TDMemberProfile>>?> _locations = new PropertyValue<Modification<List<TDMemberProfile>>?>(nameof(BlogWebhookEvent), nameof(Locations));
+    private PropertyValue<Modification<List<TDMemberProfile>>?> _locations = new PropertyValue<Modification<List<TDMemberProfile>>?>(nameof(BlogWebhookEvent), nameof(Locations), "locations");
     
     [JsonPropertyName("locations")]
     public Modification<List<TDMemberProfile>>? Locations
     {
-        get => _locations.GetValue();
+        get => _locations.GetValue(InlineErrors);
         set => _locations.SetValue(value);
     }
 
-    private PropertyValue<Modification<long>?> _externalEntityInfo = new PropertyValue<Modification<long>?>(nameof(BlogWebhookEvent), nameof(ExternalEntityInfo));
+    private PropertyValue<Modification<long>?> _externalEntityInfo = new PropertyValue<Modification<long>?>(nameof(BlogWebhookEvent), nameof(ExternalEntityInfo), "externalEntityInfo");
     
     [JsonPropertyName("externalEntityInfo")]
     public Modification<long>? ExternalEntityInfo
     {
-        get => _externalEntityInfo.GetValue();
+        get => _externalEntityInfo.GetValue(InlineErrors);
         set => _externalEntityInfo.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meta.SetAccessPath(path, validateHasBeenSet);
-        _article.SetAccessPath(path, validateHasBeenSet);
-        _action.SetAccessPath(path, validateHasBeenSet);
-        _author.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _textChanged.SetAccessPath(path, validateHasBeenSet);
-        _unpublished.SetAccessPath(path, validateHasBeenSet);
-        _teams.SetAccessPath(path, validateHasBeenSet);
-        _locations.SetAccessPath(path, validateHasBeenSet);
-        _externalEntityInfo.SetAccessPath(path, validateHasBeenSet);
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _article.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _action.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _author.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _textChanged.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unpublished.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _teams.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _locations.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalEntityInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

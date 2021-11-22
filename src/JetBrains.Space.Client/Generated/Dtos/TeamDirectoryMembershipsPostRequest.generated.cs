@@ -48,115 +48,119 @@ public class TeamDirectoryMembershipsPostRequest
         CustomFieldValues = customFieldValues;
     }
     
-    private PropertyValue<ProfileIdentifier> _member = new PropertyValue<ProfileIdentifier>(nameof(TeamDirectoryMembershipsPostRequest), nameof(Member));
+    private PropertyValue<ProfileIdentifier> _member = new PropertyValue<ProfileIdentifier>(nameof(TeamDirectoryMembershipsPostRequest), nameof(Member), "member");
     
     [Required]
     [JsonPropertyName("member")]
     public ProfileIdentifier Member
     {
-        get => _member.GetValue();
+        get => _member.GetValue(InlineErrors);
         set => _member.SetValue(value);
     }
 
-    private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(TeamDirectoryMembershipsPostRequest), nameof(TeamId));
+    private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(TeamDirectoryMembershipsPostRequest), nameof(TeamId), "teamId");
     
     [Required]
     [JsonPropertyName("teamId")]
     public string TeamId
     {
-        get => _teamId.GetValue();
+        get => _teamId.GetValue(InlineErrors);
         set => _teamId.SetValue(value);
     }
 
-    private PropertyValue<string> _roleId = new PropertyValue<string>(nameof(TeamDirectoryMembershipsPostRequest), nameof(RoleId));
+    private PropertyValue<string> _roleId = new PropertyValue<string>(nameof(TeamDirectoryMembershipsPostRequest), nameof(RoleId), "roleId");
     
     [Required]
     [JsonPropertyName("roleId")]
     public string RoleId
     {
-        get => _roleId.GetValue();
+        get => _roleId.GetValue(InlineErrors);
         set => _roleId.SetValue(value);
     }
 
-    private PropertyValue<bool> _lead = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsPostRequest), nameof(IsLead));
+    private PropertyValue<bool> _lead = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsPostRequest), nameof(IsLead), "lead");
     
     [Obsolete("The property is deprecated (since 2020-12-01) (will be removed in a future version)")]
     [JsonPropertyName("lead")]
     public bool IsLead
     {
-        get => _lead.GetValue();
+        get => _lead.GetValue(InlineErrors);
         set => _lead.SetValue(value);
     }
 
-    private PropertyValue<ProfileIdentifier?> _manager = new PropertyValue<ProfileIdentifier?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(Manager));
+    private PropertyValue<ProfileIdentifier?> _manager = new PropertyValue<ProfileIdentifier?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(Manager), "manager");
     
     [JsonPropertyName("manager")]
     public ProfileIdentifier? Manager
     {
-        get => _manager.GetValue();
+        get => _manager.GetValue(InlineErrors);
         set => _manager.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _activeSince = new PropertyValue<DateTime?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(ActiveSince));
+    private PropertyValue<DateTime?> _activeSince = new PropertyValue<DateTime?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(ActiveSince), "activeSince");
     
     [JsonPropertyName("activeSince")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ActiveSince
     {
-        get => _activeSince.GetValue();
+        get => _activeSince.GetValue(InlineErrors);
         set => _activeSince.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _activeTill = new PropertyValue<DateTime?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(ActiveTill));
+    private PropertyValue<DateTime?> _activeTill = new PropertyValue<DateTime?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(ActiveTill), "activeTill");
     
     [JsonPropertyName("activeTill")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ActiveTill
     {
-        get => _activeTill.GetValue();
+        get => _activeTill.GetValue(InlineErrors);
         set => _activeTill.SetValue(value);
     }
 
-    private PropertyValue<string?> _previousMembershipId = new PropertyValue<string?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(PreviousMembershipId));
+    private PropertyValue<string?> _previousMembershipId = new PropertyValue<string?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(PreviousMembershipId), "previousMembershipId");
     
     [JsonPropertyName("previousMembershipId")]
     public string? PreviousMembershipId
     {
-        get => _previousMembershipId.GetValue();
+        get => _previousMembershipId.GetValue(InlineErrors);
         set => _previousMembershipId.SetValue(value);
     }
 
-    private PropertyValue<bool> _requiresApproval = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsPostRequest), nameof(IsRequiresApproval));
+    private PropertyValue<bool> _requiresApproval = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsPostRequest), nameof(IsRequiresApproval), "requiresApproval");
     
     [JsonPropertyName("requiresApproval")]
     public bool IsRequiresApproval
     {
-        get => _requiresApproval.GetValue();
+        get => _requiresApproval.GetValue(InlineErrors);
         set => _requiresApproval.SetValue(value);
     }
 
-    private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(CustomFieldValues));
+    private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(CustomFieldValues), "customFieldValues");
     
     [JsonPropertyName("customFieldValues")]
     public List<CustomFieldInputValue>? CustomFieldValues
     {
-        get => _customFieldValues.GetValue();
+        get => _customFieldValues.GetValue(InlineErrors);
         set => _customFieldValues.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _member.SetAccessPath(path, validateHasBeenSet);
-        _teamId.SetAccessPath(path, validateHasBeenSet);
-        _roleId.SetAccessPath(path, validateHasBeenSet);
-        _lead.SetAccessPath(path, validateHasBeenSet);
-        _manager.SetAccessPath(path, validateHasBeenSet);
-        _activeSince.SetAccessPath(path, validateHasBeenSet);
-        _activeTill.SetAccessPath(path, validateHasBeenSet);
-        _previousMembershipId.SetAccessPath(path, validateHasBeenSet);
-        _requiresApproval.SetAccessPath(path, validateHasBeenSet);
-        _customFieldValues.SetAccessPath(path, validateHasBeenSet);
+        _member.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _teamId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _roleId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lead.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _manager.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _activeSince.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _activeTill.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _previousMembershipId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _requiresApproval.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _customFieldValues.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

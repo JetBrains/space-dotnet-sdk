@@ -39,20 +39,24 @@ public class ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest
         State = state;
     }
     
-    private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest), nameof(State));
+    private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest), nameof(State), "state");
     
     [Required]
     [JsonPropertyName("state")]
     public CodeReviewState State
     {
-        get => _state.GetValue();
+        get => _state.GetValue(InlineErrors);
         set => _state.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _state.SetAccessPath(path, validateHasBeenSet);
+        _state.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

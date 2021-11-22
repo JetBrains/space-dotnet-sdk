@@ -42,52 +42,56 @@ public sealed class ApplicationUnfurlDomain
         ModificationTimestamp = modificationTimestamp;
     }
     
-    private PropertyValue<string> _domain = new PropertyValue<string>(nameof(ApplicationUnfurlDomain), nameof(Domain));
+    private PropertyValue<string> _domain = new PropertyValue<string>(nameof(ApplicationUnfurlDomain), nameof(Domain), "domain");
     
     [Required]
     [JsonPropertyName("domain")]
     public string Domain
     {
-        get => _domain.GetValue();
+        get => _domain.GetValue(InlineErrors);
         set => _domain.SetValue(value);
     }
 
-    private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(ApplicationUnfurlDomain), nameof(Status));
+    private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(ApplicationUnfurlDomain), nameof(Status), "status");
     
     [Required]
     [JsonPropertyName("status")]
     public RightStatus Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _modificationAuthor = new PropertyValue<CPrincipal?>(nameof(ApplicationUnfurlDomain), nameof(ModificationAuthor));
+    private PropertyValue<CPrincipal?> _modificationAuthor = new PropertyValue<CPrincipal?>(nameof(ApplicationUnfurlDomain), nameof(ModificationAuthor), "modificationAuthor");
     
     [JsonPropertyName("modificationAuthor")]
     public CPrincipal? ModificationAuthor
     {
-        get => _modificationAuthor.GetValue();
+        get => _modificationAuthor.GetValue(InlineErrors);
         set => _modificationAuthor.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _modificationTimestamp = new PropertyValue<DateTime?>(nameof(ApplicationUnfurlDomain), nameof(ModificationTimestamp));
+    private PropertyValue<DateTime?> _modificationTimestamp = new PropertyValue<DateTime?>(nameof(ApplicationUnfurlDomain), nameof(ModificationTimestamp), "modificationTimestamp");
     
     [JsonPropertyName("modificationTimestamp")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ModificationTimestamp
     {
-        get => _modificationTimestamp.GetValue();
+        get => _modificationTimestamp.GetValue(InlineErrors);
         set => _modificationTimestamp.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _domain.SetAccessPath(path, validateHasBeenSet);
-        _status.SetAccessPath(path, validateHasBeenSet);
-        _modificationAuthor.SetAccessPath(path, validateHasBeenSet);
-        _modificationTimestamp.SetAccessPath(path, validateHasBeenSet);
+        _domain.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _modificationAuthor.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _modificationTimestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

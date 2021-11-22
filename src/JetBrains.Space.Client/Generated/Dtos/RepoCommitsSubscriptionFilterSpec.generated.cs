@@ -43,64 +43,68 @@ public sealed class RepoCommitsSubscriptionFilterSpec
         MessageRegex = messageRegex;
     }
     
-    private PropertyValue<List<string>> _authors = new PropertyValue<List<string>>(nameof(RepoCommitsSubscriptionFilterSpec), nameof(Authors), new List<string>());
+    private PropertyValue<List<string>> _authors = new PropertyValue<List<string>>(nameof(RepoCommitsSubscriptionFilterSpec), nameof(Authors), "authors", new List<string>());
     
     [Required]
     [JsonPropertyName("authors")]
     public List<string> Authors
     {
-        get => _authors.GetValue();
+        get => _authors.GetValue(InlineErrors);
         set => _authors.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _committers = new PropertyValue<List<string>>(nameof(RepoCommitsSubscriptionFilterSpec), nameof(Committers), new List<string>());
+    private PropertyValue<List<string>> _committers = new PropertyValue<List<string>>(nameof(RepoCommitsSubscriptionFilterSpec), nameof(Committers), "committers", new List<string>());
     
     [Required]
     [JsonPropertyName("committers")]
     public List<string> Committers
     {
-        get => _committers.GetValue();
+        get => _committers.GetValue(InlineErrors);
         set => _committers.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _branchSpec = new PropertyValue<List<string>>(nameof(RepoCommitsSubscriptionFilterSpec), nameof(BranchSpec), new List<string>());
+    private PropertyValue<List<string>> _branchSpec = new PropertyValue<List<string>>(nameof(RepoCommitsSubscriptionFilterSpec), nameof(BranchSpec), "branchSpec", new List<string>());
     
     [Required]
     [JsonPropertyName("branchSpec")]
     public List<string> BranchSpec
     {
-        get => _branchSpec.GetValue();
+        get => _branchSpec.GetValue(InlineErrors);
         set => _branchSpec.SetValue(value);
     }
 
-    private PropertyValue<string> _pathSpec = new PropertyValue<string>(nameof(RepoCommitsSubscriptionFilterSpec), nameof(PathSpec));
+    private PropertyValue<string> _pathSpec = new PropertyValue<string>(nameof(RepoCommitsSubscriptionFilterSpec), nameof(PathSpec), "pathSpec");
     
     [Required]
     [JsonPropertyName("pathSpec")]
     public string PathSpec
     {
-        get => _pathSpec.GetValue();
+        get => _pathSpec.GetValue(InlineErrors);
         set => _pathSpec.SetValue(value);
     }
 
-    private PropertyValue<string> _messageRegex = new PropertyValue<string>(nameof(RepoCommitsSubscriptionFilterSpec), nameof(MessageRegex));
+    private PropertyValue<string> _messageRegex = new PropertyValue<string>(nameof(RepoCommitsSubscriptionFilterSpec), nameof(MessageRegex), "messageRegex");
     
     [Required]
     [JsonPropertyName("messageRegex")]
     public string MessageRegex
     {
-        get => _messageRegex.GetValue();
+        get => _messageRegex.GetValue(InlineErrors);
         set => _messageRegex.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _authors.SetAccessPath(path, validateHasBeenSet);
-        _committers.SetAccessPath(path, validateHasBeenSet);
-        _branchSpec.SetAccessPath(path, validateHasBeenSet);
-        _pathSpec.SetAccessPath(path, validateHasBeenSet);
-        _messageRegex.SetAccessPath(path, validateHasBeenSet);
+        _authors.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _committers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _branchSpec.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pathSpec.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messageRegex.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

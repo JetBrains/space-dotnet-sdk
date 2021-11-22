@@ -49,127 +49,131 @@ public sealed class GitCommitInfo
         Signature = signature;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(GitCommitInfo), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(GitCommitInfo), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _message = new PropertyValue<string>(nameof(GitCommitInfo), nameof(Message));
+    private PropertyValue<string> _message = new PropertyValue<string>(nameof(GitCommitInfo), nameof(Message), "message");
     
     [Required]
     [JsonPropertyName("message")]
     public string Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    private PropertyValue<long> _authorDate = new PropertyValue<long>(nameof(GitCommitInfo), nameof(AuthorDate));
+    private PropertyValue<long> _authorDate = new PropertyValue<long>(nameof(GitCommitInfo), nameof(AuthorDate), "authorDate");
     
     [Required]
     [JsonPropertyName("authorDate")]
     public long AuthorDate
     {
-        get => _authorDate.GetValue();
+        get => _authorDate.GetValue(InlineErrors);
         set => _authorDate.SetValue(value);
     }
 
-    private PropertyValue<long> _commitDate = new PropertyValue<long>(nameof(GitCommitInfo), nameof(CommitDate));
+    private PropertyValue<long> _commitDate = new PropertyValue<long>(nameof(GitCommitInfo), nameof(CommitDate), "commitDate");
     
     [Required]
     [JsonPropertyName("commitDate")]
     public long CommitDate
     {
-        get => _commitDate.GetValue();
+        get => _commitDate.GetValue(InlineErrors);
         set => _commitDate.SetValue(value);
     }
 
-    private PropertyValue<GitAuthorInfo> _author = new PropertyValue<GitAuthorInfo>(nameof(GitCommitInfo), nameof(Author));
+    private PropertyValue<GitAuthorInfo> _author = new PropertyValue<GitAuthorInfo>(nameof(GitCommitInfo), nameof(Author), "author");
     
     [Required]
     [JsonPropertyName("author")]
     public GitAuthorInfo Author
     {
-        get => _author.GetValue();
+        get => _author.GetValue(InlineErrors);
         set => _author.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _authorProfile = new PropertyValue<TDMemberProfile?>(nameof(GitCommitInfo), nameof(AuthorProfile));
+    private PropertyValue<TDMemberProfile?> _authorProfile = new PropertyValue<TDMemberProfile?>(nameof(GitCommitInfo), nameof(AuthorProfile), "authorProfile");
     
     [JsonPropertyName("authorProfile")]
     public TDMemberProfile? AuthorProfile
     {
-        get => _authorProfile.GetValue();
+        get => _authorProfile.GetValue(InlineErrors);
         set => _authorProfile.SetValue(value);
     }
 
-    private PropertyValue<GitAuthorInfo> _committer = new PropertyValue<GitAuthorInfo>(nameof(GitCommitInfo), nameof(Committer));
+    private PropertyValue<GitAuthorInfo> _committer = new PropertyValue<GitAuthorInfo>(nameof(GitCommitInfo), nameof(Committer), "committer");
     
     [Required]
     [JsonPropertyName("committer")]
     public GitAuthorInfo Committer
     {
-        get => _committer.GetValue();
+        get => _committer.GetValue(InlineErrors);
         set => _committer.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _committerProfile = new PropertyValue<TDMemberProfile?>(nameof(GitCommitInfo), nameof(CommitterProfile));
+    private PropertyValue<TDMemberProfile?> _committerProfile = new PropertyValue<TDMemberProfile?>(nameof(GitCommitInfo), nameof(CommitterProfile), "committerProfile");
     
     [JsonPropertyName("committerProfile")]
     public TDMemberProfile? CommitterProfile
     {
-        get => _committerProfile.GetValue();
+        get => _committerProfile.GetValue(InlineErrors);
         set => _committerProfile.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _parents = new PropertyValue<List<string>>(nameof(GitCommitInfo), nameof(Parents), new List<string>());
+    private PropertyValue<List<string>> _parents = new PropertyValue<List<string>>(nameof(GitCommitInfo), nameof(Parents), "parents", new List<string>());
     
     [Required]
     [JsonPropertyName("parents")]
     public List<string> Parents
     {
-        get => _parents.GetValue();
+        get => _parents.GetValue(InlineErrors);
         set => _parents.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _heads = new PropertyValue<List<string>>(nameof(GitCommitInfo), nameof(Heads), new List<string>());
+    private PropertyValue<List<string>> _heads = new PropertyValue<List<string>>(nameof(GitCommitInfo), nameof(Heads), "heads", new List<string>());
     
     [Required]
     [JsonPropertyName("heads")]
     public List<string> Heads
     {
-        get => _heads.GetValue();
+        get => _heads.GetValue(InlineErrors);
         set => _heads.SetValue(value);
     }
 
-    private PropertyValue<GitCommitSignature?> _signature = new PropertyValue<GitCommitSignature?>(nameof(GitCommitInfo), nameof(Signature));
+    private PropertyValue<GitCommitSignature?> _signature = new PropertyValue<GitCommitSignature?>(nameof(GitCommitInfo), nameof(Signature), "signature");
     
     [JsonPropertyName("signature")]
     public GitCommitSignature? Signature
     {
-        get => _signature.GetValue();
+        get => _signature.GetValue(InlineErrors);
         set => _signature.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _message.SetAccessPath(path, validateHasBeenSet);
-        _authorDate.SetAccessPath(path, validateHasBeenSet);
-        _commitDate.SetAccessPath(path, validateHasBeenSet);
-        _author.SetAccessPath(path, validateHasBeenSet);
-        _authorProfile.SetAccessPath(path, validateHasBeenSet);
-        _committer.SetAccessPath(path, validateHasBeenSet);
-        _committerProfile.SetAccessPath(path, validateHasBeenSet);
-        _parents.SetAccessPath(path, validateHasBeenSet);
-        _heads.SetAccessPath(path, validateHasBeenSet);
-        _signature.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authorDate.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commitDate.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _author.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authorProfile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _committer.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _committerProfile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parents.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _heads.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _signature.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

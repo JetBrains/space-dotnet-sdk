@@ -43,62 +43,66 @@ public sealed class FullRightWithoutType
         FeatureFlag = featureFlag;
     }
     
-    private PropertyValue<string> _code = new PropertyValue<string>(nameof(FullRightWithoutType), nameof(Code));
+    private PropertyValue<string> _code = new PropertyValue<string>(nameof(FullRightWithoutType), nameof(Code), "code");
     
     [Required]
     [JsonPropertyName("code")]
     public string Code
     {
-        get => _code.GetValue();
+        get => _code.GetValue(InlineErrors);
         set => _code.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(FullRightWithoutType), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(FullRightWithoutType), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(FullRightWithoutType), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(FullRightWithoutType), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<bool> _grantedForUsers = new PropertyValue<bool>(nameof(FullRightWithoutType), nameof(IsGrantedForUsers));
+    private PropertyValue<bool> _grantedForUsers = new PropertyValue<bool>(nameof(FullRightWithoutType), nameof(IsGrantedForUsers), "grantedForUsers");
     
     [Required]
     [JsonPropertyName("grantedForUsers")]
     public bool IsGrantedForUsers
     {
-        get => _grantedForUsers.GetValue();
+        get => _grantedForUsers.GetValue(InlineErrors);
         set => _grantedForUsers.SetValue(value);
     }
 
-    private PropertyValue<FeatureFlag?> _featureFlag = new PropertyValue<FeatureFlag?>(nameof(FullRightWithoutType), nameof(FeatureFlag));
+    private PropertyValue<FeatureFlag?> _featureFlag = new PropertyValue<FeatureFlag?>(nameof(FullRightWithoutType), nameof(FeatureFlag), "featureFlag");
     
     [JsonPropertyName("featureFlag")]
     public FeatureFlag? FeatureFlag
     {
-        get => _featureFlag.GetValue();
+        get => _featureFlag.GetValue(InlineErrors);
         set => _featureFlag.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _code.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _grantedForUsers.SetAccessPath(path, validateHasBeenSet);
-        _featureFlag.SetAccessPath(path, validateHasBeenSet);
+        _code.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _grantedForUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -43,31 +43,35 @@ public sealed class CFEnumValueModificationUpdate
         NewName = newName;
     }
     
-    private PropertyValue<CFEnumValueIdentifier> _valueIdentifier = new PropertyValue<CFEnumValueIdentifier>(nameof(CFEnumValueModificationUpdate), nameof(ValueIdentifier));
+    private PropertyValue<CFEnumValueIdentifier> _valueIdentifier = new PropertyValue<CFEnumValueIdentifier>(nameof(CFEnumValueModificationUpdate), nameof(ValueIdentifier), "valueIdentifier");
     
     [Required]
     [JsonPropertyName("valueIdentifier")]
     public CFEnumValueIdentifier ValueIdentifier
     {
-        get => _valueIdentifier.GetValue();
+        get => _valueIdentifier.GetValue(InlineErrors);
         set => _valueIdentifier.SetValue(value);
     }
 
-    private PropertyValue<string> _newName = new PropertyValue<string>(nameof(CFEnumValueModificationUpdate), nameof(NewName));
+    private PropertyValue<string> _newName = new PropertyValue<string>(nameof(CFEnumValueModificationUpdate), nameof(NewName), "newName");
     
     [Required]
     [JsonPropertyName("newName")]
     public string NewName
     {
-        get => _newName.GetValue();
+        get => _newName.GetValue(InlineErrors);
         set => _newName.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _valueIdentifier.SetAccessPath(path, validateHasBeenSet);
-        _newName.SetAccessPath(path, validateHasBeenSet);
+        _valueIdentifier.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _newName.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

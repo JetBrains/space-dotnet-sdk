@@ -53,169 +53,173 @@ public sealed class Document
         DocumentBody = documentBody;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Document), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Document), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(Document), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(Document), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<string> _alias = new PropertyValue<string>(nameof(Document), nameof(Alias));
+    private PropertyValue<string> _alias = new PropertyValue<string>(nameof(Document), nameof(Alias), "alias");
     
     [Required]
     [JsonPropertyName("alias")]
     public string Alias
     {
-        get => _alias.GetValue();
+        get => _alias.GetValue(InlineErrors);
         set => _alias.SetValue(value);
     }
 
-    private PropertyValue<PublicationDetails?> _publicationDetails = new PropertyValue<PublicationDetails?>(nameof(Document), nameof(PublicationDetails));
+    private PropertyValue<PublicationDetails?> _publicationDetails = new PropertyValue<PublicationDetails?>(nameof(Document), nameof(PublicationDetails), "publicationDetails");
     
     [JsonPropertyName("publicationDetails")]
     public PublicationDetails? PublicationDetails
     {
-        get => _publicationDetails.GetValue();
+        get => _publicationDetails.GetValue(InlineErrors);
         set => _publicationDetails.SetValue(value);
     }
 
-    private PropertyValue<DocumentFolder?> _folderRef = new PropertyValue<DocumentFolder?>(nameof(Document), nameof(FolderRef));
+    private PropertyValue<DocumentFolder?> _folderRef = new PropertyValue<DocumentFolder?>(nameof(Document), nameof(FolderRef), "folderRef");
     
     [JsonPropertyName("folderRef")]
     public DocumentFolder? FolderRef
     {
-        get => _folderRef.GetValue();
+        get => _folderRef.GetValue(InlineErrors);
         set => _folderRef.SetValue(value);
     }
 
-    private PropertyValue<DocumentBodyType> _bodyType = new PropertyValue<DocumentBodyType>(nameof(Document), nameof(BodyType));
+    private PropertyValue<DocumentBodyType> _bodyType = new PropertyValue<DocumentBodyType>(nameof(Document), nameof(BodyType), "bodyType");
     
     [Required]
     [JsonPropertyName("bodyType")]
     public DocumentBodyType BodyType
     {
-        get => _bodyType.GetValue();
+        get => _bodyType.GetValue(InlineErrors);
         set => _bodyType.SetValue(value);
     }
 
-    private PropertyValue<DocumentBodyInfo?> _bodyInfo = new PropertyValue<DocumentBodyInfo?>(nameof(Document), nameof(BodyInfo));
+    private PropertyValue<DocumentBodyInfo?> _bodyInfo = new PropertyValue<DocumentBodyInfo?>(nameof(Document), nameof(BodyInfo), "bodyInfo");
     
     [JsonPropertyName("bodyInfo")]
     public DocumentBodyInfo? BodyInfo
     {
-        get => _bodyInfo.GetValue();
+        get => _bodyInfo.GetValue(InlineErrors);
         set => _bodyInfo.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Document), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Document), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _archivedBy = new PropertyValue<CPrincipal?>(nameof(Document), nameof(ArchivedBy));
+    private PropertyValue<CPrincipal?> _archivedBy = new PropertyValue<CPrincipal?>(nameof(Document), nameof(ArchivedBy), "archivedBy");
     
     [JsonPropertyName("archivedBy")]
     public CPrincipal? ArchivedBy
     {
-        get => _archivedBy.GetValue();
+        get => _archivedBy.GetValue(InlineErrors);
         set => _archivedBy.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _archivedAt = new PropertyValue<DateTime?>(nameof(Document), nameof(ArchivedAt));
+    private PropertyValue<DateTime?> _archivedAt = new PropertyValue<DateTime?>(nameof(Document), nameof(ArchivedAt), "archivedAt");
     
     [JsonPropertyName("archivedAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ArchivedAt
     {
-        get => _archivedAt.GetValue();
+        get => _archivedAt.GetValue(InlineErrors);
         set => _archivedAt.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(Document), nameof(CreatedBy));
+    private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(Document), nameof(CreatedBy), "createdBy");
     
     [JsonPropertyName("createdBy")]
     public CPrincipal? CreatedBy
     {
-        get => _createdBy.GetValue();
+        get => _createdBy.GetValue(InlineErrors);
         set => _createdBy.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _created = new PropertyValue<DateTime?>(nameof(Document), nameof(Created));
+    private PropertyValue<DateTime?> _created = new PropertyValue<DateTime?>(nameof(Document), nameof(Created), "created");
     
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _modifiedBy = new PropertyValue<CPrincipal?>(nameof(Document), nameof(ModifiedBy));
+    private PropertyValue<CPrincipal?> _modifiedBy = new PropertyValue<CPrincipal?>(nameof(Document), nameof(ModifiedBy), "modifiedBy");
     
     [JsonPropertyName("modifiedBy")]
     public CPrincipal? ModifiedBy
     {
-        get => _modifiedBy.GetValue();
+        get => _modifiedBy.GetValue(InlineErrors);
         set => _modifiedBy.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _modified = new PropertyValue<DateTime>(nameof(Document), nameof(Modified));
+    private PropertyValue<DateTime> _modified = new PropertyValue<DateTime>(nameof(Document), nameof(Modified), "modified");
     
     [Required]
     [JsonPropertyName("modified")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Modified
     {
-        get => _modified.GetValue();
+        get => _modified.GetValue(InlineErrors);
         set => _modified.SetValue(value);
     }
 
-    private PropertyValue<DocumentBodyInfo> _documentBody = new PropertyValue<DocumentBodyInfo>(nameof(Document), nameof(DocumentBody));
+    private PropertyValue<DocumentBodyInfo> _documentBody = new PropertyValue<DocumentBodyInfo>(nameof(Document), nameof(DocumentBody), "documentBody");
     
     [Required]
     [JsonPropertyName("documentBody")]
     public DocumentBodyInfo DocumentBody
     {
-        get => _documentBody.GetValue();
+        get => _documentBody.GetValue(InlineErrors);
         set => _documentBody.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _alias.SetAccessPath(path, validateHasBeenSet);
-        _publicationDetails.SetAccessPath(path, validateHasBeenSet);
-        _folderRef.SetAccessPath(path, validateHasBeenSet);
-        _bodyType.SetAccessPath(path, validateHasBeenSet);
-        _bodyInfo.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _archivedBy.SetAccessPath(path, validateHasBeenSet);
-        _archivedAt.SetAccessPath(path, validateHasBeenSet);
-        _createdBy.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _modifiedBy.SetAccessPath(path, validateHasBeenSet);
-        _modified.SetAccessPath(path, validateHasBeenSet);
-        _documentBody.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _alias.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _publicationDetails.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _folderRef.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bodyType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bodyInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archivedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archivedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _modifiedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _modified.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _documentBody.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

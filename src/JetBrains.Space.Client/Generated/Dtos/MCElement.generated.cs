@@ -40,30 +40,34 @@ public sealed class MCElement
         Details = details;
     }
     
-    private PropertyValue<string> _defaultText = new PropertyValue<string>(nameof(MCElement), nameof(DefaultText));
+    private PropertyValue<string> _defaultText = new PropertyValue<string>(nameof(MCElement), nameof(DefaultText), "defaultText");
     
     [Required]
     [JsonPropertyName("defaultText")]
     public string DefaultText
     {
-        get => _defaultText.GetValue();
+        get => _defaultText.GetValue(InlineErrors);
         set => _defaultText.SetValue(value);
     }
 
-    private PropertyValue<MCElementDetails?> _details = new PropertyValue<MCElementDetails?>(nameof(MCElement), nameof(Details));
+    private PropertyValue<MCElementDetails?> _details = new PropertyValue<MCElementDetails?>(nameof(MCElement), nameof(Details), "details");
     
     [JsonPropertyName("details")]
     public MCElementDetails? Details
     {
-        get => _details.GetValue();
+        get => _details.GetValue(InlineErrors);
         set => _details.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _defaultText.SetAccessPath(path, validateHasBeenSet);
-        _details.SetAccessPath(path, validateHasBeenSet);
+        _defaultText.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _details.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

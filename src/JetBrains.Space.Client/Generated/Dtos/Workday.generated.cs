@@ -42,52 +42,56 @@ public sealed class Workday
         Minutes = minutes;
     }
     
-    private PropertyValue<string> _weekday = new PropertyValue<string>(nameof(Workday), nameof(Weekday));
+    private PropertyValue<string> _weekday = new PropertyValue<string>(nameof(Workday), nameof(Weekday), "weekday");
     
     [Required]
     [JsonPropertyName("weekday")]
     public string Weekday
     {
-        get => _weekday.GetValue();
+        get => _weekday.GetValue(InlineErrors);
         set => _weekday.SetValue(value);
     }
 
-    private PropertyValue<bool> _working = new PropertyValue<bool>(nameof(Workday), nameof(IsWorking));
+    private PropertyValue<bool> _working = new PropertyValue<bool>(nameof(Workday), nameof(IsWorking), "working");
     
     [Required]
     [JsonPropertyName("working")]
     public bool IsWorking
     {
-        get => _working.GetValue();
+        get => _working.GetValue(InlineErrors);
         set => _working.SetValue(value);
     }
 
-    private PropertyValue<int> _hours = new PropertyValue<int>(nameof(Workday), nameof(Hours));
+    private PropertyValue<int> _hours = new PropertyValue<int>(nameof(Workday), nameof(Hours), "hours");
     
     [Required]
     [JsonPropertyName("hours")]
     public int Hours
     {
-        get => _hours.GetValue();
+        get => _hours.GetValue(InlineErrors);
         set => _hours.SetValue(value);
     }
 
-    private PropertyValue<int?> _minutes = new PropertyValue<int?>(nameof(Workday), nameof(Minutes));
+    private PropertyValue<int?> _minutes = new PropertyValue<int?>(nameof(Workday), nameof(Minutes), "minutes");
     
     [JsonPropertyName("minutes")]
     public int? Minutes
     {
-        get => _minutes.GetValue();
+        get => _minutes.GetValue(InlineErrors);
         set => _minutes.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _weekday.SetAccessPath(path, validateHasBeenSet);
-        _working.SetAccessPath(path, validateHasBeenSet);
-        _hours.SetAccessPath(path, validateHasBeenSet);
-        _minutes.SetAccessPath(path, validateHasBeenSet);
+        _weekday.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _working.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hours.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _minutes.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

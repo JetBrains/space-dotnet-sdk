@@ -51,9 +51,13 @@ public abstract class CFConstraint
     public static StringCFConstraint String(int? min = null, int? max = null, string? pattern = null, string? message = null)
         => new StringCFConstraint(min: min, max: max, pattern: pattern, message: message);
     
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

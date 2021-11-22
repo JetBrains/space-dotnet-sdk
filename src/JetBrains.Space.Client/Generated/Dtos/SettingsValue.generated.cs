@@ -47,101 +47,105 @@ public sealed class SettingsValue
         DefaultProject = defaultProject;
     }
     
-    private PropertyValue<bool> _emailNotificationsEnabled = new PropertyValue<bool>(nameof(SettingsValue), nameof(IsEmailNotificationsEnabled));
+    private PropertyValue<bool> _emailNotificationsEnabled = new PropertyValue<bool>(nameof(SettingsValue), nameof(IsEmailNotificationsEnabled), "emailNotificationsEnabled");
     
     [Required]
     [JsonPropertyName("emailNotificationsEnabled")]
     public bool IsEmailNotificationsEnabled
     {
-        get => _emailNotificationsEnabled.GetValue();
+        get => _emailNotificationsEnabled.GetValue(InlineErrors);
         set => _emailNotificationsEnabled.SetValue(value);
     }
 
-    private PropertyValue<Weekday> _firstDayOfWeek = new PropertyValue<Weekday>(nameof(SettingsValue), nameof(FirstDayOfWeek));
+    private PropertyValue<Weekday> _firstDayOfWeek = new PropertyValue<Weekday>(nameof(SettingsValue), nameof(FirstDayOfWeek), "firstDayOfWeek");
     
     [Required]
     [JsonPropertyName("firstDayOfWeek")]
     public Weekday FirstDayOfWeek
     {
-        get => _firstDayOfWeek.GetValue();
+        get => _firstDayOfWeek.GetValue(InlineErrors);
         set => _firstDayOfWeek.SetValue(value);
     }
 
-    private PropertyValue<DarkTheme?> _darkTheme = new PropertyValue<DarkTheme?>(nameof(SettingsValue), nameof(DarkTheme));
+    private PropertyValue<DarkTheme?> _darkTheme = new PropertyValue<DarkTheme?>(nameof(SettingsValue), nameof(DarkTheme), "darkTheme");
     
     [JsonPropertyName("darkTheme")]
     public DarkTheme? DarkTheme
     {
-        get => _darkTheme.GetValue();
+        get => _darkTheme.GetValue(InlineErrors);
         set => _darkTheme.SetValue(value);
     }
 
-    private PropertyValue<string?> _themeName = new PropertyValue<string?>(nameof(SettingsValue), nameof(ThemeName));
+    private PropertyValue<string?> _themeName = new PropertyValue<string?>(nameof(SettingsValue), nameof(ThemeName), "themeName");
     
     [JsonPropertyName("themeName")]
     public string? ThemeName
     {
-        get => _themeName.GetValue();
+        get => _themeName.GetValue(InlineErrors);
         set => _themeName.SetValue(value);
     }
 
-    private PropertyValue<string?> _calendarView = new PropertyValue<string?>(nameof(SettingsValue), nameof(CalendarView));
+    private PropertyValue<string?> _calendarView = new PropertyValue<string?>(nameof(SettingsValue), nameof(CalendarView), "calendarView");
     
     [JsonPropertyName("calendarView")]
     public string? CalendarView
     {
-        get => _calendarView.GetValue();
+        get => _calendarView.GetValue(InlineErrors);
         set => _calendarView.SetValue(value);
     }
 
-    private PropertyValue<TDProfileEmail?> _notificationEmail = new PropertyValue<TDProfileEmail?>(nameof(SettingsValue), nameof(NotificationEmail));
+    private PropertyValue<TDProfileEmail?> _notificationEmail = new PropertyValue<TDProfileEmail?>(nameof(SettingsValue), nameof(NotificationEmail), "notificationEmail");
     
     [JsonPropertyName("notificationEmail")]
     public TDProfileEmail? NotificationEmail
     {
-        get => _notificationEmail.GetValue();
+        get => _notificationEmail.GetValue(InlineErrors);
         set => _notificationEmail.SetValue(value);
     }
 
-    private PropertyValue<DraftDocumentType?> _draftType = new PropertyValue<DraftDocumentType?>(nameof(SettingsValue), nameof(DraftType));
+    private PropertyValue<DraftDocumentType?> _draftType = new PropertyValue<DraftDocumentType?>(nameof(SettingsValue), nameof(DraftType), "draftType");
     
     [JsonPropertyName("draftType")]
     public DraftDocumentType? DraftType
     {
-        get => _draftType.GetValue();
+        get => _draftType.GetValue(InlineErrors);
         set => _draftType.SetValue(value);
     }
 
-    private PropertyValue<bool?> _todoFilters = new PropertyValue<bool?>(nameof(SettingsValue), nameof(IsTodoFilters));
+    private PropertyValue<bool?> _todoFilters = new PropertyValue<bool?>(nameof(SettingsValue), nameof(IsTodoFilters), "todoFilters");
     
     [JsonPropertyName("todoFilters")]
     public bool? IsTodoFilters
     {
-        get => _todoFilters.GetValue();
+        get => _todoFilters.GetValue(InlineErrors);
         set => _todoFilters.SetValue(value);
     }
 
-    private PropertyValue<PRProject?> _defaultProject = new PropertyValue<PRProject?>(nameof(SettingsValue), nameof(DefaultProject));
+    private PropertyValue<PRProject?> _defaultProject = new PropertyValue<PRProject?>(nameof(SettingsValue), nameof(DefaultProject), "defaultProject");
     
     [JsonPropertyName("defaultProject")]
     public PRProject? DefaultProject
     {
-        get => _defaultProject.GetValue();
+        get => _defaultProject.GetValue(InlineErrors);
         set => _defaultProject.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _emailNotificationsEnabled.SetAccessPath(path, validateHasBeenSet);
-        _firstDayOfWeek.SetAccessPath(path, validateHasBeenSet);
-        _darkTheme.SetAccessPath(path, validateHasBeenSet);
-        _themeName.SetAccessPath(path, validateHasBeenSet);
-        _calendarView.SetAccessPath(path, validateHasBeenSet);
-        _notificationEmail.SetAccessPath(path, validateHasBeenSet);
-        _draftType.SetAccessPath(path, validateHasBeenSet);
-        _todoFilters.SetAccessPath(path, validateHasBeenSet);
-        _defaultProject.SetAccessPath(path, validateHasBeenSet);
+        _emailNotificationsEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _firstDayOfWeek.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _darkTheme.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _themeName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _calendarView.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationEmail.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _draftType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _todoFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _defaultProject.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

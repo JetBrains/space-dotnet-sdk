@@ -41,39 +41,43 @@ public sealed class DateTimeViewParams
         Template = template;
     }
     
-    private PropertyValue<UnfurlDateTimeFormat?> _format = new PropertyValue<UnfurlDateTimeFormat?>(nameof(DateTimeViewParams), nameof(Format));
+    private PropertyValue<UnfurlDateTimeFormat?> _format = new PropertyValue<UnfurlDateTimeFormat?>(nameof(DateTimeViewParams), nameof(Format), "format");
     
     [JsonPropertyName("format")]
     public UnfurlDateTimeFormat? Format
     {
-        get => _format.GetValue();
+        get => _format.GetValue(InlineErrors);
         set => _format.SetValue(value);
     }
 
-    private PropertyValue<UnfurlDateTimeStyle?> _style = new PropertyValue<UnfurlDateTimeStyle?>(nameof(DateTimeViewParams), nameof(Style));
+    private PropertyValue<UnfurlDateTimeStyle?> _style = new PropertyValue<UnfurlDateTimeStyle?>(nameof(DateTimeViewParams), nameof(Style), "style");
     
     [JsonPropertyName("style")]
     public UnfurlDateTimeStyle? Style
     {
-        get => _style.GetValue();
+        get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);
     }
 
-    private PropertyValue<string?> _template = new PropertyValue<string?>(nameof(DateTimeViewParams), nameof(Template));
+    private PropertyValue<string?> _template = new PropertyValue<string?>(nameof(DateTimeViewParams), nameof(Template), "template");
     
     [JsonPropertyName("template")]
     public string? Template
     {
-        get => _template.GetValue();
+        get => _template.GetValue(InlineErrors);
         set => _template.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _format.SetAccessPath(path, validateHasBeenSet);
-        _style.SetAccessPath(path, validateHasBeenSet);
-        _template.SetAccessPath(path, validateHasBeenSet);
+        _format.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _style.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _template.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

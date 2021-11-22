@@ -44,41 +44,45 @@ public sealed class RepoCommitsSubscriptionFilter
         Spec = spec;
     }
     
-    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(RepoCommitsSubscriptionFilter), nameof(Project));
+    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(RepoCommitsSubscriptionFilter), nameof(Project), "project");
     
     [JsonPropertyName("project")]
     public PRProject? Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(RepoCommitsSubscriptionFilter), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(RepoCommitsSubscriptionFilter), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<RepoCommitsSubscriptionFilterSpec> _spec = new PropertyValue<RepoCommitsSubscriptionFilterSpec>(nameof(RepoCommitsSubscriptionFilter), nameof(Spec));
+    private PropertyValue<RepoCommitsSubscriptionFilterSpec> _spec = new PropertyValue<RepoCommitsSubscriptionFilterSpec>(nameof(RepoCommitsSubscriptionFilter), nameof(Spec), "spec");
     
     [Required]
     [JsonPropertyName("spec")]
     public RepoCommitsSubscriptionFilterSpec Spec
     {
-        get => _spec.GetValue();
+        get => _spec.GetValue(InlineErrors);
         set => _spec.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _spec.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _spec.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

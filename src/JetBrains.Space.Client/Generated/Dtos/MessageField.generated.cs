@@ -43,31 +43,35 @@ public sealed class MessageField
         Second = second;
     }
     
-    private PropertyValue<string> _first = new PropertyValue<string>(nameof(MessageField), nameof(First));
+    private PropertyValue<string> _first = new PropertyValue<string>(nameof(MessageField), nameof(First), "first");
     
     [Required]
     [JsonPropertyName("first")]
     public string First
     {
-        get => _first.GetValue();
+        get => _first.GetValue(InlineErrors);
         set => _first.SetValue(value);
     }
 
-    private PropertyValue<string> _second = new PropertyValue<string>(nameof(MessageField), nameof(Second));
+    private PropertyValue<string> _second = new PropertyValue<string>(nameof(MessageField), nameof(Second), "second");
     
     [Required]
     [JsonPropertyName("second")]
     public string Second
     {
-        get => _second.GetValue();
+        get => _second.GetValue(InlineErrors);
         set => _second.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _first.SetAccessPath(path, validateHasBeenSet);
-        _second.SetAccessPath(path, validateHasBeenSet);
+        _first.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _second.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

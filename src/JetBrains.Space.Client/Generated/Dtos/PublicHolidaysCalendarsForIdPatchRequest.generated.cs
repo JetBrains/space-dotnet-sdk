@@ -40,31 +40,35 @@ public class PublicHolidaysCalendarsForIdPatchRequest
         Location = location;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PublicHolidaysCalendarsForIdPatchRequest), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PublicHolidaysCalendarsForIdPatchRequest), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _location = new PropertyValue<string>(nameof(PublicHolidaysCalendarsForIdPatchRequest), nameof(Location));
+    private PropertyValue<string> _location = new PropertyValue<string>(nameof(PublicHolidaysCalendarsForIdPatchRequest), nameof(Location), "location");
     
     [Required]
     [JsonPropertyName("location")]
     public string Location
     {
-        get => _location.GetValue();
+        get => _location.GetValue(InlineErrors);
         set => _location.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _location.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _location.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

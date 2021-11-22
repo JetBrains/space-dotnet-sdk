@@ -42,19 +42,23 @@ public sealed class UrlCFValue
         Href = href;
     }
     
-    private PropertyValue<string?> _href = new PropertyValue<string?>(nameof(UrlCFValue), nameof(Href));
+    private PropertyValue<string?> _href = new PropertyValue<string?>(nameof(UrlCFValue), nameof(Href), "href");
     
     [JsonPropertyName("href")]
     public string? Href
     {
-        get => _href.GetValue();
+        get => _href.GetValue(InlineErrors);
         set => _href.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _href.SetAccessPath(path, validateHasBeenSet);
+        _href.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

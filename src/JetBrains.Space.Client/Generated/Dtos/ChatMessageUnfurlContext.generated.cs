@@ -43,31 +43,35 @@ public sealed class ChatMessageUnfurlContext
         MessageId = messageId;
     }
     
-    private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatMessageUnfurlContext), nameof(Channel));
+    private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatMessageUnfurlContext), nameof(Channel), "channel");
     
     [Required]
     [JsonPropertyName("channel")]
     public string Channel
     {
-        get => _channel.GetValue();
+        get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
     }
 
-    private PropertyValue<ChatMessageIdentifier> _messageId = new PropertyValue<ChatMessageIdentifier>(nameof(ChatMessageUnfurlContext), nameof(MessageId));
+    private PropertyValue<ChatMessageIdentifier> _messageId = new PropertyValue<ChatMessageIdentifier>(nameof(ChatMessageUnfurlContext), nameof(MessageId), "messageId");
     
     [Required]
     [JsonPropertyName("messageId")]
     public ChatMessageIdentifier MessageId
     {
-        get => _messageId.GetValue();
+        get => _messageId.GetValue(InlineErrors);
         set => _messageId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _channel.SetAccessPath(path, validateHasBeenSet);
-        _messageId.SetAccessPath(path, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messageId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

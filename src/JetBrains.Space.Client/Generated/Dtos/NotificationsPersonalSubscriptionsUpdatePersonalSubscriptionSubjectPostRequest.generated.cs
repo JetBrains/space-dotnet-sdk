@@ -42,53 +42,57 @@ public class NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubject
         IsEnabled = enabled;
     }
     
-    private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(Profile));
+    private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public ProfileIdentifier Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(SubjectCode));
+    private PropertyValue<string> _subjectCode = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(SubjectCode), "subjectCode");
     
     [Required]
     [JsonPropertyName("subjectCode")]
     public string SubjectCode
     {
-        get => _subjectCode.GetValue();
+        get => _subjectCode.GetValue(InlineErrors);
         set => _subjectCode.SetValue(value);
     }
 
-    private PropertyValue<string> _feed = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(Feed));
+    private PropertyValue<string> _feed = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(Feed), "feed");
     
     [Required]
     [JsonPropertyName("feed")]
     public string Feed
     {
-        get => _feed.GetValue();
+        get => _feed.GetValue(InlineErrors);
         set => _feed.SetValue(value);
     }
 
-    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(IsEnabled));
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionSubjectPostRequest), nameof(IsEnabled), "enabled");
     
     [Required]
     [JsonPropertyName("enabled")]
     public bool IsEnabled
     {
-        get => _enabled.GetValue();
+        get => _enabled.GetValue(InlineErrors);
         set => _enabled.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _subjectCode.SetAccessPath(path, validateHasBeenSet);
-        _feed.SetAccessPath(path, validateHasBeenSet);
-        _enabled.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subjectCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _feed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

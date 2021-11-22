@@ -44,75 +44,79 @@ public sealed class BillingReport
         EarliestBillingDate = earliestBillingDate;
     }
     
-    private PropertyValue<List<PurchasedBillingPlan>> _plans = new PropertyValue<List<PurchasedBillingPlan>>(nameof(BillingReport), nameof(Plans), new List<PurchasedBillingPlan>());
+    private PropertyValue<List<PurchasedBillingPlan>> _plans = new PropertyValue<List<PurchasedBillingPlan>>(nameof(BillingReport), nameof(Plans), "plans", new List<PurchasedBillingPlan>());
     
     [Required]
     [JsonPropertyName("plans")]
     public List<PurchasedBillingPlan> Plans
     {
-        get => _plans.GetValue();
+        get => _plans.GetValue(InlineErrors);
         set => _plans.SetValue(value);
     }
 
-    private PropertyValue<List<BillingReportDay>> _reportDays = new PropertyValue<List<BillingReportDay>>(nameof(BillingReport), nameof(ReportDays), new List<BillingReportDay>());
+    private PropertyValue<List<BillingReportDay>> _reportDays = new PropertyValue<List<BillingReportDay>>(nameof(BillingReport), nameof(ReportDays), "reportDays", new List<BillingReportDay>());
     
     [Required]
     [JsonPropertyName("reportDays")]
     public List<BillingReportDay> ReportDays
     {
-        get => _reportDays.GetValue();
+        get => _reportDays.GetValue(InlineErrors);
         set => _reportDays.SetValue(value);
     }
 
-    private PropertyValue<long?> _bandwidthAllocation = new PropertyValue<long?>(nameof(BillingReport), nameof(BandwidthAllocation));
+    private PropertyValue<long?> _bandwidthAllocation = new PropertyValue<long?>(nameof(BillingReport), nameof(BandwidthAllocation), "bandwidthAllocation");
     
     [JsonPropertyName("bandwidthAllocation")]
     public long? BandwidthAllocation
     {
-        get => _bandwidthAllocation.GetValue();
+        get => _bandwidthAllocation.GetValue(InlineErrors);
         set => _bandwidthAllocation.SetValue(value);
     }
 
-    private PropertyValue<long?> _ciAllocation = new PropertyValue<long?>(nameof(BillingReport), nameof(CiAllocation));
+    private PropertyValue<long?> _ciAllocation = new PropertyValue<long?>(nameof(BillingReport), nameof(CiAllocation), "ciAllocation");
     
     [JsonPropertyName("ciAllocation")]
     public long? CiAllocation
     {
-        get => _ciAllocation.GetValue();
+        get => _ciAllocation.GetValue(InlineErrors);
         set => _ciAllocation.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _serverToday = new PropertyValue<DateTime>(nameof(BillingReport), nameof(ServerToday));
+    private PropertyValue<DateTime> _serverToday = new PropertyValue<DateTime>(nameof(BillingReport), nameof(ServerToday), "serverToday");
     
     [Required]
     [JsonPropertyName("serverToday")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime ServerToday
     {
-        get => _serverToday.GetValue();
+        get => _serverToday.GetValue(InlineErrors);
         set => _serverToday.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _earliestBillingDate = new PropertyValue<DateTime>(nameof(BillingReport), nameof(EarliestBillingDate));
+    private PropertyValue<DateTime> _earliestBillingDate = new PropertyValue<DateTime>(nameof(BillingReport), nameof(EarliestBillingDate), "earliestBillingDate");
     
     [Required]
     [JsonPropertyName("earliestBillingDate")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime EarliestBillingDate
     {
-        get => _earliestBillingDate.GetValue();
+        get => _earliestBillingDate.GetValue(InlineErrors);
         set => _earliestBillingDate.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _plans.SetAccessPath(path, validateHasBeenSet);
-        _reportDays.SetAccessPath(path, validateHasBeenSet);
-        _bandwidthAllocation.SetAccessPath(path, validateHasBeenSet);
-        _ciAllocation.SetAccessPath(path, validateHasBeenSet);
-        _serverToday.SetAccessPath(path, validateHasBeenSet);
-        _earliestBillingDate.SetAccessPath(path, validateHasBeenSet);
+        _plans.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reportDays.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bandwidthAllocation.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ciAllocation.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _serverToday.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _earliestBillingDate.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,31 +40,35 @@ public sealed class RevisionsInReview
         Commits = commits;
     }
     
-    private PropertyValue<RepositoryInReview> _repository = new PropertyValue<RepositoryInReview>(nameof(RevisionsInReview), nameof(Repository));
+    private PropertyValue<RepositoryInReview> _repository = new PropertyValue<RepositoryInReview>(nameof(RevisionsInReview), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public RepositoryInReview Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<List<GitCommitWithGraph>> _commits = new PropertyValue<List<GitCommitWithGraph>>(nameof(RevisionsInReview), nameof(Commits), new List<GitCommitWithGraph>());
+    private PropertyValue<List<GitCommitWithGraph>> _commits = new PropertyValue<List<GitCommitWithGraph>>(nameof(RevisionsInReview), nameof(Commits), "commits", new List<GitCommitWithGraph>());
     
     [Required]
     [JsonPropertyName("commits")]
     public List<GitCommitWithGraph> Commits
     {
-        get => _commits.GetValue();
+        get => _commits.GetValue(InlineErrors);
         set => _commits.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _commits.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commits.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

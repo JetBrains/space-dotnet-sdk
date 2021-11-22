@@ -44,41 +44,45 @@ public sealed class ApplicationUnfurlContentImage
         Source = source;
     }
     
-    private PropertyValue<ApiIcon?> _icon = new PropertyValue<ApiIcon?>(nameof(ApplicationUnfurlContentImage), nameof(Icon));
+    private PropertyValue<ApiIcon?> _icon = new PropertyValue<ApiIcon?>(nameof(ApplicationUnfurlContentImage), nameof(Icon), "icon");
     
     [JsonPropertyName("icon")]
     public ApiIcon? Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ApplicationUnfurlContentImage), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ApplicationUnfurlContentImage), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<ApplicationUnfurlContentImageSource> _source = new PropertyValue<ApplicationUnfurlContentImageSource>(nameof(ApplicationUnfurlContentImage), nameof(Source));
+    private PropertyValue<ApplicationUnfurlContentImageSource> _source = new PropertyValue<ApplicationUnfurlContentImageSource>(nameof(ApplicationUnfurlContentImage), nameof(Source), "source");
     
     [Required]
     [JsonPropertyName("source")]
     public ApplicationUnfurlContentImageSource Source
     {
-        get => _source.GetValue();
+        get => _source.GetValue(InlineErrors);
         set => _source.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _icon.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _source.SetAccessPath(path, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _source.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,31 +40,35 @@ public sealed class AbsenceEvent
         Events = events;
     }
     
-    private PropertyValue<TDMemberWithTeam> _profile = new PropertyValue<TDMemberWithTeam>(nameof(AbsenceEvent), nameof(Profile));
+    private PropertyValue<TDMemberWithTeam> _profile = new PropertyValue<TDMemberWithTeam>(nameof(AbsenceEvent), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public TDMemberWithTeam Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<List<AbsenceRecord>> _events = new PropertyValue<List<AbsenceRecord>>(nameof(AbsenceEvent), nameof(Events), new List<AbsenceRecord>());
+    private PropertyValue<List<AbsenceRecord>> _events = new PropertyValue<List<AbsenceRecord>>(nameof(AbsenceEvent), nameof(Events), "events", new List<AbsenceRecord>());
     
     [Required]
     [JsonPropertyName("events")]
     public List<AbsenceRecord> Events
     {
-        get => _events.GetValue();
+        get => _events.GetValue(InlineErrors);
         set => _events.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _events.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _events.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

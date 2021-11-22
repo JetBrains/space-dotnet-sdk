@@ -51,139 +51,143 @@ public class TeamDirectoryLocationsForIdPatchRequest
         Capacity = capacity;
     }
     
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _timezone = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Timezone));
+    private PropertyValue<string?> _timezone = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Timezone), "timezone");
     
     [JsonPropertyName("timezone")]
     public string? Timezone
     {
-        get => _timezone.GetValue();
+        get => _timezone.GetValue(InlineErrors);
         set => _timezone.SetValue(value);
     }
 
-    private PropertyValue<bool?> _customWorkdays = new PropertyValue<bool?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(IsCustomWorkdays));
+    private PropertyValue<bool?> _customWorkdays = new PropertyValue<bool?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(IsCustomWorkdays), "customWorkdays");
     
     [JsonPropertyName("customWorkdays")]
     public bool? IsCustomWorkdays
     {
-        get => _customWorkdays.GetValue();
+        get => _customWorkdays.GetValue(InlineErrors);
         set => _customWorkdays.SetValue(value);
     }
 
-    private PropertyValue<List<int>?> _workdays = new PropertyValue<List<int>?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Workdays));
+    private PropertyValue<List<int>?> _workdays = new PropertyValue<List<int>?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Workdays), "workdays");
     
     [JsonPropertyName("workdays")]
     public List<int>? Workdays
     {
-        get => _workdays.GetValue();
+        get => _workdays.GetValue(InlineErrors);
         set => _workdays.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _phones = new PropertyValue<List<string>?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Phones));
+    private PropertyValue<List<string>?> _phones = new PropertyValue<List<string>?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Phones), "phones");
     
     [JsonPropertyName("phones")]
     public List<string>? Phones
     {
-        get => _phones.GetValue();
+        get => _phones.GetValue(InlineErrors);
         set => _phones.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _emails = new PropertyValue<List<string>?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Emails));
+    private PropertyValue<List<string>?> _emails = new PropertyValue<List<string>?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Emails), "emails");
     
     [JsonPropertyName("emails")]
     public List<string>? Emails
     {
-        get => _emails.GetValue();
+        get => _emails.GetValue(InlineErrors);
         set => _emails.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _equipment = new PropertyValue<List<string>?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Equipment));
+    private PropertyValue<List<string>?> _equipment = new PropertyValue<List<string>?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Equipment), "equipment");
     
     [JsonPropertyName("equipment")]
     public List<string>? Equipment
     {
-        get => _equipment.GetValue();
+        get => _equipment.GetValue(InlineErrors);
         set => _equipment.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<string?> _address = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Address));
+    private PropertyValue<string?> _address = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Address), "address");
     
     [JsonPropertyName("address")]
     public string? Address
     {
-        get => _address.GetValue();
+        get => _address.GetValue(InlineErrors);
         set => _address.SetValue(value);
     }
 
-    private PropertyValue<string?> _type = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Type));
+    private PropertyValue<string?> _type = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Type), "type");
     
     [JsonPropertyName("type")]
     public string? Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(ParentId));
+    private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(ParentId), "parentId");
     
     [JsonPropertyName("parentId")]
     public string? ParentId
     {
-        get => _parentId.GetValue();
+        get => _parentId.GetValue(InlineErrors);
         set => _parentId.SetValue(value);
     }
 
-    private PropertyValue<string?> _mapId = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(MapId));
+    private PropertyValue<string?> _mapId = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(MapId), "mapId");
     
     [JsonPropertyName("mapId")]
     public string? MapId
     {
-        get => _mapId.GetValue();
+        get => _mapId.GetValue(InlineErrors);
         set => _mapId.SetValue(value);
     }
 
-    private PropertyValue<int?> _capacity = new PropertyValue<int?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Capacity));
+    private PropertyValue<int?> _capacity = new PropertyValue<int?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Capacity), "capacity");
     
     [JsonPropertyName("capacity")]
     public int? Capacity
     {
-        get => _capacity.GetValue();
+        get => _capacity.GetValue(InlineErrors);
         set => _capacity.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _timezone.SetAccessPath(path, validateHasBeenSet);
-        _customWorkdays.SetAccessPath(path, validateHasBeenSet);
-        _workdays.SetAccessPath(path, validateHasBeenSet);
-        _phones.SetAccessPath(path, validateHasBeenSet);
-        _emails.SetAccessPath(path, validateHasBeenSet);
-        _equipment.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _address.SetAccessPath(path, validateHasBeenSet);
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _parentId.SetAccessPath(path, validateHasBeenSet);
-        _mapId.SetAccessPath(path, validateHasBeenSet);
-        _capacity.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _customWorkdays.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _workdays.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _phones.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _emails.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _equipment.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _address.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parentId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mapId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _capacity.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -40,30 +40,34 @@ public sealed class DiffContext
         Right = right;
     }
     
-    private PropertyValue<DiffSide?> _left = new PropertyValue<DiffSide?>(nameof(DiffContext), nameof(Left));
+    private PropertyValue<DiffSide?> _left = new PropertyValue<DiffSide?>(nameof(DiffContext), nameof(Left), "left");
     
     [JsonPropertyName("left")]
     public DiffSide? Left
     {
-        get => _left.GetValue();
+        get => _left.GetValue(InlineErrors);
         set => _left.SetValue(value);
     }
 
-    private PropertyValue<DiffSide> _right = new PropertyValue<DiffSide>(nameof(DiffContext), nameof(Right));
+    private PropertyValue<DiffSide> _right = new PropertyValue<DiffSide>(nameof(DiffContext), nameof(Right), "right");
     
     [Required]
     [JsonPropertyName("right")]
     public DiffSide Right
     {
-        get => _right.GetValue();
+        get => _right.GetValue(InlineErrors);
         set => _right.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _left.SetAccessPath(path, validateHasBeenSet);
-        _right.SetAccessPath(path, validateHasBeenSet);
+        _left.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _right.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -43,29 +43,33 @@ public sealed class PackageOriginBuild
         Url = url;
     }
     
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(PackageOriginBuild), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(PackageOriginBuild), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(PackageOriginBuild), nameof(Url));
+    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(PackageOriginBuild), nameof(Url), "url");
     
     [JsonPropertyName("url")]
     public string? Url
     {
-        get => _url.GetValue();
+        get => _url.GetValue(InlineErrors);
         set => _url.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _url.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

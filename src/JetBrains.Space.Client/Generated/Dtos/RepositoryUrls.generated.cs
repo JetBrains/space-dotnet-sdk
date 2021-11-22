@@ -41,39 +41,43 @@ public sealed class RepositoryUrls
         SshHost = sshHost;
     }
     
-    private PropertyValue<string?> _httpUrl = new PropertyValue<string?>(nameof(RepositoryUrls), nameof(HttpUrl));
+    private PropertyValue<string?> _httpUrl = new PropertyValue<string?>(nameof(RepositoryUrls), nameof(HttpUrl), "httpUrl");
     
     [JsonPropertyName("httpUrl")]
     public string? HttpUrl
     {
-        get => _httpUrl.GetValue();
+        get => _httpUrl.GetValue(InlineErrors);
         set => _httpUrl.SetValue(value);
     }
 
-    private PropertyValue<string?> _sshUrl = new PropertyValue<string?>(nameof(RepositoryUrls), nameof(SshUrl));
+    private PropertyValue<string?> _sshUrl = new PropertyValue<string?>(nameof(RepositoryUrls), nameof(SshUrl), "sshUrl");
     
     [JsonPropertyName("sshUrl")]
     public string? SshUrl
     {
-        get => _sshUrl.GetValue();
+        get => _sshUrl.GetValue(InlineErrors);
         set => _sshUrl.SetValue(value);
     }
 
-    private PropertyValue<string?> _sshHost = new PropertyValue<string?>(nameof(RepositoryUrls), nameof(SshHost));
+    private PropertyValue<string?> _sshHost = new PropertyValue<string?>(nameof(RepositoryUrls), nameof(SshHost), "sshHost");
     
     [JsonPropertyName("sshHost")]
     public string? SshHost
     {
-        get => _sshHost.GetValue();
+        get => _sshHost.GetValue(InlineErrors);
         set => _sshHost.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _httpUrl.SetAccessPath(path, validateHasBeenSet);
-        _sshUrl.SetAccessPath(path, validateHasBeenSet);
-        _sshHost.SetAccessPath(path, validateHasBeenSet);
+        _httpUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sshUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sshHost.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,19 +42,23 @@ public sealed class TeamCFInputValue
         Team = team;
     }
     
-    private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamCFInputValue), nameof(Team));
+    private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamCFInputValue), nameof(Team), "team");
     
     [JsonPropertyName("team")]
     public string? Team
     {
-        get => _team.GetValue();
+        get => _team.GetValue(InlineErrors);
         set => _team.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _team.SetAccessPath(path, validateHasBeenSet);
+        _team.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -43,31 +43,35 @@ public sealed class InaccessibleDocumentBody
         DocBodyId = docBodyId;
     }
     
-    private PropertyValue<DocumentBodyType> _docBodyType = new PropertyValue<DocumentBodyType>(nameof(InaccessibleDocumentBody), nameof(DocBodyType));
+    private PropertyValue<DocumentBodyType> _docBodyType = new PropertyValue<DocumentBodyType>(nameof(InaccessibleDocumentBody), nameof(DocBodyType), "docBodyType");
     
     [Required]
     [JsonPropertyName("docBodyType")]
     public DocumentBodyType DocBodyType
     {
-        get => _docBodyType.GetValue();
+        get => _docBodyType.GetValue(InlineErrors);
         set => _docBodyType.SetValue(value);
     }
 
-    private PropertyValue<string> _docBodyId = new PropertyValue<string>(nameof(InaccessibleDocumentBody), nameof(DocBodyId));
+    private PropertyValue<string> _docBodyId = new PropertyValue<string>(nameof(InaccessibleDocumentBody), nameof(DocBodyId), "docBodyId");
     
     [Required]
     [JsonPropertyName("docBodyId")]
     public string DocBodyId
     {
-        get => _docBodyId.GetValue();
+        get => _docBodyId.GetValue(InlineErrors);
         set => _docBodyId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _docBodyType.SetAccessPath(path, validateHasBeenSet);
-        _docBodyId.SetAccessPath(path, validateHasBeenSet);
+        _docBodyType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _docBodyId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

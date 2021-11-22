@@ -42,20 +42,24 @@ public sealed class UnfurlDetailsRole
         Role = role;
     }
     
-    private PropertyValue<TDRole> _role = new PropertyValue<TDRole>(nameof(UnfurlDetailsRole), nameof(Role));
+    private PropertyValue<TDRole> _role = new PropertyValue<TDRole>(nameof(UnfurlDetailsRole), nameof(Role), "role");
     
     [Required]
     [JsonPropertyName("role")]
     public TDRole Role
     {
-        get => _role.GetValue();
+        get => _role.GetValue(InlineErrors);
         set => _role.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _role.SetAccessPath(path, validateHasBeenSet);
+        _role.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

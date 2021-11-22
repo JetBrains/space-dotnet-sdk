@@ -48,110 +48,114 @@ public sealed class ContainerHelmChart
         Type = type;
     }
     
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(ContainerHelmChart), nameof(Tags));
+    private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(ContainerHelmChart), nameof(Tags), "tags");
     
     [JsonPropertyName("tags")]
     public List<string>? Tags
     {
-        get => _tags.GetValue();
+        get => _tags.GetValue(InlineErrors);
         set => _tags.SetValue(value);
     }
 
-    private PropertyValue<string?> _projectUrl = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(ProjectUrl));
+    private PropertyValue<string?> _projectUrl = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(ProjectUrl), "projectUrl");
     
     [JsonPropertyName("projectUrl")]
     public string? ProjectUrl
     {
-        get => _projectUrl.GetValue();
+        get => _projectUrl.GetValue(InlineErrors);
         set => _projectUrl.SetValue(value);
     }
 
-    private PropertyValue<string?> _sourceUrl = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(SourceUrl));
+    private PropertyValue<string?> _sourceUrl = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(SourceUrl), "sourceUrl");
     
     [JsonPropertyName("sourceUrl")]
     public string? SourceUrl
     {
-        get => _sourceUrl.GetValue();
+        get => _sourceUrl.GetValue(InlineErrors);
         set => _sourceUrl.SetValue(value);
     }
 
-    private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(Version));
+    private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(Version), "version");
     
     [JsonPropertyName("version")]
     public string? Version
     {
-        get => _version.GetValue();
+        get => _version.GetValue(InlineErrors);
         set => _version.SetValue(value);
     }
 
-    private PropertyValue<string?> _apiVersion = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(ApiVersion));
+    private PropertyValue<string?> _apiVersion = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(ApiVersion), "apiVersion");
     
     [JsonPropertyName("apiVersion")]
     public string? ApiVersion
     {
-        get => _apiVersion.GetValue();
+        get => _apiVersion.GetValue(InlineErrors);
         set => _apiVersion.SetValue(value);
     }
 
-    private PropertyValue<string?> _appVersion = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(AppVersion));
+    private PropertyValue<string?> _appVersion = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(AppVersion), "appVersion");
     
     [JsonPropertyName("appVersion")]
     public string? AppVersion
     {
-        get => _appVersion.GetValue();
+        get => _appVersion.GetValue(InlineErrors);
         set => _appVersion.SetValue(value);
     }
 
-    private PropertyValue<List<ContainerHelmChartDependency>> _dependencies = new PropertyValue<List<ContainerHelmChartDependency>>(nameof(ContainerHelmChart), nameof(Dependencies), new List<ContainerHelmChartDependency>());
+    private PropertyValue<List<ContainerHelmChartDependency>> _dependencies = new PropertyValue<List<ContainerHelmChartDependency>>(nameof(ContainerHelmChart), nameof(Dependencies), "dependencies", new List<ContainerHelmChartDependency>());
     
     [Required]
     [JsonPropertyName("dependencies")]
     public List<ContainerHelmChartDependency> Dependencies
     {
-        get => _dependencies.GetValue();
+        get => _dependencies.GetValue(InlineErrors);
         set => _dependencies.SetValue(value);
     }
 
-    private PropertyValue<string?> _type = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(Type));
+    private PropertyValue<string?> _type = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(Type), "type");
     
     [JsonPropertyName("type")]
     public string? Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _tags.SetAccessPath(path, validateHasBeenSet);
-        _projectUrl.SetAccessPath(path, validateHasBeenSet);
-        _sourceUrl.SetAccessPath(path, validateHasBeenSet);
-        _version.SetAccessPath(path, validateHasBeenSet);
-        _apiVersion.SetAccessPath(path, validateHasBeenSet);
-        _appVersion.SetAccessPath(path, validateHasBeenSet);
-        _dependencies.SetAccessPath(path, validateHasBeenSet);
-        _type.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sourceUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _apiVersion.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _appVersion.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _dependencies.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -41,41 +41,45 @@ public sealed class ESRefreshToken
         LastAccess = lastAccess;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESRefreshToken), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESRefreshToken), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESRefreshToken), nameof(Scope));
+    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESRefreshToken), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
     public string Scope
     {
-        get => _scope.GetValue();
+        get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);
     }
 
-    private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESRefreshToken), nameof(LastAccess));
+    private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESRefreshToken), nameof(LastAccess), "lastAccess");
     
     [JsonPropertyName("lastAccess")]
     public AccessRecord? LastAccess
     {
-        get => _lastAccess.GetValue();
+        get => _lastAccess.GetValue(InlineErrors);
         set => _lastAccess.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _scope.SetAccessPath(path, validateHasBeenSet);
-        _lastAccess.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastAccess.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

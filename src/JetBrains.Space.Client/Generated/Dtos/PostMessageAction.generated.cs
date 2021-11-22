@@ -43,31 +43,35 @@ public sealed class PostMessageAction
         Payload = payload;
     }
     
-    private PropertyValue<string> _actionId = new PropertyValue<string>(nameof(PostMessageAction), nameof(ActionId));
+    private PropertyValue<string> _actionId = new PropertyValue<string>(nameof(PostMessageAction), nameof(ActionId), "actionId");
     
     [Required]
     [JsonPropertyName("actionId")]
     public string ActionId
     {
-        get => _actionId.GetValue();
+        get => _actionId.GetValue(InlineErrors);
         set => _actionId.SetValue(value);
     }
 
-    private PropertyValue<string> _payload = new PropertyValue<string>(nameof(PostMessageAction), nameof(Payload));
+    private PropertyValue<string> _payload = new PropertyValue<string>(nameof(PostMessageAction), nameof(Payload), "payload");
     
     [Required]
     [JsonPropertyName("payload")]
     public string Payload
     {
-        get => _payload.GetValue();
+        get => _payload.GetValue(InlineErrors);
         set => _payload.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _actionId.SetAccessPath(path, validateHasBeenSet);
-        _payload.SetAccessPath(path, validateHasBeenSet);
+        _actionId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _payload.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

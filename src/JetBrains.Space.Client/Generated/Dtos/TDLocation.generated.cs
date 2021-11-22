@@ -55,186 +55,190 @@ public sealed class TDLocation
         Equipment2 = equipment2;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocation), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocation), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDLocation), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDLocation), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<ATimeZoneWithOffset?> _timezone = new PropertyValue<ATimeZoneWithOffset?>(nameof(TDLocation), nameof(Timezone));
+    private PropertyValue<ATimeZoneWithOffset?> _timezone = new PropertyValue<ATimeZoneWithOffset?>(nameof(TDLocation), nameof(Timezone), "timezone");
     
     [Obsolete("Use tz field that contains no specific offset for a timezone. Field timezone is always null (since 2019.0.1) (will be removed in a future version)")]
     [JsonPropertyName("timezone")]
     public ATimeZoneWithOffset? Timezone
     {
-        get => _timezone.GetValue();
+        get => _timezone.GetValue(InlineErrors);
         set => _timezone.SetValue(value);
     }
 
-    private PropertyValue<string?> _tz = new PropertyValue<string?>(nameof(TDLocation), nameof(Tz));
+    private PropertyValue<string?> _tz = new PropertyValue<string?>(nameof(TDLocation), nameof(Tz), "tz");
     
     [JsonPropertyName("tz")]
     public string? Tz
     {
-        get => _tz.GetValue();
+        get => _tz.GetValue(InlineErrors);
         set => _tz.SetValue(value);
     }
 
-    private PropertyValue<List<int>?> _workdays = new PropertyValue<List<int>?>(nameof(TDLocation), nameof(Workdays));
+    private PropertyValue<List<int>?> _workdays = new PropertyValue<List<int>?>(nameof(TDLocation), nameof(Workdays), "workdays");
     
     [JsonPropertyName("workdays")]
     public List<int>? Workdays
     {
-        get => _workdays.GetValue();
+        get => _workdays.GetValue(InlineErrors);
         set => _workdays.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TDLocation), nameof(Phones), new List<string>());
+    private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TDLocation), nameof(Phones), "phones", new List<string>());
     
     [Required]
     [JsonPropertyName("phones")]
     public List<string> Phones
     {
-        get => _phones.GetValue();
+        get => _phones.GetValue(InlineErrors);
         set => _phones.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _emails = new PropertyValue<List<string>>(nameof(TDLocation), nameof(Emails), new List<string>());
+    private PropertyValue<List<string>> _emails = new PropertyValue<List<string>>(nameof(TDLocation), nameof(Emails), "emails", new List<string>());
     
     [Required]
     [JsonPropertyName("emails")]
     public List<string> Emails
     {
-        get => _emails.GetValue();
+        get => _emails.GetValue(InlineErrors);
         set => _emails.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _equipment = new PropertyValue<List<string>?>(nameof(TDLocation), nameof(Equipment));
+    private PropertyValue<List<string>?> _equipment = new PropertyValue<List<string>?>(nameof(TDLocation), nameof(Equipment), "equipment");
     
     [JsonPropertyName("equipment")]
     public List<string>? Equipment
     {
-        get => _equipment.GetValue();
+        get => _equipment.GetValue(InlineErrors);
         set => _equipment.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TDLocation), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TDLocation), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<string?> _address = new PropertyValue<string?>(nameof(TDLocation), nameof(Address));
+    private PropertyValue<string?> _address = new PropertyValue<string?>(nameof(TDLocation), nameof(Address), "address");
     
     [JsonPropertyName("address")]
     public string? Address
     {
-        get => _address.GetValue();
+        get => _address.GetValue(InlineErrors);
         set => _address.SetValue(value);
     }
 
-    private PropertyValue<TDLocation?> _parent = new PropertyValue<TDLocation?>(nameof(TDLocation), nameof(Parent));
+    private PropertyValue<TDLocation?> _parent = new PropertyValue<TDLocation?>(nameof(TDLocation), nameof(Parent), "parent");
     
     [JsonPropertyName("parent")]
     public TDLocation? Parent
     {
-        get => _parent.GetValue();
+        get => _parent.GetValue(InlineErrors);
         set => _parent.SetValue(value);
     }
 
-    private PropertyValue<string> _type = new PropertyValue<string>(nameof(TDLocation), nameof(Type));
+    private PropertyValue<string> _type = new PropertyValue<string>(nameof(TDLocation), nameof(Type), "type");
     
     [Required]
     [JsonPropertyName("type")]
     public string Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<string?> _mapId = new PropertyValue<string?>(nameof(TDLocation), nameof(MapId));
+    private PropertyValue<string?> _mapId = new PropertyValue<string?>(nameof(TDLocation), nameof(MapId), "mapId");
     
     [JsonPropertyName("mapId")]
     public string? MapId
     {
-        get => _mapId.GetValue();
+        get => _mapId.GetValue(InlineErrors);
         set => _mapId.SetValue(value);
     }
 
-    private PropertyValue<int?> _capacity = new PropertyValue<int?>(nameof(TDLocation), nameof(Capacity));
+    private PropertyValue<int?> _capacity = new PropertyValue<int?>(nameof(TDLocation), nameof(Capacity), "capacity");
     
     [JsonPropertyName("capacity")]
     public int? Capacity
     {
-        get => _capacity.GetValue();
+        get => _capacity.GetValue(InlineErrors);
         set => _capacity.SetValue(value);
     }
 
-    private PropertyValue<string?> _channelId = new PropertyValue<string?>(nameof(TDLocation), nameof(ChannelId));
+    private PropertyValue<string?> _channelId = new PropertyValue<string?>(nameof(TDLocation), nameof(ChannelId), "channelId");
     
     [JsonPropertyName("channelId")]
     public string? ChannelId
     {
-        get => _channelId.GetValue();
+        get => _channelId.GetValue(InlineErrors);
         set => _channelId.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDLocation), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDLocation), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<List<TDLocationEquipmentTypeRecord>?> _equipment2 = new PropertyValue<List<TDLocationEquipmentTypeRecord>?>(nameof(TDLocation), nameof(Equipment2));
+    private PropertyValue<List<TDLocationEquipmentTypeRecord>?> _equipment2 = new PropertyValue<List<TDLocationEquipmentTypeRecord>?>(nameof(TDLocation), nameof(Equipment2), "equipment2");
     
     [JsonPropertyName("equipment2")]
     public List<TDLocationEquipmentTypeRecord>? Equipment2
     {
-        get => _equipment2.GetValue();
+        get => _equipment2.GetValue(InlineErrors);
         set => _equipment2.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _timezone.SetAccessPath(path, validateHasBeenSet);
-        _tz.SetAccessPath(path, validateHasBeenSet);
-        _workdays.SetAccessPath(path, validateHasBeenSet);
-        _phones.SetAccessPath(path, validateHasBeenSet);
-        _emails.SetAccessPath(path, validateHasBeenSet);
-        _equipment.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _address.SetAccessPath(path, validateHasBeenSet);
-        _parent.SetAccessPath(path, validateHasBeenSet);
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _mapId.SetAccessPath(path, validateHasBeenSet);
-        _capacity.SetAccessPath(path, validateHasBeenSet);
-        _channelId.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _equipment2.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tz.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _workdays.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _phones.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _emails.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _equipment.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _address.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parent.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mapId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _capacity.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _equipment2.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

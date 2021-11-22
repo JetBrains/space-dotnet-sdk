@@ -42,52 +42,56 @@ public sealed class StickerVariant
         Height = height;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(StickerVariant), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(StickerVariant), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(StickerVariant), nameof(Name));
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(StickerVariant), nameof(Name), "name");
     
     [JsonPropertyName("name")]
     public string? Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<int> _width = new PropertyValue<int>(nameof(StickerVariant), nameof(Width));
+    private PropertyValue<int> _width = new PropertyValue<int>(nameof(StickerVariant), nameof(Width), "width");
     
     [Required]
     [JsonPropertyName("width")]
     public int Width
     {
-        get => _width.GetValue();
+        get => _width.GetValue(InlineErrors);
         set => _width.SetValue(value);
     }
 
-    private PropertyValue<int> _height = new PropertyValue<int>(nameof(StickerVariant), nameof(Height));
+    private PropertyValue<int> _height = new PropertyValue<int>(nameof(StickerVariant), nameof(Height), "height");
     
     [Required]
     [JsonPropertyName("height")]
     public int Height
     {
-        get => _height.GetValue();
+        get => _height.GetValue(InlineErrors);
         set => _height.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _width.SetAccessPath(path, validateHasBeenSet);
-        _height.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _width.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _height.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -46,61 +46,65 @@ public sealed class M2ChannelContentNamedPrivateChannel
         Icon = icon;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(NotificationDefaults));
+    private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(NotificationDefaults), "notificationDefaults");
     
     [JsonPropertyName("notificationDefaults")]
     public ChannelSpecificDefaults? NotificationDefaults
     {
-        get => _notificationDefaults.GetValue();
+        get => _notificationDefaults.GetValue(InlineErrors);
         set => _notificationDefaults.SetValue(value);
     }
 
-    private PropertyValue<bool> _canHaveThreads = new PropertyValue<bool>(nameof(M2ChannelContentNamedPrivateChannel), nameof(CanHaveThreads));
+    private PropertyValue<bool> _canHaveThreads = new PropertyValue<bool>(nameof(M2ChannelContentNamedPrivateChannel), nameof(CanHaveThreads), "canHaveThreads");
     
     [Required]
     [JsonPropertyName("canHaveThreads")]
     public bool CanHaveThreads
     {
-        get => _canHaveThreads.GetValue();
+        get => _canHaveThreads.GetValue(InlineErrors);
         set => _canHaveThreads.SetValue(value);
     }
 
-    private PropertyValue<PrivateFeedColor?> _color = new PropertyValue<PrivateFeedColor?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Color));
+    private PropertyValue<PrivateFeedColor?> _color = new PropertyValue<PrivateFeedColor?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Color), "color");
     
     [JsonPropertyName("color")]
     public PrivateFeedColor? Color
     {
-        get => _color.GetValue();
+        get => _color.GetValue(InlineErrors);
         set => _color.SetValue(value);
     }
 
-    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Icon));
+    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Icon), "icon");
     
     [JsonPropertyName("icon")]
     public string? Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
-        _canHaveThreads.SetAccessPath(path, validateHasBeenSet);
-        _color.SetAccessPath(path, validateHasBeenSet);
-        _icon.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _canHaveThreads.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _color.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

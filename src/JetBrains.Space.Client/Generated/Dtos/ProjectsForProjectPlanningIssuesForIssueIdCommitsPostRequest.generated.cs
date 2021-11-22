@@ -40,31 +40,35 @@ public class ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest
         CommitIds = commitIds;
     }
     
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _commitIds = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest), nameof(CommitIds), new List<string>());
+    private PropertyValue<List<string>> _commitIds = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommitsPostRequest), nameof(CommitIds), "commitIds", new List<string>());
     
     [Required]
     [JsonPropertyName("commitIds")]
     public List<string> CommitIds
     {
-        get => _commitIds.GetValue();
+        get => _commitIds.GetValue(InlineErrors);
         set => _commitIds.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _commitIds.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commitIds.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

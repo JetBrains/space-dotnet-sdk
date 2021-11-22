@@ -54,179 +54,183 @@ public sealed class CustomField
         IsArchived = archived;
     }
     
-    private PropertyValue<ExtendedType> _extendedType = new PropertyValue<ExtendedType>(nameof(CustomField), nameof(ExtendedType));
+    private PropertyValue<ExtendedType> _extendedType = new PropertyValue<ExtendedType>(nameof(CustomField), nameof(ExtendedType), "extendedType");
     
     [Required]
     [JsonPropertyName("extendedType")]
     public ExtendedType ExtendedType
     {
-        get => _extendedType.GetValue();
+        get => _extendedType.GetValue(InlineErrors);
         set => _extendedType.SetValue(value);
     }
 
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CustomField), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CustomField), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(CustomField), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(CustomField), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CustomField), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CustomField), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<string?> _key = new PropertyValue<string?>(nameof(CustomField), nameof(Key));
+    private PropertyValue<string?> _key = new PropertyValue<string?>(nameof(CustomField), nameof(Key), "key");
     
     [Obsolete("Use name instead (since 2020-09-28) (will be removed in a future version)")]
     [JsonPropertyName("key")]
     public string? Key
     {
-        get => _key.GetValue();
+        get => _key.GetValue(InlineErrors);
         set => _key.SetValue(value);
     }
 
-    private PropertyValue<CFType> _type = new PropertyValue<CFType>(nameof(CustomField), nameof(Type));
+    private PropertyValue<CFType> _type = new PropertyValue<CFType>(nameof(CustomField), nameof(Type), "type");
     
     [Required]
     [JsonPropertyName("type")]
     public CFType Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<CFConstraint?> _constraint = new PropertyValue<CFConstraint?>(nameof(CustomField), nameof(Constraint));
+    private PropertyValue<CFConstraint?> _constraint = new PropertyValue<CFConstraint?>(nameof(CustomField), nameof(Constraint), "constraint");
     
     [JsonPropertyName("constraint")]
     public CFConstraint? Constraint
     {
-        get => _constraint.GetValue();
+        get => _constraint.GetValue(InlineErrors);
         set => _constraint.SetValue(value);
     }
 
-    private PropertyValue<bool> _required = new PropertyValue<bool>(nameof(CustomField), nameof(IsRequired));
+    private PropertyValue<bool> _required = new PropertyValue<bool>(nameof(CustomField), nameof(IsRequired), "required");
     
     [Required]
     [JsonPropertyName("required")]
     public bool IsRequired
     {
-        get => _required.GetValue();
+        get => _required.GetValue(InlineErrors);
         set => _required.SetValue(value);
     }
 
-    private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(CustomField), nameof(IsPrivate));
+    private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(CustomField), nameof(IsPrivate), "private");
     
     [Required]
     [JsonPropertyName("private")]
     public bool IsPrivate
     {
-        get => _private.GetValue();
+        get => _private.GetValue(InlineErrors);
         set => _private.SetValue(value);
     }
 
-    private PropertyValue<AccessType?> _access = new PropertyValue<AccessType?>(nameof(CustomField), nameof(Access));
+    private PropertyValue<AccessType?> _access = new PropertyValue<AccessType?>(nameof(CustomField), nameof(Access), "access");
     
     [JsonPropertyName("access")]
     public AccessType? Access
     {
-        get => _access.GetValue();
+        get => _access.GetValue(InlineErrors);
         set => _access.SetValue(value);
     }
 
-    private PropertyValue<CFValue> _defaultValue = new PropertyValue<CFValue>(nameof(CustomField), nameof(DefaultValue));
+    private PropertyValue<CFValue> _defaultValue = new PropertyValue<CFValue>(nameof(CustomField), nameof(DefaultValue), "defaultValue");
     
     [Required]
     [JsonPropertyName("defaultValue")]
     public CFValue DefaultValue
     {
-        get => _defaultValue.GetValue();
+        get => _defaultValue.GetValue(InlineErrors);
         set => _defaultValue.SetValue(value);
     }
 
-    private PropertyValue<int> _order = new PropertyValue<int>(nameof(CustomField), nameof(Order));
+    private PropertyValue<int> _order = new PropertyValue<int>(nameof(CustomField), nameof(Order), "order");
     
     [Required]
     [JsonPropertyName("order")]
     public int Order
     {
-        get => _order.GetValue();
+        get => _order.GetValue(InlineErrors);
         set => _order.SetValue(value);
     }
 
-    private PropertyValue<ExtendedTypeScope?> _scope = new PropertyValue<ExtendedTypeScope?>(nameof(CustomField), nameof(Scope));
+    private PropertyValue<ExtendedTypeScope?> _scope = new PropertyValue<ExtendedTypeScope?>(nameof(CustomField), nameof(Scope), "scope");
     
     [JsonPropertyName("scope")]
     public ExtendedTypeScope? Scope
     {
-        get => _scope.GetValue();
+        get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);
     }
 
-    private PropertyValue<bool?> _deleted = new PropertyValue<bool?>(nameof(CustomField), nameof(IsDeleted));
+    private PropertyValue<bool?> _deleted = new PropertyValue<bool?>(nameof(CustomField), nameof(IsDeleted), "deleted");
     
     [JsonPropertyName("deleted")]
     public bool? IsDeleted
     {
-        get => _deleted.GetValue();
+        get => _deleted.GetValue(InlineErrors);
         set => _deleted.SetValue(value);
     }
 
-    private PropertyValue<CFParameters?> _parameters = new PropertyValue<CFParameters?>(nameof(CustomField), nameof(Parameters));
+    private PropertyValue<CFParameters?> _parameters = new PropertyValue<CFParameters?>(nameof(CustomField), nameof(Parameters), "parameters");
     
     [JsonPropertyName("parameters")]
     public CFParameters? Parameters
     {
-        get => _parameters.GetValue();
+        get => _parameters.GetValue(InlineErrors);
         set => _parameters.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CustomField), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CustomField), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _extendedType.SetAccessPath(path, validateHasBeenSet);
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _key.SetAccessPath(path, validateHasBeenSet);
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _constraint.SetAccessPath(path, validateHasBeenSet);
-        _required.SetAccessPath(path, validateHasBeenSet);
-        _private.SetAccessPath(path, validateHasBeenSet);
-        _access.SetAccessPath(path, validateHasBeenSet);
-        _defaultValue.SetAccessPath(path, validateHasBeenSet);
-        _order.SetAccessPath(path, validateHasBeenSet);
-        _scope.SetAccessPath(path, validateHasBeenSet);
-        _deleted.SetAccessPath(path, validateHasBeenSet);
-        _parameters.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
+        _extendedType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _constraint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _required.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _private.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _access.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _defaultValue.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _order.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parameters.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

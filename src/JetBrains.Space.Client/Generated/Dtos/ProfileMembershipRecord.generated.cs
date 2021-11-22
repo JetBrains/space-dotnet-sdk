@@ -41,41 +41,45 @@ public sealed class ProfileMembershipRecord
         UnapprovedMemberships = unapprovedMemberships;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProfileMembershipRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProfileMembershipRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<List<TDMembership>> _memberships = new PropertyValue<List<TDMembership>>(nameof(ProfileMembershipRecord), nameof(Memberships), new List<TDMembership>());
+    private PropertyValue<List<TDMembership>> _memberships = new PropertyValue<List<TDMembership>>(nameof(ProfileMembershipRecord), nameof(Memberships), "memberships", new List<TDMembership>());
     
     [Required]
     [JsonPropertyName("memberships")]
     public List<TDMembership> Memberships
     {
-        get => _memberships.GetValue();
+        get => _memberships.GetValue(InlineErrors);
         set => _memberships.SetValue(value);
     }
 
-    private PropertyValue<List<TDMembership>?> _unapprovedMemberships = new PropertyValue<List<TDMembership>?>(nameof(ProfileMembershipRecord), nameof(UnapprovedMemberships));
+    private PropertyValue<List<TDMembership>?> _unapprovedMemberships = new PropertyValue<List<TDMembership>?>(nameof(ProfileMembershipRecord), nameof(UnapprovedMemberships), "unapprovedMemberships");
     
     [JsonPropertyName("unapprovedMemberships")]
     public List<TDMembership>? UnapprovedMemberships
     {
-        get => _unapprovedMemberships.GetValue();
+        get => _unapprovedMemberships.GetValue(InlineErrors);
         set => _unapprovedMemberships.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _memberships.SetAccessPath(path, validateHasBeenSet);
-        _unapprovedMemberships.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _memberships.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unapprovedMemberships.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

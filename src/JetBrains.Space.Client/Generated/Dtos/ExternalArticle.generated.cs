@@ -46,94 +46,98 @@ public sealed class ExternalArticle
         ExternalUrl = externalUrl;
     }
     
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ExternalArticle), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ExternalArticle), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<string> _content = new PropertyValue<string>(nameof(ExternalArticle), nameof(Content));
+    private PropertyValue<string> _content = new PropertyValue<string>(nameof(ExternalArticle), nameof(Content), "content");
     
     [Required]
     [JsonPropertyName("content")]
     public string Content
     {
-        get => _content.GetValue();
+        get => _content.GetValue(InlineErrors);
         set => _content.SetValue(value);
     }
 
-    private PropertyValue<string> _authorId = new PropertyValue<string>(nameof(ExternalArticle), nameof(AuthorId));
+    private PropertyValue<string> _authorId = new PropertyValue<string>(nameof(ExternalArticle), nameof(AuthorId), "authorId");
     
     [Required]
     [JsonPropertyName("authorId")]
     public string AuthorId
     {
-        get => _authorId.GetValue();
+        get => _authorId.GetValue(InlineErrors);
         set => _authorId.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ExternalArticle), nameof(Created));
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ExternalArticle), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _teams = new PropertyValue<List<string>?>(nameof(ExternalArticle), nameof(Teams));
+    private PropertyValue<List<string>?> _teams = new PropertyValue<List<string>?>(nameof(ExternalArticle), nameof(Teams), "teams");
     
     [JsonPropertyName("teams")]
     public List<string>? Teams
     {
-        get => _teams.GetValue();
+        get => _teams.GetValue(InlineErrors);
         set => _teams.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _locations = new PropertyValue<List<string>?>(nameof(ExternalArticle), nameof(Locations));
+    private PropertyValue<List<string>?> _locations = new PropertyValue<List<string>?>(nameof(ExternalArticle), nameof(Locations), "locations");
     
     [JsonPropertyName("locations")]
     public List<string>? Locations
     {
-        get => _locations.GetValue();
+        get => _locations.GetValue(InlineErrors);
         set => _locations.SetValue(value);
     }
 
-    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ExternalArticle), nameof(ExternalId));
+    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ExternalArticle), nameof(ExternalId), "externalId");
     
     [JsonPropertyName("externalId")]
     public string? ExternalId
     {
-        get => _externalId.GetValue();
+        get => _externalId.GetValue(InlineErrors);
         set => _externalId.SetValue(value);
     }
 
-    private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ExternalArticle), nameof(ExternalUrl));
+    private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ExternalArticle), nameof(ExternalUrl), "externalUrl");
     
     [JsonPropertyName("externalUrl")]
     public string? ExternalUrl
     {
-        get => _externalUrl.GetValue();
+        get => _externalUrl.GetValue(InlineErrors);
         set => _externalUrl.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _content.SetAccessPath(path, validateHasBeenSet);
-        _authorId.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _teams.SetAccessPath(path, validateHasBeenSet);
-        _locations.SetAccessPath(path, validateHasBeenSet);
-        _externalId.SetAccessPath(path, validateHasBeenSet);
-        _externalUrl.SetAccessPath(path, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _content.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authorId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _teams.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _locations.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

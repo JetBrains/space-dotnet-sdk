@@ -47,72 +47,76 @@ public sealed class ESHubAuthModuleSettings
         Groups = groups;
     }
     
-    private PropertyValue<string> _hubUrl = new PropertyValue<string>(nameof(ESHubAuthModuleSettings), nameof(HubUrl));
+    private PropertyValue<string> _hubUrl = new PropertyValue<string>(nameof(ESHubAuthModuleSettings), nameof(HubUrl), "hubUrl");
     
     [Required]
     [JsonPropertyName("hubUrl")]
     public string HubUrl
     {
-        get => _hubUrl.GetValue();
+        get => _hubUrl.GetValue(InlineErrors);
         set => _hubUrl.SetValue(value);
     }
 
-    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESHubAuthModuleSettings), nameof(ClientId));
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESHubAuthModuleSettings), nameof(ClientId), "clientId");
     
     [Required]
     [JsonPropertyName("clientId")]
     public string ClientId
     {
-        get => _clientId.GetValue();
+        get => _clientId.GetValue(InlineErrors);
         set => _clientId.SetValue(value);
     }
 
-    private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESHubAuthModuleSettings), nameof(ClientSecret));
+    private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESHubAuthModuleSettings), nameof(ClientSecret), "clientSecret");
     
     [Required]
     [JsonPropertyName("clientSecret")]
     public string ClientSecret
     {
-        get => _clientSecret.GetValue();
+        get => _clientSecret.GetValue(InlineErrors);
         set => _clientSecret.SetValue(value);
     }
 
-    private PropertyValue<bool?> _registerNewUsers = new PropertyValue<bool?>(nameof(ESHubAuthModuleSettings), nameof(IsRegisterNewUsers));
+    private PropertyValue<bool?> _registerNewUsers = new PropertyValue<bool?>(nameof(ESHubAuthModuleSettings), nameof(IsRegisterNewUsers), "registerNewUsers");
     
     [JsonPropertyName("registerNewUsers")]
     public bool? IsRegisterNewUsers
     {
-        get => _registerNewUsers.GetValue();
+        get => _registerNewUsers.GetValue(InlineErrors);
         set => _registerNewUsers.SetValue(value);
     }
 
-    private PropertyValue<string?> _orgAuthProviderName = new PropertyValue<string?>(nameof(ESHubAuthModuleSettings), nameof(OrgAuthProviderName));
+    private PropertyValue<string?> _orgAuthProviderName = new PropertyValue<string?>(nameof(ESHubAuthModuleSettings), nameof(OrgAuthProviderName), "orgAuthProviderName");
     
     [JsonPropertyName("orgAuthProviderName")]
     public string? OrgAuthProviderName
     {
-        get => _orgAuthProviderName.GetValue();
+        get => _orgAuthProviderName.GetValue(InlineErrors);
         set => _orgAuthProviderName.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _groups = new PropertyValue<List<string>?>(nameof(ESHubAuthModuleSettings), nameof(Groups));
+    private PropertyValue<List<string>?> _groups = new PropertyValue<List<string>?>(nameof(ESHubAuthModuleSettings), nameof(Groups), "groups");
     
     [JsonPropertyName("groups")]
     public List<string>? Groups
     {
-        get => _groups.GetValue();
+        get => _groups.GetValue(InlineErrors);
         set => _groups.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _hubUrl.SetAccessPath(path, validateHasBeenSet);
-        _clientId.SetAccessPath(path, validateHasBeenSet);
-        _clientSecret.SetAccessPath(path, validateHasBeenSet);
-        _registerNewUsers.SetAccessPath(path, validateHasBeenSet);
-        _orgAuthProviderName.SetAccessPath(path, validateHasBeenSet);
-        _groups.SetAccessPath(path, validateHasBeenSet);
+        _hubUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _clientSecret.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _registerNewUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _orgAuthProviderName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _groups.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

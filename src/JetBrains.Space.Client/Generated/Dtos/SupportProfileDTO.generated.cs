@@ -40,31 +40,35 @@ public sealed class SupportProfileDTO
         IsAdminPermissionsGranted = adminPermissionsGranted;
     }
     
-    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(SupportProfileDTO), nameof(Profile));
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(SupportProfileDTO), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public TDMemberProfile Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<bool> _adminPermissionsGranted = new PropertyValue<bool>(nameof(SupportProfileDTO), nameof(IsAdminPermissionsGranted));
+    private PropertyValue<bool> _adminPermissionsGranted = new PropertyValue<bool>(nameof(SupportProfileDTO), nameof(IsAdminPermissionsGranted), "adminPermissionsGranted");
     
     [Required]
     [JsonPropertyName("adminPermissionsGranted")]
     public bool IsAdminPermissionsGranted
     {
-        get => _adminPermissionsGranted.GetValue();
+        get => _adminPermissionsGranted.GetValue(InlineErrors);
         set => _adminPermissionsGranted.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _adminPermissionsGranted.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _adminPermissionsGranted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

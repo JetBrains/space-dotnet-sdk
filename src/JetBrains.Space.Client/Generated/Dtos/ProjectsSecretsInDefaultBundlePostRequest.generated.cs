@@ -42,52 +42,56 @@ public class ProjectsSecretsInDefaultBundlePostRequest
         PublicKeyId = publicKeyId;
     }
     
-    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(ProjectsSecretsInDefaultBundlePostRequest), nameof(ProjectId));
+    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(ProjectsSecretsInDefaultBundlePostRequest), nameof(ProjectId), "projectId");
     
     [Required]
     [JsonPropertyName("projectId")]
     public string ProjectId
     {
-        get => _projectId.GetValue();
+        get => _projectId.GetValue(InlineErrors);
         set => _projectId.SetValue(value);
     }
 
-    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectsSecretsInDefaultBundlePostRequest), nameof(Key));
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectsSecretsInDefaultBundlePostRequest), nameof(Key), "key");
     
     [Required]
     [JsonPropertyName("key")]
     public string Key
     {
-        get => _key.GetValue();
+        get => _key.GetValue(InlineErrors);
         set => _key.SetValue(value);
     }
 
-    private PropertyValue<string> _valueBase64 = new PropertyValue<string>(nameof(ProjectsSecretsInDefaultBundlePostRequest), nameof(ValueBase64));
+    private PropertyValue<string> _valueBase64 = new PropertyValue<string>(nameof(ProjectsSecretsInDefaultBundlePostRequest), nameof(ValueBase64), "valueBase64");
     
     [Required]
     [JsonPropertyName("valueBase64")]
     public string ValueBase64
     {
-        get => _valueBase64.GetValue();
+        get => _valueBase64.GetValue(InlineErrors);
         set => _valueBase64.SetValue(value);
     }
 
-    private PropertyValue<string?> _publicKeyId = new PropertyValue<string?>(nameof(ProjectsSecretsInDefaultBundlePostRequest), nameof(PublicKeyId));
+    private PropertyValue<string?> _publicKeyId = new PropertyValue<string?>(nameof(ProjectsSecretsInDefaultBundlePostRequest), nameof(PublicKeyId), "publicKeyId");
     
     [JsonPropertyName("publicKeyId")]
     public string? PublicKeyId
     {
-        get => _publicKeyId.GetValue();
+        get => _publicKeyId.GetValue(InlineErrors);
         set => _publicKeyId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _projectId.SetAccessPath(path, validateHasBeenSet);
-        _key.SetAccessPath(path, validateHasBeenSet);
-        _valueBase64.SetAccessPath(path, validateHasBeenSet);
-        _publicKeyId.SetAccessPath(path, validateHasBeenSet);
+        _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _valueBase64.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _publicKeyId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

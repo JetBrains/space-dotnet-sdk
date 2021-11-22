@@ -39,20 +39,24 @@ public sealed class ImageAttachmentMeta
         Variants = variants;
     }
     
-    private PropertyValue<List<ImageAttachmentVariantsMeta>> _variants = new PropertyValue<List<ImageAttachmentVariantsMeta>>(nameof(ImageAttachmentMeta), nameof(Variants), new List<ImageAttachmentVariantsMeta>());
+    private PropertyValue<List<ImageAttachmentVariantsMeta>> _variants = new PropertyValue<List<ImageAttachmentVariantsMeta>>(nameof(ImageAttachmentMeta), nameof(Variants), "variants", new List<ImageAttachmentVariantsMeta>());
     
     [Required]
     [JsonPropertyName("variants")]
     public List<ImageAttachmentVariantsMeta> Variants
     {
-        get => _variants.GetValue();
+        get => _variants.GetValue(InlineErrors);
         set => _variants.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _variants.SetAccessPath(path, validateHasBeenSet);
+        _variants.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

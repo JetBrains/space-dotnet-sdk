@@ -44,42 +44,46 @@ public sealed class CAutomationTaskPrincipalDetails
         Id = id;
     }
     
-    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(CAutomationTaskPrincipalDetails), nameof(Project));
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(CAutomationTaskPrincipalDetails), nameof(Project), "project");
     
     [Required]
     [JsonPropertyName("project")]
     public PRProject Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(CAutomationTaskPrincipalDetails), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(CAutomationTaskPrincipalDetails), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CAutomationTaskPrincipalDetails), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CAutomationTaskPrincipalDetails), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _id.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

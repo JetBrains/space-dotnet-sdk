@@ -43,31 +43,35 @@ public sealed class MessageTag
         Style = style;
     }
     
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageTag), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageTag), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(MessageTag), nameof(Style));
+    private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(MessageTag), nameof(Style), "style");
     
     [Required]
     [JsonPropertyName("style")]
     public MessageStyle Style
     {
-        get => _style.GetValue();
+        get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _style.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _style.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

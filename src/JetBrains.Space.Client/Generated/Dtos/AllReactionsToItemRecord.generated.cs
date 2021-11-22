@@ -41,41 +41,45 @@ public sealed class AllReactionsToItemRecord
         EmojiReactions = emojiReactions;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(AllReactionsToItemRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(AllReactionsToItemRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<List<CertainReactionToItemRecord>> _reactions = new PropertyValue<List<CertainReactionToItemRecord>>(nameof(AllReactionsToItemRecord), nameof(Reactions), new List<CertainReactionToItemRecord>());
+    private PropertyValue<List<CertainReactionToItemRecord>> _reactions = new PropertyValue<List<CertainReactionToItemRecord>>(nameof(AllReactionsToItemRecord), nameof(Reactions), "reactions", new List<CertainReactionToItemRecord>());
     
     [Required]
     [JsonPropertyName("reactions")]
     public List<CertainReactionToItemRecord> Reactions
     {
-        get => _reactions.GetValue();
+        get => _reactions.GetValue(InlineErrors);
         set => _reactions.SetValue(value);
     }
 
-    private PropertyValue<List<EmojiReactionRecord>?> _emojiReactions = new PropertyValue<List<EmojiReactionRecord>?>(nameof(AllReactionsToItemRecord), nameof(EmojiReactions));
+    private PropertyValue<List<EmojiReactionRecord>?> _emojiReactions = new PropertyValue<List<EmojiReactionRecord>?>(nameof(AllReactionsToItemRecord), nameof(EmojiReactions), "emojiReactions");
     
     [JsonPropertyName("emojiReactions")]
     public List<EmojiReactionRecord>? EmojiReactions
     {
-        get => _emojiReactions.GetValue();
+        get => _emojiReactions.GetValue(InlineErrors);
         set => _emojiReactions.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _reactions.SetAccessPath(path, validateHasBeenSet);
-        _emojiReactions.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reactions.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _emojiReactions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

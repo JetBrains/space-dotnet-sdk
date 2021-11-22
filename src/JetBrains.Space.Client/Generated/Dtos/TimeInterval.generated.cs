@@ -40,31 +40,35 @@ public sealed class TimeInterval
         Till = till;
     }
     
-    private PropertyValue<TimeOfDay> _since = new PropertyValue<TimeOfDay>(nameof(TimeInterval), nameof(Since));
+    private PropertyValue<TimeOfDay> _since = new PropertyValue<TimeOfDay>(nameof(TimeInterval), nameof(Since), "since");
     
     [Required]
     [JsonPropertyName("since")]
     public TimeOfDay Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<TimeOfDay> _till = new PropertyValue<TimeOfDay>(nameof(TimeInterval), nameof(Till));
+    private PropertyValue<TimeOfDay> _till = new PropertyValue<TimeOfDay>(nameof(TimeInterval), nameof(Till), "till");
     
     [Required]
     [JsonPropertyName("till")]
     public TimeOfDay Till
     {
-        get => _till.GetValue();
+        get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _till.SetAccessPath(path, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _till.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

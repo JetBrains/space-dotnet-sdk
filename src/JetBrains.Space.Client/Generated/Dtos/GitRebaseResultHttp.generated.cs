@@ -39,20 +39,24 @@ public sealed class GitRebaseResultHttp
         ResultCommitIds = resultCommitIds;
     }
     
-    private PropertyValue<List<string>> _resultCommitIds = new PropertyValue<List<string>>(nameof(GitRebaseResultHttp), nameof(ResultCommitIds), new List<string>());
+    private PropertyValue<List<string>> _resultCommitIds = new PropertyValue<List<string>>(nameof(GitRebaseResultHttp), nameof(ResultCommitIds), "resultCommitIds", new List<string>());
     
     [Required]
     [JsonPropertyName("resultCommitIds")]
     public List<string> ResultCommitIds
     {
-        get => _resultCommitIds.GetValue();
+        get => _resultCommitIds.GetValue(InlineErrors);
         set => _resultCommitIds.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _resultCommitIds.SetAccessPath(path, validateHasBeenSet);
+        _resultCommitIds.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

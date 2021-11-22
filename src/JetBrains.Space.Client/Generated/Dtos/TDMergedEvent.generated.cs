@@ -40,31 +40,35 @@ public sealed class TDMergedEvent
         Profile = profile;
     }
     
-    private PropertyValue<List<Pair<TDMembership, int>>> _events = new PropertyValue<List<Pair<TDMembership, int>>>(nameof(TDMergedEvent), nameof(Events), new List<Pair<TDMembership, int>>());
+    private PropertyValue<List<Pair<TDMembership, int>>> _events = new PropertyValue<List<Pair<TDMembership, int>>>(nameof(TDMergedEvent), nameof(Events), "events", new List<Pair<TDMembership, int>>());
     
     [Required]
     [JsonPropertyName("events")]
     public List<Pair<TDMembership, int>> Events
     {
-        get => _events.GetValue();
+        get => _events.GetValue(InlineErrors);
         set => _events.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(TDMergedEvent), nameof(Profile));
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(TDMergedEvent), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public TDMemberProfile Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _events.SetAccessPath(path, validateHasBeenSet);
-        _profile.SetAccessPath(path, validateHasBeenSet);
+        _events.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

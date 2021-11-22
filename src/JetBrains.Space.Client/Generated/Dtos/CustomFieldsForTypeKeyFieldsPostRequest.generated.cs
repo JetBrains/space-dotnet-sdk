@@ -49,125 +49,129 @@ public class CustomFieldsForTypeKeyFieldsPostRequest
         Scope = scope;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<CFType> _type = new PropertyValue<CFType>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Type));
+    private PropertyValue<CFType> _type = new PropertyValue<CFType>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Type), "type");
     
     [Required]
     [JsonPropertyName("type")]
     public CFType Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<CFConstraint?> _constraint = new PropertyValue<CFConstraint?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Constraint));
+    private PropertyValue<CFConstraint?> _constraint = new PropertyValue<CFConstraint?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Constraint), "constraint");
     
     [JsonPropertyName("constraint")]
     public CFConstraint? Constraint
     {
-        get => _constraint.GetValue();
+        get => _constraint.GetValue(InlineErrors);
         set => _constraint.SetValue(value);
     }
 
-    private PropertyValue<bool> _required = new PropertyValue<bool>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(IsRequired));
+    private PropertyValue<bool> _required = new PropertyValue<bool>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(IsRequired), "required");
     
     [Required]
     [JsonPropertyName("required")]
     public bool IsRequired
     {
-        get => _required.GetValue();
+        get => _required.GetValue(InlineErrors);
         set => _required.SetValue(value);
     }
 
-    private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(IsPrivate));
+    private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(IsPrivate), "private");
     
     [Required]
     [JsonPropertyName("private")]
     public bool IsPrivate
     {
-        get => _private.GetValue();
+        get => _private.GetValue(InlineErrors);
         set => _private.SetValue(value);
     }
 
-    private PropertyValue<AccessType?> _access = new PropertyValue<AccessType?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Access));
+    private PropertyValue<AccessType?> _access = new PropertyValue<AccessType?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Access), "access");
     
     [JsonPropertyName("access")]
     public AccessType? Access
     {
-        get => _access.GetValue();
+        get => _access.GetValue(InlineErrors);
         set => _access.SetValue(value);
     }
 
-    private PropertyValue<CFInputValue> _defaultValue = new PropertyValue<CFInputValue>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(DefaultValue));
+    private PropertyValue<CFInputValue> _defaultValue = new PropertyValue<CFInputValue>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(DefaultValue), "defaultValue");
     
     [Required]
     [JsonPropertyName("defaultValue")]
     public CFInputValue DefaultValue
     {
-        get => _defaultValue.GetValue();
+        get => _defaultValue.GetValue(InlineErrors);
         set => _defaultValue.SetValue(value);
     }
 
-    private PropertyValue<CFEnumValuesModification?> _openEnumValuesModification = new PropertyValue<CFEnumValuesModification?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(OpenEnumValuesModification));
+    private PropertyValue<CFEnumValuesModification?> _openEnumValuesModification = new PropertyValue<CFEnumValuesModification?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(OpenEnumValuesModification), "openEnumValuesModification");
     
     [JsonPropertyName("openEnumValuesModification")]
     public CFEnumValuesModification? OpenEnumValuesModification
     {
-        get => _openEnumValuesModification.GetValue();
+        get => _openEnumValuesModification.GetValue(InlineErrors);
         set => _openEnumValuesModification.SetValue(value);
     }
 
-    private PropertyValue<CFCreateParameters?> _cfParameters = new PropertyValue<CFCreateParameters?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(CfParameters));
+    private PropertyValue<CFCreateParameters?> _cfParameters = new PropertyValue<CFCreateParameters?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(CfParameters), "cfParameters");
     
     [JsonPropertyName("cfParameters")]
     public CFCreateParameters? CfParameters
     {
-        get => _cfParameters.GetValue();
+        get => _cfParameters.GetValue(InlineErrors);
         set => _cfParameters.SetValue(value);
     }
 
-    private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Scope));
+    private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
     public ExtendedTypeScope Scope
     {
-        get => _scope.GetValue();
+        get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _constraint.SetAccessPath(path, validateHasBeenSet);
-        _required.SetAccessPath(path, validateHasBeenSet);
-        _private.SetAccessPath(path, validateHasBeenSet);
-        _access.SetAccessPath(path, validateHasBeenSet);
-        _defaultValue.SetAccessPath(path, validateHasBeenSet);
-        _openEnumValuesModification.SetAccessPath(path, validateHasBeenSet);
-        _cfParameters.SetAccessPath(path, validateHasBeenSet);
-        _scope.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _constraint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _required.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _private.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _access.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _defaultValue.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _openEnumValuesModification.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _cfParameters.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

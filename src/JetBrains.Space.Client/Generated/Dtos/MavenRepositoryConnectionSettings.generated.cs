@@ -42,19 +42,23 @@ public sealed class MavenRepositoryConnectionSettings
         NexusStagingProfile = nexusStagingProfile;
     }
     
-    private PropertyValue<NexusStagingProfile?> _nexusStagingProfile = new PropertyValue<NexusStagingProfile?>(nameof(MavenRepositoryConnectionSettings), nameof(NexusStagingProfile));
+    private PropertyValue<NexusStagingProfile?> _nexusStagingProfile = new PropertyValue<NexusStagingProfile?>(nameof(MavenRepositoryConnectionSettings), nameof(NexusStagingProfile), "nexusStagingProfile");
     
     [JsonPropertyName("nexusStagingProfile")]
     public NexusStagingProfile? NexusStagingProfile
     {
-        get => _nexusStagingProfile.GetValue();
+        get => _nexusStagingProfile.GetValue(InlineErrors);
         set => _nexusStagingProfile.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _nexusStagingProfile.SetAccessPath(path, validateHasBeenSet);
+        _nexusStagingProfile.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

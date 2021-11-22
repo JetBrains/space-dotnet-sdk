@@ -42,53 +42,57 @@ public class NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetP
         EventCodes = eventCodes;
     }
     
-    private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(Profile));
+    private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public ProfileIdentifier Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<string> _targetCode = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(TargetCode));
+    private PropertyValue<string> _targetCode = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(TargetCode), "targetCode");
     
     [Required]
     [JsonPropertyName("targetCode")]
     public string TargetCode
     {
-        get => _targetCode.GetValue();
+        get => _targetCode.GetValue(InlineErrors);
         set => _targetCode.SetValue(value);
     }
 
-    private PropertyValue<string> _feed = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(Feed));
+    private PropertyValue<string> _feed = new PropertyValue<string>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(Feed), "feed");
     
     [Required]
     [JsonPropertyName("feed")]
     public string Feed
     {
-        get => _feed.GetValue();
+        get => _feed.GetValue(InlineErrors);
         set => _feed.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _eventCodes = new PropertyValue<List<string>>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(EventCodes), new List<string>());
+    private PropertyValue<List<string>> _eventCodes = new PropertyValue<List<string>>(nameof(NotificationsPersonalSubscriptionsUpdatePersonalSubscriptionTargetPostRequest), nameof(EventCodes), "eventCodes", new List<string>());
     
     [Required]
     [JsonPropertyName("eventCodes")]
     public List<string> EventCodes
     {
-        get => _eventCodes.GetValue();
+        get => _eventCodes.GetValue(InlineErrors);
         set => _eventCodes.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _targetCode.SetAccessPath(path, validateHasBeenSet);
-        _feed.SetAccessPath(path, validateHasBeenSet);
-        _eventCodes.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _targetCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _feed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _eventCodes.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

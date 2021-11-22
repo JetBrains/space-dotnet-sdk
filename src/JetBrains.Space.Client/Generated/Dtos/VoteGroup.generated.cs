@@ -43,63 +43,67 @@ public sealed class VoteGroup
         Owner = owner;
     }
     
-    private PropertyValue<string> _variantName = new PropertyValue<string>(nameof(VoteGroup), nameof(VariantName));
+    private PropertyValue<string> _variantName = new PropertyValue<string>(nameof(VoteGroup), nameof(VariantName), "variantName");
     
     [Required]
     [JsonPropertyName("variantName")]
     public string VariantName
     {
-        get => _variantName.GetValue();
+        get => _variantName.GetValue(InlineErrors);
         set => _variantName.SetValue(value);
     }
 
-    private PropertyValue<int> _count = new PropertyValue<int>(nameof(VoteGroup), nameof(Count));
+    private PropertyValue<int> _count = new PropertyValue<int>(nameof(VoteGroup), nameof(Count), "count");
     
     [Required]
     [JsonPropertyName("count")]
     public int Count
     {
-        get => _count.GetValue();
+        get => _count.GetValue(InlineErrors);
         set => _count.SetValue(value);
     }
 
-    private PropertyValue<bool> _meVote = new PropertyValue<bool>(nameof(VoteGroup), nameof(IsMeVote));
+    private PropertyValue<bool> _meVote = new PropertyValue<bool>(nameof(VoteGroup), nameof(IsMeVote), "meVote");
     
     [Required]
     [JsonPropertyName("meVote")]
     public bool IsMeVote
     {
-        get => _meVote.GetValue();
+        get => _meVote.GetValue(InlineErrors);
         set => _meVote.SetValue(value);
     }
 
-    private PropertyValue<List<TDMemberProfile>> _lastUsers = new PropertyValue<List<TDMemberProfile>>(nameof(VoteGroup), nameof(LastUsers), new List<TDMemberProfile>());
+    private PropertyValue<List<TDMemberProfile>> _lastUsers = new PropertyValue<List<TDMemberProfile>>(nameof(VoteGroup), nameof(LastUsers), "lastUsers", new List<TDMemberProfile>());
     
     [Required]
     [JsonPropertyName("lastUsers")]
     public List<TDMemberProfile> LastUsers
     {
-        get => _lastUsers.GetValue();
+        get => _lastUsers.GetValue(InlineErrors);
         set => _lastUsers.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _owner = new PropertyValue<TDMemberProfile?>(nameof(VoteGroup), nameof(Owner));
+    private PropertyValue<TDMemberProfile?> _owner = new PropertyValue<TDMemberProfile?>(nameof(VoteGroup), nameof(Owner), "owner");
     
     [JsonPropertyName("owner")]
     public TDMemberProfile? Owner
     {
-        get => _owner.GetValue();
+        get => _owner.GetValue(InlineErrors);
         set => _owner.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _variantName.SetAccessPath(path, validateHasBeenSet);
-        _count.SetAccessPath(path, validateHasBeenSet);
-        _meVote.SetAccessPath(path, validateHasBeenSet);
-        _lastUsers.SetAccessPath(path, validateHasBeenSet);
-        _owner.SetAccessPath(path, validateHasBeenSet);
+        _variantName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _count.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _meVote.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _owner.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

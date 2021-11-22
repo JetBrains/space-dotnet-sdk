@@ -39,20 +39,24 @@ public class ChatsChannelsDmPostRequest
         Profile = profile;
     }
     
-    private PropertyValue<string> _profile = new PropertyValue<string>(nameof(ChatsChannelsDmPostRequest), nameof(Profile));
+    private PropertyValue<string> _profile = new PropertyValue<string>(nameof(ChatsChannelsDmPostRequest), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public string Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _profile.SetAccessPath(path, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

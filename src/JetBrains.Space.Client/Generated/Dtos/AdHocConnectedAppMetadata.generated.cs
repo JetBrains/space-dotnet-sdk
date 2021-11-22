@@ -43,29 +43,33 @@ public sealed class AdHocConnectedAppMetadata
         ConnectionStatus = connectionStatus;
     }
     
-    private PropertyValue<string?> _lastSentServerUrl = new PropertyValue<string?>(nameof(AdHocConnectedAppMetadata), nameof(LastSentServerUrl));
+    private PropertyValue<string?> _lastSentServerUrl = new PropertyValue<string?>(nameof(AdHocConnectedAppMetadata), nameof(LastSentServerUrl), "lastSentServerUrl");
     
     [JsonPropertyName("lastSentServerUrl")]
     public string? LastSentServerUrl
     {
-        get => _lastSentServerUrl.GetValue();
+        get => _lastSentServerUrl.GetValue(InlineErrors);
         set => _lastSentServerUrl.SetValue(value);
     }
 
-    private PropertyValue<AppConnectionStatus?> _connectionStatus = new PropertyValue<AppConnectionStatus?>(nameof(AdHocConnectedAppMetadata), nameof(ConnectionStatus));
+    private PropertyValue<AppConnectionStatus?> _connectionStatus = new PropertyValue<AppConnectionStatus?>(nameof(AdHocConnectedAppMetadata), nameof(ConnectionStatus), "connectionStatus");
     
     [JsonPropertyName("connectionStatus")]
     public AppConnectionStatus? ConnectionStatus
     {
-        get => _connectionStatus.GetValue();
+        get => _connectionStatus.GetValue(InlineErrors);
         set => _connectionStatus.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _lastSentServerUrl.SetAccessPath(path, validateHasBeenSet);
-        _connectionStatus.SetAccessPath(path, validateHasBeenSet);
+        _lastSentServerUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _connectionStatus.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,20 +42,24 @@ public sealed class ApplicationUnfurlTargetPattern
         Pattern = pattern;
     }
     
-    private PropertyValue<string> _pattern = new PropertyValue<string>(nameof(ApplicationUnfurlTargetPattern), nameof(Pattern));
+    private PropertyValue<string> _pattern = new PropertyValue<string>(nameof(ApplicationUnfurlTargetPattern), nameof(Pattern), "pattern");
     
     [Required]
     [JsonPropertyName("pattern")]
     public string Pattern
     {
-        get => _pattern.GetValue();
+        get => _pattern.GetValue(InlineErrors);
         set => _pattern.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _pattern.SetAccessPath(path, validateHasBeenSet);
+        _pattern.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

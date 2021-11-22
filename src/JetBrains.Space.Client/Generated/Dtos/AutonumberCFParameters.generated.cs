@@ -43,31 +43,35 @@ public sealed class AutonumberCFParameters
         Suffix = suffix;
     }
     
-    private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(AutonumberCFParameters), nameof(Prefix));
+    private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(AutonumberCFParameters), nameof(Prefix), "prefix");
     
     [Required]
     [JsonPropertyName("prefix")]
     public string Prefix
     {
-        get => _prefix.GetValue();
+        get => _prefix.GetValue(InlineErrors);
         set => _prefix.SetValue(value);
     }
 
-    private PropertyValue<string> _suffix = new PropertyValue<string>(nameof(AutonumberCFParameters), nameof(Suffix));
+    private PropertyValue<string> _suffix = new PropertyValue<string>(nameof(AutonumberCFParameters), nameof(Suffix), "suffix");
     
     [Required]
     [JsonPropertyName("suffix")]
     public string Suffix
     {
-        get => _suffix.GetValue();
+        get => _suffix.GetValue(InlineErrors);
         set => _suffix.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _prefix.SetAccessPath(path, validateHasBeenSet);
-        _suffix.SetAccessPath(path, validateHasBeenSet);
+        _prefix.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _suffix.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

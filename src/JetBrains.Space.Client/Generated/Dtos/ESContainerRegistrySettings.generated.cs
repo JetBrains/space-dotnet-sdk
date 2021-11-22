@@ -44,40 +44,44 @@ public sealed class ESContainerRegistrySettings
         IsImmutablePackageVersions = immutablePackageVersions;
     }
     
-    private PropertyValue<bool> _immutableTags = new PropertyValue<bool>(nameof(ESContainerRegistrySettings), nameof(IsImmutableTags));
+    private PropertyValue<bool> _immutableTags = new PropertyValue<bool>(nameof(ESContainerRegistrySettings), nameof(IsImmutableTags), "immutableTags");
     
     [Required]
     [JsonPropertyName("immutableTags")]
     public bool IsImmutableTags
     {
-        get => _immutableTags.GetValue();
+        get => _immutableTags.GetValue(InlineErrors);
         set => _immutableTags.SetValue(value);
     }
 
-    private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESContainerRegistrySettings), nameof(RetentionPolicyParams));
+    private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESContainerRegistrySettings), nameof(RetentionPolicyParams), "retentionPolicyParams");
     
     [JsonPropertyName("retentionPolicyParams")]
     public RetentionPolicyParams? RetentionPolicyParams
     {
-        get => _retentionPolicyParams.GetValue();
+        get => _retentionPolicyParams.GetValue(InlineErrors);
         set => _retentionPolicyParams.SetValue(value);
     }
 
-    private PropertyValue<bool?> _immutablePackageVersions = new PropertyValue<bool?>(nameof(ESContainerRegistrySettings), nameof(IsImmutablePackageVersions));
+    private PropertyValue<bool?> _immutablePackageVersions = new PropertyValue<bool?>(nameof(ESContainerRegistrySettings), nameof(IsImmutablePackageVersions), "immutablePackageVersions");
     
     [JsonPropertyName("immutablePackageVersions")]
     public bool? IsImmutablePackageVersions
     {
-        get => _immutablePackageVersions.GetValue();
+        get => _immutablePackageVersions.GetValue(InlineErrors);
         set => _immutablePackageVersions.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _immutableTags.SetAccessPath(path, validateHasBeenSet);
-        _retentionPolicyParams.SetAccessPath(path, validateHasBeenSet);
-        _immutablePackageVersions.SetAccessPath(path, validateHasBeenSet);
+        _immutableTags.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _retentionPolicyParams.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _immutablePackageVersions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

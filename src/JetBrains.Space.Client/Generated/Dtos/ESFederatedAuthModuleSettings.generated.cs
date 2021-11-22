@@ -38,9 +38,13 @@ public abstract class ESFederatedAuthModuleSettings
     public static ESSamlAuthModuleSettings ESSamlAuthModuleSettings(string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, bool registerNewUsers, ESSamlAttributeNames attributeNames, SSLKeystore? sslKeystore = null, string? contactProfileId = null)
         => new ESSamlAuthModuleSettings(idpUrl: idpUrl, idpEntityId: idpEntityId, idpCertificateSHA256: idpCertificateSHA256, spEntityId: spEntityId, registerNewUsers: registerNewUsers, attributeNames: attributeNames, sslKeystore: sslKeystore, contactProfileId: contactProfileId);
     
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

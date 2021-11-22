@@ -40,31 +40,35 @@ public sealed class ESTeamMapping
         ExternalGroupName = externalGroupName;
     }
     
-    private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(ESTeamMapping), nameof(TeamId));
+    private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(ESTeamMapping), nameof(TeamId), "teamId");
     
     [Required]
     [JsonPropertyName("teamId")]
     public string TeamId
     {
-        get => _teamId.GetValue();
+        get => _teamId.GetValue(InlineErrors);
         set => _teamId.SetValue(value);
     }
 
-    private PropertyValue<string> _externalGroupName = new PropertyValue<string>(nameof(ESTeamMapping), nameof(ExternalGroupName));
+    private PropertyValue<string> _externalGroupName = new PropertyValue<string>(nameof(ESTeamMapping), nameof(ExternalGroupName), "externalGroupName");
     
     [Required]
     [JsonPropertyName("externalGroupName")]
     public string ExternalGroupName
     {
-        get => _externalGroupName.GetValue();
+        get => _externalGroupName.GetValue(InlineErrors);
         set => _externalGroupName.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _teamId.SetAccessPath(path, validateHasBeenSet);
-        _externalGroupName.SetAccessPath(path, validateHasBeenSet);
+        _teamId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalGroupName.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

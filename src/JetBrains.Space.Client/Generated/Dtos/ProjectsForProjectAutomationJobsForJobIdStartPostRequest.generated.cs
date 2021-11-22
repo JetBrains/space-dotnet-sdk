@@ -39,20 +39,24 @@ public class ProjectsForProjectAutomationJobsForJobIdStartPostRequest
         Branch = branch;
     }
     
-    private PropertyValue<Branch> _branch = new PropertyValue<Branch>(nameof(ProjectsForProjectAutomationJobsForJobIdStartPostRequest), nameof(Branch));
+    private PropertyValue<Branch> _branch = new PropertyValue<Branch>(nameof(ProjectsForProjectAutomationJobsForJobIdStartPostRequest), nameof(Branch), "branch");
     
     [Required]
     [JsonPropertyName("branch")]
     public Branch Branch
     {
-        get => _branch.GetValue();
+        get => _branch.GetValue(InlineErrors);
         set => _branch.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _branch.SetAccessPath(path, validateHasBeenSet);
+        _branch.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

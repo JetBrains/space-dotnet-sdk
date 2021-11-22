@@ -44,41 +44,45 @@ public sealed class ApplicationUnfurlContentMC
         Sections = sections;
     }
     
-    private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(ApplicationUnfurlContentMC), nameof(Style));
+    private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(ApplicationUnfurlContentMC), nameof(Style), "style");
     
     [Required]
     [JsonPropertyName("style")]
     public MessageStyle Style
     {
-        get => _style.GetValue();
+        get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);
     }
 
-    private PropertyValue<MessageOutline?> _outline = new PropertyValue<MessageOutline?>(nameof(ApplicationUnfurlContentMC), nameof(Outline));
+    private PropertyValue<MessageOutline?> _outline = new PropertyValue<MessageOutline?>(nameof(ApplicationUnfurlContentMC), nameof(Outline), "outline");
     
     [JsonPropertyName("outline")]
     public MessageOutline? Outline
     {
-        get => _outline.GetValue();
+        get => _outline.GetValue(InlineErrors);
         set => _outline.SetValue(value);
     }
 
-    private PropertyValue<List<MessageSectionElement>> _sections = new PropertyValue<List<MessageSectionElement>>(nameof(ApplicationUnfurlContentMC), nameof(Sections), new List<MessageSectionElement>());
+    private PropertyValue<List<MessageSectionElement>> _sections = new PropertyValue<List<MessageSectionElement>>(nameof(ApplicationUnfurlContentMC), nameof(Sections), "sections", new List<MessageSectionElement>());
     
     [Required]
     [JsonPropertyName("sections")]
     public List<MessageSectionElement> Sections
     {
-        get => _sections.GetValue();
+        get => _sections.GetValue(InlineErrors);
         set => _sections.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _style.SetAccessPath(path, validateHasBeenSet);
-        _outline.SetAccessPath(path, validateHasBeenSet);
-        _sections.SetAccessPath(path, validateHasBeenSet);
+        _style.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _outline.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sections.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

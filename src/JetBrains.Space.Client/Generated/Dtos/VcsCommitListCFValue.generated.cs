@@ -42,20 +42,24 @@ public sealed class VcsCommitListCFValue
         Commits = commits;
     }
     
-    private PropertyValue<List<CFCommitInfoBase>> _commits = new PropertyValue<List<CFCommitInfoBase>>(nameof(VcsCommitListCFValue), nameof(Commits), new List<CFCommitInfoBase>());
+    private PropertyValue<List<CFCommitInfoBase>> _commits = new PropertyValue<List<CFCommitInfoBase>>(nameof(VcsCommitListCFValue), nameof(Commits), "commits", new List<CFCommitInfoBase>());
     
     [Required]
     [JsonPropertyName("commits")]
     public List<CFCommitInfoBase> Commits
     {
-        get => _commits.GetValue();
+        get => _commits.GetValue(InlineErrors);
         set => _commits.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _commits.SetAccessPath(path, validateHasBeenSet);
+        _commits.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

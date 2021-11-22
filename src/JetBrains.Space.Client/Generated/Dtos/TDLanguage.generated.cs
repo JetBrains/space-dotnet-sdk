@@ -44,75 +44,79 @@ public sealed class TDLanguage
         LastNameTitle = lastNameTitle;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLanguage), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLanguage), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _code = new PropertyValue<string>(nameof(TDLanguage), nameof(Code));
+    private PropertyValue<string> _code = new PropertyValue<string>(nameof(TDLanguage), nameof(Code), "code");
     
     [Required]
     [JsonPropertyName("code")]
     public string Code
     {
-        get => _code.GetValue();
+        get => _code.GetValue(InlineErrors);
         set => _code.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDLanguage), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDLanguage), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _nativeName = new PropertyValue<string>(nameof(TDLanguage), nameof(NativeName));
+    private PropertyValue<string> _nativeName = new PropertyValue<string>(nameof(TDLanguage), nameof(NativeName), "nativeName");
     
     [Required]
     [JsonPropertyName("nativeName")]
     public string NativeName
     {
-        get => _nativeName.GetValue();
+        get => _nativeName.GetValue(InlineErrors);
         set => _nativeName.SetValue(value);
     }
 
-    private PropertyValue<string> _firstNameTitle = new PropertyValue<string>(nameof(TDLanguage), nameof(FirstNameTitle));
+    private PropertyValue<string> _firstNameTitle = new PropertyValue<string>(nameof(TDLanguage), nameof(FirstNameTitle), "firstNameTitle");
     
     [Required]
     [JsonPropertyName("firstNameTitle")]
     public string FirstNameTitle
     {
-        get => _firstNameTitle.GetValue();
+        get => _firstNameTitle.GetValue(InlineErrors);
         set => _firstNameTitle.SetValue(value);
     }
 
-    private PropertyValue<string> _lastNameTitle = new PropertyValue<string>(nameof(TDLanguage), nameof(LastNameTitle));
+    private PropertyValue<string> _lastNameTitle = new PropertyValue<string>(nameof(TDLanguage), nameof(LastNameTitle), "lastNameTitle");
     
     [Required]
     [JsonPropertyName("lastNameTitle")]
     public string LastNameTitle
     {
-        get => _lastNameTitle.GetValue();
+        get => _lastNameTitle.GetValue(InlineErrors);
         set => _lastNameTitle.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _code.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _nativeName.SetAccessPath(path, validateHasBeenSet);
-        _firstNameTitle.SetAccessPath(path, validateHasBeenSet);
-        _lastNameTitle.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _code.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _nativeName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _firstNameTitle.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastNameTitle.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

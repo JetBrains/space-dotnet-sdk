@@ -39,20 +39,24 @@ public sealed class RepositoryActivity
         LastActivity = lastActivity;
     }
     
-    private PropertyValue<List<Pair<DateTime, int>>> _lastActivity = new PropertyValue<List<Pair<DateTime, int>>>(nameof(RepositoryActivity), nameof(LastActivity), new List<Pair<DateTime, int>>());
+    private PropertyValue<List<Pair<DateTime, int>>> _lastActivity = new PropertyValue<List<Pair<DateTime, int>>>(nameof(RepositoryActivity), nameof(LastActivity), "lastActivity", new List<Pair<DateTime, int>>());
     
     [Required]
     [JsonPropertyName("lastActivity")]
     public List<Pair<DateTime, int>> LastActivity
     {
-        get => _lastActivity.GetValue();
+        get => _lastActivity.GetValue(InlineErrors);
         set => _lastActivity.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _lastActivity.SetAccessPath(path, validateHasBeenSet);
+        _lastActivity.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

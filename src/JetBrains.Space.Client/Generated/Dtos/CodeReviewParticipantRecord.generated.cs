@@ -45,84 +45,88 @@ public sealed class CodeReviewParticipantRecord
         IsArchived = archived;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewParticipantRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewParticipantRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CodeReviewParticipantRecord), nameof(ProjectId));
+    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CodeReviewParticipantRecord), nameof(ProjectId), "projectId");
     
     [Required]
     [JsonPropertyName("projectId")]
     public string ProjectId
     {
-        get => _projectId.GetValue();
+        get => _projectId.GetValue(InlineErrors);
         set => _projectId.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewParticipantRole> _role = new PropertyValue<CodeReviewParticipantRole>(nameof(CodeReviewParticipantRecord), nameof(Role));
+    private PropertyValue<CodeReviewParticipantRole> _role = new PropertyValue<CodeReviewParticipantRole>(nameof(CodeReviewParticipantRecord), nameof(Role), "role");
     
     [Required]
     [JsonPropertyName("role")]
     public CodeReviewParticipantRole Role
     {
-        get => _role.GetValue();
+        get => _role.GetValue(InlineErrors);
         set => _role.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(CodeReviewParticipantRecord), nameof(Profile));
+    private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(CodeReviewParticipantRecord), nameof(Profile), "profile");
     
     [Required]
     [JsonPropertyName("profile")]
     public TDMemberProfile Profile
     {
-        get => _profile.GetValue();
+        get => _profile.GetValue(InlineErrors);
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<ReviewerState?> _reviewerState = new PropertyValue<ReviewerState?>(nameof(CodeReviewParticipantRecord), nameof(ReviewerState));
+    private PropertyValue<ReviewerState?> _reviewerState = new PropertyValue<ReviewerState?>(nameof(CodeReviewParticipantRecord), nameof(ReviewerState), "reviewerState");
     
     [JsonPropertyName("reviewerState")]
     public ReviewerState? ReviewerState
     {
-        get => _reviewerState.GetValue();
+        get => _reviewerState.GetValue(InlineErrors);
         set => _reviewerState.SetValue(value);
     }
 
-    private PropertyValue<bool?> _theirTurn = new PropertyValue<bool?>(nameof(CodeReviewParticipantRecord), nameof(IsTheirTurn));
+    private PropertyValue<bool?> _theirTurn = new PropertyValue<bool?>(nameof(CodeReviewParticipantRecord), nameof(IsTheirTurn), "theirTurn");
     
     [JsonPropertyName("theirTurn")]
     public bool? IsTheirTurn
     {
-        get => _theirTurn.GetValue();
+        get => _theirTurn.GetValue(InlineErrors);
         set => _theirTurn.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeReviewParticipantRecord), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeReviewParticipantRecord), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _projectId.SetAccessPath(path, validateHasBeenSet);
-        _role.SetAccessPath(path, validateHasBeenSet);
-        _profile.SetAccessPath(path, validateHasBeenSet);
-        _reviewerState.SetAccessPath(path, validateHasBeenSet);
-        _theirTurn.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _role.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviewerState.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _theirTurn.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

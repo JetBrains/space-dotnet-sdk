@@ -45,85 +45,89 @@ public sealed class CertainReactionToItemRecord
         Order = order;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CertainReactionToItemRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CertainReactionToItemRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _itemId = new PropertyValue<string>(nameof(CertainReactionToItemRecord), nameof(ItemId));
+    private PropertyValue<string> _itemId = new PropertyValue<string>(nameof(CertainReactionToItemRecord), nameof(ItemId), "itemId");
     
     [Required]
     [JsonPropertyName("itemId")]
     public string ItemId
     {
-        get => _itemId.GetValue();
+        get => _itemId.GetValue(InlineErrors);
         set => _itemId.SetValue(value);
     }
 
-    private PropertyValue<ReactionTypeRecord> _reaction = new PropertyValue<ReactionTypeRecord>(nameof(CertainReactionToItemRecord), nameof(Reaction));
+    private PropertyValue<ReactionTypeRecord> _reaction = new PropertyValue<ReactionTypeRecord>(nameof(CertainReactionToItemRecord), nameof(Reaction), "reaction");
     
     [Required]
     [JsonPropertyName("reaction")]
     public ReactionTypeRecord Reaction
     {
-        get => _reaction.GetValue();
+        get => _reaction.GetValue(InlineErrors);
         set => _reaction.SetValue(value);
     }
 
-    private PropertyValue<int> _count = new PropertyValue<int>(nameof(CertainReactionToItemRecord), nameof(Count));
+    private PropertyValue<int> _count = new PropertyValue<int>(nameof(CertainReactionToItemRecord), nameof(Count), "count");
     
     [Required]
     [JsonPropertyName("count")]
     public int Count
     {
-        get => _count.GetValue();
+        get => _count.GetValue(InlineErrors);
         set => _count.SetValue(value);
     }
 
-    private PropertyValue<bool> _meReacted = new PropertyValue<bool>(nameof(CertainReactionToItemRecord), nameof(IsMeReacted));
+    private PropertyValue<bool> _meReacted = new PropertyValue<bool>(nameof(CertainReactionToItemRecord), nameof(IsMeReacted), "meReacted");
     
     [Required]
     [JsonPropertyName("meReacted")]
     public bool IsMeReacted
     {
-        get => _meReacted.GetValue();
+        get => _meReacted.GetValue(InlineErrors);
         set => _meReacted.SetValue(value);
     }
 
-    private PropertyValue<List<CPrincipal>> _principals = new PropertyValue<List<CPrincipal>>(nameof(CertainReactionToItemRecord), nameof(Principals), new List<CPrincipal>());
+    private PropertyValue<List<CPrincipal>> _principals = new PropertyValue<List<CPrincipal>>(nameof(CertainReactionToItemRecord), nameof(Principals), "principals", new List<CPrincipal>());
     
     [Required]
     [JsonPropertyName("principals")]
     public List<CPrincipal> Principals
     {
-        get => _principals.GetValue();
+        get => _principals.GetValue(InlineErrors);
         set => _principals.SetValue(value);
     }
 
-    private PropertyValue<long?> _order = new PropertyValue<long?>(nameof(CertainReactionToItemRecord), nameof(Order));
+    private PropertyValue<long?> _order = new PropertyValue<long?>(nameof(CertainReactionToItemRecord), nameof(Order), "order");
     
     [JsonPropertyName("order")]
     public long? Order
     {
-        get => _order.GetValue();
+        get => _order.GetValue(InlineErrors);
         set => _order.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _itemId.SetAccessPath(path, validateHasBeenSet);
-        _reaction.SetAccessPath(path, validateHasBeenSet);
-        _count.SetAccessPath(path, validateHasBeenSet);
-        _meReacted.SetAccessPath(path, validateHasBeenSet);
-        _principals.SetAccessPath(path, validateHasBeenSet);
-        _order.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _itemId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reaction.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _count.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _meReacted.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _principals.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _order.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

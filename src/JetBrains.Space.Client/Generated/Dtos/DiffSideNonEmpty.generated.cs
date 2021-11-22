@@ -43,31 +43,35 @@ public sealed class DiffSideNonEmpty
         Path = path;
     }
     
-    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(DiffSideNonEmpty), nameof(Revision));
+    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(DiffSideNonEmpty), nameof(Revision), "revision");
     
     [Required]
     [JsonPropertyName("revision")]
     public string Revision
     {
-        get => _revision.GetValue();
+        get => _revision.GetValue(InlineErrors);
         set => _revision.SetValue(value);
     }
 
-    private PropertyValue<string> _path = new PropertyValue<string>(nameof(DiffSideNonEmpty), nameof(Path));
+    private PropertyValue<string> _path = new PropertyValue<string>(nameof(DiffSideNonEmpty), nameof(Path), "path");
     
     [Required]
     [JsonPropertyName("path")]
     public string Path
     {
-        get => _path.GetValue();
+        get => _path.GetValue(InlineErrors);
         set => _path.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _revision.SetAccessPath(path, validateHasBeenSet);
-        _path.SetAccessPath(path, validateHasBeenSet);
+        _revision.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _path.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

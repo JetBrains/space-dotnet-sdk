@@ -43,66 +43,70 @@ public sealed class CodeReviewParticipants
         Watchers = watchers;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewParticipants), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewParticipants), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<List<CodeReviewParticipant>?> _participants = new PropertyValue<List<CodeReviewParticipant>?>(nameof(CodeReviewParticipants), nameof(Participants));
+    private PropertyValue<List<CodeReviewParticipant>?> _participants = new PropertyValue<List<CodeReviewParticipant>?>(nameof(CodeReviewParticipants), nameof(Participants), "participants");
     
     [JsonPropertyName("participants")]
     public List<CodeReviewParticipant>? Participants
     {
-        get => _participants.GetValue();
+        get => _participants.GetValue(InlineErrors);
         set => _participants.SetValue(value);
     }
 
-    private PropertyValue<List<CodeReviewParticipantRecord>> _reviewers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Reviewers), new List<CodeReviewParticipantRecord>());
+    private PropertyValue<List<CodeReviewParticipantRecord>> _reviewers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Reviewers), "reviewers", new List<CodeReviewParticipantRecord>());
     
     [Required]
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     [JsonPropertyName("reviewers")]
     public List<CodeReviewParticipantRecord> Reviewers
     {
-        get => _reviewers.GetValue();
+        get => _reviewers.GetValue(InlineErrors);
         set => _reviewers.SetValue(value);
     }
 
-    private PropertyValue<List<CodeReviewParticipantRecord>> _authors = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Authors), new List<CodeReviewParticipantRecord>());
+    private PropertyValue<List<CodeReviewParticipantRecord>> _authors = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Authors), "authors", new List<CodeReviewParticipantRecord>());
     
     [Required]
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     [JsonPropertyName("authors")]
     public List<CodeReviewParticipantRecord> Authors
     {
-        get => _authors.GetValue();
+        get => _authors.GetValue(InlineErrors);
         set => _authors.SetValue(value);
     }
 
-    private PropertyValue<List<CodeReviewParticipantRecord>> _watchers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Watchers), new List<CodeReviewParticipantRecord>());
+    private PropertyValue<List<CodeReviewParticipantRecord>> _watchers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Watchers), "watchers", new List<CodeReviewParticipantRecord>());
     
     [Required]
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     [JsonPropertyName("watchers")]
     public List<CodeReviewParticipantRecord> Watchers
     {
-        get => _watchers.GetValue();
+        get => _watchers.GetValue(InlineErrors);
         set => _watchers.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _participants.SetAccessPath(path, validateHasBeenSet);
-        _reviewers.SetAccessPath(path, validateHasBeenSet);
-        _authors.SetAccessPath(path, validateHasBeenSet);
-        _watchers.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _participants.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviewers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authors.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _watchers.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

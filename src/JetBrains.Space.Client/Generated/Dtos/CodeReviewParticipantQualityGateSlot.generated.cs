@@ -43,31 +43,35 @@ public sealed class CodeReviewParticipantQualityGateSlot
         Index = index;
     }
     
-    private PropertyValue<List<string>> _rule = new PropertyValue<List<string>>(nameof(CodeReviewParticipantQualityGateSlot), nameof(Rule), new List<string>());
+    private PropertyValue<List<string>> _rule = new PropertyValue<List<string>>(nameof(CodeReviewParticipantQualityGateSlot), nameof(Rule), "rule", new List<string>());
     
     [Required]
     [JsonPropertyName("rule")]
     public List<string> Rule
     {
-        get => _rule.GetValue();
+        get => _rule.GetValue(InlineErrors);
         set => _rule.SetValue(value);
     }
 
-    private PropertyValue<int> _index = new PropertyValue<int>(nameof(CodeReviewParticipantQualityGateSlot), nameof(Index));
+    private PropertyValue<int> _index = new PropertyValue<int>(nameof(CodeReviewParticipantQualityGateSlot), nameof(Index), "index");
     
     [Required]
     [JsonPropertyName("index")]
     public int Index
     {
-        get => _index.GetValue();
+        get => _index.GetValue(InlineErrors);
         set => _index.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _rule.SetAccessPath(path, validateHasBeenSet);
-        _index.SetAccessPath(path, validateHasBeenSet);
+        _rule.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _index.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

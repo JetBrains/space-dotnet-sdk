@@ -42,51 +42,55 @@ public class ChatsMessagesSendPostRequest
         TemporaryId = temporaryId;
     }
     
-    private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesSendPostRequest), nameof(Channel));
+    private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesSendPostRequest), nameof(Channel), "channel");
     
     [Required]
     [JsonPropertyName("channel")]
     public string Channel
     {
-        get => _channel.GetValue();
+        get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
     }
 
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatsMessagesSendPostRequest), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatsMessagesSendPostRequest), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ChatsMessagesSendPostRequest), nameof(IsPending));
+    private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ChatsMessagesSendPostRequest), nameof(IsPending), "pending");
     
     [JsonPropertyName("pending")]
     public bool IsPending
     {
-        get => _pending.GetValue();
+        get => _pending.GetValue(InlineErrors);
         set => _pending.SetValue(value);
     }
 
-    private PropertyValue<string?> _temporaryId = new PropertyValue<string?>(nameof(ChatsMessagesSendPostRequest), nameof(TemporaryId));
+    private PropertyValue<string?> _temporaryId = new PropertyValue<string?>(nameof(ChatsMessagesSendPostRequest), nameof(TemporaryId), "temporaryId");
     
     [JsonPropertyName("temporaryId")]
     public string? TemporaryId
     {
-        get => _temporaryId.GetValue();
+        get => _temporaryId.GetValue(InlineErrors);
         set => _temporaryId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _channel.SetAccessPath(path, validateHasBeenSet);
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _pending.SetAccessPath(path, validateHasBeenSet);
-        _temporaryId.SetAccessPath(path, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pending.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _temporaryId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

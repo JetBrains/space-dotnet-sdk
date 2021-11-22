@@ -54,148 +54,152 @@ public sealed class AutomationJobEvent
         EndTime = endTime;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(AutomationJobEvent), nameof(Meta));
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(AutomationJobEvent), nameof(Meta), "meta");
     
     [Required]
     [JsonPropertyName("meta")]
     public KMetaMod Meta
     {
-        get => _meta.GetValue();
+        get => _meta.GetValue(InlineErrors);
         set => _meta.SetValue(value);
     }
 
-    private PropertyValue<string> _executionId = new PropertyValue<string>(nameof(AutomationJobEvent), nameof(ExecutionId));
+    private PropertyValue<string> _executionId = new PropertyValue<string>(nameof(AutomationJobEvent), nameof(ExecutionId), "executionId");
     
     [Required]
     [JsonPropertyName("executionId")]
     public string ExecutionId
     {
-        get => _executionId.GetValue();
+        get => _executionId.GetValue(InlineErrors);
         set => _executionId.SetValue(value);
     }
 
-    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(AutomationJobEvent), nameof(Project));
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(AutomationJobEvent), nameof(Project), "project");
     
     [Required]
     [JsonPropertyName("project")]
     public PRProject Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(AutomationJobEvent), nameof(RepositoryName));
+    private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(AutomationJobEvent), nameof(RepositoryName), "repositoryName");
     
     [Required]
     [JsonPropertyName("repositoryName")]
     public string RepositoryName
     {
-        get => _repositoryName.GetValue();
+        get => _repositoryName.GetValue(InlineErrors);
         set => _repositoryName.SetValue(value);
     }
 
-    private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(AutomationJobEvent), nameof(JobName));
+    private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(AutomationJobEvent), nameof(JobName), "jobName");
     
     [Required]
     [JsonPropertyName("jobName")]
     public string JobName
     {
-        get => _jobName.GetValue();
+        get => _jobName.GetValue(InlineErrors);
         set => _jobName.SetValue(value);
     }
 
-    private PropertyValue<long> _executionNumber = new PropertyValue<long>(nameof(AutomationJobEvent), nameof(ExecutionNumber));
+    private PropertyValue<long> _executionNumber = new PropertyValue<long>(nameof(AutomationJobEvent), nameof(ExecutionNumber), "executionNumber");
     
     [Required]
     [JsonPropertyName("executionNumber")]
     public long ExecutionNumber
     {
-        get => _executionNumber.GetValue();
+        get => _executionNumber.GetValue(InlineErrors);
         set => _executionNumber.SetValue(value);
     }
 
-    private PropertyValue<JobExecutionTrigger> _trigger = new PropertyValue<JobExecutionTrigger>(nameof(AutomationJobEvent), nameof(Trigger));
+    private PropertyValue<JobExecutionTrigger> _trigger = new PropertyValue<JobExecutionTrigger>(nameof(AutomationJobEvent), nameof(Trigger), "trigger");
     
     [Required]
     [JsonPropertyName("trigger")]
     public JobExecutionTrigger Trigger
     {
-        get => _trigger.GetValue();
+        get => _trigger.GetValue(InlineErrors);
         set => _trigger.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _triggerTime = new PropertyValue<DateTime>(nameof(AutomationJobEvent), nameof(TriggerTime));
+    private PropertyValue<DateTime> _triggerTime = new PropertyValue<DateTime>(nameof(AutomationJobEvent), nameof(TriggerTime), "triggerTime");
     
     [Required]
     [JsonPropertyName("triggerTime")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime TriggerTime
     {
-        get => _triggerTime.GetValue();
+        get => _triggerTime.GetValue(InlineErrors);
         set => _triggerTime.SetValue(value);
     }
 
-    private PropertyValue<Modification<JobExecutionStatus>?> _status = new PropertyValue<Modification<JobExecutionStatus>?>(nameof(AutomationJobEvent), nameof(Status));
+    private PropertyValue<Modification<JobExecutionStatus>?> _status = new PropertyValue<Modification<JobExecutionStatus>?>(nameof(AutomationJobEvent), nameof(Status), "status");
     
     [JsonPropertyName("status")]
     public Modification<JobExecutionStatus>? Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    private PropertyValue<Modification<List<FailureConditionType>>?> _failureReasons = new PropertyValue<Modification<List<FailureConditionType>>?>(nameof(AutomationJobEvent), nameof(FailureReasons));
+    private PropertyValue<Modification<List<FailureConditionType>>?> _failureReasons = new PropertyValue<Modification<List<FailureConditionType>>?>(nameof(AutomationJobEvent), nameof(FailureReasons), "failureReasons");
     
     [JsonPropertyName("failureReasons")]
     public Modification<List<FailureConditionType>>? FailureReasons
     {
-        get => _failureReasons.GetValue();
+        get => _failureReasons.GetValue(InlineErrors);
         set => _failureReasons.SetValue(value);
     }
 
-    private PropertyValue<Modification<CPrincipal>?> _stoppedBy = new PropertyValue<Modification<CPrincipal>?>(nameof(AutomationJobEvent), nameof(StoppedBy));
+    private PropertyValue<Modification<CPrincipal>?> _stoppedBy = new PropertyValue<Modification<CPrincipal>?>(nameof(AutomationJobEvent), nameof(StoppedBy), "stoppedBy");
     
     [JsonPropertyName("stoppedBy")]
     public Modification<CPrincipal>? StoppedBy
     {
-        get => _stoppedBy.GetValue();
+        get => _stoppedBy.GetValue(InlineErrors);
         set => _stoppedBy.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _startTime = new PropertyValue<Modification<DateTime>?>(nameof(AutomationJobEvent), nameof(StartTime));
+    private PropertyValue<Modification<DateTime>?> _startTime = new PropertyValue<Modification<DateTime>?>(nameof(AutomationJobEvent), nameof(StartTime), "startTime");
     
     [JsonPropertyName("startTime")]
     public Modification<DateTime>? StartTime
     {
-        get => _startTime.GetValue();
+        get => _startTime.GetValue(InlineErrors);
         set => _startTime.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _endTime = new PropertyValue<Modification<DateTime>?>(nameof(AutomationJobEvent), nameof(EndTime));
+    private PropertyValue<Modification<DateTime>?> _endTime = new PropertyValue<Modification<DateTime>?>(nameof(AutomationJobEvent), nameof(EndTime), "endTime");
     
     [JsonPropertyName("endTime")]
     public Modification<DateTime>? EndTime
     {
-        get => _endTime.GetValue();
+        get => _endTime.GetValue(InlineErrors);
         set => _endTime.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meta.SetAccessPath(path, validateHasBeenSet);
-        _executionId.SetAccessPath(path, validateHasBeenSet);
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _repositoryName.SetAccessPath(path, validateHasBeenSet);
-        _jobName.SetAccessPath(path, validateHasBeenSet);
-        _executionNumber.SetAccessPath(path, validateHasBeenSet);
-        _trigger.SetAccessPath(path, validateHasBeenSet);
-        _triggerTime.SetAccessPath(path, validateHasBeenSet);
-        _status.SetAccessPath(path, validateHasBeenSet);
-        _failureReasons.SetAccessPath(path, validateHasBeenSet);
-        _stoppedBy.SetAccessPath(path, validateHasBeenSet);
-        _startTime.SetAccessPath(path, validateHasBeenSet);
-        _endTime.SetAccessPath(path, validateHasBeenSet);
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _executionId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repositoryName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _jobName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _executionNumber.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _trigger.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _triggerTime.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _failureReasons.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _stoppedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _startTime.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _endTime.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

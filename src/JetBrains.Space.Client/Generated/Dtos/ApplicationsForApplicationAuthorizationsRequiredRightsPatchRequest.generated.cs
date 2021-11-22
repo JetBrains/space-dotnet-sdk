@@ -41,42 +41,46 @@ public class ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest
         IsRequestRightsInAuthorizedContexts = requestRightsInAuthorizedContexts;
     }
     
-    private PropertyValue<List<string>> _rightCodesToAdd = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(RightCodesToAdd), new List<string>());
+    private PropertyValue<List<string>> _rightCodesToAdd = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(RightCodesToAdd), "rightCodesToAdd", new List<string>());
     
     [Required]
     [JsonPropertyName("rightCodesToAdd")]
     public List<string> RightCodesToAdd
     {
-        get => _rightCodesToAdd.GetValue();
+        get => _rightCodesToAdd.GetValue(InlineErrors);
         set => _rightCodesToAdd.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _rightCodesToRemove = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(RightCodesToRemove), new List<string>());
+    private PropertyValue<List<string>> _rightCodesToRemove = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(RightCodesToRemove), "rightCodesToRemove", new List<string>());
     
     [Required]
     [JsonPropertyName("rightCodesToRemove")]
     public List<string> RightCodesToRemove
     {
-        get => _rightCodesToRemove.GetValue();
+        get => _rightCodesToRemove.GetValue(InlineErrors);
         set => _rightCodesToRemove.SetValue(value);
     }
 
-    private PropertyValue<bool> _requestRightsInAuthorizedContexts = new PropertyValue<bool>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(IsRequestRightsInAuthorizedContexts));
+    private PropertyValue<bool> _requestRightsInAuthorizedContexts = new PropertyValue<bool>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(IsRequestRightsInAuthorizedContexts), "requestRightsInAuthorizedContexts");
     
     [Required]
     [JsonPropertyName("requestRightsInAuthorizedContexts")]
     public bool IsRequestRightsInAuthorizedContexts
     {
-        get => _requestRightsInAuthorizedContexts.GetValue();
+        get => _requestRightsInAuthorizedContexts.GetValue(InlineErrors);
         set => _requestRightsInAuthorizedContexts.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _rightCodesToAdd.SetAccessPath(path, validateHasBeenSet);
-        _rightCodesToRemove.SetAccessPath(path, validateHasBeenSet);
-        _requestRightsInAuthorizedContexts.SetAccessPath(path, validateHasBeenSet);
+        _rightCodesToAdd.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rightCodesToRemove.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _requestRightsInAuthorizedContexts.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -39,20 +39,24 @@ public class SlackImportSetTokenPostRequest
         Token = token;
     }
     
-    private PropertyValue<string> _token = new PropertyValue<string>(nameof(SlackImportSetTokenPostRequest), nameof(Token));
+    private PropertyValue<string> _token = new PropertyValue<string>(nameof(SlackImportSetTokenPostRequest), nameof(Token), "token");
     
     [Required]
     [JsonPropertyName("token")]
     public string Token
     {
-        get => _token.GetValue();
+        get => _token.GetValue(InlineErrors);
         set => _token.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _token.SetAccessPath(path, validateHasBeenSet);
+        _token.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

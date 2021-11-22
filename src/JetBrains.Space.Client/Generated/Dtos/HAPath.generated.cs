@@ -39,20 +39,24 @@ public sealed class HAPath
         Segments = segments;
     }
     
-    private PropertyValue<List<HAPathSegment>> _segments = new PropertyValue<List<HAPathSegment>>(nameof(HAPath), nameof(Segments), new List<HAPathSegment>());
+    private PropertyValue<List<HAPathSegment>> _segments = new PropertyValue<List<HAPathSegment>>(nameof(HAPath), nameof(Segments), "segments", new List<HAPathSegment>());
     
     [Required]
     [JsonPropertyName("segments")]
     public List<HAPathSegment> Segments
     {
-        get => _segments.GetValue();
+        get => _segments.GetValue(InlineErrors);
         set => _segments.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _segments.SetAccessPath(path, validateHasBeenSet);
+        _segments.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

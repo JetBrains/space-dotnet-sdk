@@ -45,50 +45,54 @@ public sealed class DocumentCustomSubscriptionFilter
         Documents = documents;
     }
     
-    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(DocumentCustomSubscriptionFilter), nameof(Project));
+    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(DocumentCustomSubscriptionFilter), nameof(Project), "project");
     
     [JsonPropertyName("project")]
     public PRProject? Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<List<KBBook>?> _books = new PropertyValue<List<KBBook>?>(nameof(DocumentCustomSubscriptionFilter), nameof(Books));
+    private PropertyValue<List<KBBook>?> _books = new PropertyValue<List<KBBook>?>(nameof(DocumentCustomSubscriptionFilter), nameof(Books), "books");
     
     [JsonPropertyName("books")]
     public List<KBBook>? Books
     {
-        get => _books.GetValue();
+        get => _books.GetValue(InlineErrors);
         set => _books.SetValue(value);
     }
 
-    private PropertyValue<List<KbFolderItem>?> _folders = new PropertyValue<List<KbFolderItem>?>(nameof(DocumentCustomSubscriptionFilter), nameof(Folders));
+    private PropertyValue<List<KbFolderItem>?> _folders = new PropertyValue<List<KbFolderItem>?>(nameof(DocumentCustomSubscriptionFilter), nameof(Folders), "folders");
     
     [JsonPropertyName("folders")]
     public List<KbFolderItem>? Folders
     {
-        get => _folders.GetValue();
+        get => _folders.GetValue(InlineErrors);
         set => _folders.SetValue(value);
     }
 
-    private PropertyValue<List<KbDocumentItem>> _documents = new PropertyValue<List<KbDocumentItem>>(nameof(DocumentCustomSubscriptionFilter), nameof(Documents), new List<KbDocumentItem>());
+    private PropertyValue<List<KbDocumentItem>> _documents = new PropertyValue<List<KbDocumentItem>>(nameof(DocumentCustomSubscriptionFilter), nameof(Documents), "documents", new List<KbDocumentItem>());
     
     [Required]
     [JsonPropertyName("documents")]
     public List<KbDocumentItem> Documents
     {
-        get => _documents.GetValue();
+        get => _documents.GetValue(InlineErrors);
         set => _documents.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _books.SetAccessPath(path, validateHasBeenSet);
-        _folders.SetAccessPath(path, validateHasBeenSet);
-        _documents.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _books.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _folders.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _documents.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

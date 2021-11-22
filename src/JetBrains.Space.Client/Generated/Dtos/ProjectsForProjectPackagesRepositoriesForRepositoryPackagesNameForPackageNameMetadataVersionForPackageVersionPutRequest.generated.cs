@@ -40,30 +40,34 @@ public class ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForP
         Comment = comment;
     }
     
-    private PropertyValue<bool> _pin = new PropertyValue<bool>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest), nameof(IsPin));
+    private PropertyValue<bool> _pin = new PropertyValue<bool>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest), nameof(IsPin), "pin");
     
     [Required]
     [JsonPropertyName("pin")]
     public bool IsPin
     {
-        get => _pin.GetValue();
+        get => _pin.GetValue(InlineErrors);
         set => _pin.SetValue(value);
     }
 
-    private PropertyValue<string?> _comment = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest), nameof(Comment));
+    private PropertyValue<string?> _comment = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest), nameof(Comment), "comment");
     
     [JsonPropertyName("comment")]
     public string? Comment
     {
-        get => _comment.GetValue();
+        get => _comment.GetValue(InlineErrors);
         set => _comment.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _pin.SetAccessPath(path, validateHasBeenSet);
-        _comment.SetAccessPath(path, validateHasBeenSet);
+        _pin.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _comment.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

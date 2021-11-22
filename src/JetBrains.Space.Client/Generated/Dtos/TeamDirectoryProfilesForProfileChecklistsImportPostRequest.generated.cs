@@ -40,31 +40,35 @@ public class TeamDirectoryProfilesForProfileChecklistsImportPostRequest
         TabIndentedLines = tabIndentedLines;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileChecklistsImportPostRequest), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileChecklistsImportPostRequest), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _tabIndentedLines = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileChecklistsImportPostRequest), nameof(TabIndentedLines));
+    private PropertyValue<string> _tabIndentedLines = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileChecklistsImportPostRequest), nameof(TabIndentedLines), "tabIndentedLines");
     
     [Required]
     [JsonPropertyName("tabIndentedLines")]
     public string TabIndentedLines
     {
-        get => _tabIndentedLines.GetValue();
+        get => _tabIndentedLines.GetValue(InlineErrors);
         set => _tabIndentedLines.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _tabIndentedLines.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tabIndentedLines.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

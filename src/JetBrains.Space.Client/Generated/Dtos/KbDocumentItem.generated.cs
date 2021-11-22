@@ -44,75 +44,79 @@ public sealed class KbDocumentItem
         ContainerLinkId = containerLinkId;
     }
     
-    private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(KbDocumentItem), nameof(Book));
+    private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(KbDocumentItem), nameof(Book), "book");
     
     [Required]
     [JsonPropertyName("book")]
     public KBBook Book
     {
-        get => _book.GetValue();
+        get => _book.GetValue(InlineErrors);
         set => _book.SetValue(value);
     }
 
-    private PropertyValue<string> _articleId = new PropertyValue<string>(nameof(KbDocumentItem), nameof(ArticleId));
+    private PropertyValue<string> _articleId = new PropertyValue<string>(nameof(KbDocumentItem), nameof(ArticleId), "articleId");
     
     [Required]
     [JsonPropertyName("articleId")]
     public string ArticleId
     {
-        get => _articleId.GetValue();
+        get => _articleId.GetValue(InlineErrors);
         set => _articleId.SetValue(value);
     }
 
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(KbDocumentItem), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(KbDocumentItem), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(KbDocumentItem), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(KbDocumentItem), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _path = new PropertyValue<List<string>>(nameof(KbDocumentItem), nameof(Path), new List<string>());
+    private PropertyValue<List<string>> _path = new PropertyValue<List<string>>(nameof(KbDocumentItem), nameof(Path), "path", new List<string>());
     
     [Required]
     [JsonPropertyName("path")]
     public List<string> Path
     {
-        get => _path.GetValue();
+        get => _path.GetValue(InlineErrors);
         set => _path.SetValue(value);
     }
 
-    private PropertyValue<string> _containerLinkId = new PropertyValue<string>(nameof(KbDocumentItem), nameof(ContainerLinkId));
+    private PropertyValue<string> _containerLinkId = new PropertyValue<string>(nameof(KbDocumentItem), nameof(ContainerLinkId), "containerLinkId");
     
     [Required]
     [JsonPropertyName("containerLinkId")]
     public string ContainerLinkId
     {
-        get => _containerLinkId.GetValue();
+        get => _containerLinkId.GetValue(InlineErrors);
         set => _containerLinkId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _book.SetAccessPath(path, validateHasBeenSet);
-        _articleId.SetAccessPath(path, validateHasBeenSet);
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _path.SetAccessPath(path, validateHasBeenSet);
-        _containerLinkId.SetAccessPath(path, validateHasBeenSet);
+        _book.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _articleId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _path.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _containerLinkId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

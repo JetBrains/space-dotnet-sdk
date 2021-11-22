@@ -40,31 +40,35 @@ public sealed class ProjectReposRecord
         Repos = repos;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectReposRecord), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectReposRecord), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<List<PRRepositoryInfo>> _repos = new PropertyValue<List<PRRepositoryInfo>>(nameof(ProjectReposRecord), nameof(Repos), new List<PRRepositoryInfo>());
+    private PropertyValue<List<PRRepositoryInfo>> _repos = new PropertyValue<List<PRRepositoryInfo>>(nameof(ProjectReposRecord), nameof(Repos), "repos", new List<PRRepositoryInfo>());
     
     [Required]
     [JsonPropertyName("repos")]
     public List<PRRepositoryInfo> Repos
     {
-        get => _repos.GetValue();
+        get => _repos.GetValue(InlineErrors);
         set => _repos.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _repos.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repos.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -51,149 +51,153 @@ public sealed class JobExecutionDTO
         FailureConditions = failureConditions;
     }
     
-    private PropertyValue<string> _executionId = new PropertyValue<string>(nameof(JobExecutionDTO), nameof(ExecutionId));
+    private PropertyValue<string> _executionId = new PropertyValue<string>(nameof(JobExecutionDTO), nameof(ExecutionId), "executionId");
     
     [Required]
     [JsonPropertyName("executionId")]
     public string ExecutionId
     {
-        get => _executionId.GetValue();
+        get => _executionId.GetValue(InlineErrors);
         set => _executionId.SetValue(value);
     }
 
-    private PropertyValue<long> _executionNumber = new PropertyValue<long>(nameof(JobExecutionDTO), nameof(ExecutionNumber));
+    private PropertyValue<long> _executionNumber = new PropertyValue<long>(nameof(JobExecutionDTO), nameof(ExecutionNumber), "executionNumber");
     
     [Required]
     [JsonPropertyName("executionNumber")]
     public long ExecutionNumber
     {
-        get => _executionNumber.GetValue();
+        get => _executionNumber.GetValue(InlineErrors);
         set => _executionNumber.SetValue(value);
     }
 
-    private PropertyValue<string> _jobId = new PropertyValue<string>(nameof(JobExecutionDTO), nameof(JobId));
+    private PropertyValue<string> _jobId = new PropertyValue<string>(nameof(JobExecutionDTO), nameof(JobId), "jobId");
     
     [Required]
     [JsonPropertyName("jobId")]
     public string JobId
     {
-        get => _jobId.GetValue();
+        get => _jobId.GetValue(InlineErrors);
         set => _jobId.SetValue(value);
     }
 
-    private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(JobExecutionDTO), nameof(JobName));
+    private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(JobExecutionDTO), nameof(JobName), "jobName");
     
     [Required]
     [JsonPropertyName("jobName")]
     public string JobName
     {
-        get => _jobName.GetValue();
+        get => _jobName.GetValue(InlineErrors);
         set => _jobName.SetValue(value);
     }
 
-    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(JobExecutionDTO), nameof(ProjectId));
+    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(JobExecutionDTO), nameof(ProjectId), "projectId");
     
     [Required]
     [JsonPropertyName("projectId")]
     public string ProjectId
     {
-        get => _projectId.GetValue();
+        get => _projectId.GetValue(InlineErrors);
         set => _projectId.SetValue(value);
     }
 
-    private PropertyValue<string> _branch = new PropertyValue<string>(nameof(JobExecutionDTO), nameof(Branch));
+    private PropertyValue<string> _branch = new PropertyValue<string>(nameof(JobExecutionDTO), nameof(Branch), "branch");
     
     [Required]
     [JsonPropertyName("branch")]
     public string Branch
     {
-        get => _branch.GetValue();
+        get => _branch.GetValue(InlineErrors);
         set => _branch.SetValue(value);
     }
 
-    private PropertyValue<ExecutionStatus> _status = new PropertyValue<ExecutionStatus>(nameof(JobExecutionDTO), nameof(Status));
+    private PropertyValue<ExecutionStatus> _status = new PropertyValue<ExecutionStatus>(nameof(JobExecutionDTO), nameof(Status), "status");
     
     [Required]
     [JsonPropertyName("status")]
     public ExecutionStatus Status
     {
-        get => _status.GetValue();
+        get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    private PropertyValue<long> _triggeredTime = new PropertyValue<long>(nameof(JobExecutionDTO), nameof(TriggeredTime));
+    private PropertyValue<long> _triggeredTime = new PropertyValue<long>(nameof(JobExecutionDTO), nameof(TriggeredTime), "triggeredTime");
     
     [Required]
     [JsonPropertyName("triggeredTime")]
     public long TriggeredTime
     {
-        get => _triggeredTime.GetValue();
+        get => _triggeredTime.GetValue(InlineErrors);
         set => _triggeredTime.SetValue(value);
     }
 
-    private PropertyValue<long?> _startedTime = new PropertyValue<long?>(nameof(JobExecutionDTO), nameof(StartedTime));
+    private PropertyValue<long?> _startedTime = new PropertyValue<long?>(nameof(JobExecutionDTO), nameof(StartedTime), "startedTime");
     
     [JsonPropertyName("startedTime")]
     public long? StartedTime
     {
-        get => _startedTime.GetValue();
+        get => _startedTime.GetValue(InlineErrors);
         set => _startedTime.SetValue(value);
     }
 
-    private PropertyValue<long?> _finishedTime = new PropertyValue<long?>(nameof(JobExecutionDTO), nameof(FinishedTime));
+    private PropertyValue<long?> _finishedTime = new PropertyValue<long?>(nameof(JobExecutionDTO), nameof(FinishedTime), "finishedTime");
     
     [JsonPropertyName("finishedTime")]
     public long? FinishedTime
     {
-        get => _finishedTime.GetValue();
+        get => _finishedTime.GetValue(InlineErrors);
         set => _finishedTime.SetValue(value);
     }
 
-    private PropertyValue<int> _changesCount = new PropertyValue<int>(nameof(JobExecutionDTO), nameof(ChangesCount));
+    private PropertyValue<int> _changesCount = new PropertyValue<int>(nameof(JobExecutionDTO), nameof(ChangesCount), "changesCount");
     
     [Required]
     [JsonPropertyName("changesCount")]
     public int ChangesCount
     {
-        get => _changesCount.GetValue();
+        get => _changesCount.GetValue(InlineErrors);
         set => _changesCount.SetValue(value);
     }
 
-    private PropertyValue<EstimationDTO?> _predictedEndTime = new PropertyValue<EstimationDTO?>(nameof(JobExecutionDTO), nameof(PredictedEndTime));
+    private PropertyValue<EstimationDTO?> _predictedEndTime = new PropertyValue<EstimationDTO?>(nameof(JobExecutionDTO), nameof(PredictedEndTime), "predictedEndTime");
     
     [JsonPropertyName("predictedEndTime")]
     public EstimationDTO? PredictedEndTime
     {
-        get => _predictedEndTime.GetValue();
+        get => _predictedEndTime.GetValue(InlineErrors);
         set => _predictedEndTime.SetValue(value);
     }
 
-    private PropertyValue<List<FailureConditionDTO>> _failureConditions = new PropertyValue<List<FailureConditionDTO>>(nameof(JobExecutionDTO), nameof(FailureConditions), new List<FailureConditionDTO>());
+    private PropertyValue<List<FailureConditionDTO>> _failureConditions = new PropertyValue<List<FailureConditionDTO>>(nameof(JobExecutionDTO), nameof(FailureConditions), "failureConditions", new List<FailureConditionDTO>());
     
     [Required]
     [JsonPropertyName("failureConditions")]
     public List<FailureConditionDTO> FailureConditions
     {
-        get => _failureConditions.GetValue();
+        get => _failureConditions.GetValue(InlineErrors);
         set => _failureConditions.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _executionId.SetAccessPath(path, validateHasBeenSet);
-        _executionNumber.SetAccessPath(path, validateHasBeenSet);
-        _jobId.SetAccessPath(path, validateHasBeenSet);
-        _jobName.SetAccessPath(path, validateHasBeenSet);
-        _projectId.SetAccessPath(path, validateHasBeenSet);
-        _branch.SetAccessPath(path, validateHasBeenSet);
-        _status.SetAccessPath(path, validateHasBeenSet);
-        _triggeredTime.SetAccessPath(path, validateHasBeenSet);
-        _startedTime.SetAccessPath(path, validateHasBeenSet);
-        _finishedTime.SetAccessPath(path, validateHasBeenSet);
-        _changesCount.SetAccessPath(path, validateHasBeenSet);
-        _predictedEndTime.SetAccessPath(path, validateHasBeenSet);
-        _failureConditions.SetAccessPath(path, validateHasBeenSet);
+        _executionId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _executionNumber.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _jobId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _jobName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _branch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _triggeredTime.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _startedTime.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _finishedTime.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _changesCount.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _predictedEndTime.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _failureConditions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

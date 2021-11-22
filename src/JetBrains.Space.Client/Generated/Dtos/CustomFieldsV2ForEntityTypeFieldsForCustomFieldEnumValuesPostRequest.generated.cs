@@ -39,20 +39,24 @@ public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostReques
         EnumValueToAdd = enumValueToAdd;
     }
     
-    private PropertyValue<string> _enumValueToAdd = new PropertyValue<string>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest), nameof(EnumValueToAdd));
+    private PropertyValue<string> _enumValueToAdd = new PropertyValue<string>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest), nameof(EnumValueToAdd), "enumValueToAdd");
     
     [Required]
     [JsonPropertyName("enumValueToAdd")]
     public string EnumValueToAdd
     {
-        get => _enumValueToAdd.GetValue();
+        get => _enumValueToAdd.GetValue(InlineErrors);
         set => _enumValueToAdd.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _enumValueToAdd.SetAccessPath(path, validateHasBeenSet);
+        _enumValueToAdd.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

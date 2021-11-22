@@ -45,53 +45,57 @@ public sealed class ESGoogleAuthModuleSettings
         Domains = domains;
     }
     
-    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESGoogleAuthModuleSettings), nameof(ClientId));
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESGoogleAuthModuleSettings), nameof(ClientId), "clientId");
     
     [Required]
     [JsonPropertyName("clientId")]
     public string ClientId
     {
-        get => _clientId.GetValue();
+        get => _clientId.GetValue(InlineErrors);
         set => _clientId.SetValue(value);
     }
 
-    private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESGoogleAuthModuleSettings), nameof(ClientSecret));
+    private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESGoogleAuthModuleSettings), nameof(ClientSecret), "clientSecret");
     
     [Required]
     [JsonPropertyName("clientSecret")]
     public string ClientSecret
     {
-        get => _clientSecret.GetValue();
+        get => _clientSecret.GetValue(InlineErrors);
         set => _clientSecret.SetValue(value);
     }
 
-    private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESGoogleAuthModuleSettings), nameof(IsRegisterNewUsers));
+    private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESGoogleAuthModuleSettings), nameof(IsRegisterNewUsers), "registerNewUsers");
     
     [Required]
     [JsonPropertyName("registerNewUsers")]
     public bool IsRegisterNewUsers
     {
-        get => _registerNewUsers.GetValue();
+        get => _registerNewUsers.GetValue(InlineErrors);
         set => _registerNewUsers.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ESGoogleAuthModuleSettings), nameof(Domains), new List<string>());
+    private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ESGoogleAuthModuleSettings), nameof(Domains), "domains", new List<string>());
     
     [Required]
     [JsonPropertyName("domains")]
     public List<string> Domains
     {
-        get => _domains.GetValue();
+        get => _domains.GetValue(InlineErrors);
         set => _domains.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _clientId.SetAccessPath(path, validateHasBeenSet);
-        _clientSecret.SetAccessPath(path, validateHasBeenSet);
-        _registerNewUsers.SetAccessPath(path, validateHasBeenSet);
-        _domains.SetAccessPath(path, validateHasBeenSet);
+        _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _clientSecret.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _registerNewUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _domains.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

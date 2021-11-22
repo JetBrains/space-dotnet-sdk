@@ -46,64 +46,68 @@ public sealed class HAUrlParameterOptionVar
         Deprecation = deprecation;
     }
     
-    private PropertyValue<HAField> _parameter = new PropertyValue<HAField>(nameof(HAUrlParameterOptionVar), nameof(Parameter));
+    private PropertyValue<HAField> _parameter = new PropertyValue<HAField>(nameof(HAUrlParameterOptionVar), nameof(Parameter), "parameter");
     
     [Required]
     [Obsolete("Use 'parameters' (since 2021-08-17)")]
     [JsonPropertyName("parameter")]
     public HAField Parameter
     {
-        get => _parameter.GetValue();
+        get => _parameter.GetValue(InlineErrors);
         set => _parameter.SetValue(value);
     }
 
-    private PropertyValue<List<HAField>> _parameters = new PropertyValue<List<HAField>>(nameof(HAUrlParameterOptionVar), nameof(Parameters), new List<HAField>());
+    private PropertyValue<List<HAField>> _parameters = new PropertyValue<List<HAField>>(nameof(HAUrlParameterOptionVar), nameof(Parameters), "parameters", new List<HAField>());
     
     [Required]
     [JsonPropertyName("parameters")]
     public List<HAField> Parameters
     {
-        get => _parameters.GetValue();
+        get => _parameters.GetValue(InlineErrors);
         set => _parameters.SetValue(value);
     }
 
-    private PropertyValue<bool> _prefixRequired = new PropertyValue<bool>(nameof(HAUrlParameterOptionVar), nameof(IsPrefixRequired));
+    private PropertyValue<bool> _prefixRequired = new PropertyValue<bool>(nameof(HAUrlParameterOptionVar), nameof(IsPrefixRequired), "prefixRequired");
     
     [Required]
     [JsonPropertyName("prefixRequired")]
     public bool IsPrefixRequired
     {
-        get => _prefixRequired.GetValue();
+        get => _prefixRequired.GetValue(InlineErrors);
         set => _prefixRequired.SetValue(value);
     }
 
-    private PropertyValue<string> _optionName = new PropertyValue<string>(nameof(HAUrlParameterOptionVar), nameof(OptionName));
+    private PropertyValue<string> _optionName = new PropertyValue<string>(nameof(HAUrlParameterOptionVar), nameof(OptionName), "optionName");
     
     [Required]
     [JsonPropertyName("optionName")]
     public string OptionName
     {
-        get => _optionName.GetValue();
+        get => _optionName.GetValue(InlineErrors);
         set => _optionName.SetValue(value);
     }
 
-    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAUrlParameterOptionVar), nameof(Deprecation));
+    private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAUrlParameterOptionVar), nameof(Deprecation), "deprecation");
     
     [JsonPropertyName("deprecation")]
     public HADeprecation? Deprecation
     {
-        get => _deprecation.GetValue();
+        get => _deprecation.GetValue(InlineErrors);
         set => _deprecation.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _parameter.SetAccessPath(path, validateHasBeenSet);
-        _parameters.SetAccessPath(path, validateHasBeenSet);
-        _prefixRequired.SetAccessPath(path, validateHasBeenSet);
-        _optionName.SetAccessPath(path, validateHasBeenSet);
-        _deprecation.SetAccessPath(path, validateHasBeenSet);
+        _parameter.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parameters.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _prefixRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _optionName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

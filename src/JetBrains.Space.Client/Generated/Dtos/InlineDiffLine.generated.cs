@@ -47,102 +47,106 @@ public sealed class InlineDiffLine
         Inserts = inserts;
     }
     
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(InlineDiffLine), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(InlineDiffLine), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<DiffLineType?> _type = new PropertyValue<DiffLineType?>(nameof(InlineDiffLine), nameof(Type));
+    private PropertyValue<DiffLineType?> _type = new PropertyValue<DiffLineType?>(nameof(InlineDiffLine), nameof(Type), "type");
     
     [JsonPropertyName("type")]
     public DiffLineType? Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<int?> _oldLineNum = new PropertyValue<int?>(nameof(InlineDiffLine), nameof(OldLineNum));
+    private PropertyValue<int?> _oldLineNum = new PropertyValue<int?>(nameof(InlineDiffLine), nameof(OldLineNum), "oldLineNum");
     
     [JsonPropertyName("oldLineNum")]
     public int? OldLineNum
     {
-        get => _oldLineNum.GetValue();
+        get => _oldLineNum.GetValue(InlineErrors);
         set => _oldLineNum.SetValue(value);
     }
 
-    private PropertyValue<int?> _newLineNum = new PropertyValue<int?>(nameof(InlineDiffLine), nameof(NewLineNum));
+    private PropertyValue<int?> _newLineNum = new PropertyValue<int?>(nameof(InlineDiffLine), nameof(NewLineNum), "newLineNum");
     
     [JsonPropertyName("newLineNum")]
     public int? NewLineNum
     {
-        get => _newLineNum.GetValue();
+        get => _newLineNum.GetValue(InlineErrors);
         set => _newLineNum.SetValue(value);
     }
 
-    private PropertyValue<int> _oldFileOffset = new PropertyValue<int>(nameof(InlineDiffLine), nameof(OldFileOffset));
+    private PropertyValue<int> _oldFileOffset = new PropertyValue<int>(nameof(InlineDiffLine), nameof(OldFileOffset), "oldFileOffset");
     
     [Required]
     [JsonPropertyName("oldFileOffset")]
     public int OldFileOffset
     {
-        get => _oldFileOffset.GetValue();
+        get => _oldFileOffset.GetValue(InlineErrors);
         set => _oldFileOffset.SetValue(value);
     }
 
-    private PropertyValue<int> _newFileOffset = new PropertyValue<int>(nameof(InlineDiffLine), nameof(NewFileOffset));
+    private PropertyValue<int> _newFileOffset = new PropertyValue<int>(nameof(InlineDiffLine), nameof(NewFileOffset), "newFileOffset");
     
     [Required]
     [JsonPropertyName("newFileOffset")]
     public int NewFileOffset
     {
-        get => _newFileOffset.GetValue();
+        get => _newFileOffset.GetValue(InlineErrors);
         set => _newFileOffset.SetValue(value);
     }
 
-    private PropertyValue<List<SyntaxMarkup>?> _syntax = new PropertyValue<List<SyntaxMarkup>?>(nameof(InlineDiffLine), nameof(Syntax));
+    private PropertyValue<List<SyntaxMarkup>?> _syntax = new PropertyValue<List<SyntaxMarkup>?>(nameof(InlineDiffLine), nameof(Syntax), "syntax");
     
     [JsonPropertyName("syntax")]
     public List<SyntaxMarkup>? Syntax
     {
-        get => _syntax.GetValue();
+        get => _syntax.GetValue(InlineErrors);
         set => _syntax.SetValue(value);
     }
 
-    private PropertyValue<List<TextRange>?> _deletes = new PropertyValue<List<TextRange>?>(nameof(InlineDiffLine), nameof(Deletes));
+    private PropertyValue<List<TextRange>?> _deletes = new PropertyValue<List<TextRange>?>(nameof(InlineDiffLine), nameof(Deletes), "deletes");
     
     [JsonPropertyName("deletes")]
     public List<TextRange>? Deletes
     {
-        get => _deletes.GetValue();
+        get => _deletes.GetValue(InlineErrors);
         set => _deletes.SetValue(value);
     }
 
-    private PropertyValue<List<TextRange>?> _inserts = new PropertyValue<List<TextRange>?>(nameof(InlineDiffLine), nameof(Inserts));
+    private PropertyValue<List<TextRange>?> _inserts = new PropertyValue<List<TextRange>?>(nameof(InlineDiffLine), nameof(Inserts), "inserts");
     
     [JsonPropertyName("inserts")]
     public List<TextRange>? Inserts
     {
-        get => _inserts.GetValue();
+        get => _inserts.GetValue(InlineErrors);
         set => _inserts.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _oldLineNum.SetAccessPath(path, validateHasBeenSet);
-        _newLineNum.SetAccessPath(path, validateHasBeenSet);
-        _oldFileOffset.SetAccessPath(path, validateHasBeenSet);
-        _newFileOffset.SetAccessPath(path, validateHasBeenSet);
-        _syntax.SetAccessPath(path, validateHasBeenSet);
-        _deletes.SetAccessPath(path, validateHasBeenSet);
-        _inserts.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _oldLineNum.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _newLineNum.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _oldFileOffset.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _newFileOffset.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _syntax.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deletes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inserts.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

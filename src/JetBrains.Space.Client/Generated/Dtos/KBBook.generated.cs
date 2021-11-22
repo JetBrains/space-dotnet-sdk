@@ -47,107 +47,111 @@ public sealed class KBBook
         RootFolder = rootFolder;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(KBBook), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(KBBook), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(KBBook), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(KBBook), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(KBBook), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(KBBook), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _summary = new PropertyValue<string>(nameof(KBBook), nameof(Summary));
+    private PropertyValue<string> _summary = new PropertyValue<string>(nameof(KBBook), nameof(Summary), "summary");
     
     [Required]
     [JsonPropertyName("summary")]
     public string Summary
     {
-        get => _summary.GetValue();
+        get => _summary.GetValue(InlineErrors);
         set => _summary.SetValue(value);
     }
 
-    private PropertyValue<long> _updated = new PropertyValue<long>(nameof(KBBook), nameof(Updated));
+    private PropertyValue<long> _updated = new PropertyValue<long>(nameof(KBBook), nameof(Updated), "updated");
     
     [Required]
     [JsonPropertyName("updated")]
     public long Updated
     {
-        get => _updated.GetValue();
+        get => _updated.GetValue(InlineErrors);
         set => _updated.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(KBBook), nameof(UpdatedBy));
+    private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(KBBook), nameof(UpdatedBy), "updatedBy");
     
     [JsonPropertyName("updatedBy")]
     public CPrincipal? UpdatedBy
     {
-        get => _updatedBy.GetValue();
+        get => _updatedBy.GetValue(InlineErrors);
         set => _updatedBy.SetValue(value);
     }
 
-    private PropertyValue<string> _alias = new PropertyValue<string>(nameof(KBBook), nameof(Alias));
+    private PropertyValue<string> _alias = new PropertyValue<string>(nameof(KBBook), nameof(Alias), "alias");
     
     [Required]
     [JsonPropertyName("alias")]
     public string Alias
     {
-        get => _alias.GetValue();
+        get => _alias.GetValue(InlineErrors);
         set => _alias.SetValue(value);
     }
 
-    private PropertyValue<List<KBBookContext>> _contexts = new PropertyValue<List<KBBookContext>>(nameof(KBBook), nameof(Contexts), new List<KBBookContext>());
+    private PropertyValue<List<KBBookContext>> _contexts = new PropertyValue<List<KBBookContext>>(nameof(KBBook), nameof(Contexts), "contexts", new List<KBBookContext>());
     
     [Required]
     [JsonPropertyName("contexts")]
     public List<KBBookContext> Contexts
     {
-        get => _contexts.GetValue();
+        get => _contexts.GetValue(InlineErrors);
         set => _contexts.SetValue(value);
     }
 
-    private PropertyValue<KBFolder> _rootFolder = new PropertyValue<KBFolder>(nameof(KBBook), nameof(RootFolder));
+    private PropertyValue<KBFolder> _rootFolder = new PropertyValue<KBFolder>(nameof(KBBook), nameof(RootFolder), "rootFolder");
     
     [Required]
     [JsonPropertyName("rootFolder")]
     public KBFolder RootFolder
     {
-        get => _rootFolder.GetValue();
+        get => _rootFolder.GetValue(InlineErrors);
         set => _rootFolder.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _summary.SetAccessPath(path, validateHasBeenSet);
-        _updated.SetAccessPath(path, validateHasBeenSet);
-        _updatedBy.SetAccessPath(path, validateHasBeenSet);
-        _alias.SetAccessPath(path, validateHasBeenSet);
-        _contexts.SetAccessPath(path, validateHasBeenSet);
-        _rootFolder.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _summary.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updated.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updatedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _alias.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _contexts.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rootFolder.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

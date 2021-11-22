@@ -43,63 +43,67 @@ public class ProjectsForProjectCodeReviewsMergeRequestsPostRequest
         Reviewers = reviewers;
     }
     
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _sourceBranch = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(SourceBranch));
+    private PropertyValue<string> _sourceBranch = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(SourceBranch), "sourceBranch");
     
     [Required]
     [JsonPropertyName("sourceBranch")]
     public string SourceBranch
     {
-        get => _sourceBranch.GetValue();
+        get => _sourceBranch.GetValue(InlineErrors);
         set => _sourceBranch.SetValue(value);
     }
 
-    private PropertyValue<string> _targetBranch = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(TargetBranch));
+    private PropertyValue<string> _targetBranch = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(TargetBranch), "targetBranch");
     
     [Required]
     [JsonPropertyName("targetBranch")]
     public string TargetBranch
     {
-        get => _targetBranch.GetValue();
+        get => _targetBranch.GetValue(InlineErrors);
         set => _targetBranch.SetValue(value);
     }
 
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(Title));
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
     public string Title
     {
-        get => _title.GetValue();
+        get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<List<ReviewerParam>?> _reviewers = new PropertyValue<List<ReviewerParam>?>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(Reviewers));
+    private PropertyValue<List<ReviewerParam>?> _reviewers = new PropertyValue<List<ReviewerParam>?>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(Reviewers), "reviewers");
     
     [JsonPropertyName("reviewers")]
     public List<ReviewerParam>? Reviewers
     {
-        get => _reviewers.GetValue();
+        get => _reviewers.GetValue(InlineErrors);
         set => _reviewers.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _sourceBranch.SetAccessPath(path, validateHasBeenSet);
-        _targetBranch.SetAccessPath(path, validateHasBeenSet);
-        _title.SetAccessPath(path, validateHasBeenSet);
-        _reviewers.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sourceBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _targetBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviewers.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

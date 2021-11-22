@@ -40,31 +40,35 @@ public sealed class IntelliJSharedIndexNamedUploadUrl
         Url = url;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(IntelliJSharedIndexNamedUploadUrl), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(IntelliJSharedIndexNamedUploadUrl), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<IntelliJSharedIndexUploadUrl> _url = new PropertyValue<IntelliJSharedIndexUploadUrl>(nameof(IntelliJSharedIndexNamedUploadUrl), nameof(Url));
+    private PropertyValue<IntelliJSharedIndexUploadUrl> _url = new PropertyValue<IntelliJSharedIndexUploadUrl>(nameof(IntelliJSharedIndexNamedUploadUrl), nameof(Url), "url");
     
     [Required]
     [JsonPropertyName("url")]
     public IntelliJSharedIndexUploadUrl Url
     {
-        get => _url.GetValue();
+        get => _url.GetValue(InlineErrors);
         set => _url.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _url.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

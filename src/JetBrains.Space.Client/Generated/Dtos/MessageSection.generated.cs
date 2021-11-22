@@ -44,40 +44,44 @@ public sealed class MessageSection
         Footer = footer;
     }
     
-    private PropertyValue<string?> _header = new PropertyValue<string?>(nameof(MessageSection), nameof(Header));
+    private PropertyValue<string?> _header = new PropertyValue<string?>(nameof(MessageSection), nameof(Header), "header");
     
     [JsonPropertyName("header")]
     public string? Header
     {
-        get => _header.GetValue();
+        get => _header.GetValue(InlineErrors);
         set => _header.SetValue(value);
     }
 
-    private PropertyValue<List<MessageElement>> _elements = new PropertyValue<List<MessageElement>>(nameof(MessageSection), nameof(Elements), new List<MessageElement>());
+    private PropertyValue<List<MessageElement>> _elements = new PropertyValue<List<MessageElement>>(nameof(MessageSection), nameof(Elements), "elements", new List<MessageElement>());
     
     [Required]
     [JsonPropertyName("elements")]
     public List<MessageElement> Elements
     {
-        get => _elements.GetValue();
+        get => _elements.GetValue(InlineErrors);
         set => _elements.SetValue(value);
     }
 
-    private PropertyValue<string?> _footer = new PropertyValue<string?>(nameof(MessageSection), nameof(Footer));
+    private PropertyValue<string?> _footer = new PropertyValue<string?>(nameof(MessageSection), nameof(Footer), "footer");
     
     [JsonPropertyName("footer")]
     public string? Footer
     {
-        get => _footer.GetValue();
+        get => _footer.GetValue(InlineErrors);
         set => _footer.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _header.SetAccessPath(path, validateHasBeenSet);
-        _elements.SetAccessPath(path, validateHasBeenSet);
-        _footer.SetAccessPath(path, validateHasBeenSet);
+        _header.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _elements.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _footer.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

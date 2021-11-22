@@ -42,20 +42,24 @@ public sealed class DocumentAppUnfurlContext
         DocumentId = documentId;
     }
     
-    private PropertyValue<string> _documentId = new PropertyValue<string>(nameof(DocumentAppUnfurlContext), nameof(DocumentId));
+    private PropertyValue<string> _documentId = new PropertyValue<string>(nameof(DocumentAppUnfurlContext), nameof(DocumentId), "documentId");
     
     [Required]
     [JsonPropertyName("documentId")]
     public string DocumentId
     {
-        get => _documentId.GetValue();
+        get => _documentId.GetValue(InlineErrors);
         set => _documentId.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _documentId.SetAccessPath(path, validateHasBeenSet);
+        _documentId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

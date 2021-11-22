@@ -43,62 +43,66 @@ public sealed class GlobalNotificationSettings
         IsMultiClientEnabled = multiClientEnabled;
     }
     
-    private PropertyValue<bool> _emailNotificationsEnabled = new PropertyValue<bool>(nameof(GlobalNotificationSettings), nameof(IsEmailNotificationsEnabled));
+    private PropertyValue<bool> _emailNotificationsEnabled = new PropertyValue<bool>(nameof(GlobalNotificationSettings), nameof(IsEmailNotificationsEnabled), "emailNotificationsEnabled");
     
     [Required]
     [JsonPropertyName("emailNotificationsEnabled")]
     public bool IsEmailNotificationsEnabled
     {
-        get => _emailNotificationsEnabled.GetValue();
+        get => _emailNotificationsEnabled.GetValue(InlineErrors);
         set => _emailNotificationsEnabled.SetValue(value);
     }
 
-    private PropertyValue<TDProfileEmail?> _notificationEmail = new PropertyValue<TDProfileEmail?>(nameof(GlobalNotificationSettings), nameof(NotificationEmail));
+    private PropertyValue<TDProfileEmail?> _notificationEmail = new PropertyValue<TDProfileEmail?>(nameof(GlobalNotificationSettings), nameof(NotificationEmail), "notificationEmail");
     
     [JsonPropertyName("notificationEmail")]
     public TDProfileEmail? NotificationEmail
     {
-        get => _notificationEmail.GetValue();
+        get => _notificationEmail.GetValue(InlineErrors);
         set => _notificationEmail.SetValue(value);
     }
 
-    private PropertyValue<bool> _pushNotificationEnabled = new PropertyValue<bool>(nameof(GlobalNotificationSettings), nameof(IsPushNotificationEnabled));
+    private PropertyValue<bool> _pushNotificationEnabled = new PropertyValue<bool>(nameof(GlobalNotificationSettings), nameof(IsPushNotificationEnabled), "pushNotificationEnabled");
     
     [Required]
     [JsonPropertyName("pushNotificationEnabled")]
     public bool IsPushNotificationEnabled
     {
-        get => _pushNotificationEnabled.GetValue();
+        get => _pushNotificationEnabled.GetValue(InlineErrors);
         set => _pushNotificationEnabled.SetValue(value);
     }
 
-    private PropertyValue<int?> _desktopInactivityTimeout = new PropertyValue<int?>(nameof(GlobalNotificationSettings), nameof(DesktopInactivityTimeout));
+    private PropertyValue<int?> _desktopInactivityTimeout = new PropertyValue<int?>(nameof(GlobalNotificationSettings), nameof(DesktopInactivityTimeout), "desktopInactivityTimeout");
     
     [JsonPropertyName("desktopInactivityTimeout")]
     public int? DesktopInactivityTimeout
     {
-        get => _desktopInactivityTimeout.GetValue();
+        get => _desktopInactivityTimeout.GetValue(InlineErrors);
         set => _desktopInactivityTimeout.SetValue(value);
     }
 
-    private PropertyValue<bool> _multiClientEnabled = new PropertyValue<bool>(nameof(GlobalNotificationSettings), nameof(IsMultiClientEnabled));
+    private PropertyValue<bool> _multiClientEnabled = new PropertyValue<bool>(nameof(GlobalNotificationSettings), nameof(IsMultiClientEnabled), "multiClientEnabled");
     
     [Required]
     [JsonPropertyName("multiClientEnabled")]
     public bool IsMultiClientEnabled
     {
-        get => _multiClientEnabled.GetValue();
+        get => _multiClientEnabled.GetValue(InlineErrors);
         set => _multiClientEnabled.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _emailNotificationsEnabled.SetAccessPath(path, validateHasBeenSet);
-        _notificationEmail.SetAccessPath(path, validateHasBeenSet);
-        _pushNotificationEnabled.SetAccessPath(path, validateHasBeenSet);
-        _desktopInactivityTimeout.SetAccessPath(path, validateHasBeenSet);
-        _multiClientEnabled.SetAccessPath(path, validateHasBeenSet);
+        _emailNotificationsEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationEmail.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pushNotificationEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _desktopInactivityTimeout.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _multiClientEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

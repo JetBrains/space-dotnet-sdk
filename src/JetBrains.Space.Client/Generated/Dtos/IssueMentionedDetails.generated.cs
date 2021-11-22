@@ -42,20 +42,24 @@ public sealed class IssueMentionedDetails
         Message = message;
     }
     
-    private PropertyValue<ChannelItemSnapshot> _message = new PropertyValue<ChannelItemSnapshot>(nameof(IssueMentionedDetails), nameof(Message));
+    private PropertyValue<ChannelItemSnapshot> _message = new PropertyValue<ChannelItemSnapshot>(nameof(IssueMentionedDetails), nameof(Message), "message");
     
     [Required]
     [JsonPropertyName("message")]
     public ChannelItemSnapshot Message
     {
-        get => _message.GetValue();
+        get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _message.SetAccessPath(path, validateHasBeenSet);
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

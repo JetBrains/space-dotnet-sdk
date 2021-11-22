@@ -53,140 +53,144 @@ public sealed class ESLdapAuthModuleSettings
         AttributeNames = attributeNames;
     }
     
-    private PropertyValue<LdapModuleType> _type = new PropertyValue<LdapModuleType>(nameof(ESLdapAuthModuleSettings), nameof(Type));
+    private PropertyValue<LdapModuleType> _type = new PropertyValue<LdapModuleType>(nameof(ESLdapAuthModuleSettings), nameof(Type), "type");
     
     [Required]
     [JsonPropertyName("type")]
     public LdapModuleType Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESLdapAuthModuleSettings), nameof(IsRegisterNewUsers));
+    private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESLdapAuthModuleSettings), nameof(IsRegisterNewUsers), "registerNewUsers");
     
     [Required]
     [JsonPropertyName("registerNewUsers")]
     public bool IsRegisterNewUsers
     {
-        get => _registerNewUsers.GetValue();
+        get => _registerNewUsers.GetValue(InlineErrors);
         set => _registerNewUsers.SetValue(value);
     }
 
-    private PropertyValue<string> _serverUrl = new PropertyValue<string>(nameof(ESLdapAuthModuleSettings), nameof(ServerUrl));
+    private PropertyValue<string> _serverUrl = new PropertyValue<string>(nameof(ESLdapAuthModuleSettings), nameof(ServerUrl), "serverUrl");
     
     [Required]
     [JsonPropertyName("serverUrl")]
     public string ServerUrl
     {
-        get => _serverUrl.GetValue();
+        get => _serverUrl.GetValue(InlineErrors);
         set => _serverUrl.SetValue(value);
     }
 
-    private PropertyValue<int> _connectionTimeout = new PropertyValue<int>(nameof(ESLdapAuthModuleSettings), nameof(ConnectionTimeout));
+    private PropertyValue<int> _connectionTimeout = new PropertyValue<int>(nameof(ESLdapAuthModuleSettings), nameof(ConnectionTimeout), "connectionTimeout");
     
     [Required]
     [JsonPropertyName("connectionTimeout")]
     public int ConnectionTimeout
     {
-        get => _connectionTimeout.GetValue();
+        get => _connectionTimeout.GetValue(InlineErrors);
         set => _connectionTimeout.SetValue(value);
     }
 
-    private PropertyValue<int> _readTimeout = new PropertyValue<int>(nameof(ESLdapAuthModuleSettings), nameof(ReadTimeout));
+    private PropertyValue<int> _readTimeout = new PropertyValue<int>(nameof(ESLdapAuthModuleSettings), nameof(ReadTimeout), "readTimeout");
     
     [Required]
     [JsonPropertyName("readTimeout")]
     public int ReadTimeout
     {
-        get => _readTimeout.GetValue();
+        get => _readTimeout.GetValue(InlineErrors);
         set => _readTimeout.SetValue(value);
     }
 
-    private PropertyValue<SSLKeystore?> _sslKeystore = new PropertyValue<SSLKeystore?>(nameof(ESLdapAuthModuleSettings), nameof(SslKeystore));
+    private PropertyValue<SSLKeystore?> _sslKeystore = new PropertyValue<SSLKeystore?>(nameof(ESLdapAuthModuleSettings), nameof(SslKeystore), "sslKeystore");
     
     [JsonPropertyName("sslKeystore")]
     public SSLKeystore? SslKeystore
     {
-        get => _sslKeystore.GetValue();
+        get => _sslKeystore.GetValue(InlineErrors);
         set => _sslKeystore.SetValue(value);
     }
 
-    private PropertyValue<List<ESTeamMapping>> _teamMappings = new PropertyValue<List<ESTeamMapping>>(nameof(ESLdapAuthModuleSettings), nameof(TeamMappings), new List<ESTeamMapping>());
+    private PropertyValue<List<ESTeamMapping>> _teamMappings = new PropertyValue<List<ESTeamMapping>>(nameof(ESLdapAuthModuleSettings), nameof(TeamMappings), "teamMappings", new List<ESTeamMapping>());
     
     [Required]
     [JsonPropertyName("teamMappings")]
     public List<ESTeamMapping> TeamMappings
     {
-        get => _teamMappings.GetValue();
+        get => _teamMappings.GetValue(InlineErrors);
         set => _teamMappings.SetValue(value);
     }
 
-    private PropertyValue<bool> _referralIgnored = new PropertyValue<bool>(nameof(ESLdapAuthModuleSettings), nameof(IsReferralIgnored));
+    private PropertyValue<bool> _referralIgnored = new PropertyValue<bool>(nameof(ESLdapAuthModuleSettings), nameof(IsReferralIgnored), "referralIgnored");
     
     [Required]
     [JsonPropertyName("referralIgnored")]
     public bool IsReferralIgnored
     {
-        get => _referralIgnored.GetValue();
+        get => _referralIgnored.GetValue(InlineErrors);
         set => _referralIgnored.SetValue(value);
     }
 
-    private PropertyValue<string> _filter = new PropertyValue<string>(nameof(ESLdapAuthModuleSettings), nameof(Filter));
+    private PropertyValue<string> _filter = new PropertyValue<string>(nameof(ESLdapAuthModuleSettings), nameof(Filter), "filter");
     
     [Required]
     [JsonPropertyName("filter")]
     public string Filter
     {
-        get => _filter.GetValue();
+        get => _filter.GetValue(InlineErrors);
         set => _filter.SetValue(value);
     }
 
-    private PropertyValue<string> _bindUserDN = new PropertyValue<string>(nameof(ESLdapAuthModuleSettings), nameof(BindUserDN));
+    private PropertyValue<string> _bindUserDN = new PropertyValue<string>(nameof(ESLdapAuthModuleSettings), nameof(BindUserDN), "bindUserDN");
     
     [Required]
     [JsonPropertyName("bindUserDN")]
     public string BindUserDN
     {
-        get => _bindUserDN.GetValue();
+        get => _bindUserDN.GetValue(InlineErrors);
         set => _bindUserDN.SetValue(value);
     }
 
-    private PropertyValue<string> _bindUserPassword = new PropertyValue<string>(nameof(ESLdapAuthModuleSettings), nameof(BindUserPassword));
+    private PropertyValue<string> _bindUserPassword = new PropertyValue<string>(nameof(ESLdapAuthModuleSettings), nameof(BindUserPassword), "bindUserPassword");
     
     [Required]
     [JsonPropertyName("bindUserPassword")]
     public string BindUserPassword
     {
-        get => _bindUserPassword.GetValue();
+        get => _bindUserPassword.GetValue(InlineErrors);
         set => _bindUserPassword.SetValue(value);
     }
 
-    private PropertyValue<ESLdapAttributeNames> _attributeNames = new PropertyValue<ESLdapAttributeNames>(nameof(ESLdapAuthModuleSettings), nameof(AttributeNames));
+    private PropertyValue<ESLdapAttributeNames> _attributeNames = new PropertyValue<ESLdapAttributeNames>(nameof(ESLdapAuthModuleSettings), nameof(AttributeNames), "attributeNames");
     
     [Required]
     [JsonPropertyName("attributeNames")]
     public ESLdapAttributeNames AttributeNames
     {
-        get => _attributeNames.GetValue();
+        get => _attributeNames.GetValue(InlineErrors);
         set => _attributeNames.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _registerNewUsers.SetAccessPath(path, validateHasBeenSet);
-        _serverUrl.SetAccessPath(path, validateHasBeenSet);
-        _connectionTimeout.SetAccessPath(path, validateHasBeenSet);
-        _readTimeout.SetAccessPath(path, validateHasBeenSet);
-        _sslKeystore.SetAccessPath(path, validateHasBeenSet);
-        _teamMappings.SetAccessPath(path, validateHasBeenSet);
-        _referralIgnored.SetAccessPath(path, validateHasBeenSet);
-        _filter.SetAccessPath(path, validateHasBeenSet);
-        _bindUserDN.SetAccessPath(path, validateHasBeenSet);
-        _bindUserPassword.SetAccessPath(path, validateHasBeenSet);
-        _attributeNames.SetAccessPath(path, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _registerNewUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _serverUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _connectionTimeout.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _readTimeout.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sslKeystore.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _teamMappings.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _referralIgnored.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _filter.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bindUserDN.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bindUserPassword.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attributeNames.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

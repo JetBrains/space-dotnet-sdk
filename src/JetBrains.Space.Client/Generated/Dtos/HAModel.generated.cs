@@ -44,75 +44,79 @@ public sealed class HAModel
         MenuIds = menuIds;
     }
     
-    private PropertyValue<List<HADto>> _dto = new PropertyValue<List<HADto>>(nameof(HAModel), nameof(Dto), new List<HADto>());
+    private PropertyValue<List<HADto>> _dto = new PropertyValue<List<HADto>>(nameof(HAModel), nameof(Dto), "dto", new List<HADto>());
     
     [Required]
     [JsonPropertyName("dto")]
     public List<HADto> Dto
     {
-        get => _dto.GetValue();
+        get => _dto.GetValue(InlineErrors);
         set => _dto.SetValue(value);
     }
 
-    private PropertyValue<List<HAEnum>> _enums = new PropertyValue<List<HAEnum>>(nameof(HAModel), nameof(Enums), new List<HAEnum>());
+    private PropertyValue<List<HAEnum>> _enums = new PropertyValue<List<HAEnum>>(nameof(HAModel), nameof(Enums), "enums", new List<HAEnum>());
     
     [Required]
     [JsonPropertyName("enums")]
     public List<HAEnum> Enums
     {
-        get => _enums.GetValue();
+        get => _enums.GetValue(InlineErrors);
         set => _enums.SetValue(value);
     }
 
-    private PropertyValue<List<HAUrlParameter>> _urlParams = new PropertyValue<List<HAUrlParameter>>(nameof(HAModel), nameof(UrlParams), new List<HAUrlParameter>());
+    private PropertyValue<List<HAUrlParameter>> _urlParams = new PropertyValue<List<HAUrlParameter>>(nameof(HAModel), nameof(UrlParams), "urlParams", new List<HAUrlParameter>());
     
     [Required]
     [JsonPropertyName("urlParams")]
     public List<HAUrlParameter> UrlParams
     {
-        get => _urlParams.GetValue();
+        get => _urlParams.GetValue(InlineErrors);
         set => _urlParams.SetValue(value);
     }
 
-    private PropertyValue<List<HAResource>> _resources = new PropertyValue<List<HAResource>>(nameof(HAModel), nameof(Resources), new List<HAResource>());
+    private PropertyValue<List<HAResource>> _resources = new PropertyValue<List<HAResource>>(nameof(HAModel), nameof(Resources), "resources", new List<HAResource>());
     
     [Required]
     [JsonPropertyName("resources")]
     public List<HAResource> Resources
     {
-        get => _resources.GetValue();
+        get => _resources.GetValue(InlineErrors);
         set => _resources.SetValue(value);
     }
 
-    private PropertyValue<List<HAResource>> _allResources = new PropertyValue<List<HAResource>>(nameof(HAModel), nameof(AllResources), new List<HAResource>());
+    private PropertyValue<List<HAResource>> _allResources = new PropertyValue<List<HAResource>>(nameof(HAModel), nameof(AllResources), "allResources", new List<HAResource>());
     
     [Required]
     [JsonPropertyName("allResources")]
     public List<HAResource> AllResources
     {
-        get => _allResources.GetValue();
+        get => _allResources.GetValue(InlineErrors);
         set => _allResources.SetValue(value);
     }
 
-    private PropertyValue<List<HAMenuId>> _menuIds = new PropertyValue<List<HAMenuId>>(nameof(HAModel), nameof(MenuIds), new List<HAMenuId>());
+    private PropertyValue<List<HAMenuId>> _menuIds = new PropertyValue<List<HAMenuId>>(nameof(HAModel), nameof(MenuIds), "menuIds", new List<HAMenuId>());
     
     [Required]
     [JsonPropertyName("menuIds")]
     public List<HAMenuId> MenuIds
     {
-        get => _menuIds.GetValue();
+        get => _menuIds.GetValue(InlineErrors);
         set => _menuIds.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _dto.SetAccessPath(path, validateHasBeenSet);
-        _enums.SetAccessPath(path, validateHasBeenSet);
-        _urlParams.SetAccessPath(path, validateHasBeenSet);
-        _resources.SetAccessPath(path, validateHasBeenSet);
-        _allResources.SetAccessPath(path, validateHasBeenSet);
-        _menuIds.SetAccessPath(path, validateHasBeenSet);
+        _dto.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enums.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _urlParams.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _resources.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _allResources.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _menuIds.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

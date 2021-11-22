@@ -40,31 +40,35 @@ public class TodoPostRequest
         DueDate = dueDate;
     }
     
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoPostRequest), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoPostRequest), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoPostRequest), nameof(DueDate));
+    private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoPostRequest), nameof(DueDate), "dueDate");
     
     [JsonPropertyName("dueDate")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? DueDate
     {
-        get => _dueDate.GetValue();
+        get => _dueDate.GetValue(InlineErrors);
         set => _dueDate.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _dueDate.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _dueDate.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

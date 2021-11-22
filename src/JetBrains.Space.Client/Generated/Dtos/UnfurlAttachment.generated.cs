@@ -44,41 +44,45 @@ public sealed class UnfurlAttachment
         IsOnlyVisibleToYou = onlyVisibleToYou;
     }
     
-    private PropertyValue<Unfurl> _unfurl = new PropertyValue<Unfurl>(nameof(UnfurlAttachment), nameof(Unfurl));
+    private PropertyValue<Unfurl> _unfurl = new PropertyValue<Unfurl>(nameof(UnfurlAttachment), nameof(Unfurl), "unfurl");
     
     [Required]
     [JsonPropertyName("unfurl")]
     public Unfurl Unfurl
     {
-        get => _unfurl.GetValue();
+        get => _unfurl.GetValue(InlineErrors);
         set => _unfurl.SetValue(value);
     }
 
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(UnfurlAttachment), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(UnfurlAttachment), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool?> _onlyVisibleToYou = new PropertyValue<bool?>(nameof(UnfurlAttachment), nameof(IsOnlyVisibleToYou));
+    private PropertyValue<bool?> _onlyVisibleToYou = new PropertyValue<bool?>(nameof(UnfurlAttachment), nameof(IsOnlyVisibleToYou), "onlyVisibleToYou");
     
     [JsonPropertyName("onlyVisibleToYou")]
     public bool? IsOnlyVisibleToYou
     {
-        get => _onlyVisibleToYou.GetValue();
+        get => _onlyVisibleToYou.GetValue(InlineErrors);
         set => _onlyVisibleToYou.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _unfurl.SetAccessPath(path, validateHasBeenSet);
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _onlyVisibleToYou.SetAccessPath(path, validateHasBeenSet);
+        _unfurl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _onlyVisibleToYou.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

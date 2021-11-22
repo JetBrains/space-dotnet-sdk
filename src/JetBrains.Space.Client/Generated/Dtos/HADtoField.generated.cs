@@ -40,31 +40,35 @@ public sealed class HADtoField
         IsExtension = extension;
     }
     
-    private PropertyValue<HAField> _field = new PropertyValue<HAField>(nameof(HADtoField), nameof(Field));
+    private PropertyValue<HAField> _field = new PropertyValue<HAField>(nameof(HADtoField), nameof(Field), "field");
     
     [Required]
     [JsonPropertyName("field")]
     public HAField Field
     {
-        get => _field.GetValue();
+        get => _field.GetValue(InlineErrors);
         set => _field.SetValue(value);
     }
 
-    private PropertyValue<bool> _extension = new PropertyValue<bool>(nameof(HADtoField), nameof(IsExtension));
+    private PropertyValue<bool> _extension = new PropertyValue<bool>(nameof(HADtoField), nameof(IsExtension), "extension");
     
     [Required]
     [JsonPropertyName("extension")]
     public bool IsExtension
     {
-        get => _extension.GetValue();
+        get => _extension.GetValue(InlineErrors);
         set => _extension.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _field.SetAccessPath(path, validateHasBeenSet);
-        _extension.SetAccessPath(path, validateHasBeenSet);
+        _field.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _extension.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

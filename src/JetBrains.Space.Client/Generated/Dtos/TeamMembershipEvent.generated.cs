@@ -51,111 +51,115 @@ public sealed class TeamMembershipEvent
         ApprovedBy = approvedBy;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(TeamMembershipEvent), nameof(Meta));
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(TeamMembershipEvent), nameof(Meta), "meta");
     
     [Required]
     [JsonPropertyName("meta")]
     public KMetaMod Meta
     {
-        get => _meta.GetValue();
+        get => _meta.GetValue(InlineErrors);
         set => _meta.SetValue(value);
     }
 
-    private PropertyValue<TDMembership> _membership = new PropertyValue<TDMembership>(nameof(TeamMembershipEvent), nameof(Membership));
+    private PropertyValue<TDMembership> _membership = new PropertyValue<TDMembership>(nameof(TeamMembershipEvent), nameof(Membership), "membership");
     
     [Required]
     [JsonPropertyName("membership")]
     public TDMembership Membership
     {
-        get => _membership.GetValue();
+        get => _membership.GetValue(InlineErrors);
         set => _membership.SetValue(value);
     }
 
-    private PropertyValue<Modification<TDTeam>?> _team = new PropertyValue<Modification<TDTeam>?>(nameof(TeamMembershipEvent), nameof(Team));
+    private PropertyValue<Modification<TDTeam>?> _team = new PropertyValue<Modification<TDTeam>?>(nameof(TeamMembershipEvent), nameof(Team), "team");
     
     [JsonPropertyName("team")]
     public Modification<TDTeam>? Team
     {
-        get => _team.GetValue();
+        get => _team.GetValue(InlineErrors);
         set => _team.SetValue(value);
     }
 
-    private PropertyValue<Modification<TDRole>?> _role = new PropertyValue<Modification<TDRole>?>(nameof(TeamMembershipEvent), nameof(Role));
+    private PropertyValue<Modification<TDRole>?> _role = new PropertyValue<Modification<TDRole>?>(nameof(TeamMembershipEvent), nameof(Role), "role");
     
     [JsonPropertyName("role")]
     public Modification<TDRole>? Role
     {
-        get => _role.GetValue();
+        get => _role.GetValue(InlineErrors);
         set => _role.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _lead = new PropertyValue<Modification<bool>?>(nameof(TeamMembershipEvent), nameof(Lead));
+    private PropertyValue<Modification<bool>?> _lead = new PropertyValue<Modification<bool>?>(nameof(TeamMembershipEvent), nameof(Lead), "lead");
     
     [JsonPropertyName("lead")]
     public Modification<bool>? Lead
     {
-        get => _lead.GetValue();
+        get => _lead.GetValue(InlineErrors);
         set => _lead.SetValue(value);
     }
 
-    private PropertyValue<Modification<TDMemberProfile>?> _manager = new PropertyValue<Modification<TDMemberProfile>?>(nameof(TeamMembershipEvent), nameof(Manager));
+    private PropertyValue<Modification<TDMemberProfile>?> _manager = new PropertyValue<Modification<TDMemberProfile>?>(nameof(TeamMembershipEvent), nameof(Manager), "manager");
     
     [JsonPropertyName("manager")]
     public Modification<TDMemberProfile>? Manager
     {
-        get => _manager.GetValue();
+        get => _manager.GetValue(InlineErrors);
         set => _manager.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _since = new PropertyValue<Modification<DateTime>?>(nameof(TeamMembershipEvent), nameof(Since));
+    private PropertyValue<Modification<DateTime>?> _since = new PropertyValue<Modification<DateTime>?>(nameof(TeamMembershipEvent), nameof(Since), "since");
     
     [JsonPropertyName("since")]
     public Modification<DateTime>? Since
     {
-        get => _since.GetValue();
+        get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _till = new PropertyValue<Modification<DateTime>?>(nameof(TeamMembershipEvent), nameof(Till));
+    private PropertyValue<Modification<DateTime>?> _till = new PropertyValue<Modification<DateTime>?>(nameof(TeamMembershipEvent), nameof(Till), "till");
     
     [JsonPropertyName("till")]
     public Modification<DateTime>? Till
     {
-        get => _till.GetValue();
+        get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _deleted = new PropertyValue<Modification<bool>?>(nameof(TeamMembershipEvent), nameof(Deleted));
+    private PropertyValue<Modification<bool>?> _deleted = new PropertyValue<Modification<bool>?>(nameof(TeamMembershipEvent), nameof(Deleted), "deleted");
     
     [JsonPropertyName("deleted")]
     public Modification<bool>? Deleted
     {
-        get => _deleted.GetValue();
+        get => _deleted.GetValue(InlineErrors);
         set => _deleted.SetValue(value);
     }
 
-    private PropertyValue<Modification<TDMemberProfile>?> _approvedBy = new PropertyValue<Modification<TDMemberProfile>?>(nameof(TeamMembershipEvent), nameof(ApprovedBy));
+    private PropertyValue<Modification<TDMemberProfile>?> _approvedBy = new PropertyValue<Modification<TDMemberProfile>?>(nameof(TeamMembershipEvent), nameof(ApprovedBy), "approvedBy");
     
     [JsonPropertyName("approvedBy")]
     public Modification<TDMemberProfile>? ApprovedBy
     {
-        get => _approvedBy.GetValue();
+        get => _approvedBy.GetValue(InlineErrors);
         set => _approvedBy.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meta.SetAccessPath(path, validateHasBeenSet);
-        _membership.SetAccessPath(path, validateHasBeenSet);
-        _team.SetAccessPath(path, validateHasBeenSet);
-        _role.SetAccessPath(path, validateHasBeenSet);
-        _lead.SetAccessPath(path, validateHasBeenSet);
-        _manager.SetAccessPath(path, validateHasBeenSet);
-        _since.SetAccessPath(path, validateHasBeenSet);
-        _till.SetAccessPath(path, validateHasBeenSet);
-        _deleted.SetAccessPath(path, validateHasBeenSet);
-        _approvedBy.SetAccessPath(path, validateHasBeenSet);
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _membership.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _team.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _role.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lead.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _manager.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _since.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _till.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _approvedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

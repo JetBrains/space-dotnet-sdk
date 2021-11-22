@@ -62,265 +62,269 @@ public sealed class Meeting
         ChannelRef = channelRef;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Meeting), nameof(Id));
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(Meeting), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
     public string Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Meeting), nameof(IsArchived));
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Meeting), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
     {
-        get => _archived.GetValue();
+        get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<string> _summary = new PropertyValue<string>(nameof(Meeting), nameof(Summary));
+    private PropertyValue<string> _summary = new PropertyValue<string>(nameof(Meeting), nameof(Summary), "summary");
     
     [Required]
     [JsonPropertyName("summary")]
     public string Summary
     {
-        get => _summary.GetValue();
+        get => _summary.GetValue(InlineErrors);
         set => _summary.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(Meeting), nameof(Description));
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(Meeting), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<List<TDLocation>> _locations = new PropertyValue<List<TDLocation>>(nameof(Meeting), nameof(Locations), new List<TDLocation>());
+    private PropertyValue<List<TDLocation>> _locations = new PropertyValue<List<TDLocation>>(nameof(Meeting), nameof(Locations), "locations", new List<TDLocation>());
     
     [Required]
     [JsonPropertyName("locations")]
     public List<TDLocation> Locations
     {
-        get => _locations.GetValue();
+        get => _locations.GetValue(InlineErrors);
         set => _locations.SetValue(value);
     }
 
-    private PropertyValue<List<TDMemberProfile>> _profiles = new PropertyValue<List<TDMemberProfile>>(nameof(Meeting), nameof(Profiles), new List<TDMemberProfile>());
+    private PropertyValue<List<TDMemberProfile>> _profiles = new PropertyValue<List<TDMemberProfile>>(nameof(Meeting), nameof(Profiles), "profiles", new List<TDMemberProfile>());
     
     [Required]
     [JsonPropertyName("profiles")]
     public List<TDMemberProfile> Profiles
     {
-        get => _profiles.GetValue();
+        get => _profiles.GetValue(InlineErrors);
         set => _profiles.SetValue(value);
     }
 
-    private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(Meeting), nameof(Teams), new List<TDTeam>());
+    private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(Meeting), nameof(Teams), "teams", new List<TDTeam>());
     
     [Required]
     [JsonPropertyName("teams")]
     public List<TDTeam> Teams
     {
-        get => _teams.GetValue();
+        get => _teams.GetValue(InlineErrors);
         set => _teams.SetValue(value);
     }
 
-    private PropertyValue<CalendarEventSpec> _occurrenceRule = new PropertyValue<CalendarEventSpec>(nameof(Meeting), nameof(OccurrenceRule));
+    private PropertyValue<CalendarEventSpec> _occurrenceRule = new PropertyValue<CalendarEventSpec>(nameof(Meeting), nameof(OccurrenceRule), "occurrenceRule");
     
     [Required]
     [JsonPropertyName("occurrenceRule")]
     public CalendarEventSpec OccurrenceRule
     {
-        get => _occurrenceRule.GetValue();
+        get => _occurrenceRule.GetValue(InlineErrors);
         set => _occurrenceRule.SetValue(value);
     }
 
-    private PropertyValue<MeetingOrigin> _origin = new PropertyValue<MeetingOrigin>(nameof(Meeting), nameof(Origin));
+    private PropertyValue<MeetingOrigin> _origin = new PropertyValue<MeetingOrigin>(nameof(Meeting), nameof(Origin), "origin");
     
     [Required]
     [JsonPropertyName("origin")]
     public MeetingOrigin Origin
     {
-        get => _origin.GetValue();
+        get => _origin.GetValue(InlineErrors);
         set => _origin.SetValue(value);
     }
 
-    private PropertyValue<string?> _conferenceLink = new PropertyValue<string?>(nameof(Meeting), nameof(ConferenceLink));
+    private PropertyValue<string?> _conferenceLink = new PropertyValue<string?>(nameof(Meeting), nameof(ConferenceLink), "conferenceLink");
     
     [JsonPropertyName("conferenceLink")]
     public string? ConferenceLink
     {
-        get => _conferenceLink.GetValue();
+        get => _conferenceLink.GetValue(InlineErrors);
         set => _conferenceLink.SetValue(value);
     }
 
-    private PropertyValue<MeetingVisibility> _visibility = new PropertyValue<MeetingVisibility>(nameof(Meeting), nameof(Visibility));
+    private PropertyValue<MeetingVisibility> _visibility = new PropertyValue<MeetingVisibility>(nameof(Meeting), nameof(Visibility), "visibility");
     
     [Required]
     [JsonPropertyName("visibility")]
     public MeetingVisibility Visibility
     {
-        get => _visibility.GetValue();
+        get => _visibility.GetValue(InlineErrors);
         set => _visibility.SetValue(value);
     }
 
-    private PropertyValue<MeetingModificationPreference> _modificationPreference = new PropertyValue<MeetingModificationPreference>(nameof(Meeting), nameof(ModificationPreference));
+    private PropertyValue<MeetingModificationPreference> _modificationPreference = new PropertyValue<MeetingModificationPreference>(nameof(Meeting), nameof(ModificationPreference), "modificationPreference");
     
     [Required]
     [JsonPropertyName("modificationPreference")]
     public MeetingModificationPreference ModificationPreference
     {
-        get => _modificationPreference.GetValue();
+        get => _modificationPreference.GetValue(InlineErrors);
         set => _modificationPreference.SetValue(value);
     }
 
-    private PropertyValue<MeetingJoiningPreference?> _joiningPreference = new PropertyValue<MeetingJoiningPreference?>(nameof(Meeting), nameof(JoiningPreference));
+    private PropertyValue<MeetingJoiningPreference?> _joiningPreference = new PropertyValue<MeetingJoiningPreference?>(nameof(Meeting), nameof(JoiningPreference), "joiningPreference");
     
     [JsonPropertyName("joiningPreference")]
     public MeetingJoiningPreference? JoiningPreference
     {
-        get => _joiningPreference.GetValue();
+        get => _joiningPreference.GetValue(InlineErrors);
         set => _joiningPreference.SetValue(value);
     }
 
-    private PropertyValue<MeetingOrganizer?> _organizer = new PropertyValue<MeetingOrganizer?>(nameof(Meeting), nameof(Organizer));
+    private PropertyValue<MeetingOrganizer?> _organizer = new PropertyValue<MeetingOrganizer?>(nameof(Meeting), nameof(Organizer), "organizer");
     
     [JsonPropertyName("organizer")]
     public MeetingOrganizer? Organizer
     {
-        get => _organizer.GetValue();
+        get => _organizer.GetValue(InlineErrors);
         set => _organizer.SetValue(value);
     }
 
-    private PropertyValue<long> _etag = new PropertyValue<long>(nameof(Meeting), nameof(Etag));
+    private PropertyValue<long> _etag = new PropertyValue<long>(nameof(Meeting), nameof(Etag), "etag");
     
     [Required]
     [JsonPropertyName("etag")]
     public long Etag
     {
-        get => _etag.GetValue();
+        get => _etag.GetValue(InlineErrors);
         set => _etag.SetValue(value);
     }
 
-    private PropertyValue<bool> _privateDataSubstituted = new PropertyValue<bool>(nameof(Meeting), nameof(IsPrivateDataSubstituted));
+    private PropertyValue<bool> _privateDataSubstituted = new PropertyValue<bool>(nameof(Meeting), nameof(IsPrivateDataSubstituted), "privateDataSubstituted");
     
     [Required]
     [JsonPropertyName("privateDataSubstituted")]
     public bool IsPrivateDataSubstituted
     {
-        get => _privateDataSubstituted.GetValue();
+        get => _privateDataSubstituted.GetValue(InlineErrors);
         set => _privateDataSubstituted.SetValue(value);
     }
 
-    private PropertyValue<bool> _canModify = new PropertyValue<bool>(nameof(Meeting), nameof(CanModify));
+    private PropertyValue<bool> _canModify = new PropertyValue<bool>(nameof(Meeting), nameof(CanModify), "canModify");
     
     [Required]
     [JsonPropertyName("canModify")]
     public bool CanModify
     {
-        get => _canModify.GetValue();
+        get => _canModify.GetValue(InlineErrors);
         set => _canModify.SetValue(value);
     }
 
-    private PropertyValue<bool> _canDelete = new PropertyValue<bool>(nameof(Meeting), nameof(CanDelete));
+    private PropertyValue<bool> _canDelete = new PropertyValue<bool>(nameof(Meeting), nameof(CanDelete), "canDelete");
     
     [Required]
     [JsonPropertyName("canDelete")]
     public bool CanDelete
     {
-        get => _canDelete.GetValue();
+        get => _canDelete.GetValue(InlineErrors);
         set => _canDelete.SetValue(value);
     }
 
-    private PropertyValue<bool> _canJoin = new PropertyValue<bool>(nameof(Meeting), nameof(CanJoin));
+    private PropertyValue<bool> _canJoin = new PropertyValue<bool>(nameof(Meeting), nameof(CanJoin), "canJoin");
     
     [Required]
     [JsonPropertyName("canJoin")]
     public bool CanJoin
     {
-        get => _canJoin.GetValue();
+        get => _canJoin.GetValue(InlineErrors);
         set => _canJoin.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _externalParticipants = new PropertyValue<List<string>>(nameof(Meeting), nameof(ExternalParticipants), new List<string>());
+    private PropertyValue<List<string>> _externalParticipants = new PropertyValue<List<string>>(nameof(Meeting), nameof(ExternalParticipants), "externalParticipants", new List<string>());
     
     [Required]
     [JsonPropertyName("externalParticipants")]
     public List<string> ExternalParticipants
     {
-        get => _externalParticipants.GetValue();
+        get => _externalParticipants.GetValue(InlineErrors);
         set => _externalParticipants.SetValue(value);
     }
 
-    private PropertyValue<string?> _linkToExternalSource = new PropertyValue<string?>(nameof(Meeting), nameof(LinkToExternalSource));
+    private PropertyValue<string?> _linkToExternalSource = new PropertyValue<string?>(nameof(Meeting), nameof(LinkToExternalSource), "linkToExternalSource");
     
     [JsonPropertyName("linkToExternalSource")]
     public string? LinkToExternalSource
     {
-        get => _linkToExternalSource.GetValue();
+        get => _linkToExternalSource.GetValue(InlineErrors);
         set => _linkToExternalSource.SetValue(value);
     }
 
-    private PropertyValue<List<MeetingAttachment>?> _eventAttachments = new PropertyValue<List<MeetingAttachment>?>(nameof(Meeting), nameof(EventAttachments));
+    private PropertyValue<List<MeetingAttachment>?> _eventAttachments = new PropertyValue<List<MeetingAttachment>?>(nameof(Meeting), nameof(EventAttachments), "eventAttachments");
     
     [JsonPropertyName("eventAttachments")]
     public List<MeetingAttachment>? EventAttachments
     {
-        get => _eventAttachments.GetValue();
+        get => _eventAttachments.GetValue(InlineErrors);
         set => _eventAttachments.SetValue(value);
     }
 
-    private PropertyValue<EventConferenceData?> _conferenceData = new PropertyValue<EventConferenceData?>(nameof(Meeting), nameof(ConferenceData));
+    private PropertyValue<EventConferenceData?> _conferenceData = new PropertyValue<EventConferenceData?>(nameof(Meeting), nameof(ConferenceData), "conferenceData");
     
     [JsonPropertyName("conferenceData")]
     public EventConferenceData? ConferenceData
     {
-        get => _conferenceData.GetValue();
+        get => _conferenceData.GetValue(InlineErrors);
         set => _conferenceData.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelRecord?> _channelRef = new PropertyValue<M2ChannelRecord?>(nameof(Meeting), nameof(ChannelRef));
+    private PropertyValue<M2ChannelRecord?> _channelRef = new PropertyValue<M2ChannelRecord?>(nameof(Meeting), nameof(ChannelRef), "channelRef");
     
     [JsonPropertyName("channelRef")]
     public M2ChannelRecord? ChannelRef
     {
-        get => _channelRef.GetValue();
+        get => _channelRef.GetValue(InlineErrors);
         set => _channelRef.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _archived.SetAccessPath(path, validateHasBeenSet);
-        _summary.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _locations.SetAccessPath(path, validateHasBeenSet);
-        _profiles.SetAccessPath(path, validateHasBeenSet);
-        _teams.SetAccessPath(path, validateHasBeenSet);
-        _occurrenceRule.SetAccessPath(path, validateHasBeenSet);
-        _origin.SetAccessPath(path, validateHasBeenSet);
-        _conferenceLink.SetAccessPath(path, validateHasBeenSet);
-        _visibility.SetAccessPath(path, validateHasBeenSet);
-        _modificationPreference.SetAccessPath(path, validateHasBeenSet);
-        _joiningPreference.SetAccessPath(path, validateHasBeenSet);
-        _organizer.SetAccessPath(path, validateHasBeenSet);
-        _etag.SetAccessPath(path, validateHasBeenSet);
-        _privateDataSubstituted.SetAccessPath(path, validateHasBeenSet);
-        _canModify.SetAccessPath(path, validateHasBeenSet);
-        _canDelete.SetAccessPath(path, validateHasBeenSet);
-        _canJoin.SetAccessPath(path, validateHasBeenSet);
-        _externalParticipants.SetAccessPath(path, validateHasBeenSet);
-        _linkToExternalSource.SetAccessPath(path, validateHasBeenSet);
-        _eventAttachments.SetAccessPath(path, validateHasBeenSet);
-        _conferenceData.SetAccessPath(path, validateHasBeenSet);
-        _channelRef.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _summary.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _locations.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _profiles.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _teams.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _occurrenceRule.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _origin.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _conferenceLink.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _visibility.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _modificationPreference.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _joiningPreference.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _organizer.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _etag.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _privateDataSubstituted.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _canModify.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _canDelete.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _canJoin.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalParticipants.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _linkToExternalSource.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _eventAttachments.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _conferenceData.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channelRef.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

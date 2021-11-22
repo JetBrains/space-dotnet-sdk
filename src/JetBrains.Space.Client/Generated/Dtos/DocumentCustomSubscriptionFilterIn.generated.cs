@@ -45,50 +45,54 @@ public sealed class DocumentCustomSubscriptionFilterIn
         Documents = documents;
     }
     
-    private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(DocumentCustomSubscriptionFilterIn), nameof(Project));
+    private PropertyValue<string?> _project = new PropertyValue<string?>(nameof(DocumentCustomSubscriptionFilterIn), nameof(Project), "project");
     
     [JsonPropertyName("project")]
     public string? Project
     {
-        get => _project.GetValue();
+        get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _books = new PropertyValue<List<string>?>(nameof(DocumentCustomSubscriptionFilterIn), nameof(Books));
+    private PropertyValue<List<string>?> _books = new PropertyValue<List<string>?>(nameof(DocumentCustomSubscriptionFilterIn), nameof(Books), "books");
     
     [JsonPropertyName("books")]
     public List<string>? Books
     {
-        get => _books.GetValue();
+        get => _books.GetValue(InlineErrors);
         set => _books.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _folders = new PropertyValue<List<string>?>(nameof(DocumentCustomSubscriptionFilterIn), nameof(Folders));
+    private PropertyValue<List<string>?> _folders = new PropertyValue<List<string>?>(nameof(DocumentCustomSubscriptionFilterIn), nameof(Folders), "folders");
     
     [JsonPropertyName("folders")]
     public List<string>? Folders
     {
-        get => _folders.GetValue();
+        get => _folders.GetValue(InlineErrors);
         set => _folders.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _documents = new PropertyValue<List<string>>(nameof(DocumentCustomSubscriptionFilterIn), nameof(Documents), new List<string>());
+    private PropertyValue<List<string>> _documents = new PropertyValue<List<string>>(nameof(DocumentCustomSubscriptionFilterIn), nameof(Documents), "documents", new List<string>());
     
     [Required]
     [JsonPropertyName("documents")]
     public List<string> Documents
     {
-        get => _documents.GetValue();
+        get => _documents.GetValue(InlineErrors);
         set => _documents.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _project.SetAccessPath(path, validateHasBeenSet);
-        _books.SetAccessPath(path, validateHasBeenSet);
-        _folders.SetAccessPath(path, validateHasBeenSet);
-        _documents.SetAccessPath(path, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _books.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _folders.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _documents.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

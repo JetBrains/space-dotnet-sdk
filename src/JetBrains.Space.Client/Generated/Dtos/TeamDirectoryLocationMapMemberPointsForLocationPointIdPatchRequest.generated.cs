@@ -40,29 +40,33 @@ public class TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest
         Y = y;
     }
     
-    private PropertyValue<int?> _x = new PropertyValue<int?>(nameof(TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest), nameof(X));
+    private PropertyValue<int?> _x = new PropertyValue<int?>(nameof(TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest), nameof(X), "x");
     
     [JsonPropertyName("x")]
     public int? X
     {
-        get => _x.GetValue();
+        get => _x.GetValue(InlineErrors);
         set => _x.SetValue(value);
     }
 
-    private PropertyValue<int?> _y = new PropertyValue<int?>(nameof(TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest), nameof(Y));
+    private PropertyValue<int?> _y = new PropertyValue<int?>(nameof(TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest), nameof(Y), "y");
     
     [JsonPropertyName("y")]
     public int? Y
     {
-        get => _y.GetValue();
+        get => _y.GetValue(InlineErrors);
         set => _y.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _x.SetAccessPath(path, validateHasBeenSet);
-        _y.SetAccessPath(path, validateHasBeenSet);
+        _x.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _y.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

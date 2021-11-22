@@ -48,114 +48,118 @@ public sealed class PRRepositoryInfo
         MonthlyActivity = monthlyActivity;
     }
     
-    private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(PRRepositoryInfo), nameof(Id));
+    private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(PRRepositoryInfo), nameof(Id), "id");
     
     [JsonPropertyName("id")]
     public string? Id
     {
-        get => _id.GetValue();
+        get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PRRepositoryInfo), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PRRepositoryInfo), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _description = new PropertyValue<string>(nameof(PRRepositoryInfo), nameof(Description));
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(PRRepositoryInfo), nameof(Description), "description");
     
     [Required]
     [JsonPropertyName("description")]
     public string Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _latestActivity = new PropertyValue<DateTime?>(nameof(PRRepositoryInfo), nameof(LatestActivity));
+    private PropertyValue<DateTime?> _latestActivity = new PropertyValue<DateTime?>(nameof(PRRepositoryInfo), nameof(LatestActivity), "latestActivity");
     
     [JsonPropertyName("latestActivity")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? LatestActivity
     {
-        get => _latestActivity.GetValue();
+        get => _latestActivity.GetValue(InlineErrors);
         set => _latestActivity.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _proxyPushNotification = new PropertyValue<DateTime?>(nameof(PRRepositoryInfo), nameof(ProxyPushNotification));
+    private PropertyValue<DateTime?> _proxyPushNotification = new PropertyValue<DateTime?>(nameof(PRRepositoryInfo), nameof(ProxyPushNotification), "proxyPushNotification");
     
     [JsonPropertyName("proxyPushNotification")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ProxyPushNotification
     {
-        get => _proxyPushNotification.GetValue();
+        get => _proxyPushNotification.GetValue(InlineErrors);
         set => _proxyPushNotification.SetValue(value);
     }
 
-    private PropertyValue<string?> _proxyPushNotificationBody = new PropertyValue<string?>(nameof(PRRepositoryInfo), nameof(ProxyPushNotificationBody));
+    private PropertyValue<string?> _proxyPushNotificationBody = new PropertyValue<string?>(nameof(PRRepositoryInfo), nameof(ProxyPushNotificationBody), "proxyPushNotificationBody");
     
     [JsonPropertyName("proxyPushNotificationBody")]
     public string? ProxyPushNotificationBody
     {
-        get => _proxyPushNotificationBody.GetValue();
+        get => _proxyPushNotificationBody.GetValue(InlineErrors);
         set => _proxyPushNotificationBody.SetValue(value);
     }
 
-    private PropertyValue<RepositoryState> _state = new PropertyValue<RepositoryState>(nameof(PRRepositoryInfo), nameof(State));
+    private PropertyValue<RepositoryState> _state = new PropertyValue<RepositoryState>(nameof(PRRepositoryInfo), nameof(State), "state");
     
     [Required]
     [JsonPropertyName("state")]
     public RepositoryState State
     {
-        get => _state.GetValue();
+        get => _state.GetValue(InlineErrors);
         set => _state.SetValue(value);
     }
 
-    private PropertyValue<string?> _initProgress = new PropertyValue<string?>(nameof(PRRepositoryInfo), nameof(InitProgress));
+    private PropertyValue<string?> _initProgress = new PropertyValue<string?>(nameof(PRRepositoryInfo), nameof(InitProgress), "initProgress");
     
     [JsonPropertyName("initProgress")]
     public string? InitProgress
     {
-        get => _initProgress.GetValue();
+        get => _initProgress.GetValue(InlineErrors);
         set => _initProgress.SetValue(value);
     }
 
-    private PropertyValue<string?> _readmeName = new PropertyValue<string?>(nameof(PRRepositoryInfo), nameof(ReadmeName));
+    private PropertyValue<string?> _readmeName = new PropertyValue<string?>(nameof(PRRepositoryInfo), nameof(ReadmeName), "readmeName");
     
     [JsonPropertyName("readmeName")]
     public string? ReadmeName
     {
-        get => _readmeName.GetValue();
+        get => _readmeName.GetValue(InlineErrors);
         set => _readmeName.SetValue(value);
     }
 
-    private PropertyValue<RepositoryActivity?> _monthlyActivity = new PropertyValue<RepositoryActivity?>(nameof(PRRepositoryInfo), nameof(MonthlyActivity));
+    private PropertyValue<RepositoryActivity?> _monthlyActivity = new PropertyValue<RepositoryActivity?>(nameof(PRRepositoryInfo), nameof(MonthlyActivity), "monthlyActivity");
     
     [JsonPropertyName("monthlyActivity")]
     public RepositoryActivity? MonthlyActivity
     {
-        get => _monthlyActivity.GetValue();
+        get => _monthlyActivity.GetValue(InlineErrors);
         set => _monthlyActivity.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _latestActivity.SetAccessPath(path, validateHasBeenSet);
-        _proxyPushNotification.SetAccessPath(path, validateHasBeenSet);
-        _proxyPushNotificationBody.SetAccessPath(path, validateHasBeenSet);
-        _state.SetAccessPath(path, validateHasBeenSet);
-        _initProgress.SetAccessPath(path, validateHasBeenSet);
-        _readmeName.SetAccessPath(path, validateHasBeenSet);
-        _monthlyActivity.SetAccessPath(path, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _latestActivity.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _proxyPushNotification.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _proxyPushNotificationBody.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _state.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _initProgress.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _readmeName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _monthlyActivity.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

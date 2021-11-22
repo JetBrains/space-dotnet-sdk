@@ -39,20 +39,24 @@ public class CustomFieldsV2ForEntityTypeFieldsReorderPostRequest
         CustomFields = customFields;
     }
     
-    private PropertyValue<List<CFIdentifier>> _customFields = new PropertyValue<List<CFIdentifier>>(nameof(CustomFieldsV2ForEntityTypeFieldsReorderPostRequest), nameof(CustomFields), new List<CFIdentifier>());
+    private PropertyValue<List<CFIdentifier>> _customFields = new PropertyValue<List<CFIdentifier>>(nameof(CustomFieldsV2ForEntityTypeFieldsReorderPostRequest), nameof(CustomFields), "customFields", new List<CFIdentifier>());
     
     [Required]
     [JsonPropertyName("customFields")]
     public List<CFIdentifier> CustomFields
     {
-        get => _customFields.GetValue();
+        get => _customFields.GetValue(InlineErrors);
         set => _customFields.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _customFields.SetAccessPath(path, validateHasBeenSet);
+        _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

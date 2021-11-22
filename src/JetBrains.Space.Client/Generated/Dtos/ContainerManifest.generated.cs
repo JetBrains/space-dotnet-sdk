@@ -48,117 +48,121 @@ public sealed class ContainerManifest
         Chart = chart;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ContainerManifest), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ContainerManifest), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _digest = new PropertyValue<string>(nameof(ContainerManifest), nameof(Digest));
+    private PropertyValue<string> _digest = new PropertyValue<string>(nameof(ContainerManifest), nameof(Digest), "digest");
     
     [Required]
     [JsonPropertyName("digest")]
     public string Digest
     {
-        get => _digest.GetValue();
+        get => _digest.GetValue(InlineErrors);
         set => _digest.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ContainerManifest), nameof(Tags), new List<string>());
+    private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ContainerManifest), nameof(Tags), "tags", new List<string>());
     
     [Required]
     [JsonPropertyName("tags")]
     public List<string> Tags
     {
-        get => _tags.GetValue();
+        get => _tags.GetValue(InlineErrors);
         set => _tags.SetValue(value);
     }
 
-    private PropertyValue<long> _created = new PropertyValue<long>(nameof(ContainerManifest), nameof(Created));
+    private PropertyValue<long> _created = new PropertyValue<long>(nameof(ContainerManifest), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
     public long Created
     {
-        get => _created.GetValue();
+        get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<int> _schemaVersion = new PropertyValue<int>(nameof(ContainerManifest), nameof(SchemaVersion));
+    private PropertyValue<int> _schemaVersion = new PropertyValue<int>(nameof(ContainerManifest), nameof(SchemaVersion), "schemaVersion");
     
     [Required]
     [JsonPropertyName("schemaVersion")]
     public int SchemaVersion
     {
-        get => _schemaVersion.GetValue();
+        get => _schemaVersion.GetValue(InlineErrors);
         set => _schemaVersion.SetValue(value);
     }
 
-    private PropertyValue<string> _mediaType = new PropertyValue<string>(nameof(ContainerManifest), nameof(MediaType));
+    private PropertyValue<string> _mediaType = new PropertyValue<string>(nameof(ContainerManifest), nameof(MediaType), "mediaType");
     
     [Required]
     [JsonPropertyName("mediaType")]
     public string MediaType
     {
-        get => _mediaType.GetValue();
+        get => _mediaType.GetValue(InlineErrors);
         set => _mediaType.SetValue(value);
     }
 
-    private PropertyValue<string> _manifestType = new PropertyValue<string>(nameof(ContainerManifest), nameof(ManifestType));
+    private PropertyValue<string> _manifestType = new PropertyValue<string>(nameof(ContainerManifest), nameof(ManifestType), "manifestType");
     
     [Required]
     [JsonPropertyName("manifestType")]
     public string ManifestType
     {
-        get => _manifestType.GetValue();
+        get => _manifestType.GetValue(InlineErrors);
         set => _manifestType.SetValue(value);
     }
 
-    private PropertyValue<long> _totalSize = new PropertyValue<long>(nameof(ContainerManifest), nameof(TotalSize));
+    private PropertyValue<long> _totalSize = new PropertyValue<long>(nameof(ContainerManifest), nameof(TotalSize), "totalSize");
     
     [Required]
     [JsonPropertyName("totalSize")]
     public long TotalSize
     {
-        get => _totalSize.GetValue();
+        get => _totalSize.GetValue(InlineErrors);
         set => _totalSize.SetValue(value);
     }
 
-    private PropertyValue<ContainerImage?> _image = new PropertyValue<ContainerImage?>(nameof(ContainerManifest), nameof(Image));
+    private PropertyValue<ContainerImage?> _image = new PropertyValue<ContainerImage?>(nameof(ContainerManifest), nameof(Image), "image");
     
     [JsonPropertyName("image")]
     public ContainerImage? Image
     {
-        get => _image.GetValue();
+        get => _image.GetValue(InlineErrors);
         set => _image.SetValue(value);
     }
 
-    private PropertyValue<ContainerHelmChart?> _chart = new PropertyValue<ContainerHelmChart?>(nameof(ContainerManifest), nameof(Chart));
+    private PropertyValue<ContainerHelmChart?> _chart = new PropertyValue<ContainerHelmChart?>(nameof(ContainerManifest), nameof(Chart), "chart");
     
     [JsonPropertyName("chart")]
     public ContainerHelmChart? Chart
     {
-        get => _chart.GetValue();
+        get => _chart.GetValue(InlineErrors);
         set => _chart.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _digest.SetAccessPath(path, validateHasBeenSet);
-        _tags.SetAccessPath(path, validateHasBeenSet);
-        _created.SetAccessPath(path, validateHasBeenSet);
-        _schemaVersion.SetAccessPath(path, validateHasBeenSet);
-        _mediaType.SetAccessPath(path, validateHasBeenSet);
-        _manifestType.SetAccessPath(path, validateHasBeenSet);
-        _totalSize.SetAccessPath(path, validateHasBeenSet);
-        _image.SetAccessPath(path, validateHasBeenSet);
-        _chart.SetAccessPath(path, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _digest.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _schemaVersion.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mediaType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _manifestType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _totalSize.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _image.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _chart.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

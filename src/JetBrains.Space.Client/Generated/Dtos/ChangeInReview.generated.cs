@@ -41,42 +41,46 @@ public sealed class ChangeInReview
         IsRead = read;
     }
     
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ChangeInReview), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ChangeInReview), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<GitCommitChange> _change = new PropertyValue<GitCommitChange>(nameof(ChangeInReview), nameof(Change));
+    private PropertyValue<GitCommitChange> _change = new PropertyValue<GitCommitChange>(nameof(ChangeInReview), nameof(Change), "change");
     
     [Required]
     [JsonPropertyName("change")]
     public GitCommitChange Change
     {
-        get => _change.GetValue();
+        get => _change.GetValue(InlineErrors);
         set => _change.SetValue(value);
     }
 
-    private PropertyValue<bool> _read = new PropertyValue<bool>(nameof(ChangeInReview), nameof(IsRead));
+    private PropertyValue<bool> _read = new PropertyValue<bool>(nameof(ChangeInReview), nameof(IsRead), "read");
     
     [Required]
     [JsonPropertyName("read")]
     public bool IsRead
     {
-        get => _read.GetValue();
+        get => _read.GetValue(InlineErrors);
         set => _read.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _change.SetAccessPath(path, validateHasBeenSet);
-        _read.SetAccessPath(path, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _change.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _read.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

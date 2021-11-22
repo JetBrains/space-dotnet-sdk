@@ -43,31 +43,35 @@ public sealed class MessageIcon
         Style = style;
     }
     
-    private PropertyValue<ApiIcon> _icon = new PropertyValue<ApiIcon>(nameof(MessageIcon), nameof(Icon));
+    private PropertyValue<ApiIcon> _icon = new PropertyValue<ApiIcon>(nameof(MessageIcon), nameof(Icon), "icon");
     
     [Required]
     [JsonPropertyName("icon")]
     public ApiIcon Icon
     {
-        get => _icon.GetValue();
+        get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(MessageIcon), nameof(Style));
+    private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(MessageIcon), nameof(Style), "style");
     
     [Required]
     [JsonPropertyName("style")]
     public MessageStyle Style
     {
-        get => _style.GetValue();
+        get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _icon.SetAccessPath(path, validateHasBeenSet);
-        _style.SetAccessPath(path, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _style.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

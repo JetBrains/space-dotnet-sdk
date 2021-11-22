@@ -45,84 +45,88 @@ public sealed class EventSubjectInfoDTO
         FeatureFlag = featureFlag;
     }
     
-    private PropertyValue<string> _code = new PropertyValue<string>(nameof(EventSubjectInfoDTO), nameof(Code));
+    private PropertyValue<string> _code = new PropertyValue<string>(nameof(EventSubjectInfoDTO), nameof(Code), "code");
     
     [Required]
     [JsonPropertyName("code")]
     public string Code
     {
-        get => _code.GetValue();
+        get => _code.GetValue(InlineErrors);
         set => _code.SetValue(value);
     }
 
-    private PropertyValue<string?> _parentCode = new PropertyValue<string?>(nameof(EventSubjectInfoDTO), nameof(ParentCode));
+    private PropertyValue<string?> _parentCode = new PropertyValue<string?>(nameof(EventSubjectInfoDTO), nameof(ParentCode), "parentCode");
     
     [JsonPropertyName("parentCode")]
     public string? ParentCode
     {
-        get => _parentCode.GetValue();
+        get => _parentCode.GetValue(InlineErrors);
         set => _parentCode.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(EventSubjectInfoDTO), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(EventSubjectInfoDTO), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _description = new PropertyValue<string>(nameof(EventSubjectInfoDTO), nameof(Description));
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(EventSubjectInfoDTO), nameof(Description), "description");
     
     [Required]
     [JsonPropertyName("description")]
     public string Description
     {
-        get => _description.GetValue();
+        get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<List<EventTypeInfoDTO>> _events = new PropertyValue<List<EventTypeInfoDTO>>(nameof(EventSubjectInfoDTO), nameof(Events), new List<EventTypeInfoDTO>());
+    private PropertyValue<List<EventTypeInfoDTO>> _events = new PropertyValue<List<EventTypeInfoDTO>>(nameof(EventSubjectInfoDTO), nameof(Events), "events", new List<EventTypeInfoDTO>());
     
     [Required]
     [JsonPropertyName("events")]
     public List<EventTypeInfoDTO> Events
     {
-        get => _events.GetValue();
+        get => _events.GetValue(InlineErrors);
         set => _events.SetValue(value);
     }
 
-    private PropertyValue<List<SubscriptionFilter>> _defaultFilters = new PropertyValue<List<SubscriptionFilter>>(nameof(EventSubjectInfoDTO), nameof(DefaultFilters), new List<SubscriptionFilter>());
+    private PropertyValue<List<SubscriptionFilter>> _defaultFilters = new PropertyValue<List<SubscriptionFilter>>(nameof(EventSubjectInfoDTO), nameof(DefaultFilters), "defaultFilters", new List<SubscriptionFilter>());
     
     [Required]
     [JsonPropertyName("defaultFilters")]
     public List<SubscriptionFilter> DefaultFilters
     {
-        get => _defaultFilters.GetValue();
+        get => _defaultFilters.GetValue(InlineErrors);
         set => _defaultFilters.SetValue(value);
     }
 
-    private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(EventSubjectInfoDTO), nameof(FeatureFlag));
+    private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(EventSubjectInfoDTO), nameof(FeatureFlag), "featureFlag");
     
     [JsonPropertyName("featureFlag")]
     public string? FeatureFlag
     {
-        get => _featureFlag.GetValue();
+        get => _featureFlag.GetValue(InlineErrors);
         set => _featureFlag.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _code.SetAccessPath(path, validateHasBeenSet);
-        _parentCode.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _description.SetAccessPath(path, validateHasBeenSet);
-        _events.SetAccessPath(path, validateHasBeenSet);
-        _defaultFilters.SetAccessPath(path, validateHasBeenSet);
-        _featureFlag.SetAccessPath(path, validateHasBeenSet);
+        _code.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parentCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _events.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _defaultFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

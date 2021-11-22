@@ -40,31 +40,35 @@ public sealed class ProjectIssueTrackerItem
         Tracker = tracker;
     }
     
-    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectIssueTrackerItem), nameof(Key));
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectIssueTrackerItem), nameof(Key), "key");
     
     [Required]
     [JsonPropertyName("key")]
     public string Key
     {
-        get => _key.GetValue();
+        get => _key.GetValue(InlineErrors);
         set => _key.SetValue(value);
     }
 
-    private PropertyValue<IssueTracker> _tracker = new PropertyValue<IssueTracker>(nameof(ProjectIssueTrackerItem), nameof(Tracker));
+    private PropertyValue<IssueTracker> _tracker = new PropertyValue<IssueTracker>(nameof(ProjectIssueTrackerItem), nameof(Tracker), "tracker");
     
     [Required]
     [JsonPropertyName("tracker")]
     public IssueTracker Tracker
     {
-        get => _tracker.GetValue();
+        get => _tracker.GetValue(InlineErrors);
         set => _tracker.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _key.SetAccessPath(path, validateHasBeenSet);
-        _tracker.SetAccessPath(path, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tracker.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

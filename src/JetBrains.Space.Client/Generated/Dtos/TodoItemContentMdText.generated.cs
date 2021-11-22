@@ -43,31 +43,35 @@ public sealed class TodoItemContentMdText
         MdMarkup = mdMarkup;
     }
     
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoItemContentMdText), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoItemContentMdText), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<MdMarkup> _mdMarkup = new PropertyValue<MdMarkup>(nameof(TodoItemContentMdText), nameof(MdMarkup));
+    private PropertyValue<MdMarkup> _mdMarkup = new PropertyValue<MdMarkup>(nameof(TodoItemContentMdText), nameof(MdMarkup), "mdMarkup");
     
     [Required]
     [JsonPropertyName("mdMarkup")]
     public MdMarkup MdMarkup
     {
-        get => _mdMarkup.GetValue();
+        get => _mdMarkup.GetValue(InlineErrors);
         set => _mdMarkup.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _text.SetAccessPath(path, validateHasBeenSet);
-        _mdMarkup.SetAccessPath(path, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mdMarkup.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

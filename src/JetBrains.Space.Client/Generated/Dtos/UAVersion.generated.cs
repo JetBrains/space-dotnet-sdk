@@ -40,31 +40,35 @@ public sealed class UAVersion
         Minor = minor;
     }
     
-    private PropertyValue<int> _major = new PropertyValue<int>(nameof(UAVersion), nameof(Major));
+    private PropertyValue<int> _major = new PropertyValue<int>(nameof(UAVersion), nameof(Major), "major");
     
     [Required]
     [JsonPropertyName("major")]
     public int Major
     {
-        get => _major.GetValue();
+        get => _major.GetValue(InlineErrors);
         set => _major.SetValue(value);
     }
 
-    private PropertyValue<int> _minor = new PropertyValue<int>(nameof(UAVersion), nameof(Minor));
+    private PropertyValue<int> _minor = new PropertyValue<int>(nameof(UAVersion), nameof(Minor), "minor");
     
     [Required]
     [JsonPropertyName("minor")]
     public int Minor
     {
-        get => _minor.GetValue();
+        get => _minor.GetValue(InlineErrors);
         set => _minor.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _major.SetAccessPath(path, validateHasBeenSet);
-        _minor.SetAccessPath(path, validateHasBeenSet);
+        _major.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _minor.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

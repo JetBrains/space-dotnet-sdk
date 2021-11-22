@@ -41,42 +41,46 @@ public sealed class UnfurlsBlockListEntry
         IsGlobal = global;
     }
     
-    private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlsBlockListEntry), nameof(Link));
+    private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlsBlockListEntry), nameof(Link), "link");
     
     [Required]
     [JsonPropertyName("link")]
     public string Link
     {
-        get => _link.GetValue();
+        get => _link.GetValue(InlineErrors);
         set => _link.SetValue(value);
     }
 
-    private PropertyValue<bool> _prefix = new PropertyValue<bool>(nameof(UnfurlsBlockListEntry), nameof(IsPrefix));
+    private PropertyValue<bool> _prefix = new PropertyValue<bool>(nameof(UnfurlsBlockListEntry), nameof(IsPrefix), "prefix");
     
     [Required]
     [JsonPropertyName("prefix")]
     public bool IsPrefix
     {
-        get => _prefix.GetValue();
+        get => _prefix.GetValue(InlineErrors);
         set => _prefix.SetValue(value);
     }
 
-    private PropertyValue<bool> _global = new PropertyValue<bool>(nameof(UnfurlsBlockListEntry), nameof(IsGlobal));
+    private PropertyValue<bool> _global = new PropertyValue<bool>(nameof(UnfurlsBlockListEntry), nameof(IsGlobal), "global");
     
     [Required]
     [JsonPropertyName("global")]
     public bool IsGlobal
     {
-        get => _global.GetValue();
+        get => _global.GetValue(InlineErrors);
         set => _global.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _link.SetAccessPath(path, validateHasBeenSet);
-        _prefix.SetAccessPath(path, validateHasBeenSet);
-        _global.SetAccessPath(path, validateHasBeenSet);
+        _link.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _prefix.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _global.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

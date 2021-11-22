@@ -39,20 +39,24 @@ public class AuthModulesReorderPostRequest
         Order = order;
     }
     
-    private PropertyValue<List<string>> _order = new PropertyValue<List<string>>(nameof(AuthModulesReorderPostRequest), nameof(Order), new List<string>());
+    private PropertyValue<List<string>> _order = new PropertyValue<List<string>>(nameof(AuthModulesReorderPostRequest), nameof(Order), "order", new List<string>());
     
     [Required]
     [JsonPropertyName("order")]
     public List<string> Order
     {
-        get => _order.GetValue();
+        get => _order.GetValue(InlineErrors);
         set => _order.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _order.SetAccessPath(path, validateHasBeenSet);
+        _order.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -41,42 +41,46 @@ public sealed class OrgDomainDTO
         OrgUrl = orgUrl;
     }
     
-    private PropertyValue<string> _domain = new PropertyValue<string>(nameof(OrgDomainDTO), nameof(Domain));
+    private PropertyValue<string> _domain = new PropertyValue<string>(nameof(OrgDomainDTO), nameof(Domain), "domain");
     
     [Required]
     [JsonPropertyName("domain")]
     public string Domain
     {
-        get => _domain.GetValue();
+        get => _domain.GetValue(InlineErrors);
         set => _domain.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _expireAt = new PropertyValue<DateTime?>(nameof(OrgDomainDTO), nameof(ExpireAt));
+    private PropertyValue<DateTime?> _expireAt = new PropertyValue<DateTime?>(nameof(OrgDomainDTO), nameof(ExpireAt), "expireAt");
     
     [JsonPropertyName("expireAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ExpireAt
     {
-        get => _expireAt.GetValue();
+        get => _expireAt.GetValue(InlineErrors);
         set => _expireAt.SetValue(value);
     }
 
-    private PropertyValue<string> _orgUrl = new PropertyValue<string>(nameof(OrgDomainDTO), nameof(OrgUrl));
+    private PropertyValue<string> _orgUrl = new PropertyValue<string>(nameof(OrgDomainDTO), nameof(OrgUrl), "orgUrl");
     
     [Required]
     [JsonPropertyName("orgUrl")]
     public string OrgUrl
     {
-        get => _orgUrl.GetValue();
+        get => _orgUrl.GetValue(InlineErrors);
         set => _orgUrl.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _domain.SetAccessPath(path, validateHasBeenSet);
-        _expireAt.SetAccessPath(path, validateHasBeenSet);
-        _orgUrl.SetAccessPath(path, validateHasBeenSet);
+        _domain.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _expireAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _orgUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -45,52 +45,56 @@ public sealed class AbsenceApprovalWebhookEvent
         Approved = approved;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(AbsenceApprovalWebhookEvent), nameof(Meta));
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(AbsenceApprovalWebhookEvent), nameof(Meta), "meta");
     
     [Required]
     [JsonPropertyName("meta")]
     public KMetaMod Meta
     {
-        get => _meta.GetValue();
+        get => _meta.GetValue(InlineErrors);
         set => _meta.SetValue(value);
     }
 
-    private PropertyValue<AbsenceRecord> _absence = new PropertyValue<AbsenceRecord>(nameof(AbsenceApprovalWebhookEvent), nameof(Absence));
+    private PropertyValue<AbsenceRecord> _absence = new PropertyValue<AbsenceRecord>(nameof(AbsenceApprovalWebhookEvent), nameof(Absence), "absence");
     
     [Required]
     [JsonPropertyName("absence")]
     public AbsenceRecord Absence
     {
-        get => _absence.GetValue();
+        get => _absence.GetValue(InlineErrors);
         set => _absence.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(AbsenceApprovalWebhookEvent), nameof(Member));
+    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(AbsenceApprovalWebhookEvent), nameof(Member), "member");
     
     [Required]
     [JsonPropertyName("member")]
     public TDMemberProfile Member
     {
-        get => _member.GetValue();
+        get => _member.GetValue(InlineErrors);
         set => _member.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _approved = new PropertyValue<Modification<bool>?>(nameof(AbsenceApprovalWebhookEvent), nameof(Approved));
+    private PropertyValue<Modification<bool>?> _approved = new PropertyValue<Modification<bool>?>(nameof(AbsenceApprovalWebhookEvent), nameof(Approved), "approved");
     
     [JsonPropertyName("approved")]
     public Modification<bool>? Approved
     {
-        get => _approved.GetValue();
+        get => _approved.GetValue(InlineErrors);
         set => _approved.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meta.SetAccessPath(path, validateHasBeenSet);
-        _absence.SetAccessPath(path, validateHasBeenSet);
-        _member.SetAccessPath(path, validateHasBeenSet);
-        _approved.SetAccessPath(path, validateHasBeenSet);
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _absence.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _member.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _approved.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

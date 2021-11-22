@@ -42,20 +42,24 @@ public sealed class M2PollContent
         Poll = poll;
     }
     
-    private PropertyValue<PollRecord> _poll = new PropertyValue<PollRecord>(nameof(M2PollContent), nameof(Poll));
+    private PropertyValue<PollRecord> _poll = new PropertyValue<PollRecord>(nameof(M2PollContent), nameof(Poll), "poll");
     
     [Required]
     [JsonPropertyName("poll")]
     public PollRecord Poll
     {
-        get => _poll.GetValue();
+        get => _poll.GetValue(InlineErrors);
         set => _poll.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _poll.SetAccessPath(path, validateHasBeenSet);
+        _poll.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

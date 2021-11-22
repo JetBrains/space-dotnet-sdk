@@ -43,31 +43,35 @@ public sealed class CodeSuggestedEditHeadContentDetails
         Text = text;
     }
     
-    private PropertyValue<CodeDiscussionRecord> _codeDiscussion = new PropertyValue<CodeDiscussionRecord>(nameof(CodeSuggestedEditHeadContentDetails), nameof(CodeDiscussion));
+    private PropertyValue<CodeDiscussionRecord> _codeDiscussion = new PropertyValue<CodeDiscussionRecord>(nameof(CodeSuggestedEditHeadContentDetails), nameof(CodeDiscussion), "codeDiscussion");
     
     [Required]
     [JsonPropertyName("codeDiscussion")]
     public CodeDiscussionRecord CodeDiscussion
     {
-        get => _codeDiscussion.GetValue();
+        get => _codeDiscussion.GetValue(InlineErrors);
         set => _codeDiscussion.SetValue(value);
     }
 
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(CodeSuggestedEditHeadContentDetails), nameof(Text));
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(CodeSuggestedEditHeadContentDetails), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
     public string Text
     {
-        get => _text.GetValue();
+        get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _codeDiscussion.SetAccessPath(path, validateHasBeenSet);
-        _text.SetAccessPath(path, validateHasBeenSet);
+        _codeDiscussion.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

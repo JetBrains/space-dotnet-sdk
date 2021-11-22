@@ -39,20 +39,24 @@ public sealed class OrgThrottlingStatus
         ThrottledUntil = throttledUntil;
     }
     
-    private PropertyValue<DateTime?> _throttledUntil = new PropertyValue<DateTime?>(nameof(OrgThrottlingStatus), nameof(ThrottledUntil));
+    private PropertyValue<DateTime?> _throttledUntil = new PropertyValue<DateTime?>(nameof(OrgThrottlingStatus), nameof(ThrottledUntil), "throttledUntil");
     
     [JsonPropertyName("throttledUntil")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ThrottledUntil
     {
-        get => _throttledUntil.GetValue();
+        get => _throttledUntil.GetValue(InlineErrors);
         set => _throttledUntil.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _throttledUntil.SetAccessPath(path, validateHasBeenSet);
+        _throttledUntil.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,20 +42,24 @@ public sealed class MCImage
         Src = src;
     }
     
-    private PropertyValue<string> _src = new PropertyValue<string>(nameof(MCImage), nameof(Src));
+    private PropertyValue<string> _src = new PropertyValue<string>(nameof(MCImage), nameof(Src), "src");
     
     [Required]
     [JsonPropertyName("src")]
     public string Src
     {
-        get => _src.GetValue();
+        get => _src.GetValue(InlineErrors);
         set => _src.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _src.SetAccessPath(path, validateHasBeenSet);
+        _src.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

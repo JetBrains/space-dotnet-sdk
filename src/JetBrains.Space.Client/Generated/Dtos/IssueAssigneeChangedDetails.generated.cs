@@ -43,29 +43,33 @@ public sealed class IssueAssigneeChangedDetails
         NewAssignee = newAssignee;
     }
     
-    private PropertyValue<TDMemberProfile?> _oldAssignee = new PropertyValue<TDMemberProfile?>(nameof(IssueAssigneeChangedDetails), nameof(OldAssignee));
+    private PropertyValue<TDMemberProfile?> _oldAssignee = new PropertyValue<TDMemberProfile?>(nameof(IssueAssigneeChangedDetails), nameof(OldAssignee), "oldAssignee");
     
     [JsonPropertyName("oldAssignee")]
     public TDMemberProfile? OldAssignee
     {
-        get => _oldAssignee.GetValue();
+        get => _oldAssignee.GetValue(InlineErrors);
         set => _oldAssignee.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _newAssignee = new PropertyValue<TDMemberProfile?>(nameof(IssueAssigneeChangedDetails), nameof(NewAssignee));
+    private PropertyValue<TDMemberProfile?> _newAssignee = new PropertyValue<TDMemberProfile?>(nameof(IssueAssigneeChangedDetails), nameof(NewAssignee), "newAssignee");
     
     [JsonPropertyName("newAssignee")]
     public TDMemberProfile? NewAssignee
     {
-        get => _newAssignee.GetValue();
+        get => _newAssignee.GetValue(InlineErrors);
         set => _newAssignee.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _oldAssignee.SetAccessPath(path, validateHasBeenSet);
-        _newAssignee.SetAccessPath(path, validateHasBeenSet);
+        _oldAssignee.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _newAssignee.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

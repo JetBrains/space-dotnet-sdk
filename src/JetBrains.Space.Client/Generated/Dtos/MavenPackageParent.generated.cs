@@ -41,42 +41,46 @@ public sealed class MavenPackageParent
         Version = version;
     }
     
-    private PropertyValue<string> _group = new PropertyValue<string>(nameof(MavenPackageParent), nameof(Group));
+    private PropertyValue<string> _group = new PropertyValue<string>(nameof(MavenPackageParent), nameof(Group), "group");
     
     [Required]
     [JsonPropertyName("group")]
     public string Group
     {
-        get => _group.GetValue();
+        get => _group.GetValue(InlineErrors);
         set => _group.SetValue(value);
     }
 
-    private PropertyValue<string> _artifact = new PropertyValue<string>(nameof(MavenPackageParent), nameof(Artifact));
+    private PropertyValue<string> _artifact = new PropertyValue<string>(nameof(MavenPackageParent), nameof(Artifact), "artifact");
     
     [Required]
     [JsonPropertyName("artifact")]
     public string Artifact
     {
-        get => _artifact.GetValue();
+        get => _artifact.GetValue(InlineErrors);
         set => _artifact.SetValue(value);
     }
 
-    private PropertyValue<string> _version = new PropertyValue<string>(nameof(MavenPackageParent), nameof(Version));
+    private PropertyValue<string> _version = new PropertyValue<string>(nameof(MavenPackageParent), nameof(Version), "version");
     
     [Required]
     [JsonPropertyName("version")]
     public string Version
     {
-        get => _version.GetValue();
+        get => _version.GetValue(InlineErrors);
         set => _version.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _group.SetAccessPath(path, validateHasBeenSet);
-        _artifact.SetAccessPath(path, validateHasBeenSet);
-        _version.SetAccessPath(path, validateHasBeenSet);
+        _group.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _artifact.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

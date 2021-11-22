@@ -43,31 +43,35 @@ public sealed class ReviewerChangedEvent
         ChangeType = changeType;
     }
     
-    private PropertyValue<TDMemberProfile> _uid = new PropertyValue<TDMemberProfile>(nameof(ReviewerChangedEvent), nameof(Uid));
+    private PropertyValue<TDMemberProfile> _uid = new PropertyValue<TDMemberProfile>(nameof(ReviewerChangedEvent), nameof(Uid), "uid");
     
     [Required]
     [JsonPropertyName("uid")]
     public TDMemberProfile Uid
     {
-        get => _uid.GetValue();
+        get => _uid.GetValue(InlineErrors);
         set => _uid.SetValue(value);
     }
 
-    private PropertyValue<ReviewerChangedType> _changeType = new PropertyValue<ReviewerChangedType>(nameof(ReviewerChangedEvent), nameof(ChangeType));
+    private PropertyValue<ReviewerChangedType> _changeType = new PropertyValue<ReviewerChangedType>(nameof(ReviewerChangedEvent), nameof(ChangeType), "changeType");
     
     [Required]
     [JsonPropertyName("changeType")]
     public ReviewerChangedType ChangeType
     {
-        get => _changeType.GetValue();
+        get => _changeType.GetValue(InlineErrors);
         set => _changeType.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _uid.SetAccessPath(path, validateHasBeenSet);
-        _changeType.SetAccessPath(path, validateHasBeenSet);
+        _uid.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _changeType.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

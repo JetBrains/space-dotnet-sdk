@@ -45,51 +45,55 @@ public sealed class M2PrivateConversationChannelContent
         NotificationDefaults = notificationDefaults;
     }
     
-    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(M2PrivateConversationChannelContent), nameof(ChannelId));
+    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(M2PrivateConversationChannelContent), nameof(ChannelId), "channelId");
     
     [Required]
     [JsonPropertyName("channelId")]
     public string ChannelId
     {
-        get => _channelId.GetValue();
+        get => _channelId.GetValue(InlineErrors);
         set => _channelId.SetValue(value);
     }
 
-    private PropertyValue<string?> _subject = new PropertyValue<string?>(nameof(M2PrivateConversationChannelContent), nameof(Subject));
+    private PropertyValue<string?> _subject = new PropertyValue<string?>(nameof(M2PrivateConversationChannelContent), nameof(Subject), "subject");
     
     [JsonPropertyName("subject")]
     public string? Subject
     {
-        get => _subject.GetValue();
+        get => _subject.GetValue(InlineErrors);
         set => _subject.SetValue(value);
     }
 
-    private PropertyValue<List<TDMemberProfile>> _members = new PropertyValue<List<TDMemberProfile>>(nameof(M2PrivateConversationChannelContent), nameof(Members), new List<TDMemberProfile>());
+    private PropertyValue<List<TDMemberProfile>> _members = new PropertyValue<List<TDMemberProfile>>(nameof(M2PrivateConversationChannelContent), nameof(Members), "members", new List<TDMemberProfile>());
     
     [Required]
     [JsonPropertyName("members")]
     public List<TDMemberProfile> Members
     {
-        get => _members.GetValue();
+        get => _members.GetValue(InlineErrors);
         set => _members.SetValue(value);
     }
 
-    private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(M2PrivateConversationChannelContent), nameof(NotificationDefaults));
+    private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(M2PrivateConversationChannelContent), nameof(NotificationDefaults), "notificationDefaults");
     
     [JsonPropertyName("notificationDefaults")]
     public ChannelSpecificDefaults? NotificationDefaults
     {
-        get => _notificationDefaults.GetValue();
+        get => _notificationDefaults.GetValue(InlineErrors);
         set => _notificationDefaults.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _channelId.SetAccessPath(path, validateHasBeenSet);
-        _subject.SetAccessPath(path, validateHasBeenSet);
-        _members.SetAccessPath(path, validateHasBeenSet);
-        _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+        _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subject.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _members.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationDefaults.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -43,60 +43,64 @@ public class TeamDirectoryInvitationsPostRequest
         Role = role;
     }
     
-    private PropertyValue<string> _inviteeEmail = new PropertyValue<string>(nameof(TeamDirectoryInvitationsPostRequest), nameof(InviteeEmail));
+    private PropertyValue<string> _inviteeEmail = new PropertyValue<string>(nameof(TeamDirectoryInvitationsPostRequest), nameof(InviteeEmail), "inviteeEmail");
     
     [Required]
     [JsonPropertyName("inviteeEmail")]
     public string InviteeEmail
     {
-        get => _inviteeEmail.GetValue();
+        get => _inviteeEmail.GetValue(InlineErrors);
         set => _inviteeEmail.SetValue(value);
     }
 
-    private PropertyValue<string?> _inviteeFirstName = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsPostRequest), nameof(InviteeFirstName));
+    private PropertyValue<string?> _inviteeFirstName = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsPostRequest), nameof(InviteeFirstName), "inviteeFirstName");
     
     [JsonPropertyName("inviteeFirstName")]
     public string? InviteeFirstName
     {
-        get => _inviteeFirstName.GetValue();
+        get => _inviteeFirstName.GetValue(InlineErrors);
         set => _inviteeFirstName.SetValue(value);
     }
 
-    private PropertyValue<string?> _inviteeLastName = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsPostRequest), nameof(InviteeLastName));
+    private PropertyValue<string?> _inviteeLastName = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsPostRequest), nameof(InviteeLastName), "inviteeLastName");
     
     [JsonPropertyName("inviteeLastName")]
     public string? InviteeLastName
     {
-        get => _inviteeLastName.GetValue();
+        get => _inviteeLastName.GetValue(InlineErrors);
         set => _inviteeLastName.SetValue(value);
     }
 
-    private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsPostRequest), nameof(Team));
+    private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsPostRequest), nameof(Team), "team");
     
     [JsonPropertyName("team")]
     public string? Team
     {
-        get => _team.GetValue();
+        get => _team.GetValue(InlineErrors);
         set => _team.SetValue(value);
     }
 
-    private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsPostRequest), nameof(Role));
+    private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsPostRequest), nameof(Role), "role");
     
     [JsonPropertyName("role")]
     public string? Role
     {
-        get => _role.GetValue();
+        get => _role.GetValue(InlineErrors);
         set => _role.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _inviteeEmail.SetAccessPath(path, validateHasBeenSet);
-        _inviteeFirstName.SetAccessPath(path, validateHasBeenSet);
-        _inviteeLastName.SetAccessPath(path, validateHasBeenSet);
-        _team.SetAccessPath(path, validateHasBeenSet);
-        _role.SetAccessPath(path, validateHasBeenSet);
+        _inviteeEmail.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inviteeFirstName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inviteeLastName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _team.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _role.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

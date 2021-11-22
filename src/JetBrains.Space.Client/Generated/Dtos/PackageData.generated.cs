@@ -44,75 +44,79 @@ public sealed class PackageData
         LastVersion = lastVersion;
     }
     
-    private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(PackageData), nameof(Type));
+    private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(PackageData), nameof(Type), "type");
     
     [Required]
     [JsonPropertyName("type")]
     public PackageType Type
     {
-        get => _type.GetValue();
+        get => _type.GetValue(InlineErrors);
         set => _type.SetValue(value);
     }
 
-    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(PackageData), nameof(Repository));
+    private PropertyValue<string> _repository = new PropertyValue<string>(nameof(PackageData), nameof(Repository), "repository");
     
     [Required]
     [JsonPropertyName("repository")]
     public string Repository
     {
-        get => _repository.GetValue();
+        get => _repository.GetValue(InlineErrors);
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PackageData), nameof(Name));
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(PackageData), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]
     public string Name
     {
-        get => _name.GetValue();
+        get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<long> _versions = new PropertyValue<long>(nameof(PackageData), nameof(Versions));
+    private PropertyValue<long> _versions = new PropertyValue<long>(nameof(PackageData), nameof(Versions), "versions");
     
     [Required]
     [JsonPropertyName("versions")]
     public long Versions
     {
-        get => _versions.GetValue();
+        get => _versions.GetValue(InlineErrors);
         set => _versions.SetValue(value);
     }
 
-    private PropertyValue<long> _updated = new PropertyValue<long>(nameof(PackageData), nameof(Updated));
+    private PropertyValue<long> _updated = new PropertyValue<long>(nameof(PackageData), nameof(Updated), "updated");
     
     [Required]
     [JsonPropertyName("updated")]
     public long Updated
     {
-        get => _updated.GetValue();
+        get => _updated.GetValue(InlineErrors);
         set => _updated.SetValue(value);
     }
 
-    private PropertyValue<string> _lastVersion = new PropertyValue<string>(nameof(PackageData), nameof(LastVersion));
+    private PropertyValue<string> _lastVersion = new PropertyValue<string>(nameof(PackageData), nameof(LastVersion), "lastVersion");
     
     [Required]
     [JsonPropertyName("lastVersion")]
     public string LastVersion
     {
-        get => _lastVersion.GetValue();
+        get => _lastVersion.GetValue(InlineErrors);
         set => _lastVersion.SetValue(value);
     }
 
-    public  void SetAccessPath(string path, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _type.SetAccessPath(path, validateHasBeenSet);
-        _repository.SetAccessPath(path, validateHasBeenSet);
-        _name.SetAccessPath(path, validateHasBeenSet);
-        _versions.SetAccessPath(path, validateHasBeenSet);
-        _updated.SetAccessPath(path, validateHasBeenSet);
-        _lastVersion.SetAccessPath(path, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _versions.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updated.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastVersion.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

@@ -42,20 +42,24 @@ public sealed class JobExecutionTriggerManual
         Principal = principal;
     }
     
-    private PropertyValue<CPrincipal> _principal = new PropertyValue<CPrincipal>(nameof(JobExecutionTriggerManual), nameof(Principal));
+    private PropertyValue<CPrincipal> _principal = new PropertyValue<CPrincipal>(nameof(JobExecutionTriggerManual), nameof(Principal), "principal");
     
     [Required]
     [JsonPropertyName("principal")]
     public CPrincipal Principal
     {
-        get => _principal.GetValue();
+        get => _principal.GetValue(InlineErrors);
         set => _principal.SetValue(value);
     }
 
-    public override void SetAccessPath(string path, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _principal.SetAccessPath(path, validateHasBeenSet);
+        _principal.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 
