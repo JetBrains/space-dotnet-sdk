@@ -50,8 +50,8 @@ public static class SpaceAddWebHookExtensions
             .Validate(o => o.VerifyVerificationToken == null || !o.VerifyVerificationToken.IsEnabled || !string.IsNullOrEmpty(o.VerifyVerificationToken.EndpointVerificationToken), "Space.VerifyVerificationToken.EndpointVerificationToken is required.");
 
         // Add webhook handler types
-        services.AddTransient<TWebHookHandler>();
-        services.AddTransient<SpaceWebHookRequestHandler<TWebHookHandler>>();
+        services.AddScoped<TWebHookHandler>();
+        services.AddScoped<SpaceWebHookRequestHandler<TWebHookHandler>>();
             
         // Add authentication handler types
         services.TryAddEnumerable(ServiceDescriptor.Transient<ISpaceEndpointAuthenticationHandler, VerifySigningKeyAuthenticationHandler>());
