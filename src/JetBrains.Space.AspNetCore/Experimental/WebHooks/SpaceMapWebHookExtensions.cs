@@ -31,7 +31,8 @@ public static class SpaceMapWebHookExtensions
         }
             
         // Is a handler registered?
-        var handler = endpoints.ServiceProvider.GetService<TWebHookHandler?>();
+        using var serviceScope = endpoints.ServiceProvider.CreateScope();
+        var handler = serviceScope.ServiceProvider.GetService<TWebHookHandler?>();
         if (handler == null)
         {
             throw new InvalidOperationException(
