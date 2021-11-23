@@ -58,5 +58,8 @@ public static class MergeRequestBranchPairPartialExtensions
     public static Partial<MergeRequestBranchPair> WithIsMerged(this Partial<MergeRequestBranchPair> it)
         => it.AddFieldName("isMerged");
     
+    public static Partial<MergeRequestBranchPair> WithIsStale(this Partial<MergeRequestBranchPair> it)
+        => it.AddFieldName("isStale");
+    
 }
 

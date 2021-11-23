@@ -34,7 +34,7 @@ public sealed class OrganizationForUpdateDTO
 {
     public OrganizationForUpdateDTO() { }
     
-    public OrganizationForUpdateDTO(string name, string? slogan = null, string? logoSmall = null, string? logo = null, string? logoId = null, string? slackWorkspace = null, bool? onboardingRequired = null, ATimeZone? timezone = null)
+    public OrganizationForUpdateDTO(string name, string? slogan = null, string? logoSmall = null, string? logo = null, string? logoId = null, string? slackWorkspace = null, bool? onboardingRequired = null, ATimeZone? timezone = null, string? license = null)
     {
         Name = name;
         Slogan = slogan;
@@ -44,6 +44,7 @@ public sealed class OrganizationForUpdateDTO
         SlackWorkspace = slackWorkspace;
         IsOnboardingRequired = onboardingRequired;
         Timezone = timezone;
+        License = license;
     }
     
     private PropertyValue<string> _name = new PropertyValue<string>(nameof(OrganizationForUpdateDTO), nameof(Name), "name");
@@ -120,6 +121,15 @@ public sealed class OrganizationForUpdateDTO
         set => _timezone.SetValue(value);
     }
 
+    private PropertyValue<string?> _license = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(License), "license");
+    
+    [JsonPropertyName("license")]
+    public string? License
+    {
+        get => _license.GetValue(InlineErrors);
+        set => _license.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -130,6 +140,7 @@ public sealed class OrganizationForUpdateDTO
         _slackWorkspace.SetAccessPath(parentChainPath, validateHasBeenSet);
         _onboardingRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
         _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _license.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

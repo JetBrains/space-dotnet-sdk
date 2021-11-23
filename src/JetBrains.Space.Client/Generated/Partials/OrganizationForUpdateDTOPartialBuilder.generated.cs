@@ -58,5 +58,8 @@ public static class OrganizationForUpdateDTOPartialExtensions
     public static Partial<OrganizationForUpdateDTO> WithTimezone(this Partial<OrganizationForUpdateDTO> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
         => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
     
+    public static Partial<OrganizationForUpdateDTO> WithLicense(this Partial<OrganizationForUpdateDTO> it)
+        => it.AddFieldName("license");
+    
 }
 
