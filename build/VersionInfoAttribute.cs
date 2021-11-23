@@ -38,7 +38,7 @@ namespace _build
                     $"{VersionMajor}.{VersionMinor}.{executionNumber}.0+Branch.{branch}.Sha.{revision}.Server.{versionInfo}",
                     IsMainBranch(branch) 
                         ? IsBeta
-                            ? $"{VersionMajor}.{VersionMinor}.0-beta.{versionInfo}.{executionNumber}"
+                            ? $"{VersionMajor}.{VersionMinor}.0-beta.v{versionInfo}.{executionNumber}"
                             : $"{VersionMajor}.{VersionMinor}.{executionNumber}"
                         : $"0.1.1337-{branch}.{versionInfo}.{executionNumber}");
             }
