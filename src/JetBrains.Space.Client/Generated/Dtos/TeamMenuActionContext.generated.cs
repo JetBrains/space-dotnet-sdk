@@ -37,22 +37,11 @@ public sealed class TeamMenuActionContext
     
     public TeamMenuActionContext() { }
     
-    public TeamMenuActionContext(string menuId, TDTeam team)
+    public TeamMenuActionContext(TDTeam team)
     {
-        MenuId = menuId;
         Team = team;
     }
     
-    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(TeamMenuActionContext), nameof(MenuId), "menuId");
-    
-    [Required]
-    [JsonPropertyName("menuId")]
-    public string MenuId
-    {
-        get => _menuId.GetValue(InlineErrors);
-        set => _menuId.SetValue(value);
-    }
-
     private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(TeamMenuActionContext), nameof(Team), "team");
     
     [Required]
@@ -65,7 +54,6 @@ public sealed class TeamMenuActionContext
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _menuId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _team.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

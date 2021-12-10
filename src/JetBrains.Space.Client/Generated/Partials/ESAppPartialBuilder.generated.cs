@@ -121,6 +121,12 @@ public static class ESAppPartialExtensions
     public static Partial<ESApp> WithIsArchived(this Partial<ESApp> it)
         => it.AddFieldName("archived");
     
+    public static Partial<ESApp> WithContexts(this Partial<ESApp> it)
+        => it.AddFieldName("contexts");
+    
+    public static Partial<ESApp> WithContexts(this Partial<ESApp> it, Func<Partial<AppUiExtensionsContextData>, Partial<AppUiExtensionsContextData>> partialBuilder)
+        => it.AddFieldName("contexts", partialBuilder(new Partial<AppUiExtensionsContextData>(it)));
+    
     public static Partial<ESApp> WithDomains(this Partial<ESApp> it)
         => it.AddFieldName("domains");
     

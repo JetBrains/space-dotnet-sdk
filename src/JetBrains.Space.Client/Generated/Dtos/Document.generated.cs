@@ -34,7 +34,7 @@ public sealed class Document
 {
     public Document() { }
     
-    public Document(string id, string title, string alias, DocumentBodyType bodyType, bool archived, DateTime modified, DocumentBodyInfo documentBody, PublicationDetails? publicationDetails = null, DocumentFolder? folderRef = null, DocumentBodyInfo? bodyInfo = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null)
+    public Document(string id, string title, string alias, bool archived, DateTime modified, DocumentBodyInfo documentBody, PublicationDetails? publicationDetails = null, DocumentFolder? folderRef = null, DocumentBodyType? bodyType = null, DocumentBodyInfo? bodyInfo = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null)
     {
         Id = id;
         Title = title;
@@ -101,11 +101,10 @@ public sealed class Document
         set => _folderRef.SetValue(value);
     }
 
-    private PropertyValue<DocumentBodyType> _bodyType = new PropertyValue<DocumentBodyType>(nameof(Document), nameof(BodyType), "bodyType");
+    private PropertyValue<DocumentBodyType?> _bodyType = new PropertyValue<DocumentBodyType?>(nameof(Document), nameof(BodyType), "bodyType");
     
-    [Required]
     [JsonPropertyName("bodyType")]
-    public DocumentBodyType BodyType
+    public DocumentBodyType? BodyType
     {
         get => _bodyType.GetValue(InlineErrors);
         set => _bodyType.SetValue(value);

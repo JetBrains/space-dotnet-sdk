@@ -37,30 +37,29 @@ public sealed class MenuActionPayload
     
     public MenuActionPayload() { }
     
-    public MenuActionPayload(string extensionName, MenuActionContext context, string clientId, string userId, string? verificationToken = null)
+    public MenuActionPayload(string menuItemUniqueCode, string clientId, string userId, MenuActionContext? context = null, string? verificationToken = null)
     {
-        ExtensionName = extensionName;
+        MenuItemUniqueCode = menuItemUniqueCode;
         Context = context;
         ClientId = clientId;
         UserId = userId;
         VerificationToken = verificationToken;
     }
     
-    private PropertyValue<string> _extensionName = new PropertyValue<string>(nameof(MenuActionPayload), nameof(ExtensionName), "extensionName");
+    private PropertyValue<string> _menuItemUniqueCode = new PropertyValue<string>(nameof(MenuActionPayload), nameof(MenuItemUniqueCode), "menuItemUniqueCode");
     
     [Required]
-    [JsonPropertyName("extensionName")]
-    public string ExtensionName
+    [JsonPropertyName("menuItemUniqueCode")]
+    public string MenuItemUniqueCode
     {
-        get => _extensionName.GetValue(InlineErrors);
-        set => _extensionName.SetValue(value);
+        get => _menuItemUniqueCode.GetValue(InlineErrors);
+        set => _menuItemUniqueCode.SetValue(value);
     }
 
-    private PropertyValue<MenuActionContext> _context = new PropertyValue<MenuActionContext>(nameof(MenuActionPayload), nameof(Context), "context");
+    private PropertyValue<MenuActionContext?> _context = new PropertyValue<MenuActionContext?>(nameof(MenuActionPayload), nameof(Context), "context");
     
-    [Required]
     [JsonPropertyName("context")]
-    public MenuActionContext Context
+    public MenuActionContext? Context
     {
         get => _context.GetValue(InlineErrors);
         set => _context.SetValue(value);
@@ -97,7 +96,7 @@ public sealed class MenuActionPayload
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _extensionName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _menuItemUniqueCode.SetAccessPath(parentChainPath, validateHasBeenSet);
         _context.SetAccessPath(parentChainPath, validateHasBeenSet);
         _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _userId.SetAccessPath(parentChainPath, validateHasBeenSet);

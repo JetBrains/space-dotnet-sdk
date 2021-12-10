@@ -31,14 +31,17 @@ namespace JetBrains.Space.Client.ChannelMessageMenuActionContextPartialBuilder;
 
 public static class ChannelMessageMenuActionContextPartialExtensions
 {
-    public static Partial<ChannelMessageMenuActionContext> WithMenuId(this Partial<ChannelMessageMenuActionContext> it)
-        => it.AddFieldName("menuId");
+    public static Partial<ChannelMessageMenuActionContext> WithChannelIdentifier(this Partial<ChannelMessageMenuActionContext> it)
+        => it.AddFieldName("channelIdentifier");
     
-    public static Partial<ChannelMessageMenuActionContext> WithChannelId(this Partial<ChannelMessageMenuActionContext> it)
-        => it.AddFieldName("channelId");
+    public static Partial<ChannelMessageMenuActionContext> WithChannelIdentifier(this Partial<ChannelMessageMenuActionContext> it, Func<Partial<ChannelIdentifier>, Partial<ChannelIdentifier>> partialBuilder)
+        => it.AddFieldName("channelIdentifier", partialBuilder(new Partial<ChannelIdentifier>(it)));
     
-    public static Partial<ChannelMessageMenuActionContext> WithMessageId(this Partial<ChannelMessageMenuActionContext> it)
-        => it.AddFieldName("messageId");
+    public static Partial<ChannelMessageMenuActionContext> WithMessageIdentifier(this Partial<ChannelMessageMenuActionContext> it)
+        => it.AddFieldName("messageIdentifier");
+    
+    public static Partial<ChannelMessageMenuActionContext> WithMessageIdentifier(this Partial<ChannelMessageMenuActionContext> it, Func<Partial<ChatMessageIdentifier>, Partial<ChatMessageIdentifier>> partialBuilder)
+        => it.AddFieldName("messageIdentifier", partialBuilder(new Partial<ChatMessageIdentifier>(it)));
     
 }
 

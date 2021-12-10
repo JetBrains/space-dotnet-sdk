@@ -37,22 +37,11 @@ public sealed class LocationMenuActionContext
     
     public LocationMenuActionContext() { }
     
-    public LocationMenuActionContext(string menuId, TDLocation location)
+    public LocationMenuActionContext(TDLocation location)
     {
-        MenuId = menuId;
         Location = location;
     }
     
-    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(LocationMenuActionContext), nameof(MenuId), "menuId");
-    
-    [Required]
-    [JsonPropertyName("menuId")]
-    public string MenuId
-    {
-        get => _menuId.GetValue(InlineErrors);
-        set => _menuId.SetValue(value);
-    }
-
     private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(LocationMenuActionContext), nameof(Location), "location");
     
     [Required]
@@ -65,7 +54,6 @@ public sealed class LocationMenuActionContext
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _menuId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _location.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

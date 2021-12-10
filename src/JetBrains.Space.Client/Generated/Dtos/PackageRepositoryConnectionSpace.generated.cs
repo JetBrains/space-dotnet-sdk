@@ -37,10 +37,11 @@ public sealed class PackageRepositoryConnectionSpace
     
     public PackageRepositoryConnectionSpace() { }
     
-    public PackageRepositoryConnectionSpace(string id, bool enableCaching, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
+    public PackageRepositoryConnectionSpace(string id, bool enableCaching, bool stickyPackages, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
     {
         Id = id;
         IsEnableCaching = enableCaching;
+        IsStickyPackages = stickyPackages;
         PackageNameFilters = packageNameFilters;
         Repository = repository;
     }
@@ -63,6 +64,16 @@ public sealed class PackageRepositoryConnectionSpace
     {
         get => _enableCaching.GetValue(InlineErrors);
         set => _enableCaching.SetValue(value);
+    }
+
+    private PropertyValue<bool> _stickyPackages = new PropertyValue<bool>(nameof(PackageRepositoryConnectionSpace), nameof(IsStickyPackages), "stickyPackages");
+    
+    [Required]
+    [JsonPropertyName("stickyPackages")]
+    public bool IsStickyPackages
+    {
+        get => _stickyPackages.GetValue(InlineErrors);
+        set => _stickyPackages.SetValue(value);
     }
 
     private PropertyValue<List<string>?> _packageNameFilters = new PropertyValue<List<string>?>(nameof(PackageRepositoryConnectionSpace), nameof(PackageNameFilters), "packageNameFilters");
@@ -88,6 +99,7 @@ public sealed class PackageRepositoryConnectionSpace
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _enableCaching.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _stickyPackages.SetAccessPath(parentChainPath, validateHasBeenSet);
         _packageNameFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

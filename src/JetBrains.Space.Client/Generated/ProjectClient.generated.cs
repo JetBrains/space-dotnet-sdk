@@ -1748,7 +1748,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task UpdateIssueAsync(ProjectIdentifier project, IssueIdentifier issueId, string? title = null, string? status = null, List<CustomFieldInputValue>? customFields = null, string? description = null, string? assignee = null, DateTime? dueDate = null, CancellationToken cancellationToken = default)
+            public async Task UpdateIssueAsync(ProjectIdentifier project, IssueIdentifier issueId, string? title = null, string? status = null, List<CustomFieldInputValue>? customFields = null, bool notifySubscribers = true, string? description = null, string? assignee = null, DateTime? dueDate = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -1761,6 +1761,7 @@ public partial class ProjectClient : ISpaceClient
                         Status = (status ?? string.Empty),
                         DueDate = dueDate,
                         CustomFields = (customFields ?? new List<CustomFieldInputValue>()),
+                        IsNotifySubscribers = notifySubscribers,
                     }, cancellationToken);
             }
             
@@ -3251,6 +3252,14 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Create code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<CommitSetReviewRecord> CreateReviewBasedOnCommitSetAsync(ProjectIdentifier project, string repository, List<string> revisions, string? title = null, List<string>? authorProfileIds = null, Func<Partial<CommitSetReviewRecord>, Partial<CommitSetReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3267,6 +3276,14 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Create code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<MergeRequestRecord> CreateMergeRequestAsync(ProjectIdentifier project, string repository, string sourceBranch, string targetBranch, string title, List<ReviewerParam>? reviewers = null, Func<Partial<MergeRequestRecord>, Partial<MergeRequestRecord>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3284,6 +3301,14 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<Batch<CodeReviewWithCount>> GetAllCodeReviewsAsync(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<Batch<CodeReviewWithCount>>, Partial<Batch<CodeReviewWithCount>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3303,9 +3328,25 @@ public partial class ProjectClient : ISpaceClient
         }
         
         
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public IAsyncEnumerable<CodeReviewWithCount> GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<CodeReviewWithCount>, Partial<CodeReviewWithCount>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllCodeReviewsAsync(project: project, sort: sort, top: top, state: state, text: text, author: author, from: from, to: to, reviewer: reviewer, type: type, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CodeReviewWithCount>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeReviewWithCount>.Default())), skip, cancellationToken);
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<CodeReviewRecord> GetCodeReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3315,6 +3356,14 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<CodeReviewDetailedInfo> GetReviewDetailsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<CodeReviewDetailedInfo>, Partial<CodeReviewDetailedInfo>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3324,6 +3373,14 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<Batch<ChangeInReview>> GetTheModifiedFilesInCodeReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, string? skip = null, int? top = 100, Func<Partial<Batch<ChangeInReview>>, Partial<Batch<ChangeInReview>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3335,9 +3392,25 @@ public partial class ProjectClient : ISpaceClient
         }
         
         
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public IAsyncEnumerable<ChangeInReview> GetTheModifiedFilesInCodeReviewAsyncEnumerable(ProjectIdentifier project, ReviewIdentifier reviewId, string? skip = null, int? top = 100, Func<Partial<ChangeInReview>, Partial<ChangeInReview>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetTheModifiedFilesInCodeReviewAsync(project: project, reviewId: reviewId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ChangeInReview>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ChangeInReview>.Default())), skip, cancellationToken);
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<Batch<GitMergedFile>> GetTheMergeRequestFilesAsync(ProjectIdentifier project, ReviewIdentifier reviewId, string? skip = null, int? top = 100, Func<Partial<Batch<GitMergedFile>>, Partial<Batch<GitMergedFile>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3349,9 +3422,25 @@ public partial class ProjectClient : ISpaceClient
         }
         
         
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public IAsyncEnumerable<GitMergedFile> GetTheMergeRequestFilesAsyncEnumerable(ProjectIdentifier project, ReviewIdentifier reviewId, string? skip = null, int? top = 100, Func<Partial<GitMergedFile>, Partial<GitMergedFile>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetTheMergeRequestFilesAsync(project: project, reviewId: reviewId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitMergedFile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitMergedFile>.Default())), skip, cancellationToken);
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<List<TDMemberProfile>> GetSuggestedReviewersAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3361,6 +3450,14 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<List<ReviewCommitIn>> GetUnreadRevisionsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<ReviewCommitIn>, Partial<ReviewCommitIn>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3370,6 +3467,14 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task EditReviewStateAsync(ProjectIdentifier project, ReviewIdentifier reviewId, CodeReviewState state, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3382,6 +3487,14 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task EditReviewTitleAsync(ProjectIdentifier project, ReviewIdentifier reviewId, string title, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3394,6 +3507,17 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// <item>
+        /// <term>Write</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<GitMergeResultHttp> MergeAMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitMergeMode mergeMode, Func<Partial<GitMergeResultHttp>, Partial<GitMergeResultHttp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3408,6 +3532,17 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// <item>
+        /// <term>Write</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<GitRebaseResultHttp> RebaseAMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitRebaseMode rebaseMode, bool squash, string? squashedCommitMessage = null, Func<Partial<GitRebaseResultHttp>, Partial<GitRebaseResultHttp>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3435,6 +3570,14 @@ public partial class ProjectClient : ISpaceClient
                 _connection = connection;
             }
             
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit code reviews</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task AddReviewParticipantAsync(ProjectIdentifier project, ReviewIdentifier reviewId, ProfileIdentifier user, CodeReviewParticipantRole role, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -3447,6 +3590,14 @@ public partial class ProjectClient : ISpaceClient
             }
             
         
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit code reviews</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task RemoveReviewParticipantAsync(ProjectIdentifier project, ReviewIdentifier reviewId, ProfileIdentifier user, CodeReviewParticipantRole role, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -3469,6 +3620,14 @@ public partial class ProjectClient : ISpaceClient
                 _connection = connection;
             }
             
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit code reviews</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task AddRevisionsToReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, List<ReviewCommitIn> revisions, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -3481,6 +3640,14 @@ public partial class ProjectClient : ISpaceClient
             }
             
         
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit code reviews</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task RemoveRevisionsFromReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, List<string> revisions, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -3491,56 +3658,6 @@ public partial class ProjectClient : ISpaceClient
             
         
         }
-    
-    }
-
-    public IntellijSharedIndexClient IntellijSharedIndexes => new IntellijSharedIndexClient(_connection);
-    
-    public partial class IntellijSharedIndexClient : ISpaceClient
-    {
-        private readonly Connection _connection;
-        
-        public IntellijSharedIndexClient(Connection connection)
-        {
-            _connection = connection;
-        }
-        
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Change permissions for the project</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task IndexRefreshCdnAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/intellij-shared-indexes/index-refresh-cdn{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Change permissions for the project</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<IntelliJSharedIndexUploadUrls> IndexUploadAsync(ProjectIdentifier project, List<string> fileNames, Func<Partial<IntelliJSharedIndexUploadUrls>, Partial<IntelliJSharedIndexUploadUrls>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<IntelliJSharedIndexUploadUrls>()) : Partial<IntelliJSharedIndexUploadUrls>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest, IntelliJSharedIndexUploadUrls>("POST", $"api/http/projects/{project}/intellij-shared-indexes/index-upload{queryParameters.ToQueryString()}", 
-                new ProjectsForProjectIntellijSharedIndexesIndexUploadPostRequest
-                { 
-                    FileNames = fileNames,
-                }, cancellationToken);
-        }
-        
     
     }
 
@@ -3941,6 +4058,33 @@ public partial class ProjectClient : ISpaceClient
                         _connection = connection;
                     }
                     
+                    /// <summary>
+                    /// Get package metadata in repository for a given project ID
+                    /// </summary>
+                    public async Task<PackageMetadata> GetPackageMetadataAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, Func<Partial<PackageMetadata>, Partial<PackageMetadata>>? partial = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageMetadata>()) : Partial<PackageMetadata>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<PackageMetadata>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/metadata{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                
+                    /// <summary>
+                    /// Update a package metadata in repository for a given project ID
+                    /// </summary>
+                    public async Task ReportPackageMetadataAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string? connectionId = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("PUT", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/metadata{queryParameters.ToQueryString()}", 
+                            new ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataPutRequest
+                            { 
+                                ConnectionId = connectionId,
+                            }, cancellationToken);
+                    }
+                    
+                
                     /// <summary>
                     /// Report a package version metadata in repository for a given project ID
                     /// </summary>

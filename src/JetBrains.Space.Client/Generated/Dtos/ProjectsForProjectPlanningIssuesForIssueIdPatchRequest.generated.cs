@@ -34,7 +34,7 @@ public class ProjectsForProjectPlanningIssuesForIssueIdPatchRequest
 {
     public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest() { }
     
-    public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest(string? title = null, string? status = null, List<CustomFieldInputValue>? customFields = null, string? description = null, string? assignee = null, DateTime? dueDate = null)
+    public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest(string? title = null, string? status = null, List<CustomFieldInputValue>? customFields = null, bool notifySubscribers = true, string? description = null, string? assignee = null, DateTime? dueDate = null)
     {
         Title = (title ?? string.Empty);
         Description = description;
@@ -42,6 +42,7 @@ public class ProjectsForProjectPlanningIssuesForIssueIdPatchRequest
         Status = (status ?? string.Empty);
         DueDate = dueDate;
         CustomFields = (customFields ?? new List<CustomFieldInputValue>());
+        IsNotifySubscribers = notifySubscribers;
     }
     
     private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Title), "title", string.Empty);
@@ -99,6 +100,15 @@ public class ProjectsForProjectPlanningIssuesForIssueIdPatchRequest
         set => _customFields.SetValue(value);
     }
 
+    private PropertyValue<bool> _notifySubscribers = new PropertyValue<bool>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(IsNotifySubscribers), "notifySubscribers");
+    
+    [JsonPropertyName("notifySubscribers")]
+    public bool IsNotifySubscribers
+    {
+        get => _notifySubscribers.GetValue(InlineErrors);
+        set => _notifySubscribers.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _title.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -107,6 +117,7 @@ public class ProjectsForProjectPlanningIssuesForIssueIdPatchRequest
         _status.SetAccessPath(parentChainPath, validateHasBeenSet);
         _dueDate.SetAccessPath(parentChainPath, validateHasBeenSet);
         _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notifySubscribers.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

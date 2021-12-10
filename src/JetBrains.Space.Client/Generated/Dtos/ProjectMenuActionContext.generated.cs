@@ -37,22 +37,11 @@ public sealed class ProjectMenuActionContext
     
     public ProjectMenuActionContext() { }
     
-    public ProjectMenuActionContext(string menuId, PRProject project)
+    public ProjectMenuActionContext(PRProject project)
     {
-        MenuId = menuId;
         Project = project;
     }
     
-    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(ProjectMenuActionContext), nameof(MenuId), "menuId");
-    
-    [Required]
-    [JsonPropertyName("menuId")]
-    public string MenuId
-    {
-        get => _menuId.GetValue(InlineErrors);
-        set => _menuId.SetValue(value);
-    }
-
     private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(ProjectMenuActionContext), nameof(Project), "project");
     
     [Required]
@@ -65,7 +54,6 @@ public sealed class ProjectMenuActionContext
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _menuId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

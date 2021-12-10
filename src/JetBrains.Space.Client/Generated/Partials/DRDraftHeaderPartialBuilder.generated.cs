@@ -106,5 +106,11 @@ public static class DRDraftHeaderPartialExtensions
     public static Partial<DRDraftHeader> WithBodyType(this Partial<DRDraftHeader> it, Func<Partial<DocumentBodyType>, Partial<DocumentBodyType>> partialBuilder)
         => it.AddFieldName("bodyType", partialBuilder(new Partial<DocumentBodyType>(it)));
     
+    public static Partial<DRDraftHeader> WithBodyInfo(this Partial<DRDraftHeader> it)
+        => it.AddFieldName("bodyInfo");
+    
+    public static Partial<DRDraftHeader> WithBodyInfo(this Partial<DRDraftHeader> it, Func<Partial<DocumentBodyInfo>, Partial<DocumentBodyInfo>> partialBuilder)
+        => it.AddFieldName("bodyInfo", partialBuilder(new Partial<DocumentBodyInfo>(it)));
+    
 }
 

@@ -100,6 +100,12 @@ public static class DocumentInContainerPartialExtensions
     public static Partial<DocumentInContainer> WithBodyType(this Partial<DocumentInContainer> it, Func<Partial<DocumentBodyType>, Partial<DocumentBodyType>> partialBuilder)
         => it.AddFieldName("bodyType", partialBuilder(new Partial<DocumentBodyType>(it)));
     
+    public static Partial<DocumentInContainer> WithBodyInfo(this Partial<DocumentInContainer> it)
+        => it.AddFieldName("bodyInfo");
+    
+    public static Partial<DocumentInContainer> WithBodyInfo(this Partial<DocumentInContainer> it, Func<Partial<DocumentBodyInfo>, Partial<DocumentBodyInfo>> partialBuilder)
+        => it.AddFieldName("bodyInfo", partialBuilder(new Partial<DocumentBodyInfo>(it)));
+    
     public static Partial<DocumentInContainer> WithIsDeleted(this Partial<DocumentInContainer> it)
         => it.AddFieldName("deleted");
     

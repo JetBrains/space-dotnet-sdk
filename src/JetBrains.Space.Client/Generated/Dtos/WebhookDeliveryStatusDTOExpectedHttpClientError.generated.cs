@@ -37,18 +37,18 @@ public sealed class WebhookDeliveryStatusDTOExpectedHttpClientError
     
     public WebhookDeliveryStatusDTOExpectedHttpClientError() { }
     
-    public WebhookDeliveryStatusDTOExpectedHttpClientError(AppMessageDeliveryDTOClientErrorDTO clientError, string deliveryId, DateTime sentTime)
+    public WebhookDeliveryStatusDTOExpectedHttpClientError(AppMessageDeliveryClientErrorDTO clientError, string deliveryId, DateTime sentTime)
     {
         ClientError = clientError;
         DeliveryId = deliveryId;
         SentTime = sentTime;
     }
     
-    private PropertyValue<AppMessageDeliveryDTOClientErrorDTO> _clientError = new PropertyValue<AppMessageDeliveryDTOClientErrorDTO>(nameof(WebhookDeliveryStatusDTOExpectedHttpClientError), nameof(ClientError), "clientError");
+    private PropertyValue<AppMessageDeliveryClientErrorDTO> _clientError = new PropertyValue<AppMessageDeliveryClientErrorDTO>(nameof(WebhookDeliveryStatusDTOExpectedHttpClientError), nameof(ClientError), "clientError");
     
     [Required]
     [JsonPropertyName("clientError")]
-    public AppMessageDeliveryDTOClientErrorDTO ClientError
+    public AppMessageDeliveryClientErrorDTO ClientError
     {
         get => _clientError.GetValue(InlineErrors);
         set => _clientError.SetValue(value);

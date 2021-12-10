@@ -52,5 +52,8 @@ public static class ProjectsForProjectPlanningIssuesForIssueIdPatchRequestPartia
     public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it, Func<Partial<CustomFieldInputValue>, Partial<CustomFieldInputValue>> partialBuilder)
         => it.AddFieldName("customFields", partialBuilder(new Partial<CustomFieldInputValue>(it)));
     
+    public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithIsNotifySubscribers(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
+        => it.AddFieldName("notifySubscribers");
+    
 }
 

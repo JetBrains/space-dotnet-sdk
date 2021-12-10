@@ -34,7 +34,7 @@ public sealed class DocumentInContainer
 {
     public DocumentInContainer() { }
     
-    public DocumentInContainer(string id, bool archived, string containerLinkId, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, bool deleted, int accessOrdinal, DocumentBodyInfo documentBody, TDMemberProfile? author = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null)
+    public DocumentInContainer(string id, bool archived, string containerLinkId, string title, DateTime modified, bool shared, bool deleted, int accessOrdinal, DocumentBodyInfo documentBody, TDMemberProfile? author = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, DocumentFolder? folderRef = null, DocumentContainerInfo? containerInfo = null, DocumentBodyType? bodyType = null, DocumentBodyInfo? bodyInfo = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null)
     {
         Id = id;
         IsArchived = archived;
@@ -51,6 +51,7 @@ public sealed class DocumentInContainer
         FolderRef = folderRef;
         ContainerInfo = containerInfo;
         BodyType = bodyType;
+        BodyInfo = bodyInfo;
         IsDeleted = deleted;
         ArchivedBy = archivedBy;
         ArchivedAt = archivedAt;
@@ -183,24 +184,31 @@ public sealed class DocumentInContainer
         set => _folderRef.SetValue(value);
     }
 
-    private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(DocumentInContainer), nameof(ContainerInfo), "containerInfo");
+    private PropertyValue<DocumentContainerInfo?> _containerInfo = new PropertyValue<DocumentContainerInfo?>(nameof(DocumentInContainer), nameof(ContainerInfo), "containerInfo");
     
-    [Required]
     [JsonPropertyName("containerInfo")]
-    public DocumentContainerInfo ContainerInfo
+    public DocumentContainerInfo? ContainerInfo
     {
         get => _containerInfo.GetValue(InlineErrors);
         set => _containerInfo.SetValue(value);
     }
 
-    private PropertyValue<DocumentBodyType> _bodyType = new PropertyValue<DocumentBodyType>(nameof(DocumentInContainer), nameof(BodyType), "bodyType");
+    private PropertyValue<DocumentBodyType?> _bodyType = new PropertyValue<DocumentBodyType?>(nameof(DocumentInContainer), nameof(BodyType), "bodyType");
     
-    [Required]
     [JsonPropertyName("bodyType")]
-    public DocumentBodyType BodyType
+    public DocumentBodyType? BodyType
     {
         get => _bodyType.GetValue(InlineErrors);
         set => _bodyType.SetValue(value);
+    }
+
+    private PropertyValue<DocumentBodyInfo?> _bodyInfo = new PropertyValue<DocumentBodyInfo?>(nameof(DocumentInContainer), nameof(BodyInfo), "bodyInfo");
+    
+    [JsonPropertyName("bodyInfo")]
+    public DocumentBodyInfo? BodyInfo
+    {
+        get => _bodyInfo.GetValue(InlineErrors);
+        set => _bodyInfo.SetValue(value);
     }
 
     private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(DocumentInContainer), nameof(IsDeleted), "deleted");
@@ -269,6 +277,7 @@ public sealed class DocumentInContainer
         _folderRef.SetAccessPath(parentChainPath, validateHasBeenSet);
         _containerInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
         _bodyType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bodyInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archivedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archivedAt.SetAccessPath(parentChainPath, validateHasBeenSet);

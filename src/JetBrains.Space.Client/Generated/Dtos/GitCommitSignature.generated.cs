@@ -36,6 +36,9 @@ public class GitCommitSignature
     [JsonPropertyName("className")]
     public virtual string? ClassName => "GitCommitSignature";
     
+    public static GitCommitSignatureExpiredKey ExpiredKey(string description)
+        => new GitCommitSignatureExpiredKey(description: description);
+    
     public static GitCommitSignatureNotVerified NotVerified()
         => new GitCommitSignatureNotVerified();
     

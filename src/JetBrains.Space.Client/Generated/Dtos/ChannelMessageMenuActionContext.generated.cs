@@ -37,47 +37,36 @@ public sealed class ChannelMessageMenuActionContext
     
     public ChannelMessageMenuActionContext() { }
     
-    public ChannelMessageMenuActionContext(string menuId, string messageId, string? channelId = null)
+    public ChannelMessageMenuActionContext(ChannelIdentifier channelIdentifier, ChatMessageIdentifier messageIdentifier)
     {
-        MenuId = menuId;
-        ChannelId = channelId;
-        MessageId = messageId;
+        ChannelIdentifier = channelIdentifier;
+        MessageIdentifier = messageIdentifier;
     }
     
-    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(ChannelMessageMenuActionContext), nameof(MenuId), "menuId");
+    private PropertyValue<ChannelIdentifier> _channelIdentifier = new PropertyValue<ChannelIdentifier>(nameof(ChannelMessageMenuActionContext), nameof(ChannelIdentifier), "channelIdentifier");
     
     [Required]
-    [JsonPropertyName("menuId")]
-    public string MenuId
+    [JsonPropertyName("channelIdentifier")]
+    public ChannelIdentifier ChannelIdentifier
     {
-        get => _menuId.GetValue(InlineErrors);
-        set => _menuId.SetValue(value);
+        get => _channelIdentifier.GetValue(InlineErrors);
+        set => _channelIdentifier.SetValue(value);
     }
 
-    private PropertyValue<string?> _channelId = new PropertyValue<string?>(nameof(ChannelMessageMenuActionContext), nameof(ChannelId), "channelId");
-    
-    [JsonPropertyName("channelId")]
-    public string? ChannelId
-    {
-        get => _channelId.GetValue(InlineErrors);
-        set => _channelId.SetValue(value);
-    }
-
-    private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(ChannelMessageMenuActionContext), nameof(MessageId), "messageId");
+    private PropertyValue<ChatMessageIdentifier> _messageIdentifier = new PropertyValue<ChatMessageIdentifier>(nameof(ChannelMessageMenuActionContext), nameof(MessageIdentifier), "messageIdentifier");
     
     [Required]
-    [JsonPropertyName("messageId")]
-    public string MessageId
+    [JsonPropertyName("messageIdentifier")]
+    public ChatMessageIdentifier MessageIdentifier
     {
-        get => _messageId.GetValue(InlineErrors);
-        set => _messageId.SetValue(value);
+        get => _messageIdentifier.GetValue(InlineErrors);
+        set => _messageIdentifier.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _menuId.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _messageId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channelIdentifier.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messageIdentifier.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

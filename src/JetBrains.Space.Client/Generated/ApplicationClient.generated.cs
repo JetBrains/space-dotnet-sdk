@@ -81,18 +81,6 @@ public partial class ApplicationClient : ISpaceClient
     }
     
 
-    public async Task RefreshMenuAsync(string? appId = null, CancellationToken cancellationToken = default)
-    {
-        var queryParameters = new NameValueCollection();
-        
-        await _connection.RequestResourceAsync("POST", $"api/http/applications/refresh-menu{queryParameters.ToQueryString()}", 
-            new ApplicationsRefreshMenuPostRequest
-            { 
-                AppId = appId,
-            }, cancellationToken);
-    }
-    
-
     /// <remarks>
     /// Required permissions:
     /// <list type="bullet">
@@ -213,20 +201,6 @@ public partial class ApplicationClient : ISpaceClient
         return await _connection.RequestResourceAsync<AccessRecord>("GET", $"api/http/applications/{application}/last-client-credentials-access{queryParameters.ToQueryString()}", cancellationToken);
     }
     
-
-    public async Task<Batch<AppMessageDeliveryDTO>> LatestMessageDeliveriesAsync(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<Batch<AppMessageDeliveryDTO>>, Partial<Batch<AppMessageDeliveryDTO>>>? partial = null, CancellationToken cancellationToken = default)
-    {
-        var queryParameters = new NameValueCollection();
-        if (skip != null) queryParameters.Append("$skip", skip);
-        if (top != null) queryParameters.Append("$top", top?.ToString());
-        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AppMessageDeliveryDTO>>()) : Partial<Batch<AppMessageDeliveryDTO>>.Default()).ToString());
-        
-        return await _connection.RequestResourceAsync<Batch<AppMessageDeliveryDTO>>("GET", $"api/http/applications/{application}/latest-messages-deliveries{queryParameters.ToQueryString()}", cancellationToken);
-    }
-    
-    
-    public IAsyncEnumerable<AppMessageDeliveryDTO> LatestMessageDeliveriesAsyncEnumerable(ApplicationIdentifier application, string? skip = null, int? top = 100, Func<Partial<AppMessageDeliveryDTO>, Partial<AppMessageDeliveryDTO>>? partial = null, CancellationToken cancellationToken = default)
-        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => LatestMessageDeliveriesAsync(application: application, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AppMessageDeliveryDTO>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AppMessageDeliveryDTO>.Default())), skip, cancellationToken);
 
     /// <summary>
     /// Returns list of public keys in JWKS format. If message signature is successfully verified with any of the returned public keys, the message can be considered authentic.
@@ -457,7 +431,7 @@ public partial class ApplicationClient : ISpaceClient
             }
             
             /// <summary>
-            /// List required permissions for an application
+            /// List required rights for an application
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -477,7 +451,7 @@ public partial class ApplicationClient : ISpaceClient
             
         
             /// <summary>
-            /// Update list of required permissions for an application
+            /// Update list of required rights for an application
             /// </summary>
             /// <remarks>
             /// Required permissions:

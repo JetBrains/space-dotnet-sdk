@@ -31,9 +31,6 @@ namespace JetBrains.Space.Client.RepositoryMenuActionContextPartialBuilder;
 
 public static class RepositoryMenuActionContextPartialExtensions
 {
-    public static Partial<RepositoryMenuActionContext> WithMenuId(this Partial<RepositoryMenuActionContext> it)
-        => it.AddFieldName("menuId");
-    
     public static Partial<RepositoryMenuActionContext> WithProject(this Partial<RepositoryMenuActionContext> it)
         => it.AddFieldName("project");
     

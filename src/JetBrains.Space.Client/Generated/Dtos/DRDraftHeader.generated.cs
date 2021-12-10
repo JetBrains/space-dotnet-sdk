@@ -34,7 +34,7 @@ public sealed class DRDraftHeader
 {
     public DRDraftHeader() { }
     
-    public DRDraftHeader(string id, string title, CPrincipal createdBy, DateTime modified, bool shared, DocumentContainerInfo containerInfo, DocumentBodyType bodyType, TDMemberProfile? author = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, DocumentFolder? folderRef = null)
+    public DRDraftHeader(string id, string title, CPrincipal createdBy, DateTime modified, bool shared, TDMemberProfile? author = null, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, DocumentFolder? folderRef = null, DocumentContainerInfo? containerInfo = null, DocumentBodyType? bodyType = null, DocumentBodyInfo? bodyInfo = null)
     {
         Id = id;
         Title = title;
@@ -52,6 +52,7 @@ public sealed class DRDraftHeader
         FolderRef = folderRef;
         ContainerInfo = containerInfo;
         BodyType = bodyType;
+        BodyInfo = bodyInfo;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(DRDraftHeader), nameof(Id), "id");
@@ -188,24 +189,31 @@ public sealed class DRDraftHeader
         set => _folderRef.SetValue(value);
     }
 
-    private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(DRDraftHeader), nameof(ContainerInfo), "containerInfo");
+    private PropertyValue<DocumentContainerInfo?> _containerInfo = new PropertyValue<DocumentContainerInfo?>(nameof(DRDraftHeader), nameof(ContainerInfo), "containerInfo");
     
-    [Required]
     [JsonPropertyName("containerInfo")]
-    public DocumentContainerInfo ContainerInfo
+    public DocumentContainerInfo? ContainerInfo
     {
         get => _containerInfo.GetValue(InlineErrors);
         set => _containerInfo.SetValue(value);
     }
 
-    private PropertyValue<DocumentBodyType> _bodyType = new PropertyValue<DocumentBodyType>(nameof(DRDraftHeader), nameof(BodyType), "bodyType");
+    private PropertyValue<DocumentBodyType?> _bodyType = new PropertyValue<DocumentBodyType?>(nameof(DRDraftHeader), nameof(BodyType), "bodyType");
     
-    [Required]
     [JsonPropertyName("bodyType")]
-    public DocumentBodyType BodyType
+    public DocumentBodyType? BodyType
     {
         get => _bodyType.GetValue(InlineErrors);
         set => _bodyType.SetValue(value);
+    }
+
+    private PropertyValue<DocumentBodyInfo?> _bodyInfo = new PropertyValue<DocumentBodyInfo?>(nameof(DRDraftHeader), nameof(BodyInfo), "bodyInfo");
+    
+    [JsonPropertyName("bodyInfo")]
+    public DocumentBodyInfo? BodyInfo
+    {
+        get => _bodyInfo.GetValue(InlineErrors);
+        set => _bodyInfo.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
@@ -226,6 +234,7 @@ public sealed class DRDraftHeader
         _folderRef.SetAccessPath(parentChainPath, validateHasBeenSet);
         _containerInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
         _bodyType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bodyInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

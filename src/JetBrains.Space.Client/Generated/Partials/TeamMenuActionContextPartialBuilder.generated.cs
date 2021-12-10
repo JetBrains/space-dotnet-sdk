@@ -31,9 +31,6 @@ namespace JetBrains.Space.Client.TeamMenuActionContextPartialBuilder;
 
 public static class TeamMenuActionContextPartialExtensions
 {
-    public static Partial<TeamMenuActionContext> WithMenuId(this Partial<TeamMenuActionContext> it)
-        => it.AddFieldName("menuId");
-    
     public static Partial<TeamMenuActionContext> WithTeam(this Partial<TeamMenuActionContext> it)
         => it.AddFieldName("team");
     

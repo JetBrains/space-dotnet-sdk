@@ -31,9 +31,6 @@ namespace JetBrains.Space.Client.LocationMenuActionContextPartialBuilder;
 
 public static class LocationMenuActionContextPartialExtensions
 {
-    public static Partial<LocationMenuActionContext> WithMenuId(this Partial<LocationMenuActionContext> it)
-        => it.AddFieldName("menuId");
-    
     public static Partial<LocationMenuActionContext> WithLocation(this Partial<LocationMenuActionContext> it)
         => it.AddFieldName("location");
     

@@ -47,5 +47,8 @@ public interface ApplicationUnfurlContext
     public static DocumentAppUnfurlContext DocumentAppUnfurlContext(string documentId)
         => new DocumentAppUnfurlContext(documentId: documentId);
     
+    public static IssueUnfurlContext IssueUnfurlContext(string issueId)
+        => new IssueUnfurlContext(issueId: issueId);
+    
 }
 

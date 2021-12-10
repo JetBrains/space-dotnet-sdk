@@ -34,8 +34,8 @@ public static class WebhookDeliveryStatusDTOExpectedHttpClientErrorPartialExtens
     public static Partial<WebhookDeliveryStatusDTOExpectedHttpClientError> WithClientError(this Partial<WebhookDeliveryStatusDTOExpectedHttpClientError> it)
         => it.AddFieldName("clientError");
     
-    public static Partial<WebhookDeliveryStatusDTOExpectedHttpClientError> WithClientError(this Partial<WebhookDeliveryStatusDTOExpectedHttpClientError> it, Func<Partial<AppMessageDeliveryDTOClientErrorDTO>, Partial<AppMessageDeliveryDTOClientErrorDTO>> partialBuilder)
-        => it.AddFieldName("clientError", partialBuilder(new Partial<AppMessageDeliveryDTOClientErrorDTO>(it)));
+    public static Partial<WebhookDeliveryStatusDTOExpectedHttpClientError> WithClientError(this Partial<WebhookDeliveryStatusDTOExpectedHttpClientError> it, Func<Partial<AppMessageDeliveryClientErrorDTO>, Partial<AppMessageDeliveryClientErrorDTO>> partialBuilder)
+        => it.AddFieldName("clientError", partialBuilder(new Partial<AppMessageDeliveryClientErrorDTO>(it)));
     
     public static Partial<WebhookDeliveryStatusDTOExpectedHttpClientError> WithDeliveryId(this Partial<WebhookDeliveryStatusDTOExpectedHttpClientError> it)
         => it.AddFieldName("deliveryId");

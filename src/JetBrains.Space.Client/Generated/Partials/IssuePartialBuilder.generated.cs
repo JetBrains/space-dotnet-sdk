@@ -136,5 +136,11 @@ public static class IssuePartialExtensions
     public static Partial<Issue> WithTopics(this Partial<Issue> it, Func<Partial<Topic>, Partial<Topic>> partialBuilder)
         => it.AddFieldName("topics", partialBuilder(new Partial<Topic>(it)));
     
+    public static Partial<Issue> WithUnfurls(this Partial<Issue> it)
+        => it.AddFieldName("unfurls");
+    
+    public static Partial<Issue> WithUnfurls(this Partial<Issue> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
+        => it.AddFieldName("unfurls", partialBuilder(new Partial<AttachmentInfo>(it)));
+    
 }
 

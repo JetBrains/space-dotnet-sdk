@@ -48,6 +48,9 @@ public abstract class ESPackageRepositorySettings
     public static ESNuGetFeedSettings ESNuGetFeedSettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
         => new ESNuGetFeedSettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
     
+    public static ESPythonPackageIndexSettings ESPythonPackageIndexSettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
+        => new ESPythonPackageIndexSettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
     }

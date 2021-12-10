@@ -44,5 +44,8 @@ public interface PackageType
     public static NuGetPackageType NuGet(string id)
         => new NuGetPackageType(id: id);
     
+    public static PythonPackageType Python(string id)
+        => new PythonPackageType(id: id);
+    
 }
 

@@ -34,7 +34,7 @@ public sealed class DRDraft
 {
     public DRDraft() { }
     
-    public DRDraft(string id, string title, DateTime modified, bool shared, DocumentContainerInfo containerInfo, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBodyInfo documentBody, DocumentBodyType bodyType, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, CPrincipal? createdBy = null, DocumentFolder? folderRef = null)
+    public DRDraft(string id, string title, DateTime modified, bool shared, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, DocumentBodyInfo documentBody, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, PublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, CPrincipal? createdBy = null, DocumentFolder? folderRef = null, DocumentContainerInfo? containerInfo = null, DocumentBodyType? bodyType = null, DocumentBodyInfo? bodyInfo = null)
     {
         Id = id;
         Title = title;
@@ -56,6 +56,7 @@ public sealed class DRDraft
         EditorsTeams = editorsTeams;
         DocumentBody = documentBody;
         BodyType = bodyType;
+        BodyInfo = bodyInfo;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(DRDraft), nameof(Id), "id");
@@ -191,11 +192,10 @@ public sealed class DRDraft
         set => _folderRef.SetValue(value);
     }
 
-    private PropertyValue<DocumentContainerInfo> _containerInfo = new PropertyValue<DocumentContainerInfo>(nameof(DRDraft), nameof(ContainerInfo), "containerInfo");
+    private PropertyValue<DocumentContainerInfo?> _containerInfo = new PropertyValue<DocumentContainerInfo?>(nameof(DRDraft), nameof(ContainerInfo), "containerInfo");
     
-    [Required]
     [JsonPropertyName("containerInfo")]
-    public DocumentContainerInfo ContainerInfo
+    public DocumentContainerInfo? ContainerInfo
     {
         get => _containerInfo.GetValue(InlineErrors);
         set => _containerInfo.SetValue(value);
@@ -241,14 +241,22 @@ public sealed class DRDraft
         set => _documentBody.SetValue(value);
     }
 
-    private PropertyValue<DocumentBodyType> _bodyType = new PropertyValue<DocumentBodyType>(nameof(DRDraft), nameof(BodyType), "bodyType");
+    private PropertyValue<DocumentBodyType?> _bodyType = new PropertyValue<DocumentBodyType?>(nameof(DRDraft), nameof(BodyType), "bodyType");
     
-    [Required]
     [JsonPropertyName("bodyType")]
-    public DocumentBodyType BodyType
+    public DocumentBodyType? BodyType
     {
         get => _bodyType.GetValue(InlineErrors);
         set => _bodyType.SetValue(value);
+    }
+
+    private PropertyValue<DocumentBodyInfo?> _bodyInfo = new PropertyValue<DocumentBodyInfo?>(nameof(DRDraft), nameof(BodyInfo), "bodyInfo");
+    
+    [JsonPropertyName("bodyInfo")]
+    public DocumentBodyInfo? BodyInfo
+    {
+        get => _bodyInfo.GetValue(InlineErrors);
+        set => _bodyInfo.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
@@ -273,6 +281,7 @@ public sealed class DRDraft
         _editorsTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _documentBody.SetAccessPath(parentChainPath, validateHasBeenSet);
         _bodyType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bodyInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

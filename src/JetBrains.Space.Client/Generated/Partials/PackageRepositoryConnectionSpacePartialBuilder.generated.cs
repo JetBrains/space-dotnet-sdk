@@ -37,6 +37,9 @@ public static class PackageRepositoryConnectionSpacePartialExtensions
     public static Partial<PackageRepositoryConnectionSpace> WithIsEnableCaching(this Partial<PackageRepositoryConnectionSpace> it)
         => it.AddFieldName("enableCaching");
     
+    public static Partial<PackageRepositoryConnectionSpace> WithIsStickyPackages(this Partial<PackageRepositoryConnectionSpace> it)
+        => it.AddFieldName("stickyPackages");
+    
     public static Partial<PackageRepositoryConnectionSpace> WithPackageNameFilters(this Partial<PackageRepositoryConnectionSpace> it)
         => it.AddFieldName("packageNameFilters");
     

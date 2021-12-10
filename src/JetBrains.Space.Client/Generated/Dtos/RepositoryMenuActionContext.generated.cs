@@ -37,23 +37,12 @@ public sealed class RepositoryMenuActionContext
     
     public RepositoryMenuActionContext() { }
     
-    public RepositoryMenuActionContext(string menuId, PRProject project, string repo)
+    public RepositoryMenuActionContext(PRProject project, string repo)
     {
-        MenuId = menuId;
         Project = project;
         Repo = repo;
     }
     
-    private PropertyValue<string> _menuId = new PropertyValue<string>(nameof(RepositoryMenuActionContext), nameof(MenuId), "menuId");
-    
-    [Required]
-    [JsonPropertyName("menuId")]
-    public string MenuId
-    {
-        get => _menuId.GetValue(InlineErrors);
-        set => _menuId.SetValue(value);
-    }
-
     private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(RepositoryMenuActionContext), nameof(Project), "project");
     
     [Required]
@@ -76,7 +65,6 @@ public sealed class RepositoryMenuActionContext
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _menuId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repo.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

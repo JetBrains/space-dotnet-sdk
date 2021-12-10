@@ -31,8 +31,8 @@ namespace JetBrains.Space.Client.MenuActionPayloadPartialBuilder;
 
 public static class MenuActionPayloadPartialExtensions
 {
-    public static Partial<MenuActionPayload> WithExtensionName(this Partial<MenuActionPayload> it)
-        => it.AddFieldName("extensionName");
+    public static Partial<MenuActionPayload> WithMenuItemUniqueCode(this Partial<MenuActionPayload> it)
+        => it.AddFieldName("menuItemUniqueCode");
     
     public static Partial<MenuActionPayload> WithContext(this Partial<MenuActionPayload> it)
         => it.AddFieldName("context");

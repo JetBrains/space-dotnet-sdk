@@ -34,7 +34,7 @@ public sealed class Issue
 {
     public Issue() { }
     
-    public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<SprintRecord> sprints, List<Topic> topics, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, string? description = null)
+    public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<SprintRecord> sprints, List<Topic> topics, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, string? description = null, List<AttachmentInfo>? unfurls = null)
     {
         Id = id;
         IsArchived = archived;
@@ -58,6 +58,7 @@ public sealed class Issue
         Description = description;
         Sprints = sprints;
         Topics = topics;
+        Unfurls = unfurls;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(Issue), nameof(Id), "id");
@@ -275,6 +276,15 @@ public sealed class Issue
         set => _topics.SetValue(value);
     }
 
+    private PropertyValue<List<AttachmentInfo>?> _unfurls = new PropertyValue<List<AttachmentInfo>?>(nameof(Issue), nameof(Unfurls), "unfurls");
+    
+    [JsonPropertyName("unfurls")]
+    public List<AttachmentInfo>? Unfurls
+    {
+        get => _unfurls.GetValue(InlineErrors);
+        set => _unfurls.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -299,6 +309,7 @@ public sealed class Issue
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sprints.SetAccessPath(parentChainPath, validateHasBeenSet);
         _topics.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unfurls.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />
