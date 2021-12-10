@@ -33,7 +33,7 @@ internal class DeploymentInfoClient
 
         var deploymentInfo = new DeploymentInfo();
 
-        if (TryGetMatch(body, @">Version (?<version>\d*.\d*.\d*.\d*)", "version", out var version))
+        if (TryGetMatch(body, @">Version (?<version>.*)", "version", out var version))
         {
             deploymentInfo.Version = version;
         }
