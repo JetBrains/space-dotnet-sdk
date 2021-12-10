@@ -18,18 +18,11 @@ public interface ISpaceWebHookHandler
     Task<Commands> HandleListCommandsAsync(ListCommandsPayload payload);
         
     /// <summary>
-    /// Handle "list menu extensions" request. Use the response to provide details about available menu extensions to Space.
-    /// </summary>
-    /// <param name="payload">The <see cref="ListMenuExtensionsPayload"/>.</param>
-    /// <returns>List of available menu extensions.</returns>
-    Task<MenuExtensions> HandleListMenuExtensionsAsync(ListMenuExtensionsPayload payload);
-        
-    /// <summary>
     /// Handle message request. This method is called when a user sends our application a chat message.
     /// </summary>
     /// <param name="payload">The <see cref="MessagePayload"/>.</param>
     Task HandleMessageAsync(MessagePayload payload);
-        
+
     /// <summary>
     /// Handle message action request. This method is called when a user interacts with our application by clicking a button.
     /// </summary>
@@ -92,4 +85,11 @@ public interface ISpaceWebHookHandler
     /// <param name="payload">The <see cref="AppPublicationCheckPayload"/>.</param>
     /// <returns>The result of executing this action.</returns>
     Task<ApplicationExecutionResult> HandleAppPublicationCheckAsync(AppPublicationCheckPayload payload);
+
+    /// <summary>
+    /// Handle event when application auth code flow is updated in Space organization.
+    /// </summary>
+    /// <param name="payload">The <see cref="AuthCodeFlowTokensPayload"/>.</param>
+    /// <returns>The result of executing this action.</returns>
+    Task<ApplicationExecutionResult> HandleAuthCodeFlowTokensAsync(AuthCodeFlowTokensPayload payload);
 }

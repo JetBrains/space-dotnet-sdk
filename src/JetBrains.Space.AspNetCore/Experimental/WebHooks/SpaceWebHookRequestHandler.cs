@@ -73,16 +73,6 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
                 await WriteJsonResponse(context.Response, 200, commands);
                 return;
                 
-            // List menu extensions?
-            case ListMenuExtensionsPayload listMenuExtensionsPayload:
-                var menuExtensions = await handler.HandleListMenuExtensionsAsync(listMenuExtensionsPayload);
-                PropagatePropertyAccessPathHelper.SetAccessPathForValue(string.Empty, false, menuExtensions);
-                    
-                // ReSharper disable once ConstantNullCoalescingCondition
-                menuExtensions.Extensions ??= new List<MenuExtensionDetail>();
-                await WriteJsonResponse(context.Response, 200, menuExtensions);
-                return;
-                
             // Message?
             case MessagePayload messagePayload:
                 await handler.HandleMessageAsync(messagePayload);
@@ -141,6 +131,12 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
             case AppPublicationCheckPayload publicationCheckPayload:
                 var publicationCheckPayloadActionResult = await handler.HandleAppPublicationCheckAsync(publicationCheckPayload);
                 await WriteApplicationExecutionResultAsync(context.Response, publicationCheckPayloadActionResult);
+                return;
+                
+            // Auth code flow updated?
+            case AuthCodeFlowTokensPayload authCodeFlowTokensPayload:
+                var authCodeFlowTokensResult = await handler.HandleAuthCodeFlowTokensAsync(authCodeFlowTokensPayload);
+                await WriteApplicationExecutionResultAsync(context.Response, authCodeFlowTokensResult);
                 return;
         }
 

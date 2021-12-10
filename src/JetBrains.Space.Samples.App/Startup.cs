@@ -38,7 +38,6 @@ public class Startup
             
         // Space webhook handler
         services.AddSpaceWebHookHandler<CateringWebHookHandler>(options => Configuration.Bind("Space", options));
-        services.AddHostedService<CateringWebHookHandlerStartupTask>();
 
         // - or: -
         // services.AddSpaceWebHookHandler<CateringWebHookHandler>(options =>

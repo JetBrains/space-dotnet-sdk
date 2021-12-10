@@ -3,45 +3,12 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using JetBrains.Space.AspNetCore.Experimental.WebHooks;
 using JetBrains.Space.Client;
-using Microsoft.Extensions.Hosting;
 
 namespace JetBrains.Space.Samples.App.WebHooks;
-
-public class CateringWebHookHandlerStartupTask : BackgroundService
-{
-    private readonly ApplicationClient _applicationClient;
-
-    public CateringWebHookHandlerStartupTask(ApplicationClient applicationClient)
-    {
-        _applicationClient = applicationClient;
-    }
-        
-    /// <summary>
-    /// To register menu items in Space, we have to make a call
-    /// to <see cref="ApplicationClient.RefreshMenuAsync"/> once in the application's lifetime.
-    ///
-    /// Space will then reach out to your application and will
-    /// invoke <see cref="SpaceWebHookHandler.HandleListMenuExtensionsAsync"/>.
-    ///
-    /// Note that ideally this is done just after startup, as <see cref="ApplicationClient.RefreshMenuAsync"/>
-    /// is an expensive call that only has to happen when available menu items change.
-    ///
-    /// Currently, menu registrations expire. Therefore, this method re-registers menu items every two hours.
-    /// </summary>
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-    {
-        while (!stoppingToken.IsCancellationRequested)
-        {
-            await _applicationClient.RefreshMenuAsync(cancellationToken: stoppingToken);
-            await Task.Delay(TimeSpan.FromHours(2), stoppingToken);
-        }
-    }
-}
     
 [UsedImplicitly]
 public class CateringWebHookHandler : SpaceWebHookHandler
@@ -62,16 +29,6 @@ public class CateringWebHookHandler : SpaceWebHookHandler
             new("new", "Create a new catering request."),
             new("help", "Get more info about this application.")
         });
-    }
-
-    public override async Task<MenuExtensions> HandleListMenuExtensionsAsync(ListMenuExtensionsPayload payload)
-    {
-        // TIP: Remove menu items/update menu items by returning a different shape of collection
-        return new MenuExtensions();
-        // return new MenuExtensions(new List<MenuExtensionDetail>
-        // {
-        //     new MenuExtensionDetail(MenuId.Global.Add, "Catering request", "Request catering (demo)")
-        // });
     }
         
     public override async Task<ApplicationExecutionResult> HandleMenuActionAsync(MenuActionPayload payload)

@@ -11,10 +11,6 @@ public abstract class SpaceWebHookHandler
     /// <inheritdoc/>
     public virtual Task<Commands> HandleListCommandsAsync(ListCommandsPayload payload) 
         => Task.FromResult(new Commands(new List<CommandDetail>()));
-        
-    /// <inheritdoc/>
-    public virtual Task<MenuExtensions> HandleListMenuExtensionsAsync(ListMenuExtensionsPayload payload) 
-        => Task.FromResult(new MenuExtensions(new List<MenuExtensionDetail>()));
 
     /// <inheritdoc/>
     public virtual Task HandleMessageAsync(MessagePayload payload)
@@ -54,5 +50,9 @@ public abstract class SpaceWebHookHandler
 
     /// <inheritdoc/>
     public virtual Task<ApplicationExecutionResult> HandleAppPublicationCheckAsync(AppPublicationCheckPayload payload)
+        => Task.FromResult(new ApplicationExecutionResult());
+    
+    /// <inheritdoc/>
+    public virtual Task<ApplicationExecutionResult> HandleAuthCodeFlowTokensAsync(AuthCodeFlowTokensPayload payload)
         => Task.FromResult(new ApplicationExecutionResult());
 }
