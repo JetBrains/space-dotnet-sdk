@@ -39,14 +39,14 @@ public abstract class ESPackageRepositorySettings
     public static ESContainerRegistrySettings ESContainerRegistrySettings(bool immutableTags, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
         => new ESContainerRegistrySettings(immutableTags: immutableTags, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
     
-    public static ESMavenRepositorySettings ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-        => new ESMavenRepositorySettings(enableSnapshots: enableSnapshots, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    public static ESMavenRepositorySettings ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? checkVulnerabilities = null)
+        => new ESMavenRepositorySettings(enableSnapshots: enableSnapshots, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions, checkVulnerabilities: checkVulnerabilities);
     
-    public static ESNpmRegistrySettings ESNpmRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-        => new ESNpmRegistrySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    public static ESNpmRegistrySettings ESNpmRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? checkVulnerabilities = null)
+        => new ESNpmRegistrySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions, checkVulnerabilities: checkVulnerabilities);
     
-    public static ESNuGetFeedSettings ESNuGetFeedSettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-        => new ESNuGetFeedSettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    public static ESNuGetFeedSettings ESNuGetFeedSettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? checkVulnerabilities = null)
+        => new ESNuGetFeedSettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions, checkVulnerabilities: checkVulnerabilities);
     
     public static ESPythonPackageIndexSettings ESPythonPackageIndexSettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
         => new ESPythonPackageIndexSettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);

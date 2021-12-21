@@ -37,10 +37,11 @@ public sealed class ESNpmRegistrySettings
     
     public ESNpmRegistrySettings() { }
     
-    public ESNpmRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
+    public ESNpmRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? checkVulnerabilities = null)
     {
         RetentionPolicyParams = retentionPolicyParams;
         IsImmutablePackageVersions = immutablePackageVersions;
+        IsCheckVulnerabilities = checkVulnerabilities;
     }
     
     private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESNpmRegistrySettings), nameof(RetentionPolicyParams), "retentionPolicyParams");
@@ -61,10 +62,20 @@ public sealed class ESNpmRegistrySettings
         set => _immutablePackageVersions.SetValue(value);
     }
 
+    private PropertyValue<bool?> _checkVulnerabilities = new PropertyValue<bool?>(nameof(ESNpmRegistrySettings), nameof(IsCheckVulnerabilities), "checkVulnerabilities");
+    
+    [JsonPropertyName("checkVulnerabilities")]
+    public bool? IsCheckVulnerabilities
+    {
+        get => _checkVulnerabilities.GetValue(InlineErrors);
+        set => _checkVulnerabilities.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _retentionPolicyParams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _immutablePackageVersions.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _checkVulnerabilities.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

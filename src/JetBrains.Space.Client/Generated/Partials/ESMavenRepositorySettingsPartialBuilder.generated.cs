@@ -43,5 +43,8 @@ public static class ESMavenRepositorySettingsPartialExtensions
     public static Partial<ESMavenRepositorySettings> WithIsImmutablePackageVersions(this Partial<ESMavenRepositorySettings> it)
         => it.AddFieldName("immutablePackageVersions");
     
+    public static Partial<ESMavenRepositorySettings> WithIsCheckVulnerabilities(this Partial<ESMavenRepositorySettings> it)
+        => it.AddFieldName("checkVulnerabilities");
+    
 }
 

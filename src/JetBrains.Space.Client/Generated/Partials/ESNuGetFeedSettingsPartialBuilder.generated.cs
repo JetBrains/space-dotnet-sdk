@@ -40,5 +40,8 @@ public static class ESNuGetFeedSettingsPartialExtensions
     public static Partial<ESNuGetFeedSettings> WithIsImmutablePackageVersions(this Partial<ESNuGetFeedSettings> it)
         => it.AddFieldName("immutablePackageVersions");
     
+    public static Partial<ESNuGetFeedSettings> WithIsCheckVulnerabilities(this Partial<ESNuGetFeedSettings> it)
+        => it.AddFieldName("checkVulnerabilities");
+    
 }
 

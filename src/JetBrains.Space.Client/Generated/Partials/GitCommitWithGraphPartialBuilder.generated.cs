@@ -55,6 +55,9 @@ public static class GitCommitWithGraphPartialExtensions
     public static Partial<GitCommitWithGraph> WithIssueIds(this Partial<GitCommitWithGraph> it)
         => it.AddFieldName("issueIds");
     
+    public static Partial<GitCommitWithGraph> WithDeployments(this Partial<GitCommitWithGraph> it)
+        => it.AddFieldName("deployments");
+    
     public static Partial<GitCommitWithGraph> WithLayout(this Partial<GitCommitWithGraph> it)
         => it.AddFieldName("layout");
     

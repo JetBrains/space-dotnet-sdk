@@ -34,13 +34,14 @@ public sealed class GitCommitWithGraph
 {
     public GitCommitWithGraph() { }
     
-    public GitCommitWithGraph(string repositoryName, GitCommitInfo commit, List<Unfurl> commitMessageUnfurls, List<CodeReviewRecord> reviews, List<string> issueIds, bool unreachable, GitGraphLayoutLine? layout = null)
+    public GitCommitWithGraph(string repositoryName, GitCommitInfo commit, List<Unfurl> commitMessageUnfurls, List<CodeReviewRecord> reviews, List<string> issueIds, List<string> deployments, bool unreachable, GitGraphLayoutLine? layout = null)
     {
         RepositoryName = repositoryName;
         Commit = commit;
         CommitMessageUnfurls = commitMessageUnfurls;
         Reviews = reviews;
         IssueIds = issueIds;
+        Deployments = deployments;
         Layout = layout;
         IsUnreachable = unreachable;
     }
@@ -95,6 +96,16 @@ public sealed class GitCommitWithGraph
         set => _issueIds.SetValue(value);
     }
 
+    private PropertyValue<List<string>> _deployments = new PropertyValue<List<string>>(nameof(GitCommitWithGraph), nameof(Deployments), "deployments", new List<string>());
+    
+    [Required]
+    [JsonPropertyName("deployments")]
+    public List<string> Deployments
+    {
+        get => _deployments.GetValue(InlineErrors);
+        set => _deployments.SetValue(value);
+    }
+
     private PropertyValue<GitGraphLayoutLine?> _layout = new PropertyValue<GitGraphLayoutLine?>(nameof(GitCommitWithGraph), nameof(Layout), "layout");
     
     [JsonPropertyName("layout")]
@@ -121,6 +132,7 @@ public sealed class GitCommitWithGraph
         _commitMessageUnfurls.SetAccessPath(parentChainPath, validateHasBeenSet);
         _reviews.SetAccessPath(parentChainPath, validateHasBeenSet);
         _issueIds.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deployments.SetAccessPath(parentChainPath, validateHasBeenSet);
         _layout.SetAccessPath(parentChainPath, validateHasBeenSet);
         _unreachable.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

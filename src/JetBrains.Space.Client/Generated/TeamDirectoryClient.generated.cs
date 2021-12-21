@@ -2548,6 +2548,14 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// <summary>
             /// Create a personal token for the given profile that can be used to access the current organisation
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Create permanent tokens for yourself</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<Pair<ESPersonalToken, string>> CreatePermanentTokenAsync(ProfileIdentifier profile, string name, string scope, DateTime? expires = null, Func<Partial<Pair<ESPersonalToken, string>>, Partial<Pair<ESPersonalToken, string>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -2566,6 +2574,14 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// <summary>
             /// Get personal tokens used to access the current organisation for the given profile
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View, update, and revoke permanent tokens</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<Batch<ESPersonalToken>> GetAllPermanentTokensAsync(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<Batch<ESPersonalToken>>, Partial<Batch<ESPersonalToken>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -2580,12 +2596,28 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// <summary>
             /// Get personal tokens used to access the current organisation for the given profile
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View, update, and revoke permanent tokens</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public IAsyncEnumerable<ESPersonalToken> GetAllPermanentTokensAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<ESPersonalToken>, Partial<ESPersonalToken>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPermanentTokensAsync(profile: profile, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESPersonalToken>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESPersonalToken>.Default())), skip, cancellationToken);
         
             /// <summary>
             /// Update an existing personal token used to access the current organisation. The name and/or scope of the personal token can be updated.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View, update, and revoke permanent tokens</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task UpdatePermanentTokenAsync(ProfileIdentifier profile, string tokenId, string? name = null, string? scope = null, DateTime? expires = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -2603,6 +2635,14 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// <summary>
             /// Delete a specific personal token used to access the current organisation
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View, update, and revoke permanent tokens</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task DeletePermanentTokenAsync(ProfileIdentifier profile, string tokenId, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();

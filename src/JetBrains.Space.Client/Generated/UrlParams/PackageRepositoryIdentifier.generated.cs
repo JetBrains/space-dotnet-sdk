@@ -38,6 +38,9 @@ public abstract class PackageRepositoryIdentifier : IUrlParameter
     public static PackageRepositoryIdentifier Key(string key)
         => new PackageRepositoryIdentifierKey(key);
     
+    public static PackageRepositoryIdentifier TypeAndName(string type, string name)
+        => new PackageRepositoryIdentifierTypeAndName(type, name);
+    
     private class PackageRepositoryIdentifierId : PackageRepositoryIdentifier
     {
         private readonly string _id;
@@ -62,6 +65,22 @@ public abstract class PackageRepositoryIdentifier : IUrlParameter
         
         public override string ToString()
             => $"key:{_key}";
+    }
+    
+    private class PackageRepositoryIdentifierTypeAndName : PackageRepositoryIdentifier
+    {
+        private readonly string _type;
+        
+        private readonly string _name;
+        
+        public PackageRepositoryIdentifierTypeAndName(string type, string name)
+        {
+            _type = type;
+            _name = name;
+        }
+        
+        public override string ToString()
+            => $"{{type:{_type},name:{_name}}}";
     }
     
 }

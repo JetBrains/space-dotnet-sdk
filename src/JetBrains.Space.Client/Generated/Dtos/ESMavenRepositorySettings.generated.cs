@@ -37,11 +37,12 @@ public sealed class ESMavenRepositorySettings
     
     public ESMavenRepositorySettings() { }
     
-    public ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
+    public ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? checkVulnerabilities = null)
     {
         IsEnableSnapshots = enableSnapshots;
         RetentionPolicyParams = retentionPolicyParams;
         IsImmutablePackageVersions = immutablePackageVersions;
+        IsCheckVulnerabilities = checkVulnerabilities;
     }
     
     private PropertyValue<bool> _enableSnapshots = new PropertyValue<bool>(nameof(ESMavenRepositorySettings), nameof(IsEnableSnapshots), "enableSnapshots");
@@ -72,11 +73,21 @@ public sealed class ESMavenRepositorySettings
         set => _immutablePackageVersions.SetValue(value);
     }
 
+    private PropertyValue<bool?> _checkVulnerabilities = new PropertyValue<bool?>(nameof(ESMavenRepositorySettings), nameof(IsCheckVulnerabilities), "checkVulnerabilities");
+    
+    [JsonPropertyName("checkVulnerabilities")]
+    public bool? IsCheckVulnerabilities
+    {
+        get => _checkVulnerabilities.GetValue(InlineErrors);
+        set => _checkVulnerabilities.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _enableSnapshots.SetAccessPath(parentChainPath, validateHasBeenSet);
         _retentionPolicyParams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _immutablePackageVersions.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _checkVulnerabilities.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

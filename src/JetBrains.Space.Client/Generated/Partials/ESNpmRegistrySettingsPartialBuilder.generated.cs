@@ -40,5 +40,8 @@ public static class ESNpmRegistrySettingsPartialExtensions
     public static Partial<ESNpmRegistrySettings> WithIsImmutablePackageVersions(this Partial<ESNpmRegistrySettings> it)
         => it.AddFieldName("immutablePackageVersions");
     
+    public static Partial<ESNpmRegistrySettings> WithIsCheckVulnerabilities(this Partial<ESNpmRegistrySettings> it)
+        => it.AddFieldName("checkVulnerabilities");
+    
 }
 

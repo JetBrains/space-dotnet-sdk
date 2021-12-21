@@ -38,5 +38,8 @@ public enum PackageRepositoryEventAction
     [EnumMember(Value = "removed")]
     Removed,
     
+    [EnumMember(Value = "vulnerabilities")]
+    Vulnerabilities,
+    
 }
 
