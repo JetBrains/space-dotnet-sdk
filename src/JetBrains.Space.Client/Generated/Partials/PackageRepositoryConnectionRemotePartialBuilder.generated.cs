@@ -40,8 +40,8 @@ public static class PackageRepositoryConnectionRemotePartialExtensions
     public static Partial<PackageRepositoryConnectionRemote> WithIsEnablePublishing(this Partial<PackageRepositoryConnectionRemote> it)
         => it.AddFieldName("enablePublishing");
     
-    public static Partial<PackageRepositoryConnectionRemote> WithIsStickyPackages(this Partial<PackageRepositoryConnectionRemote> it)
-        => it.AddFieldName("stickyPackages");
+    public static Partial<PackageRepositoryConnectionRemote> WithIsRememberDownloaded(this Partial<PackageRepositoryConnectionRemote> it)
+        => it.AddFieldName("rememberDownloaded");
     
     public static Partial<PackageRepositoryConnectionRemote> WithPackageNameFilters(this Partial<PackageRepositoryConnectionRemote> it)
         => it.AddFieldName("packageNameFilters");

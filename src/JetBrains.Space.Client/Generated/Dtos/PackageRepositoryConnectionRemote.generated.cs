@@ -37,12 +37,12 @@ public sealed class PackageRepositoryConnectionRemote
     
     public PackageRepositoryConnectionRemote() { }
     
-    public PackageRepositoryConnectionRemote(string id, bool enableCaching, bool enablePublishing, bool stickyPackages, string url, PackageRepositoryCredentials credentials, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
+    public PackageRepositoryConnectionRemote(string id, bool enableCaching, bool enablePublishing, bool rememberDownloaded, string url, PackageRepositoryCredentials credentials, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
     {
         Id = id;
         IsEnableCaching = enableCaching;
         IsEnablePublishing = enablePublishing;
-        IsStickyPackages = stickyPackages;
+        IsRememberDownloaded = rememberDownloaded;
         PackageNameFilters = packageNameFilters;
         Url = url;
         Credentials = credentials;
@@ -81,14 +81,14 @@ public sealed class PackageRepositoryConnectionRemote
         set => _enablePublishing.SetValue(value);
     }
 
-    private PropertyValue<bool> _stickyPackages = new PropertyValue<bool>(nameof(PackageRepositoryConnectionRemote), nameof(IsStickyPackages), "stickyPackages");
+    private PropertyValue<bool> _rememberDownloaded = new PropertyValue<bool>(nameof(PackageRepositoryConnectionRemote), nameof(IsRememberDownloaded), "rememberDownloaded");
     
     [Required]
-    [JsonPropertyName("stickyPackages")]
-    public bool IsStickyPackages
+    [JsonPropertyName("rememberDownloaded")]
+    public bool IsRememberDownloaded
     {
-        get => _stickyPackages.GetValue(InlineErrors);
-        set => _stickyPackages.SetValue(value);
+        get => _rememberDownloaded.GetValue(InlineErrors);
+        set => _rememberDownloaded.SetValue(value);
     }
 
     private PropertyValue<List<string>?> _packageNameFilters = new PropertyValue<List<string>?>(nameof(PackageRepositoryConnectionRemote), nameof(PackageNameFilters), "packageNameFilters");
@@ -152,7 +152,7 @@ public sealed class PackageRepositoryConnectionRemote
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _enableCaching.SetAccessPath(parentChainPath, validateHasBeenSet);
         _enablePublishing.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _stickyPackages.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rememberDownloaded.SetAccessPath(parentChainPath, validateHasBeenSet);
         _packageNameFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
         _url.SetAccessPath(parentChainPath, validateHasBeenSet);
         _credentials.SetAccessPath(parentChainPath, validateHasBeenSet);

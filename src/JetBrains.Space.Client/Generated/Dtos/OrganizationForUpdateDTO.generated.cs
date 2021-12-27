@@ -34,7 +34,7 @@ public sealed class OrganizationForUpdateDTO
 {
     public OrganizationForUpdateDTO() { }
     
-    public OrganizationForUpdateDTO(string name, string? slogan = null, string? logoSmall = null, string? logo = null, string? logoId = null, string? slackWorkspace = null, bool? onboardingRequired = null, ATimeZone? timezone = null, string? license = null)
+    public OrganizationForUpdateDTO(string name, string? slogan = null, string? logoSmall = null, string? logo = null, string? logoId = null, string? slackWorkspace = null, bool? onboardingRequired = null, bool? userAgreementAccepted = null, ATimeZone? timezone = null, string? license = null)
     {
         Name = name;
         Slogan = slogan;
@@ -43,6 +43,7 @@ public sealed class OrganizationForUpdateDTO
         LogoId = logoId;
         SlackWorkspace = slackWorkspace;
         IsOnboardingRequired = onboardingRequired;
+        IsUserAgreementAccepted = userAgreementAccepted;
         Timezone = timezone;
         License = license;
     }
@@ -112,6 +113,15 @@ public sealed class OrganizationForUpdateDTO
         set => _onboardingRequired.SetValue(value);
     }
 
+    private PropertyValue<bool?> _userAgreementAccepted = new PropertyValue<bool?>(nameof(OrganizationForUpdateDTO), nameof(IsUserAgreementAccepted), "userAgreementAccepted");
+    
+    [JsonPropertyName("userAgreementAccepted")]
+    public bool? IsUserAgreementAccepted
+    {
+        get => _userAgreementAccepted.GetValue(InlineErrors);
+        set => _userAgreementAccepted.SetValue(value);
+    }
+
     private PropertyValue<ATimeZone?> _timezone = new PropertyValue<ATimeZone?>(nameof(OrganizationForUpdateDTO), nameof(Timezone), "timezone");
     
     [JsonPropertyName("timezone")]
@@ -139,6 +149,7 @@ public sealed class OrganizationForUpdateDTO
         _logoId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _slackWorkspace.SetAccessPath(parentChainPath, validateHasBeenSet);
         _onboardingRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userAgreementAccepted.SetAccessPath(parentChainPath, validateHasBeenSet);
         _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);
         _license.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

@@ -34,6 +34,12 @@ public static class PackagesPublishingPartialExtensions
     public static Partial<PackagesPublishing> WithPublishingId(this Partial<PackagesPublishing> it)
         => it.AddFieldName("publishingId");
     
+    public static Partial<PackagesPublishing> WithSource(this Partial<PackagesPublishing> it)
+        => it.AddFieldName("source");
+    
+    public static Partial<PackagesPublishing> WithSource(this Partial<PackagesPublishing> it, Func<Partial<PublishingSource>, Partial<PublishingSource>> partialBuilder)
+        => it.AddFieldName("source", partialBuilder(new Partial<PublishingSource>(it)));
+    
     public static Partial<PackagesPublishing> WithCreated(this Partial<PackagesPublishing> it)
         => it.AddFieldName("created");
     

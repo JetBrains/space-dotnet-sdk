@@ -36,11 +36,11 @@ public class PackageRepositoryConnection
     [JsonPropertyName("className")]
     public virtual string? ClassName => "PackageRepositoryConnection";
     
-    public static PackageRepositoryConnectionRemote Remote(string id, bool enableCaching, bool enablePublishing, bool stickyPackages, string url, PackageRepositoryCredentials credentials, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
-        => new PackageRepositoryConnectionRemote(id: id, enableCaching: enableCaching, enablePublishing: enablePublishing, stickyPackages: stickyPackages, url: url, credentials: credentials, packageNameFilters: packageNameFilters, secretId: secretId, secretValue: secretValue, settings: settings);
+    public static PackageRepositoryConnectionRemote Remote(string id, bool enableCaching, bool enablePublishing, bool rememberDownloaded, string url, PackageRepositoryCredentials credentials, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
+        => new PackageRepositoryConnectionRemote(id: id, enableCaching: enableCaching, enablePublishing: enablePublishing, rememberDownloaded: rememberDownloaded, url: url, credentials: credentials, packageNameFilters: packageNameFilters, secretId: secretId, secretValue: secretValue, settings: settings);
     
-    public static PackageRepositoryConnectionSpace Space(string id, bool enableCaching, bool stickyPackages, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
-        => new PackageRepositoryConnectionSpace(id: id, enableCaching: enableCaching, stickyPackages: stickyPackages, repository: repository, packageNameFilters: packageNameFilters);
+    public static PackageRepositoryConnectionSpace Space(string id, bool enableCaching, bool rememberDownloaded, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
+        => new PackageRepositoryConnectionSpace(id: id, enableCaching: enableCaching, rememberDownloaded: rememberDownloaded, repository: repository, packageNameFilters: packageNameFilters);
     
     public PackageRepositoryConnection() { }
     

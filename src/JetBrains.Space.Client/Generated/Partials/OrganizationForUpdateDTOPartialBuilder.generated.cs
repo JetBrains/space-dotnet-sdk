@@ -52,6 +52,9 @@ public static class OrganizationForUpdateDTOPartialExtensions
     public static Partial<OrganizationForUpdateDTO> WithIsOnboardingRequired(this Partial<OrganizationForUpdateDTO> it)
         => it.AddFieldName("onboardingRequired");
     
+    public static Partial<OrganizationForUpdateDTO> WithIsUserAgreementAccepted(this Partial<OrganizationForUpdateDTO> it)
+        => it.AddFieldName("userAgreementAccepted");
+    
     public static Partial<OrganizationForUpdateDTO> WithTimezone(this Partial<OrganizationForUpdateDTO> it)
         => it.AddFieldName("timezone");
     

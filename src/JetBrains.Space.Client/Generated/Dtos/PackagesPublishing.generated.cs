@@ -34,9 +34,10 @@ public sealed class PackagesPublishing
 {
     public PackagesPublishing() { }
     
-    public PackagesPublishing(string publishingId, long created, bool successful, long? started = null, long? completed = null, string? error = null, CPrincipal? principal = null)
+    public PackagesPublishing(string publishingId, PublishingSource source, long created, bool successful, long? started = null, long? completed = null, string? error = null, CPrincipal? principal = null)
     {
         PublishingId = publishingId;
+        Source = source;
         Created = created;
         Started = started;
         Completed = completed;
@@ -53,6 +54,16 @@ public sealed class PackagesPublishing
     {
         get => _publishingId.GetValue(InlineErrors);
         set => _publishingId.SetValue(value);
+    }
+
+    private PropertyValue<PublishingSource> _source = new PropertyValue<PublishingSource>(nameof(PackagesPublishing), nameof(Source), "source");
+    
+    [Required]
+    [JsonPropertyName("source")]
+    public PublishingSource Source
+    {
+        get => _source.GetValue(InlineErrors);
+        set => _source.SetValue(value);
     }
 
     private PropertyValue<long> _created = new PropertyValue<long>(nameof(PackagesPublishing), nameof(Created), "created");
@@ -114,6 +125,7 @@ public sealed class PackagesPublishing
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _publishingId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _source.SetAccessPath(parentChainPath, validateHasBeenSet);
         _created.SetAccessPath(parentChainPath, validateHasBeenSet);
         _started.SetAccessPath(parentChainPath, validateHasBeenSet);
         _completed.SetAccessPath(parentChainPath, validateHasBeenSet);
